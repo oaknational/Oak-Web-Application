@@ -72,12 +72,8 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
   const mainTitle = optionalityTitle ?? unitTitle;
   const superTitle = optionalityTitle ? unitTitle : undefined;
   return (
-    <OakFlex $flexGrow={1} $alignItems={"start"} $gap={"space-between-xs"}>
-      <OakFlex
-        $flexGrow={1}
-        $flexDirection={"column"}
-        $gap={"space-between-ssx"}
-      >
+    <OakFlex $flexGrow={1} $alignItems={"start"} $gap={"spacing-12"}>
+      <OakFlex $flexGrow={1} $flexDirection={"column"} $gap={"spacing-8"}>
         {superTitle && (
           <OakP $font={"heading-light-7"} $color={"text-primary"}>
             {superTitle}
@@ -101,7 +97,7 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
         </UnitLink>
         <OakP $color={"text-subdued"} $font={"body-2"}>
           {year}
-          <OakSpan $ph={"inner-padding-xs"}>•</OakSpan>
+          <OakSpan $ph={"spacing-8"}>•</OakSpan>
           {lastSavedText}
         </OakP>
       </OakFlex>
@@ -135,7 +131,7 @@ const UnitCardContent = ({
 
   return (
     <OakFlex>
-      <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
         <OakFlex $justifyContent={"space-between"} $alignItems="center">
           <OakP $font={"heading-light-7"}>{lessonCountHeader}</OakP>
           <OakBox $display={["block", "none"]}>
@@ -149,7 +145,7 @@ const UnitCardContent = ({
         </OakFlex>
         <OakBox
           $bl={["border-solid-none", "border-solid-s"]}
-          $pl={["inner-padding-none", "inner-padding-xl"]}
+          $pl={["spacing-0", "spacing-24"]}
           $color="border-decorative1-stronger"
         >
           <StyledOL>
@@ -166,14 +162,14 @@ const UnitCardContent = ({
                 return (
                   <StyledOakLI
                     key={lesson.slug}
-                    $pb={"inner-padding-l"}
+                    $pb={"spacing-20"}
                     $font={"heading-light-7"}
                     onClick={() => props.trackLessonAccessed(lesson.slug)}
                   >
                     <OakFlex>
                       <OakP
                         $textAlign={"right"}
-                        $mr={"space-between-sssx"}
+                        $mr={"spacing-4"}
                         $color={
                           lesson.state === "published"
                             ? "text-primary"
@@ -229,12 +225,12 @@ export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {
       $flexDirection={"column"}
       $background={"bg-primary"}
       $borderRadius={"border-radius-m2"}
-      $pa={["inner-padding-m", "inner-padding-xl2"]}
-      $maxWidth={"all-spacing-23"}
-      $gap={"all-spacing-5"}
+      $pa={["spacing-16", "spacing-32"]}
+      $maxWidth={"spacing-960"}
+      $gap={"spacing-20"}
       $width="100%"
     >
-      <OakFlex $gap={["space-between-s", "space-between-m"]}>
+      <OakFlex $gap={["spacing-16", "spacing-24"]}>
         <UnitCardHeader {...props} />
       </OakFlex>
       <UnitCardContent lessonCountHeader={lessonCountHeader} {...props} />

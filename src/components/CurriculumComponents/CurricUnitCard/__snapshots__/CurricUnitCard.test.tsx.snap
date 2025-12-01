@@ -7,7 +7,7 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
       class="sc-fqkvVR sc-85abac1-0 jdSkEU jXwLFO"
     >
       <a
-        class="sc-65c0942f-0 dBSbTR"
+        class="sc-736180ff-0 bsbMHP"
         data-testid="unit-info-link"
         href="/"
       >
@@ -84,7 +84,7 @@ exports[`CurricUnitCard highlighted state 1`] = `
       class="sc-fqkvVR sc-85abac1-0 jdSkEU bySaAG"
     >
       <a
-        class="sc-65c0942f-0 kZJGvL"
+        class="sc-736180ff-0 eXUmTN"
         data-testid="unit-info-link"
         href="/"
       >
@@ -166,7 +166,7 @@ exports[`CurricUnitCard index is correct 1`] = `
       class="sc-fqkvVR sc-85abac1-0 jdSkEU jXwLFO"
     >
       <a
-        class="sc-65c0942f-0 dBSbTR"
+        class="sc-736180ff-0 bsbMHP"
         data-testid="unit-info-link"
         href="/"
       >
@@ -243,7 +243,7 @@ exports[`CurricUnitCard render 1`] = `
       class="sc-fqkvVR sc-85abac1-0 jdSkEU jXwLFO"
     >
       <a
-        class="sc-65c0942f-0 dBSbTR"
+        class="sc-736180ff-0 bsbMHP"
         data-testid="unit-info-link"
         href="/"
       >

@@ -207,11 +207,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
+                  class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
                 >
                   <input
                     checked=""
-                    class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
+                    class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
                     data-testid="all-years-radio"
                     id=":r0:"
                     name="yearreact-use-id-test-result"
@@ -231,10 +231,10 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
+                  class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
                 >
                   <input
-                    class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
+                    class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
                     data-testid="year-radio"
                     id=":r1:"
                     name="yearreact-use-id-test-result"
@@ -749,11 +749,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
+                  class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
                 >
                   <input
                     checked=""
-                    class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
+                    class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
                     data-testid="all-years-radio"
                     id=":r2:"
                     name="yearreact-use-id-test-result"
@@ -773,10 +773,10 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
+                  class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
                 >
                   <input
-                    class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
+                    class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
                     data-testid="year-radio"
                     id=":r3:"
                     name="yearreact-use-id-test-result"
@@ -1008,17 +1008,17 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                     </div>
                   </div>
                   <ol
-                    class="sc-3d4ecfd9-0 ktBcRc"
+                    class="sc-ca470ce2-0 bOkfrH"
                     role="list"
                   >
                     <li
-                      class="sc-3d4ecfd9-1 eyajkl"
+                      class="sc-ca470ce2-1 bfghyO"
                     >
                       <div
                         class="sc-fqkvVR sc-85abac1-0 jdSkEU jXwLFO"
                       >
                         <a
-                          class="sc-65c0942f-0 dBSbTR"
+                          class="sc-736180ff-0 bsbMHP"
                           data-testid="unit-info-link"
                           href="/timetabling/maths-primary/units/test-1?mode=normal&year=1"
                         >
@@ -1075,13 +1075,13 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       </div>
                     </li>
                     <li
-                      class="sc-3d4ecfd9-1 eyajkl"
+                      class="sc-ca470ce2-1 bfghyO"
                     >
                       <div
                         class="sc-fqkvVR sc-85abac1-0 jdSkEU jXwLFO"
                       >
                         <a
-                          class="sc-65c0942f-0 dBSbTR"
+                          class="sc-736180ff-0 bsbMHP"
                           data-testid="unit-info-link"
                           href="/timetabling/maths-primary/units/test-2?mode=normal&year=1"
                         >

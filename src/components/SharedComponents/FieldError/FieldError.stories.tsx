@@ -8,11 +8,7 @@ export default {
   argTypes: {},
 } as Meta<typeof Component>;
 
-const Template: StoryFn<typeof Component> = (args) => (
-  <>
-    <Component {...args} />
-  </>
-);
+const Template: StoryFn<typeof Component> = (args) => <Component {...args} />;
 
 export const FieldError = {
   render: Template,

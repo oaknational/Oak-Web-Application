@@ -10,9 +10,9 @@ import { getMockAnalytics } from "@/context/Analytics/getMockAnalytics";
  */
 export default function TimetablingProvider({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   const mockAnalytics = getMockAnalytics();
 
   return (

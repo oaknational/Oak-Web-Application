@@ -24,8 +24,8 @@ export const TeacherShareButton = ({
           disabled={!shareUrl}
           iconName="share"
           isTrailingIcon
-          ph={["inner-padding-xs", "inner-padding-l"]}
-          pv={["inner-padding-ssx", "inner-padding-s"]}
+          ph={["spacing-8", "spacing-20"]}
+          pv={["spacing-4", "spacing-12"]}
         >
           {label}
         </OakSecondaryButton>
@@ -49,7 +49,7 @@ export const TeacherShareButton = ({
     <OakFlex
       $flexDirection={"column"}
       $position={"relative"}
-      $pb={["inner-padding-m", "inner-padding-none", "inner-padding-none"]}
+      $pb={["spacing-16", "spacing-0", "spacing-0"]}
     >
       <OakSmallSecondaryButton
         rel="nofollow"

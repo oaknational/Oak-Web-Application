@@ -72,10 +72,6 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(),
-}));
-
 const render = renderWithProviders();
 
 describe("PupilExperienceView", () => {

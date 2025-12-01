@@ -52,7 +52,7 @@ const Template: StoryFn<typeof Component> = (args) => {
   const [schoolPickerInputValue, setSchoolPickerInputValue] = useState("");
 
   return (
-    <OakBox $width="all-spacing-20" $height="all-spacing-20">
+    <OakBox $width="spacing-360" $height="spacing-360">
       <Component
         {...args}
         label={"School picker"}

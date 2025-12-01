@@ -41,8 +41,8 @@ const CurriculumHeaderTabNav = ({
     <OakFlex
       as="nav"
       aria-label={label}
-      $mv={"space-between-none"}
-      $pv={"inner-padding-none"}
+      $mv={"spacing-0"}
+      $pv={"spacing-0"}
       $overflowY={"hidden"}
       $overflowX={"auto"}
       {...flexProps}

@@ -176,7 +176,7 @@ const UnitList: FC<UnitListProps> = (props) => {
       )}
       {currentPageItems.length ? (
         isUnitListData(props) ? (
-          <OakFlex $flexDirection="column" $gap="space-between-xxl">
+          <OakFlex $flexDirection="column" $gap="spacing-72">
             {/* Swimming units */}
             {swimmingPageItems.length > 0 && keyStageSlug && phaseSlug && (
               <OakUnitsContainer
@@ -302,14 +302,13 @@ const UnitList: FC<UnitListProps> = (props) => {
           />
         )
       ) : null}
-
       {/* Pagination footer */}
       {units.length > 5 ? (
         <OakBox
           $width="100%"
-          $mt={["space-between-none", "auto"]}
-          $pb={["inner-padding-xl2", "inner-padding-xl4"]}
-          $pt={["inner-padding-xl4", "inner-padding-xl2"]}
+          $mt={["spacing-0", "auto"]}
+          $pb={["spacing-32", "spacing-48"]}
+          $pt={["spacing-48", "spacing-32"]}
         >
           <OakPagination
             {...paginationProps}
@@ -318,7 +317,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           />
         </OakBox>
       ) : (
-        <OakBox $pb="inner-padding-xl2" />
+        <OakBox $pb="spacing-32" />
       )}
     </OakFlex>
   );

@@ -25,16 +25,16 @@ const UnitDownloadOnboardButton = ({
   <OakPrimaryButton
     width="fit-content"
     onClick={onClick}
-    ph={["inner-padding-xs", "inner-padding-l"]}
-    pv={["inner-padding-ssx", "inner-padding-s"]}
+    ph={["spacing-8", "spacing-20"]}
+    pv={["spacing-4", "spacing-12"]}
   >
-    <OakFlex $alignItems="center" $gap="space-between-xs">
+    <OakFlex $alignItems="center" $gap="spacing-12">
       {showNewTag && (
         <OakTagFunctional
           label="New"
           $background="mint"
           $color="text-primary"
-          $pv={"inner-padding-none"}
+          $pv={"spacing-0"}
         />
       )}
       Complete sign up to download this unit
@@ -54,16 +54,16 @@ const UnitDownloadSignInButton = ({
     <OakPrimaryButton
       iconName={"download"}
       isTrailingIcon
-      ph={["inner-padding-xs", "inner-padding-l"]}
-      pv={["inner-padding-ssx", "inner-padding-s"]}
+      ph={["spacing-8", "spacing-20"]}
+      pv={["spacing-4", "spacing-12"]}
     >
-      <OakFlex $alignItems="center" $gap="space-between-xs">
+      <OakFlex $alignItems="center" $gap="spacing-12">
         {showNewTag && (
           <OakTagFunctional
             label="New"
             $background="mint"
             $color="text-primary"
-            $pv={"inner-padding-none"}
+            $pv={"spacing-0"}
           />
         )}
         Download unit
@@ -89,10 +89,10 @@ const DownloadButton = ({
     isTrailingIcon
     onClick={onUnitDownloadClick}
     disabled={downloadInProgress || disabled}
-    ph={["inner-padding-xs", "inner-padding-l"]}
-    pv={["inner-padding-ssx", "inner-padding-s"]}
+    ph={["spacing-8", "spacing-20"]}
+    pv={["spacing-4", "spacing-12"]}
   >
-    <OakFlex $gap="space-between-xs">
+    <OakFlex $gap="spacing-12">
       {downloadInProgress && (
         <OakLoadingSpinner data-testid="loading-spinner" />
       )}

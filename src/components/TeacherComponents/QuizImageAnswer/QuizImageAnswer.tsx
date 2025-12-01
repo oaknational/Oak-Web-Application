@@ -23,7 +23,7 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
     <OakFlex
       $borderRadius={"border-radius-m2"}
       $height={"100%"}
-      $pa={"inner-padding-xs"}
+      $pa={"spacing-8"}
       $background={containerBackgroundColor}
     >
       {answerIsCorrect && (
@@ -32,15 +32,15 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
       <OakFlex
         $background={containerBackgroundColor}
         $alignItems={"center"}
-        $minWidth={"all-spacing-7"}
+        $minWidth={"spacing-32"}
         aria-hidden
       >
         {answerIsCorrect && (
           <OakIcon
             data-testid={"answer-tick"}
             iconName={"tick"}
-            $width={"all-spacing-6"}
-            $height={"all-spacing-6"}
+            $width={"spacing-24"}
+            $height={"spacing-24"}
           />
         )}
       </OakFlex>
@@ -50,12 +50,12 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
         $borderRadius={"border-radius-m2"}
       >
         <OakFlex
-          $ph={"inner-padding-s"}
-          $pv={"inner-padding-m"}
+          $ph={"spacing-12"}
+          $pv={"spacing-16"}
           $overflow={"hidden"}
           $position={"relative"}
-          $minWidth={dims.width ? undefined : "all-spacing-14"}
-          $minHeight={dims.height ? undefined : "all-spacing-14"}
+          $minWidth={dims.width ? undefined : "spacing-92"}
+          $minHeight={dims.height ? undefined : "spacing-92"}
           $justifyContent={"center"}
           $borderColor={"grey50"}
           $borderRadius={"border-radius-m2"}

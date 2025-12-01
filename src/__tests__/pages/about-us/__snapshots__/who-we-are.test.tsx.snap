@@ -8,7 +8,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
     >
       <div
         aria-live="polite"
-        class="sc-fqkvVR sc-kAyceB sc-d65e4df9-0 hkKUlc iPEHGb jTGGef"
+        class="sc-fqkvVR sc-kAyceB sc-713e2c99-0 hkKUlc iPEHGb hUNyQr"
       />
       <fake-head>
         <title>
@@ -103,7 +103,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
         </div>
         <header>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-89c89675-0 guMDvj fvXruP kTrmhv"
+            class="sc-fqkvVR sc-kAyceB sc-89c89675-0 guMDvj fvXruP bgfvXN"
             data-testid="app-header"
           >
             <div
@@ -113,7 +113,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB denUev fzjRNq"
               >
                 <a
-                  class="sc-dSCufp fydwRa sc-4d892c83-0 fciNWA"
+                  class="sc-dSCufp fydwRa sc-69d1ca97-0 biIKeN"
                   href="/"
                 >
                   <span
@@ -152,7 +152,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR gNQyrX"
                 >
                   <a
-                    class="sc-dSCufp fydwRa sc-4d892c83-0 fciNWA"
+                    class="sc-dSCufp fydwRa sc-69d1ca97-0 biIKeN"
                     href="/"
                   >
                     <span
@@ -414,7 +414,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
             >
               <div
                 aria-expanded="false"
-                class="sc-fqkvVR sc-kAyceB sc-8d9aac1c-0 iHLRke eeevb gReBEm"
+                class="sc-fqkvVR sc-kAyceB sc-e713ebd7-0 iHLRke eeevb hjUayK"
                 data-testid="menu"
               >
                 <div
@@ -492,7 +492,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </button>
                 </div>
                 <nav
-                  class="sc-8d9aac1c-1 eEGOVu"
+                  class="sc-e713ebd7-1 kTncwy"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB jFnbBV cPlSvk"
@@ -543,7 +543,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Home"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/"
                               role="link"
                               title="Home"
@@ -563,7 +563,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -575,7 +575,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -596,7 +596,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Key stage 1"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/key-stages/ks1/subjects"
                               role="link"
                               title="Key stage 1"
@@ -616,7 +616,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -628,7 +628,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -649,7 +649,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Key stage 2"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/key-stages/ks2/subjects"
                               role="link"
                               title="Key stage 2"
@@ -669,7 +669,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -681,7 +681,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -702,7 +702,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Key stage 3"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/key-stages/ks3/subjects"
                               role="link"
                               title="Key stage 3"
@@ -722,7 +722,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -734,7 +734,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -755,7 +755,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Key stage 4"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/key-stages/ks4/subjects"
                               role="link"
                               title="Key stage 4"
@@ -775,7 +775,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -787,7 +787,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -808,7 +808,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="EYFS"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/key-stages/early-years-foundation-stage/subjects"
                               role="link"
                               title="EYFS"
@@ -828,7 +828,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -840,7 +840,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -861,7 +861,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Specialist"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/specialist/subjects"
                               role="link"
                               title="Specialist"
@@ -881,7 +881,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -893,7 +893,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -914,7 +914,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Curriculum plans"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/curriculum"
                               role="link"
                               title="Curriculum plans"
@@ -934,7 +934,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -946,7 +946,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -967,7 +967,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Plan a lesson"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/lesson-planning"
                               role="link"
                               title="Plan a lesson"
@@ -987,7 +987,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -999,7 +999,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1020,7 +1020,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Support your team"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/support-your-team"
                               role="link"
                               title="Support your team"
@@ -1040,7 +1040,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1052,7 +1052,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1088,7 +1088,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Pupils home"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/pupils/years"
                               role="link"
                               title="Pupils home"
@@ -1108,7 +1108,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1120,7 +1120,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1156,7 +1156,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Blogs"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/blog"
                               role="link"
                               title="Blogs"
@@ -1176,7 +1176,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1188,7 +1188,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1209,7 +1209,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Webinars"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/webinars"
                               role="link"
                               title="Webinars"
@@ -1229,7 +1229,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1241,7 +1241,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1262,7 +1262,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="About us"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/about-us/who-we-are"
                               role="link"
                               title="About us"
@@ -1282,7 +1282,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1294,7 +1294,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1315,7 +1315,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Contact us"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/contact-us"
                               role="link"
                               title="Contact us"
@@ -1335,7 +1335,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1347,7 +1347,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1368,7 +1368,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           >
                             <a
                               aria-label="Help (opens in a new tab)"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="https://support.thenational.academy/"
                               role="link"
                               target="_blank"
@@ -1427,7 +1427,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1439,7 +1439,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1688,262 +1688,266 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
           id="main"
         >
           <div
-            class="sc-fqkvVR ieiSrW"
-            style="max-width: 1360px;"
+            class="sc-fqkvVR qcoRi"
           >
             <div
-              class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
-            >
-              <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-504343f2-0 fgBWrW djyvKT iAkSYx cNxuus"
-              >
-                <div
-                  class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
-                >
-                  <h1
-                    class="sc-kpDqfm cRJejs"
-                  >
-                    <span
-                      class="sc-dAlyuH gCYoeq"
-                    >
-                      About Oak
-                    </span>
-                  </h1>
-                  <p
-                    class="sc-dLMFU hxKUrX"
-                  >
-                    We're here to support and inspire teachers to deliver great teaching, so every pupil benefits
-                  </p>
-                </div>
-              </div>
-              <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-504343f2-1 fgBWrW joHkzz dGlNMa cLXZgT"
-              >
-                <div
-                  class="sc-fqkvVR dBkKun"
-                >
-                  <div
-                    class="sc-fqkvVR hudrT"
-                  >
-                    <img
-                      alt="Oak logo"
-                      class="sc-dcJsrY jRtmJB"
-                      data-nimg="fill"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
-                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="sc-fqkvVR sc-kAyceB sc-106fff76-0 ixZoE joHkzz jCAwhf"
-          >
-            <div
-              class="sc-fqkvVR sc-kAyceB kkWGlq bAFsaQ"
-            >
-              <div
-                class="sc-fqkvVR jqqmXN"
-              >
-                <img
-                  alt="breakout image"
-                  class="sc-dcJsrY jIcMOQ"
-                  data-nimg="fill"
-                  decoding="async"
-                  loading="lazy"
-                  sizes="100vw"
-                  src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=3840&q=75"
-                  srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=3840&q=75 3840w"
-                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                />
-              </div>
-            </div>
-            <div
-              class="sc-fqkvVR sc-kAyceB fgqejh gSPFUg"
-            >
-              <p
-                class="sc-dLMFU iDMvrw"
-              >
-                We’re Oak, your trusted planning partner for great teaching. Our free, adaptable resources evolve with education to give teachers and schools the latest tools to deliver inspiring lessons, save time and improve pupil outcomes.
-              </p>
-            </div>
-          </div>
-          <div
-            class="sc-fqkvVR glVOpG"
-          >
-            <div
-              class="sc-fqkvVR jglYoS"
+              class="sc-fqkvVR ieiSrW"
               style="max-width: 1360px;"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB itUwJl jyLrLm"
+                class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-0 fgBWrW djyvKT iAkSYx kIiJrY"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz bzXGlP"
+                    class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
                   >
-                    <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW gOiVFh"
+                    <h1
+                      class="sc-kpDqfm cRJejs"
                     >
-                      <div
-                        class="sc-fqkvVR cBmcky"
+                      <span
+                        class="sc-dAlyuH bOvjMx"
                       >
-                        <span
-                          class="sc-dAlyuH gCYoeq"
-                        >
-                          Oak’s story
-                        </span>
-                      </div>
-                      <h2
-                        class="sc-kpDqfm jOcnDt"
-                      >
-                        As teaching evolves, so do we...
-                      </h2>
-                    </div>
+                        About Oak
+                      </span>
+                    </h1>
+                    <p
+                      class="sc-dLMFU hxKUrX"
+                    >
+                      We're here to support and inspire teachers to deliver great teaching, so every pupil benefits
+                    </p>
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-1 fgBWrW joHkzz dGlNMa gHmAeX"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz ezsJUC"
+                    class="sc-fqkvVR dBkKun"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW eeevb"
+                      class="sc-fqkvVR hudrT"
+                    >
+                      <img
+                        alt=""
+                        class="sc-dcJsrY jRtmJB"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="sc-fqkvVR sc-kAyceB sc-15b631f-0 ixZoE joHkzz fzCipP"
+            >
+              <div
+                class="sc-fqkvVR sc-kAyceB kkWGlq bAFsaQ"
+              >
+                <div
+                  class="sc-fqkvVR jqqmXN"
+                >
+                  <img
+                    alt=""
+                    class="sc-dcJsrY jIcMOQ"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </div>
+              </div>
+              <div
+                class="sc-fqkvVR sc-kAyceB cPTgZF gSPFUg"
+              >
+                <p
+                  class="sc-dLMFU Qmmuc"
+                >
+                  We’re Oak, your trusted planning partner for great teaching. Our free, adaptable resources evolve with education to give teachers and schools the latest tools to deliver inspiring lessons, save time and improve pupil outcomes.
+                </p>
+              </div>
+            </div>
+            <div
+              class="sc-fqkvVR glVOpG"
+            >
+              <div
+                class="sc-fqkvVR dmKvLq"
+                style="max-width: 1360px;"
+              >
+                <div
+                  class="sc-fqkvVR sc-kAyceB UJoqH dAAIBQ"
+                >
+                  <div
+                    class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz bzXGlP"
                     >
                       <div
-                        class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
-                        data-testid="timetable-timeline-item"
+                        class="sc-fqkvVR sc-kAyceB fgBWrW gOiVFh"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB gqXWud bhNOkF"
+                          class="sc-fqkvVR dWdIJs"
                         >
-                          <div
-                            class="sc-fqkvVR sc-kAyceB KngzF czRjkZ"
-                          />
-                          <div
-                            class="sc-fqkvVR sc-kAyceB khfxFm bAFsaQ"
-                          />
+                          <span
+                            class="sc-dAlyuH bOvjMx"
+                          >
+                            Oak’s story
+                          </span>
                         </div>
-                        <div
-                          class="sc-fqkvVR sc-kAyceB egekXy gOiVFh"
+                        <h2
+                          class="sc-kpDqfm hxKDeC"
                         >
-                          <div
-                            class="sc-fqkvVR cvmDMx"
-                          >
-                            <span
-                              class="sc-dAlyuH gCYoeq"
-                            >
-                              From then
-                            </span>
-                          </div>
-                          <h3
-                            class="sc-kpDqfm jqyJdB"
-                          >
-                            A rapid response to the pandemic
-                          </h3>
-                          <div
-                            class="sc-fqkvVR fgBWrW"
-                          >
-                            <p
-                              class="sc-dLMFU gvLBvO"
-                            >
-                              In 2020, teachers needed a quick way to keep pupils learning during lockdown. So we brought together a group of expert partners to support schools with thousands of lessons designed for remote learning.
-                            </p>
-                          </div>
-                        </div>
+                          As teaching evolves, so do we...
+                        </h2>
                       </div>
+                    </div>
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz ezsJUC"
+                    >
                       <div
-                        class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
-                        data-testid="timetable-timeline-item"
+                        class="sc-fqkvVR sc-kAyceB fgBWrW eeevb"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB gqXWud bhNOkF"
+                          class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
+                          data-testid="timetable-timeline-item"
                         >
                           <div
-                            class="sc-fqkvVR sc-kAyceB KngzF czRjkZ"
-                          />
+                            class="sc-fqkvVR sc-kAyceB gqXWud bhNOkF"
+                          >
+                            <div
+                              class="sc-fqkvVR sc-kAyceB KngzF czRjkZ"
+                            />
+                            <div
+                              class="sc-fqkvVR sc-kAyceB khfxFm bAFsaQ"
+                            />
+                          </div>
                           <div
-                            class="sc-fqkvVR sc-kAyceB khfxFm bAFsaQ"
-                          />
+                            class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
+                          >
+                            <div
+                              class="sc-fqkvVR kxMTGH"
+                            >
+                              <span
+                                class="sc-dAlyuH bOvjMx"
+                              >
+                                From then
+                              </span>
+                            </div>
+                            <h3
+                              class="sc-kpDqfm cSDnOe"
+                            >
+                              A rapid response to the pandemic
+                            </h3>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB jPWxQZ iVYVEn"
+                            >
+                              <p
+                                class="sc-dLMFU kdIcGd"
+                              >
+                                In 2020, teachers needed a quick way to keep pupils learning during lockdown. So we brought together a group of expert partners to support schools with thousands of lessons designed for remote learning.
+                              </p>
+                            </div>
+                          </div>
                         </div>
                         <div
-                          class="sc-fqkvVR sc-kAyceB egekXy gOiVFh"
+                          class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
+                          data-testid="timetable-timeline-item"
                         >
                           <div
-                            class="sc-fqkvVR cvmDMx"
+                            class="sc-fqkvVR sc-kAyceB gqXWud bhNOkF"
                           >
-                            <span
-                              class="sc-dAlyuH gCYoeq"
-                            >
-                              To now
-                            </span>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB KngzF czRjkZ"
+                            />
+                            <div
+                              class="sc-fqkvVR sc-kAyceB khfxFm bAFsaQ"
+                            />
                           </div>
-                          <h3
-                            class="sc-kpDqfm jqyJdB"
-                          >
-                            Complete resources for the classroom, schools and trusts
-                          </h3>
                           <div
-                            class="sc-fqkvVR fgBWrW"
+                            class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                           >
-                            <p
-                              class="sc-dLMFU gvLBvO"
+                            <div
+                              class="sc-fqkvVR kxMTGH"
                             >
-                              From early years to exam years, we now provide complete curriculum support for the classroom. Every national curriculum subject, every unit, every lesson, in one place.
-                            </p>
-                            <p
-                              class="sc-dLMFU gvLBvO"
+                              <span
+                                class="sc-dAlyuH bOvjMx"
+                              >
+                                To now
+                              </span>
+                            </div>
+                            <h3
+                              class="sc-kpDqfm cSDnOe"
                             >
-                              We’re also transforming lesson prep with AI tools that help teachers create, adapt, and enhance their lessons in minutes, while keeping quality high and content safe.
-                            </p>
+                              Complete resources for the classroom, schools and trusts
+                            </h3>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB jPWxQZ iVYVEn"
+                            >
+                              <p
+                                class="sc-dLMFU kdIcGd"
+                              >
+                                From early years to exam years, we now provide complete curriculum support for the classroom. Every national curriculum subject, every unit, every lesson, in one place.
+                              </p>
+                              <p
+                                class="sc-dLMFU kdIcGd"
+                              >
+                                We’re also transforming lesson prep with AI tools that help teachers create, adapt, and enhance their lessons in minutes, while keeping quality high and content safe.
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div
-                        class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
-                        data-testid="timetable-timeline-item"
-                      >
                         <div
-                          class="sc-fqkvVR sc-kAyceB gqXWud bhNOkF"
+                          class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
+                          data-testid="timetable-timeline-item"
                         >
                           <div
-                            class="sc-fqkvVR sc-kAyceB KngzF czRjkZ"
-                          />
-                          <div
-                            class="sc-fqkvVR sc-kAyceB qcwYc bAFsaQ"
-                          />
-                        </div>
-                        <div
-                          class="sc-fqkvVR sc-kAyceB egekXy gOiVFh"
-                        >
-                          <div
-                            class="sc-fqkvVR cvmDMx"
+                            class="sc-fqkvVR sc-kAyceB gqXWud bhNOkF"
                           >
-                            <span
-                              class="sc-dAlyuH gCYoeq"
-                            >
-                              And beyond
-                            </span>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB KngzF czRjkZ"
+                            />
+                            <div
+                              class="sc-fqkvVR sc-kAyceB qcwYc bAFsaQ"
+                            />
                           </div>
-                          <h3
-                            class="sc-kpDqfm jqyJdB"
-                          >
-                            Staying ahead in a changing world
-                          </h3>
                           <div
-                            class="sc-fqkvVR fgBWrW"
+                            class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                           >
-                            <p
-                              class="sc-dLMFU gvLBvO"
+                            <div
+                              class="sc-fqkvVR kxMTGH"
                             >
-                              We’ve always anticipated the emerging needs of teachers – from building safe and secure AI tools, to making our platform code available to partners who want to integrate it directly. We’ll keep innovating as we find new ways to help teachers stay ahead in a changing world.
-                            </p>
+                              <span
+                                class="sc-dAlyuH bOvjMx"
+                              >
+                                And beyond
+                              </span>
+                            </div>
+                            <h3
+                              class="sc-kpDqfm cSDnOe"
+                            >
+                              Staying ahead in a changing world
+                            </h3>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB jPWxQZ iVYVEn"
+                            >
+                              <p
+                                class="sc-dLMFU kdIcGd"
+                              >
+                                We’ve always anticipated the emerging needs of teachers – from building safe and secure AI tools, to making our platform code available to partners who want to integrate it directly. We’ll keep innovating as we find new ways to help teachers stay ahead in a changing world.
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1952,427 +1956,1034 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </div>
               </div>
             </div>
-          </div>
-          <div
-            class="sc-fqkvVR dtojPp"
-          >
             <div
-              class="sc-fqkvVR sc-kAyceB bhbwbN gwxZIR"
-            >
-              <h2
-                class="sc-kpDqfm ijVMjN"
-              >
-                We are...
-              </h2>
-              <div
-                class="sc-fqkvVR sc-jXbUNg egekXy iwxQGX"
-              >
-                <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
-                  data-testid="who-we-are-desc-item"
-                >
-                  <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
-                  >
-                    <div
-                      class="sc-fqkvVR gGSZAU"
-                    >
-                      <div
-                        class="sc-fqkvVR hudrT"
-                      >
-                        <img
-                          alt="test"
-                          class="sc-dcJsrY jRtmJB"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </div>
-                    </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
-                    >
-                      <h3
-                        class="sc-kpDqfm exYwWV"
-                      >
-                        Built for the reality of teaching
-                      </h3>
-                      <p
-                        class="sc-dLMFU gKXbKJ"
-                      >
-                        We get it. Time is tight, classes vary, and only teachers can know pupils best. That’s why our materials are flexible tools to adapt, not scripts to follow: a starting point that supports your expertise and style.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
-                  data-testid="who-we-are-desc-item"
-                >
-                  <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
-                  >
-                    <div
-                      class="sc-fqkvVR fulovU"
-                    >
-                      <div
-                        class="sc-fqkvVR hudrT"
-                      >
-                        <img
-                          alt="test"
-                          class="sc-dcJsrY jRtmJB"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </div>
-                    </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
-                    >
-                      <h3
-                        class="sc-kpDqfm exYwWV"
-                      >
-                        Expert created and quality assured
-                      </h3>
-                      <p
-                        class="sc-dLMFU gKXbKJ"
-                      >
-                        Created by subject and curriculum experts, our resources are informed by the best available evidence of what works, aligned to the national curriculum and tested by real teachers.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
-                  data-testid="who-we-are-desc-item"
-                >
-                  <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
-                  >
-                    <div
-                      class="sc-fqkvVR hXKZlN"
-                    >
-                      <div
-                        class="sc-fqkvVR hudrT"
-                      >
-                        <img
-                          alt="test"
-                          class="sc-dcJsrY jRtmJB"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </div>
-                    </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
-                    >
-                      <h3
-                        class="sc-kpDqfm exYwWV"
-                      >
-                        Free, and always will be
-                      </h3>
-                      <p
-                        class="sc-dLMFU gKXbKJ"
-                      >
-                        We’re funded by the Department for Education. No paywalls, package tiers, or hidden costs.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
-                  data-testid="who-we-are-desc-item"
-                >
-                  <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
-                  >
-                    <div
-                      class="sc-fqkvVR eRVEUV"
-                    >
-                      <div
-                        class="sc-fqkvVR hudrT"
-                      >
-                        <img
-                          alt="test"
-                          class="sc-dcJsrY jRtmJB"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </div>
-                    </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
-                    >
-                      <h3
-                        class="sc-kpDqfm exYwWV"
-                      >
-                        Independent and optional
-                      </h3>
-                      <p
-                        class="sc-dLMFU gKXbKJ"
-                      >
-                        Oak is by teachers, for teachers. Our board is publicly appointed, and our partners selected through an open process.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="sc-fqkvVR dySFtr"
-          >
-            <div
-              class="sc-fqkvVR iHVEBS"
+              class="sc-fqkvVR dtojPp"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB ebGLGq gwxZIR"
+                class="sc-fqkvVR sc-kAyceB bhbwbN gwxZIR"
               >
                 <h2
-                  class="sc-kpDqfm dWPsQk"
+                  class="sc-kpDqfm gzqUEm"
                 >
-                  Explore more about Oak
+                  We are...
                 </h2>
                 <div
-                  class="sc-fqkvVR sc-jXbUNg fgBWrW iwxQGX"
+                  class="sc-fqkvVR sc-jXbUNg fgBWrW ewUxii"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-542e7679-0 fgBWrW joHkzz iAkSYx cmwAlb"
+                    data-testid="who-we-are-desc-item"
                   >
                     <div
-                      class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                      class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
                     >
-                      <a
-                        href="/#"
-                        style="outline: none;"
+                      <div
+                        class="sc-fqkvVR gRLayp"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
-                          data-testid="who-we-are-explore-item"
+                          class="sc-fqkvVR hudrT"
                         >
-                          <div
-                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
-                          >
-                            <div
-                              class="sc-fqkvVR kKvKAa"
-                            >
-                              <img
-                                alt=""
-                                class="sc-dcJsrY cDKKvZ"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1754386969/icons/curriculum-plan_qygyuo.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
-                          <div
-                            class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
-                          >
-                            About Oak’s curriculum
-                          </div>
-                          <div
-                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
-                          >
-                            <div
-                              class="sc-fqkvVR erqloa"
-                            >
-                              <img
-                                alt=""
-                                class="sc-dcJsrY cDKKvZ"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
+                          <img
+                            alt=""
+                            class="sc-dcJsrY jRtmJB"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://res.cloudinary.com/oak-web-application/image/upload/v1763393172/icons/teacher-whiteboard-illustration_qumdkt.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
                         </div>
-                      </a>
+                      </div>
+                      <div
+                        class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+                      >
+                        <h3
+                          class="sc-kpDqfm eAMIYi"
+                        >
+                          Built for the reality of teaching
+                        </h3>
+                        <p
+                          class="sc-dLMFU jKnjIK"
+                        >
+                          We get it. Time is tight, classes vary, and only teachers can know pupils best. That’s why our materials are flexible tools to adapt, not scripts to follow: a starting point that supports your expertise and style.
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-542e7679-0 fgBWrW joHkzz iAkSYx cmwAlb"
+                    data-testid="who-we-are-desc-item"
                   >
                     <div
-                      class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                      class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
                     >
-                      <a
-                        href="/#"
-                        style="outline: none;"
+                      <div
+                        class="sc-fqkvVR fjbDCB"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
-                          data-testid="who-we-are-explore-item"
+                          class="sc-fqkvVR hudrT"
                         >
-                          <div
-                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
-                          >
-                            <div
-                              class="sc-fqkvVR kKvKAa"
-                            >
-                              <img
-                                alt=""
-                                class="sc-dcJsrY cDKKvZ"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1756224441/icons/AI_worksheet_cm4f0q.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
-                          <div
-                            class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
-                          >
-                            Oak’s impact
-                          </div>
-                          <div
-                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
-                          >
-                            <div
-                              class="sc-fqkvVR erqloa"
-                            >
-                              <img
-                                alt=""
-                                class="sc-dcJsrY cDKKvZ"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
+                          <img
+                            alt=""
+                            class="sc-dcJsrY jRtmJB"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
                         </div>
-                      </a>
+                      </div>
+                      <div
+                        class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+                      >
+                        <h3
+                          class="sc-kpDqfm eAMIYi"
+                        >
+                          Expert created and quality assured
+                        </h3>
+                        <p
+                          class="sc-dLMFU jKnjIK"
+                        >
+                          Created by subject and curriculum experts, our resources are informed by the best available evidence of what works, aligned to the national curriculum and tested by real teachers.
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-542e7679-0 fgBWrW joHkzz iAkSYx cmwAlb"
+                    data-testid="who-we-are-desc-item"
                   >
                     <div
-                      class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                      class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
                     >
-                      <a
-                        href="/#"
-                        style="outline: none;"
+                      <div
+                        class="sc-fqkvVR tlJWQ"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
-                          data-testid="who-we-are-explore-item"
+                          class="sc-fqkvVR hudrT"
                         >
-                          <div
-                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
-                          >
-                            <div
-                              class="sc-fqkvVR kKvKAa"
-                            >
-                              <img
-                                alt=""
-                                class="sc-dcJsrY cDKKvZ"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1756224441/icons/AI_worksheet_cm4f0q.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
-                          <div
-                            class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
-                          >
-                            Meet the team
-                          </div>
-                          <div
-                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
-                          >
-                            <div
-                              class="sc-fqkvVR erqloa"
-                            >
-                              <img
-                                alt=""
-                                class="sc-dcJsrY cDKKvZ"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
+                          <img
+                            alt=""
+                            class="sc-dcJsrY jRtmJB"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://res.cloudinary.com/oak-web-application/image/upload/v1749033815/icons/free-tag_lijptf.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
                         </div>
-                      </a>
+                      </div>
+                      <div
+                        class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+                      >
+                        <h3
+                          class="sc-kpDqfm eAMIYi"
+                        >
+                          Free, and always will be
+                        </h3>
+                        <p
+                          class="sc-dLMFU jKnjIK"
+                        >
+                          We’re funded by the Department for Education. No paywalls, package tiers, or hidden costs.
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-542e7679-0 fgBWrW joHkzz iAkSYx cmwAlb"
+                    data-testid="who-we-are-desc-item"
                   >
                     <div
-                      class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                      class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
                     >
-                      <a
-                        href="/#"
-                        style="outline: none;"
+                      <div
+                        class="sc-fqkvVR hckAIM"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
-                          data-testid="who-we-are-explore-item"
+                          class="sc-fqkvVR hudrT"
+                        >
+                          <img
+                            alt=""
+                            class="sc-dcJsrY jRtmJB"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://res.cloudinary.com/oak-web-application/image/upload/v1763393169/icons/teacher-planning-illustration_kgfbgx.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+                      >
+                        <h3
+                          class="sc-kpDqfm eAMIYi"
+                        >
+                          Independent and optional
+                        </h3>
+                        <p
+                          class="sc-dLMFU jKnjIK"
+                        >
+                          Oak is by teachers, for teachers. Our board is publicly appointed, and our partners selected through an open process.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="sc-fqkvVR kDpsQP"
+            >
+              <div
+                class="sc-fqkvVR howriz"
+                style="pointer-events: none;"
+              >
+                <img
+                  alt=""
+                  class="sc-dcJsrY cDKKvZ"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </div>
+              <div
+                class="sc-fqkvVR IDCoS"
+              >
+                <div
+                  class="sc-fqkvVR sc-kAyceB ebGLGq gwxZIR"
+                >
+                  <h2
+                    class="sc-kpDqfm hazha-D"
+                  >
+                    Explore more about Oak
+                  </h2>
+                  <div
+                    class="sc-fqkvVR sc-jXbUNg fgBWrW iwxQGX"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                      >
+                        <a
+                          href="/#"
+                          style="outline: none;"
                         >
                           <div
-                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                            class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                            data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="sc-fqkvVR kKvKAa"
+                              class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
                             >
-                              <img
-                                alt=""
-                                class="sc-dcJsrY cDKKvZ"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1756224441/icons/AI_worksheet_cm4f0q.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              <div
+                                class="sc-fqkvVR kKvKAa"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-dcJsrY cDKKvZ"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
+                            </div>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
+                            >
+                              About Oak’s curriculum
+                            </div>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                            >
+                              <div
+                                class="sc-fqkvVR erqloa"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-dcJsrY cDKKvZ"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
                             </div>
                           </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                      >
+                        <a
+                          href="/#"
+                          style="outline: none;"
+                        >
                           <div
-                            class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
-                          >
-                            Get involved
-                          </div>
-                          <div
-                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                            class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                            data-testid="who-we-are-explore-item"
                           >
                             <div
-                              class="sc-fqkvVR erqloa"
+                              class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
                             >
-                              <img
-                                alt=""
-                                class="sc-dcJsrY cDKKvZ"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              <div
+                                class="sc-fqkvVR kKvKAa"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-dcJsrY cDKKvZ"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393164/icons/data-illustration_ukwdxg.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
+                            </div>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
+                            >
+                              Oak’s impact
+                            </div>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                            >
+                              <div
+                                class="sc-fqkvVR erqloa"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-dcJsrY cDKKvZ"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
                             </div>
                           </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                      >
+                        <a
+                          href="/#"
+                          style="outline: none;"
+                        >
+                          <div
+                            class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                            >
+                              <div
+                                class="sc-fqkvVR kKvKAa"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-dcJsrY cDKKvZ"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
+                            </div>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
+                            >
+                              Meet the team
+                            </div>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                            >
+                              <div
+                                class="sc-fqkvVR erqloa"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-dcJsrY cDKKvZ"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                      >
+                        <a
+                          href="/#"
+                          style="outline: none;"
+                        >
+                          <div
+                            class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                            data-testid="who-we-are-explore-item"
+                          >
+                            <div
+                              class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                            >
+                              <div
+                                class="sc-fqkvVR kKvKAa"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-dcJsrY cDKKvZ"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
+                            </div>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
+                            >
+                              Get involved
+                            </div>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                            >
+                              <div
+                                class="sc-fqkvVR erqloa"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-dcJsrY cDKKvZ"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="sc-fqkvVR hoeBpy"
+            >
+              <div
+                class="sc-fqkvVR sc-kAyceB sc-jEACwC eKkWSU bUZQTk"
+              >
+                <div
+                  class="sc-fqkvVR sc-f019c2e2-0 fgBWrW bXXxRE"
+                >
+                  <div
+                    class="sc-ad0ad6f5-0 sc-213e351e-0 sc-8724906-0 hidovD cEqFwB"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-jXbUNg fgBWrW eyAFjd"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cUWHJz"
+                      >
+                        <div
+                          class="sc-fqkvVR sc-kAyceB epxaqP dvzkkT"
+                        >
+                          <div
+                            class="sc-fqkvVR ffRbpw"
+                          >
+                            <img
+                              alt=""
+                              class="sc-dcJsrY cDKKvZ"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953622/icons/jifivg9xxm7sb0fjdilm.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </div>
+                          <h2
+                            class="sc-afa54f33-0 eGZsMy"
+                          >
+                            Don’t miss out
+                          </h2>
                         </div>
-                      </a>
+                        <p
+                          class="sc-dLMFU bHJkGj"
+                          color="black"
+                          id="react-use-id-test-result-newsletter-form-description"
+                        >
+                          Join over 100k teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
+                           
+                          <a
+                            class="sc-4b913d3f-0 TGVXN"
+                            href="/legal/privacy-policy"
+                            role="link"
+                          >
+                            privacy policy
+                          </a>
+                          .
+                        </p>
+                      </div>
+                      <div
+                        class="sc-fqkvVR sc-kAyceB sc-dhKdcB dJwgCl joHkzz cUWHJz"
+                      >
+                        <form
+                          aria-describedby="react-use-id-test-result-newsletter-form-description"
+                          class="sc-afc76bc-0 ehpmRZ"
+                          novalidate=""
+                        >
+                          <div
+                            class="sc-ad0ad6f5-0 sc-213e351e-0 sc-eb7a8b1-2 bVSHII BtlXC koYngz"
+                          >
+                            <div
+                              class="sc-ad0ad6f5-0 sc-213e351e-0 fwrGSw cUwoYe"
+                            >
+                              <div
+                                aria-hidden="true"
+                                class="sc-fqkvVR fgBWrW"
+                                data-testid="brush-borders"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="sc-de304c9d-0 gnuCag"
+                                  height="100%"
+                                  name="box-border-top"
+                                  style="height: 3px;"
+                                  width="100%"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <svg
+                                    fill="none"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 365.46 2.75"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
+                                      fill="currentColor"
+                                    />
+                                  </svg>
+                                </svg>
+                                <svg
+                                  aria-hidden="true"
+                                  class="sc-de304c9d-0 gnuCag"
+                                  height="100%"
+                                  name="box-border-right"
+                                  style="width: 3px; height: 90%;"
+                                  width="100%"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <svg
+                                    fill="none"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 2.89 330.09"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
+                                      fill="currentColor"
+                                    />
+                                  </svg>
+                                </svg>
+                                <svg
+                                  aria-hidden="true"
+                                  class="sc-de304c9d-0 gnuCag"
+                                  height="100%"
+                                  name="box-border-bottom"
+                                  style="height: 3px; width: 100%;"
+                                  width="100%"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <svg
+                                    fill="none"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 365.46 2.75"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
+                                      fill="currentColor"
+                                    />
+                                  </svg>
+                                </svg>
+                                <svg
+                                  aria-hidden="true"
+                                  class="sc-de304c9d-0 gnuCag"
+                                  height="100%"
+                                  name="box-border-left"
+                                  style="width: 3px;"
+                                  width="100%"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <svg
+                                    fill="none"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 2.72 359.41"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
+                                      fill="currentColor"
+                                    />
+                                  </svg>
+                                </svg>
+                              </div>
+                              <div
+                                class="sc-ad0ad6f5-0 sc-213e351e-0 gkBGDY cUwoYe"
+                              >
+                                <label
+                                  aria-hidden="true"
+                                  class="sc-a4f8e51b-0 sc-eb7a8b1-1 fNLaOe kPgTac"
+                                  color="black"
+                                  data-testid="rotated-input-label"
+                                  for="react-use-id-test-result-newsletter-signup-name"
+                                  id="react-use-id-test-result-newsletter-signup-name-label"
+                                >
+                                  <span
+                                    class="sc-dAlyuH cRouMQ"
+                                  >
+                                    Name
+                                     
+                                    <span
+                                      class="sc-dAlyuH DWQPb"
+                                    >
+                                      (required)
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                              <input
+                                aria-invalid="false"
+                                aria-labelledby="react-use-id-test-result-newsletter-signup-name-label"
+                                autocomplete="name"
+                                class="sc-7244e9af-0 sc-eb7a8b1-3 hYiqbt iOkuPT"
+                                id="react-use-id-test-result-newsletter-signup-name"
+                                name="name"
+                                placeholder="Anna Smith"
+                                required=""
+                              />
+                              <svg
+                                aria-hidden="true"
+                                class="sc-86d1d46f-0 jOBmUC sc-eb7a8b1-0 bzXzya"
+                                height="100%"
+                                name="underline-1"
+                                width="100%"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <use
+                                  xlink:href="/images/sprite/sprite.svg#underline-1"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                          <div
+                            class="sc-ad0ad6f5-0 sc-213e351e-0 sc-eb7a8b1-2 bVSHII BtlXC koYngz"
+                          >
+                            <div
+                              class="sc-ad0ad6f5-0 sc-213e351e-0 fwrGSw cUwoYe"
+                            >
+                              <div
+                                aria-hidden="true"
+                                class="sc-fqkvVR fgBWrW"
+                                data-testid="brush-borders"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="sc-de304c9d-0 gnuCag"
+                                  height="100%"
+                                  name="box-border-top"
+                                  style="height: 3px;"
+                                  width="100%"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <svg
+                                    fill="none"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 365.46 2.75"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
+                                      fill="currentColor"
+                                    />
+                                  </svg>
+                                </svg>
+                                <svg
+                                  aria-hidden="true"
+                                  class="sc-de304c9d-0 gnuCag"
+                                  height="100%"
+                                  name="box-border-right"
+                                  style="width: 3px; height: 90%;"
+                                  width="100%"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <svg
+                                    fill="none"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 2.89 330.09"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
+                                      fill="currentColor"
+                                    />
+                                  </svg>
+                                </svg>
+                                <svg
+                                  aria-hidden="true"
+                                  class="sc-de304c9d-0 gnuCag"
+                                  height="100%"
+                                  name="box-border-bottom"
+                                  style="height: 3px; width: 100%;"
+                                  width="100%"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <svg
+                                    fill="none"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 365.46 2.75"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
+                                      fill="currentColor"
+                                    />
+                                  </svg>
+                                </svg>
+                                <svg
+                                  aria-hidden="true"
+                                  class="sc-de304c9d-0 gnuCag"
+                                  height="100%"
+                                  name="box-border-left"
+                                  style="width: 3px;"
+                                  width="100%"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <svg
+                                    fill="none"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 2.72 359.41"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
+                                      fill="currentColor"
+                                    />
+                                    <path
+                                      d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
+                                      fill="currentColor"
+                                    />
+                                  </svg>
+                                </svg>
+                              </div>
+                              <div
+                                class="sc-ad0ad6f5-0 sc-213e351e-0 gkBGDY cUwoYe"
+                              >
+                                <label
+                                  aria-hidden="true"
+                                  class="sc-a4f8e51b-0 sc-eb7a8b1-1 fNLaOe kPgTac"
+                                  color="black"
+                                  data-testid="rotated-input-label"
+                                  for="react-use-id-test-result-newsletter-signup-email"
+                                  id="react-use-id-test-result-newsletter-signup-email-label"
+                                >
+                                  <span
+                                    class="sc-dAlyuH cRouMQ"
+                                  >
+                                    Email
+                                     
+                                    <span
+                                      class="sc-dAlyuH DWQPb"
+                                    >
+                                      (required)
+                                    </span>
+                                  </span>
+                                </label>
+                              </div>
+                              <input
+                                aria-invalid="false"
+                                aria-labelledby="react-use-id-test-result-newsletter-signup-email-label"
+                                autocomplete="email"
+                                class="sc-7244e9af-0 sc-eb7a8b1-3 hYiqbt iOkuPT"
+                                id="react-use-id-test-result-newsletter-signup-email"
+                                name="email"
+                                placeholder="anna@amail.com"
+                                required=""
+                              />
+                              <svg
+                                aria-hidden="true"
+                                class="sc-86d1d46f-0 jOBmUC sc-eb7a8b1-0 bzXzya"
+                                height="100%"
+                                name="underline-1"
+                                width="100%"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <use
+                                  xlink:href="/images/sprite/sprite.svg#underline-1"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-kAyceB sc-717e755b-1 cbreSL eeevb bBXsvk"
+                          >
+                            <div
+                              aria-hidden="true"
+                              class="sc-fqkvVR fgBWrW"
+                              data-testid="brush-borders"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="sc-de304c9d-0 gnuCag"
+                                height="100%"
+                                name="box-border-top"
+                                style="height: 3px;"
+                                width="100%"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <svg
+                                  fill="none"
+                                  preserveAspectRatio="none"
+                                  viewBox="0 0 365.46 2.75"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
+                                    fill="currentColor"
+                                  />
+                                  <path
+                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
+                                    fill="currentColor"
+                                  />
+                                </svg>
+                              </svg>
+                              <svg
+                                aria-hidden="true"
+                                class="sc-de304c9d-0 gnuCag"
+                                height="100%"
+                                name="box-border-right"
+                                style="width: 3px; height: 90%;"
+                                width="100%"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <svg
+                                  fill="none"
+                                  preserveAspectRatio="none"
+                                  viewBox="0 0 2.89 330.09"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M2.7 2.21c-.12-.76.36-2.63-1.15-2.13C.77.03-.13.13.01.85c.18 14.09.05 309.32.1 328.06 0 .15.3 1.07.28 1.18h2.5C2.85 303.49 2.6 17.84 2.7 2.21Z"
+                                    fill="currentColor"
+                                  />
+                                  <path
+                                    d="M1.87 1.07s.09.4.09 1.21c.11 3.3-.51-1.31-.09-1.21ZM1.25 44.05c-.47-.05-.49-1.38-.04-1.78.85-.76.2 1.8.04 1.78ZM.91 1.65c.08 2.14.7 4.95-.31 2.59-.13-.84.18-5.42.31-2.59ZM1.05 65.78c-.47-.05.11-8.31.56-9.46.4-1.07-.4 9.48-.56 9.46ZM1.76 54.4c-.47-.05-.76-.69.03-.65 1.14.07.13.67-.03.65Z"
+                                    fill="currentColor"
+                                  />
+                                </svg>
+                              </svg>
+                              <svg
+                                aria-hidden="true"
+                                class="sc-de304c9d-0 gnuCag"
+                                height="100%"
+                                name="box-border-bottom"
+                                style="height: 3px; width: 100%;"
+                                width="100%"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <svg
+                                  fill="none"
+                                  preserveAspectRatio="none"
+                                  viewBox="0 0 365.46 2.75"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M364.83 0C351.89 1.06-.66.73 0 .25v2.5c2.3.01 5.32-.13 5.57-.08 47.1.16 120.24-.07 166.75-.03 69.38-.05 120.46-.12 189.56-.12-.05-.23 1.93.16 3.58.23V.25c-.05.25-.37-.27-.63-.25Z"
+                                    fill="currentColor"
+                                  />
+                                  <path
+                                    d="M149.42 1.02c.27-.16 3.18-.2 2.26.09-.19.04-2.5.15-2.26-.09ZM56.54.97c.55.12-2.9.98-3.24.15.32.41 3.27-.18 3.24-.15ZM9.35 1.59C7.97 1.63 7.02.97 6.81.96c-.43-.19 7.92.37 2.54.63ZM16.35 2.38c-.62-.35-1.11-.15-1.75-.43-.73-.27 3.56.47 1.75.43ZM24.26 1.7c-2.35 0-2.12-.47.23-.53 2.68-.01 1.7.53-.23.53ZM28.1 1.31c-2.03 0-1.83-.27.16-.34 1.97.07 1.83.34-.16.34ZM36.92 1.59c-3.21-.17-5.82-.65-2.64-.82h.08c3.18.17 5.76.65 2.56.82ZM42.59 1.17c-4.18 0-.39-.28 1.02-.17 2.41.11 2.04.17-1.02.17ZM46.37 2.3c-2.79.08 1.35-.33 1.34-.12-.18.04-.77.12-1.34.12ZM52.8 2.1c-.98 0-2.05-.06-2.38-.17 1.13-.23 7.26.26 2.38.17ZM58.28 1.64c-.64.06-1.52.06-1.89.06-2.06-.28 4.19-.29 1.89-.06ZM65.09 1.4c-.4.03-2.69.44-3.72.48-4.46.08 6.98-.83 3.72-.48ZM72.66 1.73c-1.98.35-1.23.02.7-.26 1.91-.3 1.43-.12-.7.26ZM85.21 1.47c-.77 0-1.69-.03-2.01-.07-.37-.19 6.48 0 2.01.07ZM96.76 1.4c-.77 0-2.15-.04-3.06-.08-4.81-.23 4.86-.07 3.06.08ZM107.94 1.61c-3.21-.28.14-.46 1.48-.19 2.05.37 1.35.43-1.48.19ZM114.99 1.79c-2.3.1.24-.22.72-.08 0 0-.32.08-.72.08ZM117.51 1.68c-.87-.13.01-.55.54-.47.77.08.26.55-.54.47ZM120.1 1.61c-.14-.19 1.25-.42 1.38-.32.27.08-1.02.4-1.38.32ZM124.56 2.44c-1.17-.02.1-.15.36-.12.56.08.43.12-.36.12ZM146.75 2.35c-.42 0-.43-.2 0-.18.43-.02.42.18 0 .18ZM149.83 2.11c-3.61-.03-.33-.41.96-.36 2.38.15 1.77.36-.96.36ZM154.5 1.82c-.54 0-1.55-.62-1.28-.65.44-.14 2.79.67 1.28.65ZM156.94 2.42c-.26.03-.5.03-.57 0-.4-.24 1.45-.08.57 0ZM169.55 2.35c-.9 0-1.67-.11-1.67-.11.05-.33 6 .04 1.67.11ZM175.38 1.82c-.86 0-2.06-.07-2.6-.1-.96-.25 7.83-.03 2.6.1ZM192.55 2.28c-3.37 0 .38-.25 1.77 0h-1.77ZM193.35 1.72c-5.94-.1-.12-.22 1.6-.08 2.54.06.44.02-1.6.08ZM224.25 1.82h-5.04c-5.16-.75 14.75.03 5.04 0ZM255.57 1.97c-.89.1-1.94.2-2.56.1-.91-.44 7.73-.88 2.56-.1ZM259.32 1.54c-.95 0-2.54-.26-.97-.46 5.44-.41 10.89.41.97.46Z"
+                                    fill="currentColor"
+                                  />
+                                </svg>
+                              </svg>
+                              <svg
+                                aria-hidden="true"
+                                class="sc-de304c9d-0 gnuCag"
+                                height="100%"
+                                name="box-border-left"
+                                style="width: 3px;"
+                                width="100%"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <svg
+                                  fill="none"
+                                  preserveAspectRatio="none"
+                                  viewBox="0 0 2.72 359.41"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M2.56 26.03c-.14-7.28.05-12.58 0-18.65C2.48 3.63 2.28.24 2.51 0H.02c.13 3.41 1.04 10.2.02 14.63-.1 9.52.02 311.42-.03 344.78h2.5c-.87-4.14.68-328.77.05-333.38Z"
+                                    fill="currentColor"
+                                  />
+                                  <path
+                                    d="M1.78 73.31c-.48-1.02.43-5.62.43-4.84.01.69.38 4.88-.43 4.84ZM1.56 142.12c1.14.07.13.67-.03.65-.47-.05-.76-.69.03-.65ZM1.65 196.21c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM2.48 27.51c0 .49 0 1.87-.11 3.12-.37 6.22-.42-1.85.11-3.12ZM2.01 65.86c.39.51.58 1.99-.23 1.95-.48-1.02-.25-2.56.23-1.95ZM1.02 132.42c-.47-.05-.49-1.39-.04-1.78.85-.76.2 1.8.04 1.78ZM.79 5.27c.07-1.81.65 1.18.59 5.76C1.27 17.8.69 6.25.79 5.27ZM.33 47.73c-.33-1.44.48-7.29.21-2.86-.12.57-.13 5.57-.21 2.86ZM.96 94.76c.28.95-.15 5.38-.31 5.36-.47-.05.08-6.12.31-5.36ZM1.23 100.12c-.07.9-.41 1.95-.58 1.95-.47-.05.64-2.73.58-1.95ZM1.38 144.69c.4-1.07-.4 9.48-.56 9.46-.47-.05.12-8.31.56-9.46ZM1.24 197.97c.23.4.13 2.4.07 2.59-.36-1.73-.51-3.36-.07-2.59ZM1.81 209.98c-.36-1.74-.84-7.52-.52-8.14l.5-1.57c.25.43.05 9.87.02 9.71ZM1.85 158.2c-.47-.05-.11-4.72.13-3.97.33 1.09.03 3.99-.13 3.97Z"
+                                    fill="currentColor"
+                                  />
+                                </svg>
+                              </svg>
+                            </div>
+                            <svg
+                              aria-hidden="true"
+                              class="sc-86d1d46f-0 jOBmUC sc-eb7a8b1-0 sc-717e755b-0 bzXzya cOxTnS"
+                              height="100%"
+                              name="underline-1"
+                              width="100%"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <use
+                                xlink:href="/images/sprite/sprite.svg#underline-1"
+                              />
+                            </svg>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB bKGywt joHkzz"
+                            >
+                              <label
+                                class="sc-a4f8e51b-0 sc-eb7a8b1-1 fNLaOe kPgTac"
+                                color="black"
+                                id="react-use-id-test-result"
+                              >
+                                Role
+                              </label>
+                            </div>
+                            <button
+                              aria-expanded="false"
+                              aria-haspopup="listbox"
+                              aria-invalid="false"
+                              aria-labelledby="react-use-id-test-result react-use-id-test-result-button"
+                              class="sc-ce4d7bd4-0 sc-717e755b-2 kYyTPx cHLXYW"
+                              data-testid="select"
+                              id="react-use-id-test-result-button"
+                              type="button"
+                            >
+                              <div
+                                class="sc-fqkvVR sc-kAyceB sc-717e755b-3 iOToet TDtQj hWlqOW"
+                              >
+                                <span
+                                  class="sc-dAlyuH sc-717e755b-4 kaPMPj fyXkWt"
+                                  data-testid="select-span"
+                                  id="react-use-id-test-result-value"
+                                  title="What describes you best?"
+                                >
+                                  What describes you best?
+                                </span>
+                              </div>
+                              <div
+                                class="sc-fqkvVR kbnxKi"
+                              >
+                                <img
+                                  alt=""
+                                  class="sc-dcJsrY cDKKvZ"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
+                            </button>
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-JrDLc jqqmXN hESAKV"
+                          >
+                            <div
+                              class="sc-fqkvVR iPpXCP grey-shadow"
+                            />
+                            <div
+                              class="sc-fqkvVR iPpXCP yellow-shadow"
+                            />
+                            <button
+                              class="sc-dtBdUo sc-fXSgeo ezGFRC dZvJQR internal-button"
+                            >
+                              <div
+                                class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                              >
+                                <span
+                                  class="sc-dAlyuH hHWgLm"
+                                >
+                                  Sign up to the newsletter
+                                </span>
+                              </div>
+                            </button>
+                          </div>
+                          <p
+                            aria-live="assertive"
+                            class="sc-dLMFU lcDZTA"
+                            role="alert"
+                          />
+                          <p
+                            aria-live="polite"
+                            class="sc-dLMFU bnfmzd"
+                          />
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -3289,7 +3900,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           class="sc-jlZhew XOrLS"
                         >
                           <button
-                            class="sc-ce4d7bd4-0 sc-e88beb40-0 kYyTPx kMTLGH"
+                            class="sc-ce4d7bd4-0 sc-e88beb40-0 kYyTPx cUHyFr"
                             title="Manage cookie settings"
                           >
                             <div
@@ -3306,7 +3917,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-1 eYUgU"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-1 guutYs"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -3319,7 +3930,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 bbOqTd"
+                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 eCYhIZ"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -3769,7 +4380,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR jqqmXN sc-8abbbda2-0 eawWFm"
+                class="sc-fqkvVR jqqmXN sc-800b423d-0 dgdSbR"
                 data-percy-hide="contents"
               >
                 <img

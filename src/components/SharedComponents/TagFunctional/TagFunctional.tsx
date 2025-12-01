@@ -44,8 +44,8 @@ export function TagFunctional({ text, ...styleProps }: TagFunctionalProps) {
       $borderColor={borderColor}
       $borderRadius="border-radius-s"
       $ba="border-solid-s"
-      $pv="inner-padding-ssx"
-      $ph="inner-padding-xs"
+      $pv="spacing-4"
+      $ph="spacing-8"
       $font="heading-light-7"
       {...styleProps}
       $color={"grey70"}

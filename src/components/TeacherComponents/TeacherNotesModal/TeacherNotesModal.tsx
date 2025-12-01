@@ -11,17 +11,17 @@ import {
   OakTeacherNotesModal,
   OakTeacherNotesModalProps,
 } from "@oaknational/oak-components";
-import {
-  TeacherNoteCamelCase,
-  TeacherNote,
-  TeacherNoteError,
-} from "@oaknational/oak-pupil-client";
 
 import theme from "@/styles/theme";
 import DynamicHighlightExtension, {
   HighlightSegment,
 } from "@/utils/tipTap/dynamicHighlightExtension";
 import { resolveOakHref } from "@/common-lib/urls";
+import {
+  TeacherNote,
+  TeacherNoteCamelCase,
+  TeacherNoteError,
+} from "@/node-lib/pupil-api/types";
 
 const StyledEditorContent = styled(EditorContent)`
   .tiptap:focus {
@@ -280,7 +280,7 @@ export const TeacherNotesModal = ({
         {piiErrors.map((error) => (
           <OakFlex
             $alignItems="center"
-            $gap="space-between-ssx"
+            $gap="spacing-8"
             role="alert"
             key={error}
           >

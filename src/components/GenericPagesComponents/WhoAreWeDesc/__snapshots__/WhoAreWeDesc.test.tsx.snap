@@ -10,22 +10,22 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
         class="sc-fqkvVR sc-kAyceB bhbwbN gwxZIR"
       >
         <h2
-          class="sc-kpDqfm ijVMjN"
+          class="sc-kpDqfm gzqUEm"
         >
           TESTING_TITLE
         </h2>
         <div
-          class="sc-fqkvVR sc-jXbUNg egekXy iwxQGX"
+          class="sc-fqkvVR sc-jXbUNg fgBWrW ewUxii"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-542e7679-0 fgBWrW joHkzz iAkSYx cmwAlb"
             data-testid="who-we-are-desc-item"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
             >
               <div
-                class="sc-fqkvVR gGSZAU"
+                class="sc-fqkvVR gRLayp"
               >
                 <div
                   class="sc-fqkvVR hudrT"
@@ -47,12 +47,12 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
               >
                 <h3
-                  class="sc-kpDqfm exYwWV"
+                  class="sc-kpDqfm eAMIYi"
                 >
                   ITEM_TITLE_0
                 </h3>
                 <p
-                  class="sc-dLMFU gKXbKJ"
+                  class="sc-dLMFU jKnjIK"
                 >
                   ITEM_TEXT_0
                 </p>
@@ -60,14 +60,14 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-542e7679-0 fgBWrW joHkzz iAkSYx cmwAlb"
             data-testid="who-we-are-desc-item"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
             >
               <div
-                class="sc-fqkvVR fulovU"
+                class="sc-fqkvVR fjbDCB"
               >
                 <div
                   class="sc-fqkvVR hudrT"
@@ -89,12 +89,12 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
               >
                 <h3
-                  class="sc-kpDqfm exYwWV"
+                  class="sc-kpDqfm eAMIYi"
                 >
                   ITEM_TITLE_1
                 </h3>
                 <p
-                  class="sc-dLMFU gKXbKJ"
+                  class="sc-dLMFU jKnjIK"
                 >
                   ITEM_TEXT_1
                 </p>
@@ -102,14 +102,14 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-542e7679-0 fgBWrW joHkzz iAkSYx cmwAlb"
             data-testid="who-we-are-desc-item"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
             >
               <div
-                class="sc-fqkvVR hXKZlN"
+                class="sc-fqkvVR tlJWQ"
               >
                 <div
                   class="sc-fqkvVR hudrT"
@@ -131,12 +131,12 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
               >
                 <h3
-                  class="sc-kpDqfm exYwWV"
+                  class="sc-kpDqfm eAMIYi"
                 >
                   ITEM_TITLE_2
                 </h3>
                 <p
-                  class="sc-dLMFU gKXbKJ"
+                  class="sc-dLMFU jKnjIK"
                 >
                   ITEM_TEXT_2
                 </p>
@@ -144,14 +144,14 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-542e7679-0 fgBWrW joHkzz iAkSYx cmwAlb"
             data-testid="who-we-are-desc-item"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
             >
               <div
-                class="sc-fqkvVR eRVEUV"
+                class="sc-fqkvVR hckAIM"
               >
                 <div
                   class="sc-fqkvVR hudrT"
@@ -173,12 +173,12 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
               >
                 <h3
-                  class="sc-kpDqfm exYwWV"
+                  class="sc-kpDqfm eAMIYi"
                 >
                   ITEM_TITLE_3
                 </h3>
                 <p
-                  class="sc-dLMFU gKXbKJ"
+                  class="sc-dLMFU jKnjIK"
                 >
                   ITEM_TEXT_3
                 </p>

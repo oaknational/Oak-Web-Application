@@ -244,7 +244,7 @@ export const PupilViewsProgrammeListing = ({
   const iconSlug = `subject-${subjectSlug}`;
 
   const optionTitleSlot = (
-    <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
+    <OakFlex $alignItems={"center"} $gap={"spacing-12"}>
       <OakInfo
         id="option-info"
         tooltipPosition="top-left"
@@ -274,8 +274,8 @@ export const PupilViewsProgrammeListing = ({
           phase={phaseSlug}
           topNavSlot={topNavSlot()}
         >
-          <OakBox $mb={"space-between-m2"}>
-            <OakBox $mb={"space-between-m2"}>
+          <OakBox $mb={"spacing-32"}>
+            <OakBox $mb={"spacing-32"}>
               <OakPupilJourneyProgrammeOptions
                 optionTitleSlot={optionTitleSlot}
                 phase={phaseSlug}

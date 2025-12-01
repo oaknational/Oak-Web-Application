@@ -16,10 +16,6 @@ import {
   OakSecondaryButton,
   OakBox,
 } from "@oaknational/oak-components";
-import {
-  attemptDataCamelCaseSchema,
-  useOakPupil,
-} from "@oaknational/oak-pupil-client";
 
 import { PupilExperienceViewProps } from "../PupilExperience";
 
@@ -33,6 +29,8 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { LessonSummaryReviewedProperties } from "@/browser-lib/avo/Avo";
+import { useOakPupil } from "@/hooks/useOakPupil";
+import { attemptDataCamelCaseSchema } from "@/node-lib/pupil-api/types";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -231,11 +229,11 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       topNavSlot={null}
     >
       <OakGrid
-        $maxWidth={["100%", "all-spacing-23", "100%"]}
-        $mt="space-between-m"
-        $mb={["space-between-none", "space-between-s"]}
+        $maxWidth={["100%", "spacing-960", "100%"]}
+        $mt="spacing-24"
+        $mb={["spacing-0", "spacing-16"]}
         $mh="auto"
-        $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
+        $ph={["spacing-16", "spacing-24", "spacing-0"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
           <OakTertiaryButton
@@ -246,23 +244,23 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
             Lesson overview
           </OakTertiaryButton>
 
-          <OakFlex $mv="space-between-xl">
+          <OakFlex $mv="spacing-56">
             <OakFlex
               $flexDirection={"column"}
               $flexGrow={2}
-              $gap={"space-between-l"}
+              $gap={"spacing-48"}
               $justifyContent={"center"}
             >
               <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
                 Lesson review
               </OakHeading>
               {hasQuiz && (
-                <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+                <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
                   <OakHeading tag="h2" $font={"body-2-bold"}>
                     Share options:
                   </OakHeading>
                   <OakFlex
-                    $gap={"space-between-s"}
+                    $gap={"spacing-16"}
                     $flexDirection={["column", "row"]}
                   >
                     {storedAttemptLocally.stored && (
@@ -299,7 +297,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                     </OakSecondaryButton>
                   </OakFlex>
                   {isAttemptingShare === "shared" && (
-                    <OakFlex $gap={"space-between-sssx"} $alignItems={"center"}>
+                    <OakFlex $gap={"spacing-4"} $alignItems={"center"}>
                       <OakIcon
                         iconName={"tick"}
                         $colorFilter={"text-success"}
@@ -315,7 +313,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                     </OakFlex>
                   )}
                   {isAttemptingShare === "failed" && (
-                    <OakFlex $gap={"space-between-sssx"} $alignItems={"center"}>
+                    <OakFlex $gap={"spacing-4"} $alignItems={"center"}>
                       <OakIcon iconName={"cross"} $colorFilter={"text-error"} />
                       <OakHeading
                         tag="h2"
@@ -336,7 +334,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
             <OakFlex $flexGrow={1}>
               <OakImage
                 $display={["none", "none", "block"]}
-                $height={"all-spacing-19"}
+                $height={"spacing-240"}
                 alt="a man standing in front of a blackboard with a bunch of objects on top of his head and hands in the air"
                 src={`https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1699887218/svg-illustrations/xrazqgtjmbdf1clz8wic`}
               />
@@ -345,8 +343,8 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
           <OakFlex
             $flexDirection={"column"}
             $alignItems={"stretch"}
-            $gap={"space-between-s"}
-            $mb="space-between-xl"
+            $gap={"spacing-16"}
+            $mb="spacing-56"
           >
             {lessonReviewSections.map((lessonSection) => {
               if (lessonSection === "intro" || lessonSection === "video") {
@@ -396,8 +394,8 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
             $alignItems={["center", "flex-end"]}
           >
             <OakHandDrawnCard
-              $pv={"inner-padding-xl"}
-              $ph={"inner-padding-xl"}
+              $pv={"spacing-24"}
+              $ph={"spacing-24"}
               $alignItems={"center"}
             >
               <OakFlex

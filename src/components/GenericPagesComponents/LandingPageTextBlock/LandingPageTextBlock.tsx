@@ -9,11 +9,11 @@ export const LandingPageTextBlock: FC<{
 }> = (props) => {
   return (
     <OakFlex
-      $ph={["inner-padding-m"]}
+      $ph={["spacing-16"]}
       $justifyContent={"center"}
-      $mb={["space-between-xl", "space-between-xxxl"]}
+      $mb={["spacing-56", "spacing-80"]}
     >
-      <OakTypography $maxWidth="all-spacing-22" $font={["body-2", "body-1"]}>
+      <OakTypography $maxWidth="spacing-640" $font={["body-2", "body-1"]}>
         <PortableTextWithDefaults value={props.bodyPortableText} />
       </OakTypography>
     </OakFlex>

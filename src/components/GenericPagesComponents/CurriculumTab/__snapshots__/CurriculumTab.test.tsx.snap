@@ -8,7 +8,7 @@ exports[`CurriculumTab renders 1`] = `
     >
       <div
         aria-live="polite"
-        class="sc-fqkvVR sc-kAyceB sc-d65e4df9-0 hkKUlc iPEHGb jTGGef"
+        class="sc-fqkvVR sc-kAyceB sc-713e2c99-0 hkKUlc iPEHGb hUNyQr"
       />
       <div
         class="sc-fqkvVR gZEYWU"
@@ -141,11 +141,11 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-85abac1-0 sc-b500a879-3 jEHEPk qPvQJ dzfgvW"
+                            class="sc-fqkvVR sc-85abac1-0 sc-1405ad7c-3 jEHEPk qPvQJ Hgfdz"
                           >
                             <button
                               aria-expanded="false"
-                              class="sc-b500a879-2 bMVYFF"
+                              class="sc-1405ad7c-2 kExqoc"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -177,7 +177,7 @@ exports[`CurriculumTab renders 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="sc-df6cb28a-0 glfkwM"
+                              class="sc-de304c9d-0 kGuAG"
                               height="100%"
                               name="box-border-left"
                               style="width: 3px;"
@@ -210,11 +210,11 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR sc-kAyceB fxkSvJ jDFpDX"
                           >
                             <div
-                              class="sc-fqkvVR sc-85abac1-0 sc-b500a879-3 eMDDOo qPvQJ dzfgvW"
+                              class="sc-fqkvVR sc-85abac1-0 sc-1405ad7c-3 eMDDOo qPvQJ Hgfdz"
                             >
                               <button
                                 aria-expanded="false"
-                                class="sc-b500a879-2 bMVYFF"
+                                class="sc-1405ad7c-2 kExqoc"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
@@ -332,11 +332,11 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-85abac1-0 sc-b500a879-3 jEHEPk qPvQJ dzfgvW"
+                        class="sc-fqkvVR sc-85abac1-0 sc-1405ad7c-3 jEHEPk qPvQJ Hgfdz"
                       >
                         <button
                           aria-expanded="false"
-                          class="sc-b500a879-2 bMVYFF"
+                          class="sc-1405ad7c-2 kExqoc"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
@@ -368,7 +368,7 @@ exports[`CurriculumTab renders 1`] = `
                       >
                         <svg
                           aria-hidden="true"
-                          class="sc-df6cb28a-0 glfkwM"
+                          class="sc-de304c9d-0 kGuAG"
                           height="100%"
                           name="box-border-left"
                           style="width: 3px;"
@@ -401,11 +401,11 @@ exports[`CurriculumTab renders 1`] = `
                         class="sc-fqkvVR sc-kAyceB fxkSvJ jDFpDX"
                       >
                         <div
-                          class="sc-fqkvVR sc-85abac1-0 sc-b500a879-3 eMDDOo qPvQJ dzfgvW"
+                          class="sc-fqkvVR sc-85abac1-0 sc-1405ad7c-3 eMDDOo qPvQJ Hgfdz"
                         >
                           <button
                             aria-expanded="false"
-                            class="sc-b500a879-2 bMVYFF"
+                            class="sc-1405ad7c-2 kExqoc"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >

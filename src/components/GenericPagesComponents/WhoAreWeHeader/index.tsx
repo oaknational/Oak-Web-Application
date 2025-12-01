@@ -32,7 +32,7 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
     <OakBox
       style={styleAttrs}
       $mh={"auto"}
-      $ph={["inner-padding-m", "inner-padding-m", "inner-padding-m"]}
+      $ph={["spacing-16", "spacing-16", "spacing-16"]}
     >
       {children}
     </OakBox>
@@ -53,18 +53,18 @@ export function WhoAreWeHeader({
 }: Readonly<WhoAreWeHeaderProps>) {
   return (
     <InnerMaxWidth>
-      <OakGrid
-        $cg="space-between-s"
-        $rg="space-between-s"
-        $pv={"inner-padding-xl7"}
-      >
+      <OakGrid $cg="spacing-16" $rg="spacing-16" $pv={"spacing-72"}>
         <CustomHeaderTextOakGridArea $colSpan={12} $justifyContent={"center"}>
-          <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
+          <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
             <OakHeading
               tag="h1"
               $font={["heading-4", "heading-2", "heading-2"]}
             >
-              <OakSpan $background="mint" $ph={"inner-padding-ssx"}>
+              <OakSpan
+                $background="mint"
+                $ph={"spacing-4"}
+                $color="text-primary"
+              >
                 {title}
               </OakSpan>
             </OakHeading>
@@ -77,7 +77,7 @@ export function WhoAreWeHeader({
           </OakFlex>
         </CustomHeaderTextOakGridArea>
         <CustomHeaderImageOakGridArea $colSpan={4} $colStart={9}>
-          <OakBox $width={"all-spacing-20"} $height={"all-spacing-20"}>
+          <OakBox $width={"spacing-360"} $height={"spacing-360"}>
             <OakImage
               alt={imageAlt}
               src={imageUrl}

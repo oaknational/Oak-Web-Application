@@ -27,8 +27,8 @@ const Template: StoryFn<typeof Component> = (args) => {
           <Component {...args}>
             <OakBox
               $position={"absolute"}
-              $top={"all-spacing-7"}
-              $right={"all-spacing-7"}
+              $top={"spacing-32"}
+              $right={"spacing-32"}
             >
               <IconButton
                 icon="cross"

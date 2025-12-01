@@ -31,7 +31,7 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
       $background={isHovered ? "grey20" : "white"}
       $transition={"all 0.4s ease-out"}
     >
-      <OakFlex $pa="inner-padding-m">
+      <OakFlex $pa="spacing-16">
         <OwaLink
           page="unit-index"
           {...primaryTargetProps}
@@ -43,7 +43,6 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
           <OakP $font={"heading-7"}>{heading}</OakP>
         </OwaLink>
       </OakFlex>
-
       <BoxBorders gapPosition="rightTop" />
     </Card>
   );
