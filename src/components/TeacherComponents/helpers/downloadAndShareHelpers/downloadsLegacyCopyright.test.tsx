@@ -27,7 +27,15 @@ describe("downloads legacy copyright", () => {
   test("getIsResourceDownloadable returns true when resource exists in downloads", () => {
     const res = getIsResourceDownloadable(
       "intro-quiz-answers",
-      [{ exists: true, type: "intro-quiz-answers" }],
+      [
+        {
+          exists: true,
+          type: "intro-quiz-answers",
+          label: "Starter quiz answers",
+          ext: "pdf",
+          forbidden: null,
+        },
+      ],
       [],
     );
     expect(res).toBe(true);
@@ -35,7 +43,15 @@ describe("downloads legacy copyright", () => {
   test("getIsResourceDownloadable returns false when copyright prevents download of resource", () => {
     const res = getIsResourceDownloadable(
       "presentation",
-      [{ exists: true, type: "presentation" }],
+      [
+        {
+          exists: true,
+          type: "presentation",
+          label: "Slide deck",
+          ext: "pptx",
+          forbidden: null,
+        },
+      ],
       [{ copyrightInfo: "This lesson contains copyright material." }],
     );
     expect(res).toBe(false);

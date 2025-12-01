@@ -41,7 +41,7 @@ export const getIsResourceDownloadable = (
   copyrightContent: LegacyCopyrightContent,
 ) => {
   const inDownloads = downloads.find((d) => d.type === resource);
-  if (!inDownloads || !inDownloads.exists) {
+  if (!inDownloads || !inDownloads.exists || !inDownloads.inGcsBucket) {
     return false;
   }
 

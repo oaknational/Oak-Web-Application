@@ -353,21 +353,33 @@ describe("getPageLinksWithSubheadingsForLesson()", () => {
         type: "presentation",
         exists: true,
         inGcsBucket: false,
+        label: "Slide deck",
+        ext: "pptx",
+        forbidden: null,
       },
       {
         type: "worksheet-pdf",
         exists: true,
         inGcsBucket: false,
+        label: "Worksheet",
+        ext: "pdf",
+        forbidden: null,
       },
       {
         type: "intro-quiz-questions",
         exists: true,
         inGcsBucket: false,
+        label: "Starter quiz questions",
+        ext: "pdf",
+        forbidden: null,
       },
       {
         type: "exit-quiz-questions",
         exists: true,
         inGcsBucket: false,
+        label: "Exit quiz questions",
+        ext: "pdf",
+        forbidden: null,
       },
     ];
 

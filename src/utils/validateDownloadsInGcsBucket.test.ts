@@ -27,8 +27,20 @@ describe("validateDownloadsInGcsBucket", () => {
 
   it("should return downloads unchanged if no downloads exist", async () => {
     const downloads = [
-      { exists: false, type: "worksheet-pdf" },
-      { exists: null, type: "presentation" },
+      {
+        exists: false,
+        type: "worksheet-pdf" as const,
+        label: "Worksheet",
+        ext: "pdf",
+        forbidden: null,
+      },
+      {
+        exists: null,
+        type: "presentation" as const,
+        label: "Slide deck",
+        ext: "pptx",
+        forbidden: null,
+      },
     ];
 
     const result = await validateDownloadsInGcsBucket(downloads, "test-lesson");
@@ -39,9 +51,27 @@ describe("validateDownloadsInGcsBucket", () => {
 
   it("should enrich downloads with inGcsBucket property when resources exist", async () => {
     const downloads = [
-      { exists: true, type: "worksheet-pdf" },
-      { exists: true, type: "presentation" },
-      { exists: false, type: "slide-deck" },
+      {
+        exists: true,
+        type: "worksheet-pdf" as const,
+        label: "Worksheet",
+        ext: "pdf",
+        forbidden: null,
+      },
+      {
+        exists: true,
+        type: "presentation" as const,
+        label: "Slide deck",
+        ext: "pptx",
+        forbidden: null,
+      },
+      {
+        exists: false,
+        type: "intro-quiz-questions" as const,
+        label: "Starter quiz questions",
+        ext: "pdf",
+        forbidden: null,
+      },
     ];
 
     const mockResourceData = {
@@ -65,16 +95,45 @@ describe("validateDownloadsInGcsBucket", () => {
     });
 
     expect(result).toEqual([
-      { exists: true, type: "worksheet-pdf", inGcsBucket: true },
-      { exists: true, type: "presentation", inGcsBucket: false },
-      { exists: false, type: "slide-deck", inGcsBucket: false },
+      {
+        exists: true,
+        type: "worksheet-pdf",
+        label: "Worksheet",
+        ext: "pdf",
+        forbidden: null,
+        inGcsBucket: true,
+      },
+      {
+        exists: true,
+        type: "presentation",
+        label: "Slide deck",
+        ext: "pptx",
+        forbidden: null,
+        inGcsBucket: false,
+      },
+      {
+        exists: false,
+        type: "intro-quiz-questions",
+        label: "Starter quiz questions",
+        ext: "pdf",
+        forbidden: null,
+        inGcsBucket: false,
+      },
     ]);
 
     expect(mockReportError).not.toHaveBeenCalled();
   });
 
   it("should handle errors and return original downloads", async () => {
-    const downloads = [{ exists: true, type: "worksheet-pdf" }];
+    const downloads = [
+      {
+        exists: true,
+        type: "worksheet-pdf" as const,
+        label: "Worksheet",
+        ext: "pdf",
+        forbidden: null,
+      },
+    ];
 
     const mockError = new Error("Network error");
     (getLessonDownloadResourcesExistence as jest.Mock).mockRejectedValue(
@@ -97,9 +156,27 @@ describe("validateDownloadsInGcsBucket", () => {
 
   it("should only check downloads where exists is true", async () => {
     const downloads = [
-      { exists: true, type: "worksheet-pdf" },
-      { exists: false, type: "presentation" },
-      { exists: null, type: "slide-deck" },
+      {
+        exists: true,
+        type: "worksheet-pdf" as const,
+        label: "Worksheet",
+        ext: "pdf",
+        forbidden: null,
+      },
+      {
+        exists: false,
+        type: "presentation" as const,
+        label: "Slide deck",
+        ext: "pptx",
+        forbidden: null,
+      },
+      {
+        exists: null,
+        type: "intro-quiz-questions" as const,
+        label: "Starter quiz questions",
+        ext: "pdf",
+        forbidden: null,
+      },
     ];
 
     const mockResourceData = {
@@ -122,7 +199,14 @@ describe("validateDownloadsInGcsBucket", () => {
 
   it("should preserve additional properties on downloads", async () => {
     const downloads = [
-      { exists: true, type: "worksheet-pdf", label: "Worksheet", id: 123 },
+      {
+        exists: true,
+        type: "worksheet-pdf" as const,
+        label: "Worksheet",
+        ext: "pdf",
+        forbidden: null,
+        id: 123,
+      },
     ];
 
     const mockResourceData = {
@@ -140,6 +224,8 @@ describe("validateDownloadsInGcsBucket", () => {
         exists: true,
         type: "worksheet-pdf",
         label: "Worksheet",
+        ext: "pdf",
+        forbidden: null,
         id: 123,
         inGcsBucket: true,
       },
