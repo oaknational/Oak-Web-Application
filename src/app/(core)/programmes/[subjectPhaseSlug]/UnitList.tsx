@@ -1,8 +1,5 @@
-import { join } from "path";
-
 import { OakFlex, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
-import { useSearchParams } from "next/navigation";
 
 import { isHighlightedUnit } from "@/utils/curriculum/filtering";
 import {
@@ -13,6 +10,8 @@ import {
 } from "@/utils/curriculum/types";
 import { getSubjectCategoryMessage } from "@/utils/curriculum/formatting";
 import CurricUnitCard from "@/components/CurriculumComponents/CurricUnitCard";
+import { resolveOakHref } from "@/common-lib/urls";
+import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -38,7 +37,6 @@ type ProgrammeUnitListProps = {
   filters: CurriculumFilters;
   year: string;
   yearData: YearData;
-  basePath: string;
   selectedThread?: Thread;
 };
 export function ProgrammeUnitList({
@@ -46,11 +44,9 @@ export function ProgrammeUnitList({
   yearData,
   year,
   filters,
-  basePath,
 }: Readonly<ProgrammeUnitListProps>) {
   // const { track } = useAnalytics();
   // const { analyticsUseCase } = useAnalyticsPageProps();
-  const searchParams = useSearchParams();
 
   // const onClick = (unit: Unit, isHighlighted: boolean) => {
   // TODO: [integrated journey] analytics
@@ -67,10 +63,6 @@ export function ProgrammeUnitList({
 
   function getItems(unit: Unit, index: number) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
-    const searchParamsStr = searchParams?.toString() ?? "";
-    const unitUrl =
-      join(basePath, unit.slug) +
-      `${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
 
     return (
       <UnitListItem key={`${unit.slug}-${index}`}>
@@ -79,7 +71,11 @@ export function ProgrammeUnitList({
           key={unit.slug + index}
           index={index}
           isHighlighted={isHighlighted}
-          href={unitUrl}
+          href={resolveOakHref({
+            page: "lesson-index",
+            unitSlug: unit.slug,
+            programmeSlug: createTeacherProgrammeSlug(unit),
+          })}
           onClick={() => {}}
         />
       </UnitListItem>

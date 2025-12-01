@@ -1,7 +1,6 @@
 "use client";
 
 import { OakBox, OakHeading } from "@oaknational/oak-components";
-import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
 
 import ProgrammeSequence from "./Sequence";
@@ -25,8 +24,6 @@ import {
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 
-
-
 type ProgrammePageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -40,7 +37,6 @@ export const Programme = ({
   subjectTitle,
   curriculumUnitsFormattedData,
 }: ProgrammePageProps) => {
-  const path = usePathname();
   const isMobile = useMediaQuery("mobile");
 
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
@@ -157,7 +153,6 @@ export const Programme = ({
           }
           units={
             <ProgrammeSequence
-              basePath={path ?? ""}
               filters={filters}
               ks4OptionSlug={ks4OptionSlug}
               ks4Options={ks4Options}

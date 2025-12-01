@@ -30,7 +30,6 @@ type ProgrammeSequenceProps = {
   mobileHeaderScrollOffset?: number;
   setVisibleMobileYearRefID: (refID: string) => void;
   threadOptions: Thread[];
-  basePath: string;
   ks4Options: Ks4Option[];
 };
 
@@ -42,7 +41,6 @@ export default function ProgrammeSequence({
   filters,
   setVisibleMobileYearRefID,
   threadOptions,
-  basePath,
   ks4OptionSlug,
   ks4Options,
 }: Readonly<ProgrammeSequenceProps>) {
@@ -157,7 +155,6 @@ export default function ProgrammeSequence({
                 filters={visualiserFilters}
                 year={year}
                 yearData={yearData}
-                basePath={basePath}
                 selectedThread={selectedThread}
               />
             </CurricYearCard>
