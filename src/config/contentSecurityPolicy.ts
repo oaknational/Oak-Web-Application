@@ -42,15 +42,15 @@ const mux: Partial<CspConfig> = {
     "https://stream.mux.com",
     "https://inferred.litix.io",
   ],
-  imgSrc: ["https://*.mux.com", "https://stream.mux.com"],
+  imgSrc: ["https://*.mux.com/", "https://stream.mux.com/"],
   styleSrc: ["https://*.mux.com"],
-  mediaSrc: ["https://*.mux.com", "https://stream.mux.com"],
+  mediaSrc: ["https://*.mux.com/", "https://stream.mux.com/"],
   frameSrc: ["https://stream.mux.com", "https://*.mux.com"],
 };
 
 const clerk: Partial<CspConfig> = {
   connectSrc: ["*.clerk.accounts.dev", "clerk-telemetry.com"],
-  imgSrc: ["https://img.clerk.com"],
+  imgSrc: ["https://img.clerk.com/"],
   scriptSrc: ["*.clerk.accounts.dev"],
 };
 
@@ -65,16 +65,16 @@ const posthog: Partial<CspConfig> = {
 
 const cloudinary: Partial<CspConfig> = {
   imgSrc: [
-    "https://res.cloudinary.com",
-    "https://oaknationalacademy-res.cloudinary.com",
-    "https://*.cloudinary.com",
+    "https://res.cloudinary.com/",
+    "https://oaknationalacademy-res.cloudinary.com/",
+    "https://*.cloudinary.com/",
   ],
   connectSrc: ["*.cloudinary.com"],
 };
 
 const hubspot: Partial<CspConfig> = {
   connectSrc: ["*.hubspot.com", "*.hsforms.com"],
-  imgSrc: ["https://*.hubspot.com", "https://*.hsforms.com"],
+  imgSrc: ["https://*.hubspot.com/", "https://*.hsforms.com/"],
 };
 
 const cloudflare: Partial<CspConfig> = {
@@ -103,13 +103,13 @@ const vercel: Partial<CspConfig> = {
 
 const gleap: Partial<CspConfig> = {
   connectSrc: ["*.gleap.io", "wss://*.gleap.io"],
-  imgSrc: ["https://*.gleap.io"],
+  imgSrc: ["https://*.gleap.io/"],
 };
 
 const google: Partial<CspConfig> = {
   connectSrc: ["*.google.com"],
-  frameSrc: ["*.google.com"],
-  frameAncestors: ["*.google.com"],
+  frameSrc: ["*.google.com/"],
+  frameAncestors: ["*.google.com/"],
   objectSrc: ["*.google.com"],
 };
 
@@ -136,13 +136,13 @@ const cspBaseConfig: CspConfig = {
     "'self'",
     "blob:",
     "data:",
-    "*.thenational.academy",
-    "thenational.academy",
+    "*.thenational.academy/",
+    "thenational.academy/",
   ],
   fontSrc: [
     "'self'",
-    "gstatic-fonts.thenational.academy",
-    "fonts.gstatic.com",
+    "gstatic-fonts.thenational.academy/",
+    "fonts.gstatic.com/",
     "data:",
   ],
   objectSrc: ["'self'"],
@@ -150,9 +150,9 @@ const cspBaseConfig: CspConfig = {
   formAction: ["'self'"],
   frameAncestors: ["'self'"],
   connectSrc: ["*.thenational.academy", "thenational.academy"],
-  mediaSrc: ["'self'", "blob:", "*.thenational.academy"],
-  frameSrc: ["'self'", "*.thenational.academy"],
-  workerSrc: ["'self'", "blob:"],
+  mediaSrc: ["'self'", "blob:", "*.thenational.academy/"],
+  frameSrc: ["'self'", "*.thenational.academy/"],
+  workerSrc: ["'self'", "blob:", "*.thenational.academy/"],
   childSrc: ["blob:"],
   upgradeInsecureRequests: false,
   // when we change from report only we can uncomment this
