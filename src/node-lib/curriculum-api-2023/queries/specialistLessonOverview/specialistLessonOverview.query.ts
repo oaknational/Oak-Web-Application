@@ -12,43 +12,64 @@ import OakError from "@/errors/OakError";
 import { LessonOverviewAll } from "@/components/TeacherComponents/types/lesson.types";
 import { validateDownloadsInGcsBucket } from "@/utils/validateDownloadsInGcsBucket";
 
-export const constructDownloadsArray = async (
+const constructDownloadsArray = async (
   lesson: SpecialistLessonDataRaw[number],
   lessonSlug: string,
 ): Promise<LessonOverviewDownloads> => {
   const presentation = {
     exists: lesson.presentation_url ? true : false,
     type: "presentation" as const,
+    label: "Slide deck",
+    ext: "pptx",
+    forbidden: null,
   };
   const introQuizQuestions = {
     exists:
       lesson.starter_quiz && lesson.starter_quiz_asset_object ? true : false,
     type: "intro-quiz-questions" as const,
+    label: "Starter quiz questions",
+    ext: "pdf",
+    forbidden: null,
   };
   const introQuizAnswers = {
     exists:
       lesson.starter_quiz && lesson.starter_quiz_asset_object ? true : false,
     type: "intro-quiz-answers" as const,
+    label: "Starter quiz answers",
+    ext: "pdf",
+    forbidden: null,
   };
   const exitQuizQuestions = {
     exists: lesson.exit_quiz && lesson.exit_quiz_asset_object ? true : false,
     type: "exit-quiz-questions" as const,
+    label: "Exit quiz questions",
+    ext: "pdf",
+    forbidden: null,
   };
   const exitQuizAnswers = {
     exists: lesson.exit_quiz && lesson.exit_quiz_asset_object ? true : false,
     type: "exit-quiz-answers" as const,
+    label: "Exit quiz answers",
+    ext: "pdf",
+    forbidden: null,
   };
   const worksheetPdf = {
     exists:
       typeof lesson.worksheet_asset_object?.google_drive_downloadable_version
         ?.url === "string",
     type: "worksheet-pdf" as const,
+    label: "Worksheet",
+    ext: "pdf",
+    forbidden: null,
   };
   const worksheetPptx = {
     exists:
       typeof lesson.worksheet_asset_object?.google_drive_downloadable_version
         ?.url === "string",
     type: "worksheet-pptx" as const,
+    label: "Worksheet",
+    ext: "pptx",
+    forbidden: null,
   };
   const downloads = [
     presentation,

@@ -1,10 +1,11 @@
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { getLessonDownloadResourcesExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
+import { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 type DownloadItem = {
   exists: boolean | null;
-  type: string;
+  type: DownloadResourceType;
   [key: string]: unknown;
 };
 

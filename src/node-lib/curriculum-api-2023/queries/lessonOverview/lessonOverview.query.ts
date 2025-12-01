@@ -17,7 +17,6 @@ import { isExcludedFromTeachingMaterials } from "../../helpers/teachingMaterials
 import lessonOverviewSchema, {
   lessonContentSchema,
   LessonOverviewContent,
-  LessonOverviewDownloads,
   LessonOverviewPageData,
   LessonBrowseDataByKs,
   lessonBrowseDataByKsSchema,
@@ -30,79 +29,7 @@ import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { validateDownloadsInGcsBucket } from "@/utils/validateDownloadsInGcsBucket";
-
-export const getDownloadsArray = async (content: {
-  hasSlideDeckAssetObject: boolean;
-  hasStarterQuiz: boolean;
-  hasExitQuiz: boolean;
-  hasWorksheetAssetObject: boolean;
-  hasWorksheetAnswersAssetObject: boolean;
-  hasWorksheetGoogleDriveDownloadableVersion: boolean;
-  hasSupplementaryAssetObject: boolean;
-  hasLessonGuideObject: boolean;
-  isLegacy: boolean;
-  lessonSlug: string;
-}): Promise<LessonOverviewPageData["downloads"]> => {
-  const downloads: LessonOverviewDownloads = [
-    {
-      exists: content.hasSlideDeckAssetObject,
-      type: "presentation",
-    },
-    {
-      exists: content.hasStarterQuiz,
-      type: "intro-quiz-questions",
-    },
-    {
-      exists: content.hasStarterQuiz,
-      type: "intro-quiz-answers",
-    },
-    {
-      exists: content.hasExitQuiz,
-      type: "exit-quiz-questions",
-    },
-    {
-      exists: content.hasExitQuiz,
-      type: "exit-quiz-questions",
-    },
-    {
-      exists:
-        (!content.isLegacy &&
-          (content.hasWorksheetAssetObject ||
-            content.hasWorksheetAnswersAssetObject)) ||
-        (content.isLegacy &&
-          content.hasWorksheetGoogleDriveDownloadableVersion),
-      type: "worksheet-pdf",
-    },
-    {
-      exists:
-        (!content.isLegacy &&
-          (content.hasWorksheetAssetObject ||
-            content.hasWorksheetAnswersAssetObject)) ||
-        (content.isLegacy &&
-          content.hasWorksheetGoogleDriveDownloadableVersion),
-      type: "worksheet-pptx",
-    },
-    {
-      exists: content.hasSupplementaryAssetObject,
-      type: "supplementary-pdf",
-    },
-    {
-      exists: content.hasSupplementaryAssetObject,
-      type: "supplementary-docx",
-    },
-    {
-      exists: content.hasLessonGuideObject,
-      type: "lesson-guide-pdf",
-    },
-  ];
-
-  return validateDownloadsInGcsBucket(
-    downloads,
-    content.lessonSlug,
-    "getDownloadsArray",
-  );
-};
+import { constructDownloadsArray } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/downloadUtils";
 
 export function getContentGuidance(
   content: LessonOverviewContent["contentGuidance"],
@@ -192,7 +119,7 @@ export const transformedLessonOverviewData = async (
     browseData.lessonData.mediaClips = null;
     reportError(error);
   }
-  const downloads = await getDownloadsArray({
+  const downloads = await constructDownloadsArray({
     hasExitQuiz: content.exitQuiz && Boolean(content.exitQuiz.length > 1),
     hasStarterQuiz:
       content.starterQuiz && Boolean(content.starterQuiz.length > 1),
@@ -209,6 +136,7 @@ export const transformedLessonOverviewData = async (
     isLegacy: browseData.isLegacy,
     lessonSlug: browseData.lessonSlug,
   });
+
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
