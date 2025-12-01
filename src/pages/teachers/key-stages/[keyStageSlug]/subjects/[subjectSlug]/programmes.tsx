@@ -132,6 +132,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
               subjectSlug: subjectSlug,
               keyStageSlug,
             },
+            disabled: true,
             label: subjectTitle,
           },
         ]}
