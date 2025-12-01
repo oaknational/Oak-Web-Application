@@ -1789,168 +1789,164 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             class="sc-fqkvVR bZZBuO"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
+              class="sc-fqkvVR sc-jXbUNg hwnObW hXDxZw"
             >
               <div
-                class="sc-fqkvVR sc-jXbUNg sc-c6ee2f3d-2 fgBWrW hzqgQA iqxixG"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW bAHJVP bDcDWT"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c6ee2f3d-3 fgBWrW bAHJVP pKRyc fihUuj"
+                  class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
+                    class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+                  >
+                    <h2
+                      class="sc-kpDqfm eceTdU"
+                    >
+                      Work with us
+                    </h2>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB cThXxF iVYVEn"
+                    >
+                      <p
+                        class="sc-dLMFU kdIcGd"
+                      >
+                        We're a fast-paced and innovative team, working to support and inspire teachers to deliver great teaching, so every pupil benefits.
+                      </p>
+                      <p
+                        class="sc-dLMFU kdIcGd"
+                      >
+                        All our roles are remote-first. If you want to be part of something unique that's making a difference to millions of children's lives, we'd love to hear from you.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-kAyceB fgBWrW bxbio"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+                      class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
                     >
-                      <h2
-                        class="sc-kpDqfm eceTdU"
-                      >
-                        Work with us
-                      </h2>
                       <div
-                        class="sc-fqkvVR sc-kAyceB cThXxF iVYVEn"
+                        class="sc-fqkvVR iPpXCP grey-shadow"
+                      />
+                      <div
+                        class="sc-fqkvVR iPpXCP yellow-shadow"
+                      />
+                      <a
+                        class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                        href="https://app.beapplied.com/org/1574/oak-national-academy/"
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
-                        <p
-                          class="sc-dLMFU kdIcGd"
+                        <div
+                          class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                         >
-                          We're a fast-paced and innovative team, working to support and inspire teachers to deliver great teaching, so every pupil benefits.
-                        </p>
-                        <p
-                          class="sc-dLMFU kdIcGd"
-                        >
-                          All our roles are remote-first. If you want to be part of something unique that's making a difference to millions of children's lives, we'd love to hear from you.
-                        </p>
-                      </div>
+                          <span
+                            class="sc-dAlyuH hHWgLm"
+                          >
+                            Permanent roles
+                          </span>
+                          <div
+                            class="sc-fqkvVR kbnxKi"
+                          >
+                            <img
+                              alt="external"
+                              class="sc-dcJsrY cDKKvZ"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </div>
+                        </div>
+                      </a>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB sc-c6ee2f3d-5 fgBWrW gaFEky eelHRn"
+                      class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
                     >
                       <div
-                        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
-                      >
-                        <div
-                          class="sc-fqkvVR iPpXCP grey-shadow"
-                        />
-                        <div
-                          class="sc-fqkvVR iPpXCP yellow-shadow"
-                        />
-                        <a
-                          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
-                          href="https://app.beapplied.com/org/1574/oak-national-academy/"
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                          <div
-                            class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
-                          >
-                            <span
-                              class="sc-dAlyuH hHWgLm"
-                            >
-                              Permanent roles
-                            </span>
-                            <div
-                              class="sc-fqkvVR kbnxKi"
-                            >
-                              <img
-                                alt="external"
-                                class="sc-dcJsrY cDKKvZ"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
-                        </a>
-                      </div>
+                        class="sc-fqkvVR iPpXCP grey-shadow"
+                      />
                       <div
-                        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                        class="sc-fqkvVR iPpXCP yellow-shadow"
+                      />
+                      <a
+                        class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                        href="https://app.beapplied.com/org/1767/oak-national-academy-freelancers/"
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
                         <div
-                          class="sc-fqkvVR iPpXCP grey-shadow"
-                        />
-                        <div
-                          class="sc-fqkvVR iPpXCP yellow-shadow"
-                        />
-                        <a
-                          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
-                          href="https://app.beapplied.com/org/1767/oak-national-academy-freelancers/"
-                          rel="noopener noreferrer"
-                          target="_blank"
+                          class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                         >
-                          <div
-                            class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                          <span
+                            class="sc-dAlyuH hHWgLm"
                           >
-                            <span
-                              class="sc-dAlyuH hHWgLm"
-                            >
-                              Freelance roles
-                            </span>
-                            <div
-                              class="sc-fqkvVR kbnxKi"
-                            >
-                              <img
-                                alt="external"
-                                class="sc-dcJsrY cDKKvZ"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
+                            Freelance roles
+                          </span>
+                          <div
+                            class="sc-fqkvVR kbnxKi"
+                          >
+                            <img
+                              alt="external"
+                              class="sc-dcJsrY cDKKvZ"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
                           </div>
-                        </a>
-                      </div>
+                        </div>
+                      </a>
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cDIrlY"
+              >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c6ee2f3d-4 fgBWrW joHkzz pKRyc bUfMcY"
+                  class="sc-fqkvVR sc-kAyceB fgBWrW loubfV"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW cfgZTR"
+                    class="sc-fqkvVR sc-kAyceB fIaYTx joHkzz"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB fIaYTx joHkzz"
-                    >
-                      <div
-                        class="sc-fqkvVR jqqmXN"
-                      >
-                        <img
-                          alt=""
-                          class="sc-dcJsrY jIcMOQ"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          sizes="100vw"
-                          src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=3840&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=3840&q=75 3840w"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </div>
-                    </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB sc-c6ee2f3d-1 fgBWrW dBzTSe hWtNdD"
+                      class="sc-fqkvVR jqqmXN"
                     >
                       <img
-                        alt="'In Escape the City's top 1% of employers'"
-                        class="sc-c6ee2f3d-0 fYRuPH"
-                        src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
-                      />
-                      <img
-                        alt="Awarded Gold in Investors In People"
-                        class="sc-c6ee2f3d-0 fYRuPH"
-                        src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
-                      />
-                      <img
-                        alt="Certified as Disability Confident Committed"
-                        class="sc-c6ee2f3d-0 fYRuPH"
-                        src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
+                        alt=""
+                        class="sc-dcJsrY jIcMOQ"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        sizes="100vw"
+                        src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=3840&q=75"
+                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=3840&q=75 3840w"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </div>
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-kAyceB fgBWrW dBzTSe"
+                  >
+                    <img
+                      alt="'In Escape the City's top 1% of employers'"
+                      class="sc-402b724e-0 giIymB"
+                      src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
+                    />
+                    <img
+                      alt="Awarded Gold in Investors In People"
+                      class="sc-402b724e-0 giIymB"
+                      src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
+                    />
+                    <img
+                      alt="Certified as Disability Confident Committed"
+                      class="sc-402b724e-0 giIymB"
+                      src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
+                    />
                   </div>
                 </div>
               </div>
