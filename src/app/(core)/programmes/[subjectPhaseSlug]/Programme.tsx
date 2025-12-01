@@ -4,12 +4,12 @@ import { OakBox, OakHeading } from "@oaknational/oak-components";
 import { useMemo, useState } from "react";
 
 import ProgrammeSequence from "./Sequence";
+import ProgrammePageFiltersMobile from "./Filters/MobileFilters";
 
-import CurricVisualiserFiltersMobile from "@/components/CurriculumComponents/CurricVisualiserFiltersMobile";
 import { CurricVisualiserLayout } from "@/components/CurriculumComponents/CurricVisualiserLayout";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
-import ProgrammePageFiltersDesktop from "@/app/(core)/programmes/[subjectPhaseSlug]/DesktopFilters";
+import ProgrammePageFiltersDesktop from "@/app/(core)/programmes/[subjectPhaseSlug]/Filters/DesktopFilters";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import {
   CurriculumUnitsFormattedData,
@@ -127,14 +127,13 @@ export const Programme = ({
           </OakHeading>
         </ScreenReaderOnly>
         {isMobile && (
-          <CurricVisualiserFiltersMobile
+          <ProgrammePageFiltersMobile
             selectedYear={mobileSelectedYear}
             onSelectYear={setMobileSelectedYear}
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={curriculumUnitsFormattedData}
             slugs={curriculumSelectionSlugs}
-            onOpenModal={() => {}} // TODO: [integrated journey] remove modal
             trackingData={curriculumUnitsTrackingData}
             ks4Options={ks4Options}
           />

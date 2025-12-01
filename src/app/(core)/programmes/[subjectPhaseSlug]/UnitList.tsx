@@ -71,12 +71,12 @@ export function ProgrammeUnitList({
           key={unit.slug + index}
           index={index}
           isHighlighted={isHighlighted}
+          // TODO: [integrated journey] optionality units
           href={resolveOakHref({
             page: "lesson-index",
             unitSlug: unit.slug,
             programmeSlug: createTeacherProgrammeSlug(unit),
           })}
-          onClick={() => {}}
         />
       </UnitListItem>
     );
