@@ -41,7 +41,9 @@ export const getIsResourceDownloadable = (
   copyrightContent: LegacyCopyrightContent,
 ) => {
   const inDownloads = downloads.find((d) => d.type === resource);
-  if (!inDownloads || !inDownloads.exists || !inDownloads.inGcsBucket) {
+  // if the downloads check fails server-side this property will be undefined, but the bucket hasn't been checked
+  const isNotInBucket = inDownloads?.inGcsBucket === false;
+  if (!inDownloads || !inDownloads.exists || isNotInBucket) {
     return false;
   }
 

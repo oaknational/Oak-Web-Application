@@ -24,12 +24,47 @@ describe("downloads legacy copyright", () => {
     const res = getIsResourceDownloadable("intro-quiz-answers", [], []);
     expect(res).toBe(false);
   });
-  test("getIsResourceDownloadable returns true when resource exists in downloads", () => {
+  test("getIsResourceDownloadable returns true when resource exists in downloads and GcsBucket", () => {
     const res = getIsResourceDownloadable(
       "intro-quiz-answers",
       [
         {
           exists: true,
+          inGcsBucket: true,
+          type: "intro-quiz-answers",
+          label: "Starter quiz answers",
+          ext: "pdf",
+          forbidden: null,
+        },
+      ],
+      [],
+    );
+    expect(res).toBe(true);
+  });
+  test("getIsResourceDownloadable returns false when resource exists but not in GcsBucket", () => {
+    const res = getIsResourceDownloadable(
+      "intro-quiz-answers",
+      [
+        {
+          exists: true,
+          inGcsBucket: false,
+          type: "intro-quiz-answers",
+          label: "Starter quiz answers",
+          ext: "pdf",
+          forbidden: null,
+        },
+      ],
+      [],
+    );
+    expect(res).toBe(false);
+  });
+  test("returns true when resource exists and inGcsBucket is undefined", () => {
+    const res = getIsResourceDownloadable(
+      "intro-quiz-answers",
+      [
+        {
+          exists: true,
+          inGcsBucket: undefined,
           type: "intro-quiz-answers",
           label: "Starter quiz answers",
           ext: "pdf",
