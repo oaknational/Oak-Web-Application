@@ -104,7 +104,7 @@ export default function ProgrammeSequence({
   const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
 
   return (
-    <OakBox id="content" data-testid="curriculum-visualiser">
+    <OakBox id="content">
       {Object.entries(unitsByYearSelector).flatMap(([, data], index) => {
         const { year, type, isSwimming, units } = data;
         const ref = (element: HTMLDivElement) => {

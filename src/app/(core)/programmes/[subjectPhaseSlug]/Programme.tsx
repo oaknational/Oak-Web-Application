@@ -103,79 +103,77 @@ export const Programme = ({
   };
 
   return (
-    <OakBox>
-      <OakBox
-        id="curriculum-units"
-        aria-labelledby="curriculum-unit-sequence-heading"
-        tabIndex={-1}
-        $maxWidth={"spacing-1280"}
-        $mh={"auto"}
-        $ph={["spacing-0", "spacing-20"]}
-        $mt={["spacing-0", "spacing-48", "spacing-48"]}
-        $width={"100%"}
-        role="region"
-      >
-        <ScreenReaderOnly>
-          <OakHeading
-            id="curriculum-unit-sequence-heading"
-            tag="h2"
-            $mb="spacing-24"
-            $ml={["spacing-16", "spacing-0"]}
-            $font={["heading-5", "heading-4"]}
-          >
-            Unit sequence
-          </OakHeading>
-        </ScreenReaderOnly>
-        {isMobile && (
-          <ProgrammePageFiltersMobile
-            selectedYear={mobileSelectedYear}
-            onSelectYear={setMobileSelectedYear}
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={curriculumUnitsFormattedData}
-            slugs={curriculumSelectionSlugs}
-            trackingData={curriculumUnitsTrackingData}
-            ks4Options={ks4Options}
-          />
-        )}
-        <CurricVisualiserLayout
-          filters={
-            isMobile ? null : (
-              <ProgrammePageFiltersDesktop
-                filters={filters}
-                onChangeFilters={onChangeFilters}
-                data={curriculumUnitsFormattedData}
-                slugs={curriculumSelectionSlugs}
-                ks4Options={ks4Options}
-              />
-            )
-          }
-          units={
-            <ProgrammeSequence
-              filters={filters}
-              ks4OptionSlug={ks4OptionSlug}
-              ks4Options={ks4Options}
-              yearData={yearData}
-              setVisibleMobileYearRefID={setVisibleMobileYearRefID}
-              threadOptions={threadOptions}
-            />
-          }
-          curriculumSeoText={undefined} // TODO: [integrated journey] seo text
-          subject={subjectForLayout}
+    <OakBox
+      id="programme-units"
+      aria-labelledby="programme-unit-sequence-heading"
+      tabIndex={-1}
+      $maxWidth={"spacing-1280"}
+      $mh={"auto"}
+      $ph={["spacing-0", "spacing-20"]}
+      $mt={["spacing-0", "spacing-48", "spacing-48"]}
+      $width={"100%"}
+      role="region"
+    >
+      <ScreenReaderOnly>
+        <OakHeading
+          id="programme-unit-sequence-heading"
+          tag="h2"
+          $mb="spacing-24"
+          $ml={["spacing-16", "spacing-0"]}
+          $font={["heading-5", "heading-4"]}
+        >
+          Unit sequence
+        </OakHeading>
+      </ScreenReaderOnly>
+      {isMobile && (
+        <ProgrammePageFiltersMobile
+          selectedYear={mobileSelectedYear}
+          onSelectYear={setMobileSelectedYear}
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          data={curriculumUnitsFormattedData}
+          slugs={curriculumSelectionSlugs}
+          trackingData={curriculumUnitsTrackingData}
+          ks4Options={ks4Options}
         />
-        <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+      )}
+      <CurricVisualiserLayout
+        filters={
+          isMobile ? null : (
+            <ProgrammePageFiltersDesktop
+              filters={filters}
+              onChangeFilters={onChangeFilters}
+              data={curriculumUnitsFormattedData}
+              slugs={curriculumSelectionSlugs}
+              ks4Options={ks4Options}
+            />
+          )
+        }
+        units={
+          <ProgrammeSequence
+            filters={filters}
+            ks4OptionSlug={ks4OptionSlug}
+            ks4Options={ks4Options}
+            yearData={yearData}
+            setVisibleMobileYearRefID={setVisibleMobileYearRefID}
+            threadOptions={threadOptions}
+          />
+        }
+        curriculumSeoText={undefined} // TODO: [integrated journey] seo text
+        subject={subjectForLayout}
+      />
+      <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+        <p>
+          {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
+        </p>
+        {filters.threads[0] && (
           <p>
-            {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
+            {highlightedUnits}
+            {highlightedUnits === 1 ? "unit" : "units"}
+            highlighted
           </p>
-          {filters.threads[0] && (
-            <p>
-              {highlightedUnits}
-              {highlightedUnits === 1 ? "unit" : "units"}
-              highlighted
-            </p>
-          )}
-        </ScreenReaderOnly>
-      </OakBox>
+        )}
+      </ScreenReaderOnly>
     </OakBox>
   );
 };
