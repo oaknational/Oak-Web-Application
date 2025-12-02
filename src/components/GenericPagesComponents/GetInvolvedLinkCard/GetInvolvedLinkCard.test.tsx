@@ -10,8 +10,7 @@ describe("GetInvolvedLinkCard", () => {
       <GetInvolvedLinkCard
         headingTag={"h2"}
         headingTitle={"Give your feedback"}
-        buttonLink={"#"}
-        buttonText={"Get in touch"}
+        buttons={[{ text: "Get in touch", link: "#" }]}
         content="Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers."
       />,
     );
