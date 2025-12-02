@@ -170,10 +170,6 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
             },
           ]}
         />
-        <TodoSection
-          name="collab"
-          text={JSON.stringify(pageData.collab, null, 2)}
-        />
         <GetInvolvedWorkWithUs
           heading="Work with us"
           text={[
@@ -223,6 +219,10 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
               href: "#",
             },
           ]}
+        />
+        <TodoSection
+          name="collab"
+          text={JSON.stringify(pageData.collab, null, 2)}
         />
       </OakBox>
     </Layout>

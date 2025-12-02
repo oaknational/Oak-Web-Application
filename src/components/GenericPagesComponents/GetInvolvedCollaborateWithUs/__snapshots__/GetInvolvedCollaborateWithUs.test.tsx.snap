@@ -12,10 +12,10 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
         class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
       >
         <div
-          class="sc-fqkvVR sc-jXbUNg fgBWrW hzqgQA"
+          class="sc-fqkvVR sc-jXbUNg fgBWrW gOkIKx"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz gXQEWm"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz grhjvS"
           >
             <h2
               class="sc-kpDqfm eceTdU"
@@ -24,13 +24,13 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
             </h2>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz fBNjCT"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz eAYBHv"
           >
             <div
               class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
             >
               <div
-                class="sc-fqkvVR foMfzG"
+                class="sc-fqkvVR jqqmXN sc-a9f9504d-0 bTjezc"
               >
                 <img
                   alt="Two people chatting"
@@ -45,7 +45,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz eKNPDe"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz lhQcxb"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"

@@ -7,6 +7,7 @@ import {
   OakImage,
 } from "@oaknational/oak-components";
 import { ReactNode } from "react";
+import styled from "styled-components";
 
 import { GetInvolvedLinkCard } from "@/components/GenericPagesComponents/GetInvolvedLinkCard";
 
@@ -21,6 +22,18 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
     </OakBox>
   );
 }
+
+const StyledImage = styled(OakImage)`
+  height: 260px;
+
+  @media (min-width: 750px) {
+    height: 380px;
+  }
+
+  @media (min-width: 1280px) {
+    height: 430px;
+  }
+`;
 
 export type GetInvolvedCollaborateWithUsProps = {
   heading: string;
@@ -48,11 +61,16 @@ export function GetInvolvedCollaborateWithUs({
       <InnerMaxWidth>
         <OakFlex $flexDirection="column" $pv={["spacing-56", "spacing-80"]}>
           <OakGrid
+            $gridTemplateColumns={[
+              "repeat(4, 1fr)",
+              "repeat(8, 1fr)",
+              "repeat(12, 1fr)",
+            ]}
             $rg={["spacing-40", "spacing-40", "spacing-16"]}
             $cg="spacing-16"
           >
             <OakGridArea
-              $colSpan={[12, 12, 5]}
+              $colSpan={[4, 8, 5]}
               $colStart={[1, 1, 1]}
               $rowStart={[1, 1, 1]}
             >
@@ -66,23 +84,19 @@ export function GetInvolvedCollaborateWithUs({
             </OakGridArea>
 
             <OakGridArea
-              $colSpan={[12, 6, 3]}
-              $colStart={[1, 1, 4]}
+              $colSpan={[2, 3, 3]}
+              $colStart={[3, 2, 3]}
               $rowStart={[3, 2, 1]}
               $rowSpan={[1, 1, 1]}
             >
               <OakFlex $height="100%" $alignItems="flex-end">
-                <OakImage
-                  alt={imageAlt}
-                  src={imageUrl}
-                  $height={"spacing-360"}
-                />
+                <StyledImage alt={imageAlt} src={imageUrl} />
               </OakFlex>
             </OakGridArea>
 
             <OakGridArea
-              $colSpan={[12, 6, 7]}
-              $colStart={[1, 7, 7]}
+              $colSpan={[4, 4, 7]}
+              $colStart={[1, 5, 7]}
               $rowStart={[2, 2, 1]}
             >
               <OakFlex $flexDirection="column" $gap="spacing-16">
