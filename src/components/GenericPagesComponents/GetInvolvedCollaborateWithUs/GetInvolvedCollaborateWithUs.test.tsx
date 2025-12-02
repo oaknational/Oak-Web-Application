@@ -21,6 +21,7 @@ describe("GetInvolvedCollaborateWithUs", () => {
               {
                 text: "Get in touch",
                 link: "https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd",
+                external: true,
               },
             ],
           },
@@ -33,6 +34,7 @@ describe("GetInvolvedCollaborateWithUs", () => {
               {
                 text: "Take part in research",
                 link: "https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd",
+                external: true,
               },
             ],
           },

@@ -4,6 +4,7 @@ import {
   OakHeadingProps,
   OakP,
   OakSecondaryButton,
+  OakIcon,
 } from "@oaknational/oak-components";
 
 type GetInvolvedLinkCardProps = {
@@ -12,6 +13,7 @@ type GetInvolvedLinkCardProps = {
   buttons: Array<{
     text: string;
     link: string;
+    external?: boolean;
   }>;
   content: string;
 };
@@ -47,8 +49,17 @@ export function GetInvolvedLinkCard({
               key={`button-${index}`}
               element="a"
               href={button.link}
-              iconName="external"
-              isTrailingIcon={true}
+              iconOverride={
+                button.external ? (
+                  <OakIcon
+                    iconName="external"
+                    alt="external"
+                    $width="spacing-24"
+                    $height="spacing-24"
+                  />
+                ) : undefined
+              }
+              isTrailingIcon={button.external}
             >
               {button.text}
             </OakSecondaryButton>

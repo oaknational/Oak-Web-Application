@@ -43,19 +43,6 @@ exports[`GetInvolvedLinkCard renders 1`] = `
             >
               Get in touch
             </span>
-            <div
-              class="sc-fqkvVR kbnxKi"
-            >
-              <img
-                alt=""
-                class="sc-dcJsrY beWtwI"
-                data-nimg="fill"
-                decoding="async"
-                loading="lazy"
-                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-              />
-            </div>
           </div>
         </a>
       </div>

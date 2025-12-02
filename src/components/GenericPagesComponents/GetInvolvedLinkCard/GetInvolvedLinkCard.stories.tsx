@@ -24,7 +24,7 @@ export const Default: Story = {
   args: {
     headingTag: "h2",
     headingTitle: "Give your feedback",
-    buttons: [{ text: "Get in touch", link: "#" }],
+    buttons: [{ text: "Get in touch", link: "#", external: true }],
     content:
       "Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.",
   },
@@ -36,7 +36,7 @@ export const WithMultipleButtons: Story = {
     headingTag: "h2",
     headingTitle: "Help us improve",
     buttons: [
-      { text: "Join the research panel", link: "#" },
+      { text: "Join the research panel", link: "#", external: true },
       { text: "Explore our research", link: "#" },
     ],
     content:

@@ -149,6 +149,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
                 {
                   text: "Join the research panel",
                   link: "https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd",
+                  external: true,
                 },
                 {
                   text: "Explore our research",
@@ -165,6 +166,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
                 {
                   text: "Get in touch",
                   link: "https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd",
+                  external: true,
                 },
               ],
             },

@@ -36,6 +36,7 @@ export const Default: Story = {
           {
             text: "Get in touch",
             link: "https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd",
+            external: true,
           },
         ],
       },
@@ -48,6 +49,7 @@ export const Default: Story = {
           {
             text: "Join the research panel",
             link: "https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd",
+            external: true,
           },
           {
             text: "Explore our research",

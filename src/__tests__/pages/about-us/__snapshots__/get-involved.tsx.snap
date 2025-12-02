@@ -1758,7 +1758,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   class="sc-fqkvVR sc-jXbUNg fgBWrW gOkIKx"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz grhjvS"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cvBuyn"
                   >
                     <h2
                       class="sc-kpDqfm eceTdU"
@@ -1767,13 +1767,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     </h2>
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz eAYBHv"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz gyeZYb"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
                     >
                       <div
-                        class="sc-fqkvVR jqqmXN sc-f431b350-0 cXqFSG"
+                        class="sc-fqkvVR jqqmXN sc-d6c28167-0 cACQAN"
                       >
                         <img
                           alt="Two people having a conversation"
@@ -1788,7 +1788,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz lhQcxb"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz eOkAZn"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
@@ -1841,8 +1841,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                                     class="sc-fqkvVR kbnxKi"
                                   >
                                     <img
-                                      alt=""
-                                      class="sc-dcJsrY beWtwI"
+                                      alt="external"
+                                      class="sc-dcJsrY cDKKvZ"
                                       data-nimg="fill"
                                       decoding="async"
                                       loading="lazy"
@@ -1874,19 +1874,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                                   >
                                     Explore our research
                                   </span>
-                                  <div
-                                    class="sc-fqkvVR kbnxKi"
-                                  >
-                                    <img
-                                      alt=""
-                                      class="sc-dcJsrY beWtwI"
-                                      data-nimg="fill"
-                                      decoding="async"
-                                      loading="lazy"
-                                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                    />
-                                  </div>
                                 </div>
                               </a>
                             </div>
@@ -1941,8 +1928,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                                     class="sc-fqkvVR kbnxKi"
                                   >
                                     <img
-                                      alt=""
-                                      class="sc-dcJsrY beWtwI"
+                                      alt="external"
+                                      class="sc-dcJsrY cDKKvZ"
                                       data-nimg="fill"
                                       decoding="async"
                                       loading="lazy"

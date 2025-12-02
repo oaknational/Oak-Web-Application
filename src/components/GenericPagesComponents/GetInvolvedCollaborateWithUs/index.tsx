@@ -46,6 +46,7 @@ export type GetInvolvedCollaborateWithUsProps = {
     buttons: Array<{
       text: string;
       link: string;
+      external?: boolean;
     }>;
   }>;
 };
@@ -70,7 +71,7 @@ export function GetInvolvedCollaborateWithUs({
             $cg="spacing-16"
           >
             <OakGridArea
-              $colSpan={[4, 8, 5]}
+              $colSpan={[4, 5, 5]}
               $colStart={[1, 1, 1]}
               $rowStart={[1, 1, 1]}
             >
@@ -85,8 +86,8 @@ export function GetInvolvedCollaborateWithUs({
 
             <OakGridArea
               $colSpan={[2, 3, 3]}
-              $colStart={[3, 2, 3]}
-              $rowStart={[3, 2, 1]}
+              $colStart={[3, 3, 3]}
+              $rowStart={[3, 1, 1]}
               $rowSpan={[1, 1, 1]}
             >
               <OakFlex $height="100%" $alignItems="flex-end">
@@ -95,9 +96,9 @@ export function GetInvolvedCollaborateWithUs({
             </OakGridArea>
 
             <OakGridArea
-              $colSpan={[4, 4, 7]}
-              $colStart={[1, 5, 7]}
-              $rowStart={[2, 2, 1]}
+              $colSpan={[4, 3, 7]}
+              $colStart={[1, 6, 7]}
+              $rowStart={[2, 1, 1]}
             >
               <OakFlex $flexDirection="column" $gap="spacing-16">
                 {cards.map((card, index) => (
