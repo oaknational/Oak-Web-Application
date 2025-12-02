@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { OakBox, OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
 
 import { ProgrammePageFiltersProps } from "./DesktopFilters";
-import ProgrammeFiltersHeaderMobile from "./MobileFiltersHeader";
+import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
 
 import { usePrevious } from "@/hooks/usePrevious";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
@@ -14,7 +14,6 @@ import {
   CurricFiltersTiers,
 } from "@/components/CurriculumComponents/CurricVisualiserFilters";
 import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
-
 
 export type ProgrammePageMobileFiltersProps = ProgrammePageFiltersProps & {
   selectedYear: string;

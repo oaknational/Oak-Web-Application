@@ -146,7 +146,6 @@ export default function ProgrammeFiltersHeaderMobile({
       const elementPosition = targetElement.getBoundingClientRect().top;
       const { pageYOffset } = globalThis;
       const offsetPosition = elementPosition + pageYOffset - headerOffset;
-
       setLockYear(yearOption);
       globalThis.scrollTo({
         top: offsetPosition,
