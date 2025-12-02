@@ -258,6 +258,5 @@ export const cspHeader = `
     child-src ${cspConfig.childSrc.join(" ")};
     report-uri ${posthogReportUri}&sample_rate=${sampleRate};
     report-to posthog;
-    Reporting-Endpoints: ${reportingEndpointsHeader}
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;
