@@ -7,7 +7,6 @@ import { WhoAreWeHeader } from "@/components/GenericPagesComponents/WhoAreWeHead
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 import { GetInvolvedCollaborateWithUs } from "@/components/GenericPagesComponents/GetInvolvedCollaborateWithUs";
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
-import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
@@ -110,19 +109,6 @@ const fixtureData: GetInvolvedPage["pageData"] = {
   },
 };
 
-function TodoSection({ name, text }: Readonly<{ name: string; text: string }>) {
-  return (
-    <OakBox $background={"mint"}>
-      <InnerMaxWidth>
-        <h2>{name}</h2>
-        <pre style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
-          <code>{text}</code>
-        </pre>
-      </InnerMaxWidth>
-    </OakBox>
-  );
-}
-
 export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(null)} $background={"white"}>
@@ -221,10 +207,6 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
               href: "#",
             },
           ]}
-        />
-        <TodoSection
-          name="collab"
-          text={JSON.stringify(pageData.collab, null, 2)}
         />
       </OakBox>
     </Layout>

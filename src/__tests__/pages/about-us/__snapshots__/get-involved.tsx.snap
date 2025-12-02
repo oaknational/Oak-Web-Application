@@ -1773,7 +1773,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
                     >
                       <div
-                        class="sc-fqkvVR jqqmXN sc-d6c28167-0 cACQAN"
+                        class="sc-fqkvVR jqqmXN sc-aea5cb9-0 buarrO"
                       >
                         <img
                           alt="Two people having a conversation"
@@ -1828,6 +1828,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                               <a
                                 class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
                                 href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
+                                rel="noopener noreferrer"
+                                target="_blank"
                               >
                                 <div
                                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
@@ -1915,6 +1917,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                               <a
                                 class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
                                 href="https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd"
+                                rel="noopener noreferrer"
+                                target="_blank"
                               >
                                 <div
                                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
@@ -2377,46 +2381,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div
-            class="sc-fqkvVR dySFtr"
-          >
-            <div
-              class="sc-fqkvVR bZZBuO"
-            >
-              <h2>
-                collab
-              </h2>
-              <pre
-                style="white-space: pre-wrap; word-break: break-word;"
-              >
-                <code>
-                  {
-  "title": "Collaborate with us",
-  "image": {
-    "asset": {
-      "url": "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
-    },
-    "altText": ""
-  },
-  "items": [
-    {
-      "title": "Give your feedback",
-      "content": "Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.",
-      "buttonText": "Get in touch",
-      "buttonLink": "#"
-    },
-    {
-      "title": "Help us improve",
-      "content": "Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school. ",
-      "buttonText": "Take part in research",
-      "buttonLink": "#"
-    }
-  ]
-}
-                </code>
-              </pre>
             </div>
           </div>
         </div>

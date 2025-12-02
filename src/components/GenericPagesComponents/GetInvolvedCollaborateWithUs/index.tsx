@@ -6,22 +6,10 @@ import {
   OakGridArea,
   OakImage,
 } from "@oaknational/oak-components";
-import { ReactNode } from "react";
 import styled from "styled-components";
 
 import { GetInvolvedLinkCard } from "@/components/GenericPagesComponents/GetInvolvedLinkCard";
-
-function InnerMaxWidth({ children }: { children: ReactNode }) {
-  return (
-    <OakBox
-      $maxWidth={"spacing-1280"}
-      $mh={"auto"}
-      $ph={["spacing-16", "spacing-16", "spacing-0"]}
-    >
-      {children}
-    </OakBox>
-  );
-}
+import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
 
 const StyledImage = styled(OakImage)`
   height: 260px;
@@ -101,8 +89,8 @@ export function GetInvolvedCollaborateWithUs({
               $rowStart={[2, 1, 1]}
             >
               <OakFlex $flexDirection="column" $gap="spacing-16">
-                {cards.map((card, index) => (
-                  <OakBox key={`card-${index}`} $background="white">
+                {cards.map((card) => (
+                  <OakBox key={card.headingTitle} $background="white">
                     <GetInvolvedLinkCard
                       headingTag={card.headingTag}
                       headingTitle={card.headingTitle}

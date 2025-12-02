@@ -30,7 +30,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
               class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
             >
               <div
-                class="sc-fqkvVR jqqmXN sc-d6c28167-0 cACQAN"
+                class="sc-fqkvVR jqqmXN sc-aea5cb9-0 buarrO"
               >
                 <img
                   alt="Two people chatting"
@@ -85,6 +85,8 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                       <a
                         class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
                         href="https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd"
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
@@ -148,6 +150,8 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                       <a
                         class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
                         href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
+                        rel="noopener noreferrer"
+                        target="_blank"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
