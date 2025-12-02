@@ -1,3 +1,53 @@
+# [1.925.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.924.0...v1.925.0) (2025-12-01)
+
+
+### Bug Fixes
+
+* add pathway data to lesson overview video ([78cd04d](https://github.com/oaknational/Oak-Web-Application/commit/78cd04d788d8a5aaa01f9a83b1c37e39238adc4b))
+
+
+### Features
+
+* extract type for teachers data ([eb475fe](https://github.com/oaknational/Oak-Web-Application/commit/eb475fe55abd3070a95e73abf189dff00b5a3bbc))
+
+# [1.924.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.923.1...v1.924.0) (2025-12-01)
+
+
+### Bug Fixes
+
+* add img alts ([01a2f8e](https://github.com/oaknational/Oak-Web-Application/commit/01a2f8e8e125c4815c2a311475a09067ee2845c1))
+* refactor InnerMaxWidth into own component ([1412f2f](https://github.com/oaknational/Oak-Web-Application/commit/1412f2f5669bd124d6197567eea64f3575cbfbb7))
+* remove custom ordering logic for badges ([17f3662](https://github.com/oaknational/Oak-Web-Application/commit/17f3662e79984bda458f49256f21684118e1a9cb))
+
+
+### Features
+
+* add Work with us section to Get involved page ([093bc01](https://github.com/oaknational/Oak-Web-Application/commit/093bc019dd62a41c436e3e6d309ab911cd243515))
+
+## [1.923.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.923.0...v1.923.1) (2025-11-27)
+
+
+### Bug Fixes
+
+* added nationalacademy to worker-src csp ([2e1d7ea](https://github.com/oaknational/Oak-Web-Application/commit/2e1d7ea96d312038635af774054503c3f2d50874))
+* added trailing slashes to CSP rules ([7600af7](https://github.com/oaknational/Oak-Web-Application/commit/7600af7980ab4a9d23de81993cba0f52e775a63c))
+
+# [1.923.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.4...v1.923.0) (2025-11-27)
+
+
+### Features
+
+* move lotpicker to top of curric landing page ([767418a](https://github.com/oaknational/Oak-Web-Application/commit/767418a5143e57c5520c7a29bf457afbbca7c816))
+
+## [1.922.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.3...v1.922.4) (2025-11-27)
+
+
+### Bug Fixes
+
+* added more CSP rules ([3cbc801](https://github.com/oaknational/Oak-Web-Application/commit/3cbc8017ed037215e1bd9fc9967d061fb2ca6965))
+* added some more missing CSP directives ([600d425](https://github.com/oaknational/Oak-Web-Application/commit/600d42574f22d26e52d5bfe0433dd68c06e29881))
+* tried adding https:// prefix to gleap img-src wildcard and removed static domain ([4746498](https://github.com/oaknational/Oak-Web-Application/commit/474649897b9209d8d220b6a783d461cdc5cdb81b))
+
 ## [1.922.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.2...v1.922.3) (2025-11-27)
 
 

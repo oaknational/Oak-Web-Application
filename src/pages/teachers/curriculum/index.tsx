@@ -11,7 +11,9 @@ import styled from "styled-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import SubjectPhasePicker, {
+  SubjectPhasePickerData,
+} from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023, {
   CurriculumPhaseOptions,
@@ -21,7 +23,6 @@ import Illustration from "@/components/SharedComponents/Illustration/Illustratio
 import Cover from "@/components/SharedComponents/Cover/Cover";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
-import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
 import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
 import CurricQuote from "@/components/CurriculumComponents/CurricQuote";
 
@@ -84,13 +85,22 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           <OakHeading
             tag="h1"
             $font={["heading-3", "heading-2"]}
-            $mb={["spacing-48", "spacing-48", "spacing-48"]}
             $background={"mint"}
             $textAlign={["left", "center"]}
             $color={"black"}
           >
             Oak's curricula
           </OakHeading>
+
+          <OakFlex
+            $justifyContent={"center"}
+            $mt={"spacing-16"}
+            $mb={"spacing-48"}
+          >
+            <OakBox $width={"spacing-640"}>
+              <SubjectPhasePicker {...curriculumPhaseOptions} />
+            </OakBox>
+          </OakFlex>
 
           <OakFlex
             $flexDirection={["column", "row"]}
@@ -223,15 +233,6 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               </CurricQuote>
             </OakFlex>
           </StyledResponsiveFlex>
-        </OakMaxWidth>
-      </OakFlex>
-      <OakFlex $justifyContent={"flex-start"} $background={"mint"}>
-        <OakMaxWidth $ph={["spacing-20"]} $maxWidth={["100%", "spacing-1280"]}>
-          <OakFlex $mv="spacing-56">
-            <HomepageCurriculumLandingHero
-              curriculumPhaseOptions={curriculumPhaseOptions}
-            />
-          </OakFlex>
         </OakMaxWidth>
       </OakFlex>
     </AppLayout>
