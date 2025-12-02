@@ -8,7 +8,6 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { YearData } from "@/utils/curriculum/types";
 
-
 const mockScrollTo = jest.fn();
 Object.defineProperty(globalThis, "scrollTo", {
   writable: true,
