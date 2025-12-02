@@ -30,9 +30,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
-      <GlobalStyle fontFamily={lexend.style.fontFamily} />
-      <body style={{ margin: "0px" }}>
-        <StyledComponentsRegistry>
+      <StyledComponentsRegistry>
+        <body style={{ margin: "0px" }}>
+          <GlobalStyle fontFamily={lexend.style.fontFamily} />
           <PHProvider>
             <OakThemeProvider theme={oakDefaultTheme}>
               <CookieConsentProvider>
@@ -77,8 +77,8 @@ export default function RootLayout({
               </CookieConsentProvider>
             </OakThemeProvider>
           </PHProvider>
-        </StyledComponentsRegistry>
-      </body>
+        </body>
+      </StyledComponentsRegistry>
     </html>
   );
 }
