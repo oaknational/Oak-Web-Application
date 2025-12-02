@@ -74,7 +74,7 @@ describe("Programme page", () => {
       }),
     );
 
-    const title = screen.getByText("maths-primary");
+    const title = screen.getByText("Unit sequence");
     expect(title).toBeInTheDocument();
   });
   it("returns 404 page if params are invalid", async () => {
