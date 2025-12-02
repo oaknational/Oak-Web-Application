@@ -21,7 +21,6 @@ const prodCspHeaderFixture = `
     child-src blob:;
     report-uri NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY&sample_rate=0.05;
     report-to posthog;
-    Reporting-Endpoints: posthog="NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY"
 `;
 
 const devCspHeaderFixture = `
@@ -41,7 +40,6 @@ const devCspHeaderFixture = `
     child-src blob:;
     report-uri NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY&sample_rate=0.05;
     report-to posthog;
-    Reporting-Endpoints: posthog="NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY"
 `;
 
 describe("Content-Security-Policy Header", () => {
