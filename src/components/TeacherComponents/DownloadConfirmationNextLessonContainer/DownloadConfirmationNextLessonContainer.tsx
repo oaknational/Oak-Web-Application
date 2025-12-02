@@ -34,7 +34,8 @@ const DownloadConfirmationNextLessonContainer: FC<
         $font={["heading-6", "heading-5"]}
         $mb={["spacing-32", "spacing-48"]}
       >
-        More lessons in: <OakSpan $color={"blue"}>{`${unitTitle}`}</OakSpan>
+        More lessons in:{" "}
+        <OakSpan $color={"text-link-active"}>{`${unitTitle}`}</OakSpan>
       </OakHeading>
       {nextLessons && (
         <OakFlex $flexDirection={["column", "row"]} $gap="spacing-16">

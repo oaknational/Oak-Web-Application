@@ -863,7 +863,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       $background={"bg-primary"}
                     >
                       <OakHandDrawnHR
-                        hrColor={"grey40"}
+                        hrColor={"bg-interactive-element2"}
                         $height={"spacing-2"}
                         $width="100%"
                       />
@@ -1397,7 +1397,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           $background="bg-primary"
                         >
                           <OakHandDrawnHR
-                            hrColor={"grey40"}
+                            hrColor={"bg-interactive-element2"}
                             $height={"spacing-2"}
                             $width="100%"
                           />

@@ -77,7 +77,7 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
           onClick={() => handleAnalytics("pupils")}
         />
       </OakFlex>
-      <OakHandDrawnHR hrColor={"text-inverted"} $height={"spacing-2"} />
+      <OakHandDrawnHR hrColor={"bg-primary"} $height={"spacing-2"} />
     </OakFlex>
   );
 };

@@ -23,7 +23,7 @@ export function ModalContent({
         $position={"relative"}
         $justifyContent={"center"}
         $alignItems={"center"}
-        $borderColor={"grey30"}
+        $borderColor={"border-neutral-lighter"}
       >
         {title && (
           <OakHeading tag="h3" $font={"heading-1"} data-testid="modal-title">

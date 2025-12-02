@@ -58,7 +58,7 @@ const PromoBanner: FC<PromoBannerProps> = ({
         </OakFlex>
       </OakFlex>
       <OakBox $background={background} $height={"spacing-4"}>
-        <OakHandDrawnHR hrColor={"text-primary"} $height={"spacing-4"} />
+        <OakHandDrawnHR hrColor={"bg-inverted"} $height={"spacing-4"} />
       </OakBox>
     </OakBox>
   );

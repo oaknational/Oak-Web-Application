@@ -405,7 +405,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
         class="sc-fqkvVR sc-kAyceB kwqmrC jOTTNg"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB kUmAOC kyta-DD"
+          class="sc-fqkvVR sc-kAyceB bQOnaF kyta-DD"
         >
           <div
             class="sc-fqkvVR ioiQyz"
@@ -509,7 +509,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       class="sc-fqkvVR sc-kAyceB fgBWrW jcMcGZ"
                     >
                       <span
-                        class="sc-dAlyuH GHaIW"
+                        class="sc-dAlyuH kaYapc"
                         color="grey"
                         data-testid="coming-soon-flag"
                       >
@@ -1172,7 +1172,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
         class="sc-fqkvVR sc-kAyceB kwqmrC jOTTNg"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB kUmAOC kyta-DD"
+          class="sc-fqkvVR sc-kAyceB bQOnaF kyta-DD"
         >
           <div
             class="sc-fqkvVR ioiQyz"
@@ -1276,7 +1276,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-fqkvVR sc-kAyceB fgBWrW jcMcGZ"
                     >
                       <span
-                        class="sc-dAlyuH GHaIW"
+                        class="sc-dAlyuH kaYapc"
                         color="grey"
                         data-testid="coming-soon-flag"
                       >

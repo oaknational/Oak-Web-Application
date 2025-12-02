@@ -68,7 +68,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
             $pt={"spacing-32"}
             $width={"spacing-640"}
           >
-            <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
+            <OakHeading $font={"heading-7"} tag={"h1"} $color={"text-primary"}>
               Teachers & subject leads
             </OakHeading>
             <OakHeading

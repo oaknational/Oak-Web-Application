@@ -140,7 +140,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     form.errors?.email
                       ? "bg-error"
                       : emailHasFocus
-                        ? "blue"
+                        ? "bg-inverted"
                         : "bg-decorative5-main"
                   }
                   $zIndex="in-front"

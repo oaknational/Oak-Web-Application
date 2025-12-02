@@ -70,7 +70,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             ]}
           />
           <OakHandDrawnHR
-            hrColor={"text-inverted"}
+            hrColor={"bg-primary"}
             $mt={"spacing-24"}
             $height={"spacing-4"}
           />

@@ -30,7 +30,11 @@ const AiTab: FC = () => {
               $alignItems="flex-start"
               $gap={"spacing-24"}
             >
-              <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
+              <OakHeading
+                $font={"heading-7"}
+                tag={"h1"}
+                $color={"text-primary"}
+              >
                 Teachers
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>

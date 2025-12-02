@@ -134,7 +134,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           />
 
           <OakHandDrawnHR
-            hrColor={"text-inverted"}
+            hrColor={"bg-primary"}
             $height={"spacing-2"}
             $mv={"spacing-32"}
           />

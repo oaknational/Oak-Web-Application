@@ -148,7 +148,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
           />
 
           <OakHandDrawnHR
-            hrColor={"text-inverted"}
+            hrColor={"bg-primary"}
             $height={"spacing-2"}
             $mv={"spacing-24"}
           />
@@ -219,7 +219,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
           $ph={"spacing-32"}
           $pt={"spacing-32"}
         >
-          <OakP $color="grey70" $font="heading-7" $mb={"spacing-24"}>
+          <OakP $color="text-primary" $font="heading-7" $mb={"spacing-24"}>
             Select a category:
           </OakP>
           <TabularNav

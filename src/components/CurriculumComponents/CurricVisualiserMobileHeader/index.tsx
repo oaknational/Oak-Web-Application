@@ -262,7 +262,7 @@ export default function CurricVisualiserMobileHeader({
           <OakBox
             $bt={"border-solid-s"}
             $bb={"border-solid-s"}
-            $borderColor={"grey30"}
+            $borderColor={"border-neutral-lighter"}
             $width={"100%"}
             data-testid={"year-selection-mobile"}
           >

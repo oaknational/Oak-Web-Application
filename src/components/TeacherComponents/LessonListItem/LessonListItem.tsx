@@ -224,10 +224,10 @@ const LessonListItem: FC<
                       __html: props.description,
                     }}
                     $font={["body-3", "body-2"]}
-                    $color={"grey70"}
+                    $color={"text-primary"}
                   />
                 ) : (
-                  <OakP $font={["body-3", "body-2"]} $color={"grey70"}>
+                  <OakP $font={["body-3", "body-2"]} $color={"text-primary"}>
                     {props.pupilLessonOutcome}
                   </OakP>
                 )}
