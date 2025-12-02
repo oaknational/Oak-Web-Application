@@ -1767,13 +1767,13 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     </h2>
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz gyeZYb"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz ddObaP"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
                     >
                       <div
-                        class="sc-fqkvVR jqqmXN sc-aea5cb9-0 buarrO"
+                        class="sc-fqkvVR jqqmXN sc-708d366f-0 gSGChE"
                       >
                         <img
                           alt="Two people having a conversation"
@@ -1788,7 +1788,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz eOkAZn"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz krIOWV"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
@@ -1797,18 +1797,18 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="sc-fqkvVR djWAJS"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB bPcfty xvJiZ"
+                          class="sc-fqkvVR sc-kAyceB bPcfty kYkjWQ"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
                           >
                             <h3
-                              class="sc-kpDqfm igLHEh"
+                              class="sc-kpDqfm dNyCKG"
                             >
                               Help us improve
                             </h3>
                             <p
-                              class="sc-dLMFU gKXbKJ"
+                              class="sc-dLMFU jKnjIK"
                             >
                               Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school.
                             </p>
@@ -1886,18 +1886,18 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="sc-fqkvVR djWAJS"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB bPcfty xvJiZ"
+                          class="sc-fqkvVR sc-kAyceB bPcfty kYkjWQ"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
                           >
                             <h3
-                              class="sc-kpDqfm igLHEh"
+                              class="sc-kpDqfm dNyCKG"
                             >
                               Give your feedback
                             </h3>
                             <p
-                              class="sc-dLMFU gKXbKJ"
+                              class="sc-dLMFU jKnjIK"
                             >
                               Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
                             </p>

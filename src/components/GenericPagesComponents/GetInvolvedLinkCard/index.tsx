@@ -25,11 +25,7 @@ export function GetInvolvedLinkCard({
   content,
 }: Readonly<GetInvolvedLinkCardProps>) {
   return (
-    <OakFlex
-      $pa={"spacing-24"}
-      $gap={["spacing-32", "spacing-32", "spacing-32"]}
-      $flexDirection={"column"}
-    >
+    <OakFlex $pa={"spacing-24"} $gap={"spacing-32"} $flexDirection={"column"}>
       <OakFlex
         $gap={["spacing-16", "spacing-24", "spacing-24"]}
         $flexDirection={"column"}
@@ -37,10 +33,13 @@ export function GetInvolvedLinkCard({
         <OakHeading
           tag={headingTag}
           $font={["heading-6", "heading-4", "heading-4"]}
+          $color="text-primary"
         >
           {headingTitle}
         </OakHeading>
-        <OakP $font={["body-2", "body-1", "body-1"]}>{content}</OakP>
+        <OakP $font={["body-2", "body-1", "body-1"]} $color="text-primary">
+          {content}
+        </OakP>
       </OakFlex>
       {buttons && buttons.length > 0 && (
         <OakFlex $flexWrap="wrap" $gap="spacing-12">

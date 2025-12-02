@@ -74,7 +74,7 @@ export function GetInvolvedCollaborateWithUs({
 
             <OakGridArea
               $colSpan={[2, 3, 3]}
-              $colStart={[3, 3, 3]}
+              $colStart={[3, 2, 3]}
               $rowStart={[3, 1, 1]}
               $rowSpan={[1, 1, 1]}
             >
@@ -84,8 +84,8 @@ export function GetInvolvedCollaborateWithUs({
             </OakGridArea>
 
             <OakGridArea
-              $colSpan={[4, 3, 7]}
-              $colStart={[1, 6, 7]}
+              $colSpan={[4, 4, 6]}
+              $colStart={[1, 5, 7]}
               $rowStart={[2, 1, 1]}
             >
               <OakFlex $flexDirection="column" $gap="spacing-16">
