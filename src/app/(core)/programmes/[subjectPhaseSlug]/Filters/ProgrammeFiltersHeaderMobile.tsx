@@ -10,7 +10,7 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import { ProgrammePageMobileFiltersProps } from "./MobileFilters";
+import { ProgrammePageMobileFiltersProps } from "./ProgrammePageFiltersMobile";
 
 import {
   getYearGroupTitle,

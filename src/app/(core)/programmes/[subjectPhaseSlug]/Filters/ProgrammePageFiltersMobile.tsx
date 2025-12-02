@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { OakBox, OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
 
-import { ProgrammePageFiltersProps } from "./DesktopFilters";
+import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
 
 import { usePrevious } from "@/hooks/usePrevious";
