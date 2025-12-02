@@ -11,22 +11,26 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
       <div
         class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
       >
-        <h2
-          class="sc-kpDqfm kxwnSx"
-        >
-          Collaborate with us
-        </h2>
         <div
           class="sc-fqkvVR sc-jXbUNg fgBWrW hzqgQA"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz gizLDv"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz gXQEWm"
+          >
+            <h2
+              class="sc-kpDqfm eceTdU"
+            >
+              Collaborate with us
+            </h2>
+          </div>
+          <div
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz fBNjCT"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB icFzga kyta-DD"
+              class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
             >
               <div
-                class="sc-fqkvVR bAqbho"
+                class="sc-fqkvVR foMfzG"
               >
                 <img
                   alt="Two people chatting"
@@ -41,126 +45,134 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz BmYTN"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz eKNPDe"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB bPcfty xvJiZ"
+                class="sc-fqkvVR djWAJS"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
-                >
-                  <h3
-                    class="sc-kpDqfm igLHEh"
-                  >
-                    Give your feedback
-                  </h3>
-                  <p
-                    class="sc-dLMFU gKXbKJ"
-                  >
-                    Share your story and we'll send you a gift voucher as a thanks for your time.
-                  </p>
-                </div>
-                <div
-                  class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                  class="sc-fqkvVR sc-kAyceB bPcfty xvJiZ"
                 >
                   <div
-                    class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                    class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
+                  >
+                    <h3
+                      class="sc-kpDqfm igLHEh"
+                    >
+                      Give your feedback
+                    </h3>
+                    <p
+                      class="sc-dLMFU gKXbKJ"
+                    >
+                      Share your story and we'll send you a gift voucher as a thanks for your time.
+                    </p>
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
                   >
                     <div
-                      class="sc-fqkvVR iPpXCP grey-shadow"
-                    />
-                    <div
-                      class="sc-fqkvVR iPpXCP yellow-shadow"
-                    />
-                    <a
-                      class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
-                      href="https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd"
+                      class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
                     >
                       <div
-                        class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                        class="sc-fqkvVR iPpXCP grey-shadow"
+                      />
+                      <div
+                        class="sc-fqkvVR iPpXCP yellow-shadow"
+                      />
+                      <a
+                        class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                        href="https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd"
                       >
-                        <span
-                          class="sc-dAlyuH hHWgLm"
-                        >
-                          Get in touch
-                        </span>
                         <div
-                          class="sc-fqkvVR kbnxKi"
+                          class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                         >
-                          <img
-                            alt=""
-                            class="sc-dcJsrY beWtwI"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
+                          <span
+                            class="sc-dAlyuH hHWgLm"
+                          >
+                            Get in touch
+                          </span>
+                          <div
+                            class="sc-fqkvVR kbnxKi"
+                          >
+                            <img
+                              alt=""
+                              class="sc-dcJsrY beWtwI"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </a>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB bPcfty xvJiZ"
+                class="sc-fqkvVR djWAJS"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
-                >
-                  <h3
-                    class="sc-kpDqfm igLHEh"
-                  >
-                    Help us improve
-                  </h3>
-                  <p
-                    class="sc-dLMFU gKXbKJ"
-                  >
-                    Teachers are at the heart of everything we build. Have your say by taking part in research.
-                  </p>
-                </div>
-                <div
-                  class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                  class="sc-fqkvVR sc-kAyceB bPcfty xvJiZ"
                 >
                   <div
-                    class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                    class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
+                  >
+                    <h3
+                      class="sc-kpDqfm igLHEh"
+                    >
+                      Help us improve
+                    </h3>
+                    <p
+                      class="sc-dLMFU gKXbKJ"
+                    >
+                      Teachers are at the heart of everything we build. Have your say by taking part in research.
+                    </p>
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
                   >
                     <div
-                      class="sc-fqkvVR iPpXCP grey-shadow"
-                    />
-                    <div
-                      class="sc-fqkvVR iPpXCP yellow-shadow"
-                    />
-                    <a
-                      class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
-                      href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
+                      class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
                     >
                       <div
-                        class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                        class="sc-fqkvVR iPpXCP grey-shadow"
+                      />
+                      <div
+                        class="sc-fqkvVR iPpXCP yellow-shadow"
+                      />
+                      <a
+                        class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                        href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
                       >
-                        <span
-                          class="sc-dAlyuH hHWgLm"
-                        >
-                          Take part in research
-                        </span>
                         <div
-                          class="sc-fqkvVR kbnxKi"
+                          class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                         >
-                          <img
-                            alt=""
-                            class="sc-dcJsrY beWtwI"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
+                          <span
+                            class="sc-dAlyuH hHWgLm"
+                          >
+                            Take part in research
+                          </span>
+                          <div
+                            class="sc-fqkvVR kbnxKi"
+                          >
+                            <img
+                              alt=""
+                              class="sc-dcJsrY beWtwI"
+                              data-nimg="fill"
+                              decoding="async"
+                              loading="lazy"
+                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </a>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
