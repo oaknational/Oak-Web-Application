@@ -104,6 +104,9 @@ const vercel: Partial<CspConfig> = {
 const gleap: Partial<CspConfig> = {
   connectSrc: ["*.gleap.io", "wss://*.gleap.io"],
   imgSrc: ["https://*.gleap.io/"],
+  frameSrc: ["https://*.gleap.io/"],
+  scriptSrc: ["https://*.gleap.io/"],
+  mediaSrc: ["https://*.gleap.io/"],
 };
 
 const google: Partial<CspConfig> = {
@@ -111,6 +114,15 @@ const google: Partial<CspConfig> = {
   frameSrc: ["*.google.com/"],
   frameAncestors: ["*.google.com/"],
   objectSrc: ["*.google.com"],
+};
+
+const googleTranslate: Partial<CspConfig> = {
+  scriptSrc: [
+    "https://translate.google.com/",
+    "https://translate.googleapis.com/",
+    "https://www.gstatic.com/",
+    "https://*.google.com/",
+  ],
 };
 
 const bugsnag: Partial<CspConfig> = {
@@ -195,6 +207,7 @@ const cspConfig: CspConfig = [
   gleap,
   google,
   bugsnag,
+  googleTranslate,
 ].reduce(mergeConfigs, cspBaseConfig);
 
 // Reporting
