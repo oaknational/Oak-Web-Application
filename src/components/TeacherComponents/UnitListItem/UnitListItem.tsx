@@ -97,7 +97,11 @@ const UnitListItem: FC<UnitListItemProps | SpecialistListItemProps> = (
         $pa="spacing-16"
       >
         {!isUnitOption && yearTitle && !isExemplarUnit && (
-          <OakSpan $font={"heading-light-7"} $color={"grey60"} $mv="spacing-0">
+          <OakSpan
+            $font={"heading-light-7"}
+            $color={"text-subdued"}
+            $mv="spacing-0"
+          >
             {yearTitle}
           </OakSpan>
         )}

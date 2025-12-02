@@ -42,11 +42,11 @@ export default function CurricQuote({
             $font={["heading-5"]}
             $mb="spacing-16"
             {...headingProps}
-            $color={"black"}
+            $color={"text-primary"}
           >
             {title}
           </OakHeading>
-          <OakP $font={["body-1"]} $color={"black"} {...paragraphProps}>
+          <OakP $font={["body-1"]} $color={"text-primary"} {...paragraphProps}>
             {children}
           </OakP>
         </OakFlex>

@@ -117,7 +117,7 @@ function Option({ item, state }: Readonly<OptionProps>) {
     >
       <OakFlex
         $width={"100%"}
-        $background={isFocused ? "grey20" : "white"}
+        $background={isFocused ? "bg-neutral" : "bg-primary"}
         $position={"relative"}
         $alignItems={"center"}
         $pa="spacing-8"

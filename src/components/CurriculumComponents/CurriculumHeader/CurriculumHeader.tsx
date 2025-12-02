@@ -134,7 +134,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           />
 
           <OakHandDrawnHR
-            hrColor={"white"}
+            hrColor={"text-inverted"}
             $height={"spacing-2"}
             $mv={"spacing-32"}
           />
@@ -161,7 +161,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               >
                 <OakHandDrawnCardWithIcon
                   iconName={getValidSubjectIconName(subject.slug)}
-                  fill={"mint50"}
+                  fill={"bg-decorative1-subdued"}
                   iconWidth={["spacing-80", "spacing-64"]}
                   iconHeight={["spacing-80", "spacing-64"]}
                   $width="spacing-80"
@@ -193,7 +193,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
         </OakFlex>
         <OakFlex
           $borderColor="mint30"
-          $background={"mint"}
+          $background={"bg-decorative1-main"}
           $bt={"border-solid-m"}
         >
           <OakBox

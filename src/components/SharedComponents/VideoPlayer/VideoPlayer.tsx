@@ -69,7 +69,7 @@ function VideoContainer({ children }: Readonly<{ children: React.ReactNode }>) {
       $justifyContent={"center"}
       $ba={"border-solid-l"}
       $minWidth={"100%"}
-      $borderColor={"black"}
+      $borderColor={"border-primary"}
       style={{
         aspectRatio: "16/9",
         boxSizing: "content-box",

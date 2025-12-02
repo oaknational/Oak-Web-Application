@@ -125,10 +125,10 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
           title={"Stay up to date"}
         />
       </OakMaxWidth>
-      <OakFlex $background={"lavender50"} $width={"100%"}>
+      <OakFlex $background={"bg-decorative3-subdued"} $width={"100%"}>
         <OakMaxWidth
           $alignItems={"center"}
-          $background={"lavender50"}
+          $background={"bg-decorative3-subdued"}
           $mt={"spacing-56"}
           $mb={"spacing-80"}
           $ph={"spacing-16"}

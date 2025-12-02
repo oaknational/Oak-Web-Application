@@ -45,7 +45,7 @@ export function WhoAreWeExplore({
   items,
 }: Readonly<WhoAreWeExploreProps>) {
   return (
-    <OakBox $background={"mint"} $position={"relative"}>
+    <OakBox $background={"bg-decorative1-main"} $position={"relative"}>
       <OakIcon
         iconName="confetti"
         $position={"absolute"}

@@ -62,7 +62,9 @@ const QuizSectionRender = (props: QuizResultsProps) => {
       </OakFlex>
       <OakHandDrawnHR
         hrColor={
-          index !== quizQuestionArray.length - 1 ? "black" : "transparent"
+          index !== quizQuestionArray.length - 1
+            ? "text-primary"
+            : "transparent"
         }
         $height={"spacing-4"}
         $pl={["spacing-0", "spacing-24"]}

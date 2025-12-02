@@ -61,7 +61,7 @@ export function WhoAreWeHeader({
               $font={["heading-4", "heading-2", "heading-2"]}
             >
               <OakSpan
-                $background="mint"
+                $background="bg-decorative1-main"
                 $ph={"spacing-4"}
                 $color="text-primary"
               >

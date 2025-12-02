@@ -222,7 +222,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           color2="mint"
         />
 
-        <OakBox $background={"white"}>{tabContent}</OakBox>
+        <OakBox $background={"bg-primary"}>{tabContent}</OakBox>
       </AppLayout>
     </OakThemeProvider>
   );

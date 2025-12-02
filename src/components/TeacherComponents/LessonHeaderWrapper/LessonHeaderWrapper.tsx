@@ -32,7 +32,7 @@ export const LessonHeaderWrapper: FC<LessonHeaderWrapperProps> = (props) => {
           <Breadcrumbs breadcrumbs={breadcrumbs} />
         </OakBox>
         <OakHandDrawnHR
-          hrColor={"white"}
+          hrColor={"text-inverted"}
           $mt={"spacing-16"}
           $mb={"spacing-24"}
           $height={"spacing-4"}

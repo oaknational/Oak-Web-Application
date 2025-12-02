@@ -204,7 +204,7 @@ export default function CurricVisualiserMobileHeader({
     >
       <OakBox
         $width={"100%"}
-        $background={"white"}
+        $background={"bg-primary"}
         $mb="spacing-8"
         data-test-id="filter-mobiles"
       >

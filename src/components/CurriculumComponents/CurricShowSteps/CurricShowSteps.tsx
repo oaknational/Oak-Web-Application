@@ -51,7 +51,7 @@ function DotWithWings({
         $justifyContent={"center"}
         $borderStyle={"solid"}
         $ba="border-solid-m"
-        $borderColor={"black"}
+        $borderColor={"border-primary"}
       >
         {iconName && (
           <OakIcon
@@ -108,7 +108,7 @@ export function CurricShowSteps({
                 {isCurrent && (
                   <OakFlex
                     $borderStyle={"solid"}
-                    $borderColor={"black"}
+                    $borderColor={"border-primary"}
                     $borderRadius={"border-radius-circle"}
                     $alignItems={"center"}
                     $justifyContent={"center"}
@@ -117,11 +117,11 @@ export function CurricShowSteps({
                     style={{ width: DOT_SIZE, height: DOT_SIZE }}
                   >
                     <OakFlex
-                      $background={"black"}
+                      $background={"bg-inverted"}
                       $width={"spacing-32"}
                       $height={"spacing-32"}
                       $borderRadius={"border-radius-circle"}
-                      color="white"
+                      color="text-inverted"
                       $alignItems={"center"}
                       $justifyContent={"center"}
                     />

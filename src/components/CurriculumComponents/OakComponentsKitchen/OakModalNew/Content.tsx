@@ -59,7 +59,7 @@ export function ModalContent({
         <OakFlex
           data-testid="modal-footer"
           $width={"100%"}
-          $background={"white"}
+          $background={"bg-primary"}
           $ph={"spacing-16"}
           $pv={"spacing-12"}
           $justifyContent={"left"}

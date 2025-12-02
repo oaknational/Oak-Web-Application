@@ -66,7 +66,7 @@ export const OakInputWithLabel = ({
       <OakFlex $position="relative" $flexDirection="column" ref={ref}>
         <OakJauntyAngleLabel
           label={label + (required === true ? " (required)" : "")}
-          $color={!!error || hasFocus ? "white" : "black"}
+          $color={!!error || hasFocus ? "text-inverted" : "text-primary"}
           htmlFor={id}
           as="label"
           id={label + "-label"}

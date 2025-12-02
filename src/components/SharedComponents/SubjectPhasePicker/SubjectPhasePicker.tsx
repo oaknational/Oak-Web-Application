@@ -258,7 +258,9 @@ function SubjectContainer({
             $colorFilter={"red"}
             $height={"spacing-24"}
           />
-          <OakP $color={"red"}>Select a subject to view a curriculum</OakP>
+          <OakP $color={"text-error"}>
+            Select a subject to view a curriculum
+          </OakP>
         </OakFlex>
       )}
       <OakFlex
@@ -633,7 +635,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         }
         $maxWidth="spacing-960"
         $borderRadius="border-radius-s"
-        $borderColor={showSubjects || showPhases ? "transparent" : "black"}
+        $borderColor={
+          showSubjects || showPhases ? "transparent" : "border-primary"
+        }
         $ba="border-solid-m"
       >
         {/* Subject button */}
@@ -645,7 +649,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
           $gap="spacing-0"
           $flexDirection={["column", "row"]}
           $width={"100%"}
-          $background={showSubjects || showPhases ? "grey30" : "white"}
+          $background={
+            showSubjects || showPhases ? "bg-neutral-stronger" : "bg-primary"
+          }
         >
           <OakFlex
             $flexDirection={"row"}
@@ -656,7 +662,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             <OakFlex
               $position={"relative"}
               $alignSelf={"stretch"}
-              $background={showSubjects ? "white" : null}
+              $background={showSubjects ? "bg-primary" : null}
               style={{ width: "50%" }}
             >
               <FocusIndicatorAlt
@@ -685,7 +691,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     <OakSpan
                       $font={"heading-light-7"}
                       $mb="spacing-4"
-                      $color={!showSubjectError ? "black" : "red"}
+                      $color={!showSubjectError ? "text-primary" : "text-error"}
                       data-testid="subject-picker-button-heading"
                     >
                       Subject
@@ -697,14 +703,18 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           $colorFilter={"red"}
                           $height={"spacing-24"}
                         />
-                        <OakSpan $color={!showSubjectError ? "black" : "red"}>
+                        <OakSpan
+                          $color={
+                            !showSubjectError ? "text-primary" : "text-error"
+                          }
+                        >
                           Select a subject
                         </OakSpan>
                       </OakFlex>
                     )}
                     <OakP
                       $font={"body-2"}
-                      $color={!showSubjectError ? "black" : "red"}
+                      $color={!showSubjectError ? "text-primary" : "text-error"}
                     >
                       {selectedSubject && selectedSubject.title}
                       {!showSubjectError && !selectedSubject && "Select"}
@@ -791,7 +801,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   $bottom={"spacing-0"}
                   $left={"spacing-0"}
                   $right={"spacing-0"}
-                  $background="white"
+                  $background="bg-primary"
                   $height="100%"
                   $overflowY="auto"
                   $zIndex="modal-dialog"
@@ -850,7 +860,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       $zIndex={"modal-dialog"}
                       $display={["block"]}
                       $width={"100%"}
-                      $background={"white"}
+                      $background={"bg-primary"}
                     >
                       <OakHandDrawnHR
                         hrColor={"grey40"}
@@ -901,7 +911,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $position={"relative"}
                 $flexDirection={"row"}
                 $gap="spacing-16"
-                $background={showPhases ? "white" : null}
+                $background={showPhases ? "bg-primary" : null}
               >
                 <FocusIndicatorAlt
                   disableMouseHover={true}
@@ -924,7 +934,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       <OakSpan
                         $font={"heading-light-7"}
                         $mb="spacing-4"
-                        $color={!showSubjectError ? "black" : "red"}
+                        $color={
+                          !showSubjectError ? "text-primary" : "text-error"
+                        }
                         data-testid="phase-picker-button-heading"
                       >
                         School phase
@@ -933,8 +945,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         $font={"body-2"}
                         $color={
                           !showPhaseError && !showKS4OptionError
-                            ? "black"
-                            : "red"
+                            ? "text-primary"
+                            : "text-error"
                         }
                       >
                         {showPhaseError && (
@@ -1018,7 +1030,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               $colorFilter={"red"}
                               $height={"spacing-24"}
                             />
-                            <OakP $color={"red"}>
+                            <OakP $color={"text-error"}>
                               Select a school phase to view the curriculum
                             </OakP>
                           </OakFlex>
@@ -1036,7 +1048,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               $colorFilter={"red"}
                               $height={"spacing-24"}
                             />
-                            <OakP $color={"red"}>
+                            <OakP $color={"text-error"}>
                               Select a KS4 option to view the curriculum
                             </OakP>
                           </OakFlex>
@@ -1194,7 +1206,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       $bottom={"spacing-0"}
                       $left={"spacing-0"}
                       $right={"spacing-0"}
-                      $background="white"
+                      $background="bg-primary"
                       $height="100%"
                       $overflowY="auto"
                       $zIndex="modal-dialog"
@@ -1244,7 +1256,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                 $colorFilter={"red"}
                                 $height={"spacing-24"}
                               />
-                              <OakP $color="red">
+                              <OakP $color="text-error">
                                 Select a school phase to view the curriculum
                               </OakP>
                             </OakFlex>
@@ -1261,7 +1273,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                 $colorFilter={"red"}
                                 $height={"spacing-24"}
                               />
-                              <OakP $color="red">
+                              <OakP $color="text-error">
                                 Select a KS4 option to view the curriculum
                               </OakP>
                             </OakFlex>
@@ -1382,7 +1394,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           $display={["block"]}
                           $zIndex={"modal-dialog"}
                           $width="100%"
-                          $background="white"
+                          $background="bg-primary"
                         >
                           <OakHandDrawnHR
                             hrColor={"grey40"}

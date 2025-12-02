@@ -29,7 +29,7 @@ export default function CurricInfoCard({
       $flexBasis={0}
       $borderRadius={"border-radius-m"}
       $background={background}
-      $borderColor={"mint110"}
+      $borderColor={"border-decorative1-stronger"}
       $ba={"border-solid-m"}
       $flexDirection="column"
       $alignItems={"flex-start"}
@@ -42,7 +42,7 @@ export default function CurricInfoCard({
         iconWidth={iconWidth}
         data-testid={`icon-${iconName}`}
       />
-      <OakP $font="heading-light-6" $textAlign={"left"} $color={"black"}>
+      <OakP $font="heading-light-6" $textAlign={"left"} $color={"text-primary"}>
         {children}
       </OakP>
     </OakFlex>

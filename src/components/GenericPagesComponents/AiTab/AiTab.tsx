@@ -16,7 +16,7 @@ const AiTab: FC = () => {
   return (
     <OakFlex
       data-testid="ai-tab"
-      $background={"mint"}
+      $background={"bg-decorative1-main"}
       $pv="spacing-24"
       $overflow={"hidden"}
     >

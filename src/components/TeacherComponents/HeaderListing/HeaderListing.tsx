@@ -197,7 +197,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           <OakFlex $flexDirection={"column"}>
             <OakSpan
               $mb="spacing-8"
-              $color={"grey60"}
+              $color={"text-subdued"}
               $font={"heading-light-7"}
             >
               {yearTitle ? (
@@ -256,7 +256,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     <OakFlex $alignItems="center" $gap={"spacing-12"}>
                       <OakTagFunctional
                         label="New"
-                        $background="mint"
+                        $background="bg-decorative1-main"
                         $color="text-primary"
                         $font="heading-light-7"
                         $pv={"spacing-0"}

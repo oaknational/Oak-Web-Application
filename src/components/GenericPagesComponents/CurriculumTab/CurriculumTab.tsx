@@ -27,7 +27,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
   const { track } = useAnalytics();
   return (
     <OakBox
-      $background={"mint"}
+      $background={"bg-decorative1-main"}
       $pv="spacing-24"
       $ph={"spacing-16"}
       $position={"relative"}
@@ -105,7 +105,11 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
                 iconName="chevron-right"
                 isTrailingIcon
               >
-                <OakTypography $font={"body-1-bold"} $color="black" as="span">
+                <OakTypography
+                  $font={"body-1-bold"}
+                  $color="text-primary"
+                  as="span"
+                >
                   Our curriculum planning approach
                 </OakTypography>
               </OakSecondaryLink>

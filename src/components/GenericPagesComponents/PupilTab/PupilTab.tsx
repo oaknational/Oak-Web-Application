@@ -17,7 +17,7 @@ const PupilTab: FC = () => {
   return (
     <OakFlex
       data-testid="pupil-tab"
-      $background={"mint"}
+      $background={"bg-decorative1-main"}
       $pv="spacing-24"
       $overflow={"hidden"}
     >

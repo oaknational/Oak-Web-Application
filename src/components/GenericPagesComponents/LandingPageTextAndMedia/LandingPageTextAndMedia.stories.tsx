@@ -39,7 +39,7 @@ export const LandingPagesTextAndMedia: Story = {
   render: (args) => (
     <OakFlex
       $pa="spacing-24"
-      $background={"lavender50"}
+      $background={"bg-decorative3-subdued"}
       $justifyContent={"center"}
       $width="100%"
     >

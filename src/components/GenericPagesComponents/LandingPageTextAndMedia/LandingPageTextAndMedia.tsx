@@ -28,7 +28,7 @@ const landingPortableTextComponent: PortableTextComponents = {
 
       return (
         <OakFlex $position={"relative"} $mb="spacing-48" $alignItems={"center"}>
-          <OakLI $color={"black"} $font={["heading-7", "heading-6"]}>
+          <OakLI $color={"text-primary"} $font={["heading-7", "heading-6"]}>
             {listItemText}
           </OakLI>
         </OakFlex>

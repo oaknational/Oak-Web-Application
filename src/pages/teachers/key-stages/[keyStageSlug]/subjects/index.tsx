@@ -61,7 +61,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       $background="white"
     >
       <Banners />
-      <OakBox $background={"lavender50"}>
+      <OakBox $background={"bg-decorative3-subdued"}>
         <OakMaxWidth
           $ph="spacing-12"
           $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}

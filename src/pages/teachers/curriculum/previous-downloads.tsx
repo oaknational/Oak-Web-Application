@@ -114,7 +114,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       }}
       $background={"white"}
     >
-      <OakBox $background={"mint"} $pt="spacing-20">
+      <OakBox $background={"bg-decorative1-main"} $pt="spacing-20">
         <OakBox
           $maxWidth={"spacing-1280"}
           $mh={"auto"}
@@ -148,13 +148,13 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
           />
 
           <OakHandDrawnHR
-            hrColor={"white"}
+            hrColor={"text-inverted"}
             $height={"spacing-2"}
             $mv={"spacing-24"}
           />
           <OakFlex>
             <OakBox
-              $background={"mint30"}
+              $background={"bg-decorative1-very-subdued"}
               $mr={"spacing-12"}
               $mv={"auto"}
               $position={"relative"}
@@ -187,7 +187,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
           </OakFlex>
         </OakBox>
       </OakBox>
-      <OakBox $background={"mint30"}>
+      <OakBox $background={"bg-decorative1-very-subdued"}>
         <OakBox
           $display={["block", "none", "none"]}
           $maxWidth={"spacing-1280"}

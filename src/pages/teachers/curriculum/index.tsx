@@ -70,7 +70,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             ]}
           />
           <OakHandDrawnHR
-            hrColor={"white"}
+            hrColor={"text-inverted"}
             $mt={"spacing-24"}
             $height={"spacing-4"}
           />
@@ -85,9 +85,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           <OakHeading
             tag="h1"
             $font={["heading-3", "heading-2"]}
-            $background={"mint"}
+            $background={"bg-decorative1-main"}
             $textAlign={["left", "center"]}
-            $color={"black"}
+            $color={"text-primary"}
           >
             Oak's curricula
           </OakHeading>
@@ -143,7 +143,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           </OakFlex>
         </OakFlex>
       </OakMaxWidth>
-      <OakFlex $background={"white"} $justifyContent={"center"}>
+      <OakFlex $background={"bg-primary"} $justifyContent={"center"}>
         <OakMaxWidth $ph={"spacing-20"} $maxWidth={["100%", "spacing-1280"]}>
           <StyledResponsiveFlex
             $justifyContent="space-between"

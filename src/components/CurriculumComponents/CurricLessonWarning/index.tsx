@@ -18,7 +18,7 @@ export function CurricLessonWarning({
       >
         {/* <OakIcon iconName="warning" /> */}
       </OakFlex>{" "}
-      <OakSpan $color={"black"}>
+      <OakSpan $color={"text-primary"}>
         {count}/{total} lessons
       </OakSpan>
     </OakFlex>

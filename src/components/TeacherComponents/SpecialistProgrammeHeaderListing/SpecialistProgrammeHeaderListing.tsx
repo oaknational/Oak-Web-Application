@@ -59,7 +59,11 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
               />
             </OakFlex>
             <OakFlex $flexDirection={"column"}>
-              <OakSpan $mb="spacing-16" $color={"grey60"} $font={"heading-7"}>
+              <OakSpan
+                $mb="spacing-16"
+                $color={"text-subdued"}
+                $font={"heading-7"}
+              >
                 {title}
               </OakSpan>
               <OakHeading tag={"h1"} $font={["heading-4", "heading-3"]}>

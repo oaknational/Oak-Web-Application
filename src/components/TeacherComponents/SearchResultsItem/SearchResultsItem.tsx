@@ -229,7 +229,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         <OakFlex $alignItems="center">
           <OakP
             $font={"heading-7"}
-            $color="navy"
+            $color="text-link-active"
             $textDecoration={isHovered ? "underline" : "none"}
           >
             {type === "unit" ? "See unit" : "See lesson"}

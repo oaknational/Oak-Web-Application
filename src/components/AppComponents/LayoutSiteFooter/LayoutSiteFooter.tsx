@@ -170,10 +170,15 @@ export type FooterSection = {
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
     <OakFlex $flexDirection="column" $mt={["spacing-32", "spacing-0"]}>
-      <OakHeading $mb="spacing-8" $font="heading-7" $color="black" tag="h2">
+      <OakHeading
+        $mb="spacing-8"
+        $font="heading-7"
+        $color="text-primary"
+        tag="h2"
+      >
         {title}
       </OakHeading>
-      <OakTypography $color={"black"} $font={"body-2"}>
+      <OakTypography $color={"text-primary"} $font={"body-2"}>
         {/* Note: Anything with `list-style: none` (or similar) gets treated by Safari as not-a-list, so we have to add the role here */}
         <ul role="list">
           {links.map((link) => (
@@ -202,7 +207,7 @@ const LayoutSiteFooter: FC = () => {
       as="footer"
       $zIndex="neutral"
       $width="100%"
-      $background="white"
+      $background="bg-primary"
       $position={"relative"}
       $overflow={"hidden"}
     >

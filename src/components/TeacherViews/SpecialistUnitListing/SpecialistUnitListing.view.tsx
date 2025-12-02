@@ -123,7 +123,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                 >
                   <OakP
                     id={themeId}
-                    $color={"black"}
+                    $color={"text-primary"}
                     $font="body-3"
                     $mb="spacing-16"
                   >
