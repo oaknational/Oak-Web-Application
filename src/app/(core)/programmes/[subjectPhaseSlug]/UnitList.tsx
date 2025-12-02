@@ -49,7 +49,7 @@ export function ProgrammeUnitList({
   // const { analyticsUseCase } = useAnalyticsPageProps();
 
   // const onClick = (unit: Unit, isHighlighted: boolean) => {
-  // TODO: [integrated journey] analytics
+  // TD: [integrated journey] analytics
   // track.unitOverviewAccessed(
   //   buildUnitOverviewAccessedAnalytics({
   //     unit,
@@ -71,7 +71,7 @@ export function ProgrammeUnitList({
           key={unit.slug + index}
           index={index}
           isHighlighted={isHighlighted}
-          // TODO: [integrated journey] optionality units
+          // TD: [integrated journey] optionality units
           href={resolveOakHref({
             page: "lesson-index",
             unitSlug: unit.slug,

@@ -120,7 +120,7 @@ export default function ProgrammeFiltersHeaderMobile({
   const shouldDisplayCorePathway =
     slugs.ks4OptionSlug !== "core" && getShouldDisplayCorePathway(ks4Options);
 
-  // TODO: [integrated journey] analytics
+  // TD: [integrated journey] analytics
   //   function trackSelectYear(year: string): void {
   //     if (trackingData) {
   //   const analyticsData = buildUnitSequenceRefinedAnalytics(
@@ -280,7 +280,7 @@ export default function ProgrammeFiltersHeaderMobile({
                         $font="heading-7"
                         disableMouseHover={isSelectedYear(yearOption)}
                       >
-                        {/* TODO: [integrated journey] update to use new button with selected state? */}
+                        {/* TD: [integrated journey] update to use new button with selected state? */}
                         <StyledButton
                           data-testid="year-group-filter-button"
                           aria-pressed={isSelectedYear(yearOption)}

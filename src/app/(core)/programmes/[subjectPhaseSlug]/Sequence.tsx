@@ -33,7 +33,7 @@ type ProgrammeSequenceProps = {
   ks4Options: Ks4Option[];
 };
 
-// TODO: [integrated journey] remove original component, CurriculumVisualiser, once launched
+// TD: [integrated journey] remove original component, CurriculumVisualiser, once launched
 
 export default function ProgrammeSequence({
   yearData,

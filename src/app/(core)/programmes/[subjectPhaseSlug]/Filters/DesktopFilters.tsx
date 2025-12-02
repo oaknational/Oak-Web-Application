@@ -18,7 +18,7 @@ import {
 } from "@/components/CurriculumComponents/CurricVisualiserFilters";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 
-// TODO: [integrated journey] this component duplicated CurricVisualiserFiltersDesktop
+// TD: [integrated journey] this component duplicated CurricVisualiserFiltersDesktop
 // once the integrated journey is launched we can remove that component
 
 export type ProgrammePageFiltersProps = {
@@ -85,7 +85,7 @@ export default function ProgrammePageFiltersDesktop({
           <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
         </>
       )}
-      {/* TODO: [integrated journey] add thread filters */}
+      {/* TD: [integrated journey] add thread filters */}
       {/* {shouldDisplayFilter(data, filters, "threads") && (
         <CurricFiltersThreads
           filters={filters}

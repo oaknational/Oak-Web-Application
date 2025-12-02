@@ -47,7 +47,7 @@ export const Programme = ({
       .ks4_options ?? [];
   const ks4Option = ks4Options.find((ks4opt) => ks4opt.slug === ks4OptionSlug);
 
-  // TODO: [integrated journey] tracking
+  // TD: [integrated journey] tracking
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
     subjectSlug,
     phaseSlug,
@@ -86,7 +86,7 @@ export const Programme = ({
     setMobileSelectedYear(refId);
   };
 
-  // TODO: [integrated journey] analytics
+  // TD: [integrated journey] analytics
   //   const { track } = useAnalytics();
   //   const { analyticsUseCase } = useAnalyticsPageProps();
 
@@ -159,7 +159,7 @@ export const Programme = ({
             threadOptions={threadOptions}
           />
         }
-        curriculumSeoText={undefined} // TODO: [integrated journey] seo text
+        curriculumSeoText={undefined} // TD: [integrated journey] seo text
         subject={subjectForLayout}
       />
       <ScreenReaderOnly aria-live="polite" aria-atomic="true">
