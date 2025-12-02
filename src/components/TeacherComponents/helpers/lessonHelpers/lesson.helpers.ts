@@ -458,7 +458,7 @@ export const getPageLinksWithSubheadingsForLesson = (
   // The asset may have been created by accident, it will have a google drive url but not exist in the bucket.
   // We don't want to show previews of these assets as they are not supposed to be part of the final lesson
   const filteredDownloads = new Set(
-    downloads.filter((d) => d.inGcsBucket === true).map((d) => d.type),
+    downloads.filter((d) => d.inGcsBucket !== false).map((d) => d.type),
   );
 
   const PAGE_LINKS: {

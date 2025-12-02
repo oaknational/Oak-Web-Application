@@ -410,6 +410,72 @@ describe("getPageLinksWithSubheadingsForLesson()", () => {
     ];
     expect(result).toEqual(expected);
   });
+  it("Includes the asset if inGcsBucket is undefined (server-side check failed)", () => {
+    const newLesson = {
+      ...lesson,
+      presentationUrl: "presentation-url",
+      worksheetUrl: "worksheet-url",
+      starterQuiz: quizQuestions,
+      exitQuiz: quizQuestions,
+    };
+
+    const downloadsNotInBucket: LessonOverviewProps["lesson"]["downloads"] = [
+      {
+        type: "presentation",
+        exists: true,
+        inGcsBucket: undefined,
+        label: "Slide deck",
+        ext: "pptx",
+        forbidden: null,
+      },
+      {
+        type: "worksheet-pdf",
+        exists: true,
+        inGcsBucket: undefined,
+        label: "Worksheet",
+        ext: "pdf",
+        forbidden: null,
+      },
+      {
+        type: "intro-quiz-questions",
+        exists: true,
+        inGcsBucket: undefined,
+        label: "Starter quiz questions",
+        ext: "pdf",
+        forbidden: null,
+      },
+      {
+        type: "exit-quiz-questions",
+        exists: true,
+        inGcsBucket: undefined,
+        label: "Exit quiz questions",
+        ext: "pdf",
+        forbidden: null,
+      },
+    ];
+
+    const result = getPageLinksWithSubheadingsForLesson(
+      downloadsNotInBucket,
+      newLesson,
+      [],
+    );
+
+    const expected = [
+      { label: "Lesson guide", anchorId: "lesson-guide" },
+      { label: "Lesson slides", anchorId: "slide-deck" },
+      { label: "Lesson details", anchorId: "lesson-details" },
+      { label: "Lesson video", anchorId: "video" },
+      { label: "Worksheet", anchorId: "worksheet" },
+      {
+        label: "Quizzes",
+        anchorId: "quiz",
+        subheading: "Prior knowledge starter quiz \nAssessment exit quiz",
+      },
+      { label: "Additional material", anchorId: "additional-material" },
+    ];
+
+    expect(result).toEqual(expected);
+  });
 });
 describe("groupLessonPathways()", () => {
   it("transforms a single LessonPathway correctly", () => {
