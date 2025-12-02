@@ -194,7 +194,6 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     const downloadButton = screen.getByRole("button", {
       name: "Download .zip",
     });
-
     await userEvent.click(downloadButton);
 
     expect(window.scrollTo).toHaveBeenCalledTimes(1);

@@ -267,14 +267,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     [],
   ) as ResourceType[];
 
-  const [activeAdditonalFiles, setActiveAdditonalFiles] = useState<
-    string[] | undefined
-  >(getInitialAdditionalFilesState());
-
-  useEffect(() => {
-    setActiveAdditonalFiles(getInitialAdditionalFilesState());
-  }, [getInitialAdditionalFilesState, additionalResources]);
-
   const hasResources = getInitialResourcesState().length > 0;
 
   useEffect(() => {
@@ -289,7 +281,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const onSelectAllClick = () =>
     setValue(
       "resources",
-      getInitialResourcesState().concat(activeAdditonalFiles || []),
+      getInitialResourcesState().concat(getInitialAdditionalFilesState() || []),
     );
   const onDeselectAllClick = () => setValue("resources", []);
 
@@ -405,8 +397,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     localStorageDetails,
     editDetailsClicked,
     setEditDetailsClicked,
-    activeAdditonalFiles,
-    setActiveAdditonalFiles,
     handleToggleSelectAll,
     selectAllChecked,
     hubspotLoaded,
