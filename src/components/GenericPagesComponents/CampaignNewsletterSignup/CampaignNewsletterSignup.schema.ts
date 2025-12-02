@@ -4,6 +4,7 @@ const ERRORS = {
   school: "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
   email: "Please enter a valid email address",
   name: "Please enter your name",
+  eduRole: "Please enter your role",
 } as const;
 
 export const schoolIdSchema = z
@@ -50,6 +51,16 @@ export const newsletterSignupFormSubmitSchema = z.intersection(
   partialNewsletterSchema,
   schoolCombinedSchema,
 );
+
+export const newsletterSignupRoleSchema = z.object({
+  eduRole: z
+    .string({
+      errorMap: () => ({
+        message: ERRORS.eduRole,
+      }),
+    })
+    .min(1, ERRORS.eduRole),
+});
 
 export type CampaignNewsletterSignUpFormProps = z.infer<
   typeof newsletterSignupFormSubmitSchema
