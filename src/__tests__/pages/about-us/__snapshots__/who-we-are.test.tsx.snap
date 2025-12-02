@@ -1698,7 +1698,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-0 fgBWrW djyvKT iAkSYx kIiJrY"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-a9608efb-0 fgBWrW djyvKT iAkSYx iGjuuK"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1720,7 +1720,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-1 fgBWrW joHkzz dGlNMa gHmAeX"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-a9608efb-1 fgBWrW joHkzz dGlNMa kScJhN"
                 >
                   <div
                     class="sc-fqkvVR dBkKun"
@@ -2175,7 +2175,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           style="outline: none;"
                         >
                           <div
-                            class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                            class="sc-fqkvVR sc-kAyceB sc-55546728-0 gKJOWA fQLyIH bLecgr"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
@@ -2232,7 +2232,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           style="outline: none;"
                         >
                           <div
-                            class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                            class="sc-fqkvVR sc-kAyceB sc-55546728-0 gKJOWA fQLyIH bLecgr"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
@@ -2289,7 +2289,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           style="outline: none;"
                         >
                           <div
-                            class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                            class="sc-fqkvVR sc-kAyceB sc-55546728-0 gKJOWA fQLyIH bLecgr"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
@@ -2346,7 +2346,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           style="outline: none;"
                         >
                           <div
-                            class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                            class="sc-fqkvVR sc-kAyceB sc-55546728-0 gKJOWA fQLyIH bLecgr"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
@@ -2438,7 +2438,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         </div>
                         <p
                           class="sc-dLMFU bHJkGj"
-                          color="black"
+                          color="text-primary"
                           id="react-use-id-test-result-newsletter-form-description"
                         >
                           Join over 100k teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
@@ -4380,7 +4380,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR jqqmXN sc-800b423d-0 dgdSbR"
+                class="sc-fqkvVR jqqmXN sc-45efad9d-0 hwcqmE"
                 data-percy-hide="contents"
               >
                 <img
