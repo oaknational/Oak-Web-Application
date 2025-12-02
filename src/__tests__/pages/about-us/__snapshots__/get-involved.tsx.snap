@@ -1746,43 +1746,220 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR dySFtr"
+            class="sc-fqkvVR hieRYZ"
           >
             <div
               class="sc-fqkvVR bZZBuO"
             >
-              <h2>
-                collab
-              </h2>
-              <pre
-                style="white-space: pre-wrap; word-break: break-word;"
+              <div
+                class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
               >
-                <code>
-                  {
-  "title": "Collaborate with us",
-  "image": {
-    "asset": {
-      "url": "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
-    },
-    "altText": ""
-  },
-  "items": [
-    {
-      "title": "Give your feedback",
-      "content": "Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.",
-      "buttonText": "Get in touch",
-      "buttonLink": "#"
-    },
-    {
-      "title": "Help us improve",
-      "content": "Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school. ",
-      "buttonText": "Take part in research",
-      "buttonLink": "#"
-    }
-  ]
-}
-                </code>
-              </pre>
+                <div
+                  class="sc-fqkvVR sc-jXbUNg fgBWrW gOkIKx"
+                >
+                  <div
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz grhjvS"
+                  >
+                    <h2
+                      class="sc-kpDqfm eceTdU"
+                    >
+                      Collaborate with us
+                    </h2>
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz eAYBHv"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
+                    >
+                      <div
+                        class="sc-fqkvVR jqqmXN sc-f431b350-0 cXqFSG"
+                      >
+                        <img
+                          alt="Two people having a conversation"
+                          class="sc-dcJsrY jRtmJB"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://res.cloudinary.com/oak-web-application/image/upload/v1763393163/icons/chatting-illustration_l52zaf.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz lhQcxb"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+                    >
+                      <div
+                        class="sc-fqkvVR djWAJS"
+                      >
+                        <div
+                          class="sc-fqkvVR sc-kAyceB bPcfty xvJiZ"
+                        >
+                          <div
+                            class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
+                          >
+                            <h3
+                              class="sc-kpDqfm igLHEh"
+                            >
+                              Help us improve
+                            </h3>
+                            <p
+                              class="sc-dLMFU gKXbKJ"
+                            >
+                              Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school.
+                            </p>
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
+                          >
+                            <div
+                              class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                            >
+                              <div
+                                class="sc-fqkvVR iPpXCP grey-shadow"
+                              />
+                              <div
+                                class="sc-fqkvVR iPpXCP yellow-shadow"
+                              />
+                              <a
+                                class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                                href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
+                              >
+                                <div
+                                  class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                                >
+                                  <span
+                                    class="sc-dAlyuH hHWgLm"
+                                  >
+                                    Join the research panel
+                                  </span>
+                                  <div
+                                    class="sc-fqkvVR kbnxKi"
+                                  >
+                                    <img
+                                      alt=""
+                                      class="sc-dcJsrY beWtwI"
+                                      data-nimg="fill"
+                                      decoding="async"
+                                      loading="lazy"
+                                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                    />
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                            <div
+                              class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                            >
+                              <div
+                                class="sc-fqkvVR iPpXCP grey-shadow"
+                              />
+                              <div
+                                class="sc-fqkvVR iPpXCP yellow-shadow"
+                              />
+                              <a
+                                class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                                href="#"
+                              >
+                                <div
+                                  class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                                >
+                                  <span
+                                    class="sc-dAlyuH hHWgLm"
+                                  >
+                                    Explore our research
+                                  </span>
+                                  <div
+                                    class="sc-fqkvVR kbnxKi"
+                                  >
+                                    <img
+                                      alt=""
+                                      class="sc-dcJsrY beWtwI"
+                                      data-nimg="fill"
+                                      decoding="async"
+                                      loading="lazy"
+                                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                    />
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="sc-fqkvVR djWAJS"
+                      >
+                        <div
+                          class="sc-fqkvVR sc-kAyceB bPcfty xvJiZ"
+                        >
+                          <div
+                            class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
+                          >
+                            <h3
+                              class="sc-kpDqfm igLHEh"
+                            >
+                              Give your feedback
+                            </h3>
+                            <p
+                              class="sc-dLMFU gKXbKJ"
+                            >
+                              Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
+                            </p>
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
+                          >
+                            <div
+                              class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                            >
+                              <div
+                                class="sc-fqkvVR iPpXCP grey-shadow"
+                              />
+                              <div
+                                class="sc-fqkvVR iPpXCP yellow-shadow"
+                              />
+                              <a
+                                class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                                href="https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd"
+                              >
+                                <div
+                                  class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                                >
+                                  <span
+                                    class="sc-dAlyuH hHWgLm"
+                                  >
+                                    Get in touch
+                                  </span>
+                                  <div
+                                    class="sc-fqkvVR kbnxKi"
+                                  >
+                                    <img
+                                      alt=""
+                                      class="sc-dcJsrY beWtwI"
+                                      data-nimg="fill"
+                                      decoding="async"
+                                      loading="lazy"
+                                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                    />
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div
@@ -2213,6 +2390,46 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR dySFtr"
+          >
+            <div
+              class="sc-fqkvVR bZZBuO"
+            >
+              <h2>
+                collab
+              </h2>
+              <pre
+                style="white-space: pre-wrap; word-break: break-word;"
+              >
+                <code>
+                  {
+  "title": "Collaborate with us",
+  "image": {
+    "asset": {
+      "url": "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
+    },
+    "altText": ""
+  },
+  "items": [
+    {
+      "title": "Give your feedback",
+      "content": "Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.",
+      "buttonText": "Get in touch",
+      "buttonLink": "#"
+    },
+    {
+      "title": "Help us improve",
+      "content": "Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school. ",
+      "buttonText": "Take part in research",
+      "buttonLink": "#"
+    }
+  ]
+}
+                </code>
+              </pre>
             </div>
           </div>
         </div>
