@@ -144,16 +144,16 @@ export default function ProgrammeFiltersHeaderMobile({
     if (targetElement) {
       const headerOffset = 140;
       const elementPosition = targetElement.getBoundingClientRect().top;
-      const { pageYOffset } = window;
+      const { pageYOffset } = globalThis;
       const offsetPosition = elementPosition + pageYOffset - headerOffset;
 
       setLockYear(yearOption);
-      window.scrollTo({
+      globalThis.scrollTo({
         top: offsetPosition,
         behavior: "smooth",
       });
 
-      window.addEventListener(
+      globalThis.addEventListener(
         "scrollend",
         () => {
           setLockYear(null);
@@ -225,7 +225,7 @@ export default function ProgrammeFiltersHeaderMobile({
                 {textItemsDescribingFilter.map(
                   (textItemDescribingFilter, index) => {
                     return (
-                      <Fragment key={index}>
+                      <Fragment key={textItemDescribingFilter}>
                         {index > 0 && <OakBox $display={"inline"}> • </OakBox>}
                         <OakBox
                           $display={"inline"}

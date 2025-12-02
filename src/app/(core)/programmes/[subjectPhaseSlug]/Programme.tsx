@@ -112,7 +112,7 @@ export const Programme = ({
       $ph={["spacing-0", "spacing-20"]}
       $mt={["spacing-0", "spacing-48", "spacing-48"]}
       $width={"100%"}
-      role="region"
+      as="section"
     >
       <ScreenReaderOnly>
         <OakHeading

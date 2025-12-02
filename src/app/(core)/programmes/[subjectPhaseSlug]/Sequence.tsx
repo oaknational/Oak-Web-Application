@@ -90,11 +90,12 @@ export default function ProgrammeSequence({
         options,
       );
 
-      itemEls.current.forEach((el) => {
+      for (const el of itemEls.current) {
         if (el) {
           io.observe(el);
         }
-      });
+      }
+
       return () => {
         io.disconnect();
       };
@@ -113,7 +114,7 @@ export default function ProgrammeSequence({
 
         const actions = units[0]?.actions;
 
-        const yearTitle = getYearGroupTitle(yearData, year, undefined);
+        const yearTitle = getYearGroupTitle(yearData, year);
 
         const yearSubheadingText = getYearSubheadingText(
           yearData,

@@ -93,7 +93,7 @@ export function ProgrammeUnitList({
         marginBottom: "-1rem",
       }}
     >
-      <UnitList role="list">
+      <UnitList>
         {units.length < 1 && (
           <OakP>
             {getSubjectCategoryMessage(
