@@ -17,18 +17,24 @@ describe("GetInvolvedCollaborateWithUs", () => {
             headingTitle: "Give your feedback",
             content:
               "Share your story and we'll send you a gift voucher as a thanks for your time.",
-            buttonText: "Get in touch",
-            buttonLink:
-              "https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd",
+            buttons: [
+              {
+                text: "Get in touch",
+                link: "https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd",
+              },
+            ],
           },
           {
             headingTag: "h3",
             headingTitle: "Help us improve",
             content:
               "Teachers are at the heart of everything we build. Have your say by taking part in research.",
-            buttonText: "Take part in research",
-            buttonLink:
-              "https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd",
+            buttons: [
+              {
+                text: "Take part in research",
+                link: "https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd",
+              },
+            ],
           },
         ]}
       />,
