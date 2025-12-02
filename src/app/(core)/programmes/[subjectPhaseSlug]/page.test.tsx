@@ -41,6 +41,21 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   refreshedMVTime: jest.fn().mockResolvedValue({}),
 }));
 
+// Mock window.matchMedia
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: jest.fn().mockImplementation((query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
 describe("Programme page", () => {
   it("renders 404 page if feature flag is disabled", async () => {
     expect(async () =>
