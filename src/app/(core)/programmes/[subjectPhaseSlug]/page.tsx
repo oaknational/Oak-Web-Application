@@ -15,10 +15,9 @@ import {
   formatCurriculumUnitsData,
   fetchSubjectPhasePickerData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import getServerConfig from "@/node-lib/getServerConfig";
 
-const revalidateTimeInSeconds = getServerConfig("sanityRevalidateSeconds");
-export const revalidate = revalidateTimeInSeconds;
+// TD: [integrated journey] get revalidate from env somehow
+export const revalidate = 300;
 
 const ProgrammePage = async ({
   params,
