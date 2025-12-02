@@ -26,7 +26,7 @@ const releaseStage = getReleaseStage(
     process.env.CONTEXT,
 );
 const isDevelopment: boolean = releaseStage?.includes("dev");
-const isPreview: boolean = releaseStage?.includes("preview");
+// const isPreview: boolean = releaseStage?.includes("preview");
 
 // Rules
 const mux: Partial<CspConfig> = {
@@ -211,17 +211,35 @@ const cspConfig: CspConfig = [
 ].reduce(mergeConfigs, cspBaseConfig);
 
 // Reporting
-const baseUrl = process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL;
-const bypassSecret = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
-const secureBaseUrl = baseUrl?.startsWith("http")
-  ? baseUrl.replace("http://", "https://")
-  : `https://${baseUrl}`;
-const bypassParam =
-  isPreview && bypassSecret
-    ? `?x-vercel-protection-bypass=${bypassSecret}`
-    : "";
-const reportCspApiUrl = `${secureBaseUrl}/api/csp-report${bypassParam}`;
-export const reportingEndpointsHeader = `oak-csp="${reportCspApiUrl}"`;
+// const baseUrl = process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL;
+// const bypassSecret = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+// const secureBaseUrl = baseUrl?.startsWith("http")
+//   ? baseUrl.replace("http://", "https://")
+//   : `https://${baseUrl}`;
+// const bypassParam =
+//   isPreview && bypassSecret
+//     ? `?x-vercel-protection-bypass=${bypassSecret}`
+//     : "";
+// const reportCspApiUrl = `${secureBaseUrl}/api/csp-report${bypassParam}`;
+
+// PostHog CSP Reporting Configuration
+// Uses the official PostHog EU endpoint for CSP violation reporting
+
+const posthogApiKey = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || "";
+const posthogApiHost =
+  process.env.NEXT_PUBLIC_POSTHOG_API_HOST || "https://eu.i.posthog.com";
+const sampleRate = "0.05";
+
+// PostHog CSP reporting endpoint
+// Format: https://eu.i.posthog.com/report/?token=YOUR_TOKEN
+const posthogReportUri = posthogApiKey
+  ? `${posthogApiHost}/report/?token=${posthogApiKey}`
+  : "";
+
+// https://eu.i.posthog.com/report/?token=phc_LCrtgEAumOz4qgXuJNqMK2xisQ4mGaApixHEPXeRRoN&sample_rate=0.05; report-to posthog
+// Reporting-Endpoints: posthog="https://eu.i.posthog.com/report/?token=phc_LCrtgEAumOz4qgXuJNqMK2xisQ4mGaApixHEPXeRRoN"
+
+export const reportingEndpointsHeader = `posthog="${posthogReportUri}"`;
 
 export const cspHeader = `
     default-src ${cspConfig.defaultSrc.join(" ")};
@@ -238,7 +256,8 @@ export const cspHeader = `
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
     child-src ${cspConfig.childSrc.join(" ")};
-    report-uri ${reportCspApiUrl};
-    report-to oak-csp;
+    report-uri ${posthogReportUri}&sample_rate=${sampleRate};
+    report-to posthog;
+    Reporting-Endpoints: ${reportingEndpointsHeader}
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;

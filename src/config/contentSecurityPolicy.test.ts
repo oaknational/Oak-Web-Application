@@ -19,8 +19,9 @@ const prodCspHeaderFixture = `
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
-    report-uri https://localhost:3000/api/csp-report;
-    report-to oak-csp;
+    report-uri NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY&sample_rate=0.05;
+    report-to posthog;
+    Reporting-Endpoints: posthog="NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY"
 `;
 
 const devCspHeaderFixture = `
@@ -38,8 +39,9 @@ const devCspHeaderFixture = `
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
-    report-uri https://localhost:3000/api/csp-report;
-    report-to oak-csp;
+    report-uri NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY&sample_rate=0.05;
+    report-to posthog;
+    Reporting-Endpoints: posthog="NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY"
 `;
 
 describe("Content-Security-Policy Header", () => {
@@ -54,7 +56,6 @@ describe("Content-Security-Policy Header", () => {
 
     it("should include development-specific 'localhost' and 'unsafe-eval' rules", async () => {
       const { cspHeader } = await import("./contentSecurityPolicy");
-
       expect(cspHeader).toContain(devCspHeaderFixture);
     });
 
