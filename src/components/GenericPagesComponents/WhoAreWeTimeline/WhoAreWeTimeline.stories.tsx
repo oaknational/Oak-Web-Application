@@ -23,17 +23,17 @@ type Story = StoryObj<typeof Component>;
 export const Default: Story = {
   args: {
     title: "As teaching evolves, so do we...",
-    subtitle: "Oak’s story",
+    subTitle: "Oak’s story",
     items: [
       {
-        subtitle: "From then",
+        subTitle: "From then",
         title: "A rapid response to the pandemic",
         text: [
           "In 2020, teachers needed a quick way to keep pupils learning during lockdown. So we brought together a group of expert partners to support schools with thousands of lessons designed for remote learning.",
         ],
       },
       {
-        subtitle: "To now",
+        subTitle: "To now",
         title: "Complete resources for the classroom, schools and trusts",
         text: [
           "From early years to exam years, we now provide complete curriculum support for the classroom. Every national curriculum subject, every unit, every lesson, in one place.",
@@ -41,7 +41,7 @@ export const Default: Story = {
         ],
       },
       {
-        subtitle: "And beyond",
+        subTitle: "And beyond",
         title: "Staying ahead in a changing world",
         text: [
           "We’ve always anticipated the emerging needs of teachers – from building safe and secure AI tools, to making our platform code available to partners who want to integrate it directly. We’ll keep innovating as we find new ways to help teachers stay ahead in a changing world.",
