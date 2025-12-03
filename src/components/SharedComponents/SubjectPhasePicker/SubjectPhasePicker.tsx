@@ -691,7 +691,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     <OakSpan
                       $font={"heading-light-7"}
                       $mb="spacing-4"
-                      $color={!showSubjectError ? "text-primary" : "text-error"}
+                      $color={showSubjectError ? "text-error" : "text-primary"}
                       data-testid="subject-picker-button-heading"
                     >
                       Subject
@@ -705,7 +705,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         />
                         <OakSpan
                           $color={
-                            !showSubjectError ? "text-primary" : "text-error"
+                            showSubjectError ? "text-error" : "text-primary"
                           }
                         >
                           Select a subject
@@ -714,7 +714,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     )}
                     <OakP
                       $font={"body-2"}
-                      $color={!showSubjectError ? "text-primary" : "text-error"}
+                      $color={showSubjectError ? "text-error" : "text-primary"}
                     >
                       {selectedSubject && selectedSubject.title}
                       {!showSubjectError && !selectedSubject && "Select"}
@@ -935,7 +935,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         $font={"heading-light-7"}
                         $mb="spacing-4"
                         $color={
-                          !showSubjectError ? "text-primary" : "text-error"
+                          showSubjectError ? "text-error" : "text-primary"
                         }
                         data-testid="phase-picker-button-heading"
                       >
