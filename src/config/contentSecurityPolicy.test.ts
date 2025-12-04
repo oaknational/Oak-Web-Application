@@ -19,8 +19,8 @@ const prodCspHeaderFixture = `
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
-    report-uri NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY;
-    report-to posthog;
+    report-uri NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY&sample_rate=0.05&v=1;
+    report-to posthog
 `;
 
 const devCspHeaderFixture = `
@@ -38,8 +38,8 @@ const devCspHeaderFixture = `
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
-    report-uri NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY;
-    report-to posthog;
+    report-uri NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY&sample_rate=0.05&v=1;
+    report-to posthog
 `;
 
 describe("Content-Security-Policy Header", () => {

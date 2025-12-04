@@ -27,9 +27,6 @@ const releaseStage = getReleaseStage(
 );
 const isDevelopment: boolean = releaseStage?.includes("dev");
 
-console.log(releaseStage, "<<<< RELEASE STAGE");
-console.log(isDevelopment, "<<<< IS DEVELOPMENT");
-
 // Rules
 const mux: Partial<CspConfig> = {
   scriptSrc: [
@@ -229,18 +226,6 @@ const posthogReportUri = posthogApiKey
 const getReportUri = (apiKey: string, apiHost: string) => {
   return `${apiHost}/report/?token=${apiKey}&sample_rate=0.05&v=1`;
 };
-console.log(
-  getReportUri(posthogApiKey, posthogApiHost),
-  "<<<< POSTHOG REPORT URI",
-);
-
-console.log(posthogReportUri, "<<<< POSTHOG REPORT URI");
-
-/**
- *  ! 1 - Check all the current CSP rules see if there's any docs
- *  ! 2 - Check to see how poesthog works with our preview builds
- *  ! 3 - Check the env variables and uri for posthog
- */
 
 export const reportingEndpointsHeader = `posthog="${posthogReportUri}"`;
 
@@ -259,7 +244,7 @@ export const cspHeader = `
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
     child-src ${cspConfig.childSrc.join(" ")};
-    report-uri ${posthogReportUri};
-    report-to posthog;
+    report-uri ${getReportUri(posthogApiKey, posthogApiHost)};
+    report-to posthog
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;

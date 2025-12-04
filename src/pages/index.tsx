@@ -39,6 +39,14 @@ const HomePage: NextPage<HomePageProps> = (props) => {
     }
   }, [router]);
 
+  // CSP VIOLATION TEST - Remove after testing
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.textContent =
+      'console.log("CSP VIOLATION TEST: This inline script should be blocked");';
+    document.head.appendChild(script);
+  }, []);
+
   const { curriculumData, posts, pageData } = props;
 
   const testimonials = pageData?.testimonials;
