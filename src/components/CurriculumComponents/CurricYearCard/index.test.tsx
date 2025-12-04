@@ -63,7 +63,7 @@ describe("CurricYearCard component", () => {
 
     const box = container.querySelector(".mobileYearDisplay");
 
-    expect(box).toHaveStyle({ background: "rgb(229, 209, 224)" });
+    expect(box).toHaveStyle({ background: "rgb(239, 219, 234)" });
   });
 
   it("should apply pink30 background when isExamboard is false", () => {
