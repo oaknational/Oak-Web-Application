@@ -65,14 +65,14 @@ const posthog: Partial<CspConfig> = {
 
 const cloudinary: Partial<CspConfig> = {
   imgSrc: [
-    "https://res.cloudinary.com",
-    "https://oaknationalacademy-res.cloudinary.com",
-    "https://*.cloudinary.com",
+    "https://res.cloudinary.com/",
+    "https://oaknationalacademy-res.cloudinary.com/",
+    "https://*.cloudinary.com/",
   ],
   mediaSrc: [
-    "https://res.cloudinary.com",
-    "https://oaknationalacademy-res.cloudinary.com",
-    "https://*.cloudinary.com",
+    "https://res.cloudinary.com/",
+    "https://oaknationalacademy-res.cloudinary.com/",
+    "https://*.cloudinary.com/",
   ],
   connectSrc: ["*.cloudinary.com"],
 };
@@ -223,14 +223,17 @@ const posthogApiKey = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || "";
 const posthogApiHost =
   process.env.NEXT_PUBLIC_POSTHOG_API_HOST || "https://eu.i.posthog.com";
 
-// PostHog CSP reporting uri
 const posthogReportUri = posthogApiKey
   ? `${posthogApiHost}/report/?token=${posthogApiKey}`
   : "";
 
 // appends sample rate and version to the report uri
-const getReportUri = (apiKey: string, apiHost: string) => {
-  return `${apiHost}/report/?token=${apiKey}&sample_rate=0.05&v=1`;
+const getReportUri = (
+  posthogReportUri: string,
+  sampleRate: number = 0.05,
+  version: string = "1",
+) => {
+  return `${posthogReportUri}&sample_rate=${sampleRate.toString()}&v=${version}`;
 };
 
 export const reportingEndpointsHeader = `posthog="${posthogReportUri}"`;
@@ -250,7 +253,7 @@ export const cspHeader = `
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
     child-src ${cspConfig.childSrc.join(" ")};
-    report-uri ${getReportUri(posthogApiKey, posthogApiHost)};
+    report-uri ${getReportUri(posthogReportUri, 0.05, "1")};
     report-to posthog
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;
