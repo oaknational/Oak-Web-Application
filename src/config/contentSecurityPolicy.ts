@@ -65,9 +65,14 @@ const posthog: Partial<CspConfig> = {
 
 const cloudinary: Partial<CspConfig> = {
   imgSrc: [
-    "https://res.cloudinary.com/",
-    "https://oaknationalacademy-res.cloudinary.com/",
-    "https://*.cloudinary.com/",
+    "https://res.cloudinary.com",
+    "https://oaknationalacademy-res.cloudinary.com",
+    "https://*.cloudinary.com",
+  ],
+  mediaSrc: [
+    "https://res.cloudinary.com",
+    "https://oaknationalacademy-res.cloudinary.com",
+    "https://*.cloudinary.com",
   ],
   connectSrc: ["*.cloudinary.com"],
 };
@@ -218,11 +223,12 @@ const posthogApiKey = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || "";
 const posthogApiHost =
   process.env.NEXT_PUBLIC_POSTHOG_API_HOST || "https://eu.i.posthog.com";
 
-// PostHog CSP reporting endpoint
+// PostHog CSP reporting uri
 const posthogReportUri = posthogApiKey
   ? `${posthogApiHost}/report/?token=${posthogApiKey}`
   : "";
 
+// appends sample rate and version to the report uri
 const getReportUri = (apiKey: string, apiHost: string) => {
   return `${apiHost}/report/?token=${apiKey}&sample_rate=0.05&v=1`;
 };

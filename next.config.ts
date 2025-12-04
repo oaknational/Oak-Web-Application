@@ -155,7 +155,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
             value: reportingEndpointsHeader,
           },
           {
-            key: "Content-Security-Policy",
+            key: "Content-Security-Policy-Report-Only",
             value: cspHeader.replaceAll(/\n/g, ""),
           },
         ],
