@@ -45,7 +45,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-55546728-0 gKJOWA fQLyIH bLecgr"
+                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 gKJOWA fQLyIH fSzYCW"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -102,7 +102,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-55546728-0 gKJOWA fQLyIH bLecgr"
+                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 gKJOWA fQLyIH fSzYCW"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -159,7 +159,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-55546728-0 gKJOWA fQLyIH bLecgr"
+                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 gKJOWA fQLyIH fSzYCW"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -216,7 +216,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-55546728-0 gKJOWA fQLyIH bLecgr"
+                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 gKJOWA fQLyIH fSzYCW"
                     data-testid="who-we-are-explore-item"
                   >
                     <div

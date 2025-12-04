@@ -477,7 +477,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB eGXHla cuPHGn"
+          class="sc-fqkvVR sc-kAyceB gQeueV cuPHGn"
           data-testid="modal-footer"
         >
           <div
@@ -1244,7 +1244,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB eGXHla cuPHGn"
+          class="sc-fqkvVR sc-kAyceB gQeueV cuPHGn"
           data-testid="modal-footer"
         >
           <div
