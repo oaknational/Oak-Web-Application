@@ -29,7 +29,7 @@ export type SupportPageProps = {
 
 const Support: NextPage<SupportPageProps> = ({ pageData }) => {
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"bg-primary"}>
       <OakMaxWidth
         $ph={["spacing-0", "spacing-16"]}
         $pt={["spacing-64", "spacing-80"]}

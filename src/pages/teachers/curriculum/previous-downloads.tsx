@@ -112,7 +112,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
           description: "Curriculum Previous Downloads",
         }),
       }}
-      $background={"white"}
+      $background={"bg-primary"}
     >
       <OakBox $background={"bg-decorative1-main"} $pt="spacing-20">
         <OakBox

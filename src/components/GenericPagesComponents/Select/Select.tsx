@@ -137,7 +137,7 @@ export function Select<
     <SelectContainer
       $flexDirection={"column"}
       $position={"relative"}
-      $background="white"
+      $background="bg-primary"
       {...containerProps}
     >
       <BoxBorders gapPosition="rightTop" hideBottom={state.isOpen} />

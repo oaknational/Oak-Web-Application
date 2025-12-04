@@ -35,7 +35,7 @@ const getWorkWithUsCards = (aboutPage: AboutWorkWithUsPage) => {
 const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   const { seo } = pageData;
   return (
-    <Layout seoProps={getSeoProps(seo)} $background={"white"}>
+    <Layout seoProps={getSeoProps(seo)} $background={"bg-primary"}>
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
         $mt={["spacing-56", "spacing-80"]}

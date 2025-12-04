@@ -58,7 +58,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
           description: `Browse and download our free ${metaDescriptionSlug} teaching resources for lesson planning. Our teaching resources are made by subject experts and entirely free to download and use.`,
         }),
       }}
-      $background="white"
+      $background="bg-primary"
     >
       <Banners />
       <OakBox $background={"bg-decorative3-subdued"}>

@@ -331,7 +331,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       isLegacy={false}
       isAudioClip={currentClip.mediaObject?.format === "mp3"}
       userEventCallback={handleVideoEvents}
-      loadingTextColor="white"
+      loadingTextColor="text-inverted"
       defaultHiddenCaptions={isPEPractical}
       cloudinaryUrl={currentClip.mediaObject.url}
       muxAssetId={currentClip.videoObject?.muxAssetId}

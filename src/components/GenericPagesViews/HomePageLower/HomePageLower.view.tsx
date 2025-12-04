@@ -119,7 +119,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
         <BlogAndWebinarList
           blogListPosts={blogListProps}
           showImageOnTablet={true}
-          backgroundColor="white"
+          backgroundColor="bg-primary"
           displayOnPhone={true}
           isBackgroundWhite={true}
           title={"Stay up to date"}

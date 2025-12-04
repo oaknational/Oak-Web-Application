@@ -1,6 +1,6 @@
 import {
   OakBox,
-  OakColorToken,
+  OakUiRoleToken,
   OakFlex,
   OakFlexProps,
   OakIcon,
@@ -27,7 +27,7 @@ type DotWithWingsProps = {
   isFirst: boolean;
   isLast: boolean;
   iconName?: OakIconName;
-  $background?: OakColorToken;
+  $background?: OakUiRoleToken;
 };
 function DotWithWings({
   isFirst,
@@ -95,14 +95,14 @@ export function CurricShowSteps({
                     isFirst={isFirst}
                     isLast={isLast}
                     iconName="tick"
-                    $background="black"
+                    $background="bg-inverted"
                   />
                 )}
                 {!isCurrent && !isDone && (
                   <DotWithWings
                     isFirst={isFirst}
                     isLast={isLast}
-                    $background="white"
+                    $background="bg-primary"
                   />
                 )}
                 {isCurrent && (

@@ -79,7 +79,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
           }),
           noIndex: true,
         }}
-        $background="grey20"
+        $background="bg-btn-secondary-hover"
       >
         <Search
           {...searchProps}

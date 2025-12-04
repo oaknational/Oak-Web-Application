@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import {
   OakIcon,
   OakIconName,
-  OakColorToken,
+  OakUiRoleToken,
   OakFlex,
   OakP,
   OakAllSpacingToken,
@@ -11,7 +11,7 @@ import {
 export interface CurricInfoCardProps {
   children: ReactNode;
   iconName?: OakIconName;
-  background: OakColorToken;
+  background: OakUiRoleToken;
   iconHeight: OakAllSpacingToken;
   iconWidth: OakAllSpacingToken;
 }

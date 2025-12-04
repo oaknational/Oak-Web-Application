@@ -1,7 +1,6 @@
 import React, { FC, MutableRefObject } from "react";
-import { OakSpan, OakFlex } from "@oaknational/oak-components";
+import { OakSpan, OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
 
-import { OakColorName } from "@/styles/theme/types";
 import useClickableCard from "@/hooks/useClickableCard";
 import ListItemHeader from "@/components/TeacherComponents/ListItemHeader";
 import ListItemCard from "@/components/TeacherComponents/ListItemCard";
@@ -60,8 +59,10 @@ const UnitListItem: FC<UnitListItemProps | SpecialistListItemProps> = (
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>(firstItemRef);
 
-  const background: OakColorName = expired ? "grey30" : "lavender50";
-  const backgroundOnHover: OakColorName = "lavender";
+  const background: OakUiRoleToken = expired
+    ? "bg-neutral-stronger"
+    : "bg-decorative3-subdued";
+  const backgroundOnHover: OakUiRoleToken = "bg-decorative3-main";
 
   return (
     <ListItemCard

@@ -726,7 +726,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             {/* DESKTOP SUBJECT PICKER */}
             {showSubjects && !isMobile && !isMobileLotPickerModalOpen && (
               <SelectionDropDownBox
-                $background={"white"}
+                $background={"bg-primary"}
                 $left={"spacing-0"}
                 $mt={"spacing-8"}
                 $pa={"spacing-24"}
@@ -899,7 +899,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               $visibility={showSubjects || showPhases ? "hidden" : null}
             >
               <BoxBorders
-                $color="grey30"
+                $color="bg-neutral-stronger"
                 hideBottom={true}
                 hideTop={true}
                 hideRight={true}
@@ -999,7 +999,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 {/* DESKTOP PHASE PICKER */}
                 {showPhases && !isMobile && (
                   <SelectionDropDownBox
-                    $background={"white"}
+                    $background={"bg-primary"}
                     $mt={"spacing-8"}
                     $pa={"spacing-32"}
                     $position="absolute"

@@ -25,7 +25,7 @@ const blogAndWebinarListData: BlogAndWebinarListProps = {
       },
     },
   },
-  backgroundColor: "white",
+  backgroundColor: "bg-primary",
   displayOnPhone: true,
   showImageOnTablet: true,
   title: "Stay up to date",

@@ -74,7 +74,7 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
   const newsletterFormProps = useNewsletterForm();
 
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"bg-primary"}>
       <OakMaxWidth
         $pt={["spacing-72", "spacing-80"]}
         $pb={["spacing-64", "spacing-80"]}

@@ -3,7 +3,7 @@ import {
   OakHeading,
   OakP,
   OakFlex,
-  OakColorToken,
+  OakUiRoleToken,
   OakIcon,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
@@ -95,8 +95,10 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
   const [isToggleOpen, setIsToggleOpen] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  const backgroundColour: OakColorToken =
-    type === "unit" ? "lavender30" : "pink30";
+  const backgroundColour: OakUiRoleToken =
+    type === "unit"
+      ? "bg-decorative3-very-subdued"
+      : "bg-decorative4-very-subdued";
 
   type ButtonProps = {
     as: "button";
@@ -129,10 +131,12 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         $flexDirection="column"
         onMouseEnter={() => isDesktop && setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        $background={isHovered || isToggleOpen ? backgroundColour : "white"}
+        $background={
+          isHovered || isToggleOpen ? backgroundColour : "bg-primary"
+        }
         $width="100%"
         $ba="border-solid-none"
-        $color="black"
+        $color="text-primary"
       >
         {props.children}
       </StyledFlexWithFocusState>
@@ -153,7 +157,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
             </OakFlex>
             <LessonMetadata
               $font={"heading-light-7"}
-              $color={"grey60"}
+              $color={"text-subdued"}
               metadataArray={metadataArray}
             />
           </OakFlex>

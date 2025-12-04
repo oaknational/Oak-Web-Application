@@ -3,14 +3,14 @@ import {
   OakFlex,
   OakBox,
   OakHandDrawnHR,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 
 export type PromoBannerProps = {
-  background: OakColorToken;
+  background: OakUiRoleToken;
   message: ReactNode;
   ctaText: string;
 } & ResolveOakHrefProps;

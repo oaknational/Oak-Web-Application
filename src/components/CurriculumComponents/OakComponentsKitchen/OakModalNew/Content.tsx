@@ -64,7 +64,7 @@ export function ModalContent({
           $pv={"spacing-12"}
           $justifyContent={"left"}
           $bt={"border-solid-s"}
-          $borderColor={"grey30"}
+          $borderColor={"border-neutral-lighter"}
         >
           {footer}
         </OakFlex>

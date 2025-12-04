@@ -45,7 +45,7 @@ const ImageContainer: FC<CMSImageProps & SpacingProps & { name: string }> = (
 
 const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"bg-primary"}>
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
         $mt={["spacing-56", "spacing-80"]}

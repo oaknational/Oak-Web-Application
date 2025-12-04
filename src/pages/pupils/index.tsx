@@ -23,7 +23,7 @@ const Pupils: NextPage<HomePageProps> = (props) => {
         description:
           "Looking for online lessons from KS1 to KS4? Browse and find free videos, quizzes and lessons, just find your year group, subject and lesson and get started.",
       }}
-      $background={"white"}
+      $background={"bg-primary"}
     >
       <Banners />
       <HomePageTabImageNav current={"pupils"} />

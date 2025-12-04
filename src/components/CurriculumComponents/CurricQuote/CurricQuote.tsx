@@ -3,7 +3,7 @@ import {
   OakFlex,
   OakHeading,
   OakP,
-  OakColorToken,
+  OakUiRoleToken,
   OakHeadingProps,
   OakPProps,
 } from "@oaknational/oak-components";
@@ -11,8 +11,8 @@ import {
 export type CurricQuoteProps = {
   title: string;
   children: string;
-  backgroundColor?: OakColorToken;
-  barColor?: OakColorToken;
+  backgroundColor?: OakUiRoleToken;
+  barColor?: OakUiRoleToken;
   headingProps?: OakHeadingProps;
   paragraphProps?: OakPProps;
 };
@@ -21,7 +21,7 @@ export default function CurricQuote({
   title,
   children,
   backgroundColor = "transparent",
-  barColor = "mint30",
+  barColor = "bg-decorative1-very-subdued",
   headingProps,
   paragraphProps,
 }: Readonly<CurricQuoteProps>) {

@@ -4,7 +4,7 @@ import {
   OakMaxWidth,
   OakHandDrawnHR,
   OakBox,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import Breadcrumbs, {
@@ -19,7 +19,7 @@ import Breadcrumbs, {
 export interface LessonHeaderWrapperProps {
   children?: React.ReactNode;
   breadcrumbs: Breadcrumb[];
-  background: OakColorToken;
+  background: OakUiRoleToken;
 }
 
 export const LessonHeaderWrapper: FC<LessonHeaderWrapperProps> = (props) => {

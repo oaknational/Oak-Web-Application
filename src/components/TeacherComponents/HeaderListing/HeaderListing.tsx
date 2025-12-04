@@ -9,9 +9,9 @@ import {
   OakP,
   OakSecondaryButton,
   OakTagFunctional,
-  OakColorToken,
   OakGrid,
   OakGridArea,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import UnitDownloadButton, {
@@ -41,7 +41,7 @@ import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type HeaderListingProps = {
   breadcrumbs: Breadcrumb[];
-  background: OakColorToken;
+  background: OakUiRoleToken;
   subjectTitle: string;
   subjectSlug: string;
   subjectParent?: string | null;

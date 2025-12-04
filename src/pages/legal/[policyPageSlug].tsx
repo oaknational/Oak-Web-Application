@@ -119,7 +119,7 @@ const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
         ...policy.seo,
         title: policy.seo?.title || policy.title,
       })}
-      $background={"white"}
+      $background={"bg-primary"}
     >
       <OakMaxWidth
         $ph={["spacing-16", "spacing-24"]}

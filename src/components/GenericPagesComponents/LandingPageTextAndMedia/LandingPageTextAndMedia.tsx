@@ -16,7 +16,8 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 const landingPortableTextComponent: PortableTextComponents = {
   list: {
     number: ({ children }) => (
-      <LandingPageOlOutline $color={"lemon50"} $mh={"spacing-0"}>
+      <LandingPageOlOutline $textColor="oakGreen" $mh="spacing-0">
+        lalalala
         {children}
       </LandingPageOlOutline>
     ),

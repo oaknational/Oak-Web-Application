@@ -18,7 +18,9 @@ type ImageProps = {
 
 const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
   const [dims, setDims] = useState(calcDims(src.width, src.height));
-  const containerBackgroundColor = answerIsCorrect ? "lemon50" : "white";
+  const containerBackgroundColor = answerIsCorrect
+    ? "bg-decorative5-subdued"
+    : "bg-primary";
   return (
     <OakFlex
       $borderRadius={"border-radius-m2"}

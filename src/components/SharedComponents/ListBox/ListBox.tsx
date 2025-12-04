@@ -11,7 +11,7 @@ import {
   OakCombinedColorToken,
 } from "@oaknational/oak-components";
 
-import theme, { OakColorName } from "@/styles/theme";
+import { OakColorName } from "@/styles/theme";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export type SelectListBoxConfig = {
@@ -127,7 +127,7 @@ function Option({ item, state }: Readonly<OptionProps>) {
           {item.rendered}
         </OptionContext.Provider>
       </OakFlex>
-      <BoxBorders $color="black" hideTop />
+      <BoxBorders $color="text-primary" hideTop />
     </ListItem>
   );
 }
@@ -141,7 +141,7 @@ function Option({ item, state }: Readonly<OptionProps>) {
 export function Label({ children }: Readonly<{ children: React.ReactNode }>) {
   const { labelProps } = useContext(OptionContext);
   return (
-    <OakSpan $color={theme.selectListBox.states.default.color} {...labelProps}>
+    <OakSpan $color={"text-subdued"} {...labelProps}>
       {children}
     </OakSpan>
   );

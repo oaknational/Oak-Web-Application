@@ -83,7 +83,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
         $font={"body-2"}
         label={props.text}
         onClick={openSettings}
-        labelColor={"black"}
+        labelColor={"text-primary"}
         $hoverStyles={["underline-link-text"]}
       />
     );

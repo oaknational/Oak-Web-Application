@@ -210,7 +210,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           }),
           ...additionalSeo,
         }}
-        $background={"white"}
+        $background={"bg-primary"}
         skipLinkHref={tabAnchor}
       >
         <CurriculumHeader
@@ -218,8 +218,8 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
           keyStages={keyStages}
-          color1="mint"
-          color2="mint"
+          color1="bg-decorative1-main"
+          color2="bg-decorative1-main"
         />
 
         <OakBox $background={"bg-primary"}>{tabContent}</OakBox>

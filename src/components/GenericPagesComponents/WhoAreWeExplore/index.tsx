@@ -85,7 +85,7 @@ export function WhoAreWeExplore({
                         data-testid="who-we-are-explore-item"
                         $flexDirection={"row"}
                         $pa={"spacing-16"}
-                        $background={"white"}
+                        $background={"bg-primary"}
                         $gap={"spacing-16"}
                         $alignItems={"center"}
                         $borderRadius={"border-radius-m2"}
