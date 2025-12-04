@@ -26,7 +26,9 @@ const releaseStage = getReleaseStage(
     process.env.CONTEXT,
 );
 const isDevelopment: boolean = releaseStage?.includes("dev");
-// const isPreview: boolean = releaseStage?.includes("preview");
+
+console.log(releaseStage, "<<<< RELEASE STAGE");
+console.log(isDevelopment, "<<<< IS DEVELOPMENT");
 
 // Rules
 const mux: Partial<CspConfig> = {
@@ -61,6 +63,7 @@ const avo: Partial<CspConfig> = {
 
 const posthog: Partial<CspConfig> = {
   connectSrc: ["https://eu.i.posthog.com", "*.posthog.com"],
+  scriptSrc: ["https://*.posthog.com"],
 };
 
 const cloudinary: Partial<CspConfig> = {
@@ -211,33 +214,33 @@ const cspConfig: CspConfig = [
 ].reduce(mergeConfigs, cspBaseConfig);
 
 // Reporting
-// const baseUrl = process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL;
-// const bypassSecret = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
-// const secureBaseUrl = baseUrl?.startsWith("http")
-//   ? baseUrl.replace("http://", "https://")
-//   : `https://${baseUrl}`;
-// const bypassParam =
-//   isPreview && bypassSecret
-//     ? `?x-vercel-protection-bypass=${bypassSecret}`
-//     : "";
-// const reportCspApiUrl = `${secureBaseUrl}/api/csp-report${bypassParam}`;
-
 // PostHog CSP Reporting Configuration
 // Uses the official PostHog EU endpoint for CSP violation reporting
 
 const posthogApiKey = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || "";
 const posthogApiHost =
   process.env.NEXT_PUBLIC_POSTHOG_API_HOST || "https://eu.i.posthog.com";
-const sampleRate = "0.05";
 
 // PostHog CSP reporting endpoint
-// Format: https://eu.i.posthog.com/report/?token=YOUR_TOKEN
 const posthogReportUri = posthogApiKey
   ? `${posthogApiHost}/report/?token=${posthogApiKey}`
   : "";
 
-// https://eu.i.posthog.com/report/?token=phc_LCrtgEAumOz4qgXuJNqMK2xisQ4mGaApixHEPXeRRoN&sample_rate=0.05; report-to posthog
-// Reporting-Endpoints: posthog="https://eu.i.posthog.com/report/?token=phc_LCrtgEAumOz4qgXuJNqMK2xisQ4mGaApixHEPXeRRoN"
+const getReportUri = (apiKey: string, apiHost: string) => {
+  return `${apiHost}/report/?token=${apiKey}&sample_rate=0.05&v=1`;
+};
+console.log(
+  getReportUri(posthogApiKey, posthogApiHost),
+  "<<<< POSTHOG REPORT URI",
+);
+
+console.log(posthogReportUri, "<<<< POSTHOG REPORT URI");
+
+/**
+ *  ! 1 - Check all the current CSP rules see if there's any docs
+ *  ! 2 - Check to see how poesthog works with our preview builds
+ *  ! 3 - Check the env variables and uri for posthog
+ */
 
 export const reportingEndpointsHeader = `posthog="${posthogReportUri}"`;
 
@@ -256,7 +259,7 @@ export const cspHeader = `
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
     child-src ${cspConfig.childSrc.join(" ")};
-    report-uri ${posthogReportUri}&sample_rate=${sampleRate};
+    report-uri ${posthogReportUri};
     report-to posthog;
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;
