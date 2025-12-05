@@ -146,10 +146,9 @@ const localhost: Partial<CspConfig> = {
   ],
 };
 
-// re-add scriptSrc: ["'self'", "'unsafe-inline'", "https:", "http:"],
 const cspBaseConfig: CspConfig = {
   defaultSrc: ["'self'"],
-  scriptSrc: ["'self'", "https:", "http:"],
+  scriptSrc: ["'self'", "'unsafe-inline'", "https:", "http:"],
   styleSrc: ["'self'", "'unsafe-inline'"],
   imgSrc: [
     "'self'",
@@ -220,7 +219,6 @@ const cspConfig: CspConfig = [
 // Reporting
 // PostHog CSP Reporting Configuration
 // Uses the official PostHog EU endpoint for CSP violation reporting
-
 const posthogApiKey = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || "";
 const posthogApiHost =
   process.env.NEXT_PUBLIC_POSTHOG_API_HOST || "https://eu.i.posthog.com";
