@@ -26,7 +26,6 @@ const releaseStage = getReleaseStage(
     process.env.CONTEXT,
 );
 const isDevelopment: boolean = releaseStage?.includes("dev");
-const isPreview: boolean = releaseStage?.includes("preview");
 
 // Rules
 const mux: Partial<CspConfig> = {
@@ -61,13 +60,19 @@ const avo: Partial<CspConfig> = {
 
 const posthog: Partial<CspConfig> = {
   connectSrc: ["https://eu.i.posthog.com", "*.posthog.com"],
+  scriptSrc: ["https://*.posthog.com"],
 };
 
 const cloudinary: Partial<CspConfig> = {
   imgSrc: [
-    "https://res.cloudinary.com/",
-    "https://oaknationalacademy-res.cloudinary.com/",
-    "https://*.cloudinary.com/",
+    "https://res.cloudinary.com",
+    "https://oaknationalacademy-res.cloudinary.com",
+    "https://*.cloudinary.com",
+  ],
+  mediaSrc: [
+    "https://res.cloudinary.com",
+    "https://oaknationalacademy-res.cloudinary.com",
+    "https://*.cloudinary.com",
   ],
   connectSrc: ["*.cloudinary.com"],
 };
@@ -104,6 +109,9 @@ const vercel: Partial<CspConfig> = {
 const gleap: Partial<CspConfig> = {
   connectSrc: ["*.gleap.io", "wss://*.gleap.io"],
   imgSrc: ["https://*.gleap.io/"],
+  frameSrc: ["https://*.gleap.io/"],
+  scriptSrc: ["https://*.gleap.io/"],
+  mediaSrc: ["https://*.gleap.io/"],
 };
 
 const google: Partial<CspConfig> = {
@@ -111,6 +119,16 @@ const google: Partial<CspConfig> = {
   frameSrc: ["*.google.com/"],
   frameAncestors: ["*.google.com/"],
   objectSrc: ["*.google.com"],
+};
+
+const googleTranslate: Partial<CspConfig> = {
+  scriptSrc: [
+    "https://translate.google.com/",
+    "https://translate.googleapis.com/",
+    "https://www.gstatic.com/",
+    "https://*.google.com/",
+  ],
+  mediaSrc: ["https://ssl.gstatic.com"],
 };
 
 const bugsnag: Partial<CspConfig> = {
@@ -195,20 +213,28 @@ const cspConfig: CspConfig = [
   gleap,
   google,
   bugsnag,
+  googleTranslate,
 ].reduce(mergeConfigs, cspBaseConfig);
 
-// Reporting
-const baseUrl = process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL;
-const bypassSecret = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
-const secureBaseUrl = baseUrl?.startsWith("http")
-  ? baseUrl.replace("http://", "https://")
-  : `https://${baseUrl}`;
-const bypassParam =
-  isPreview && bypassSecret
-    ? `?x-vercel-protection-bypass=${bypassSecret}`
-    : "";
-const reportCspApiUrl = `${secureBaseUrl}/api/csp-report${bypassParam}`;
-export const reportingEndpointsHeader = `oak-csp="${reportCspApiUrl}"`;
+// Reporting - PostHog CSP Dashboard
+const posthogApiKey = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || "";
+const posthogApiHost =
+  process.env.NEXT_PUBLIC_POSTHOG_API_HOST || "https://eu.i.posthog.com";
+
+const posthogReportUri = posthogApiKey
+  ? `${posthogApiHost}/report/?token=${posthogApiKey}`
+  : "";
+
+// appends sample rate and version to the report uri
+const getReportUri = (
+  posthogReportUri: string,
+  sampleRate: number = 0.05,
+  version: string = "1",
+) => {
+  return `${posthogReportUri}&sample_rate=${sampleRate.toString()}&v=${version}`;
+};
+
+export const reportingEndpointsHeader = `posthog="${posthogReportUri}"`;
 
 export const cspHeader = `
     default-src ${cspConfig.defaultSrc.join(" ")};
@@ -225,7 +251,7 @@ export const cspHeader = `
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
     child-src ${cspConfig.childSrc.join(" ")};
-    report-uri ${reportCspApiUrl};
-    report-to oak-csp;
+    report-uri ${getReportUri(posthogReportUri, 0.05, "1")};
+    report-to posthog
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;
