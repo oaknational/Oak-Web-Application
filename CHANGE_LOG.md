@@ -1,3 +1,106 @@
+## [1.926.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.926.0...v1.926.1) (2025-12-04)
+
+
+### Bug Fixes
+
+* https://github.com/vercel/next.js/security/advisories/GHSA-9qr9-h5gf-34mp ([7e513a2](https://github.com/oaknational/Oak-Web-Application/commit/7e513a2da4939553f3bd2b1be9e19dbeabc62edd))
+
+# [1.926.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.925.0...v1.926.0) (2025-12-02)
+
+
+### Features
+
+* add missing staging env_vars ([7001c10](https://github.com/oaknational/Oak-Web-Application/commit/7001c10d315d17663bde9770a524bcc2dc5325d0))
+
+# [1.925.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.924.0...v1.925.0) (2025-12-01)
+
+
+### Bug Fixes
+
+* add pathway data to lesson overview video ([78cd04d](https://github.com/oaknational/Oak-Web-Application/commit/78cd04d788d8a5aaa01f9a83b1c37e39238adc4b))
+
+
+### Features
+
+* extract type for teachers data ([eb475fe](https://github.com/oaknational/Oak-Web-Application/commit/eb475fe55abd3070a95e73abf189dff00b5a3bbc))
+
+# [1.924.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.923.1...v1.924.0) (2025-12-01)
+
+
+### Bug Fixes
+
+* add img alts ([01a2f8e](https://github.com/oaknational/Oak-Web-Application/commit/01a2f8e8e125c4815c2a311475a09067ee2845c1))
+* refactor InnerMaxWidth into own component ([1412f2f](https://github.com/oaknational/Oak-Web-Application/commit/1412f2f5669bd124d6197567eea64f3575cbfbb7))
+* remove custom ordering logic for badges ([17f3662](https://github.com/oaknational/Oak-Web-Application/commit/17f3662e79984bda458f49256f21684118e1a9cb))
+
+
+### Features
+
+* add Work with us section to Get involved page ([093bc01](https://github.com/oaknational/Oak-Web-Application/commit/093bc019dd62a41c436e3e6d309ab911cd243515))
+
+## [1.923.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.923.0...v1.923.1) (2025-11-27)
+
+
+### Bug Fixes
+
+* added nationalacademy to worker-src csp ([2e1d7ea](https://github.com/oaknational/Oak-Web-Application/commit/2e1d7ea96d312038635af774054503c3f2d50874))
+* added trailing slashes to CSP rules ([7600af7](https://github.com/oaknational/Oak-Web-Application/commit/7600af7980ab4a9d23de81993cba0f52e775a63c))
+
+# [1.923.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.4...v1.923.0) (2025-11-27)
+
+
+### Features
+
+* move lotpicker to top of curric landing page ([767418a](https://github.com/oaknational/Oak-Web-Application/commit/767418a5143e57c5520c7a29bf457afbbca7c816))
+
+## [1.922.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.3...v1.922.4) (2025-11-27)
+
+
+### Bug Fixes
+
+* added more CSP rules ([3cbc801](https://github.com/oaknational/Oak-Web-Application/commit/3cbc8017ed037215e1bd9fc9967d061fb2ca6965))
+* added some more missing CSP directives ([600d425](https://github.com/oaknational/Oak-Web-Application/commit/600d42574f22d26e52d5bfe0433dd68c06e29881))
+* tried adding https:// prefix to gleap img-src wildcard and removed static domain ([4746498](https://github.com/oaknational/Oak-Web-Application/commit/474649897b9209d8d220b6a783d461cdc5cdb81b))
+
+## [1.922.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.2...v1.922.3) (2025-11-27)
+
+
+### Bug Fixes
+
+* add favicon to app router root layout ([e0ca659](https://github.com/oaknational/Oak-Web-Application/commit/e0ca6592c0dec571841ff42c474b5219bc6f6ac3))
+
+## [1.922.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.1...v1.922.2) (2025-11-26)
+
+
+### Bug Fixes
+
+* added missing CSP directives ([24a9f0b](https://github.com/oaknational/Oak-Web-Application/commit/24a9f0b5e843948aac2e39152a18617898fafe3e))
+
+## [1.922.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.0...v1.922.1) (2025-11-26)
+
+
+### Bug Fixes
+
+* use supported methods to check visibility ([43c23bf](https://github.com/oaknational/Oak-Web-Application/commit/43c23bfa01f1454281893d0086cbae91720d8262))
+
+# [1.922.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.921.0...v1.922.0) (2025-11-26)
+
+
+### Bug Fixes
+
+* added https prefix for deployments in csp report uri ([f9ae06b](https://github.com/oaknational/Oak-Web-Application/commit/f9ae06b8e9575636217d4133a8ce394a7b9a8c32))
+* allow for vercel auth bypass on preview ([bc81da8](https://github.com/oaknational/Oak-Web-Application/commit/bc81da822d257395e94baceafd89d0a17efaa63f))
+* remove strict-dynamic and fix sonarcloud issue with replace to replaceAll ([b0da322](https://github.com/oaknational/Oak-Web-Application/commit/b0da322703056cb7ec176c15009265ff6caabdad))
+* removed colon from report-uri ([476c24e](https://github.com/oaknational/Oak-Web-Application/commit/476c24e12b7cafdb339a008d25e99b7a4b3d6c41))
+* removed upgrade insecure requests while in report only ([feef178](https://github.com/oaknational/Oak-Web-Application/commit/feef17880f07ee1e462ea8fb250133cc19655f4c))
+
+
+### Features
+
+* added bugsnag and made report only CSP ([6b46b7c](https://github.com/oaknational/Oak-Web-Application/commit/6b46b7cfad4ad33d1e7320ce8aab28f5d905b4e0))
+* added Content-Security-Policy config and header ([e76818b](https://github.com/oaknational/Oak-Web-Application/commit/e76818b6748c9d1412ad56ed7a31c14ed0e76325))
+* added report-uri for backwards compatibility ([bba0935](https://github.com/oaknational/Oak-Web-Application/commit/bba0935bb47a590375785a0c14be992cdf4034a7))
+
 # [1.921.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.920.0...v1.921.0) (2025-11-25)
 
 

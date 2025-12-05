@@ -10,6 +10,7 @@ variable "custom_env_vars" {
       CURRICULUM_API_2023_URL = string
       OVERRIDE_URL            = string
       OAK_CONFIG_LOCATION     = string
+      PUPIL_FIRESTORE_ID      = string
     }))
   })
   default = {}
@@ -20,6 +21,7 @@ variable "sensitive_custom_env_vars" {
   type = object({
     staging = optional(object({
       GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT = string
+      CLERK_SECRET_KEY                      = string
     }))
   })
   sensitive = true
