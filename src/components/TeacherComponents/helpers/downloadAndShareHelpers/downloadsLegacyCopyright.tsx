@@ -35,13 +35,32 @@ export const getResourcesWithoutLegacyCopyright = (
   );
 };
 
+export const isDownloadAvailable = (
+  download: LessonDownloadsPageData["downloads"][number],
+) => {
+  return (
+    download.exists && !download.forbidden && download.inGcsBucket !== false
+  );
+};
+
+export const getFilteredDownloads = (
+  downloads: LessonDownloadsPageData["downloads"],
+  legacyCopyrightContent: LegacyCopyrightContent,
+) => {
+  return getResourcesWithoutLegacyCopyright(
+    downloads,
+    legacyCopyrightContent,
+  ).filter(isDownloadAvailable);
+};
+
 export const getIsResourceDownloadable = (
   resource: ResourceType,
   downloads: LessonOverviewDownloads,
   copyrightContent: LegacyCopyrightContent,
 ) => {
   const inDownloads = downloads.find((d) => d.type === resource);
-  if (!inDownloads || !inDownloads.exists) {
+
+  if (!inDownloads || !isDownloadAvailable(inDownloads)) {
     return false;
   }
 

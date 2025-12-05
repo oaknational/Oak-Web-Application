@@ -9,7 +9,7 @@ import {
   OakMaxWidth,
 } from "@oaknational/oak-components";
 
-import { getResourcesWithoutLegacyCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
+import { getFilteredDownloads } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
 import Banners from "../SharedComponents/Banners";
 
@@ -19,12 +19,8 @@ import {
   PathwayValueType,
 } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
-import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
-import {
-  ResourceFormProps,
-  DownloadResourceType,
-} from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
 import debouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
@@ -187,8 +183,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const { onwardContentSelected } = track;
 
-  const downloadsFilteredByCopyright = useMemo(
-    () => getResourcesWithoutLegacyCopyright(downloads, legacyCopyrightContent),
+  const downloadsFiltered = useMemo(
+    () => getFilteredDownloads(downloads, legacyCopyrightContent),
     [downloads, legacyCopyrightContent],
   );
 
@@ -206,15 +202,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     selectedResources,
     hasFormErrors,
     localStorageDetails,
-    activeResources,
-    setActiveResources,
     hasResources,
     handleToggleSelectAll,
     selectAllChecked,
     setEmailInLocalStorage,
     hubspotLoaded,
   } = useResourceFormState({
-    downloadResources: downloadsFilteredByCopyright,
+    downloadResources: downloadsFiltered,
     additionalFilesResources: additionalFiles,
     type: "download",
   });
@@ -300,8 +294,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         lessonReleaseCohort: isLegacyDownload ? "2020-2023" : "2023-2026",
         lessonReleaseDate: lessonReleaseDate ?? "unreleased",
         totalDownloadableResources:
-          (downloadsFilteredByCopyright?.length ?? 0) +
-          (additionalFiles?.length ?? 0),
+          (downloadsFiltered?.length ?? 0) + (additionalFiles?.length ?? 0),
       });
     } catch {
       setIsAttemptingDownload(false);
@@ -312,18 +305,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     }
   };
 
-  useLessonDownloadExistenceCheck({
-    lessonSlug,
-    resourcesToCheck: activeResources as DownloadResourceType[],
-    additionalFilesIdsToCheck: null, // replace later with data
-    onComplete: setActiveResources,
-    isLegacyDownload: isLegacyDownload,
-  });
-
   const showNoResources =
-    !hasResources ||
-    Boolean(expired) ||
-    downloadsFilteredByCopyright.length === 0;
+    !hasResources || Boolean(expired) || downloadsFiltered.length === 0;
 
   return (
     <OakBox $ph={["spacing-16", "spacing-0"]} $background={"grey20"}>
@@ -451,7 +434,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               !showNoResources && (
                 <DownloadCardGroup
                   control={form.control}
-                  downloads={downloadsFilteredByCopyright}
+                  downloads={downloadsFiltered}
                   additionalFiles={additionalFiles}
                   hasError={Boolean(form.errors?.resources)}
                   triggerForm={form.trigger}
@@ -482,7 +465,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               />
             }
             showRiskAssessmentBanner={showRiskAssessmentBanner}
-            downloads={downloadsFilteredByCopyright}
+            downloads={downloadsFiltered}
             additionalFiles={additionalFiles}
             showGeoBlocked={showGeoBlocked}
             lessonSlug={lessonSlug}

@@ -1,12 +1,10 @@
 import { z } from "zod";
 
-import {
-  LessonOverviewPageData,
-  lessonOverviewDownloads,
-} from "../lessonOverview/lessonOverview.schema";
+import { LessonOverviewPageData } from "../lessonOverview/lessonOverview.schema";
 import {
   baseLessonOverviewSchema,
   legacyAssetObjectSchema,
+  lessonDownloadsListSchema,
   lessonOverviewQuizData,
   lessonPathwaySchema,
 } from "../../shared.schema";
@@ -130,7 +128,7 @@ const specialistLessonOverviewSchema = baseLessonOverviewSchema.extend({
   developmentStageTitle: z.string(),
   isSpecialist: z.literal(true),
   isCanonical: z.literal(false),
-  downloads: lessonOverviewDownloads,
+  downloads: lessonDownloadsListSchema,
   updatedAt: z.string(),
   pathways: z.array(lessonPathwaySchema),
 });

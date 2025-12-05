@@ -210,7 +210,9 @@ describe("lessonListing()", () => {
     test("getTransformedUnit returns the correct data", async () => {
       const transformedLessons = getPackagedUnit(
         mockPackagedUnitData,
-        getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
+        await getTransformedLessons([
+          syntheticUnitvariantLessonsByKsFixture({}),
+        ]),
         false,
         false,
       );
@@ -260,11 +262,11 @@ describe("lessonListing()", () => {
         containsLoginRequiredLessons: false,
       });
     });
-    test("getTransformedUnit returns the correct data for optionality units", () => {
+    test("getTransformedUnit returns the correct data for optionality units", async () => {
       const pfs = syntheticUnitvariantLessonsByKsFixture().programme_fields;
       const transformedLessons = getPackagedUnit(
         mockPackagedUnitData,
-        getTransformedLessons([
+        await getTransformedLessons([
           syntheticUnitvariantLessonsByKsFixture({
             overrides: {
               programme_fields: {
@@ -324,7 +326,7 @@ describe("lessonListing()", () => {
       });
     });
     test("getTransformedLessons returns the correct data", async () => {
-      const transformedLessons = getTransformedLessons([
+      const transformedLessons = await getTransformedLessons([
         syntheticUnitvariantLessonsByKsFixture(),
       ]);
       expect(transformedLessons).toEqual([
