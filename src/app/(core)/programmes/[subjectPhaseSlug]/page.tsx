@@ -17,7 +17,7 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 // TD: [integrated journey] get revalidate from env somehow
-export const revalidate = 300;
+export const revalidate = 7200;
 
 const ProgrammePage = async ({
   params,
