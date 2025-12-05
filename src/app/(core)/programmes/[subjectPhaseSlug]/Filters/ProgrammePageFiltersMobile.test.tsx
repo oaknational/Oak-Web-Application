@@ -9,7 +9,6 @@ import { createUnit } from "@/fixtures/curriculum/unit";
 import { YearData } from "@/utils/curriculum/types";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 const mockYearData: YearData = {
   "7": {
     units: [
