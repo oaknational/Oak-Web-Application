@@ -17,7 +17,6 @@ const landingPortableTextComponent: PortableTextComponents = {
   list: {
     number: ({ children }) => (
       <LandingPageOlOutline $textColor="oakGreen" $mh="spacing-0">
-        lalalala
         {children}
       </LandingPageOlOutline>
     ),

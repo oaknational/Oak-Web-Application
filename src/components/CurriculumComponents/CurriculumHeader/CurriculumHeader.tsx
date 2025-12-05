@@ -202,7 +202,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             $mh={"auto"}
             $width={"100%"}
           >
-            lalallllalalal
             <CurriculumHeaderTabNav
               data-testid="tabularNav"
               label="Curriculum Selection"
