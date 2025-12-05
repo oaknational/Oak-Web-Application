@@ -1,8 +1,11 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { OakBox, oakBoxCss, OakBoxProps } from "@oaknational/oak-components";
-
-import IconButton from "@/components/SharedComponents/Button/IconButton";
+import {
+  OakBox,
+  oakBoxCss,
+  OakBoxProps,
+  OakTertiaryInvertedButton,
+} from "@oaknational/oak-components";
 
 type CurriculumModalCloseButtonProps = OakBoxProps & {
   onClose: () => void;
@@ -17,13 +20,11 @@ export const CurriculumModalCloseButton: FC<
 > = ({ onClose, ariaLabel = "Close subject modal", ...boxProps }) => {
   return (
     <CurriculumModalCloseButtonBox {...boxProps}>
-      <IconButton
-        variant="minimal"
-        icon="cross"
+      <OakTertiaryInvertedButton
+        iconName="cross"
         onClick={onClose}
-        aria-label={ariaLabel}
-        size="large"
         data-testid="close-modal-button"
+        aria-label={ariaLabel}
       />
     </CurriculumModalCloseButtonBox>
   );
