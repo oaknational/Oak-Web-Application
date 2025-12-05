@@ -3,13 +3,13 @@
 import { OakBox, OakHeading } from "@oaknational/oak-components";
 import { useMemo, useState } from "react";
 
-import ProgrammeSequence from "./Sequence";
 import ProgrammePageFiltersMobile from "./Filters/ProgrammePageFiltersMobile";
+import ProgrammePageFiltersDesktop from "./Filters/ProgrammePageFiltersDesktop";
+import ProgrammeSequence from "./Sequence";
 
 import { CurricVisualiserLayout } from "@/components/CurriculumComponents/CurricVisualiserLayout";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
-import ProgrammePageFiltersDesktop from "@/app/(core)/programmes/[subjectPhaseSlug]/Filters/ProgrammePageFiltersDesktop";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import {
   CurriculumUnitsFormattedData,

@@ -1,6 +1,6 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
 
-import { Programme } from "./Programme";
+import { Programme } from "./Components/Programme";
 
 import { useFeatureFlag } from "@/utils/featureFlags";
 import {
