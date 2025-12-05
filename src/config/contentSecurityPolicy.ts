@@ -226,7 +226,7 @@ const posthogReportUri = posthogApiKey
   : "";
 
 // appends sample rate and version to the report uri
-const getReportUri = (
+export const getReportUri = (
   posthogReportUri: string,
   sampleRate: number = 0.05,
   version: string = "1",

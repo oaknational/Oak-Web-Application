@@ -100,4 +100,137 @@ describe("Content-Security-Policy Header", () => {
       expect(cspHeader).toContain(prodCspHeaderFixture);
     });
   });
+
+  describe("PostHog CSP Reporting", () => {
+    let originalEnv: NodeJS.ProcessEnv;
+
+    beforeEach(() => {
+      // Save original environment
+      originalEnv = { ...process.env };
+    });
+
+    afterEach(() => {
+      // Restore original environment
+      process.env = originalEnv;
+      jest.resetModules();
+    });
+
+    describe("getReportUri function", () => {
+      it("should append default sample_rate and version to the report URI", async () => {
+        const { getReportUri } = await import("./contentSecurityPolicy");
+        const baseUri = "https://eu.i.posthog.com/report/?token=test-key";
+
+        const result = getReportUri(baseUri);
+
+        expect(result).toBe(
+          "https://eu.i.posthog.com/report/?token=test-key&sample_rate=0.05&v=1",
+        );
+      });
+
+      it("should append custom sample_rate when provided", async () => {
+        const { getReportUri } = await import("./contentSecurityPolicy");
+        const baseUri = "https://eu.i.posthog.com/report/?token=test-key";
+
+        const result = getReportUri(baseUri, 0.1);
+
+        expect(result).toBe(
+          "https://eu.i.posthog.com/report/?token=test-key&sample_rate=0.1&v=1",
+        );
+      });
+
+      it("should append custom version when provided", async () => {
+        const { getReportUri } = await import("./contentSecurityPolicy");
+        const baseUri = "https://eu.i.posthog.com/report/?token=test-key";
+
+        const result = getReportUri(baseUri, 0.05, "2");
+
+        expect(result).toBe(
+          "https://eu.i.posthog.com/report/?token=test-key&sample_rate=0.05&v=2",
+        );
+      });
+
+      it("should append custom sample_rate and version when both provided", async () => {
+        const { getReportUri } = await import("./contentSecurityPolicy");
+        const baseUri = "https://eu.i.posthog.com/report/?token=test-key";
+
+        const result = getReportUri(baseUri, 0.2, "3");
+
+        expect(result).toBe(
+          "https://eu.i.posthog.com/report/?token=test-key&sample_rate=0.2&v=3",
+        );
+      });
+    });
+
+    describe("environment variable handling", () => {
+      it("should construct posthogReportUri when API key is provided", async () => {
+        process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "test-api-key";
+        process.env.NEXT_PUBLIC_POSTHOG_API_HOST = "https://eu.i.posthog.com";
+
+        const { cspHeader } = await import("./contentSecurityPolicy");
+
+        expect(cspHeader).toContain(
+          "https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1",
+        );
+      });
+
+      it("should use default posthogApiHost when not provided", async () => {
+        process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "test-api-key";
+        delete process.env.NEXT_PUBLIC_POSTHOG_API_HOST;
+
+        const { cspHeader } = await import("./contentSecurityPolicy");
+
+        expect(cspHeader).toContain(
+          "https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1",
+        );
+      });
+
+      it("should use custom posthogApiHost when provided", async () => {
+        process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "test-api-key";
+        process.env.NEXT_PUBLIC_POSTHOG_API_HOST = "https://custom.posthog.com";
+
+        const { cspHeader } = await import("./contentSecurityPolicy");
+
+        expect(cspHeader).toContain(
+          "https://custom.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1",
+        );
+      });
+    });
+
+    describe("reportingEndpointsHeader", () => {
+      it("should export correct format when API key is provided", async () => {
+        process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "test-api-key";
+        process.env.NEXT_PUBLIC_POSTHOG_API_HOST = "https://eu.i.posthog.com";
+
+        const { reportingEndpointsHeader } = await import(
+          "./contentSecurityPolicy"
+        );
+
+        expect(reportingEndpointsHeader).toBe(
+          'posthog="https://eu.i.posthog.com/report/?token=test-api-key"',
+        );
+      });
+    });
+
+    describe("integration with CSP header", () => {
+      it("should include report-uri directive with correct parameters in CSP header", async () => {
+        process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "integration-test-key";
+        process.env.NEXT_PUBLIC_POSTHOG_API_HOST = "https://test.posthog.com";
+
+        const { cspHeader } = await import("./contentSecurityPolicy");
+
+        expect(cspHeader).toContain("report-uri");
+        expect(cspHeader).toContain(
+          "https://test.posthog.com/report/?token=integration-test-key&sample_rate=0.05&v=1",
+        );
+      });
+
+      it("should include report-to directive in CSP header", async () => {
+        process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "test-key";
+
+        const { cspHeader } = await import("./contentSecurityPolicy");
+
+        expect(cspHeader).toContain("report-to posthog");
+      });
+    });
+  });
 });
