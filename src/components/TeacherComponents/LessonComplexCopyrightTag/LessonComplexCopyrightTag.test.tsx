@@ -8,6 +8,7 @@ import {
   mockGeorestrictedUser,
   mockNotOnboardedUser,
 } from "@/__tests__/__helpers__/mockUser";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const mockFeatureFlagEnabled = jest.fn();
 jest.mock("posthog-js/react", () => ({
@@ -21,7 +22,7 @@ describe("LessonCopyrightTag", () => {
   test("it shows copyright tag if lesson has complex copyright and user is signed out", () => {
     setUseUserReturn(mockLoggedOut);
 
-    const { getByText } = render(
+    const { getByText } = renderWithTheme(
       <LessonComplexCopyrightTag georestricted={true} loginRequired={true} />,
     );
     const copyrightTag = getByText("Copyrighted");
@@ -30,7 +31,7 @@ describe("LessonCopyrightTag", () => {
 
   test("it shows copyrighted tag if lesson is geo restricted and user is signed in and geoblocked", () => {
     setUseUserReturn(mockGeorestrictedUser);
-    const { getByText } = render(
+    const { getByText } = renderWithTheme(
       <LessonComplexCopyrightTag georestricted={true} loginRequired={false} />,
     );
     const geoRestrictedTag = getByText("Copyrighted");

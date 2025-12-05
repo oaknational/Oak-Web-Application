@@ -17,7 +17,7 @@ export type LayoutLandingPagesHeaderProps = {
  */
 const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
   return (
-    <LayoutFixedHeader $background={"white"}>
+    <LayoutFixedHeader $background={"bg-primary"}>
       <OakFlex
         $alignItems={"center"}
         $width={"100%"}

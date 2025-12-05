@@ -98,7 +98,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
   const videoCaptions =
     pageData.intro.mediaType === "video" ? pageData.intro.video.captions : null;
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"bg-primary"}>
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
         $mt={["spacing-56", "spacing-80"]}
@@ -215,7 +215,7 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
   const newsletterFormProps = useNewsletterForm();
 
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"bg-primary"}>
       <OakBox $overflow={"hidden"}>
         <WhoAreWeHeader
           title={"About Oak"}

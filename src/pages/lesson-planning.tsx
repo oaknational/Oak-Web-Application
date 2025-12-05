@@ -47,7 +47,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
       seoProps={{
         ...getSeoProps(pageData.seo),
       }}
-      $background={"white"}
+      $background={"bg-primary"}
     >
       <OakHeaderHero
         heroImageAlt={pageData.hero.image?.altText ?? ""}
@@ -189,7 +189,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
           </OakGridArea>
         </OakGrid>
         <BlogAndWebinarList
-          backgroundColor={"grey20"}
+          backgroundColor={"bg-neutral"}
           showImageOnTablet
           blogListPosts={blogListPosts}
           displayOnPhone={true}

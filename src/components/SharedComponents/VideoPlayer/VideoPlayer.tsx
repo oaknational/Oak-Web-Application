@@ -2,7 +2,7 @@ import React, { FC, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
-import { OakP, OakFlex, OakColorToken } from "@oaknational/oak-components";
+import { OakP, OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
@@ -45,7 +45,7 @@ export type VideoPlayerProps = {
   userEventCallback?: (event: VideoEventCallbackArgs) => void;
   pathwayData?: PupilPathwayData | AnalyticsBrowseData;
   isAudioClip?: boolean;
-  loadingTextColor?: OakColorToken;
+  loadingTextColor?: OakUiRoleToken;
   defaultHiddenCaptions?: boolean;
   cloudinaryUrl?: string | null;
   muxAssetId?: string | null;
@@ -69,7 +69,7 @@ function VideoContainer({ children }: Readonly<{ children: React.ReactNode }>) {
       $justifyContent={"center"}
       $ba={"border-solid-l"}
       $minWidth={"100%"}
-      $borderColor={"black"}
+      $borderColor={"border-primary"}
       style={{
         aspectRatio: "16/9",
         boxSizing: "content-box",
@@ -91,7 +91,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     userEventCallback = () => {},
     pathwayData,
     isAudioClip,
-    loadingTextColor = "black",
+    loadingTextColor = "text-primary",
     defaultHiddenCaptions = false,
     cloudinaryUrl,
     muxAssetId,

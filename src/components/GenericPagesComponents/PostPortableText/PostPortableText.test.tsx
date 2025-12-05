@@ -192,7 +192,7 @@ describe("components/PostPortableText", () => {
 
     const calloutText = getByText("I'm a callout out!").closest("div");
 
-    expect(calloutText).toHaveStyle("background-color: #f6e8a0");
+    expect(calloutText).toHaveStyle({ background: "rgb(255, 242, 170)" });
   });
   test("formWrapper renders a newsletter form", () => {
     const { getByText } = render(<PostPortableText portableText={[form]} />);

@@ -30,7 +30,7 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
       $width={["100%", "spacing-480"]}
       $height={"max-content"}
       $position="relative"
-      $background="grey30"
+      $background="bg-neutral-stronger"
       data-testid="details-completed"
     >
       <BrushBorders color="grey30" />

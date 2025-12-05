@@ -135,7 +135,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
             label: subjectTitle,
           },
         ]}
-        background={"lavender30"}
+        background={"bg-decorative3-very-subdued"}
         subjectIconBackgroundColor={"lavender"}
         title={`${subjectTitle} ${pathwayTitle ?? ""}`}
         programmeFactor={keyStageTitle}

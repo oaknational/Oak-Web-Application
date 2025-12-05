@@ -111,7 +111,7 @@ const fixtureData: GetInvolvedPage["pageData"] = {
 
 function TodoSection({ name, text }: Readonly<{ name: string; text: string }>) {
   return (
-    <OakBox $background={"mint"}>
+    <OakBox $background={"bg-decorative1-main"}>
       <InnerMaxWidth>
         <h2>{name}</h2>
         <pre style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
@@ -124,7 +124,7 @@ function TodoSection({ name, text }: Readonly<{ name: string; text: string }>) {
 
 export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
   return (
-    <Layout seoProps={getSeoProps(null)} $background={"white"}>
+    <Layout seoProps={getSeoProps(null)} $background={"bg-primary"}>
       <OakBox $overflow={"hidden"}>
         <WhoAreWeHeader
           title={pageData.header.title}
