@@ -35,15 +35,32 @@ export const getResourcesWithoutLegacyCopyright = (
   );
 };
 
+export const isDownloadAvailable = (
+  download: LessonDownloadsPageData["downloads"][number],
+) => {
+  return (
+    download.exists && !download.forbidden && download.inGcsBucket !== false
+  );
+};
+
+export const getFilteredDownloads = (
+  downloads: LessonDownloadsPageData["downloads"],
+  legacyCopyrightContent: LegacyCopyrightContent,
+) => {
+  return getResourcesWithoutLegacyCopyright(
+    downloads,
+    legacyCopyrightContent,
+  ).filter(isDownloadAvailable);
+};
+
 export const getIsResourceDownloadable = (
   resource: ResourceType,
   downloads: LessonOverviewDownloads,
   copyrightContent: LegacyCopyrightContent,
 ) => {
   const inDownloads = downloads.find((d) => d.type === resource);
-  // if the downloads check fails server-side this property will be undefined, but the bucket hasn't been checked
-  const isNotInBucket = inDownloads?.inGcsBucket === false;
-  if (!inDownloads || !inDownloads.exists || isNotInBucket) {
+
+  if (!inDownloads || !isDownloadAvailable(inDownloads)) {
     return false;
   }
 

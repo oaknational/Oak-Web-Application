@@ -9,7 +9,7 @@ import {
   OakMaxWidth,
 } from "@oaknational/oak-components";
 
-import { getResourcesWithoutLegacyCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
+import { getFilteredDownloads } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
 import Banners from "../SharedComponents/Banners";
 
@@ -184,11 +184,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { onwardContentSelected } = track;
 
   const downloadsFiltered = useMemo(
-    () =>
-      getResourcesWithoutLegacyCopyright(
-        downloads,
-        legacyCopyrightContent,
-      ).filter((r) => r.exists && !r.forbidden && r.inGcsBucket !== false),
+    () => getFilteredDownloads(downloads, legacyCopyrightContent),
     [downloads, legacyCopyrightContent],
   );
 
