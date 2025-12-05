@@ -1,6 +1,7 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Script from "next/script";
 
 import {
   HomePageProps as BlogPostProps,
@@ -54,6 +55,9 @@ const HomePage: NextPage<HomePageProps> = (props) => {
       }}
       $background={"white"}
     >
+      <Script id="csp-test" strategy="afterInteractive">
+        {`console.log('CSP Test: This inline script should trigger a CSP violation and report to PostHog');`}
+      </Script>
       <Banners />
       <HomePageTabImageNav current={"teachers"} />
       <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />

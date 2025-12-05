@@ -63,19 +63,19 @@ const posthog: Partial<CspConfig> = {
   scriptSrc: ["https://*.posthog.com"],
 };
 
-// const cloudinary: Partial<CspConfig> = {
-//   imgSrc: [
-//     "https://res.cloudinary.com",
-//     "https://oaknationalacademy-res.cloudinary.com",
-//     "https://*.cloudinary.com",
-//   ],
-//   mediaSrc: [
-//     "https://res.cloudinary.com",
-//     "https://oaknationalacademy-res.cloudinary.com",
-//     "https://*.cloudinary.com",
-//   ],
-//   connectSrc: ["*.cloudinary.com"],
-// };
+const cloudinary: Partial<CspConfig> = {
+  imgSrc: [
+    "https://res.cloudinary.com",
+    "https://oaknationalacademy-res.cloudinary.com",
+    "https://*.cloudinary.com",
+  ],
+  mediaSrc: [
+    "https://res.cloudinary.com",
+    "https://oaknationalacademy-res.cloudinary.com",
+    "https://*.cloudinary.com",
+  ],
+  connectSrc: ["*.cloudinary.com"],
+};
 
 const hubspot: Partial<CspConfig> = {
   connectSrc: ["*.hubspot.com", "*.hsforms.com"],
@@ -146,9 +146,10 @@ const localhost: Partial<CspConfig> = {
   ],
 };
 
+// re-add scriptSrc: ["'self'", "'unsafe-inline'", "https:", "http:"],
 const cspBaseConfig: CspConfig = {
   defaultSrc: ["'self'"],
-  scriptSrc: ["'self'", "'unsafe-inline'", "https:", "http:"],
+  scriptSrc: ["'self'", "https:", "http:"],
   styleSrc: ["'self'", "'unsafe-inline'"],
   imgSrc: [
     "'self'",
@@ -205,7 +206,7 @@ const cspConfig: CspConfig = [
   vercel,
   cloudflare,
   hubspot,
-  // cloudinary,
+  cloudinary,
   posthog,
   avo,
   clerk,
