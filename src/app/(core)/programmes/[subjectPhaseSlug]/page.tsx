@@ -1,6 +1,6 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
 
-import { Programme } from "./Components/Programme";
+import { ProgrammeView } from "./Components/ProgrammeView";
 
 import { useFeatureFlag } from "@/utils/featureFlags";
 import {
@@ -107,7 +107,7 @@ const ProgrammePage = async ({
       curriculumUnitsFormattedData,
     };
 
-    return <Programme {...results} />;
+    return <ProgrammeView {...results} />;
   } catch (error) {
     if (error instanceof OakError) {
       if (error.config.responseStatusCode === 404) {
