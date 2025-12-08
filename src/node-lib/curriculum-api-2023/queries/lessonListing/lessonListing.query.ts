@@ -47,7 +47,7 @@ async function getDownloadableResourceCount(
   });
 
   const downloadsSet = new Set(
-    downloadsArray.filter((d) => d.inGcsBucket).map((d) => d.type),
+    downloadsArray.filter((d) => d.inGcsBucket !== false).map((d) => d.type),
   );
   const hasIntroQuiz =
     downloadsSet.has("intro-quiz-questions") &&
