@@ -82,7 +82,7 @@ export const constructDownloadsArray = async (
   return validateDownloadsInGcsBucket(
     downloads,
     lessonSlug,
-    "constructDownloadsArray",
+    "specialist lesson query",
   );
 };
 

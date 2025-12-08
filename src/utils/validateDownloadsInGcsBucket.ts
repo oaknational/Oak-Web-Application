@@ -25,7 +25,7 @@ type DownloadItem = {
 export async function validateDownloadsInGcsBucket<T extends DownloadItem>(
   downloads: T[],
   lessonSlug: string,
-  errorContext: string = "validateDownloadsInGcsBucket",
+  errorContext: string = "Failed to validate downloads in GCS bucket",
 ): Promise<T[]> {
   const reportError = errorReporter(errorContext);
 
@@ -69,6 +69,9 @@ export async function validateDownloadsInGcsBucket<T extends DownloadItem>(
   } catch (e) {
     const oakError = new OakError({
       code: "downloads/failed-to-fetch",
+      meta: {
+        lessonSlug,
+      },
       originalError: e,
     });
     reportError(oakError);

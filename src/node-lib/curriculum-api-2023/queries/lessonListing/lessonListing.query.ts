@@ -38,11 +38,12 @@ async function getDownloadableResourceCount(
     hasWorksheetAssetObject: Boolean(lesson.lesson_data.asset_id_worksheet),
     lessonSlug: lesson.lesson_slug,
     isLegacy: lesson.is_legacy,
-    // We don't need to check these assets as they aren't previewed in the
+    // We don't need to check these assets as they aren't previewed in the lesson listing page
     hasWorksheetGoogleDriveDownloadableVersion: false,
     hasWorksheetAnswersAssetObject: false,
     hasSupplementaryAssetObject: false,
     hasLessonGuideObject: false,
+    context: "lessonListingQuery",
   });
 
   const downloadsSet = new Set(

@@ -96,6 +96,7 @@ const lessonDownloadsQuery =
       isLegacy: is_legacy,
       lessonSlug,
       lessonReleaseDate: lesson_release_date,
+      context: "lessonDownloadsQuery",
     };
 
     const downloads = await constructDownloadsArray(downloadsData);

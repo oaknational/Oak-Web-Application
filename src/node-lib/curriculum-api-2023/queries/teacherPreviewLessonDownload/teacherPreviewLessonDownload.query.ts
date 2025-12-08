@@ -94,6 +94,7 @@ const teachersPreviewLessonDownloadQuery =
       hasLessonGuideObject: has_lesson_guide_object,
       isLegacy: is_legacy,
       lessonSlug,
+      context: "previewLessonDownloadQuery",
     };
 
     const downloads = await constructDownloadsArray(downloadsData);

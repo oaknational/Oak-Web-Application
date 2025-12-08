@@ -149,6 +149,9 @@ describe("validateDownloadsInGcsBucket", () => {
     expect(result).toEqual(downloads);
     expect(OakError).toHaveBeenCalledWith({
       code: "downloads/failed-to-fetch",
+      meta: {
+        lessonSlug: "test-lesson",
+      },
       originalError: mockError,
     });
     expect(mockReportError).toHaveBeenCalled();

@@ -13,6 +13,7 @@ export const constructDownloadsArray = async (content: {
   hasLessonGuideObject: boolean;
   isLegacy: boolean;
   lessonSlug: string;
+  context?: string;
 }): Promise<LessonDownloadsListSchema> => {
   const downloads: LessonDownloadsListSchema = [
     {
@@ -91,6 +92,6 @@ export const constructDownloadsArray = async (content: {
   return validateDownloadsInGcsBucket(
     downloads,
     content.lessonSlug,
-    "constructDownloadsArray",
+    content.context,
   );
 };

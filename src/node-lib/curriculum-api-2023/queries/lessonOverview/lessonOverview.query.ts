@@ -135,6 +135,7 @@ export const transformedLessonOverviewData = async (
     hasLessonGuideObject: Boolean(content.hasLessonGuideObject),
     isLegacy: browseData.isLegacy,
     lessonSlug: browseData.lessonSlug,
+    context: "lessonOverviewQuery",
   });
 
   return {
