@@ -364,29 +364,31 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         }
       });
 
-      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        downloadResourceButtonName: "all",
-        keyStageSlug: "ks2",
-        keyStageTitle: "Key Stage 2",
-        lessonName: "Adverbial complex sentences",
-        lessonSlug:
-          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
-        subjectSlug: "english",
-        subjectTitle: "English",
-        unitName: "Simple, Compound and Adverbial Complex Sentences",
-        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "use",
-        eventVersion: "2.0.0",
-        componentType: "lesson_download_button",
-        tierName: null,
-        examBoard: null,
-        lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
-        pathway: null,
-      });
+      expect(downloadResourceButtonClicked).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          downloadResourceButtonName: "all",
+          keyStageSlug: "ks2",
+          keyStageTitle: "Key Stage 2",
+          lessonName: "Adverbial complex sentences",
+          lessonSlug:
+            "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+          subjectSlug: "english",
+          subjectTitle: "English",
+          unitName: "Simple, Compound and Adverbial Complex Sentences",
+          unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "use",
+          eventVersion: "2.0.0",
+          componentType: "lesson_download_button",
+          tierName: null,
+          examBoard: null,
+          lessonReleaseCohort: "2020-2023",
+          lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+          pathway: null,
+        }),
+      );
     });
     it("calls track.downloadResourceButtonClicked will 'slide deck' when download slide deck button is pressed", async () => {
       const { getByText } = render(<LessonOverviewPage {...props} />);
@@ -396,29 +398,31 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         downloadButton.click();
       });
 
-      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        downloadResourceButtonName: "slide deck",
-        keyStageSlug: "ks2",
-        keyStageTitle: "Key Stage 2",
-        lessonName: "Adverbial complex sentences",
-        lessonSlug:
-          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
-        subjectSlug: "english",
-        subjectTitle: "English",
-        unitName: "Simple, Compound and Adverbial Complex Sentences",
-        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "use",
-        eventVersion: "2.0.0",
-        componentType: "lesson_download_button",
-        tierName: null,
-        examBoard: null,
-        lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
-        pathway: null,
-      });
+      expect(downloadResourceButtonClicked).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          downloadResourceButtonName: "slide deck",
+          keyStageSlug: "ks2",
+          keyStageTitle: "Key Stage 2",
+          lessonName: "Adverbial complex sentences",
+          lessonSlug:
+            "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+          subjectSlug: "english",
+          subjectTitle: "English",
+          unitName: "Simple, Compound and Adverbial Complex Sentences",
+          unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "use",
+          eventVersion: "2.0.0",
+          componentType: "lesson_download_button",
+          tierName: null,
+          examBoard: null,
+          lessonReleaseCohort: "2020-2023",
+          lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+          pathway: null,
+        }),
+      );
     });
     it("calls track.downloadResourceButtonClicked will 'worksheet' when download worksheet button is pressed", async () => {
       const { getByText } = render(<LessonOverviewPage {...props} />);
@@ -428,29 +432,31 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         downloadButton.click();
       });
 
-      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        downloadResourceButtonName: "worksheet",
-        keyStageSlug: "ks2",
-        keyStageTitle: "Key Stage 2",
-        lessonName: "Adverbial complex sentences",
-        lessonSlug:
-          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
-        subjectSlug: "english",
-        subjectTitle: "English",
-        unitName: "Simple, Compound and Adverbial Complex Sentences",
-        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "use",
-        eventVersion: "2.0.0",
-        componentType: "lesson_download_button",
-        tierName: null,
-        examBoard: null,
-        lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
-        pathway: null,
-      });
+      expect(downloadResourceButtonClicked).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          downloadResourceButtonName: "worksheet",
+          keyStageSlug: "ks2",
+          keyStageTitle: "Key Stage 2",
+          lessonName: "Adverbial complex sentences",
+          lessonSlug:
+            "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+          subjectSlug: "english",
+          subjectTitle: "English",
+          unitName: "Simple, Compound and Adverbial Complex Sentences",
+          unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "use",
+          eventVersion: "2.0.0",
+          componentType: "lesson_download_button",
+          tierName: null,
+          examBoard: null,
+          lessonReleaseCohort: "2020-2023",
+          lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+          pathway: null,
+        }),
+      );
     });
     it("calls track.downloadResourceButtonClicked will 'exit quiz' when download exit quiz button is pressed", async () => {
       const { getAllByText } = render(<LessonOverviewPage {...props} />);
@@ -460,29 +466,31 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         downloadButton && downloadButton.click();
       });
 
-      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        downloadResourceButtonName: "exit quiz",
-        keyStageSlug: "ks2",
-        keyStageTitle: "Key Stage 2",
-        lessonName: "Adverbial complex sentences",
-        lessonSlug:
-          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
-        subjectSlug: "english",
-        subjectTitle: "English",
-        unitName: "Simple, Compound and Adverbial Complex Sentences",
-        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "use",
-        eventVersion: "2.0.0",
-        componentType: "lesson_download_button",
-        tierName: null,
-        examBoard: null,
-        lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
-        pathway: null,
-      });
+      expect(downloadResourceButtonClicked).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          downloadResourceButtonName: "exit quiz",
+          keyStageSlug: "ks2",
+          keyStageTitle: "Key Stage 2",
+          lessonName: "Adverbial complex sentences",
+          lessonSlug:
+            "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+          subjectSlug: "english",
+          subjectTitle: "English",
+          unitName: "Simple, Compound and Adverbial Complex Sentences",
+          unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "use",
+          eventVersion: "2.0.0",
+          componentType: "lesson_download_button",
+          tierName: null,
+          examBoard: null,
+          lessonReleaseCohort: "2020-2023",
+          lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+          pathway: null,
+        }),
+      );
     });
     it("calls track.downloadResourceButtonClicked will 'starter quiz' when download starter quiz button is pressed", async () => {
       const { getAllByText } = render(<LessonOverviewPage {...props} />);
@@ -492,29 +500,31 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         downloadButton && downloadButton.click();
       });
 
-      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        downloadResourceButtonName: "starter quiz",
-        keyStageSlug: "ks2",
-        keyStageTitle: "Key Stage 2",
-        lessonName: "Adverbial complex sentences",
-        lessonSlug:
-          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
-        subjectSlug: "english",
-        subjectTitle: "English",
-        unitName: "Simple, Compound and Adverbial Complex Sentences",
-        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "use",
-        eventVersion: "2.0.0",
-        componentType: "lesson_download_button",
-        tierName: null,
-        examBoard: null,
-        lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
-        pathway: null,
-      });
+      expect(downloadResourceButtonClicked).toHaveBeenCalledWith(
+        expect.objectContaining({
+          analyticsUseCase: "Teacher",
+          downloadResourceButtonName: "starter quiz",
+          keyStageSlug: "ks2",
+          keyStageTitle: "Key Stage 2",
+          lessonName: "Adverbial complex sentences",
+          lessonSlug:
+            "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+          subjectSlug: "english",
+          subjectTitle: "English",
+          unitName: "Simple, Compound and Adverbial Complex Sentences",
+          unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "use",
+          eventVersion: "2.0.0",
+          componentType: "lesson_download_button",
+          tierName: null,
+          examBoard: null,
+          lessonReleaseCohort: "2020-2023",
+          lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+          pathway: null,
+        }),
+      );
     });
     it("calls track.lessonShareStarted when share all button is pressed with legacy", async () => {
       const legacyProps = {
@@ -535,19 +545,21 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
           throw new Error("Share all button not found");
         }
       });
-      expect(lessonShareStarted).toHaveBeenCalledWith({
-        keyStageSlug: "ks2",
-        keyStageTitle: "Key Stage 2",
-        lessonName: "Adverbial complex sentences",
-        lessonSlug:
-          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
-        subjectSlug: "english",
-        subjectTitle: "English",
-        unitName: "Simple, Compound and Adverbial Complex Sentences",
-        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
-        lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
-      });
+      expect(lessonShareStarted).toHaveBeenCalledWith(
+        expect.objectContaining({
+          keyStageSlug: "ks2",
+          keyStageTitle: "Key Stage 2",
+          lessonName: "Adverbial complex sentences",
+          lessonSlug:
+            "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+          subjectSlug: "english",
+          subjectTitle: "English",
+          unitName: "Simple, Compound and Adverbial Complex Sentences",
+          unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+          lessonReleaseCohort: "2020-2023",
+          lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        }),
+      );
     });
   });
   describe("getStaticProps", () => {

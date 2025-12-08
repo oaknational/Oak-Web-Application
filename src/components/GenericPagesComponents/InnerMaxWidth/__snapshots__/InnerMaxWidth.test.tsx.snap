@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InnerMaxWidth matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-fqkvVR bZZBuO"
+  >
+    <div>
+      Test content
+    </div>
+  </div>
+</div>
+`;
