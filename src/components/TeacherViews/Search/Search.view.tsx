@@ -442,6 +442,7 @@ const Search: FC<SearchProps> = (props) => {
                     </OakFlex>
                     <SearchFilters
                       {...searchFilters}
+                      isMobileFilter={false}
                       trackSearchModified={trackSearchModified(
                         query.term,
                         track.searchFilterModified,
