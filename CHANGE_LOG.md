@@ -1,3 +1,11 @@
+## [1.926.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.926.1...v1.926.2) (2025-12-08)
+
+
+### Bug Fixes
+
+* pa11y issue ([159ae02](https://github.com/oaknational/Oak-Web-Application/commit/159ae02b32bede0f2b80d5d4213b67bae6edbd19))
+* update to non vulnerable nextjs version ([b47869e](https://github.com/oaknational/Oak-Web-Application/commit/b47869ebff903a83a70d99cb56d3e3ce7315dd17))
+
 ## [1.926.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.926.0...v1.926.1) (2025-12-04)
 
 
