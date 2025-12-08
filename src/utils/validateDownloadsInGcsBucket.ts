@@ -62,15 +62,17 @@ export async function validateDownloadsInGcsBucket<T extends DownloadItem>(
         .filter((resource) => resource.exists)
         .map((resource) => resource.item),
     );
+
     return downloads.map((download) => ({
       ...download,
       inGcsBucket: availableDownloadsSet.has(download.type),
     }));
   } catch (e) {
     const oakError = new OakError({
-      code: "downloads/failed-to-fetch",
+      code: "downloads/check-files-failed",
       meta: {
         lessonSlug,
+        message: "Failed to validate assets when statically generating site",
       },
       originalError: e,
     });

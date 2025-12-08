@@ -148,9 +148,10 @@ describe("validateDownloadsInGcsBucket", () => {
 
     expect(result).toEqual(downloads);
     expect(OakError).toHaveBeenCalledWith({
-      code: "downloads/failed-to-fetch",
+      code: "downloads/check-files-failed",
       meta: {
         lessonSlug: "test-lesson",
+        message: "Failed to validate assets when statically generating site",
       },
       originalError: mockError,
     });
