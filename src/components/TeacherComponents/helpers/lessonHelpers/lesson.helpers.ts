@@ -1,6 +1,9 @@
 import { pick, groupBy } from "lodash";
 
-import { checkIfResourceHasLegacyCopyright } from "../downloadAndShareHelpers/downloadsLegacyCopyright";
+import {
+  checkIfResourceHasLegacyCopyright,
+  isAssetInGcsBucket,
+} from "../downloadAndShareHelpers/downloadsLegacyCopyright";
 
 import {
   LessonBase,
@@ -457,9 +460,8 @@ export const getPageLinksWithSubheadingsForLesson = (
   anchorId: LessonPageLinkAnchorId;
   subheading?: string;
 }[] => {
-  // We don't want to show previews of assets that don't exist in the GCS bucket as they aren't part of the final lesson
   const filteredDownloads = new Set(
-    downloads.filter((d) => d.inGcsBucket !== false).map((d) => d.type),
+    downloads.filter((d) => isAssetInGcsBucket(d)).map((d) => d.type),
   );
 
   const PAGE_LINKS: {

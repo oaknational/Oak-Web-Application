@@ -23,6 +23,7 @@ import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-20
 import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
 import { getIntersection } from "@/utils/getIntersection";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { isAssetInGcsBucket } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 
 async function getDownloadableResourceCount(
   lesson: LessonListingQuery["lessons"][number]["static_lesson_list"],
@@ -47,7 +48,7 @@ async function getDownloadableResourceCount(
   });
 
   const downloadsSet = new Set(
-    downloadsArray.filter((d) => d.inGcsBucket !== false).map((d) => d.type),
+    downloadsArray.filter((d) => isAssetInGcsBucket(d)).map((d) => d.type),
   );
   const hasIntroQuiz =
     downloadsSet.has("intro-quiz-questions") &&
