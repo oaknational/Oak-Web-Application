@@ -1,6 +1,6 @@
 import {
   OakBox,
-  OakColorToken,
+  OakUiRoleToken,
   OakFlex,
   OakHeading,
   OakTypography,
@@ -15,7 +15,7 @@ import PostList, {
 export type BlogAndWebinarListProps = {
   blogListPosts: PostListProps;
   showImageOnTablet?: boolean;
-  backgroundColor: OakColorToken;
+  backgroundColor: OakUiRoleToken;
   displayOnPhone: boolean;
   isBackgroundWhite?: boolean;
   title: string;

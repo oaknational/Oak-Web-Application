@@ -31,7 +31,7 @@ export default function CurricSEOAccordion({
   return (
     <OakBox $ph={["spacing-12", "spacing-0"]}>
       <OakHandDrawnHR
-        hrColor={"grey40"}
+        hrColor={"bg-interactive-element2"}
         $mv={"spacing-4"}
         $height={"spacing-2"}
       />
@@ -60,7 +60,7 @@ export default function CurricSEOAccordion({
         </OakBox>
       </OakBasicAccordion>
       <OakHandDrawnHR
-        hrColor={"grey40"}
+        hrColor={"bg-interactive-element2"}
         $mt={"spacing-4"}
         $height={"spacing-2"}
       />

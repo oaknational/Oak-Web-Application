@@ -1,6 +1,6 @@
 import {
   OakColorFilterToken,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderShareAllButton } from "./LessonOverviewHeaderShareAllButton";
@@ -25,7 +25,7 @@ const baseProps = {
   geoRestricted: false,
   loginRequired: false,
   breadcrumbs: [],
-  background: "white" as OakColorToken,
+  background: "bg-primary" as OakUiRoleToken,
   isNew: false,
   subjectIconBackgroundColor: "white" as OakColorFilterToken,
   subjectSlug: "test-subject",

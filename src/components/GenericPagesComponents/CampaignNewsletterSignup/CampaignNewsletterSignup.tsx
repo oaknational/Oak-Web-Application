@@ -209,7 +209,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
             as="form"
             $minWidth={["100%", "100%", "spacing-480"]}
             $flexDirection={"column"}
-            $background={"white"}
+            $background={"bg-primary"}
             $pa={"spacing-24"}
             $gap={"spacing-24"}
             $borderRadius={"border-radius-s"}
@@ -277,7 +277,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                 $font={"body-3"}
                 aria-live="assertive"
                 role="alert"
-                $color="red"
+                $color="text-error"
               >
                 {submitError}
               </OakP>

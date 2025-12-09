@@ -67,7 +67,7 @@ const PostListing: FC<PostListingProps> = ({
   );
 
   return (
-    <Layout seoProps={getSeoProps(seo)} $background="white">
+    <Layout seoProps={getSeoProps(seo)} $background="bg-primary">
       <OakMaxWidth $pt={"spacing-20"} $display={["none", "flex"]}>
         <Breadcrumbs
           breadcrumbs={getBlogWebinarListBreadcrumbs(

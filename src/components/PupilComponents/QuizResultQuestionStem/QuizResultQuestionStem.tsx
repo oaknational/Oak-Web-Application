@@ -73,7 +73,7 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
                       $minWidth={"spacing-240"}
                       placeholder="oak"
                       sizes={getSizes(["100vw", 1200])}
-                      $background={"white"}
+                      $background={"bg-primary"}
                       role="presentation"
                     />
                   )}

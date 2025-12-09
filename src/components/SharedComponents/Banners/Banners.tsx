@@ -16,7 +16,7 @@ export default function Banners() {
   );
 
   const message = mythbustingContent;
-  const background = "lemon30";
+  const background = "bg-decorative5-very-subdued";
   const ctaText = "Learn why";
 
   const linkProps: ResolveOakHrefProps = {

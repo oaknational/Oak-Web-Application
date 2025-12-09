@@ -104,7 +104,7 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
               $maxWidth="100%"
               $width={"spacing-640"}
               $flexDirection={"column"}
-              $background={"pink50"}
+              $background={"bg-decorative4-subdued"}
               state={state}
               $zIndex={"neutral"}
               aria-expanded={open}

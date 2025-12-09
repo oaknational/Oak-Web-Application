@@ -18,10 +18,10 @@ export function CurricLessonItem({
     <OakFlex
       $borderRadius={"border-radius-s"}
       $overflow={"hidden"}
-      $color={"black"}
+      $color={"text-primary"}
     >
       <OakFlex
-        $background={"pink"}
+        $background={"bg-decorative4-main"}
         $ph={"spacing-20"}
         $alignItems={"center"}
         $font={"heading-6"}

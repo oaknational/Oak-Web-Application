@@ -58,7 +58,7 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
           height: 900,
         }),
       })}
-      $background="white"
+      $background="bg-primary"
     >
       <PostSingleLayout
         content={props}

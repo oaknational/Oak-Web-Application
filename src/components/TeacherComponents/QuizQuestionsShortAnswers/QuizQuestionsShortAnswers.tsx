@@ -28,7 +28,7 @@ export const QuizQuestionsShortAnswers = ({
   return (
     <OakFlex $flexDirection={"column"} $gap="spacing-4" $alignItems={"start"}>
       <OakFlex
-        $background={"lemon50"}
+        $background={"bg-decorative5-subdued"}
         $borderRadius="border-radius-m2"
         $ph="spacing-8"
         $alignItems={"center"}

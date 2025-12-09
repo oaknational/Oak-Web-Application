@@ -191,7 +191,7 @@ const OwaLink = forwardRef<HTMLAnchorElement, OwaLinkProps>((props, ref) => {
         <>
           {props.children}
           {props.$focusStyles?.includes("underline") && (
-            <FocusUnderline $color={"lemon"} />
+            <FocusUnderline $underlineColor={"lemon"} />
           )}
           {props.$focusStyles?.includes("new-underline") && (
             <NewFocusUnderline />

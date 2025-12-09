@@ -80,7 +80,7 @@ const Page = () => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <OakFlex
-        $background={"lemon"}
+        $background={"bg-decorative5-main"}
         $width={"100vw"}
         $height={"100vh"}
         $flexDirection={"column"}

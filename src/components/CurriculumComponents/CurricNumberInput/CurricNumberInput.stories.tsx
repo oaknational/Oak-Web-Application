@@ -67,8 +67,8 @@ function InteractiveWrapper(
         htmlFor={args.id}
         label="Number of lessons"
         $font="heading-7"
-        $background="lemon"
-        $color="black"
+        $background="bg-decorative5-main"
+        $color="text-primary"
         $zIndex="in-front"
         $position="absolute"
         $top={"-20px"}
@@ -93,8 +93,8 @@ function ValidationDemo() {
             htmlFor="validated-input"
             label="Number of lessons"
             $font="heading-7"
-            $background="lemon"
-            $color="black"
+            $background="bg-decorative5-main"
+            $color="text-primary"
             $zIndex="in-front"
             $position="absolute"
             $top={"-20px"}
@@ -115,7 +115,7 @@ function ValidationDemo() {
           <OakP $font="body-2">
             Validation status: {isValid ? "✓ Valid" : "✗ Invalid"}
           </OakP>
-          <OakP $font="body-3" $color="grey60">
+          <OakP $font="body-3" $color="text-subdued">
             Try entering a value outside the range (5-35) to see error feedback
           </OakP>
         </OakBox>
@@ -142,8 +142,8 @@ function MultipleInputsDemo() {
               htmlFor="autumn-lessons"
               label="Number of lessons"
               $font="heading-7"
-              $background="lemon"
-              $color="black"
+              $background="bg-decorative5-main"
+              $color="text-primary"
               $zIndex="in-front"
               $position="absolute"
               $top={"-20px"}
@@ -172,8 +172,8 @@ function MultipleInputsDemo() {
               htmlFor="spring-lessons"
               label="Number of lessons"
               $font="heading-7"
-              $background="lemon"
-              $color="black"
+              $background="bg-decorative5-main"
+              $color="text-primary"
               $zIndex="in-front"
               $position="absolute"
               $top={"-20px"}
@@ -202,8 +202,8 @@ function MultipleInputsDemo() {
               htmlFor="summer-lessons"
               label="Number of lessons"
               $font="heading-7"
-              $background="lemon"
-              $color="black"
+              $background="bg-decorative5-main"
+              $color="text-primary"
               $zIndex="in-front"
               $position="absolute"
               $top={"-20px"}

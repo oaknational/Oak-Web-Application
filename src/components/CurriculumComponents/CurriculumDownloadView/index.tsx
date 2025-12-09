@@ -35,7 +35,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
   const user = useUser();
 
   return (
-    <OakBox $color="black">
+    <OakBox $color="text-primary">
       {props.onBackToKs4Options && (
         <OakBox $mb="spacing-24">
           <Button

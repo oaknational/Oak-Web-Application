@@ -82,7 +82,7 @@ const LinkToProduct = ({ keyStages }: { keyStages: KeyStagesData }) => {
       <OakBox
         $height={"spacing-0"}
         $bt={"border-solid-m"}
-        $borderColor={"white"}
+        $borderColor={"border-inverted"}
       />
       <OakFlex $flexDirection="column" $gap="spacing-16">
         <OakHeading tag="h3" $font="heading-7">

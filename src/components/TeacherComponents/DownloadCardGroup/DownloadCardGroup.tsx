@@ -133,7 +133,10 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
               })}
             </OakGrid>
           </OakBox>
-          <OakHandDrawnHR hrColor="grey40" $mt={"spacing-16"} />
+          <OakHandDrawnHR
+            hrColor="bg-interactive-element2"
+            $mt={"spacing-16"}
+          />
         </OakFieldset>
       </OakBox>
     );

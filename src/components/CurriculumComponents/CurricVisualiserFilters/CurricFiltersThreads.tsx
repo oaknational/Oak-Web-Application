@@ -68,10 +68,12 @@ export function CurricFiltersThreads({
             return (
               <OakBox
                 $ba="border-solid-s"
-                $background={isSelected ? "black" : "white"}
-                $borderColor={isSelected ? "black" : "grey40"}
+                $background={isSelected ? "bg-inverted" : "bg-primary"}
+                $borderColor={
+                  isSelected ? "border-primary" : "border-neutral-lighter"
+                }
                 $borderRadius="border-radius-s"
-                $color={isSelected ? "white" : "black"}
+                $color={isSelected ? "text-inverted" : "text-primary"}
                 $font={isSelected ? "heading-light-7" : "body-2"}
                 $ph="spacing-12"
                 $pt="spacing-12"

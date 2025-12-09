@@ -47,7 +47,7 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
               desktopColSpan === 6 ? "spacing-24" : "spacing-0",
             ]}
             $mb="spacing-24"
-            color={"black"}
+            color={"text-primary"}
             id={descriptionId}
           >
             Join over 100k teachers and get free resources and other helpful

@@ -142,7 +142,7 @@ export default function CurricUnitModalContent({
               {unitOptionsAvailable && (
                 <OakBox
                   $position={"relative"}
-                  $background={"pink30"}
+                  $background={"bg-decorative4-very-subdued"}
                   $pa={"spacing-24"}
                   $mt={"spacing-48"}
                   $mb={"spacing-48"}

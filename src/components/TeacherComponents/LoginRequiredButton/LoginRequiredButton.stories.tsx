@@ -95,7 +95,7 @@ export const Default: Story = {
       <OakThemeProvider theme={oakDefaultTheme}>
         <OakFlex $flexDirection="column" $gap="spacing-24">
           <OakFlex
-            $background="mint"
+            $background="bg-decorative1-main"
             $justifyContent="center"
             $alignItems="center"
             $borderRadius="border-radius-s"
