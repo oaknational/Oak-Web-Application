@@ -63,19 +63,19 @@ const posthog: Partial<CspConfig> = {
   scriptSrc: ["https://*.posthog.com"],
 };
 
-const cloudinary: Partial<CspConfig> = {
-  imgSrc: [
-    "https://res.cloudinary.com",
-    "https://oaknationalacademy-res.cloudinary.com",
-    "https://*.cloudinary.com",
-  ],
-  mediaSrc: [
-    "https://res.cloudinary.com",
-    "https://oaknationalacademy-res.cloudinary.com",
-    "https://*.cloudinary.com",
-  ],
-  connectSrc: ["*.cloudinary.com"],
-};
+// const cloudinary: Partial<CspConfig> = {
+//   imgSrc: [
+//     "https://res.cloudinary.com",
+//     "https://oaknationalacademy-res.cloudinary.com",
+//     "https://*.cloudinary.com",
+//   ],
+//   mediaSrc: [
+//     "https://res.cloudinary.com",
+//     "https://oaknationalacademy-res.cloudinary.com",
+//     "https://*.cloudinary.com",
+//   ],
+//   connectSrc: ["*.cloudinary.com"],
+// };
 
 const hubspot: Partial<CspConfig> = {
   connectSrc: ["*.hubspot.com", "*.hsforms.com"],
@@ -205,7 +205,7 @@ const cspConfig: CspConfig = [
   vercel,
   cloudflare,
   hubspot,
-  cloudinary,
+  // cloudinary,
   posthog,
   avo,
   clerk,
@@ -225,13 +225,15 @@ const posthogReportUri = posthogApiKey
   ? `${posthogApiHost}/report/?token=${posthogApiKey}`
   : "";
 
-// appends sample rate and version to the report uri
+// appends sample rate and version to the report uri, development mode does not append sample rate and version
 export const getReportUri = (
   posthogReportUri: string,
   sampleRate: number = 0.05,
   version: string = "1",
 ) => {
-  return `${posthogReportUri}&sample_rate=${sampleRate.toString()}&v=${version}`;
+  return isDevelopment
+    ? `${posthogReportUri}`
+    : `${posthogReportUri}&sample_rate=${sampleRate.toString()}&v=${version}`;
 };
 
 export const reportingEndpointsHeader = `posthog="${posthogReportUri}"`;
