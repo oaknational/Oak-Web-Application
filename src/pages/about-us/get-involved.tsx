@@ -139,7 +139,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
                 },
                 {
                   text: "Explore our research",
-                  link: "https://www.thenational.academy/blog/categories/research-and-insights",
+                  link: "/blog/categories/research-and-insights",
                 },
               ],
             },
