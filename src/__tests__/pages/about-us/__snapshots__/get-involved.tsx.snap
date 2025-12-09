@@ -116,7 +116,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-kAyceB denUev fzjRNq"
             >
               <a
-                class="sc-dSCufp fydwRa sc-69d1ca97-0 biIKeN"
+                class="sc-dSCufp faxRqf sc-69d1ca97-0 biIKeN"
                 href="/"
               >
                 <span
@@ -155,7 +155,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="sc-fqkvVR gNQyrX"
               >
                 <a
-                  class="sc-dSCufp fydwRa sc-69d1ca97-0 biIKeN"
+                  class="sc-dSCufp faxRqf sc-69d1ca97-0 biIKeN"
                   href="/"
                 >
                   <span
@@ -417,7 +417,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
           >
             <div
               aria-expanded="false"
-              class="sc-fqkvVR sc-kAyceB sc-e713ebd7-0 iHLRke eeevb hjUayK"
+              class="sc-fqkvVR sc-kAyceB sc-e713ebd7-0 bRJYhH eeevb hjUayK"
               data-testid="menu"
             >
               <div

@@ -1,3 +1,25 @@
+# [1.927.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.926.2...v1.927.0) (2025-12-09)
+
+
+### Features
+
+* update to latest oak-components and update related tests ([db31a2d](https://github.com/oaknational/Oak-Web-Application/commit/db31a2d6724a5fcf05f650ebd09857ce2c725413))
+
+## [1.926.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.926.1...v1.926.2) (2025-12-08)
+
+
+### Bug Fixes
+
+* pa11y issue ([159ae02](https://github.com/oaknational/Oak-Web-Application/commit/159ae02b32bede0f2b80d5d4213b67bae6edbd19))
+* update to non vulnerable nextjs version ([b47869e](https://github.com/oaknational/Oak-Web-Application/commit/b47869ebff903a83a70d99cb56d3e3ce7315dd17))
+
+## [1.926.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.926.0...v1.926.1) (2025-12-04)
+
+
+### Bug Fixes
+
+* https://github.com/vercel/next.js/security/advisories/GHSA-9qr9-h5gf-34mp ([7e513a2](https://github.com/oaknational/Oak-Web-Application/commit/7e513a2da4939553f3bd2b1be9e19dbeabc62edd))
+
 # [1.926.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.925.0...v1.926.0) (2025-12-02)
 
 
