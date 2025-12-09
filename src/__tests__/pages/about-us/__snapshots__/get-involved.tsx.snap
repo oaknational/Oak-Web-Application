@@ -1746,7 +1746,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR hieRYZ"
+            class="sc-fqkvVR irLXUY"
           >
             <div
               class="sc-fqkvVR bZZBuO"
@@ -1810,7 +1810,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             <p
                               class="sc-dLMFU jKnjIK"
                             >
-                              Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school.
+                              Shape the future of Oak by taking part in interviews or surveys, and receive retail vouchers as a thank you for your contributions.
                             </p>
                           </div>
                           <div
@@ -1866,7 +1866,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                               />
                               <a
                                 class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
-                                href="#"
+                                href="/blog/categories/research-and-insights"
                               >
                                 <div
                                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
