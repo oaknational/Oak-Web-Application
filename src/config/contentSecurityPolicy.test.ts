@@ -19,7 +19,7 @@ const prodCspHeaderFixture = `
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
-    report-uri NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY&sample_rate=0.05&v=1;
+    report-uri https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1;
     report-to posthog
 `;
 
@@ -38,7 +38,7 @@ const devCspHeaderFixture = `
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
-    report-uri NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY;
+    report-uri https://eu.i.posthog.com/report/?token=test-api-key;
     report-to posthog
 `;
 
@@ -46,6 +46,8 @@ describe("Content-Security-Policy Header", () => {
   describe("when isDevelopment = true", () => {
     beforeEach(() => {
       mockGetReleaseStage.mockReturnValue(["dev"]);
+      process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "test-api-key";
+      process.env.NEXT_PUBLIC_POSTHOG_API_HOST = "https://eu.i.posthog.com";
     });
 
     afterEach(() => {
@@ -74,6 +76,8 @@ describe("Content-Security-Policy Header", () => {
   describe("when isDevelopment = false", () => {
     beforeEach(() => {
       mockGetReleaseStage.mockReturnValue(["production"]);
+      process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "test-api-key";
+      process.env.NEXT_PUBLIC_POSTHOG_API_HOST = "https://eu.i.posthog.com";
     });
 
     afterEach(() => {
