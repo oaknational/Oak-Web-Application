@@ -38,11 +38,11 @@ const devCspHeaderFixture = `
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com https://*.gleap.io/ *.google.com/;
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
-    report-uri NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY&sample_rate=0.05&v=1;
+    report-uri NEXT_PUBLIC_POSTHOG_API_HOST/report/?token=NEXT_PUBLIC_POSTHOG_API_KEY;
     report-to posthog
 `;
 
-describe.skip("Content-Security-Policy Header", () => {
+describe("Content-Security-Policy Header", () => {
   describe("when isDevelopment = true", () => {
     beforeEach(() => {
       mockGetReleaseStage.mockReturnValue(["dev"]);
@@ -101,7 +101,7 @@ describe.skip("Content-Security-Policy Header", () => {
     });
   });
 
-  describe.skip("PostHog CSP Reporting", () => {
+  describe("PostHog CSP Reporting", () => {
     let originalEnv: NodeJS.ProcessEnv;
 
     beforeEach(() => {
@@ -196,7 +196,7 @@ describe.skip("Content-Security-Policy Header", () => {
       });
     });
 
-    describe.skip("reportingEndpointsHeader", () => {
+    describe("reportingEndpointsHeader", () => {
       it("should export correct format when API key is provided", async () => {
         process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "test-api-key";
         process.env.NEXT_PUBLIC_POSTHOG_API_HOST = "https://eu.i.posthog.com";
