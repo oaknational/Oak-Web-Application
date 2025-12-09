@@ -10,7 +10,7 @@ describe("GetInvolvedCollaborateWithUs", () => {
       <GetInvolvedCollaborateWithUs
         heading="Collaborate with us"
         imageUrl="http://example.com/chatting.svg"
-        imageAlt="Two people chatting"
+        imageAlt=""
         cards={[
           {
             headingTag: "h3",

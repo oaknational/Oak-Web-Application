@@ -25,7 +25,7 @@ export const Default: Story = {
     heading: "Collaborate with us",
     imageUrl:
       "https://res.cloudinary.com/oak-web-application/image/upload/v1763393163/icons/chatting-illustration_l52zaf.svg",
-    imageAlt: "Two people having a conversation",
+    imageAlt: "",
     cards: [
       {
         headingTag: "h3",

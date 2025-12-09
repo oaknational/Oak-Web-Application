@@ -59,7 +59,7 @@ export function GetInvolvedCollaborateWithUs({
             $cg="spacing-16"
           >
             <OakGridArea
-              $colSpan={[4, 5, 5]}
+              $colSpan={[4, 4, 5]}
               $colStart={[1, 1, 1]}
               $rowStart={[1, 1, 1]}
             >

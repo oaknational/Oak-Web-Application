@@ -15,7 +15,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
           class="sc-fqkvVR sc-jXbUNg fgBWrW gOkIKx"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cvBuyn"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz qfLVW"
           >
             <h2
               class="sc-kpDqfm eceTdU"
@@ -30,10 +30,10 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
               class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
             >
               <div
-                class="sc-fqkvVR jqqmXN sc-708d366f-0 gSGChE"
+                class="sc-fqkvVR jqqmXN sc-34fd5c0-0 duOvyx"
               >
                 <img
-                  alt="Two people chatting"
+                  alt=""
                   class="sc-dcJsrY jRtmJB"
                   data-nimg="fill"
                   decoding="async"
