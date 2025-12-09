@@ -11,7 +11,6 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Unknown error";
-    console.log("Error creating attachment:", errorMessage);
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
