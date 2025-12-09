@@ -1,3 +1,10 @@
+# [1.927.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.926.2...v1.927.0) (2025-12-09)
+
+
+### Features
+
+* update to latest oak-components and update related tests ([db31a2d](https://github.com/oaknational/Oak-Web-Application/commit/db31a2d6724a5fcf05f650ebd09857ce2c725413))
+
 ## [1.926.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.926.1...v1.926.2) (2025-12-08)
 
 
