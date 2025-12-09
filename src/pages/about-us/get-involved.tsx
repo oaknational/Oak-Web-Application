@@ -5,8 +5,8 @@ import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { WhoAreWeHeader } from "@/components/GenericPagesComponents/WhoAreWeHeader";
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
+import { GetInvolvedCollaborateWithUs } from "@/components/GenericPagesComponents/GetInvolvedCollaborateWithUs";
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
-import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
@@ -109,19 +109,6 @@ const fixtureData: GetInvolvedPage["pageData"] = {
   },
 };
 
-function TodoSection({ name, text }: Readonly<{ name: string; text: string }>) {
-  return (
-    <OakBox $background={"mint"}>
-      <InnerMaxWidth>
-        <h2>{name}</h2>
-        <pre style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
-          <code>{text}</code>
-        </pre>
-      </InnerMaxWidth>
-    </OakBox>
-  );
-}
-
 export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(null)} $background={"white"}>
@@ -134,9 +121,42 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
           }
           imageAlt={""}
         />
-        <TodoSection
-          name="collab"
-          text={JSON.stringify(pageData.collab, null, 2)}
+        <GetInvolvedCollaborateWithUs
+          heading="Collaborate with us"
+          imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1763393163/icons/chatting-illustration_l52zaf.svg"
+          imageAlt=""
+          cards={[
+            {
+              headingTag: "h3",
+              headingTitle: "Help us improve",
+              content:
+                "Shape the future of Oak by taking part in interviews or surveys, and receive retail vouchers as a thank you for your contributions.",
+              buttons: [
+                {
+                  text: "Join the research panel",
+                  link: "https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd",
+                  external: true,
+                },
+                {
+                  text: "Explore our research",
+                  link: "/blog/categories/research-and-insights",
+                },
+              ],
+            },
+            {
+              headingTag: "h3",
+              headingTitle: "Give your feedback",
+              content:
+                "Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.",
+              buttons: [
+                {
+                  text: "Get in touch",
+                  link: "https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd",
+                  external: true,
+                },
+              ],
+            },
+          ]}
         />
         <GetInvolvedWorkWithUs
           heading="Work with us"
