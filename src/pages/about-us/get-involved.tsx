@@ -130,7 +130,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
               headingTag: "h3",
               headingTitle: "Help us improve",
               content:
-                "Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school.",
+                "Shape the future of Oak by taking park in interviews or surveys, and receive retail vouchers as a thank you for your contributions.",
               buttons: [
                 {
                   text: "Join the research panel",
@@ -139,7 +139,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
                 },
                 {
                   text: "Explore our research",
-                  link: "#",
+                  link: "https://www.thenational.academy/blog/categories/research-and-insights",
                 },
               ],
             },
