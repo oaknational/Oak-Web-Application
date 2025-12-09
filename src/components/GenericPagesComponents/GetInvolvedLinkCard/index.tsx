@@ -43,9 +43,9 @@ export function GetInvolvedLinkCard({
       </OakFlex>
       {buttons && buttons.length > 0 && (
         <OakFlex $flexWrap="wrap" $gap="spacing-12">
-          {buttons.map((button) => (
+          {buttons.map((button, index) => (
             <OakSecondaryButton
-              key={button.text}
+              key={`${button.text}-${index}`}
               element="a"
               href={button.link}
               target={button.external ? "_blank" : undefined}

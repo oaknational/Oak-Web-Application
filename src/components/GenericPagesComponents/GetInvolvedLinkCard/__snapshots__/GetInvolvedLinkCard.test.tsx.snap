@@ -1,6 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GetInvolvedLinkCard renders 1`] = `
+exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
+<div>
+  <div
+    class="sc-fqkvVR sc-kAyceB bPcfty kYkjWQ"
+  >
+    <div
+      class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
+    >
+      <h3
+        class="sc-kpDqfm dNyCKG"
+      >
+        Help us improve
+      </h3>
+      <p
+        class="sc-dLMFU jKnjIK"
+      >
+        Teachers are at the heart of everything we build.
+      </p>
+    </div>
+    <div
+      class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
+    >
+      <div
+        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+      >
+        <div
+          class="sc-fqkvVR iPpXCP grey-shadow"
+        />
+        <div
+          class="sc-fqkvVR iPpXCP yellow-shadow"
+        />
+        <a
+          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          href="https://example.com/research"
+        >
+          <div
+            class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+          >
+            <span
+              class="sc-dAlyuH hHWgLm"
+            >
+              Join the research panel
+            </span>
+          </div>
+        </a>
+      </div>
+      <div
+        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+      >
+        <div
+          class="sc-fqkvVR iPpXCP grey-shadow"
+        />
+        <div
+          class="sc-fqkvVR iPpXCP yellow-shadow"
+        />
+        <a
+          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          href="https://example.com/explore"
+        >
+          <div
+            class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+          >
+            <span
+              class="sc-dAlyuH hHWgLm"
+            >
+              Explore our research
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GetInvolvedLinkCard renders with single button 1`] = `
 <div>
   <div
     class="sc-fqkvVR sc-kAyceB bPcfty kYkjWQ"
@@ -46,6 +121,29 @@ exports[`GetInvolvedLinkCard renders 1`] = `
           </div>
         </a>
       </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GetInvolvedLinkCard renders without buttons 1`] = `
+<div>
+  <div
+    class="sc-fqkvVR sc-kAyceB bPcfty kYkjWQ"
+  >
+    <div
+      class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
+    >
+      <h3
+        class="sc-kpDqfm dNyCKG"
+      >
+        No Buttons
+      </h3>
+      <p
+        class="sc-dLMFU jKnjIK"
+      >
+        Content without buttons
+      </p>
     </div>
   </div>
 </div>
