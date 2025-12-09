@@ -323,20 +323,11 @@ export const getServerSideProps = (async (context) => {
 
   if (posthogUserId) {
     // get the variant key for the user
-    const ff = await getFeatureFlag({
-      featureFlagKey: "about-us--who-we-are--v2",
-      posthogUserId,
-    });
-
-    console.log(ff);
     enableV2 =
       (await getFeatureFlag({
         featureFlagKey: "about-us--who-we-are--v2",
         posthogUserId,
       })) === true;
-
-    console.log("user id:", posthogUserId);
-    console.log("feature flag", enableV2);
   }
 
   return {
