@@ -238,12 +238,11 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
         />
         <WhoAreWeBreakout
           imageUrl={
+            newAboutWhoWeArePage.breakout.image.asset?.url ??
             "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=640&fm=webp&q=80&fit=clip&auto=format"
           }
-          imageAlt=""
-          content={
-            "We’re Oak, your trusted planning partner for great teaching. Our free, adaptable resources evolve with education to give teachers and schools the latest tools to deliver inspiring lessons, save time and improve pupil outcomes."
-          }
+          imageAlt={newAboutWhoWeArePage.breakout.image.altText ?? ""}
+          content={newAboutWhoWeArePage.breakout.text}
         />
         <WhoAreWeTimeline
           title={"As teaching evolves, so do we..."}
@@ -324,11 +323,20 @@ export const getServerSideProps = (async (context) => {
 
   if (posthogUserId) {
     // get the variant key for the user
+    const ff = await getFeatureFlag({
+      featureFlagKey: "about-us--who-we-are--v2",
+      posthogUserId,
+    });
+
+    console.log(ff);
     enableV2 =
       (await getFeatureFlag({
         featureFlagKey: "about-us--who-we-are--v2",
         posthogUserId,
       })) === true;
+
+    console.log("user id:", posthogUserId);
+    console.log("feature flag", enableV2);
   }
 
   return {
