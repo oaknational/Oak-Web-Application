@@ -130,7 +130,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
               headingTag: "h3",
               headingTitle: "Help us improve",
               content:
-                "Shape the future of Oak by taking park in interviews or surveys, and receive retail vouchers as a thank you for your contributions.",
+                "Shape the future of Oak by taking part in interviews or surveys, and receive retail vouchers as a thank you for your contributions.",
               buttons: [
                 {
                   text: "Join the research panel",
