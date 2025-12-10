@@ -237,8 +237,8 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
           imageAlt={""}
         />
         <WhoAreWeBreakout
-          imageUrl={newAboutWhoWeArePage.breakout.image.asset?.url ?? ""}
-          imageAlt={newAboutWhoWeArePage.breakout.image.altText ?? ""}
+          imageUrl={newAboutWhoWeArePage.breakout.image.asset?.url as string}
+          imageAlt={newAboutWhoWeArePage.breakout.image.altText as string}
           content={newAboutWhoWeArePage.breakout.text}
         />
         <WhoAreWeTimeline
