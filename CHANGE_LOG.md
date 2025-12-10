@@ -1,3 +1,26 @@
+# [1.931.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.930.0...v1.931.0) (2025-12-10)
+
+
+### Bug Fixes
+
+* pa11y issue ([6c6d39a](https://github.com/oaknational/Oak-Web-Application/commit/6c6d39afd54337b2eebe7a3026373e20892cc9e8))
+* show assets on lesson listing page when downloads validation fails ([a251360](https://github.com/oaknational/Oak-Web-Application/commit/a251360b245ad04c392eb59107e13dc0a4989a0f))
+* show assets on lesson listing page when downloads validation fails ([f307c64](https://github.com/oaknational/Oak-Web-Application/commit/f307c6499fdb6d6554ffde79cea2db92c6773a05))
+* update to non vulnerable nextjs version ([b257518](https://github.com/oaknational/Oak-Web-Application/commit/b257518541641b1511a7c7ad4a97b226459e2337))
+
+
+### Features
+
+* add download availability checks and filter downloads based on copyright status ([d2440f1](https://github.com/oaknational/Oak-Web-Application/commit/d2440f12ed9029e3e2f82b59407b4463908a1057))
+* amend error message with better context ([f5c57c3](https://github.com/oaknational/Oak-Web-Application/commit/f5c57c31d178034cc55649c89304b2d0eb015d80))
+* check assets for lesson listing page, consolidate checking logic ([f201baf](https://github.com/oaknational/Oak-Web-Application/commit/f201baf9ca07dfebda1117f5832f393dfcd5fe92))
+* check assets for lesson listing page, consolidate checking logic ([d22345e](https://github.com/oaknational/Oak-Web-Application/commit/d22345e5be7d2acf0d5c129a24b785b65587120e))
+* check file existence on downloads page ([c05c5a6](https://github.com/oaknational/Oak-Web-Application/commit/c05c5a63f0e760f9eeead3c1e553b866e6d41320))
+* hide assets from lesson overview that are not in a gcs bucket ([b56cf04](https://github.com/oaknational/Oak-Web-Application/commit/b56cf04756d9c04f858b316f3aeea19541e96f93))
+* improve context info in error reporting ([28a6d5a](https://github.com/oaknational/Oak-Web-Application/commit/28a6d5a344aadfecbbcf52372864cdcef7eb30ff))
+* improve getIsResourceDownloadable function to handle new bucket-checking logic ([5f73fb4](https://github.com/oaknational/Oak-Web-Application/commit/5f73fb4855895d0a0ec65e33f3addc89bba831a9))
+* still show links if server-side check failed ([8028057](https://github.com/oaknational/Oak-Web-Application/commit/80280578287dbb9c0342c128f0e6b39587045b31))
+
 # [1.930.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.929.0...v1.930.0) (2025-12-10)
 
 
