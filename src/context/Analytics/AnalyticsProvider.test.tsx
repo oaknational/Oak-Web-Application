@@ -2,8 +2,9 @@ import { render } from "@testing-library/react";
 import { PostHogProvider } from "posthog-js/react";
 import { useEffect } from "react";
 import { MockOakConsentClient } from "@oaknational/oak-consent-client";
+import { ReadonlyURLSearchParams } from "next/navigation";
 
-import AnalyticsProvider from "./AnalyticsProvider";
+import AnalyticsProvider, { getPathAndQuery } from "./AnalyticsProvider";
 import useAnalytics from "./useAnalytics";
 
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
@@ -137,5 +138,68 @@ describe("useAnalytics", () => {
       "No HubSpot cookie found, user likely has not interacted with HubSpot",
     );
     expect(posthogIdentify).toHaveBeenCalledWith("someone", {});
+  });
+});
+
+describe("getPathAndQuery", () => {
+  test("throws an error is run outside the browser", () => {
+    expect(() =>
+      getPathAndQuery({
+        pathName: "/test",
+        searchParams: new URLSearchParams(
+          "foo=bar",
+        ) as unknown as ReadonlyURLSearchParams,
+        isBrowser: false,
+      }),
+    ).toThrow("getPathAndQuery run outside of the browser");
+  });
+
+  test("throws an error if pathName is null", () => {
+    expect(() =>
+      getPathAndQuery({
+        pathName: null,
+        searchParams: new URLSearchParams(
+          "foo=bar",
+        ) as unknown as ReadonlyURLSearchParams,
+        isBrowser: true,
+      }),
+    ).toThrow("getPathAndQuery run outside of the browser");
+  });
+  test("throws an error if searchParams is null", () => {
+    expect(() =>
+      getPathAndQuery({
+        pathName: "/test",
+        searchParams: null,
+        isBrowser: true,
+      }),
+    ).toThrow("getPathAndQuery run outside of the browser");
+  });
+
+  test("returns pathname and searchParams with a question mark between them", () => {
+    const mockSearchParams = {
+      toString: () => "foo=bar&baz=qux",
+    } as ReadonlyURLSearchParams;
+
+    const result = getPathAndQuery({
+      pathName: "/test-path",
+      searchParams: mockSearchParams,
+      isBrowser: true,
+    });
+
+    expect(result).toBe("/test-path?foo=bar&baz=qux");
+  });
+
+  test("does not include params or a question mark when they aren't present", () => {
+    const mockSearchParams = {
+      toString: () => "",
+    } as ReadonlyURLSearchParams;
+
+    const result = getPathAndQuery({
+      pathName: "/test-path",
+      searchParams: mockSearchParams,
+      isBrowser: true,
+    });
+
+    expect(result).toBe("/test-path");
   });
 });

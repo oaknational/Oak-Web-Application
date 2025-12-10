@@ -103,12 +103,14 @@ export type AnalyticsProviderProps = {
 
 export const analyticsContext = createContext<AnalyticsContext | null>(null);
 
-const getPathAndQuery = ({
+export const getPathAndQuery = ({
   pathName,
   searchParams,
+  isBrowser,
 }: {
   pathName: string | null;
   searchParams: ReadonlyURLSearchParams | null;
+  isBrowser: boolean;
 }) => {
   if (!isBrowser || !pathName || !searchParams) {
     throw new Error("getPathAndQuery run outside of the browser");
@@ -189,7 +191,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
    * Page view tracking
    */
   const page = useStableCallback(() => {
-    const path = getPathAndQuery({ pathName, searchParams });
+    const path = getPathAndQuery({ pathName, searchParams, isBrowser });
 
     // Send a simple page event to hubspot
     hubspot.page({ path });
