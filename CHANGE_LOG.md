@@ -1,3 +1,49 @@
+# [1.930.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.929.0...v1.930.0) (2025-12-10)
+
+
+### Features
+
+* update primitive colour values ([16069ff](https://github.com/oaknational/Oak-Web-Application/commit/16069ffe633871c3be0abd95b7b8cc0053b91f9c))
+
+# [1.929.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.928.0...v1.929.0) (2025-12-10)
+
+
+### Bug Fixes
+
+* use number for revalidate value ([0568db5](https://github.com/oaknational/Oak-Web-Application/commit/0568db52da82bb18b5f47c0fce2879712d66f2b9))
+
+
+### Features
+
+* add data fetching logic to programme page ([4d81d8d](https://github.com/oaknational/Oak-Web-Application/commit/4d81d8de91cec35e42ff36acfeb1b39d576255b3))
+* add feature flagged new programme page ([f494463](https://github.com/oaknational/Oak-Web-Application/commit/f4944633d8c1a281e950e437f88eb5fd7b187673))
+* add isr and error handling ([1089633](https://github.com/oaknational/Oak-Web-Application/commit/1089633e384b3d9521fb404c45152b1da82094ac))
+* create desktop programme page with minimum functionality ([61acfbf](https://github.com/oaknational/Oak-Web-Application/commit/61acfbfd2dfb18896a5090d28bb348e351d31d3e))
+* link to unit page from programmes unit list cards ([1198114](https://github.com/oaknational/Oak-Web-Application/commit/1198114a17f7a7b73b88ac4699f7539835cbe386))
+* make programmes mobile page functional ([751af2e](https://github.com/oaknational/Oak-Web-Application/commit/751af2e9abd9fb78393755ae539dfd8d9b343f67))
+
+# [1.928.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.927.0...v1.928.0) (2025-12-09)
+
+
+### Bug Fixes
+
+* resolve merge conflicts ([e80223f](https://github.com/oaknational/Oak-Web-Application/commit/e80223fbe6e29d5b77728e120774c761359205e1))
+* update GetInvolvedLinkCard test and add correct attributes for external links ([27d6f83](https://github.com/oaknational/Oak-Web-Application/commit/27d6f8357474c34cf2d08662730ad2d73af0527a))
+* update grid layout values ([29c8dfd](https://github.com/oaknational/Oak-Web-Application/commit/29c8dfd0b9dae174b828483fa91d3ea790a82e40))
+
+
+### Features
+
+* add CollaborateWithUs component ([74a6acf](https://github.com/oaknational/Oak-Web-Application/commit/74a6acfdb1ed4d58213d1f0ae65baf5856c1b133))
+* update GetInvolvedLinkCard to use an internal link ([8de4ff0](https://github.com/oaknational/Oak-Web-Application/commit/8de4ff07d4df2a1b7b354cfe4031a4c0cebdec91))
+
+# [1.927.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.926.2...v1.927.0) (2025-12-09)
+
+
+### Features
+
+* update to latest oak-components and update related tests ([db31a2d](https://github.com/oaknational/Oak-Web-Application/commit/db31a2d6724a5fcf05f650ebd09857ce2c725413))
+
 ## [1.926.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.926.1...v1.926.2) (2025-12-08)
 
 
