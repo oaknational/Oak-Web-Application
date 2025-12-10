@@ -1,3 +1,27 @@
+# [1.930.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.929.0...v1.930.0) (2025-12-10)
+
+
+### Features
+
+* update primitive colour values ([16069ff](https://github.com/oaknational/Oak-Web-Application/commit/16069ffe633871c3be0abd95b7b8cc0053b91f9c))
+
+# [1.929.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.928.0...v1.929.0) (2025-12-10)
+
+
+### Bug Fixes
+
+* use number for revalidate value ([0568db5](https://github.com/oaknational/Oak-Web-Application/commit/0568db52da82bb18b5f47c0fce2879712d66f2b9))
+
+
+### Features
+
+* add data fetching logic to programme page ([4d81d8d](https://github.com/oaknational/Oak-Web-Application/commit/4d81d8de91cec35e42ff36acfeb1b39d576255b3))
+* add feature flagged new programme page ([f494463](https://github.com/oaknational/Oak-Web-Application/commit/f4944633d8c1a281e950e437f88eb5fd7b187673))
+* add isr and error handling ([1089633](https://github.com/oaknational/Oak-Web-Application/commit/1089633e384b3d9521fb404c45152b1da82094ac))
+* create desktop programme page with minimum functionality ([61acfbf](https://github.com/oaknational/Oak-Web-Application/commit/61acfbfd2dfb18896a5090d28bb348e351d31d3e))
+* link to unit page from programmes unit list cards ([1198114](https://github.com/oaknational/Oak-Web-Application/commit/1198114a17f7a7b73b88ac4699f7539835cbe386))
+* make programmes mobile page functional ([751af2e](https://github.com/oaknational/Oak-Web-Application/commit/751af2e9abd9fb78393755ae539dfd8d9b343f67))
+
 # [1.928.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.927.0...v1.928.0) (2025-12-09)
 
 
