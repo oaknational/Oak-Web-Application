@@ -7,12 +7,10 @@ import {
 import {
   baseLessonOverviewSchema,
   lessonPathwaySchema,
-  lessonDownloadsListSchema,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
-export { baseLessonOverviewSchema as baseLessonOverviewData } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
   _state: true,
@@ -30,7 +28,26 @@ export type LessonOverviewContent = Omit<
   transcriptSentences: string | string[];
 };
 
-export type LessonOverviewDownloads = z.infer<typeof lessonDownloadsListSchema>;
+export const lessonOverviewDownloads = z.array(
+  z.object({
+    exists: z.boolean().nullable(),
+    type: z.enum([
+      "presentation",
+      "intro-quiz-questions",
+      "intro-quiz-answers",
+      "exit-quiz-questions",
+      "exit-quiz-answers",
+      "worksheet-pdf",
+      "worksheet-pptx",
+      "supplementary-pdf",
+      "supplementary-docx",
+      "curriculum-pdf",
+      "lesson-guide-pdf",
+    ]),
+  }),
+);
+
+export type LessonOverviewDownloads = z.infer<typeof lessonOverviewDownloads>;
 
 export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   programmeSlug: z.string(),
@@ -45,7 +62,7 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   year: z.string().nullish(),
   examBoardTitle: z.string().nullish(),
   examBoardSlug: z.string().nullish(),
-  downloads: lessonDownloadsListSchema,
+  downloads: lessonOverviewDownloads,
   updatedAt: z.string(),
   pathways: z.array(lessonPathwaySchema),
   additionalFiles: z.array(z.string()).nullable(),
@@ -63,9 +80,11 @@ export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
 
 export default lessonOverviewSchema;
 
+export const baseLessonOverviewData = baseLessonOverviewSchema;
+
 export const lessonOverviewCanonicalSchema = baseLessonOverviewSchema.extend({
   pathways: z.array(lessonPathwaySchema),
-  downloads: lessonDownloadsListSchema,
+  downloads: lessonOverviewDownloads,
 });
 
 export type LessonOverviewCanonical = z.infer<

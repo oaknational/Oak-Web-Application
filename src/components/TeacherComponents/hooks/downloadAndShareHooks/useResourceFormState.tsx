@@ -199,9 +199,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         .filter((resource) => resource.exists)
         .map((resource) => resource.type);
     } else if (props.type === "download") {
-      return (resources as LessonDownloadsPageData["downloads"]).map(
-        (resource) => resource.type,
-      );
+      return (resources as LessonDownloadsPageData["downloads"])
+        .filter((resource) => resource.exists && !resource.forbidden)
+        .map((resource) => resource.type);
     } else if (props.type === "curriculum") {
       return (resources as CurriculumDownload[]).map(
         (resource) => resource.url,
@@ -267,6 +267,22 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     [],
   ) as ResourceType[];
 
+  const [activeResources, setActiveResources] = useState<string[]>(
+    getInitialResourcesState(),
+  );
+
+  const [activeAdditonalFiles, setActiveAdditonalFiles] = useState<
+    string[] | undefined
+  >(getInitialAdditionalFilesState());
+
+  useEffect(() => {
+    setActiveResources(getInitialResourcesState());
+  }, [getInitialResourcesState, resources]);
+
+  useEffect(() => {
+    setActiveAdditonalFiles(getInitialAdditionalFilesState());
+  }, [getInitialAdditionalFilesState, additionalResources]);
+
   const hasResources = getInitialResourcesState().length > 0;
 
   useEffect(() => {
@@ -279,10 +295,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   }, [selectedResources, getInitialResourcesState]);
 
   const onSelectAllClick = () =>
-    setValue(
-      "resources",
-      getInitialResourcesState().concat(getInitialAdditionalFilesState() || []),
-    );
+    setValue("resources", activeResources.concat(activeAdditonalFiles || []));
   const onDeselectAllClick = () => setValue("resources", []);
 
   const handleEditDetailsCompletedClick = () => {
@@ -397,6 +410,10 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     localStorageDetails,
     editDetailsClicked,
     setEditDetailsClicked,
+    activeResources,
+    setActiveResources,
+    activeAdditonalFiles,
+    setActiveAdditonalFiles,
     handleToggleSelectAll,
     selectAllChecked,
     hubspotLoaded,

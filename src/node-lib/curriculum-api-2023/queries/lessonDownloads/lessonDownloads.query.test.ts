@@ -30,24 +30,6 @@ const downloadAssetsWithEmptyAdditionalFiles = {
 };
 
 describe("lessonDownloads()", () => {
-  beforeEach(() => {
-    globalThis.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () =>
-          Promise.resolve({
-            data: {
-              resources: [],
-            },
-          }),
-        ok: true,
-      }),
-    ) as jest.Mock;
-  });
-
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
   test("throws a not found error if no download_assets is found", async () => {
     await expect(async () => {
       await lessonDownloads({
@@ -213,24 +195,6 @@ const downloadAssetsFixture = {
 
 // CANONICAL TESTS
 describe("lessonDownloadsCanonical()", () => {
-  beforeEach(() => {
-    globalThis.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () =>
-          Promise.resolve({
-            data: {
-              resources: [],
-            },
-          }),
-        ok: true,
-      }),
-    ) as jest.Mock;
-  });
-
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
   test("throws a not found error if no download assets are found", async () => {
     await expect(async () => {
       await lessonDownloads({

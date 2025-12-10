@@ -16,8 +16,6 @@ import {
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
-import { LessonOverviewProps } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
-import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 
 describe("getCommonPathway()", () => {
   it("returns the intersection of a single LessonPathway", () => {
@@ -119,86 +117,84 @@ describe("getCommonPathway()", () => {
   });
 });
 
-describe("getPageLinksWithSubheadingsForLesson()", () => {
-  const lesson = {
-    lessonGuideUrl: "lesson-guide-url",
-    presentationUrl: "presentation-url",
-    videoMuxPlaybackId: "video-mux-playback-id",
-    worksheetUrl: "worksheet-url",
-    additionalMaterialUrl: "additional-material-url",
-    starterQuiz: [],
-    exitQuiz: [],
-    hasLegacyCopyrightMaterial: false,
-    hasDownloadableResources: true,
-    hasMediaClips: false,
-  };
-  const downloads: LessonOverviewProps["lesson"]["downloads"] =
-    lessonOverviewFixture().downloads;
-
+describe("getPageLinksForLesson()", () => {
   it("returns only the correct page links for a lesson with no starter or exit quiz", () => {
-    const result = getPageLinksWithSubheadingsForLesson(downloads, lesson, []);
+    const lesson = {
+      lessonGuideUrl: "lesson-guide-url",
+      presentationUrl: "presentation-url",
+      videoMuxPlaybackId: "video-mux-playback-id",
+      worksheetUrl: "worksheet-url",
+      additionalMaterialUrl: "additional-material-url",
+      starterQuiz: [],
+      exitQuiz: [],
+      hasLegacyCopyrightMaterial: false,
+      hasDownloadableResources: true,
+      hasMediaClips: false,
+    };
+
+    const result = getPageLinksWithSubheadingsForLesson(lesson, []);
 
     const expected = [
       {
-        label: "Lesson guide",
         anchorId: "lesson-guide",
+        label: "Lesson guide",
       },
       {
-        label: "Lesson slides",
         anchorId: "slide-deck",
+        label: "Lesson slides",
       },
       {
-        label: "Lesson details",
         anchorId: "lesson-details",
+        label: "Lesson details",
       },
       {
-        label: "Lesson video",
         anchorId: "video",
+        label: "Lesson video",
       },
       {
-        label: "Worksheet",
         anchorId: "worksheet",
+        label: "Worksheet",
       },
       {
-        label: "Additional material",
         anchorId: "additional-material",
+        label: "Additional material",
       },
     ];
+
     expect(result).toEqual(expected);
   });
 
   it("returns only the correct page links for a lesson with starter and exit quiz", () => {
-    const currentLesson = {
-      ...lesson,
-      starterQuiz: quizQuestions,
-      exitQuiz: quizQuestions,
+    const lesson = {
+      presentationUrl: "presentation-url",
+      videoMuxPlaybackId: "video-mux-playback-id",
+      worksheetUrl: "worksheet-url",
+      additionalMaterialUrl: "additional-material-url",
+      starterQuiz: ["foo"],
+      exitQuiz: ["bar"],
+      hasLegacyCopyrightMaterial: false,
+      hasDownloadableResources: true,
     };
 
-    const result = getPageLinksWithSubheadingsForLesson(
-      downloads,
-      currentLesson,
-      [],
-    );
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const result = getPageLinksWithSubheadingsForLesson(lesson);
     const expected = [
       {
-        label: "Lesson guide",
-        anchorId: "lesson-guide",
-      },
-      {
-        label: "Lesson slides",
         anchorId: "slide-deck",
+        label: "Lesson slides",
       },
       {
-        label: "Lesson details",
         anchorId: "lesson-details",
+        label: "Lesson details",
       },
       {
-        label: "Lesson video",
         anchorId: "video",
+        label: "Lesson video",
       },
       {
-        label: "Worksheet",
         anchorId: "worksheet",
+        label: "Worksheet",
       },
       {
         label: "Quizzes",
@@ -214,36 +210,35 @@ describe("getPageLinksWithSubheadingsForLesson()", () => {
     expect(result).toEqual(expected);
   });
   it("returns only the correct page links for a lesson only a starter quiz and no exit quiz", () => {
-    const currentLesson = {
-      ...lesson,
-      starterQuiz: quizQuestions,
+    const lesson = {
+      presentationUrl: "presentation-url",
+      videoMuxPlaybackId: "video-mux-playback-id",
+      worksheetUrl: "worksheet-url",
+      additionalMaterialUrl: "additional-material-url",
+      starterQuiz: ["foo"],
+      hasLegacyCopyrightMaterial: false,
+      hasDownloadableResources: true,
     };
 
-    const result = getPageLinksWithSubheadingsForLesson(
-      downloads,
-      currentLesson,
-      [],
-    );
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const result = getPageLinksWithSubheadingsForLesson(lesson);
     const expected = [
       {
-        label: "Lesson guide",
-        anchorId: "lesson-guide",
-      },
-      {
-        label: "Lesson slides",
         anchorId: "slide-deck",
+        label: "Lesson slides",
       },
       {
-        label: "Lesson details",
         anchorId: "lesson-details",
+        label: "Lesson details",
       },
       {
-        label: "Lesson video",
         anchorId: "video",
+        label: "Lesson video",
       },
       {
-        label: "Worksheet",
         anchorId: "worksheet",
+        label: "Worksheet",
       },
       {
         label: "Quizzes",
@@ -251,44 +246,44 @@ describe("getPageLinksWithSubheadingsForLesson()", () => {
         subheading: `Prior knowledge starter quiz`,
       },
       {
-        label: "Additional material",
         anchorId: "additional-material",
+        label: "Additional material",
       },
     ];
 
     expect(result).toEqual(expected);
   });
   it("returns only the correct page links for a lesson only an exit quiz and no starter quiz", () => {
-    const newLesson = {
-      ...lesson,
-      exitQuiz: quizQuestions,
+    const lesson = {
+      presentationUrl: "presentation-url",
+      videoMuxPlaybackId: "video-mux-playback-id",
+      worksheetUrl: "worksheet-url",
+      additionalMaterialUrl: "additional-material-url",
+      starterQuiz: [],
+      exitQuiz: ["bar"],
+      hasLegacyCopyrightMaterial: false,
+      hasDownloadableResources: true,
     };
 
-    const result = getPageLinksWithSubheadingsForLesson(
-      downloads,
-      newLesson,
-      [],
-    );
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const result = getPageLinksWithSubheadingsForLesson(lesson);
     const expected = [
       {
-        label: "Lesson guide",
-        anchorId: "lesson-guide",
-      },
-      {
-        label: "Lesson slides",
         anchorId: "slide-deck",
+        label: "Lesson slides",
       },
       {
-        label: "Lesson details",
         anchorId: "lesson-details",
+        label: "Lesson details",
       },
       {
-        label: "Lesson video",
         anchorId: "video",
+        label: "Lesson video",
       },
       {
-        label: "Worksheet",
         anchorId: "worksheet",
+        label: "Worksheet",
       },
       {
         label: "Quizzes",
@@ -296,8 +291,8 @@ describe("getPageLinksWithSubheadingsForLesson()", () => {
         subheading: `Assessment exit quiz`,
       },
       {
-        label: "Additional material",
         anchorId: "additional-material",
+        label: "Additional material",
       },
     ];
 
@@ -305,173 +300,32 @@ describe("getPageLinksWithSubheadingsForLesson()", () => {
   });
 
   it("doesn't include slidedeck if hasLegacyCopyrightMaterial", () => {
-    const newLesson = {
-      ...lesson,
+    const lesson = {
+      lessonGuideUrl: null,
+      presentationUrl: "presentation-url",
       hasLegacyCopyrightMaterial: true,
+      videoMuxPlaybackId: null,
+      worksheetUrl: "worksheet-url",
+      additionalMaterialUrl: null,
+      starterQuiz: [],
+      exitQuiz: [],
+      hasDownloadableResources: true,
+      hasMediaClips: false,
     };
 
-    const result = getPageLinksWithSubheadingsForLesson(downloads, newLesson, [
+    const result = getPageLinksWithSubheadingsForLesson(lesson, [
       { copyrightInfo: "This lesson contains copyright material." },
     ]);
 
     const expected = [
       {
-        label: "Lesson guide",
-        anchorId: "lesson-guide",
-      },
-      {
-        label: "Lesson details",
         anchorId: "lesson-details",
+        label: "Lesson details",
       },
       {
-        label: "Lesson video",
-        anchorId: "video",
-      },
-      {
-        label: "Worksheet",
         anchorId: "worksheet",
-      },
-      {
-        label: "Additional material",
-        anchorId: "additional-material",
-      },
-    ];
-
-    expect(result).toEqual(expected);
-  });
-  it("Doesn't include the assets if they don't exist in the bucket", () => {
-    const newLesson = {
-      ...lesson,
-      presentationUrl: "presentation-url",
-      worksheetUrl: "worksheet-url",
-      starterQuiz: quizQuestions,
-      exitQuiz: quizQuestions,
-    };
-
-    const downloadsNotInBucket: LessonOverviewProps["lesson"]["downloads"] = [
-      {
-        type: "presentation",
-        exists: true,
-        inGcsBucket: false,
-        label: "Slide deck",
-        ext: "pptx",
-        forbidden: null,
-      },
-      {
-        type: "worksheet-pdf",
-        exists: true,
-        inGcsBucket: false,
         label: "Worksheet",
-        ext: "pdf",
-        forbidden: null,
       },
-      {
-        type: "intro-quiz-questions",
-        exists: true,
-        inGcsBucket: false,
-        label: "Starter quiz questions",
-        ext: "pdf",
-        forbidden: null,
-      },
-      {
-        type: "exit-quiz-questions",
-        exists: true,
-        inGcsBucket: false,
-        label: "Exit quiz questions",
-        ext: "pdf",
-        forbidden: null,
-      },
-    ];
-
-    const result = getPageLinksWithSubheadingsForLesson(
-      downloadsNotInBucket,
-      newLesson,
-      [],
-    );
-
-    // Excludes: slide-deck (not in bucket), worksheet (not in bucket), quizzes (not in bucket)
-    const expected = [
-      {
-        label: "Lesson guide",
-        anchorId: "lesson-guide",
-      },
-      {
-        label: "Lesson details",
-        anchorId: "lesson-details",
-      },
-      {
-        label: "Lesson video",
-        anchorId: "video",
-      },
-      {
-        label: "Additional material",
-        anchorId: "additional-material",
-      },
-    ];
-    expect(result).toEqual(expected);
-  });
-  it("Includes the asset if inGcsBucket is undefined (server-side check failed)", () => {
-    const newLesson = {
-      ...lesson,
-      presentationUrl: "presentation-url",
-      worksheetUrl: "worksheet-url",
-      starterQuiz: quizQuestions,
-      exitQuiz: quizQuestions,
-    };
-
-    const downloadsNotInBucket: LessonOverviewProps["lesson"]["downloads"] = [
-      {
-        type: "presentation",
-        exists: true,
-        inGcsBucket: undefined,
-        label: "Slide deck",
-        ext: "pptx",
-        forbidden: null,
-      },
-      {
-        type: "worksheet-pdf",
-        exists: true,
-        inGcsBucket: undefined,
-        label: "Worksheet",
-        ext: "pdf",
-        forbidden: null,
-      },
-      {
-        type: "intro-quiz-questions",
-        exists: true,
-        inGcsBucket: undefined,
-        label: "Starter quiz questions",
-        ext: "pdf",
-        forbidden: null,
-      },
-      {
-        type: "exit-quiz-questions",
-        exists: true,
-        inGcsBucket: undefined,
-        label: "Exit quiz questions",
-        ext: "pdf",
-        forbidden: null,
-      },
-    ];
-
-    const result = getPageLinksWithSubheadingsForLesson(
-      downloadsNotInBucket,
-      newLesson,
-      [],
-    );
-
-    const expected = [
-      { label: "Lesson guide", anchorId: "lesson-guide" },
-      { label: "Lesson slides", anchorId: "slide-deck" },
-      { label: "Lesson details", anchorId: "lesson-details" },
-      { label: "Lesson video", anchorId: "video" },
-      { label: "Worksheet", anchorId: "worksheet" },
-      {
-        label: "Quizzes",
-        anchorId: "quiz",
-        subheading: "Prior knowledge starter quiz \nAssessment exit quiz",
-      },
-      { label: "Additional material", anchorId: "additional-material" },
     ];
 
     expect(result).toEqual(expected);
