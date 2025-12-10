@@ -38,11 +38,9 @@ import { createFilter } from "@/fixtures/curriculum/filters";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 
 const replaceMock = jest.fn();
-jest.mock("next/router", () => ({
-  useRouter: () => ({
-    replace: (...args: []) => replaceMock(...args),
-  }),
-}));
+Object.defineProperty(globalThis, "history", {
+  value: { replaceState: replaceMock },
+});
 
 jest.mock("next/navigation", () => ({
   useSearchParams: jest.fn(),
@@ -877,11 +875,7 @@ describe("useFilters", () => {
       act(() => {
         setFilters(updateFilterValue);
       });
-      expect(replaceMock).toHaveBeenCalledWith(
-        "/?tiers=foundation",
-        undefined,
-        { scroll: false, shallow: true },
-      );
+      expect(replaceMock).toHaveBeenCalledWith(null, "", "/?tiers=foundation");
 
       rerender();
       const [filters] = result.current;
