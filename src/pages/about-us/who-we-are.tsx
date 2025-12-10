@@ -237,10 +237,7 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
           imageAlt={""}
         />
         <WhoAreWeBreakout
-          imageUrl={
-            newAboutWhoWeArePage.breakout.image.asset?.url ??
-            "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=640&fm=webp&q=80&fit=clip&auto=format"
-          }
+          imageUrl={newAboutWhoWeArePage.breakout.image.asset?.url ?? ""}
           imageAlt={newAboutWhoWeArePage.breakout.image.altText ?? ""}
           content={newAboutWhoWeArePage.breakout.text}
         />
