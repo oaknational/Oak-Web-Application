@@ -3,7 +3,7 @@ export function extractBaseSlug(programmeSlug: string): string {
   const parts = programmeSlug.split("-");
   const index = parts.findIndex(
     (part) =>
-      (!isNaN(Number.parseInt(part, 10)) &&
+      (!Number.isNaN(Number.parseInt(part, 10)) &&
         Number.parseInt(part, 10) >= 1 &&
         Number.parseInt(part, 10) <= 11) ||
       part.toLowerCase() === "reception",
