@@ -107,10 +107,10 @@ const getPathAndQuery = ({
   pathName,
   searchParams,
 }: {
-  pathName: string;
-  searchParams: ReadonlyURLSearchParams;
+  pathName: string | null;
+  searchParams: ReadonlyURLSearchParams | null;
 }) => {
-  if (!isBrowser) {
+  if (!isBrowser || !pathName || !searchParams) {
     throw new Error("getPathAndQuery run outside of the browser");
   }
   return `${pathName}${searchParams.toString() && "?" + searchParams.toString()}`;
@@ -128,11 +128,6 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const pathName = usePathname();
   const searchParams = useSearchParams();
 
-  if (!pathName || !searchParams) {
-    throw new Error(
-      "Error getting path name and search params. Ensure the analytics provider is rendered in a Client Component with access to navigation hooks.",
-    );
-  }
   /**
    * Posthog
    */
