@@ -9,12 +9,9 @@ import {
   specialistLessonDownloadQueryResponseSchema,
 } from "./specialistLessonDownload.schema";
 
-import { validateDownloadsInGcsBucket } from "@/utils/validateDownloadsInGcsBucket";
-
-export const constructDownloadsArray = async (
+export const constructDownloadsArray = (
   lesson: SpecialistLessonDownloadRaw,
-  lessonSlug: string,
-): Promise<z.infer<typeof lessonDownloadsListSchema>> => {
+): z.infer<typeof lessonDownloadsListSchema> => {
   const presentation = {
     exists: lesson.presentation_url ? true : false,
     type: "presentation" as const,
@@ -70,7 +67,8 @@ export const constructDownloadsArray = async (
     ext: "pptx",
     forbidden: false,
   };
-  const downloads = [
+
+  return [
     presentation,
     introQuizQuestions,
     introQuizAnswers,
@@ -79,11 +77,6 @@ export const constructDownloadsArray = async (
     worksheetPdf,
     worksheetPptx,
   ];
-  return validateDownloadsInGcsBucket(
-    downloads,
-    lessonSlug,
-    "specialist lesson query",
-  );
 };
 
 export const specialistLessonDownloadQuery =
@@ -115,7 +108,7 @@ export const specialistLessonDownloadQuery =
     }
 
     const lesson = parsedSpecialistLessonDownloads[0];
-    const downloads = await constructDownloadsArray(lesson, lessonSlug);
+    const downloads = constructDownloadsArray(lesson);
 
     return {
       lesson: {

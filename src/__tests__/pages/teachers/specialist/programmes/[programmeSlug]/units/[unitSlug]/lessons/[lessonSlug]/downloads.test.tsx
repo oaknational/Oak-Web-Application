@@ -14,31 +14,6 @@ import {
 
 const render = renderWithProviders();
 
-const mockGetLessonDownloadResourcesExistence = jest.fn(() =>
-  Promise.resolve({
-    resources: [
-      ["presentation", { exists: true }],
-      ["intro-quiz-questions", { exists: true }],
-      ["intro-quiz-answers", { exists: true }],
-      ["exit-quiz-questions", { exists: true }],
-      ["exit-quiz-answers", { exists: true }],
-      ["worksheet-pdf", { exists: true }],
-      ["worksheet-pptx", { exists: true }],
-      ["supplementary-pdf", { exists: true }],
-      ["supplementary-docx", { exists: true }],
-      ["lesson-guide-pdf", { exists: true }],
-    ],
-  }),
-);
-
-jest.mock(
-  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
-  () => ({
-    getLessonDownloadResourcesExistence: () =>
-      mockGetLessonDownloadResourcesExistence(),
-  }),
-);
-
 describe("pages/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads", () => {
   it("renders lessons", () => {
     render(
