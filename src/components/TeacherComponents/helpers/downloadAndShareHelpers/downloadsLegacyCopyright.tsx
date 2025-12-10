@@ -4,6 +4,14 @@ import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/
 import { LessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { LegacyCopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
 
+// Checks if an asset exists in the GCS bucket. Returns true if inGcsBucket is true or undefined (sensible fallback when server-side check fails), false only if explicitly false.
+export const isAssetInGcsBucket = (
+  download: { inGcsBucket?: boolean } | undefined,
+): boolean => {
+  if (!download) return false;
+  return download.inGcsBucket !== false;
+};
+
 export const isResourceTypeSubjectToCopyright = (resource: ResourceType) => {
   return (
     resource === "worksheet-pdf" ||
@@ -35,13 +43,30 @@ export const getResourcesWithoutLegacyCopyright = (
   );
 };
 
+export const isDownloadAvailable = (
+  download: LessonDownloadsPageData["downloads"][number],
+) => {
+  return download.exists && !download.forbidden && isAssetInGcsBucket(download);
+};
+
+export const getFilteredDownloads = (
+  downloads: LessonDownloadsPageData["downloads"],
+  legacyCopyrightContent: LegacyCopyrightContent,
+) => {
+  return getResourcesWithoutLegacyCopyright(
+    downloads,
+    legacyCopyrightContent,
+  ).filter(isDownloadAvailable);
+};
+
 export const getIsResourceDownloadable = (
   resource: ResourceType,
   downloads: LessonOverviewDownloads,
   copyrightContent: LegacyCopyrightContent,
 ) => {
   const inDownloads = downloads.find((d) => d.type === resource);
-  if (!inDownloads || !inDownloads.exists) {
+
+  if (!inDownloads || !isDownloadAvailable(inDownloads)) {
     return false;
   }
 

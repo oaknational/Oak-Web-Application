@@ -31,7 +31,7 @@ type ProgrammePageProps = {
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
 };
 
-export const Programme = ({
+export const ProgrammeView = ({
   curriculumSelectionSlugs,
   curriculumPhaseOptions,
   subjectTitle,

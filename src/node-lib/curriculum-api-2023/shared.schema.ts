@@ -251,6 +251,7 @@ export type LessonUnitDataByKs = ConvertKeysToCamelCase<
 
 export const lessonDownloadsListSchema = z.array(
   z.object({
+    inGcsBucket: z.boolean().optional(),
     exists: z.boolean().nullable(),
     type:
       z.enum([
@@ -280,6 +281,7 @@ export const lessonDownloadsListSchema = z.array(
 
 export const lessonAdditionalFilesListSchema = z.array(
   z.object({
+    inGcsBucket: z.boolean().optional(),
     exists: z.boolean().nullable(),
     type: z.enum(["additional-files"]),
     label: z.string(),
