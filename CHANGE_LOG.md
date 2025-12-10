@@ -1,3 +1,10 @@
+# [1.930.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.929.0...v1.930.0) (2025-12-10)
+
+
+### Features
+
+* update primitive colour values ([16069ff](https://github.com/oaknational/Oak-Web-Application/commit/16069ffe633871c3be0abd95b7b8cc0053b91f9c))
+
 # [1.929.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.928.0...v1.929.0) (2025-12-10)
 
 
