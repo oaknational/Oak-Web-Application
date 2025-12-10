@@ -337,6 +337,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const presentationTitle = "Lesson slides";
   const quizDownloadTitle = "quiz pdf";
 
+  const stickyDownloadALlButtonFlag = useFeatureFlagVariantKey(
+    "teachers-sticky-download-button",
+  );
+  const showDownloadAllInSidebar =
+    showDownloadAll && stickyDownloadALlButtonFlag === "test";
+
   return (
     <MathJaxLessonProvider>
       <HeaderLesson
@@ -416,6 +422,14 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     contentRestricted={contentRestricted}
                     links={pageLinks}
                     currentSectionId={currentSectionId}
+                    showDownloadAll={showDownloadAllInSidebar}
+                    onClickDownloadAll={() =>
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "all",
+                      })
+                    }
+                    {...lesson}
+                    {...commonPathway}
                   />
                 </OakFlex>
               )}
