@@ -8,6 +8,13 @@ import useAnalytics from "./useAnalytics";
 
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/"),
+  useSearchParams: jest.fn(() => ({
+    toString: () => "",
+  })),
+}));
+
 const posthogIdentify = jest.fn();
 const posthogCapture = jest.fn();
 const posthogInit = jest.fn();
