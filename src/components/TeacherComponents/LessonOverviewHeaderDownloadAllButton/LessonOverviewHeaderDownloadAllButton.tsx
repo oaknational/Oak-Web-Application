@@ -86,6 +86,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
       iconName="download"
       isTrailingIcon
       aria-label="Download all"
+      width={"spacing-160"}
     />
   );
 };
