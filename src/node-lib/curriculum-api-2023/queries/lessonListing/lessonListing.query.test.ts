@@ -77,10 +77,10 @@ describe("lessonListing()", () => {
             description: "lesson-description",
             pupilLessonOutcome: "pupil-lesson-outcome",
             expired: false,
-            quizCount: 0,
+            quizCount: 2,
             videoCount: 0,
-            presentationCount: 0,
-            worksheetCount: 0,
+            presentationCount: 1,
+            worksheetCount: 1,
             hasLegacyCopyrightMaterial: false,
             orderInUnit: 1,
             lessonCohort: "2023-2024",
@@ -210,7 +210,9 @@ describe("lessonListing()", () => {
     test("getTransformedUnit returns the correct data", async () => {
       const transformedLessons = getPackagedUnit(
         mockPackagedUnitData,
-        getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
+        await getTransformedLessons([
+          syntheticUnitvariantLessonsByKsFixture({}),
+        ]),
         false,
         false,
       );
@@ -229,11 +231,11 @@ describe("lessonListing()", () => {
             lessonSlug: "lesson-slug",
             lessonTitle: "lesson-title",
             orderInUnit: 1,
-            presentationCount: 0,
+            presentationCount: 1,
             pupilLessonOutcome: "pupil-lesson-outcome",
-            quizCount: 0,
+            quizCount: 2,
             videoCount: 0,
-            worksheetCount: 0,
+            worksheetCount: 1,
             actions: null,
             geoRestricted: false,
             loginRequired: false,
@@ -260,11 +262,11 @@ describe("lessonListing()", () => {
         containsLoginRequiredLessons: false,
       });
     });
-    test("getTransformedUnit returns the correct data for optionality units", () => {
+    test("getTransformedUnit returns the correct data for optionality units", async () => {
       const pfs = syntheticUnitvariantLessonsByKsFixture().programme_fields;
       const transformedLessons = getPackagedUnit(
         mockPackagedUnitData,
-        getTransformedLessons([
+        await getTransformedLessons([
           syntheticUnitvariantLessonsByKsFixture({
             overrides: {
               programme_fields: {
@@ -292,11 +294,11 @@ describe("lessonListing()", () => {
             lessonSlug: "lesson-slug",
             lessonTitle: "lesson-title",
             orderInUnit: 1,
-            presentationCount: 0,
+            presentationCount: 1,
             pupilLessonOutcome: "pupil-lesson-outcome",
-            quizCount: 0,
+            quizCount: 2,
             videoCount: 0,
-            worksheetCount: 0,
+            worksheetCount: 1,
             actions: null,
             geoRestricted: false,
             loginRequired: false,
@@ -324,7 +326,7 @@ describe("lessonListing()", () => {
       });
     });
     test("getTransformedLessons returns the correct data", async () => {
-      const transformedLessons = getTransformedLessons([
+      const transformedLessons = await getTransformedLessons([
         syntheticUnitvariantLessonsByKsFixture(),
       ]);
       expect(transformedLessons).toEqual([
@@ -336,11 +338,11 @@ describe("lessonListing()", () => {
           lessonSlug: "lesson-slug",
           lessonTitle: "lesson-title",
           orderInUnit: 1,
-          presentationCount: 0,
+          presentationCount: 1,
           pupilLessonOutcome: "pupil-lesson-outcome",
-          quizCount: 0,
+          quizCount: 2,
           videoCount: 0,
-          worksheetCount: 0,
+          worksheetCount: 1,
           actions: null,
           geoRestricted: false,
           loginRequired: false,

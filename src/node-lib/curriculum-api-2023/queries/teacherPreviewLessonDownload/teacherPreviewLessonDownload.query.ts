@@ -93,9 +93,11 @@ const teachersPreviewLessonDownloadQuery =
       hasSupplementaryAssetObject: has_supplementary_asset_object,
       hasLessonGuideObject: has_lesson_guide_object,
       isLegacy: is_legacy,
+      lessonSlug,
+      context: "previewLessonDownloadQuery",
     };
 
-    const downloads = constructDownloadsArray(downloadsData);
+    const downloads = await constructDownloadsArray(downloadsData);
 
     // Copyright content pre-parsed
     const currentLesson = modifiedBrowseData.find(

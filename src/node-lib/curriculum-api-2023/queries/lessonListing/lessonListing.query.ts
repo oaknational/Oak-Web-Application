@@ -18,17 +18,59 @@ import {
   LessonListItem,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
+import { constructDownloadsArray } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/downloadUtils";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
 import { getIntersection } from "@/utils/getIntersection";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { isAssetInGcsBucket } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 
-export const getTransformedLessons = (
+async function getDownloadableResourceCount(
+  lesson: LessonListingQuery["lessons"][number]["static_lesson_list"],
+): Promise<{
+  quizCount: number;
+  presentationCount: number;
+  worksheetCount: number;
+}> {
+  const downloadsArray = await constructDownloadsArray({
+    hasSlideDeckAssetObject: Boolean(lesson.lesson_data.asset_id_slidedeck),
+    hasStarterQuiz: Boolean(lesson.lesson_data.quiz_id_starter),
+    hasExitQuiz: Boolean(lesson.lesson_data.quiz_id_exit),
+    hasWorksheetAssetObject: Boolean(lesson.lesson_data.asset_id_worksheet),
+    lessonSlug: lesson.lesson_slug,
+    isLegacy: lesson.is_legacy,
+    // We don't need to check these assets as they aren't previewed in the lesson listing page
+    hasWorksheetGoogleDriveDownloadableVersion: false,
+    hasWorksheetAnswersAssetObject: false,
+    hasSupplementaryAssetObject: false,
+    hasLessonGuideObject: false,
+    context: "lessonListingQuery",
+  });
+
+  const downloadsSet = new Set(
+    downloadsArray.filter((d) => isAssetInGcsBucket(d)).map((d) => d.type),
+  );
+  const hasIntroQuiz =
+    downloadsSet.has("intro-quiz-questions") &&
+    downloadsSet.has("intro-quiz-answers");
+  const hasExitQuiz =
+    downloadsSet.has("exit-quiz-questions") &&
+    downloadsSet.has("exit-quiz-answers");
+  return {
+    quizCount: +hasIntroQuiz + +hasExitQuiz,
+    worksheetCount: +(
+      downloadsSet.has("worksheet-pdf") || downloadsSet.has("worksheet-pptx")
+    ),
+    presentationCount: +downloadsSet.has("presentation"),
+  };
+}
+
+export const getTransformedLessons = async (
   lessons: LessonListingQuery["lessons"],
-): LessonListSchema => {
-  return lessons[0]?.static_lesson_list
+): Promise<LessonListSchema> => {
+  const lessonPromises = lessons[0]?.static_lesson_list
     ?.sort((a: StaticLesson, b: StaticLesson) => a.order - b.order)
-    .map((staticLesson: StaticLesson) => {
+    .map(async (staticLesson: StaticLesson) => {
       const publishedLesson = lessons.find(
         (lesson) => lesson.lesson_slug === staticLesson.slug,
       );
@@ -41,21 +83,21 @@ export const getTransformedLessons = (
             (c: { copyright_info: string }) =>
               c.copyright_info === "This lesson contains copyright material.",
           ) !== undefined;
+        const { quizCount, worksheetCount, presentationCount } =
+          await getDownloadableResourceCount(lesson);
 
         const transformedLesson = {
           lessonSlug: lesson.lesson_slug,
           lessonTitle: lesson.lesson_data.title,
+          quizCount,
+          worksheetCount,
+          presentationCount,
           description:
             lesson.lesson_data.description ||
             lesson.lesson_data.pupil_lesson_outcome,
           pupilLessonOutcome: lesson.lesson_data.pupil_lesson_outcome,
           expired: Boolean(lesson.lesson_data.deprecated_fields?.expired),
-          quizCount:
-            (lesson.lesson_data.quiz_id_starter ? 1 : 0) +
-            (lesson.lesson_data.quiz_id_exit ? 1 : 0),
           videoCount: lesson.lesson_data.video_id ? 1 : 0,
-          presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
-          worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
           hasLegacyCopyrightMaterial,
           orderInUnit: lesson.order_in_unit,
           lessonCohort: lesson.lesson_data._cohort,
@@ -77,6 +119,8 @@ export const getTransformedLessons = (
         };
       }
     });
+
+  return Promise.all(lessonPromises ?? []);
 };
 
 type PackagedUnitData = {
@@ -166,7 +210,7 @@ const lessonListingQuery =
     const parsedModifiedLessons =
       partialSyntheticUnitvariantLessonsArraySchema.parse(modifiedLessons);
 
-    const unitLessons = getTransformedLessons(parsedModifiedLessons);
+    const unitLessons = await getTransformedLessons(parsedModifiedLessons);
     const packagedUnitData = modifiedLessons.reduce((acc, lesson) => {
       return {
         ...acc,
@@ -186,6 +230,7 @@ const lessonListingQuery =
       containsGeorestrictedLessons,
       containsLoginRequiredLessons,
     );
+
     return lessonListingPageDataSchema.parse(packagedUnit);
   };
 
