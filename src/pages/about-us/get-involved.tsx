@@ -116,10 +116,6 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
         <WhoAreWeHeader
           title={pageData.header.title}
           content={pageData.header.text}
-          imageUrl={
-            "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
-          }
-          imageAlt={""}
         />
         <GetInvolvedCollaborateWithUs
           heading="Collaborate with us"

@@ -39,11 +39,34 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
   );
 }
 
+export function BackgroundHeaderLoop() {
+  return (
+    <OakBox
+      style={{
+        position: "absolute",
+        top: -178,
+        right: "calc(-40rem + 50vw - 340px)",
+        width: 1000,
+        height: 700,
+        transform: "rotate(-8deg)",
+      }}
+    >
+      <OakImage
+        $minWidth="spacing-120"
+        $height="spacing-640"
+        $colorFilter={"bg-decorative3-main"}
+        alt="Background looping line"
+        src="https://res.cloudinary.com/oak-web-application/image/upload/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
+      />
+    </OakBox>
+  );
+}
+
 export type WhoAreWeHeaderProps = {
   title: string;
   content: string;
-  imageUrl: string;
-  imageAlt: string;
+  imageUrl?: string;
+  imageAlt?: string;
 };
 export function WhoAreWeHeader({
   title,
@@ -77,14 +100,18 @@ export function WhoAreWeHeader({
           </OakFlex>
         </CustomHeaderTextOakGridArea>
         <CustomHeaderImageOakGridArea $colSpan={4} $colStart={9}>
-          <OakBox $width={"spacing-360"} $height={"spacing-360"}>
-            <OakImage
-              alt={imageAlt}
-              src={imageUrl}
-              $objectFit={"contain"}
-              $height={"100%"}
-            />
-          </OakBox>
+          {imageUrl && imageAlt ? (
+            <OakBox $width={"spacing-360"} $height={"spacing-360"}>
+              <OakImage
+                alt={imageAlt}
+                src={imageUrl}
+                $objectFit={"contain"}
+                $height={"100%"}
+              />
+            </OakBox>
+          ) : (
+            <BackgroundHeaderLoop />
+          )}
         </CustomHeaderImageOakGridArea>
       </OakGrid>
     </InnerMaxWidth>
