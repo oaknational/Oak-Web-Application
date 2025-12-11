@@ -9,7 +9,7 @@ export default function CoreLayout({
 }>) {
   // TODO: [integrated-journey] Top Nav & Footer
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<></>}>
       <AnalyticsWrapper>{children}</AnalyticsWrapper>
     </Suspense>
   );
