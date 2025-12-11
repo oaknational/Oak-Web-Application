@@ -26,7 +26,7 @@ describe("background", () => {
       <StyledComponent data-testid="test" $background={["lavender50"]} />,
     );
 
-    expect(getByTestId("test")).toHaveStyle("background-color: #c6d1ef");
+    expect(getByTestId("test")).toHaveStyle("background-color: #bdcdf5");
     expect(getByTestId("test")).toHaveStyle("color: rgb(34, 34, 34)");
   });
 });
