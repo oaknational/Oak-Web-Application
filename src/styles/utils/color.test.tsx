@@ -13,7 +13,7 @@ describe("color", () => {
       <StyledComponent data-testid="test" $color="lavender50" />,
     );
 
-    expect(getByTestId("test")).toHaveStyle("color: #c6d1ef");
+    expect(getByTestId("test")).toHaveStyle("color: #bdcdf5");
   });
   test("should correctly handle prop 'color' as array", async () => {
     const StyledComponent = styled.div<ColorProps>`
