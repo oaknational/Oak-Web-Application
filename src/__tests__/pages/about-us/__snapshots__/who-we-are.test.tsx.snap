@@ -1698,7 +1698,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-0 fgBWrW djyvKT iAkSYx kIiJrY"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3e81e923-0 fgBWrW djyvKT iAkSYx dRudWH"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1720,21 +1720,22 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-1 fgBWrW joHkzz dGlNMa gHmAeX"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3e81e923-1 fgBWrW joHkzz dGlNMa gxonpk"
                 >
                   <div
-                    class="sc-fqkvVR dBkKun"
+                    class="sc-fqkvVR fgBWrW"
+                    style="position: absolute; top: -178px; right: calc(-40rem + 50vw - 340px); width: 1000px; height: 700px; transform: rotate(-8deg);"
                   >
                     <div
-                      class="sc-fqkvVR hudrT"
+                      class="sc-fqkvVR dogHqD"
                     >
                       <img
-                        alt=""
-                        class="sc-dcJsrY jRtmJB"
+                        alt="Background looping line"
+                        class="sc-dcJsrY Sspmc"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
-                        src="https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
+                        src="https://res.cloudinary.com/oak-web-application/image/upload/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </div>

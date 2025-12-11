@@ -21,4 +21,15 @@ describe("WhoAreWeHeader", () => {
     expect(imageEl).toHaveAttribute("src", "http://example.com/image.svg");
     expect(imageEl).toHaveAttribute("alt", "Oak logo");
   });
+
+  it("renders correctly with no image", () => {
+    const { baseElement, getByRole, getByAltText } = render(
+      <WhoAreWeHeader title="TESTING_TITLE" content="TESTING_CONTENT" />,
+    );
+    expect(baseElement).toMatchSnapshot();
+    expect(getByRole("heading")).toHaveTextContent("TESTING_TITLE");
+    expect(getByRole("paragraph")).toHaveTextContent("TESTING_CONTENT");
+    const imageEl = getByAltText("Background looping line");
+    expect(imageEl).toHaveAttribute("alt", "Background looping line");
+  });
 });
