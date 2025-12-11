@@ -23,6 +23,7 @@ import {
 } from "@/utils/curriculum/filtering";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumFilters } from "@/utils/curriculum/types";
+import useSelectedArea from "@/hooks/useSelectedArea";
 
 type ProgrammePageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
@@ -38,6 +39,8 @@ export const ProgrammeView = ({
   curriculumUnitsFormattedData,
 }: ProgrammePageProps) => {
   const isMobile = useMediaQuery("mobile");
+  const selectedArea = useSelectedArea();
+  console.log({ selectedArea });
 
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
   const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
