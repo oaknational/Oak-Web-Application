@@ -39,6 +39,33 @@ export const aboutWhoWeArePageSchema = aboutPageBaseSchema.extend({
   principles: z.array(textBlockSchema),
 });
 
+export const newAboutWhoWeArePageSchema = z.object({
+  header: z.object({
+    title: z.string(),
+    subTitle: z.string(),
+  }),
+  breakout: z.object({
+    text: z.string(),
+    image: imageSchema,
+  }),
+  timeline: z.array(
+    z.object({
+      title: z.string(),
+      subTitle: z.string(),
+      text: portableTextSchema,
+    }),
+  ),
+  usp: z.array(
+    z.object({
+      title: z.string(),
+      text: z.string(),
+      image: imageSchema,
+    }),
+  ),
+});
+
+export type NewAboutWhoWeArePage = z.infer<typeof newAboutWhoWeArePageSchema>;
+
 export type AboutWhoWeArePage = z.infer<typeof aboutWhoWeArePageSchema>;
 
 export const aboutLeadershipPageSchema = aboutPageBaseSchema.extend({

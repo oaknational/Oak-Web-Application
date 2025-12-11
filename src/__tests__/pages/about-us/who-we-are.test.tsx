@@ -7,7 +7,10 @@ import AboutWhoWeAre, {
   getServerSideProps,
 } from "../../../pages/about-us/who-we-are";
 import CMSClient from "../../../node-lib/cms";
-import { AboutWhoWeArePage } from "../../../common-lib/cms-types";
+import {
+  AboutWhoWeArePage,
+  NewAboutWhoWeArePage,
+} from "../../../common-lib/cms-types";
 import { mockSeoResult, portableTextFromString } from "../../__helpers__/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
@@ -22,6 +25,31 @@ jest.mock("@mux/mux-player-react/lazy", () => {
 });
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+
+const newTestAboutWhoWeArePageData: NewAboutWhoWeArePage = {
+  header: {
+    title: "",
+    subTitle: "",
+  },
+  breakout: {
+    image: {},
+    text: "",
+  },
+  timeline: [
+    {
+      title: "",
+      text: [],
+      subTitle: "",
+    },
+  ],
+  usp: [
+    {
+      title: "",
+      image: {},
+      text: "",
+    },
+  ],
+};
 
 const testAboutWhoWeArePageData: AboutWhoWeArePage = {
   ...testAboutPageBaseData,
@@ -170,6 +198,10 @@ describe("pages/about/who-we-are.tsx", () => {
     it("should not return notFound when the page data is missing", async () => {
       mockCMSClient.aboutWhoWeArePage.mockResolvedValueOnce(
         testAboutWhoWeArePageData,
+      );
+
+      mockCMSClient.newAboutWhoWeArePage.mockResolvedValueOnce(
+        newTestAboutWhoWeArePageData,
       );
 
       const propsResult = await getServerSideProps({
