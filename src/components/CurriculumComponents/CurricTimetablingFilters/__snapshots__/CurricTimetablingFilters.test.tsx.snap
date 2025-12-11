@@ -7,7 +7,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
       class="sc-fqkvVR eDrsgf"
     >
       <div
-        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+        class="sc-fqkvVR sc-fjvvzt eJBGXR kIRemE"
       >
         <div
           class="sc-fqkvVR iPpXCP grey-shadow"
@@ -16,7 +16,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
           class="sc-fqkvVR iPpXCP yellow-shadow"
         />
         <a
-          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
           data-testid="skip-link"
           href="#content"
           style="position: absolute; left: -10000px;"
@@ -24,11 +24,15 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
           >
-            <span
-              class="sc-dAlyuH hHWgLm"
+            <div
+              class="sc-fqkvVR cVTiFC"
             >
-              Skip to units
-            </span>
+              <span
+                class="sc-dAlyuH hHWgLm"
+              >
+                Skip to units
+              </span>
+            </div>
           </div>
         </a>
       </div>
@@ -55,11 +59,11 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
+              class="sc-fqkvVR sc-kAyceB sc-kgOKUu dtUOUJ hRXrdT hUJnes"
             >
               <input
                 checked=""
-                class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
+                class="sc-fBWQRz sc-fKWMtX emVWqZ helRrO"
                 data-testid="all-years-radio"
                 id=":r0:"
                 name="yearreact-use-id-test-result"
@@ -79,10 +83,10 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
+              class="sc-fqkvVR sc-kAyceB sc-kgOKUu dtUOUJ hRXrdT hUJnes"
             >
               <input
-                class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
+                class="sc-fBWQRz sc-fKWMtX emVWqZ helRrO"
                 data-testid="year-radio"
                 id=":r1:"
                 name="yearreact-use-id-test-result"
@@ -102,10 +106,10 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
+              class="sc-fqkvVR sc-kAyceB sc-kgOKUu dtUOUJ hRXrdT hUJnes"
             >
               <input
-                class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
+                class="sc-fBWQRz sc-fKWMtX emVWqZ helRrO"
                 data-testid="year-radio"
                 id=":r2:"
                 name="yearreact-use-id-test-result"
@@ -127,7 +131,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
         class="sc-fqkvVR giwluv"
       >
         <div
-          class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+          class="sc-fqkvVR sc-fjvvzt eJBGXR kIRemE"
         >
           <div
             class="sc-fqkvVR iPpXCP grey-shadow"
@@ -136,22 +140,26 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR iPpXCP yellow-shadow"
           />
           <button
-            class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+            class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
             >
-              <span
-                class="sc-dAlyuH hHWgLm"
+              <div
+                class="sc-fqkvVR cVTiFC"
               >
-                Add next year
-              </span>
+                <span
+                  class="sc-dAlyuH hHWgLm"
+                >
+                  Add next year
+                </span>
+              </div>
             </div>
           </button>
         </div>
       </div>
       <div
-        class="sc-fqkvVR sc-kAyceB sc-cmaqmh dARrbC joHkzz"
+        class="sc-fqkvVR sc-kAyceB sc-kAkpmW dARrbC joHkzz"
         focusable="false"
       >
         <svg
