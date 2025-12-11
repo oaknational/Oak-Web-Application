@@ -295,7 +295,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                         onChange({ eduRole: e.target.value });
                       }}
                     >
-                      <OakOption asDefault={true}>Type your role</OakOption>
+                      <OakOption asDefault={true}>Select your role</OakOption>
                       {EDU_ROLES.map((item) => {
                         return (
                           <OakOption key={item} value={item}>
