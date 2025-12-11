@@ -10,36 +10,13 @@ import lessonMediaClipsFixtures from "../../fixtures/lessonMediaClips.fixture";
 import lessonOverview, {
   getContentGuidance,
   getCopyrightContent,
+  getDownloadsArray,
   getAdditionalFiles,
 } from "./lessonOverview.query";
 
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
-
-const mockGetLessonDownloadResourcesExistence = jest.fn(() =>
-  Promise.resolve({
-    resources: [
-      ["presentation", { exists: true }],
-      ["intro-quiz-questions", { exists: true }],
-      ["intro-quiz-answers", { exists: true }],
-      ["exit-quiz-questions", { exists: true }],
-      ["worksheet-pdf", { exists: true }],
-      ["worksheet-pptx", { exists: true }],
-      ["supplementary-pdf", { exists: true }],
-      ["supplementary-docx", { exists: true }],
-      ["lesson-guide-pdf", { exists: true }],
-    ],
-  }),
-);
-
-jest.mock(
-  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
-  () => ({
-    getLessonDownloadResourcesExistence: () =>
-      mockGetLessonDownloadResourcesExistence(),
-  }),
-);
 
 export const _additionalFilesFixture = keysToCamelCase(
   additionalFilesFixture().downloadable_files,
@@ -404,6 +381,152 @@ describe("lessonOverview()", () => {
           contentGuidanceArea: "",
         },
       ]);
+    });
+  });
+  describe("getDownloadsArray", () => {
+    it("should return correct downloads array when all content flags are true and isLegacy is false", () => {
+      const content = {
+        hasSlideDeckAssetObject: true,
+        hasStarterQuiz: true,
+        hasExitQuiz: true,
+        hasWorksheetAssetObject: true,
+        hasWorksheetAnswersAssetObject: true,
+        hasWorksheetGoogleDriveDownloadableVersion: true,
+        hasSupplementaryAssetObject: true,
+        hasLessonGuideObject: true,
+        isLegacy: false,
+      };
+
+      const expectedDownloads = [
+        { exists: true, type: "presentation" },
+        { exists: true, type: "intro-quiz-questions" },
+        { exists: true, type: "intro-quiz-answers" },
+        { exists: true, type: "exit-quiz-questions" },
+        { exists: true, type: "exit-quiz-questions" },
+        { exists: true, type: "worksheet-pdf" },
+        { exists: true, type: "worksheet-pptx" },
+        { exists: true, type: "supplementary-pdf" },
+        { exists: true, type: "supplementary-docx" },
+        { exists: true, type: "lesson-guide-pdf" },
+      ];
+
+      expect(getDownloadsArray(content)).toEqual(expectedDownloads);
+    });
+
+    it("should return correct downloads array when all content flags are true and isLegacy is true", () => {
+      const content = {
+        hasSlideDeckAssetObject: true,
+        hasStarterQuiz: true,
+        hasExitQuiz: true,
+        hasWorksheetAssetObject: true,
+        hasWorksheetAnswersAssetObject: true,
+        hasWorksheetGoogleDriveDownloadableVersion: true,
+        hasSupplementaryAssetObject: true,
+        isLegacy: true,
+        hasLessonGuideObject: true,
+      };
+
+      const expectedDownloads = [
+        { exists: true, type: "presentation" },
+        { exists: true, type: "intro-quiz-questions" },
+        { exists: true, type: "intro-quiz-answers" },
+        { exists: true, type: "exit-quiz-questions" },
+        { exists: true, type: "exit-quiz-questions" },
+        { exists: true, type: "worksheet-pdf" },
+        { exists: true, type: "worksheet-pptx" },
+        { exists: true, type: "supplementary-pdf" },
+        { exists: true, type: "supplementary-docx" },
+        { exists: true, type: "lesson-guide-pdf" },
+      ];
+
+      expect(getDownloadsArray(content)).toEqual(expectedDownloads);
+    });
+
+    it("should return correct downloads array when all content flags are false and isLegacy is false", () => {
+      const content = {
+        hasSlideDeckAssetObject: false,
+        hasStarterQuiz: false,
+        hasExitQuiz: false,
+        hasWorksheetAssetObject: false,
+        hasWorksheetAnswersAssetObject: false,
+        hasWorksheetGoogleDriveDownloadableVersion: false,
+        hasSupplementaryAssetObject: false,
+        isLegacy: false,
+        hasLessonGuideObject: false,
+      };
+
+      const expectedDownloads = [
+        { exists: false, type: "presentation" },
+        { exists: false, type: "intro-quiz-questions" },
+        { exists: false, type: "intro-quiz-answers" },
+        { exists: false, type: "exit-quiz-questions" },
+        { exists: false, type: "exit-quiz-questions" },
+        { exists: false, type: "worksheet-pdf" },
+        { exists: false, type: "worksheet-pptx" },
+        { exists: false, type: "supplementary-pdf" },
+        { exists: false, type: "supplementary-docx" },
+        { exists: false, type: "lesson-guide-pdf" },
+      ];
+
+      expect(getDownloadsArray(content)).toEqual(expectedDownloads);
+    });
+
+    it("should return correct downloads array when isLegacy is true and hasWorksheetGoogleDriveDownloadableVersion is true", () => {
+      const content = {
+        hasSlideDeckAssetObject: false,
+        hasStarterQuiz: false,
+        hasExitQuiz: false,
+        hasWorksheetAssetObject: false,
+        hasWorksheetAnswersAssetObject: false,
+        hasWorksheetGoogleDriveDownloadableVersion: true,
+        hasSupplementaryAssetObject: false,
+        hasLessonGuideObject: false,
+        isLegacy: true,
+      };
+
+      const expectedDownloads = [
+        { exists: false, type: "presentation" },
+        { exists: false, type: "intro-quiz-questions" },
+        { exists: false, type: "intro-quiz-answers" },
+        { exists: false, type: "exit-quiz-questions" },
+        { exists: false, type: "exit-quiz-questions" },
+        { exists: true, type: "worksheet-pdf" },
+        { exists: true, type: "worksheet-pptx" },
+        { exists: false, type: "supplementary-pdf" },
+        { exists: false, type: "supplementary-docx" },
+        { exists: false, type: "lesson-guide-pdf" },
+      ];
+
+      expect(getDownloadsArray(content)).toEqual(expectedDownloads);
+    });
+
+    it("should return correct downloads array when isLegacy is false and hasWorksheetAssetObject is true", () => {
+      const content = {
+        hasSlideDeckAssetObject: false,
+        hasStarterQuiz: false,
+        hasExitQuiz: false,
+        hasWorksheetAssetObject: true,
+        hasWorksheetAnswersAssetObject: false,
+        hasWorksheetGoogleDriveDownloadableVersion: false,
+        hasSupplementaryAssetObject: false,
+        hasLessonGuideObject: false,
+        isLegacy: false,
+      };
+
+      const expectedDownloads = [
+        { exists: false, type: "presentation" },
+        { exists: false, type: "intro-quiz-questions" },
+        { exists: false, type: "intro-quiz-answers" },
+        { exists: false, type: "exit-quiz-questions" },
+        { exists: false, type: "exit-quiz-questions" },
+        { exists: true, type: "worksheet-pdf" },
+        { exists: true, type: "worksheet-pptx" },
+        { exists: false, type: "supplementary-pdf" },
+        { exists: false, type: "supplementary-docx" },
+        { exists: false, type: "lesson-guide-pdf" },
+      ];
+
+      expect(getDownloadsArray(content)).toEqual(expectedDownloads);
     });
   });
 

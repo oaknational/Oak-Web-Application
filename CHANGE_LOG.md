@@ -1,3 +1,31 @@
+# [1.933.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.932.0...v1.933.0) (2025-12-11)
+
+
+### Features
+
+* add download button to sidebar behind ff ([0342d5a](https://github.com/oaknational/Oak-Web-Application/commit/0342d5a16f15d8b181081d1125994d56c01c94a4))
+
+# [1.932.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.931.1...v1.932.0) (2025-12-10)
+
+
+### Bug Fixes
+
+* re-add cloudinary and fix test files ([b9e07c1](https://github.com/oaknational/Oak-Web-Application/commit/b9e07c13850fd04c4483f9adff518db74211c1ba))
+* reappend forward slashes ([dc7809e](https://github.com/oaknational/Oak-Web-Application/commit/dc7809eed4091c32ad0da40eb4e710cff102a5a8))
+* remove env var names from test files ([582ecb5](https://github.com/oaknational/Oak-Web-Application/commit/582ecb545dbf30dd17f07c1f2e99fac2ecfdf5dc))
+
+
+### Features
+
+* swaps bugsnag to report to posthog dashboard ([c83dd71](https://github.com/oaknational/Oak-Web-Application/commit/c83dd7152df70f98cff8808911f1ee4466ceec9b))
+
+## [1.931.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.931.0...v1.931.1) (2025-12-10)
+
+
+### Reverts
+
+* merge request ([e0e7127](https://github.com/oaknational/Oak-Web-Application/commit/e0e71270509019f3f90613022b399cdc5122b9e2))
+
 # [1.931.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.930.0...v1.931.0) (2025-12-10)
 
 

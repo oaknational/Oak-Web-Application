@@ -60,9 +60,7 @@ describe("Hiding 'Your details", () => {
 
     expect(schoolSelection).toBeInTheDocument();
   });
-});
 
-describe("Complex copyright", () => {
   it("should show LoginRequired button and hide download button & form when not logged and geo restricted", () => {
     setUseUserReturn(mockLoggedOut);
     const { queryByText, getByRole, queryByRole } = render(
@@ -166,62 +164,6 @@ describe("Complex copyright", () => {
     expect(regionRestrictedMessage).toBeInTheDocument();
     expect(downloadButton).not.toBeInTheDocument();
     expect(copyrightRestrictionBanner).not.toBeInTheDocument();
-  });
-});
-
-describe("Filtering downloads", () => {
-  it("should not show resources which aren't available for download", () => {
-    setUseUserReturn({
-      ...mockLoggedIn,
-      user: mockTeacherUserWithDownloadAccess,
-    });
-
-    const lessonWithUnavailableDownloads = lessonDownloadsFixture({
-      lessonTitle: "Test lesson",
-      downloads: [
-        {
-          type: "presentation",
-          exists: true,
-          label: "Lesson slides",
-          ext: "PDF",
-          inGcsBucket: true,
-          forbidden: false,
-        },
-        {
-          type: "worksheet-pdf",
-          exists: false, // doesn't exist
-          label: "Worksheet",
-          ext: "PDF",
-        },
-        {
-          type: "exit-quiz-questions",
-          exists: true,
-          label: "Exit quiz questions",
-          ext: "PDF",
-          forbidden: true, // forbidden
-        },
-        {
-          type: "exit-quiz-answers",
-          exists: true,
-          label: "Exit quiz answers",
-          ext: "PDF",
-          inGcsBucket: false, // not in GCS bucket
-        },
-      ],
-    });
-
-    const { queryByText } = render(
-      <LessonDownloads
-        lesson={lessonWithUnavailableDownloads}
-        isCanonical={false}
-      />,
-    );
-
-    expect(queryByText("Lesson slides")).toBeInTheDocument();
-
-    expect(queryByText("Worksheet")).not.toBeInTheDocument();
-    expect(queryByText("Exit quiz questions")).not.toBeInTheDocument();
-    expect(queryByText("Exit quiz answers")).not.toBeInTheDocument();
   });
 });
 

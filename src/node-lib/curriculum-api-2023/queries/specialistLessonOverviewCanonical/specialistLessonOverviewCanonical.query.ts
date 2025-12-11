@@ -12,7 +12,6 @@ const specialistLessonOverviewCanonical =
       });
 
     return generateLessonOverviewFromRaw(
-      lessonSlug,
       specialistLessonOverview.lesson,
       1,
       (lessonOverview, error) => {

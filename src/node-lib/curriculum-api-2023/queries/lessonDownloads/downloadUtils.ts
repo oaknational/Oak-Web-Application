@@ -1,8 +1,6 @@
 import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
 
-import { validateDownloadsInGcsBucket } from "@/utils/validateDownloadsInGcsBucket";
-
-export const constructDownloadsArray = async (content: {
+export const constructDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
   hasStarterQuiz: boolean;
   hasExitQuiz: boolean;
@@ -12,9 +10,7 @@ export const constructDownloadsArray = async (content: {
   hasSupplementaryAssetObject: boolean;
   hasLessonGuideObject: boolean;
   isLegacy: boolean;
-  lessonSlug: string;
-  context?: string;
-}): Promise<LessonDownloadsListSchema> => {
+}): LessonDownloadsListSchema => {
   const downloads: LessonDownloadsListSchema = [
     {
       exists: content.hasSlideDeckAssetObject,
@@ -89,9 +85,5 @@ export const constructDownloadsArray = async (content: {
     },
   ];
 
-  return validateDownloadsInGcsBucket(
-    downloads,
-    content.lessonSlug,
-    content.context,
-  );
+  return downloads;
 };

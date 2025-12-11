@@ -76,6 +76,7 @@ describe("useResourceFormState", () => {
       });
 
       const result = renderHook(() => useResourceFormState(downloadProps));
+
       expect(result.result.current.selectedResources).toEqual([
         "presentation",
         "intro-quiz-questions",
@@ -84,8 +85,6 @@ describe("useResourceFormState", () => {
         "exit-quiz-answers",
         "worksheet-pdf",
         "worksheet-pptx",
-        "supplementary-pdf",
-        "supplementary-docx",
       ]);
     });
 
@@ -107,8 +106,6 @@ describe("useResourceFormState", () => {
         "exit-quiz-answers",
         "worksheet-pdf",
         "worksheet-pptx",
-        "supplementary-pdf",
-        "supplementary-docx",
         "additional-files-123",
         "additional-files-456",
       ]);

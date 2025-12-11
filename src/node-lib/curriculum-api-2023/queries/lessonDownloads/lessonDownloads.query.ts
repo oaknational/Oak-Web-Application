@@ -94,12 +94,11 @@ const lessonDownloadsQuery =
       hasSupplementaryAssetObject: has_supplementary_asset_object,
       hasLessonGuideObject: has_lesson_guide_object,
       isLegacy: is_legacy,
-      lessonSlug,
       lessonReleaseDate: lesson_release_date,
-      context: "lessonDownloadsQuery",
     };
 
-    const downloads = await constructDownloadsArray(downloadsData);
+    const downloads = constructDownloadsArray(downloadsData);
+
     // Copyright content pre-parsed
     const currentLesson = modifiedBrowseData.find(
       (lesson) => lesson.lesson_slug === lessonSlug,
