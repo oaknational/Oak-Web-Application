@@ -74,7 +74,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                     class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
                   >
                     <div
-                      class="sc-fqkvVR sc-fjvvzt eJBGXR kIRemE"
+                      class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
                     >
                       <div
                         class="sc-fqkvVR iPpXCP grey-shadow"
@@ -83,7 +83,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                         class="sc-fqkvVR iPpXCP yellow-shadow"
                       />
                       <a
-                        class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+                        class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
                         href="https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -91,15 +91,11 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                         >
-                          <div
-                            class="sc-fqkvVR cVTiFC"
+                          <span
+                            class="sc-dAlyuH hHWgLm"
                           >
-                            <span
-                              class="sc-dAlyuH hHWgLm"
-                            >
-                              Get in touch
-                            </span>
-                          </div>
+                            Get in touch
+                          </span>
                           <div
                             class="sc-fqkvVR kbnxKi"
                           >
@@ -143,7 +139,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                     class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
                   >
                     <div
-                      class="sc-fqkvVR sc-fjvvzt eJBGXR kIRemE"
+                      class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
                     >
                       <div
                         class="sc-fqkvVR iPpXCP grey-shadow"
@@ -152,7 +148,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                         class="sc-fqkvVR iPpXCP yellow-shadow"
                       />
                       <a
-                        class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+                        class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
                         href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -160,15 +156,11 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                         >
-                          <div
-                            class="sc-fqkvVR cVTiFC"
+                          <span
+                            class="sc-dAlyuH hHWgLm"
                           >
-                            <span
-                              class="sc-dAlyuH hHWgLm"
-                            >
-                              Take part in research
-                            </span>
-                          </div>
+                            Take part in research
+                          </span>
                           <div
                             class="sc-fqkvVR kbnxKi"
                           >

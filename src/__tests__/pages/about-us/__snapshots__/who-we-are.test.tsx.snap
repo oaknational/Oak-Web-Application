@@ -75,7 +75,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
           class="sc-fqkvVR gutnKP"
         >
           <div
-            class="sc-fqkvVR sc-fjvvzt eJBGXR kIRemE"
+            class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
           >
             <div
               class="sc-fqkvVR iPpXCP grey-shadow"
@@ -84,7 +84,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               class="sc-fqkvVR iPpXCP yellow-shadow"
             />
             <a
-              class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+              class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
               data-testid="skip-link"
               href="#main"
               style="position: absolute; left: -10000px;"
@@ -92,15 +92,11 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               <div
                 class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
               >
-                <div
-                  class="sc-fqkvVR cVTiFC"
+                <span
+                  class="sc-dAlyuH hHWgLm"
                 >
-                  <span
-                    class="sc-dAlyuH hHWgLm"
-                  >
-                    Skip to content
-                  </span>
-                </div>
+                  Skip to content
+                </span>
               </div>
             </a>
           </div>
@@ -117,7 +113,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB denUev fzjRNq"
               >
                 <a
-                  class="sc-fxwrCY cHaphN sc-69d1ca97-0 biIKeN"
+                  class="sc-dSCufp faxRqf sc-69d1ca97-0 biIKeN"
                   href="/"
                 >
                   <span
@@ -156,7 +152,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR gNQyrX"
                 >
                   <a
-                    class="sc-fxwrCY cHaphN sc-69d1ca97-0 biIKeN"
+                    class="sc-dSCufp faxRqf sc-69d1ca97-0 biIKeN"
                     href="/"
                   >
                     <span
@@ -190,7 +186,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </div>
                 <a
                   aria-label="0 saved units"
-                  class="sc-dtBdUo sc-gmgFlS kUzaOQ lggmnE"
+                  class="sc-dtBdUo sc-ktJbId kUzaOQ fhggaS"
                   href="/teachers/my-library"
                 >
                   <span
@@ -227,7 +223,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </a>
                 <div
-                  class="sc-fqkvVR sc-fjvvzt eJBGXR kIRemE"
+                  class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
                 >
                   <div
                     class="sc-fqkvVR iPpXCP grey-shadow"
@@ -236,20 +232,16 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                     class="sc-fqkvVR iPpXCP yellow-shadow"
                   />
                   <button
-                    class="sc-dtBdUo sc-fXSgeo fxMPcP PbcZt internal-button"
+                    class="sc-dtBdUo sc-fXSgeo fxMPcP jZjsdk internal-button"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW eIAHnn"
                     >
-                      <div
-                        class="sc-fqkvVR cVTiFC"
+                      <span
+                        class="sc-dAlyuH ZrXVD"
                       >
-                        <span
-                          class="sc-dAlyuH ZrXVD"
-                        >
-                          Sign up
-                        </span>
-                      </div>
+                        Sign up
+                      </span>
                     </div>
                   </button>
                 </div>
@@ -2959,7 +2951,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             </button>
                           </div>
                           <div
-                            class="sc-fqkvVR sc-fjvvzt jqqmXN kIRemE"
+                            class="sc-fqkvVR sc-JrDLc jqqmXN hESAKV"
                           >
                             <div
                               class="sc-fqkvVR iPpXCP grey-shadow"
@@ -2968,20 +2960,16 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               class="sc-fqkvVR iPpXCP yellow-shadow"
                             />
                             <button
-                              class="sc-dtBdUo sc-fXSgeo ezGFRC eJTpUE internal-button"
+                              class="sc-dtBdUo sc-fXSgeo ezGFRC dZvJQR internal-button"
                             >
                               <div
                                 class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                               >
-                                <div
-                                  class="sc-fqkvVR cVTiFC"
+                                <span
+                                  class="sc-dAlyuH hHWgLm"
                                 >
-                                  <span
-                                    class="sc-dAlyuH hHWgLm"
-                                  >
-                                    Sign up to the newsletter
-                                  </span>
-                                </div>
+                                  Sign up to the newsletter
+                                </span>
                               </div>
                             </button>
                           </div>
@@ -4701,7 +4689,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB fOyTgd TDtQj"
               >
                 <button
-                  class="sc-fxwrCY eycZBP sc-hIUJlX"
+                  class="sc-dSCufp kbtfSk sc-fxwrCY"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
@@ -4713,7 +4701,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-fjvvzt eJBGXR kIRemE"
+                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -4722,25 +4710,21 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+                  class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                   >
-                    <div
-                      class="sc-fqkvVR cVTiFC"
+                    <span
+                      class="sc-dAlyuH hHWgLm"
                     >
-                      <span
-                        class="sc-dAlyuH hHWgLm"
-                      >
-                        Cookie settings
-                      </span>
-                    </div>
+                      Cookie settings
+                    </span>
                   </div>
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-fjvvzt eJBGXR kIRemE"
+                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -4749,21 +4733,17 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-dtBdUo sc-fXSgeo bMKUbn eJTpUE internal-button"
+                  class="sc-dtBdUo sc-fXSgeo bMKUbn dZvJQR internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                   >
-                    <div
-                      class="sc-fqkvVR cVTiFC"
+                    <span
+                      class="sc-dAlyuH hHWgLm"
                     >
-                      <span
-                        class="sc-dAlyuH hHWgLm"
-                      >
-                        Accept all cookies
-                      </span>
-                    </div>
+                      Accept all cookies
+                    </span>
                   </div>
                 </button>
               </div>

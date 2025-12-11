@@ -42,7 +42,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
               class="sc-fqkvVR sc-kAyceB fgBWrW bxbio"
             >
               <div
-                class="sc-fqkvVR sc-fjvvzt eJBGXR kIRemE"
+                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -51,7 +51,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <a
-                  class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+                  class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
                   href="https://example.com/permanent"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -59,15 +59,11 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                   >
-                    <div
-                      class="sc-fqkvVR cVTiFC"
+                    <span
+                      class="sc-dAlyuH hHWgLm"
                     >
-                      <span
-                        class="sc-dAlyuH hHWgLm"
-                      >
-                        Permanent roles
-                      </span>
-                    </div>
+                      Permanent roles
+                    </span>
                     <div
                       class="sc-fqkvVR kbnxKi"
                     >
@@ -85,7 +81,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                 </a>
               </div>
               <div
-                class="sc-fqkvVR sc-fjvvzt eJBGXR kIRemE"
+                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -94,7 +90,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <a
-                  class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+                  class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
                   href="https://example.com/freelance"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -102,15 +98,11 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                   >
-                    <div
-                      class="sc-fqkvVR cVTiFC"
+                    <span
+                      class="sc-dAlyuH hHWgLm"
                     >
-                      <span
-                        class="sc-dAlyuH hHWgLm"
-                      >
-                        Freelance roles
-                      </span>
-                    </div>
+                      Freelance roles
+                    </span>
                     <div
                       class="sc-fqkvVR kbnxKi"
                     >
