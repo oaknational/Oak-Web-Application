@@ -153,10 +153,6 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
             key: "x-vercel-set-bypass-cookie",
             value: "samesitenone",
           },
-          {
-            key: "x-vercel-protection-bypass",
-            value: "yUVOKr6i7Rp7ISic84OgJhgZ1VCKBELq",
-          },
         ],
       },
       {
