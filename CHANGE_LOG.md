@@ -1,3 +1,10 @@
+# [1.933.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.932.0...v1.933.0) (2025-12-11)
+
+
+### Features
+
+* add download button to sidebar behind ff ([0342d5a](https://github.com/oaknational/Oak-Web-Application/commit/0342d5a16f15d8b181081d1125994d56c01c94a4))
+
 # [1.932.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.931.1...v1.932.0) (2025-12-10)
 
 
