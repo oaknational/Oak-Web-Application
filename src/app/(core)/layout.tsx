@@ -1,5 +1,3 @@
-import { Suspense } from "react";
-
 import AnalyticsWrapper from "./AnalyticsWrapper";
 
 export default function CoreLayout({
@@ -8,9 +6,5 @@ export default function CoreLayout({
   children: React.ReactNode;
 }>) {
   // TODO: [integrated-journey] Top Nav & Footer
-  return (
-    <Suspense fallback={null}>
-      <AnalyticsWrapper>{children}</AnalyticsWrapper>
-    </Suspense>
-  );
+  return <AnalyticsWrapper>{children}</AnalyticsWrapper>;
 }
