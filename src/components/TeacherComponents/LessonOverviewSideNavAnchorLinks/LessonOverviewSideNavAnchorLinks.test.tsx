@@ -30,7 +30,7 @@ describe("LessonOverviewSideNavAnchorLinks", () => {
         contentRestricted={false}
         links={links}
         currentSectionId="link1"
-        {...downloadAllBtnProps}
+        downloadAllButtonProps={downloadAllBtnProps}
       />,
     );
 
@@ -44,7 +44,7 @@ describe("LessonOverviewSideNavAnchorLinks", () => {
         contentRestricted={true}
         links={links}
         currentSectionId="worksheet"
-        {...downloadAllBtnProps}
+        downloadAllButtonProps={downloadAllBtnProps}
       />,
     );
 

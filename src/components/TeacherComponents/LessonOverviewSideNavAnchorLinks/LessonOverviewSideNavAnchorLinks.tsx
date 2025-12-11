@@ -15,7 +15,8 @@ type LessonOverviewSideNavAnchorLinksProps = {
     anchorId: string;
     subheading?: string;
   }[];
-} & LessonOverviewHeaderDownloadAllButtonProps;
+  downloadAllButtonProps: LessonOverviewHeaderDownloadAllButtonProps;
+};
 
 const LessonOverviewSideNavAnchorLinks: FC<
   LessonOverviewSideNavAnchorLinksProps
@@ -23,7 +24,7 @@ const LessonOverviewSideNavAnchorLinks: FC<
   links,
   currentSectionId,
   contentRestricted,
-  ...downloadButtonProps
+  downloadAllButtonProps,
 }) => {
   return (
     <OakUL $reset $display="flex" $gap="spacing-16" $flexDirection="column">
@@ -56,7 +57,7 @@ const LessonOverviewSideNavAnchorLinks: FC<
           </OakLI>
         );
       })}
-      <LessonOverviewHeaderDownloadAllButton {...downloadButtonProps} />
+      <LessonOverviewHeaderDownloadAllButton {...downloadAllButtonProps} />
     </OakUL>
   );
 };

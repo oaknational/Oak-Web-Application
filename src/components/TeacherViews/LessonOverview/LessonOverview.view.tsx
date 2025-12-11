@@ -422,14 +422,15 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     contentRestricted={contentRestricted}
                     links={pageLinks}
                     currentSectionId={currentSectionId}
-                    showDownloadAll={showDownloadAllInSidebar}
-                    onClickDownloadAll={() =>
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "all",
-                      })
-                    }
-                    {...lesson}
-                    {...commonPathway}
+                    downloadAllButtonProps={{
+                      showDownloadAll: showDownloadAllInSidebar,
+                      onClickDownloadAll: () =>
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "all",
+                        }),
+                      ...lesson,
+                      ...commonPathway,
+                    }}
                   />
                 </OakFlex>
               )}
