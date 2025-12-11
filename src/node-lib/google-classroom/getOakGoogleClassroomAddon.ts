@@ -28,5 +28,6 @@ export const getOakGoogleClassroomAddon = (req: NextRequest) => {
     oauthSecret as string,
     `${baseUrl}/api/classroom/auth/callback`,
     sessionSecret as string,
+    baseUrl,
   );
 };
