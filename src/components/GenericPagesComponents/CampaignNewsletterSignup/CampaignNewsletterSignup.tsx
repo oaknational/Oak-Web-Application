@@ -97,7 +97,7 @@ const SchoolPickerInput = ({
   );
 };
 
-function getSchema({
+export function getSchema({
   freeSchoolInput,
   enableRole,
 }: {
