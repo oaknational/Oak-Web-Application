@@ -1,7 +1,6 @@
-"use client";
 import { Suspense } from "react";
 
-import AnalyticsProvider from "../../context/Analytics/AnalyticsProvider";
+import AnalyticsWrapper from "./AnalyticsWrapper";
 
 export default function CoreLayout({
   children,
@@ -11,7 +10,7 @@ export default function CoreLayout({
   // TODO: [integrated-journey] Top Nav & Footer
   return (
     <Suspense fallback={null}>
-      <AnalyticsProvider>{children}</AnalyticsProvider>
+      <AnalyticsWrapper>{children}</AnalyticsWrapper>
     </Suspense>
   );
 }
