@@ -121,6 +121,7 @@ export const PupilViewsSubjectListing = ({
                 activeFilters: { yearDescriptions },
               });
             }}
+            $textAlign={"center"}
           >
             {subject.programmeFields.subject}
           </OakPupilJourneySubjectButton>

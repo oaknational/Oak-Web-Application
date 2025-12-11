@@ -1,11 +1,13 @@
-import { act, renderHook } from "@testing-library/react";
+import { act } from "@testing-library/react";
 
 import { OakToastProvider } from "./OakToastProvider";
 import { useOakToastContext } from "./useOakToastContext";
 
+import renderHookWithTheme from "@/__tests__/__helpers__/renderHookWithTheme";
+
 describe("useToastContext", () => {
   test("oakToast properties should  be null by default", () => {
-    const { result } = renderHook(() => useOakToastContext(), {
+    const { result } = renderHookWithTheme(() => useOakToastContext(), {
       wrapper: OakToastProvider,
     });
     const { currentToastProps } = result.current;
@@ -13,7 +15,7 @@ describe("useToastContext", () => {
     expect(currentToastProps).toBe(null);
   });
   test("oakToast properties should update  when set", () => {
-    const { result } = renderHook(() => useOakToastContext(), {
+    const { result } = renderHookWithTheme(() => useOakToastContext(), {
       wrapper: OakToastProvider,
     });
     const { setCurrentToastProps } = result.current;
