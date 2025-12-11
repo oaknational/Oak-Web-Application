@@ -2,18 +2,20 @@ import { render } from "@testing-library/react";
 import { PostHogProvider } from "posthog-js/react";
 import { useEffect } from "react";
 import { MockOakConsentClient } from "@oaknational/oak-consent-client";
-import { ReadonlyURLSearchParams } from "next/navigation";
 
 import AnalyticsProvider, { getPathAndQuery } from "./AnalyticsProvider";
 import useAnalytics from "./useAnalytics";
 
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
+// mock window.location.search
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+delete (globalThis as any).location;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(globalThis as any).location = { search: "" };
+
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(() => "/"),
-  useSearchParams: jest.fn(() => ({
-    toString: () => "",
-  })),
 }));
 
 const posthogIdentify = jest.fn();
@@ -146,9 +148,7 @@ describe("getPathAndQuery", () => {
     expect(() =>
       getPathAndQuery({
         pathName: "/test",
-        searchParams: new URLSearchParams(
-          "foo=bar",
-        ) as unknown as ReadonlyURLSearchParams,
+
         isBrowser: false,
       }),
     ).toThrow("getPathAndQuery run outside of the browser");
@@ -158,31 +158,18 @@ describe("getPathAndQuery", () => {
     expect(() =>
       getPathAndQuery({
         pathName: null,
-        searchParams: new URLSearchParams(
-          "foo=bar",
-        ) as unknown as ReadonlyURLSearchParams,
-        isBrowser: true,
-      }),
-    ).toThrow("getPathAndQuery run outside of the browser");
-  });
-  test("throws an error if searchParams is null", () => {
-    expect(() =>
-      getPathAndQuery({
-        pathName: "/test",
-        searchParams: null,
+
         isBrowser: true,
       }),
     ).toThrow("getPathAndQuery run outside of the browser");
   });
 
   test("returns pathname and searchParams with a question mark between them", () => {
-    const mockSearchParams = {
-      toString: () => "foo=bar&baz=qux",
-    } as ReadonlyURLSearchParams;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (globalThis as any).location.search = "?foo=bar&baz=qux";
 
     const result = getPathAndQuery({
       pathName: "/test-path",
-      searchParams: mockSearchParams,
       isBrowser: true,
     });
 
@@ -190,13 +177,11 @@ describe("getPathAndQuery", () => {
   });
 
   test("does not include params or a question mark when they aren't present", () => {
-    const mockSearchParams = {
-      toString: () => "",
-    } as ReadonlyURLSearchParams;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (globalThis as any).location.search = "";
 
     const result = getPathAndQuery({
       pathName: "/test-path",
-      searchParams: mockSearchParams,
       isBrowser: true,
     });
 

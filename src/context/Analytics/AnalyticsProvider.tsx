@@ -9,11 +9,7 @@ import {
 } from "react";
 import { usePostHog } from "posthog-js/react";
 import { useOakConsent } from "@oaknational/oak-consent-client";
-import {
-  ReadonlyURLSearchParams,
-  usePathname,
-  useSearchParams,
-} from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
@@ -105,17 +101,17 @@ export const analyticsContext = createContext<AnalyticsContext | null>(null);
 
 export const getPathAndQuery = ({
   pathName,
-  searchParams,
+
   isBrowser,
 }: {
   pathName: string | null;
-  searchParams: ReadonlyURLSearchParams | null;
+
   isBrowser: boolean;
 }) => {
-  if (!isBrowser || !pathName || !searchParams) {
+  if (!isBrowser || !pathName) {
     throw new Error("getPathAndQuery run outside of the browser");
   }
-  return `${pathName}${searchParams.toString() && "?" + searchParams.toString()}`;
+  return `${pathName}${globalThis.location.search}`;
 };
 
 const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
@@ -128,7 +124,6 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const hubspot_contact_id = contactData?.id;
 
   const pathName = usePathname();
-  const searchParams = useSearchParams();
 
   /**
    * Posthog
@@ -191,7 +186,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
    * Page view tracking
    */
   const page = useStableCallback(() => {
-    const path = getPathAndQuery({ pathName, searchParams, isBrowser });
+    const path = getPathAndQuery({ pathName, isBrowser });
 
     // Send a simple page event to hubspot
     hubspot.page({ path });
@@ -209,7 +204,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
 
   useEffect(() => {
     page();
-  }, [page, posthog, hubspot, searchParams, pathName]);
+  }, [pathName, page]);
 
   /**
    * Identify
