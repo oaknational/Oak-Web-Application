@@ -3,7 +3,13 @@ import "@testing-library/jest-dom";
 import { act, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import CampaignNewsletterSignup from "./CampaignNewsletterSignup";
+import CampaignNewsletterSignup, {
+  getSchema,
+} from "./CampaignNewsletterSignup";
+import {
+  newsletterSignupFormSubmitSchema,
+  partialNewsletterSchema,
+} from "./CampaignNewsletterSignup.schema";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import mockCampaign from "@/fixtures/campaign/mockCampaign";
@@ -252,7 +258,7 @@ describe("CampaignNewsletterSignup", () => {
     expect(schoolInput).toBeInTheDocument();
   });
 
-  it("shows role the school picker when enableRole is set", () => {
+  it("shows role when enableRole is set", () => {
     renderWithTheme(
       <CampaignNewsletterSignup
         data-testid="test"
@@ -264,5 +270,23 @@ describe("CampaignNewsletterSignup", () => {
     expectJsdomOptionError();
     const eduRole = screen.getByTestId("newsletter-eduRole");
     expect(eduRole).toBeInTheDocument();
+  });
+});
+
+describe("getSchema", () => {
+  test("freeSchoolInput=false, enableRole=false", () => {
+    const outputSchema = getSchema({
+      freeSchoolInput: false,
+      enableRole: false,
+    });
+    expect(outputSchema).toEqual(newsletterSignupFormSubmitSchema);
+  });
+
+  test("freeSchoolInput=true, enableRole=false", () => {
+    const outputSchema = getSchema({
+      freeSchoolInput: true,
+      enableRole: false,
+    });
+    expect(outputSchema).toEqual(partialNewsletterSchema);
   });
 });
