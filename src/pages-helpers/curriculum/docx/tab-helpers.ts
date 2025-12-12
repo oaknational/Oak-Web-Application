@@ -352,8 +352,7 @@ export function filterValidCurriculumPhaseOptions(
 ) {
   subjects.forEach(({ ks4_options }) => {
     if (
-      ks4_options &&
-      ks4_options.some(({ slug }: { slug: string }) => isExamboardSlug(slug))
+      ks4_options?.some(({ slug }: { slug: string }) => isExamboardSlug(slug))
     ) {
       const gcseIndex = ks4_options.findIndex(
         ({ slug }: { slug: string }) => slug === "gcse",

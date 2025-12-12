@@ -432,10 +432,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       subjectPickerButtonMobileContainer.current?.querySelector("button");
 
     // Focus the last element
-    if (desktopEl && desktopEl.checkVisibility()) {
+    if (desktopEl?.checkVisibility()) {
       await nextTick();
       desktopEl.focus();
-    } else if (mobileEl && mobileEl.checkVisibility()) {
+    } else if (mobileEl?.checkVisibility()) {
       await nextTick();
       mobileEl.focus();
     }
@@ -472,9 +472,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     setSelectedPhase(phase);
     if (
       !isMobile &&
-      (phase.slug === "primary" ||
-        !selectedSubject ||
-        !selectedSubject.ks4_options)
+      (phase.slug === "primary" || !selectedSubject?.ks4_options)
     ) {
       setShowPhases(false);
     }
@@ -706,7 +704,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       $font={"body-2"}
                       $color={!showSubjectError ? "black" : "red"}
                     >
-                      {selectedSubject && selectedSubject.title}
+                      {selectedSubject?.title}
                       {!showSubjectError && !selectedSubject && "Select"}
                     </OakP>
                   </OakBox>
