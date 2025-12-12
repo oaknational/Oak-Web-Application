@@ -38,15 +38,11 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
           >
-            <div
-              class="sc-fqkvVR hMBLoN"
+            <span
+              class="sc-dAlyuH hHWgLm"
             >
-              <span
-                class="sc-dAlyuH eeepiN"
-              >
-                Join the research panel
-              </span>
-            </div>
+              Join the research panel
+            </span>
           </div>
         </a>
       </div>
@@ -66,15 +62,11 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
           >
-            <div
-              class="sc-fqkvVR hMBLoN"
+            <span
+              class="sc-dAlyuH hHWgLm"
             >
-              <span
-                class="sc-dAlyuH eeepiN"
-              >
-                Explore our research
-              </span>
-            </div>
+              Explore our research
+            </span>
           </div>
         </a>
       </div>
@@ -121,15 +113,11 @@ exports[`GetInvolvedLinkCard renders with single button 1`] = `
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
           >
-            <div
-              class="sc-fqkvVR hMBLoN"
+            <span
+              class="sc-dAlyuH hHWgLm"
             >
-              <span
-                class="sc-dAlyuH eeepiN"
-              >
-                Get in touch
-              </span>
-            </div>
+              Get in touch
+            </span>
           </div>
         </a>
       </div>

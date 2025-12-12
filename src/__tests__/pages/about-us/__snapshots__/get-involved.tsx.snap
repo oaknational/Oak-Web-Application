@@ -7,7 +7,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   >
     <div
       aria-live="polite"
-      class="sc-fqkvVR sc-kAyceB sc-713e2c99-0 hkKUlc iPEHGb hUNyQr"
+      class="sc-fqkvVR sc-kAyceB sc-ccc5406d-0 hkKUlc iPEHGb giA-dEW"
     />
     <fake-head>
       <title>
@@ -95,15 +95,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
             >
-              <div
-                class="sc-fqkvVR hMBLoN"
+              <span
+                class="sc-dAlyuH hHWgLm"
               >
-                <span
-                  class="sc-dAlyuH eeepiN"
-                >
-                  Skip to content
-                </span>
-              </div>
+                Skip to content
+              </span>
             </div>
           </a>
         </div>
@@ -244,15 +240,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW eIAHnn"
                   >
-                    <div
-                      class="sc-fqkvVR hMBLoN"
+                    <span
+                      class="sc-dAlyuH ZrXVD"
                     >
-                      <span
-                        class="sc-dAlyuH fyCkiE"
-                      >
-                        Sign up
-                      </span>
-                    </div>
+                      Sign up
+                    </span>
                   </div>
                 </button>
               </div>
@@ -1842,15 +1834,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                                 <div
                                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                                 >
-                                  <div
-                                    class="sc-fqkvVR hMBLoN"
+                                  <span
+                                    class="sc-dAlyuH hHWgLm"
                                   >
-                                    <span
-                                      class="sc-dAlyuH eeepiN"
-                                    >
-                                      Join the research panel
-                                    </span>
-                                  </div>
+                                    Join the research panel
+                                  </span>
                                   <div
                                     class="sc-fqkvVR kbnxKi"
                                   >
@@ -1883,15 +1871,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                                 <div
                                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                                 >
-                                  <div
-                                    class="sc-fqkvVR hMBLoN"
+                                  <span
+                                    class="sc-dAlyuH hHWgLm"
                                   >
-                                    <span
-                                      class="sc-dAlyuH eeepiN"
-                                    >
-                                      Explore our research
-                                    </span>
-                                  </div>
+                                    Explore our research
+                                  </span>
                                 </div>
                               </a>
                             </div>
@@ -1939,15 +1923,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                                 <div
                                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                                 >
-                                  <div
-                                    class="sc-fqkvVR hMBLoN"
+                                  <span
+                                    class="sc-dAlyuH hHWgLm"
                                   >
-                                    <span
-                                      class="sc-dAlyuH eeepiN"
-                                    >
-                                      Get in touch
-                                    </span>
-                                  </div>
+                                    Get in touch
+                                  </span>
                                   <div
                                     class="sc-fqkvVR kbnxKi"
                                   >
@@ -2029,15 +2009,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                         >
-                          <div
-                            class="sc-fqkvVR hMBLoN"
+                          <span
+                            class="sc-dAlyuH hHWgLm"
                           >
-                            <span
-                              class="sc-dAlyuH eeepiN"
-                            >
-                              Permanent roles
-                            </span>
-                          </div>
+                            Permanent roles
+                          </span>
                           <div
                             class="sc-fqkvVR kbnxKi"
                           >
@@ -2072,15 +2048,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                         >
-                          <div
-                            class="sc-fqkvVR hMBLoN"
+                          <span
+                            class="sc-dAlyuH hHWgLm"
                           >
-                            <span
-                              class="sc-dAlyuH eeepiN"
-                            >
-                              Freelance roles
-                            </span>
-                          </div>
+                            Freelance roles
+                          </span>
                           <div
                             class="sc-fqkvVR kbnxKi"
                           >
@@ -4137,15 +4109,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 <div
                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                 >
-                  <div
-                    class="sc-fqkvVR hMBLoN"
+                  <span
+                    class="sc-dAlyuH hHWgLm"
                   >
-                    <span
-                      class="sc-dAlyuH eeepiN"
-                    >
-                      Cookie settings
-                    </span>
-                  </div>
+                    Cookie settings
+                  </span>
                 </div>
               </button>
             </div>
@@ -4165,15 +4133,11 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 <div
                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                 >
-                  <div
-                    class="sc-fqkvVR hMBLoN"
+                  <span
+                    class="sc-dAlyuH hHWgLm"
                   >
-                    <span
-                      class="sc-dAlyuH eeepiN"
-                    >
-                      Accept all cookies
-                    </span>
-                  </div>
+                    Accept all cookies
+                  </span>
                 </div>
               </button>
             </div>

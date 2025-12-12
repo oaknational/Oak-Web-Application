@@ -24,15 +24,11 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
           >
-            <div
-              class="sc-fqkvVR hMBLoN"
+            <span
+              class="sc-dAlyuH hHWgLm"
             >
-              <span
-                class="sc-dAlyuH eeepiN"
-              >
-                Skip to units
-              </span>
-            </div>
+              Skip to units
+            </span>
           </div>
         </a>
       </div>
@@ -145,15 +141,11 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
             >
-              <div
-                class="sc-fqkvVR hMBLoN"
+              <span
+                class="sc-dAlyuH hHWgLm"
               >
-                <span
-                  class="sc-dAlyuH eeepiN"
-                >
-                  Add next year
-                </span>
-              </div>
+                Add next year
+              </span>
             </div>
           </button>
         </div>

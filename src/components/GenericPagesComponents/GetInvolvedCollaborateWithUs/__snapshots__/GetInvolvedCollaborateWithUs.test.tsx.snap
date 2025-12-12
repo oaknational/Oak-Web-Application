@@ -91,15 +91,11 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                         >
-                          <div
-                            class="sc-fqkvVR hMBLoN"
+                          <span
+                            class="sc-dAlyuH hHWgLm"
                           >
-                            <span
-                              class="sc-dAlyuH eeepiN"
-                            >
-                              Get in touch
-                            </span>
-                          </div>
+                            Get in touch
+                          </span>
                           <div
                             class="sc-fqkvVR kbnxKi"
                           >
@@ -160,15 +156,11 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                         >
-                          <div
-                            class="sc-fqkvVR hMBLoN"
+                          <span
+                            class="sc-dAlyuH hHWgLm"
                           >
-                            <span
-                              class="sc-dAlyuH eeepiN"
-                            >
-                              Take part in research
-                            </span>
-                          </div>
+                            Take part in research
+                          </span>
                           <div
                             class="sc-fqkvVR kbnxKi"
                           >

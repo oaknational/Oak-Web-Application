@@ -66,15 +66,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       <div
                         class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                       >
-                        <div
-                          class="sc-fqkvVR hMBLoN"
+                        <span
+                          class="sc-dAlyuH hHWgLm"
                         >
-                          <span
-                            class="sc-dAlyuH eeepiN"
-                          >
-                            Edit details
-                          </span>
-                        </div>
+                          Edit details
+                        </span>
                         <div
                           class="sc-fqkvVR kbnxKi"
                         >
@@ -106,15 +102,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       <div
                         class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                       >
-                        <div
-                          class="sc-fqkvVR hMBLoN"
+                        <span
+                          class="sc-dAlyuH hHWgLm"
                         >
-                          <span
-                            class="sc-dAlyuH eeepiN"
-                          >
-                            Copy link
-                          </span>
-                        </div>
+                          Copy link
+                        </span>
                         <div
                           class="sc-fqkvVR kbnxKi"
                         >
@@ -184,15 +176,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
               <div
                 class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
               >
-                <div
-                  class="sc-fqkvVR hMBLoN"
+                <span
+                  class="sc-dAlyuH hHWgLm"
                 >
-                  <span
-                    class="sc-dAlyuH eeepiN"
-                  >
-                    Skip to units
-                  </span>
-                </div>
+                  Skip to units
+                </span>
               </div>
             </a>
           </div>
@@ -282,15 +270,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 <div
                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                 >
-                  <div
-                    class="sc-fqkvVR hMBLoN"
+                  <span
+                    class="sc-dAlyuH hHWgLm"
                   >
-                    <span
-                      class="sc-dAlyuH eeepiN"
-                    >
-                      Add next year
-                    </span>
-                  </div>
+                    Add next year
+                  </span>
                 </div>
               </button>
             </div>
@@ -512,26 +496,22 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 <div
                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                 >
-                  <div
-                    class="sc-fqkvVR hMBLoN"
+                  <span
+                    class="sc-dAlyuH hHWgLm"
                   >
-                    <span
-                      class="sc-dAlyuH eeepiN"
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW jcMcGZ"
                     >
-                      <div
-                        class="sc-fqkvVR sc-kAyceB fgBWrW jcMcGZ"
+                      <span
+                        class="sc-dAlyuH GHaIW"
+                        color="grey"
+                        data-testid="coming-soon-flag"
                       >
-                        <span
-                          class="sc-dAlyuH GHaIW"
-                          color="grey"
-                          data-testid="coming-soon-flag"
-                        >
-                          Coming soon
-                        </span>
-                        See lessons in unit
-                      </div>
-                    </span>
-                  </div>
+                        Coming soon
+                      </span>
+                      See lessons in unit
+                    </div>
+                  </span>
                   <div
                     class="sc-fqkvVR kbnxKi"
                   >
@@ -622,15 +602,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       <div
                         class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                       >
-                        <div
-                          class="sc-fqkvVR hMBLoN"
+                        <span
+                          class="sc-dAlyuH hHWgLm"
                         >
-                          <span
-                            class="sc-dAlyuH eeepiN"
-                          >
-                            Edit details
-                          </span>
-                        </div>
+                          Edit details
+                        </span>
                         <div
                           class="sc-fqkvVR kbnxKi"
                         >
@@ -662,15 +638,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       <div
                         class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                       >
-                        <div
-                          class="sc-fqkvVR hMBLoN"
+                        <span
+                          class="sc-dAlyuH hHWgLm"
                         >
-                          <span
-                            class="sc-dAlyuH eeepiN"
-                          >
-                            Copy link
-                          </span>
-                        </div>
+                          Copy link
+                        </span>
                         <div
                           class="sc-fqkvVR kbnxKi"
                         >
@@ -740,15 +712,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
               <div
                 class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
               >
-                <div
-                  class="sc-fqkvVR hMBLoN"
+                <span
+                  class="sc-dAlyuH hHWgLm"
                 >
-                  <span
-                    class="sc-dAlyuH eeepiN"
-                  >
-                    Skip to units
-                  </span>
-                </div>
+                  Skip to units
+                </span>
               </div>
             </a>
           </div>
@@ -838,15 +806,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 <div
                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                 >
-                  <div
-                    class="sc-fqkvVR hMBLoN"
+                  <span
+                    class="sc-dAlyuH hHWgLm"
                   >
-                    <span
-                      class="sc-dAlyuH eeepiN"
-                    >
-                      Add next year
-                    </span>
-                  </div>
+                    Add next year
+                  </span>
                 </div>
               </button>
             </div>
@@ -1293,26 +1257,22 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 <div
                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                 >
-                  <div
-                    class="sc-fqkvVR hMBLoN"
+                  <span
+                    class="sc-dAlyuH hHWgLm"
                   >
-                    <span
-                      class="sc-dAlyuH eeepiN"
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW jcMcGZ"
                     >
-                      <div
-                        class="sc-fqkvVR sc-kAyceB fgBWrW jcMcGZ"
+                      <span
+                        class="sc-dAlyuH GHaIW"
+                        color="grey"
+                        data-testid="coming-soon-flag"
                       >
-                        <span
-                          class="sc-dAlyuH GHaIW"
-                          color="grey"
-                          data-testid="coming-soon-flag"
-                        >
-                          Coming soon
-                        </span>
-                        See lessons in unit
-                      </div>
-                    </span>
-                  </div>
+                        Coming soon
+                      </span>
+                      See lessons in unit
+                    </div>
+                  </span>
                   <div
                     class="sc-fqkvVR kbnxKi"
                   >

@@ -21,15 +21,11 @@ exports[`SkipLink functions as expected 1`] = `
         <div
           class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
         >
-          <div
-            class="sc-fqkvVR hMBLoN"
+          <span
+            class="sc-dAlyuH hHWgLm"
           >
-            <span
-              class="sc-dAlyuH eeepiN"
-            >
-              test
-            </span>
-          </div>
+            test
+          </span>
         </div>
       </a>
     </div>
