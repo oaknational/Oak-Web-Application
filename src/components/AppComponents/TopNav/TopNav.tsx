@@ -1,3 +1,4 @@
+"use client";
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
@@ -5,9 +6,11 @@ import PupilsSubNav from "./SubNav/PupilsSubNav";
 import { OakFlex, OakImage, OakLink } from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 const TopNav = () => {
   const isTeachersActive = true; // TODO: use hook
+  const isMobile = useMediaQuery("mobile");
 
   return (
     <>
@@ -34,8 +37,8 @@ const TopNav = () => {
       </OakFlex>
       <OakFlex
         $background={"bg-primary"}
-        $pv={"spacing-20"}
-        $ph={"spacing-40"}
+        $pv={["spacing-16", "spacing-20"]}
+        $ph={["spacing-20", "spacing-40"]}
         $bb={"border-solid-s"}
         $borderColor={"border-neutral-lighter"}
         $alignItems={"center"}
@@ -43,14 +46,16 @@ const TopNav = () => {
       >
         <OakLink href={resolveOakHref({ page: "home" })}>
           <OakImage
-            src={getCloudinaryImageUrl("v1765468420/OakLogoWithText.svg")}
+            src={getCloudinaryImageUrl(
+              isMobile
+                ? "v1711468346/logo-mark.svg"
+                : "v1765468420/OakLogoWithText.svg",
+            )}
             alt=""
             $height={"spacing-40"}
-            $width={"spacing-80"}
+            $width={["spacing-32", "spacing-80"]}
             $pa={"spacing-0"}
-            $display={["none", "block", "block"]}
           />
-          {/* TODO: mobile logo */}
         </OakLink>
         {isTeachersActive ? <TeachersSubNav /> : <PupilsSubNav />}
       </OakFlex>
