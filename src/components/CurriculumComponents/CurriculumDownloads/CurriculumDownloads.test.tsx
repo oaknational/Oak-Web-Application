@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useRouter } from "next/router";
 import userEvent from "@testing-library/user-event";
 import { act } from "@testing-library/react";
+import { usePathname } from "next/navigation";
 
 import CurriculumDownloads, {
   CurriculumDownloadsRef,
@@ -10,6 +11,10 @@ import CurriculumDownloads, {
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
