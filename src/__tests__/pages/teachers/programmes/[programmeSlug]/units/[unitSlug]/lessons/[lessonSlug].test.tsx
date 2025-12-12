@@ -1,5 +1,6 @@
 import { act, screen } from "@testing-library/react";
 import { GetStaticPropsContext, PreviewData } from "next";
+import { usePathname } from "next/navigation";
 
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
@@ -20,6 +21,10 @@ import curriculumApi2023, {
   CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 const props = {
   curriculumData: lessonOverviewFixture({

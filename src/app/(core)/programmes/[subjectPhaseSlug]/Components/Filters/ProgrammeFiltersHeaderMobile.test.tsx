@@ -1,12 +1,17 @@
 import { ComponentProps } from "react";
 import { screen, waitFor } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
+import { usePathname } from "next/navigation";
 
 import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { YearData } from "@/utils/curriculum/types";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 const mockScrollTo = jest.fn();
 Object.defineProperty(globalThis, "scrollTo", {
@@ -62,6 +67,8 @@ const mockYearData: YearData = {
   },
 };
 
+const render = renderWithProviders();
+
 const defaultProps: ComponentProps<typeof ProgrammeFiltersHeaderMobile> = {
   onOpenModal: jest.fn(),
   onChangeFilters: jest.fn(),
@@ -98,7 +105,7 @@ describe("Mobile filters header", () => {
     mockScrollTo.mockClear();
   });
   test("displays year group buttons", async () => {
-    renderWithTheme(<ProgrammeFiltersHeaderMobile {...defaultProps} />);
+    render(<ProgrammeFiltersHeaderMobile {...defaultProps} />);
 
     const yearButtons = await screen.findAllByTestId(
       "year-group-filter-button",
@@ -107,7 +114,7 @@ describe("Mobile filters header", () => {
   });
 
   test("shows selected year as pressed", async () => {
-    renderWithTheme(
+    render(
       <ProgrammeFiltersHeaderMobile
         {...defaultProps}
         selectedYear="year-all-7"
@@ -125,7 +132,7 @@ describe("Mobile filters header", () => {
     expect(yearButtons[1]).toHaveTextContent("Year 8");
   });
   test("scrolls when year button is clicked", async () => {
-    renderWithTheme(<ProgrammeFiltersHeaderMobile {...defaultProps} />);
+    render(<ProgrammeFiltersHeaderMobile {...defaultProps} />);
 
     const yearButtons = await screen.findAllByTestId(
       "year-group-filter-button",

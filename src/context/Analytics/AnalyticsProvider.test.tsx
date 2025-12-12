@@ -3,10 +3,20 @@ import { PostHogProvider } from "posthog-js/react";
 import { useEffect } from "react";
 import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
-import AnalyticsProvider from "./AnalyticsProvider";
+import AnalyticsProvider, { getPathAndQuery } from "./AnalyticsProvider";
 import useAnalytics from "./useAnalytics";
 
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
+
+// mock window.location.search
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+delete (globalThis as any).location;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(globalThis as any).location = { search: "" };
+
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/"),
+}));
 
 const posthogIdentify = jest.fn();
 const posthogCapture = jest.fn();
@@ -130,5 +140,51 @@ describe("useAnalytics", () => {
       "No HubSpot cookie found, user likely has not interacted with HubSpot",
     );
     expect(posthogIdentify).toHaveBeenCalledWith("someone", {});
+  });
+});
+
+describe("getPathAndQuery", () => {
+  test("throws an error is run outside the browser", () => {
+    expect(() =>
+      getPathAndQuery({
+        pathName: "/test",
+
+        isBrowser: false,
+      }),
+    ).toThrow("getPathAndQuery run outside of the browser");
+  });
+
+  test("throws an error if pathName is null", () => {
+    expect(() =>
+      getPathAndQuery({
+        pathName: null,
+
+        isBrowser: true,
+      }),
+    ).toThrow("getPathAndQuery run outside of the browser");
+  });
+
+  test("returns pathname and searchParams with a question mark between them", () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (globalThis as any).location.search = "?foo=bar&baz=qux";
+
+    const result = getPathAndQuery({
+      pathName: "/test-path",
+      isBrowser: true,
+    });
+
+    expect(result).toBe("/test-path?foo=bar&baz=qux");
+  });
+
+  test("does not include params or a question mark when they aren't present", () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (globalThis as any).location.search = "";
+
+    const result = getPathAndQuery({
+      pathName: "/test-path",
+      isBrowser: true,
+    });
+
+    expect(result).toBe("/test-path");
   });
 });

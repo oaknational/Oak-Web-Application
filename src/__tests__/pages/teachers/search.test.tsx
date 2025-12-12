@@ -1,3 +1,5 @@
+import { usePathname } from "next/navigation";
+
 import SearchPage from "@/pages/teachers/search";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
@@ -13,6 +15,9 @@ const contentTypes = fixture.contentTypes;
 const examBoards = fixture.examBoards;
 const yearGroups = fixture.yearGroups;
 
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 jest.mock("posthog-js/react", () => ({
   ...jest.requireActual("posthog-js/react"),
   useFeatureFlagEnabled: () => false,

@@ -1,5 +1,6 @@
 import { fireEvent } from "@testing-library/react";
 import { ComponentProps } from "react";
+import { usePathname } from "next/navigation";
 
 import CurricVisualiserMobileHeader from ".";
 
@@ -11,6 +12,9 @@ const render = renderWithProvidersByName(["theme", "oakTheme"]);
 
 const curriculumThreadHighlighted = jest.fn();
 const unitSequenceRefined = jest.fn();
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 const mockScrollTo = jest.fn();
 Object.defineProperty(window, "scrollTo", {

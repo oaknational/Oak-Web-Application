@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
+import { usePathname } from "next/navigation";
 
 import ProgrammePageFiltersMobile, {
   ProgrammePageMobileFiltersProps,
@@ -7,7 +8,11 @@ import ProgrammePageFiltersMobile, {
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { YearData } from "@/utils/curriculum/types";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 const mockYearData: YearData = {
   "7": {
@@ -106,9 +111,11 @@ const mockClose = jest.fn();
 HTMLDialogElement.prototype.showModal = mockOpen;
 HTMLDialogElement.prototype.close = mockClose;
 
+const render = renderWithProviders();
+
 describe("ProgrammePageFiltersMobile", () => {
   it("opens modal on click", async () => {
-    renderWithTheme(<ProgrammePageFiltersMobile {...defaultProps} />);
+    render(<ProgrammePageFiltersMobile {...defaultProps} />);
 
     const modalLink = screen.getByTestId("mobile-highlight-thread");
     const user = userEvent.setup();
@@ -117,7 +124,7 @@ describe("ProgrammePageFiltersMobile", () => {
     expect(mockOpen).toHaveBeenCalled();
   });
   it("renders correct filters", () => {
-    renderWithTheme(<ProgrammePageFiltersMobile {...defaultProps} />);
+    render(<ProgrammePageFiltersMobile {...defaultProps} />);
 
     const categoryFilter1 = screen.getByTestId(
       "subject-category-radio-category-1",

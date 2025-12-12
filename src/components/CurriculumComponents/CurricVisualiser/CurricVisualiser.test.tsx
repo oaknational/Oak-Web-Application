@@ -1,6 +1,7 @@
 import { within, act } from "@testing-library/react";
 import { ComponentProps } from "react";
 import mockRouter from "next-router-mock";
+import { usePathname } from "next/navigation";
 
 import {
   noMissingUnitsFixture,
@@ -30,6 +31,9 @@ const render = renderWithProvidersByName(["theme", "oakTheme"]);
 const curriculumThreadHighlighted = jest.fn();
 const yearGroupSelected = jest.fn();
 const unitOverviewAccessed = jest.fn();
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 // Mock HTMLDialogElement methods that jsdom doesn't support
 HTMLDialogElement.prototype.showModal = jest.fn();

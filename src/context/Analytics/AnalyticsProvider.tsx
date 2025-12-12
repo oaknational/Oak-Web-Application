@@ -7,9 +7,9 @@ import {
   useRef,
   useState,
 } from "react";
-import router from "next/router";
 import { usePostHog } from "posthog-js/react";
 import { useOakConsent } from "@oaknational/oak-consent-client";
+import { usePathname } from "next/navigation";
 
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
@@ -99,11 +99,19 @@ export type AnalyticsProviderProps = {
 
 export const analyticsContext = createContext<AnalyticsContext | null>(null);
 
-const getPathAndQuery = () => {
-  if (!isBrowser) {
+export const getPathAndQuery = ({
+  pathName,
+
+  isBrowser,
+}: {
+  pathName: string | null;
+
+  isBrowser: boolean;
+}) => {
+  if (!isBrowser || !pathName) {
     throw new Error("getPathAndQuery run outside of the browser");
   }
-  return window.location.pathname + window.location.search;
+  return `${pathName}${globalThis.location.search}`;
 };
 
 const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
@@ -114,6 +122,8 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
 
   const { contactData } = useHubspotCookieContactLookup();
   const hubspot_contact_id = contactData?.id;
+
+  const pathName = usePathname();
 
   /**
    * Posthog
@@ -176,35 +186,25 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
    * Page view tracking
    */
   const page = useStableCallback(() => {
-    const path = getPathAndQuery();
+    const path = getPathAndQuery({ pathName, isBrowser });
 
     // Send a simple page event to hubspot
     hubspot.page({ path });
 
     // We send the posthog $pageview event via Avo
     const { analyticsUseCase, pageName } = getPageViewProps(path);
+
     track.pageview({
-      linkUrl: router.asPath,
+      linkUrl: path,
       pageName,
       analyticsUseCase,
       ...(hubspot_contact_id ? { hubspot_contact_id } : {}),
     });
   });
 
-  // hacky way to ensure page-tracking is called on initial page load:
-  const [initialRouteTracked, setInitialRouteTracked] = useState(false);
-
   useEffect(() => {
-    if (!initialRouteTracked) {
-      page();
-      setInitialRouteTracked(true);
-    }
-    router.events.on("routeChangeComplete", page);
-
-    return () => {
-      router.events.off("routeChangeComplete", page);
-    };
-  }, [page, posthog, hubspot, initialRouteTracked, setInitialRouteTracked]);
+    page();
+  }, [pathName, page]);
 
   /**
    * Identify

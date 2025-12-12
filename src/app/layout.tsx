@@ -5,6 +5,7 @@ import parse from "html-react-parser";
 
 import { PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
+import AnalyticsWrapper from "./components/AnalyticsWrapper";
 
 import {
   OakBox,
@@ -70,9 +71,11 @@ export default function RootLayout({
                     },
                   }}
                 >
-                  <OakBox $width="100vw" $height="100vh">
-                    {children}
-                  </OakBox>
+                  <AnalyticsWrapper>
+                    <OakBox $width="100vw" $height="100vh">
+                      {children}
+                    </OakBox>
+                  </AnalyticsWrapper>
                 </ClerkProvider>
               </CookieConsentProvider>
             </OakThemeProvider>

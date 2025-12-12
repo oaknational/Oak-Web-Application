@@ -21,6 +21,13 @@ jest.mock("../../hooks/useOakTheme", () => ({
   }),
 }));
 
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/"),
+  useSearchParams: jest.fn(() => ({
+    toString: () => "",
+  })),
+}));
+
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("<MyApp>", () => {

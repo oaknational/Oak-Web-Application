@@ -1,11 +1,13 @@
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 import { getPageViewProps } from "../browser-lib/analytics/getPageViewProps";
 
 const useAnalyticsPageProps = () => {
-  const router = useRouter();
+  const pathName = usePathname();
 
-  const pageViewProps = getPageViewProps(router.asPath);
+  if (!pathName) throw new Error("Router not ready");
+
+  const pageViewProps = getPageViewProps(pathName);
 
   return pageViewProps;
 };

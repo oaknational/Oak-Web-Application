@@ -1,4 +1,5 @@
 import { GetStaticPropsContext, PreviewData } from "next";
+import { usePathname } from "next/navigation";
 
 import TeacherPreviewLessonPage, {
   TeacherPreviewLessonPageProps,
@@ -9,6 +10,10 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 const render = renderWithProviders();
 
