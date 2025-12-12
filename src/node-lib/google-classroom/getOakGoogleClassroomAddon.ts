@@ -1,5 +1,5 @@
-import { OakGoogleClassroomAddOn } from "@oaknational/google-classroom-addon/server";
 import type { NextRequest } from "next/server";
+import { OakGoogleClassroomAddOn } from "@oaknational/google-classroom-addon/server";
 
 import { getPupilFirestore } from "@/node-lib/firestore";
 
