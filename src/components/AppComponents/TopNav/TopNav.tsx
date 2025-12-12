@@ -9,7 +9,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
 const TopNav = () => {
-  const isTeachersActive = true; // TODO: use hook
+  const isTeachersActive = false; // TODO: use hook
   const isMobile = useMediaQuery("mobile");
 
   return (
@@ -26,13 +26,13 @@ const TopNav = () => {
           isSelected={isTeachersActive}
           href={resolveOakHref({ page: "teachers-home-page" })}
         >
-          Teachers
+          {!isTeachersActive && "Go to "}Teachers
         </TabLink>
         <TabLink
           isSelected={!isTeachersActive}
           href={resolveOakHref({ page: "pupil-year-index" })}
         >
-          Go to Pupils
+          {isTeachersActive && "Go to "}Pupils
         </TabLink>
       </OakFlex>
       <OakFlex
