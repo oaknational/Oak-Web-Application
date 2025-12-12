@@ -23,7 +23,7 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
       class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
     >
       <div
-        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+        class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
       >
         <div
           class="sc-fqkvVR iPpXCP grey-shadow"
@@ -32,22 +32,26 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
           class="sc-fqkvVR iPpXCP yellow-shadow"
         />
         <a
-          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
           href="https://example.com/research"
         >
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
           >
-            <span
-              class="sc-dAlyuH hHWgLm"
+            <div
+              class="sc-fqkvVR hMBLoN"
             >
-              Join the research panel
-            </span>
+              <span
+                class="sc-dAlyuH eeepiN"
+              >
+                Join the research panel
+              </span>
+            </div>
           </div>
         </a>
       </div>
       <div
-        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+        class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
       >
         <div
           class="sc-fqkvVR iPpXCP grey-shadow"
@@ -56,17 +60,21 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
           class="sc-fqkvVR iPpXCP yellow-shadow"
         />
         <a
-          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
           href="https://example.com/explore"
         >
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
           >
-            <span
-              class="sc-dAlyuH hHWgLm"
+            <div
+              class="sc-fqkvVR hMBLoN"
             >
-              Explore our research
-            </span>
+              <span
+                class="sc-dAlyuH eeepiN"
+              >
+                Explore our research
+              </span>
+            </div>
           </div>
         </a>
       </div>
@@ -98,7 +106,7 @@ exports[`GetInvolvedLinkCard renders with single button 1`] = `
       class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
     >
       <div
-        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+        class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
       >
         <div
           class="sc-fqkvVR iPpXCP grey-shadow"
@@ -107,17 +115,21 @@ exports[`GetInvolvedLinkCard renders with single button 1`] = `
           class="sc-fqkvVR iPpXCP yellow-shadow"
         />
         <a
-          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
           href="#"
         >
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
           >
-            <span
-              class="sc-dAlyuH hHWgLm"
+            <div
+              class="sc-fqkvVR hMBLoN"
             >
-              Get in touch
-            </span>
+              <span
+                class="sc-dAlyuH eeepiN"
+              >
+                Get in touch
+              </span>
+            </div>
           </div>
         </a>
       </div>
