@@ -5,7 +5,7 @@ export default function CoreLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // TODO: [integrated-journey] Top Nav & Footer
+  // TODO: [integrated-journey]  Footer
   return (
     <>
       <TopNav />
