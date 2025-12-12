@@ -1,4 +1,6 @@
 import TabLink from "./TabLink/TabLink";
+import TeachersSubNav from "./SubNav/TeachersSubNav";
+import PupilsSubNav from "./SubNav/PupilsSubNav";
 
 import { OakFlex, OakImage, OakLink } from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
@@ -36,6 +38,8 @@ const TopNav = () => {
         $ph={"spacing-40"}
         $bb={"border-solid-s"}
         $borderColor={"border-neutral-lighter"}
+        $alignItems={"center"}
+        $gap={"spacing-24"}
       >
         <OakLink href={resolveOakHref({ page: "home" })}>
           <OakImage
@@ -48,6 +52,7 @@ const TopNav = () => {
           />
           {/* TODO: mobile logo */}
         </OakLink>
+        {isTeachersActive ? <TeachersSubNav /> : <PupilsSubNav />}
       </OakFlex>
     </>
   );
