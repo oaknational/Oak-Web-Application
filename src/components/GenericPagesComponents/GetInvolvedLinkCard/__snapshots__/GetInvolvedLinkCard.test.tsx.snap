@@ -23,7 +23,7 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
       class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
     >
       <div
-        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+        class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
       >
         <div
           class="sc-fqkvVR iPpXCP grey-shadow"
@@ -32,7 +32,7 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
           class="sc-fqkvVR iPpXCP yellow-shadow"
         />
         <a
-          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
           href="https://example.com/research"
         >
           <div
@@ -47,7 +47,7 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
         </a>
       </div>
       <div
-        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+        class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
       >
         <div
           class="sc-fqkvVR iPpXCP grey-shadow"
@@ -56,7 +56,7 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
           class="sc-fqkvVR iPpXCP yellow-shadow"
         />
         <a
-          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
           href="https://example.com/explore"
         >
           <div
@@ -98,7 +98,7 @@ exports[`GetInvolvedLinkCard renders with single button 1`] = `
       class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
     >
       <div
-        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+        class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
       >
         <div
           class="sc-fqkvVR iPpXCP grey-shadow"
@@ -107,7 +107,7 @@ exports[`GetInvolvedLinkCard renders with single button 1`] = `
           class="sc-fqkvVR iPpXCP yellow-shadow"
         />
         <a
-          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
           href="#"
         >
           <div
