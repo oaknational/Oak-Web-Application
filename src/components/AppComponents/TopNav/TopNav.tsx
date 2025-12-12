@@ -4,8 +4,7 @@ import {
   OakLink,
   OakPrimaryButton,
   OakSecondaryButton,
-} from "@oaknational/oak-components";
-
+} from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -50,14 +49,23 @@ const TopNav = () => {
           Go to Pupils
         </PupilsTabLink>
       </OakFlex>
-      <OakFlex $background={"bg-primary"} $pv={"spacing-20"} $ph={"spacing-40"}>
+      <OakFlex
+        $background={"bg-primary"}
+        $pv={"spacing-20"}
+        $ph={"spacing-40"}
+        $bb={"border-solid-s"}
+        $borderColor={"border-neutral-lighter"}
+      >
         <OakLink href={resolveOakHref({ page: "home" })}>
           <OakImage
             src={getCloudinaryImageUrl("v1765468420/OakLogoWithText.svg")}
             alt=""
-            $height={"spacing-32"}
+            $height={"spacing-40"}
             $width={"spacing-80"}
+            $pa={"spacing-0"}
+            $display={["none", "block", "block"]}
           />
+          {/* TODO: mobile logo */}
         </OakLink>
       </OakFlex>
     </>
