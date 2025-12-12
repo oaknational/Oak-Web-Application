@@ -66,8 +66,12 @@ const posthog: Partial<CspConfig> = {
 const cloudinary: Partial<CspConfig> = {
   imgSrc: [
     "https://res.cloudinary.com/",
+    "https://res.cloudinary.com",
     "https://oaknationalacademy-res.cloudinary.com/",
+    "https://oaknationalacademy-res.cloudinary.com",
     "https://*.cloudinary.com/",
+    "https://*.cloudinary.com",
+    " https://res.cloudinary.com/oak-web-application/",
   ],
   mediaSrc: [
     "https://res.cloudinary.com/",
@@ -79,7 +83,11 @@ const cloudinary: Partial<CspConfig> = {
 
 const hubspot: Partial<CspConfig> = {
   connectSrc: ["*.hubspot.com", "*.hsforms.com"],
-  imgSrc: ["https://*.hubspot.com/", "https://*.hsforms.com/"],
+  imgSrc: [
+    "https://*.hubspot.com/",
+    "https://*.hsforms.com/",
+    "https://track.hubspot.com/",
+  ],
 };
 
 const cloudflare: Partial<CspConfig> = {
