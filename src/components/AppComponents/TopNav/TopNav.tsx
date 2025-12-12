@@ -1,23 +1,11 @@
-import {
-  OakFlex,
-  OakImage,
-  OakLink,
-  OakPrimaryButton,
-  OakSecondaryButton,
-} from "@/styles/oakThemeApp";
+import TabLink from "./TabLink/TabLink";
+
+import { OakFlex, OakImage, OakLink } from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 
 const TopNav = () => {
   const isTeachersActive = true; // TODO: use hook
-
-  const TeachersTabLink = isTeachersActive
-    ? OakSecondaryButton
-    : OakPrimaryButton;
-
-  const PupilsTabLink = isTeachersActive
-    ? OakPrimaryButton
-    : OakSecondaryButton;
 
   return (
     <>
@@ -27,27 +15,20 @@ const TopNav = () => {
         $pb={"spacing-0"}
         $pt={"spacing-16"}
         $justifyContent={["center", "left"]}
+        $gap={"spacing-16"}
       >
-        <TeachersTabLink
-          element="a"
-          $bblr={"border-radius-square"}
-          $bbrr={"border-radius-square"}
-          $bb={"border-solid-none"}
-          width={["100%", "max-content"]}
+        <TabLink
+          isSelected={isTeachersActive}
           href={resolveOakHref({ page: "teachers-home-page" })}
         >
           Teachers
-        </TeachersTabLink>
-        <PupilsTabLink
-          element="a"
-          $bblr={"border-radius-square"}
-          $bbrr={"border-radius-square"}
-          $bb={"border-solid-none"}
-          width={["100%", "max-content"]}
+        </TabLink>
+        <TabLink
+          isSelected={!isTeachersActive}
           href={resolveOakHref({ page: "pupil-year-index" })}
         >
           Go to Pupils
-        </PupilsTabLink>
+        </TabLink>
       </OakFlex>
       <OakFlex
         $background={"bg-primary"}
