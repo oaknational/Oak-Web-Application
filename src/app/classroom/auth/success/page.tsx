@@ -6,9 +6,13 @@ import { useSearchParams } from "next/navigation";
 function AuthSuccessPage() {
   const searchParams = useSearchParams();
   const session = searchParams?.get("s") ?? null;
-  if (!session) return <>An error occurred.</>;
+  const accessToken = searchParams?.get("at") ?? null;
+  if (!session || !accessToken) return <>An error occurred.</>;
   return (
-    <GoogleClassroomAuthSuccessView session={decodeURIComponent(session)} />
+    <GoogleClassroomAuthSuccessView
+      session={decodeURIComponent(session)}
+      accessToken={decodeURIComponent(accessToken)}
+    />
   );
 }
 
