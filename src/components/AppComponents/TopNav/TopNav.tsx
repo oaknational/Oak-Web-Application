@@ -7,9 +7,10 @@ import { OakFlex, OakIcon, OakImage, OakLink } from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import useSelectedArea from "@/hooks/useSelectedArea";
 
 const TopNav = () => {
-  const isTeachersActive = false; // TODO: use hook
+  const activeArea = useSelectedArea();
   const isMobile = useMediaQuery("mobile");
 
   return (
@@ -23,13 +24,13 @@ const TopNav = () => {
         $gap={"spacing-16"}
       >
         <TabLink
-          isSelected={isTeachersActive}
+          isSelected={activeArea === "TEACHERS"}
           href={resolveOakHref({ page: "teachers-home-page" })}
         >
           Teachers
         </TabLink>
         <TabLink
-          isSelected={!isTeachersActive}
+          isSelected={activeArea === "PUPILS"}
           href={resolveOakHref({ page: "pupil-year-index" })}
           iconOverride={
             <OakIcon
@@ -65,7 +66,8 @@ const TopNav = () => {
             $pa={"spacing-0"}
           />
         </OakLink>
-        {isTeachersActive ? <TeachersSubNav /> : <PupilsSubNav />}
+        {activeArea === "TEACHERS" && <TeachersSubNav />}
+        {activeArea === "PUPILS" && <PupilsSubNav />}
       </OakFlex>
     </>
   );
