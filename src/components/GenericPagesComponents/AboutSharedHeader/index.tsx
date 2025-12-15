@@ -26,7 +26,7 @@ const CustomHeaderImageOakGridArea = styled(OakGridArea)`
   }
 `;
 
-function InnerMaxWidth({ children }: { children: ReactNode }) {
+function InnerMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
   const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
   return (
     <OakBox
@@ -67,10 +67,10 @@ export function BackgroundHeaderLoop() {
 export function AboutSharedHeaderImage({
   imageAlt,
   imageUrl,
-}: {
+}: Readonly<{
   imageAlt: string;
   imageUrl: string;
-}) {
+}>) {
   return (
     <OakBox $width={"spacing-360"} $height={"spacing-360"}>
       <OakImage
@@ -86,7 +86,7 @@ export function AboutSharedHeaderImage({
 export type AboutSharedHeaderProps = {
   title: string;
   content: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 export function AboutSharedHeader({
   title,
