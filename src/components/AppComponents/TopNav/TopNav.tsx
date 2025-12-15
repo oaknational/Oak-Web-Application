@@ -3,7 +3,7 @@ import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
 
-import { OakFlex, OakImage, OakLink } from "@/styles/oakThemeApp";
+import { OakFlex, OakIcon, OakImage, OakLink } from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
@@ -31,6 +31,14 @@ const TopNav = () => {
         <TabLink
           isSelected={!isTeachersActive}
           href={resolveOakHref({ page: "pupil-year-index" })}
+          iconOverride={
+            <OakIcon
+              iconName="pencil"
+              $width={"spacing-24"}
+              $height={"spacing-24"}
+            />
+          }
+          isTrailingIcon
         >
           {isTeachersActive && "Go to "}Pupils
         </TabLink>

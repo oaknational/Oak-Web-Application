@@ -1,16 +1,21 @@
 import { ReactNode } from "react";
 
-import { OakSecondaryButton, OakPrimaryButton } from "@/styles/oakThemeApp";
+import {
+  OakSecondaryButton,
+  OakPrimaryButton,
+  OakPrimaryButtonProps,
+} from "@/styles/oakThemeApp";
 
 const TabLink = ({
   isSelected,
   children,
   href,
+  ...buttonProps
 }: {
   isSelected: boolean;
   children: ReactNode;
   href: string;
-}) => {
+} & OakPrimaryButtonProps) => {
   const Component = isSelected ? OakSecondaryButton : OakPrimaryButton;
 
   return (
@@ -22,6 +27,8 @@ const TabLink = ({
       width={["100%", "max-content"]}
       hoverShadow={isSelected ? null : "drop-shadow-lemon"}
       href={href}
+      font={["body-3-bold", "heading-7", "heading-7"]}
+      {...buttonProps}
     >
       {children}
     </Component>
