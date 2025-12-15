@@ -31,6 +31,7 @@ const TabLink = ({
       ph={["spacing-0", "spacing-16"]}
       {...buttonProps}
     >
+      {!isSelected && "Go to "}
       {children}
     </Component>
   );

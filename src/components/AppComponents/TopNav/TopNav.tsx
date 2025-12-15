@@ -14,6 +14,7 @@ const TopNav = () => {
 
   return (
     <>
+      {" "}
       <OakFlex
         $background={"bg-btn-primary"}
         $ph={"spacing-40"}
@@ -26,7 +27,7 @@ const TopNav = () => {
           isSelected={isTeachersActive}
           href={resolveOakHref({ page: "teachers-home-page" })}
         >
-          {!isTeachersActive && "Go to "}Teachers
+          Teachers
         </TabLink>
         <TabLink
           isSelected={!isTeachersActive}
@@ -40,7 +41,7 @@ const TopNav = () => {
           }
           isTrailingIcon
         >
-          {isTeachersActive && "Go to "}Pupils
+          Pupils
         </TabLink>
       </OakFlex>
       <OakFlex
