@@ -14,7 +14,6 @@ const TopNav = () => {
 
   return (
     <>
-      {" "}
       <OakFlex
         $background={"bg-btn-primary"}
         $ph={"spacing-40"}

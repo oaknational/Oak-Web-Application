@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={lexend.className}>
       {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
       <GlobalStyle fontFamily={lexend.style.fontFamily} />
       <body style={{ margin: "0px" }}>
