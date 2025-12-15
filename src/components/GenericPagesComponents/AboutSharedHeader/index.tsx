@@ -7,6 +7,7 @@ import {
   OakP,
   OakSpan,
   OakImage,
+  OakIcon,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { ReactNode, useMemo } from "react";
@@ -27,7 +28,6 @@ const CustomHeaderImageOakGridArea = styled(OakGridArea)`
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {
   const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
-
   return (
     <OakBox
       style={styleAttrs}
@@ -41,39 +41,57 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
 
 export function BackgroundHeaderLoop() {
   return (
-    <OakBox
-      style={{
-        position: "absolute",
-        top: -178,
-        right: "calc(-40rem + 50vw - 340px)",
-        width: 1000,
-        height: 700,
-        transform: "rotate(-8deg)",
-      }}
-    >
+    <OakIcon
+      iconName="looping-line-5"
+      $colorFilter={"bg-decorative3-main"}
+      $zIndex={"behind"}
+      $objectFit={"fill"}
+      $display={["none", "block"]}
+      $height={"100%"}
+      $minWidth={[0, "spacing-480", "spacing-640"]}
+      $transform={[
+        "none",
+        "translate(140%, -40%) scale(1.5) rotate(-11deg)",
+        "translate(140%, -55%) scale(1.25) rotate(-8deg)",
+      ]}
+      $position={"absolute"}
+      $left={"spacing-0"}
+      $right={"spacing-0"}
+      $top={"spacing-0"}
+      $bottom={"spacing-0"}
+    />
+  );
+}
+
+export function AboutSharedHeaderImage({
+  imageAlt,
+  imageUrl,
+}: {
+  imageAlt: string;
+  imageUrl: string;
+}) {
+  return (
+    <OakBox $width={"spacing-360"} $height={"spacing-360"}>
       <OakImage
-        $minWidth="spacing-120"
-        $height="spacing-640"
-        $colorFilter={"bg-decorative3-main"}
-        alt="Background looping line"
-        src="https://res.cloudinary.com/oak-web-application/image/upload/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
+        alt={imageAlt}
+        src={imageUrl}
+        $objectFit={"contain"}
+        $height={"100%"}
       />
     </OakBox>
   );
 }
 
-export type WhoAreWeHeaderProps = {
+export type AboutSharedHeaderProps = {
   title: string;
   content: string;
-  imageUrl?: string;
-  imageAlt?: string;
+  children?: React.ReactNode;
 };
-export function WhoAreWeHeader({
+export function AboutSharedHeader({
   title,
   content,
-  imageUrl,
-  imageAlt,
-}: Readonly<WhoAreWeHeaderProps>) {
+  children,
+}: Readonly<AboutSharedHeaderProps>) {
   return (
     <InnerMaxWidth>
       <OakGrid $cg="spacing-16" $rg="spacing-16" $pv={"spacing-72"}>
@@ -100,18 +118,7 @@ export function WhoAreWeHeader({
           </OakFlex>
         </CustomHeaderTextOakGridArea>
         <CustomHeaderImageOakGridArea $colSpan={4} $colStart={9}>
-          {imageUrl && imageAlt ? (
-            <OakBox $width={"spacing-360"} $height={"spacing-360"}>
-              <OakImage
-                alt={imageAlt}
-                src={imageUrl}
-                $objectFit={"contain"}
-                $height={"100%"}
-              />
-            </OakBox>
-          ) : (
-            <BackgroundHeaderLoop />
-          )}
+          {children}
         </CustomHeaderImageOakGridArea>
       </OakGrid>
     </InnerMaxWidth>

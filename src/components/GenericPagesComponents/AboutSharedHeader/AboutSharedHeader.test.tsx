@@ -1,17 +1,17 @@
-import { WhoAreWeHeader } from "./";
+import { AboutSharedHeader } from ".";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
-describe("WhoAreWeHeader", () => {
+describe("AboutSharedHeader", () => {
   it("renders correctly", () => {
     const { baseElement, getByRole, getByAltText } = render(
-      <WhoAreWeHeader
+      <AboutSharedHeader
         title="TESTING_TITLE"
         content="TESTING_CONTENT"
-        imageUrl="http://example.com/image.svg"
-        imageAlt="Oak logo"
+        // imageUrl="http://example.com/image.svg"
+        // imageAlt="Oak logo"
       />,
     );
     expect(baseElement).toMatchSnapshot();
@@ -24,7 +24,7 @@ describe("WhoAreWeHeader", () => {
 
   it("renders correctly with no image", () => {
     const { baseElement, getByRole, getByAltText } = render(
-      <WhoAreWeHeader title="TESTING_TITLE" content="TESTING_CONTENT" />,
+      <AboutSharedHeader title="TESTING_TITLE" content="TESTING_CONTENT" />,
     );
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading")).toHaveTextContent("TESTING_TITLE");

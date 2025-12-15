@@ -3,7 +3,10 @@ import { OakBox } from "@oaknational/oak-components";
 
 import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { WhoAreWeHeader } from "@/components/GenericPagesComponents/WhoAreWeHeader";
+import {
+  AboutSharedHeader,
+  BackgroundHeaderLoop,
+} from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 import { GetInvolvedCollaborateWithUs } from "@/components/GenericPagesComponents/GetInvolvedCollaborateWithUs";
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
@@ -112,11 +115,13 @@ const fixtureData: GetInvolvedPage["pageData"] = {
 export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(null)} $background={"white"}>
-      <OakBox $overflow={"hidden"}>
-        <WhoAreWeHeader
+      <OakBox $overflow={"hidden"} $zIndex={"neutral"}>
+        <AboutSharedHeader
           title={pageData.header.title}
           content={pageData.header.text}
-        />
+        >
+          <BackgroundHeaderLoop />
+        </AboutSharedHeader>
         <GetInvolvedCollaborateWithUs
           heading="Collaborate with us"
           imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1763393163/icons/chatting-illustration_l52zaf.svg"
