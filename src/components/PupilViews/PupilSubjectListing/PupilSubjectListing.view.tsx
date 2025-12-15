@@ -6,7 +6,7 @@ import {
   OakGridArea,
   OakHeading,
   OakPupilJourneyLayout,
-  OakPupilJourneySubjectButton,
+  OakSubjectIconButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 import { yearDescriptions } from "@oaknational/oak-curriculum-schema";
@@ -96,7 +96,8 @@ export const PupilViewsSubjectListing = ({
     return (
       <OakGridArea $colSpan={1} key={subjectSlug} role="listitem">
         <OakFlex $height={"100%"}>
-          <OakPupilJourneySubjectButton
+          <OakSubjectIconButton
+            variant="vertical"
             key={subjectSlug}
             element="a"
             subjectIconName={
@@ -123,7 +124,7 @@ export const PupilViewsSubjectListing = ({
             }}
           >
             {subject.programmeFields.subject}
-          </OakPupilJourneySubjectButton>
+          </OakSubjectIconButton>
         </OakFlex>
       </OakGridArea>
     );
