@@ -1,3 +1,10 @@
+## [1.933.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.933.0...v1.933.1) (2025-12-15)
+
+
+### Bug Fixes
+
+* security update bumping next to 15.5.9 ([a31c6c9](https://github.com/oaknational/Oak-Web-Application/commit/a31c6c9d2a487de4baa2586910a27dea300d99a4))
+
 # [1.933.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.932.0...v1.933.0) (2025-12-11)
 
 
