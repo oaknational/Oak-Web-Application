@@ -1,3 +1,20 @@
+# [1.934.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.933.1...v1.934.0) (2025-12-15)
+
+
+### Bug Fixes
+
+* don't bump oak-components ([9a67c36](https://github.com/oaknational/Oak-Web-Application/commit/9a67c366ab827cbd4551efc422248557e3c4d1e6))
+* missing export (bad commit) ([527e540](https://github.com/oaknational/Oak-Web-Application/commit/527e54081c08ab7e5b70aefa65fa9ace42b3755d))
+* updated default state wording ([8bd4fe9](https://github.com/oaknational/Oak-Web-Application/commit/8bd4fe92c4f970f5965c50e945521bf1b81c6988))
+* updated to oak-components to 1.163.2 ([510d231](https://github.com/oaknational/Oak-Web-Application/commit/510d2318d279d1d73f9206b10f7d21fd2422fefa))
+
+
+### Features
+
+* added howCanWeHelp/role to <CampaignNewsletterSignup/> ([3bec24b](https://github.com/oaknational/Oak-Web-Application/commit/3bec24b7d58cc74bc97daebef0a22afb172f968b))
+* finished campaign form updates ([244c276](https://github.com/oaknational/Oak-Web-Application/commit/244c27622b7013e600a70fd10ef76b883e3d4965))
+* removed howWeCanHelp as no longer required and hooked up new <OakSelect/> ([97f0699](https://github.com/oaknational/Oak-Web-Application/commit/97f0699ee6182c538e349b32fe61615a1372ed94))
+
 ## [1.933.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.933.0...v1.933.1) (2025-12-15)
 
 
