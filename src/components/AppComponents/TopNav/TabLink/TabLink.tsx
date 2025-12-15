@@ -28,6 +28,7 @@ const TabLink = ({
       hoverShadow={isSelected ? null : "drop-shadow-lemon"}
       href={href}
       font={["body-3-bold", "heading-7", "heading-7"]}
+      ph={["spacing-0", "spacing-16"]}
       {...buttonProps}
     >
       {children}
