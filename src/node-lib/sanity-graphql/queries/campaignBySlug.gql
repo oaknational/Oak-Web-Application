@@ -30,6 +30,7 @@ query campaignBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
         buttonCta
         formId
         freeSchoolInput
+        enableRole
       }
       ... on CampaignVideoBanner {
         type: __typename

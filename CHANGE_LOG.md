@@ -1,3 +1,129 @@
+# [1.935.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.934.0...v1.935.0) (2025-12-15)
+
+
+### Bug Fixes
+
+* add theme provider to oak toast ([c84b061](https://github.com/oaknational/Oak-Web-Application/commit/c84b061ca9969aa5167d8f3fc95b77eee0a76850))
+
+
+### Features
+
+* update pupil subject icon button ([c388929](https://github.com/oaknational/Oak-Web-Application/commit/c388929003ea248409934b9340a80173548c0d24))
+
+# [1.934.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.933.1...v1.934.0) (2025-12-15)
+
+
+### Bug Fixes
+
+* don't bump oak-components ([9a67c36](https://github.com/oaknational/Oak-Web-Application/commit/9a67c366ab827cbd4551efc422248557e3c4d1e6))
+* missing export (bad commit) ([527e540](https://github.com/oaknational/Oak-Web-Application/commit/527e54081c08ab7e5b70aefa65fa9ace42b3755d))
+* updated default state wording ([8bd4fe9](https://github.com/oaknational/Oak-Web-Application/commit/8bd4fe92c4f970f5965c50e945521bf1b81c6988))
+* updated to oak-components to 1.163.2 ([510d231](https://github.com/oaknational/Oak-Web-Application/commit/510d2318d279d1d73f9206b10f7d21fd2422fefa))
+
+
+### Features
+
+* added howCanWeHelp/role to <CampaignNewsletterSignup/> ([3bec24b](https://github.com/oaknational/Oak-Web-Application/commit/3bec24b7d58cc74bc97daebef0a22afb172f968b))
+* finished campaign form updates ([244c276](https://github.com/oaknational/Oak-Web-Application/commit/244c27622b7013e600a70fd10ef76b883e3d4965))
+* removed howWeCanHelp as no longer required and hooked up new <OakSelect/> ([97f0699](https://github.com/oaknational/Oak-Web-Application/commit/97f0699ee6182c538e349b32fe61615a1372ed94))
+
+## [1.933.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.933.0...v1.933.1) (2025-12-15)
+
+
+### Bug Fixes
+
+* security update bumping next to 15.5.9 ([a31c6c9](https://github.com/oaknational/Oak-Web-Application/commit/a31c6c9d2a487de4baa2586910a27dea300d99a4))
+
+# [1.933.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.932.0...v1.933.0) (2025-12-11)
+
+
+### Features
+
+* add download button to sidebar behind ff ([0342d5a](https://github.com/oaknational/Oak-Web-Application/commit/0342d5a16f15d8b181081d1125994d56c01c94a4))
+
+# [1.932.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.931.1...v1.932.0) (2025-12-10)
+
+
+### Bug Fixes
+
+* re-add cloudinary and fix test files ([b9e07c1](https://github.com/oaknational/Oak-Web-Application/commit/b9e07c13850fd04c4483f9adff518db74211c1ba))
+* reappend forward slashes ([dc7809e](https://github.com/oaknational/Oak-Web-Application/commit/dc7809eed4091c32ad0da40eb4e710cff102a5a8))
+* remove env var names from test files ([582ecb5](https://github.com/oaknational/Oak-Web-Application/commit/582ecb545dbf30dd17f07c1f2e99fac2ecfdf5dc))
+
+
+### Features
+
+* swaps bugsnag to report to posthog dashboard ([c83dd71](https://github.com/oaknational/Oak-Web-Application/commit/c83dd7152df70f98cff8808911f1ee4466ceec9b))
+
+## [1.931.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.931.0...v1.931.1) (2025-12-10)
+
+
+### Reverts
+
+* merge request ([e0e7127](https://github.com/oaknational/Oak-Web-Application/commit/e0e71270509019f3f90613022b399cdc5122b9e2))
+
+# [1.931.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.930.0...v1.931.0) (2025-12-10)
+
+
+### Bug Fixes
+
+* pa11y issue ([6c6d39a](https://github.com/oaknational/Oak-Web-Application/commit/6c6d39afd54337b2eebe7a3026373e20892cc9e8))
+* show assets on lesson listing page when downloads validation fails ([a251360](https://github.com/oaknational/Oak-Web-Application/commit/a251360b245ad04c392eb59107e13dc0a4989a0f))
+* show assets on lesson listing page when downloads validation fails ([f307c64](https://github.com/oaknational/Oak-Web-Application/commit/f307c6499fdb6d6554ffde79cea2db92c6773a05))
+* update to non vulnerable nextjs version ([b257518](https://github.com/oaknational/Oak-Web-Application/commit/b257518541641b1511a7c7ad4a97b226459e2337))
+
+
+### Features
+
+* add download availability checks and filter downloads based on copyright status ([d2440f1](https://github.com/oaknational/Oak-Web-Application/commit/d2440f12ed9029e3e2f82b59407b4463908a1057))
+* amend error message with better context ([f5c57c3](https://github.com/oaknational/Oak-Web-Application/commit/f5c57c31d178034cc55649c89304b2d0eb015d80))
+* check assets for lesson listing page, consolidate checking logic ([f201baf](https://github.com/oaknational/Oak-Web-Application/commit/f201baf9ca07dfebda1117f5832f393dfcd5fe92))
+* check assets for lesson listing page, consolidate checking logic ([d22345e](https://github.com/oaknational/Oak-Web-Application/commit/d22345e5be7d2acf0d5c129a24b785b65587120e))
+* check file existence on downloads page ([c05c5a6](https://github.com/oaknational/Oak-Web-Application/commit/c05c5a63f0e760f9eeead3c1e553b866e6d41320))
+* hide assets from lesson overview that are not in a gcs bucket ([b56cf04](https://github.com/oaknational/Oak-Web-Application/commit/b56cf04756d9c04f858b316f3aeea19541e96f93))
+* improve context info in error reporting ([28a6d5a](https://github.com/oaknational/Oak-Web-Application/commit/28a6d5a344aadfecbbcf52372864cdcef7eb30ff))
+* improve getIsResourceDownloadable function to handle new bucket-checking logic ([5f73fb4](https://github.com/oaknational/Oak-Web-Application/commit/5f73fb4855895d0a0ec65e33f3addc89bba831a9))
+* still show links if server-side check failed ([8028057](https://github.com/oaknational/Oak-Web-Application/commit/80280578287dbb9c0342c128f0e6b39587045b31))
+
+# [1.930.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.929.0...v1.930.0) (2025-12-10)
+
+
+### Features
+
+* update primitive colour values ([16069ff](https://github.com/oaknational/Oak-Web-Application/commit/16069ffe633871c3be0abd95b7b8cc0053b91f9c))
+
+# [1.929.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.928.0...v1.929.0) (2025-12-10)
+
+
+### Bug Fixes
+
+* use number for revalidate value ([0568db5](https://github.com/oaknational/Oak-Web-Application/commit/0568db52da82bb18b5f47c0fce2879712d66f2b9))
+
+
+### Features
+
+* add data fetching logic to programme page ([4d81d8d](https://github.com/oaknational/Oak-Web-Application/commit/4d81d8de91cec35e42ff36acfeb1b39d576255b3))
+* add feature flagged new programme page ([f494463](https://github.com/oaknational/Oak-Web-Application/commit/f4944633d8c1a281e950e437f88eb5fd7b187673))
+* add isr and error handling ([1089633](https://github.com/oaknational/Oak-Web-Application/commit/1089633e384b3d9521fb404c45152b1da82094ac))
+* create desktop programme page with minimum functionality ([61acfbf](https://github.com/oaknational/Oak-Web-Application/commit/61acfbfd2dfb18896a5090d28bb348e351d31d3e))
+* link to unit page from programmes unit list cards ([1198114](https://github.com/oaknational/Oak-Web-Application/commit/1198114a17f7a7b73b88ac4699f7539835cbe386))
+* make programmes mobile page functional ([751af2e](https://github.com/oaknational/Oak-Web-Application/commit/751af2e9abd9fb78393755ae539dfd8d9b343f67))
+
+# [1.928.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.927.0...v1.928.0) (2025-12-09)
+
+
+### Bug Fixes
+
+* resolve merge conflicts ([e80223f](https://github.com/oaknational/Oak-Web-Application/commit/e80223fbe6e29d5b77728e120774c761359205e1))
+* update GetInvolvedLinkCard test and add correct attributes for external links ([27d6f83](https://github.com/oaknational/Oak-Web-Application/commit/27d6f8357474c34cf2d08662730ad2d73af0527a))
+* update grid layout values ([29c8dfd](https://github.com/oaknational/Oak-Web-Application/commit/29c8dfd0b9dae174b828483fa91d3ea790a82e40))
+
+
+### Features
+
+* add CollaborateWithUs component ([74a6acf](https://github.com/oaknational/Oak-Web-Application/commit/74a6acfdb1ed4d58213d1f0ae65baf5856c1b133))
+* update GetInvolvedLinkCard to use an internal link ([8de4ff0](https://github.com/oaknational/Oak-Web-Application/commit/8de4ff07d4df2a1b7b354cfe4031a4c0cebdec91))
+
 # [1.927.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.926.2...v1.927.0) (2025-12-09)
 
 

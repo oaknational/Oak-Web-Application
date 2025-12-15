@@ -1,9 +1,9 @@
 import {
+  oakDefaultTheme,
   OakFlex,
+  OakThemeProvider,
   OakToast,
   OakToastProps,
-  OakThemeProvider,
-  oakDefaultTheme,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import { createContext, FC, useEffect, useState } from "react";
@@ -92,8 +92,8 @@ export const OakToastProvider: FC<{
             />
           )}
         </StyledOakToastContainer>
-        {children}
       </OakThemeProvider>
+      {children}
     </oakToastContext.Provider>
   );
 };
