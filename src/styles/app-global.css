@@ -1,3 +1,8 @@
+/*
+ * Extracts rules from GlobalStyle.ts into a style sheet to be used in app router
+ * Without this there is a flash while the global styles load on the client
+*/
+
 /* Box sizing rules */
 *,
 *::before,
