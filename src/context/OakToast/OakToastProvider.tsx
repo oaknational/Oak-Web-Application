@@ -1,4 +1,10 @@
-import { OakFlex, OakToast, OakToastProps } from "@oaknational/oak-components";
+import {
+  oakDefaultTheme,
+  OakFlex,
+  OakThemeProvider,
+  OakToast,
+  OakToastProps,
+} from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import { createContext, FC, useEffect, useState } from "react";
 import styled from "styled-components";
@@ -68,23 +74,25 @@ export const OakToastProvider: FC<{
     <oakToastContext.Provider
       value={{ currentToastProps, setCurrentToastProps: setToastPropsAndId }}
     >
-      <StyledOakToastContainer
-        $position="fixed"
-        $zIndex="in-front"
-        offsetTop={offsetTop}
-        $right={["spacing-0", "spacing-92"]}
-        $width={["100%", "max-content"]}
-        $justifyContent={["center", "flex-end"]}
-        aria-live="polite"
-      >
-        {currentToastProps && (
-          <OakToast
-            {...currentToastProps}
-            onClose={() => setCurrentToastProps(null)}
-            id={id}
-          />
-        )}
-      </StyledOakToastContainer>
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <StyledOakToastContainer
+          $position="fixed"
+          $zIndex="in-front"
+          offsetTop={offsetTop}
+          $right={["spacing-0", "spacing-92"]}
+          $width={["100%", "max-content"]}
+          $justifyContent={["center", "flex-end"]}
+          aria-live="polite"
+        >
+          {currentToastProps && (
+            <OakToast
+              {...currentToastProps}
+              onClose={() => setCurrentToastProps(null)}
+              id={id}
+            />
+          )}
+        </StyledOakToastContainer>
+      </OakThemeProvider>
       {children}
     </oakToastContext.Provider>
   );
