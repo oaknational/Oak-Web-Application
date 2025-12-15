@@ -11,7 +11,7 @@ exports[`AboutSharedHeader renders correctly 1`] = `
         class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-ec11d6e-0 fgBWrW djyvKT iAkSYx yYQHU"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-da774e64-0 fgBWrW djyvKT iAkSYx dsCEjX"
         >
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -20,7 +20,7 @@ exports[`AboutSharedHeader renders correctly 1`] = `
               class="sc-kpDqfm cRJejs"
             >
               <span
-                class="sc-dAlyuH bOvjMx"
+                class="sc-dAlyuH gEkaeR"
               >
                 TESTING_TITLE
               </span>
@@ -33,7 +33,7 @@ exports[`AboutSharedHeader renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-ec11d6e-1 fgBWrW joHkzz dGlNMa dtqMZz"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-da774e64-1 fgBWrW joHkzz dGlNMa dQERjo"
         >
           <div
             class="sc-fqkvVR jqqmXN"
@@ -66,7 +66,7 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
         class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-ec11d6e-0 fgBWrW djyvKT iAkSYx yYQHU"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-da774e64-0 fgBWrW djyvKT iAkSYx dsCEjX"
         >
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -75,7 +75,7 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
               class="sc-kpDqfm cRJejs"
             >
               <span
-                class="sc-dAlyuH bOvjMx"
+                class="sc-dAlyuH gEkaeR"
               >
                 TESTING_TITLE
               </span>
@@ -88,7 +88,7 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-ec11d6e-1 fgBWrW joHkzz dGlNMa dtqMZz"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-da774e64-1 fgBWrW joHkzz dGlNMa dQERjo"
         >
           <div
             class="sc-fqkvVR jPtDlR"
