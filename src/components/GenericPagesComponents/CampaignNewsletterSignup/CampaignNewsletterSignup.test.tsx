@@ -3,7 +3,13 @@ import "@testing-library/jest-dom";
 import { act, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import CampaignNewsletterSignup from "./CampaignNewsletterSignup";
+import CampaignNewsletterSignup, {
+  getSchema,
+} from "./CampaignNewsletterSignup";
+import {
+  newsletterSignupFormSubmitSchema,
+  partialNewsletterSchema,
+} from "./CampaignNewsletterSignup.schema";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import mockCampaign from "@/fixtures/campaign/mockCampaign";
@@ -33,6 +39,29 @@ jest.mock("@/common-lib/error-reporter", () => ({
 jest.mock("@/components/GenericPagesComponents/NewsletterForm", () => ({
   useNewsletterForm: jest.fn(),
 }));
+
+jest.spyOn(console, "error").mockImplementation(() => jest.fn());
+
+// NOTE: These are due to react/jsdom being behind browser standards, they will catch up and we can remove these
+// See <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select> for current support
+function expectJsdomOptionError() {
+  expect(console.error).toHaveBeenCalledTimes(2);
+  expect(console.error).toHaveBeenNthCalledWith(
+    1,
+    "Warning: The tag <%s> is unrecognized in this browser. If you meant to render a React component, start its name with an uppercase letter.%s",
+    "selectedcontent",
+    expect.anything(),
+  );
+  expect(console.error).toHaveBeenNthCalledWith(
+    2,
+    "Warning: validateDOMNesting(...): %s cannot appear as a child of <%s>.%s%s%s",
+    "<button>",
+    "select",
+    expect.anything(),
+    expect.anything(),
+    expect.anything(),
+  );
+}
 
 describe("CampaignNewsletterSignup", () => {
   const mockOnHubspotSubmit = jest.fn();
@@ -176,6 +205,7 @@ describe("CampaignNewsletterSignup", () => {
         schoolName: undefined,
         email: "test@example.com",
         userRole: "",
+        eduRole: "",
         name: "Test",
       });
     });
@@ -226,5 +256,37 @@ describe("CampaignNewsletterSignup", () => {
       name: "School or organisation (optional)",
     });
     expect(schoolInput).toBeInTheDocument();
+  });
+
+  it("shows role when enableRole is set", () => {
+    renderWithTheme(
+      <CampaignNewsletterSignup
+        data-testid="test"
+        {...mockData}
+        enableRole={true}
+      />,
+    );
+
+    expectJsdomOptionError();
+    const eduRole = screen.getByTestId("newsletter-eduRole");
+    expect(eduRole).toBeInTheDocument();
+  });
+});
+
+describe("getSchema", () => {
+  test("freeSchoolInput=false, enableRole=false", () => {
+    const outputSchema = getSchema({
+      freeSchoolInput: false,
+      enableRole: false,
+    });
+    expect(outputSchema).toEqual(newsletterSignupFormSubmitSchema);
+  });
+
+  test("freeSchoolInput=true, enableRole=false", () => {
+    const outputSchema = getSchema({
+      freeSchoolInput: true,
+      enableRole: false,
+    });
+    expect(outputSchema).toEqual(partialNewsletterSchema);
   });
 });
