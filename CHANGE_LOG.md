@@ -1,3 +1,15 @@
+# [1.935.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.934.0...v1.935.0) (2025-12-15)
+
+
+### Bug Fixes
+
+* add theme provider to oak toast ([c84b061](https://github.com/oaknational/Oak-Web-Application/commit/c84b061ca9969aa5167d8f3fc95b77eee0a76850))
+
+
+### Features
+
+* update pupil subject icon button ([c388929](https://github.com/oaknational/Oak-Web-Application/commit/c388929003ea248409934b9340a80173548c0d24))
+
 # [1.934.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.933.1...v1.934.0) (2025-12-15)
 
 
