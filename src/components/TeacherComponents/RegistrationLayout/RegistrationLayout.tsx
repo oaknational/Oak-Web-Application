@@ -40,7 +40,7 @@ const RegistrationLayout = ({
       <OakGridArea
         $colSpan={[12, 12, 6]}
         $pa="spacing-32"
-        $background="white"
+        $background="bg-primary"
         $alignItems="center"
         $justifyContent="center"
       >

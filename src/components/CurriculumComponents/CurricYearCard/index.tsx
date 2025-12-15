@@ -25,7 +25,9 @@ export function CurricYearCard({
 }: Readonly<CurricYearCardProps>) {
   return (
     <OakBox
-      $background={isExamboard ? "pink50" : "pink30"}
+      $background={
+        isExamboard ? "bg-decorative4-subdued" : "bg-decorative4-very-subdued"
+      }
       $pa={"spacing-32"}
       $position={"relative"}
       $mb={"spacing-32"}

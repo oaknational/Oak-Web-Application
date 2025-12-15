@@ -63,7 +63,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
               $mb={"spacing-8"}
               tag={"h1"}
               $font={["heading-6", "heading-5"]}
-              $color={"grey60"}
+              $color={"text-subdued"}
             >
               {title}
             </OakHeading>

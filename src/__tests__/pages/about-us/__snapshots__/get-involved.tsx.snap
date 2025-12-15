@@ -116,7 +116,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-kAyceB denUev fzjRNq"
             >
               <a
-                class="sc-fxwrCY cHaphN sc-69d1ca97-0 biIKeN"
+                class="sc-fxwrCY cHaphN sc-3ae7774c-0 eEfcbI"
                 href="/"
               >
                 <span
@@ -155,7 +155,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="sc-fqkvVR gNQyrX"
               >
                 <a
-                  class="sc-fxwrCY cHaphN sc-69d1ca97-0 biIKeN"
+                  class="sc-fxwrCY cHaphN sc-3ae7774c-0 eEfcbI"
                   href="/"
                 >
                   <span
@@ -250,14 +250,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               </div>
               <a
                 aria-current="true"
-                class="sc-4b913d3f-0 iULQjJ"
+                class="sc-a12511f9-0 VbxmJ"
                 href="/"
                 role="link"
               >
                 Teachers
                 <svg
                   aria-hidden="true"
-                  class="sc-eldPxv dlXxmR sc-4b913d3f-1 eGLYcD"
+                  class="sc-eldPxv dlXxmR sc-a12511f9-1 eimkyL"
                   height="100%"
                   name="horizontal-rule"
                   width="100%"
@@ -277,7 +277,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 </svg>
                 <svg
                   aria-hidden="true"
-                  class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                  class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                   height="100%"
                   name="underline"
                   width="100%"
@@ -302,14 +302,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 <a
                   aria-current="false"
                   aria-label="Pupils browse years"
-                  class="sc-4b913d3f-0 gUuCEe"
+                  class="sc-a12511f9-0 cvWlay"
                   href="/pupils/years"
                   role="link"
                 >
                   Pupils
                   <svg
                     aria-hidden="true"
-                    class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                    class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                     height="100%"
                     name="underline"
                     width="100%"
@@ -417,7 +417,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
           >
             <div
               aria-expanded="false"
-              class="sc-fqkvVR sc-kAyceB sc-e713ebd7-0 bRJYhH eeevb hjUayK"
+              class="sc-fqkvVR sc-kAyceB sc-1ff9c540-0 bRJYhH eeevb bXmxZU"
               data-testid="menu"
             >
               <div
@@ -495,7 +495,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 </button>
               </div>
               <nav
-                class="sc-e713ebd7-1 kTncwy"
+                class="sc-1ff9c540-1 iwAcBY"
               >
                 <div
                   class="sc-fqkvVR sc-kAyceB jFnbBV cPlSvk"
@@ -546,7 +546,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Home"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/"
                             role="link"
                             title="Home"
@@ -566,7 +566,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -578,7 +578,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -599,7 +599,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Key stage 1"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/teachers/key-stages/ks1/subjects"
                             role="link"
                             title="Key stage 1"
@@ -619,7 +619,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -631,7 +631,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -652,7 +652,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Key stage 2"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/teachers/key-stages/ks2/subjects"
                             role="link"
                             title="Key stage 2"
@@ -672,7 +672,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -684,7 +684,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -705,7 +705,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Key stage 3"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/teachers/key-stages/ks3/subjects"
                             role="link"
                             title="Key stage 3"
@@ -725,7 +725,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -737,7 +737,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -758,7 +758,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Key stage 4"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/teachers/key-stages/ks4/subjects"
                             role="link"
                             title="Key stage 4"
@@ -778,7 +778,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -790,7 +790,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -811,7 +811,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="EYFS"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/teachers/key-stages/early-years-foundation-stage/subjects"
                             role="link"
                             title="EYFS"
@@ -831,7 +831,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -843,7 +843,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -864,7 +864,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Specialist"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/teachers/specialist/subjects"
                             role="link"
                             title="Specialist"
@@ -884,7 +884,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -896,7 +896,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -917,7 +917,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Curriculum plans"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/teachers/curriculum"
                             role="link"
                             title="Curriculum plans"
@@ -937,7 +937,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -949,7 +949,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -970,7 +970,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Plan a lesson"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/lesson-planning"
                             role="link"
                             title="Plan a lesson"
@@ -990,7 +990,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1002,7 +1002,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1023,7 +1023,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Support your team"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/support-your-team"
                             role="link"
                             title="Support your team"
@@ -1043,7 +1043,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1055,7 +1055,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1091,7 +1091,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Pupils home"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/pupils/years"
                             role="link"
                             title="Pupils home"
@@ -1111,7 +1111,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1123,7 +1123,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1159,7 +1159,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Blogs"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/blog"
                             role="link"
                             title="Blogs"
@@ -1179,7 +1179,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1191,7 +1191,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1212,7 +1212,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Webinars"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/webinars"
                             role="link"
                             title="Webinars"
@@ -1232,7 +1232,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1244,7 +1244,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1265,7 +1265,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="About us"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/about-us/who-we-are"
                             role="link"
                             title="About us"
@@ -1285,7 +1285,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1297,7 +1297,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1318,7 +1318,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Contact us"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="/contact-us"
                             role="link"
                             title="Contact us"
@@ -1338,7 +1338,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1350,7 +1350,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1371,7 +1371,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Help (opens in a new tab)"
-                            class="sc-f63c4ba9-0 kCdnqc"
+                            class="sc-f63c4ba9-0 FuvTE"
                             href="https://support.thenational.academy/"
                             role="link"
                             target="_blank"
@@ -1430,7 +1430,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1442,7 +1442,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -1701,7 +1701,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-0 fgBWrW djyvKT iAkSYx kIiJrY"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-a9608efb-0 fgBWrW djyvKT iAkSYx iGjuuK"
               >
                 <div
                   class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1723,7 +1723,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-1 fgBWrW joHkzz dGlNMa gHmAeX"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-a9608efb-1 fgBWrW joHkzz dGlNMa kScJhN"
               >
                 <div
                   class="sc-fqkvVR dBkKun"
@@ -2162,7 +2162,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         style="outline: none;"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                          class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 gKJOWA fQLyIH fSzYCW"
                           data-testid="who-we-are-explore-item"
                         >
                           <div
@@ -2219,7 +2219,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         style="outline: none;"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                          class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 gKJOWA fQLyIH fSzYCW"
                           data-testid="who-we-are-explore-item"
                         >
                           <div
@@ -2276,7 +2276,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         style="outline: none;"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                          class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 gKJOWA fQLyIH fSzYCW"
                           data-testid="who-we-are-explore-item"
                         >
                           <div
@@ -2333,7 +2333,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         style="outline: none;"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                          class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 gKJOWA fQLyIH fSzYCW"
                           data-testid="who-we-are-explore-item"
                         >
                           <div
@@ -2445,7 +2445,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/pupils/years"
                             role="link"
                             type="page"
@@ -2453,7 +2453,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             Learn online
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2501,14 +2501,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/teachers/key-stages/early-years-foundation-stage/subjects"
                             role="link"
                           >
                             EYFS
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2536,14 +2536,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/teachers/specialist/subjects"
                             role="link"
                           >
                             Specialist
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2571,14 +2571,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/teachers/key-stages/ks1/subjects"
                             role="link"
                           >
                             Key stage 1
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2606,14 +2606,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/teachers/key-stages/ks2/subjects"
                             role="link"
                           >
                             Key stage 2
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2641,14 +2641,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/teachers/key-stages/ks3/subjects"
                             role="link"
                           >
                             Key stage 3
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2676,14 +2676,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/teachers/key-stages/ks4/subjects"
                             role="link"
                           >
                             Key stage 4
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2711,7 +2711,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/teachers/curriculum"
                             role="link"
                             type="page"
@@ -2719,7 +2719,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             Curriculum plans
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2747,7 +2747,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/lesson-planning"
                             role="link"
                             type="page"
@@ -2755,7 +2755,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             Plan a lesson
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2783,7 +2783,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/support-your-team"
                             role="link"
                             type="page"
@@ -2791,7 +2791,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             Support your team
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2840,7 +2840,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/"
                             role="link"
                             type="page"
@@ -2848,7 +2848,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             Home
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2876,7 +2876,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/about-us/who-we-are"
                             role="link"
                             type="page"
@@ -2884,7 +2884,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             About us
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2913,7 +2913,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Careers (opens in a new tab)"
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="https://jobs.thenational.academy"
                             role="link"
                             target="_blank"
@@ -2921,7 +2921,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             Careers
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2962,7 +2962,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/contact-us"
                             role="link"
                             type="page"
@@ -2970,7 +2970,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             Contact us
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -2999,7 +2999,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Help (opens in a new tab)"
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="https://support.thenational.academy"
                             role="link"
                             target="_blank"
@@ -3008,7 +3008,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             Help
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3049,7 +3049,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/blog"
                             role="link"
                             type="page"
@@ -3057,7 +3057,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             Blog
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3085,7 +3085,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/webinars"
                             role="link"
                             type="page"
@@ -3093,7 +3093,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             Webinars
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3122,7 +3122,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         >
                           <a
                             aria-label="Status (opens in a new tab)"
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="https://status.thenational.academy"
                             role="link"
                             target="_blank"
@@ -3130,7 +3130,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             Status
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3192,14 +3192,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/legal/terms-and-conditions"
                             role="link"
                           >
                             Terms & conditions
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3227,14 +3227,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/legal/privacy-policy"
                             role="link"
                           >
                             Privacy policy
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3262,14 +3262,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/legal/cookie-policy"
                             role="link"
                           >
                             Cookie policy
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3294,7 +3294,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="sc-jlZhew XOrLS"
                       >
                         <button
-                          class="sc-ce4d7bd4-0 sc-e88beb40-0 kYyTPx cUHyFr"
+                          class="sc-ce4d7bd4-0 sc-e92eb690-0 kYyTPx gpHaVD"
                           title="Manage cookie settings"
                         >
                           <div
@@ -3311,7 +3311,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-1 guutYs"
+                              class="sc-86d1d46f-0 jOBmUC sc-d68767cb-1 gbPzoK"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -3324,7 +3324,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           </div>
                           <svg
                             aria-hidden="true"
-                            class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 eCYhIZ"
+                            class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 fEhzFr"
                             height="100%"
                             name="underline-1"
                             width="100%"
@@ -3343,14 +3343,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/legal/copyright-notice"
                             role="link"
                           >
                             Copyright notice
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3378,14 +3378,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/legal/accessibility-statement"
                             role="link"
                           >
                             Accessibility statement
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3413,14 +3413,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/legal/safeguarding-statement"
                             role="link"
                           >
                             Safeguarding statement
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3448,14 +3448,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/legal/physical-activity-disclaimer"
                             role="link"
                           >
                             Physical activity disclaimer
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3483,14 +3483,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/legal/complaints"
                             role="link"
                           >
                             Complaints
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3518,14 +3518,14 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
                         >
                           <a
-                            class="sc-4b913d3f-0 gUuCEe"
+                            class="sc-a12511f9-0 cvWlay"
                             href="/legal/freedom-of-information-requests"
                             role="link"
                           >
                             Freedom of information requests
                             <svg
                               aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
+                              class="sc-eldPxv dlXxmR sc-3c4ee031-0 jcNhvH"
                               height="100%"
                               name="underline"
                               width="100%"
@@ -3774,7 +3774,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR jqqmXN sc-800b423d-0 dgdSbR"
+              class="sc-fqkvVR jqqmXN sc-2960a06b-0 eSboUK"
               data-percy-hide="contents"
             >
               <img

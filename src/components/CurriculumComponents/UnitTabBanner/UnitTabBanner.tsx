@@ -12,7 +12,7 @@ const UnitTabBanner = () => {
   return (
     <OakFlex
       $flexDirection={["column", "row"]}
-      $background={"mint"}
+      $background={"bg-decorative1-main"}
       $mt={"spacing-48"}
       $pa={"spacing-48"}
       $gap={"spacing-24"}

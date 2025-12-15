@@ -19,7 +19,8 @@ type PageProps = {
  */
 
 const Page = (props: PageProps) => {
-  const background = props.variantKey === "test" ? "lemon" : "mint";
+  const background =
+    props.variantKey === "test" ? "bg-decorative5-main" : "bg-decorative1-main";
 
   return (
     <OakFlex

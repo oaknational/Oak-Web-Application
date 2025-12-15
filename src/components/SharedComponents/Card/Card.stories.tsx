@@ -42,7 +42,7 @@ export const CardIconButton: StoryObj<typeof Component> = {
         >
           Title
         </CardTitle>
-        <OakP $font={"body-2"} $mb={"spacing-24"} $color={"grey50"}>
+        <OakP $font={"body-2"} $mb={"spacing-24"} $color={"text-disabled"}>
           Short snappy description of what this card is about.
         </OakP>
         <ButtonAsLink $mt={"auto"} label={"Label"} $fullWidth page="home" />
@@ -58,7 +58,7 @@ export const CardImageButton: StoryObj<typeof Component> = {
         <CardImage illustration="magic-carpet" />
         <OakFlex $pa="spacing-24" $flexDirection={"column"}>
           <CardTitle tag={"h4"}>Title</CardTitle>
-          <OakP $font={"body-2"} $mb={"spacing-24"} $color={"grey50"}>
+          <OakP $font={"body-2"} $mb={"spacing-24"} $color={"text-disabled"}>
             Short snappy description of what this card is about.
           </OakP>
           <ButtonAsLink
@@ -94,7 +94,7 @@ export const CardLargeIconCentered: StoryObj<typeof Component> = {
           $textAlign="center"
           $font={"body-2"}
           $mb={"spacing-24"}
-          $color={"grey50"}
+          $color={"text-disabled"}
         >
           Short snappy description of what this card is about.
         </OakP>

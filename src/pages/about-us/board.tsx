@@ -41,7 +41,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
 
   const bioModalsEnabled = useFeatureFlagEnabled("about-us--board--bio-modals");
   return (
-    <Layout seoProps={getSeoProps(seo)} $background={"white"}>
+    <Layout seoProps={getSeoProps(seo)} $background={"bg-primary"}>
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
         $mt={["spacing-56", "spacing-80"]}
@@ -83,7 +83,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         <OakFlex $mh={["spacing-16", "spacing-0"]} $flexDirection={"column"}>
           <OakTypography $width={"100%"}>
             <OakHandDrawnHR
-              hrColor={"aqua"}
+              hrColor={"bg-decorative2-main"}
               $mv={"spacing-32"}
               $height={"spacing-2"}
             />
@@ -125,7 +125,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           </OakGrid>
           <OakTypography $width={"100%"}>
             <OakHandDrawnHR
-              hrColor={"aqua"}
+              hrColor={"bg-decorative2-main"}
               $mv={"spacing-32"}
               $height={"spacing-2"}
             />

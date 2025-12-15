@@ -51,7 +51,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
         });
   };
   return (
-    <OakBox $background={"aqua50"} $position={"relative"}>
+    <OakBox $background={"bg-decorative2-subdued"} $position={"relative"}>
       <OakFlex $flexDirection={"column"} $pa={"spacing-24"} $gap={"spacing-16"}>
         <OakFlex $flexDirection={"row"} $alignItems={"center"}>
           <OakIcon iconName="additional-material" $width={"spacing-20"} />

@@ -19,10 +19,18 @@ export const KeyStageKeypad: Story = {
   render: () => {
     return (
       <OakFlex $flexDirection={"column"} $pa="spacing-16">
-        <OakFlex $background={"mint50"} $pa="spacing-16" $mb="spacing-12">
+        <OakFlex
+          $background={"bg-decorative1-subdued"}
+          $pa="spacing-16"
+          $mb="spacing-12"
+        >
           <Component {...keyStageKeypad} />
         </OakFlex>
-        <OakFlex $background={"mint50"} $pa="spacing-16" $mb="spacing-12">
+        <OakFlex
+          $background={"bg-decorative1-subdued"}
+          $pa="spacing-16"
+          $mb="spacing-12"
+        >
           <Component
             keyStages={keyStageKeypad.keyStages}
             title="Select key stage"

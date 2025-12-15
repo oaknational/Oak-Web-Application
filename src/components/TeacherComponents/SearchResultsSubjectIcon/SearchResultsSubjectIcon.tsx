@@ -28,7 +28,7 @@ const SearchResultsSubjectIcon: FC<SearchResultsSubjectIconProps> = (props) => {
       $alignItems={"center"}
       $justifyContent={"center"}
       $borderRadius="border-radius-s"
-      $background={"lavender50"}
+      $background={"bg-decorative3-subdued"}
       $height="spacing-56"
       $width="spacing-56"
     >

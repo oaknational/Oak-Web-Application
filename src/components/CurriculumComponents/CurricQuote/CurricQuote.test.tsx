@@ -10,7 +10,7 @@ const render = renderWithProvidersByName(["oakTheme"]);
 describe("CurricQuote", () => {
   it("renders the title correctly", () => {
     render(
-      <CurricQuote title="My title" barColor={"red"}>
+      <CurricQuote title="My title" barColor={"bg-error"}>
         This is the test children content.
       </CurricQuote>,
     );
@@ -19,7 +19,7 @@ describe("CurricQuote", () => {
 
   it("renders the children correctly", () => {
     render(
-      <CurricQuote title="My title" barColor={"red"}>
+      <CurricQuote title="My title" barColor={"bg-error"}>
         This is the test children content.
       </CurricQuote>,
     );
@@ -40,7 +40,7 @@ describe("CurricQuote", () => {
 
   it("applies the specified background color", () => {
     render(
-      <CurricQuote title="My title" backgroundColor="lemon">
+      <CurricQuote title="My title" backgroundColor="bg-decorative5-main">
         This is the test children content.
       </CurricQuote>,
     );
@@ -62,7 +62,7 @@ describe("CurricQuote", () => {
 
   it("applies the specified bar color", () => {
     render(
-      <CurricQuote title="My title" barColor={"red"}>
+      <CurricQuote title="My title" barColor={"bg-error"}>
         This is the test children content.
       </CurricQuote>,
     );

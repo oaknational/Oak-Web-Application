@@ -47,7 +47,7 @@ type Story = StoryObj<typeof PromoBanner>;
 export const Banner: Story = {
   args: {
     ctaText: "See curriculum plans",
-    background: "lemon",
+    background: "bg-decorative5-main",
     message: "curriculum",
   },
   render: (args) => (

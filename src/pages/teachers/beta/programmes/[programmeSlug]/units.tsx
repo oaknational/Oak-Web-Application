@@ -266,7 +266,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               disabled: true,
             },
           ]}
-          background={"lavender30"}
+          background={"bg-decorative3-very-subdued"}
           subjectIconBackgroundColor={"lavender"}
           title={`${subjectTitle} ${examBoardTitle ? examBoardTitle + " " : ""}${pathwayTitle ?? ""}`}
           programmeFactor={toSentenceCase(keyStageTitle)}

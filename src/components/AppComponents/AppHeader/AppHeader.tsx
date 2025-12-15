@@ -48,7 +48,7 @@ const AppHeader: FC<HeaderProps> = () => {
   return (
     <header>
       <StyledHeader
-        $background="white"
+        $background="bg-primary"
         $justifyContent={["space-between"]}
         $alignItems={["center"]}
         $zIndex="fixed-header"

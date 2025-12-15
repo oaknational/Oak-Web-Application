@@ -299,7 +299,11 @@ const Search: FC<SearchProps> = (props) => {
   };
 
   return (
-    <OakFlex $minHeight={"100vh"} $background="white" $flexDirection={"column"}>
+    <OakFlex
+      $minHeight={"100vh"}
+      $background="bg-primary"
+      $flexDirection={"column"}
+    >
       <OakMaxWidth $ph={"spacing-16"}>
         <OakGrid $mt={"spacing-48"} $cg={"spacing-16"}>
           <OakGridArea

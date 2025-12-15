@@ -111,7 +111,7 @@ const fixtureData: GetInvolvedPage["pageData"] = {
 
 export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
   return (
-    <Layout seoProps={getSeoProps(null)} $background={"white"}>
+    <Layout seoProps={getSeoProps(null)} $background={"bg-primary"}>
       <OakBox $overflow={"hidden"}>
         <WhoAreWeHeader
           title={pageData.header.title}
