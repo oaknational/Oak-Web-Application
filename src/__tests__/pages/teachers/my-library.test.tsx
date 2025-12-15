@@ -11,6 +11,9 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => true,
 }));
 jest.mock("next/navigation", () => require("next-router-mock"));
+globalThis.matchMedia = jest.fn().mockReturnValue({
+  matches: true,
+});
 const render = renderWithProviders();
 
 jest.mock("@/node-lib/educator-api/helpers/saveUnits/useMyLibrary", () => ({
