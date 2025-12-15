@@ -59,6 +59,7 @@ export function BackgroundHeaderLoop() {
       $right={"spacing-0"}
       $top={"spacing-0"}
       $bottom={"spacing-0"}
+      data-testid="about-shared-loop"
     />
   );
 }
