@@ -20,7 +20,7 @@ describe("TopNav", () => {
     const teachersLink = await screen.findByRole("link", { name: "Teachers" });
     expect(teachersLink).toBeInTheDocument();
 
-    const pupilsLink = screen.getByRole("link", { name: "Go to Pupils" });
+    const pupilsLink = screen.getByRole("link", { name: "Go to pupils" });
     expect(pupilsLink).toBeInTheDocument();
   });
   it("renders active tab with the correct style", async () => {
@@ -30,7 +30,7 @@ describe("TopNav", () => {
     expect(teachersLink).toBeInTheDocument();
     expect(teachersLink).toHaveStyle({ background: "rgb(255, 255, 255)" });
 
-    const pupilsLink = screen.getByRole("link", { name: "Go to Pupils" });
+    const pupilsLink = screen.getByRole("link", { name: "Go to pupils" });
     expect(pupilsLink).toBeInTheDocument();
     expect(pupilsLink).toHaveStyle({ background: "rgb(34,34,34)" });
   });
