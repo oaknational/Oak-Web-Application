@@ -124,7 +124,11 @@ export function GetInvolvedWorkWithUs({
           </OakFlex>
         </OakGridArea>
 
-        <OakGridArea $colSpan={[12, 6, 7]} $colStart={[1, 7, 6]}>
+        <OakGridArea
+          $colSpan={[12, 6, 7]}
+          $colStart={[1, 7, 6]}
+          $justifyContent={"center"}
+        >
           <OakFlex
             $flexDirection="column"
             $gap={["spacing-24", "spacing-24", "spacing-32"]}
