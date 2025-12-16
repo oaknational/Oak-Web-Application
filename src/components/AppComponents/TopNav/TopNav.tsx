@@ -63,7 +63,7 @@ const TopNav = () => {
             )}
             alt=""
             $height={["spacing-40", "spacing-48"]}
-            $width={["spacing-32", "spacing-80"]}
+            $width={["spacing-32", "spacing-100"]}
             $pa={"spacing-0"}
           />
         </OakLink>
