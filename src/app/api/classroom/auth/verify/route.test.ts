@@ -3,7 +3,7 @@
  */
 import type { NextRequest } from "next/server";
 
-import { POST } from "./route";
+import { GET } from "./route";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
@@ -46,7 +46,7 @@ describe("POST /api/classroom/auth/verify", () => {
     mockVerifyAuthSession.mockResolvedValue(mockVerifiedSession);
 
     // Act
-    await POST(mockRequest);
+    await GET(mockRequest);
 
     // Assert
     expect(mockRequestJson).toHaveBeenCalledTimes(1);
@@ -67,7 +67,7 @@ describe("POST /api/classroom/auth/verify", () => {
     mockVerifyAuthSession.mockResolvedValue(null);
 
     // Act
-    await POST(mockRequest);
+    await GET(mockRequest);
 
     // Assert
     expect(mockRequestJson).toHaveBeenCalledTimes(1);
@@ -87,7 +87,7 @@ describe("POST /api/classroom/auth/verify", () => {
     mockRequestJson.mockResolvedValue({ session: null });
 
     // Act
-    await POST(mockRequest);
+    await GET(mockRequest);
 
     // Assert
     expect(mockRequestJson).toHaveBeenCalledTimes(1);
