@@ -33,11 +33,11 @@ type PupilsSubNav = {
   secondary: PupilsBrowse;
 };
 
-type PupilsBrowse = Array<{
+type PupilsBrowse = {
   phaseTitle: string;
   phaseSlug: string;
   years: Array<{ title: string; slug: string }>;
-}>;
+};
 
 export type TopNav = {
   teachers: TeachersSubNav;
