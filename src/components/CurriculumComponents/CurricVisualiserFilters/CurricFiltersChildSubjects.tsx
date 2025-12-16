@@ -14,10 +14,14 @@ import {
   presentAtKeyStageSlugs,
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersChildSubjectsProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilters: CurriculumFilters,
+    source: ComponentTypeValueType,
+  ) => void;
   data: CurriculumUnitsFormattedData<Unit>;
 };
 
@@ -39,7 +43,7 @@ export function CurricFiltersChildSubjects({
   );
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({ ...filters, [key]: [newValue] });
+    onChangeFilters({ ...filters, [key]: [newValue] }, "child_subject_button");
   }
 
   return (

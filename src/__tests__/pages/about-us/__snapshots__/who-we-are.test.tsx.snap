@@ -8,7 +8,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
     >
       <div
         aria-live="polite"
-        class="sc-fqkvVR sc-kAyceB sc-713e2c99-0 hkKUlc iPEHGb hUNyQr"
+        class="sc-fqkvVR sc-kAyceB sc-ccc5406d-0 hkKUlc iPEHGb giA-dEW"
       />
       <fake-head>
         <title>
@@ -75,7 +75,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
           class="sc-fqkvVR gutnKP"
         >
           <div
-            class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+            class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
           >
             <div
               class="sc-fqkvVR iPpXCP grey-shadow"
@@ -84,7 +84,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               class="sc-fqkvVR iPpXCP yellow-shadow"
             />
             <a
-              class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+              class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
               data-testid="skip-link"
               href="#main"
               style="position: absolute; left: -10000px;"
@@ -113,7 +113,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB denUev fzjRNq"
               >
                 <a
-                  class="sc-dSCufp faxRqf sc-69d1ca97-0 biIKeN"
+                  class="sc-fxwrCY cHaphN sc-69d1ca97-0 biIKeN"
                   href="/"
                 >
                   <span
@@ -152,7 +152,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR gNQyrX"
                 >
                   <a
-                    class="sc-dSCufp faxRqf sc-69d1ca97-0 biIKeN"
+                    class="sc-fxwrCY cHaphN sc-69d1ca97-0 biIKeN"
                     href="/"
                   >
                     <span
@@ -186,7 +186,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </div>
                 <a
                   aria-label="0 saved units"
-                  class="sc-dtBdUo sc-ktJbId kUzaOQ fhggaS"
+                  class="sc-dtBdUo sc-gmgFlS kUzaOQ lggmnE"
                   href="/teachers/my-library"
                 >
                   <span
@@ -223,7 +223,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </a>
                 <div
-                  class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                  class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
                 >
                   <div
                     class="sc-fqkvVR iPpXCP grey-shadow"
@@ -232,7 +232,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                     class="sc-fqkvVR iPpXCP yellow-shadow"
                   />
                   <button
-                    class="sc-dtBdUo sc-fXSgeo fxMPcP jZjsdk internal-button"
+                    class="sc-dtBdUo sc-fXSgeo fxMPcP PbcZt internal-button"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW eIAHnn"
@@ -1698,7 +1698,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-0 fgBWrW djyvKT iAkSYx kIiJrY"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-da774e64-0 fgBWrW djyvKT iAkSYx dsCEjX"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1707,7 +1707,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       class="sc-kpDqfm cRJejs"
                     >
                       <span
-                        class="sc-dAlyuH bOvjMx"
+                        class="sc-dAlyuH gEkaeR"
                       >
                         About Oak
                       </span>
@@ -1720,7 +1720,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-1 fgBWrW joHkzz dGlNMa gHmAeX"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-da774e64-1 fgBWrW joHkzz dGlNMa dQERjo"
                 >
                   <div
                     class="sc-fqkvVR dBkKun"
@@ -2403,7 +2403,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB sc-jEACwC eKkWSU bUZQTk"
               >
                 <div
-                  class="sc-fqkvVR sc-f019c2e2-0 fgBWrW bXXxRE"
+                  class="sc-fqkvVR sc-fa16f285-0 fgBWrW dvPIDh"
                 >
                   <div
                     class="sc-ad0ad6f5-0 sc-213e351e-0 sc-8724906-0 hidovD cEqFwB"
@@ -2951,7 +2951,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             </button>
                           </div>
                           <div
-                            class="sc-fqkvVR sc-JrDLc jqqmXN hESAKV"
+                            class="sc-fqkvVR sc-fjvvzt bAqbho kIRemE"
                           >
                             <div
                               class="sc-fqkvVR iPpXCP grey-shadow"
@@ -2960,7 +2960,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               class="sc-fqkvVR iPpXCP yellow-shadow"
                             />
                             <button
-                              class="sc-dtBdUo sc-fXSgeo ezGFRC dZvJQR internal-button"
+                              class="sc-dtBdUo sc-fXSgeo ezGFRC eJTpUE internal-button"
                             >
                               <div
                                 class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
@@ -4689,7 +4689,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB fOyTgd TDtQj"
               >
                 <button
-                  class="sc-dSCufp kbtfSk sc-fxwrCY"
+                  class="sc-fxwrCY eycZBP sc-hIUJlX"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
@@ -4701,7 +4701,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -4710,7 +4710,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                  class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
@@ -4724,7 +4724,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -4733,7 +4733,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-dtBdUo sc-fXSgeo bMKUbn dZvJQR internal-button"
+                  class="sc-dtBdUo sc-fXSgeo bMKUbn eJTpUE internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div

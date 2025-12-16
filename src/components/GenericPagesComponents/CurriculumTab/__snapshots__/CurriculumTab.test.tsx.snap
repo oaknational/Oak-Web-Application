@@ -8,7 +8,7 @@ exports[`CurriculumTab renders 1`] = `
     >
       <div
         aria-live="polite"
-        class="sc-fqkvVR sc-kAyceB sc-713e2c99-0 hkKUlc iPEHGb hUNyQr"
+        class="sc-fqkvVR sc-kAyceB sc-ccc5406d-0 hkKUlc iPEHGb giA-dEW"
       />
       <div
         class="sc-fqkvVR gZEYWU"
@@ -86,7 +86,7 @@ exports[`CurriculumTab renders 1`] = `
                 class="sc-fqkvVR sc-kAyceB bmnVAU bSQGkj"
               >
                 <a
-                  class="sc-dSCufp kbtfSk sc-fxwrCY"
+                  class="sc-fxwrCY eycZBP sc-hIUJlX"
                   href="/teachers/curriculum"
                 >
                   <span
@@ -99,7 +99,7 @@ exports[`CurriculumTab renders 1`] = `
                     </span>
                   </span>
                   <div
-                    class="sc-fqkvVR kbnxKi sc-ddjGPC"
+                    class="sc-fqkvVR kbnxKi sc-dSCufp"
                   >
                     <img
                       alt=""
@@ -239,7 +239,7 @@ exports[`CurriculumTab renders 1`] = `
                               class="sc-fqkvVR sc-kAyceB edMMHU hilJOZ"
                             >
                               <div
-                                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
                               >
                                 <div
                                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -248,7 +248,7 @@ exports[`CurriculumTab renders 1`] = `
                                   class="sc-fqkvVR iPpXCP yellow-shadow"
                                 />
                                 <button
-                                  class="sc-dtBdUo sc-fXSgeo bMKUbn dZvJQR internal-button"
+                                  class="sc-dtBdUo sc-fXSgeo bMKUbn eJTpUE internal-button"
                                   data-testid="lot-picker-view-curriculum-button"
                                 >
                                   <div
@@ -430,7 +430,7 @@ exports[`CurriculumTab renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB edMMHU hilJOZ"
                         >
                           <div
-                            class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                            class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
                           >
                             <div
                               class="sc-fqkvVR iPpXCP grey-shadow"
@@ -439,7 +439,7 @@ exports[`CurriculumTab renders 1`] = `
                               class="sc-fqkvVR iPpXCP yellow-shadow"
                             />
                             <button
-                              class="sc-dtBdUo sc-fXSgeo bMKUbn dZvJQR internal-button"
+                              class="sc-dtBdUo sc-fXSgeo bMKUbn eJTpUE internal-button"
                               data-testid="lot-picker-view-curriculum-button"
                             >
                               <div
@@ -508,7 +508,7 @@ exports[`CurriculumTab renders 1`] = `
                 class="sc-fqkvVR sc-kAyceB fOyTgd TDtQj"
               >
                 <button
-                  class="sc-dSCufp kbtfSk sc-fxwrCY"
+                  class="sc-fxwrCY eycZBP sc-hIUJlX"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
@@ -520,7 +520,7 @@ exports[`CurriculumTab renders 1`] = `
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -529,7 +529,7 @@ exports[`CurriculumTab renders 1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                  class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
@@ -543,7 +543,7 @@ exports[`CurriculumTab renders 1`] = `
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -552,7 +552,7 @@ exports[`CurriculumTab renders 1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-dtBdUo sc-fXSgeo bMKUbn dZvJQR internal-button"
+                  class="sc-dtBdUo sc-fXSgeo bMKUbn eJTpUE internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
