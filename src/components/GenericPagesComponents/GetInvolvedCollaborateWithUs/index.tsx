@@ -55,7 +55,7 @@ export function GetInvolvedCollaborateWithUs({
               "repeat(8, 1fr)",
               "repeat(12, 1fr)",
             ]}
-            $rg={["spacing-40", "spacing-40", "spacing-16"]}
+            $rg={["spacing-32", "spacing-40", "spacing-16"]}
             $cg="spacing-16"
           >
             <OakGridArea
@@ -88,7 +88,7 @@ export function GetInvolvedCollaborateWithUs({
               $colStart={[1, 5, 7]}
               $rowStart={[2, 1, 1]}
             >
-              <OakFlex $flexDirection="column" $gap="spacing-16">
+              <OakFlex $flexDirection="column" $gap="spacing-24">
                 {cards.map((card) => (
                   <OakBox key={card.headingTitle} $background="white">
                     <GetInvolvedLinkCard
