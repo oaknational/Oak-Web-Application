@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
-import { WhoAreWeHeader as Component } from ".";
+import { AboutSharedHeader as Component } from ".";
 
 const meta: Meta<typeof Component> = {
   component: Component,
   tags: ["autodocs"],
-  title: "Components/GenericPagesComponents/WhoAreWeHeader",
+  title: "Components/GenericPagesComponents/AboutSharedHeader",
   argTypes: {},
   decorators: [
     (Story) => (
@@ -39,9 +39,9 @@ export const Default: Story = {
         style: "normal",
       },
     ],
-    imageUrl:
-      "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg",
-    imageAlt: "Oak logo",
+    // imageUrl:
+    //   "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg",
+    // imageAlt: "Oak logo",
   },
   render: (args) => <Component {...args} />,
 };

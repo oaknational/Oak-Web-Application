@@ -1698,7 +1698,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-425f6005-0 fgBWrW djyvKT iAkSYx ddfa-dj"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-8ee4f6c6-0 fgBWrW djyvKT iAkSYx cWUAZE"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1707,7 +1707,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       class="sc-kpDqfm cRJejs"
                     >
                       <span
-                        class="sc-dAlyuH bOvjMx"
+                        class="sc-dAlyuH gEkaeR"
                       >
                         About Oak
                       </span>
@@ -1720,7 +1720,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-425f6005-1 fgBWrW joHkzz dGlNMa bzVBBM"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-8ee4f6c6-1 fgBWrW joHkzz dGlNMa fmgqKD"
                 >
                   <div
                     class="sc-fqkvVR dBkKun"
@@ -2403,7 +2403,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB sc-jEACwC eKkWSU bUZQTk"
               >
                 <div
-                  class="sc-fqkvVR sc-f019c2e2-0 fgBWrW bXXxRE"
+                  class="sc-fqkvVR sc-fa16f285-0 fgBWrW dvPIDh"
                 >
                   <div
                     class="sc-ad0ad6f5-0 sc-213e351e-0 sc-8724906-0 hidovD cEqFwB"
