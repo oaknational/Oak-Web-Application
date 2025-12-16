@@ -1,0 +1,31 @@
+name: Terraform Drift Detection
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  check-drift:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        workspace:
+          - ${{ vars.TF_WORKSPACE_WEBSITE }}
+          - ${{ vars.TF_WORKSPACE_STORYBOOK }}
+      fail-fast: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Drift Detection - ${{ matrix.workspace }}
+        uses: oaknational/oak-terraform-actions/actions/terraform-vercel-drift@42682cc06818ab142a4c8667643a44f68ae07e62
+        with:
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+          TF_CLOUD_ORGANIZATION: ${{ vars.TF_CLOUD_ORGANIZATION }}
+          TF_WORKSPACE: ${{ matrix.workspace }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
