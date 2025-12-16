@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 import {
   OakSecondaryButton,
   OakPrimaryButton,
@@ -13,7 +11,7 @@ const TabLink = ({
   ...buttonProps
 }: {
   isSelected: boolean;
-  children: ReactNode;
+  children: string;
   href: string;
 } & OakPrimaryButtonProps) => {
   const Component = isSelected ? OakSecondaryButton : OakPrimaryButton;
@@ -32,7 +30,7 @@ const TabLink = ({
       {...buttonProps}
     >
       {!isSelected && "Go to "}
-      {children}
+      {isSelected ? children : children.toLowerCase()}
     </Component>
   );
 };
