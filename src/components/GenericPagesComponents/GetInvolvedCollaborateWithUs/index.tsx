@@ -90,7 +90,11 @@ export function GetInvolvedCollaborateWithUs({
             >
               <OakFlex $flexDirection="column" $gap="spacing-24">
                 {cards.map((card) => (
-                  <OakBox key={card.headingTitle} $background="white">
+                  <OakBox
+                    key={card.headingTitle}
+                    $background="white"
+                    $borderRadius={"border-radius-s"}
+                  >
                     <GetInvolvedLinkCard
                       headingTag={card.headingTag}
                       headingTitle={card.headingTitle}
