@@ -1,5 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
-import { OakBox } from "@oaknational/oak-components";
+import { OakBox, OakMaxWidth } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -7,12 +8,22 @@ import { WhoAreWeHeader } from "@/components/GenericPagesComponents/WhoAreWeHead
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 import { GetInvolvedCollaborateWithUs } from "@/components/GenericPagesComponents/GetInvolvedCollaborateWithUs";
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
+import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
+
+const NewsletterWrapper = styled(OakBox)`
+  max-width: 100%;
+
+  @media (min-width: 750px) {
+    max-width: 870px;
+  }
+`;
 
 export type GetInvolvedPage = {
   pageData: {
@@ -110,6 +121,8 @@ const fixtureData: GetInvolvedPage["pageData"] = {
 };
 
 export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
+  const newsletterFormProps = useNewsletterForm();
+
   return (
     <Layout seoProps={getSeoProps(null)} $background={"white"}>
       <OakBox $overflow={"hidden"}>
@@ -208,6 +221,16 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
             },
           ]}
         />
+        <OakBox
+          $background={"bg-decorative1-subdued"}
+          $pv={["spacing-56", "spacing-56"]}
+        >
+          <OakMaxWidth $ph={"spacing-16"} $alignItems={"center"}>
+            <NewsletterWrapper>
+              <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
+            </NewsletterWrapper>
+          </OakMaxWidth>
+        </OakBox>
       </OakBox>
     </Layout>
   );
