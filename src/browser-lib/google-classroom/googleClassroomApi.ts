@@ -84,7 +84,7 @@ const createAttachment = async (attachment: {
         unitSlug: string;
       }
     >(
-      `/api/classroom/attachment`,
+      `/api/classroom/attachment/create`,
       "POST",
       attachment,
       await getOakGCAuthHeaders(),
