@@ -89,6 +89,18 @@ const mockResponseData: TopNavResponse = {
       }),
       features: {},
     },
+    {
+      programme_fields: programmeFieldsFixture({
+        overrides: {
+          keystage: "EYFS",
+          keystage_slug: "early-years-foundation-stage",
+          phase_slug: "foundation",
+          subject: "Maths",
+          subject_slug: "maths",
+        },
+      }),
+      features: {},
+    },
   ],
 };
 
@@ -96,7 +108,7 @@ describe("getTeachersNavData", () => {
   it("gets primary data", () => {
     const result = getTeachersNavData(mockResponseData, "primary");
     expect(result.phaseTitle).toBe("Primary");
-    expect(result.keystages).toHaveLength(2);
+    expect(result.keystages).toHaveLength(3);
   });
   it("gets secondary data", () => {
     const result = getTeachersNavData(mockResponseData, "secondary");
@@ -109,5 +121,12 @@ describe("getTeachersNavData", () => {
       (s) => s.slug === "financial-education",
     );
     expect(financialEducation?.nonCurriculum).toBeTruthy();
+  });
+  it("includes EYFS in primary", () => {
+    const result = getTeachersNavData(mockResponseData, "primary");
+    const eyfs = result.keystages.find(
+      (ks) => ks.slug === "early-years-foundation-stage",
+    );
+    expect(eyfs).toBeDefined();
   });
 });

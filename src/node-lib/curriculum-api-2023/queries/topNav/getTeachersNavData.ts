@@ -4,6 +4,22 @@ export const getTeachersNavData = (
   teachersData: TopNavResponse,
   phaseSlug: "primary" | "secondary",
 ): TeachersBrowse => {
+  const keystagesForPhase = getKeystages(teachersData, phaseSlug);
+
+  return {
+    phaseSlug: phaseSlug,
+    phaseTitle: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}`,
+    keystages:
+      phaseSlug === "primary"
+        ? keystagesForPhase.concat(getKeystages(teachersData, "foundation"))
+        : keystagesForPhase,
+  };
+};
+
+const getKeystages = (
+  teachersData: TopNavResponse,
+  phaseSlug: "primary" | "secondary" | "foundation",
+) => {
   // Get all programmes for the given phase
   const byPhase = teachersData.teachers.filter(
     (p) => p.programme_fields.phase_slug === phaseSlug,
@@ -31,9 +47,5 @@ export const getTeachersNavData = (
     };
   });
 
-  return {
-    phaseSlug: phaseSlug,
-    phaseTitle: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}`,
-    keystages: withSubjects,
-  };
+  return withSubjects;
 };
