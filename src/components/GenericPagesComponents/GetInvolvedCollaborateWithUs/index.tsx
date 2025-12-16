@@ -10,6 +10,8 @@ import styled from "styled-components";
 
 import { GetInvolvedLinkCard } from "@/components/GenericPagesComponents/GetInvolvedLinkCard";
 import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const StyledImage = styled(OakImage)`
   height: 260px;
@@ -30,7 +32,7 @@ export type GetInvolvedCollaborateWithUsProps = {
   cards: Array<{
     headingTag: "h2" | "h3";
     headingTitle: string;
-    content: string;
+    content: PortableTextJSON;
     buttons: Array<{
       text: string;
       link: string;
@@ -94,7 +96,9 @@ export function GetInvolvedCollaborateWithUs({
                     <GetInvolvedLinkCard
                       headingTag={card.headingTag}
                       headingTitle={card.headingTitle}
-                      content={card.content}
+                      content={
+                        <PortableTextWithDefaults value={card.content} />
+                      }
                       buttons={card.buttons}
                     />
                   </OakBox>

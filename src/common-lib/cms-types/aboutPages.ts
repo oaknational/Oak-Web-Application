@@ -89,3 +89,20 @@ export const aboutWorkWithUsPageSchema = aboutPageBaseSchema.extend({
 });
 
 export type AboutWorkWithUsPage = z.infer<typeof aboutWorkWithUsPageSchema>;
+
+export const newAboutGetInvolvedPageSchema = z.object({
+  header: z.object({
+    textRaw: portableTextSchema,
+  }),
+  collaborate: z.object({
+    researchPanelTextRaw: portableTextSchema,
+    feedbackTextRaw: portableTextSchema,
+  }),
+  workWithUs: z.object({
+    textRaw: portableTextSchema,
+  }),
+});
+
+export type AboutGetInvolvedPage = z.infer<
+  typeof newAboutGetInvolvedPageSchema
+>;

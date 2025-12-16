@@ -9,7 +9,22 @@ describe("WhoAreWeHeader", () => {
     const { baseElement, getByRole, getByAltText } = render(
       <WhoAreWeHeader
         title="TESTING_TITLE"
-        content="TESTING_CONTENT"
+        content={[
+          {
+            _key: "key0001",
+            _type: "block",
+            children: [
+              {
+                _key: "key0002",
+                _type: "span",
+                marks: [],
+                text: "TESTING_CONTENT",
+              },
+            ],
+            markDefs: [],
+            style: "normal",
+          },
+        ]}
         imageUrl="http://example.com/image.svg"
         imageAlt="Oak logo"
       />,

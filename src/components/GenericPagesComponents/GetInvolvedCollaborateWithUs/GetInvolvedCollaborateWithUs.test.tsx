@@ -15,8 +15,22 @@ describe("GetInvolvedCollaborateWithUs", () => {
           {
             headingTag: "h3",
             headingTitle: "Give your feedback",
-            content:
-              "Share your story and we'll send you a gift voucher as a thanks for your time.",
+            content: [
+              {
+                _key: "key0001",
+                _type: "block",
+                children: [
+                  {
+                    _key: "key0002",
+                    _type: "span",
+                    marks: [],
+                    text: "Share your story and we'll send you a gift voucher as a thanks for your time.",
+                  },
+                ],
+                markDefs: [],
+                style: "normal",
+              },
+            ],
             buttons: [
               {
                 text: "Get in touch",
@@ -28,8 +42,23 @@ describe("GetInvolvedCollaborateWithUs", () => {
           {
             headingTag: "h3",
             headingTitle: "Help us improve",
-            content:
-              "Teachers are at the heart of everything we build. Have your say by taking part in research.",
+            content: [
+              {
+                _key: "key0001",
+                _type: "block",
+                children: [
+                  {
+                    _key: "key0002",
+                    _type: "span",
+                    marks: [],
+                    text: "Teachers are at the heart of everything we build. Have your say by taking part in research.",
+                  },
+                ],
+                markDefs: [],
+                style: "normal",
+              },
+            ],
+
             buttons: [
               {
                 text: "Take part in research",
