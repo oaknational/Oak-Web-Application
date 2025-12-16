@@ -2,6 +2,10 @@ import { FC } from "react";
 import { OakLI, OakSideMenuNavLink, OakUL } from "@oaknational/oak-components";
 
 import { getContainerId } from "../LessonItemContainer/LessonItemContainer";
+import {
+  LessonOverviewHeaderDownloadAllButton,
+  LessonOverviewHeaderDownloadAllButtonProps,
+} from "../LessonOverviewHeaderDownloadAllButton/LessonOverviewHeaderDownloadAllButton";
 
 type LessonOverviewSideNavAnchorLinksProps = {
   contentRestricted: boolean;
@@ -11,10 +15,17 @@ type LessonOverviewSideNavAnchorLinksProps = {
     anchorId: string;
     subheading?: string;
   }[];
+  downloadAllButtonProps: LessonOverviewHeaderDownloadAllButtonProps;
 };
+
 const LessonOverviewSideNavAnchorLinks: FC<
   LessonOverviewSideNavAnchorLinksProps
-> = ({ links, currentSectionId, contentRestricted }) => {
+> = ({
+  links,
+  currentSectionId,
+  contentRestricted,
+  downloadAllButtonProps,
+}) => {
   return (
     <OakUL $reset $display="flex" $gap="spacing-16" $flexDirection="column">
       {links.map((link, index) => {
@@ -46,6 +57,7 @@ const LessonOverviewSideNavAnchorLinks: FC<
           </OakLI>
         );
       })}
+      <LessonOverviewHeaderDownloadAllButton {...downloadAllButtonProps} />
     </OakUL>
   );
 };

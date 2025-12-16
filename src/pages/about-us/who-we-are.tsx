@@ -30,7 +30,10 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import TranscriptToggle from "@/components/TeacherComponents/TranscriptViewer/TranscriptToggle";
-import { WhoAreWeHeader } from "@/components/GenericPagesComponents/WhoAreWeHeader";
+import {
+  AboutSharedHeader,
+  AboutSharedHeaderImage,
+} from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { WhoAreWeBreakout } from "@/components/GenericPagesComponents/WhoAreWeBreakout";
 import WhoAreWeTimeline from "@/components/GenericPagesComponents/WhoAreWeTimeline";
 import { WhoAreWeDesc } from "@/components/GenericPagesComponents/WhoAreWeDesc";
@@ -228,14 +231,17 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <OakBox $overflow={"hidden"}>
-        <WhoAreWeHeader
-          title={newAboutWhoWeArePage.header.title}
-          content={newAboutWhoWeArePage.header.subTitle}
-          imageUrl={
-            "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
+        <AboutSharedHeader
+          title={"About Oak"}
+          content={
+            "We're here to support and inspire teachers to deliver great teaching, so every pupil benefits"
           }
-          imageAlt={""}
-        />
+        >
+          <AboutSharedHeaderImage
+            imageAlt=""
+            imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
+          />
+        </AboutSharedHeader>
         <WhoAreWeBreakout
           imageUrl={newAboutWhoWeArePage.breakout.image.asset?.url as string}
           imageAlt={newAboutWhoWeArePage.breakout.image.altText as string}
