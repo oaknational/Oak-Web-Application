@@ -6,13 +6,13 @@ import parse from "html-react-parser";
 import { PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
 
+import "@/styles/app-global.css";
 import {
   OakBox,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
-import GlobalStyle from "@/styles/GlobalStyle";
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "@/image-data";
 
 export const metadata = {
@@ -28,9 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={lexend.className}>
       {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
-      <GlobalStyle fontFamily={lexend.style.fontFamily} />
       <body style={{ margin: "0px" }}>
         <StyledComponentsRegistry>
           <PHProvider>
