@@ -1,6 +1,6 @@
 import { TopNavResponse, TeachersBrowse } from "./topNav.schema";
 
-export const getTeachersData = (
+export const getTeachersNavData = (
   teachersData: TopNavResponse,
   phaseSlug: "primary" | "secondary",
 ): TeachersBrowse => {

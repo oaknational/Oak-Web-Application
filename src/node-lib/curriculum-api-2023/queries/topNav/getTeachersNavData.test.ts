@@ -1,6 +1,6 @@
 import { programmeFieldsFixture } from "@oaknational/oak-curriculum-schema";
 
-import { getTeachersData } from "./getTeachersData";
+import { getTeachersNavData } from "./getTeachersNavData";
 import { TopNavResponse } from "./topNav.schema";
 
 const mockResponseData: TopNavResponse = {
@@ -92,19 +92,19 @@ const mockResponseData: TopNavResponse = {
   ],
 };
 
-describe("getTeachersData", () => {
+describe("getTeachersNavData", () => {
   it("gets primary data", () => {
-    const result = getTeachersData(mockResponseData, "primary");
+    const result = getTeachersNavData(mockResponseData, "primary");
     expect(result.phaseTitle).toBe("Primary");
     expect(result.keystages).toHaveLength(2);
   });
   it("gets secondary data", () => {
-    const result = getTeachersData(mockResponseData, "secondary");
+    const result = getTeachersNavData(mockResponseData, "secondary");
     expect(result.phaseTitle).toBe("Secondary");
     expect(result.keystages).toHaveLength(2);
   });
   it("correctly identifies non curriculum subjects", () => {
-    const result = getTeachersData(mockResponseData, "primary");
+    const result = getTeachersNavData(mockResponseData, "primary");
     const financialEducation = result.keystages[0]?.subjects.find(
       (s) => s.slug === "financial-education",
     );
