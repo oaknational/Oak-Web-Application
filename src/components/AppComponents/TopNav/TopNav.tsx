@@ -53,7 +53,7 @@ const TopNav = () => {
         $alignItems={"center"}
         $gap={"spacing-24"}
       >
-        <OakLink href={resolveOakHref({ page: "home" })}>
+        <OakLink href={resolveOakHref({ page: "home" })} aria-label="Home">
           <OakImage
             src={getCloudinaryImageUrl(
               isMobile
