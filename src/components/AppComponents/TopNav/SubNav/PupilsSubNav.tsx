@@ -1,7 +1,16 @@
-import { OakFlex } from "@/styles/oakThemeApp";
+import { OakFlex, OakPrimaryInvertedButton } from "@/styles/oakThemeApp";
 
-const PupilsSubNav = () => {
-  return <OakFlex>Pupils links</OakFlex>;
+const PupilsSubNav = ({ onClick }: { onClick: (menu: string) => void }) => {
+  return (
+    <OakFlex>
+      <OakPrimaryInvertedButton onClick={() => onClick("primary")}>
+        Primary
+      </OakPrimaryInvertedButton>
+      <OakPrimaryInvertedButton onClick={() => onClick("secondary")}>
+        Secondary
+      </OakPrimaryInvertedButton>
+    </OakFlex>
+  );
 };
 
 export default PupilsSubNav;
