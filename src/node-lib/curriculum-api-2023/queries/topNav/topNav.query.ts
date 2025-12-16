@@ -1,19 +1,8 @@
-import z from "zod";
-import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
-
 import { Sdk } from "../../sdk";
 
-import OakError from "@/errors/OakError";
+import { topNavResponseSchema } from "./topNav.schema";
 
-const topNavResponseSchema = z.object({
-  teachers: z.array(
-    z.object({
-      programme_fields: programmeFieldsSchema,
-      features: z.object({ non_curriculum: z.boolean().nullish() }),
-    }),
-  ),
-});
-export type TopNavResponse = z.infer<typeof topNavResponseSchema>;
+import OakError from "@/errors/OakError";
 
 const topNavQuery = (sdk: Sdk) => async () => {
   const res = await sdk.topNav();
