@@ -67,29 +67,26 @@ describe("Google Classroom API", () => {
   describe("verifySession", () => {
     it("should call the verify API and return authenticated: true", async () => {
       // Arrange
-      const session = "valid_session";
       mockJsonResponse({ authenticated: true });
 
       // Act
-      const result = await GoogleClassroomApi.verifySession(session);
+      const result = await GoogleClassroomApi.verifySession();
 
       // Assert
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(mockFetch).toHaveBeenCalledWith(`/api/classroom/auth/verify`, {
         credentials: "include",
         method: "POST",
-        body: JSON.stringify({ session }),
       });
       expect(result).toEqual({ authenticated: true });
     });
 
     it("should return authenticated: false if API returns false", async () => {
       // Arrange
-      const session = "invalid_session";
       mockJsonResponse({ authenticated: false });
 
       // Act
-      const result = await GoogleClassroomApi.verifySession(session);
+      const result = await GoogleClassroomApi.verifySession();
 
       // Assert
       expect(mockFetch).toHaveBeenCalledTimes(1);
@@ -98,11 +95,10 @@ describe("Google Classroom API", () => {
 
     it("should return authenticated: false if API response is malformed", async () => {
       // Arrange
-      const session = "valid_session";
       mockJsonResponse({});
 
       // Act
-      const result = await GoogleClassroomApi.verifySession(session);
+      const result = await GoogleClassroomApi.verifySession();
 
       // Assert
       expect(mockFetch).toHaveBeenCalledTimes(1);
