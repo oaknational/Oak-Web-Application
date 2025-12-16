@@ -12,7 +12,18 @@ import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/down
 import { oakSupportMap } from "@/components/TeacherViews/Onboarding/HowCanOakSupport/HowCanOakSupport.view";
 
 export const USER_ROLES = ["Teacher", "Parent", "Student", "Other"] as const;
+export const EDU_ROLES = [
+  "MAT Principal/CEO",
+  "Headteacher",
+  "Deputy/SLT",
+  "Head of Dept/Year",
+  "Teacher/Subject Specialist",
+  "Teaching Assistant",
+  "Trainee Teacher",
+  "Other",
+];
 export type UserRole = (typeof USER_ROLES)[number];
+export type EduRole = (typeof EDU_ROLES)[number];
 export type NewsletterHubspotFormData = {
   // when sending email to 'fallback' form
   emailTextOnly?: string;
@@ -24,6 +35,7 @@ export type NewsletterHubspotFormData = {
    * form value. It is stripped out in getHubspotFormPayload.
    */
   userRole: UserRole | "";
+  eduRole?: EduRole;
 } & UtmParams;
 
 export type CampaignNewsletterHubspotFormData = {
@@ -50,6 +62,7 @@ export const getSnakeCaseData = (
     full_name: data.name,
     user_type: data.userRole,
     oak_user_id: data.oakUserId,
+    edu_user_role_type: data.eduRole,
     contact_school_name: "schoolName" in data ? data.schoolName : undefined,
     contact_school_urn:
       "school" in data
