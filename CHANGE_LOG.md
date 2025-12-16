@@ -1,3 +1,16 @@
+# [1.936.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.935.0...v1.936.0) (2025-12-16)
+
+
+### Bug Fixes
+
+* h1 highlight colour ([530175e](https://github.com/oaknational/Oak-Web-Application/commit/530175ed04688a2db3acc2a4badd873c44b46306))
+* header component to take children for hero image ([d885de0](https://github.com/oaknational/Oak-Web-Application/commit/d885de0c476503bcfa3a9898771916e6b2f01841))
+
+
+### Features
+
+* add background loop illustration ([61ead03](https://github.com/oaknational/Oak-Web-Application/commit/61ead034514ea916e238950c461907246314f802))
+
 # [1.935.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.934.0...v1.935.0) (2025-12-15)
 
 
