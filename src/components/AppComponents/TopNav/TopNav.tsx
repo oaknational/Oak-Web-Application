@@ -54,7 +54,12 @@ const TopNav = () => {
         $gap={"spacing-24"}
         $maxHeight={"spacing-80"}
       >
-        <OakLink href={resolveOakHref({ page: "home" })} aria-label="Home">
+        <OakLink
+          href={resolveOakHref({
+            page: activeArea === "PUPILS" ? "pupil-year-index" : "home",
+          })}
+          aria-label="Home"
+        >
           <OakImage
             src={getCloudinaryImageUrl(
               isMobile
