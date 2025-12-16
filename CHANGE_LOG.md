@@ -1,3 +1,24 @@
+## [1.937.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.937.1...v1.937.2) (2025-12-16)
+
+## [1.937.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.937.0...v1.937.1) (2025-12-16)
+
+
+### Bug Fixes
+
+* update unitSequenceRefined to include correct componentType ([8041b39](https://github.com/oaknational/Oak-Web-Application/commit/8041b39edaf1d66a53da3d754ad3511ad1339e6d))
+
+# [1.937.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.936.0...v1.937.0) (2025-12-16)
+
+
+### Bug Fixes
+
+* update useselectedarea to prevent flashing ([dcdeed4](https://github.com/oaknational/Oak-Web-Application/commit/dcdeed4540342ddb32a5264a49eb5e4fc2501fda))
+
+
+### Features
+
+* update useSelectedArea to use next/navigation ([1dc79a6](https://github.com/oaknational/Oak-Web-Application/commit/1dc79a6b253bf5d211e59e054fcff2fe7b93f45c))
+
 # [1.936.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.935.0...v1.936.0) (2025-12-16)
 
 

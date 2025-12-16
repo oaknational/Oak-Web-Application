@@ -13,10 +13,14 @@ import {
   presentAtKeyStageSlugs,
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersTiersProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilters: CurriculumFilters,
+    source: ComponentTypeValueType,
+  ) => void;
   data: CurriculumUnitsFormattedData;
 };
 
@@ -34,7 +38,7 @@ export function CurricFiltersTiers({
   const tiersAt = presentAtKeyStageSlugs(keyStageSlugData, "tiers");
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({ ...filters, [key]: [newValue] });
+    onChangeFilters({ ...filters, [key]: [newValue] }, "learning_tier_button");
   }
 
   return (
