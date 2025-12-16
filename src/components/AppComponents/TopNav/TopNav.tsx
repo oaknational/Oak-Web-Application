@@ -17,7 +17,7 @@ const TopNav = () => {
     <>
       <OakFlex
         $background={"bg-btn-primary"}
-        $ph={"spacing-40"}
+        $ph={["spacing-20", "spacing-40"]}
         $pb={"spacing-0"}
         $pt={"spacing-16"}
         $justifyContent={["center", "left"]}
@@ -52,6 +52,7 @@ const TopNav = () => {
         $borderColor={"border-neutral-lighter"}
         $alignItems={"center"}
         $gap={"spacing-24"}
+        $maxHeight={"spacing-80"}
       >
         <OakLink href={resolveOakHref({ page: "home" })} aria-label="Home">
           <OakImage
@@ -61,7 +62,7 @@ const TopNav = () => {
                 : "v1765468420/OakLogoWithText.svg",
             )}
             alt=""
-            $height={"spacing-40"}
+            $height={["spacing-40", "spacing-48"]}
             $width={["spacing-32", "spacing-80"]}
             $pa={"spacing-0"}
           />
