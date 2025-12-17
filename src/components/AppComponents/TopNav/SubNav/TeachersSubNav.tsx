@@ -8,25 +8,27 @@ type TeachersSubNavProps = {
 
 const TeachersSubNav = ({ onClick }: TeachersSubNavProps) => {
   return (
-    <OakFlex $gap={"spacing-12"} data-testid="teachers-subnav">
-      <OakPrimaryInvertedButton onClick={() => onClick("primary")}>
-        Primary
-      </OakPrimaryInvertedButton>
-      <OakPrimaryInvertedButton onClick={() => onClick("secondary")}>
-        Secondary
-      </OakPrimaryInvertedButton>
-      <OakPrimaryInvertedButton
-        element="a"
-        href={resolveOakHref({ page: "curriculum-landing-page" })}
-      >
-        Curriculum
-      </OakPrimaryInvertedButton>
-      <OakPrimaryInvertedButton onClick={() => onClick("guidance")}>
-        Guidance
-      </OakPrimaryInvertedButton>
-      <OakPrimaryInvertedButton onClick={() => onClick("aboutUs")}>
-        About us
-      </OakPrimaryInvertedButton>
+    <OakFlex data-testid="teachers-subnav">
+      <OakFlex $display={["none", "none", "flex"]} $gap={"spacing-12"}>
+        <OakPrimaryInvertedButton onClick={() => onClick("primary")}>
+          Primary
+        </OakPrimaryInvertedButton>
+        <OakPrimaryInvertedButton onClick={() => onClick("secondary")}>
+          Secondary
+        </OakPrimaryInvertedButton>
+        <OakPrimaryInvertedButton
+          element="a"
+          href={resolveOakHref({ page: "curriculum-landing-page" })}
+        >
+          Curriculum
+        </OakPrimaryInvertedButton>
+        <OakPrimaryInvertedButton onClick={() => onClick("guidance")}>
+          Guidance
+        </OakPrimaryInvertedButton>
+        <OakPrimaryInvertedButton onClick={() => onClick("aboutUs")}>
+          About us
+        </OakPrimaryInvertedButton>
+      </OakFlex>
     </OakFlex>
   );
 };
