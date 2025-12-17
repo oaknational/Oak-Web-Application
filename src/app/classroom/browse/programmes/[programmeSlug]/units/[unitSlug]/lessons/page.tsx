@@ -25,7 +25,7 @@ async function GoogleClassroomLessonsListPage({
   return (
     <LessonListingView
       unitData={unitData}
-      browseData={orderedBrowseData}
+      browseData={orderedBrowseData as never}
       programmeFields={programmeFields}
       programmeSlug={programmeSlug}
       pupilLessonUrlTemplate={
