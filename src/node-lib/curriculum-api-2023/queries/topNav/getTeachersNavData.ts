@@ -17,11 +17,11 @@ export const getTeachersNavData = (
 };
 
 const getKeystages = (
-  teachersData: TopNavResponse,
+  data: TopNavResponse,
   phaseSlug: "primary" | "secondary" | "foundation",
 ) => {
   // Get all programmes for the given phase
-  const byPhase = teachersData.teachers.filter(
+  const byPhase = data.programmes.filter(
     (p) => p.programme_fields.phase_slug === phaseSlug,
   );
 

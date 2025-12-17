@@ -4,7 +4,7 @@ import { TopNavResponse } from "./topNav.schema";
 import { getPupilsNavData } from "./getPupilsNavData";
 
 const mockResponseData: TopNavResponse = {
-  teachers: [
+  programmes: [
     {
       programme_fields: programmeFieldsFixture({
         overrides: {
