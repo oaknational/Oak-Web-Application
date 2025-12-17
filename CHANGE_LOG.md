@@ -1,3 +1,17 @@
+# [1.939.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.938.0...v1.939.0) (2025-12-17)
+
+
+### Features
+
+* disable automatic pageview tracking ([e8339fc](https://github.com/oaknational/Oak-Web-Application/commit/e8339fcaf5840f3f57ef78df0a207e4200a49516))
+* make analytics provider compatible with app router ([2ca8825](https://github.com/oaknational/Oak-Web-Application/commit/2ca88259aec08803fe591175a87bf08a109b1b96))
+* make layout component a server component ([56ecd7b](https://github.com/oaknational/Oak-Web-Application/commit/56ecd7bce116143cbfe066c562a61a231c02607b))
+* move analytics wrapper to app level, remove mock analytics ([22659e4](https://github.com/oaknational/Oak-Web-Application/commit/22659e452b5bb2db74ed8d0588c5b6d76a8bff3d))
+* remove suspense boundary ([7c8c2b0](https://github.com/oaknational/Oak-Web-Application/commit/7c8c2b06941163b823d3f370243fcdec9d98bfb2))
+* try a fragment in suspense boundary ([dc3e523](https://github.com/oaknational/Oak-Web-Application/commit/dc3e523f4df55d9880f16b924971358f2545f7f2))
+* uncomment tracking code and replace router with usePathName in useAnalyticsPageProps ([0b9e9eb](https://github.com/oaknational/Oak-Web-Application/commit/0b9e9eb0c7476f3eaf698ba291448c9ee7f2950c))
+* wrap analytics provider in suspense boundary to ensure static rendering of the page ([09590bc](https://github.com/oaknational/Oak-Web-Application/commit/09590bcf0908160ffc65fcf548055c2ffdb568f1))
+
 # [1.938.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.937.2...v1.938.0) (2025-12-17)
 
 
