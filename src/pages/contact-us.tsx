@@ -24,9 +24,12 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type ContactPageProps = {
   pageData: ContactPage;
+  topNav: TopNavProps;
 };
 
 // @TODO: extract
@@ -70,11 +73,15 @@ const portableTextComponents: PortableTextComponents = {
   },
 };
 
-const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
+const ContactUs: NextPage<ContactPageProps> = ({ pageData, topNav }) => {
   const newsletterFormProps = useNewsletterForm();
 
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+    <Layout
+      seoProps={getSeoProps(pageData.seo)}
+      $background={"white"}
+      topNavProps={topNav}
+    >
       <OakMaxWidth
         $pt={["spacing-72", "spacing-80"]}
         $pb={["spacing-64", "spacing-80"]}
@@ -137,10 +144,12 @@ export const getStaticProps: GetStaticProps<ContactPageProps> = async (
           notFound: true,
         };
       }
+      const topNav = await curriculumApi2023.topNav();
 
       const results: GetStaticPropsResult<ContactPageProps> = {
         props: {
           pageData,
+          topNav,
         },
       };
 

@@ -24,8 +24,10 @@ import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 
 const BetaLessonMediaPage: NextPage<CanonicalLessonMediaClipsPageProps> = ({
   curriculumData,
+  topNav,
 }) => {
   const { lessonTitle, lessonSlug } = curriculumData;
+
   return (
     <AppLayout
       seoProps={{
@@ -37,6 +39,7 @@ const BetaLessonMediaPage: NextPage<CanonicalLessonMediaClipsPageProps> = ({
         noIndex: true,
         noFollow: true,
       }}
+      topNavProps={topNav}
     >
       <LessonMedia isCanonical={true} lesson={curriculumData} />
     </AppLayout>
@@ -92,10 +95,14 @@ export const getStaticProps: GetStaticProps<
         curriculumData.mediaClips =
           mediaClipsWithTranscripts as MediaClipListCamelCase;
       }
+
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<CanonicalLessonMediaClipsPageProps> =
         {
           props: {
             curriculumData,
+            topNav,
           },
         };
       return results;

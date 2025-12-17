@@ -49,13 +49,16 @@ import DesktopUnitFilters from "@/components/TeacherComponents/DesktopUnitFilter
 import RelatedSubjectsBanner from "@/components/TeacherComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
 import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers";
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
+  topNav: TopNavProps;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
+  topNav,
 }) => {
   const {
     programmeSlug,
@@ -235,7 +238,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <AppLayout seoProps={unitsSEO}>
+      <AppLayout seoProps={unitsSEO} topNavProps={topNav}>
         <PaginationHead
           prevPageUrlObject={prevPageUrlObject}
           nextPageUrlObject={nextPageUrlObject}
@@ -455,9 +458,11 @@ export const getStaticProps: GetStaticProps<
           ];
         }
 
+        const topNav = await curriculumApi2023.topNav();
         const results: GetStaticPropsResult<UnitListingPageProps> = {
           props: {
             curriculumData,
+            topNav,
           },
         };
 

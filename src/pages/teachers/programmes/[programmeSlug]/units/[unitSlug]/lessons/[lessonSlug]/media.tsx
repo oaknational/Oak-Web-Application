@@ -22,13 +22,16 @@ import {
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type LessonMediaClipsPageProps = {
   curriculumData: LessonMediaClipsData;
+  topNav: TopNavProps;
 };
 
 export const LessonMediaClipsPage: NextPage<LessonMediaClipsPageProps> = ({
   curriculumData,
+  topNav,
 }) => {
   const {
     lessonTitle,
@@ -40,6 +43,7 @@ export const LessonMediaClipsPage: NextPage<LessonMediaClipsPageProps> = ({
   } = curriculumData;
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title: `Lesson Media: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
@@ -124,10 +128,12 @@ export const getStaticProps: GetStaticProps<
           notFound: true,
         };
       }
+      const topNav = await curriculumApi2023.topNav();
 
       const results: GetStaticPropsResult<LessonMediaClipsPageProps> = {
         props: {
           curriculumData,
+          topNav,
         },
       };
       return results;

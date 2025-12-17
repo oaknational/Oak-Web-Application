@@ -8,13 +8,15 @@ import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-st
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { PupilViewsSubjectListing } from "@/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 type SubjectListingPageProps = {
   curriculumData: PupilSubjectListingData[];
+  topNav: TopNavProps;
 };
 
 const PupilSubjectListing = (props: SubjectListingPageProps) => {
-  const { curriculumData } = props;
+  const { curriculumData, topNav } = props;
 
   if (!curriculumData[0]) {
     throw new Error("No curriculum data");
@@ -25,6 +27,7 @@ const PupilSubjectListing = (props: SubjectListingPageProps) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout
+        topNavProps={topNav}
         seoProps={{
           ...getSeoProps({
             title: `${yearDescription} - Subject listing`,
@@ -68,9 +71,12 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results = {
         props: {
           curriculumData,
+          topNav,
         },
       };
 

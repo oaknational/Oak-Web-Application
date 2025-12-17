@@ -1,17 +1,38 @@
 "use client";
+import { useState } from "react";
+
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
 
-import { OakFlex, OakIcon, OakImage, OakLink } from "@/styles/oakThemeApp";
+import {
+  OakCloseButton,
+  OakFlex,
+  OakIcon,
+  OakImage,
+  OakLink,
+} from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useSelectedArea from "@/hooks/useSelectedArea";
+import {
+  TeachersSubNavData,
+  PupilsSubNavData,
+} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
-const TopNav = () => {
+export type TopNavProps = {
+  teachers: TeachersSubNavData;
+  pupils: PupilsSubNavData;
+};
+
+const TopNav = (props: TopNavProps) => {
+  const { teachers, pupils } = props;
+
   const activeArea = useSelectedArea();
   const isMobile = useMediaQuery("mobile");
+
+  const [selectedMenu, setSelectedMenu] = useState<string>();
 
   return (
     <>
@@ -72,9 +93,35 @@ const TopNav = () => {
             $pa={"spacing-0"}
           />
         </OakLink>
-        {activeArea === "TEACHERS" && <TeachersSubNav />}
-        {activeArea === "PUPILS" && <PupilsSubNav />}
+        {activeArea === "TEACHERS" && (
+          <TeachersSubNav
+            onClick={(menu) => {
+              setSelectedMenu(menu);
+              console.log("selected menu ", teachers[menu]);
+            }}
+          />
+        )}
+        {activeArea === "PUPILS" && (
+          <PupilsSubNav
+            onClick={(menu) => {
+              setSelectedMenu(menu);
+              console.log("selected menu ", pupils[menu]);
+            }}
+          />
+        )}
       </OakFlex>
+
+      {/* TD: [integrated-journey] Replace with dropdown and hamburger menus */}
+      {selectedMenu && (
+        <OakFlex
+          $width={"100%"}
+          $height="spacing-240"
+          $flexDirection={"column"}
+        >
+          <OakCloseButton onClose={() => setSelectedMenu(undefined)} />
+          {selectedMenu}
+        </OakFlex>
+      )}
     </>
   );
 };

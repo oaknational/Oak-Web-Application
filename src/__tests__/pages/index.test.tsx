@@ -3,6 +3,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -45,6 +46,7 @@ const props: HomePageProps = {
   curriculumData: {
     keyStages: keyStageKeypad.keyStages,
   },
+  topNav: topNavFixture,
 };
 
 const homepage = jest.fn().mockResolvedValue(props.pageData);

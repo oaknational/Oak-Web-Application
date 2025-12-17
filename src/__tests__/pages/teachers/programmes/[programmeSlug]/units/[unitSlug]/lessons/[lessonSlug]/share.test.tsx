@@ -23,9 +23,11 @@ import curriculumApi2023, {
   CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const props: LessonSharePageProps = {
   curriculumData: lessonShareFixtures(),
+  topNav: topNavFixture,
 };
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
@@ -341,6 +343,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       render(
         <LessonSharePage
           curriculumData={lessonShareFixtures({ isLegacy: true })}
+          topNav={topNavFixture}
         />,
       );
 

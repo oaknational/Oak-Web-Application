@@ -81,6 +81,8 @@ export const getPupilOptionData = async (
     programmes,
   });
 
+  const topNav = await curriculumApi2023.topNav();
+
   return {
     props: {
       programmes,
@@ -91,6 +93,7 @@ export const getPupilOptionData = async (
       tiers,
       pathways,
       pathwaySlug,
+      topNav,
     },
   };
 };

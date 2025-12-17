@@ -11,6 +11,8 @@ import { mockSeoResult } from "../../__helpers__/cms";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
 jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
@@ -121,7 +123,9 @@ const testAboutWorkWithUsPageData: AboutWorkWithUsPage = {
 describe("pages/about-us/work-with-us.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders()(
-      <AboutWorkWithUs pageData={testAboutWorkWithUsPageData} />,
+      <AboutWorkWithUs
+        pageData={{ ...testAboutWorkWithUsPageData, topNav: topNavFixture }}
+      />,
     );
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
@@ -132,7 +136,9 @@ describe("pages/about-us/work-with-us.tsx", () => {
   describe("SEO", () => {
     it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
-        <AboutWorkWithUs pageData={testAboutWorkWithUsPageData} />,
+        <AboutWorkWithUs
+          pageData={{ ...testAboutWorkWithUsPageData, topNav: topNavFixture }}
+        />,
       );
 
       expect(seo).toEqual({

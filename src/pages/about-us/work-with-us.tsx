@@ -21,9 +21,11 @@ import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSumma
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type AboutPageProps = {
-  pageData: AboutWorkWithUsPage;
+  pageData: AboutWorkWithUsPage & { topNav: TopNavProps };
 };
 
 const getWorkWithUsCards = (aboutPage: AboutWorkWithUsPage) => {
@@ -33,9 +35,14 @@ const getWorkWithUsCards = (aboutPage: AboutWorkWithUsPage) => {
 };
 
 const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
-  const { seo } = pageData;
+  const { seo, topNav } = pageData;
+
   return (
-    <Layout seoProps={getSeoProps(seo)} $background={"white"}>
+    <Layout
+      seoProps={getSeoProps(seo)}
+      $background={"white"}
+      topNavProps={topNav}
+    >
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
         $mt={["spacing-56", "spacing-80"]}
@@ -109,7 +116,9 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
         previewMode: isPreviewMode,
       });
 
-      if (!aboutWorkWithUsPage) {
+      const topNavData = await curriculumApi2023.topNav();
+
+      if (!aboutWorkWithUsPage || !topNavData) {
         return {
           notFound: true,
         };
@@ -117,7 +126,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
 
       const results: GetStaticPropsResult<AboutPageProps> = {
         props: {
-          pageData: aboutWorkWithUsPage,
+          pageData: { ...aboutWorkWithUsPage, topNav: topNavData },
         },
       };
 

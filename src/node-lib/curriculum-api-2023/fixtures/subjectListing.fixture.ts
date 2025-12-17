@@ -1,11 +1,14 @@
 import { SubjectListingPageData } from "../queries/subjectListing/subjectListing.schema";
 
+import { topNavFixture } from "./topNav.fixture";
+
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 
 const subjectPagePropsFixture = (
   partial?: Partial<SubjectListingPageProps>,
 ): SubjectListingPageProps => {
   return {
+    topNav: topNavFixture,
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
     keyStages: [

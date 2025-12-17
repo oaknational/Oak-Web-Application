@@ -1,6 +1,8 @@
 import { NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
+import { TopNavProps } from "../AppComponents/TopNav/TopNav";
+
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import {
   BlogWebinarCategory,
@@ -18,6 +20,7 @@ export type WebinarListingPageProps = {
   categories: BlogWebinarCategory[];
   categorySlug: string | null;
   pageData: WebinarsListingPage;
+  topNav: TopNavProps;
 };
 
 /**
@@ -25,7 +28,7 @@ export type WebinarListingPageProps = {
  */
 
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
-  const { categories, categorySlug, pageData, webinars } = props;
+  const { categories, categorySlug, pageData, webinars, topNav } = props;
   const paginationProps = usePagination({
     totalResults: webinars.length,
     pageSize: PAGE_SIZE,
@@ -67,6 +70,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
           slug: "webinars",
           title: "Webinars",
         }}
+        topNav={topNav}
       />
     </>
   );

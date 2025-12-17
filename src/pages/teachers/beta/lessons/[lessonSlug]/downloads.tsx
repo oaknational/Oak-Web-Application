@@ -15,15 +15,18 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloadsCanonical.schema";
 import { getCommonPathway } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type LessonDownloadsCanonicalPageProps = {
   curriculumData: LessonDownloadsCanonical;
+  topNav: TopNavProps;
 };
 
 const LessonDownloadsCanonicalPage = (
   props: LessonDownloadsCanonicalPageProps,
 ) => {
-  const { curriculumData } = props;
+  const { curriculumData, topNav } = props;
+
   const { lessonTitle, pathways } = curriculumData;
   const commonPathway = getCommonPathway(pathways);
   const { keyStageSlug, subjectTitle } = commonPathway;
@@ -36,6 +39,7 @@ const LessonDownloadsCanonicalPage = (
 
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title: seoTitle,
@@ -94,11 +98,14 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<LessonDownloadsCanonicalPageProps> = {
         props: {
           curriculumData: {
             ...curriculumData,
           },
+          topNav,
         },
       };
       return results;

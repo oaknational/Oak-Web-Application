@@ -16,6 +16,7 @@ import curriculumApi2023, {
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share/useTeacherNotes";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const url = "";
 
@@ -106,6 +107,7 @@ describe("Lesson Overview Canonical Page", () => {
     it("Renders title from the props", async () => {
       const result = render(
         <LessonOverviewCanonicalPage
+          topNav={topNavFixture}
           lesson={{ ...lesson, pathways: [] }}
           isSpecialist={false}
         />,
@@ -118,6 +120,7 @@ describe("Lesson Overview Canonical Page", () => {
     it("Renders the lesson overview when no lessonReleaseDate", async () => {
       const result = render(
         <LessonOverviewCanonicalPage
+          topNav={topNavFixture}
           lesson={{ ...lesson, lessonReleaseDate: null, pathways: [] }}
           isSpecialist={false}
         />,
@@ -139,6 +142,7 @@ describe("Lesson Overview Canonical Page", () => {
 
       const { getAllByText } = render(
         <LessonOverviewCanonicalPage
+          topNav={topNavFixture}
           lesson={{ ...lesson, pathways: [] }}
           isSpecialist={false}
         />,

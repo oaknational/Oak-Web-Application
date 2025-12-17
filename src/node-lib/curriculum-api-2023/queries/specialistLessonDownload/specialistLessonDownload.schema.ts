@@ -8,6 +8,8 @@ import {
   lessonDownloadsListSchema,
 } from "../../shared.schema";
 
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+
 const specialistLessonDownloadRawSchema = z.object({
   lesson_title: z.string(),
   combined_programme_fields: z.object({
@@ -76,4 +78,5 @@ export type SpecialistLessonDownloads = z.infer<
 >;
 export type SpecialistLessonDownloadsPageData = {
   curriculumData: SpecialistLessonDownloads;
+  topNav: TopNavProps;
 };

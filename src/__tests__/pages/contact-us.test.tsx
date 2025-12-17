@@ -9,6 +9,8 @@ import {
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
 const testContactPageData: ContactPage = {
   id: "01",
   title: "Contact title",
@@ -31,7 +33,9 @@ describe("pages/contact-us.tsx", () => {
   });
 
   it("contains an h1 ", () => {
-    const { getByRole } = render(<ContactUs pageData={testContactPageData} />);
+    const { getByRole } = render(
+      <ContactUs pageData={testContactPageData} topNav={topNavFixture} />,
+    );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
       "Contact title",
@@ -39,7 +43,9 @@ describe("pages/contact-us.tsx", () => {
   });
 
   it("contains a sign up button", () => {
-    const { getByRole } = render(<ContactUs pageData={testContactPageData} />);
+    const { getByRole } = render(
+      <ContactUs pageData={testContactPageData} topNav={topNavFixture} />,
+    );
 
     expect(
       getByRole("button", {
@@ -51,7 +57,7 @@ describe("pages/contact-us.tsx", () => {
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
-        <ContactUs pageData={testContactPageData} />,
+        <ContactUs pageData={testContactPageData} topNav={topNavFixture} />,
       );
 
       expect(seo).toEqual({ ...mockSeoResult });

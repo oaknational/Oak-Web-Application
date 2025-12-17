@@ -5,6 +5,8 @@ import CMSClient from "../../node-lib/cms";
 import { serializeDate } from "../../utils/serializeDate";
 import getPageProps from "../../node-lib/getPageProps";
 
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+
 export { default } from "../../components/GenericPagesViews/WebinarsIndex.view";
 
 export const getStaticProps: GetStaticProps<
@@ -48,12 +50,15 @@ export const getStaticProps: GetStaticProps<
         ).values(),
       ].sort((a, b) => (a.title < b.title ? -1 : 1));
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<WebinarListingPageProps> = {
         props: {
           webinars,
           categories: webinarCategories,
           categorySlug: categorySlug,
           pageData,
+          topNav,
         },
       };
       return results;

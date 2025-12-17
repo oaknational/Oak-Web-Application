@@ -14,6 +14,7 @@ import {
   pupilProgrammeListingFixturePathwaysEBs,
 } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
 import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const programmeSelected = jest.fn();
 
@@ -125,6 +126,7 @@ describe("PublicProgrammeListing", () => {
           examboards={examboards}
           pathways={pathways}
           tiers={[]}
+          topNav={topNavFixture}
         />
         ,
       </OakThemeProvider>,
@@ -142,6 +144,7 @@ describe("PublicProgrammeListing", () => {
     render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <PupilViewsProgrammeListing
+          topNav={topNavFixture}
           baseSlug="my-subject"
           yearSlug="year-11"
           programmes={programmesPathwaysEBs}
@@ -166,6 +169,7 @@ describe("PublicProgrammeListing", () => {
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <PupilViewsProgrammeListing
+          topNav={topNavFixture}
           baseSlug="my-subject"
           yearSlug="year-11"
           programmes={programmesPathwaysEBs}
@@ -182,6 +186,7 @@ describe("PublicProgrammeListing", () => {
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <PupilViewsProgrammeListing
+          topNav={topNavFixture}
           baseSlug="my-subject"
           yearSlug="year-11"
           programmes={programmesPathwaysEBs}
@@ -220,6 +225,7 @@ describe("PublicProgrammeListing", () => {
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <PupilViewsProgrammeListing
+          topNav={topNavFixture}
           baseSlug="my-subject"
           yearSlug="year-11"
           programmes={programmesEBs}
@@ -243,6 +249,7 @@ describe("PublicProgrammeListing", () => {
     const { getByLabelText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <PupilViewsProgrammeListing
+          topNav={topNavFixture}
           baseSlug="my-subject"
           yearSlug="year-11"
           programmes={programmesEBs}

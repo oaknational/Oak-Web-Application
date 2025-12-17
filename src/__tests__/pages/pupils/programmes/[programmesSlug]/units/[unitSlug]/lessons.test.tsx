@@ -9,6 +9,7 @@ import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures
 import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import OakError from "@/errors/OakError";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 interface MockLocation {
   href: string;
@@ -79,6 +80,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       expect(() => {
         render(
           <PupilLessonListingPage
+            topNav={topNavFixture}
             browseData={[]}
             backLink={{ programmeSlug: "english" }}
           />,
@@ -95,6 +97,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
       render(
         <PupilLessonListingPage
+          topNav={topNavFixture}
           browseData={[lessonBrowseDataFixture({})]}
           backLink={{ programmeSlug: "english-secondary-year-10" }}
         />,
@@ -139,6 +142,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
       render(
         <PupilLessonListingPage
+          topNav={topNavFixture}
           browseData={[lessonBrowseDataFixture({})]}
           backLink={{ programmeSlug: "english" }}
         />,
@@ -165,6 +169,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     it("should call PupilViewsLessonListing with correct props", () => {
       render(
         <PupilLessonListingPage
+          topNav={topNavFixture}
           browseData={[lessonBrowseDataFixture({})]}
           backLink={{ programmeSlug: "english" }}
         />,
@@ -176,6 +181,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     it("should call PupilViewsLessonListing with correctly ordered lessons", () => {
       const { getByText } = render(
         <PupilLessonListingPage
+          topNav={topNavFixture}
           browseData={[
             lessonBrowseDataFixture({
               lessonData: {

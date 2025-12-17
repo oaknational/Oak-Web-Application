@@ -15,6 +15,8 @@ import { AboutLeadershipPage } from "../../../common-lib/cms-types";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
 jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
@@ -53,7 +55,12 @@ describe("pages/about/leadership.tsx", () => {
   });
 
   it("Renders correct title ", async () => {
-    render(<AboutUsLeadership pageData={testAboutLeadershipPageData} />);
+    render(
+      <AboutUsLeadership
+        pageData={testAboutLeadershipPageData}
+        topNav={topNavFixture}
+      />,
+    );
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       "About us",
@@ -63,7 +70,10 @@ describe("pages/about/leadership.tsx", () => {
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
-        <AboutUsLeadership pageData={testAboutLeadershipPageData} />,
+        <AboutUsLeadership
+          pageData={testAboutLeadershipPageData}
+          topNav={topNavFixture}
+        />,
       );
 
       expect(seo).toEqual({

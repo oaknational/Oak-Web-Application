@@ -5,10 +5,15 @@ import * as Sentry from "@sentry/nextjs";
 import ErrorView from "@/components/AppComponents/ErrorView";
 import { bugsnagInitialised } from "@/browser-lib/bugsnag/useBugsnag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { defaultTopNavProps } from "@/pages/_error";
 
 const ClientErrorView: FC = () => {
   return (
-    <ErrorView headerVariant="client-error" footerVariant="client-error" />
+    <ErrorView
+      headerVariant="client-error"
+      footerVariant="client-error"
+      topNav={defaultTopNavProps}
+    />
   );
 };
 

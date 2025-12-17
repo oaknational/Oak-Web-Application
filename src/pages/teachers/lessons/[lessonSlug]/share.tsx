@@ -17,18 +17,22 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonShareCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type LessonShareCanonicalPageProps = {
   curriculumData: LessonShareCanonical;
+  topNav: TopNavProps;
 };
 
 const LessonShareCanonicalPage: NextPage<LessonShareCanonicalPageProps> = ({
   curriculumData,
+  topNav,
 }) => {
   const { lessonTitle } = curriculumData;
 
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title: `Lesson Share: ${lessonTitle}`,
@@ -99,9 +103,12 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<LessonShareCanonicalPageProps> = {
         props: {
           curriculumData,
+          topNav,
         },
       };
       return results;

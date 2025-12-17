@@ -22,14 +22,21 @@ import getPageProps from "@/node-lib/getPageProps";
 import Layout from "@/components/AppComponents/Layout";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { resolveOakHref } from "@/common-lib/urls";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type SupportPageProps = {
   pageData: SupportPage;
+  topNav: TopNavProps;
 };
 
-const Support: NextPage<SupportPageProps> = ({ pageData }) => {
+const Support: NextPage<SupportPageProps> = ({ pageData, topNav }) => {
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+    <Layout
+      seoProps={getSeoProps(pageData.seo)}
+      $background={"white"}
+      topNavProps={topNav}
+    >
       <OakMaxWidth
         $ph={["spacing-0", "spacing-16"]}
         $pt={["spacing-64", "spacing-80"]}
@@ -182,10 +189,12 @@ export const getStaticProps: GetStaticProps<SupportPageProps> = async (
           notFound: true,
         };
       }
+      const topNav = await curriculumApi2023.topNav();
 
       const results: GetStaticPropsResult<SupportPageProps> = {
         props: {
           pageData: supportPage,
+          topNav,
         },
       };
       return results;

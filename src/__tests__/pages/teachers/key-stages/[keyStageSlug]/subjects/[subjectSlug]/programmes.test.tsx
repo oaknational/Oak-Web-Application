@@ -15,6 +15,7 @@ import programmeListingFixture, {
 } from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -122,7 +123,10 @@ describe("programmes listing page", () => {
   describe("component rendering on page", () => {
     it("renders title from props ", () => {
       const { getByRole } = render(
-        <ProgrammesListingPage {...programmeListingFixture()} />,
+        <ProgrammesListingPage
+          topNav={topNavFixture}
+          {...programmeListingFixture()}
+        />,
       );
 
       expect(getByRole("heading", { level: 1 })).toHaveTextContent("Maths");
@@ -130,7 +134,10 @@ describe("programmes listing page", () => {
 
     it("renders title with pathway from props ", () => {
       const { getByRole } = render(
-        <ProgrammesListingPage {...programmeListingWithPathwayFixture()} />,
+        <ProgrammesListingPage
+          topNav={topNavFixture}
+          {...programmeListingWithPathwayFixture()}
+        />,
       );
 
       expect(getByRole("heading", { level: 1 })).toHaveTextContent(
@@ -140,7 +147,10 @@ describe("programmes listing page", () => {
 
     it("renders the correct number of tiers and tier cards", () => {
       const { getAllByTestId } = render(
-        <ProgrammesListingPage {...programmeListingFixture()} />,
+        <ProgrammesListingPage
+          topNav={topNavFixture}
+          {...programmeListingFixture()}
+        />,
       );
 
       expect(getAllByTestId("programme-list-item")).toHaveLength(2);
@@ -150,7 +160,10 @@ describe("programmes listing page", () => {
   describe("SEO and Tracking", () => {
     it("renders the correct SEO details for programmes with only tiers", async () => {
       const { seo } = renderWithSeo()(
-        <ProgrammesListingPage {...programmeListingFixture()} />,
+        <ProgrammesListingPage
+          topNav={topNavFixture}
+          {...programmeListingFixture()}
+        />,
       );
 
       expect(seo).toEqual({
@@ -168,6 +181,7 @@ describe("programmes listing page", () => {
     it("correctly formats more than 2 tiers", async () => {
       const { seo } = renderWithSeo()(
         <ProgrammesListingPage
+          topNav={topNavFixture}
           {...programmeListingFixture({
             programmes: [
               {
@@ -216,6 +230,7 @@ describe("programmes listing page", () => {
     it("renders the correct SEO details for programmes with only examboards", async () => {
       const { seo } = renderWithSeo()(
         <ProgrammesListingPage
+          topNav={topNavFixture}
           {...programmeListingFixture({
             programmes: programmesWithExamboards,
           })}
@@ -237,6 +252,7 @@ describe("programmes listing page", () => {
     it("renders correct SEO for programmes with tiers and examboards", async () => {
       const { seo } = renderWithSeo()(
         <ProgrammesListingPage
+          topNav={topNavFixture}
           {...programmeListingFixture({
             programmes: programmesWithTiersAndExamboards,
           })}
@@ -258,7 +274,12 @@ describe("programmes listing page", () => {
       });
     });
     it("should track a browse refined event when programme with tiers is selected", async () => {
-      render(<ProgrammesListingPage {...programmeListingFixture()} />);
+      render(
+        <ProgrammesListingPage
+          topNav={topNavFixture}
+          {...programmeListingFixture()}
+        />,
+      );
 
       const programmeCard = screen.getByRole("link", { name: "Foundation" });
       await userEvent.click(programmeCard);
@@ -280,6 +301,7 @@ describe("programmes listing page", () => {
     it("should track a browse refined event when programme with examboards is selected", async () => {
       render(
         <ProgrammesListingPage
+          topNav={topNavFixture}
           {...programmeListingFixture({
             programmes: programmesWithExamboards,
           })}
@@ -306,6 +328,7 @@ describe("programmes listing page", () => {
     it("should track a browse refined event when programme with tiers and examboards is selected", async () => {
       render(
         <ProgrammesListingPage
+          topNav={topNavFixture}
           {...programmeListingFixture({
             programmes: programmesWithTiersAndExamboards,
           })}

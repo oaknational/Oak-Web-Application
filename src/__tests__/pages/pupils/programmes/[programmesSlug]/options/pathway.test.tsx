@@ -6,6 +6,7 @@ import { PupilViewsProgrammeListing } from "@/components/PupilViews/PupilProgram
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 import { pupilProgrammeListingFixturePathwaysEBs } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -38,6 +39,7 @@ describe("pages/pupils/programmes/[programmeSlug]/options/examboard/aqa", () => 
           examboards={examboards}
           tiers={[]}
           pathways={pathways}
+          topNav={topNavFixture}
         />,
       );
       expect(PupilViewsProgrammeListing).toHaveBeenCalled();

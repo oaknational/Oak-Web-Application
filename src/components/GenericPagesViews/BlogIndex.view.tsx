@@ -10,16 +10,18 @@ import PostListing from "@/components/GenericPagesViews/PostListing.view";
 import { PAGE_SIZE } from "@/components/SharedComponents/PostList/usePostList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type PostListingPageProps = {
   blogs: SerializedBlogPostPreview[];
   categories: BlogWebinarCategory[];
   categorySlug: string | null;
   pageData: PostListingPage;
+  topNav: TopNavProps;
 };
 
 const BlogIndexPage: NextPage<PostListingPageProps> = (props) => {
-  const { blogs, categories, categorySlug, pageData } = props;
+  const { blogs, categories, categorySlug, pageData, topNav } = props;
   const paginationProps = usePagination({
     totalResults: blogs.length,
     pageSize: PAGE_SIZE,
@@ -61,6 +63,7 @@ const BlogIndexPage: NextPage<PostListingPageProps> = (props) => {
           slug: "blog",
           title: "Blog",
         }}
+        topNav={topNav}
       />
     </>
   );

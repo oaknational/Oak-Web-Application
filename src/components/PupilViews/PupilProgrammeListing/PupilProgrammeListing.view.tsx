@@ -25,6 +25,7 @@ import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostT
 import { FactorData } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 import { getFactorDataFromSlug } from "@/pages-helpers/pupil/options-pages/getFactorDataFromSlug";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
@@ -35,6 +36,7 @@ export type PupilViewsProgrammeListingProps = {
   tiers: FactorData[];
   pathwaySlug?: PupilProgrammeListingData["programmeFields"]["pathwaySlug"];
   pathways: FactorData[];
+  topNav: TopNavProps;
 };
 
 export const PupilViewsProgrammeListing = ({
@@ -46,6 +48,7 @@ export const PupilViewsProgrammeListing = ({
   tiers,
   pathwaySlug,
   pathways,
+  topNav,
 }: PupilViewsProgrammeListingProps) => {
   const { track } = useAnalytics();
 
@@ -267,6 +270,7 @@ export const PupilViewsProgrammeListing = ({
           noIndex: true,
           noFollow: false,
         }}
+        topNavProps={topNav}
       >
         {" "}
         <OakPupilJourneyLayout

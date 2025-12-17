@@ -17,15 +17,17 @@ import { getCommonPathway } from "@/components/TeacherComponents/helpers/lessonH
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type LessonDownloadsCanonicalPageProps = {
   curriculumData: LessonDownloadsCanonical;
+  topNav: TopNavProps;
 };
 
 const LessonDownloadsCanonicalPage = (
   props: LessonDownloadsCanonicalPageProps,
 ) => {
-  const { curriculumData } = props;
+  const { curriculumData, topNav } = props;
   const { lessonTitle, pathways } = curriculumData;
   const commonPathway = getCommonPathway(pathways);
   const { keyStageSlug, subjectTitle } = commonPathway;
@@ -38,6 +40,7 @@ const LessonDownloadsCanonicalPage = (
 
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title: seoTitle,
@@ -103,11 +106,11 @@ export const getStaticProps: GetStaticProps<
         return redirect ? { redirect } : { notFound: true };
       }
 
+      const topNav = await curriculumApi2023.topNav();
       const results: GetStaticPropsResult<LessonDownloadsCanonicalPageProps> = {
         props: {
-          curriculumData: {
-            ...curriculumData,
-          },
+          curriculumData,
+          topNav,
         },
       };
       return results;

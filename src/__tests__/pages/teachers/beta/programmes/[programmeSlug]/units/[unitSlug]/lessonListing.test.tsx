@@ -12,6 +12,7 @@ import lessonListingFixture, {
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const lessonAccessed = jest.fn();
 const teacherShareInitiated = jest.fn();
@@ -56,7 +57,10 @@ const lesson = lessonListingFixture({
 describe("TeacherPreviewLessonPage", () => {
   it("Renders title from the props", async () => {
     const result = render(
-      <TeacherPreviewLessonListingPage curriculumData={lesson} />,
+      <TeacherPreviewLessonListingPage
+        curriculumData={lesson}
+        topNav={topNavFixture}
+      />,
     );
 
     expect(result.getByRole("heading", { level: 1 })).toHaveTextContent(
@@ -100,6 +104,7 @@ describe("getStaticProps", () => {
     it("should call lesson accessed when trackLessonSelected is called", async () => {
       const { getByText } = render(
         <TeacherPreviewLessonListingPage
+          topNav={topNavFixture}
           curriculumData={lessonListingFixture({
             lessons: lessonsWithUnpublishedContent,
           })}

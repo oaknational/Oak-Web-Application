@@ -5,6 +5,7 @@ import specialistLessonListingFixture from "@/components/TeacherViews/Specialist
 import SpecialistLessonListing from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
 import { getStaticProps } from "@/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -23,6 +24,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units/[unitSlug]", () => {
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   specialistLessonListing: jest.fn(),
+  topNav: () => jest.fn().mockResolvedValue(topNavFixture)(),
 }));
 
 describe("getStaticProps", () => {
@@ -60,6 +62,7 @@ describe("getStaticProps", () => {
     expect(result).toEqual({
       props: {
         curriculumData,
+        topNav: topNavFixture,
       },
     });
   });

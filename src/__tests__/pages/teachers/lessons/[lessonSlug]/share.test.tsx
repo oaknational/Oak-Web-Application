@@ -9,6 +9,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -16,7 +17,10 @@ const lesson = lessonShareFixtures();
 describe("LessonShareCanonicalPage", () => {
   it("Renders title from the props", async () => {
     const result = render(
-      <LessonShareCanonicalPage curriculumData={{ ...lesson, pathways: [] }} />,
+      <LessonShareCanonicalPage
+        curriculumData={{ ...lesson, pathways: [] }}
+        topNav={topNavFixture}
+      />,
     );
 
     expect(result.queryByText("Share")).toBeInTheDocument();

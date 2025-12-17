@@ -21,15 +21,18 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type CanonicalLessonMediaClipsPageProps = {
   curriculumData: CanonicalLessonMediaClips;
+  topNav: TopNavProps;
 };
 
 export const CanonicalLessonMediaClipsPage: NextPage<
   CanonicalLessonMediaClipsPageProps
-> = ({ curriculumData }) => {
+> = ({ curriculumData, topNav }) => {
   const { lessonTitle } = curriculumData;
+
   return (
     <AppLayout
       seoProps={{
@@ -41,6 +44,7 @@ export const CanonicalLessonMediaClipsPage: NextPage<
         noIndex: true,
         noFollow: true,
       }}
+      topNavProps={topNav}
     >
       <LessonMedia isCanonical={true} lesson={curriculumData} />
     </AppLayout>
@@ -105,10 +109,13 @@ export const getStaticProps: GetStaticProps<
           mediaClipsWithTranscripts as MediaClipListCamelCase;
       }
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<CanonicalLessonMediaClipsPageProps> =
         {
           props: {
             curriculumData,
+            topNav,
           },
         };
       return results;

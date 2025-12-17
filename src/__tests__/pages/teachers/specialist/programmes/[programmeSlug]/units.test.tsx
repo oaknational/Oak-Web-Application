@@ -9,6 +9,7 @@ import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import specialistUnitListingFixture from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.fixture";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -23,6 +24,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
   it("renders title from props ", () => {
     const { getByRole } = render(
       <SpecialistUnitListingPage
+        topNav={topNavFixture}
         curriculumData={specialistUnitListingFixture()}
       />,
     );
@@ -35,6 +37,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
   it("renders nav for development stages for programme that included development stages", () => {
     const { getByTestId } = render(
       <SpecialistUnitListingPage
+        topNav={topNavFixture}
         curriculumData={specialistUnitListingFixture()}
       />,
     );
@@ -44,6 +47,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
   it("title card render correct title", () => {
     const { getByRole } = render(
       <SpecialistUnitListingPage
+        topNav={topNavFixture}
         curriculumData={specialistUnitListingFixture()}
       />,
     );
@@ -57,6 +61,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
     it("renders the correct SEO details for development stages programme", async () => {
       const { seo } = renderWithSeo()(
         <SpecialistUnitListingPage
+          topNav={topNavFixture}
           curriculumData={specialistUnitListingFixture()}
         />,
       );
@@ -79,6 +84,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
     it("renders the correct SEO details when no development stages programme", async () => {
       const { seo } = renderWithSeo()(
         <SpecialistUnitListingPage
+          topNav={topNavFixture}
           curriculumData={{
             ...specialistUnitListingFixture(),
             developmentStage: [],
@@ -112,6 +118,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
     });
     const { getByRole, queryByText } = render(
       <SpecialistUnitListingPage
+        topNav={topNavFixture}
         curriculumData={specialistUnitListingFixture()}
       />,
     );

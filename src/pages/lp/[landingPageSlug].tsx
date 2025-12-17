@@ -12,17 +12,21 @@ import LandingPageHero from "@/components/GenericPagesComponents/LandingPageHero
 import getPageProps from "@/node-lib/getPageProps";
 import { getABTestedLandingPage } from "@/node-lib/cms/ab-testing";
 import Layout from "@/components/AppComponents/Layout";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type LandingPageProps = {
   pageData: LandingPage;
+  topNav: TopNavProps;
 };
 
-const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
+const Landing: NextPage<LandingPageProps> = ({ pageData, topNav }) => {
   return (
     <Layout
       headerVariant="landing-pages"
       headerCta={pageData.headerCta}
       seoProps={getSeoProps(pageData.seo)}
+      topNavProps={topNav}
     >
       <OakMaxWidth $justifyContent={"flex-start"}>
         <LandingPageHero hero={pageData.hero} />
@@ -118,10 +122,12 @@ export const getServerSideProps: GetServerSideProps<
           notFound: true,
         };
       }
+      const topNav = await curriculumApi2023.topNav();
 
       const results: GetServerSidePropsResult<LandingPageProps> = {
         props: {
           pageData: landingPageResult,
+          topNav,
         },
       };
       return results;

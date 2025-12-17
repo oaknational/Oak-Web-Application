@@ -6,6 +6,8 @@ import CMSClient from "../../node-lib/cms";
 import { serializeDate } from "../../utils/serializeDate";
 import getPageProps from "../../node-lib/getPageProps";
 
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+
 export { default } from "../../components/GenericPagesViews/BlogIndex.view";
 
 export const getStaticProps: GetStaticProps<
@@ -46,13 +48,14 @@ export const getStaticProps: GetStaticProps<
           }
           return true;
         });
-
+      const topNav = await curriculumApi2023.topNav();
       const results: GetStaticPropsResult<PostListingPageProps> = {
         props: {
           blogs,
           categories: blogCategories,
           categorySlug,
           pageData,
+          topNav,
         },
       };
 

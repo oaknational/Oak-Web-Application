@@ -3,6 +3,8 @@ import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import Component from "./TopNav";
 
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
 const meta: Meta<typeof Component> = {
   component: Component,
 };
@@ -10,10 +12,16 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
+const { teachers, pupils } = topNavFixture;
+
 export const TopNav: Story = {
-  render: () => (
+  render: (args) => (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <Component />
+      <Component {...args} />
     </OakThemeProvider>
   ),
+  args: {
+    teachers,
+    pupils,
+  },
 };
