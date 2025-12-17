@@ -14,8 +14,10 @@ describe("WhoAreWeDesc", () => {
         text: `ITEM_TEXT_${index}`,
         image: {
           asset: {
-            url: `http://example.com/${index}`,
+            _id: `image-${index}-300x300-png`,
+            url: `http://example.com/${index}-300x300-png`,
           },
+
           altText: `ITEM_ALT_${index}`,
         },
       };
@@ -32,7 +34,7 @@ describe("WhoAreWeDesc", () => {
     items.forEach((item, index) => {
       expect(getByRole(itemElements[index]!, "img")).toHaveAttribute(
         "src",
-        `http://localhost/_next/image?url=${encodeURIComponent(item.image.asset.url)}&w=3840&q=75`,
+        `https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/${index}-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format`,
       );
       expect(getByRole(itemElements[index]!, "img")).toHaveAttribute(
         "alt",
