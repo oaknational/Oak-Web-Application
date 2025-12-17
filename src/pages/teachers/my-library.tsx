@@ -12,7 +12,7 @@ import { useMyLibrary } from "@/node-lib/educator-api/helpers/saveUnits/useMyLib
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
-function MyLibraryPage({ topNav }: { topNav: TopNavProps }) {
+function MyLibraryPage({ topNav }: Readonly<{ topNav: TopNavProps }>) {
   const { collectionData, isLoading, onSaveToggle, isUnitSaved, isUnitSaving } =
     useMyLibrary();
 
