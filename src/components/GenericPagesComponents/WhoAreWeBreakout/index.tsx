@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Image } from "@/common-lib/cms-types";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 
-
 const CustomFlex = styled(OakFlex)`
   flex-direction: row;
 
@@ -15,14 +14,10 @@ const CustomFlex = styled(OakFlex)`
 
 export type WhoAreWeBreakoutProps = {
   content: string;
-  // imageUrl: string;
-  // imageAlt: string;
   image: Image;
 };
 export function WhoAreWeBreakout({
   content,
-  // imageUrl,
-  // imageAlt,
   image,
 }: Readonly<WhoAreWeBreakoutProps>) {
   return (
