@@ -1,9 +1,24 @@
-import { screen } from "@testing-library/dom";
-
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import ProgrammePage from "@/app/(core)/programmes/[subjectPhaseSlug]/page";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const defaultParams = new URLSearchParams("");
+const mockUseSearchParams = jest.fn(() => defaultParams);
+jest.mock("next/navigation", () => {
+  return {
+    __esModule: true,
+    usePathname: () => "/timetabling/maths-primary/units",
+    useSearchParams: () => mockUseSearchParams(),
+    useRouter: () => ({
+      replace: jest.fn(),
+      push: jest.fn(),
+    }),
+    notFound: () => {
+      throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+    },
+  };
+});
 
 const featureFlagMock = jest.fn().mockResolvedValue(false);
 jest.mock("@/utils/featureFlags", () => ({
@@ -56,10 +71,12 @@ Object.defineProperty(window, "matchMedia", {
   })),
 });
 
+const render = renderWithProviders();
+
 describe("Programme page", () => {
   it("renders 404 page if feature flag is disabled", async () => {
     expect(async () =>
-      renderWithTheme(
+      render(
         await ProgrammePage({
           params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
         }),
@@ -68,19 +85,19 @@ describe("Programme page", () => {
   });
   it("renders when the feature flag is enabled", async () => {
     featureFlagMock.mockResolvedValue(true);
-    renderWithTheme(
+    const { getByText } = render(
       await ProgrammePage({
         params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
       }),
     );
 
-    const title = screen.getByText("Unit sequence");
+    const title = getByText("Unit sequence");
     expect(title).toBeInTheDocument();
   });
   it("returns 404 page if params are invalid", async () => {
     featureFlagMock.mockResolvedValue(true);
     expect(async () =>
-      renderWithTheme(
+      render(
         await ProgrammePage({
           params: Promise.resolve({ subjectPhaseSlug: "fake-slug" }),
         }),
