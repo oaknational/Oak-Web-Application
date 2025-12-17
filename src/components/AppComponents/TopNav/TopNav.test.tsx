@@ -47,6 +47,14 @@ describe("TopNav", () => {
     mockSelectedArea.mockReturnValue("PUPILS");
     renderWithTheme(<TopNav />);
 
+    const teachersLink = await screen.findByRole("link", {
+      name: "Go to teachers",
+    });
+    expect(teachersLink).toBeInTheDocument();
+
+    const pupilsLink = screen.getByRole("link", { name: "Pupils" });
+    expect(pupilsLink).toBeInTheDocument();
+
     const teachersSubnav = screen.queryByText("Teachers links");
     expect(teachersSubnav).not.toBeInTheDocument();
 
