@@ -1,0 +1,82 @@
+"use client";
+import TabLink from "./TabLink/TabLink";
+import TeachersSubNav from "./SubNav/TeachersSubNav";
+import PupilsSubNav from "./SubNav/PupilsSubNav";
+
+import { OakFlex, OakIcon, OakImage, OakLink } from "@/styles/oakThemeApp";
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import { resolveOakHref } from "@/common-lib/urls";
+import useMediaQuery from "@/hooks/useMediaQuery";
+import useSelectedArea from "@/hooks/useSelectedArea";
+
+const TopNav = () => {
+  const activeArea = useSelectedArea();
+  const isMobile = useMediaQuery("mobile");
+
+  return (
+    <>
+      <OakFlex
+        $background={"bg-btn-primary"}
+        $ph={["spacing-20", "spacing-40"]}
+        $pb={"spacing-0"}
+        $pt={"spacing-16"}
+        $justifyContent={["center", "left"]}
+        $gap={"spacing-16"}
+      >
+        <TabLink
+          isSelected={activeArea === "TEACHERS"}
+          href={resolveOakHref({ page: "teachers-home-page" })}
+        >
+          Teachers
+        </TabLink>
+        <TabLink
+          isSelected={activeArea === "PUPILS"}
+          href={resolveOakHref({ page: "pupil-year-index" })}
+          iconOverride={
+            <OakIcon
+              iconName="pencil"
+              $width={"spacing-24"}
+              $height={"spacing-24"}
+            />
+          }
+          isTrailingIcon
+        >
+          Pupils
+        </TabLink>
+      </OakFlex>
+      <OakFlex
+        $background={"bg-primary"}
+        $pv={["spacing-16", "spacing-20"]}
+        $ph={["spacing-20", "spacing-40"]}
+        $bb={"border-solid-s"}
+        $borderColor={"border-neutral-lighter"}
+        $alignItems={"center"}
+        $gap={"spacing-24"}
+        $maxHeight={"spacing-80"}
+      >
+        <OakLink
+          href={resolveOakHref({
+            page: activeArea === "PUPILS" ? "pupil-year-index" : "home",
+          })}
+          aria-label="Home"
+        >
+          <OakImage
+            src={getCloudinaryImageUrl(
+              isMobile
+                ? "v1711468346/logo-mark.svg"
+                : "v1765468420/OakLogoWithText.svg",
+            )}
+            alt=""
+            $height={["spacing-40", "spacing-48"]}
+            $width={["spacing-32", "spacing-100"]}
+            $pa={"spacing-0"}
+          />
+        </OakLink>
+        {activeArea === "TEACHERS" && <TeachersSubNav />}
+        {activeArea === "PUPILS" && <PupilsSubNav />}
+      </OakFlex>
+    </>
+  );
+};
+
+export default TopNav;
