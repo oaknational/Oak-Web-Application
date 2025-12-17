@@ -1,5 +1,9 @@
-import { OakFlex, OakImage, OakP } from "@oaknational/oak-components";
+import { OakFlex, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
+
+import { Image } from "@/common-lib/cms-types";
+import CMSImage from "@/components/SharedComponents/CMSImage";
+
 
 const CustomFlex = styled(OakFlex)`
   flex-direction: row;
@@ -11,13 +15,15 @@ const CustomFlex = styled(OakFlex)`
 
 export type WhoAreWeBreakoutProps = {
   content: string;
-  imageUrl: string;
-  imageAlt: string;
+  // imageUrl: string;
+  // imageAlt: string;
+  image: Image;
 };
 export function WhoAreWeBreakout({
   content,
-  imageUrl,
-  imageAlt,
+  // imageUrl,
+  // imageAlt,
+  image,
 }: Readonly<WhoAreWeBreakoutProps>) {
   return (
     <CustomFlex $background={"mint"} $mh={"auto"}>
@@ -27,7 +33,8 @@ export function WhoAreWeBreakout({
         $minWidth={["100%", "spacing-640", "spacing-640"]}
         $aspectRatio={"4/3"}
       >
-        <OakImage $objectFit={"cover"} alt={imageAlt} src={imageUrl} />
+        <CMSImage $objectFit={"cover"} image={image} />
+        {/* <OakImage $objectFit={"cover"} alt={imageAlt} src={imageUrl} /> */}
       </OakFlex>
       <OakFlex
         $flexShrink={1}

@@ -243,8 +243,7 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
           />
         </AboutSharedHeader>
         <WhoAreWeBreakout
-          imageUrl={newAboutWhoWeArePage.breakout.image.asset?.url || ""}
-          imageAlt={newAboutWhoWeArePage.breakout.image.altText || ""}
+          image={newAboutWhoWeArePage.breakout.image}
           content={newAboutWhoWeArePage.breakout.text}
         />
         <WhoAreWeTimeline

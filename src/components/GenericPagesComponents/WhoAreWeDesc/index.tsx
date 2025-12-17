@@ -6,12 +6,12 @@ import {
   OakBox,
   OakP,
   OakBoxProps,
-  OakImage,
 } from "@oaknational/oak-components";
 import { ReactNode, useMemo } from "react";
 import styled from "styled-components";
 
 import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
+import CMSImage from "@/components/SharedComponents/CMSImage";
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {
   return (
@@ -91,10 +91,9 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                     $ph={"spacing-64"}
                   >
                     {image.asset?.url && (
-                      <OakImage
+                      <CMSImage
                         $objectFit={"contain"}
-                        src={image.asset?.url}
-                        alt={image.altText ?? ""}
+                        image={image}
                         $height={"100%"}
                       />
                     )}
