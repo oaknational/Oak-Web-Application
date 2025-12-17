@@ -25,6 +25,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
   default: {
     keyStages: () => keyStages(),
+    topNav: () => jest.fn().mockResolvedValue(topNavFixture)(),
   },
 }));
 
@@ -89,6 +90,7 @@ describe("Campaign page", () => {
       props: {
         campaign: mockCampaign,
         keyStages: keyStagesFixture(),
+        topNav: topNavFixture,
       },
     });
   });

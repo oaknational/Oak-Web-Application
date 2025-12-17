@@ -119,6 +119,13 @@ const testAboutWhoWeArePageData: AboutWhoWeArePage = {
   ],
 };
 
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  __esModule: true,
+  default: {
+    topNav: () => jest.fn().mockResolvedValue(topNavFixture)(),
+  },
+}));
+
 describe("pages/about/who-we-are.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();

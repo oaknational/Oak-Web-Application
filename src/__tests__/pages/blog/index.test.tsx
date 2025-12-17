@@ -62,6 +62,13 @@ const blogListingPage = jest.fn(() => testPageData);
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  __esModule: true,
+  default: {
+    topNav: () => jest.fn().mockResolvedValue(topNavFixture)(),
+  },
+}));
+
 const render = renderWithProviders();
 
 describe("pages/blog/index.tsx", () => {

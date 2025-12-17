@@ -543,6 +543,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumUnits: jest.fn(),
   refreshedMVTime: jest.fn(),
   curriculumPhaseOptions: jest.fn(() => curriculumPhaseOptions.subjects),
+  topNav: () => jest.fn().mockResolvedValue(topNavFixture)(),
 }));
 const mockedCurriculumOverview = curriculumApi.curriculumOverview as jest.Mock;
 const mockedRefreshedMVTime = curriculumApi.refreshedMVTime as jest.Mock;
@@ -620,7 +621,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           unobserve: () => null,
           disconnect: () => null,
         });
-        window.IntersectionObserver = mockIntersectionObserver;
+        globalThis.IntersectionObserver = mockIntersectionObserver;
       });
 
       test("user can see the tier selector for secondary maths", async () => {
@@ -734,6 +735,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           curriculumUnitsFormattedData:
             formatCurriculumUnitsData(unitsTabFixture),
           curriculumDownloadsTabData: mockCurriculumDownloadsData,
+          topNav: topNavFixture,
         },
       });
     });

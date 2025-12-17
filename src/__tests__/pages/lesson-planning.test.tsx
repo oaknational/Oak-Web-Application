@@ -38,6 +38,13 @@ const mockPosts = [
 
 const render = renderWithProviders();
 
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  __esModule: true,
+  default: {
+    topNav: () => jest.fn().mockResolvedValue(topNavFixture)(),
+  },
+}));
+
 describe("pages/lesson-planning.tsx", () => {
   beforeAll(() => {
     //mock console.error

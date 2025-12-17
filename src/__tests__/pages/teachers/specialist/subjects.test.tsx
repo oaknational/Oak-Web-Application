@@ -4,11 +4,23 @@ import SpecialistSubjectListingPage, {
   getStaticProps,
 } from "@/pages/teachers/specialist/subjects";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import curriculumApi from "@/node-lib/curriculum-api-2023";
 import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/specialistSubjectListing.fixture";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
+
+const mockSpecialistSubjectListing = jest
+  .fn()
+  .mockResolvedValue(specialistSubjectListingFixture2023());
+const mockTopNav = jest.fn().mockResolvedValue(topNavFixture);
+
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  __esModule: true,
+  default: {
+    topNav: () => mockTopNav(),
+    specialistSubjectListing: () => mockSpecialistSubjectListing(),
+  },
+}));
 
 describe("pages/specialist/subjects", () => {
   it("renders therapies and specialist", () => {
@@ -65,37 +77,30 @@ describe("pages/specialist/subjects", () => {
   });
 });
 
-jest.mock("@/node-lib/curriculum-api-2023", () => ({
-  specialistSubjectListing: jest.fn(),
-}));
-
 describe("getStaticProps", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
   });
-  it("should return  404 page when there are no specialist or tharpies", async () => {
-    const result = await getStaticProps({});
-    expect(result).toEqual({ notFound: true });
-  });
+
   it("Should call the api", async () => {
     await getStaticProps({});
 
-    expect(curriculumApi.specialistSubjectListing).toHaveBeenCalledTimes(1);
-    expect(curriculumApi.specialistSubjectListing).toHaveBeenCalledWith();
+    expect(mockSpecialistSubjectListing).toHaveBeenCalledTimes(1);
   });
   it("should fetch the data and return the props", async () => {
-    const curriculumData = specialistSubjectListingFixture2023();
-    (curriculumApi.specialistSubjectListing as jest.Mock).mockResolvedValue(
-      curriculumData,
-    );
-
     const result = await getStaticProps({});
 
     expect(result).toEqual({
       props: {
-        curriculumData,
+        curriculumData: specialistSubjectListingFixture2023(),
+        topNav: topNavFixture,
       },
     });
+  });
+  it("should return  404 page when there are no specialist or tharpies", async () => {
+    mockSpecialistSubjectListing.mockResolvedValue(null);
+    const result = await getStaticProps({});
+    expect(result).toEqual({ notFound: true });
   });
 });
