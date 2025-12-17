@@ -29,7 +29,6 @@ export function WhoAreWeBreakout({
         $aspectRatio={"4/3"}
       >
         <CMSImage $objectFit={"cover"} image={image} />
-        {/* <OakImage $objectFit={"cover"} alt={imageAlt} src={imageUrl} /> */}
       </OakFlex>
       <OakFlex
         $flexShrink={1}
