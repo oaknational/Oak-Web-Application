@@ -17,14 +17,13 @@ import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useSelectedArea from "@/hooks/useSelectedArea";
 import {
-  TeachersSubNavProps,
-  PupilsSubNavProps,
+  TeachersSubNavData,
+  PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
-
 export type TopNavProps = {
-  teachers: TeachersSubNavProps;
-  pupils: PupilsSubNavProps;
+  teachers: TeachersSubNavData;
+  pupils: PupilsSubNavData;
 };
 
 const TopNav = (props: TopNavProps) => {
@@ -33,8 +32,6 @@ const TopNav = (props: TopNavProps) => {
   const isMobile = useMediaQuery("mobile");
 
   const [selectedMenu, setSelectedMenu] = useState<string>();
-
-  console.log("diego props", props);
 
   return (
     <>
@@ -97,12 +94,19 @@ const TopNav = (props: TopNavProps) => {
         </OakLink>
         {activeArea === "TEACHERS" && (
           <TeachersSubNav
-            {...teachers}
-            onClick={(menu) => setSelectedMenu(menu)}
+            onClick={(menu) => {
+              setSelectedMenu(menu);
+              console.log("selected menu ", teachers[menu]);
+            }}
           />
         )}
         {activeArea === "PUPILS" && (
-          <PupilsSubNav {...pupils} onClick={(menu) => setSelectedMenu(menu)} />
+          <PupilsSubNav
+            onClick={(menu) => {
+              setSelectedMenu(menu);
+              console.log("selected menu ", pupils[menu]);
+            }}
+          />
         )}
       </OakFlex>
 

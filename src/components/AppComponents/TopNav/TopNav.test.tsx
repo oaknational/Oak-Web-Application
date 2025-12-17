@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/dom";
 
-import TopNav from "./TopNav";
+import TopNav, { TopNavProps } from "./TopNav";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -14,9 +14,26 @@ globalThis.matchMedia = jest.fn().mockReturnValue({
   matches: true,
 });
 
+const mockProps: TopNavProps = {
+  teachers: {
+    primary: { phaseSlug: "primary", phaseTitle: "Primary", keystages: [] },
+    secondary: {
+      phaseSlug: "secondary",
+      phaseTitle: "Secondary",
+      keystages: [],
+    },
+    aboutUs: [],
+    guidance: [],
+  },
+  pupils: {
+    primary: { phaseSlug: "primary", phaseTitle: "Primary", years: [] },
+    secondary: { phaseSlug: "secondary", phaseTitle: "Secondary", years: [] },
+  },
+};
+
 describe("TopNav", () => {
   it("renders links for pupils and teachers", async () => {
-    renderWithTheme(<TopNav />);
+    renderWithTheme(<TopNav {...mockProps} />);
     const teachersLink = await screen.findByRole("link", { name: "Teachers" });
     expect(teachersLink).toBeInTheDocument();
 
@@ -24,7 +41,7 @@ describe("TopNav", () => {
     expect(pupilsLink).toBeInTheDocument();
   });
   it("renders active tab with the correct style", async () => {
-    renderWithTheme(<TopNav />);
+    renderWithTheme(<TopNav {...mockProps} />);
 
     const teachersLink = await screen.findByRole("link", { name: "Teachers" });
     expect(teachersLink).toBeInTheDocument();
@@ -35,7 +52,7 @@ describe("TopNav", () => {
     expect(pupilsLink).toHaveStyle({ background: "rgb(34,34,34)" });
   });
   it("renders the correct subnav for teachers", async () => {
-    renderWithTheme(<TopNav />);
+    renderWithTheme(<TopNav {...mockProps} />);
 
     const teachersSubnav = await screen.findByText("Teachers links");
     expect(teachersSubnav).toBeInTheDocument();
@@ -45,7 +62,7 @@ describe("TopNav", () => {
   });
   it("renders the correct subnav for pupils", async () => {
     mockSelectedArea.mockReturnValue("PUPILS");
-    renderWithTheme(<TopNav />);
+    renderWithTheme(<TopNav {...mockProps} />);
 
     const teachersSubnav = screen.queryByText("Teachers links");
     expect(teachersSubnav).not.toBeInTheDocument();

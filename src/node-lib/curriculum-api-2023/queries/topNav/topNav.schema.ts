@@ -11,7 +11,7 @@ export const topNavResponseSchema = z.object({
 });
 export type TopNavResponse = z.infer<typeof topNavResponseSchema>;
 
-export type TeachersSubNavProps = {
+export type TeachersSubNavData = {
   primary: TeachersBrowse;
   secondary: TeachersBrowse;
   guidance: Array<{ slug: string; title: string }>;
@@ -28,7 +28,7 @@ export type TeachersBrowse = {
   }>;
 };
 
-export type PupilsSubNavProps = {
+export type PupilsSubNavData = {
   primary: PupilsBrowse;
   secondary: PupilsBrowse;
 };
