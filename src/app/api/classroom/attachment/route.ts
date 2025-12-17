@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { createAnnouncementAttachmentArgsSchema } from "@oaknational/google-classroom-addon/types";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
@@ -14,40 +15,22 @@ export async function POST(request: NextRequest) {
       );
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
-    const {
-      courseId,
-      itemId,
-      addOnToken,
-      title,
-      lessonSlug,
-      programeSlug,
-      unitSlug,
-    } = await request.json();
+    const body = await request.json();
 
-    if (
-      !courseId ||
-      !itemId ||
-      !addOnToken ||
-      !title ||
-      !lessonSlug ||
-      !programeSlug ||
-      !unitSlug
-    )
-      return Response.json({ message: "Missing properties" }, { status: 400 });
+    const parsed = createAnnouncementAttachmentArgsSchema.safeParse(body);
+
+    if (!parsed.success) {
+      return Response.json(
+        { error: "Invalid query", details: parsed.error.flatten() },
+        { status: 400 },
+      );
+    }
 
     if (!session)
       return Response.json({ message: "Missing auth header" }, { status: 400 });
 
     await oakClassroomClient.createAttachment(
-      {
-        courseId,
-        itemId,
-        addOnToken,
-        title,
-        lessonSlug,
-        programeSlug,
-        unitSlug,
-      },
+      parsed.data,
       accessToken,
       session,
     );
