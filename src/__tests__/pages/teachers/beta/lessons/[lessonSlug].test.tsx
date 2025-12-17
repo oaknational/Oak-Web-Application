@@ -9,6 +9,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -19,7 +20,12 @@ const lesson = lessonOverviewFixture({
 
 describe("TeacherPreviewLessonPage", () => {
   it("Renders title from the props", async () => {
-    const result = render(<TeacherPreviewLessonPage curriculumData={lesson} />);
+    const result = render(
+      <TeacherPreviewLessonPage
+        curriculumData={lesson}
+        topNav={topNavFixture}
+      />,
+    );
 
     expect(result.getByRole("heading", { level: 1 })).toHaveTextContent(
       "Running as a team",

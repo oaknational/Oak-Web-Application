@@ -8,6 +8,7 @@ import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
 import mockCampaign from "@/fixtures/campaign/mockCampaign";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const campaignBySlug = jest.fn().mockResolvedValue(mockCampaign);
 const keyStages = jest.fn().mockResolvedValue(keyStagesFixture());
@@ -105,6 +106,7 @@ describe("Campaign page", () => {
       <CampaignSinglePage
         campaign={mockCampaign}
         keyStages={keyStagesFixture()}
+        topNav={topNavFixture}
       />,
     );
     const header = screen.getByTestId("campaign-header");
@@ -122,6 +124,7 @@ describe("Campaign page", () => {
       <CampaignSinglePage
         campaign={mockCampaign}
         keyStages={keyStagesFixture()}
+        topNav={topNavFixture}
       />,
     );
     const promoBanner = screen.getByText("campaign-promo-heading-text");
@@ -132,6 +135,7 @@ describe("Campaign page", () => {
       <CampaignSinglePage
         campaign={mockCampaign}
         keyStages={keyStagesFixture()}
+        topNav={topNavFixture}
       />,
     );
     const campaignIntro = screen.getByText("campaign-intro-body-text");
@@ -150,6 +154,7 @@ describe("Campaign page", () => {
       <CampaignSinglePage
         campaign={campaignWithoutPromo}
         keyStages={keyStagesFixture()}
+        topNav={topNavFixture}
       />,
     );
 
@@ -169,6 +174,7 @@ describe("Campaign page", () => {
       <CampaignSinglePage
         campaign={campaignWithoutIntro}
         keyStages={keyStagesFixture()}
+        topNav={topNavFixture}
       />,
     );
 
@@ -181,6 +187,7 @@ describe("Campaign page", () => {
       <CampaignSinglePage
         campaign={mockCampaign}
         keyStages={keyStagesFixture()}
+        topNav={topNavFixture}
       />,
     );
     const campaignVideo = screen.getByText("campaign-video-heading-text");
@@ -199,6 +206,7 @@ describe("Campaign page", () => {
       <CampaignSinglePage
         campaign={campaignWithoutPromo}
         keyStages={keyStagesFixture()}
+        topNav={topNavFixture}
       />,
     );
 
@@ -211,6 +219,7 @@ describe("Campaign page", () => {
       <CampaignSinglePage
         campaign={mockCampaign}
         keyStages={keyStagesFixture()}
+        topNav={topNavFixture}
       />,
     );
 
@@ -225,6 +234,7 @@ describe("Campaign page", () => {
       <CampaignSinglePage
         campaign={mockCampaign}
         keyStages={keyStagesFixture()}
+        topNav={topNavFixture}
       />,
     );
     const signUpHeading = screen.getByText("newsletter-sign-up-heading-text");

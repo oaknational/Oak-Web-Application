@@ -24,6 +24,7 @@ import {
   fetchSubjectPhasePickerData,
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -597,6 +598,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
       const { queryByTestId } = render(
         <CurriculumInfoPage
+          topNav={topNavFixture}
           mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
@@ -630,10 +632,11 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           asPath: "",
         });
 
-        // Render the CurriculumInfoPage with necessary mock props
+        // Render the CurriculumInfoPage  topNav={topNavFixture} with necessary mock props
         const slugs = parseSubjectPhaseSlug("maths-secondary")!;
         const { queryByTestId } = render(
           <CurriculumInfoPage
+            topNav={topNavFixture}
             mvRefreshTime={1721314874829}
             curriculumUnitsFormattedData={curriculumUnitsFormattedData}
             curriculumSelectionSlugs={slugs}
@@ -671,6 +674,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
       const { queryByTestId } = render(
         <CurriculumInfoPage
+          topNav={topNavFixture}
           mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}

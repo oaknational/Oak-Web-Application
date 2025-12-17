@@ -14,6 +14,8 @@ import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -42,6 +44,7 @@ export type GetInvolvedPage = {
       }[];
     };
   };
+  topNav: TopNavProps;
 };
 
 const fixtureData: GetInvolvedPage["pageData"] = {
@@ -112,9 +115,16 @@ const fixtureData: GetInvolvedPage["pageData"] = {
   },
 };
 
-export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
+export const GetInvolved: NextPage<GetInvolvedPage> = ({
+  pageData,
+  topNav,
+}) => {
   return (
-    <Layout seoProps={getSeoProps(null)} $background={"white"}>
+    <Layout
+      seoProps={getSeoProps(null)}
+      $background={"white"}
+      topNavProps={topNav}
+    >
       <OakBox $overflow={"hidden"} $zIndex={"neutral"}>
         <AboutSharedHeader
           title={pageData.header.title}
@@ -229,6 +239,7 @@ export const getServerSideProps = (async (context) => {
         posthogUserId,
       })) === true;
   }
+  const topNav = await curriculumApi2023.topNav();
 
   if (!enableV2) {
     return {
@@ -239,6 +250,7 @@ export const getServerSideProps = (async (context) => {
   return {
     props: {
       pageData: fixtureData,
+      topNav,
     },
   };
 }) satisfies GetServerSideProps<GetInvolvedPage>;

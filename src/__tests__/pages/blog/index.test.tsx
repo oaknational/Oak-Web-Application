@@ -10,6 +10,8 @@ import { mockImageAsset, mockSeoResult } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
 const testPageData = {
   id: "123",
   title: "page title",
@@ -83,6 +85,7 @@ describe("pages/blog/index.tsx", () => {
           pageData={testPageData}
           categories={[]}
           categorySlug={null}
+          topNav={topNavFixture}
         />,
       );
 
@@ -101,6 +104,7 @@ describe("pages/blog/index.tsx", () => {
       it("renders the correct SEO details from the CMS", () => {
         const { seo } = renderWithSeo()(
           <PostListingPage
+            topNav={topNavFixture}
             blogs={[testSerializedBlogPreview, testSerializedBlogPreview2]}
             pageData={{
               ...testPageData,
@@ -127,6 +131,7 @@ describe("pages/blog/index.tsx", () => {
       it("renders the correct SEO fallbacks", () => {
         const { seo } = renderWithSeo()(
           <PostListingPage
+            topNav={topNavFixture}
             blogs={[testSerializedBlogPreview, testSerializedBlogPreview2]}
             pageData={testPageData}
             categories={[]}

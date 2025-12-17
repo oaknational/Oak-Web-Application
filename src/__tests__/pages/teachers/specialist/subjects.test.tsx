@@ -6,6 +6,7 @@ import SpecialistSubjectListingPage, {
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
 import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/specialistSubjectListing.fixture";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -13,6 +14,7 @@ describe("pages/specialist/subjects", () => {
   it("renders therapies and specialist", () => {
     render(
       <SpecialistSubjectListingPage
+        topNav={topNavFixture}
         curriculumData={specialistSubjectListingFixture2023()}
       />,
     );
@@ -30,6 +32,7 @@ describe("pages/specialist/subjects", () => {
   it("should link to programme listing page when there are multiple programmes for a subject", () => {
     render(
       <SpecialistSubjectListingPage
+        topNav={topNavFixture}
         curriculumData={specialistSubjectListingFixture2023()}
       />,
     );
@@ -46,6 +49,7 @@ describe("pages/specialist/subjects", () => {
   it("should link to unit listing page when there is a single programme for a subject", () => {
     render(
       <SpecialistSubjectListingPage
+        topNav={topNavFixture}
         curriculumData={specialistSubjectListingFixture2023()}
       />,
     );

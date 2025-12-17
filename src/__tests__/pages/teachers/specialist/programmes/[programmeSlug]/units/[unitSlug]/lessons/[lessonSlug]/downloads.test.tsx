@@ -11,6 +11,7 @@ import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -19,6 +20,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[
     render(
       <SpecialistLessonDownloadsPage
         curriculumData={SpecialistLessonDownloadFixture()}
+        topNav={topNavFixture}
       />,
     );
 
@@ -41,7 +43,12 @@ describe("when downloads are region restricted", () => {
     });
 
     it("allows downloads", () => {
-      render(<SpecialistLessonDownloadsPage curriculumData={curriculumData} />);
+      render(
+        <SpecialistLessonDownloadsPage
+          curriculumData={curriculumData}
+          topNav={topNavFixture}
+        />,
+      );
 
       expect(
         screen.queryByText(

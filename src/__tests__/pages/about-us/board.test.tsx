@@ -9,6 +9,8 @@ import { mockSeoResult, portableTextFromString } from "../../__helpers__/cms";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
 jest.mock("posthog-js/react", () => ({
   ...jest.requireActual("posthog-js/react"),
   useFeatureFlagEnabled: () => ({ enabled: {} }),
@@ -93,7 +95,9 @@ const render = renderWithProviders();
 
 describe("pages/about-us/board.tsx", () => {
   it("Renders correct title ", async () => {
-    render(<AboutBoard pageData={testAboutBoardPageData} />);
+    render(
+      <AboutBoard pageData={testAboutBoardPageData} topNav={topNavFixture} />,
+    );
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       "About us",
@@ -103,7 +107,7 @@ describe("pages/about-us/board.tsx", () => {
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
-        <AboutBoard pageData={testAboutBoardPageData} />,
+        <AboutBoard pageData={testAboutBoardPageData} topNav={topNavFixture} />,
       );
 
       expect(seo).toEqual({

@@ -28,6 +28,7 @@ export type TopNavProps = {
 
 const TopNav = (props: TopNavProps) => {
   const { teachers, pupils } = props;
+
   const activeArea = useSelectedArea();
   const isMobile = useMediaQuery("mobile");
 
@@ -96,7 +97,7 @@ const TopNav = (props: TopNavProps) => {
           <TeachersSubNav
             onClick={(menu) => {
               setSelectedMenu(menu);
-              console.log("selected menu ", teachers[menu]);
+              console.log("diego selected menu ", teachers[menu]);
             }}
           />
         )}
@@ -104,7 +105,7 @@ const TopNav = (props: TopNavProps) => {
           <PupilsSubNav
             onClick={(menu) => {
               setSelectedMenu(menu);
-              console.log("selected menu ", pupils[menu]);
+              console.log("diego selected menu ", pupils[menu]);
             }}
           />
         )}

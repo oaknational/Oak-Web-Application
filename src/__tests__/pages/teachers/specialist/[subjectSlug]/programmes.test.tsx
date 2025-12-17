@@ -6,6 +6,7 @@ import SpecialistProgrammeListingPage, {
   getStaticProps,
 } from "@/pages/teachers/specialist/subjects/[subjectSlug]/programmes";
 import { specialistProgrammeListingPageDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/specialistProgrammes.fixture";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -13,6 +14,7 @@ describe("pages/specialist/subjects/[subjectSlug]/programmes", () => {
   it("renders programmes", () => {
     render(
       <SpecialistProgrammeListingPage
+        topNav={topNavFixture}
         curriculumData={specialistProgrammeListingPageDataFixture()}
       />,
     );
@@ -26,6 +28,7 @@ describe("pages/specialist/subjects/[subjectSlug]/programmes", () => {
   it("should link to unit listing page when there are multiple programmes for a subject", () => {
     render(
       <SpecialistProgrammeListingPage
+        topNav={topNavFixture}
         curriculumData={specialistProgrammeListingPageDataFixture()}
       />,
     );

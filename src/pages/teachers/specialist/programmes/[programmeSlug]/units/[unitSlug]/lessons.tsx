@@ -16,9 +16,11 @@ import {
 } from "@/node-lib/isr";
 import { SpecialistLessonListingData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 import SpecialistLessonListing from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type SpecialistLessonListingPageProps = {
   curriculumData: SpecialistLessonListingData;
+  topNav: TopNavProps;
 };
 
 const SEO = {
@@ -30,9 +32,9 @@ const SEO = {
 
 const SpecialistLessonListingPage: NextPage<
   SpecialistLessonListingPageProps
-> = ({ curriculumData }) => {
+> = ({ curriculumData, topNav }) => {
   return (
-    <AppLayout seoProps={SEO}>
+    <AppLayout topNavProps={topNav} seoProps={SEO}>
       <SpecialistLessonListing curriculumData={curriculumData} />
     </AppLayout>
   );
@@ -78,11 +80,13 @@ export const getStaticProps: GetStaticProps<
             notFound: true,
           };
         }
+        const topNav = await curriculumApi2023.topNav();
 
         const results: GetStaticPropsResult<SpecialistLessonListingPageProps> =
           {
             props: {
               curriculumData,
+              topNav,
             },
           };
 

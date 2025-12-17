@@ -20,6 +20,7 @@ import curriculumApi2023, {
   CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const props = {
   curriculumData: lessonOverviewFixture({
@@ -27,23 +28,27 @@ const props = {
     videoWithSignLanguageMuxPlaybackId: "pid-002",
     excludedFromTeachingMaterials: true,
   }),
+  topNav: topNavFixture,
 };
 
 const propsWithTier = {
   curriculumData: lessonOverviewFixture({
     tierTitle: "Higher",
   }),
+  topNav: topNavFixture,
 };
 const propsWithExamBoard = {
   curriculumData: lessonOverviewFixture({
     examBoardTitle: "AQA",
   }),
+  topNav: topNavFixture,
 };
 const propsWithTierAndExamBoard = {
   curriculumData: lessonOverviewFixture({
     tierTitle: "Higher",
     examBoardTitle: "AQA",
   }),
+  topNav: topNavFixture,
 };
 
 const downloadResourceButtonClicked = jest.fn();
@@ -125,7 +130,12 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   });
 
   it("renders Download All button if lesson has downloadable resources", async () => {
-    render(<LessonOverviewPage curriculumData={lessonOverviewFixture()} />);
+    render(
+      <LessonOverviewPage
+        curriculumData={lessonOverviewFixture()}
+        topNav={topNavFixture}
+      />,
+    );
 
     expect(screen.getAllByTestId("download-all-button")[0]).toHaveTextContent(
       "Download all",
@@ -135,6 +145,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   it("does not render Download All button if lesson has no downloadable resources", async () => {
     render(
       <LessonOverviewPage
+        topNav={topNavFixture}
         curriculumData={lessonOverviewFixture({
           expired: false,
           downloads: [],
@@ -151,6 +162,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         curriculumData={lessonOverviewFixture({
           expired: true,
         })}
+        topNav={topNavFixture}
       />,
     );
 
@@ -160,6 +172,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   it("share button is not disabled with legacy content (lessonCohort is null)", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
+        topNav={topNavFixture}
         curriculumData={lessonOverviewFixture({
           expired: false,
           lessonCohort: null,
@@ -181,6 +194,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   it("share button is not disabled with non legacy content (lesson cohort is the same as legacy cohort)", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
+        topNav={topNavFixture}
         curriculumData={lessonOverviewFixture({
           expired: false,
           lessonCohort: LEGACY_COHORT,
@@ -202,6 +216,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   it("share button is  disabled with non legacy content", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
+        topNav={topNavFixture}
         curriculumData={lessonOverviewFixture({
           expired: true,
           lessonCohort: NEW_COHORT,

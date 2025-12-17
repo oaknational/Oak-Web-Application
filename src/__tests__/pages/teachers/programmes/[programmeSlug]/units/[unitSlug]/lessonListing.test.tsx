@@ -18,6 +18,7 @@ import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import OakError from "@/errors/OakError";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -85,7 +86,10 @@ describe("Lesson listing page", () => {
   });
   test("it renders the unit title as page title", () => {
     const { getByRole } = render(
-      <LessonListPage curriculumData={lessonListingFixture()} />,
+      <LessonListPage
+        curriculumData={lessonListingFixture()}
+        topNav={topNavFixture}
+      />,
     );
 
     const pageHeading = getByRole("heading", { level: 1 });
@@ -98,7 +102,10 @@ describe("Lesson listing page", () => {
 
   test("it renders the correct number of lessons", () => {
     const { getByText } = render(
-      <LessonListPage curriculumData={lessonListingFixture()} />,
+      <LessonListPage
+        topNav={topNavFixture}
+        curriculumData={lessonListingFixture()}
+      />,
     );
     const lessonCountFixtures = lessonListingFixture().lessons.length;
     const lessonCount = getByText(`Lessons (${lessonCountFixtures})`);
@@ -112,6 +119,7 @@ describe("Lesson listing page", () => {
   test("it renders the correct number of lessons when there are unpublished lessons", () => {
     render(
       <LessonListPage
+        topNav={topNavFixture}
         curriculumData={lessonListingFixture({
           lessons: lessonsWithUnpublishedContent,
         })}
@@ -125,7 +133,12 @@ describe("Lesson listing page", () => {
   test("it renders the correct text for the save button when signed in", async () => {
     setUseUserReturn(mockLoggedIn);
 
-    render(<LessonListPage curriculumData={lessonListingFixture({})} />);
+    render(
+      <LessonListPage
+        topNav={topNavFixture}
+        curriculumData={lessonListingFixture({})}
+      />,
+    );
     const saveButton = screen.getByTestId("save-unit-button");
     expect(saveButton).toBeInTheDocument();
     expect(saveButton).toHaveTextContent("Saved");
@@ -134,6 +147,7 @@ describe("Lesson listing page", () => {
     setUseUserReturn(mockLoggedIn);
     render(
       <LessonListPage
+        topNav={topNavFixture}
         curriculumData={lessonListingFixture({
           programmeSlug: "maths-secondary-ks4-l",
         })}
@@ -145,6 +159,7 @@ describe("Lesson listing page", () => {
   it("sets an error for an invalid email address on incomplete units signup", async () => {
     render(
       <LessonListPage
+        topNav={topNavFixture}
         curriculumData={lessonListingFixture({
           lessons: lessonsWithUnpublishedContent,
         })}
@@ -166,7 +181,10 @@ describe("Lesson listing page", () => {
 describe("SEO", () => {
   it("renders the correct SEO details", async () => {
     const { seo } = renderWithSeo()(
-      <LessonListPage curriculumData={lessonListingFixture()} />,
+      <LessonListPage
+        topNav={topNavFixture}
+        curriculumData={lessonListingFixture()}
+      />,
     );
     expect(global.fetch).toHaveBeenCalledWith(
       "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
@@ -189,7 +207,10 @@ describe("SEO", () => {
   it("renders the correct SEO details with pagination", async () => {
     utilsMock.RESULTS_PER_PAGE = 2;
     const { seo } = renderWithSeo()(
-      <LessonListPage curriculumData={lessonListingFixture()} />,
+      <LessonListPage
+        topNav={topNavFixture}
+        curriculumData={lessonListingFixture()}
+      />,
     );
     expect(global.fetch).toHaveBeenCalledWith(
       "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
@@ -297,7 +318,10 @@ describe("getStaticProps", () => {
 describe("tracking", () => {
   test("It calls tracking.lessonSelected with correct props when clicked", async () => {
     const { getByText } = render(
-      <LessonListPage curriculumData={lessonListingFixture()} />,
+      <LessonListPage
+        topNav={topNavFixture}
+        curriculumData={lessonListingFixture()}
+      />,
     );
 
     const lesson = getByText("Add two surds");
@@ -338,7 +362,10 @@ describe("redirected overlay", () => {
     };
 
     const { getByTestId } = render(
-      <LessonListPage curriculumData={lessonListingFixture()} />,
+      <LessonListPage
+        topNav={topNavFixture}
+        curriculumData={lessonListingFixture()}
+      />,
     );
     expect(getByTestId("teacher-redirected-overlay-btn")).toBeInTheDocument();
   });

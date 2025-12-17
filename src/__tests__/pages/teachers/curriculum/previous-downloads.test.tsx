@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 
 import CurriculumPreviousDownloadsPage from "@/pages/teachers/curriculum/previous-downloads";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -17,7 +18,7 @@ jest.mock("next/router", () => ({
 
 describe("CurriculumPreviousDownloadsPage", () => {
   const renderComponent = () => {
-    return render(<CurriculumPreviousDownloadsPage />);
+    return render(<CurriculumPreviousDownloadsPage topNav={topNavFixture} />);
   };
 
   afterEach(() => {

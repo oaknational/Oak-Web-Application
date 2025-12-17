@@ -2,11 +2,12 @@ import { Sdk } from "../../sdk";
 
 import { getPupilsNavData } from "./getPupilsNavData";
 import { getTeachersNavData } from "./getTeachersNavData";
-import { TopNav, topNavResponseSchema } from "./topNav.schema";
+import { topNavResponseSchema } from "./topNav.schema";
 
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
 
-const topNavQuery = (sdk: Sdk) => async (): Promise<TopNav> => {
+const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
   const res = await sdk.topNav();
 
   const parsed = topNavResponseSchema.safeParse(res);

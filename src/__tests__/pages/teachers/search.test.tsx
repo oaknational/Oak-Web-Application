@@ -2,6 +2,7 @@ import SearchPage from "@/pages/teachers/search";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const fixture = searchPageFixture();
 if (!fixture) {
@@ -22,6 +23,7 @@ describe("pages/teachers/search.tsx", () => {
   test("renders page with correct seo", () => {
     const { seo } = renderWithSeo()(
       <SearchPage
+        topNav={topNavFixture}
         curriculumData={{
           keyStages,
           subjects,
@@ -48,6 +50,7 @@ describe("pages/teachers/search.tsx", () => {
   test("renders correct content type filters", () => {
     const { getAllByRole } = renderWithSeo()(
       <SearchPage
+        topNav={topNavFixture}
         curriculumData={{
           keyStages,
           subjects,
@@ -71,6 +74,7 @@ describe("pages/teachers/search.tsx", () => {
   test("renders correct new curriculum filter", async () => {
     const { getAllByRole } = renderWithSeo()(
       <SearchPage
+        topNav={topNavFixture}
         curriculumData={{
           keyStages,
           subjects,
@@ -89,6 +93,7 @@ describe("pages/teachers/search.tsx", () => {
   test("renders correct key stage filters", async () => {
     const { getAllByRole } = renderWithSeo()(
       <SearchPage
+        topNav={topNavFixture}
         curriculumData={{
           keyStages,
           subjects,
@@ -108,6 +113,7 @@ describe("pages/teachers/search.tsx", () => {
   test("renders correct year group filters", () => {
     const { getAllByRole } = renderWithSeo()(
       <SearchPage
+        topNav={topNavFixture}
         curriculumData={{
           keyStages,
           subjects,
@@ -126,6 +132,7 @@ describe("pages/teachers/search.tsx", () => {
   test("renders correct examBoard filters", async () => {
     const { getAllByRole } = renderWithSeo()(
       <SearchPage
+        topNav={topNavFixture}
         curriculumData={{
           keyStages,
           subjects,
@@ -145,6 +152,7 @@ describe("pages/teachers/search.tsx", () => {
   test("renders correct subject filters", () => {
     const { getAllByRole } = renderWithSeo()(
       <SearchPage
+        topNav={topNavFixture}
         curriculumData={{
           keyStages,
           subjects,
