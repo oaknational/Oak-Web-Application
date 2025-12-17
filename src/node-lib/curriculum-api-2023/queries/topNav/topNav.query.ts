@@ -12,7 +12,7 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
 
   const parsed = topNavResponseSchema.safeParse(res);
 
-  if (!parsed || !parsed.success) {
+  if (!parsed?.success) {
     throw new OakError({
       code: "curriculum-api/internal-error",
     });
