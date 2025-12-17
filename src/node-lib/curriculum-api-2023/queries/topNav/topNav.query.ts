@@ -21,8 +21,21 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
   const teachersNavData = {
     primary: getTeachersNavData(parsed.data, "primary"),
     secondary: getTeachersNavData(parsed.data, "secondary"),
-    aboutUs: [],
-    guidance: [],
+    aboutUs: [
+      { title: "Who we are", slug: "about-who-we-are" },
+      { title: "Board", slug: "about-board" },
+      { title: "Work with us", slug: "about-work-with-us" },
+      { title: "Leadership", slug: "about-leadership" },
+      { title: "Partners", slug: "about-partners" },
+      { title: "Contact us", slug: "contact" },
+    ],
+    guidance: [
+      { title: "Plan a lesson", slug: "lesson-planning" },
+      { title: "Blogs", slug: "blog-index" },
+      { title: "Help", slug: "help" },
+      { title: "Support your team", slug: "support-your-team" },
+      { title: "Webinars", slug: "webinar-index" },
+    ],
   };
 
   const pupilsNavData = {

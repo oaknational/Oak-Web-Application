@@ -1,5 +1,5 @@
 import { PupilsSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { OakFlex, OakPrimaryInvertedButton } from "@/styles/oakThemeApp";
+import { OakFlex, OakSmallPrimaryInvertedButton } from "@/styles/oakThemeApp";
 
 const PupilsSubNav = ({
   onClick,
@@ -7,13 +7,17 @@ const PupilsSubNav = ({
   onClick: (menu: keyof PupilsSubNavData) => void;
 }) => {
   return (
-    <OakFlex data-testid="pupils-subnav" $display={["none", "none", "flex"]}>
-      <OakPrimaryInvertedButton onClick={() => onClick("primary")}>
+    <OakFlex
+      data-testid="pupils-subnav"
+      $display={["none", "none", "flex"]}
+      $gap={"spacing-12"}
+    >
+      <OakSmallPrimaryInvertedButton onClick={() => onClick("primary")}>
         Primary
-      </OakPrimaryInvertedButton>
-      <OakPrimaryInvertedButton onClick={() => onClick("secondary")}>
+      </OakSmallPrimaryInvertedButton>
+      <OakSmallPrimaryInvertedButton onClick={() => onClick("secondary")}>
         Secondary
-      </OakPrimaryInvertedButton>
+      </OakSmallPrimaryInvertedButton>
     </OakFlex>
   );
 };
