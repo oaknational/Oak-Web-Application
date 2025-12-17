@@ -8,7 +8,7 @@ type TeachersSubNavProps = {
 
 const TeachersSubNav = ({ onClick }: TeachersSubNavProps) => {
   return (
-    <OakFlex $gap={"spacing-12"}>
+    <OakFlex $gap={"spacing-12"} data-testid="teachers-subnav">
       <OakPrimaryInvertedButton onClick={() => onClick("primary")}>
         Primary
       </OakPrimaryInvertedButton>

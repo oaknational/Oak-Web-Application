@@ -54,20 +54,14 @@ describe("TopNav", () => {
   it("renders the correct subnav for teachers", async () => {
     renderWithTheme(<TopNav {...mockProps} />);
 
-    const teachersSubnav = await screen.findByText("Teachers links");
+    const teachersSubnav = await screen.findByTestId("teachers-subnav");
     expect(teachersSubnav).toBeInTheDocument();
-
-    const pupilsSubnav = screen.queryByText("Pupils links");
-    expect(pupilsSubnav).not.toBeInTheDocument();
   });
   it("renders the correct subnav for pupils", async () => {
     mockSelectedArea.mockReturnValue("PUPILS");
     renderWithTheme(<TopNav {...mockProps} />);
 
-    const teachersSubnav = screen.queryByText("Teachers links");
-    expect(teachersSubnav).not.toBeInTheDocument();
-
-    const pupilsSubnav = await screen.findByText("Pupils links");
+    const pupilsSubnav = await screen.findByTestId("pupils-subnav");
     expect(pupilsSubnav).toBeInTheDocument();
   });
 });

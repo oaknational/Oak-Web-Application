@@ -7,7 +7,7 @@ const PupilsSubNav = ({
   onClick: (menu: keyof PupilsSubNavData) => void;
 }) => {
   return (
-    <OakFlex>
+    <OakFlex data-testid="pupils-subnav">
       <OakPrimaryInvertedButton onClick={() => onClick("primary")}>
         Primary
       </OakPrimaryInvertedButton>
