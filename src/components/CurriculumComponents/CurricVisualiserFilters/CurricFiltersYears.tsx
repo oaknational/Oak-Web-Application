@@ -17,10 +17,14 @@ import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPha
 import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { keystageFromYear } from "@/utils/curriculum/keystage";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersYearsProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilters: CurriculumFilters,
+    source: ComponentTypeValueType,
+  ) => void;
   data: CurriculumUnitsFormattedData;
   ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
   slugs: CurriculumSelectionSlugs;
@@ -81,13 +85,19 @@ export function CurricFiltersYears({
   });
   function addAllToFilter(target: YearOption) {
     if (target.year === "all") {
-      onChangeFilters({ ...filters, years: data.yearOptions, pathways: [] });
+      onChangeFilters(
+        { ...filters, years: data.yearOptions, pathways: [] },
+        "year_group_button",
+      );
     } else {
-      onChangeFilters({
-        ...filters,
-        years: [target.year],
-        pathways: target.queryString ? [target.queryString] : [],
-      });
+      onChangeFilters(
+        {
+          ...filters,
+          years: [target.year],
+          pathways: target.queryString ? [target.queryString] : [],
+        },
+        "year_group_button",
+      );
     }
   }
 
