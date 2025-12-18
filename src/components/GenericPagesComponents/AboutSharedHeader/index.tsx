@@ -11,7 +11,9 @@ import {
   OakCombinedColorToken,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
-import { ReactNode, useMemo } from "react";
+import { ReactNode } from "react";
+
+import { InnerMaxWidth } from "../InnerMaxWidth";
 
 const CustomHeaderTextOakGridArea = styled(OakGridArea)`
   grid-column: span 6;
@@ -27,39 +29,44 @@ const CustomHeaderImageOakGridArea = styled(OakGridArea)`
   }
 `;
 
-function InnerMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
-  const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
-  return (
-    <OakBox
-      style={styleAttrs}
-      $mh={"auto"}
-      $ph={["spacing-16", "spacing-16", "spacing-16"]}
-    >
-      {children}
-    </OakBox>
-  );
-}
+const StyledBackgroundLoop = styled(OakIcon)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  filter: invert(70%) sepia(24%) saturate(580%) hue-rotate(188deg)
+    brightness(100%) contrast(94%);
+
+  @media (min-width: 750px) {
+    min-width: 400px;
+  }
+
+  @media (min-width: 921px) and (max-width: 1050px) {
+    display: block;
+    translate: 14% -35%;
+    transform: scale(1.65) rotate(-10deg);
+  }
+
+  @media (min-width: 1051px) and (max-width: 1180px) {
+    translate: 21% -33%;
+    transform: scale(1.6) rotate(-9deg);
+  }
+
+  @media (min-width: 1181px) and (max-width: 1279px) {
+    transform: scale(1.55) rotate(-8.5deg);
+    translate: 20% -34%;
+  }
+
+  @media (min-width: 1280px) {
+    translate: 20% -41%;
+    transform: scale(1.7) rotate(-8deg);
+  }
+`;
 
 export function BackgroundHeaderLoop() {
   return (
-    <OakIcon
+    <StyledBackgroundLoop
       iconName="looping-line-5"
-      $colorFilter={"bg-decorative3-main"}
-      $zIndex={"behind"}
-      $objectFit={"fill"}
-      $display={["none", "block"]}
-      $height={"100%"}
-      $minWidth={[0, "spacing-480", "spacing-640"]}
-      $transform={[
-        "none",
-        "translate(140%, -40%) scale(1.5) rotate(-11deg)",
-        "translate(140%, -55%) scale(1.25) rotate(-8deg)",
-      ]}
-      $position={"absolute"}
-      $left={"spacing-0"}
-      $right={"spacing-0"}
-      $top={"spacing-0"}
-      $bottom={"spacing-0"}
       data-testid="about-shared-loop"
     />
   );
@@ -98,33 +105,39 @@ export function AboutSharedHeader({
 }: Readonly<AboutSharedHeaderProps>) {
   return (
     <InnerMaxWidth>
-      <OakGrid $cg="spacing-16" $rg="spacing-16" $pv={"spacing-72"}>
-        <CustomHeaderTextOakGridArea $colSpan={12} $justifyContent={"center"}>
-          <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-            <OakHeading
-              tag="h1"
-              $font={["heading-4", "heading-2", "heading-2"]}
-            >
-              <OakSpan
-                $background={titleHighlight ?? "mint"}
-                $ph={"spacing-4"}
-                $color="text-primary"
+      <OakBox $position={"relative"} $overflow={"hidden"}>
+        <OakGrid $cg="spacing-16" $rg="spacing-16" $pv={"spacing-72"}>
+          <CustomHeaderTextOakGridArea $colSpan={12} $justifyContent={"center"}>
+            <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+              <OakHeading
+                tag="h1"
+                $font={["heading-4", "heading-2", "heading-2"]}
               >
-                {title}
-              </OakSpan>
-            </OakHeading>
-            <OakP
-              $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
-              $color={"text-primary"}
-            >
-              {content}
-            </OakP>
-          </OakFlex>
-        </CustomHeaderTextOakGridArea>
-        <CustomHeaderImageOakGridArea $colSpan={4} $colStart={9}>
-          {children}
-        </CustomHeaderImageOakGridArea>
-      </OakGrid>
+                <OakSpan
+                  $background={titleHighlight ?? "mint"}
+                  $ph={"spacing-4"}
+                  $color="text-primary"
+                >
+                  {title}
+                </OakSpan>
+              </OakHeading>
+              <OakP
+                $font={[
+                  "heading-light-5",
+                  "heading-light-3",
+                  "heading-light-3",
+                ]}
+                $color={"text-primary"}
+              >
+                {content}
+              </OakP>
+            </OakFlex>
+          </CustomHeaderTextOakGridArea>
+          <CustomHeaderImageOakGridArea $colSpan={4} $colStart={9}>
+            {children}
+          </CustomHeaderImageOakGridArea>
+        </OakGrid>
+      </OakBox>
     </InnerMaxWidth>
   );
 }

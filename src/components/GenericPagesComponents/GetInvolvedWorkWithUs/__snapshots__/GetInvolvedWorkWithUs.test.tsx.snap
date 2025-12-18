@@ -123,7 +123,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cDIrlY"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW djyvKT cDIrlY"
         >
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW loubfV"
@@ -140,9 +140,9 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
-                  sizes="100vw"
+                  sizes="(max-width: 750px) 100vw, (max-width: 1280px) 50vw, 58vw"
                   src="http://localhost/_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=3840&q=75"
-                  srcset="/_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=3840&q=75 3840w"
+                  srcset="/_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=384&q=75 384w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=3840&q=75 3840w"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
               </div>
@@ -152,17 +152,17 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
             >
               <img
                 alt="Badge 1"
-                class="sc-402b724e-0 giIymB"
+                class="sc-a0a9d655-0 ixaXXm"
                 src="http://example.com/badge1.png"
               />
               <img
                 alt="Badge 2"
-                class="sc-402b724e-0 giIymB"
+                class="sc-a0a9d655-0 ixaXXm"
                 src="http://example.com/badge2.png"
               />
               <img
                 alt="Badge 3"
-                class="sc-402b724e-0 giIymB"
+                class="sc-a0a9d655-0 ixaXXm"
                 src="http://example.com/badge3.png"
               />
             </div>
