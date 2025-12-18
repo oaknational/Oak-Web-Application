@@ -4,16 +4,30 @@ import { OakFlex, OakSmallPrimaryInvertedButton } from "@/styles/oakThemeApp";
 
 type TeachersSubNavProps = {
   onClick: (menu: keyof TeachersSubNavData) => void;
+  isMenuSelected: (menu: keyof TeachersSubNavData) => boolean;
 };
 
-const TeachersSubNav = ({ onClick }: TeachersSubNavProps) => {
+// TD: [integrated journey] do we want to derive menu items from available data
+// so the nav bar can be used on error pages / when data is missing or invalid
+
+const TeachersSubNav = ({ onClick, isMenuSelected }: TeachersSubNavProps) => {
   return (
     <OakFlex data-testid="teachers-subnav">
-      <OakFlex $display={["none", "none", "flex"]} $gap={"spacing-12"}>
-        <OakSmallPrimaryInvertedButton onClick={() => onClick("primary")}>
+      <OakFlex
+        $display={["none", "none", "flex"]}
+        $gap={"spacing-12"}
+        $alignItems={"center"}
+      >
+        <OakSmallPrimaryInvertedButton
+          onClick={() => onClick("primary")}
+          selected={isMenuSelected("primary")}
+        >
           Primary
         </OakSmallPrimaryInvertedButton>
-        <OakSmallPrimaryInvertedButton onClick={() => onClick("secondary")}>
+        <OakSmallPrimaryInvertedButton
+          onClick={() => onClick("secondary")}
+          selected={isMenuSelected("secondary")}
+        >
           Secondary
         </OakSmallPrimaryInvertedButton>
         <OakSmallPrimaryInvertedButton
@@ -22,10 +36,16 @@ const TeachersSubNav = ({ onClick }: TeachersSubNavProps) => {
         >
           Curriculum
         </OakSmallPrimaryInvertedButton>
-        <OakSmallPrimaryInvertedButton onClick={() => onClick("guidance")}>
+        <OakSmallPrimaryInvertedButton
+          onClick={() => onClick("guidance")}
+          selected={isMenuSelected("guidance")}
+        >
           Guidance
         </OakSmallPrimaryInvertedButton>
-        <OakSmallPrimaryInvertedButton onClick={() => onClick("aboutUs")}>
+        <OakSmallPrimaryInvertedButton
+          onClick={() => onClick("aboutUs")}
+          selected={isMenuSelected("aboutUs")}
+        >
           About us
         </OakSmallPrimaryInvertedButton>
       </OakFlex>

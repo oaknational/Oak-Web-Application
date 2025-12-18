@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
@@ -32,7 +32,15 @@ const TopNav = (props: TopNavProps) => {
   const activeArea = useSelectedArea();
   const isMobile = useMediaQuery("mobile");
 
+  // TD: [integrated journey] potentially extract into a menu store
   const [selectedMenu, setSelectedMenu] = useState<string>();
+
+  const isMenuSelected = useCallback(
+    (menuSlug: string) => {
+      return menuSlug === selectedMenu;
+    },
+    [selectedMenu],
+  );
 
   return (
     <>
@@ -95,6 +103,7 @@ const TopNav = (props: TopNavProps) => {
         </OakLink>
         {activeArea === "TEACHERS" && (
           <TeachersSubNav
+            isMenuSelected={isMenuSelected}
             onClick={(menu) => {
               setSelectedMenu(menu);
               console.log("selected menu ", teachers[menu]);
