@@ -70,7 +70,7 @@ describe("AboutUsLayout", () => {
 
     expect(getByText("About Oak")).toBeInTheDocument();
     expect(getByText("About Oak's curriculum")).toBeInTheDocument();
-    expect(getByText("Oaks impact")).toBeInTheDocument();
+    expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
     expect(getByText("Get involved")).toBeInTheDocument();
   });
@@ -93,7 +93,7 @@ describe("AboutUsLayout", () => {
 
     // Should still render other links
     expect(getByText("About Oak's curriculum")).toBeInTheDocument();
-    expect(getByText("Oaks impact")).toBeInTheDocument();
+    expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
     expect(getByText("Get involved")).toBeInTheDocument();
   });
@@ -117,7 +117,7 @@ describe("AboutUsLayout", () => {
     // Should still render other links
     expect(getByText("About Oak")).toBeInTheDocument();
     expect(getByText("About Oak's curriculum")).toBeInTheDocument();
-    expect(getByText("Oaks impact")).toBeInTheDocument();
+    expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
   });
 
