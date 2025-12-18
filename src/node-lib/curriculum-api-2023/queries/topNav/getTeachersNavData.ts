@@ -27,20 +27,13 @@ const getKeystages = (
 
   // Get all keystages associated with that phase and reduce to unique values
   const byKeystage = byPhase
-    .filter(
-      (p, i, a) =>
-        a.findIndex(
-          (k) =>
-            k.programme_fields.keystage_slug ===
-            p.programme_fields.keystage_slug,
-        ) === i,
-    )
     .map((p) => ({
       slug: p.programme_fields.keystage_slug,
       title: p.programme_fields.keystage,
-    }));
+    }))
+    .filter((p, i, a) => a.findIndex((k) => k.slug === p.slug) === i);
 
-  // Expand each keystage with its associated subjects, filtering out duplicates for year within the keystage
+  // Expand each keystage with its associated subjects, filtering out duplicates for each programme
   const withSubjects = byKeystage.map((ks) => {
     return {
       ...ks,
@@ -48,19 +41,13 @@ const getKeystages = (
         .filter((p) => p.programme_fields.keystage_slug === ks.slug)
         .filter(
           (p, i, a) =>
-            a.findIndex(
-              (k) =>
-                k.programme_fields.subject_slug ===
-                  p.programme_fields.subject_slug &&
-                k.programme_fields.pathway_slug ===
-                  p.programme_fields.pathway_slug,
-            ) === i,
+            a.findIndex((k) => k.programme_slug === p.programme_slug) === i,
         )
         .map((p) => ({
           subjectSlug: p.programme_fields.subject_slug,
           title: p.programme_fields.subject,
           nonCurriculum: Boolean(p.features.non_curriculum),
-          pathwaySlug: p.programme_fields.pathway_slug,
+          programmeSlug: p.programme_slug,
           programmeCount: getProgrammeCount({
             data,
             keystageSlug: ks.slug,
@@ -95,19 +82,10 @@ export const getProgrammeCount = ({
         pathway_slug === pathwaySlug
       );
     })
-    // filter out duplicates by year, we want to keep duplicates for tier and examboard as these will be separate programmes
+    // filter down to unique programmes
     .filter(
       (p, i, a) =>
-        a.findIndex(
-          (k) =>
-            k.programme_fields.subject_slug ===
-              p.programme_fields.subject_slug &&
-            k.programme_fields.pathway_slug ===
-              p.programme_fields.pathway_slug &&
-            k.programme_fields.tier_slug === p.programme_fields.tier_slug &&
-            k.programme_fields.examboard_slug ===
-              p.programme_fields.examboard_slug,
-        ) === i,
+        a.findIndex((k) => k.programme_slug === p.programme_slug) === i,
     );
 
   return programmesForKs.length;
