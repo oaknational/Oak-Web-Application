@@ -119,6 +119,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
         <AboutSharedHeader
           title={pageData.header.title}
           content={pageData.header.text}
+          titleHighlight="bg-decorative3-main"
         >
           <BackgroundHeaderLoop />
         </AboutSharedHeader>

@@ -1701,7 +1701,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-da774e64-0 fgBWrW djyvKT iAkSYx dsCEjX"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-e3e42a3f-0 fgBWrW djyvKT iAkSYx cvSFBg"
               >
                 <div
                   class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1723,7 +1723,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-da774e64-1 fgBWrW joHkzz dGlNMa dQERjo"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-e3e42a3f-1 fgBWrW joHkzz dGlNMa iSXsGL"
               >
                 <div
                   class="sc-fqkvVR jPtDlR"
