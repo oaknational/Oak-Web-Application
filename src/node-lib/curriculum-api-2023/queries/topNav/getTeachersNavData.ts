@@ -27,11 +27,18 @@ const getKeystages = (
 
   // Get all keystages associated with that phase and reduce to unique values
   const byKeystage = byPhase
+    .filter(
+      (p, i, a) =>
+        a.findIndex(
+          (k) =>
+            k.programme_fields.keystage_slug ===
+            p.programme_fields.keystage_slug,
+        ) === i,
+    )
     .map((p) => ({
       slug: p.programme_fields.keystage_slug,
       title: p.programme_fields.keystage,
-    }))
-    .filter((p, i, a) => a.findIndex((k) => k.slug === p.slug) === i);
+    }));
 
   // Expand each keystage with its associated subjects
   const withSubjects = byKeystage.map((ks) => {
@@ -39,6 +46,14 @@ const getKeystages = (
       ...ks,
       subjects: byPhase
         .filter((p) => p.programme_fields.keystage_slug === ks.slug)
+        .filter(
+          (p, i, a) =>
+            a.findIndex(
+              (k) =>
+                k.programme_fields.subject_slug ===
+                p.programme_fields.subject_slug,
+            ) === i,
+        )
         .map((p) => ({
           slug: p.programme_fields.subject_slug,
           title: p.programme_fields.subject,

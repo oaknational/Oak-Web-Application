@@ -12,6 +12,32 @@ export const mockResponseData: TopNavResponse = {
           phase_slug: "primary",
           subject: "Art and design",
           subject_slug: "art",
+          year_slug: "year-2",
+        },
+      }),
+      features: {},
+    },
+    {
+      programme_fields: programmeFieldsFixture({
+        overrides: {
+          keystage: "KS1",
+          keystage_slug: "ks1",
+          phase_slug: "primary",
+          subject: "Art and design",
+          subject_slug: "art",
+          year_slug: "year-3",
+        },
+      }),
+      features: {},
+    },
+    {
+      programme_fields: programmeFieldsFixture({
+        overrides: {
+          keystage: "KS1",
+          keystage_slug: "ks1",
+          phase_slug: "primary",
+          subject: "Art and design",
+          subject_slug: "art",
         },
       }),
       features: {},

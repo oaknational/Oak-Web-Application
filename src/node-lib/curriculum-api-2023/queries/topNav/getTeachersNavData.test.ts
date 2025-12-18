@@ -26,4 +26,10 @@ describe("getTeachersNavData", () => {
     );
     expect(eyfs).toBeDefined();
   });
+  it("removes duplicate subjects from keystages", () => {
+    const result = getTeachersNavData(mockResponseData, "primary");
+    const subjects = result.keystages[0]?.subjects;
+
+    expect(subjects).toHaveLength(2);
+  });
 });
