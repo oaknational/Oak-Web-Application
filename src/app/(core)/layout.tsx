@@ -1,8 +1,15 @@
+import TopNav from "@/components/AppComponents/TopNav/TopNav";
+
 export default function CoreLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // TODO: [integrated-journey] Top Nav & Footer
-  return <>{children}</>;
+  // TODO: [integrated-journey]  Footer
+  return (
+    <>
+      <TopNav />
+      {children}
+    </>
+  );
 }
