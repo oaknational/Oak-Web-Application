@@ -1,5 +1,5 @@
-import { OakGoogleClassroomAddOn } from "@oaknational/google-classroom-addon/server";
 import type { NextRequest } from "next/server";
+import { OakGoogleClassroomAddOn } from "@oaknational/google-classroom-addon/server";
 
 import { getPupilFirestore } from "@/node-lib/firestore";
 
@@ -14,7 +14,7 @@ export const getOakGoogleClassroomAddon = (req: NextRequest) => {
     process.env.GOOGLE_CLASSROOM_OAUTH_CLIENT_SECRET,
     process.env.GOOGLE_CLASSROOM_SESSION_SECRET,
   ];
-  if (!env.every((e) => typeof e === "string")) {
+  if (!env.every((e) => typeof e === "string" && e !== "undefined")) {
     throw new Error(
       "OakGoogleClassroomAddOn is missing required environment variables",
     );

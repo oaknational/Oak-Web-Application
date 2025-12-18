@@ -2,14 +2,29 @@
 
 import { GoogleClassroomAuthSuccessView } from "@oaknational/google-classroom-addon/ui";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-function AuthSuccessPage() {
+function AuthSuccessContent() {
   const searchParams = useSearchParams();
   const session = searchParams?.get("s") ?? null;
-  if (!session) return <>An error occurred.</>;
+  const accessToken = searchParams?.get("at") ?? null;
+
+  if (!session || !accessToken) {
+    return <div>An error occurred.</div>;
+  }
+
   return (
-    <GoogleClassroomAuthSuccessView session={decodeURIComponent(session)} />
+    <GoogleClassroomAuthSuccessView
+      session={decodeURIComponent(session)}
+      accessToken={decodeURIComponent(accessToken)}
+    />
   );
 }
 
-export default AuthSuccessPage;
+export default function AuthSuccessPage() {
+  return (
+    <Suspense fallback={null}>
+      <AuthSuccessContent />
+    </Suspense>
+  );
+}

@@ -33,12 +33,27 @@ const mockArgs = {
   unitSlug: "string",
   maxPoints: 1,
 };
+const mockAccessToken = "mock-access-token";
+const mockSession = "mock-session-id";
+
 const mockCreateAttachment = jest
   .fn()
   .mockResolvedValue({ id: "attachment-id" });
 
 describe("POST /api/classroom/attachment/create", () => {
   let mockRequest: NextRequest;
+
+  const mockHeaders = {
+    get: jest.fn((headerName: string) => {
+      if (headerName === "Authorization") {
+        return mockAccessToken;
+      }
+      if (headerName === "x-oakgc-session") {
+        return mockSession;
+      }
+      return null;
+    }),
+  };
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -50,11 +65,16 @@ describe("POST /api/classroom/attachment/create", () => {
   it("should correctly create an attachment", async () => {
     mockRequest = {
       json: async () => mockArgs,
+      headers: mockHeaders,
     } as unknown as NextRequest;
 
     await POST(mockRequest);
 
-    expect(mockCreateAttachment).toHaveBeenCalledWith(mockArgs);
+    expect(mockCreateAttachment).toHaveBeenCalledWith(
+      mockArgs,
+      mockAccessToken,
+      mockSession,
+    );
     expect(NextResponse.json).toHaveBeenCalledWith(
       { attachment: { id: "attachment-id" } },
       { status: 201 },
@@ -66,14 +86,40 @@ describe("POST /api/classroom/attachment/create", () => {
 
     mockRequest = {
       json: async () => mockArgs,
+      headers: mockHeaders,
     } as unknown as NextRequest;
 
     await POST(mockRequest);
 
-    expect(mockCreateAttachment).toHaveBeenCalledWith(mockArgs);
+    expect(mockCreateAttachment).toHaveBeenCalledWith(
+      mockArgs,
+      mockAccessToken,
+      mockSession,
+    );
     expect(NextResponse.json).toHaveBeenCalledWith(
       { error: mockErrorMessage },
       { status: 500 },
+    );
+  });
+  it("should reject the request with 401 if headers are missing", async () => {
+    const missingHeaders = {
+      get: jest.fn(() => {
+        return null;
+      }),
+    };
+
+    mockRequest = {
+      json: async () => mockArgs,
+      headers: missingHeaders,
+    } as unknown as NextRequest;
+
+    await POST(mockRequest);
+
+    expect(mockCreateAttachment).not.toHaveBeenCalled();
+
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      { error: "Authentication required" },
+      { status: 401 },
     );
   });
 });
