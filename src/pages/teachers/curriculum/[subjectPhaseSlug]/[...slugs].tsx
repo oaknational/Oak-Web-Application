@@ -52,6 +52,7 @@ import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics"
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { getUnitSeoFromYearData } from "@/utils/curriculum/seo";
 import { SeoProps } from "@/browser-lib/seo/Seo";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -99,13 +100,17 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
-  const onChangeFilters = (newFilters: CurriculumFilters) => {
+  const onChangeFilters = (
+    newFilters: CurriculumFilters,
+    componentType?: ComponentTypeValueType,
+  ) => {
     setFilters(newFilters);
 
     const analyticsData = buildUnitSequenceRefinedAnalytics(
       analyticsUseCase,
       curriculumUnitsTrackingData,
       newFilters,
+      componentType,
     );
 
     track.unitSequenceRefined(analyticsData);

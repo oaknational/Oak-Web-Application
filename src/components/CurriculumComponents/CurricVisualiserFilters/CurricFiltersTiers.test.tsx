@@ -97,22 +97,28 @@ describe("CurricFiltersTiers", () => {
     expect(elements.length).toEqual(2);
 
     act(() => elements[0]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      subjectCategories: [],
-      childSubjects: [],
-      threads: [],
-      tiers: ["foundation"],
-      years: ["10", "11"],
-      pathways: [],
-    });
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
+        subjectCategories: [],
+        childSubjects: [],
+        threads: [],
+        tiers: ["foundation"],
+        years: ["10", "11"],
+        pathways: [],
+      },
+      "learning_tier_button",
+    );
     act(() => elements[1]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      subjectCategories: [],
-      childSubjects: [],
-      threads: [],
-      tiers: ["higher"],
-      years: ["10", "11"],
-      pathways: [],
-    });
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
+        subjectCategories: [],
+        childSubjects: [],
+        threads: [],
+        tiers: ["higher"],
+        years: ["10", "11"],
+        pathways: [],
+      },
+      "learning_tier_button",
+    );
   });
 });

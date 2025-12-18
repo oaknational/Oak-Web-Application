@@ -8,6 +8,9 @@ import {
   OakThemeProvider,
   OakColorToken,
 } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import TopNav from "../TopNav/TopNav";
 
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
@@ -66,7 +69,9 @@ const Layout: FC<LayoutProps> = (props) => {
     footerVariant = "default",
     banner,
   } = props;
-  const Header = headers[headerVariant];
+  const newTopNavEnabled = useFeatureFlagEnabled("teachers-new-top-nav");
+
+  const Header = newTopNavEnabled ? TopNav : headers[headerVariant];
   const Footer = footers[footerVariant];
   const { isPreview } = useRouter();
 
