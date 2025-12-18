@@ -14,7 +14,7 @@ describe("TopNavQuery", () => {
 
     expect(res.teachers.primary.keystages).toHaveLength(3);
     expect(res.teachers.secondary.keystages).toHaveLength(2);
-    expect(res.pupils.primary.years).toHaveLength(1);
+    expect(res.pupils.primary.years).toHaveLength(3);
     expect(res.pupils.secondary.years).toHaveLength(1);
   });
 });
