@@ -124,7 +124,7 @@ describe("components/UnitListLegacyBanner", () => {
     );
     expect(getByText("New units on the way!")).toBeInTheDocument();
     expect(
-      getByText("We’re busy creating new lessons for you."),
+      getByText("We're busy creating new lessons for you."),
     ).toBeInTheDocument();
   });
 });
