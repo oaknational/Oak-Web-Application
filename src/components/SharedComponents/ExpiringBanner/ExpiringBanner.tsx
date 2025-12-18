@@ -31,15 +31,15 @@ export const ExpiringBanner = ({
     }
   })();
 
+  const resourceType = isSingular ? "lessons" : "resources";
+
   const message = isResourcesMessage ? (
-    <>
-      <OakP>
-        Switch to our new teaching resources now - designed by teachers and
-        leading subject experts, and tested in classrooms.
-      </OakP>
-    </>
+    <OakP>
+      Switch to our new teaching resources now - designed by teachers and
+      leading subject experts, and tested in classrooms.
+    </OakP>
   ) : (
-    `We've made brand-new and improved ${isSingular ? "lessons" : "resources"} for you.`
+    `We've made brand-new and improved ${resourceType} for you.`
   );
 
   return (

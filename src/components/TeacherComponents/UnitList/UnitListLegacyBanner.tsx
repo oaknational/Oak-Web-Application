@@ -46,12 +46,10 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
         // Teacher pages, legacy unit is being removed but new units exist
         return [
           "These resources were made for remote use during the pandemic, not classroom teaching.",
-          <>
-            <OakP>
-              Switch to our new teaching resources now - designed by teachers
-              and leading subject experts, and tested in classrooms.
-            </OakP>
-          </>,
+          <OakP>
+            Switch to our new teaching resources now - designed by teachers and
+            leading subject experts, and tested in classrooms.
+          </OakP>,
         ];
       case hasNewUnits && userType === "pupil":
         // Pupil pages, legacy unit is being removed but new units exist

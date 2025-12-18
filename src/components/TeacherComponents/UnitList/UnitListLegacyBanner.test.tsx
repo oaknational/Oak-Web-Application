@@ -94,7 +94,7 @@ describe("components/UnitListLegacyBanner", () => {
     ).toBeInTheDocument();
   });
 
-  test.only("renders pupil removal banner when there are new units", () => {
+  test("renders pupil removal banner when there are new units", () => {
     const { getByText } = render(
       <UnitListLegacyBanner
         allLegacyUnits={getLegacyUnits(true)}
