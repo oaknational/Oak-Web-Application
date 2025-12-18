@@ -9,8 +9,13 @@ describe("WhoAreWeBreakout", () => {
     const { baseElement, getByRole } = render(
       <WhoAreWeBreakout
         content="TESTING_CONTENT"
-        imageUrl="http://example.com"
-        imageAlt="test"
+        image={{
+          asset: {
+            _id: `image-1-300x300-png`,
+            url: `https://cdn.sanity.io/images/p/d/1-300x300.png`,
+          },
+          altText: "test",
+        }}
       />,
     );
     expect(baseElement).toMatchSnapshot();
@@ -18,7 +23,7 @@ describe("WhoAreWeBreakout", () => {
     const imageEl = getByRole("img");
     expect(imageEl).toHaveAttribute(
       "src",
-      "http://localhost/_next/image?url=http%3A%2F%2Fexample.com&w=3840&q=75",
+      "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format",
     );
     expect(imageEl).toHaveAttribute("alt", "test");
   });

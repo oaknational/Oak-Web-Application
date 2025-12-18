@@ -8,6 +8,7 @@ import {
   OakSpan,
   OakImage,
   OakIcon,
+  OakCombinedColorToken,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { ReactNode, useMemo } from "react";
@@ -87,11 +88,13 @@ export type AboutSharedHeaderProps = {
   title: string;
   content: string;
   children?: ReactNode;
+  titleHighlight?: OakCombinedColorToken;
 };
 export function AboutSharedHeader({
   title,
   content,
   children,
+  titleHighlight,
 }: Readonly<AboutSharedHeaderProps>) {
   return (
     <InnerMaxWidth>
@@ -103,7 +106,7 @@ export function AboutSharedHeader({
               $font={["heading-4", "heading-2", "heading-2"]}
             >
               <OakSpan
-                $background="bg-decorative3-main"
+                $background={titleHighlight ?? "mint"}
                 $ph={"spacing-4"}
                 $color="text-primary"
               >
