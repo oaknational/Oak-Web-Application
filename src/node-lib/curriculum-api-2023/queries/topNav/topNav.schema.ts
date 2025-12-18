@@ -29,8 +29,8 @@ export type TeachersBrowse = {
       title: string;
       subjectSlug: string;
       nonCurriculum: boolean; // enables highlighting subjects that are non curriculum
-      programmeSlug: string;
-      programmeCount: number; // determines whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page
+      programmeSlug: string | null; // will be null when multiple programmes exist
+      programmeCount: number; // used to determine whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page (only 1 programme)
     }>;
   }>;
 };

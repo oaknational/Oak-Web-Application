@@ -32,6 +32,27 @@ describe("getTeachersNavData", () => {
 
     expect(subjects).toHaveLength(2);
   });
+  it("includes pathways for ks4 subjects", () => {
+    const result = getTeachersNavData(mockResponseData, "secondary");
+    const computing = result.keystages[1]?.subjects?.filter(
+      (s) => s.subjectSlug === "computing",
+    );
+    expect(computing).toHaveLength(2);
+  });
+  it("returns a valid programme slug for subjects with one programme per keystage", () => {
+    const result = getTeachersNavData(mockResponseData, "secondary");
+    const multipleProgrammeSubject = result.keystages[1]?.subjects?.find(
+      (s) => s.programmeCount === 1,
+    );
+    expect(multipleProgrammeSubject?.programmeSlug).not.toBeNull();
+  });
+  it("returns programme slug as null for subjects with multiple programmes at keystage", () => {
+    const result = getTeachersNavData(mockResponseData, "secondary");
+    const multipleProgrammeSubject = result.keystages[1]?.subjects?.find(
+      (s) => s.programmeCount > 1,
+    );
+    expect(multipleProgrammeSubject?.programmeSlug).toBeNull();
+  });
 });
 
 describe("getProgrammeCount", () => {

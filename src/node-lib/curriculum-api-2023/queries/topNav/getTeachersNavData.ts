@@ -41,20 +41,47 @@ const getKeystages = (
         .filter((p) => p.programme_fields.keystage_slug === ks.slug)
         .filter(
           (p, i, a) =>
-            a.findIndex((k) => k.programme_slug === p.programme_slug) === i,
+            a.findIndex(
+              (k) =>
+                k.programme_fields.subject_slug ===
+                  p.programme_fields.subject_slug &&
+                k.programme_fields.pathway_slug ===
+                  p.programme_fields.pathway_slug,
+            ) === i,
         )
-        .map((p) => ({
-          subjectSlug: p.programme_fields.subject_slug,
-          title: p.programme_fields.subject,
-          nonCurriculum: Boolean(p.features.non_curriculum),
-          programmeSlug: p.programme_slug,
-          programmeCount: getProgrammeCount({
+        // Filter out edge case where only one pathway and no PFs exist for a subject at ks4
+        .filter((p, _, a) => {
+          if (p.programme_fields.pathway_slug) {
+            const otherSlug =
+              p.programme_fields.pathway_slug === "core" ? "gcse" : "core";
+            const otherPathwayProgramme = a.find(
+              (k) =>
+                k.programme_fields.pathway_slug === otherSlug &&
+                p.programme_fields.subject_slug ===
+                  k.programme_fields.subject_slug,
+            );
+
+            return !!otherPathwayProgramme;
+          } else {
+            return true;
+          }
+        })
+        .map((p) => {
+          const programmeCount = getProgrammeCount({
             data,
             keystageSlug: ks.slug,
             subjectSlug: p.programme_fields.subject_slug,
             pathwaySlug: p.programme_fields.pathway_slug,
-          }),
-        })),
+          });
+
+          return {
+            subjectSlug: p.programme_fields.subject_slug,
+            title: p.programme_fields.subject,
+            nonCurriculum: Boolean(p.features.non_curriculum),
+            programmeSlug: programmeCount > 1 ? null : p.programme_slug,
+            programmeCount,
+          };
+        }),
     };
   });
 
