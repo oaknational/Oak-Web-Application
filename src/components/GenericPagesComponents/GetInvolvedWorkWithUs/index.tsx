@@ -134,7 +134,12 @@ export function GetInvolvedWorkWithUs({
             $gap={["spacing-24", "spacing-24", "spacing-32"]}
           >
             <OakFlex $aspectRatio={"16/9"} $width="100%">
-              <OakImage $objectFit={"cover"} alt={imageAlt} src={imageUrl} />
+              <OakImage
+                $objectFit={"cover"}
+                alt={imageAlt}
+                src={imageUrl}
+                sizes="(max-width: 750px) 100vw, (max-width: 1280px) 50vw, 58vw"
+              />
             </OakFlex>
             <OakFlex
               $flexDirection={["column", "column", "row"]}
