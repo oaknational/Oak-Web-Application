@@ -37,7 +37,7 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
     },
     {
       iconName: "data" as const,
-      title: "Oaks impact",
+      title: "Oak's impact",
       href: "#",
     },
     {

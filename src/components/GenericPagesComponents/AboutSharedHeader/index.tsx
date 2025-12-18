@@ -34,8 +34,8 @@ const StyledBackgroundLoop = styled(OakIcon)`
   top: 0;
   right: 0;
   height: 100%;
-  filter: invert(71%) sepia(22%) saturate(1084%) hue-rotate(189deg)
-    brightness(102%) contrast(94%);
+  filter: invert(70%) sepia(24%) saturate(580%) hue-rotate(188deg)
+    brightness(100%) contrast(94%);
 
   @media (min-width: 750px) {
     min-width: 400px;

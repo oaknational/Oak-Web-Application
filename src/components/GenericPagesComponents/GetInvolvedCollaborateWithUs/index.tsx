@@ -46,7 +46,7 @@ export function GetInvolvedCollaborateWithUs({
   cards,
 }: Readonly<GetInvolvedCollaborateWithUsProps>) {
   return (
-    <OakBox $background={"bg-decorative3-subdued"}>
+    <OakBox $background={"bg-decorative3-very-subdued"}>
       <InnerMaxWidth>
         <OakFlex $flexDirection="column" $pv={["spacing-56", "spacing-80"]}>
           <OakGrid
