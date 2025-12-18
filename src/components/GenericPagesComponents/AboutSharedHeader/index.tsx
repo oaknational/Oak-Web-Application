@@ -13,6 +13,9 @@ import {
 import styled from "styled-components";
 import { ReactNode, useMemo } from "react";
 
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { PortableTextJSON } from "@/common-lib/cms-types";
+
 const CustomHeaderTextOakGridArea = styled(OakGridArea)`
   grid-column: span 6;
   @media (max-width: 920px) {
@@ -86,7 +89,7 @@ export function AboutSharedHeaderImage({
 
 export type AboutSharedHeaderProps = {
   title: string;
-  content: string;
+  content: PortableTextJSON | string;
   children?: ReactNode;
   titleHighlight?: OakCombinedColorToken;
 };
@@ -113,12 +116,20 @@ export function AboutSharedHeader({
                 {title}
               </OakSpan>
             </OakHeading>
-            <OakP
-              $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
-              $color={"text-primary"}
-            >
-              {content}
-            </OakP>
+            {typeof content === "string" ? (
+              <OakP
+                $font={[
+                  "heading-light-5",
+                  "heading-light-3",
+                  "heading-light-3",
+                ]}
+                $color={"text-primary"}
+              >
+                {content}
+              </OakP>
+            ) : (
+              <PortableTextWithDefaults value={content} />
+            )}
           </OakFlex>
         </CustomHeaderTextOakGridArea>
         <CustomHeaderImageOakGridArea $colSpan={4} $colStart={9}>

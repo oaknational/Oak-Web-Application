@@ -21,6 +21,7 @@ import {
   supportPageSchema,
   blogListingPageSchema,
   curriculumOverviewCMSSchema,
+  newAboutGetInvolvedPageSchema,
   newAboutWhoWeArePageSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
@@ -171,6 +172,14 @@ const getSanityClient = () => ({
             ...workWithUsPage,
           }
         : undefined;
+    },
+  ),
+  newAboutGetInvolvedPage: getSingleton(
+    sanityGraphqlApi.newAboutGetInvolvedPage,
+    newAboutGetInvolvedPageSchema,
+    (result) => {
+      const whoWeArePageData = result?.allNewAboutCorePageGetInvolved?.[0];
+      return whoWeArePageData;
     },
   ),
   supportPage: getSingleton(

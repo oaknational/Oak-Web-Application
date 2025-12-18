@@ -30,7 +30,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
               class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
             >
               <div
-                class="sc-fqkvVR jqqmXN sc-34fd5c0-0 duOvyx"
+                class="sc-fqkvVR jqqmXN sc-96e78e76-0 eaUcUn"
               >
                 <img
                   alt=""
@@ -65,7 +65,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                       Give your feedback
                     </h3>
                     <p
-                      class="sc-dLMFU jKnjIK"
+                      class="sc-dLMFU sc-ff4f593d-0 hdyvdE imPMXG"
                     >
                       Share your story and we'll send you a gift voucher as a thanks for your time.
                     </p>
@@ -130,7 +130,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                       Help us improve
                     </h3>
                     <p
-                      class="sc-dLMFU jKnjIK"
+                      class="sc-dLMFU sc-ff4f593d-0 hdyvdE imPMXG"
                     >
                       Teachers are at the heart of everything we build. Have your say by taking part in research.
                     </p>
