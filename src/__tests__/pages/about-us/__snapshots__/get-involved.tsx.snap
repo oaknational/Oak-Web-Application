@@ -2158,7 +2158,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                     >
                       <a
-                        href="/#"
+                        href="/about-us/who-we-are"
                         style="outline: none;"
                       >
                         <div
@@ -2242,7 +2242,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           <div
                             class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
                           >
-                            About Oak’s curriculum
+                            About Oak's curriculum
                           </div>
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
@@ -2379,6 +2379,63 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       </a>
                     </div>
                   </div>
+                  <div
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                    >
+                      <a
+                        href="/about-us/get-involved"
+                        style="outline: none;"
+                      >
+                        <div
+                          class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                          data-testid="who-we-are-explore-item"
+                        >
+                          <div
+                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                          >
+                            <div
+                              class="sc-fqkvVR kKvKAa"
+                            >
+                              <img
+                                alt=""
+                                class="sc-dcJsrY cDKKvZ"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
+                          >
+                            Get involved
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                          >
+                            <div
+                              class="sc-fqkvVR erqloa"
+                            >
+                              <img
+                                alt=""
+                                class="sc-dcJsrY cDKKvZ"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2390,7 +2447,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-kAyceB sc-jEACwC eKkWSU bUZQTk"
             >
               <div
-                class="sc-fqkvVR sc-fde08d1f-0 fgBWrW fUKSio"
+                class="sc-fqkvVR sc-561b7f0d-0 fgBWrW gUlBvt"
               >
                 <div
                   class="sc-ad0ad6f5-0 sc-213e351e-0 sc-8724906-0 hidovD cEqFwB"

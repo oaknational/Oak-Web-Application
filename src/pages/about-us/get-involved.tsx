@@ -1,32 +1,20 @@
 import { GetServerSideProps, NextPage } from "next";
-import { OakBox, OakMaxWidth } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import Layout from "@/components/AppComponents/Layout";
+import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   AboutSharedHeader,
   BackgroundHeaderLoop,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
-import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 import { GetInvolvedCollaborateWithUs } from "@/components/GenericPagesComponents/GetInvolvedCollaborateWithUs";
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
-import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
-import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
-
-const NewsletterWrapper = styled(OakBox)`
-  max-width: 100%;
-
-  @media (min-width: 750px) {
-    max-width: 870px;
-  }
-`;
 
 export type GetInvolvedPage = {
   pageData: {
@@ -124,11 +112,9 @@ const fixtureData: GetInvolvedPage["pageData"] = {
 };
 
 export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
-  const newsletterFormProps = useNewsletterForm();
-
   return (
     <Layout seoProps={getSeoProps(null)} $background={"white"}>
-      <OakBox $overflow={"hidden"} $zIndex={"neutral"}>
+      <AboutUsLayout>
         <AboutSharedHeader
           title={pageData.header.title}
           content={pageData.header.text}
@@ -198,42 +184,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
             },
           ]}
         />
-        <WhoAreWeExplore
-          title={"Explore more about Oak"}
-          items={[
-            {
-              iconName: "logo",
-              title: "About Oak",
-              href: "#",
-            },
-            {
-              iconName: "homepage-teacher-map",
-              title: "About Oak’s curriculum",
-              href: "#",
-            },
-            {
-              iconName: "data",
-              title: "Oaks impact",
-              href: "#",
-            },
-            {
-              iconName: "snack-break",
-              title: "Meet the team",
-              href: "#",
-            },
-          ]}
-        />
-        <OakBox
-          $background={"bg-decorative1-subdued"}
-          $pv={["spacing-56", "spacing-56"]}
-        >
-          <OakMaxWidth $ph={"spacing-16"} $alignItems={"center"}>
-            <NewsletterWrapper>
-              <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
-            </NewsletterWrapper>
-          </OakMaxWidth>
-        </OakBox>
-      </OakBox>
+      </AboutUsLayout>
     </Layout>
   );
 };

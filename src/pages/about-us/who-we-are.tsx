@@ -11,7 +11,6 @@ import {
   OakBox,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import CMSClient from "@/node-lib/cms";
 import {
@@ -37,22 +36,12 @@ import {
 import { WhoAreWeBreakout } from "@/components/GenericPagesComponents/WhoAreWeBreakout";
 import WhoAreWeTimeline from "@/components/GenericPagesComponents/WhoAreWeTimeline";
 import { WhoAreWeDesc } from "@/components/GenericPagesComponents/WhoAreWeDesc";
-import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
-import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
-import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
-
-const NewsletterWrapper = styled(OakBox)`
-  max-width: 100%;
-
-  @media (min-width: 750px) {
-    max-width: 870px;
-  }
-`;
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
@@ -223,14 +212,13 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
   pageData,
   newAboutWhoWeArePage,
 }) => {
-  const newsletterFormProps = useNewsletterForm();
   if (!newAboutWhoWeArePage) {
     return <div />;
   }
 
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <OakBox $overflow={"hidden"}>
+      <AboutUsLayout>
         <AboutSharedHeader
           title={"About Oak"}
           content={
@@ -252,42 +240,7 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
           items={newAboutWhoWeArePage.timeline}
         />
         <WhoAreWeDesc title={"We are..."} items={newAboutWhoWeArePage.usp} />
-        <WhoAreWeExplore
-          title={"Explore more about Oak"}
-          items={[
-            {
-              iconName: "homepage-teacher-map",
-              title: "About Oak’s curriculum",
-              href: "#",
-            },
-            {
-              iconName: "data",
-              title: "Oak’s impact",
-              href: "#",
-            },
-            {
-              iconName: "snack-break",
-              title: "Meet the team",
-              href: "#",
-            },
-            {
-              iconName: "chatting",
-              title: "Get involved",
-              href: "#",
-            },
-          ]}
-        />
-        <OakBox
-          $background={"bg-decorative1-subdued"}
-          $pv={["spacing-56", "spacing-56"]}
-        >
-          <OakMaxWidth $ph={"spacing-16"} $alignItems={"center"}>
-            <NewsletterWrapper>
-              <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
-            </NewsletterWrapper>
-          </OakMaxWidth>
-        </OakBox>
-      </OakBox>
+      </AboutUsLayout>
     </Layout>
   );
 };
