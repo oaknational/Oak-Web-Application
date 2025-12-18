@@ -75,7 +75,7 @@ const getKeystages = (
           });
 
           const subjectDisplayName =
-            p.actions.programme_field_overrides?.subject ??
+            p.actions?.programme_field_overrides?.subject ??
             p.programme_fields.subject;
 
           const pathwayTitle = p.programme_fields.pathway ?? "";

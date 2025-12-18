@@ -7,13 +7,15 @@ export const topNavResponseSchema = z.object({
       programme_fields: programmeFieldsSchema,
       programme_slug: z.string(),
       features: z.object({ non_curriculum: z.boolean().nullish() }),
-      actions: z.object({
-        programme_field_overrides: z
-          .object({
-            subject: z.string().nullish(),
-          })
-          .nullish(),
-      }),
+      actions: z
+        .object({
+          programme_field_overrides: z
+            .object({
+              subject: z.string().nullish(),
+            })
+            .nullish(),
+        })
+        .nullish(),
     }),
   ),
 });

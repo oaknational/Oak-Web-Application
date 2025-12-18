@@ -9,7 +9,6 @@ import OakError from "@/errors/OakError";
 
 const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
   const res = await sdk.topNav();
-
   const parsed = topNavResponseSchema.safeParse(res);
 
   if (!parsed?.success) {
