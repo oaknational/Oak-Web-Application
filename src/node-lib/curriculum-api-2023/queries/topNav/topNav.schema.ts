@@ -24,7 +24,13 @@ export type TeachersBrowse = {
   keystages: Array<{
     title: string;
     slug: string;
-    subjects: Array<{ title: string; slug: string; nonCurriculum: boolean }>;
+    subjects: Array<{
+      title: string;
+      subjectSlug: string;
+      nonCurriculum: boolean; // enables highlighting subjects that are non curriculum
+      pathwaySlug: "gcse" | "core" | null;
+      programmeCount: number; // determines whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page
+    }>;
   }>;
 };
 
