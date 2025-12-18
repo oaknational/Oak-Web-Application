@@ -1,3 +1,11 @@
+## [1.940.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.940.0...v1.940.1) (2025-12-18)
+
+
+### Bug Fixes
+
+* maintainability bug fixes ([065ea9c](https://github.com/oaknational/Oak-Web-Application/commit/065ea9ce06f7ee2cdab9199d755997a8121e94c0))
+* test ' difference ([6275eec](https://github.com/oaknational/Oak-Web-Application/commit/6275eecde05c676f47058989c531f792623fc015))
+
 # [1.940.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.939.0...v1.940.0) (2025-12-18)
 
 
