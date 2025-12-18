@@ -3,6 +3,7 @@ query topNav {
     distinct_on: programme_slug
   ) {
     programme_fields
+    programme_slug
     features
   }
 }

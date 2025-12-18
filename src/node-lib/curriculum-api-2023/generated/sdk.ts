@@ -71659,7 +71659,7 @@ export type TeachersSitemapQuery = { __typename?: 'query_root', keyStages: Array
 export type TopNavQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TopNavQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_19_0_0', programme_fields?: any | null, features?: any | null }> };
+export type TopNavQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_19_0_0', programme_fields?: any | null, programme_slug?: string | null, features?: any | null }> };
 
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -72753,6 +72753,7 @@ export const TopNavDocument = gql`
     distinct_on: programme_slug
   ) {
     programme_fields
+    programme_slug
     features
   }
 }

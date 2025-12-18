@@ -5,6 +5,7 @@ export const topNavResponseSchema = z.object({
   programmes: z.array(
     z.object({
       programme_fields: programmeFieldsSchema,
+      programme_slug: z.string(),
       features: z.object({ non_curriculum: z.boolean().nullish() }),
     }),
   ),
@@ -28,7 +29,7 @@ export type TeachersBrowse = {
       title: string;
       subjectSlug: string;
       nonCurriculum: boolean; // enables highlighting subjects that are non curriculum
-      pathwaySlug: "gcse" | "core" | null;
+      programmeSlug: string;
       programmeCount: number; // determines whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page
     }>;
   }>;
