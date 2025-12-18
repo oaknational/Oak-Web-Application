@@ -53,6 +53,14 @@ describe("getTeachersNavData", () => {
     );
     expect(multipleProgrammeSubject?.programmeSlug).toBeNull();
   });
+  it("uses subect name overrides", () => {
+    const result = getTeachersNavData(mockResponseData, "secondary");
+    const gcseComputing = result.keystages[1]?.subjects.find(
+      (s) => s.subjectSlug === "computing" && s.programmeCount > 1,
+    );
+
+    expect(gcseComputing?.title).toEqual("Computer science (GCSE)");
+  });
 });
 
 describe("getProgrammeCount", () => {

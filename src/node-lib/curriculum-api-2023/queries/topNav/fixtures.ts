@@ -16,6 +16,7 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks1",
     },
     {
@@ -30,6 +31,7 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks1",
     },
     {
@@ -43,6 +45,7 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks1",
     },
     {
@@ -56,6 +59,7 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks2",
     },
     {
@@ -69,6 +73,7 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-secondary-ks3",
     },
     {
@@ -82,6 +87,7 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: { non_curriculum: true },
+      actions: {},
       programme_slug: "financial-education-primary-ks1",
     },
     {
@@ -95,6 +101,7 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: { non_curriculum: true },
+      actions: {},
       programme_slug: "financial-education-primary-ks2",
     },
     {
@@ -108,6 +115,7 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: { non_curriculum: false },
+      actions: {},
       programme_slug: "computing-secondary-ks3",
     },
     {
@@ -123,6 +131,7 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "computing-secondary-ks4-core",
     },
     {
@@ -140,6 +149,11 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {
+        programme_field_overrides: {
+          subject: "Computer science",
+        },
+      },
       programme_slug: "computing-secondary-ks4-gcse-edexcel",
     },
     {
@@ -158,6 +172,11 @@ export const mockResponseData: TopNavResponse = {
       }),
 
       features: {},
+      actions: {
+        programme_field_overrides: {
+          subject: "Computer science",
+        },
+      },
       programme_slug: "computing-secondary-ks4-gcse-aqa",
     },
     {
@@ -171,6 +190,7 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "maths-foundation-early-years-foundation-stage-l",
     },
     {
@@ -186,6 +206,7 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "maths-secondary-ks4-higher",
     },
     {
@@ -201,6 +222,7 @@ export const mockResponseData: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "maths-secondary-ks4-foundation",
     },
   ],
@@ -217,6 +239,7 @@ export const mockResponseByYears: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks1",
     },
     {
@@ -228,6 +251,7 @@ export const mockResponseByYears: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks1",
     },
     {
@@ -239,6 +263,7 @@ export const mockResponseByYears: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks2",
     },
     {
@@ -250,6 +275,7 @@ export const mockResponseByYears: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks2",
     },
     {
@@ -261,6 +287,7 @@ export const mockResponseByYears: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks2",
     },
     {
@@ -272,6 +299,7 @@ export const mockResponseByYears: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks2",
     },
     {
@@ -283,6 +311,7 @@ export const mockResponseByYears: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-secondary-ks3",
     },
     {
@@ -294,6 +323,7 @@ export const mockResponseByYears: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks3",
     },
     {
@@ -305,6 +335,7 @@ export const mockResponseByYears: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks3",
     },
     {
@@ -316,6 +347,7 @@ export const mockResponseByYears: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks4",
     },
     {
@@ -327,6 +359,7 @@ export const mockResponseByYears: TopNavResponse = {
         },
       }),
       features: {},
+      actions: {},
       programme_slug: "art-primary-ks4",
     },
   ],

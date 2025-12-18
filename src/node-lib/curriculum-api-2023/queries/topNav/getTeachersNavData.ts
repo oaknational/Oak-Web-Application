@@ -74,9 +74,18 @@ const getKeystages = (
             pathwaySlug: p.programme_fields.pathway_slug,
           });
 
+          const subjectDisplayName =
+            p.actions.programme_field_overrides?.subject ??
+            p.programme_fields.subject;
+
+          const pathwayTitle = p.programme_fields.pathway ?? "";
+
+          const title =
+            subjectDisplayName + (pathwayTitle ? ` (${pathwayTitle})` : "");
+
           return {
             subjectSlug: p.programme_fields.subject_slug,
-            title: p.programme_fields.subject,
+            title,
             nonCurriculum: Boolean(p.features.non_curriculum),
             programmeSlug: programmeCount > 1 ? null : p.programme_slug,
             programmeCount,
