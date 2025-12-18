@@ -45,23 +45,22 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
       case hasNewUnits && userType === "teacher":
         // Teacher pages, legacy unit is being removed but new units exist
         return [
-          "These resources will be removed by end of Summer Term 2025.",
+          "These resources were made for remote use during the pandemic, not classroom teaching.",
           <>
             <OakP>
               Switch to our new teaching resources now - designed by teachers
               and leading subject experts, and tested in classrooms.
-            </OakP>
-            <OakP $mt={"spacing-24"}>
-              These resources were created for remote use during the pandemic
-              and are not designed for classroom teaching.
             </OakP>
           </>,
         ];
       case hasNewUnits && userType === "pupil":
         // Pupil pages, legacy unit is being removed but new units exist
         return [
-          "These resources will be removed by end of Summer Term 2025.",
-          <OakP>We’ve made brand-new and improved resources for you.</OakP>,
+          "These lessons were made for home learning during the pandemic.",
+          <OakP>
+            Scroll up to take a look at the brand-new and improved resources
+            we've made for you.
+          </OakP>,
         ];
       case !hasNewUnits && userType === "pupil":
         // Pupil pages, legacy unit is being removed but no new units exist
@@ -69,8 +68,8 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
           "New units on the way!",
           <>
             <OakP>
-              These units were created for remote use during the pandemic and
-              will be removed by the end of the Summer Term 2025.
+              These resources were made for remote use during the pandemic, not
+              classroom teaching.
             </OakP>
             <OakP $mt={"spacing-24"}>
               We’re busy creating new lessons for you.
@@ -85,8 +84,8 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
           </OakHeading>,
           <>
             <OakP>
-              These units were created for remote use during the pandemic and
-              will be removed by the end of the summer term 2025.
+              These resources were made for remote use during the pandemic, not
+              classroom teaching.
             </OakP>
             <OakP>
               We have been busy creating new units. We'll let you know when they
@@ -95,7 +94,6 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
               <OakLink href="https://www.thenational.academy/legal/privacy-policy">
                 privacy policy
               </OakLink>
-              .
             </OakP>
           </>,
         ];

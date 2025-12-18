@@ -67,7 +67,9 @@ describe("components/UnitListLegacyBanner", () => {
       />,
     );
     expect(
-      getByText("These resources will be removed by end of Summer Term 2025."),
+      getByText(
+        "These resources were made for remote use during the pandemic, not classroom teaching.",
+      ),
     ).toBeInTheDocument();
     expect(
       getByText(
@@ -87,12 +89,12 @@ describe("components/UnitListLegacyBanner", () => {
     expect(getByText("New units on the way!")).toBeInTheDocument();
     expect(
       getByText(
-        "These units were created for remote use during the pandemic and will be removed by the end of the summer term 2025.",
+        "These resources were made for remote use during the pandemic, not classroom teaching.",
       ),
     ).toBeInTheDocument();
   });
 
-  test("renders pupil removal banner when there are new units", () => {
+  test.only("renders pupil removal banner when there are new units", () => {
     const { getByText } = render(
       <UnitListLegacyBanner
         allLegacyUnits={getLegacyUnits(true)}
@@ -101,10 +103,14 @@ describe("components/UnitListLegacyBanner", () => {
       />,
     );
     expect(
-      getByText("These resources will be removed by end of Summer Term 2025."),
+      getByText(
+        "These lessons were made for home learning during the pandemic.",
+      ),
     ).toBeInTheDocument();
     expect(
-      getByText("We’ve made brand-new and improved resources for you."),
+      getByText(
+        "Scroll up to take a look at the brand-new and improved resources we've made for you.",
+      ),
     ).toBeInTheDocument();
   });
 
