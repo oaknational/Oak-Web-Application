@@ -1,3 +1,20 @@
+# [1.940.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.939.0...v1.940.0) (2025-12-18)
+
+
+### Bug Fixes
+
+* add editable highlight color to shared header ([835733b](https://github.com/oaknational/Oak-Web-Application/commit/835733be00949dea82a74367f3825c87efa4ca21))
+* cast urls as string ([b84da4b](https://github.com/oaknational/Oak-Web-Application/commit/b84da4bd4223072f87d0364cc01cb61f848051e2))
+* storybook component ([6f27895](https://github.com/oaknational/Oak-Web-Application/commit/6f27895c35d2f4bb93e8937480ab63b406589dcc))
+
+
+### Features
+
+* add guard for no image url ([dd63fef](https://github.com/oaknational/Oak-Web-Application/commit/dd63fef56840b2237faf1cbdb2cbfd9091b5842c))
+* change image components to CMS images ([7be16df](https://github.com/oaknational/Oak-Web-Application/commit/7be16df674d95c1016e8d554294b9a8613f00900))
+* hooked up sanity to new "/about-us/who-we-are" pages ([be7d712](https://github.com/oaknational/Oak-Web-Application/commit/be7d71270e556d87e6757115f764e0e9389f97e7))
+* pull from sanity assets ([dc4b130](https://github.com/oaknational/Oak-Web-Application/commit/dc4b1305e87f146aab8ad585402fa5b53b3471be))
+
 # [1.939.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.938.0...v1.939.0) (2025-12-17)
 
 
