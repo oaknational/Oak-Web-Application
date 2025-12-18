@@ -1700,10 +1700,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR ddPTFm"
             >
               <div
-                class="sc-fqkvVR sc-jXbUNg epBpsi gdCncd"
+                class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-69cab510-0 fgBWrW djyvKT iAkSYx iglJfu"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-e68ea3f5-0 fgBWrW djyvKT iAkSYx eUeGum"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1725,10 +1725,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-69cab510-1 fgBWrW joHkzz dGlNMa gdrWuV"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-e68ea3f5-1 fgBWrW joHkzz dGlNMa ixubbN"
                 >
                   <div
-                    class="sc-fqkvVR erqloa sc-69cab510-2 hlCIVX"
+                    class="sc-fqkvVR erqloa sc-e68ea3f5-2 cxasLL"
                     data-testid="about-shared-loop"
                   >
                     <img
@@ -2390,7 +2390,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-kAyceB sc-jEACwC eKkWSU bUZQTk"
             >
               <div
-                class="sc-fqkvVR sc-78d8627e-0 fgBWrW enQdqh"
+                class="sc-fqkvVR sc-fde08d1f-0 fgBWrW fUKSio"
               >
                 <div
                   class="sc-ad0ad6f5-0 sc-213e351e-0 sc-8724906-0 hidovD cEqFwB"

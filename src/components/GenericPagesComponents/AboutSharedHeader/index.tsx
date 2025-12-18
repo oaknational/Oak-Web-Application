@@ -8,6 +8,7 @@ import {
   OakSpan,
   OakImage,
   OakIcon,
+  OakCombinedColorToken,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { ReactNode } from "react";
@@ -94,20 +95,18 @@ export type AboutSharedHeaderProps = {
   title: string;
   content: string;
   children?: ReactNode;
+  titleHighlight?: OakCombinedColorToken;
 };
 export function AboutSharedHeader({
   title,
   content,
   children,
+  titleHighlight,
 }: Readonly<AboutSharedHeaderProps>) {
   return (
     <InnerMaxWidth>
       <OakBox $position={"relative"} $overflow={"hidden"}>
-        <OakGrid
-          $cg="spacing-16"
-          $rg="spacing-16"
-          $pv={["spacing-56", "spacing-80", "spacing-72"]}
-        >
+        <OakGrid $cg="spacing-16" $rg="spacing-16" $pv={"spacing-72"}>
           <CustomHeaderTextOakGridArea $colSpan={12} $justifyContent={"center"}>
             <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
               <OakHeading
@@ -115,7 +114,7 @@ export function AboutSharedHeader({
                 $font={["heading-4", "heading-2", "heading-2"]}
               >
                 <OakSpan
-                  $background="bg-decorative3-main"
+                  $background={titleHighlight ?? "mint"}
                   $ph={"spacing-4"}
                   $color="text-primary"
                 >
