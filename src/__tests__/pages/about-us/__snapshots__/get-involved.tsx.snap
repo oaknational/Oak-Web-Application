@@ -78,7 +78,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
         class="sc-fqkvVR gutnKP"
       >
         <div
-          class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+          class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
         >
           <div
             class="sc-fqkvVR iPpXCP grey-shadow"
@@ -87,7 +87,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
             class="sc-fqkvVR iPpXCP yellow-shadow"
           />
           <a
-            class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+            class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
             data-testid="skip-link"
             href="#main"
             style="position: absolute; left: -10000px;"
@@ -116,7 +116,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-kAyceB denUev fzjRNq"
             >
               <a
-                class="sc-dSCufp faxRqf sc-69d1ca97-0 biIKeN"
+                class="sc-fxwrCY cHaphN sc-69d1ca97-0 biIKeN"
                 href="/"
               >
                 <span
@@ -155,7 +155,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="sc-fqkvVR gNQyrX"
               >
                 <a
-                  class="sc-dSCufp faxRqf sc-69d1ca97-0 biIKeN"
+                  class="sc-fxwrCY cHaphN sc-69d1ca97-0 biIKeN"
                   href="/"
                 >
                   <span
@@ -189,7 +189,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               </div>
               <a
                 aria-label="0 saved units"
-                class="sc-dtBdUo sc-ktJbId kUzaOQ fhggaS"
+                class="sc-dtBdUo sc-gmgFlS kUzaOQ lggmnE"
                 href="/teachers/my-library"
               >
                 <span
@@ -226,7 +226,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 </div>
               </a>
               <div
-                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -235,7 +235,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-dtBdUo sc-fXSgeo fxMPcP jZjsdk internal-button"
+                  class="sc-dtBdUo sc-fXSgeo fxMPcP PbcZt internal-button"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW eIAHnn"
@@ -1694,50 +1694,53 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
           class="sc-fqkvVR cgVZRW"
         >
           <div
-            class="sc-fqkvVR ieiSrW"
-            style="max-width: 1360px;"
+            class="sc-fqkvVR bZZBuO"
           >
             <div
-              class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
+              class="sc-fqkvVR ddPTFm"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-da774e64-0 fgBWrW djyvKT iAkSYx dsCEjX"
+                class="sc-fqkvVR sc-jXbUNg epBpsi gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-69cab510-0 fgBWrW djyvKT iAkSYx iglJfu"
                 >
-                  <h1
-                    class="sc-kpDqfm cRJejs"
+                  <div
+                    class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
                   >
-                    <span
-                      class="sc-dAlyuH gEkaeR"
+                    <h1
+                      class="sc-kpDqfm cRJejs"
                     >
-                      Get involved
-                    </span>
-                  </h1>
-                  <p
-                    class="sc-dLMFU hxKUrX"
-                  >
-                    We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.
-                  </p>
+                      <span
+                        class="sc-dAlyuH gEkaeR"
+                      >
+                        Get involved
+                      </span>
+                    </h1>
+                    <p
+                      class="sc-dLMFU hxKUrX"
+                    >
+                      We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-da774e64-1 fgBWrW joHkzz dGlNMa dQERjo"
-              >
                 <div
-                  class="sc-fqkvVR jPtDlR"
-                  data-testid="about-shared-loop"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-69cab510-1 fgBWrW joHkzz dGlNMa gdrWuV"
                 >
-                  <img
-                    alt=""
-                    class="sc-dcJsrY hbHRtr"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
+                  <div
+                    class="sc-fqkvVR erqloa sc-69cab510-2 hlCIVX"
+                    data-testid="about-shared-loop"
+                  >
+                    <img
+                      alt=""
+                      class="sc-dcJsrY cDKKvZ"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -1814,7 +1817,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
                           >
                             <div
-                              class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                              class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
                             >
                               <div
                                 class="sc-fqkvVR iPpXCP grey-shadow"
@@ -1823,7 +1826,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                                 class="sc-fqkvVR iPpXCP yellow-shadow"
                               />
                               <a
-                                class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                                class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
                                 href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
                                 rel="noopener noreferrer"
                                 target="_blank"
@@ -1853,7 +1856,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                               </a>
                             </div>
                             <div
-                              class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                              class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
                             >
                               <div
                                 class="sc-fqkvVR iPpXCP grey-shadow"
@@ -1862,7 +1865,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                                 class="sc-fqkvVR iPpXCP yellow-shadow"
                               />
                               <a
-                                class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                                class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
                                 href="/blog/categories/research-and-insights"
                               >
                                 <div
@@ -1903,7 +1906,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
                           >
                             <div
-                              class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                              class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
                             >
                               <div
                                 class="sc-fqkvVR iPpXCP grey-shadow"
@@ -1912,7 +1915,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                                 class="sc-fqkvVR iPpXCP yellow-shadow"
                               />
                               <a
-                                class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                                class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
                                 href="https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd"
                                 rel="noopener noreferrer"
                                 target="_blank"
@@ -1989,7 +1992,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     class="sc-fqkvVR sc-kAyceB fgBWrW bxbio"
                   >
                     <div
-                      class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                      class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
                     >
                       <div
                         class="sc-fqkvVR iPpXCP grey-shadow"
@@ -1998,7 +2001,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="sc-fqkvVR iPpXCP yellow-shadow"
                       />
                       <a
-                        class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                        class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
                         href="https://app.beapplied.com/org/1574/oak-national-academy/"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -2028,7 +2031,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       </a>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                      class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
                     >
                       <div
                         class="sc-fqkvVR iPpXCP grey-shadow"
@@ -2037,7 +2040,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         class="sc-fqkvVR iPpXCP yellow-shadow"
                       />
                       <a
-                        class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                        class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
                         href="https://app.beapplied.com/org/1767/oak-national-academy-freelancers/"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -2087,9 +2090,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
-                        sizes="100vw"
+                        sizes="(max-width: 750px) 100vw, (max-width: 1280px) 50vw, 58vw"
                         src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=3840&q=75"
-                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=3840&q=75 3840w"
+                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=384&q=75 384w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=3840&q=75 3840w"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
                     </div>
@@ -2099,17 +2102,17 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   >
                     <img
                       alt="'In Escape the City's top 1% of employers'"
-                      class="sc-80610336-0 bDFzsk"
+                      class="sc-a0a9d655-0 ixaXXm"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
                     />
                     <img
                       alt="Awarded Gold in Investors In People"
-                      class="sc-80610336-0 bDFzsk"
+                      class="sc-a0a9d655-0 ixaXXm"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
                     />
                     <img
                       alt="Certified as Disability Confident Committed"
-                      class="sc-80610336-0 bDFzsk"
+                      class="sc-a0a9d655-0 ixaXXm"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
                     />
                   </div>
@@ -2935,7 +2938,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           </button>
                         </div>
                         <div
-                          class="sc-fqkvVR sc-JrDLc jqqmXN hESAKV"
+                          class="sc-fqkvVR sc-fjvvzt bAqbho kIRemE"
                         >
                           <div
                             class="sc-fqkvVR iPpXCP grey-shadow"
@@ -2944,7 +2947,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             class="sc-fqkvVR iPpXCP yellow-shadow"
                           />
                           <button
-                            class="sc-dtBdUo sc-fXSgeo ezGFRC dZvJQR internal-button"
+                            class="sc-dtBdUo sc-fXSgeo ezGFRC eJTpUE internal-button"
                           >
                             <div
                               class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
@@ -4673,7 +4676,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-kAyceB fOyTgd TDtQj"
             >
               <button
-                class="sc-dSCufp kbtfSk sc-fxwrCY"
+                class="sc-fxwrCY eycZBP sc-hIUJlX"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
@@ -4685,7 +4688,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               </button>
             </div>
             <div
-              class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+              class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
             >
               <div
                 class="sc-fqkvVR iPpXCP grey-shadow"
@@ -4694,7 +4697,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="sc-fqkvVR iPpXCP yellow-shadow"
               />
               <button
-                class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
               >
                 <div
                   class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
@@ -4708,7 +4711,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               </button>
             </div>
             <div
-              class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+              class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
             >
               <div
                 class="sc-fqkvVR iPpXCP grey-shadow"
@@ -4717,7 +4720,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="sc-fqkvVR iPpXCP yellow-shadow"
               />
               <button
-                class="sc-dtBdUo sc-fXSgeo bMKUbn dZvJQR internal-button"
+                class="sc-dtBdUo sc-fXSgeo bMKUbn eJTpUE internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div
