@@ -1805,7 +1805,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             <h3
                               class="sc-kpDqfm dNyCKG"
                             >
-                              Help us improve
+                              Join our teacher research panel
                             </h3>
                             <p
                               class="sc-dLMFU jKnjIK"
@@ -2390,7 +2390,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-kAyceB sc-jEACwC eKkWSU bUZQTk"
             >
               <div
-                class="sc-fqkvVR sc-ce1dc90e-0 fgBWrW eRntaE"
+                class="sc-fqkvVR sc-78d8627e-0 fgBWrW enQdqh"
               >
                 <div
                   class="sc-ad0ad6f5-0 sc-213e351e-0 sc-8724906-0 hidovD cEqFwB"

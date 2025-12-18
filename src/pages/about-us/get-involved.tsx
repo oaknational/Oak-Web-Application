@@ -142,7 +142,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
           cards={[
             {
               headingTag: "h3",
-              headingTitle: "Help us improve",
+              headingTitle: "Join our teacher research panel",
               content:
                 "Shape the future of Oak by taking part in interviews or surveys, and receive retail vouchers as a thank you for your contributions.",
               buttons: [
