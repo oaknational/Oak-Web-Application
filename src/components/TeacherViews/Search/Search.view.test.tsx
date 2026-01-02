@@ -227,6 +227,7 @@ jest.mock("@/hooks/useMediaQuery.tsx", () => ({
 const mockAiSearchFlagEnabled = jest.fn().mockReturnValue(false);
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: () => mockAiSearchFlagEnabled(),
+  useFeatureFlagEnabled: () => false,
 }));
 
 jest.mock("@/context/Search/useSuggestedFilters.tsx");
