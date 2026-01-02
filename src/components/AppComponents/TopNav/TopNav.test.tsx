@@ -71,4 +71,12 @@ describe("TopNav", () => {
     const pupilsSubnav = await screen.findByTestId("pupils-subnav");
     expect(pupilsSubnav).toBeInTheDocument();
   });
+  it("renders an empty subnav when data is null", async () => {
+    renderWithTheme(<TopNav teachers={null} pupils={null} />);
+    const primaryButton = screen.queryByRole("button", { name: "Primary" });
+    expect(primaryButton).not.toBeInTheDocument();
+
+    const secondaryButton = screen.queryByRole("button", { name: "Secondary" });
+    expect(secondaryButton).not.toBeInTheDocument();
+  });
 });

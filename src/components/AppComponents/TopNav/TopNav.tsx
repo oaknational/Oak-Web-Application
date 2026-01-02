@@ -22,8 +22,8 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export type TopNavProps = {
-  teachers: TeachersSubNavData;
-  pupils: PupilsSubNavData;
+  teachers: TeachersSubNavData | null;
+  pupils: PupilsSubNavData | null;
 };
 
 const TopNav = (props: TopNavProps) => {
@@ -101,7 +101,7 @@ const TopNav = (props: TopNavProps) => {
             $pa={"spacing-0"}
           />
         </OakLink>
-        {activeArea === "TEACHERS" && (
+        {activeArea === "TEACHERS" && teachers && (
           <TeachersSubNav
             isMenuSelected={isMenuSelected}
             onClick={(menu) => {
@@ -110,7 +110,7 @@ const TopNav = (props: TopNavProps) => {
             }}
           />
         )}
-        {activeArea === "PUPILS" && (
+        {activeArea === "PUPILS" && pupils && (
           <PupilsSubNav
             isMenuSelected={isMenuSelected}
             onClick={(menu) => {
@@ -120,7 +120,6 @@ const TopNav = (props: TopNavProps) => {
           />
         )}
       </OakFlex>
-
       {/* TD: [integrated-journey] Replace with dropdown and hamburger menus */}
       {selectedMenu && (
         <OakFlex

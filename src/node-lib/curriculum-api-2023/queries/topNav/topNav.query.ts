@@ -4,6 +4,7 @@ import { getPupilsNavData } from "./getPupilsNavData";
 import { getTeachersNavData } from "./getTeachersNavData";
 import { topNavResponseSchema } from "./topNav.schema";
 
+import errorReporter from "@/common-lib/error-reporter";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
 
@@ -12,9 +13,18 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
   const parsed = topNavResponseSchema.safeParse(res);
 
   if (!parsed?.success) {
-    throw new OakError({
+    const error = new OakError({
       code: "curriculum-api/internal-error",
     });
+    errorReporter("curriculum-api-2023::topNav")(error, {
+      severity: "error",
+      res,
+      errorMessage: parsed.error,
+    });
+    return {
+      teachers: null,
+      pupils: null,
+    };
   }
 
   const teachersNavData = {
