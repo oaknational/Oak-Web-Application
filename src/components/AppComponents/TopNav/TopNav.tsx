@@ -112,6 +112,7 @@ const TopNav = (props: TopNavProps) => {
         )}
         {activeArea === "PUPILS" && (
           <PupilsSubNav
+            isMenuSelected={isMenuSelected}
             onClick={(menu) => {
               setSelectedMenu(menu);
               console.log("selected menu ", pupils[menu]);
