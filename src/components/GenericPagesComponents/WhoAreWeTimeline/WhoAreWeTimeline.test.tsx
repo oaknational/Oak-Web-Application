@@ -6,27 +6,36 @@ import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithPro
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
+function genPortableText(text: string) {
+  return [
+    {
+      _type: "block",
+      children: [{ _type: "span", text }],
+    },
+  ];
+}
+
 describe("WhoAreWeTimeline", () => {
   it("renders correctly", () => {
     const { baseElement, getAllByRole, getAllByTestId } = render(
       <WhoAreWeTimeline
         title={"TEST_TITLE"}
-        subtitle={"TEST_SUBTITLE"}
+        subTitle={"TEST_SUBTITLE"}
         items={[
           {
             title: "ITEM_TITLE_1",
-            subtitle: "ITEM_SUBTITLE_1",
-            text: ["ITEM_TEXT_1"],
+            subTitle: "ITEM_SUBTITLE_1",
+            text: genPortableText("ITEM_TEXT_1"),
           },
           {
             title: "ITEM_TITLE_2",
-            subtitle: "ITEM_SUBTITLE_2",
-            text: ["ITEM_TEXT_2"],
+            subTitle: "ITEM_SUBTITLE_2",
+            text: genPortableText("ITEM_TEXT_2"),
           },
           {
             title: "ITEM_TITLE_3",
-            subtitle: "ITEM_SUBTITLE_3",
-            text: ["ITEM_TEXT_3"],
+            subTitle: "ITEM_SUBTITLE_3",
+            text: genPortableText("ITEM_TEXT_3"),
           },
         ]}
       />,

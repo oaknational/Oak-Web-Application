@@ -1,13 +1,12 @@
 import { GetServerSideProps, NextPage } from "next";
-import { OakBox } from "@oaknational/oak-components";
 
 import Layout from "@/components/AppComponents/Layout";
+import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   AboutSharedHeader,
   BackgroundHeaderLoop,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
-import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 import { GetInvolvedCollaborateWithUs } from "@/components/GenericPagesComponents/GetInvolvedCollaborateWithUs";
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
@@ -125,10 +124,11 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
       $background={"white"}
       topNavProps={topNav}
     >
-      <OakBox $overflow={"hidden"} $zIndex={"neutral"}>
+      <AboutUsLayout>
         <AboutSharedHeader
           title={pageData.header.title}
           content={pageData.header.text}
+          titleHighlight="bg-decorative3-main"
         >
           <BackgroundHeaderLoop />
         </AboutSharedHeader>
@@ -139,7 +139,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
           cards={[
             {
               headingTag: "h3",
-              headingTitle: "Help us improve",
+              headingTitle: "Join our teacher research panel",
               content:
                 "Shape the future of Oak by taking part in interviews or surveys, and receive retail vouchers as a thank you for your contributions.",
               buttons: [
@@ -194,32 +194,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
             },
           ]}
         />
-        <WhoAreWeExplore
-          title={"Explore more about Oak"}
-          items={[
-            {
-              iconName: "logo",
-              title: "About Oak",
-              href: "#",
-            },
-            {
-              iconName: "homepage-teacher-map",
-              title: "About Oak’s curriculum",
-              href: "#",
-            },
-            {
-              iconName: "data",
-              title: "Oaks impact",
-              href: "#",
-            },
-            {
-              iconName: "snack-break",
-              title: "Meet the team",
-              href: "#",
-            },
-          ]}
-        />
-      </OakBox>
+      </AboutUsLayout>
     </Layout>
   );
 };

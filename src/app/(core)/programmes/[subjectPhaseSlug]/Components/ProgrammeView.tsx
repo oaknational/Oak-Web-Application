@@ -23,6 +23,9 @@ import {
 } from "@/utils/curriculum/filtering";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumFilters } from "@/utils/curriculum/types";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 type ProgrammePageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
@@ -86,20 +89,19 @@ export const ProgrammeView = ({
     setMobileSelectedYear(refId);
   };
 
-  // TD: [integrated journey] analytics
-  //   const { track } = useAnalytics();
-  //   const { analyticsUseCase } = useAnalyticsPageProps();
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const onChangeFilters = (newFilters: CurriculumFilters) => {
     setFilters(newFilters);
 
-    // const analyticsData = buildUnitSequenceRefinedAnalytics(
-    //   analyticsUseCase,
-    //   curriculumUnitsTrackingData,
-    //   newFilters,
-    // );
+    const analyticsData = buildUnitSequenceRefinedAnalytics(
+      analyticsUseCase,
+      curriculumUnitsTrackingData,
+      newFilters,
+    );
 
-    // track.unitSequenceRefined(analyticsData);
+    track.unitSequenceRefined(analyticsData);
   };
 
   return (

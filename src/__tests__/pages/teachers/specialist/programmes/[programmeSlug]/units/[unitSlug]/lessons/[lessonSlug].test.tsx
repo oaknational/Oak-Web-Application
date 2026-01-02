@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import { GetStaticPropsContext, PreviewData } from "next";
+import { usePathname } from "next/navigation";
 
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
@@ -15,6 +16,10 @@ import {
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 const props = {
   curriculumData: specialistLessonOverviewFixture(),
