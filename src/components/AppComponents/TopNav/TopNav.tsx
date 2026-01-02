@@ -82,6 +82,7 @@ const TopNav = (props: TopNavProps) => {
         $alignItems={"center"}
         $gap={"spacing-24"}
         $maxHeight={"spacing-80"}
+        as={"nav"}
       >
         <OakLink
           href={resolveOakHref({
