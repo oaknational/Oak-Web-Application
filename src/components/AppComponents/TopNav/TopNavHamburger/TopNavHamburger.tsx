@@ -37,24 +37,40 @@ export function TopNavHamburger() {
 }
 
 function Content() {
+  const [hideMainMenu, setHideMainMenu] = useState(false);
   const navitems = [1, 2, 3];
   return (
     <OakBox $position={"relative"} $width={"100%"} $height={"100%"}>
       <OakUL>
         {navitems.map((i) => (
-          <NavItem key={i} />
+          <NavItem
+            hideMainMenu={hideMainMenu}
+            setHideMainMenu={setHideMainMenu}
+            key={i}
+          />
         ))}
       </OakUL>
     </OakBox>
   );
 }
 
-function NavItem() {
+function NavItem({
+  hideMainMenu,
+  setHideMainMenu,
+}: {
+  readonly hideMainMenu: boolean;
+  readonly setHideMainMenu: Dispatch<SetStateAction<boolean>>;
+}) {
   const [submenuIsOpen, setSubmenuIsOpen] = useState(false);
 
   return (
-    <MainContent setSubmenuIsOpen={setSubmenuIsOpen}>
+    <MainContent
+      hideMainMenu={hideMainMenu}
+      setHideMainMenu={setHideMainMenu}
+      setSubmenuIsOpen={setSubmenuIsOpen}
+    >
       <SubmenuContent
+        setHideMainMenu={setHideMainMenu}
         submenuIsOpen={submenuIsOpen}
         setSubmenuIsOpen={setSubmenuIsOpen}
       />
@@ -63,18 +79,29 @@ function NavItem() {
 }
 
 function MainContent({
+  hideMainMenu,
+  setHideMainMenu,
   setSubmenuIsOpen,
   children,
 }: {
+  readonly hideMainMenu: boolean;
+  readonly setHideMainMenu: Dispatch<SetStateAction<boolean>>;
   readonly setSubmenuIsOpen: Dispatch<SetStateAction<boolean>>;
   readonly children: ReactElement;
 }) {
   return (
     <OakBox $width={"100%"}>
       <OakLI>
-        <OakSecondaryLink onClick={() => setSubmenuIsOpen(true)}>
-          Hello
-        </OakSecondaryLink>
+        <OakBox $display={hideMainMenu ? "none" : "block"}>
+          <OakSecondaryButton
+            onClick={() => {
+              setHideMainMenu(true);
+              setSubmenuIsOpen(true);
+            }}
+          >
+            Hello
+          </OakSecondaryButton>
+        </OakBox>
         <OakUL>{children}</OakUL>
       </OakLI>
     </OakBox>
@@ -84,9 +111,11 @@ function MainContent({
 function SubmenuContent({
   submenuIsOpen,
   setSubmenuIsOpen,
+  setHideMainMenu,
 }: {
   readonly submenuIsOpen: boolean;
   readonly setSubmenuIsOpen: Dispatch<SetStateAction<boolean>>;
+  readonly setHideMainMenu: Dispatch<SetStateAction<boolean>>;
 }) {
   const subNavItems = [1, 2, 3];
   return (
@@ -95,16 +124,23 @@ function SubmenuContent({
       $position={"absolute"}
       $top={"spacing-0"}
       $left={"spacing-0"}
-      $width={"100%"}
-      $height={"100%"}
-      $background={"white"}
       $zIndex={"modal-dialog"}
     >
-      <OakSecondaryLink onClick={() => setSubmenuIsOpen(false)}>
+      <OakSecondaryButton
+        onClick={() => {
+          setHideMainMenu(false);
+          setSubmenuIsOpen(false);
+        }}
+      >
         Back
-      </OakSecondaryLink>
+      </OakSecondaryButton>
       {subNavItems.map((i) => (
-        <OakLI key={i}> {i}</OakLI>
+        <OakLI key={i}>
+          <OakSecondaryLink href="/" onClick={() => setSubmenuIsOpen(false)}>
+            {" "}
+            {i}{" "}
+          </OakSecondaryLink>
+        </OakLI>
       ))}
     </OakBox>
   );
