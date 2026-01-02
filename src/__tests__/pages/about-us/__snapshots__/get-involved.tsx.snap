@@ -46,7 +46,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
         property="og:url"
       />
       <meta
-        content="NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2025"
+        content="NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2026"
         property="og:image"
       />
       <meta
