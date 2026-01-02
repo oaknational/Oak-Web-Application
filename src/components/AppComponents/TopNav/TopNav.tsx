@@ -43,7 +43,7 @@ const TopNav = (props: TopNavProps) => {
   );
 
   return (
-    <>
+    <header>
       <OakFlex
         $background={"bg-btn-primary"}
         $ph={["spacing-20", "spacing-40"]}
@@ -131,7 +131,7 @@ const TopNav = (props: TopNavProps) => {
           {selectedMenu}
         </OakFlex>
       )}
-    </>
+    </header>
   );
 };
 
