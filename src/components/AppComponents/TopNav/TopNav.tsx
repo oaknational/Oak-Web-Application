@@ -6,10 +6,12 @@ import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
 
 import {
+  OakBox,
   OakCloseButton,
   OakFlex,
   OakIcon,
   OakImage,
+  OakInlineBanner,
   OakLink,
 } from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
@@ -43,7 +45,7 @@ const TopNav = (props: TopNavProps) => {
   );
 
   return (
-    <header>
+    <OakBox as="header" $position="relative">
       <OakFlex
         $background={"bg-btn-primary"}
         $ph={["spacing-20", "spacing-40"]}
@@ -132,7 +134,16 @@ const TopNav = (props: TopNavProps) => {
           {selectedMenu}
         </OakFlex>
       )}
-    </header>
+      <OakInlineBanner
+        $maxWidth="spacing-640"
+        $position={"absolute"}
+        $right={"spacing-0"}
+        $top={"spacing-160"}
+        type="warning"
+        isOpen={!pupils && !teachers}
+        message="We’re experiencing a temporary technical issue. Thank you for your patience while we look into it."
+      />
+    </OakBox>
   );
 };
 

@@ -25,3 +25,15 @@ export const TopNav: Story = {
     pupils,
   },
 };
+
+export const WithoutData: Story = {
+  render: (args) => (
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <Component {...args} />
+    </OakThemeProvider>
+  ),
+  args: {
+    teachers: null,
+    pupils: null,
+  },
+};
