@@ -1,10 +1,10 @@
 import React, { useState, Fragment } from "react";
-import { OakSpan, OakBox, OakSecondaryLink } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
 
+import { OakSpan, OakBox, OakSecondaryLink } from "@oaknational/oak-components";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import {
   getYearGroupTitle,
@@ -136,6 +136,7 @@ export default function CurricVisualiserMobileHeader({
           ...filters,
           years: [year],
         },
+        "year_group_button",
       );
       track.unitSequenceRefined(analyticsData);
     }

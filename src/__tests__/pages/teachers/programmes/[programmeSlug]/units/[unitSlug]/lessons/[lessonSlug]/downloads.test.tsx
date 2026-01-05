@@ -23,9 +23,11 @@ import {
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const props: LessonDownloadsPageProps = {
   curriculumData: lessonDownloadsFixtures(),
+  topNav: topNavFixture,
 };
 
 const getDownloadResourcesExistenceData = {
@@ -251,6 +253,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
     render(
       <LessonDownloadsPage
+        topNav={topNavFixture}
         curriculumData={lessonDownloadsFixtures({
           tierTitle: null,
           examBoardTitle: null,
@@ -553,6 +556,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     it("renders pre-ALB copyright notice on legacy lessons", async () => {
       render(
         <LessonDownloadsPage
+          topNav={topNavFixture}
           curriculumData={lessonDownloadsFixtures({
             isLegacy: true,
             lessonCohort: "2020-2023",
@@ -570,7 +574,10 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
     it("renders post-ALB copyright notice on non legacy lessons", async () => {
       render(
-        <LessonDownloadsPage curriculumData={lessonDownloadsFixtures()} />,
+        <LessonDownloadsPage
+          curriculumData={lessonDownloadsFixtures()}
+          topNav={topNavFixture}
+        />,
       );
 
       const currentYear = new Date(
@@ -623,7 +630,12 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       });
 
       it("allows downloads", () => {
-        render(<LessonDownloadsPage curriculumData={curriculumData} />);
+        render(
+          <LessonDownloadsPage
+            curriculumData={curriculumData}
+            topNav={topNavFixture}
+          />,
+        );
 
         expect(
           screen.queryByText(

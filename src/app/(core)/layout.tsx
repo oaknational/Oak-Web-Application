@@ -1,16 +1,17 @@
-"use client";
+import TopNav from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
-import { TopNavHamburger } from "@/components/AppComponents/TopNav/TopNavHamburger/TopNavHamburger";
-
-export default function CoreLayout({
+export default async function CoreLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // TODO: [integrated-journey] Top Nav & Footer
+  const topNavProps = await curriculumApi2023.topNav();
+
+  // TODO: [integrated-journey]  Footer
   return (
     <>
-      <TopNavHamburger />
+      <TopNav {...topNavProps} />
       {children}
     </>
   );

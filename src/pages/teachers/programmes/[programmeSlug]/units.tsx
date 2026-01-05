@@ -5,6 +5,9 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
+import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
+import { z } from "zod";
+
 import {
   OakGrid,
   OakGridArea,
@@ -14,9 +17,6 @@ import {
   OakFlex,
   OakMaxWidth,
 } from "@oaknational/oak-components";
-import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
-import { z } from "zod";
-
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -54,15 +54,18 @@ import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers"
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import Banners from "@/components/SharedComponents/Banners";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
   curriculumRefreshTime: number;
+  topNav: TopNavProps;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
   curriculumRefreshTime,
+  topNav,
 }) => {
   const {
     programmeSlug,
@@ -227,7 +230,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <AppLayout seoProps={unitsSEO}>
+      <AppLayout seoProps={unitsSEO} topNavProps={topNav}>
         <PaginationHead
           prevPageUrlObject={prevPageUrlObject}
           nextPageUrlObject={nextPageUrlObject}
@@ -481,11 +484,13 @@ export const getStaticProps: GetStaticProps<
         }
 
         const curriculumRefreshTime = await getMvRefreshTime();
+        const topNav = await curriculumApi2023.topNav();
 
         const results: GetStaticPropsResult<UnitListingPageProps> = {
           props: {
             curriculumData,
             curriculumRefreshTime,
+            topNav,
           },
         };
 

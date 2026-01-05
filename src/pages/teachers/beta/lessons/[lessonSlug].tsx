@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -8,9 +8,11 @@ import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/l
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type TeacherPreviewLessonPageProps = {
   curriculumData: LessonOverviewPageData;
+  topNav: TopNavProps;
 };
 
 /*
@@ -20,6 +22,7 @@ http://localhost:3000/teachers/beta/lessons/running-as-a-team
 
 const TeacherPreviewLessonPage: NextPage<TeacherPreviewLessonPageProps> = ({
   curriculumData,
+  topNav,
 }) => {
   const { lessonTitle } = curriculumData;
   return (
@@ -31,6 +34,7 @@ const TeacherPreviewLessonPage: NextPage<TeacherPreviewLessonPageProps> = ({
             "View lesson content and choose resources to download or share",
         }),
       }}
+      topNavProps={topNav}
     >
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonOverview
@@ -69,9 +73,11 @@ export const getStaticProps: GetStaticProps<
         lessonSlug,
       });
 
+      const topNav = await curriculumApi2023.topNav();
       const results: GetStaticPropsResult<TeacherPreviewLessonPageProps> = {
         props: {
           curriculumData,
+          topNav,
         },
       };
 

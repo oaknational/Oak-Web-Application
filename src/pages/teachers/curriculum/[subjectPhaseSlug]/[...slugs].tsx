@@ -6,14 +6,14 @@ import {
 } from "next";
 import React, { useMemo } from "react";
 import { useRouter } from "next/router";
+import { uniq } from "lodash";
+import { usePathname } from "next/navigation";
+
 import {
   OakBox,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-import { uniq } from "lodash";
-import { usePathname } from "next/navigation";
-
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import CMSClient from "@/node-lib/cms";
 import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader";
@@ -52,6 +52,7 @@ import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics"
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { getUnitSeoFromYearData } from "@/utils/curriculum/seo";
 import { SeoProps } from "@/browser-lib/seo/Seo";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -61,6 +62,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumUnitsFormattedData,
   mvRefreshTime,
   curriculumDownloadsTabData,
+  topNav,
 }) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -99,13 +101,17 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
-  const onChangeFilters = (newFilters: CurriculumFilters) => {
+  const onChangeFilters = (
+    newFilters: CurriculumFilters,
+    componentType?: ComponentTypeValueType,
+  ) => {
     setFilters(newFilters);
 
     const analyticsData = buildUnitSequenceRefinedAnalytics(
       analyticsUseCase,
       curriculumUnitsTrackingData,
       newFilters,
+      componentType,
     );
 
     track.unitSequenceRefined(analyticsData);
@@ -187,6 +193,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout
+        topNavProps={topNav}
         seoProps={{
           ...getSeoProps({
             title: buildCurriculumMetadata({
@@ -334,6 +341,7 @@ export const getStaticProps: GetStaticProps<
       );
 
       const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
+      const topNav = await curriculumApi2023.topNav();
 
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
@@ -344,6 +352,7 @@ export const getStaticProps: GetStaticProps<
           curriculumUnitsFormattedData,
           mvRefreshTime,
           curriculumDownloadsTabData,
+          topNav,
         },
       };
       const resultsWithIsr = decorateWithIsr(results);

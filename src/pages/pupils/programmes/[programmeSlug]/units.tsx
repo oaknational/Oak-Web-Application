@@ -1,13 +1,13 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import { groupBy, uniq } from "lodash";
+import { subjectSlugs } from "@oaknational/oak-curriculum-schema";
+
 import {
   OakIconProps,
   OakThemeProvider,
   isValidIconName,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-import { subjectSlugs } from "@oaknational/oak-curriculum-schema";
-
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -23,6 +23,7 @@ import {
 } from "@/pages-helpers/pupil/units-page/units-page-helper";
 import OakError from "@/errors/OakError";
 import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type UnitsSectionData = {
   title: string | null;
@@ -44,6 +45,7 @@ export type UnitListingPageProps = {
   subjectCategories: string[];
   programmeFields: UnitListingBrowseData[number]["programmeFields"];
   relatedSubjects: SubjectSlugs[];
+  topNav: TopNavProps;
 };
 
 type PupilUnitListingPageURLParams = {
@@ -59,6 +61,7 @@ const PupilUnitListingPage = ({
   subjectCategories,
   programmeFields,
   relatedSubjects,
+  topNav,
 }: UnitListingPageProps) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -71,6 +74,7 @@ const PupilUnitListingPage = ({
           noIndex: true,
           noFollow: false,
         }}
+        topNavProps={topNav}
       >
         <PupilViewsUnitListing
           unitSections={unitSections}
@@ -257,7 +261,7 @@ export const getStaticProps: GetStaticProps<
           });
         }
       });
-
+      const topNav = await curriculumApi2023.topNav();
       const results: GetStaticPropsResult<UnitListingPageProps> = {
         props: {
           subject,
@@ -268,6 +272,7 @@ export const getStaticProps: GetStaticProps<
           unitSections: [firstUnitSection, secondUnitSection],
           programmeFields,
           relatedSubjects: Array.from(relatedSubjectsSet),
+          topNav,
         },
       };
 

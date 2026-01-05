@@ -1,5 +1,6 @@
 import YearListingPage from "@/pages/pupils/years";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -17,7 +18,7 @@ describe("YearListingPage", () => {
     "Year 10",
     "Year 11",
   ])("renders buttons for all of the years", (expected) => {
-    const { getByText } = render(<YearListingPage />);
+    const { getByText } = render(<YearListingPage topNav={topNavFixture} />);
     expect(getByText(expected)).toBeInTheDocument();
   });
 });

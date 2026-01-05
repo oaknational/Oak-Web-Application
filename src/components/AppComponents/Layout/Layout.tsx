@@ -1,6 +1,10 @@
 import Head from "next/head";
 import React, { FC } from "react";
 import { useRouter } from "next/router";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import TopNav, { TopNavProps } from "../TopNav/TopNav";
+
 import {
   OakBox,
   OakFlex,
@@ -8,7 +12,6 @@ import {
   OakThemeProvider,
   OakColorToken,
 } from "@oaknational/oak-components";
-
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
 import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
@@ -54,6 +57,7 @@ export type LayoutProps = {
   headerCta?: CTA | null;
   banner?: React.ReactNode;
   skipLinkHref?: string;
+  topNavProps: TopNavProps;
 };
 
 const Layout: FC<LayoutProps> = (props) => {
@@ -65,7 +69,10 @@ const Layout: FC<LayoutProps> = (props) => {
     headerVariant = "app",
     footerVariant = "default",
     banner,
+    topNavProps,
   } = props;
+  const newTopNavEnabled = useFeatureFlagEnabled("teachers-new-top-nav");
+
   const Header = headers[headerVariant];
   const Footer = footers[footerVariant];
   const { isPreview } = useRouter();
@@ -91,7 +98,11 @@ const Layout: FC<LayoutProps> = (props) => {
           </SkipLink>
         </OakBox>
         {banner}
-        <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
+        {newTopNavEnabled ? (
+          <TopNav {...topNavProps} />
+        ) : (
+          <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
+        )}
         <OakFlex
           $flexDirection="column"
           $flexGrow={1}

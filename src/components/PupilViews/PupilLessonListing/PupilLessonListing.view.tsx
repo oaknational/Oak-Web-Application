@@ -12,13 +12,13 @@ import {
   OakBox,
   isValidIconName,
 } from "@oaknational/oak-components";
-
 import { resolveOakHref } from "@/common-lib/urls";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type PupilLessonListingViewProps = {
   unitData: LessonListingBrowseData[number]["unitData"];
@@ -26,10 +26,12 @@ export type PupilLessonListingViewProps = {
   orderedCurriculumData: LessonListingBrowseData;
   programmeSlug: string;
   backLink: string;
+  topNav: TopNavProps;
 };
 
 export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
-  const { unitData, programmeFields, orderedCurriculumData, backLink } = props;
+  const { unitData, programmeFields, orderedCurriculumData, backLink, topNav } =
+    props;
   const {
     yearDescription,
     yearSlug,
@@ -125,6 +127,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
           noIndex: true,
           noFollow: false,
         }}
+        topNavProps={topNav}
       >
         {" "}
         <OakPupilJourneyLayout

@@ -1,7 +1,7 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
-import { OakBox, OakMaxWidth } from "@oaknational/oak-components";
 
+import { OakBox, OakMaxWidth } from "@oaknational/oak-components";
 import { getSeoProps } from "@//browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import SubjectListingPage from "@/components/TeacherViews/SubjectListing.view";
@@ -20,6 +20,7 @@ import { getCombinedSubjects } from "@/pages-helpers/teacher/subject-listing-pag
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import Banners from "@/components/SharedComponents/Banners";
 import { KeyStageSlug } from "@/utils/curriculum/types";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -39,10 +40,11 @@ export type SubjectListingPageProps = {
   keyStageSlug: KeyStageSlug | "early-years-foundation-stage";
   keyStageTitle: string;
   keyStages: KeyStageData[];
+  topNav: TopNavProps;
 };
 
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
-  const { keyStageSlug, keyStageTitle, keyStages } = props;
+  const { keyStageSlug, keyStageTitle, keyStages, topNav } = props;
   const { track } = useAnalytics();
 
   const metaDescriptionSlug =
@@ -52,6 +54,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
 
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title: `Free ${metaDescriptionSlug} Teaching Resources for Lesson Planning`,
@@ -94,6 +97,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
         keyStageSlug={keyStageSlug}
         keyStageTitle={keyStageTitle}
         keyStages={props.keyStages}
+        topNav={topNav}
       />
     </AppLayout>
   );

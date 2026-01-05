@@ -3,7 +3,7 @@
 exports[`GetInvolvedCollaborateWithUs renders 1`] = `
 <div>
   <div
-    class="sc-fqkvVR irLXUY"
+    class="sc-fqkvVR gzkoag"
   >
     <div
       class="sc-fqkvVR bZZBuO"
@@ -12,7 +12,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
         class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
       >
         <div
-          class="sc-fqkvVR sc-jXbUNg fgBWrW gOkIKx"
+          class="sc-fqkvVR sc-jXbUNg fgBWrW bTkObi"
         >
           <div
             class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz qfLVW"
@@ -30,7 +30,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
               class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
             >
               <div
-                class="sc-fqkvVR jqqmXN sc-34fd5c0-0 duOvyx"
+                class="sc-fqkvVR jqqmXN sc-e5da2752-0 bmmEFh"
               >
                 <img
                   alt=""
@@ -48,10 +48,10 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
             class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz krIOWV"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+              class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
             >
               <div
-                class="sc-fqkvVR djWAJS"
+                class="sc-fqkvVR fTrETV"
               >
                 <div
                   class="sc-fqkvVR sc-kAyceB bPcfty kYkjWQ"
@@ -74,7 +74,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                     class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
                   >
                     <div
-                      class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                      class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
                     >
                       <div
                         class="sc-fqkvVR iPpXCP grey-shadow"
@@ -83,7 +83,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                         class="sc-fqkvVR iPpXCP yellow-shadow"
                       />
                       <a
-                        class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                        class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
                         href="https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd"
                         rel="noopener noreferrer"
                         target="_blank"
@@ -116,7 +116,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR djWAJS"
+                class="sc-fqkvVR fTrETV"
               >
                 <div
                   class="sc-fqkvVR sc-kAyceB bPcfty kYkjWQ"
@@ -139,7 +139,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                     class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
                   >
                     <div
-                      class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                      class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
                     >
                       <div
                         class="sc-fqkvVR iPpXCP grey-shadow"
@@ -148,7 +148,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                         class="sc-fqkvVR iPpXCP yellow-shadow"
                       />
                       <a
-                        class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                        class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
                         href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
                         rel="noopener noreferrer"
                         target="_blank"

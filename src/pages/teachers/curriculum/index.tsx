@@ -1,4 +1,6 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+import styled from "styled-components";
+
 import {
   OakHeading,
   OakP,
@@ -7,8 +9,6 @@ import {
   OakFlex,
   OakBox,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
-
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import SubjectPhasePicker, {
@@ -25,9 +25,11 @@ import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
 import CurricQuote from "@/components/CurriculumComponents/CurricQuote";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type CurriculumHomePageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
+  topNav: TopNavProps;
 };
 
 const StyledResponsiveFlex = styled(OakFlex)`
@@ -39,10 +41,11 @@ const StyledResponsiveFlex = styled(OakFlex)`
 `;
 
 const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
-  const { curriculumPhaseOptions } = props;
+  const { curriculumPhaseOptions, topNav } = props;
 
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title:
@@ -271,10 +274,12 @@ export const getStaticProps: GetStaticProps<
   CurriculumHomePageProps
 > = async () => {
   const data = await fetchSubjectPhasePickerData();
+  const topNav = await curriculumApi2023.topNav();
 
   const results: GetStaticPropsResult<CurriculumHomePageProps> = {
     props: {
       curriculumPhaseOptions: data,
+      topNav,
     },
   };
   const resultsWithIsr = decorateWithIsr(results);

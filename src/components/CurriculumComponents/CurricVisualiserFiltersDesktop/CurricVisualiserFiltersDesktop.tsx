@@ -1,8 +1,3 @@
-import {
-  OakBox,
-  OakHeading,
-  OakHandDrawnHR,
-} from "@oaknational/oak-components";
 import React from "react";
 
 import SkipLink from "../OakComponentsKitchen/SkipLink";
@@ -14,15 +9,24 @@ import {
   CurricFiltersYears,
 } from "../CurricVisualiserFilters";
 
+import {
+  OakBox,
+  OakHeading,
+  OakHandDrawnHR,
+} from "@oaknational/oak-components";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurricVisualiserFiltersProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilters: CurriculumFilters,
+    source?: ComponentTypeValueType,
+  ) => void;
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
   ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];

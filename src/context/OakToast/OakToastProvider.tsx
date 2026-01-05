@@ -1,7 +1,15 @@
-import { OakFlex, OakToast, OakToastProps } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 import { createContext, FC, useEffect, useState } from "react";
 import styled from "styled-components";
+
+import {
+  oakDefaultTheme,
+  OakFlex,
+  OakThemeProvider,
+  OakToast,
+  OakToastProps,
+} from "@oaknational/oak-components";
 
 type OakToastContext = {
   currentToastProps: OakToastProps | null;
@@ -22,6 +30,7 @@ export const OakToastProvider: FC<{
   const [offsetTop, setOffsetTop] = useState<number>(82);
   const [id, setId] = useState(0);
   const { asPath } = useRouter();
+  const newTopNavEnabled = useFeatureFlagEnabled("teachers-new-top-nav");
 
   useEffect(() => {
     let observer: IntersectionObserver | null = null;
@@ -32,7 +41,8 @@ export const OakToastProvider: FC<{
       observer = new IntersectionObserver(
         (entries) => {
           const headerIsVisible = entries[0]?.isIntersecting;
-          setOffsetTop(headerIsVisible ? 82 : 32);
+          const visibleOffset = newTopNavEnabled ? 152 : 82;
+          setOffsetTop(headerIsVisible ? visibleOffset : 32);
         },
         // Header will only be considered to be intersecting when at least 50% of it is visible
         { threshold: 0.5 },
@@ -57,7 +67,7 @@ export const OakToastProvider: FC<{
       clearTimeout(timeOut);
       observer?.disconnect();
     };
-  }, [asPath]);
+  }, [asPath, newTopNavEnabled]);
 
   const setToastPropsAndId = (props: OakToastProps | null) => {
     setId((prevId) => prevId + 1);
@@ -68,23 +78,25 @@ export const OakToastProvider: FC<{
     <oakToastContext.Provider
       value={{ currentToastProps, setCurrentToastProps: setToastPropsAndId }}
     >
-      <StyledOakToastContainer
-        $position="fixed"
-        $zIndex="in-front"
-        offsetTop={offsetTop}
-        $right={["spacing-0", "spacing-92"]}
-        $width={["100%", "max-content"]}
-        $justifyContent={["center", "flex-end"]}
-        aria-live="polite"
-      >
-        {currentToastProps && (
-          <OakToast
-            {...currentToastProps}
-            onClose={() => setCurrentToastProps(null)}
-            id={id}
-          />
-        )}
-      </StyledOakToastContainer>
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <StyledOakToastContainer
+          $position="fixed"
+          $zIndex="in-front"
+          offsetTop={offsetTop}
+          $right={["spacing-0", "spacing-92"]}
+          $width={["100%", "max-content"]}
+          $justifyContent={["center", "flex-end"]}
+          aria-live="polite"
+        >
+          {currentToastProps && (
+            <OakToast
+              {...currentToastProps}
+              onClose={() => setCurrentToastProps(null)}
+              id={id}
+            />
+          )}
+        </StyledOakToastContainer>
+      </OakThemeProvider>
       {children}
     </oakToastContext.Provider>
   );

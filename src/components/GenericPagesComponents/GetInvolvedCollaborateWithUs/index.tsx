@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 import {
   OakFlex,
   OakHeading,
@@ -6,8 +8,6 @@ import {
   OakGridArea,
   OakImage,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
-
 import { GetInvolvedLinkCard } from "@/components/GenericPagesComponents/GetInvolvedLinkCard";
 import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
 
@@ -46,7 +46,7 @@ export function GetInvolvedCollaborateWithUs({
   cards,
 }: Readonly<GetInvolvedCollaborateWithUsProps>) {
   return (
-    <OakBox $background={"bg-decorative3-subdued"}>
+    <OakBox $background={"bg-decorative3-very-subdued"}>
       <InnerMaxWidth>
         <OakFlex $flexDirection="column" $pv={["spacing-56", "spacing-80"]}>
           <OakGrid
@@ -55,7 +55,7 @@ export function GetInvolvedCollaborateWithUs({
               "repeat(8, 1fr)",
               "repeat(12, 1fr)",
             ]}
-            $rg={["spacing-40", "spacing-40", "spacing-16"]}
+            $rg={["spacing-32", "spacing-40", "spacing-16"]}
             $cg="spacing-16"
           >
             <OakGridArea
@@ -88,9 +88,13 @@ export function GetInvolvedCollaborateWithUs({
               $colStart={[1, 5, 7]}
               $rowStart={[2, 1, 1]}
             >
-              <OakFlex $flexDirection="column" $gap="spacing-16">
+              <OakFlex $flexDirection="column" $gap="spacing-24">
                 {cards.map((card) => (
-                  <OakBox key={card.headingTitle} $background="white">
+                  <OakBox
+                    key={card.headingTitle}
+                    $background="white"
+                    $borderRadius={"border-radius-s"}
+                  >
                     <GetInvolvedLinkCard
                       headingTag={card.headingTag}
                       headingTitle={card.headingTitle}

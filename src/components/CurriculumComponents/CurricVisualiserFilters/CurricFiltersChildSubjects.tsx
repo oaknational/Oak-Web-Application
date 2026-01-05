@@ -1,11 +1,11 @@
+import { useId } from "react";
+
 import {
   OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
   OakBox,
 } from "@oaknational/oak-components";
-import { useId } from "react";
-
 import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { getFilterData } from "@/utils/curriculum/filtering";
@@ -14,10 +14,14 @@ import {
   presentAtKeyStageSlugs,
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersChildSubjectsProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilters: CurriculumFilters,
+    source: ComponentTypeValueType,
+  ) => void;
   data: CurriculumUnitsFormattedData<Unit>;
 };
 
@@ -39,7 +43,7 @@ export function CurricFiltersChildSubjects({
   );
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({ ...filters, [key]: [newValue] });
+    onChangeFilters({ ...filters, [key]: [newValue] }, "child_subject_button");
   }
 
   return (

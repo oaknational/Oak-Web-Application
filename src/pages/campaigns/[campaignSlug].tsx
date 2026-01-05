@@ -4,16 +4,15 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 import { PortableTextComponents } from "@portabletext/react";
 
+import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   CampaignContentType,
   CampaignPage,
 } from "@/common-lib/cms-types/campaignPage";
 import CMSClient from "@/node-lib/cms";
-import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023, {
   KeyStagesData,
@@ -27,10 +26,13 @@ import {
   shouldSkipInitialBuild,
   getFallbackBlockingConfig,
 } from "@/node-lib/isr";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
   keyStages: KeyStagesData;
+  topNav: TopNavProps;
 };
 
 export const campaignTextStyles: PortableTextComponents = {
@@ -89,6 +91,7 @@ export const campaignTextStyles: PortableTextComponents = {
 const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
   return (
     <AppLayout
+      topNavProps={props.topNav}
       seoProps={{
         ...getSeoProps({
           ...props.campaign.seo,
@@ -207,11 +210,12 @@ export const getStaticProps: GetStaticProps<
           notFound: true,
         };
       }
-
+      const topNav = await curriculumApi2023.topNav();
       const results: GetStaticPropsResult<CampaignSinglePageProps> = {
         props: {
           campaign: campaignPageResult,
           keyStages,
+          topNav,
         },
       };
       return results;

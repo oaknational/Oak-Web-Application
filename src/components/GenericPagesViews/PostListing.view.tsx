@@ -1,6 +1,8 @@
 import { FC, useId } from "react";
-import { OakMaxWidth } from "@oaknational/oak-components";
 
+import { TopNavProps } from "../AppComponents/TopNav/TopNav";
+
+import { OakMaxWidth } from "@oaknational/oak-components";
 import PostCategoryList, {
   PostCategoryPage,
 } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
@@ -44,6 +46,7 @@ type PostListingProps = {
     slug: CrumbPageVariant;
     title: string;
   };
+  topNav: TopNavProps;
 };
 
 const PostListing: FC<PostListingProps> = ({
@@ -55,6 +58,7 @@ const PostListing: FC<PostListingProps> = ({
   posts,
   variant,
   page,
+  topNav,
 }) => {
   const triggerId = useId();
 
@@ -67,7 +71,11 @@ const PostListing: FC<PostListingProps> = ({
   );
 
   return (
-    <Layout seoProps={getSeoProps(seo)} $background="white">
+    <Layout
+      seoProps={getSeoProps(seo)}
+      $background="white"
+      topNavProps={topNav}
+    >
       <OakMaxWidth $pt={"spacing-20"} $display={["none", "flex"]}>
         <Breadcrumbs
           breadcrumbs={getBlogWebinarListBreadcrumbs(
@@ -101,6 +109,7 @@ const PostListing: FC<PostListingProps> = ({
           {...postsWithCategories}
           blogs={postListItems}
           page={page}
+          topNav={topNav}
         />
       </OakMaxWidth>
       <PostListJsonLd blogs={posts} />

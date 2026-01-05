@@ -6,6 +6,7 @@ import {
   GetStaticPathsResult,
 } from "next";
 import { useUser } from "@clerk/nextjs";
+
 import {
   OakGrid,
   OakGridArea,
@@ -17,7 +18,6 @@ import {
   OakLink,
   OakSpan,
 } from "@oaknational/oak-components";
-
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import LessonList from "@/components/TeacherComponents/LessonList";
@@ -48,8 +48,11 @@ import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareType
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
+  topNav: TopNavProps;
 };
 
 /**
@@ -76,6 +79,7 @@ function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
 
 const LessonListPage: NextPage<LessonListingPageProps> = ({
   curriculumData,
+  topNav,
 }) => {
   const {
     unitSlug,
@@ -199,6 +203,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         }),
       }}
       $background="white"
+      topNavProps={topNav}
     >
       <PaginationHead
         prevPageUrlObject={prevPageUrlObject}
@@ -390,9 +395,11 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      const topNav = await curriculumApi2023.topNav();
       const results: GetStaticPropsResult<LessonListingPageProps> = {
         props: {
           curriculumData,
+          topNav,
         },
       };
       return results;

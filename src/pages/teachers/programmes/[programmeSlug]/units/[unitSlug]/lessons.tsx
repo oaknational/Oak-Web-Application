@@ -6,6 +6,7 @@ import {
   GetStaticPathsResult,
 } from "next";
 import { useUser } from "@clerk/nextjs";
+
 import {
   OakGrid,
   OakGridArea,
@@ -17,7 +18,6 @@ import {
   OakLink,
   OakSpan,
 } from "@oaknational/oak-components";
-
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
@@ -55,9 +55,11 @@ import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNot
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import Banners from "@/components/SharedComponents/Banners";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
+  topNav: TopNavProps;
 };
 
 /**
@@ -84,6 +86,7 @@ function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
 
 const LessonListPage: NextPage<LessonListingPageProps> = ({
   curriculumData,
+  topNav,
 }) => {
   const {
     unitSlug,
@@ -230,6 +233,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         }),
       }}
       $background="white"
+      topNavProps={topNav}
     >
       <PaginationHead
         prevPageUrlObject={prevPageUrlObject}
@@ -444,9 +448,12 @@ export const getStaticProps: GetStaticProps<
         return redirect ? { redirect } : { notFound: true };
       }
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<LessonListingPageProps> = {
         props: {
           curriculumData,
+          topNav,
         },
       };
       return results;

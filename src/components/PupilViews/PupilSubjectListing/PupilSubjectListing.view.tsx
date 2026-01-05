@@ -1,4 +1,6 @@
 import { groupBy } from "lodash";
+import { yearDescriptions } from "@oaknational/oak-curriculum-schema";
+
 import {
   isValidIconName,
   OakFlex,
@@ -6,11 +8,9 @@ import {
   OakGridArea,
   OakHeading,
   OakPupilJourneyLayout,
-  OakPupilJourneySubjectButton,
+  OakSubjectIconButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-import { yearDescriptions } from "@oaknational/oak-curriculum-schema";
-
 import { ResolveOakHrefProps, resolveOakHref } from "@/common-lib/urls";
 import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
@@ -96,7 +96,8 @@ export const PupilViewsSubjectListing = ({
     return (
       <OakGridArea $colSpan={1} key={subjectSlug} role="listitem">
         <OakFlex $height={"100%"}>
-          <OakPupilJourneySubjectButton
+          <OakSubjectIconButton
+            variant="vertical"
             key={subjectSlug}
             element="a"
             subjectIconName={
@@ -123,7 +124,7 @@ export const PupilViewsSubjectListing = ({
             }}
           >
             {subject.programmeFields.subject}
-          </OakPupilJourneySubjectButton>
+          </OakSubjectIconButton>
         </OakFlex>
       </OakGridArea>
     );

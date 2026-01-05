@@ -1,4 +1,8 @@
 import React, { useState, Fragment, ReactNode } from "react";
+import styled from "styled-components";
+
+import { ProgrammePageMobileFiltersProps } from "./ProgrammePageFiltersMobile";
+
 import {
   OakSpan,
   OakBox,
@@ -8,10 +12,6 @@ import {
   OakSmallSecondaryButton,
   OakPrimaryButtonProps,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
-
-import { ProgrammePageMobileFiltersProps } from "./ProgrammePageFiltersMobile";
-
 import {
   getYearGroupTitle,
   getPathwaySuffix,
@@ -27,6 +27,9 @@ import {
 } from "@/utils/curriculum/by-pathway";
 import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
 
 export type MobileFilterHeaderProps = ProgrammePageMobileFiltersProps & {
   onOpenModal: () => void;
@@ -104,9 +107,10 @@ export default function ProgrammeFiltersHeaderMobile({
   onSelectYear,
   slugs,
   ks4Options,
+  trackingData,
 }: MobileFilterHeaderProps) {
-  //   const { track } = useAnalytics();
-  //   const { analyticsUseCase } = useAnalyticsPageProps();
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
   const [lockYear, setLockYear] = useState<string | null>(null);
 
   const { yearData } = data;
@@ -120,20 +124,19 @@ export default function ProgrammeFiltersHeaderMobile({
   const shouldDisplayCorePathway =
     slugs.ks4OptionSlug !== "core" && getShouldDisplayCorePathway(ks4Options);
 
-  // TD: [integrated journey] analytics
-  //   function trackSelectYear(year: string): void {
-  //     if (trackingData) {
-  //   const analyticsData = buildUnitSequenceRefinedAnalytics(
-  //     analyticsUseCase,
-  //     trackingData,
-  //     {
-  //       ...filters,
-  //       years: [year],
-  //     },
-  //   );
-  //   track.unitSequenceRefined(analyticsData);
-  //     }
-  //   }
+  function trackSelectYear(year: string): void {
+    if (trackingData) {
+      const analyticsData = buildUnitSequenceRefinedAnalytics(
+        analyticsUseCase,
+        trackingData,
+        {
+          ...filters,
+          years: [year],
+        },
+      );
+      track.unitSequenceRefined(analyticsData);
+    }
+  }
 
   function isSelectedYear(yearOption: string) {
     return selectedYear === `year-${yearOption}`;
@@ -285,7 +288,7 @@ export default function ProgrammeFiltersHeaderMobile({
                           aria-pressed={isSelectedYear(yearOption)}
                           onClick={() => {
                             onSelectYear(yearOption);
-                            // trackSelectYear(yearOption);
+                            trackSelectYear(yearOption);
                             scrollToYearSection(yearOption);
                           }}
                         >

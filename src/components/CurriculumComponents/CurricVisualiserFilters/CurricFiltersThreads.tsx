@@ -1,17 +1,21 @@
-import { OakSpan, OakBox } from "@oaknational/oak-components";
 import { useId } from "react";
 
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 
+import { OakSpan, OakBox } from "@oaknational/oak-components";
 import { Thread, CurriculumFilters } from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { joinWords, pluralizeUnits } from "@/utils/curriculum/formatting";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersThreadsProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilters: CurriculumFilters,
+    source?: ComponentTypeValueType,
+  ) => void;
   data: CurriculumUnitsFormattedData;
 };
 

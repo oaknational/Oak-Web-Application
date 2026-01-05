@@ -1,7 +1,7 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
-import { OakMaxWidth } from "@oaknational/oak-components";
 
+import { OakMaxWidth } from "@oaknational/oak-components";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import SubjectProgrammeListing from "@/components/TeacherComponents/SubjectProgrammeListing";
@@ -16,8 +16,11 @@ import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderLi
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
-const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
+const ProgrammesListingPage: NextPage<
+  ProgrammeListingPageData & { topNav: TopNavProps }
+> = (props) => {
   const {
     programmes,
     keyStageSlug,
@@ -26,6 +29,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
     subjectTitle,
     pathwayTitle,
     legacy,
+    topNav,
   } = props;
   if (!programmes[0]) {
     throw new Error("No programmes");
@@ -112,7 +116,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   };
 
   return (
-    <AppLayout seoProps={programmesSEO}>
+    <AppLayout seoProps={programmesSEO} topNavProps={topNav}>
       <HeaderListing
         breadcrumbs={[
           {
@@ -210,11 +214,13 @@ export const getStaticProps: GetStaticProps<
           notFound: true,
         };
       }
+      const topNav = await curriculumApi2023.topNav();
 
       const results = {
         props: {
           ...curriculumData,
           legacy: isLegacy,
+          topNav,
         },
       };
 

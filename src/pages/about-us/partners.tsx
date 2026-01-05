@@ -1,12 +1,12 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
+
 import {
   OakMaxWidth,
   OakHeading,
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
-
 import CMSClient from "@/node-lib/cms";
 import { AboutPartnersPage } from "@/common-lib/cms-types";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
@@ -20,9 +20,12 @@ import CMSImage, {
   CMSImageProps,
 } from "@/components/SharedComponents/CMSImage";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;
+  topNav: TopNavProps;
 };
 
 const ImageContainer: FC<CMSImageProps & SpacingProps & { name: string }> = (
@@ -43,9 +46,13 @@ const ImageContainer: FC<CMSImageProps & SpacingProps & { name: string }> = (
   );
 };
 
-const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
+const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+    <Layout
+      seoProps={getSeoProps(pageData.seo)}
+      $background={"white"}
+      topNavProps={topNav}
+    >
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
         $mt={["spacing-56", "spacing-80"]}
@@ -125,6 +132,8 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
         previewMode: isPreviewMode,
       });
 
+      const topNav = await curriculumApi2023.topNav();
+
       if (!aboutPartnersPage) {
         return {
           notFound: true,
@@ -134,6 +143,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
       const results = {
         props: {
           pageData: aboutPartnersPage,
+          topNav,
         },
       };
 

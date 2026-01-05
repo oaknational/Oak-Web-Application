@@ -11,10 +11,12 @@ import {
   getPropsFunction,
   SerializedPost,
 } from "@/pages-helpers/home/getBlogPosts";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type AiHomePageProps = {
   pageData: HomePage;
   posts: SerializedPost[];
+  topNav: TopNavProps;
 };
 
 const Ai: NextPage<AiHomePageProps> = (props) => {
@@ -29,6 +31,7 @@ const Ai: NextPage<AiHomePageProps> = (props) => {
           "Looking to create tailor-made lesson resources? Use our free AI-powered lesson assistant to make bespoke lesson plans, worksheets, quizzes and slides in minutes.",
       }}
       $background={"white"}
+      topNavProps={props.topNav}
     >
       <Banners />
       <HomePageTabImageNav current={"ai"} />

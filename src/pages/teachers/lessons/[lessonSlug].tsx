@@ -3,13 +3,13 @@ import {
   GetStaticProps,
   GetStaticPropsResult,
 } from "next";
+
 import {
   OakFlex,
   OakMaxWidth,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import {
@@ -29,10 +29,12 @@ import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesMo
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
   isSpecialist: boolean;
+  topNav: TopNavProps;
 };
 
 export type URLParams = {
@@ -42,6 +44,7 @@ export type URLParams = {
 export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
+  topNav,
 }: Readonly<PageProps>): JSX.Element {
   const {
     teacherNotesButton,
@@ -77,6 +80,7 @@ export default function LessonOverviewCanonicalPage({
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title: `Lesson: ${lesson.lessonTitle}`,
@@ -184,10 +188,14 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
         });
         return redirect ? { redirect } : { notFound: true };
       }
+
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<PageProps> = {
         props: {
           lesson,
           isSpecialist,
+          topNav,
         },
       };
 

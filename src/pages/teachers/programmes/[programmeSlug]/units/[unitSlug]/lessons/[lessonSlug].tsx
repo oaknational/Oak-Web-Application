@@ -5,8 +5,8 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -25,13 +25,16 @@ import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareType
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import Banners from "@/components/SharedComponents/Banners";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
+  topNav: TopNavProps;
 };
 
 const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   curriculumData,
+  topNav,
 }) => {
   const {
     lessonTitle,
@@ -97,6 +100,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title: `${lessonTitle}${getLessonData()} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources`,
@@ -192,9 +196,12 @@ export const getStaticProps: GetStaticProps<
         return redirect ? { redirect } : { notFound: true };
       }
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {
         props: {
           curriculumData: lessonPageData,
+          topNav,
         },
       };
 

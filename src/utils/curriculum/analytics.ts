@@ -13,6 +13,7 @@ import {
   AnalyticsUseCaseValueType,
   PathwayValueType,
   UnitOverviewAccessedProperties,
+  ComponentTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
@@ -40,6 +41,7 @@ export function buildUnitSequenceRefinedAnalytics(
   analyticsUseCase: AnalyticsUseCaseValueType,
   curriculumUnitsTrackingData: CurriculumUnitsTrackingData,
   filters: CurriculumFilters,
+  componentType?: ComponentTypeValueType,
 ): UnitSequenceRefinedProperties {
   const { phaseSlug } = curriculumUnitsTrackingData;
 
@@ -53,7 +55,7 @@ export function buildUnitSequenceRefinedAnalytics(
     platform: Platform.OWA,
     product: Product.CURRICULUM_VISUALISER,
     engagementIntent: EngagementIntent.REFINE,
-    componentType: ComponentType.FILTER_LINK,
+    componentType: componentType ?? ComponentType.FILTER_LINK,
     eventVersion: EventVersion["2_0_0"],
     analyticsUseCase: analyticsUseCase,
     childSubjectSlug:

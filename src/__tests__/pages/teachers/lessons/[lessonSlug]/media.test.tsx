@@ -1,7 +1,7 @@
 import { GetStaticPropsContext, PreviewData } from "next";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import {
@@ -12,6 +12,7 @@ import {
 } from "@/pages/teachers/lessons/[lessonSlug]/media";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -76,7 +77,11 @@ describe("LessonMediaClipsCanonicalPage", () => {
   it("Renders component", async () => {
     const result = render(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <CanonicalLessonMediaClipsPage curriculumData={fixtureData} />,
+        <CanonicalLessonMediaClipsPage
+          curriculumData={fixtureData}
+          topNav={topNavFixture}
+        />
+        ,
       </OakThemeProvider>,
     );
 
