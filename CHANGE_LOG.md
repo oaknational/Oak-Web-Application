@@ -1,3 +1,10 @@
+## [1.941.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.941.0...v1.941.1) (2026-01-05)
+
+
+### Bug Fixes
+
+* bump mux player to fix captions on chrome ([150637a](https://github.com/oaknational/Oak-Web-Application/commit/150637a05a5e0ce70fea0abe02664323002d5f2b))
+
 # [1.941.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.940.1...v1.941.0) (2025-12-18)
 
 
