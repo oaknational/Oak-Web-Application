@@ -3,11 +3,18 @@ import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
 
-import { OakFlex, OakIcon, OakImage, OakLink } from "@/styles/oakThemeApp";
+import {
+  OakBox,
+  OakFlex,
+  OakIcon,
+  OakImage,
+  OakLink,
+} from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useSelectedArea from "@/hooks/useSelectedArea";
+import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 
 const TopNav = () => {
   const activeArea = useSelectedArea();
@@ -15,6 +22,16 @@ const TopNav = () => {
 
   return (
     <>
+      <OakBox
+        $position={"absolute"}
+        $height={"spacing-80"}
+        $width={"spacing-64"}
+        $zIndex={"in-front"}
+        $top={"spacing-160"} // TD: [integrated journey] adjust position when dropdown is open
+        $left={"spacing-24"}
+      >
+        <SkipLink href={"#main"}>Skip to content</SkipLink>
+      </OakBox>
       <OakFlex
         $background={"bg-btn-primary"}
         $ph={["spacing-20", "spacing-40"]}

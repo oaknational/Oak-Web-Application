@@ -90,6 +90,7 @@ const Layout: FC<LayoutProps> = (props) => {
           $zIndex={"in-front"}
           $top={"spacing-92"}
           $left={"spacing-24"}
+          $display={newTopNavEnabled ? "none" : "block"}
         >
           <SkipLink href={props.skipLinkHref ?? "#main"}>
             Skip to content

@@ -5,11 +5,11 @@ export default function CoreLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // TODO: [integrated-journey]  Footer
   return (
     <>
       <TopNav />
-      {children}
+      <main id="main">{children}</main>
+      {/* TD: [integrated-journey]  Footer */}
     </>
   );
 }
