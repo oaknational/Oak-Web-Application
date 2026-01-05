@@ -24,8 +24,6 @@ const TopNav = () => {
     <>
       <OakBox
         $position={"absolute"}
-        $height={"spacing-80"}
-        $width={"spacing-64"}
         $zIndex={"in-front"}
         $top={"spacing-160"} // TD: [integrated journey] adjust position when dropdown is open
         $left={"spacing-24"}
