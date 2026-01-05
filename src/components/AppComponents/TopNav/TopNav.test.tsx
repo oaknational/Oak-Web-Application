@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/dom";
+import { act, screen } from "@testing-library/react";
 
 import TopNav from "./TopNav";
 
@@ -60,5 +60,24 @@ describe("TopNav", () => {
 
     const pupilsSubnav = await screen.findByText("Pupils links");
     expect(pupilsSubnav).toBeInTheDocument();
+  });
+  it("renders a hidden skip to content button until focused", () => {
+    renderWithTheme(<TopNav />);
+    const skipButtonLink = screen.getByText("Skip to content").closest("a");
+
+    if (!skipButtonLink) {
+      throw new Error("Could not find skip link");
+    }
+
+    act(() => {
+      skipButtonLink.focus();
+    });
+    expect(skipButtonLink).toHaveFocus();
+    expect(skipButtonLink).not.toHaveStyle("position: absolute");
+
+    act(() => {
+      skipButtonLink.blur();
+    });
+    expect(skipButtonLink).not.toHaveFocus();
   });
 });
