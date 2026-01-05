@@ -19,7 +19,7 @@ import {
 import {
   buildTextDescribingFilter,
   highlightedUnitCount,
-} from "@/utils/curriculum/filtering";
+} from "@/utils/curriculum/filteringApp";
 import {
   applyFiltering,
   getModes,
