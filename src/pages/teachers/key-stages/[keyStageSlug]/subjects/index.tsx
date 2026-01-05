@@ -165,10 +165,13 @@ export const getStaticProps: GetStaticProps<
         // sort by slug so the old and new subjects are intermingled
         .sort((a, b) => (a?.[0] && b?.[0] && a[0].slug > b[0].slug ? 1 : -1));
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results = {
         props: {
           ...curriculumData,
           subjects: combinedAndFilteredSubjects,
+          topNav,
         },
       };
 
