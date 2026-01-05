@@ -46,7 +46,7 @@ describe("pages/teachers/my-library.tsx", () => {
       ogTitle: "My library | NEXT_PUBLIC_SEO_APP_NAME",
       ogDescription: "Save units to your own personal library",
       ogImage:
-        "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2025",
+        "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2026",
       ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
       ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
       canonical: "NEXT_PUBLIC_SEO_APP_URL",
