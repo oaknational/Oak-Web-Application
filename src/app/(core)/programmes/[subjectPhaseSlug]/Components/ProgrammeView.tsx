@@ -20,7 +20,7 @@ import {
   getNumberOfSelectedUnits,
   highlightedUnitCount,
   useFilters,
-} from "@/utils/curriculum/filtering";
+} from "@/utils/curriculum/filteringApp";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
