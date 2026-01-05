@@ -264,6 +264,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   });
 
   describe("SEO", () => {
+    const currentYear = new Date().getFullYear();
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<LessonOverviewPage {...props} />);
 
@@ -299,8 +300,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
             "View lesson content and choose resources to download or share",
           ogDescription:
             "View lesson content and choose resources to download or share",
-          ogImage:
-            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2026",
+          ogImage: `NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?${currentYear}`,
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           ogTitle:
             "Adverbial complex sentences Higher KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
@@ -355,8 +355,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-          ogImage:
-            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2026",
+          ogImage: `NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?${currentYear}`,
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           robots: "index,follow",
