@@ -633,7 +633,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           asPath: "",
         });
 
-        // Render the CurriculumInfoPage  topNav={topNavFixture} with necessary mock props
+        // Render the CurriculumInfoPage with necessary mock props
         const slugs = parseSubjectPhaseSlug("maths-secondary")!;
         const { queryByTestId } = render(
           <CurriculumInfoPage
