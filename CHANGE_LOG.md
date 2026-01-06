@@ -1,3 +1,10 @@
+## [1.941.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.941.1...v1.941.2) (2026-01-05)
+
+
+### Bug Fixes
+
+* revert changes to filtering and create dup for app router ([94845b6](https://github.com/oaknational/Oak-Web-Application/commit/94845b6fe4a30982ca00bacacd5b613fb8b49a98))
+
 ## [1.941.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.941.0...v1.941.1) (2026-01-05)
 
 
