@@ -12,15 +12,24 @@ import {
   OakBox,
   OakP,
 } from "@oaknational/oak-components";
+import { GetStaticProps } from "next";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import getPageProps from "@/node-lib/getPageProps";
 
-const YearListingPage = () => {
+type YearListingPageProps = {
+  topNav: TopNavProps;
+};
+
+const YearListingPage = ({ topNav }: YearListingPageProps) => {
   const [trackingSent, setTrackingSent] = useState(false);
   const { track } = useAnalytics();
+
   const years: {
     yearSlug: string;
     yearDescription: string;
@@ -58,6 +67,7 @@ const YearListingPage = () => {
             description: ` Explore our lessons and resources by year group to help you learn or revise what you want, including Year 1 to 11.`,
           }),
         }}
+        topNavProps={topNav}
       >
         <OakPupilJourneyLayout sectionName="year-listing">
           <OakFlex $pv={"spacing-72"}>
@@ -160,6 +170,24 @@ const YearListingPage = () => {
       </AppLayout>
     </OakThemeProvider>
   );
+};
+
+export const getStaticProps: GetStaticProps<YearListingPageProps> = async (
+  context,
+) => {
+  return getPageProps({
+    page: "pupils-years-page::getStaticProps",
+    context,
+    getProps: async () => {
+      const topNav = await curriculumApi2023.topNav();
+
+      return {
+        props: {
+          topNav,
+        },
+      };
+    },
+  });
 };
 
 export default YearListingPage;

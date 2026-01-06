@@ -136,6 +136,7 @@ export default function CurricVisualiserMobileHeader({
           ...filters,
           years: [year],
         },
+        "year_group_button",
       );
       track.unitSequenceRefined(analyticsData);
     }

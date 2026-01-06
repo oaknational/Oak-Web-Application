@@ -17,6 +17,7 @@ const Pupils: NextPage<HomePageProps> = (props) => {
 
   return (
     <AppLayout
+      topNavProps={props.topNav}
       seoProps={{
         title:
           "Free online lessons, videos and quizzes for pupils | Oak National Academy",

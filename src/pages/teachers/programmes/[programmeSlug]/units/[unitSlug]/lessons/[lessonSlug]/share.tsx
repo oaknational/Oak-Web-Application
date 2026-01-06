@@ -18,18 +18,22 @@ import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonSh
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type LessonSharePageProps = {
   curriculumData: LessonShareData;
+  topNav: TopNavProps;
 };
 
 const LessonSharePage: NextPage<LessonSharePageProps> = ({
   curriculumData,
+  topNav,
 }) => {
   const { lessonTitle, keyStageSlug, subjectTitle } = curriculumData;
 
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title: `Lesson Share: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
@@ -108,9 +112,12 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<LessonSharePageProps> = {
         props: {
           curriculumData,
+          topNav,
         },
       };
       return results;

@@ -24,12 +24,15 @@ import BioCardList from "@/components/GenericPagesComponents/BioCardList";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
+  topNav: TopNavProps;
 };
 
-const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
+const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
   const {
     seo,
     introPortableText,
@@ -40,8 +43,13 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   } = pageData;
 
   const bioModalsEnabled = useFeatureFlagEnabled("about-us--board--bio-modals");
+
   return (
-    <Layout seoProps={getSeoProps(seo)} $background={"bg-primary"}>
+    <Layout
+      seoProps={getSeoProps(seo)}
+      $background={"bg-primary"}
+      topNavProps={topNav}
+    >
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
         $mt={["spacing-56", "spacing-80"]}
@@ -167,6 +175,8 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
         previewMode: isPreviewMode,
       });
 
+      const topNav = await curriculumApi2023.topNav();
+
       if (!aboutBoardPage) {
         return {
           notFound: true,
@@ -176,6 +186,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
       const results: GetStaticPropsResult<AboutPageProps> = {
         props: {
           pageData: aboutBoardPage,
+          topNav,
         },
       };
 

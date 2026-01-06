@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
+import { usePathname } from "next/navigation";
 
 import Search from "./Search.view";
 import { SearchProps } from "./search.view.types";
@@ -14,6 +15,10 @@ import {
   setupMockLinkClick,
   teardownMockLinkClick,
 } from "@/utils/mockLinkClick";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/teachers/search");
 
 jest.mock("@mux/mux-player-react/lazy", () => {
   return forwardRef(() => {
@@ -222,6 +227,7 @@ jest.mock("@/hooks/useMediaQuery.tsx", () => ({
 const mockAiSearchFlagEnabled = jest.fn().mockReturnValue(false);
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: () => mockAiSearchFlagEnabled(),
+  useFeatureFlagEnabled: () => false,
 }));
 
 jest.mock("@/context/Search/useSuggestedFilters.tsx");

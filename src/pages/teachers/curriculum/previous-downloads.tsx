@@ -1,6 +1,6 @@
 import assert from "assert";
 
-import { NextPage } from "next";
+import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -28,12 +28,19 @@ import CurriculumDownloads, {
 } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import getPageProps from "@/node-lib/getPageProps";
 
 type Document = ReturnType<
   typeof curriculumPreviousDownloadsFixture
 >["documents"][0];
 
-const CurriculumPreviousDownloadsPage: NextPage = () => {
+const CurriculumPreviousDownloadsPage = ({
+  topNav,
+}: {
+  topNav: TopNavProps;
+}) => {
   const router = useRouter();
   const data = curriculumPreviousDownloadsFixture();
   const [activeTab, setActiveTab] = useState<DownloadCategory>("EYFS");
@@ -113,6 +120,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
         }),
       }}
       $background={"bg-primary"}
+      topNavProps={topNav}
     >
       <OakBox $background={"bg-decorative1-main"} $pt="spacing-20">
         <OakBox
@@ -239,6 +247,24 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       />
     </AppLayout>
   );
+};
+
+export const getStaticProps: GetStaticProps<{ topNav: TopNavProps }> = async (
+  context,
+) => {
+  return getPageProps({
+    page: "teachers-curriculum-downloads::getStaticProps",
+    context,
+    getProps: async () => {
+      const topNav = await curriculumApi2023.topNav();
+
+      return {
+        props: {
+          topNav,
+        },
+      };
+    },
+  });
 };
 
 export default CurriculumPreviousDownloadsPage;

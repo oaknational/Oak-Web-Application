@@ -22,6 +22,8 @@ import { imageBuilder } from "@/components/HooksAndUtils/sanityImageBuilder";
 import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
 import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -30,13 +32,15 @@ export type SerializedBlog = Omit<BlogPost, "date"> & {
 export type BlogSinglePageProps = {
   blog: SerializedBlog;
   categories: { title: string; slug: string }[];
+  topNav: TopNavProps;
 };
 
 const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
-  const { blog, categories } = props;
+  const { blog, categories, topNav } = props;
 
   return (
     <Layout
+      topNavProps={topNav}
       seoProps={getSeoProps({
         ...props.blog.seo,
         title: props.blog.seo?.title || props.blog.title,
@@ -122,10 +126,13 @@ export const getStaticProps: GetStaticProps<
         date: blogResult.date.toISOString(),
       };
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<BlogSinglePageProps> = {
         props: {
           categories,
           blog,
+          topNav,
         },
       };
       return results;

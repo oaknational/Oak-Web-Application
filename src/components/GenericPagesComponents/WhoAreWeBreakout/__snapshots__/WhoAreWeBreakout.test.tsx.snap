@@ -4,26 +4,23 @@ exports[`WhoAreWeBreakout renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-kAyceB sc-a3a190f-0 ixZoE joHkzz iqnuBW"
+      class="sc-fqkvVR sc-kAyceB sc-4196a4d9-0 ixZoE joHkzz dQLTeJ"
     >
       <div
         class="sc-fqkvVR sc-kAyceB hsevFq bAFsaQ"
       >
-        <div
-          class="sc-fqkvVR jqqmXN"
-        >
-          <img
-            alt="test"
-            class="sc-dcJsrY jIcMOQ"
-            data-nimg="fill"
-            decoding="async"
-            loading="lazy"
-            sizes="100vw"
-            src="http://localhost/_next/image?url=http%3A%2F%2Fexample.com&w=3840&q=75"
-            srcset="/_next/image?url=http%3A%2F%2Fexample.com&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Fexample.com&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Fexample.com&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Fexample.com&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Fexample.com&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Fexample.com&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Fexample.com&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Fexample.com&w=3840&q=75 3840w"
-            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-          />
-        </div>
+        <img
+          alt="test"
+          class="sc-6170517-0 eeeRRY"
+          data-nimg="1"
+          decoding="async"
+          height="300"
+          loading="lazy"
+          src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
+          srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
+          style="color: transparent;"
+          width="300"
+        />
       </div>
       <div
         class="sc-fqkvVR sc-kAyceB cPTgZF gSPFUg"

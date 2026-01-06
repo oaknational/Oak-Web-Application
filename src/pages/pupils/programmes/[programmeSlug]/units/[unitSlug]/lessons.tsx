@@ -10,6 +10,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { validateProgrammeSlug } from "@/utils/validateProgrammeSlug";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type PupilLessonListingURLParams = {
   programmeSlug: string;
@@ -24,11 +25,13 @@ export type PupilLessonListingBackLink = {
 export type LessonListingPageProps = {
   browseData: LessonListingBrowseData;
   backLink: PupilLessonListingBackLink;
+  topNav: TopNavProps;
 };
 
 const PupilLessonListingPage = ({
   browseData,
   backLink,
+  topNav,
 }: LessonListingPageProps) => {
   const unitData = browseData[0]?.unitData;
   const programmeFields = browseData[0]?.programmeFields;
@@ -86,6 +89,7 @@ const PupilLessonListingPage = ({
       orderedCurriculumData={orderedBrowseData}
       programmeSlug={programmeSlug}
       backLink={resolvedOakHref}
+      topNav={topNav}
     />
   );
 };
@@ -178,10 +182,13 @@ export const getStaticProps: GetStaticProps<
         }
       })();
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<LessonListingPageProps> = {
         props: {
           browseData: filteredBrowseData,
           backLink,
+          topNav,
         },
       };
       return results;

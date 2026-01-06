@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import { GetStaticPropsContext, PreviewData } from "next";
+import { usePathname } from "next/navigation";
 
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
@@ -14,9 +15,15 @@ import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 const props = {
   curriculumData: specialistLessonOverviewFixture(),
+  topNav: topNavFixture,
 };
 
 const downloadResourceButtonClicked = jest.fn();
@@ -54,6 +61,7 @@ describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonS
   it("renders Download All button if lesson has downloadable resources", async () => {
     render(
       <SpecialistLessonOverviewPage
+        topNav={topNavFixture}
         curriculumData={specialistLessonOverviewFixture({})}
       />,
     );
@@ -66,6 +74,7 @@ describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonS
   it("does not render Download All button if lesson has no downloadable resources", async () => {
     render(
       <SpecialistLessonOverviewPage
+        topNav={topNavFixture}
         curriculumData={specialistLessonOverviewFixture({
           expired: false,
           downloads: [],
@@ -79,6 +88,7 @@ describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonS
   it("does not render Download All button if lesson is expired", async () => {
     render(
       <SpecialistLessonOverviewPage
+        topNav={topNavFixture}
         curriculumData={specialistLessonOverviewFixture({
           expired: true,
         })}

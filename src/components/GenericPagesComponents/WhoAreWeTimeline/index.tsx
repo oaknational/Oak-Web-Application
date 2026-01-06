@@ -3,11 +3,13 @@ import {
   OakGrid,
   OakGridArea,
   OakBox,
-  OakP,
   OakSpan,
   OakHeading,
 } from "@oaknational/oak-components";
 import { ReactNode, useMemo } from "react";
+
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {
   const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
@@ -24,16 +26,16 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
 
 export type WhoAreWeTimelineProps = {
   title: string;
-  subtitle: string;
+  subTitle: string;
   items: {
     title: string;
-    subtitle: string;
-    text: string[];
+    subTitle: string;
+    text: PortableTextJSON;
   }[];
 };
 export default function WhoAreWeTimeline({
   title,
-  subtitle,
+  subTitle,
   items,
 }: Readonly<WhoAreWeTimelineProps>) {
   return (
@@ -53,7 +55,7 @@ export default function WhoAreWeTimeline({
                     $ph={"spacing-4"}
                     $color="text-primary"
                   >
-                    {subtitle}
+                    {subTitle}
                   </OakSpan>
                 </OakBox>
                 <OakHeading
@@ -113,7 +115,7 @@ export default function WhoAreWeTimeline({
                             $background={"bg-decorative1-main"}
                             $color="text-primary"
                           >
-                            {item.subtitle}
+                            {item.subTitle}
                           </OakSpan>
                         </OakBox>
                         <OakHeading
@@ -128,13 +130,7 @@ export default function WhoAreWeTimeline({
                           $flexDirection={"column"}
                           $gap={["spacing-20", "spacing-24"]}
                         >
-                          {item.text.map((textItem) => {
-                            return (
-                              <OakP key={textItem} $color="text-primary">
-                                {textItem}
-                              </OakP>
-                            );
-                          })}
+                          <PortableTextWithDefaults value={item.text} />
                         </OakFlex>
                       </OakFlex>
                     </OakFlex>

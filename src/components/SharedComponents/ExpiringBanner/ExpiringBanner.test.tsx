@@ -16,14 +16,16 @@ describe("ExpiringBanner", () => {
   it("should render the banner when isOpen is true", () => {
     const screen = render(<ExpiringBanner {...defaultProps} />);
     expect(
-      screen.getByText("We've made brand-new and improved lessons for you."),
+      screen.getByText("We've made brand-new and improved resources for you."),
     ).toBeInTheDocument();
   });
 
   it("should not render the banner when isOpen is false", () => {
     const screen = render(<ExpiringBanner {...defaultProps} isOpen={false} />);
     expect(
-      screen.queryByText("We've made brand-new and improved lessons for you."),
+      screen.queryByText(
+        "We've made brand-new and improved resources for you.",
+      ),
     ).not.toBeVisible();
   });
 
@@ -33,7 +35,7 @@ describe("ExpiringBanner", () => {
     );
     expect(
       screen.getByText(
-        "These resources will be removed by end of Summer Term 2025.",
+        "These resources were made for remote use during the pandemic, not classroom teaching.",
       ),
     ).toBeInTheDocument();
   });
@@ -44,7 +46,7 @@ describe("ExpiringBanner", () => {
     );
     expect(
       screen.getByText(
-        "These lessons will be removed by end of Summer Term 2025.",
+        "These lessons were made for home learning during the pandemic.",
       ),
     ).toBeInTheDocument();
   });
@@ -61,7 +63,7 @@ describe("ExpiringBanner", () => {
     );
     expect(
       screen.getByText(
-        "This lesson will be removed by end of Summer Term 2025.",
+        "This lesson was made for home learning during the pandemic.",
       ),
     ).toBeInTheDocument();
   });

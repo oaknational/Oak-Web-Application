@@ -20,6 +20,7 @@ import { getCombinedSubjects } from "@/pages-helpers/teacher/subject-listing-pag
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import Banners from "@/components/SharedComponents/Banners";
 import { KeyStageSlug } from "@/utils/curriculum/types";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -39,10 +40,11 @@ export type SubjectListingPageProps = {
   keyStageSlug: KeyStageSlug | "early-years-foundation-stage";
   keyStageTitle: string;
   keyStages: KeyStageData[];
+  topNav: TopNavProps;
 };
 
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
-  const { keyStageSlug, keyStageTitle, keyStages } = props;
+  const { keyStageSlug, keyStageTitle, keyStages, topNav } = props;
   const { track } = useAnalytics();
 
   const metaDescriptionSlug =
@@ -52,6 +54,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
 
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title: `Free ${metaDescriptionSlug} Teaching Resources for Lesson Planning`,
@@ -94,6 +97,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
         keyStageSlug={keyStageSlug}
         keyStageTitle={keyStageTitle}
         keyStages={props.keyStages}
+        topNav={topNav}
       />
     </AppLayout>
   );
@@ -161,10 +165,13 @@ export const getStaticProps: GetStaticProps<
         // sort by slug so the old and new subjects are intermingled
         .sort((a, b) => (a?.[0] && b?.[0] && a[0].slug > b[0].slug ? 1 : -1));
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results = {
         props: {
           ...curriculumData,
           subjects: combinedAndFilteredSubjects,
+          topNav,
         },
       };
 

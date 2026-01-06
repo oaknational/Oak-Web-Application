@@ -1,6 +1,6 @@
 import { OakGrid, OakGridArea, OakP } from "@oaknational/oak-components";
 
-import { isHighlightedUnit } from "@/utils/curriculum/filtering";
+import { isHighlightedUnit } from "@/utils/curriculum/filteringApp";
 import {
   CurriculumFilters,
   Thread,
@@ -11,6 +11,9 @@ import { getSubjectCategoryMessage } from "@/utils/curriculum/formatting";
 import CurricUnitCard from "@/components/CurriculumComponents/CurricUnitCard";
 import { resolveOakHref } from "@/common-lib/urls";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 
 type ProgrammeUnitListProps = {
   units: Unit[];
@@ -24,22 +27,22 @@ export function ProgrammeUnitList({
   yearData,
   year,
   filters,
+  selectedThread,
 }: Readonly<ProgrammeUnitListProps>) {
-  // const { track } = useAnalytics();
-  // const { analyticsUseCase } = useAnalyticsPageProps();
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
-  // const onClick = (unit: Unit, isHighlighted: boolean) => {
-  // TD: [integrated journey] analytics
-  // track.unitOverviewAccessed(
-  //   buildUnitOverviewAccessedAnalytics({
-  //     unit,
-  //     isHighlighted,
-  //     componentType: "unit_info_button",
-  //     selectedThread,
-  //     analyticsUseCase,
-  //   }),
-  //);
-  //};
+  const onClick = (unit: Unit, isHighlighted: boolean) => {
+    track.unitOverviewAccessed(
+      buildUnitOverviewAccessedAnalytics({
+        unit,
+        isHighlighted,
+        componentType: "unit_info_button",
+        selectedThread,
+        analyticsUseCase,
+      }),
+    );
+  };
 
   function getItems(unit: Unit, index: number) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
@@ -57,6 +60,7 @@ export function ProgrammeUnitList({
             unitSlug: unit.slug,
             programmeSlug: createTeacherProgrammeSlug(unit),
           })}
+          onClick={() => onClick(unit, isHighlighted)}
         />
       </OakGridArea>
     );

@@ -1,3 +1,161 @@
+# [1.942.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.941.2...v1.942.0) (2026-01-06)
+
+
+### Bug Fixes
+
+* add topnav data to subject listing page ([8ae0212](https://github.com/oaknational/Oak-Web-Application/commit/8ae0212b796a0a622bdb7e42451ee6a93092d478))
+* remove duplicate subjects from keystages ([af58b74](https://github.com/oaknational/Oak-Web-Application/commit/af58b745d4d8dec0099d79702c2523e92b426dce))
+* schema error ([896b94f](https://github.com/oaknational/Oak-Web-Application/commit/896b94fd62394023dcbe9cbd1f01391fde767912))
+* use nav for links section ([e97e597](https://github.com/oaknational/Oak-Web-Application/commit/e97e597fad9c03a619f6a535a5009697b046a157))
+
+
+### Features
+
+* add about us and guidance ([f064553](https://github.com/oaknational/Oak-Web-Application/commit/f0645530223b236aada5c7c7dd2a7bccce6acb67))
+* add buttons and data to top nav ([81974eb](https://github.com/oaknational/Oak-Web-Application/commit/81974ebf5a04bf7752ac91669b6ddc2481bd38fb))
+* add eyfs to primary teachers nav data ([b0ed3a8](https://github.com/oaknational/Oak-Web-Application/commit/b0ed3a889bd328d21169510852cb9fc7b43d2e47))
+* add method to generate teachers nav data ([fbee762](https://github.com/oaknational/Oak-Web-Application/commit/fbee76247c04c304e26de2148e57795708583eeb))
+* add method to get pupils nav data ([55ba557](https://github.com/oaknational/Oak-Web-Application/commit/55ba55793061d0369444b736c93af98f96bbc6c3))
+* add programme count and pathway to subjects schema ([4572a22](https://github.com/oaknational/Oak-Web-Application/commit/4572a2214019c296a96f1f7eacb2854c36304c89))
+* add programme slug to query schema ([b11dfcd](https://github.com/oaknational/Oak-Web-Application/commit/b11dfcd3bdde1158c64be600e10688f2db06f3bf))
+* add selected underline on menu buttons ([e69a770](https://github.com/oaknational/Oak-Web-Application/commit/e69a770b3a505185b54ba0825ca7c72ce51d0aac))
+* add selected underline to buttons in pupil topnav ([ece0f84](https://github.com/oaknational/Oak-Web-Application/commit/ece0f84bdc0aa69bca6213a228d40fb6cbf98d9a))
+* add subject name overrides and pathways in title ([8c4f4b9](https://github.com/oaknational/Oak-Web-Application/commit/8c4f4b9ff0fdd2ba05e1d78e4fb925c9eb009d10))
+* add top nav data to every page ([7c287f7](https://github.com/oaknational/Oak-Web-Application/commit/7c287f71bd4487bf4eb8488bbdd046beba8b4154))
+* add top nav query ([5d890ba](https://github.com/oaknational/Oak-Web-Application/commit/5d890baa0dc7c0ef63610b41f12ac7aa6eeb776a))
+* ensure saving toast is positioned correctly with new topnav ([981b984](https://github.com/oaknational/Oak-Web-Application/commit/981b984628e0fb24a3f0a676a4a9eef1f7b80ef8))
+* generate query response ([fea13a6](https://github.com/oaknational/Oak-Web-Application/commit/fea13a6cc53a267859245d1d9f874bf07180b396))
+* handle RE edge case where only one pathway exists ([ab4991a](https://github.com/oaknational/Oak-Web-Application/commit/ab4991a18e36c5a0f53093387b53deb123b0935e))
+* hide subnav links on mobile and tablet ([4ff72a4](https://github.com/oaknational/Oak-Web-Application/commit/4ff72a40761448d5858e8508c53c2163c86338d1))
+* report an error when topnav data is invalid ([1bec807](https://github.com/oaknational/Oak-Web-Application/commit/1bec807bbf0e1aa717ed4594d0e1213d805b1e7e))
+* stub out top nav buttons and menu ([5fe825d](https://github.com/oaknational/Oak-Web-Application/commit/5fe825d2da6cd4321563a3b5f16a6d1d5ff412d8))
+
+## [1.941.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.941.1...v1.941.2) (2026-01-05)
+
+
+### Bug Fixes
+
+* revert changes to filtering and create dup for app router ([94845b6](https://github.com/oaknational/Oak-Web-Application/commit/94845b6fe4a30982ca00bacacd5b613fb8b49a98))
+
+## [1.941.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.941.0...v1.941.1) (2026-01-05)
+
+
+### Bug Fixes
+
+* bump mux player to fix captions on chrome ([150637a](https://github.com/oaknational/Oak-Web-Application/commit/150637a05a5e0ce70fea0abe02664323002d5f2b))
+
+# [1.941.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.940.1...v1.941.0) (2025-12-18)
+
+
+### Bug Fixes
+
+* resolve merge conflicts ([a3158b5](https://github.com/oaknational/Oak-Web-Application/commit/a3158b55201b7f417d6b3c9444da7d59cbc051e9))
+
+
+### Features
+
+* add newsletter section to Get Involved page ([42594a2](https://github.com/oaknational/Oak-Web-Application/commit/42594a2f30f962105615ea3c8f2fa2e0f0f150de))
+
+## [1.940.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.940.0...v1.940.1) (2025-12-18)
+
+
+### Bug Fixes
+
+* maintainability bug fixes ([065ea9c](https://github.com/oaknational/Oak-Web-Application/commit/065ea9ce06f7ee2cdab9199d755997a8121e94c0))
+* test ' difference ([6275eec](https://github.com/oaknational/Oak-Web-Application/commit/6275eecde05c676f47058989c531f792623fc015))
+
+# [1.940.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.939.0...v1.940.0) (2025-12-18)
+
+
+### Bug Fixes
+
+* add editable highlight color to shared header ([835733b](https://github.com/oaknational/Oak-Web-Application/commit/835733be00949dea82a74367f3825c87efa4ca21))
+* cast urls as string ([b84da4b](https://github.com/oaknational/Oak-Web-Application/commit/b84da4bd4223072f87d0364cc01cb61f848051e2))
+* storybook component ([6f27895](https://github.com/oaknational/Oak-Web-Application/commit/6f27895c35d2f4bb93e8937480ab63b406589dcc))
+
+
+### Features
+
+* add guard for no image url ([dd63fef](https://github.com/oaknational/Oak-Web-Application/commit/dd63fef56840b2237faf1cbdb2cbfd9091b5842c))
+* change image components to CMS images ([7be16df](https://github.com/oaknational/Oak-Web-Application/commit/7be16df674d95c1016e8d554294b9a8613f00900))
+* hooked up sanity to new "/about-us/who-we-are" pages ([be7d712](https://github.com/oaknational/Oak-Web-Application/commit/be7d71270e556d87e6757115f764e0e9389f97e7))
+* pull from sanity assets ([dc4b130](https://github.com/oaknational/Oak-Web-Application/commit/dc4b1305e87f146aab8ad585402fa5b53b3471be))
+
+# [1.939.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.938.0...v1.939.0) (2025-12-17)
+
+
+### Features
+
+* disable automatic pageview tracking ([e8339fc](https://github.com/oaknational/Oak-Web-Application/commit/e8339fcaf5840f3f57ef78df0a207e4200a49516))
+* make analytics provider compatible with app router ([2ca8825](https://github.com/oaknational/Oak-Web-Application/commit/2ca88259aec08803fe591175a87bf08a109b1b96))
+* make layout component a server component ([56ecd7b](https://github.com/oaknational/Oak-Web-Application/commit/56ecd7bce116143cbfe066c562a61a231c02607b))
+* move analytics wrapper to app level, remove mock analytics ([22659e4](https://github.com/oaknational/Oak-Web-Application/commit/22659e452b5bb2db74ed8d0588c5b6d76a8bff3d))
+* remove suspense boundary ([7c8c2b0](https://github.com/oaknational/Oak-Web-Application/commit/7c8c2b06941163b823d3f370243fcdec9d98bfb2))
+* try a fragment in suspense boundary ([dc3e523](https://github.com/oaknational/Oak-Web-Application/commit/dc3e523f4df55d9880f16b924971358f2545f7f2))
+* uncomment tracking code and replace router with usePathName in useAnalyticsPageProps ([0b9e9eb](https://github.com/oaknational/Oak-Web-Application/commit/0b9e9eb0c7476f3eaf698ba291448c9ee7f2950c))
+* wrap analytics provider in suspense boundary to ensure static rendering of the page ([09590bc](https://github.com/oaknational/Oak-Web-Application/commit/09590bcf0908160ffc65fcf548055c2ffdb568f1))
+
+# [1.938.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.937.2...v1.938.0) (2025-12-17)
+
+
+### Bug Fixes
+
+* add aria label to home link image ([0f9a277](https://github.com/oaknational/Oak-Web-Application/commit/0f9a2772ada9d9823438989309e02d2815ba7239))
+* add font to html to prevent fout ([cefc148](https://github.com/oaknational/Oak-Web-Application/commit/cefc148b2253364cd61ca4bb1c095a3c60c10789))
+* correct link for logo in pupils area ([72ce81c](https://github.com/oaknational/Oak-Web-Application/commit/72ce81cf8ef7e49a2da150bccd5294322d6df9b0))
+* desktop logo width ([9b5aa49](https://github.com/oaknational/Oak-Web-Application/commit/9b5aa49f46d17195821191f5e4eea9e7acd2df34))
+* make lowercase when tab inactive ([0804cfd](https://github.com/oaknational/Oak-Web-Application/commit/0804cfdb893526a2ce62bf91320fe5c7307c2b7b))
+* test mock ([e6e2258](https://github.com/oaknational/Oak-Web-Application/commit/e6e2258651c7ec500fc625acdaf57ec4f02c5d53))
+* text alignment on mobile ([c86c625](https://github.com/oaknational/Oak-Web-Application/commit/c86c625fd4e302dc0f92395ce82db56711bbf3de))
+* use css style sheet for global styles to prevent fouc ([1a57ed5](https://github.com/oaknational/Oak-Web-Application/commit/1a57ed5043b63ba303f2ffb4c574ee4eb7952ee6))
+
+
+### Features
+
+* add mobile style ([8ac65be](https://github.com/oaknational/Oak-Web-Application/commit/8ac65be41749d33809ee78eff048c71a5ecc711b))
+* add pupils icon to tab link ([a443065](https://github.com/oaknational/Oak-Web-Application/commit/a4430657833375d1ea0b4f17ab0c8630126545a5))
+* add TopNav to app router core pages ([e412fe1](https://github.com/oaknational/Oak-Web-Application/commit/e412fe12bfeba78d368482880204b9829f98858a))
+* add topnav to site behind ff ([38def17](https://github.com/oaknational/Oak-Web-Application/commit/38def1744ab28102b27c6c88413cdb2be313da7a))
+* create component for tab links ([1809b75](https://github.com/oaknational/Oak-Web-Application/commit/1809b759d0dc58c9bd09cd52d9b4f0836f4b0750))
+* create TopNav component ([ba3ad16](https://github.com/oaknational/Oak-Web-Application/commit/ba3ad169cc49c7703b63239b17621942362a3da2))
+* extract pupils and teachers nav areas ([e502ec8](https://github.com/oaknational/Oak-Web-Application/commit/e502ec87a1cae3f2875e085d0d33698c958cf67b))
+* make tab link text responsive to active tab ([0224e5d](https://github.com/oaknational/Oak-Web-Application/commit/0224e5d2a1b5451ac186dfc2df9081c762859e84))
+* use useSelectedArea hook for active tab highlighting ([5b079a6](https://github.com/oaknational/Oak-Web-Application/commit/5b079a6770c66547285df97e9f48c2e998fe478c))
+
+## [1.937.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.937.1...v1.937.2) (2025-12-16)
+
+## [1.937.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.937.0...v1.937.1) (2025-12-16)
+
+
+### Bug Fixes
+
+* update unitSequenceRefined to include correct componentType ([8041b39](https://github.com/oaknational/Oak-Web-Application/commit/8041b39edaf1d66a53da3d754ad3511ad1339e6d))
+
+# [1.937.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.936.0...v1.937.0) (2025-12-16)
+
+
+### Bug Fixes
+
+* update useselectedarea to prevent flashing ([dcdeed4](https://github.com/oaknational/Oak-Web-Application/commit/dcdeed4540342ddb32a5264a49eb5e4fc2501fda))
+
+
+### Features
+
+* update useSelectedArea to use next/navigation ([1dc79a6](https://github.com/oaknational/Oak-Web-Application/commit/1dc79a6b253bf5d211e59e054fcff2fe7b93f45c))
+
+# [1.936.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.935.0...v1.936.0) (2025-12-16)
+
+
+### Bug Fixes
+
+* h1 highlight colour ([530175e](https://github.com/oaknational/Oak-Web-Application/commit/530175ed04688a2db3acc2a4badd873c44b46306))
+* header component to take children for hero image ([d885de0](https://github.com/oaknational/Oak-Web-Application/commit/d885de0c476503bcfa3a9898771916e6b2f01841))
+
+
+### Features
+
+* add background loop illustration ([61ead03](https://github.com/oaknational/Oak-Web-Application/commit/61ead034514ea916e238950c461907246314f802))
+
 # [1.935.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.934.0...v1.935.0) (2025-12-15)
 
 

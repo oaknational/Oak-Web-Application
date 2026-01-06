@@ -1,6 +1,7 @@
 import { act, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useUser } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
 
 import { DownloadType } from "../CurriculumDownloadView/helper";
 
@@ -13,6 +14,10 @@ import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 const render = renderWithProvidersByName(["theme", "oakTheme"]);
 const mvRefreshTime = 1721314874829;

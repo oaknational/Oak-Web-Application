@@ -1,5 +1,6 @@
 import { act, screen } from "@testing-library/react";
 import { GetStaticPropsContext, PreviewData } from "next";
+import { usePathname } from "next/navigation";
 
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
@@ -20,6 +21,11 @@ import curriculumApi2023, {
   CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 const props = {
   curriculumData: lessonOverviewFixture({
@@ -27,23 +33,27 @@ const props = {
     videoWithSignLanguageMuxPlaybackId: "pid-002",
     excludedFromTeachingMaterials: true,
   }),
+  topNav: topNavFixture,
 };
 
 const propsWithTier = {
   curriculumData: lessonOverviewFixture({
     tierTitle: "Higher",
   }),
+  topNav: topNavFixture,
 };
 const propsWithExamBoard = {
   curriculumData: lessonOverviewFixture({
     examBoardTitle: "AQA",
   }),
+  topNav: topNavFixture,
 };
 const propsWithTierAndExamBoard = {
   curriculumData: lessonOverviewFixture({
     tierTitle: "Higher",
     examBoardTitle: "AQA",
   }),
+  topNav: topNavFixture,
 };
 
 const downloadResourceButtonClicked = jest.fn();
@@ -125,7 +135,12 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   });
 
   it("renders Download All button if lesson has downloadable resources", async () => {
-    render(<LessonOverviewPage curriculumData={lessonOverviewFixture()} />);
+    render(
+      <LessonOverviewPage
+        curriculumData={lessonOverviewFixture()}
+        topNav={topNavFixture}
+      />,
+    );
 
     expect(screen.getAllByTestId("download-all-button")[0]).toHaveTextContent(
       "Download all",
@@ -135,6 +150,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   it("does not render Download All button if lesson has no downloadable resources", async () => {
     render(
       <LessonOverviewPage
+        topNav={topNavFixture}
         curriculumData={lessonOverviewFixture({
           expired: false,
           downloads: [],
@@ -151,6 +167,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         curriculumData={lessonOverviewFixture({
           expired: true,
         })}
+        topNav={topNavFixture}
       />,
     );
 
@@ -160,6 +177,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   it("share button is not disabled with legacy content (lessonCohort is null)", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
+        topNav={topNavFixture}
         curriculumData={lessonOverviewFixture({
           expired: false,
           lessonCohort: null,
@@ -181,6 +199,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   it("share button is not disabled with non legacy content (lesson cohort is the same as legacy cohort)", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
+        topNav={topNavFixture}
         curriculumData={lessonOverviewFixture({
           expired: false,
           lessonCohort: LEGACY_COHORT,
@@ -202,6 +221,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   it("share button is  disabled with non legacy content", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
+        topNav={topNavFixture}
         curriculumData={lessonOverviewFixture({
           expired: true,
           lessonCohort: NEW_COHORT,
@@ -244,6 +264,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   });
 
   describe("SEO", () => {
+    const currentYear = new Date().getFullYear();
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<LessonOverviewPage {...props} />);
 
@@ -279,8 +300,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
             "View lesson content and choose resources to download or share",
           ogDescription:
             "View lesson content and choose resources to download or share",
-          ogImage:
-            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2025",
+          ogImage: `NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?${currentYear}`,
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           ogTitle:
             "Adverbial complex sentences Higher KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
@@ -335,8 +355,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-          ogImage:
-            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2025",
+          ogImage: `NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?${currentYear}`,
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           robots: "index,follow",
