@@ -1,0 +1,10 @@
+query topNav {
+  programmes: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
+    distinct_on: programme_slug
+  ) {
+    programme_fields
+    programme_slug
+    features
+    actions
+  }
+}

@@ -10,6 +10,8 @@ import { LandingPage } from "../../../common-lib/cms-types/landingPage";
 import { mockImageAsset, portableTextFromString } from "../../__helpers__/cms";
 import { getABTestedLandingPage } from "../../../node-lib/cms/ab-testing";
 
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
 jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
@@ -72,7 +74,12 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
 
   describe("LandingPage", () => {
     it("Renders title from props ", async () => {
-      render(<LandingPageTemplate pageData={testLandingPage} />);
+      render(
+        <LandingPageTemplate
+          pageData={testLandingPage}
+          topNav={topNavFixture}
+        />,
+      );
       await waitFor(() => {
         expect(screen.getByText("some-landing-page")).toBeInTheDocument();
       });

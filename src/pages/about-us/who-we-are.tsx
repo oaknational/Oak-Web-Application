@@ -40,6 +40,8 @@ import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -47,6 +49,7 @@ export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
   newAboutWhoWeArePage?: NewAboutWhoWeArePage;
   enableV2?: boolean;
+  topNav: TopNavProps;
 };
 
 type TimeLineProps = TextBlock & OakGridAreaProps;
@@ -91,11 +94,16 @@ const TimeLineCard: FC<TimeLineProps> = ({
   );
 };
 
-const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
+const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
   const videoCaptions =
     pageData.intro.mediaType === "video" ? pageData.intro.video.captions : null;
+
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+    <Layout
+      seoProps={getSeoProps(pageData.seo)}
+      $background={"white"}
+      topNavProps={topNav}
+    >
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
         $mt={["spacing-56", "spacing-80"]}
@@ -210,6 +218,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
 
 export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
   pageData,
+  topNav,
   newAboutWhoWeArePage,
 }) => {
   if (!newAboutWhoWeArePage) {
@@ -217,7 +226,11 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
   }
 
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+    <Layout
+      seoProps={getSeoProps(pageData.seo)}
+      $background={"white"}
+      topNavProps={topNav}
+    >
       <AboutUsLayout>
         <AboutSharedHeader
           title={"About Oak"}
@@ -285,11 +298,14 @@ export const getServerSideProps = (async (context) => {
       })) === true;
   }
 
+  const topNav = await curriculumApi2023.topNav();
+
   return {
     props: {
       enableV2,
       pageData: aboutWhoWeArePage,
       newAboutWhoWeArePage,
+      topNav,
     },
   };
 }) satisfies GetServerSideProps<AboutPageProps>;

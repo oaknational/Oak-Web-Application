@@ -12,6 +12,9 @@ jest.mock("posthog-js", () => ({
     ...jest.requireActual("posthog-js"),
     capture: (...args: []) => posthogCapture(...args),
     init: (...args: []) => posthogInit(...args),
+    useFeatureFlagEnabled: () => false,
+    isFeatureEnabled: jest.fn(),
+    onFeatureFlags: jest.fn(),
   },
 }));
 
