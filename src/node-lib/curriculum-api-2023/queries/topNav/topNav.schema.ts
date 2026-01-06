@@ -24,9 +24,11 @@ export type TopNavResponse = z.infer<typeof topNavResponseSchema>;
 export type TeachersSubNavData = {
   primary: TeachersBrowse;
   secondary: TeachersBrowse;
-  guidance: Array<{ slug: string; title: string }>;
-  aboutUs: Array<{ slug: string; title: string }>;
+  guidance: SubNavLinks;
+  aboutUs: SubNavLinks;
 };
+
+export type SubNavLinks = Array<{ slug: string; title: string }>;
 
 export type TeachersBrowse = {
   phaseTitle: string;
