@@ -7,6 +7,7 @@
 
 const util = require("util");
 const path = require("path");
+const chalk = require("chalk");
 const execFile = util.promisify(require("child_process").execFile);
 
 const OAK_CONFIG_PATH = path.join(__dirname, "../../../oak-config/");
@@ -16,9 +17,14 @@ async function checkGcloudInstalled() {
   try {
     await execFile("gcloud", ["--version"]);
   } catch (error) {
-    console.error("\x1b[31m%s\x1b[0m", "Error: gcloud is not installed on the system.");
     console.error(
-      "Please install it to continue: https://docs.cloud.google.com/sdk/docs/install-sdk"
+      chalk.red.bold("🛑 gcloud --version errored. Do you need to install gcloud? Probably! 😱")
+    );
+    console.error(chalk.dim(error));
+    console.error(
+      chalk.cyan(
+        "👉 Install gcloud cli here: https://docs.cloud.google.com/sdk/docs/install-sdk ☁️"
+      )
     );
     process.exit(1);
   }
@@ -32,6 +38,7 @@ async function run() {
     `${GCLOUD_BUCKET_PATH}*`,
     `${OAK_CONFIG_PATH}`,
   ]);
+  console.log(chalk.green.bold("✅ Config pulled successfully!"));
 }
 
 run();
