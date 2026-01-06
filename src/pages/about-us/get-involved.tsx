@@ -1,13 +1,12 @@
 import { GetServerSideProps, NextPage } from "next";
-import { OakBox } from "@oaknational/oak-components";
 
 import Layout from "@/components/AppComponents/Layout";
+import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   AboutSharedHeader,
   BackgroundHeaderLoop,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
-import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 import { GetInvolvedCollaborateWithUs } from "@/components/GenericPagesComponents/GetInvolvedCollaborateWithUs";
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
@@ -15,6 +14,8 @@ import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import CMSClient from "@/node-lib/cms";
 import { PortableTextJSON } from "@/common-lib/cms-types";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -31,12 +32,20 @@ export type GetInvolvedPage = {
       textRaw: PortableTextJSON;
     };
   };
+  topNav: TopNavProps;
 };
 
-export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
+export const GetInvolved: NextPage<GetInvolvedPage> = ({
+  pageData,
+  topNav,
+}) => {
   return (
-    <Layout seoProps={getSeoProps(null)} $background={"white"}>
-      <OakBox $overflow={"hidden"} $zIndex={"neutral"}>
+    <Layout
+      seoProps={getSeoProps(null)}
+      $background={"white"}
+      topNavProps={topNav}
+    >
+      <AboutUsLayout>
         <AboutSharedHeader
           title={"Get involved"}
           content={pageData.header.textRaw}
@@ -51,7 +60,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
           cards={[
             {
               headingTag: "h3",
-              headingTitle: "Help us improve",
+              headingTitle: "Join our teacher research panel",
               content: pageData.collaborate.researchPanelTextRaw,
               buttons: [
                 {
@@ -101,32 +110,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
             },
           ]}
         />
-        <WhoAreWeExplore
-          title={"Explore more about Oak"}
-          items={[
-            {
-              iconName: "logo",
-              title: "About Oak",
-              href: "#",
-            },
-            {
-              iconName: "homepage-teacher-map",
-              title: "About Oak’s curriculum",
-              href: "#",
-            },
-            {
-              iconName: "data",
-              title: "Oaks impact",
-              href: "#",
-            },
-            {
-              iconName: "snack-break",
-              title: "Meet the team",
-              href: "#",
-            },
-          ]}
-        />
-      </OakBox>
+      </AboutUsLayout>
     </Layout>
   );
 };
@@ -151,6 +135,7 @@ export const getServerSideProps = (async (context) => {
         posthogUserId,
       })) === true;
   }
+  const topNav = await curriculumApi2023.topNav();
 
   if (!enableV2 || !aboutWhoWeArePage) {
     return {
@@ -161,6 +146,7 @@ export const getServerSideProps = (async (context) => {
   return {
     props: {
       pageData: aboutWhoWeArePage,
+      topNav,
     },
   };
 }) satisfies GetServerSideProps<GetInvolvedPage>;

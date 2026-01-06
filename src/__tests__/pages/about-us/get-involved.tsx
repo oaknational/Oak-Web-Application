@@ -11,6 +11,7 @@ import GetInvolved, {
 } from "@/pages/about-us/get-involved";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 jest.mock("@/node-lib/posthog/getFeatureFlag");
 jest.mock("../../../node-lib/cms");
@@ -51,7 +52,10 @@ describe("pages/about/who-we-are.tsx", () => {
 
   it("renders", () => {
     const { container } = renderWithProviders()(
-      <GetInvolved pageData={testAboutWhoWeArePageData} />,
+      <GetInvolved
+        pageData={testAboutWhoWeArePageData}
+        topNav={topNavFixture}
+      />,
     );
 
     expect(container).toMatchSnapshot();

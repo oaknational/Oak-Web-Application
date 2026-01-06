@@ -6,6 +6,8 @@ import BlogSinglePage, {
 } from "../../../pages/blog/[blogSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
 jest.mock("next/router", () => ({
   __esModule: true,
   ...jest.requireActual("next/router"),
@@ -104,7 +106,13 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
   describe("BlogSinglePage", () => {
     it("Renders title from props ", async () => {
-      render(<BlogSinglePage blog={testSerializedBlog} categories={[]} />);
+      render(
+        <BlogSinglePage
+          blog={testSerializedBlog}
+          categories={[]}
+          topNav={topNavFixture}
+        />,
+      );
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(

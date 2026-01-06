@@ -8,11 +8,13 @@ import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOption
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
 const props: CurriculumHomePageProps = {
   curriculumPhaseOptions: curriculumPhaseOptions,
+  topNav: topNavFixture,
 };
 
 jest.mock(

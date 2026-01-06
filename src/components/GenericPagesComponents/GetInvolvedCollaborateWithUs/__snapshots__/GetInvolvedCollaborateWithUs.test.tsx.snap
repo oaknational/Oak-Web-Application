@@ -3,7 +3,7 @@
 exports[`GetInvolvedCollaborateWithUs renders 1`] = `
 <div>
   <div
-    class="sc-fqkvVR irLXUY"
+    class="sc-fqkvVR gzkoag"
   >
     <div
       class="sc-fqkvVR bZZBuO"
@@ -12,7 +12,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
         class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
       >
         <div
-          class="sc-fqkvVR sc-jXbUNg fgBWrW gOkIKx"
+          class="sc-fqkvVR sc-jXbUNg fgBWrW bTkObi"
         >
           <div
             class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz qfLVW"
@@ -30,7 +30,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
               class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
             >
               <div
-                class="sc-fqkvVR jqqmXN sc-96e78e76-0 eaUcUn"
+                class="sc-fqkvVR jqqmXN sc-a2cdd834-0 gAMzeR"
               >
                 <img
                   alt=""
@@ -48,10 +48,10 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
             class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz krIOWV"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+              class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
             >
               <div
-                class="sc-fqkvVR djWAJS"
+                class="sc-fqkvVR fTrETV"
               >
                 <div
                   class="sc-fqkvVR sc-kAyceB bPcfty kYkjWQ"
@@ -116,7 +116,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR djWAJS"
+                class="sc-fqkvVR fTrETV"
               >
                 <div
                   class="sc-fqkvVR sc-kAyceB bPcfty kYkjWQ"
