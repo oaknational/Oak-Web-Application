@@ -5,10 +5,10 @@
  * the directory /oak-config/ (over-writing previous contents).
  */
 
-import { promisify } from "util";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
-import { execFile as execFileCb } from "child_process";
+import { promisify } from "node:util";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { execFile as execFileCb } from "node:child_process";
 import chalk from "chalk";
 
 const execFile = promisify(execFileCb);
@@ -34,15 +34,11 @@ async function checkGcloudInstalled() {
   }
 }
 
-async function run() {
-  await checkGcloudInstalled();
-  await execFile("gcloud", [
-    "storage",
-    "cp",
-    `${GCLOUD_BUCKET_PATH}*`,
-    `${OAK_CONFIG_PATH}`,
-  ]);
-  console.log(chalk.green.bold("✅ Config pulled successfully!"));
-}
-
-run();
+await checkGcloudInstalled();
+await execFile("gcloud", [
+  "storage",
+  "cp",
+  `${GCLOUD_BUCKET_PATH}*`,
+  `${OAK_CONFIG_PATH}`,
+]);
+console.log(chalk.green.bold("✅ Config pulled successfully!"));
