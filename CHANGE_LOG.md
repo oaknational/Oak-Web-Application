@@ -1,3 +1,10 @@
+## [1.942.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.942.0...v1.942.1) (2026-01-06)
+
+
+### Bug Fixes
+
+* add theme provider to page ([f7804b6](https://github.com/oaknational/Oak-Web-Application/commit/f7804b6c9d2e1d2d209c9deeda678ed7f35d37c6))
+
 # [1.942.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.941.2...v1.942.0) (2026-01-06)
 
 
