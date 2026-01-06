@@ -26,7 +26,6 @@ import {
   TeachersBrowse,
 } from "../../../../node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
-
 type HamburgerMenuContextType = {
   hideMainMenu: boolean;
   setHideMainMenu: Dispatch<SetStateAction<boolean>>;
@@ -146,7 +145,7 @@ function NavSection({
       {data.type === "links" && (
         <>
           {data.links.map((link) => (
-            <OakLI key={title + link.slug}>
+            <OakLI $listStyle={"none"} key={title + link.slug}>
               <OakSecondaryLink href={link.slug}>{link.title}</OakSecondaryLink>
             </OakLI>
           ))}
@@ -155,7 +154,7 @@ function NavSection({
       {data.type === "subjects" && (
         <OakUL>
           {data.subjects.map((s) => (
-            <OakLI key={s.subjectSlug + data.keystage}>
+            <OakLI $listStyle={"none"} key={s.subjectSlug + data.keystage}>
               <OakSubjectIconButton
                 phase={data.phase}
                 variant="horizontal"
@@ -217,7 +216,7 @@ function MainContent({
 
   return (
     <OakBox $width={"100%"}>
-      <OakLI>
+      <OakLI $listStyle={"none"}>
         <MainMenuContentWrapper>
           <OakPrimaryInvertedButton
             onClick={() => {
