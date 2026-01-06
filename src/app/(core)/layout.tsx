@@ -16,7 +16,7 @@ export default async function CoreLayout({
   try {
     const topNavProps = await curriculumApi2023.topNav();
 
-    // TODO: [integrated-journey]  Footer
+    // TD: [integrated-journey]  Footer
     return (
       <>
         <TopNav {...topNavProps} />
