@@ -17,7 +17,7 @@ export default function ProfileCard({
   role,
   href,
   image,
-}: ProfileCardProps) {
+}: Readonly<ProfileCardProps>) {
   return (
     <OakFlex
       $width={"spacing-240"}
