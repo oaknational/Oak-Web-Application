@@ -49,7 +49,7 @@ type ProviderPropsByName = {
   overlay: Record<string, never>;
   toast: Record<string, never>;
   menu: Record<string, never>;
-  oakToast: Record<string, never>;
+  oakNotifications: Record<string, never>;
   saveCount: Record<string, never>;
 };
 
@@ -75,7 +75,7 @@ const providersByName: {
   overlay: [OverlayProvider],
   toast: [ToastProvider],
   menu: [MenuProvider],
-  oakToast: [OakNotificationsProvider],
+  oakNotifications: [OakNotificationsProvider],
   saveCount: [SaveCountProvider],
 } as const;
 

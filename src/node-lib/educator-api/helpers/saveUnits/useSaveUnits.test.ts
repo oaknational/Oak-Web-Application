@@ -9,7 +9,7 @@ import { renderHookWithProviders } from "@/__tests__/__helpers__/renderWithProvi
 
 const mockSetOakToastProps = jest.fn();
 
-jest.mock("@/context/OakToast/useOakNotificationsContext", () => ({
+jest.mock("@/context/OakNotifications/useOakNotificationsContext", () => ({
   useOakNotificationsContext: jest.fn(() => ({
     setCurrentToastProps: (props: unknown) => mockSetOakToastProps(props),
   })),
