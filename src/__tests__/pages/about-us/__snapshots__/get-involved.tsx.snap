@@ -1703,7 +1703,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-6e79b090-0 fgBWrW djyvKT iAkSYx gbtYED"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-2433216a-0 fgBWrW djyvKT iAkSYx kqQOXT"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1718,17 +1718,17 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       </span>
                     </h1>
                     <p
-                      class="sc-dLMFU sc-ff4f593d-0 hdyvdE imPMXG"
+                      class="sc-dLMFU jgKgJl"
                     >
                       We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.
                     </p>
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-6e79b090-1 fgBWrW joHkzz dGlNMa lhaLhM"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-2433216a-1 fgBWrW joHkzz dGlNMa fwrmAo"
                 >
                   <div
-                    class="sc-fqkvVR erqloa sc-6e79b090-2 cJitbW"
+                    class="sc-fqkvVR erqloa sc-2433216a-2 laRrmG"
                     data-testid="about-shared-loop"
                   >
                     <img

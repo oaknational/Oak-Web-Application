@@ -136,7 +136,24 @@ export function AboutSharedHeader({
                   {content}
                 </OakP>
               ) : (
-                <PortableTextWithDefaults value={content} />
+                <PortableTextWithDefaults
+                  value={content}
+                  withoutDefaultComponents={true}
+                  components={{
+                    block: {
+                      normal: (props) => {
+                        return (
+                          <OakP
+                            $font={["heading-light-3"]}
+                            $color={"text-primary"}
+                          >
+                            {props.children}
+                          </OakP>
+                        );
+                      },
+                    },
+                  }}
+                />
               )}
             </OakFlex>
           </CustomHeaderTextOakGridArea>
