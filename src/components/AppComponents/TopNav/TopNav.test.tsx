@@ -72,7 +72,7 @@ describe("TopNav", () => {
     expect(pupilsSubnav).toBeInTheDocument();
   });
   it("renders a hidden skip to content button until focused", () => {
-    renderWithTheme(<TopNav />);
+    renderWithTheme(<TopNav {...mockProps} />);
     const skipButtonLink = screen.getByText("Skip to content").closest("a");
 
     if (!skipButtonLink) {
