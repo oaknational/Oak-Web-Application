@@ -1,5 +1,28 @@
-import ErrorPage from "./_error";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 
-export default function Custom404() {
-  return <ErrorPage statusCode={404} />;
+import ErrorPage, { ErrorProps } from "./_error";
+
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import getPageProps from "@/node-lib/getPageProps";
+
+export default function Custom404({ topNav }: ErrorProps) {
+  return <ErrorPage statusCode={404} topNav={topNav} />;
 }
+
+export const getStaticProps: GetStaticProps<ErrorProps> = async (context) => {
+  return getPageProps({
+    page: "404",
+    context,
+    getProps: async () => {
+      const topNav = await curriculumApi2023.topNav();
+
+      const results: GetStaticPropsResult<ErrorProps> = {
+        props: {
+          topNav,
+        },
+      };
+
+      return results;
+    },
+  });
+};
