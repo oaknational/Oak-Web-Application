@@ -7,7 +7,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   >
     <div
       aria-live="polite"
-      class="sc-fqkvVR sc-kAyceB sc-ccc5406d-0 hkKUlc iPEHGb giA-dEW"
+      class="sc-fqkvVR sc-kAyceB sc-cd6afb52-0 hkKUlc iPEHGb iSunLx"
     />
     <fake-head>
       <title>
@@ -1703,7 +1703,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-8e0456a6-0 fgBWrW djyvKT iAkSYx cJiBvQ"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-6e79b090-0 fgBWrW djyvKT iAkSYx gbtYED"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1718,17 +1718,17 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       </span>
                     </h1>
                     <p
-                      class="sc-dLMFU hxKUrX"
+                      class="sc-dLMFU sc-ff4f593d-0 hdyvdE imPMXG"
                     >
                       We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.
                     </p>
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-8e0456a6-1 fgBWrW joHkzz dGlNMa hxrpsr"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-6e79b090-1 fgBWrW joHkzz dGlNMa lhaLhM"
                 >
                   <div
-                    class="sc-fqkvVR erqloa sc-8e0456a6-2 gVUkBJ"
+                    class="sc-fqkvVR erqloa sc-6e79b090-2 cJitbW"
                     data-testid="about-shared-loop"
                   >
                     <img
@@ -1773,7 +1773,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
                     >
                       <div
-                        class="sc-fqkvVR jqqmXN sc-e5da2752-0 bmmEFh"
+                        class="sc-fqkvVR jqqmXN sc-a2cdd834-0 gAMzeR"
                       >
                         <img
                           alt=""
@@ -1808,9 +1808,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                               Join our teacher research panel
                             </h3>
                             <p
-                              class="sc-dLMFU jKnjIK"
+                              class="sc-dLMFU sc-ff4f593d-0 hdyvdE imPMXG"
                             >
-                              Shape the future of Oak by taking part in interviews or surveys, and receive retail vouchers as a thank you for your contributions.
+                              Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
                             </p>
                           </div>
                           <div
@@ -1897,9 +1897,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                               Give your feedback
                             </h3>
                             <p
-                              class="sc-dLMFU jKnjIK"
+                              class="sc-dLMFU sc-ff4f593d-0 hdyvdE imPMXG"
                             >
-                              Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
+                              Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school. 
                             </p>
                           </div>
                           <div
@@ -1977,14 +1977,9 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       class="sc-fqkvVR sc-kAyceB cThXxF iVYVEn"
                     >
                       <p
-                        class="sc-dLMFU kdIcGd"
+                        class="sc-dLMFU sc-ff4f593d-0 hdyvdE imPMXG"
                       >
-                        We're a fast-paced and innovative team, working to support and inspire teachers to deliver great teaching, so every pupil benefits.
-                      </p>
-                      <p
-                        class="sc-dLMFU kdIcGd"
-                      >
-                        All our roles are remote-first. If you want to be part of something unique that's making a difference to millions of children's lives, we'd love to hear from you.
+                        We're a fast-paced and innovative team, working to support and inspire teachers to deliver great teaching, so every pupil benefits. All our roles are remote-first. If you want to be part of something unique that's making a difference to millions of children's lives, we'd love to hear from you.
                       </p>
                     </div>
                   </div>
@@ -2102,17 +2097,17 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   >
                     <img
                       alt="'In Escape the City's top 1% of employers'"
-                      class="sc-a0a9d655-0 ixaXXm"
+                      class="sc-a395ada3-0 efrhno"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
                     />
                     <img
                       alt="Awarded Gold in Investors In People"
-                      class="sc-a0a9d655-0 ixaXXm"
+                      class="sc-a395ada3-0 efrhno"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
                     />
                     <img
                       alt="Certified as Disability Confident Committed"
-                      class="sc-a0a9d655-0 ixaXXm"
+                      class="sc-a395ada3-0 efrhno"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
                     />
                   </div>

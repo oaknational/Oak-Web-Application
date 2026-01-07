@@ -1,7 +1,6 @@
 import { screen } from "@testing-library/dom";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import curriculumApi from "@/node-lib/curriculum-api-2023";
 import { SpecialistLessonDownloadFixture } from "@/node-lib/curriculum-api-2023/fixtures/specialistLessonDownloads.fixture";
 import SpecialistLessonDownloadsPage, {
   getStaticProps,
@@ -11,6 +10,7 @@ import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -19,6 +19,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[
     render(
       <SpecialistLessonDownloadsPage
         curriculumData={SpecialistLessonDownloadFixture()}
+        topNav={topNavFixture}
       />,
     );
 
@@ -41,7 +42,12 @@ describe("when downloads are region restricted", () => {
     });
 
     it("allows downloads", () => {
-      render(<SpecialistLessonDownloadsPage curriculumData={curriculumData} />);
+      render(
+        <SpecialistLessonDownloadsPage
+          curriculumData={curriculumData}
+          topNav={topNavFixture}
+        />,
+      );
 
       expect(
         screen.queryByText(
@@ -52,8 +58,18 @@ describe("when downloads are region restricted", () => {
   });
 });
 
+const mockSpecialistDownloads = jest
+  .fn()
+  .mockResolvedValue(SpecialistLessonDownloadFixture());
+
+const mockTopNav = jest.fn().mockResolvedValue(topNavFixture);
+
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
-  specialistLessonDownloads: jest.fn(),
+  __esModule: true,
+  default: {
+    topNav: () => mockTopNav(),
+    specialistLessonDownloads: () => mockSpecialistDownloads(),
+  },
 }));
 
 describe("getStaticProps", () => {
@@ -61,12 +77,7 @@ describe("getStaticProps", () => {
     jest.clearAllMocks();
     jest.resetModules();
   });
-  it("should return  404 page when there are no downloads", async () => {
-    const result = await getStaticProps({
-      params: { programmeSlug: "fake", unitSlug: "news", lessonSlug: "blah" },
-    });
-    expect(result).toEqual({ notFound: true });
-  });
+
   it("Should call the api", async () => {
     await getStaticProps({
       params: {
@@ -76,19 +87,9 @@ describe("getStaticProps", () => {
       },
     });
 
-    expect(curriculumApi.specialistLessonDownloads).toHaveBeenCalledTimes(1);
-    expect(curriculumApi.specialistLessonDownloads).toHaveBeenCalledWith({
-      programmeSlug: "numeracy",
-      unitSlug: "numeracy 1",
-      lessonSlug: "first lesson",
-    });
+    expect(mockSpecialistDownloads).toHaveBeenCalledTimes(1);
   });
   it("should fetch the data and return the props", async () => {
-    const curriculumData = SpecialistLessonDownloadFixture();
-    (curriculumApi.specialistLessonDownloads as jest.Mock).mockResolvedValue(
-      curriculumData,
-    );
-
     const result = await getStaticProps({
       params: {
         programmeSlug: "numeracy",
@@ -99,8 +100,16 @@ describe("getStaticProps", () => {
 
     expect(result).toEqual({
       props: {
-        curriculumData,
+        curriculumData: SpecialistLessonDownloadFixture(),
+        topNav: topNavFixture,
       },
     });
+  });
+  it("should return  404 page when there are no downloads", async () => {
+    mockSpecialistDownloads.mockResolvedValue(null);
+    const result = await getStaticProps({
+      params: { programmeSlug: "fake", unitSlug: "news", lessonSlug: "blah" },
+    });
+    expect(result).toEqual({ notFound: true });
   });
 });

@@ -1,27 +1,51 @@
 "use client";
+import { useCallback, useState } from "react";
+
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
 
 import {
-  OakBox,
+  OakCloseButton,
   OakFlex,
   OakIcon,
   OakImage,
   OakLink,
+  OakBox,
 } from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useSelectedArea from "@/hooks/useSelectedArea";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
+import {
+  TeachersSubNavData,
+  PupilsSubNavData,
+} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
-const TopNav = () => {
+export type TopNavProps = {
+  teachers: TeachersSubNavData | null;
+  pupils: PupilsSubNavData | null;
+};
+
+const TopNav = (props: TopNavProps) => {
+  const { teachers, pupils } = props;
+
   const activeArea = useSelectedArea();
   const isMobile = useMediaQuery("mobile");
 
+  // TD: [integrated journey] potentially extract into a menu store
+  const [selectedMenu, setSelectedMenu] = useState<string>();
+
+  const isMenuSelected = useCallback(
+    (menuSlug: string) => {
+      return menuSlug === selectedMenu;
+    },
+    [selectedMenu],
+  );
+
   return (
-    <>
+    <header>
       <OakBox
         $position={"absolute"}
         $zIndex={"in-front"}
@@ -68,6 +92,7 @@ const TopNav = () => {
         $alignItems={"center"}
         $gap={"spacing-24"}
         $maxHeight={"spacing-80"}
+        as={"nav"}
       >
         <OakLink
           href={resolveOakHref({
@@ -87,10 +112,37 @@ const TopNav = () => {
             $pa={"spacing-0"}
           />
         </OakLink>
-        {activeArea === "TEACHERS" && <TeachersSubNav />}
-        {activeArea === "PUPILS" && <PupilsSubNav />}
+        {activeArea === "TEACHERS" && teachers && (
+          <TeachersSubNav
+            isMenuSelected={isMenuSelected}
+            onClick={(menu) => {
+              setSelectedMenu(menu);
+              console.log("selected menu ", teachers[menu]);
+            }}
+          />
+        )}
+        {activeArea === "PUPILS" && pupils && (
+          <PupilsSubNav
+            isMenuSelected={isMenuSelected}
+            onClick={(menu) => {
+              setSelectedMenu(menu);
+              console.log("selected menu ", pupils[menu]);
+            }}
+          />
+        )}
       </OakFlex>
-    </>
+      {/* TD: [integrated-journey] Replace with dropdown and hamburger menus */}
+      {selectedMenu && (
+        <OakFlex
+          $width={"100%"}
+          $height="spacing-240"
+          $flexDirection={"column"}
+        >
+          <OakCloseButton onClose={() => setSelectedMenu(undefined)} />
+          {selectedMenu}
+        </OakFlex>
+      )}
+    </header>
   );
 };
 

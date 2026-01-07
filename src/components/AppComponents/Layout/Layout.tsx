@@ -10,7 +10,7 @@ import {
 } from "@oaknational/oak-components";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
-import TopNav from "../TopNav/TopNav";
+import TopNav, { TopNavProps } from "../TopNav/TopNav";
 
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
@@ -57,6 +57,7 @@ export type LayoutProps = {
   headerCta?: CTA | null;
   banner?: React.ReactNode;
   skipLinkHref?: string;
+  topNavProps: TopNavProps;
 };
 
 const Layout: FC<LayoutProps> = (props) => {
@@ -68,10 +69,11 @@ const Layout: FC<LayoutProps> = (props) => {
     headerVariant = "app",
     footerVariant = "default",
     banner,
+    topNavProps,
   } = props;
   const newTopNavEnabled = useFeatureFlagEnabled("teachers-new-top-nav");
 
-  const Header = newTopNavEnabled ? TopNav : headers[headerVariant];
+  const Header = headers[headerVariant];
   const Footer = footers[footerVariant];
   const { isPreview } = useRouter();
 
@@ -97,7 +99,11 @@ const Layout: FC<LayoutProps> = (props) => {
           </SkipLink>
         </OakBox>
         {banner}
-        <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
+        {newTopNavEnabled ? (
+          <TopNav {...topNavProps} />
+        ) : (
+          <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
+        )}
         <OakFlex
           $flexDirection="column"
           $flexGrow={1}

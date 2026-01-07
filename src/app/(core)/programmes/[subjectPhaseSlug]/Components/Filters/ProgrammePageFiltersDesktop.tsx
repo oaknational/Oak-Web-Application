@@ -7,7 +7,7 @@ import React from "react";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
+import { shouldDisplayFilter } from "@/utils/curriculum/filteringApp";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import {

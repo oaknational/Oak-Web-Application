@@ -5,6 +5,7 @@ import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: () => true,
@@ -28,14 +29,14 @@ describe("pages/teachers/my-library.tsx", () => {
     setUseUserReturn(mockLoggedIn);
   });
   it("should render a header", async () => {
-    render(<MyLibraryPage />);
+    render(<MyLibraryPage topNav={topNavFixture} />);
     const header = await screen.findByRole("heading", {
       name: "My library",
     });
     expect(header).toBeInTheDocument();
   });
   it("should render a no saved content heading", async () => {
-    render(<MyLibraryPage />);
+    render(<MyLibraryPage topNav={topNavFixture} />);
     const noSavedContent = await screen.findByRole("heading", {
       name: "No units yet",
     });
@@ -43,7 +44,7 @@ describe("pages/teachers/my-library.tsx", () => {
   });
   it("should generate the correct SEO", () => {
     const currentYear = new Date().getFullYear();
-    const { seo } = renderWithSeo()(<MyLibraryPage />);
+    const { seo } = renderWithSeo()(<MyLibraryPage topNav={topNavFixture} />);
     expect(seo).toEqual({
       title: "My library | NEXT_PUBLIC_SEO_APP_NAME",
       description: "Save units to your own personal library",
