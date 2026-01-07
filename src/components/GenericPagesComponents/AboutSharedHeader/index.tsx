@@ -12,6 +12,7 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { ReactNode } from "react";
+import { PortableTextReactComponents } from "@portabletext/react";
 
 import { InnerMaxWidth } from "../InnerMaxWidth";
 
@@ -94,6 +95,18 @@ export function AboutSharedHeaderImage({
   );
 }
 
+const portableTextComponents: Partial<PortableTextReactComponents> = {
+  block: {
+    normal: (props) => {
+      return (
+        <OakP $font={["heading-light-3"]} $color={"text-primary"}>
+          {props.children}
+        </OakP>
+      );
+    },
+  },
+};
+
 export type AboutSharedHeaderProps = {
   title: string;
   content: PortableTextJSON | string;
@@ -139,20 +152,7 @@ export function AboutSharedHeader({
                 <PortableTextWithDefaults
                   value={content}
                   withoutDefaultComponents={true}
-                  components={{
-                    block: {
-                      normal: (props) => {
-                        return (
-                          <OakP
-                            $font={["heading-light-3"]}
-                            $color={"text-primary"}
-                          >
-                            {props.children}
-                          </OakP>
-                        );
-                      },
-                    },
-                  }}
+                  components={portableTextComponents}
                 />
               )}
             </OakFlex>
