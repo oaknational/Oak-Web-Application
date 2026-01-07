@@ -28,6 +28,29 @@ describe("Google Classroom API", () => {
     jest.clearAllMocks();
   });
 
+  describe("getOakGCAuthHeaders", () => {
+    it("should handle when cookieStore is undefined", async () => {
+      // Arrange
+      const originalCookieStore = globalThis.cookieStore;
+      // @ts-expect-error - Testing undefined cookieStore
+      delete globalThis.cookieStore;
+      mockJsonResponse({ authenticated: false });
+
+      // Act
+      await GoogleClassroomApi.verifySession();
+
+      // Assert
+      const callArgs = mockFetch.mock.calls[0][1];
+      expect(callArgs.headers).toBeUndefined();
+
+      // Cleanup
+      Object.defineProperty(globalThis, "cookieStore", {
+        value: originalCookieStore,
+        writable: true,
+      });
+    });
+  });
+
   describe("getGoogleSignInUrl", () => {
     it("should return null if loginHint is null", async () => {
       // Act
@@ -179,6 +202,100 @@ describe("Google Classroom API", () => {
       // Assert
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(result).toEqual({ authenticated: false });
+    });
+
+    it("should return session and token from API response", async () => {
+      // Arrange
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === "oak-gclassroom-session")
+          return Promise.resolve({ value: "test-session" });
+        if (name === "oak-gclassroom-token")
+          return Promise.resolve({ value: "test-token" });
+        return Promise.resolve(null);
+      });
+      mockJsonResponse({
+        authenticated: true,
+        session: "new-session",
+        token: "new-token",
+      });
+
+      // Act
+      const result = await GoogleClassroomApi.verifySession();
+
+      // Assert
+      expect(result).toEqual({
+        authenticated: true,
+        session: "new-session",
+        token: "new-token",
+      });
+    });
+  });
+
+  describe("createAttachment", () => {
+    it("should call the create attachment API with correct parameters", async () => {
+      // Arrange
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === "oak-gclassroom-session")
+          return Promise.resolve({ value: "test-session" });
+        if (name === "oak-gclassroom-token")
+          return Promise.resolve({ value: "test-token" });
+        return Promise.resolve(null);
+      });
+      mockJsonResponse({});
+
+      const attachment = {
+        courseId: "course123",
+        itemId: "item456",
+        addOnToken: "token789",
+        title: "Test Lesson",
+        lessonSlug: "test-lesson",
+        programeSlug: "test-programme",
+        unitSlug: "test-unit",
+      };
+
+      // Act
+      await GoogleClassroomApi.createAttachment(attachment);
+
+      // Assert
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(
+        `/api/classroom/attachment/create`,
+        expect.objectContaining({
+          method: "POST",
+          credentials: "include",
+          body: JSON.stringify(attachment),
+        }),
+      );
+    });
+
+    it("should include auth headers when creating attachment", async () => {
+      // Arrange
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === "oak-gclassroom-session")
+          return Promise.resolve({ value: "test-session" });
+        if (name === "oak-gclassroom-token")
+          return Promise.resolve({ value: "test-token" });
+        return Promise.resolve(null);
+      });
+      mockJsonResponse({});
+
+      const attachment = {
+        courseId: "course123",
+        itemId: "item456",
+        addOnToken: "token789",
+        title: "Test Lesson",
+        lessonSlug: "test-lesson",
+        programeSlug: "test-programme",
+        unitSlug: "test-unit",
+      };
+
+      // Act
+      await GoogleClassroomApi.createAttachment(attachment);
+
+      // Assert
+      const callArgs = mockFetch.mock.calls[0][1];
+      expect(callArgs.headers.get("Authorization")).toBe("test-token");
+      expect(callArgs.headers.get("X-Oakgc-Session")).toBe("test-session");
     });
   });
 });
