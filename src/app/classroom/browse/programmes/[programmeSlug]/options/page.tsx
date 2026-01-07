@@ -5,9 +5,9 @@ import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages
 
 async function GoogleClassroomOptionsPage({
   params,
-}: {
+}: Readonly<{
   params: Promise<{ programmeSlug: string }>;
-}) {
+}>) {
   const { programmeSlug } = await params;
   const programmes = await curriculumApi2023.pupilProgrammeListingQuery({
     baseSlug: programmeSlug,

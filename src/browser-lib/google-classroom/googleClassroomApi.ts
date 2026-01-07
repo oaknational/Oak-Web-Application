@@ -1,10 +1,11 @@
 "use client";
 
 const getOakGCAuthHeaders = async (): Promise<Headers | undefined> => {
-  if (!window?.cookieStore) return undefined;
-  const session = (await window.cookieStore.get("oak-gclassroom-session"))
+  if (!globalThis?.cookieStore) return undefined;
+  const session = (await globalThis.cookieStore.get("oak-gclassroom-session"))
     ?.value;
-  const token = (await window.cookieStore.get("oak-gclassroom-token"))?.value;
+  const token = (await globalThis.cookieStore.get("oak-gclassroom-token"))
+    ?.value;
   let headers: Headers | undefined;
   if (session && token) {
     headers = new Headers();

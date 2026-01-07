@@ -10,9 +10,9 @@ import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/G
 
 async function GoogleClassroomUnitsListingPage({
   params,
-}: {
+}: Readonly<{
   params: Promise<{ programmeSlug: string }>;
-}) {
+}>) {
   const { programmeSlug } = await params;
   const baseSlug = extractBaseSlug(programmeSlug);
   const curriculumData = await curriculumApi2023.pupilUnitListingQuery({
@@ -20,7 +20,6 @@ async function GoogleClassroomUnitsListingPage({
   });
 
   if (!curriculumData) {
-    // todo: redirect to 404
     return <>404</>;
   }
 
@@ -39,7 +38,7 @@ async function GoogleClassroomUnitsListingPage({
   const optionalityUnits: UnitListingBrowseData[number][][] = Object.values(
     groupBy(allUnits, (unit) =>
       unit.programmeFields.optionality
-        ? unit.unitSlug.replace(/-\d+?$/, "")
+        ? unit.unitSlug.replace(/-\d+$/, "")
         : unit.unitSlug,
     ),
   );
@@ -48,7 +47,7 @@ async function GoogleClassroomUnitsListingPage({
     (unit) => unit.programmeSlug === programmeSlug,
   );
 
-  if (!selectedProgramme || !allUnits) return; // todo: 404
+  if (!selectedProgramme || !allUnits) return;
 
   const { programmeFields } = selectedProgramme;
 
