@@ -22,12 +22,16 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
   formattedData: CurriculumUnitsFormattedData;
   filters: CurriculumFilters;
-  onChangeFilters: (newFilter: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilter: CurriculumFilters,
+    componentType?: ComponentTypeValueType,
+  ) => void;
   slugs: CurriculumSelectionSlugs;
   basePath: string;
   selectedUnitSlug?: string;

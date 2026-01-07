@@ -2,6 +2,8 @@ import { FC } from "react";
 import styled from "styled-components";
 import { OakP, OakHeading, OakMaxWidth } from "@oaknational/oak-components";
 
+import { TopNavProps } from "../TopNav/TopNav";
+
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import {
   HeaderVariant,
@@ -28,14 +30,17 @@ type ErrorViewProps = {
   statusCode?: number;
   headerVariant?: HeaderVariant;
   footerVariant?: FooterVariant;
+  topNav: TopNavProps;
 };
 const ErrorView: FC<ErrorViewProps> = (props) => {
-  const { onBackClick, statusCode, headerVariant, footerVariant } = props;
+  const { onBackClick, statusCode, headerVariant, footerVariant, topNav } =
+    props;
   return (
     <Layout
       seoProps={DEFAULT_SEO_PROPS}
       headerVariant={headerVariant}
       footerVariant={footerVariant}
+      topNavProps={topNav}
     >
       <OakMaxWidth $alignItems={"flex-end"}>
         <Flex

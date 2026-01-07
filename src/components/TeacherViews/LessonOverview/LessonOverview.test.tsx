@@ -1,6 +1,7 @@
 import { act } from "@testing-library/react";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 import mockRouter from "next-router-mock";
+import { usePathname } from "next/navigation";
 
 import {
   getDedupedPupilLessonOutcome,
@@ -15,6 +16,10 @@ import {
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 jest.mock("posthog-js/react", () => ({
   ...jest.requireActual("posthog-js/react"),
