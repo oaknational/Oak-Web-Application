@@ -1,3 +1,11 @@
+## [1.942.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.942.1...v1.942.2) (2026-01-06)
+
+
+### Bug Fixes
+
+* chalk 5 is ESM only ([39692b6](https://github.com/oaknational/Oak-Web-Application/commit/39692b6e85f202ac3201692f5e27b38114bd0b32))
+* oops ([4368bbe](https://github.com/oaknational/Oak-Web-Application/commit/4368bbed7411421942a44fe401b0f2f84cd9d15f))
+
 ## [1.942.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.942.0...v1.942.1) (2026-01-06)
 
 
