@@ -1,6 +1,8 @@
 import {
   oakDefaultTheme,
   OakFlex,
+  OakInlineBanner,
+  OakInlineBannerProps,
   OakThemeProvider,
   OakToast,
   OakToastProps,
@@ -13,6 +15,8 @@ import styled from "styled-components";
 type OakToastContext = {
   currentToastProps: OakToastProps | null;
   setCurrentToastProps: (props: OakToastProps | null) => void;
+  currentBannerProps: OakInlineBannerProps | null;
+  setCurrentBannerProps: (props: OakInlineBannerProps | null) => void;
 };
 
 export const oakToastContext = createContext<OakToastContext | null>(null);
@@ -26,9 +30,13 @@ export const OakToastProvider: FC<{
 }> = ({ children }) => {
   const [currentToastProps, setCurrentToastProps] =
     useState<OakToastProps | null>(null);
+  const [currentBannerProps, setCurrentBannerProps] =
+    useState<OakInlineBannerProps | null>(null);
+
   const [offsetTop, setOffsetTop] = useState<number>(82);
   const [id, setId] = useState(0);
   const { asPath } = useRouter();
+
   const newTopNavEnabled = useFeatureFlagEnabled("teachers-new-top-nav");
 
   useEffect(() => {
@@ -75,18 +83,34 @@ export const OakToastProvider: FC<{
 
   return (
     <oakToastContext.Provider
-      value={{ currentToastProps, setCurrentToastProps: setToastPropsAndId }}
+      value={{
+        currentToastProps,
+        setCurrentToastProps: setToastPropsAndId,
+        currentBannerProps,
+        setCurrentBannerProps,
+      }}
     >
       <OakThemeProvider theme={oakDefaultTheme}>
         <StyledOakToastContainer
           $position="fixed"
           $zIndex="in-front"
           offsetTop={offsetTop}
-          $right={["spacing-0", "spacing-92"]}
+          $right={["spacing-0", "spacing-24"]}
           $width={["100%", "max-content"]}
-          $justifyContent={["center", "flex-end"]}
           aria-live="polite"
+          $flexDirection={"column"}
+          $gap={"spacing-12"}
+          $alignItems={["center", "flex-end"]}
+          $ph={["spacing-12", "spacing-0"]}
         >
+          {currentBannerProps && (
+            <OakInlineBanner
+              {...currentBannerProps}
+              $maxWidth={"spacing-480"}
+              onDismiss={() => setCurrentBannerProps(null)}
+              canDismiss
+            />
+          )}
           {currentToastProps && (
             <OakToast
               {...currentToastProps}

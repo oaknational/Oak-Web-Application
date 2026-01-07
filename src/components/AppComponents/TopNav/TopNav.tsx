@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
@@ -11,7 +11,6 @@ import {
   OakFlex,
   OakIcon,
   OakImage,
-  OakInlineBanner,
   OakLink,
 } from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
@@ -22,6 +21,7 @@ import {
   TeachersSubNavData,
   PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
 
 export type TopNavProps = {
   teachers: TeachersSubNavData | null;
@@ -43,6 +43,24 @@ const TopNav = (props: TopNavProps) => {
     },
     [selectedMenu],
   );
+
+  const { setCurrentBannerProps } = useOakToastContext();
+
+  useEffect(() => {
+    if (
+      (activeArea === "PUPILS" && !pupils) ||
+      (activeArea === "TEACHERS" && !teachers)
+    ) {
+      setCurrentBannerProps({
+        message:
+          "We’re experiencing a temporary technical issue. Thank you for your patience while we look into it.",
+        type: "warning",
+        isOpen: true,
+      });
+    } else {
+      setCurrentBannerProps(null);
+    }
+  }, [teachers, pupils, activeArea, setCurrentBannerProps]);
 
   return (
     <OakBox as="header" $position="relative">
@@ -134,15 +152,23 @@ const TopNav = (props: TopNavProps) => {
           {selectedMenu}
         </OakFlex>
       )}
-      <OakInlineBanner
+      {/* <OakBox
+        id="topnav-warning-banner"
         $maxWidth="spacing-640"
         $position={"absolute"}
-        $right={"spacing-0"}
-        $top={"spacing-160"}
-        type="warning"
-        isOpen={!pupils && !teachers}
-        message="We’re experiencing a temporary technical issue. Thank you for your patience while we look into it."
-      />
+        $right={"spacing-24"}
+        $top={"spacing-180"}
+        $zIndex={"banner"}
+      >
+        <OakInlineBanner
+          type="warning"
+          isOpen={
+            (activeArea === "PUPILS" && !pupils) ||
+            (activeArea === "TEACHERS" && !teachers)
+          }
+          message="We’re experiencing a temporary technical issue. Thank you for your patience while we look into it."
+        />
+      </OakBox> */}
     </OakBox>
   );
 };
