@@ -26,13 +26,20 @@ import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebin
 import { getAndMergeWebinarsAndBlogs } from "@/utils/getAndMergeWebinarsAndBlogs";
 import { postToPostListItem } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type PlanALessonProps = {
   pageData: PlanALessonPage;
   posts: SerializedPost[];
+  topNav: TopNavProps;
 };
 
-const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
+const PlanALesson: NextPage<PlanALessonProps> = ({
+  pageData,
+  posts,
+  topNav,
+}) => {
   const navItems = getNavItems({ ...pageData });
 
   const blogs = posts.map(postToPostListItem);
@@ -48,6 +55,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
         ...getSeoProps(pageData.seo),
       }}
       $background={"white"}
+      topNavProps={topNav}
     >
       <OakHeaderHero
         heroImageAlt={pageData.hero.image?.altText ?? ""}
@@ -223,10 +231,14 @@ export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
         undefined,
         "lesson-planning",
       );
+
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<PlanALessonProps> = {
         props: {
           pageData: planALessonPage,
           posts,
+          topNav,
         },
       };
 

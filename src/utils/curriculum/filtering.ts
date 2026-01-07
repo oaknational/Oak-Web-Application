@@ -1,7 +1,7 @@
-"use client";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useCallback, useLayoutEffect, useState } from "react";
 import { isEqual } from "lodash";
+import { useRouter } from "next/router";
 
 import { findFirstMatchingFeatures } from "./features";
 import {
@@ -143,7 +143,7 @@ export function useFilters(
   defaultFilter: CurriculumFilters,
 ): [CurriculumFilters, (newFilters: CurriculumFilters) => void] {
   const searchParams = useSearchParams();
-
+  const router = useRouter();
   const [filters, setFilters] = useState<CurriculumFilters>(defaultFilter);
   useLayoutEffect(() => {
     setFilters(mergeInFilterParams(defaultFilter, searchParams));
@@ -158,11 +158,15 @@ export function useFilters(
           Object.entries(filtersToQuery(newFilters, defaultFilter)),
         ).toString();
 
-      globalThis.history.replaceState(null, "", url);
+      router.replace(url, undefined, {
+        shallow: true,
+
+        scroll: false,
+      });
 
       setFilters(newFilters);
     },
-    [defaultFilter],
+    [defaultFilter, router],
   );
 
   return [filters, setExternalFilters];

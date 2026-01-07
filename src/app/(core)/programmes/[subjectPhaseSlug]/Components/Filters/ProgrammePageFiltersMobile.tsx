@@ -13,7 +13,7 @@ import {
   CurricFiltersChildSubjects,
   CurricFiltersTiers,
 } from "@/components/CurriculumComponents/CurricVisualiserFilters";
-import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
+import { shouldDisplayFilter } from "@/utils/curriculum/filteringApp";
 
 export type ProgrammePageMobileFiltersProps = ProgrammePageFiltersProps & {
   selectedYear: string;
