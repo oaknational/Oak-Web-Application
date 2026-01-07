@@ -71378,6 +71378,13 @@ export type EyfsListingQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type EyfsListingQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, programme_slug_by_year?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unitvariant_id?: number | null, unit_data?: any | null, programme_slug?: string | null, is_legacy?: boolean | null, actions?: any | null, features?: any | null, order_in_unit?: number | null, static_lesson_list?: any | null }> };
 
+export type EyfsVideosQueryVariables = Exact<{
+  lessonIds?: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
+}>;
+
+
+export type EyfsVideosQuery = { __typename?: 'query_root', published_mv_lesson_content_published_9_0_0: Array<{ __typename?: 'published_mv_lesson_content_published_9_0_0', video_mux_playback_id?: string | null, video_id?: number | null, video_title?: string | null }> };
+
 export type KeyStagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -71788,6 +71795,17 @@ export const EyfsListingDocument = gql`
     features
     order_in_unit
     static_lesson_list
+  }
+}
+    `;
+export const EyfsVideosDocument = gql`
+    query eyfsVideos($lessonIds: [String!]) {
+  published_mv_lesson_content_published_9_0_0(
+    where: {lesson_slug: {_in: $lessonIds}}
+  ) {
+    video_mux_playback_id
+    video_id
+    video_title
   }
 }
     `;
@@ -72818,6 +72836,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     eyfsListing(variables?: EyfsListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<EyfsListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<EyfsListingQuery>({ document: EyfsListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'eyfsListing', 'query', variables);
+    },
+    eyfsVideos(variables?: EyfsVideosQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<EyfsVideosQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<EyfsVideosQuery>({ document: EyfsVideosDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'eyfsVideos', 'query', variables);
     },
     keyStages(variables?: KeyStagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<KeyStagesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<KeyStagesQuery>({ document: KeyStagesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'keyStages', 'query', variables);

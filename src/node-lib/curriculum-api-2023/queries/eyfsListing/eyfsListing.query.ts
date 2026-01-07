@@ -25,6 +25,7 @@ type EYFSLesson = {
 const eyfsListingQuery = (sdk: Sdk) => async () => {
   const res = await sdk.eyfsListing();
 
+  const lessonSlugs = [];
   const programmes = res.lessons.reduce((acc, lesson) => {
     const programmeSlug = lesson.programme_slug;
     const unitSlug = lesson.unit_slug;
@@ -43,6 +44,8 @@ const eyfsListingQuery = (sdk: Sdk) => async () => {
     if (lesson.features.expired === true) {
       return acc;
     }
+
+    lessonSlugs.push(lesson.lesson_slug);
 
     if (acc[programmeSlug]) {
       if (acc[programmeSlug].units[unitSlug]) {
@@ -65,7 +68,11 @@ const eyfsListingQuery = (sdk: Sdk) => async () => {
     return acc;
   }, {} as EYFSProgramme);
 
-  console.log("diego programmes", programmes);
+  //console.log("diego programmes", programmes);
+
+  const videos = await sdk.eyfsVideos();
+
+  console.log("diego videos", videos);
 
   return programmes;
 };
