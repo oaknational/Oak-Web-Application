@@ -1,3 +1,15 @@
+# [1.943.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.942.2...v1.943.0) (2026-01-07)
+
+
+### Bug Fixes
+
+* added ReadOnly<...> to ProfileCardProps ([645a749](https://github.com/oaknational/Oak-Web-Application/commit/645a749a9173ad5e100982d4f4e4b8543f6da9b7))
+
+
+### Features
+
+* added <ProfileCard/> component ([33c5b01](https://github.com/oaknational/Oak-Web-Application/commit/33c5b014518ba910abdf1f9fb8ae340a15bbcaf7))
+
 ## [1.942.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.942.1...v1.942.2) (2026-01-06)
 
 
