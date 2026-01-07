@@ -79,6 +79,9 @@ describe("TopNav", () => {
       throw new Error("Could not find skip link");
     }
 
+    expect(skipButtonLink).not.toHaveFocus();
+    expect(skipButtonLink).toHaveStyle("position: absolute");
+
     act(() => {
       skipButtonLink.focus();
     });
