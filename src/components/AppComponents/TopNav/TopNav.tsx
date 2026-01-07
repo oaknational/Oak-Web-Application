@@ -152,23 +152,6 @@ const TopNav = (props: TopNavProps) => {
           {selectedMenu}
         </OakFlex>
       )}
-      {/* <OakBox
-        id="topnav-warning-banner"
-        $maxWidth="spacing-640"
-        $position={"absolute"}
-        $right={"spacing-24"}
-        $top={"spacing-180"}
-        $zIndex={"banner"}
-      >
-        <OakInlineBanner
-          type="warning"
-          isOpen={
-            (activeArea === "PUPILS" && !pupils) ||
-            (activeArea === "TEACHERS" && !teachers)
-          }
-          message="We’re experiencing a temporary technical issue. Thank you for your patience while we look into it."
-        />
-      </OakBox> */}
     </OakBox>
   );
 };
