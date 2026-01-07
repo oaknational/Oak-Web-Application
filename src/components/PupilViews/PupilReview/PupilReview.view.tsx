@@ -16,6 +16,7 @@ import {
   OakSecondaryButton,
   OakBox,
 } from "@oaknational/oak-components";
+import { useSearchParams } from "next/navigation";
 
 import { PupilExperienceViewProps } from "../PupilExperience";
 
@@ -51,6 +52,10 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     exitQuizQuestionsArray,
     browseData: { programmeFields, lessonSlug, isLegacy },
   } = props;
+  const searchParams = useSearchParams();
+  const itemId = searchParams?.get("itemId");
+  const itemType = searchParams?.get("itemType");
+  const isClassroomAssignment = itemType === "courseWork" && itemId !== null;
   const { phase = "primary", yearDescription, subject } = programmeFields;
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {
@@ -100,7 +105,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     storeResultsInLocalStorage();
   }
 
-  const bottomNavSlot = (
+  const bottomNavSlot = !isClassroomAssignment && (
     <OakLessonBottomNav>
       <OakPrimaryButton
         element="a"
@@ -254,7 +259,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
                 Lesson review
               </OakHeading>
-              {hasQuiz && (
+              {hasQuiz && !isClassroomAssignment && (
                 <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
                   <OakHeading tag="h2" $font={"body-2-bold"}>
                     Share options:

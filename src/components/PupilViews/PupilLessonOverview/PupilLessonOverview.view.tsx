@@ -19,6 +19,7 @@ import {
   isValidIconName,
   OakLI,
 } from "@oaknational/oak-components";
+import { useSearchParams } from "next/navigation";
 
 import {
   LessonReviewSection,
@@ -54,6 +55,10 @@ export const PupilViewsLessonOverview = ({
   backUrl,
   browseData,
 }: PupilViewsLessonOverviewProps) => {
+  const searchParams = useSearchParams();
+  const itemId = searchParams?.get("itemId");
+  const itemType = searchParams?.get("itemType");
+  const isClassroomAssignment = itemType === "courseWork" && itemId !== null;
   const { programmeFields, lessonData } = browseData;
   const {
     subjectSlug,
@@ -61,6 +66,7 @@ export const PupilViewsLessonOverview = ({
     yearDescription,
     subject,
   } = programmeFields;
+
   const { expirationDate } = lessonData;
   const {
     sectionResults,
@@ -155,14 +161,16 @@ export const PupilViewsLessonOverview = ({
         $ph={["spacing-16", "spacing-24", "spacing-0"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <ViewAllLessonsButton
-            href={backUrl}
-            onClick={() => {
-              if (isLessonComplete === false) {
-                track.lessonAbandoned({});
-              }
-            }}
-          />
+          {!isClassroomAssignment && (
+            <ViewAllLessonsButton
+              href={backUrl}
+              onClick={() => {
+                if (isLessonComplete === false) {
+                  track.lessonAbandoned({});
+                }
+              }}
+            />
+          )}
         </OakGridArea>
         <OakGridArea
           $colStart={[1, 1, 2]}
