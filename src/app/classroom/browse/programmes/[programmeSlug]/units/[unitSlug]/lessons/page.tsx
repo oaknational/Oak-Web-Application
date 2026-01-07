@@ -22,9 +22,9 @@ async function GoogleClassroomLessonsListPage({
     const bLessonOrder = b.supplementaryData?.orderInUnit;
     return aLessonOrder - bLessonOrder;
   };
-  const orderedBrowseData = browseData.sort(sortByOrderInUnit);
-  const unitData = browseData[0]?.unitData;
-  const programmeFields = browseData[0]?.programmeFields;
+  const orderedBrowseData = [...browseData].sort(sortByOrderInUnit);
+  const unitData = orderedBrowseData[0]?.unitData;
+  const programmeFields = orderedBrowseData[0]?.programmeFields;
 
   return (
     <LessonListingView
