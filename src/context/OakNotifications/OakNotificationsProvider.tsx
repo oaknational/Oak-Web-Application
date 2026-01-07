@@ -58,7 +58,6 @@ export const OakNotificationsProvider: FC<{
 
       // Short timeout to ensure the header is rendered before observing
       // 100ms is not enough for authenticated routes
-      // todo: look into using a mutation observer instead
       timeOut = setTimeout(() => {
         const headerElement = document.querySelector("header");
         if (headerElement && observer) {
