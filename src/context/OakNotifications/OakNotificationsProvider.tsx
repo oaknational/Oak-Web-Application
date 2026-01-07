@@ -9,23 +9,24 @@ import {
 } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
-import { createContext, FC, useEffect, useState } from "react";
+import { createContext, FC, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 
-type OakToastContext = {
+type OakNotificationsContext = {
   currentToastProps: OakToastProps | null;
   setCurrentToastProps: (props: OakToastProps | null) => void;
   currentBannerProps: OakInlineBannerProps | null;
   setCurrentBannerProps: (props: OakInlineBannerProps | null) => void;
 };
 
-export const oakToastContext = createContext<OakToastContext | null>(null);
+export const oakNotificationsContext =
+  createContext<OakNotificationsContext | null>(null);
 
-const StyledOakToastContainer = styled(OakFlex)<{ offsetTop: number }>`
+const StyledOakNotificationsContainer = styled(OakFlex)<{ offsetTop: number }>`
   top: ${(props) => props.offsetTop}px;
 `;
 
-export const OakToastProvider: FC<{
+export const OakNotificationsProvider: FC<{
   children?: React.ReactNode;
 }> = ({ children }) => {
   const [currentToastProps, setCurrentToastProps] =
@@ -81,17 +82,19 @@ export const OakToastProvider: FC<{
     setCurrentToastProps(props);
   };
 
+  const contextValue = useMemo(() => {
+    return {
+      currentToastProps,
+      setCurrentToastProps: setToastPropsAndId,
+      currentBannerProps,
+      setCurrentBannerProps,
+    };
+  }, [currentBannerProps, currentToastProps, setCurrentBannerProps]);
+
   return (
-    <oakToastContext.Provider
-      value={{
-        currentToastProps,
-        setCurrentToastProps: setToastPropsAndId,
-        currentBannerProps,
-        setCurrentBannerProps,
-      }}
-    >
+    <oakNotificationsContext.Provider value={contextValue}>
       <OakThemeProvider theme={oakDefaultTheme}>
-        <StyledOakToastContainer
+        <StyledOakNotificationsContainer
           $position="fixed"
           $zIndex="in-front"
           offsetTop={offsetTop}
@@ -118,9 +121,9 @@ export const OakToastProvider: FC<{
               id={id}
             />
           )}
-        </StyledOakToastContainer>
+        </StyledOakNotificationsContainer>
       </OakThemeProvider>
       {children}
-    </oakToastContext.Provider>
+    </oakNotificationsContext.Provider>
   );
 };

@@ -21,7 +21,7 @@ import {
   TeachersSubNavData,
   PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 export type TopNavProps = {
   teachers: TeachersSubNavData | null;
@@ -44,7 +44,7 @@ const TopNav = (props: TopNavProps) => {
     [selectedMenu],
   );
 
-  const { setCurrentBannerProps } = useOakToastContext();
+  const { setCurrentBannerProps } = useOakNotificationsContext();
 
   useEffect(() => {
     if (

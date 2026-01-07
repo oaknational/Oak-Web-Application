@@ -32,7 +32,7 @@ import MockedAnalyticsProvider from "./MockedAnalyticsProvider";
 
 import theme, { OakTheme } from "@/styles/theme";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
-import { OakToastProvider } from "@/context/OakToast/OakToastProvider";
+import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
 
 export type ProviderProps = {
@@ -75,7 +75,7 @@ const providersByName: {
   overlay: [OverlayProvider],
   toast: [ToastProvider],
   menu: [MenuProvider],
-  oakToast: [OakToastProvider],
+  oakToast: [OakNotificationsProvider],
   saveCount: [SaveCountProvider],
 } as const;
 
