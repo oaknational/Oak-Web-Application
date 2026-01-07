@@ -1,3 +1,30 @@
+# [1.943.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.942.2...v1.943.0) (2026-01-07)
+
+
+### Bug Fixes
+
+* added ReadOnly<...> to ProfileCardProps ([645a749](https://github.com/oaknational/Oak-Web-Application/commit/645a749a9173ad5e100982d4f4e4b8543f6da9b7))
+
+
+### Features
+
+* added <ProfileCard/> component ([33c5b01](https://github.com/oaknational/Oak-Web-Application/commit/33c5b014518ba910abdf1f9fb8ae340a15bbcaf7))
+
+## [1.942.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.942.1...v1.942.2) (2026-01-06)
+
+
+### Bug Fixes
+
+* chalk 5 is ESM only ([39692b6](https://github.com/oaknational/Oak-Web-Application/commit/39692b6e85f202ac3201692f5e27b38114bd0b32))
+* oops ([4368bbe](https://github.com/oaknational/Oak-Web-Application/commit/4368bbed7411421942a44fe401b0f2f84cd9d15f))
+
+## [1.942.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.942.0...v1.942.1) (2026-01-06)
+
+
+### Bug Fixes
+
+* add theme provider to page ([f7804b6](https://github.com/oaknational/Oak-Web-Application/commit/f7804b6c9d2e1d2d209c9deeda678ed7f35d37c6))
+
 # [1.942.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.941.2...v1.942.0) (2026-01-06)
 
 
