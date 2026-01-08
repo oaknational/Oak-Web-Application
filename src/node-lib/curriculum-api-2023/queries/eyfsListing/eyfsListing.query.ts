@@ -20,21 +20,37 @@ type EYFSLesson = {
   title: string;
   slug: string;
   description?: string;
+  video: {
+    muxPlaybackId: string | null;
+    title: string | null;
+  };
 };
 
 const eyfsListingQuery = (sdk: Sdk) => async () => {
   const res = await sdk.eyfsListing();
 
-  const lessonSlugs = [];
+  const lessonSlugs = res.lessons
+    .map((lesson) => lesson.lesson_slug)
+    .filter((slug) => !!slug) as string[];
+  const videos = await sdk.eyfsVideos({ lessonIds: lessonSlugs });
+
   const programmes = res.lessons.reduce((acc, lesson) => {
     const programmeSlug = lesson.programme_slug;
     const unitSlug = lesson.unit_slug;
 
-    const eyfsLesson = {
+    const video = videos.published_mv_lesson_content_published_9_0_0.find(
+      (v) => v.video_id === lesson.lesson_data.video_id,
+    );
+
+    const eyfsLesson: EYFSLesson = {
       title: lesson.lesson_data?.title ?? "",
       slug: lesson.lesson_slug ?? "",
       description:
         lesson.lesson_data?.key_learning_points?.[0]?.key_learning_point,
+      video: {
+        muxPlaybackId: video?.video_mux_playback_id ?? null,
+        title: video?.video_title ?? null,
+      },
     };
 
     if (!programmeSlug || !unitSlug) {
@@ -44,8 +60,6 @@ const eyfsListingQuery = (sdk: Sdk) => async () => {
     if (lesson.features.expired === true) {
       return acc;
     }
-
-    lessonSlugs.push(lesson.lesson_slug);
 
     if (acc[programmeSlug]) {
       if (acc[programmeSlug].units[unitSlug]) {
@@ -67,12 +81,6 @@ const eyfsListingQuery = (sdk: Sdk) => async () => {
 
     return acc;
   }, {} as EYFSProgramme);
-
-  //console.log("diego programmes", programmes);
-
-  const videos = await sdk.eyfsVideos();
-
-  console.log("diego videos", videos);
 
   return programmes;
 };
