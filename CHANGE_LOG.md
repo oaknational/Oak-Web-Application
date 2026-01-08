@@ -1,3 +1,45 @@
+# [1.945.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.944.1...v1.945.0) (2026-01-08)
+
+
+### Bug Fixes
+
+* merge snafu ([394f54f](https://github.com/oaknational/Oak-Web-Application/commit/394f54f479f527744c0f72442822a568f51ee655))
+* remove width and height from skip link so it doesn't block content ([03e1ab3](https://github.com/oaknational/Oak-Web-Application/commit/03e1ab36803382c16038ef8c3302b762384d856f))
+
+
+### Features
+
+* add skip link to topnav ([bd9603a](https://github.com/oaknational/Oak-Web-Application/commit/bd9603ac91adb985e87f30e79ffc6d99525b5b98))
+
+## [1.944.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.944.0...v1.944.1) (2026-01-07)
+
+# [1.944.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.943.0...v1.944.0) (2026-01-07)
+
+
+### Features
+
+* hook up "/about-us/get-involved" to sanity ([56a9492](https://github.com/oaknational/Oak-Web-Application/commit/56a9492a32a50bb3d8c2771ca7afeeb244b9811c))
+
+# [1.943.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.942.2...v1.943.0) (2026-01-07)
+
+
+### Bug Fixes
+
+* added ReadOnly<...> to ProfileCardProps ([645a749](https://github.com/oaknational/Oak-Web-Application/commit/645a749a9173ad5e100982d4f4e4b8543f6da9b7))
+
+
+### Features
+
+* added <ProfileCard/> component ([33c5b01](https://github.com/oaknational/Oak-Web-Application/commit/33c5b014518ba910abdf1f9fb8ae340a15bbcaf7))
+
+## [1.942.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.942.1...v1.942.2) (2026-01-06)
+
+
+### Bug Fixes
+
+* chalk 5 is ESM only ([39692b6](https://github.com/oaknational/Oak-Web-Application/commit/39692b6e85f202ac3201692f5e27b38114bd0b32))
+* oops ([4368bbe](https://github.com/oaknational/Oak-Web-Application/commit/4368bbed7411421942a44fe401b0f2f84cd9d15f))
+
 ## [1.942.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.942.0...v1.942.1) (2026-01-06)
 
 

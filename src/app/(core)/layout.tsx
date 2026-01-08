@@ -7,12 +7,11 @@ export default async function CoreLayout({
   children: React.ReactNode;
 }>) {
   const topNavProps = await curriculumApi2023.topNav();
-
-  // TODO: [integrated-journey]  Footer
   return (
     <>
       <TopNav {...topNavProps} />
-      {children}
+      <main id="main">{children}</main>
+      {/* TD: [integrated-journey]  Footer */}
     </>
   );
 }
