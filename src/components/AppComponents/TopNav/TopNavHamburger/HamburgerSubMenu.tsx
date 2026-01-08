@@ -1,11 +1,9 @@
 import {
   OakBox,
-  OakPrimaryInvertedButton,
-  OakUL,
-  OakLI,
-  OakSecondaryLink,
-  OakSubjectIconButton,
   OakIconName,
+  OakPrimaryInvertedButton,
+  OakSubjectIconButton,
+  OakUL,
 } from "@oaknational/oak-components";
 import { ReactNode } from "react";
 
@@ -14,6 +12,7 @@ import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
 import {
   SubNavLinks,
   TeachersBrowse,
+  TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export type NavItemData =
@@ -34,13 +33,7 @@ export function SubmenuContainer({
 }) {
   const { submenuOpen, setSubmenuOpen } = useHamburgerMenu();
   return (
-    <OakBox
-      $display={submenuOpen === title ? "block" : "none"}
-      $position={"absolute"}
-      $top={"spacing-0"}
-      $left={"spacing-0"}
-      $zIndex={"modal-dialog"}
-    >
+    <OakBox $display={submenuOpen === title ? "block" : "none"}>
       <OakPrimaryInvertedButton
         iconName="chevron-left"
         selected={true}
@@ -50,51 +43,77 @@ export function SubmenuContainer({
       >
         {title}
       </OakPrimaryInvertedButton>
-      <OakUL>{children}</OakUL>
+      {children}
     </OakBox>
   );
 }
 
-export function SubmenuContent({
-  title,
-  data,
-}: {
-  readonly title: SubmenuState;
-  readonly data: NavItemData;
-}) {
-  const { handleClose } = useHamburgerMenu();
-  return (
-    <>
-      {data.type === "links" && (
-        <>
-          {data.links.map((link) => (
-            <OakLI $listStyle={"none"} key={title + link.slug}>
-              <OakSecondaryLink href={link.slug}>{link.title}</OakSecondaryLink>
-            </OakLI>
-          ))}
-        </>
-      )}
-      {data.type === "subjects" && (
-        <>
-          {data.subjects.map((s) => (
-            <OakLI
-              $listStyle={"none"}
-              key={s.title + data.keystage + data.phase}
-            >
-              <OakSubjectIconButton
-                phase={data.phase}
-                variant="horizontal"
-                subjectIconName={("subject-" + s.subjectSlug) as OakIconName}
-                onClick={() => {
-                  handleClose();
-                }}
-              >
-                {s.title}
-              </OakSubjectIconButton>
-            </OakLI>
-          ))}
-        </>
-      )}
-    </>
-  );
+export function SubmenuContent(props: TeachersSubNavData) {
+  const { submenuOpen } = useHamburgerMenu();
+
+  if (!submenuOpen) return null;
+
+  switch (submenuOpen) {
+    case "About us":
+      return (
+        <SubmenuContainer title={submenuOpen}>
+          <OakUL>
+            {props.aboutUs.map((link) => (
+              <OakBox key={link.slug} $width={"100%"}>
+                <OakPrimaryInvertedButton element="a" href={`/${link.slug}`}>
+                  {link.title}
+                </OakPrimaryInvertedButton>
+              </OakBox>
+            ))}
+          </OakUL>
+        </SubmenuContainer>
+      );
+
+    case "Guidance":
+      return (
+        <SubmenuContainer title={submenuOpen}>
+          <OakUL>
+            {props.guidance.map((link) => (
+              <OakBox key={link.slug} $width={"100%"}>
+                <OakPrimaryInvertedButton element="a" href={`/${link.slug}`}>
+                  {link.title}
+                </OakPrimaryInvertedButton>
+              </OakBox>
+            ))}
+          </OakUL>
+        </SubmenuContainer>
+      );
+
+    default: {
+      const phase = ["KS1", "KS2", "EYFS"].includes(submenuOpen)
+        ? "primary"
+        : "secondary";
+      const phaseData = props[phase];
+      const keystage = phaseData.keystages.find(
+        (ks) => ks.title === submenuOpen,
+      );
+
+      if (!keystage) return null;
+
+      return (
+        <SubmenuContainer title={submenuOpen}>
+          <OakUL>
+            {keystage.subjects.map((subject) => (
+              <OakBox key={subject.title + phase} $width={"100%"}>
+                <OakSubjectIconButton
+                  phase={phase}
+                  subjectIconName={
+                    ("subject-" + subject.subjectSlug) as OakIconName
+                  }
+                  variant="horizontal"
+                >
+                  {subject.title}
+                </OakSubjectIconButton>
+              </OakBox>
+            ))}
+          </OakUL>
+        </SubmenuContainer>
+      );
+    }
+  }
 }

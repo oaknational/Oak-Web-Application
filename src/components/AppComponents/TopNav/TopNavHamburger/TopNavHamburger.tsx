@@ -11,23 +11,12 @@ import {
   OakInformativeModal,
   OakBox,
   OakUL,
-  OakHeading,
 } from "@oaknational/oak-components";
 
 import { TopNavProps } from "../TopNav";
 
-import {
-  MainMenuContent,
-  MainMenuContentWrapper,
-  MainMenuLink,
-} from "./HamburgerMainMenu";
-import {
-  NavItemData,
-  SubmenuContainer,
-  SubmenuContent,
-} from "./HamburgerSubMenu";
-
-import { TeachersBrowse } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { MainMenuContent } from "./HamburgerMainMenu";
+import { SubmenuContent } from "./HamburgerSubMenu";
 
 export type SubmenuState =
   | "KS1"
@@ -95,67 +84,17 @@ export function TopNavHamburger(props: TopNavProps) {
 }
 
 function Content(props: TopNavProps) {
+  const { submenuOpen } = useHamburgerMenu();
   if (!props.teachers) return;
-
   return (
-    <OakBox
-      $position={"relative"}
-      $width={"100%"}
-      $height={"100%"}
-      $pa={"spacing-40"}
-    >
-      <OakUL>
-        <SubjectsSection {...props.teachers?.primary} />
-        <SubjectsSection {...props.teachers?.secondary} />
-        <MainMenuLink title="Curriculum" href="/" />
-        <NavItemWithSubmenu
-          title="Guidance"
-          data={{ type: "links", links: props.teachers.guidance }}
-        />
-        <NavItemWithSubmenu
-          title="About us"
-          data={{ type: "links", links: props.teachers.aboutUs }}
-        />
-        <MainMenuLink title="Ai Experiments" href="/" iconName="external" />
+    <OakBox $width={"100%"} $height={"100%"} $pa={"spacing-32"}>
+      <OakUL $ph={"spacing-0"}>
+        {submenuOpen ? (
+          <SubmenuContent {...props.teachers} />
+        ) : (
+          <MainMenuContent {...props} />
+        )}
       </OakUL>
     </OakBox>
-  );
-}
-
-function NavItemWithSubmenu({
-  title,
-  data,
-}: {
-  readonly title: SubmenuState;
-  readonly data: NavItemData;
-}) {
-  return (
-    <MainMenuContent title={title}>
-      <SubmenuContainer title={title}>
-        <SubmenuContent title={title} data={data} />
-      </SubmenuContainer>
-    </MainMenuContent>
-  );
-}
-
-function SubjectsSection(props: TeachersBrowse) {
-  return (
-    <>
-      <MainMenuContentWrapper>
-        <OakHeading tag="h2">{props.phaseTitle}</OakHeading>
-      </MainMenuContentWrapper>
-      {props.keystages.map((keystage) => (
-        <NavItemWithSubmenu
-          key={keystage.slug}
-          title={keystage.title as SubmenuState}
-          data={{
-            type: "subjects",
-            subjects: keystage.subjects,
-            keystage: keystage.title,
-            phase: props.phaseSlug as "primary" | "secondary",
-          }}
-        />
-      ))}
-    </>
   );
 }

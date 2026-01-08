@@ -5,42 +5,50 @@ import {
   OakIconName,
   OakIcon,
   OakFlex,
+  OakHeading,
 } from "@oaknational/oak-components";
-import { ReactNode } from "react";
+
+import { TopNavProps } from "../TopNav";
 
 import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
 
-export function MainMenuContent({
-  title,
-  children,
-}: {
-  readonly title: SubmenuState;
-  readonly children: ReactNode;
-}) {
-  const { setSubmenuOpen } = useHamburgerMenu();
+import { TeachersBrowse } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
+export function MainMenuContent(props: TopNavProps) {
+  if (!props.teachers) return;
+  return (
+    <>
+      <SubjectsSection {...props.teachers?.primary} />
+      <SubjectsSection {...props.teachers?.secondary} />
+      <MainMenuLink href={"/"} title="Curriculum" />
+      <MainMenuButton title={"About us"} />
+      <MainMenuButton title={"Guidance"} />
+      <MainMenuLink href={"/"} title="Ai Experiments" iconName="external" />
+    </>
+  );
+}
+
+function MainMenuButton({ title }: { title: string }) {
+  const { setSubmenuOpen } = useHamburgerMenu();
   return (
     <OakBox $width={"100%"}>
       <OakLI $listStyle={"none"}>
-        <MainMenuContentWrapper>
-          <OakFlex $justifyContent={"space-between"} $width={"100%"}>
-            <OakPrimaryInvertedButton
-              onClick={() => {
-                setSubmenuOpen(title);
-              }}
-            >
-              {title}
-            </OakPrimaryInvertedButton>
-            <OakIcon iconName="chevron-right" />
-          </OakFlex>
-        </MainMenuContentWrapper>
-        {children}
+        <OakFlex $justifyContent={"space-between"} $width={"100%"}>
+          <OakPrimaryInvertedButton
+            onClick={() => {
+              setSubmenuOpen(title as SubmenuState);
+            }}
+          >
+            {title}
+          </OakPrimaryInvertedButton>
+          <OakIcon iconName="chevron-right" />
+        </OakFlex>
       </OakLI>
     </OakBox>
   );
 }
 
-export function MainMenuLink({
+function MainMenuLink({
   href,
   title,
   iconName,
@@ -50,31 +58,28 @@ export function MainMenuLink({
   readonly iconName?: OakIconName;
 }) {
   return (
-    <MainMenuContentWrapper>
-      <OakPrimaryInvertedButton
-        element="a"
-        isTrailingIcon
-        iconName={iconName}
-        href={href}
-      >
-        {title}
-      </OakPrimaryInvertedButton>
-    </MainMenuContentWrapper>
+    <OakPrimaryInvertedButton
+      element="a"
+      isTrailingIcon
+      iconName={iconName}
+      href={href}
+    >
+      {title}
+    </OakPrimaryInvertedButton>
   );
 }
 
-/**
- * Hides content when the submenu is open
- */
-export function MainMenuContentWrapper({
-  children,
-}: {
-  readonly children: ReactNode;
-}) {
-  const { submenuOpen } = useHamburgerMenu();
+function SubjectsSection(props: TeachersBrowse) {
   return (
-    <OakBox $width={"100%"} $display={submenuOpen ? "none" : "block"}>
-      {children}
-    </OakBox>
+    <>
+      <OakHeading tag="h2">{props.phaseTitle}</OakHeading>
+
+      {props.keystages.map((keystage) => (
+        <MainMenuButton
+          key={keystage.slug + props.phaseSlug}
+          title={keystage.title}
+        />
+      ))}
+    </>
   );
 }
