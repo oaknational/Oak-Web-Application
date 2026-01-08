@@ -17,6 +17,7 @@ import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useSelectedArea from "@/hooks/useSelectedArea";
+import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import {
   TeachersSubNavData,
   PupilsSubNavData,
@@ -64,6 +65,14 @@ const TopNav = (props: TopNavProps) => {
 
   return (
     <OakBox as="header" $position="relative" data-testid="app-topnav">
+      <OakBox
+        $position={"absolute"}
+        $zIndex={"in-front"}
+        $top={"spacing-160"} // TD: [integrated journey] adjust position when dropdown is open
+        $left={"spacing-24"}
+      >
+        <SkipLink href={"#main"}>Skip to content</SkipLink>
+      </OakBox>
       <OakFlex
         $background={"bg-btn-primary"}
         $ph={["spacing-20", "spacing-40"]}

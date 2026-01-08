@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/dom";
+import { act, screen } from "@testing-library/react";
 
 import TopNav, { TopNavProps } from "./TopNav";
 
@@ -79,6 +79,28 @@ describe("TopNav", () => {
     expect(pupilsLink).toBeInTheDocument();
     const pupilsSubnav = await screen.findByTestId("pupils-subnav");
     expect(pupilsSubnav).toBeInTheDocument();
+  });
+  it("renders a hidden skip to content button until focused", () => {
+    renderWithTheme(<TopNavWithProviders {...mockProps} />);
+    const skipButtonLink = screen.getByText("Skip to content").closest("a");
+
+    if (!skipButtonLink) {
+      throw new Error("Could not find skip link");
+    }
+
+    expect(skipButtonLink).not.toHaveFocus();
+    expect(skipButtonLink).toHaveStyle("position: absolute");
+
+    act(() => {
+      skipButtonLink.focus();
+    });
+    expect(skipButtonLink).toHaveFocus();
+    expect(skipButtonLink).not.toHaveStyle("position: absolute");
+
+    act(() => {
+      skipButtonLink.blur();
+    });
+    expect(skipButtonLink).not.toHaveFocus();
   });
   it("renders an empty subnav when data is null", async () => {
     renderWithTheme(<TopNavWithProviders teachers={null} pupils={null} />);

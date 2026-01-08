@@ -1,3 +1,12 @@
+## [1.944.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.944.0...v1.944.1) (2026-01-07)
+
+# [1.944.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.943.0...v1.944.0) (2026-01-07)
+
+
+### Features
+
+* hook up "/about-us/get-involved" to sanity ([56a9492](https://github.com/oaknational/Oak-Web-Application/commit/56a9492a32a50bb3d8c2771ca7afeeb244b9811c))
+
 # [1.943.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.942.2...v1.943.0) (2026-01-07)
 
 

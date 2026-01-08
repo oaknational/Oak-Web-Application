@@ -30,8 +30,22 @@ export const Default: Story = {
       {
         headingTag: "h3",
         headingTitle: "Give your feedback",
-        content:
-          "Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.",
+        content: [
+          {
+            _key: "key0001",
+            _type: "block",
+            children: [
+              {
+                _key: "key0002",
+                _type: "span",
+                marks: [],
+                text: "Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.",
+              },
+            ],
+            markDefs: [],
+            style: "normal",
+          },
+        ],
         buttons: [
           {
             text: "Get in touch",
@@ -43,8 +57,22 @@ export const Default: Story = {
       {
         headingTag: "h3",
         headingTitle: "Help us improve",
-        content:
-          "Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school.",
+        content: [
+          {
+            _key: "key0001",
+            _type: "block",
+            children: [
+              {
+                _key: "key0002",
+                _type: "span",
+                marks: [],
+                text: "Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school.",
+              },
+            ],
+            markDefs: [],
+            style: "normal",
+          },
+        ],
         buttons: [
           {
             text: "Join the research panel",

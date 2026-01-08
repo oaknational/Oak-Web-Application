@@ -2,10 +2,10 @@ import {
   OakFlex,
   OakHeading,
   OakHeadingProps,
-  OakP,
   OakSecondaryButton,
   OakIcon,
 } from "@oaknational/oak-components";
+import { ReactNode } from "react";
 
 type GetInvolvedLinkCardProps = {
   headingTag: OakHeadingProps["tag"];
@@ -15,7 +15,7 @@ type GetInvolvedLinkCardProps = {
     link: string;
     external?: boolean;
   }>;
-  content: string;
+  content: string | ReactNode;
 };
 
 export function GetInvolvedLinkCard({
@@ -37,9 +37,7 @@ export function GetInvolvedLinkCard({
         >
           {headingTitle}
         </OakHeading>
-        <OakP $font={["body-2", "body-1", "body-1"]} $color="text-primary">
-          {content}
-        </OakP>
+        {content}
       </OakFlex>
       {buttons && buttons.length > 0 && (
         <OakFlex $flexWrap="wrap" $gap="spacing-12">
