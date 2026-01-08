@@ -10,6 +10,8 @@ import { mockSeoResult, mockVideoAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
 const testPageData = {
   id: "123",
   title: "page title",
@@ -90,6 +92,7 @@ describe("pages/webinar/index.tsx", () => {
           pageData={testPageData}
           categories={[]}
           categorySlug={null}
+          topNav={topNavFixture}
         />,
       );
 
@@ -111,6 +114,7 @@ describe("pages/webinar/index.tsx", () => {
               testSerializedWebinarPreview,
               testSerializedWebinarPreview2,
             ]}
+            topNav={topNavFixture}
             pageData={{
               ...testPageData,
               seo: {
@@ -140,6 +144,7 @@ describe("pages/webinar/index.tsx", () => {
               testSerializedWebinarPreview,
               testSerializedWebinarPreview2,
             ]}
+            topNav={topNavFixture}
             pageData={testPageData}
             categories={[]}
             categorySlug={null}
