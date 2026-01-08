@@ -76,8 +76,8 @@ export function CurricNumberInput({
       wrapperWidth="100%"
       $pv="spacing-0"
       $height="spacing-56"
-      borderColor={isErroring ? "red" : undefined}
-      background={isErroring ? "red30" : undefined}
+      borderColor={isErroring ? "border-error" : undefined}
+      background={isErroring ? "bg-incorrect" : undefined}
     />
   );
 }

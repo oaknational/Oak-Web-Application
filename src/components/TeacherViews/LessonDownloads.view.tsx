@@ -326,7 +326,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     downloadsFilteredByCopyright.length === 0;
 
   return (
-    <OakBox $ph={["spacing-16", "spacing-0"]} $background={"grey20"}>
+    <OakBox $ph={["spacing-16", "spacing-0"]} $background={"bg-neutral"}>
       {isDownloadSuccessful && <Banners />}
       <OakMaxWidth
         $pb="spacing-80"
@@ -369,7 +369,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             }
           />
           <OakHandDrawnHR
-            hrColor={"grey60"}
+            hrColor={"text-subdued"}
             $height={"spacing-4"}
             $mt={"spacing-24"}
             $mb={"spacing-24"}

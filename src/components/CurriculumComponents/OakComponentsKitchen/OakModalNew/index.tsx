@@ -62,7 +62,7 @@ export function OakModalNew({
               $height="100%"
               $width={modalWidth}
               $maxWidth="100%"
-              $background={"white"}
+              $background={"bg-primary"}
               state={animationState}
               $zIndex="modal-dialog"
             >

@@ -24,7 +24,7 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
   return (
     <Layout
       seoProps={getSeoProps(seo)}
-      $background={"white"}
+      $background={"bg-primary"}
       topNavProps={topNav}
     >
       <OakMaxWidth

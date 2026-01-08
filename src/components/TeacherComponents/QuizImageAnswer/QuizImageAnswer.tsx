@@ -18,7 +18,9 @@ type ImageProps = {
 
 const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
   const [dims, setDims] = useState(calcDims(src.width, src.height));
-  const containerBackgroundColor = answerIsCorrect ? "lemon50" : "white";
+  const containerBackgroundColor = answerIsCorrect
+    ? "bg-decorative5-subdued"
+    : "bg-primary";
   return (
     <OakFlex
       $borderRadius={"border-radius-m2"}
@@ -46,7 +48,7 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
       </OakFlex>
       <OakFlex
         $ba={"border-solid-s"}
-        $background={"white"}
+        $background={"bg-primary"}
         $borderRadius={"border-radius-m2"}
       >
         <OakFlex
@@ -57,7 +59,7 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
           $minWidth={dims.width ? undefined : "spacing-92"}
           $minHeight={dims.height ? undefined : "spacing-92"}
           $justifyContent={"center"}
-          $borderColor={"grey50"}
+          $borderColor={"border-neutral"}
           $borderRadius={"border-radius-m2"}
         >
           <QuizOakImage src={src} dims={dims} setDims={setDims} alt={alt} />

@@ -122,7 +122,7 @@ const Policies: NextPage<PolicyPageProps> = ({ policy, topNav }) => {
         ...policy.seo,
         title: policy.seo?.title || policy.title,
       })}
-      $background={"white"}
+      $background={"bg-primary"}
       topNavProps={topNav}
     >
       <OakMaxWidth

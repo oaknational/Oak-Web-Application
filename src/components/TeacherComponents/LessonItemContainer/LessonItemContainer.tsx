@@ -202,7 +202,7 @@ export const LessonItemContainer = forwardRef<
         {!props.isFinalElement && (
           <OakHandDrawnHR
             data-testid="hr"
-            hrColor={"pink"}
+            hrColor={"bg-decorative4-main"}
             $height={"spacing-4"}
             $mt={["spacing-24", "spacing-56"]}
             $mb={["spacing-12", "spacing-24"]}

@@ -32,7 +32,7 @@ const UnitDownloadOnboardButton = ({
       {showNewTag && (
         <OakTagFunctional
           label="New"
-          $background="mint"
+          $background="bg-decorative1-main"
           $color="text-primary"
           $pv={"spacing-0"}
         />
@@ -61,7 +61,7 @@ const UnitDownloadSignInButton = ({
         {showNewTag && (
           <OakTagFunctional
             label="New"
-            $background="mint"
+            $background="bg-decorative1-main"
             $color="text-primary"
             $pv={"spacing-0"}
           />

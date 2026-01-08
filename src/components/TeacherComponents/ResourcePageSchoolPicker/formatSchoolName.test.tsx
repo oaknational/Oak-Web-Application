@@ -15,7 +15,7 @@ describe("formatSchoolName", () => {
     expect(divWithText).toBeInTheDocument();
     const strongElement = getByTestId("strong-element");
     expect(strongElement).toHaveStyle("font-weight: 700");
-    expect(strongElement).toHaveStyle("color: rgb(55, 76, 241)");
+    expect(strongElement).toHaveStyle("color: rgb(13, 36, 196)");
     expect(strongElement).toHaveTextContent("ima");
   });
 });

@@ -205,7 +205,7 @@ export default function CurricVisualiserMobileHeader({
     >
       <OakBox
         $width={"100%"}
-        $background={"white"}
+        $background={"bg-primary"}
         $mb="spacing-8"
         data-test-id="filter-mobiles"
       >
@@ -263,7 +263,7 @@ export default function CurricVisualiserMobileHeader({
           <OakBox
             $bt={"border-solid-s"}
             $bb={"border-solid-s"}
-            $borderColor={"grey30"}
+            $borderColor={"border-neutral-lighter"}
             $width={"100%"}
             data-testid={"year-selection-mobile"}
           >
@@ -281,8 +281,12 @@ export default function CurricVisualiserMobileHeader({
                         $display={"inline-block"}
                         $mb="spacing-8"
                         $mr="spacing-8"
-                        $background={isYearSelected ? "black" : "white"}
-                        $color={isYearSelected ? "white" : "black"}
+                        $background={
+                          isYearSelected ? "bg-inverted" : "bg-primary"
+                        }
+                        $color={
+                          isYearSelected ? "text-inverted" : "text-primary"
+                        }
                         $borderRadius={"border-radius-s"}
                         $font="heading-7"
                         disableMouseHover={isSelectedYear(yearOption)}

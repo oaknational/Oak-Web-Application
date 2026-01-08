@@ -23,7 +23,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
     <OakFlex
       {...(onClick ? containerProps : {})}
       $position="relative"
-      $background="white"
+      $background="bg-primary"
       $pa="spacing-16"
       $flexDirection={["row", "column"]}
       $height={"100%"}
@@ -39,7 +39,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
             <OakP
               $mt="spacing-4"
               $font={["body-3", "heading-light-7"]}
-              $color={"grey60"}
+              $color={"text-subdued"}
             >
               {role}
             </OakP>

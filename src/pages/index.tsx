@@ -54,7 +54,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
         description:
           "Explore our free, time-saving teacher resources from Oak National Academy. Browse and download worksheets, quizzes and slides from KS1 to KS4. ",
       }}
-      $background={"white"}
+      $background={"bg-primary"}
       topNavProps={topNav}
     >
       <Banners />

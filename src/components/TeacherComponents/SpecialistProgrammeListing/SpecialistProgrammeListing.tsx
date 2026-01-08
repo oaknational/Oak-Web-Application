@@ -17,7 +17,7 @@ const SpecialistProgrammeListing: FC<{
 
   return (
     <ProgrammeListContainer
-      $background="aqua"
+      $background="bg-decorative2-main"
       $colSpan={[12, 6, programmeColSpan]}
     >
       <OakHeading tag="h2" $font="heading-5" $mb="spacing-32">

@@ -19,7 +19,7 @@ exports[`OakModalNew should match snapshot 1`] = `
         class="sc-fqkvVR sc-kAyceB kwqmrC jOTTNg"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB kUmAOC kyta-DD"
+          class="sc-fqkvVR sc-kAyceB bQOnaF kyta-DD"
         >
           <h3
             class="sc-kpDqfm iMTebT"
@@ -81,7 +81,7 @@ exports[`OakModalNew should match snapshot 1`] = `
           test_content
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB eGXHla cuPHGn"
+          class="sc-fqkvVR sc-kAyceB gQeueV cuPHGn"
           data-testid="modal-footer"
         >
           test_footer

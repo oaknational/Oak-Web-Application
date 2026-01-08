@@ -54,7 +54,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             "Discover our free curriculum plans across subjects from KS1 to KS4, all high-quality, fully-sequenced and aligned with the national curriculum.",
         }),
       }}
-      $background={"mint"}
+      $background={"bg-decorative1-main"}
     >
       <OakMaxWidth $ph={"spacing-16"}>
         <OakBox $mt={"spacing-24"}>
@@ -73,7 +73,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             ]}
           />
           <OakHandDrawnHR
-            hrColor={"white"}
+            hrColor={"bg-primary"}
             $mt={"spacing-24"}
             $height={"spacing-4"}
           />
@@ -88,9 +88,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           <OakHeading
             tag="h1"
             $font={["heading-3", "heading-2"]}
-            $background={"mint"}
+            $background={"bg-decorative1-main"}
             $textAlign={["left", "center"]}
-            $color={"black"}
+            $color={"text-primary"}
           >
             Oak's curricula
           </OakHeading>
@@ -113,7 +113,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           >
             <CurricInfoCard
               iconName="clipboard"
-              background="mint30"
+              background="bg-decorative1-very-subdued"
               iconHeight={"spacing-92"}
               iconWidth={"spacing-48"}
             >
@@ -121,7 +121,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             </CurricInfoCard>
             <CurricInfoCard
               iconName="free-tag"
-              background="mint30"
+              background="bg-decorative1-very-subdued"
               iconHeight="spacing-92"
               iconWidth="spacing-80"
             >
@@ -129,7 +129,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             </CurricInfoCard>
             <CurricInfoCard
               iconName="book-steps"
-              background="mint30"
+              background="bg-decorative1-very-subdued"
               iconHeight="spacing-92"
               iconWidth="spacing-72"
             >
@@ -137,7 +137,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             </CurricInfoCard>
             <CurricInfoCard
               iconName="threads"
-              background="mint30"
+              background="bg-decorative1-very-subdued"
               iconHeight="spacing-92"
               iconWidth="spacing-64"
             >
@@ -146,12 +146,12 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           </OakFlex>
         </OakFlex>
       </OakMaxWidth>
-      <OakFlex $background={"white"} $justifyContent={"center"}>
+      <OakFlex $background={"bg-primary"} $justifyContent={"center"}>
         <OakMaxWidth $ph={"spacing-20"} $maxWidth={["100%", "spacing-1280"]}>
           <StyledResponsiveFlex
             $justifyContent="space-between"
             $alignItems="flex-start"
-            $background="mint30"
+            $background="bg-decorative1-very-subdued"
             $mv="spacing-80"
             $borderRadius="border-radius-l"
             $pa={["spacing-24", "spacing-64", "spacing-80"]}
@@ -199,37 +199,52 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               $flexBasis={[null, 0]}
               $pb={["spacing-16", "spacing-0"]}
             >
-              <CurricQuote title="Evidence-informed" barColor="mint110">
+              <CurricQuote
+                title="Evidence-informed"
+                barColor="border-decorative1-stronger"
+              >
                 Our approach enables the rigorous application of research
                 outcomes, science of learning and impactful best practice.
               </CurricQuote>
               <CurricQuote
                 title="Knowledge and vocabulary rich"
-                barColor="mint110"
+                barColor="border-decorative1-stronger"
               >
                 Our curriculum is knowledge and vocabulary rich so that pupils
                 build on what they already know to develop deep knowledge and
                 apply this through skills.
               </CurricQuote>
-              <CurricQuote title="Sequenced and coherent" barColor="mint110">
+              <CurricQuote
+                title="Sequenced and coherent"
+                barColor="border-decorative1-stronger"
+              >
                 We carefully and purposefully sequence our curriculum to ensure
                 that pupils can build on and make links with existing knowledge.
                 We pay attention to vertical coherence via threads, which map
                 the developments of concepts over time.
               </CurricQuote>
-              <CurricQuote title="Flexible" barColor="mint110">
+              <CurricQuote
+                title="Flexible"
+                barColor="border-decorative1-stronger"
+              >
                 Our curriculum is flexible by design so that schools can use
                 them in a way to fit their setting and meet the varying needs of
                 teachers and their pupils - all aligned to the national
                 curriculum.
               </CurricQuote>
-              <CurricQuote title="Accessible" barColor="mint110">
+              <CurricQuote
+                title="Accessible"
+                barColor="border-decorative1-stronger"
+              >
                 Our curriculum is designed to support all pupils to learn and
                 follows accessibility guidelines. It uses insights from the
                 science of learning to inform how content is designed and
                 presented.
               </CurricQuote>
-              <CurricQuote title="Diverse" barColor="mint110">
+              <CurricQuote
+                title="Diverse"
+                barColor="border-decorative1-stronger"
+              >
                 Our commitment to breadth and diversity in content, language,
                 texts and media can be seen throughout our curriculum, to help
                 pupils feel positively represented.

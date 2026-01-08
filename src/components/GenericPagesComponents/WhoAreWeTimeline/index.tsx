@@ -39,7 +39,7 @@ export default function WhoAreWeTimeline({
   items,
 }: Readonly<WhoAreWeTimelineProps>) {
   return (
-    <OakBox $background={"mint30"}>
+    <OakBox $background={"bg-decorative1-very-subdued"}>
       <InnerMaxWidth>
         <OakFlex
           $flexDirection={"column"}
@@ -51,7 +51,7 @@ export default function WhoAreWeTimeline({
               <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
                 <OakBox $font={["heading-6", "heading-5"]}>
                   <OakSpan
-                    $background={"mint"}
+                    $background={"bg-decorative1-main"}
                     $ph={"spacing-4"}
                     $color="text-primary"
                   >
@@ -112,7 +112,7 @@ export default function WhoAreWeTimeline({
                         <OakBox $font={"heading-7"}>
                           <OakSpan
                             $ph={"spacing-4"}
-                            $background={"mint"}
+                            $background={"bg-decorative1-main"}
                             $color="text-primary"
                           >
                             {item.subTitle}

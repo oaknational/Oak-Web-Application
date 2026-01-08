@@ -12,7 +12,7 @@ type Story = StoryObj<typeof Component>;
 
 export const SubjectListingTextTile: Story = {
   args: {
-    $background: "white",
+    $background: "bg-primary",
   },
   render: (args) => (
     <Component {...args}>

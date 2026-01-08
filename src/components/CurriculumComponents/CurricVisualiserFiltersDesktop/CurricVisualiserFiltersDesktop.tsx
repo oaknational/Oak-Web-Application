@@ -54,7 +54,10 @@ export default function CurricVisualiserFiltersDesktop({
             ks4Options={ks4Options}
             slugs={slugs}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {shouldDisplayFilter(data, filters, "subjectCategories") && (
@@ -65,7 +68,10 @@ export default function CurricVisualiserFiltersDesktop({
             data={data}
             slugs={slugs}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {shouldDisplayFilter(data, filters, "childSubjects") && (
@@ -75,7 +81,10 @@ export default function CurricVisualiserFiltersDesktop({
             onChangeFilters={onChangeFilters}
             data={data}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {shouldDisplayFilter(data, filters, "tiers") && (
@@ -85,7 +94,10 @@ export default function CurricVisualiserFiltersDesktop({
             onChangeFilters={onChangeFilters}
             data={data}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {shouldDisplayFilter(data, filters, "threads") && (

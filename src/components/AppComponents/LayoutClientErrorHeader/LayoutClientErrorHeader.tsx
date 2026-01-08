@@ -10,7 +10,7 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
  */
 const LayoutClientErrorHeader: FC = () => {
   return (
-    <LayoutFixedHeader $background={"mint50"}>
+    <LayoutFixedHeader $background={"bg-decorative1-subdued"}>
       <OwaLink page="home">
         <Logo variant="with text" height={48} width={104} />
       </OwaLink>
