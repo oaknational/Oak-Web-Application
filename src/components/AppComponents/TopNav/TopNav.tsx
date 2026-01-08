@@ -63,7 +63,7 @@ const TopNav = (props: TopNavProps) => {
   }, [teachers, pupils, activeArea, setCurrentBannerProps]);
 
   return (
-    <OakBox as="header" $position="relative">
+    <OakBox as="header" $position="relative" data-testid="app-topnav">
       <OakFlex
         $background={"bg-btn-primary"}
         $ph={["spacing-20", "spacing-40"]}
