@@ -1,5 +1,6 @@
+"use client";
 import { FC, ReactNode } from "react";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { keystageDescriptions } from "@oaknational/oak-curriculum-schema";
 import {
   OakGrid,
@@ -194,8 +195,8 @@ export type FooterSections = Record<
 
 const LayoutSiteFooter: FC = () => {
   const sections = footerSections;
-  const { pathname } = useRouter();
-  const displaySignpost = pathname.startsWith("/beta");
+  const pathname = usePathname();
+  const displaySignpost = pathname?.startsWith("/beta");
 
   return (
     <OakBox
