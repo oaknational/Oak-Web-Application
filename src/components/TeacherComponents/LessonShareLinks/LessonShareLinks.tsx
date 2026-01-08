@@ -7,7 +7,7 @@ import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 import { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import { ShareMediumValueType } from "@/browser-lib/avo/Avo";
-import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 const copyToClipboard = (textToCopy: string, callback: () => void) => {
   if (navigator.clipboard) {
@@ -26,7 +26,7 @@ const LessonShareLinks: FC<{
   onSubmit: (shareMedium: ShareMediumValueType) => void;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
-  const { setCurrentToastProps } = useOakToastContext();
+  const { setCurrentToastProps } = useOakNotificationsContext();
 
   useEffect(() => {
     setIsShareSuccessful(false);

@@ -1,34 +1,43 @@
 import {
   oakDefaultTheme,
   OakFlex,
+  OakInlineBanner,
+  OakInlineBannerProps,
   OakThemeProvider,
   OakToast,
   OakToastProps,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
-import { createContext, FC, useEffect, useState } from "react";
+import { createContext, FC, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 
-type OakToastContext = {
+type OakNotificationsContext = {
   currentToastProps: OakToastProps | null;
   setCurrentToastProps: (props: OakToastProps | null) => void;
+  currentBannerProps: OakInlineBannerProps | null;
+  setCurrentBannerProps: (props: OakInlineBannerProps | null) => void;
 };
 
-export const oakToastContext = createContext<OakToastContext | null>(null);
+export const oakNotificationsContext =
+  createContext<OakNotificationsContext | null>(null);
 
-const StyledOakToastContainer = styled(OakFlex)<{ offsetTop: number }>`
+const StyledOakNotificationsContainer = styled(OakFlex)<{ offsetTop: number }>`
   top: ${(props) => props.offsetTop}px;
 `;
 
-export const OakToastProvider: FC<{
+export const OakNotificationsProvider: FC<{
   children?: React.ReactNode;
 }> = ({ children }) => {
   const [currentToastProps, setCurrentToastProps] =
     useState<OakToastProps | null>(null);
+  const [currentBannerProps, setCurrentBannerProps] =
+    useState<OakInlineBannerProps | null>(null);
+
   const [offsetTop, setOffsetTop] = useState<number>(82);
   const [id, setId] = useState(0);
   const { asPath } = useRouter();
+
   const newTopNavEnabled = useFeatureFlagEnabled("teachers-new-top-nav");
 
   useEffect(() => {
@@ -49,7 +58,6 @@ export const OakToastProvider: FC<{
 
       // Short timeout to ensure the header is rendered before observing
       // 100ms is not enough for authenticated routes
-      // todo: look into using a mutation observer instead
       timeOut = setTimeout(() => {
         const headerElement = document.querySelector("header");
         if (headerElement && observer) {
@@ -73,20 +81,38 @@ export const OakToastProvider: FC<{
     setCurrentToastProps(props);
   };
 
+  const contextValue = useMemo(() => {
+    return {
+      currentToastProps,
+      setCurrentToastProps: setToastPropsAndId,
+      currentBannerProps,
+      setCurrentBannerProps,
+    };
+  }, [currentBannerProps, currentToastProps, setCurrentBannerProps]);
+
   return (
-    <oakToastContext.Provider
-      value={{ currentToastProps, setCurrentToastProps: setToastPropsAndId }}
-    >
+    <oakNotificationsContext.Provider value={contextValue}>
       <OakThemeProvider theme={oakDefaultTheme}>
-        <StyledOakToastContainer
+        <StyledOakNotificationsContainer
           $position="fixed"
           $zIndex="in-front"
           offsetTop={offsetTop}
-          $right={["spacing-0", "spacing-92"]}
+          $right={["spacing-0", "spacing-24"]}
           $width={["100%", "max-content"]}
-          $justifyContent={["center", "flex-end"]}
           aria-live="polite"
+          $flexDirection={"column"}
+          $gap={"spacing-12"}
+          $alignItems={["center", "flex-end"]}
+          $ph={["spacing-12", "spacing-0"]}
         >
+          {currentBannerProps && (
+            <OakInlineBanner
+              {...currentBannerProps}
+              $maxWidth={"spacing-480"}
+              onDismiss={() => setCurrentBannerProps(null)}
+              canDismiss
+            />
+          )}
           {currentToastProps && (
             <OakToast
               {...currentToastProps}
@@ -94,9 +120,9 @@ export const OakToastProvider: FC<{
               id={id}
             />
           )}
-        </StyledOakToastContainer>
+        </StyledOakNotificationsContainer>
       </OakThemeProvider>
       {children}
-    </oakToastContext.Provider>
+    </oakNotificationsContext.Provider>
   );
 };

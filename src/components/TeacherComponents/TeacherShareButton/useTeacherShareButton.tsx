@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 export const useTeacherShareButton = ({
   shareUrl,
@@ -10,7 +10,7 @@ export const useTeacherShareButton = ({
   shareActivated?: () => void;
 }) => {
   const [linkCopied, setLinkCopied] = useState(false);
-  const { setCurrentToastProps } = useOakToastContext();
+  const { setCurrentToastProps } = useOakNotificationsContext();
 
   const handleClick = () => {
     if (!shareUrl) return;

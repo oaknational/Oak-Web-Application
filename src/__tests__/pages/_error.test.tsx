@@ -1,32 +1,35 @@
 import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../__helpers__/renderWithProviders";
-import ErrorPage, { getInitialProps } from "../../pages/_error";
+import ErrorPage, {
+  defaultTopNavProps,
+  getInitialProps,
+} from "../../pages/_error";
 
 const render = renderWithProviders();
 
 describe("pages/_error.tsx", () => {
   it("Renders 404 message ", async () => {
-    render(<ErrorPage statusCode={404} />);
+    render(<ErrorPage statusCode={404} topNav={defaultTopNavProps} />);
     expect(
       screen.getByTestId("errorStatus").querySelector("h1"),
     ).toHaveTextContent("404");
   });
   it("Renders 500 message ", async () => {
-    render(<ErrorPage statusCode={500} />);
+    render(<ErrorPage statusCode={500} topNav={defaultTopNavProps} />);
     expect(
       screen.getByTestId("errorStatus").querySelector("h1"),
     ).toHaveTextContent("500");
   });
 
   it("Renders error page with no statusCode ", async () => {
-    render(<ErrorPage />);
+    render(<ErrorPage topNav={defaultTopNavProps} />);
     expect(
       screen.getByTestId("errorStatus").querySelector("h1"),
     ).toHaveTextContent("An error occurred");
   });
   it("contains a button with link to homepage", () => {
-    render(<ErrorPage />);
+    render(<ErrorPage topNav={defaultTopNavProps} />);
 
     expect(screen.getByTestId("homeButton").closest("a")).toHaveAttribute(
       "href",

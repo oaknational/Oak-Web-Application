@@ -29,7 +29,7 @@ import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 import { ToastProvider } from "@/context/Toast";
 import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
 import AppHooks from "@/components/AppComponents/App/AppHooks";
-import { OakToastProvider } from "@/context/OakToast/OakToastProvider";
+import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
 
 const lexend = Lexend({ subsets: ["latin"] });
@@ -64,7 +64,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
                       <MenuProvider>
                         <ToastProvider>
                           <SaveCountProvider>
-                            <OakToastProvider>
+                            <OakNotificationsProvider>
                               <style jsx global>{`
                                 html {
                                   font-family: ${lexend.style.fontFamily};
@@ -72,7 +72,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
                               `}</style>
                               <Component {...pageProps} />
                               <AppHooks />
-                            </OakToastProvider>
+                            </OakNotificationsProvider>
                           </SaveCountProvider>
                         </ToastProvider>
                       </MenuProvider>
