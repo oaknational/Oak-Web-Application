@@ -144,7 +144,6 @@ export function useFilters(
 ): [CurriculumFilters, (newFilters: CurriculumFilters) => void] {
   const searchParams = useSearchParams();
   const router = useRouter();
-
   const [filters, setFilters] = useState<CurriculumFilters>(defaultFilter);
   useLayoutEffect(() => {
     setFilters(mergeInFilterParams(defaultFilter, searchParams));
@@ -158,14 +157,16 @@ export function useFilters(
         new URLSearchParams(
           Object.entries(filtersToQuery(newFilters, defaultFilter)),
         ).toString();
+
       router.replace(url, undefined, {
         shallow: true,
+
         scroll: false,
       });
 
       setFilters(newFilters);
     },
-    [router, defaultFilter],
+    [defaultFilter, router],
   );
 
   return [filters, setExternalFilters];

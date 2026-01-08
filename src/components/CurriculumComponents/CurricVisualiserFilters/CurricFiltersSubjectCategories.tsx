@@ -15,10 +15,14 @@ import {
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersSubjectCategoriesProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilters: CurriculumFilters,
+    source: ComponentTypeValueType,
+  ) => void;
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
 };
@@ -47,7 +51,10 @@ export function CurricFiltersSubjectCategories({
   ).filter((ks) => !childSubjectsAt.includes(ks));
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({ ...filters, [key]: [newValue] });
+    onChangeFilters(
+      { ...filters, [key]: [newValue] },
+      "subject_category_button",
+    );
   }
 
   const subjectCategoryIdAsString = useMemo(() => {

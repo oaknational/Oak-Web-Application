@@ -8,6 +8,8 @@ import Support from "../../pages/support-your-team";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 import { SupportPage } from "../../common-lib/cms-types/supportPage";
 
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
 const testSupportPageData: SupportPage = {
   id: "01",
   title: "Support title",
@@ -72,7 +74,9 @@ describe("pages/support-your-team.tsx", () => {
   });
 
   it("Renders correct title ", () => {
-    const { getByRole } = render(<Support pageData={testSupportPageData} />);
+    const { getByRole } = render(
+      <Support pageData={testSupportPageData} topNav={topNavFixture} />,
+    );
 
     expect(getByRole("heading", { level: 1 }).textContent).toBe(
       "Support title",
@@ -82,7 +86,7 @@ describe("pages/support-your-team.tsx", () => {
   describe("SEO", () => {
     it("renders the correct SEO details ", async () => {
       const { seo } = renderWithSeo()(
-        <Support pageData={testSupportPageData} />,
+        <Support pageData={testSupportPageData} topNav={topNavFixture} />,
       );
 
       expect(seo).toEqual({

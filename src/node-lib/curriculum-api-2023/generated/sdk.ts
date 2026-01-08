@@ -71668,6 +71668,11 @@ export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TeachersSitemapQuery = { __typename?: 'query_root', keyStages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null }>, programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', programme_slug?: string | null }>, units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', unit_slug?: string | null, programme_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null }>, specialistProgrammes: Array<{ __typename?: 'published_mv_specialist_1_0_3', programme_slug?: string | null }>, specialistUnits: Array<{ __typename?: 'published_mv_specialist_1_0_3', unit_slug?: string | null, programme_slug?: string | null }>, specialistLessons: Array<{ __typename?: 'published_mv_specialist_1_0_3', unit_slug?: string | null, lesson_slug?: string | null, programme_slug?: string | null }> };
 
+export type TopNavQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TopNavQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', programme_fields?: any | null, programme_slug?: string | null, features?: any | null, actions?: any | null }> };
+
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
 }>;
@@ -72787,6 +72792,18 @@ export const TeachersSitemapDocument = gql`
   }
 }
     `;
+export const TopNavDocument = gql`
+    query topNav {
+  programmes: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
+    distinct_on: programme_slug
+  ) {
+    programme_fields
+    programme_slug
+    features
+    actions
+  }
+}
+    `;
 export const UnitListingDocument = gql`
     query unitListing($programmeSlug: String!) {
   units: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
@@ -72956,6 +72973,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersSitemapQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>({ document: TeachersSitemapDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersSitemap', 'query', variables);
+    },
+    topNav(variables?: TopNavQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TopNavQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TopNavQuery>({ document: TopNavDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'topNav', 'query', variables);
     },
     unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<UnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>({ document: UnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'unitListing', 'query', variables);

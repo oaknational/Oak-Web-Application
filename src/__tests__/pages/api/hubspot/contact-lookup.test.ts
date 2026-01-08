@@ -101,7 +101,44 @@ describe("/api/hubspot/contact-lookup", () => {
         path: "/contacts/v1/contact/utk/test-cookie-value/profile",
       });
     });
+    test("should return null for contact data without email", async () => {
+      // Mock the HubSpot API calls directly
+      const mockJsonMethod = jest.fn().mockResolvedValue({
+        properties: {}, // no email
+      });
 
+      (hubspot.apiRequest as jest.Mock).mockResolvedValue({
+        json: mockJsonMethod,
+      });
+
+      const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
+        method: "POST",
+        body: { hubspotutk: "test-cookie-value" },
+      });
+
+      await handler(req, res);
+
+      expect(res._getStatusCode()).toBe(200);
+      expect(res._getJSONData()).toEqual({ contact: null });
+    });
+    test("should return null for contact without properties", async () => {
+      // Mock the HubSpot API calls directly
+      const mockJsonMethod = jest.fn().mockResolvedValue({});
+
+      (hubspot.apiRequest as jest.Mock).mockResolvedValue({
+        json: mockJsonMethod,
+      });
+
+      const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
+        method: "POST",
+        body: { hubspotutk: "test-cookie-value" },
+      });
+
+      await handler(req, res);
+
+      expect(res._getStatusCode()).toBe(200);
+      expect(res._getJSONData()).toEqual({ contact: null });
+    });
     test("should return 400 with invalid request", async () => {
       const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
         method: "POST",

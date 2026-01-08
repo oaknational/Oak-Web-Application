@@ -54,15 +54,18 @@ import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers"
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import Banners from "@/components/SharedComponents/Banners";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
   curriculumRefreshTime: number;
+  topNav: TopNavProps;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
   curriculumRefreshTime,
+  topNav,
 }) => {
   const {
     programmeSlug,
@@ -227,7 +230,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <AppLayout seoProps={unitsSEO}>
+      <AppLayout seoProps={unitsSEO} topNavProps={topNav}>
         <PaginationHead
           prevPageUrlObject={prevPageUrlObject}
           nextPageUrlObject={nextPageUrlObject}
@@ -266,6 +269,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           isNew={hasNewContent ?? false}
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           subjectDescriptionUnitListingData={curriculumData}
+          showUnitListingSeo
           {...curriculumData}
         />
         <OakMaxWidth $ph={"spacing-16"}>
@@ -480,11 +484,13 @@ export const getStaticProps: GetStaticProps<
         }
 
         const curriculumRefreshTime = await getMvRefreshTime();
+        const topNav = await curriculumApi2023.topNav();
 
         const results: GetStaticPropsResult<UnitListingPageProps> = {
           props: {
             curriculumData,
             curriculumRefreshTime,
+            topNav,
           },
         };
 

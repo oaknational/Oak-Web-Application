@@ -3,11 +3,13 @@ import {
   OakGrid,
   OakGridArea,
   OakBox,
-  OakP,
   OakSpan,
   OakHeading,
 } from "@oaknational/oak-components";
 import { ReactNode, useMemo } from "react";
+
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {
   const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
@@ -15,7 +17,7 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
     <OakBox
       style={styleAttrs}
       $mh={"auto"}
-      $ph={["spacing-16", "spacing-40", "spacing-40"]}
+      $ph={["spacing-16", "spacing-16", "spacing-40"]}
     >
       {children}
     </OakBox>
@@ -24,16 +26,16 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
 
 export type WhoAreWeTimelineProps = {
   title: string;
-  subtitle: string;
+  subTitle: string;
   items: {
     title: string;
-    subtitle: string;
-    text: string[];
+    subTitle: string;
+    text: PortableTextJSON;
   }[];
 };
 export default function WhoAreWeTimeline({
   title,
-  subtitle,
+  subTitle,
   items,
 }: Readonly<WhoAreWeTimelineProps>) {
   return (
@@ -41,18 +43,26 @@ export default function WhoAreWeTimeline({
       <InnerMaxWidth>
         <OakFlex
           $flexDirection={"column"}
-          $gap={"spacing-56"}
-          $pt={"spacing-72"}
+          $gap={["spacing-40", "spacing-56"]}
+          $pt={["spacing-56", "spacing-72"]}
         >
           <OakGrid $cg="spacing-16" $rg="spacing-16">
             <OakGridArea $colSpan={[12, 12, 9]} $colStart={[0, 0, 2]}>
               <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
-                <OakBox $font={"heading-5"}>
-                  <OakSpan $background={"mint"} $ph={"spacing-4"}>
-                    {subtitle}
+                <OakBox $font={["heading-6", "heading-5"]}>
+                  <OakSpan
+                    $background={"mint"}
+                    $ph={"spacing-4"}
+                    $color="text-primary"
+                  >
+                    {subTitle}
                   </OakSpan>
                 </OakBox>
-                <OakHeading tag="h2" $font={"heading-3"}>
+                <OakHeading
+                  tag="h2"
+                  $font={["heading-5", "heading-3"]}
+                  $color="text-primary"
+                >
                   {title}
                 </OakHeading>
               </OakFlex>
@@ -97,21 +107,31 @@ export default function WhoAreWeTimeline({
                       <OakFlex
                         $flexDirection={"column"}
                         $gap={"spacing-8"}
-                        $mb={"spacing-72"}
+                        $mb={["spacing-56", "spacing-72"]}
                       >
-                        <OakBox $font={"body-2-bold"}>
-                          <OakSpan $ph={"spacing-4"} $background={"mint"}>
-                            {item.subtitle}
+                        <OakBox $font={"heading-7"}>
+                          <OakSpan
+                            $ph={"spacing-4"}
+                            $background={"mint"}
+                            $color="text-primary"
+                          >
+                            {item.subTitle}
                           </OakSpan>
                         </OakBox>
-                        <OakHeading tag="h3" $font={"heading-light-5"}>
+                        <OakHeading
+                          tag="h3"
+                          $font={["heading-6", "heading-5"]}
+                          $color="text-primary"
+                        >
                           {item.title}
                         </OakHeading>
-                        <OakBox>
-                          {item.text.map((textItem) => {
-                            return <OakP key={textItem}>{textItem}</OakP>;
-                          })}
-                        </OakBox>
+                        <OakFlex
+                          $font={["body-2", "body-1"]}
+                          $flexDirection={"column"}
+                          $gap={["spacing-20", "spacing-24"]}
+                        >
+                          <PortableTextWithDefaults value={item.text} />
+                        </OakFlex>
                       </OakFlex>
                     </OakFlex>
                   );

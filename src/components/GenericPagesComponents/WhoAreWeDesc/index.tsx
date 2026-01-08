@@ -6,10 +6,12 @@ import {
   OakBox,
   OakP,
   OakBoxProps,
-  OakImage,
 } from "@oaknational/oak-components";
 import { ReactNode, useMemo } from "react";
 import styled from "styled-components";
+
+import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
+import CMSImage from "@/components/SharedComponents/CMSImage";
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {
   return (
@@ -21,6 +23,7 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
 
 const CustomWeAreItemOakGridArea = styled(OakGridArea)`
   grid-column: span 3;
+
   @media (max-width: 1040px) {
     grid-column: span 6;
   }
@@ -42,8 +45,7 @@ type WhoAreWeDescProps = {
   items: {
     title: string;
     text: string;
-    imageUrl: string;
-    imageAlt: string;
+    image: ImageWithAltText;
   }[];
 };
 export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
@@ -68,51 +70,53 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
           tag="h2"
           $textAlign={["left", "center", "center"]}
           $font={["heading-5", "heading-3", "heading-3"]}
+          $color="text-primary"
         >
           {title}
         </OakHeading>
-        <OakGrid
-          $rg={"spacing-16"}
-          $cg={"spacing-16"}
-          $gridAutoRows={"1fr"}
-          $mb={"spacing-72"}
-        >
-          {itemsMapped.map(
-            ({ background, title, text, imageUrl, imageAlt }) => {
-              return (
-                <CustomWeAreItemOakGridArea
-                  key={title}
-                  data-testid="who-we-are-desc-item"
-                  $colSpan={12}
-                >
-                  <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-                    <OakBox
-                      $height={"spacing-180"}
-                      $background={background}
-                      $borderRadius={"border-radius-m2"}
-                      $pa={"spacing-16"}
-                    >
-                      <OakImage
+        <OakGrid $rg={"spacing-32"} $cg={"spacing-16"}>
+          {itemsMapped.map(({ background, title, text, image }) => {
+            return (
+              <CustomWeAreItemOakGridArea
+                key={title}
+                data-testid="who-we-are-desc-item"
+                $colSpan={12}
+              >
+                <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+                  <OakBox
+                    $height={"spacing-240"}
+                    $background={background}
+                    $borderRadius={"border-radius-m2"}
+                    $pv={"spacing-24"}
+                    $ph={"spacing-64"}
+                  >
+                    {image.asset?.url && (
+                      <CMSImage
                         $objectFit={"contain"}
-                        src={imageUrl}
-                        alt={imageAlt}
+                        image={image}
                         $height={"100%"}
                       />
-                    </OakBox>
-                    <OakFlex $gap={"spacing-16"} $flexDirection={"column"}>
-                      <OakHeading
-                        tag="h3"
-                        $font={["heading-6", "heading-5", "heading-5"]}
-                      >
-                        {title}
-                      </OakHeading>
-                      <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
-                    </OakFlex>
+                    )}
+                  </OakBox>
+                  <OakFlex $gap={"spacing-16"} $flexDirection={"column"}>
+                    <OakHeading
+                      tag="h3"
+                      $font={["heading-6", "heading-5", "heading-5"]}
+                      $color="text-primary"
+                    >
+                      {title}
+                    </OakHeading>
+                    <OakP
+                      $font={["body-2", "body-1", "body-1"]}
+                      $color="text-primary"
+                    >
+                      {text}
+                    </OakP>
                   </OakFlex>
-                </CustomWeAreItemOakGridArea>
-              );
-            },
-          )}
+                </OakFlex>
+              </CustomWeAreItemOakGridArea>
+            );
+          })}
         </OakGrid>
       </OakFlex>
     </InnerMaxWidth>

@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 import AppHeader from ".";
 
@@ -9,8 +9,8 @@ import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 
 // At the top of your test file
-jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(),
 }));
 
 const render = renderWithProviders();
@@ -23,10 +23,7 @@ jest.mock("posthog-js/react", () => ({
 describe("components/AppHeader", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (useRouter as jest.Mock).mockReturnValue({
-      asPath: "/teachers/some-path", // or "/pupils/some-path" to test the other area
-      pathname: "/teachers/some-path",
-    });
+    (usePathname as jest.Mock).mockReturnValue("/teachers/some-path");
   });
   test("header should be in the document", () => {
     const { getByRole } = render(<AppHeader />);
@@ -124,10 +121,7 @@ describe("components/AppHeader", () => {
     expect(signUpButton).not.toBeInTheDocument();
   });
   it("pupil link should have aria-current=true when selected area is PUPIL", () => {
-    (useRouter as jest.Mock).mockReturnValue({
-      asPath: "/pupils/xyz",
-      pathname: "/pupils/xyz",
-    });
+    (usePathname as jest.Mock).mockReturnValue("/pupils/xyz");
     const { getByRole } = render(<AppHeader />);
 
     expect(getByRole("link", { name: /Pupils/i })).toHaveAttribute(
@@ -136,10 +130,7 @@ describe("components/AppHeader", () => {
     );
   });
   it("teacher link should have aria-current=true when selected area is TEACHER", () => {
-    (useRouter as jest.Mock).mockReturnValue({
-      asPath: "/teachers/xyz",
-      pathname: "/teachers/xyz",
-    });
+    (usePathname as jest.Mock).mockReturnValue("/teachers/xyz");
     const { getByRole } = render(<AppHeader />);
 
     expect(getByRole("link", { name: /Teachers/i })).toHaveAttribute(

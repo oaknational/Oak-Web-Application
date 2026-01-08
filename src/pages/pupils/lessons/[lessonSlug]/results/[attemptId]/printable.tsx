@@ -1,14 +1,12 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
-import {
-  LessonAttemptCamelCase,
-  useOakPupil,
-} from "@oaknational/oak-pupil-client";
 import { useEffect, useState } from "react";
 import {
+  oakDefaultTheme,
   OakFlex,
   OakInlineBanner,
   OakLoadingSpinner,
   OakMaxWidth,
+  OakThemeProvider,
   OakTypography,
 } from "@oaknational/oak-components";
 
@@ -21,6 +19,8 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { PupilViewsResults } from "@/components/PupilViews/PupilResults";
+import { useOakPupil } from "@/hooks/useOakPupil";
+import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
 
 export type CanonicalResultsPrintablePageProps = {
   browseData: LessonBrowseData;
@@ -31,7 +31,11 @@ export type CanonicalResultsPrintablePageProps = {
 const CanonicalPrintableResultsPage = (
   props: CanonicalResultsPrintablePageProps,
 ) => {
-  return <InnerRender {...props} />;
+  return (
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <InnerRender {...props} />
+    </OakThemeProvider>
+  );
 };
 
 export const InnerRender = (props: CanonicalResultsPrintablePageProps) => {

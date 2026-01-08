@@ -10,49 +10,46 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
         class="sc-fqkvVR sc-kAyceB bhbwbN gwxZIR"
       >
         <h2
-          class="sc-kpDqfm ijVMjN"
+          class="sc-kpDqfm gzqUEm"
         >
           TESTING_TITLE
         </h2>
         <div
-          class="sc-fqkvVR sc-jXbUNg egekXy iwxQGX"
+          class="sc-fqkvVR sc-jXbUNg fgBWrW ewUxii"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-481a7747-0 fgBWrW joHkzz iAkSYx bpbBOR"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-698d7605-0 fgBWrW joHkzz iAkSYx btCibF"
             data-testid="who-we-are-desc-item"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
             >
               <div
-                class="sc-fqkvVR gGSZAU"
+                class="sc-fqkvVR gRLayp"
               >
-                <div
-                  class="sc-fqkvVR hudrT"
-                >
-                  <img
-                    alt="ITEM_ALT_0"
-                    class="sc-dcJsrY jRtmJB"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=http%3A%2F%2Fexample.com%2F0&w=3840&q=75"
-                    srcset="/_next/image?url=http%3A%2F%2Fexample.com%2F0&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Fexample.com%2F0&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Fexample.com%2F0&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Fexample.com%2F0&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Fexample.com%2F0&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Fexample.com%2F0&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Fexample.com%2F0&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Fexample.com%2F0&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </div>
+                <img
+                  alt="ITEM_ALT_0"
+                  class="sc-6170517-0 enHtaO"
+                  data-nimg="1"
+                  decoding="async"
+                  height="300"
+                  loading="lazy"
+                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/0-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
+                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/0-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/0-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
+                  style="color: transparent;"
+                  width="300"
+                />
               </div>
               <div
                 class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
               >
                 <h3
-                  class="sc-kpDqfm exYwWV"
+                  class="sc-kpDqfm eAMIYi"
                 >
                   ITEM_TITLE_0
                 </h3>
                 <p
-                  class="sc-dLMFU gKXbKJ"
+                  class="sc-dLMFU jKnjIK"
                 >
                   ITEM_TEXT_0
                 </p>
@@ -60,41 +57,38 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-481a7747-0 fgBWrW joHkzz iAkSYx bpbBOR"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-698d7605-0 fgBWrW joHkzz iAkSYx btCibF"
             data-testid="who-we-are-desc-item"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
             >
               <div
-                class="sc-fqkvVR fulovU"
+                class="sc-fqkvVR fjbDCB"
               >
-                <div
-                  class="sc-fqkvVR hudrT"
-                >
-                  <img
-                    alt="ITEM_ALT_1"
-                    class="sc-dcJsrY jRtmJB"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=http%3A%2F%2Fexample.com%2F1&w=3840&q=75"
-                    srcset="/_next/image?url=http%3A%2F%2Fexample.com%2F1&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Fexample.com%2F1&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Fexample.com%2F1&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Fexample.com%2F1&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Fexample.com%2F1&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Fexample.com%2F1&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Fexample.com%2F1&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Fexample.com%2F1&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </div>
+                <img
+                  alt="ITEM_ALT_1"
+                  class="sc-6170517-0 enHtaO"
+                  data-nimg="1"
+                  decoding="async"
+                  height="300"
+                  loading="lazy"
+                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
+                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
+                  style="color: transparent;"
+                  width="300"
+                />
               </div>
               <div
                 class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
               >
                 <h3
-                  class="sc-kpDqfm exYwWV"
+                  class="sc-kpDqfm eAMIYi"
                 >
                   ITEM_TITLE_1
                 </h3>
                 <p
-                  class="sc-dLMFU gKXbKJ"
+                  class="sc-dLMFU jKnjIK"
                 >
                   ITEM_TEXT_1
                 </p>
@@ -102,41 +96,38 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-481a7747-0 fgBWrW joHkzz iAkSYx bpbBOR"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-698d7605-0 fgBWrW joHkzz iAkSYx btCibF"
             data-testid="who-we-are-desc-item"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
             >
               <div
-                class="sc-fqkvVR hXKZlN"
+                class="sc-fqkvVR tlJWQ"
               >
-                <div
-                  class="sc-fqkvVR hudrT"
-                >
-                  <img
-                    alt="ITEM_ALT_2"
-                    class="sc-dcJsrY jRtmJB"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=http%3A%2F%2Fexample.com%2F2&w=3840&q=75"
-                    srcset="/_next/image?url=http%3A%2F%2Fexample.com%2F2&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Fexample.com%2F2&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Fexample.com%2F2&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Fexample.com%2F2&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Fexample.com%2F2&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Fexample.com%2F2&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Fexample.com%2F2&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Fexample.com%2F2&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </div>
+                <img
+                  alt="ITEM_ALT_2"
+                  class="sc-6170517-0 enHtaO"
+                  data-nimg="1"
+                  decoding="async"
+                  height="300"
+                  loading="lazy"
+                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/2-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
+                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/2-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/2-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
+                  style="color: transparent;"
+                  width="300"
+                />
               </div>
               <div
                 class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
               >
                 <h3
-                  class="sc-kpDqfm exYwWV"
+                  class="sc-kpDqfm eAMIYi"
                 >
                   ITEM_TITLE_2
                 </h3>
                 <p
-                  class="sc-dLMFU gKXbKJ"
+                  class="sc-dLMFU jKnjIK"
                 >
                   ITEM_TEXT_2
                 </p>
@@ -144,41 +135,38 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-481a7747-0 fgBWrW joHkzz iAkSYx bpbBOR"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-698d7605-0 fgBWrW joHkzz iAkSYx btCibF"
             data-testid="who-we-are-desc-item"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
             >
               <div
-                class="sc-fqkvVR eRVEUV"
+                class="sc-fqkvVR hckAIM"
               >
-                <div
-                  class="sc-fqkvVR hudrT"
-                >
-                  <img
-                    alt="ITEM_ALT_3"
-                    class="sc-dcJsrY jRtmJB"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    sizes="100vw"
-                    src="http://localhost/_next/image?url=http%3A%2F%2Fexample.com%2F3&w=3840&q=75"
-                    srcset="/_next/image?url=http%3A%2F%2Fexample.com%2F3&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Fexample.com%2F3&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Fexample.com%2F3&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Fexample.com%2F3&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Fexample.com%2F3&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Fexample.com%2F3&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Fexample.com%2F3&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Fexample.com%2F3&w=3840&q=75 3840w"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
-                </div>
+                <img
+                  alt="ITEM_ALT_3"
+                  class="sc-6170517-0 enHtaO"
+                  data-nimg="1"
+                  decoding="async"
+                  height="300"
+                  loading="lazy"
+                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/3-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
+                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/3-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/3-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
+                  style="color: transparent;"
+                  width="300"
+                />
               </div>
               <div
                 class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
               >
                 <h3
-                  class="sc-kpDqfm exYwWV"
+                  class="sc-kpDqfm eAMIYi"
                 >
                   ITEM_TITLE_3
                 </h3>
                 <p
-                  class="sc-dLMFU gKXbKJ"
+                  class="sc-dLMFU jKnjIK"
                 >
                   ITEM_TEXT_3
                 </p>
