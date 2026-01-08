@@ -1,4 +1,5 @@
 import { act } from "@testing-library/react";
+import { usePathname } from "next/navigation";
 
 import { basicFixtures } from "./CurricVisualiserUnitList.fixtures";
 
@@ -7,6 +8,10 @@ import { CurricVisualiserUnitList } from ".";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 const unitOverviewAccessedMock = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
