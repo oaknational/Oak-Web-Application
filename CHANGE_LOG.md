@@ -1,3 +1,16 @@
+# [1.945.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.944.1...v1.945.0) (2026-01-08)
+
+
+### Bug Fixes
+
+* merge snafu ([394f54f](https://github.com/oaknational/Oak-Web-Application/commit/394f54f479f527744c0f72442822a568f51ee655))
+* remove width and height from skip link so it doesn't block content ([03e1ab3](https://github.com/oaknational/Oak-Web-Application/commit/03e1ab36803382c16038ef8c3302b762384d856f))
+
+
+### Features
+
+* add skip link to topnav ([bd9603a](https://github.com/oaknational/Oak-Web-Application/commit/bd9603ac91adb985e87f30e79ffc6d99525b5b98))
+
 ## [1.944.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.944.0...v1.944.1) (2026-01-07)
 
 # [1.944.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.943.0...v1.944.0) (2026-01-07)
