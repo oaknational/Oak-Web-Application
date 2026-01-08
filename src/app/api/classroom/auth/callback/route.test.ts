@@ -9,6 +9,7 @@ import { GET } from "./route";
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
 const mockSession = "encrypted_session_data";
+const mockAccessToken = "google_access_token";
 const mockCode = "test_code_123";
 
 // Mock redirect
@@ -30,9 +31,10 @@ global.Response.json = mockResponseJson;
 
 const mockSearchParamsGet = jest.fn();
 
-const mockHandleGoogleSignInCallback = jest
-  .fn()
-  .mockResolvedValue({ encryptedSession: mockSession });
+const mockHandleGoogleSignInCallback = jest.fn().mockResolvedValue({
+  encryptedSession: mockSession,
+  accessToken: mockAccessToken,
+});
 
 describe("GET /api/classroom/auth/callback", () => {
   let mockRequest: NextRequest;
@@ -76,7 +78,7 @@ describe("GET /api/classroom/auth/callback", () => {
 
     expect(mockedRedirect).toHaveBeenCalledTimes(1);
     expect(mockedRedirect).toHaveBeenCalledWith(
-      `/classroom/auth/success?s=${encodeURIComponent(mockSession)}`,
+      `/classroom/auth/success?s=${encodeURIComponent(mockSession)}&at=${encodeURIComponent(mockAccessToken)}`,
     );
 
     expect(mockResponseJson).not.toHaveBeenCalled();
@@ -102,7 +104,7 @@ describe("GET /api/classroom/auth/callback", () => {
 
     expect(mockedRedirect).toHaveBeenCalledTimes(1);
     expect(mockedRedirect).toHaveBeenCalledWith(
-      `/classroom/auth/success?s=${encodeURIComponent(mockSession)}`,
+      `/classroom/auth/success?s=${encodeURIComponent(mockSession)}&at=${encodeURIComponent(mockAccessToken)}`,
     );
 
     expect(mockResponseJson).not.toHaveBeenCalled();

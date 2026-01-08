@@ -2,18 +2,25 @@ import { NextRequest } from "next/server";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
   const oakClassroomClient = getOakGoogleClassroomAddon(request);
-  const { session } = await request.json();
+  const accessToken = request.headers.get("Authorization");
+  const session = request.headers.get("X-Oakgc-Session");
 
-  if (!session) return Response.json({ authenticated: false }, { status: 401 });
+  if (!session || !accessToken)
+    return Response.json({ authenticated: false }, { status: 401 });
 
-  const verifiedSession: string | null =
-    await oakClassroomClient.verifyAuthSession(session);
+  const verifiedSession: { session: string; token: string } | null =
+    await oakClassroomClient.verifyAuthSession(session, accessToken);
+
   const authenticated = !!verifiedSession;
 
   return Response.json(
-    { authenticated },
+    {
+      authenticated,
+      session: verifiedSession?.session,
+      token: verifiedSession?.token,
+    },
     { status: authenticated ? 200 : 401 },
   );
 }

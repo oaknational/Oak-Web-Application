@@ -297,16 +297,16 @@ async function main() {
     // Google Classroom Addon
     GOOGLE_CLASSROOM_ENCRYPTION_SECRET:
       process.env.GOOGLE_CLASS_ROOM_ENCRYPTION_SECRET ||
-      secretsFromNetwork.encryptionSecret,
+      secretsFromNetwork.GOOGLE_CLASSROOM_ENCRYPTION_SECRET,
     GOOGLE_CLASSROOM_OAUTH_CLIENT_ID:
       process.env.GOOGLE_CLASSROOM_OAUTH_CLIENT_ID ||
-      secretsFromNetwork.oauthClientId,
+      secretsFromNetwork.GOOGLE_CLASSROOM_OAUTH_CLIENT_ID,
     GOOGLE_CLASSROOM_OAUTH_CLIENT_SECRET:
       process.env.GOOGLE_CLASSROOM_OAUTH_CLIENT_SECRET ||
-      secretsFromNetwork.oauthClientSecret,
+      secretsFromNetwork.GOOGLE_CLASSROOM_OAUTH_CLIENT_SECRET,
     GOOGLE_CLASSROOM_SESSION_SECRET:
       process.env.GOOGLE_CLASSROOM_SESSION_SECRET ||
-      secretsFromNetwork.sessionSecret,
+      secretsFromNetwork.GOOGLE_CLASSROOM_SESSION_SECRET,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {

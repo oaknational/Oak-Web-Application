@@ -17,12 +17,12 @@ export async function GET(request: NextRequest) {
     console.log("should subscribe to newsletter", email);
   };
   const oakClassroomClient = getOakGoogleClassroomAddon(request);
-  const { encryptedSession } =
+  const { encryptedSession, accessToken } =
     await oakClassroomClient.handleGoogleSignInCallback(
       code,
       subscribeToNewsletter === "true" ? tempSignUpToNewsletter : undefined,
     );
   return redirect(
-    `/classroom/auth/success?s=${encodeURIComponent(encryptedSession)}`,
+    `/classroom/auth/success?s=${encodeURIComponent(encryptedSession)}&at=${accessToken}`,
   );
 }
