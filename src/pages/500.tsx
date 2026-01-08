@@ -5,7 +5,7 @@ import ErrorPage, { ErrorProps } from "./_error";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 
-export default function Custom500({ topNav }: ErrorProps) {
+export default function Custom500({ topNav }: Readonly<ErrorProps>) {
   return <ErrorPage statusCode={500} topNav={topNav} />;
 }
 
