@@ -93,7 +93,6 @@ const EYFSPage: NextPage<Props> = (props: Props) => {
                               <OakPrimaryButton
                                 onClick={() =>
                                   setVideoOpen((prev) => {
-                                    console.log("diego prev", prev);
                                     if (prev !== null && lesson.slug === prev) {
                                       return null;
                                     } else {
