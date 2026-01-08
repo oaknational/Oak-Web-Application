@@ -31,8 +31,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={lexend.className}>
       {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
-      <body style={{ margin: "0px" }}>
-        <StyledComponentsRegistry>
+      <StyledComponentsRegistry>
+        <body style={{ margin: "0px" }}>
           <PHProvider>
             <OakThemeProvider theme={oakDefaultTheme}>
               <CookieConsentProvider>
@@ -79,8 +79,8 @@ export default function RootLayout({
               </CookieConsentProvider>
             </OakThemeProvider>
           </PHProvider>
-        </StyledComponentsRegistry>
-      </body>
+        </body>
+      </StyledComponentsRegistry>
     </html>
   );
 }
