@@ -1,14 +1,7 @@
-import styled from "styled-components";
 import Link from "next/link";
 
 import { OakTertiaryButton, OakFormInput, OakBox } from "@/styles/oakThemeApp";
 import { resolveOakHref } from "@/common-lib/urls/urls";
-
-// TODO Decide if we want to add extra tokens in oak-components to support
-// percentages on positions
-const StyledSearchButtonWrapper = styled(OakBox)`
-  top: 50%;
-`;
 
 const SearchBar = () => {
   return (
@@ -32,9 +25,10 @@ const SearchBar = () => {
             $pr="spacing-32"
           />
         </OakBox>
-        <StyledSearchButtonWrapper
+        <OakBox
           $position={[null, "absolute"]}
           $right="spacing-8"
+          $top="50%"
           $transform={[null, "translateY(-50%)"]}
         >
           <OakTertiaryButton
@@ -42,7 +36,7 @@ const SearchBar = () => {
             type="submit"
             iconName="search"
           />
-        </StyledSearchButtonWrapper>
+        </OakBox>
       </OakBox>
       {/* Mobile we show a link to the search page */}
       <OakBox $display={["block", "none"]}>
