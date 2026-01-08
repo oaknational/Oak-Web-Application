@@ -1,4 +1,5 @@
 import { act } from "@testing-library/react";
+import "jest-styled-components";
 
 import CurriculumTab from "./CurriculumTab";
 
