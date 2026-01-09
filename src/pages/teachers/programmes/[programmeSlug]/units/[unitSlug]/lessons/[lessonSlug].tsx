@@ -5,8 +5,8 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,

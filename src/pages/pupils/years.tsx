@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { GetStaticProps } from "next";
+
 import {
   OakFlex,
   OakGrid,
@@ -12,8 +14,6 @@ import {
   OakBox,
   OakP,
 } from "@oaknational/oak-components";
-import { GetStaticProps } from "next";
-
 import { resolveOakHref } from "@/common-lib/urls";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";

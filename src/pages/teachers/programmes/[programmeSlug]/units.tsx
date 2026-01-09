@@ -5,6 +5,9 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
+import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
+import { z } from "zod";
+
 import {
   OakGrid,
   OakGridArea,
@@ -14,9 +17,6 @@ import {
   OakFlex,
   OakMaxWidth,
 } from "@oaknational/oak-components";
-import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
-import { z } from "zod";
-
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,

@@ -1,5 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { useFeatureFlagEnabled } from "posthog-js/react";
+
 import {
   OakFlex,
   OakMaxWidth,
@@ -10,7 +11,6 @@ import {
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
-
 import CMSClient from "@/node-lib/cms";
 import { AboutBoardPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";

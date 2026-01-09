@@ -1,5 +1,6 @@
 import { FC, Fragment } from "react";
 import { NextPage, GetServerSideProps } from "next";
+
 import {
   OakFlex,
   OakGrid,
@@ -11,7 +12,6 @@ import {
   OakBox,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
-
 import CMSClient from "@/node-lib/cms";
 import {
   AboutWhoWeArePage,

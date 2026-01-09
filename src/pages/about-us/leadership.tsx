@@ -1,6 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { OakMaxWidth, OakHeading } from "@oaknational/oak-components";
 
+import { OakMaxWidth, OakHeading } from "@oaknational/oak-components";
 import CMSClient from "@/node-lib/cms";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";

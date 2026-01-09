@@ -1,4 +1,13 @@
 import { FC, FormEvent, useState } from "react";
+import { PortableTextReactComponents } from "@portabletext/react";
+import z, { ZodSchema } from "zod";
+
+import {
+  newsletterSignupFormSubmitSchema,
+  newsletterSignupRoleSchema,
+  partialNewsletterSchema,
+} from "./CampaignNewsletterSignup.schema";
+
 import {
   OakFlex,
   OakPrimaryButton,
@@ -12,15 +21,6 @@ import {
   OakSelect,
   OakOption,
 } from "@oaknational/oak-components";
-import { PortableTextReactComponents } from "@portabletext/react";
-import z, { ZodSchema } from "zod";
-
-import {
-  newsletterSignupFormSubmitSchema,
-  newsletterSignupRoleSchema,
-  partialNewsletterSchema,
-} from "./CampaignNewsletterSignup.schema";
-
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
 import YourDetails, {

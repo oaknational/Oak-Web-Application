@@ -1,3 +1,5 @@
+import styled from "styled-components";
+import { ReactNode } from "react";
 import {
   OakFlex,
   OakGrid,
@@ -10,10 +12,9 @@ import {
   OakIcon,
   OakCombinedColorToken,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
-import { ReactNode } from "react";
 
 import { InnerMaxWidth } from "../InnerMaxWidth";
+
 
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { PortableTextJSON } from "@/common-lib/cms-types";

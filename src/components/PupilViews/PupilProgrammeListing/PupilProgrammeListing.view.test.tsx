@@ -1,12 +1,12 @@
+import { act } from "@testing-library/react";
+
+import { PupilViewsProgrammeListing } from "./PupilProgrammeListing.view";
+
 import {
   OakInfoProps,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-import { act } from "@testing-library/react";
-
-import { PupilViewsProgrammeListing } from "./PupilProgrammeListing.view";
-
 import * as BrowseFactorSelector from "@/components/PupilComponents/BrowseFactorSelector";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import {

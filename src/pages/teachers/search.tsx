@@ -1,7 +1,7 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import useSearch from "@/context/Search/useSearch";
 import Search from "@/components/TeacherViews/Search/Search.view";

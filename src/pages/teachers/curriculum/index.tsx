@@ -1,4 +1,6 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+import styled from "styled-components";
+
 import {
   OakHeading,
   OakP,
@@ -7,8 +9,6 @@ import {
   OakFlex,
   OakBox,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
-
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import SubjectPhasePicker, {

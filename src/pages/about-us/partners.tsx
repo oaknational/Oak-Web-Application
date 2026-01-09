@@ -1,12 +1,12 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
+
 import {
   OakMaxWidth,
   OakHeading,
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
-
 import CMSClient from "@/node-lib/cms";
 import { AboutPartnersPage } from "@/common-lib/cms-types";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";

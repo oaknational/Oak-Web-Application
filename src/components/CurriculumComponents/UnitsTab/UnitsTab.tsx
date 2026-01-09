@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { OakHeading, OakBox } from "@oaknational/oak-components";
 import { PortableTextBlock } from "@portabletext/types";
 
 import CurricVisualiser from "../CurricVisualiser";
@@ -7,6 +6,7 @@ import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
 import CurricVisualiserFiltersMobile from "../CurricVisualiserFiltersMobile";
 import CurricVisualiserFiltersDesktop from "../CurricVisualiserFiltersDesktop";
 
+import { OakHeading, OakBox } from "@oaknational/oak-components";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";

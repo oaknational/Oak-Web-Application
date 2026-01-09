@@ -1,7 +1,7 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
-import { OakMaxWidth } from "@oaknational/oak-components";
 
+import { OakMaxWidth } from "@oaknational/oak-components";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import SubjectProgrammeListing from "@/components/TeacherComponents/SubjectProgrammeListing";

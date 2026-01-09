@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import {
   OakFlex,
   OakImage,
@@ -7,9 +8,9 @@ import {
   OakIcon,
   OakGridArea,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import { InnerMaxWidth } from "../InnerMaxWidth";
+
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";

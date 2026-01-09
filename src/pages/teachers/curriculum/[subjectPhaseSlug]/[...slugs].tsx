@@ -6,14 +6,14 @@ import {
 } from "next";
 import React, { useMemo } from "react";
 import { useRouter } from "next/router";
+import { uniq } from "lodash";
+import { usePathname } from "next/navigation";
+
 import {
   OakBox,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-import { uniq } from "lodash";
-import { usePathname } from "next/navigation";
-
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import CMSClient from "@/node-lib/cms";
 import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader";

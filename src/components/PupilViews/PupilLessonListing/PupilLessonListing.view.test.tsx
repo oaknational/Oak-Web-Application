@@ -1,12 +1,12 @@
+import mockRouter from "next-router-mock";
+
+import { PupilViewsLessonListing } from "./PupilLessonListing.view";
+
 import {
   OakInfoProps,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-import mockRouter from "next-router-mock";
-
-import { PupilViewsLessonListing } from "./PupilLessonListing.view";
-
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";

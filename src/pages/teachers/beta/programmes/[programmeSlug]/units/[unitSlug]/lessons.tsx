@@ -6,6 +6,7 @@ import {
   GetStaticPathsResult,
 } from "next";
 import { useUser } from "@clerk/nextjs";
+
 import {
   OakGrid,
   OakGridArea,
@@ -17,7 +18,6 @@ import {
   OakLink,
   OakSpan,
 } from "@oaknational/oak-components";
-
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import LessonList from "@/components/TeacherComponents/LessonList";

@@ -3,6 +3,7 @@ import assert from "assert";
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+
 import {
   OakFlex,
   OakHeading,
@@ -11,7 +12,6 @@ import {
   OakBox,
   OakHandDrawnHR,
 } from "@oaknational/oak-components";
-
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import curriculumPreviousDownloadsFixture, {
   DOWNLOAD_CATEGORIES,

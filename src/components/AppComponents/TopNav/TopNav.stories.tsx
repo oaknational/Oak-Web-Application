@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import Component from "./TopNav";
 
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const meta: Meta<typeof Component> = {

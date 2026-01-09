@@ -1,13 +1,13 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import { groupBy, uniq } from "lodash";
+import { subjectSlugs } from "@oaknational/oak-curriculum-schema";
+
 import {
   OakIconProps,
   OakThemeProvider,
   isValidIconName,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-import { subjectSlugs } from "@oaknational/oak-curriculum-schema";
-
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";

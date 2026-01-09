@@ -1,4 +1,5 @@
 import React, { useState, Fragment, ReactNode } from "react";
+import styled from "styled-components";
 import {
   OakSpan,
   OakBox,
@@ -8,7 +9,6 @@ import {
   OakSmallSecondaryButton,
   OakPrimaryButtonProps,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import { ProgrammePageMobileFiltersProps } from "./ProgrammePageFiltersMobile";
 

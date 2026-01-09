@@ -1,5 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { Fragment } from "react";
+
 import {
   OakFlex,
   OakMaxWidth,
@@ -9,7 +10,6 @@ import {
   OakTypography,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
-
 import CMSClient from "@/node-lib/cms";
 import { AboutWorkWithUsPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";

@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import {
   OakBox,
   OakFlex,
@@ -12,7 +13,6 @@ import {
   isValidIconName,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import {
   BrowseFactorSelector,

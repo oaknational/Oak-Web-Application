@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";

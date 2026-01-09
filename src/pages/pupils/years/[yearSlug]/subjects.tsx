@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 import getPageProps from "@/node-lib/getPageProps";

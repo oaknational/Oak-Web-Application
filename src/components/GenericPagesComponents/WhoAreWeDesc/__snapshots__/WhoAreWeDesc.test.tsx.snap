@@ -18,7 +18,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
           class="sc-fqkvVR sc-jXbUNg fgBWrW ewUxii"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-698d7605-0 fgBWrW joHkzz iAkSYx btCibF"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c80b83cd-0 fgBWrW joHkzz iAkSYx eFlWHT"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -57,7 +57,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-698d7605-0 fgBWrW joHkzz iAkSYx btCibF"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c80b83cd-0 fgBWrW joHkzz iAkSYx eFlWHT"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -96,7 +96,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-698d7605-0 fgBWrW joHkzz iAkSYx btCibF"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c80b83cd-0 fgBWrW joHkzz iAkSYx eFlWHT"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -135,7 +135,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-698d7605-0 fgBWrW joHkzz iAkSYx btCibF"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c80b83cd-0 fgBWrW joHkzz iAkSYx eFlWHT"
             data-testid="who-we-are-desc-item"
           >
             <div

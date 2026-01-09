@@ -1,8 +1,8 @@
 import { FC, useId } from "react";
-import { OakMaxWidth } from "@oaknational/oak-components";
 
 import { TopNavProps } from "../AppComponents/TopNav/TopNav";
 
+import { OakMaxWidth } from "@oaknational/oak-components";
 import PostCategoryList, {
   PostCategoryPage,
 } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";

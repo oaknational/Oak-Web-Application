@@ -1,6 +1,6 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { screen } from "@testing-library/react";
 
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import unitListingFixture from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
 import {

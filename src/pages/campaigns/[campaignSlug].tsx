@@ -4,9 +4,9 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 import { PortableTextComponents } from "@portabletext/react";
 
+import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   CampaignContentType,

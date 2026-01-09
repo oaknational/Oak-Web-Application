@@ -1,4 +1,6 @@
 import { groupBy } from "lodash";
+import { yearDescriptions } from "@oaknational/oak-curriculum-schema";
+
 import {
   isValidIconName,
   OakFlex,
@@ -9,8 +11,6 @@ import {
   OakSubjectIconButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-import { yearDescriptions } from "@oaknational/oak-curriculum-schema";
-
 import { ResolveOakHrefProps, resolveOakHref } from "@/common-lib/urls";
 import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";

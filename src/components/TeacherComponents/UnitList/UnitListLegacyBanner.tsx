@@ -1,3 +1,8 @@
+import * as React from "react";
+import { FC } from "react";
+
+import { UnitListProps } from "./UnitList";
+
 import {
   OakFlex,
   OakHeading,
@@ -7,11 +12,6 @@ import {
   OakP,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
-import * as React from "react";
-import { FC } from "react";
-
-import { UnitListProps } from "./UnitList";
-
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
 

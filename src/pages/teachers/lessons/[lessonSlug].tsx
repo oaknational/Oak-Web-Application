@@ -3,13 +3,13 @@ import {
   GetStaticProps,
   GetStaticPropsResult,
 } from "next";
+
 import {
   OakFlex,
   OakMaxWidth,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import {
