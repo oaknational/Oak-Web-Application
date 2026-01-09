@@ -20,6 +20,16 @@ jest.mock("next/navigation", () => {
   };
 });
 
+// TD: [integrated journey] this is not a good approach to testing
+// Jest is not setup to test RSCs properly, so we need a new approach
+jest.mock("react", () => {
+  const actualReact = jest.requireActual("react");
+  return {
+    ...actualReact,
+    cache: <T extends (...args: unknown[]) => unknown>(fn: T) => fn,
+  };
+});
+
 const featureFlagMock = jest.fn().mockResolvedValue(false);
 jest.mock("@/utils/featureFlags", () => ({
   useFeatureFlag: () => featureFlagMock(),
