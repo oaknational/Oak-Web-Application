@@ -1,3 +1,9 @@
+import { useEffect } from "react";
+
+import { TopNavProps } from "../TopNav";
+
+import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
+
 import {
   OakBox,
   OakLI,
@@ -9,12 +15,6 @@ import {
   OakSvg,
   OakUL,
 } from "@oaknational/oak-components";
-import { useEffect } from "react";
-
-import { TopNavProps } from "../TopNav";
-
-import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
-
 import { TeachersBrowse } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export function MainMenuContent(props: TopNavProps) {

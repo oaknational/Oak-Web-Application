@@ -8,16 +8,17 @@ import {
   useMemo,
   useCallback,
 } from "react";
-import {
-  OakSecondaryButton,
-  OakInformativeModal,
-  OakBox,
-} from "@oaknational/oak-components";
 
 import { TopNavProps } from "../TopNav";
 
 import { MainMenuContent } from "./HamburgerMainMenu";
 import { SubmenuContent } from "./HamburgerSubMenu";
+
+import {
+  OakSecondaryButton,
+  OakInformativeModal,
+  OakBox,
+} from "@oaknational/oak-components";
 
 export type SubmenuState =
   | "KS1"

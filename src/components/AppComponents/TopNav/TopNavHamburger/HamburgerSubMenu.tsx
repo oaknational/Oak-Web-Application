@@ -1,3 +1,7 @@
+import { ReactNode } from "react";
+
+import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
+
 import {
   OakBox,
   OakFlex,
@@ -5,10 +9,6 @@ import {
   OakSubjectIconButton,
   OakUL,
 } from "@oaknational/oak-components";
-import { ReactNode } from "react";
-
-import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
-
 import {
   SubNavLinks,
   TeachersBrowse,
