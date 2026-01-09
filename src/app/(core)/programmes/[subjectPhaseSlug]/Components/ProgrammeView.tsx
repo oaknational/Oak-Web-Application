@@ -1,12 +1,12 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { OakBox, OakHeading } from "@oaknational/oak-components";
 
 import ProgrammePageFiltersMobile from "./Filters/ProgrammePageFiltersMobile";
 import ProgrammePageFiltersDesktop from "./Filters/ProgrammePageFiltersDesktop";
 import ProgrammeSequence from "./Sequence";
 
-import { OakBox, OakHeading } from "@oaknational/oak-components";
 import { CurricVisualiserLayout } from "@/components/CurriculumComponents/CurricVisualiserLayout";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -20,7 +20,7 @@ import {
   getNumberOfSelectedUnits,
   highlightedUnitCount,
   useFilters,
-} from "@/utils/curriculum/filtering";
+} from "@/utils/curriculum/filteringApp";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import useAnalytics from "@/context/Analytics/useAnalytics";

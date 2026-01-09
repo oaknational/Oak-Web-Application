@@ -1,8 +1,5 @@
 import React, { useState, Fragment, ReactNode } from "react";
 import styled from "styled-components";
-
-import { ProgrammePageMobileFiltersProps } from "./ProgrammePageFiltersMobile";
-
 import {
   OakSpan,
   OakBox,
@@ -12,6 +9,9 @@ import {
   OakSmallSecondaryButton,
   OakPrimaryButtonProps,
 } from "@oaknational/oak-components";
+
+import { ProgrammePageMobileFiltersProps } from "./ProgrammePageFiltersMobile";
+
 import {
   getYearGroupTitle,
   getPathwaySuffix,
@@ -19,7 +19,7 @@ import {
 import {
   buildTextDescribingFilter,
   highlightedUnitCount,
-} from "@/utils/curriculum/filtering";
+} from "@/utils/curriculum/filteringApp";
 import {
   applyFiltering,
   getModes,

@@ -1,17 +1,19 @@
 import styled from "styled-components";
-
-import { InnerMaxWidth } from "../InnerMaxWidth";
-
 import {
   OakFlex,
   OakImage,
-  OakP,
   OakHeading,
   OakSecondaryButton,
   OakGrid,
   OakIcon,
   OakGridArea,
 } from "@oaknational/oak-components";
+
+import { InnerMaxWidth } from "../InnerMaxWidth";
+
+
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const BadgeImage = styled.img`
   max-height: 40px;
@@ -30,7 +32,7 @@ const BadgeImage = styled.img`
 
 export type GetInvolvedWorkWithUsProps = {
   heading: string;
-  text: string[];
+  text: PortableTextJSON;
   permanentRolesLink: string;
   freelanceRolesLink: string;
   imageUrl: string;
@@ -76,13 +78,7 @@ export function GetInvolvedWorkWithUs({
                 $flexDirection={"column"}
                 $gap={["spacing-20", "spacing-24"]}
               >
-                {text.map((textItem) => {
-                  return (
-                    <OakP key={textItem} $color="text-primary">
-                      {textItem}
-                    </OakP>
-                  );
-                })}
+                <PortableTextWithDefaults value={text} />
               </OakFlex>
             </OakFlex>
 

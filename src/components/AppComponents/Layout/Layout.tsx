@@ -2,9 +2,6 @@ import Head from "next/head";
 import React, { FC } from "react";
 import { useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
-
-import TopNav, { TopNavProps } from "../TopNav/TopNav";
-
 import {
   OakBox,
   OakFlex,
@@ -12,6 +9,9 @@ import {
   OakThemeProvider,
   OakColorToken,
 } from "@oaknational/oak-components";
+
+import TopNav, { TopNavProps } from "../TopNav/TopNav";
+
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
 import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
@@ -92,6 +92,7 @@ const Layout: FC<LayoutProps> = (props) => {
           $zIndex={"in-front"}
           $top={"spacing-92"}
           $left={"spacing-24"}
+          $display={newTopNavEnabled ? "none" : "block"}
         >
           <SkipLink href={props.skipLinkHref ?? "#main"}>
             Skip to content

@@ -1,7 +1,7 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
-
 import { OakBox, OakMaxWidth } from "@oaknational/oak-components";
+
 import { getSeoProps } from "@//browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import SubjectListingPage from "@/components/TeacherViews/SubjectListing.view";
@@ -165,10 +165,13 @@ export const getStaticProps: GetStaticProps<
         // sort by slug so the old and new subjects are intermingled
         .sort((a, b) => (a?.[0] && b?.[0] && a[0].slug > b[0].slug ? 1 : -1));
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results = {
         props: {
           ...curriculumData,
           subjects: combinedAndFilteredSubjects,
+          topNav,
         },
       };
 

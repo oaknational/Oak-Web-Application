@@ -1,8 +1,7 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { AboutSharedHeader as Component } from ".";
-
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 
 const meta: Meta<typeof Component> = {
@@ -25,8 +24,22 @@ type Story = StoryObj<typeof Component>;
 export const Default: Story = {
   args: {
     title: "About Oak",
-    content:
-      "We're here to support and inspire teachers to deliver great teaching, so every pupil benefits",
+    content: [
+      {
+        _key: "key0001",
+        _type: "block",
+        children: [
+          {
+            _key: "key0002",
+            _type: "span",
+            marks: [],
+            text: "We're here to support and inspire teachers to deliver great teaching, so every pupil benefits",
+          },
+        ],
+        markDefs: [],
+        style: "normal",
+      },
+    ],
     // imageUrl:
     //   "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg",
     // imageAlt: "Oak logo",

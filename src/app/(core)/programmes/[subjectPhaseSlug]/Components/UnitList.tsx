@@ -1,5 +1,6 @@
 import { OakGrid, OakGridArea, OakP } from "@oaknational/oak-components";
-import { isHighlightedUnit } from "@/utils/curriculum/filtering";
+
+import { isHighlightedUnit } from "@/utils/curriculum/filteringApp";
 import {
   CurriculumFilters,
   Thread,
