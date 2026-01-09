@@ -1,6 +1,6 @@
 # Oak National Academy
 
-> Free, high-quality curriculum resources for teachers and pupils in England. Oak provides thousands of lesson plans, videos, worksheets, and quizzes aligned with the UK National Curriculum for Key Stages 1-4 (ages 5-16), plus AI-powered lesson creation tools.
+> Free, high-quality curriculum resources for teachers and pupils in England. Oak provides thousands of lesson plans, videos, worksheets, and quizzes aligned with the National Curriculum for Key Stages 1-4 (ages 5-16), plus AI-powered lesson creation tools.
 
 Oak National Academy is an arm's-length body of the Department for Education, established to support teachers with free, adaptable curriculum resources. The platform serves two primary audiences: teachers seeking lesson materials and curriculum plans, and pupils accessing interactive lessons with videos and quizzes.
 
@@ -102,6 +102,7 @@ Replace `{query}` with URL-encoded search terms. Example: `https://www.thenation
 - 196,143 teachers used Oak's resources (135% increase year-on-year)
 - 1.63 million resource downloads and 4.2 million pupil lessons
 - Schools in disadvantaged areas downloaded 36% more resources per school
+- Staff in 17,663 schools (72% of those in England) used Oak
 - 80% of users rated materials as "very high or high" quality
 - 85% reported positive impact on workload, saving an average of 4 hours per week on planning
 - 67% experienced reduced planning time; teacher retention improved (only 8% of Oak users plan to leave teaching vs 23% of non-users)
