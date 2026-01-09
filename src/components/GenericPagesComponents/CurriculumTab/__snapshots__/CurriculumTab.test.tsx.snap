@@ -8,7 +8,7 @@ exports[`CurriculumTab renders 1`] = `
     >
       <div
         aria-live="polite"
-        class="sc-fqkvVR sc-kAyceB sc-cd6afb52-0 hkKUlc iPEHGb iSunLx"
+        class="sc-fqkvVR sc-kAyceB sc-20c4b585-0 hkKUlc iPEHGb jmldFB"
       />
       <div
         class="sc-fqkvVR gZEYWU"
@@ -66,17 +66,17 @@ exports[`CurriculumTab renders 1`] = `
                   class="sc-ikkxIA hHHtYD"
                 >
                   <li
-                    class="sc-jlZhew bKqIHz"
+                    class="sc-jlZhew fvZvGD"
                   >
                     National curriculum-aligned
                   </li>
                   <li
-                    class="sc-jlZhew bKqIHz"
+                    class="sc-jlZhew fvZvGD"
                   >
                     Sequenced across year groups
                   </li>
                   <li
-                    class="sc-jlZhew bKqIHz"
+                    class="sc-jlZhew fvZvGD"
                   >
                     Designed by curriculum experts
                   </li>

@@ -7,7 +7,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   >
     <div
       aria-live="polite"
-      class="sc-fqkvVR sc-kAyceB sc-cd6afb52-0 hkKUlc iPEHGb iSunLx"
+      class="sc-fqkvVR sc-kAyceB sc-20c4b585-0 hkKUlc iPEHGb jmldFB"
     />
     <fake-head>
       <title>
@@ -539,7 +539,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       role="list"
                     >
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -592,7 +592,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -645,7 +645,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -698,7 +698,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -751,7 +751,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -804,7 +804,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -857,7 +857,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -910,7 +910,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -963,7 +963,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -1016,7 +1016,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -1084,7 +1084,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       role="list"
                     >
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -1152,7 +1152,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       role="list"
                     >
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -1205,7 +1205,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -1258,7 +1258,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -1311,7 +1311,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -1364,7 +1364,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew ehzYni"
+                        class="sc-jlZhew cIfrwK"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
@@ -1703,7 +1703,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-8e0456a6-0 fgBWrW djyvKT iAkSYx cJiBvQ"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c7ea50e0-0 fgBWrW djyvKT iAkSYx jwIjjV"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1725,10 +1725,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-8e0456a6-1 fgBWrW joHkzz dGlNMa hxrpsr"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c7ea50e0-1 fgBWrW joHkzz dGlNMa dMtDqu"
                 >
                   <div
-                    class="sc-fqkvVR erqloa sc-8e0456a6-2 gVUkBJ"
+                    class="sc-fqkvVR erqloa sc-c7ea50e0-2 gTwWRw"
                     data-testid="about-shared-loop"
                   >
                     <img
@@ -1773,7 +1773,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
                     >
                       <div
-                        class="sc-fqkvVR jqqmXN sc-e5da2752-0 bmmEFh"
+                        class="sc-fqkvVR jqqmXN sc-90b29248-0 hLeqSQ"
                       >
                         <img
                           alt=""
@@ -2102,17 +2102,17 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   >
                     <img
                       alt="'In Escape the City's top 1% of employers'"
-                      class="sc-a0a9d655-0 ixaXXm"
+                      class="sc-84e5aafa-0 bybBmq"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
                     />
                     <img
                       alt="Awarded Gold in Investors In People"
-                      class="sc-a0a9d655-0 ixaXXm"
+                      class="sc-84e5aafa-0 bybBmq"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
                     />
                     <img
                       alt="Certified as Disability Confident Committed"
-                      class="sc-a0a9d655-0 ixaXXm"
+                      class="sc-84e5aafa-0 bybBmq"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
                     />
                   </div>
@@ -2447,7 +2447,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-kAyceB sc-jEACwC eKkWSU bUZQTk"
             >
               <div
-                class="sc-fqkvVR sc-2406d8ce-0 fgBWrW kwEaUW"
+                class="sc-fqkvVR sc-4d67e090-0 fgBWrW cKUHUx"
               >
                 <div
                   class="sc-ad0ad6f5-0 sc-213e351e-0 sc-8724906-0 hidovD cEqFwB"
@@ -3089,7 +3089,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       role="list"
                     >
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3145,7 +3145,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       role="list"
                     >
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3180,7 +3180,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3215,7 +3215,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3250,7 +3250,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3285,7 +3285,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3320,7 +3320,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3355,7 +3355,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3391,7 +3391,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3427,7 +3427,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3484,7 +3484,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       role="list"
                     >
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3520,7 +3520,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3556,7 +3556,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3606,7 +3606,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3642,7 +3642,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3693,7 +3693,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3729,7 +3729,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3765,7 +3765,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3836,7 +3836,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       role="list"
                     >
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3871,7 +3871,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3906,7 +3906,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3941,7 +3941,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <button
                           class="sc-ce4d7bd4-0 sc-e88beb40-0 kYyTPx cUHyFr"
@@ -3987,7 +3987,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </button>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -4022,7 +4022,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -4057,7 +4057,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -4092,7 +4092,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -4127,7 +4127,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -4162,7 +4162,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="sc-jlZhew XOrLS"
+                        class="sc-jlZhew dnuBDm"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
