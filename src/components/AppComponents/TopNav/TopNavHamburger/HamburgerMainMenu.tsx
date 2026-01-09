@@ -6,6 +6,8 @@ import {
   OakIcon,
   OakFlex,
   OakHeading,
+  OakSvg,
+  OakUL,
 } from "@oaknational/oak-components";
 import { useEffect } from "react";
 
@@ -26,29 +28,44 @@ export function MainMenuContent(props: TopNavProps) {
 
   if (!props.teachers) return;
   return (
-    <>
+    <OakUL
+      $display={"flex"}
+      $flexDirection={"column"}
+      $pa={"spacing-40"}
+      $gap={"spacing-40"}
+    >
       <SubjectsSection {...props.teachers?.primary} />
       <SubjectsSection {...props.teachers?.secondary} />
-      <MainMenuLink href={"/"} title="Curriculum" />
-      <MainMenuButton title={"About us"} />
-      <MainMenuButton title={"Guidance"} />
-      <MainMenuLink href={"/"} title="Ai Experiments" iconName="external" />
-    </>
+      <OakBox>
+        <MainMenuLink href={"/"} title="Curriculum" />
+        <MainMenuButton title={"About us"} />
+        <MainMenuButton title={"Guidance"} />
+        <MainMenuLink href={"/"} title="Ai Experiments" iconName="external" />
+      </OakBox>
+    </OakUL>
   );
 }
 
 function SubjectsSection(props: TeachersBrowse) {
   return (
-    <>
-      <OakHeading tag="h2">{props.phaseTitle}</OakHeading>
-
+    <OakBox>
+      <OakFlex $flexDirection={"column"} $width={"fit-content"}>
+        <OakHeading tag="h2">{props.phaseTitle}</OakHeading>
+        <OakSvg
+          $color={"mint"}
+          $display={"block"}
+          $width={"spacing-120"}
+          name={"underline"}
+          $height={"spacing-8"}
+        />
+      </OakFlex>
       {props.keystages.map((keystage) => (
         <MainMenuButton
           key={keystage.slug + props.phaseSlug}
           title={keystage.title}
         />
       ))}
-    </>
+    </OakBox>
   );
 }
 

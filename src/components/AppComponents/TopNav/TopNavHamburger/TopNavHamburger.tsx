@@ -12,7 +12,6 @@ import {
   OakSecondaryButton,
   OakInformativeModal,
   OakBox,
-  OakUL,
 } from "@oaknational/oak-components";
 
 import { TopNavProps } from "../TopNav";
@@ -110,14 +109,12 @@ function Content(props: TopNavProps) {
   const { submenuOpen } = useHamburgerMenu();
   if (!props.teachers) return;
   return (
-    <OakBox $width={"100%"} $height={"100%"} $pa={"spacing-32"}>
-      <OakUL $ph={"spacing-0"}>
-        {submenuOpen ? (
-          <SubmenuContent {...props.teachers} />
-        ) : (
-          <MainMenuContent {...props} />
-        )}
-      </OakUL>
+    <OakBox $width={"100%"} $height={"100%"}>
+      {submenuOpen ? (
+        <SubmenuContent {...props.teachers} />
+      ) : (
+        <MainMenuContent {...props} />
+      )}
     </OakBox>
   );
 }

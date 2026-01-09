@@ -1,6 +1,6 @@
 import {
   OakBox,
-  OakIconName,
+  OakFlex,
   OakPrimaryInvertedButton,
   OakSubjectIconButton,
   OakUL,
@@ -14,6 +14,8 @@ import {
   TeachersBrowse,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { resolveOakHref } from "@/common-lib/urls";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type NavItemData =
   | { type: "links"; links: SubNavLinks }
@@ -33,7 +35,13 @@ export function SubmenuContainer({
 }) {
   const { submenuOpen, handleCloseSubmenu } = useHamburgerMenu();
   return (
-    <OakBox $display={submenuOpen === title ? "block" : "none"}>
+    <OakFlex
+      $ph={"spacing-40"}
+      $pb={"spacing-40"}
+      $gap={"spacing-40"}
+      $flexDirection={"column"}
+      $display={submenuOpen === title ? "flex" : "none"}
+    >
       <OakPrimaryInvertedButton
         iconName="chevron-left"
         selected={true}
@@ -41,13 +49,14 @@ export function SubmenuContainer({
       >
         {title}
       </OakPrimaryInvertedButton>
+
       {children}
-    </OakBox>
+    </OakFlex>
   );
 }
 
 export function SubmenuContent(props: TeachersSubNavData) {
-  const { submenuOpen } = useHamburgerMenu();
+  const { submenuOpen, handleClose } = useHamburgerMenu();
 
   if (!submenuOpen) return null;
 
@@ -57,8 +66,14 @@ export function SubmenuContent(props: TeachersSubNavData) {
         <SubmenuContainer title={submenuOpen}>
           <OakUL>
             {props.aboutUs.map((link) => (
-              <OakBox key={link.slug} $width={"100%"}>
-                <OakPrimaryInvertedButton element="a" href={`/${link.slug}`}>
+              <OakBox key={link.slug}>
+                <OakPrimaryInvertedButton
+                  onClick={() => {
+                    handleClose();
+                  }}
+                  element="a"
+                  href={`/${link.slug}`}
+                >
                   {link.title}
                 </OakPrimaryInvertedButton>
               </OakBox>
@@ -70,10 +85,20 @@ export function SubmenuContent(props: TeachersSubNavData) {
     case "Guidance":
       return (
         <SubmenuContainer title={submenuOpen}>
-          <OakUL>
+          <OakUL
+            $display={"flex"}
+            $flexDirection={"column"}
+            $gap={"spacing-16"}
+          >
             {props.guidance.map((link) => (
-              <OakBox key={link.slug} $width={"100%"}>
-                <OakPrimaryInvertedButton element="a" href={`/${link.slug}`}>
+              <OakBox key={link.slug}>
+                <OakPrimaryInvertedButton
+                  onClick={() => {
+                    handleClose();
+                  }}
+                  element="a"
+                  href={`/${link.slug}`}
+                >
                   {link.title}
                 </OakPrimaryInvertedButton>
               </OakBox>
@@ -92,23 +117,59 @@ export function SubmenuContent(props: TeachersSubNavData) {
       );
 
       if (!keystage) return null;
-
       return (
         <SubmenuContainer title={submenuOpen}>
-          <OakUL>
-            {keystage.subjects.map((subject) => (
-              <OakBox key={subject.title + phase} $width={"100%"}>
-                <OakSubjectIconButton
-                  phase={phase}
-                  subjectIconName={
-                    ("subject-" + subject.subjectSlug) as OakIconName
-                  }
-                  variant="horizontal"
-                >
-                  {subject.title}
-                </OakSubjectIconButton>
-              </OakBox>
-            ))}
+          <OakUL
+            $ph={"spacing-0"}
+            $display={"flex"}
+            $flexDirection={"row"}
+            $flexWrap={"wrap"}
+            $gap={"spacing-16"}
+          >
+            {keystage.subjects
+              .toSorted((a, b) => {
+                const aNon = !!a.nonCurriculum;
+                const bNon = !!b.nonCurriculum;
+                if (aNon === bNon) return a.title.localeCompare(b.title);
+                return aNon ? 1 : -1;
+              })
+              .map((subject) => (
+                <OakBox key={subject.title + phase}>
+                  <OakSubjectIconButton
+                    element="a"
+                    // href={resolveOakHref({
+                    //   page: "unit-index",
+                    //   programmeSlug: subject.programmeSlug,
+                    // })}
+                    onClick={() => {
+                      handleClose();
+                    }}
+                    phase={subject.nonCurriculum ? "non-curriculum" : phase}
+                    subjectIconName={getValidSubjectIconName(
+                      subject.subjectSlug,
+                    )}
+                    variant="horizontal"
+                  >
+                    {subject.title}
+                  </OakSubjectIconButton>
+                </OakBox>
+              ))}
+            <OakBox $width={"100%"}>
+              <OakPrimaryInvertedButton
+                element="a"
+                href={resolveOakHref({
+                  page: "subject-index",
+                  keyStageSlug: keystage.slug,
+                })}
+                onClick={() => {
+                  handleClose();
+                }}
+                isTrailingIcon
+                iconName="arrow-right"
+              >
+                {`All ${keystage.title} subjects`}
+              </OakPrimaryInvertedButton>
+            </OakBox>
           </OakUL>
         </SubmenuContainer>
       );
