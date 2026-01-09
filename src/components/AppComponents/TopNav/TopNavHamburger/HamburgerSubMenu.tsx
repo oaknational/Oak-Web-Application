@@ -31,15 +31,13 @@ export function SubmenuContainer({
   readonly title: SubmenuState;
   readonly children: ReactNode;
 }) {
-  const { submenuOpen, setSubmenuOpen } = useHamburgerMenu();
+  const { submenuOpen, handleCloseSubmenu } = useHamburgerMenu();
   return (
     <OakBox $display={submenuOpen === title ? "block" : "none"}>
       <OakPrimaryInvertedButton
         iconName="chevron-left"
         selected={true}
-        onClick={() => {
-          setSubmenuOpen(false);
-        }}
+        onClick={() => handleCloseSubmenu()}
       >
         {title}
       </OakPrimaryInvertedButton>

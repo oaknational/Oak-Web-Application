@@ -5,6 +5,8 @@ import {
   useState,
   createContext,
   useContext,
+  useMemo,
+  useCallback,
 } from "react";
 import {
   OakSecondaryButton,
@@ -31,7 +33,9 @@ export type SubmenuState =
 type HamburgerMenuContextType = {
   submenuOpen: SubmenuState;
   setSubmenuOpen: Dispatch<SetStateAction<SubmenuState>>;
+  prevSubmenu: SubmenuState;
   handleClose: () => void;
+  handleCloseSubmenu: () => void;
 };
 
 const HamburgerMenuContext = createContext<HamburgerMenuContextType | null>(
@@ -51,14 +55,35 @@ export const useHamburgerMenu = () => {
 export function TopNavHamburger(props: TopNavProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState<SubmenuState>(false);
-  const handleOpen = () => {
+  const [prevSubmenu, setPrevSubmenu] = useState<SubmenuState>(false);
+
+  const handleOpen = useCallback(() => {
     setIsOpen(true);
     setSubmenuOpen(false);
-  };
-  const handleClose = () => {
+  }, [setIsOpen, setSubmenuOpen]);
+
+  const handleClose = useCallback(() => {
     setSubmenuOpen(false);
+    setPrevSubmenu(false);
     setIsOpen(false);
-  };
+  }, [setSubmenuOpen, setPrevSubmenu, setIsOpen]);
+
+  const handleCloseSubmenu = useCallback(() => {
+    const prevState = submenuOpen;
+    setPrevSubmenu(prevState);
+    setSubmenuOpen(false);
+  }, [submenuOpen, setPrevSubmenu, setSubmenuOpen]);
+
+  const contextValue = useMemo(
+    () => ({
+      submenuOpen,
+      setSubmenuOpen,
+      handleClose,
+      prevSubmenu,
+      handleCloseSubmenu,
+    }),
+    [submenuOpen, setSubmenuOpen, handleClose, prevSubmenu, handleCloseSubmenu],
+  );
 
   return (
     <OakBox $display={["block", "block", "none"]}>
@@ -73,9 +98,7 @@ export function TopNavHamburger(props: TopNavProps) {
         closeOnBackgroundClick
         largeScreenMaxWidth={480}
       >
-        <HamburgerMenuContext.Provider
-          value={{ submenuOpen, setSubmenuOpen, handleClose }}
-        >
+        <HamburgerMenuContext.Provider value={contextValue}>
           <Content {...props} />
         </HamburgerMenuContext.Provider>
       </OakInformativeModal>
