@@ -1,5 +1,7 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
 
+import { useFeatureFlag } from "../../../../utils/featureFlags";
+
 import { ProgrammeView } from "./Components/ProgrammeView";
 
 import {
@@ -23,7 +25,10 @@ const ProgrammePage = async ({
 }: {
   params: Promise<{ subjectPhaseSlug: string }>;
 }) => {
-  const isEnabled = true;
+  const isEnabled = await useFeatureFlag(
+    "teachers-integrated-journey",
+    "boolean",
+  );
   try {
     const { subjectPhaseSlug } = await params;
 

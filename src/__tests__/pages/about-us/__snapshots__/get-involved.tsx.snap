@@ -1703,7 +1703,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-6e79b090-0 fgBWrW djyvKT iAkSYx gbtYED"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-fba181e1-0 fgBWrW djyvKT iAkSYx fiKsEI"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1725,10 +1725,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-6e79b090-1 fgBWrW joHkzz dGlNMa lhaLhM"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-fba181e1-1 fgBWrW joHkzz dGlNMa isafbP"
                 >
                   <div
-                    class="sc-fqkvVR erqloa sc-6e79b090-2 cJitbW"
+                    class="sc-fqkvVR erqloa sc-fba181e1-2 cjPloZ"
                     data-testid="about-shared-loop"
                   >
                     <img
@@ -1773,7 +1773,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       class="sc-fqkvVR sc-kAyceB lsNVs icXtIh"
                     >
                       <div
-                        class="sc-fqkvVR jqqmXN sc-a2cdd834-0 gAMzeR"
+                        class="sc-fqkvVR jqqmXN sc-4afd3109-0 dQtwui"
                       >
                         <img
                           alt=""
@@ -2097,17 +2097,17 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   >
                     <img
                       alt="'In Escape the City's top 1% of employers'"
-                      class="sc-a395ada3-0 efrhno"
+                      class="sc-98517a25-0 ccnHgx"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
                     />
                     <img
                       alt="Awarded Gold in Investors In People"
-                      class="sc-a395ada3-0 efrhno"
+                      class="sc-98517a25-0 ccnHgx"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
                     />
                     <img
                       alt="Certified as Disability Confident Committed"
-                      class="sc-a395ada3-0 efrhno"
+                      class="sc-98517a25-0 ccnHgx"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
                     />
                   </div>
