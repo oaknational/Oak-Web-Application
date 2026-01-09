@@ -4,21 +4,16 @@ import React, { cache } from "react";
 import { uniq } from "lodash";
 
 import { ProgrammeView } from "./Components/ProgrammeView";
+import { getProgrammeData } from "./getProgrammeData";
 
 import {
   getKs4RedirectSlug,
   isValidSubjectPhaseSlug,
-  parseSubjectPhaseSlug,
 } from "@/utils/curriculum/slugs";
-import curriculumApi2023, {
-  CurriculumUnit,
-} from "@/node-lib/curriculum-api-2023";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import CMSClient from "@/node-lib/cms";
-import {
-  formatCurriculumUnitsData,
-  fetchSubjectPhasePickerData,
-} from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
@@ -27,49 +22,10 @@ import { useFeatureFlag } from "@/utils/featureFlags";
 // TD: [integrated journey] get revalidate from env somehow
 export const revalidate = 7200;
 
-// Helper function to sort units consistently
-const sortUnits = (units: CurriculumUnit[]): CurriculumUnit[] => {
-  const sorted = [...units];
-  // Sort units to have examboard versions first
-  sorted.sort((a) => {
-    if (a.examboard) {
-      return -1;
-    }
-    return 1;
-  });
-  // Sort by unit order
-  sorted.sort((a, b) => a.order - b.order);
-  return sorted;
-};
-
 // Single cached function to fetch all common programme data
 // This deduplicates requests between generateMetadata and page component
 const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) => {
-  const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
-
-  if (!subjectPhaseKeystageSlugs) {
-    return null;
-  }
-
-  const [programmeUnitsData, curriculumUnitsData, curriculumPhaseOptions] =
-    await Promise.all([
-      curriculumApi2023.curriculumOverview({
-        subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
-        phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-      }),
-      curriculumApi2023.curriculumSequence(subjectPhaseKeystageSlugs),
-      fetchSubjectPhasePickerData(),
-    ]);
-
-  // Sort units to have examboard versions first, then by unit order
-  curriculumUnitsData.units = sortUnits(curriculumUnitsData.units);
-
-  return {
-    programmeUnitsData,
-    curriculumUnitsData,
-    curriculumPhaseOptions,
-    subjectPhaseKeystageSlugs,
-  };
+  return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
 });
 
 type ProgrammePageProps = {
