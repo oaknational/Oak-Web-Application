@@ -1,5 +1,6 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
 import { Metadata } from "next";
+import React, { cache } from "react";
 import { uniq } from "lodash";
 
 import { ProgrammeView } from "./Components/ProgrammeView";
@@ -9,7 +10,9 @@ import {
   isValidSubjectPhaseSlug,
   parseSubjectPhaseSlug,
 } from "@/utils/curriculum/slugs";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import curriculumApi2023, {
+  CurriculumUnit,
+} from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import CMSClient from "@/node-lib/cms";
 import {
@@ -24,6 +27,51 @@ import { useFeatureFlag } from "@/utils/featureFlags";
 // TD: [integrated journey] get revalidate from env somehow
 export const revalidate = 7200;
 
+// Helper function to sort units consistently
+const sortUnits = (units: CurriculumUnit[]): CurriculumUnit[] => {
+  const sorted = [...units];
+  // Sort units to have examboard versions first
+  sorted.sort((a) => {
+    if (a.examboard) {
+      return -1;
+    }
+    return 1;
+  });
+  // Sort by unit order
+  sorted.sort((a, b) => a.order - b.order);
+  return sorted;
+};
+
+// Single cached function to fetch all common programme data
+// This deduplicates requests between generateMetadata and page component
+const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) => {
+  const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
+
+  if (!subjectPhaseKeystageSlugs) {
+    return null;
+  }
+
+  const [programmeUnitsData, curriculumUnitsData, curriculumPhaseOptions] =
+    await Promise.all([
+      curriculumApi2023.curriculumOverview({
+        subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
+        phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+      }),
+      curriculumApi2023.curriculumSequence(subjectPhaseKeystageSlugs),
+      fetchSubjectPhasePickerData(),
+    ]);
+
+  // Sort units to have examboard versions first, then by unit order
+  curriculumUnitsData.units = sortUnits(curriculumUnitsData.units);
+
+  return {
+    programmeUnitsData,
+    curriculumUnitsData,
+    curriculumPhaseOptions,
+    subjectPhaseKeystageSlugs,
+  };
+});
+
 type ProgrammePageProps = {
   params: Promise<{ subjectPhaseSlug: string }>;
 };
@@ -33,32 +81,18 @@ export async function generateMetadata({
 }: ProgrammePageProps): Promise<Metadata> {
   const { subjectPhaseSlug } = await params;
 
-  const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
-
-  if (!subjectPhaseKeystageSlugs) {
-    return {};
-  }
-
   try {
-    const programmeUnitsData = await curriculumApi2023.curriculumOverview({
-      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
-      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-    });
+    const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
+    if (!cachedData) {
+      return {};
+    }
 
-    const curriculumUnitsData = await curriculumApi2023.curriculumSequence(
+    const {
+      programmeUnitsData,
+      curriculumUnitsData,
+      curriculumPhaseOptions,
       subjectPhaseKeystageSlugs,
-    );
-
-    // Sort units to match page content
-    curriculumUnitsData.units.sort((a) => {
-      if (a.examboard) {
-        return -1;
-      }
-      return 1;
-    });
-
-    // Sort by unit order
-    curriculumUnitsData.units.sort((a, b) => a.order - b.order);
+    } = cachedData;
 
     const curriculumUnitsFormattedData =
       formatCurriculumUnitsData(curriculumUnitsData);
@@ -69,8 +103,6 @@ export async function generateMetadata({
         ({ units }) => units.map((unit) => unit.keystage_slug),
       ),
     );
-
-    const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
     const ks4Options =
       curriculumPhaseOptions.subjects.find(
         (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
@@ -131,11 +163,22 @@ const ProgrammePage = async ({ params }: ProgrammePageProps) => {
   try {
     const { subjectPhaseSlug } = await params;
 
-    const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
-
-    if (!subjectPhaseKeystageSlugs || !isEnabled) {
+    if (!isEnabled) {
       return notFound();
     }
+
+    const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
+
+    if (!cachedData) {
+      return notFound();
+    }
+
+    const {
+      programmeUnitsData,
+      curriculumUnitsData,
+      curriculumPhaseOptions,
+      subjectPhaseKeystageSlugs,
+    } = cachedData;
 
     const validSubjectPhases = await curriculumApi2023.curriculumPhaseOptions();
     const isValid = isValidSubjectPhaseSlug(
@@ -162,10 +205,6 @@ const ProgrammePage = async ({ params }: ProgrammePageProps) => {
       }
     }
 
-    const programmeUnitsData = await curriculumApi2023.curriculumOverview({
-      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
-      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-    });
     const curriculumOverviewSanityData = await CMSClient.curriculumOverviewPage(
       {
         previewMode: false, // TD: [integrated-journey] preview mode
@@ -178,26 +217,8 @@ const ProgrammePage = async ({ params }: ProgrammePageProps) => {
       return notFound();
     }
 
-    const curriculumUnitsData = await curriculumApi2023.curriculumSequence(
-      subjectPhaseKeystageSlugs,
-    );
-    // Sort the units to have examboard versions first - this is so non-examboard units are removed
-    // in the visualiser
-
-    curriculumUnitsData.units.sort((a) => {
-      if (a.examboard) {
-        return -1;
-      }
-      return 1;
-    });
-
-    // Sort by unit order
-    curriculumUnitsData.units.sort((a, b) => a.order - b.order);
-
     const curriculumUnitsFormattedData =
       formatCurriculumUnitsData(curriculumUnitsData);
-
-    const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
 
     const results = {
       curriculumSelectionSlugs: subjectPhaseKeystageSlugs,

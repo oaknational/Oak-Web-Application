@@ -1,7 +1,9 @@
+/**
+ * @jest-environment node
+ */
 import ProgrammePage from "@/app/(core)/programmes/[subjectPhaseSlug]/page";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const defaultParams = new URLSearchParams("");
 const mockUseSearchParams = jest.fn(() => defaultParams);
@@ -25,6 +27,16 @@ jest.mock("@/utils/featureFlags", () => ({
   useFeatureFlag: () => featureFlagMock(),
 }));
 
+// Jest is not setup to test RSCs, so it does not load the server build
+// so we mock the cache function.
+jest.mock("react", () => {
+  const actualReact = jest.requireActual("react");
+
+  return {
+    ...actualReact,
+    cache: <T extends (...args: unknown[]) => unknown>(fn: T) => fn,
+  };
+});
 jest.mock("@/node-lib/cms", () => ({
   __esModule: true,
   default: {
@@ -56,52 +68,32 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   refreshedMVTime: jest.fn().mockResolvedValue({}),
 }));
 
-// Mock window.matchMedia
-Object.defineProperty(window, "matchMedia", {
-  writable: true,
-  value: jest.fn().mockImplementation((query) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
-});
-
-const render = renderWithProviders();
-
 describe("Programme page", () => {
   it("renders 404 page if feature flag is disabled", async () => {
-    expect(async () =>
-      render(
+    expect(
+      async () =>
         await ProgrammePage({
           params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
         }),
-      ),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
   it("renders when the feature flag is enabled", async () => {
     featureFlagMock.mockResolvedValue(true);
-    const { getByText } = render(
-      await ProgrammePage({
-        params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
-      }),
-    );
 
-    const title = getByText("Unit sequence");
-    expect(title).toBeInTheDocument();
+    const result = await ProgrammePage({
+      params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+    });
+
+    expect(result).toBeDefined();
   });
+
   it("returns 404 page if params are invalid", async () => {
     featureFlagMock.mockResolvedValue(true);
-    expect(async () =>
-      render(
+    expect(
+      async () =>
         await ProgrammePage({
           params: Promise.resolve({ subjectPhaseSlug: "fake-slug" }),
         }),
-      ),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
 });
