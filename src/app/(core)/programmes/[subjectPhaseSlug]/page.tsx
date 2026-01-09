@@ -1,8 +1,9 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
+import { Metadata } from "next";
+import { uniq } from "lodash";
 
 import { ProgrammeView } from "./Components/ProgrammeView";
 
-import { useFeatureFlag } from "@/utils/featureFlags";
 import {
   getKs4RedirectSlug,
   isValidSubjectPhaseSlug,
@@ -15,12 +16,114 @@ import {
   formatCurriculumUnitsData,
   fetchSubjectPhasePickerData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
+import { useFeatureFlag } from "@/utils/featureFlags";
 
-const ProgrammePage = async ({
-  params,
-}: {
+// TD: [integrated journey] get revalidate from env somehow
+export const revalidate = 7200;
+
+type ProgrammePageProps = {
   params: Promise<{ subjectPhaseSlug: string }>;
-}) => {
+};
+
+export async function generateMetadata({
+  params,
+}: ProgrammePageProps): Promise<Metadata> {
+  const { subjectPhaseSlug } = await params;
+
+  const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
+
+  if (!subjectPhaseKeystageSlugs) {
+    return {};
+  }
+
+  try {
+    const programmeUnitsData = await curriculumApi2023.curriculumOverview({
+      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
+      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+    });
+
+    const curriculumUnitsData = await curriculumApi2023.curriculumSequence(
+      subjectPhaseKeystageSlugs,
+    );
+
+    // Sort units to match page content
+    curriculumUnitsData.units.sort((a) => {
+      if (a.examboard) {
+        return -1;
+      }
+      return 1;
+    });
+
+    // Sort by unit order
+    curriculumUnitsData.units.sort((a, b) => a.order - b.order);
+
+    const curriculumUnitsFormattedData =
+      formatCurriculumUnitsData(curriculumUnitsData);
+
+    // Extract keyStages from yearData
+    const keyStages = uniq(
+      Object.values(curriculumUnitsFormattedData.yearData).flatMap(
+        ({ units }) => units.map((unit) => unit.keystage_slug),
+      ),
+    );
+
+    const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
+    const ks4Options =
+      curriculumPhaseOptions.subjects.find(
+        (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
+      )?.ks4_options ?? [];
+    const ks4Option = ks4Options.find(
+      (ks4opt) => ks4opt.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
+    );
+
+    const title = buildCurriculumMetadata({
+      metadataType: "title",
+      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
+      subjectTitle: programmeUnitsData.subjectTitle,
+      ks4OptionSlug: ks4Option?.slug ?? null,
+      ks4OptionTitle: ks4Option?.title ?? null,
+      keyStages: keyStages,
+      tab: "units",
+    });
+    const description = buildCurriculumMetadata({
+      metadataType: "description",
+      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
+      subjectTitle: programmeUnitsData.subjectTitle,
+      ks4OptionSlug: ks4Option?.slug ?? null,
+      ks4OptionTitle: ks4Option?.title ?? null,
+      keyStages: keyStages,
+      tab: "units",
+    });
+    const canonicalURL = new URL(
+      `/programmes/${subjectPhaseSlug}`,
+      getBrowserConfig("seoAppUrl"),
+    ).toString();
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: canonicalURL,
+      },
+      openGraph: getOpenGraphMetadata({
+        title,
+        description,
+      }),
+      twitter: getTwitterMetadata({
+        title,
+        description,
+      }),
+    };
+  } catch (error) {
+    // Return and fallback to layout metadata
+    return {};
+  }
+}
+
+const ProgrammePage = async ({ params }: ProgrammePageProps) => {
   const isEnabled = await useFeatureFlag(
     "teachers-integrated-journey",
     "boolean",
