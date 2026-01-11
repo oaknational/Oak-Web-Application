@@ -122,7 +122,7 @@ const createAttachment = async (attachment: {
   addOnToken: string;
   title: string;
   lessonSlug: string;
-  programeSlug: string;
+  programmeSlug: string;
   unitSlug: string;
 }): Promise<void> => {
   try {
@@ -134,7 +134,7 @@ const createAttachment = async (attachment: {
         addOnToken: string;
         title: string;
         lessonSlug: string;
-        programeSlug: string;
+        programmeSlug: string;
         unitSlug: string;
       }
     >(
