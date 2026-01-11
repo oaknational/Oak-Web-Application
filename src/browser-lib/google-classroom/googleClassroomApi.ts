@@ -26,18 +26,66 @@ const sendRequest = async <returnType, payload = undefined>(
     body: body && JSON.stringify(body),
     headers,
   });
-  // todo: error handling
+
+  if (!res.ok) {
+    let errorData;
+    try {
+      errorData = await res.json();
+    } catch {
+      throw new Error(`API request failed: ${res.status} ${res.statusText}`);
+    }
+
+    // If is an OakGoogleClassroomException, throw as is
+    if (
+      errorData &&
+      typeof errorData === "object" &&
+      "code" in errorData &&
+      "type" in errorData
+    ) {
+      throw errorData;
+    }
+
+    throw new Error(
+      errorData?.error ||
+        errorData?.details ||
+        `Request failed with status ${res.status}`,
+    );
+  }
+
   return res.json();
 };
 
 const getGoogleSignInUrl = async (
   loginHint: string | null,
 ): Promise<string | null> => {
-  if (!loginHint) return null;
-  const data = await sendRequest<{ signInUrl: string }>(
-    `/api/classroom/auth/sign-in?login_hint=${loginHint}`,
-  );
-  return data.signInUrl ?? null;
+  // Validate loginHint before making API call
+  if (!loginHint) {
+    throw new Error(
+      "Login hint is required for Google Classroom sign-in. Please ensure you are accessing this page from within Google Classroom.",
+    );
+  }
+
+  try {
+    const url = `/api/classroom/auth/sign-in?login_hint=${loginHint}`;
+    const data = await sendRequest<{ signInUrl: string }>(url);
+    return data.signInUrl ?? null;
+  } catch (error) {
+    console.error("Error fetching sign-in URL:", error);
+
+    // If it's an OakGoogleClassroomException, provide a user-friendly message
+    if (
+      error &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === "MISSING_LOGIN_HINT"
+    ) {
+      throw new Error(
+        "Unable to authenticate: Login information is missing. Please access this page from within Google Classroom.",
+      );
+    }
+
+    throw error;
+  }
 };
 
 const verifySession = async (): Promise<{
@@ -45,21 +93,27 @@ const verifySession = async (): Promise<{
   session: string | undefined;
   token: string | undefined;
 }> => {
-  const data = await sendRequest<{
-    authenticated: boolean;
-    session: string | undefined;
-    token: string | undefined;
-  }>(
-    `/api/classroom/auth/verify`,
-    "GET",
-    undefined,
-    await getOakGCAuthHeaders(),
-  );
-  return {
-    authenticated: data.authenticated ?? false,
-    session: data.session,
-    token: data.token,
-  };
+  try {
+    const headers = await getOakGCAuthHeaders();
+    const data = await sendRequest<{
+      authenticated: boolean;
+      session: string | undefined;
+      token: string | undefined;
+    }>(`/api/classroom/auth/verify`, "GET", undefined, headers);
+
+    return {
+      authenticated: data.authenticated ?? false,
+      session: data.session,
+      token: data.token,
+    };
+  } catch (error) {
+    console.error("Session verification error:", error);
+    return {
+      authenticated: false,
+      session: undefined,
+      token: undefined,
+    };
+  }
 };
 
 const createAttachment = async (attachment: {
