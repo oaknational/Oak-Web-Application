@@ -10,6 +10,8 @@ import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 // Mock OakGoogleClassroomAddon
 jest.mock("@/node-lib/google-classroom", () => ({
   getOakGoogleClassroomAddon: jest.fn(),
+  createClassroomErrorReporter: jest.fn(() => jest.fn()),
+  isOakGoogleClassroomException: jest.fn(() => false),
 }));
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
@@ -47,10 +49,13 @@ describe("POST /api/classroom/auth/verify", () => {
 
   it("should return authenticated: true for a valid session", async () => {
     // Arrange
-    mockVerifyAuthSession.mockResolvedValue(mockVerifiedSession);
+    mockVerifyAuthSession.mockResolvedValue({
+      session: mockVerifiedSession,
+      token: mockValidToken,
+    });
     mockRequestHeadersGet.mockImplementation((name) => {
-      if (name === "Authorization") return Promise.resolve(mockValidToken);
-      if (name === "X-Oakgc-Session") return Promise.resolve(mockValidSession);
+      if (name === "Authorization") return mockValidToken;
+      if (name === "X-Oakgc-Session") return mockValidSession;
       return null;
     });
 
@@ -66,7 +71,11 @@ describe("POST /api/classroom/auth/verify", () => {
 
     expect(mockResponseJson).toHaveBeenCalledTimes(1);
     expect(mockResponseJson).toHaveBeenCalledWith(
-      { authenticated: true },
+      {
+        authenticated: true,
+        session: mockVerifiedSession,
+        token: mockValidToken,
+      },
       { status: 200 },
     );
   });
@@ -75,9 +84,8 @@ describe("POST /api/classroom/auth/verify", () => {
     // Arrange
     mockVerifyAuthSession.mockResolvedValue(null);
     mockRequestHeadersGet.mockImplementation((name) => {
-      if (name === "Authorization") return Promise.resolve(mockValidToken);
-      if (name === "X-Oakgc-Session")
-        return Promise.resolve(mockInvalidSession);
+      if (name === "Authorization") return mockValidToken;
+      if (name === "X-Oakgc-Session") return mockInvalidSession;
       return null;
     });
 
@@ -93,7 +101,7 @@ describe("POST /api/classroom/auth/verify", () => {
 
     expect(mockResponseJson).toHaveBeenCalledTimes(1);
     expect(mockResponseJson).toHaveBeenCalledWith(
-      { authenticated: false },
+      { authenticated: false, session: undefined, token: undefined },
       { status: 401 },
     );
   });
@@ -102,8 +110,8 @@ describe("POST /api/classroom/auth/verify", () => {
     // Arrange
     mockRequestJson.mockResolvedValue({ session: null });
     mockRequestHeadersGet.mockImplementation((name) => {
-      if (name === "Authorization") return Promise.resolve(null);
-      if (name === "X-Oakgc-Session") return Promise.resolve(null);
+      if (name === "Authorization") return null;
+      if (name === "X-Oakgc-Session") return null;
       return null;
     });
 

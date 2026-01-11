@@ -29,12 +29,11 @@ describe("Google Classroom API", () => {
   });
 
   describe("getGoogleSignInUrl", () => {
-    it("should return null if loginHint is null", async () => {
-      // Act
-      const result = await GoogleClassroomApi.getGoogleSignInUrl(null);
-
-      // Assert
-      expect(result).toBeNull();
+    it("should throw an error if loginHint is null", async () => {
+      // Act & Assert
+      await expect(GoogleClassroomApi.getGoogleSignInUrl(null)).rejects.toThrow(
+        "Login hint is required for Google Classroom sign-in. Please ensure you are accessing this page from within Google Classroom.",
+      );
       expect(mockFetch).not.toHaveBeenCalled();
     });
 

@@ -12,6 +12,9 @@ import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 const mockSignInUrl = "https://google.com/signin/url";
 jest.mock("@/node-lib/google-classroom", () => ({
   getOakGoogleClassroomAddon: jest.fn(),
+  createClassroomErrorReporter: jest.fn(() => jest.fn()),
+  isOakGoogleClassroomException: jest.fn(() => false),
+  getStatusCodeForClassroomError: jest.fn(() => 500),
 }));
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;

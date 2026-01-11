@@ -21,6 +21,9 @@ const mockedRedirect = redirect as unknown as jest.Mock;
 // Mock OakGoogleClassroomAddon
 jest.mock("@/node-lib/google-classroom", () => ({
   getOakGoogleClassroomAddon: jest.fn(),
+  createClassroomErrorReporter: jest.fn(() => jest.fn()),
+  isOakGoogleClassroomException: jest.fn(() => false),
+  getStatusCodeForClassroomError: jest.fn(() => 500),
 }));
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
@@ -30,6 +33,7 @@ const mockResponseJson = jest.fn();
 global.Response.json = mockResponseJson;
 
 const mockSearchParamsGet = jest.fn();
+const mockSearchParamsEntries = jest.fn();
 
 const mockHandleGoogleSignInCallback = jest.fn().mockResolvedValue({
   encryptedSession: mockSession,
@@ -42,6 +46,7 @@ describe("GET /api/classroom/auth/callback", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockSearchParamsGet.mockClear();
+    mockSearchParamsEntries.mockReturnValue([]);
 
     mockedGetOakGoogleClassroomAddon.mockReturnValue({
       handleGoogleSignInCallback: mockHandleGoogleSignInCallback,
@@ -50,6 +55,7 @@ describe("GET /api/classroom/auth/callback", () => {
       nextUrl: {
         searchParams: {
           get: mockSearchParamsGet,
+          entries: mockSearchParamsEntries,
         },
       },
     } as unknown as NextRequest;
@@ -122,9 +128,16 @@ describe("GET /api/classroom/auth/callback", () => {
 
     // Assert
     expect(mockResponseJson).toHaveBeenCalledTimes(1);
-    expect(mockResponseJson).toHaveBeenCalledWith("code is required", {
-      status: 400,
-    });
+    expect(mockResponseJson).toHaveBeenCalledWith(
+      {
+        error: "Authentication failed",
+        details:
+          "Missing authorization code from Google. Please try signing in again.",
+      },
+      {
+        status: 400,
+      },
+    );
 
     expect(mockHandleGoogleSignInCallback).not.toHaveBeenCalled();
     expect(mockedRedirect).not.toHaveBeenCalled();
