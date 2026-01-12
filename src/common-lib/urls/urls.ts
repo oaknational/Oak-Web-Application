@@ -436,16 +436,14 @@ export type OakLinkProps =
   | PupilLessonCanonical
   | MyLibraryProps;
 
-const EXTERNAL_PAGE_NAMES = [
-  "[external] Careers",
-  "[external] Help",
-  "[external] Classroom",
-  "[external] Labs",
-  "[external] Our teachers",
-  "[external] Teacher hub",
-  "[external] Our curriculum",
-] as const;
-type ExternalPageName = (typeof EXTERNAL_PAGE_NAMES)[number];
+export type ExternalPageName =
+  | "[external] Careers"
+  | "[external] Help"
+  | "[external] Classroom"
+  | "[external] Labs"
+  | "[external] Our teachers"
+  | "[external] Teacher hub"
+  | "[external] Our curriculum";
 
 type OakPages = {
   [K in OakLinkProps as K["page"]]: OakPageConfig<K>;

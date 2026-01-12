@@ -1,7 +1,8 @@
+import { Cue, WebVTTParser } from "webvtt-parser";
+
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { getFileFromBucket } from "@/utils/gCloudStorage";
-import { Cue, WebVTTParser } from "webvtt-parser";
 
 export const getCaptionsFromFile = async (fileName: string) => {
   // TODO: get bucket name from config?
