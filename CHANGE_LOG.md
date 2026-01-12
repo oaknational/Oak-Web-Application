@@ -1,3 +1,16 @@
+# [1.946.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.945.0...v1.946.0) (2026-01-12)
+
+
+### Bug Fixes
+
+* failing snapshots in CurriculumTab and GetInvolved ([16832eb](https://github.com/oaknational/Oak-Web-Application/commit/16832eb5c661e4aeca9f5475aecc6e119ba53971))
+* search input getting out of sync with search term ([eeba7f7](https://github.com/oaknational/Oak-Web-Application/commit/eeba7f760c9bc7c200d2291f47e11fd94a9252b1))
+
+
+### Features
+
+* **LESQ-1734:** add search bar to top nav ([169b136](https://github.com/oaknational/Oak-Web-Application/commit/169b136745965eb11989c15e16be6509f6d460a3))
+
 # [1.945.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.944.1...v1.945.0) (2026-01-08)
 
 
