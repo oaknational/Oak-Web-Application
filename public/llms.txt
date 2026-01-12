@@ -2,7 +2,7 @@
 
 > Free, high-quality curriculum resources for teachers and pupils in England. Oak provides thousands of lesson plans, videos, worksheets, and quizzes aligned with the National Curriculum for Key Stages 1-4 (ages 5-16), plus AI-powered lesson creation tools.
 
-Oak National Academy is an independent, arm's-length body of the Department for Education, created by teachers, for teachers. Our mission is to support great teaching by lowering teacher workload, improving pupil outcomes, and closing the disadvantage gap. Resources are free because access shouldn't be based on who can afford to pay.
+Oak National Academy is an independent, arm's-length body of the Department for Education, created by teachers, for teachers. Our mission is to support great teaching by lowering teacher workload, improving pupil outcomes, and closing the disadvantage gap. Oak's curricula and resources are free to use, and published on an open licence (Open Government Licence (OGL) - equivalent to CC-BY 4.0).
 
 The platform serves two primary audiences: teachers seeking lesson materials and curriculum plans, and pupils accessing interactive lessons with videos and quizzes. All resources are fully adaptable starting points—not scripts—designed to respect teacher expertise and the diversity of every classroom.
 
