@@ -4,7 +4,6 @@ const nextNext = require("@next/eslint-plugin-next");
 const react = require("eslint-plugin-react");
 const reactHooks = require("eslint-plugin-react-hooks");
 const { fixupPluginRules, fixupConfigRules } = require("@eslint/compat");
-const typescriptEslint = require("@typescript-eslint/eslint-plugin");
 const js = require("@eslint/js");
 const { FlatCompat } = require("@eslint/eslintrc");
 
@@ -85,7 +84,6 @@ module.exports = defineConfig([
 
     plugins: {
       "@next/next": fixupPluginRules(nextNext),
-      "@typescript-eslint": typescriptEslint,
     },
 
     extends: fixupConfigRules(

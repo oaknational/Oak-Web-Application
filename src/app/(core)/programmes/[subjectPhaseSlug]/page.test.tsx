@@ -22,7 +22,7 @@ jest.mock("next/navigation", () => {
 
 const featureFlagMock = jest.fn().mockResolvedValue(false);
 jest.mock("@/utils/featureFlags", () => ({
-  useFeatureFlag: () => featureFlagMock(),
+  getFeatureFlagValue: () => featureFlagMock(),
 }));
 
 jest.mock("@/node-lib/cms", () => ({
