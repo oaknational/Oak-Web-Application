@@ -18,9 +18,12 @@ import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpe
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import { useFeatureFlag } from "@/utils/featureFlags";
+import errorReporter from "@/common-lib/error-reporter";
 
 // TD: [integrated journey] get revalidate from env somehow
 export const revalidate = 7200;
+
+const reportError = errorReporter("ProgrammePage.tsx");
 
 // Single cached function to fetch all common programme data
 // This deduplicates requests between generateMetadata and page component
@@ -106,6 +109,7 @@ export async function generateMetadata({
       }),
     };
   } catch (error) {
+    reportError(error);
     // Return and fallback to layout metadata
     return {};
   }
