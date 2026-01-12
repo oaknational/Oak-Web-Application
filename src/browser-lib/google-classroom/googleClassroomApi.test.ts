@@ -52,13 +52,22 @@ describe("Google Classroom API", () => {
   });
 
   describe("getGoogleSignInUrl", () => {
-    it("should return null if loginHint is null", async () => {
+    it("should call sign-in API without login_hint parameter when loginHint is null", async () => {
+      // Arrange
+      const mockUrl = "https://google.com/signin";
+      mockJsonResponse({ signInUrl: mockUrl });
+
       // Act
       const result = await GoogleClassroomApi.getGoogleSignInUrl(null);
 
       // Assert
-      expect(result).toBeNull();
-      expect(mockFetch).not.toHaveBeenCalled();
+      expect(mockFetch).toHaveBeenCalledWith(`/api/classroom/auth/sign-in`, {
+        credentials: "include",
+        method: "GET",
+        body: undefined,
+        headers: undefined,
+      });
+      expect(result).toBe(mockUrl);
     });
 
     it("should call the sign-in API and return the signInUrl", async () => {

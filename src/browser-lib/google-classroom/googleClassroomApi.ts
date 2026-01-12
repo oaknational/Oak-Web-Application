@@ -34,10 +34,11 @@ const sendRequest = async <returnType, payload = undefined>(
 const getGoogleSignInUrl = async (
   loginHint: string | null,
 ): Promise<string | null> => {
-  if (!loginHint) return null;
-  const data = await sendRequest<{ signInUrl: string }>(
-    `/api/classroom/auth/sign-in?login_hint=${loginHint}`,
-  );
+  const url = loginHint
+    ? `/api/classroom/auth/sign-in?login_hint=${loginHint}`
+    : `/api/classroom/auth/sign-in`;
+
+  const data = await sendRequest<{ signInUrl: string }>(url);
   return data.signInUrl ?? null;
 };
 
