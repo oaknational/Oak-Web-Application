@@ -15,6 +15,7 @@ import {
 } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "@/image-data";
+import { getNonce } from "@/lib/csp/getNonce";
 
 export const metadata = {
   title: "Oak National Academy",
@@ -23,16 +24,18 @@ export const metadata = {
 };
 const lexend = Lexend({ subsets: ["latin"] });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nonce = await getNonce();
+
   return (
     <html lang="en" className={lexend.className}>
       {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
       <body style={{ margin: "0px" }}>
-        <StyledComponentsRegistry>
+        <StyledComponentsRegistry nonce={nonce}>
           <PHProvider>
             <OakThemeProvider theme={oakDefaultTheme}>
               <CookieConsentProvider>

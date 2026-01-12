@@ -41,7 +41,7 @@ const mux: Partial<CspConfig> = {
     "https://stream.mux.com",
     "https://inferred.litix.io",
   ],
-  // imgSrc: ["https://*.mux.com/", "https://stream.mux.com/"],
+  imgSrc: ["https://*.mux.com/", "https://stream.mux.com/"],
   styleSrc: ["https://*.mux.com"],
   mediaSrc: ["https://*.mux.com/", "https://stream.mux.com/"],
   frameSrc: ["https://stream.mux.com", "https://*.mux.com"],
@@ -49,7 +49,7 @@ const mux: Partial<CspConfig> = {
 
 const clerk: Partial<CspConfig> = {
   connectSrc: ["*.clerk.accounts.dev", "clerk-telemetry.com"],
-  // imgSrc: ["https://img.clerk.com/"],
+  imgSrc: ["https://img.clerk.com/"],
   scriptSrc: ["*.clerk.accounts.dev"],
 };
 
@@ -64,15 +64,15 @@ const posthog: Partial<CspConfig> = {
 };
 
 const cloudinary: Partial<CspConfig> = {
-  // imgSrc: [
-  //   "https://res.cloudinary.com/",
-  //   "https://res.cloudinary.com",
-  //   "https://oaknationalacademy-res.cloudinary.com/",
-  //   "https://oaknationalacademy-res.cloudinary.com",
-  //   "https://*.cloudinary.com/",
-  //   "https://*.cloudinary.com",
-  //   " https://res.cloudinary.com/oak-web-application/",
-  // ],
+  imgSrc: [
+    "https://res.cloudinary.com/",
+    "https://res.cloudinary.com",
+    "https://oaknationalacademy-res.cloudinary.com/",
+    "https://oaknationalacademy-res.cloudinary.com",
+    "https://*.cloudinary.com/",
+    "https://*.cloudinary.com",
+    " https://res.cloudinary.com/oak-web-application/",
+  ],
   mediaSrc: [
     "https://res.cloudinary.com/",
     "https://oaknationalacademy-res.cloudinary.com/",
@@ -83,11 +83,11 @@ const cloudinary: Partial<CspConfig> = {
 
 const hubspot: Partial<CspConfig> = {
   connectSrc: ["*.hubspot.com", "*.hsforms.com"],
-  // imgSrc: [
-  //   "https://*.hubspot.com/",
-  //   "https://*.hsforms.com/",
-  //   "https://track.hubspot.com/",
-  // ],
+  imgSrc: [
+    "https://*.hubspot.com/",
+    "https://*.hsforms.com/",
+    "https://track.hubspot.com/",
+  ],
 };
 
 const cloudflare: Partial<CspConfig> = {
@@ -102,13 +102,13 @@ const vercel: Partial<CspConfig> = {
     "*.pusher.com",
     "*.pusherapp.com",
   ],
-  // imgSrc: [
-  //   "https://vercel.live/",
-  //   "https://vercel.com",
-  //   "*.pusher.com/",
-  //   "data:",
-  //   "blob:",
-  // ],
+  imgSrc: [
+    "https://vercel.live/",
+    "https://vercel.com",
+    "*.pusher.com/",
+    "data:",
+    "blob:",
+  ],
   frameSrc: ["https://vercel.live/", "https://vercel.com"],
   styleSrc: ["https://vercel.live/"],
   fontSrc: ["https://vercel.live/", "https://assets.vercel.com"],
@@ -116,7 +116,7 @@ const vercel: Partial<CspConfig> = {
 
 const gleap: Partial<CspConfig> = {
   connectSrc: ["*.gleap.io", "wss://*.gleap.io"],
-  // imgSrc: ["https://*.gleap.io/"],
+  imgSrc: ["https://*.gleap.io/"],
   frameSrc: ["https://*.gleap.io/"],
   scriptSrc: ["https://*.gleap.io/"],
   mediaSrc: ["https://*.gleap.io/"],
@@ -247,10 +247,23 @@ export const getReportUri = (
 
 export const reportingEndpointsHeader = `posthog="${posthogReportUri}"`;
 
-export const cspHeader = `
+/**
+ * Generates CSP header with nonce support for styled-components
+ * @param nonce - Optional nonce value for style-src and script-src
+ * @returns CSP header string
+ */
+export const getCspHeader = (nonce?: string) => {
+  const nonceDirective = nonce ? ` 'nonce-${nonce}'` : "";
+
+  // Remove 'unsafe-inline' from styleSrc when using nonces
+  const styleSrcDirectives = nonce
+    ? cspConfig.styleSrc.filter((src) => src !== "'unsafe-inline'")
+    : cspConfig.styleSrc;
+
+  return `
     default-src ${cspConfig.defaultSrc.join(" ")};
-    script-src ${cspConfig.scriptSrc.join(" ")};
-    style-src ${cspConfig.styleSrc.join(" ")};
+    script-src ${cspConfig.scriptSrc.join(" ")}${nonceDirective};
+    style-src ${styleSrcDirectives.join(" ")}${nonceDirective};
     img-src ${cspConfig.imgSrc.join(" ")};
     font-src ${cspConfig.fontSrc.join(" ")};
     object-src ${cspConfig.objectSrc.join(" ")};
@@ -266,3 +279,7 @@ export const cspHeader = `
     report-to posthog
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;
+};
+
+// Legacy export for backward compatibility (without nonce)
+export const cspHeader = getCspHeader();

@@ -29,10 +29,7 @@ import {
 import type { OakConfig } from "./scripts/build/fetch_config/config_types";
 import fetchConfig from "./scripts/build/fetch_config";
 
-import {
-  cspHeader,
-  reportingEndpointsHeader,
-} from "@/config/contentSecurityPolicy";
+import { reportingEndpointsHeader } from "@/config/contentSecurityPolicy";
 
 const withBundleAnalyzer = buildWithBundleAnalyzer({
   enabled: process.env.ANALYSE_BUNDLE === "on",
@@ -154,10 +151,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
             key: "Reporting-Endpoints",
             value: reportingEndpointsHeader,
           },
-          {
-            key: "Content-Security-Policy-Report-Only",
-            value: cspHeader.replaceAll(/\n/g, ""),
-          },
+          // CSP headers are now set by middleware with nonces
         ],
       },
     ],
