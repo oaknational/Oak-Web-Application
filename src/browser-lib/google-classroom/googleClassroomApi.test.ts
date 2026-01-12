@@ -258,7 +258,7 @@ describe("Google Classroom API", () => {
         addOnToken: "token789",
         title: "Test Lesson",
         lessonSlug: "test-lesson",
-        programmeSlug: "test-programme",
+        programeSlug: "test-programme",
         unitSlug: "test-unit",
       };
 
@@ -294,7 +294,7 @@ describe("Google Classroom API", () => {
         addOnToken: "token789",
         title: "Test Lesson",
         lessonSlug: "test-lesson",
-        programmeSlug: "test-programme",
+        programeSlug: "test-programme",
         unitSlug: "test-unit",
       };
 
