@@ -76,6 +76,7 @@
     "@bugsnag/js": "^8.4.0",
     "@bugsnag/plugin-react": "^8.4.0",
     "@clerk/nextjs": "^6.32.2",
+    "@eslint/compat": "^2.0.1",
     "@google-cloud/dlp": "^6.5.0",
     "@google-cloud/firestore": "^7.11.6",
     "@google-cloud/storage": "^7.17.0",
