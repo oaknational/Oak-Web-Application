@@ -2,10 +2,12 @@
 
 > Free, high-quality curriculum resources for teachers and pupils in England. Oak provides thousands of lesson plans, videos, worksheets, and quizzes aligned with the National Curriculum for Key Stages 1-4 (ages 5-16), plus AI-powered lesson creation tools.
 
-Oak National Academy is an arm's-length body of the Department for Education, established to support teachers with free, adaptable curriculum resources. The platform serves two primary audiences: teachers seeking lesson materials and curriculum plans, and pupils accessing interactive lessons with videos and quizzes.
+Oak National Academy is an independent, arm's-length body of the Department for Education, created by teachers, for teachers. Our mission is to support great teaching by lowering teacher workload, improving pupil outcomes, and closing the disadvantage gap. Resources are free because access shouldn't be based on who can afford to pay.
+
+The platform serves two primary audiences: teachers seeking lesson materials and curriculum plans, and pupils accessing interactive lessons with videos and quizzes. All resources are fully adaptable starting points—not scripts—designed to respect teacher expertise and the diversity of every classroom.
 
 **Key Features:**
-- Complete curriculum coverage for English, Maths, Science, and foundation subjects
+- Complete curriculum coverage for English, Maths, Science, and foundation subjects down to the lesson level
 - Video lessons with sign language alternatives and transcripts
 - Interactive quizzes (multiple choice, matching, ordering, short answer)
 - Downloadable resources (worksheets, slide decks, lesson plans)
@@ -60,7 +62,7 @@ Replace `{query}` with URL-encoded search terms. Example: `https://www.thenation
 
 ## AI Tools
 
-- [Oak AI Assistant (Aila)](https://www.thenational.academy/ai): Free AI-powered tool to generate custom lesson plans, worksheets, quizzes, and slide decks tailored to your classroom needs
+- [Oak AI Assistant (Aila)](https://www.thenational.academy/ai): Aila is a free AI-powered tool that helps teachers create bespoke lesson plans, worksheets, quizzes, and slide decks tailored to their specific classes, speeding up planning while maintaining quality
 
 ## Sitemaps
 
