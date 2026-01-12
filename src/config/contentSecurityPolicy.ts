@@ -1,5 +1,3 @@
-import { getReleaseStage } from "../../scripts/build/build_config_helpers";
-
 type CspConfig = {
   defaultSrc: string[];
   scriptSrc: string[];
@@ -19,13 +17,19 @@ type CspConfig = {
 };
 type CspConfigKey = keyof CspConfig;
 
-const releaseStage = getReleaseStage(
+// Determine if we're in development based on environment variables
+// This avoids importing Node.js modules that can't be bundled for the client
+const envStage =
   process.env.OVERRIDE_RELEASE_STAGE ||
-    process.env.VERCEL_ENV ||
-    // Netlify
-    process.env.CONTEXT,
-);
-const isDevelopment: boolean = releaseStage?.includes("dev");
+  process.env.VERCEL_ENV ||
+  process.env.CONTEXT ||
+  process.env.NODE_ENV;
+
+const isDevelopment: boolean =
+  envStage === "development" ||
+  envStage === "dev" ||
+  envStage === "branch-deploy" ||
+  envStage === undefined;
 
 // Rules
 const mux: Partial<CspConfig> = {
