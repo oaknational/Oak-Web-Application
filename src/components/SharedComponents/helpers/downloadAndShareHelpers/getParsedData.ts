@@ -19,7 +19,7 @@ export const getParsedData = (
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   json: any,
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-  schema: z.AnyZodObject,
+  schema: z.ZodRecord<any, any>,
   oakErrorCode: ErrorInfo["code"],
   meta?: Meta,
 ) => {

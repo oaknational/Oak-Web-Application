@@ -8,7 +8,7 @@
  * but alas, I'm having to write this one off for now
  * - Ross, Sep '22
  */
-import { z, ZodArray, ZodError, ZodSchema, ZodTypeAny } from "zod";
+import { z, ZodArray, ZodError, ZodSchema, ZodType } from "zod";
 
 import OakError from "@/errors/OakError";
 
@@ -31,7 +31,7 @@ export function createInvalidRejectingSchema<E, S extends ZodArray<E, "many">>(
   return z.preprocess((val) => wrapValue(val).filter(validate), arraySchema);
 }
 
-const isZodArraySchema = <T extends ZodTypeAny>(
+const isZodArraySchema = <T extends ZodType>(
   schema: unknown,
 ): schema is ZodArray<T> => {
   return typeof schema === "object" && schema !== null && "element" in schema;

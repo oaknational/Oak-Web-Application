@@ -20,6 +20,6 @@ export const supportPageSchema = z
     planning: textBlockSchema,
     seo: seoSchema.nullish(),
   })
-  .merge(documentSchema);
+  .extend(documentSchema.shape);
 
 export type SupportPage = z.infer<typeof supportPageSchema>;

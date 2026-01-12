@@ -173,9 +173,9 @@ describe("lessonDownloads()", () => {
         {
           code: "invalid_type",
           expected: "boolean",
-          message: "Required",
           path: ["has_slide_deck_asset_object"],
           received: "undefined",
+          error: "Required",
         },
       ]);
     }
@@ -260,9 +260,9 @@ describe("lessonDownloadsCanonical()", () => {
         {
           code: "invalid_type",
           expected: "boolean",
-          message: "Required",
           path: ["has_slide_deck_asset_object"],
           received: "undefined",
+          error: "Required",
         },
       ]);
     }

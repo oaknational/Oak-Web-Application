@@ -3,7 +3,7 @@ import { imageItemSchema } from "@oaknational/oak-curriculum-schema";
 
 import { convertKey, ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
-type ZodType = z.ZodTypeAny;
+type ZodType = z.ZodType;
 
 export function zodToCamelCase(schema: ZodType): ZodType {
   if (schema instanceof z.ZodOptional) {
@@ -99,7 +99,9 @@ export const quizResultSchema = z
   .optional();
 
 export const lessonAttemptSchema = z.object({
-  attempt_id: z.string().nanoid({ message: "Invalid attempt_id" }),
+  attempt_id: z.nanoid({
+    error: "Invalid attempt_id",
+  }),
   created_at: z.string(),
   lesson_data: z.object({
     title: z.string(),

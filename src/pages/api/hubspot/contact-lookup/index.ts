@@ -6,7 +6,7 @@ import getServerConfig from "@/node-lib/getServerConfig";
 
 // Request schema validation for email-based lookup
 const emailLookupSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
 });
 
 // Request schema validation for cookie-based lookup

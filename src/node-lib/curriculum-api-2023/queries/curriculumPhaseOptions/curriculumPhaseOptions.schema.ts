@@ -24,7 +24,7 @@ const curriculumPhaseOptionsSchema = z
     phases: z.array(phaseSchema),
     keystages: z.array(keystage).optional().nullable(),
     state: z.string().optional(),
-    ks4_options: z.array(ks4OptionSchema).optional().nullable().default([]),
+    ks4_options: z.array(ks4OptionSchema).optional().nullable().prefault([]),
   })
   .array();
 

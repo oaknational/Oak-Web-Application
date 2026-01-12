@@ -22,9 +22,10 @@ export const fieldToZod = (formField: FormField) => {
       break;
     case "email":
       schema = z
-        .string()
-        .min(1, { message: `${formField.label} can't be empty` })
-        .email({ message: "Email not valid" });
+        .email({
+          error: "Email not valid",
+        })
+        .min(1, { message: `${formField.label} can't be empty` });
       break;
     case "select":
     case "radio":

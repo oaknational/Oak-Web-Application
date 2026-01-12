@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const curriculumSequenceSchema = z.object({
   units: z
-    .object({
+    .strictObject({
       connection_prior_unit_description: z.string().nullable(),
       connection_future_unit_description: z.string().nullable(),
       connection_future_unit_title: z.string().nullable(),
@@ -15,7 +15,7 @@ const curriculumSequenceSchema = z.object({
       keystage_slug: z.string(),
       lessons: z
         .array(
-          z.object({
+          z.strictObject({
             slug: z.string().optional(),
             title: z.string(),
             _state: z.string().optional(),
@@ -34,7 +34,7 @@ const curriculumSequenceSchema = z.object({
       pathway_slug: z.string().nullable().optional(),
       subjectcategories: z
         .array(
-          z.object({
+          z.strictObject({
             id: z.number(),
             title: z.string(),
             category: z.string().optional(),
@@ -43,7 +43,7 @@ const curriculumSequenceSchema = z.object({
         )
         .nullable(),
       threads: z.array(
-        z.object({
+        z.strictObject({
           title: z.string(),
           slug: z.string(),
           order: z.number(),
@@ -57,7 +57,7 @@ const curriculumSequenceSchema = z.object({
       parent_programme_features: z.any().nullable(),
       actions: z.any(),
       unit_options: z.array(
-        z.object({
+        z.strictObject({
           connection_prior_unit_description: z.string().nullable(),
           connection_future_unit_description: z.string().nullable(),
           connection_prior_unit_title: z.string().nullable(),
@@ -68,7 +68,7 @@ const curriculumSequenceSchema = z.object({
           unitvariant_id: z.number(),
           slug: z.string().optional(),
           lessons: z.array(
-            z.object({
+            z.strictObject({
               slug: z.string().optional(),
               title: z.string(),
               _state: z.string().optional(),
@@ -81,7 +81,7 @@ const curriculumSequenceSchema = z.object({
       state: z.string(),
       national_curriculum_content: z
         .array(
-          z.object({
+          z.strictObject({
             id: z.number(),
             title: z.string(),
           }),
@@ -89,7 +89,6 @@ const curriculumSequenceSchema = z.object({
         .nullable(),
       prior_knowledge_requirements: z.array(z.string()).nullable(),
     })
-    .strict()
     .array(),
 });
 
