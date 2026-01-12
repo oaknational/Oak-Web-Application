@@ -18,7 +18,7 @@ const isJwtExpiring = (token: string, threshold: number): boolean => {
     const remainingTime = exp - currentTime;
 
     return remainingTime <= threshold;
-  } catch (error) {
+  } catch (_error) {
     return true;
   }
 };

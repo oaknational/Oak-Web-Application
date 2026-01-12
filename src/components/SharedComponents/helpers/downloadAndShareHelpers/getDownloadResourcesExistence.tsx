@@ -44,7 +44,7 @@ const schema = z.object({
     .optional(),
 });
 
-const legacySchema = z.object({
+export const legacySchema = z.object({
   data: z
     .object({
       resources: z.object({

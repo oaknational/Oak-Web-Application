@@ -18,5 +18,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 // Default export to prevent next.js errors
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 export default function Sitemap() {}

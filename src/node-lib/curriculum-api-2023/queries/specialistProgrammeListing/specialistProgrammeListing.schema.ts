@@ -34,13 +34,13 @@ const SpecialistProgrammeSchema = z.object({
   lessonCount: z.number(),
 });
 
-const SpecialistProgrammesListingSchema = z.object({
+export const SpecialistProgrammesListingSchema = z.object({
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   programmes: z.array(SpecialistProgrammeSchema),
 });
 
-const SpecialistProgrammesSchema = z.array(SpecialistProgrammeSchema);
+export const SpecialistProgrammesSchema = z.array(SpecialistProgrammeSchema);
 
 export type SpecialistProgrammeQueryResponseSchema = z.infer<
   typeof specialistProgrammeQueryResponseSchema

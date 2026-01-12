@@ -149,7 +149,7 @@ const OnboardingForm = ({
       try {
         await onboardUser({ isTeacher });
         await user?.reload();
-      } catch (error) {
+      } catch (_error) {
         setSubmitError("Something went wrong. Please try again.");
         setIsSubmitting(false);
         // No point in proceeding to hubspot sign-up if onboarding failed

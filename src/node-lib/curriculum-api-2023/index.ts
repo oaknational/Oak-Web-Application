@@ -84,7 +84,7 @@ export const subjectPhaseOptionSchema = genericFilteringGroup.extend({
   ks4_options: z.array(genericFilteringGroup).optional().nullable(),
 });
 
-const curriculumHeaderData = z.object({
+export const curriculumHeaderData = z.object({
   subject: z.string(),
   subjectSlug: z.string(),
   phase: z.string(),
@@ -93,7 +93,7 @@ const curriculumHeaderData = z.object({
   examboardSlug: z.string().optional(),
 });
 
-const curriculumDownloadsTabData = z.object({
+export const curriculumDownloadsTabData = z.object({
   urls: z.array(z.string()),
 });
 

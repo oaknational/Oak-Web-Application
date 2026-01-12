@@ -10,7 +10,7 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
-const teachersSitemapSchema = z.array(
+export const teachersSitemapSchema = z.array(
   z.object({
     urls: z.string(),
   }),
