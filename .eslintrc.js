@@ -67,6 +67,9 @@ module.exports = {
       env: {
         jest: true,
       },
+      rules: {
+        "@next/next/no-img-element": "off",
+      },
     },
     {
       files: ["scripts/build/**/*.{js,ts,tsx}"],
