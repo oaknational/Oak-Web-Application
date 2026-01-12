@@ -1,14 +1,8 @@
-const mockGetReleaseStage = jest.fn();
-
-jest.mock("../../scripts/build/build_config_helpers", () => ({
-  getReleaseStage: mockGetReleaseStage,
-}));
-
 const prodCspHeaderFixture = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' https: http: https://vercel.live https://vercel.com https://*.posthog.com *.clerk.accounts.dev https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
     style-src 'self' 'unsafe-inline' https://vercel.live/ https://*.mux.com;
-    img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/;
+    img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/ https://vercel.live/ https://vercel.com *.pusher.com/ data: blob: https://*.hubspot.com/ https://*.hsforms.com/ https://track.hubspot.com/ https://res.cloudinary.com/ https://res.cloudinary.com https://oaknationalacademy-res.cloudinary.com/ https://oaknationalacademy-res.cloudinary.com https://*.cloudinary.com/ https://*.cloudinary.com  https://res.cloudinary.com/oak-web-application/ https://img.clerk.com/ https://*.mux.com/ https://stream.mux.com/ https://*.gleap.io/;
     font-src 'self' gstatic-fonts.thenational.academy/ fonts.gstatic.com/ data: https://vercel.live/ https://assets.vercel.com;
     object-src 'self' *.google.com;
     base-uri 'self';
@@ -20,14 +14,13 @@ const prodCspHeaderFixture = `
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
     report-uri https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1;
-    report-to posthog
-`;
+    report-to posthog`;
 
 const devCspHeaderFixture = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' https: http: 'unsafe-eval' http://localhost:* https://localhost:* https://vercel.live https://vercel.com https://*.posthog.com *.clerk.accounts.dev https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
     style-src 'self' 'unsafe-inline' https://vercel.live/ https://*.mux.com;
-    img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/;
+    img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/ https://vercel.live/ https://vercel.com *.pusher.com/ data: blob: https://*.hubspot.com/ https://*.hsforms.com/ https://track.hubspot.com/ https://res.cloudinary.com/ https://res.cloudinary.com https://oaknationalacademy-res.cloudinary.com/ https://oaknationalacademy-res.cloudinary.com https://*.cloudinary.com/ https://*.cloudinary.com  https://res.cloudinary.com/oak-web-application/ https://img.clerk.com/ https://*.mux.com/ https://stream.mux.com/ https://*.gleap.io/;
     font-src 'self' gstatic-fonts.thenational.academy/ fonts.gstatic.com/ data: https://vercel.live/ https://assets.vercel.com;
     object-src 'self' *.google.com;
     base-uri 'self';
@@ -39,13 +32,23 @@ const devCspHeaderFixture = `
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
     report-uri https://eu.i.posthog.com/report/?token=test-api-key;
-    report-to posthog
-`;
+    report-to posthog`;
 
 describe("Content-Security-Policy Header", () => {
+  let originalEnv: NodeJS.ProcessEnv;
+
+  beforeAll(() => {
+    originalEnv = { ...process.env };
+  });
+
+  afterAll(() => {
+    process.env = originalEnv;
+  });
+
   describe("when isDevelopment = true", () => {
     beforeEach(() => {
-      mockGetReleaseStage.mockReturnValue(["dev"]);
+      // Set environment to development
+      process.env = { ...originalEnv, VERCEL_ENV: "development" };
       process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "test-api-key";
       process.env.NEXT_PUBLIC_POSTHOG_API_HOST = "https://eu.i.posthog.com";
     });
@@ -75,7 +78,8 @@ describe("Content-Security-Policy Header", () => {
 
   describe("when isDevelopment = false", () => {
     beforeEach(() => {
-      mockGetReleaseStage.mockReturnValue(["production"]);
+      // Set environment to production
+      process.env = { ...originalEnv, VERCEL_ENV: "production" };
       process.env.NEXT_PUBLIC_POSTHOG_API_KEY = "test-api-key";
       process.env.NEXT_PUBLIC_POSTHOG_API_HOST = "https://eu.i.posthog.com";
     });
@@ -120,7 +124,12 @@ describe("Content-Security-Policy Header", () => {
     });
 
     describe("getReportUri function", () => {
-      it("should append default sample_rate and version to the report URI", async () => {
+      beforeEach(() => {
+        // Set to production so sample_rate and version are appended
+        process.env = { ...originalEnv, VERCEL_ENV: "production" };
+      });
+
+      it("should append default sample_rate and version to the report URI in production", async () => {
         const { getReportUri } = await import("./contentSecurityPolicy");
         const baseUri = "https://eu.i.posthog.com/report/?token=test-key";
 
@@ -162,6 +171,18 @@ describe("Content-Security-Policy Header", () => {
         expect(result).toBe(
           "https://eu.i.posthog.com/report/?token=test-key&sample_rate=0.2&v=3",
         );
+      });
+
+      it("should NOT append sample_rate and version in development", async () => {
+        process.env = { ...originalEnv, VERCEL_ENV: "development" };
+        jest.resetModules();
+
+        const { getReportUri } = await import("./contentSecurityPolicy");
+        const baseUri = "https://eu.i.posthog.com/report/?token=test-key";
+
+        const result = getReportUri(baseUri);
+
+        expect(result).toBe("https://eu.i.posthog.com/report/?token=test-key");
       });
     });
 
