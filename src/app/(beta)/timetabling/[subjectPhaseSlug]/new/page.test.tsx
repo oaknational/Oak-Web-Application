@@ -1,6 +1,6 @@
 import Page from "./page";
 
-import { useFeatureFlag } from "@/utils/featureFlags";
+import { getFeatureFlagValue } from "@/utils/featureFlags";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
@@ -28,7 +28,7 @@ describe("/timetabling/new", () => {
   });
 
   test("basic", async () => {
-    (useFeatureFlag as jest.Mock).mockResolvedValue(true);
+    (getFeatureFlagValue as jest.Mock).mockResolvedValue(true);
     const { baseElement } = renderWithTheme(
       await Page({
         params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
@@ -38,7 +38,7 @@ describe("/timetabling/new", () => {
   });
 
   test("displays proper subject title for multi-word subjects", async () => {
-    (useFeatureFlag as jest.Mock).mockResolvedValue(true);
+    (getFeatureFlagValue as jest.Mock).mockResolvedValue(true);
     const { baseElement } = renderWithTheme(
       await Page({
         params: Promise.resolve({
