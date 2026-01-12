@@ -66,17 +66,17 @@ exports[`CurriculumTab renders 1`] = `
                   class="sc-ikkxIA hHHtYD"
                 >
                   <li
-                    class="sc-jlZhew fvZvGD"
+                    class="sc-jlZhew bKqIHz"
                   >
                     National curriculum-aligned
                   </li>
                   <li
-                    class="sc-jlZhew fvZvGD"
+                    class="sc-jlZhew bKqIHz"
                   >
                     Sequenced across year groups
                   </li>
                   <li
-                    class="sc-jlZhew fvZvGD"
+                    class="sc-jlZhew bKqIHz"
                   >
                     Designed by curriculum experts
                   </li>
