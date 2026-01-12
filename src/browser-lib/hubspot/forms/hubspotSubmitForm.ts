@@ -141,7 +141,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
       try {
         const hubspotError = hubspotErrorSchema.parse(responseBody);
         errorMeta.hubspotError = hubspotError;
-        const isInvalidEmail = hubspotError.issues.some(
+        const isInvalidEmail = hubspotError.errors.some(
           (err) => err.errorType === "INVALID_EMAIL",
         );
         errorMeta.isInvalidEmail = isInvalidEmail;

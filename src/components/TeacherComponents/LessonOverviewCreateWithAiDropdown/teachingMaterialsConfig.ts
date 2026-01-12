@@ -1,4 +1,4 @@
-import { LessonBrowseDataByKs } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import type { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type TeachingMaterialType =
   | "additional-glossary"
@@ -198,7 +198,7 @@ export function getTeachingMaterialTypesByCategory(
 }
 
 const actionsAvailableTeachingMaterialTypes = (
-  actions: LessonBrowseDataByKs["actions"],
+  actions?: Actions | null,
 ): TeachingMaterialType[] | undefined => {
   if (actions?.isPePractical) {
     return [
@@ -212,7 +212,7 @@ export function getAvailableTeachingMaterials(
   subjectSlug: string | null,
   keyStageSlug: string | null | undefined,
   subjectCategories?: Array<string | number | null> | null,
-  actions?: LessonBrowseDataByKs["actions"],
+  actions?: Actions | null,
 ): TeachingMaterialType[] {
   // Default teaching materials for all subjects
   const defaultMaterials: TeachingMaterialType[] = [

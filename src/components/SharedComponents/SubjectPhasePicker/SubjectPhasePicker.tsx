@@ -49,10 +49,15 @@ const TruncatedFlex = styled(OakFlex)`
 `;
 
 // FIXME: This is from <@/pages-helpers/pupil/options-pages/options-pages-helpers> being duplicated here to fix bundle issues.
+const examboardSlugOptions =
+  examboardSlugs.options as readonly ProgrammeFields["examboard_slug"][];
+
 const isExamboardSlug = (
   examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
 ): examboardSlug is ProgrammeFields["examboard_slug"] =>
-  Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
+  examboardSlugOptions.includes(
+    (examboardSlug ?? "") as ProgrammeFields["examboard_slug"],
+  );
 
 const DEFAULT_KEYSTAGES = [
   { slug: "ks1" },

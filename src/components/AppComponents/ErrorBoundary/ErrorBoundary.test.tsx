@@ -2,10 +2,10 @@ import { render } from "@testing-library/react";
 import { FC } from "react";
 import { ThemeProvider } from "styled-components";
 import Bugsnag from "@bugsnag/js";
-import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
 import ErrorBoundary from ".";
 
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 import noop from "@/__tests__/__helpers__/noop";
 import theme from "@/styles/theme";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";

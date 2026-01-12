@@ -180,9 +180,36 @@ export const lessonOverviewQuizData = z
 
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
 
-export const camelActionSchema = zodToCamelCase(actionsSchema);
+export const camelActionSchema = zodToCamelCase(
+  actionsSchema,
+) as unknown as z.ZodType<Actions>;
 
-export type Actions = z.infer<typeof camelActionSchema>;
+export type Actions = z.infer<typeof actionsSchema> & {
+  displayExpiringBanner?: boolean;
+  display_expiring_banner?: boolean;
+  isPePractical?: boolean;
+  is_pe_practical?: boolean;
+  displayPETitle?: boolean;
+  display_pe_title?: boolean;
+  displayVocabButton?: boolean;
+  display_vocab_button?: boolean;
+  disablePupilShare?: boolean;
+  disable_pupil_share?: boolean;
+  groupUnitsAs?: string;
+  group_units_as?: string;
+  programme_field_overrides?: {
+    subject?: string | null;
+    year_slug?: string | null;
+    [key: string]: unknown;
+  } | null;
+  subject_category_actions?: {
+    default_category_id?: number | null;
+    group_by_subjectcategory?: boolean;
+    all_disabled?: boolean;
+    [key: string]: unknown;
+  } | null;
+  [key: string]: unknown;
+};
 
 export const baseLessonOverviewSchema = z.object({
   isLegacy: z.boolean(),

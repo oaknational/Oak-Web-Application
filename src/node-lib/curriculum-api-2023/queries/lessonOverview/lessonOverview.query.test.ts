@@ -313,12 +313,16 @@ describe("lessonOverview()", () => {
     });
 
     it("should default to empty string in copyrightInfo fields are undefined", () => {
-      const content = [{ copyrightInfo: undefined }];
+      const content = [{ copyrightInfo: undefined }] as unknown as {
+        copyrightInfo: string;
+      }[];
       expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
     });
 
     it("should default to empty string if item doesnt have copyrightInfo", () => {
-      const content = [{ somethingElse: "" }];
+      const content = [{ somethingElse: "" }] as unknown as {
+        copyrightInfo: string;
+      }[];
       expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
     });
   });

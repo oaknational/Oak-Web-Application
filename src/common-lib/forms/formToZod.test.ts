@@ -1,4 +1,4 @@
-import { SafeParseError } from "zod";
+import { ZodSafeParseError } from "zod";
 
 import { FormDefinition, FormField } from "./FormDefinition";
 import formToZod, { fieldToZod } from "./formToZod";
@@ -46,7 +46,7 @@ describe("formToZod.ts", () => {
         schema.parse("");
       }).toThrow();
 
-      const parseResult = schema.safeParse("") as SafeParseError<unknown>;
+      const parseResult = schema.safeParse("") as ZodSafeParseError<unknown>;
       expect(parseResult.error.issues?.[0]?.message).toBe(
         `The Label can't be empty`,
       );
@@ -84,7 +84,7 @@ describe("formToZod.ts", () => {
       }).toThrow();
 
       // Not sure currently how to set an error message on a z.enum
-      // const parseResult = schema.safeParse("not-in-allowed") as SafeParseError<unknown>;
+      // const parseResult = schema.safeParse("not-in-allowed") as ZodSafeParseError<unknown>;
       // expect(parseResult.error.issues?.[0]?.message).toBe(``);
     });
 
@@ -145,14 +145,16 @@ describe("formToZod.ts", () => {
         schema.parse("not-an-email");
       }).toThrow();
 
-      const emptyParseResult = schema.safeParse("") as SafeParseError<unknown>;
+      const emptyParseResult = schema.safeParse(
+        "",
+      ) as ZodSafeParseError<unknown>;
       expect(emptyParseResult.error.issues?.[0]?.message).toBe(
         `Email Label can't be empty`,
       );
 
       const invalidParseResult = schema.safeParse(
         "not-an-email",
-      ) as SafeParseError<unknown>;
+      ) as ZodSafeParseError<unknown>;
       expect(invalidParseResult.error.issues?.[0]?.message).toBe(
         `Email not valid`,
       );

@@ -1,7 +1,8 @@
 import { act, render } from "@testing-library/react";
-import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
 import CookieConsentProvider from "./CookieConsentProvider";
+
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
 describe("CookieConsentProvider", () => {
   test("should render its children", () => {

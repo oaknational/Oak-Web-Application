@@ -20,7 +20,6 @@ import { ThemeProvider } from "styled-components";
 import { OverlayProvider } from "react-aria";
 import { MemoryRouterProviderProps } from "next-router-mock/dist/MemoryRouterProvider/MemoryRouterProvider";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 import { pick } from "lodash";
 
 import "../../browser-lib/oak-globals/oakGlobals";
@@ -30,6 +29,7 @@ import { ToastProvider } from "../../context/Toast";
 
 import MockedAnalyticsProvider from "./MockedAnalyticsProvider";
 
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 import theme, { OakTheme } from "@/styles/theme";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { OakToastProvider } from "@/context/OakToast/OakToastProvider";

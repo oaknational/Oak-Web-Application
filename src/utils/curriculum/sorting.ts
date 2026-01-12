@@ -2,6 +2,12 @@ import { Subject, SubjectCategory, Tier, Unit } from "./types";
 
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
+type SubjectCategoryActions = {
+  subject_category_actions?: {
+    default_category_id?: number | null;
+  } | null;
+};
+
 export function sortYears(a: string, b: string) {
   if (a === "all-years") {
     return -1;
@@ -14,7 +20,7 @@ type sortSubjectCategoriesOnFeaturesReturn = (
   b: Pick<SubjectCategory, "id">,
 ) => number;
 export function sortSubjectCategoriesOnFeatures(
-  actions: Actions | null,
+  actions: (Actions & SubjectCategoryActions) | null,
 ): sortSubjectCategoriesOnFeaturesReturn {
   const default_category_id =
     actions?.subject_category_actions?.default_category_id ?? -1;

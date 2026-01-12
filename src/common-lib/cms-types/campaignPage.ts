@@ -35,7 +35,7 @@ export const campaignPromoBannerSchema = z.object({
   bodyPortableTextWithPromo: portableTextSchema.nullish(),
   buttonCta: z.string().nullish(),
   buttonUrl: z.string().nullish(),
-  media: z.array(imageSchema.nullish(), videoSchema.nullish()),
+  media: z.array(z.union([imageSchema.nullish(), videoSchema.nullish()])),
 });
 
 const campaignVideoBannerSchema = z.object({

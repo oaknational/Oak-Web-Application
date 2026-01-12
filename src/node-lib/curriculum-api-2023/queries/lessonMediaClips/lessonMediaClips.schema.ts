@@ -8,6 +8,7 @@ import {
 
 import { zodToCamelCase } from "@/node-lib/curriculum-api-2023/helpers/zodToCamelCase";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+import type { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
   null_unitvariant_id: true,
@@ -77,7 +78,9 @@ const baseLessonMediaClipsPageSchema = z.object({
   keyStageTitle: z.string(),
   mediaClips: mediaClipsRecordCamelSchema,
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })),
-  actions: zodToCamelCase(actionsSchema).nullish(),
+  actions: (
+    zodToCamelCase(actionsSchema) as unknown as z.ZodType<Actions>
+  ).nullish(),
   lessonReleaseDate: z.string().nullable(),
   geoRestricted: z.boolean(),
   loginRequired: z.boolean(),

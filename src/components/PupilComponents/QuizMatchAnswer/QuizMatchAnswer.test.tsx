@@ -84,6 +84,7 @@ describe(QuizMatchAnswer, () => {
         match: [mouse, cat, elephant],
       },
       order: 1,
+      State: "published",
     },
   });
   const completeMatches = {

@@ -12,6 +12,7 @@ import {
   curriculumOverviewMVFixture,
 } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
+import type { Unit } from "@/utils/curriculum/types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
@@ -28,7 +29,7 @@ import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fi
 
 const render = renderWithProviders();
 
-const unitData = [
+const unitData: Unit[] = [
   {
     connection_prior_unit_description:
       "Pupils learned about the roles of hormones in human reproduction, including control of the menstrual cycle, and other uses of hormones such as in in contraception.",
@@ -503,7 +504,12 @@ const unitData = [
     national_curriculum_content: [],
     prior_knowledge_requirements: [],
   },
-];
+].map((unit) => ({
+  features: {},
+  parent_programme_features: null,
+  actions: {},
+  ...unit,
+}));
 
 const mockCurriculumDownloadsData = {
   child_subjects: [

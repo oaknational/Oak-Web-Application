@@ -1,4 +1,7 @@
-import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
+import {
+  lessonDataFixture,
+  syntheticUnitvariantLessonsByKsFixture,
+} from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
 
@@ -74,36 +77,30 @@ describe("teacherPreviewLessonListing()", () => {
       const lessonListingFixture2 = syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           order_in_unit: 2,
-          lesson_data: {
-            lesson_id: 1,
-            lesson_uid: "lesson-uid",
-            title: "lesson-title-2",
-            description: "lesson-description-2",
-            slug: "lesson-slug",
-            pupil_lesson_outcome: "pupil-lesson-outcome",
-            key_learning_points: [{}],
-            equipment_and_resources: null,
-            content_guidance_details: null,
-            phonics_outcome: null,
-            content_guidance: null,
-            supervision_level: null,
-            thirdpartycontent_list: null,
-            misconceptions_and_common_mistakes: null,
-            keywords: null,
-            video_id: null,
-            sign_language_video_id: null,
-            quiz_id_starter: null,
-            quiz_id_exit: null,
-            asset_id_slidedeck: null,
-            asset_id_worksheet: null,
-            copyright_content: null,
-            _state: "published",
-            _cohort: "2023-2024",
-            updated_at: "2023-01-01T00:00:00.000Z",
-            deprecated_fields: null,
-            expiration_date: null,
-            lesson_release_date: null,
-          },
+          lesson_data: lessonDataFixture({
+            overrides: {
+              lesson_id: 1,
+              lesson_uid: "lesson-uid",
+              title: "lesson-title-2",
+              description: "lesson-description-2",
+              slug: "lesson-slug-2",
+              pupil_lesson_outcome: "pupil-lesson-outcome",
+              key_learning_points: [
+                {
+                  key_learning_point: "Example key learning point",
+                },
+              ],
+              phonics_outcome: null,
+              content_guidance: null,
+              misconceptions_and_common_mistakes: null,
+              keywords: null,
+              asset_id_slidedeck: null,
+              asset_id_worksheet: null,
+              copyright_content: null,
+              updated_at: "2023-01-01T00:00:00.000Z",
+              lesson_release_date: "2023-01-01T00:00:00.000Z",
+            },
+          }),
         },
       });
 

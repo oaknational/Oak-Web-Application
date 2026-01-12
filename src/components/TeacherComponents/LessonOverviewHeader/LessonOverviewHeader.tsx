@@ -18,7 +18,7 @@ import {
 } from "@/browser-lib/avo/Avo";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
-import { LessonBrowseDataByKs } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import type { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 /**
  * This is a header for the lesson overview page.
@@ -75,7 +75,7 @@ export type LessonOverviewHeaderProps = {
   ) => void;
   trackCreateWithAiButtonClicked?: () => void;
   subjectCategories?: Array<string | number | null> | null;
-  actions?: LessonBrowseDataByKs["actions"];
+  actions?: Actions | null;
 };
 
 const ShareButtons: FC<{

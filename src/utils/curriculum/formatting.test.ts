@@ -22,6 +22,7 @@ import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createTier } from "@/fixtures/curriculum/tier";
 import { mockPortableTextBlocks } from "@/components/CurriculumComponents/CurricVisualiser/CurricVisualiser.fixtures";
+import type { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 describe("getYearGroupTitle", () => {
   describe("no suffix", () => {
@@ -376,7 +377,7 @@ describe("getYearSubheadingText", () => {
       programme_field_overrides: {
         subject: "Overridden Subject",
       },
-    };
+    } as unknown as Actions;
 
     const result = getYearSubheadingText(
       data,
@@ -396,7 +397,7 @@ describe("getYearSubheadingText", () => {
       programme_field_overrides: {
         subject: "Overridden Subject",
       },
-    };
+    } as unknown as Actions;
 
     const result = getYearSubheadingText(
       data,

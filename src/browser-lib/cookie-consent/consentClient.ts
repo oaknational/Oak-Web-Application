@@ -1,10 +1,11 @@
 "use client";
 import Bugsnag from "@bugsnag/js";
-import { OakConsentClient } from "@oaknational/oak-consent-client";
 
 import getBrowserConfig from "../getBrowserConfig";
 
 import { ServicePolicyMap } from "./ServicePolicyMap";
+
+import { OakConsentClient } from "@oaknational/oak-consent-client";
 
 /**
  * A singleton instance of OakConsentClient

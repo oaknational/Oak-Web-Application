@@ -1,11 +1,11 @@
 import { render } from "@testing-library/react";
 import { PostHogProvider } from "posthog-js/react";
 import { useEffect } from "react";
-import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
 import AnalyticsProvider, { getPathAndQuery } from "./AnalyticsProvider";
 import useAnalytics from "./useAnalytics";
 
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
 // mock window.location.search

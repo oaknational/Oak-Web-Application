@@ -12,7 +12,7 @@ import { landingPageSchema } from "./landingPage";
  * @example
  *   getABTestSchema(landingPageSchema)
  */
-export function getABTestSchema<PageSchema extends ZodType>(
+export function getABTestSchema<PageSchema extends z.ZodType>(
   pageSchema: PageSchema,
 ) {
   return z
@@ -40,7 +40,7 @@ export type ABTest = z.infer<ReturnType<typeof getABTestSchema>>;
  * @example
  *  ABTestForPage<typeof landingPageSchema>
  */
-type ABTestForPage<PageSchema extends ZodType> = z.infer<
+type ABTestForPage<PageSchema extends z.ZodType> = z.infer<
   ReturnType<typeof getABTestSchema<PageSchema>>
 >;
 

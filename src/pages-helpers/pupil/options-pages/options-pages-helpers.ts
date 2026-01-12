@@ -117,9 +117,9 @@ export const getYearSlug = ({
 export const isExamboardSlug = (
   examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
 ): examboardSlug is ProgrammeFields["examboard_slug"] =>
-  Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
+  (examboardSlugs.options as readonly string[]).includes(examboardSlug ?? "");
 
 export const isPathwaySlug = (
   pathwaySlug: ProgrammeFields["pathway_slug"] | string | null,
 ): pathwaySlug is ProgrammeFields["pathway_slug"] =>
-  Object.keys(pathwaySlugs.Values).includes(pathwaySlug ?? "");
+  (pathwaySlugs.options as readonly string[]).includes(pathwaySlug ?? "");

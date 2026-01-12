@@ -87,7 +87,7 @@ const getDownloadExistence = async (
 
   const json = await res.json();
 
-  const data = getParsedData(
+  const data = getParsedData<z.infer<typeof schema>>(
     json,
     schema,
     "downloads/check-files-failed",

@@ -14,6 +14,7 @@ import { UnitListProps } from "./UnitList";
 
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
+import type { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type UnitListLegacyBannerProps = {
   hasNewUnits: boolean;
@@ -29,10 +30,19 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
 }) => {
   const newsletterFormProps = useNewsletterForm();
 
+  const hasActions = (
+    unitItem: unknown,
+  ): unitItem is { actions?: Actions | null } =>
+    typeof unitItem === "object" &&
+    unitItem !== null &&
+    "actions" in unitItem &&
+    Object.prototype.hasOwnProperty.call(unitItem, "actions");
+
   // If any legacy units have the displayExpiringBanner action, show the banner
   const shouldShowAnExpiringBanner = allLegacyUnits.some((unit) =>
     unit?.some(
-      (unitItem) => unitItem.actions && unitItem.actions?.displayExpiringBanner,
+      (unitItem) =>
+        hasActions(unitItem) && unitItem.actions?.displayExpiringBanner,
     ),
   );
 

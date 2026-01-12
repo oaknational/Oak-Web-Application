@@ -74,14 +74,20 @@ export function getFlatUnits(units: Unit[]): GetFlatUnitsOutput {
   }
 }
 
+type ExamboardSlug = (typeof examboardSlugs.options)[number];
+
 export function ks4OptionSlugToPathway(ks4OptionSlug?: string | null) {
   if (ks4OptionSlug) {
     return ks4OptionSlug === "core" ? `Core` : "GCSE";
   }
 }
 
-function isExamboardSlug(examboardSlug: string) {
-  return Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
+function isExamboardSlug(
+  examboardSlug: string,
+): examboardSlug is ExamboardSlug {
+  return (examboardSlugs.options as readonly string[]).includes(
+    examboardSlug ?? "",
+  );
 }
 
 // This is an old HACK and should be replace with "features" on the programme

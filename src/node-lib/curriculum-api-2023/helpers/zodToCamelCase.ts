@@ -1,9 +1,9 @@
-import _zodToCamelCase from "zod-to-camel-case";
+import oakZodToCamelCase from "zod-to-camel-case";
 import { z } from "zod";
 
 // Recursively transform Zod schema keys from snake_case to camelCase
-export const zodToCamelCases = <T extends z.ZodObject<z.ZodRawShape>>(
+export const zodToCamelCase = <T extends z.ZodObject<z.ZodRawShape>>(
   schema: T,
 ): z.ZodType => {
-  return _zodToCamelCase(schema);
+  return oakZodToCamelCase(schema) as unknown as z.ZodType;
 };

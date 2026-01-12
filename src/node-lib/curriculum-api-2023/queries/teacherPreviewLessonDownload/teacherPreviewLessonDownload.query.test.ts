@@ -172,7 +172,7 @@ describe("teachersPreviewLessonDownloadQuery()", () => {
       });
     } catch (error: unknown) {
       const err = error as ZodError;
-      expect(err.errors).toEqual([
+      expect(err.issues).toEqual([
         {
           code: "invalid_type",
           expected: "boolean",
@@ -259,7 +259,7 @@ describe("lessonDownloadsCanonical()", () => {
       });
     } catch (error: unknown) {
       const typedError = error as ZodError;
-      expect(typedError.errors).toEqual([
+      expect(typedError.issues).toEqual([
         {
           code: "invalid_type",
           expected: "boolean",
@@ -273,7 +273,12 @@ describe("lessonDownloadsCanonical()", () => {
 
   describe("teachersPreviewLessonDownloadQuery() - Copyright Content", () => {
     test("returns copyright content if present in the response", async () => {
-      const mockCopyrightContent = [
+      const mockCopyrightContentSnake = [
+        {
+          copyright_info: "info about copyright",
+        },
+      ] as unknown as Record<string, never>[];
+      const expectedCopyrightContent = [
         {
           copyrightInfo: "info about copyright",
         },
@@ -289,7 +294,7 @@ describe("lessonDownloadsCanonical()", () => {
                 overrides: {
                   lesson_data: lessonDataFixture({
                     overrides: {
-                      copyright_content: mockCopyrightContent,
+                      copyright_content: mockCopyrightContentSnake,
                     },
                   }),
                 },
@@ -303,7 +308,7 @@ describe("lessonDownloadsCanonical()", () => {
         lessonSlug: "lesson-slug",
       })) as LessonDownloadsPageData;
 
-      expect(unit.legacyCopyrightContent).toEqual(mockCopyrightContent);
+      expect(unit.legacyCopyrightContent).toEqual(expectedCopyrightContent);
     });
 
     test("returns null for copyright content if not present in the response", async () => {

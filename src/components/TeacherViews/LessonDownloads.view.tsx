@@ -142,7 +142,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     }
   });
 
-  const showRiskAssessmentBanner = !!actions?.isPePractical;
+  const lessonActions = actions as Actions | null | undefined;
+  const showRiskAssessmentBanner = !!lessonActions?.isPePractical;
 
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical

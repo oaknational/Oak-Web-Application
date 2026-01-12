@@ -21,7 +21,7 @@ const render = renderWithProviders();
 const lesson = {
   ...lessonMediaClipsFixtures(),
   lessonOutline: [{ lessonOutline: "Sample outline" }],
-  actions: [{ action: "Sample action" }],
+  actions: { displayExpiringBanner: false },
 };
 const mediaClips = lesson.mediaClips;
 const firstMediaClip = mediaClips ? mediaClips["intro"] : null;
@@ -219,7 +219,7 @@ describe("LessonMedia view", () => {
         }) as MediaClipListCamelCase,
       }),
       lessonOutline: [{ lessonOutline: "Sample outline" }],
-      actions: [{ action: "Sample action" }],
+      actions: { displayExpiringBanner: false },
     };
     const { getByTestId } = render(
       <LessonMedia lesson={lessonWithUndefinedDuration} isCanonical={false} />,

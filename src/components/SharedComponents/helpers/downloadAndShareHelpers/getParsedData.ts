@@ -15,14 +15,12 @@ export type Meta =
       isLegacyDownload?: boolean;
     };
 
-export const getParsedData = (
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-  json: any,
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-  schema: z.ZodRecord<any, any>,
+export const getParsedData = <T extends { data?: unknown; error?: unknown }>(
+  json: unknown,
+  schema: z.ZodType<T>,
   oakErrorCode: ErrorInfo["code"],
   meta?: Meta,
-) => {
+): NonNullable<T["data"]> => {
   const parsedJson = schema.safeParse(json);
 
   if (!parsedJson.success) {
@@ -38,7 +36,8 @@ export const getParsedData = (
     });
   }
 
-  const { data, error } = parsedJson.data;
+  const result = parsedJson.data as T;
+  const { data, error } = result;
 
   if (!data || error) {
     throw new OakError({
@@ -51,5 +50,5 @@ export const getParsedData = (
     });
   }
 
-  return data;
+  return data as NonNullable<T["data"]>;
 };
