@@ -214,7 +214,7 @@
     "esbuild": "^0.19.12",
     "escape-html": "^1.0.3",
     "eslint": "^9.39.2",
-    "eslint-config-next": "^16.1.1",
+    "eslint-config-next": "^15.3.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
