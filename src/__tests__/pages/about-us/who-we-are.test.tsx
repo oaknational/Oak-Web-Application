@@ -7,11 +7,16 @@ import AboutWhoWeAre, {
   getServerSideProps,
 } from "../../../pages/about-us/who-we-are";
 import CMSClient from "../../../node-lib/cms";
-import { AboutWhoWeArePage } from "../../../common-lib/cms-types";
+import {
+  AboutWhoWeArePage,
+  NewAboutWhoWeArePage,
+} from "../../../common-lib/cms-types";
 import { mockSeoResult, portableTextFromString } from "../../__helpers__/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
+
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 jest.mock("../../../node-lib/cms");
 jest.mock("@mux/mux-player-react/lazy", () => {
@@ -22,6 +27,31 @@ jest.mock("@mux/mux-player-react/lazy", () => {
 });
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+
+const newTestAboutWhoWeArePageData: NewAboutWhoWeArePage = {
+  header: {
+    title: "",
+    subTitle: "",
+  },
+  breakout: {
+    image: {},
+    text: "",
+  },
+  timeline: [
+    {
+      title: "",
+      text: [],
+      subTitle: "",
+    },
+  ],
+  usp: [
+    {
+      title: "",
+      image: {},
+      text: "",
+    },
+  ],
+};
 
 const testAboutWhoWeArePageData: AboutWhoWeArePage = {
   ...testAboutPageBaseData,
@@ -117,6 +147,13 @@ const testAboutWhoWeArePageData: AboutWhoWeArePage = {
   ],
 };
 
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  __esModule: true,
+  default: {
+    topNav: () => jest.fn().mockResolvedValue(topNavFixture)(),
+  },
+}));
+
 describe("pages/about/who-we-are.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -125,7 +162,10 @@ describe("pages/about/who-we-are.tsx", () => {
 
   it("Renders correct title ", () => {
     renderWithProviders()(
-      <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />,
+      <AboutWhoWeAre
+        pageData={testAboutWhoWeArePageData}
+        topNav={topNavFixture}
+      />,
     );
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
@@ -136,7 +176,10 @@ describe("pages/about/who-we-are.tsx", () => {
   describe("SEO", () => {
     it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
-        <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />,
+        <AboutWhoWeAre
+          pageData={testAboutWhoWeArePageData}
+          topNav={topNavFixture}
+        />,
       );
 
       expect(seo).toEqual({
@@ -172,6 +215,10 @@ describe("pages/about/who-we-are.tsx", () => {
         testAboutWhoWeArePageData,
       );
 
+      mockCMSClient.newAboutWhoWeArePage.mockResolvedValueOnce(
+        newTestAboutWhoWeArePageData,
+      );
+
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
         res: {},
@@ -197,7 +244,11 @@ describe("pages/about/who-we-are.tsx (v2 enabled)", () => {
 
   it("renders ", () => {
     const { baseElement } = renderWithProviders()(
-      <AboutWhoWeAre enableV2={true} pageData={testAboutWhoWeArePageData} />,
+      <AboutWhoWeAre
+        enableV2={true}
+        pageData={testAboutWhoWeArePageData}
+        topNav={topNavFixture}
+      />,
     );
 
     expect(baseElement).toMatchSnapshot();

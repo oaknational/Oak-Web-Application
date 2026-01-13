@@ -1,8 +1,22 @@
 import { FC } from "react";
 
-import { LessonOverviewHeaderProps as LessonOverviewHeaderDownloadAllButtonProps } from "@/components/TeacherComponents/LessonOverviewHeader";
+import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
+
+export type LessonOverviewHeaderDownloadAllButtonProps = Pick<
+  LessonOverviewHeaderProps,
+  | "expired"
+  | "showDownloadAll"
+  | "programmeSlug"
+  | "lessonSlug"
+  | "unitSlug"
+  | "onClickDownloadAll"
+  | "isSpecialist"
+  | "isCanonical"
+  | "geoRestricted"
+  | "loginRequired"
+>;
 
 export const LessonOverviewHeaderDownloadAllButton: FC<
   LessonOverviewHeaderDownloadAllButtonProps
@@ -72,6 +86,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
       iconName="download"
       isTrailingIcon
       aria-label="Download all"
+      width={"spacing-160"}
     />
   );
 };

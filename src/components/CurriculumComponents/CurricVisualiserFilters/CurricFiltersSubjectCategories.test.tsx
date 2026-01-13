@@ -95,31 +95,40 @@ describe("CurricFiltersSubjectCategories", () => {
     expect(elements.length).toEqual(3);
 
     act(() => elements[0]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      subjectCategories: ["biology"],
-      childSubjects: [],
-      threads: [],
-      tiers: [],
-      years: ["10", "11"],
-      pathways: [],
-    });
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
+        subjectCategories: ["biology"],
+        childSubjects: [],
+        threads: [],
+        tiers: [],
+        years: ["10", "11"],
+        pathways: [],
+      },
+      "subject_category_button",
+    );
     act(() => elements[1]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      subjectCategories: ["chemistry"],
-      childSubjects: [],
-      threads: [],
-      tiers: [],
-      years: ["10", "11"],
-      pathways: [],
-    });
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
+        subjectCategories: ["chemistry"],
+        childSubjects: [],
+        threads: [],
+        tiers: [],
+        years: ["10", "11"],
+        pathways: [],
+      },
+      "subject_category_button",
+    );
     act(() => elements[2]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      subjectCategories: ["physics"],
-      childSubjects: [],
-      threads: [],
-      tiers: [],
-      years: ["10", "11"],
-      pathways: [],
-    });
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
+        subjectCategories: ["physics"],
+        childSubjects: [],
+        threads: [],
+        tiers: [],
+        years: ["10", "11"],
+        pathways: [],
+      },
+      "subject_category_button",
+    );
   });
 });

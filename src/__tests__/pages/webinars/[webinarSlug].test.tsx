@@ -10,6 +10,8 @@ import noop from "../../__helpers__/noop";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
 const webinarPageViewed = jest.fn();
 jest.mock("../../../context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -97,6 +99,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
     it("Renders title from props ", async () => {
       render(
         <WebinarDetailPage
+          topNav={topNavFixture}
           webinar={testSerializedWebinar}
           categories={[{ title: "Teaching", slug: "teaching" }]}
         />,
@@ -112,6 +115,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
     it("calls tracking.webinarPageViewed once, with correct props", () => {
       render(
         <WebinarDetailPage
+          topNav={topNavFixture}
           webinar={testSerializedWebinar}
           categories={[{ title: "Teaching", slug: "teaching" }]}
         />,
@@ -129,6 +133,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo()(
           <WebinarDetailPage
+            topNav={topNavFixture}
             webinar={testSerializedWebinar}
             categories={[{ title: "Teaching", slug: "teaching" }]}
           />,

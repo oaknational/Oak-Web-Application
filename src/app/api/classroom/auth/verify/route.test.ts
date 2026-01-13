@@ -3,7 +3,7 @@
  */
 import type { NextRequest } from "next/server";
 
-import { POST } from "./route";
+import { GET } from "./route";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
@@ -21,9 +21,11 @@ global.Response.json = mockResponseJson;
 const mockValidSession = "valid_session";
 const mockInvalidSession = "invalid_session";
 const mockVerifiedSession = "verified_session";
+const mockValidToken = "valid_token";
 
 const mockVerifyAuthSession = jest.fn();
 const mockRequestJson = jest.fn();
+const mockRequestHeadersGet = jest.fn();
 
 describe("POST /api/classroom/auth/verify", () => {
   let mockRequest: NextRequest;
@@ -37,22 +39,30 @@ describe("POST /api/classroom/auth/verify", () => {
 
     mockRequest = {
       json: mockRequestJson,
+      headers: {
+        get: mockRequestHeadersGet,
+      },
     } as unknown as NextRequest;
   });
 
   it("should return authenticated: true for a valid session", async () => {
     // Arrange
-    mockRequestJson.mockResolvedValue({ session: mockValidSession });
     mockVerifyAuthSession.mockResolvedValue(mockVerifiedSession);
+    mockRequestHeadersGet.mockImplementation((name) => {
+      if (name === "Authorization") return mockValidToken;
+      if (name === "X-Oakgc-Session") return mockValidSession;
+      return null;
+    });
 
     // Act
-    await POST(mockRequest);
+    await GET(mockRequest);
 
     // Assert
-    expect(mockRequestJson).toHaveBeenCalledTimes(1);
-
     expect(mockVerifyAuthSession).toHaveBeenCalledTimes(1);
-    expect(mockVerifyAuthSession).toHaveBeenCalledWith(mockValidSession);
+    expect(mockVerifyAuthSession).toHaveBeenCalledWith(
+      mockValidSession,
+      mockValidToken,
+    );
 
     expect(mockResponseJson).toHaveBeenCalledTimes(1);
     expect(mockResponseJson).toHaveBeenCalledWith(
@@ -63,17 +73,22 @@ describe("POST /api/classroom/auth/verify", () => {
 
   it("should return authenticated: false for an invalid session", async () => {
     // Arrange
-    mockRequestJson.mockResolvedValue({ session: mockInvalidSession });
     mockVerifyAuthSession.mockResolvedValue(null);
+    mockRequestHeadersGet.mockImplementation((name) => {
+      if (name === "Authorization") return mockValidToken;
+      if (name === "X-Oakgc-Session") return mockInvalidSession;
+      return null;
+    });
 
     // Act
-    await POST(mockRequest);
+    await GET(mockRequest);
 
     // Assert
-    expect(mockRequestJson).toHaveBeenCalledTimes(1);
-
     expect(mockVerifyAuthSession).toHaveBeenCalledTimes(1);
-    expect(mockVerifyAuthSession).toHaveBeenCalledWith(mockInvalidSession);
+    expect(mockVerifyAuthSession).toHaveBeenCalledWith(
+      mockInvalidSession,
+      mockValidToken,
+    );
 
     expect(mockResponseJson).toHaveBeenCalledTimes(1);
     expect(mockResponseJson).toHaveBeenCalledWith(
@@ -85,13 +100,16 @@ describe("POST /api/classroom/auth/verify", () => {
   it("should return authenticated: false if no session is provided", async () => {
     // Arrange
     mockRequestJson.mockResolvedValue({ session: null });
+    mockRequestHeadersGet.mockImplementation((name) => {
+      if (name === "Authorization") return null;
+      if (name === "X-Oakgc-Session") return null;
+      return null;
+    });
 
     // Act
-    await POST(mockRequest);
+    await GET(mockRequest);
 
     // Assert
-    expect(mockRequestJson).toHaveBeenCalledTimes(1);
-
     expect(mockVerifyAuthSession).not.toHaveBeenCalled();
 
     expect(mockResponseJson).toHaveBeenCalledTimes(1);

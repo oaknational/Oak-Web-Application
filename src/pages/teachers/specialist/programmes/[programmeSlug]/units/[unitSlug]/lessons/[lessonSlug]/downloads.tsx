@@ -17,10 +17,12 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 
 const SpecialistLessonDownloadsPage = ({
   curriculumData,
+  topNav,
 }: SpecialistLessonDownloadsPageData) => {
   const { lesson } = curriculumData;
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title: `Lesson Download: ${lesson.lessonTitle} | ${lesson.subjectTitle}`,
@@ -28,7 +30,10 @@ const SpecialistLessonDownloadsPage = ({
         }),
       }}
     >
-      <SpecialistLessonDownloads curriculumData={curriculumData} />
+      <SpecialistLessonDownloads
+        curriculumData={curriculumData}
+        topNav={topNav}
+      />
     </AppLayout>
   );
 };
@@ -77,11 +82,13 @@ export const getStaticProps: GetStaticProps<
             notFound: true,
           };
         }
+        const topNav = await curriculumApi2023.topNav();
 
         const results: GetStaticPropsResult<SpecialistLessonDownloadsPageData> =
           {
             props: {
               curriculumData,
+              topNav,
             },
           };
         return results;

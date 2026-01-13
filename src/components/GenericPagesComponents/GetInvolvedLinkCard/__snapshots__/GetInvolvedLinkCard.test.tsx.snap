@@ -13,17 +13,13 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
       >
         Help us improve
       </h3>
-      <p
-        class="sc-dLMFU jKnjIK"
-      >
-        Teachers are at the heart of everything we build.
-      </p>
+      Teachers are at the heart of everything we build.
     </div>
     <div
       class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
     >
       <div
-        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+        class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
       >
         <div
           class="sc-fqkvVR iPpXCP grey-shadow"
@@ -32,7 +28,7 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
           class="sc-fqkvVR iPpXCP yellow-shadow"
         />
         <a
-          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
           href="https://example.com/research"
         >
           <div
@@ -47,7 +43,7 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
         </a>
       </div>
       <div
-        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+        class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
       >
         <div
           class="sc-fqkvVR iPpXCP grey-shadow"
@@ -56,7 +52,7 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
           class="sc-fqkvVR iPpXCP yellow-shadow"
         />
         <a
-          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
           href="https://example.com/explore"
         >
           <div
@@ -88,17 +84,13 @@ exports[`GetInvolvedLinkCard renders with single button 1`] = `
       >
         Give your feedback
       </h2>
-      <p
-        class="sc-dLMFU jKnjIK"
-      >
-        Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
-      </p>
+      Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
     </div>
     <div
       class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
     >
       <div
-        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+        class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
       >
         <div
           class="sc-fqkvVR iPpXCP grey-shadow"
@@ -107,7 +99,7 @@ exports[`GetInvolvedLinkCard renders with single button 1`] = `
           class="sc-fqkvVR iPpXCP yellow-shadow"
         />
         <a
-          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
           href="#"
         >
           <div
@@ -139,11 +131,7 @@ exports[`GetInvolvedLinkCard renders without buttons 1`] = `
       >
         No Buttons
       </h3>
-      <p
-        class="sc-dLMFU jKnjIK"
-      >
-        Content without buttons
-      </p>
+      Content without buttons
     </div>
   </div>
 </div>

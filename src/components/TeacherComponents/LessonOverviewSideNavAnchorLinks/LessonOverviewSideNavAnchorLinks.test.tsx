@@ -9,6 +9,20 @@ const links = [
   { label: "Slides", anchorId: "slides" },
 ];
 
+const downloadAllBtnProps = {
+  lessonSlug: "test-lesson",
+  unitSlug: "test-unit",
+  programmeSlug: "test-programme",
+  expired: false,
+  showDownloadAll: false,
+  onClickDownloadAll: jest.fn(),
+  isSpecialist: false,
+  isCanonical: false,
+  geoRestricted: false,
+  loginRequired: false,
+  unitTitle: "Test Unit",
+};
+
 describe("LessonOverviewSideNavAnchorLinks", () => {
   it("should render the links correctly when contentRestricted is false", () => {
     const { getByText } = renderWithTheme(
@@ -16,6 +30,7 @@ describe("LessonOverviewSideNavAnchorLinks", () => {
         contentRestricted={false}
         links={links}
         currentSectionId="link1"
+        downloadAllButtonProps={downloadAllBtnProps}
       />,
     );
 
@@ -29,6 +44,7 @@ describe("LessonOverviewSideNavAnchorLinks", () => {
         contentRestricted={true}
         links={links}
         currentSectionId="worksheet"
+        downloadAllButtonProps={downloadAllBtnProps}
       />,
     );
 

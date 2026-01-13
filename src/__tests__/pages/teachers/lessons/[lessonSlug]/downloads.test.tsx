@@ -14,6 +14,7 @@ import {
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -24,6 +25,7 @@ describe("LessonDownloadsCanonicalPage", () => {
   it("Renders title from the props", async () => {
     const result = render(
       <LessonDownloadsCanonicalPage
+        topNav={topNavFixture}
         curriculumData={{ ...lesson, pathways: [] }}
       />,
     );
@@ -48,7 +50,10 @@ describe("LessonDownloadsCanonicalPage", () => {
 
       it("allows downloads", () => {
         const result = render(
-          <LessonDownloadsCanonicalPage curriculumData={curriculumData} />,
+          <LessonDownloadsCanonicalPage
+            curriculumData={curriculumData}
+            topNav={topNavFixture}
+          />,
         );
 
         expect(
