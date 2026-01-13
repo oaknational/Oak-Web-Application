@@ -13,7 +13,7 @@ exports[`AboutSharedHeader renders correctly 1`] = `
           class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-bd6eb640-0 fgBWrW djyvKT iAkSYx hVlOVk"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c1d0c577-0 fgBWrW djyvKT iAkSYx iDmxzF"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -35,7 +35,7 @@ exports[`AboutSharedHeader renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-bd6eb640-1 fgBWrW joHkzz dGlNMa leDhAP"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c1d0c577-1 fgBWrW joHkzz dGlNMa kQaWKe"
           >
             <div
               class="sc-fqkvVR jqqmXN"
@@ -71,7 +71,7 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
           class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-bd6eb640-0 fgBWrW djyvKT iAkSYx hVlOVk"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c1d0c577-0 fgBWrW djyvKT iAkSYx iDmxzF"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -93,10 +93,10 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-bd6eb640-1 fgBWrW joHkzz dGlNMa leDhAP"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c1d0c577-1 fgBWrW joHkzz dGlNMa kQaWKe"
           >
             <div
-              class="sc-fqkvVR erqloa sc-bd6eb640-2 jpa-Ddl"
+              class="sc-fqkvVR erqloa sc-c1d0c577-2 hXpMyI"
               data-testid="about-shared-loop"
             >
               <img
