@@ -99,7 +99,10 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
   block: {
     normal: (props) => {
       return (
-        <OakP $font={["heading-light-3"]} $color={"text-primary"}>
+        <OakP
+          $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
+          $color={"text-primary"}
+        >
           {props.children}
         </OakP>
       );
