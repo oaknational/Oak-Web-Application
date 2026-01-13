@@ -85,7 +85,7 @@
     "@mux/mux-node": "^9.0.1",
     "@mux/mux-player-react": "3.10.2",
     "@oaknational/oak-components": "^1.174.0",
-    "@oaknational/oak-consent-client": "file:.yalc/@oaknational/oak-consent-client",
+    "@oaknational/oak-consent-client": "2.4.0",
     "@oaknational/oak-curriculum-schema": "^2.0.0",
     "@ooxml-tools/units": "^0.3.0",
     "@ooxml-tools/xml": "^0.1.0",
