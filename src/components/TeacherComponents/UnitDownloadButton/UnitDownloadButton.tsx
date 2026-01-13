@@ -171,7 +171,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
         createAndClickHiddenDownloadLink(downloadLink);
         onDownloadSuccess();
       }
-    } catch (error) {
+    } catch (_error) {
       setShowDownloadMessage(false);
       setShowIncompleteMessage(false);
       setDownloadError(true);

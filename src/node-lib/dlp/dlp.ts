@@ -1,4 +1,4 @@
-import DLP, { protos } from "@google-cloud/dlp";
+import { protos, DlpServiceClient } from "@google-cloud/dlp";
 import { GoogleAuth } from "google-auth-library";
 
 import { getGcpOidc } from "@/node-lib/oidc/getGcpOidc";
@@ -24,7 +24,7 @@ if (!auth) {
   throw new Error("Failed to initialize authClient for DLP.");
 }
 
-const dlp = new DLP.DlpServiceClient({
+const dlp = new DlpServiceClient({
   projectId,
   // no type conflict now: plain object is structurally OK
   credentials: externalAccountJson,
