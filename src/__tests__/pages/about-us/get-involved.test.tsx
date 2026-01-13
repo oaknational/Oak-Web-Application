@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import { GetServerSidePropsContext } from "next";
+import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
@@ -44,7 +45,7 @@ const testAboutWhoWeArePageData: GetInvolvedPage["pageData"] = {
   },
 };
 
-describe("pages/about/who-we-are.tsx", () => {
+describe("pages/about/get-involved.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
