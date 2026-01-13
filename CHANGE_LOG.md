@@ -1,3 +1,11 @@
+## [1.947.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.947.1...v1.947.2) (2026-01-13)
+
+
+### Bug Fixes
+
+* bump schema via "npm run gql-codegen:curriculum-2023" ([0a4bb3c](https://github.com/oaknational/Oak-Web-Application/commit/0a4bb3c271d9feae7d9d7282aac44947de675f08))
+* bump type as it not longer exists in db-tools ([270d28f](https://github.com/oaknational/Oak-Web-Application/commit/270d28f09722eb365df322063c234aba14a68c2f))
+
 ## [1.947.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.947.0...v1.947.1) (2026-01-13)
 
 
