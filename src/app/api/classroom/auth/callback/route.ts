@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     return Response.json("code is required", { status: 400 });
   }
   const tempSignUpToNewsletter = async (email: string) => {
-    // todo: this is temp until we have actual mailing list to subscribe to
+    // This is temp until we have actual mailing list to subscribe to
     // NOTE: This will fire on re-sign ins, so perform existence checks first
     console.log("should subscribe to newsletter", email);
   };

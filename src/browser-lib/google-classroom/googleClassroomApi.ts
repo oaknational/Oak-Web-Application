@@ -27,7 +27,7 @@ const sendRequest = async <returnType, payload = undefined>(
     body: body && JSON.stringify(body),
     headers,
   });
-  // todo: error handling
+  // should error handle
   return res.json();
 };
 
