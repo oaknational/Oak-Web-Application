@@ -62,6 +62,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumUnitsFormattedData,
   mvRefreshTime,
   curriculumDownloadsTabData,
+  topNav,
 }) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -192,6 +193,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout
+        topNavProps={topNav}
         seoProps={{
           ...getSeoProps({
             title: buildCurriculumMetadata({
@@ -339,6 +341,7 @@ export const getStaticProps: GetStaticProps<
       );
 
       const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
+      const topNav = await curriculumApi2023.topNav();
 
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
@@ -349,6 +352,7 @@ export const getStaticProps: GetStaticProps<
           curriculumUnitsFormattedData,
           mvRefreshTime,
           curriculumDownloadsTabData,
+          topNav,
         },
       };
       const resultsWithIsr = decorateWithIsr(results);

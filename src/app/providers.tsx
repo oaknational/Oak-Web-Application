@@ -14,6 +14,7 @@ if (typeof window !== "undefined") {
     ui_host: isDevelopmentBuild
       ? getBrowserConfig("posthogApiHost")
       : undefined,
+    capture_pageview: false,
   });
 }
 

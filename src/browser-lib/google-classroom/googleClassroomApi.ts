@@ -1,10 +1,11 @@
 "use client";
 
 const getOakGCAuthHeaders = async (): Promise<Headers | undefined> => {
-  if (!window?.cookieStore) return undefined;
-  const session = (await window.cookieStore.get("oak-gclassroom-session"))
+  if (!globalThis?.cookieStore) return undefined;
+  const session = (await globalThis.cookieStore.get("oak-gclassroom-session"))
     ?.value;
-  const token = (await window.cookieStore.get("oak-gclassroom-token"))?.value;
+  const token = (await globalThis.cookieStore.get("oak-gclassroom-token"))
+    ?.value;
   let headers: Headers | undefined;
   if (session && token) {
     headers = new Headers();
@@ -58,33 +59,15 @@ const sendRequest = async <returnType, payload = undefined>(
 const getGoogleSignInUrl = async (
   loginHint: string | null,
 ): Promise<string | null> => {
-  // Validate loginHint before making API call
-  if (!loginHint) {
-    throw new Error(
-      "Login hint is required for Google Classroom sign-in. Please ensure you are accessing this page from within Google Classroom.",
-    );
-  }
-
   try {
-    const url = `/api/classroom/auth/sign-in?login_hint=${loginHint}`;
+    const url = loginHint
+      ? `/api/classroom/auth/sign-in?login_hint=${loginHint}`
+      : `/api/classroom/auth/sign-in`;
     const data = await sendRequest<{ signInUrl: string }>(url);
     return data.signInUrl ?? null;
   } catch (error) {
     console.error("Error fetching sign-in URL:", error);
-
-    // If it's an OakGoogleClassroomException, provide a user-friendly message
-    if (
-      error &&
-      typeof error === "object" &&
-      "code" in error &&
-      error.code === "MISSING_LOGIN_HINT"
-    ) {
-      throw new Error(
-        "Unable to authenticate: Login information is missing. Please access this page from within Google Classroom.",
-      );
-    }
-
-    throw error;
+    return null;
   }
 };
 

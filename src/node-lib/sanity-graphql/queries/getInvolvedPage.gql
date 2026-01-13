@@ -1,0 +1,22 @@
+query newAboutGetInvolvedPage($isDraftFilter: Sanity_DocumentFilter) {
+  allNewAboutCorePageGetInvolved(
+    where: { _: $isDraftFilter, _id: { matches: "*newAboutCorePage.getInvolved" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    header {
+      textRaw
+    }
+    collaborate {
+      researchPanelTextRaw
+      feedbackTextRaw
+    }
+    workWithUs {
+      textRaw
+    }
+    seo {
+      ...Seo
+    }
+  }
+}

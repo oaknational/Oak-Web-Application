@@ -17,16 +17,22 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsPageData;
+  topNav: TopNavProps;
 };
 
-const LessonDownloadsPage = ({ curriculumData }: LessonDownloadsPageProps) => {
+const LessonDownloadsPage = ({
+  curriculumData,
+  topNav,
+}: LessonDownloadsPageProps) => {
   const { lessonTitle, keyStageSlug, subjectTitle } = curriculumData;
 
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title: `Lesson Download: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
@@ -100,9 +106,12 @@ export const getStaticProps: GetStaticProps<
         return redirect ? { redirect } : { notFound: true };
       }
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<LessonDownloadsPageProps> = {
         props: {
           curriculumData,
+          topNav,
         },
       };
       return results;

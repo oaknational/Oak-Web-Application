@@ -22,6 +22,7 @@ import {
 } from "@/utils/curriculum/sorting";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type CurriculumUnitsYearGroup = {
   units: Unit[];
@@ -73,6 +74,7 @@ export type CurriculumInfoPageProps = {
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   mvRefreshTime: number;
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
+  topNav: TopNavProps;
 };
 
 export const VALID_TABS = ["overview", "units", "downloads"] as const;
