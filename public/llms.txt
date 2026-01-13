@@ -1,0 +1,129 @@
+# Oak National Academy
+
+> Free, high-quality curriculum resources for teachers and pupils in England. Oak provides thousands of lesson plans, videos, worksheets, and quizzes aligned with the National Curriculum for Key Stages 1-4 (ages 5-16), plus AI-powered lesson creation tools.
+
+Oak National Academy is an independent, arm's-length body of the Department for Education, created by teachers, for teachers. Our mission is to support great teaching by lowering teacher workload, improving pupil outcomes, and closing the disadvantage gap. Oak's curricula and resources are free to use, and published on an open licence (Open Government Licence (OGL) - equivalent to CC-BY 4.0).
+
+The platform serves two primary audiences: teachers seeking lesson materials and curriculum plans, and pupils accessing interactive lessons with videos and quizzes. All resources are fully adaptable starting points—not scripts—designed to respect teacher expertise and the diversity of every classroom.
+
+**Key Features:**
+- Complete curriculum coverage for English, Maths, Science, and foundation subjects down to the lesson level
+- Video lessons with sign language alternatives and transcripts
+- Interactive quizzes (multiple choice, matching, ordering, short answer)
+- Downloadable resources (worksheets, slide decks, lesson plans)
+- AI-powered lesson assistant "Aila" for custom resource generation
+- Curriculum planning tools and teaching guidance
+
+**Content Organization:**
+- Key Stages: KS1 (5-7 years), KS2 (7-11), KS3 (11-14), KS4 (14-16)
+- Structure: Key Stage → Subject → Unit → Lesson
+- Specialist pathways for SEND and alternative curricula
+
+**Licensing:**
+All Oak National Academy educational content is available under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) (OGL), unless otherwise stated. This means you are free to copy, publish, distribute, transmit, and adapt the content for both commercial and non-commercial purposes, provided you acknowledge Oak National Academy as the source.
+
+**Content Freshness:**
+Oak's curriculum content is continuously updated and expanded. New lessons and units are added regularly, and existing content is reviewed and improved based on teacher feedback and curriculum changes. The platform uses Incremental Static Regeneration to ensure content is always up-to-date.
+
+**Search:**
+To search for lessons, use: `https://www.thenational.academy/teachers/search?term={query}`
+Replace `{query}` with URL-encoded search terms. Example: `https://www.thenational.academy/teachers/search?term=fractions` finds all lessons about fractions.
+
+## For Teachers
+
+- [Teacher Home](https://www.thenational.academy/teachers): Main entry point for teachers to browse and search curriculum resources
+- [Key Stage 1 Subjects](https://www.thenational.academy/teachers/key-stages/ks1/subjects): Browse KS1 subjects (ages 5-7) including phonics, early reading, maths
+- [Key Stage 2 Subjects](https://www.thenational.academy/teachers/key-stages/ks2/subjects): Browse KS2 subjects (ages 7-11) across the primary curriculum
+- [Key Stage 3 Subjects](https://www.thenational.academy/teachers/key-stages/ks3/subjects): Browse KS3 subjects (ages 11-14) for secondary education
+- [Key Stage 4 Subjects](https://www.thenational.academy/teachers/key-stages/ks4/subjects): Browse KS4/GCSE subjects (ages 14-16) with exam board options
+- [Specialist Subjects](https://www.thenational.academy/teachers/specialist/subjects): Specialist curriculum resources for SEND and alternative pathways
+- [Search Lessons](https://www.thenational.academy/teachers/search): Search across all lessons by keyword, subject, or topic
+- [My Library](https://www.thenational.academy/teachers/my-library): Save and organize your favorite units and lessons (requires login)
+- [Lesson Planning](https://www.thenational.academy/lesson-planning): Resources and guidance for lesson planning
+
+## For Pupils
+
+- [Pupil Home](https://www.thenational.academy/pupils): Main entry point for students to find and complete lessons
+- [Year 1](https://www.thenational.academy/pupils/years/year-1/subjects): Lessons for Year 1 pupils (ages 5-6)
+- [Year 2](https://www.thenational.academy/pupils/years/year-2/subjects): Lessons for Year 2 pupils (ages 6-7)
+- [Year 3](https://www.thenational.academy/pupils/years/year-3/subjects): Lessons for Year 3 pupils (ages 7-8)
+- [Year 4](https://www.thenational.academy/pupils/years/year-4/subjects): Lessons for Year 4 pupils (ages 8-9)
+- [Year 5](https://www.thenational.academy/pupils/years/year-5/subjects): Lessons for Year 5 pupils (ages 9-10)
+- [Year 6](https://www.thenational.academy/pupils/years/year-6/subjects): Lessons for Year 6 pupils (ages 10-11)
+- [Year 7](https://www.thenational.academy/pupils/years/year-7/subjects): Lessons for Year 7 pupils (ages 11-12)
+- [Year 8](https://www.thenational.academy/pupils/years/year-8/subjects): Lessons for Year 8 pupils (ages 12-13)
+- [Year 9](https://www.thenational.academy/pupils/years/year-9/subjects): Lessons for Year 9 pupils (ages 13-14)
+- [Year 10](https://www.thenational.academy/pupils/years/year-10/subjects): Lessons for Year 10/GCSE pupils (ages 14-15)
+- [Year 11](https://www.thenational.academy/pupils/years/year-11/subjects): Lessons for Year 11/GCSE pupils (ages 15-16)
+
+## Curriculum
+
+- [Curriculum Overview](https://www.thenational.academy/teachers/curriculum): Browse the full curriculum by subject and phase, download curriculum plans and sequences
+
+## AI Tools
+
+- [Oak AI Assistant (Aila)](https://www.thenational.academy/ai): Aila is a free AI-powered tool that helps teachers create bespoke lesson plans, worksheets, quizzes, and slide decks tailored to their specific classes, speeding up planning while maintaining quality
+
+## Sitemaps
+
+- [Teachers Sitemap](https://www.thenational.academy/teachers/sitemap.xml): XML sitemap of all teacher-facing curriculum pages
+- [Teachers Sitemap (continued)](https://www.thenational.academy/teachers/sitemap-1.xml): Additional teacher curriculum pages
+- [Pupils Sitemap](https://www.thenational.academy/pupils/sitemap.xml): XML sitemap of all pupil-facing lesson pages
+- [Pupils Sitemap (continued)](https://www.thenational.academy/pupils/sitemap-1.xml): Additional pupil lesson pages
+- [Curriculum Sitemap](https://www.thenational.academy/teachers/curriculum/sitemap.xml): Sitemap of curriculum planning pages
+- [Blog Sitemap](https://www.thenational.academy/blog/sitemap.xml): Sitemap of all blog posts
+
+## API & Developers
+
+- [Oak Open API](https://open-api.thenational.academy/): Public API for accessing Oak's curriculum data programmatically
+- [GitHub Organisation](https://github.com/oaknational): Oak's open source repositories including the web application, AI tools, and curriculum schemas
+- [Oak Web Application Repository](https://github.com/oaknational/Oak-Web-Application): Main website codebase (MIT License)
+- [Brand Guidelines](https://support.thenational.academy/using-the-oak-brand): Guidelines for using the Oak National Academy brand, logos, and trademarks
+
+## Contact
+
+- [Contact Us](https://www.thenational.academy/contact-us): Get in touch with the Oak team for support, feedback, or partnership enquiries
+- [Support Your Team](https://www.thenational.academy/support-your-team): Guidance for school leaders on implementing Oak resources across their school
+
+## Support
+
+- [Blog](https://www.thenational.academy/blog): Latest news, teaching tips, and updates from Oak
+
+## About
+
+- [Who We Are](https://www.thenational.academy/about-us/who-we-are): About Oak National Academy and our mission
+- [Leadership](https://www.thenational.academy/about-us/leadership): Meet the Oak leadership team
+- [Board](https://www.thenational.academy/about-us/board): Oak National Academy board members
+- [Partners](https://www.thenational.academy/about-us/partners): Our curriculum and content partners
+- [Work With Us](https://www.thenational.academy/about-us/work-with-us): Opportunities to collaborate with Oak
+- [Get Involved](https://www.thenational.academy/about-us/get-involved): Ways to contribute to Oak's mission
+
+## Impact & Research
+
+**Key findings from Oak's 2024/25 Impact Report:**
+- 196,143 teachers used Oak's resources (135% increase year-on-year)
+- 1.63 million resource downloads and 4.2 million pupil lessons
+- Schools in disadvantaged areas downloaded 36% more resources per school
+- Staff in 17,663 schools (72% of those in England) used Oak
+- 80% of users rated materials as "very high or high" quality
+- 85% reported positive impact on workload, saving an average of 4 hours per week on planning
+- 67% experienced reduced planning time; teacher retention improved (only 8% of Oak users plan to leave teaching vs 23% of non-users)
+- 42,610 users of Aila (AI assistant) generating 191,765 co-created resources
+- Particularly beneficial for early-career teachers and non-specialists
+
+- [2024/25 Impact Report Insights](https://www.thenational.academy/blog/five-key-insights-from-our-2425-impact-report): Five key insights from Oak's latest impact evaluation
+- [Research and Insights](https://www.thenational.academy/blog/categories/research-and-insights): All research articles and impact evaluations
+
+## Legal
+
+- [Terms and Conditions](https://www.thenational.academy/legal/terms-and-conditions): Terms of use for the Oak platform
+- [Privacy Policy](https://www.thenational.academy/legal/privacy-policy): How we handle your data
+- [Cookie Policy](https://www.thenational.academy/legal/cookie-policy): Information about cookies on our site
+- [Copyright Notice](https://www.thenational.academy/legal/copyright-notice): Licensing and usage rights for Oak content
+- [Accessibility Statement](https://www.thenational.academy/legal/accessibility-statement): Our commitment to accessibility
+
+## Optional
+
+- [Webinars](https://www.thenational.academy/webinars): Professional development webinars for teachers
+- [Security Policy](https://www.thenational.academy/legal/security-disclosure-policy): Security vulnerability disclosure policy
+- [Jobs at Oak](https://jobs.thenational.academy): Career opportunities at Oak National Academy
