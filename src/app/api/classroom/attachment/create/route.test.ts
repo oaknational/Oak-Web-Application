@@ -29,7 +29,7 @@ const mockArgs = {
   itemId: "item-id",
   title: "addon title",
   lessonSlug: "string",
-  programeSlug: "string",
+  programmeSlug: "string",
   unitSlug: "string",
   maxPoints: 1,
 };
