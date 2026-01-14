@@ -32,6 +32,7 @@ const mockArgs = {
   programmeSlug: "string",
   unitSlug: "string",
   maxPoints: 1,
+  addOnToken: "addon-token",
 };
 const mockAccessToken = "mock-access-token";
 const mockSession = "mock-session-id";
@@ -75,14 +76,12 @@ describe("POST /api/classroom/attachment/create", () => {
       mockAccessToken,
       mockSession,
     );
-    expect(NextResponse.json).toHaveBeenCalledWith(
-      { attachment: { id: "attachment-id" } },
-      { status: 201 },
-    );
+    expect(NextResponse.json).toHaveBeenCalledWith({}, { status: 201 });
   });
   it("should handle errors when creating an attachment", async () => {
     const mockErrorMessage = "Failed to create attachment";
-    mockCreateAttachment.mockRejectedValueOnce(new Error(mockErrorMessage));
+    mockCreateAttachment.mockRejectedValueOnce(mockErrorMessage);
+    console.error = jest.fn();
 
     mockRequest = {
       json: async () => mockArgs,
@@ -118,7 +117,7 @@ describe("POST /api/classroom/attachment/create", () => {
     expect(mockCreateAttachment).not.toHaveBeenCalled();
 
     expect(NextResponse.json).toHaveBeenCalledWith(
-      { error: "Authentication required" },
+      { message: "Authentication required" },
       { status: 401 },
     );
   });
