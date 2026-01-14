@@ -349,6 +349,47 @@ describe("PupilExperienceView", () => {
       expect(getByRole("alertdialog")).not.toBeInTheDocument();
     });
   });
+  it("should close iframe if not isClassroom and content guidance is declined", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: false,
+    });
+    const supervisionLevel = "Supervision Level";
+    const contentguidanceLabel = "Guidance Title";
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+      contentGuidance: [
+        {
+          contentguidanceLabel,
+          contentguidanceArea: "Guidance Area",
+          contentguidanceDescription: "Guidance Description",
+        },
+      ],
+      supervisionLevel,
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({});
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    const { getByTestId, getByRole } = render(
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
+        initialSection="overview"
+        pageType="browse"
+      />,
+    );
+    await userEvent.click(getByTestId("declineButton"));
+    waitFor(() => {
+      expect(getByRole("alertdialog")).not.toBeInTheDocument();
+    });
+  });
 
   it("should render the default message on lessons that age restriction and no content guidance", () => {
     const lessonContent = lessonContentFixture({
