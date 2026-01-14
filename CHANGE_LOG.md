@@ -1,3 +1,17 @@
+# [1.950.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.949.0...v1.950.0) (2026-01-14)
+
+
+### Bug Fixes
+
+* add notifications provider to top nav story ([f6ae817](https://github.com/oaknational/Oak-Web-Application/commit/f6ae817b225c704171a8bad21216242c3ca222f4))
+* get top nav props on error pages ([f3122b0](https://github.com/oaknational/Oak-Web-Application/commit/f3122b0b92617ec7cd14ae0d6d8ad2fac994e707))
+
+
+### Features
+
+* add inline banenr to top nav when data missing ([c12a5a5](https://github.com/oaknational/Oak-Web-Application/commit/c12a5a5c2f27537dbca7d323a8c523100bd4e0e4))
+* add revalidation and error handling to core layout ([7d0aa15](https://github.com/oaknational/Oak-Web-Application/commit/7d0aa15fd7cdc695cf5b0461a7224cc1fd2c2d54))
+
 # [1.949.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.948.0...v1.949.0) (2026-01-14)
 
 
