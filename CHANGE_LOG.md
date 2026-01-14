@@ -1,3 +1,10 @@
+# [1.949.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.948.0...v1.949.0) (2026-01-14)
+
+
+### Features
+
+* upgrades oak-consent-client library ([4ca857e](https://github.com/oaknational/Oak-Web-Application/commit/4ca857ee3829b28500b928628f37fb6a805baa9c))
+
 # [1.948.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.947.2...v1.948.0) (2026-01-14)
 
 
