@@ -49,8 +49,8 @@ describe("POST /api/classroom/auth/verify", () => {
     // Arrange
     mockVerifyAuthSession.mockResolvedValue(mockVerifiedSession);
     mockRequestHeadersGet.mockImplementation((name) => {
-      if (name === "Authorization") return Promise.resolve(mockValidToken);
-      if (name === "X-Oakgc-Session") return Promise.resolve(mockValidSession);
+      if (name === "Authorization") return mockValidToken;
+      if (name === "X-Oakgc-Session") return mockValidSession;
       return null;
     });
 
@@ -75,9 +75,8 @@ describe("POST /api/classroom/auth/verify", () => {
     // Arrange
     mockVerifyAuthSession.mockResolvedValue(null);
     mockRequestHeadersGet.mockImplementation((name) => {
-      if (name === "Authorization") return Promise.resolve(mockValidToken);
-      if (name === "X-Oakgc-Session")
-        return Promise.resolve(mockInvalidSession);
+      if (name === "Authorization") return mockValidToken;
+      if (name === "X-Oakgc-Session") return mockInvalidSession;
       return null;
     });
 
@@ -102,8 +101,8 @@ describe("POST /api/classroom/auth/verify", () => {
     // Arrange
     mockRequestJson.mockResolvedValue({ session: null });
     mockRequestHeadersGet.mockImplementation((name) => {
-      if (name === "Authorization") return Promise.resolve(null);
-      if (name === "X-Oakgc-Session") return Promise.resolve(null);
+      if (name === "Authorization") return null;
+      if (name === "X-Oakgc-Session") return null;
       return null;
     });
 

@@ -6,9 +6,9 @@ import { Suspense } from "react";
 
 function GoogleClassroomProviderWrapper({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   const searchParams = useSearchParams();
   const courseId = searchParams?.get("courseId") ?? "";
   const itemId = searchParams?.get("itemId") ?? "";
@@ -25,7 +25,9 @@ function GoogleClassroomProviderWrapper({
   );
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <Suspense fallback={null}>
       <GoogleClassroomProviderWrapper>

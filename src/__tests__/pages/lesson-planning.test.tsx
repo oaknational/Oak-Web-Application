@@ -8,6 +8,7 @@ import { testPlanALessonPageData } from "./lesson-planning.fixture";
 import CMSClient from "@/node-lib/cms";
 import { BlogPostPreview } from "@/common-lib/cms-types";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 jest.mock("@/node-lib/cms");
 
@@ -37,6 +38,13 @@ const mockPosts = [
 
 const render = renderWithProviders();
 
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  __esModule: true,
+  default: {
+    topNav: () => jest.fn().mockResolvedValue(topNavFixture)(),
+  },
+}));
+
 describe("pages/lesson-planning.tsx", () => {
   beforeAll(() => {
     //mock console.error
@@ -46,13 +54,23 @@ describe("pages/lesson-planning.tsx", () => {
 
   it("Renders header hero component", () => {
     const { getByRole } = render(
-      <PlanALesson pageData={testPlanningPageData} posts={mockPosts} />,
+      <PlanALesson
+        pageData={testPlanningPageData}
+        posts={mockPosts}
+        topNav={topNavFixture}
+      />,
     );
     expect(getByRole("heading", { name: "test" })).toBeInTheDocument();
   });
 
   it("Renders a nav", () => {
-    render(<PlanALesson pageData={testPlanningPageData} posts={mockPosts} />);
+    render(
+      <PlanALesson
+        pageData={testPlanningPageData}
+        posts={mockPosts}
+        topNav={topNavFixture}
+      />,
+    );
     const nav = screen.getByRole("navigation", {
       name: "plan a lesson contents",
     });
@@ -61,7 +79,13 @@ describe("pages/lesson-planning.tsx", () => {
   });
 
   it("applies correct margin-bottom size based on section position if its a form block", () => {
-    render(<PlanALesson pageData={testPlanningPageData} posts={mockPosts} />);
+    render(
+      <PlanALesson
+        pageData={testPlanningPageData}
+        posts={mockPosts}
+        topNav={topNavFixture}
+      />,
+    );
 
     const sections = screen.getAllByTestId("lesson-section");
 
@@ -74,6 +98,7 @@ describe("pages/lesson-planning.tsx", () => {
   it("applies correct margin-bottom size based on section position if its a content block", () => {
     render(
       <PlanALesson
+        topNav={topNavFixture}
         pageData={{
           ...testPlanningPageData,
           content: [...testPlanALessonPageData.content].reverse(),
@@ -92,7 +117,11 @@ describe("pages/lesson-planning.tsx", () => {
 
   it("Renders the header hero with optional props", () => {
     render(
-      <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
+      <PlanALesson
+        pageData={testPlanALessonPageData}
+        posts={mockPosts}
+        topNav={topNavFixture}
+      />,
     );
 
     expect(
@@ -107,6 +136,7 @@ describe("pages/lesson-planning.tsx", () => {
   it("Renders the header hero without author", () => {
     render(
       <PlanALesson
+        topNav={topNavFixture}
         pageData={{
           ...testPlanALessonPageData,
           hero: {
@@ -131,6 +161,7 @@ describe("pages/lesson-planning.tsx", () => {
   it("Renders the author title if it exists", () => {
     render(
       <PlanALesson
+        topNav={topNavFixture}
         pageData={{
           ...testPlanALessonPageData,
           hero: {
@@ -163,7 +194,11 @@ describe("pages/lesson-planning.tsx", () => {
     console.log({ mockPosts });
 
     render(
-      <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
+      <PlanALesson
+        pageData={testPlanALessonPageData}
+        posts={mockPosts}
+        topNav={topNavFixture}
+      />,
     );
 
     const heroImage = screen.getByAltText("alt text hero").closest("img");

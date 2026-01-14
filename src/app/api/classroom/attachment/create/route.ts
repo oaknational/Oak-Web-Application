@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
 export async function POST(req: NextRequest) {
-  const accessToken = await req.headers.get("Authorization");
-  const session = await req.headers.get("x-oakgc-session");
+  const accessToken = req.headers.get("Authorization");
+  const session = req.headers.get("x-oakgc-session");
   const oakClassroomClient = getOakGoogleClassroomAddon(req);
   const args = await req.json();
 

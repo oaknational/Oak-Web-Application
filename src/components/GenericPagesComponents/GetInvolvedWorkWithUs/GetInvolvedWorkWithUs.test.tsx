@@ -1,5 +1,6 @@
 import { GetInvolvedWorkWithUs } from "./";
 
+import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
@@ -9,7 +10,7 @@ describe("GetInvolvedWorkWithUs", () => {
     const { baseElement, getByRole, getAllByRole } = render(
       <GetInvolvedWorkWithUs
         heading="Work with us"
-        text={["TESTING_PARAGRAPH_1", "TESTING_PARAGRAPH_2"]}
+        text={portableTextFromString("TESTING_PARAGRAPH_1")}
         permanentRolesLink="https://example.com/permanent"
         freelanceRolesLink="https://example.com/freelance"
         imageUrl="http://example.com/team.jpg"
@@ -29,7 +30,6 @@ describe("GetInvolvedWorkWithUs", () => {
 
     const paragraphs = getAllByRole("paragraph");
     expect(paragraphs[0]).toHaveTextContent("TESTING_PARAGRAPH_1");
-    expect(paragraphs[1]).toHaveTextContent("TESTING_PARAGRAPH_2");
 
     const links = getAllByRole("link");
     expect(links[0]).toHaveTextContent("Permanent roles");
