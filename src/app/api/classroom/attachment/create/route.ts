@@ -1,30 +1,43 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
+import { createAnnouncementAttachmentArgsSchema } from "@oaknational/google-classroom-addon/types";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
-export async function POST(req: NextRequest) {
-  const accessToken = req.headers.get("Authorization");
-  const session = req.headers.get("x-oakgc-session");
-  const oakClassroomClient = getOakGoogleClassroomAddon(req);
-  const args = await req.json();
-
-  if (!session || !accessToken) {
-    return NextResponse.json(
-      { error: "Authentication required" },
-      { status: 401 },
-    );
-  }
-
+export async function POST(request: NextRequest) {
   try {
-    const attachment = await oakClassroomClient.createAttachment(
-      args,
+    const accessToken = await request.headers.get("Authorization");
+    const session = await request.headers.get("x-oakgc-session");
+
+    if (!session || !accessToken)
+      return Response.json(
+        { message: "Authentication required" },
+        { status: 401 },
+      );
+
+    const oakClassroomClient = getOakGoogleClassroomAddon(request);
+    const body = await request.json();
+
+    const parsed = createAnnouncementAttachmentArgsSchema.safeParse(body);
+
+    if (!parsed.success) {
+      return Response.json(
+        { error: "Invalid query", details: parsed.error.flatten() },
+        { status: 400 },
+      );
+    }
+
+    if (!session)
+      return Response.json({ message: "Missing auth header" }, { status: 400 });
+
+    await oakClassroomClient.createAttachment(
+      parsed.data,
       accessToken,
       session,
     );
-    return NextResponse.json({ attachment }, { status: 201 });
-  } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : "Unknown error";
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+
+    return Response.json({}, { status: 201 });
+  } catch (e) {
+    console.error(JSON.stringify(e));
+    return Response.json({ error: e }, { status: 500 });
   }
 }

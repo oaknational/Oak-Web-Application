@@ -1,5 +1,6 @@
 import type { NextRequest } from "next/server";
 import { redirect } from "next/navigation";
+import { codeSchema } from "@oaknational/google-classroom-addon/types";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
@@ -7,8 +8,8 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const code = searchParams.get("code");
   const subscribeToNewsletter = searchParams.get("subscribeToNewsletter");
-  if (!code) {
-    // error
+  const parsedCode = codeSchema.safeParse(code);
+  if (!parsedCode.success) {
     return Response.json("code is required", { status: 400 });
   }
   const tempSignUpToNewsletter = async (email: string) => {
@@ -19,7 +20,7 @@ export async function GET(request: NextRequest) {
   const oakClassroomClient = getOakGoogleClassroomAddon(request);
   const { encryptedSession, accessToken } =
     await oakClassroomClient.handleGoogleSignInCallback(
-      code,
+      parsedCode.data,
       subscribeToNewsletter === "true" ? tempSignUpToNewsletter : undefined,
     );
   return redirect(
