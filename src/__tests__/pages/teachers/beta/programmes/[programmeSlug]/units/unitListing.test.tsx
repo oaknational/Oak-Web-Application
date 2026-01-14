@@ -14,6 +14,7 @@ import unitListingFixture, {
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -23,7 +24,7 @@ jest.mock("@/utils/resultsPerPage", () => ({
 }));
 
 beforeEach(() => {
-  window.HTMLElement.prototype.scrollIntoView = jest.fn();
+  globalThis.HTMLElement.prototype.scrollIntoView = jest.fn();
 });
 
 const unitSelected = jest.fn();
@@ -47,7 +48,10 @@ describe("pages/beta/programmes/[programmeSlug]/units", () => {
 
   it("renders title from props ", () => {
     const { getByRole } = render(
-      <UnitListingPage curriculumData={unitListingFixture()} />,
+      <UnitListingPage
+        topNav={topNavFixture}
+        curriculumData={unitListingFixture()}
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -55,14 +59,20 @@ describe("pages/beta/programmes/[programmeSlug]/units", () => {
 
   it("renders nav for tiers for programme that included tiers", () => {
     const { getByTestId } = render(
-      <UnitListingPage curriculumData={unitListingWithTiers()} />,
+      <UnitListingPage
+        topNav={topNavFixture}
+        curriculumData={unitListingWithTiers()}
+      />,
     );
 
     expect(getByTestId("tiers-nav")).toBeInTheDocument();
   });
   it("title card render correct title", () => {
     const { getByRole } = render(
-      <UnitListingPage curriculumData={unitListingFixture()} />,
+      <UnitListingPage
+        topNav={topNavFixture}
+        curriculumData={unitListingFixture()}
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -70,6 +80,7 @@ describe("pages/beta/programmes/[programmeSlug]/units", () => {
   it("title card rendered correct title when exam board is present", () => {
     const { getByRole } = render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumData={{
           ...unitListingFixture(),
           examBoardTitle: "OCR",
@@ -85,6 +96,7 @@ describe("pages/beta/programmes/[programmeSlug]/units", () => {
   it("finance banners are displayed", () => {
     const { getAllByTestId } = render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumData={{
           ...unitListingFixture(),
           examBoardTitle: "OCR",
@@ -101,6 +113,7 @@ describe("pages/beta/programmes/[programmeSlug]/units", () => {
   it("finance banners are not displayed", () => {
     const { queryAllByTestId } = render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumData={{
           ...unitListingFixture(),
           examBoardTitle: "OCR",
@@ -113,7 +126,10 @@ describe("pages/beta/programmes/[programmeSlug]/units", () => {
   describe("SEO", () => {
     it("renders the correct SEO details for programme", async () => {
       const { seo } = renderWithSeo()(
-        <UnitListingPage curriculumData={unitListingWithTiers()} />,
+        <UnitListingPage
+          topNav={topNavFixture}
+          curriculumData={unitListingWithTiers()}
+        />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -136,6 +152,7 @@ describe("pages/beta/programmes/[programmeSlug]/units", () => {
       utilsMock.RESULTS_PER_PAGE = 10;
       const { seo } = renderWithSeo()(
         <UnitListingPage
+          topNav={topNavFixture}
           curriculumData={{
             ...unitListingFixture(),
           }}
@@ -167,7 +184,10 @@ describe("pages/beta/programmes/[programmeSlug]/units", () => {
         },
       });
       const { getByRole } = render(
-        <UnitListingPage curriculumData={unitListingFixture()} />,
+        <UnitListingPage
+          topNav={topNavFixture}
+          curriculumData={unitListingFixture()}
+        />,
       );
 
       expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -175,7 +195,10 @@ describe("pages/beta/programmes/[programmeSlug]/units", () => {
 
     it("skip filters button becomes visible when focussed", async () => {
       const { getByText } = render(
-        <UnitListingPage curriculumData={unitListingFixture()} />,
+        <UnitListingPage
+          topNav={topNavFixture}
+          curriculumData={unitListingFixture()}
+        />,
       );
 
       const skipUnits = getByText("Skip to units").closest("a");
@@ -226,7 +249,12 @@ describe("pages/beta/programmes/[programmeSlug]/units", () => {
 
 describe("tracking", () => {
   test("It calls tracking.unitAccessed with correct props when clicked", async () => {
-    render(<UnitListingPage curriculumData={unitListingFixture()} />);
+    render(
+      <UnitListingPage
+        topNav={topNavFixture}
+        curriculumData={unitListingFixture()}
+      />,
+    );
 
     const units = screen.getAllByText("Data Representation");
     expect(units).toHaveLength(2);

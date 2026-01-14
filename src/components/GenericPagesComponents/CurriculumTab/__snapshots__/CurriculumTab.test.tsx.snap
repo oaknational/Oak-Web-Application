@@ -1,6 +1,1371 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CurriculumTab renders 1`] = `
+.c0 {
+  position: fixed;
+  right: 0rem;
+  width: 100%;
+  font-family: --var(google-font),Lexend,sans-serif;
+  z-index: 1;
+}
+
+.c3 {
+  position: relative;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  background: #bef2bd;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c4 {
+  position: relative;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  display: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c6 {
+  width: 100%;
+  max-width: 30rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c8 {
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c10 {
+  width: 40rem;
+  padding-top: 2rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c15 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c19 {
+  padding-bottom: 1.5rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c23 {
+  color: #222222;
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c25 {
+  position: relative;
+  width: 1.5rem;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  min-height: 1.5rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c27 {
+  max-width: 40rem;
+  display: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c28 {
+  position: relative;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #222222;
+  background: #ffe555;
+  border-radius: 0rem;
+  -webkit-transform: rotate(-1.5deg);
+  -ms-transform: rotate(-1.5deg);
+  transform: rotate(-1.5deg);
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+  z-index: 298;
+}
+
+.c29 {
+  position: relative;
+  max-width: 60rem;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 0.25rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+  z-index: 150;
+}
+
+.c30 {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 0.25rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c32 {
+  width: 100%;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c34 {
+  position: relative;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c36 {
+  width: 100%;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0rem;
+  border-bottom-left-radius: 0rem;
+  border-bottom-right-radius: 0rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c40 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c43 {
+  position: relative;
+  width: 0.125rem;
+  height: 3rem;
+  display: block;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c45 {
+  position: relative;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c47 {
+  width: 100%;
+  border-top-left-radius: 0rem;
+  border-top-right-radius: 0.25rem;
+  border-bottom-left-radius: 0rem;
+  border-bottom-right-radius: 0rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c48 {
+  padding-left: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c49 {
+  color: #222222;
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c50 {
+  position: absolute;
+  right: 0rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 6.25rem;
+  height: 100%;
+  padding-right: 1rem;
+  display: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+  z-index: 3;
+}
+
+.c52 {
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: auto;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c54 {
+  position: absolute;
+  top: 0rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.25rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c60 {
+  display: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c64 {
+  max-width: 60rem;
+  padding-top: 1.5rem;
+  display: block;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c65 {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+  z-index: 299;
+}
+
+.c66 {
+  color: #222222;
+  background: #f2f2f2;
+  border-top: 0.063rem solid;
+  border-color: #808080;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c67 {
+  margin-left: auto;
+  margin-right: auto;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c68 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c70 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c73 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+  white-space: nowrap;
+}
+
+.c5 {
+  -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
+  filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
+  object-fit: contain;
+}
+
+.c26 {
+  object-fit: contain;
+}
+
+.c59 {
+  -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
+  filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
+  object-fit: contain;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c20 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.c31 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  gap: 0rem;
+}
+
+.c33 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.c35 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: stretch;
+  -ms-flex-item-align: stretch;
+  align-self: stretch;
+}
+
+.c46 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.c51 {
+  display: none;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+}
+
+.c57 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.c61 {
+  display: none;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.c62 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.c69 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.c72 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  gap: 0.75rem;
+}
+
+.c74 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c12 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+  color: #2d2d2d;
+}
+
+.c13 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+}
+
+.c22 {
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c41 {
+  color: #222222;
+  margin-bottom: 0.25rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+}
+
+.c58 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+  text-align: left;
+}
+
+.c71 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c18 {
+  margin-top: 1rem;
+  display: revert;
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-family: --var(google-font),Lexend,sans-serif;
+  display: revert;
+  display: revert;
+}
+
+.c42 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+  color: #222222;
+}
+
+.c16 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c24 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c17 {
+  margin: 0;
+  display: block;
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c55 {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  font-family: unset;
+  outline: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+  color: #ffffff;
+  background: #222222;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 0.25rem;
+}
+
+.c55:disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.c75 {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  font-family: unset;
+  outline: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+  color: #222222;
+  background: #ffffff;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 0.25rem;
+}
+
+.c75:disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.c56 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+
+.c56:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #ffffff;
+  background: #575757;
+  border-color: #575757;
+}
+
+.c56:hover [data-state="selected"] {
+  display: none;
+}
+
+.c56:active {
+  background: #222222;
+  border-color: #222222;
+  color: #ffffff;
+}
+
+.c56:active [data-state="selected"] {
+  display: none;
+}
+
+.c56:disabled {
+  background: #808080;
+  border-color: #808080;
+  color: #ffffff;
+}
+
+.c56:disabled [data-state="selected"] {
+  display: none;
+}
+
+.c76 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+
+.c76:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #222222;
+  background: #f2f2f2;
+  border-color: #222222;
+}
+
+.c76:hover [data-state="selected"] {
+  display: none;
+}
+
+.c76:active {
+  background: #ffffff;
+  border-color: #222222;
+  color: #222222;
+}
+
+.c76:active [data-state="selected"] {
+  display: none;
+}
+
+.c76:disabled {
+  background: #e4e4e4;
+  border-color: #808080;
+  color: #808080;
+}
+
+.c76:disabled [data-state="selected"] {
+  display: none;
+}
+
+.c53 .grey-shadow:has(+ * + .internal-button:focus-visible) {
+  box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c53 .yellow-shadow:has(+ .internal-button:focus-visible) {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%);
+}
+
+.c53 .yellow-shadow:has(+ .internal-button:hover),
+.c53 .yellow-shadow:has(+ .internal-button:hover:not(:focus-visible,:active)) {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+}
+
+.c53 .grey-shadow:has(+ * + .internal-button:hover) {
+  box-shadow: none;
+}
+
+.c53 .grey-shadow:has(+ * + .internal-button:active) {
+  box-shadow: 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+}
+
+.c53 .yellow-shadow:has(+ .internal-button:active) {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+}
+
+.c21 {
+  display: inline;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.25rem;
+  outline: none;
+  border-radius: 0.375rem;
+  padding: 0.25rem;
+  margin: -0.25rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font: inherit;
+  background: none;
+  border: none;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #222222;
+}
+
+.c21:focus-visible {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c21:visited {
+  color: #222222;
+}
+
+.c21:active {
+  color: #222222;
+}
+
+.c21[disabled] {
+  cursor: not-allowed;
+  color: #808080;
+}
+
+.c63 {
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+  border: 0.188rem solid;
+  border-color: #222222;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.c63::-webkit-scrollbar-track {
+  border-radius: 15px;
+  background-color: #ffffff;
+}
+
+.c63::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 15px;
+  background-color: #ffffff;
+}
+
+.c63::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: #999999;
+}
+
+.c44 {
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
+  bottom: 0rem;
+  left: 0rem;
+  object-fit: cover;
+  color: #e4e4e4;
+  font-family: --var(google-font),Lexend,sans-serif;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c37 {
+  box-shadow: none;
+}
+
+.c37:has( a,button ) {
+  border-radius: 0.25em;
+  z-index: 2;
+  box-shadow: rgb(255,229,85) 0px 0px 0px 0.125rem,rgb(87,87,87) 0px 0px 0px 0.3rem;
+}
+
+.c37:has(a:hover,button:hover),
+.c37:has(button:hover:not(:active)) {
+  z-index: 1;
+}
+
+.c37:has(a:hover,button:hover) {
+  box-shadow: none;
+}
+
+.c37:has(a:active,button:active) {
+  z-index: 2;
+}
+
+.c39 {
+  background: none;
+  width: 100%;
+  border: none;
+  padding: 0px;
+  outline: none;
+  text-align: left;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.c38:hover {
+  background: #f2f2f2;
+}
+
+.c2 {
+  top: 82px;
+}
+
+@media (min-width:750px) {
+  .c0 {
+    right: 5.75rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c0 {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+}
+
+@media (min-width:750px) {
+  .c4 {
+    display: none;
+  }
+}
+
+@media (min-width:1280px) {
+  .c4 {
+    display: block;
+  }
+}
+
+@media (min-width:750px) {
+  .c6 {
+    max-width: 80rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c6 {
+    padding-left: 0.75rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c6 {
+    padding-right: 0.75rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c27 {
+    display: none;
+  }
+}
+
+@media (min-width:1280px) {
+  .c27 {
+    display: block;
+  }
+}
+
+@media (min-width:750px) {
+  .c36 {
+    border-top-left-radius: 0.25rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c36 {
+    border-top-right-radius: 0.25rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c36 {
+    border-bottom-left-radius: 0.25rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c36 {
+    border-bottom-right-radius: 0.25rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c47 {
+    border-top-left-radius: 0.25rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c47 {
+    border-top-right-radius: 0.25rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c47 {
+    border-bottom-left-radius: 0.25rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c47 {
+    border-bottom-right-radius: 0.25rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c50 {
+    max-width: 10rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c50 {
+    display: block;
+  }
+}
+
+@media (min-width:750px) {
+  .c60 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (min-width:1280px) {
+  .c60 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (min-width:750px) {
+  .c64 {
+    display: block;
+  }
+}
+
+@media (min-width:1280px) {
+  .c64 {
+    display: none;
+  }
+}
+
+@media (min-width:750px) {
+  .c68 {
+    margin-left: 1.5rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c68 {
+    margin-left: 3.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c68 {
+    margin-right: 1.5rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c68 {
+    margin-right: 3.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c70 {
+    font-weight: 300;
+  }
+}
+
+@media (min-width:750px) {
+  .c70 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c70 {
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c70 {
+    -webkit-letter-spacing: -0.005rem;
+    -moz-letter-spacing: -0.005rem;
+    -ms-letter-spacing: -0.005rem;
+    letter-spacing: -0.005rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c1 {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width:750px) {
+  .c31 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:750px) {
+  .c51 {
+    display: block;
+  }
+}
+
+@media (min-width:750px) {
+  .c61 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (min-width:1280px) {
+  .c61 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (min-width:750px) {
+  .c69 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+@media (min-width:1280px) {
+  .c69 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:750px) {
+  .c69 {
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width:1280px) {
+  .c69 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
+@media (min-width:750px) {
+  .c69 {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c69 {
+    gap: 2rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c72 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:750px) {
+  .c72 {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width:1280px) {
+  .c72 {
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width:750px) {
+  .c72 {
+    gap: 2rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c13 {
+    font-weight: 600;
+  }
+}
+
+@media (min-width:1280px) {
+  .c13 {
+    font-weight: 600;
+  }
+}
+
+@media (min-width:750px) {
+  .c13 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c13 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c13 {
+    line-height: 2.5rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c13 {
+    line-height: 3rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c13 {
+    -webkit-letter-spacing: 0.0115rem;
+    -moz-letter-spacing: 0.0115rem;
+    -ms-letter-spacing: 0.0115rem;
+    letter-spacing: 0.0115rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c13 {
+    -webkit-letter-spacing: 0.0115rem;
+    -moz-letter-spacing: 0.0115rem;
+    -ms-letter-spacing: 0.0115rem;
+    letter-spacing: 0.0115rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c71 {
+    font-weight: 700;
+  }
+}
+
+@media (min-width:750px) {
+  .c71 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c71 {
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c71 {
+    -webkit-letter-spacing: -0.005rem;
+    -moz-letter-spacing: -0.005rem;
+    -ms-letter-spacing: -0.005rem;
+    letter-spacing: -0.005rem;
+  }
+}
+
+@media (hover:hover) {
+  .c21:hover,
+  .c21:visited:hover {
+    color: #222222;
+  }
+}
+
+@media (min-width:750px) {
+  .c63 {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+}
+
+@media (min-width:1280px) {
+  .c63 {
+    -webkit-transform: rotate(-2deg);
+    -ms-transform: rotate(-2deg);
+    transform: rotate(-2deg);
+  }
+}
+
 <body>
   <div>
     <div
@@ -8,10 +1373,10 @@ exports[`CurriculumTab renders 1`] = `
     >
       <div
         aria-live="polite"
-        class="sc-fqkvVR sc-kAyceB sc-ccc5406d-0 hkKUlc iPEHGb giA-dEW"
+        class="c0 c1 c2"
       />
       <div
-        class="sc-fqkvVR gZEYWU"
+        class="c3"
       >
         <div
           style="position: absolute; inset: 0; overflow: hidden; pointer-events: none;"
@@ -20,11 +1385,11 @@ exports[`CurriculumTab renders 1`] = `
             style="position: absolute; bottom: 18px; right: calc(-40rem + 50vw - 200px); width: 529px; height: 420px;"
           >
             <div
-              class="sc-fqkvVR gdtuvF"
+              class="c4"
             >
               <img
                 alt=""
-                class="sc-dcJsrY koGnIf"
+                class="c5"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -35,75 +1400,75 @@ exports[`CurriculumTab renders 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB sc-jEACwC itRfeb jOTTNg"
+          class="c6 c7"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+            class="c8 c9"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB blCXVh kKfJVM"
+              class="c10 c11"
             >
               <h1
-                class="sc-kpDqfm jyPSa-D"
+                class="c12"
               >
                 Teachers & subject leads
               </h1>
               <h2
-                class="sc-kpDqfm eIdxtB"
+                class="c13"
               >
                 Curriculum plans
               </h2>
               <div
-                class="sc-fqkvVR sc-kAyceB fgBWrW eeevb"
+                class="c8 c14"
               >
                  
                 <div
-                  class="sc-fqkvVR sc-gFqAkR iGOzG fhPMYu"
+                  class="c15 c16"
                 >
                   All of our curriculum plans are:
                 </div>
                 <ul
-                  class="sc-ikkxIA hHHtYD"
+                  class="c17"
                 >
                   <li
-                    class="sc-jlZhew bKqIHz"
+                    class="c18"
                   >
                     National curriculum-aligned
                   </li>
                   <li
-                    class="sc-jlZhew bKqIHz"
+                    class="c18"
                   >
                     Sequenced across year groups
                   </li>
                   <li
-                    class="sc-jlZhew bKqIHz"
+                    class="c18"
                   >
                     Designed by curriculum experts
                   </li>
                 </ul>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB bmnVAU bSQGkj"
+                class="c19 c20"
               >
                 <a
-                  class="sc-fxwrCY eycZBP sc-hIUJlX"
+                  class="c21 "
                   href="/teachers/curriculum"
                 >
                   <span
-                    class="sc-dAlyuH cRouMQ"
+                    class="c22"
                   >
                     <span
-                      class="sc-fqkvVR sc-gFqAkR dWmZcx hsVaSO"
+                      class="c23 c24"
                     >
                       Our curriculum planning approach
                     </span>
                   </span>
                   <div
-                    class="sc-fqkvVR kbnxKi sc-dSCufp"
+                    class="c25 "
                   >
                     <img
                       alt=""
-                      class="sc-dcJsrY cDKKvZ"
+                      class="c26"
                       data-nimg="fill"
                       decoding="async"
                       loading="lazy"
@@ -114,52 +1479,52 @@ exports[`CurriculumTab renders 1`] = `
                 </a>
               </div>
               <div
-                class="sc-fqkvVR hEDAbB"
+                class="c27"
               >
                 <nav
                   aria-labelledby="choose-curriculum-label"
-                  class="sc-fqkvVR fgBWrW"
+                  class="c8"
                 >
                   <div
-                    class="sc-fqkvVR iKkOLq"
+                    class="c28"
                     id="choose-curriculum-label"
                   >
                     Choose a curriculum
                   </div>
                   <div
-                    class="sc-fqkvVR czELrn"
+                    class="c29"
                     data-testid="lot-picker"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB iRyopa gBKvQs"
+                      class="c30 c31"
                     >
                       <div
-                        class="sc-fqkvVR sc-kAyceB gJgCTZ hpdcS"
+                        class="c32 c33"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB fxkSvJ beqJNd"
+                          class="c34 c35"
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-85abac1-0 sc-1405ad7c-3 jEHEPk qPvQJ Hgfdz"
+                            class="c36 c37 c38"
                           >
                             <button
                               aria-expanded="false"
-                              class="sc-1405ad7c-2 kExqoc"
+                              class="c39"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
                               <div
-                                class="sc-fqkvVR iHZIMJ"
+                                class="c40"
                               >
                                 <span
-                                  class="sc-dAlyuH bYbziK"
+                                  class="c41"
                                   data-testid="subject-picker-button-heading"
                                 >
                                   Subject
                                 </span>
                                 <p
-                                  class="sc-dLMFU dULECm"
+                                  class="c42"
                                 >
                                   Select
                                 </p>
@@ -168,16 +1533,16 @@ exports[`CurriculumTab renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-fqkvVR eIwgYx"
+                          class="c43"
                         >
                           <div
                             aria-hidden="true"
-                            class="sc-fqkvVR fgBWrW"
+                            class="c8"
                             data-testid="brush-borders"
                           >
                             <svg
                               aria-hidden="true"
-                              class="sc-de304c9d-0 kGuAG"
+                              class="c44"
                               height="100%"
                               name="box-border-left"
                               style="width: 3px;"
@@ -203,32 +1568,32 @@ exports[`CurriculumTab renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-fqkvVR cVTiFC"
+                          class="c45"
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-kAyceB fxkSvJ jDFpDX"
+                            class="c34 c46"
                           >
                             <div
-                              class="sc-fqkvVR sc-85abac1-0 sc-1405ad7c-3 eMDDOo qPvQJ Hgfdz"
+                              class="c47 c37 c38"
                             >
                               <button
                                 aria-expanded="false"
-                                class="sc-1405ad7c-2 kExqoc"
+                                class="c39"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
                                 <div
-                                  class="sc-fqkvVR bBVkkf"
+                                  class="c48"
                                 >
                                   <span
-                                    class="sc-dAlyuH bYbziK"
+                                    class="c41"
                                     data-testid="phase-picker-button-heading"
                                   >
                                     School phase
                                   </span>
                                   <div
-                                    class="sc-fqkvVR iiKnvq"
+                                    class="c49"
                                   >
                                     Select
                                   </div>
@@ -236,35 +1601,35 @@ exports[`CurriculumTab renders 1`] = `
                               </button>
                             </div>
                             <div
-                              class="sc-fqkvVR sc-kAyceB edMMHU hilJOZ"
+                              class="c50 c51"
                             >
                               <div
-                                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
+                                class="c52 c53"
                               >
                                 <div
-                                  class="sc-fqkvVR iPpXCP grey-shadow"
+                                  class="c54 grey-shadow"
                                 />
                                 <div
-                                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                                  class="c54 yellow-shadow"
                                 />
                                 <button
-                                  class="sc-dtBdUo sc-fXSgeo bMKUbn eJTpUE internal-button"
+                                  class="c55 c56 internal-button"
                                   data-testid="lot-picker-view-curriculum-button"
                                 >
                                   <div
-                                    class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                                    class="c8 c57"
                                   >
                                     <span
-                                      class="sc-dAlyuH hHWgLm"
+                                      class="c58"
                                     >
                                       View
                                     </span>
                                     <div
-                                      class="sc-fqkvVR kbnxKi"
+                                      class="c25"
                                     >
                                       <img
                                         alt=""
-                                        class="sc-dcJsrY bDcxkE"
+                                        class="c59"
                                         data-nimg="fill"
                                         decoding="async"
                                         loading="lazy"
@@ -285,14 +1650,14 @@ exports[`CurriculumTab renders 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB ivrxlG gyAcWO"
+              class="c60 c61"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB fgBWrW gOiVFh"
+                class="c8 c62"
               >
                 <img
                   alt=""
-                  class="sc-6170517-0 geyTVX"
+                  class="c63"
                   data-nimg="1"
                   decoding="async"
                   height="628"
@@ -305,52 +1670,52 @@ exports[`CurriculumTab renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR gEooAa"
+            class="c64"
           >
             <nav
               aria-labelledby="choose-curriculum-label"
-              class="sc-fqkvVR fgBWrW"
+              class="c8"
             >
               <div
-                class="sc-fqkvVR iKkOLq"
+                class="c28"
                 id="choose-curriculum-label"
               >
                 Choose a curriculum
               </div>
               <div
-                class="sc-fqkvVR czELrn"
+                class="c29"
                 data-testid="lot-picker"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB iRyopa gBKvQs"
+                  class="c30 c31"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB gJgCTZ hpdcS"
+                    class="c32 c33"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB fxkSvJ beqJNd"
+                      class="c34 c35"
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-85abac1-0 sc-1405ad7c-3 jEHEPk qPvQJ Hgfdz"
+                        class="c36 c37 c38"
                       >
                         <button
                           aria-expanded="false"
-                          class="sc-1405ad7c-2 kExqoc"
+                          class="c39"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
                           <div
-                            class="sc-fqkvVR iHZIMJ"
+                            class="c40"
                           >
                             <span
-                              class="sc-dAlyuH bYbziK"
+                              class="c41"
                               data-testid="subject-picker-button-heading"
                             >
                               Subject
                             </span>
                             <p
-                              class="sc-dLMFU dULECm"
+                              class="c42"
                             >
                               Select
                             </p>
@@ -359,16 +1724,16 @@ exports[`CurriculumTab renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR eIwgYx"
+                      class="c43"
                     >
                       <div
                         aria-hidden="true"
-                        class="sc-fqkvVR fgBWrW"
+                        class="c8"
                         data-testid="brush-borders"
                       >
                         <svg
                           aria-hidden="true"
-                          class="sc-de304c9d-0 kGuAG"
+                          class="c44"
                           height="100%"
                           name="box-border-left"
                           style="width: 3px;"
@@ -394,32 +1759,32 @@ exports[`CurriculumTab renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR cVTiFC"
+                      class="c45"
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-kAyceB fxkSvJ jDFpDX"
+                        class="c34 c46"
                       >
                         <div
-                          class="sc-fqkvVR sc-85abac1-0 sc-1405ad7c-3 eMDDOo qPvQJ Hgfdz"
+                          class="c47 c37 c38"
                         >
                           <button
                             aria-expanded="false"
-                            class="sc-1405ad7c-2 kExqoc"
+                            class="c39"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >
                             <div
-                              class="sc-fqkvVR bBVkkf"
+                              class="c48"
                             >
                               <span
-                                class="sc-dAlyuH bYbziK"
+                                class="c41"
                                 data-testid="phase-picker-button-heading"
                               >
                                 School phase
                               </span>
                               <div
-                                class="sc-fqkvVR iiKnvq"
+                                class="c49"
                               >
                                 Select
                               </div>
@@ -427,35 +1792,35 @@ exports[`CurriculumTab renders 1`] = `
                           </button>
                         </div>
                         <div
-                          class="sc-fqkvVR sc-kAyceB edMMHU hilJOZ"
+                          class="c50 c51"
                         >
                           <div
-                            class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
+                            class="c52 c53"
                           >
                             <div
-                              class="sc-fqkvVR iPpXCP grey-shadow"
+                              class="c54 grey-shadow"
                             />
                             <div
-                              class="sc-fqkvVR iPpXCP yellow-shadow"
+                              class="c54 yellow-shadow"
                             />
                             <button
-                              class="sc-dtBdUo sc-fXSgeo bMKUbn eJTpUE internal-button"
+                              class="c55 c56 internal-button"
                               data-testid="lot-picker-view-curriculum-button"
                             >
                               <div
-                                class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                                class="c8 c57"
                               >
                                 <span
-                                  class="sc-dAlyuH hHWgLm"
+                                  class="c58"
                                 >
                                   View
                                 </span>
                                 <div
-                                  class="sc-fqkvVR kbnxKi"
+                                  class="c25"
                                 >
                                   <img
                                     alt=""
-                                    class="sc-dcJsrY bDcxkE"
+                                    class="c59"
                                     data-nimg="fill"
                                     decoding="async"
                                     loading="lazy"
@@ -478,23 +1843,23 @@ exports[`CurriculumTab renders 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR eEXsKT"
+      class="c65"
     >
       <div
-        class="sc-fqkvVR aMutw"
+        class="c66"
         data-testid="cookie-banner"
       >
         <div
-          class="sc-fqkvVR jMNzyV"
+          class="c67"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB krbSaB jIxDmZ"
+            class="c68 c69"
           >
             <div
-              class="sc-fqkvVR kJPpVN"
+              class="c70"
             >
               <strong
-                class="sc-dAlyuH jdEtcT"
+                class="c71"
               >
                 This site uses cookies to store information on your computer.
               </strong>
@@ -502,40 +1867,40 @@ exports[`CurriculumTab renders 1`] = `
               Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB fgBWrW eaKFMD"
+              class="c8 c72"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB fOyTgd TDtQj"
+                class="c73 c74"
               >
                 <button
-                  class="sc-fxwrCY eycZBP sc-hIUJlX"
+                  class="c21 "
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
                   <span
-                    class="sc-dAlyuH cRouMQ"
+                    class="c22"
                   >
                     Reject non-essential cookies
                   </span>
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
+                class="c52 c53"
               >
                 <div
-                  class="sc-fqkvVR iPpXCP grey-shadow"
+                  class="c54 grey-shadow"
                 />
                 <div
-                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                  class="c54 yellow-shadow"
                 />
                 <button
-                  class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+                  class="c75 c76 internal-button"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                    class="c8 c57"
                   >
                     <span
-                      class="sc-dAlyuH hHWgLm"
+                      class="c58"
                     >
                       Cookie settings
                     </span>
@@ -543,23 +1908,23 @@ exports[`CurriculumTab renders 1`] = `
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
+                class="c52 c53"
               >
                 <div
-                  class="sc-fqkvVR iPpXCP grey-shadow"
+                  class="c54 grey-shadow"
                 />
                 <div
-                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                  class="c54 yellow-shadow"
                 />
                 <button
-                  class="sc-dtBdUo sc-fXSgeo bMKUbn eJTpUE internal-button"
+                  class="c55 c56 internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                    class="c8 c57"
                   >
                     <span
-                      class="sc-dAlyuH hHWgLm"
+                      class="c58"
                     >
                       Accept all cookies
                     </span>

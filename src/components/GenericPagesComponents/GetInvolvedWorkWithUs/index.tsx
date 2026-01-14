@@ -1,7 +1,6 @@
 import {
   OakFlex,
   OakImage,
-  OakP,
   OakHeading,
   OakSecondaryButton,
   OakGrid,
@@ -11,6 +10,9 @@ import {
 import styled from "styled-components";
 
 import { InnerMaxWidth } from "../InnerMaxWidth";
+
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const BadgeImage = styled.img`
   max-height: 40px;
@@ -29,7 +31,7 @@ const BadgeImage = styled.img`
 
 export type GetInvolvedWorkWithUsProps = {
   heading: string;
-  text: string[];
+  text: PortableTextJSON;
   permanentRolesLink: string;
   freelanceRolesLink: string;
   imageUrl: string;
@@ -75,13 +77,7 @@ export function GetInvolvedWorkWithUs({
                 $flexDirection={"column"}
                 $gap={["spacing-20", "spacing-24"]}
               >
-                {text.map((textItem) => {
-                  return (
-                    <OakP key={textItem} $color="text-primary">
-                      {textItem}
-                    </OakP>
-                  );
-                })}
+                <PortableTextWithDefaults value={text} />
               </OakFlex>
             </OakFlex>
 
@@ -124,13 +120,22 @@ export function GetInvolvedWorkWithUs({
           </OakFlex>
         </OakGridArea>
 
-        <OakGridArea $colSpan={[12, 6, 7]} $colStart={[1, 7, 6]}>
+        <OakGridArea
+          $colSpan={[12, 6, 7]}
+          $colStart={[1, 7, 6]}
+          $justifyContent={"center"}
+        >
           <OakFlex
             $flexDirection="column"
             $gap={["spacing-24", "spacing-24", "spacing-32"]}
           >
             <OakFlex $aspectRatio={"16/9"} $width="100%">
-              <OakImage $objectFit={"cover"} alt={imageAlt} src={imageUrl} />
+              <OakImage
+                $objectFit={"cover"}
+                alt={imageAlt}
+                src={imageUrl}
+                sizes="(max-width: 750px) 100vw, (max-width: 1280px) 50vw, 58vw"
+              />
             </OakFlex>
             <OakFlex
               $flexDirection={["column", "column", "row"]}

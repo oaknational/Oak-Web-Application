@@ -6,6 +6,7 @@ import {
   WebinarPreview,
 } from "@/common-lib/cms-types";
 import CMSClient from "@/node-lib/cms";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 jest.mock("src/node-lib/cms");
 
@@ -50,6 +51,13 @@ const mockPost3 = {
   date: new Date("2022-12-01"),
   category: { title: "Some category", slug: "some-category" },
 } as WebinarPreview;
+
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  __esModule: true,
+  default: {
+    topNav: () => jest.fn().mockResolvedValue(topNavFixture)(),
+  },
+}));
 
 describe("getBlogPosts", () => {
   describe("getBlogPosts", () => {

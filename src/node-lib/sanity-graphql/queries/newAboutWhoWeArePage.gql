@@ -1,0 +1,34 @@
+query newAboutWhoWeArePage($isDraftFilter: Sanity_DocumentFilter) {
+  allNewAboutCorePageWhoWeAre(
+    where: { _: $isDraftFilter, _id: { matches: "*newAboutCorePage.whoWeAre" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    header {
+      title
+      subTitle
+    }
+    breakout {
+      text
+      image {
+        ...ImageWithAltText
+      }
+    }
+    timeline {
+      title
+      subTitle
+      text: textRaw
+    }
+    usp {
+      title
+      text
+      image {
+        ...ImageWithAltText
+      }
+    }
+    seo {
+      ...Seo
+    }
+  }
+}
