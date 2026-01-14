@@ -43,8 +43,15 @@ Object.defineProperty(window, "cookieStore", {
 });
 
 describe("Google Classroom API", () => {
+  const originalConsoleError = console.error;
+
   beforeEach(() => {
     jest.clearAllMocks();
+    console.error = jest.fn();
+  });
+
+  afterEach(() => {
+    console.error = originalConsoleError;
   });
 
   describe("getOakGCAuthHeaders", () => {
