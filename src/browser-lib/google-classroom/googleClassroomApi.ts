@@ -35,13 +35,14 @@ const sendRequest = async <returnType, payload = undefined>(
     } catch {
       throw new Error(`API request failed: ${res.status} ${res.statusText}`);
     }
-
     // If is an OakGoogleClassroomException, throw as is
     if (
       errorData &&
       typeof errorData === "object" &&
       "code" in errorData &&
-      "type" in errorData
+      "type" in errorData &&
+      "name" in errorData &&
+      errorData.name === "OakGoogleClassroomException"
     ) {
       throw errorData;
     }

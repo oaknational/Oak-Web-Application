@@ -2,6 +2,11 @@
  * @jest-environment node
  */
 import type { NextRequest } from "next/server";
+import {
+  OakGoogleClassroomException,
+  ErrorSeverity,
+  ExceptionType,
+} from "@oaknational/google-classroom-addon/server";
 
 import { GET } from "./route";
 
@@ -106,15 +111,17 @@ describe("GET /api/classroom/auth/sign-in", () => {
 
     it("should return a 400 status code when an OakGoogleClassroomException is thrown and report to bugsnag", async () => {
       // Arrange
-      const mockError = {
-        name: "OakGoogleClassroomException",
-        message: "Your session has expired. Please sign in again.",
-        code: "invalid_grant",
-        type: "google-oauth",
-        severity: "error",
-        shouldRetry: false,
-        context: { operation: "sign-in", service: "google-oauth" },
-      };
+      const mockError = new OakGoogleClassroomException(
+        "Your session has expired. Please sign in again.",
+        ExceptionType.GoogleOAuth,
+        {
+          code: "invalid_grant",
+          shouldRetry: false,
+          severity: ErrorSeverity.Error,
+          context: { operation: "sign-in", service: ExceptionType.GoogleOAuth },
+        },
+      );
+
       mockGetGoogleSignInUrl.mockRejectedValue(mockError);
       mockedIsOakGoogleClassroomException.mockReturnValue(true);
 
@@ -122,22 +129,10 @@ describe("GET /api/classroom/auth/sign-in", () => {
       await GET(mockRequest);
 
       // Assert
-      expect(mockedReportError).toHaveBeenCalledWith(mockError, {
-        severity: "error",
-        code: "invalid_grant",
-        type: "google-oauth",
-        context: { operation: "sign-in", service: "google-oauth" },
+      expect(mockedReportError).toHaveBeenCalledWith(mockError.toObject());
+      expect(mockResponseJson).toHaveBeenCalledWith(mockError.toObject(), {
+        status: 400,
       });
-      expect(mockResponseJson).toHaveBeenCalledWith(
-        {
-          error: "Your session has expired. Please sign in again.",
-          code: "invalid_grant",
-          type: "google-oauth",
-          severity: "error",
-          shouldRetry: false,
-        },
-        { status: 400 },
-      );
     });
 
     it("should return a 500 status code when a generic error is thrown and report to bugsnag", async () => {

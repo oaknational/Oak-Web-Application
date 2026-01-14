@@ -19,27 +19,13 @@ export async function GET(request: NextRequest) {
     return Response.json({ signInUrl: response }, { status: 200 });
   } catch (error) {
     if (isOakGoogleClassroomException(error)) {
-      reportError(error, {
-        severity: "error",
-        code: error.code,
-        type: error.type,
-        context: error.context,
-      });
+      const errorObject = error.toObject();
+      reportError(errorObject);
 
-      return Response.json(
-        {
-          error: error.message,
-          code: error.code,
-          type: error.type,
-          severity: error.severity,
-          shouldRetry: error.shouldRetry,
-        },
-        { status: 400 },
-      );
+      return Response.json(errorObject, { status: 400 });
     }
 
     reportError(error, { severity: "error" });
-
     return Response.json(
       {
         error: "Could not get Google Sign In link",

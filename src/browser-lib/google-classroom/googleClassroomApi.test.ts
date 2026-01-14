@@ -1,3 +1,9 @@
+import {
+  OakGoogleClassroomException,
+  ErrorSeverity,
+  ExceptionType,
+} from "@oaknational/google-classroom-addon/server";
+
 import GoogleClassroomApi from "./googleClassroomApi";
 
 // Mock fetch
@@ -369,18 +375,22 @@ describe("Google Classroom API", () => {
     it("should re-throw OakGoogleClassroomException errors", async () => {
       // Arrange
       mockAttachmentSetup();
-      const oakError = {
-        code: "OAUTH_ERROR",
-        type: "google-oauth",
-        message: "Token expired",
-        severity: "error",
-      };
-      mockJsonResponse(oakError, 400);
+      const oakError = new OakGoogleClassroomException(
+        "Access was denied. Please grant permission to continue.",
+        ExceptionType.GoogleOAuth,
+        {
+          code: "access_denied",
+          shouldRetry: false,
+          severity: ErrorSeverity.Error,
+        },
+      );
+
+      mockJsonResponse(oakError.toObject(), 400);
 
       // Act & Assert
       await expect(
         GoogleClassroomApi.createAttachment(testAttachment),
-      ).rejects.toEqual(oakError);
+      ).rejects.toEqual(oakError.toObject());
     });
 
     it("should throw error with error field from response", async () => {
@@ -426,13 +436,17 @@ describe("Google Classroom API", () => {
         return Promise.resolve(null);
       });
 
-      const oakError = {
-        code: "permission_denied",
-        type: "google-classroom",
-        message: "User does not have permission",
-        severity: "error",
-      };
-      mockJsonResponse(oakError, 403);
+      const oakError = new OakGoogleClassroomException(
+        "User does not have permission",
+        ExceptionType.Firestore,
+        {
+          code: "permission_denied",
+          shouldRetry: false,
+          severity: ErrorSeverity.Error,
+        },
+      );
+
+      mockJsonResponse(oakError.toObject(), 403);
 
       const attachment = {
         courseId: "course123",
@@ -447,7 +461,7 @@ describe("Google Classroom API", () => {
       // Act & Assert
       await expect(
         GoogleClassroomApi.createAttachment(attachment),
-      ).rejects.toEqual(oakError);
+      ).rejects.toEqual(oakError.toObject());
     });
 
     it("should return default values when verifySession encounters an error", async () => {

@@ -3,6 +3,11 @@
  */
 import type { NextRequest } from "next/server";
 import { redirect } from "next/navigation";
+import {
+  OakGoogleClassroomException,
+  ErrorSeverity,
+  ExceptionType,
+} from "@oaknational/google-classroom-addon/server";
 
 import { GET } from "./route";
 
@@ -198,15 +203,20 @@ describe("GET /api/classroom/auth/callback", () => {
 
     it("should return a 400 error and report to bugsnag when OakGoogleClassroomException is thrown", async () => {
       // Arrange
-      const mockError = {
-        name: "OakGoogleClassroomException",
-        message: "Your authentication token is invalid. Please sign in again.",
-        code: "invalid_token",
-        type: "google-oauth",
-        severity: "error",
-        shouldRetry: true,
-        context: { operation: "callback", service: "google-oauth" },
-      };
+      const mockError = new OakGoogleClassroomException(
+        "Your authentication token is invalid. Please sign in again.",
+        ExceptionType.GoogleOAuth,
+        {
+          code: "invalid_token",
+          shouldRetry: true,
+          severity: ErrorSeverity.Error,
+          context: {
+            operation: "callback",
+            service: ExceptionType.GoogleOAuth,
+          },
+        },
+      );
+
       mockSearchParamsGet.mockImplementation((key: string) => {
         if (key === "code") return mockCode;
         return null;
@@ -218,22 +228,10 @@ describe("GET /api/classroom/auth/callback", () => {
       await GET(mockRequest);
 
       // Assert
-      expect(mockedReportError).toHaveBeenCalledWith(mockError, {
-        severity: "error",
-        code: "invalid_token",
-        type: "google-oauth",
-        context: { operation: "callback", service: "google-oauth" },
+      expect(mockedReportError).toHaveBeenCalledWith(mockError.toObject());
+      expect(mockResponseJson).toHaveBeenCalledWith(mockError.toObject(), {
+        status: 400,
       });
-      expect(mockResponseJson).toHaveBeenCalledWith(
-        {
-          error: "Your authentication token is invalid. Please sign in again.",
-          code: "invalid_token",
-          type: "google-oauth",
-          severity: "error",
-          shouldRetry: true,
-        },
-        { status: 400 },
-      );
     });
 
     it("should return a 500 error and report to bugsnag when a generic error is thrown", async () => {

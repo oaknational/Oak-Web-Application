@@ -33,23 +33,11 @@ export async function GET(request: NextRequest) {
     );
   } catch (error) {
     if (isOakGoogleClassroomException(error)) {
-      reportError(error, {
-        severity: "error",
-        code: error.code,
-        type: error.type,
-        context: error.context,
-      });
-      return Response.json(
-        {
-          error: error.message,
-          code: error.code,
-          type: error.type,
-          severity: error.severity,
-          shouldRetry: error.shouldRetry,
-        },
-        { status: 401 },
-      );
+      const errorObject = error.toObject();
+      reportError(errorObject);
+      return Response.json(errorObject, { status: 401 });
     }
+
     reportError(error, {
       severity: "error",
     });

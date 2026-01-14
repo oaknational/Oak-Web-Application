@@ -2,6 +2,11 @@
  * @jest-environment node
  */
 import type { NextRequest } from "next/server";
+import {
+  OakGoogleClassroomException,
+  ErrorSeverity,
+  ExceptionType,
+} from "@oaknational/google-classroom-addon/server";
 
 import { GET } from "./route";
 
@@ -151,15 +156,17 @@ describe("POST /api/classroom/auth/verify", () => {
 
     it("should return error details and report to bugsnag when OakGoogleClassroomException is thrown", async () => {
       // Arrange
-      const mockError = {
-        name: "OakGoogleClassroomException",
-        message: "Session decryption failed",
-        code: "decryption_error",
-        type: "encryption",
-        severity: "error",
-        shouldRetry: false,
-        context: { operation: "verify", service: "encryption" },
-      };
+      const mockError = new OakGoogleClassroomException(
+        "Session decryption failed",
+        ExceptionType.Encryption,
+        {
+          code: "decryption_error",
+          shouldRetry: false,
+          severity: ErrorSeverity.Error,
+          context: { operation: "verify", service: ExceptionType.Encryption },
+        },
+      );
+
       mockRequestHeadersGet.mockImplementation((name) => {
         if (name === "Authorization") return mockValidToken;
         if (name === "X-Oakgc-Session") return mockValidSession;
@@ -172,22 +179,10 @@ describe("POST /api/classroom/auth/verify", () => {
       await GET(mockRequest);
 
       // Assert
-      expect(mockedReportError).toHaveBeenCalledWith(mockError, {
-        severity: "error",
-        code: "decryption_error",
-        type: "encryption",
-        context: { operation: "verify", service: "encryption" },
+      expect(mockedReportError).toHaveBeenCalledWith(mockError.toObject());
+      expect(mockResponseJson).toHaveBeenCalledWith(mockError.toObject(), {
+        status: 401,
       });
-      expect(mockResponseJson).toHaveBeenCalledWith(
-        {
-          error: "Session decryption failed",
-          code: "decryption_error",
-          type: "encryption",
-          severity: "error",
-          shouldRetry: false,
-        },
-        { status: 401 },
-      );
     });
 
     it("should return 401 and report to bugsnag when a generic error is thrown", async () => {

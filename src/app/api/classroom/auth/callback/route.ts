@@ -73,27 +73,12 @@ export async function GET(request: NextRequest) {
     }
 
     if (isOakGoogleClassroomException(error)) {
-      reportError(error, {
-        severity: "error",
-        code: error.code,
-        type: error.type,
-        context: error.context,
-      });
-
-      return Response.json(
-        {
-          error: error.message,
-          code: error.code,
-          type: error.type,
-          severity: error.severity,
-          shouldRetry: error.shouldRetry,
-        },
-        { status: 400 },
-      );
+      const errorObject = error.toObject();
+      reportError(errorObject);
+      return Response.json(errorObject, { status: 400 });
     }
 
     reportError(error, { severity: "error" });
-
     return Response.json(
       {
         error: "Failed to process OAuth callback",
