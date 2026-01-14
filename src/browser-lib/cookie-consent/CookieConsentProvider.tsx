@@ -4,8 +4,8 @@
  * 1. allow the user to set/update cookie preferences
  * 2. determine which services should run depending on which policies are agreed to
  */
-import { PropsWithChildren, useEffect, useState } from "react";
 
+import { PropsWithChildren, useEffect, useState } from "react";
 // eslint-disable-next-line import/order
 import {
   MockOakConsentClient,
