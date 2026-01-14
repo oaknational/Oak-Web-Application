@@ -308,7 +308,7 @@ describe("PupilExperienceView", () => {
       expect(getByRole("alertdialog")).not.toBeInTheDocument();
     });
   });
-  it.only("should close iframe if isClassroom and content guidance is declined", async () => {
+  it("should close iframe if isClassroom and content guidance is declined", async () => {
     mockedUseAssignmentSearchParams.mockReturnValue({
       isClassroomAssignment: true,
     });
