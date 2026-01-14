@@ -240,7 +240,10 @@ const PupilExperienceLayout = ({
     } as const;
 
     if (isClassroomAssignment) {
-      window?.parent?.postMessage(closeIframeMessage, "*");
+      window?.parent?.postMessage(
+        closeIframeMessage,
+        "https://classroom.google.com",
+      );
     } else if (backUrl) {
       router.replace(backUrl);
     } else {
