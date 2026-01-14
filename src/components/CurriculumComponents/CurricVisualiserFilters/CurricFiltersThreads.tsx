@@ -1,9 +1,9 @@
+import { OakSpan, OakBox } from "@oaknational/oak-components";
 import { useId } from "react";
 
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 
-import { OakSpan, OakBox } from "@oaknational/oak-components";
 import { Thread, CurriculumFilters } from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";

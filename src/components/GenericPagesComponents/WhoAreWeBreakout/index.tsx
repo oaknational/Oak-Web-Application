@@ -1,6 +1,6 @@
+import { OakFlex, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import { OakFlex, OakP } from "@oaknational/oak-components";
 import { Image } from "@/common-lib/cms-types";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 

@@ -1,11 +1,10 @@
-import { useMemo, useId } from "react";
-
 import {
   OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
   OakBox,
 } from "@oaknational/oak-components";
+import { useMemo, useId } from "react";
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { getFilterData } from "@/utils/curriculum/filtering";

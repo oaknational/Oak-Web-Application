@@ -1,6 +1,3 @@
-import { ReactNode, useMemo } from "react";
-import styled from "styled-components";
-
 import {
   OakFlex,
   OakGrid,
@@ -10,6 +7,9 @@ import {
   OakP,
   OakBoxProps,
 } from "@oaknational/oak-components";
+import { ReactNode, useMemo } from "react";
+import styled from "styled-components";
+
 import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 

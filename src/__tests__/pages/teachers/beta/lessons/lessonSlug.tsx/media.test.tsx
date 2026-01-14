@@ -1,7 +1,7 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import { useRouter } from "next/router";
-
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import {
   getStaticProps,

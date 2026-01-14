@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import {
   OakFlex,
   OakHeading,
@@ -7,6 +6,7 @@ import {
   OakGridArea,
   OakImage,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import { GetInvolvedLinkCard } from "@/components/GenericPagesComponents/GetInvolvedLinkCard";
 import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";

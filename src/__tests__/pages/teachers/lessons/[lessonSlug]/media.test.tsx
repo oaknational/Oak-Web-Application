@@ -1,7 +1,7 @@
 import { GetStaticPropsContext, PreviewData } from "next";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import {

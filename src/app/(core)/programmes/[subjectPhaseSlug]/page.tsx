@@ -1,8 +1,7 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
 
-import { useFeatureFlag } from "../../../../utils/featureFlags";
-
 import { ProgrammeView } from "./Components/ProgrammeView";
+import { useFeatureFlag } from "../../../../utils/featureFlags";
 
 import {
   getKs4RedirectSlug,
@@ -29,6 +28,7 @@ const ProgrammePage = async ({
     "teachers-integrated-journey",
     "boolean",
   );
+
   try {
     const { subjectPhaseSlug } = await params;
 

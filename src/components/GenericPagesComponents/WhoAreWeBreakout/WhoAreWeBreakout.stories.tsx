@@ -1,9 +1,7 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-
-import { WhoAreWeBreakout as Component } from ".";
-
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
+import { WhoAreWeBreakout as Component } from ".";
 
 const meta: Meta<typeof Component> = {
   component: Component,

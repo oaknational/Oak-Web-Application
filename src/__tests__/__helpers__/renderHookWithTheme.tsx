@@ -1,5 +1,4 @@
 import { renderHook, RenderHookOptions } from "@testing-library/react";
-
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 export default function renderHookWithTheme<TProps, TResult>(

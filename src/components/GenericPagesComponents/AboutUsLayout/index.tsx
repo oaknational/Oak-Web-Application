@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
+import { OakBox, OakMaxWidth } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
-import { OakBox, OakMaxWidth } from "@oaknational/oak-components";
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";

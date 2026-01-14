@@ -7,13 +7,14 @@ import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
 import {
   OakBox,
   OakLI,
-  OakPrimaryInvertedButton,
+  OakSmallPrimaryInvertedButton,
   OakIconName,
   OakIcon,
   OakFlex,
   OakHeading,
   OakSvg,
   OakUL,
+  OakPrimaryInvertedButton,
 } from "@oaknational/oak-components";
 import { TeachersBrowse } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
@@ -79,14 +80,15 @@ function MainMenuButton({ title }: { title: string }) {
           $alignItems={"center"}
           $width={"100%"}
         >
-          <OakPrimaryInvertedButton
+          <OakSmallPrimaryInvertedButton
+            width={"100%"}
             id={title + "button"}
             onClick={() => {
               setSubmenuOpen(title as SubmenuState);
             }}
           >
             {title}
-          </OakPrimaryInvertedButton>
+          </OakSmallPrimaryInvertedButton>
           <OakIcon iconName="chevron-right" />
         </OakFlex>
       </OakLI>

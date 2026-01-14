@@ -1,12 +1,11 @@
-import { isEqual } from "lodash";
-import { useId } from "react";
-
 import {
   OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
   OakBox,
 } from "@oaknational/oak-components";
+import { isEqual } from "lodash";
+import { useId } from "react";
 import {
   getPathwaySuffix,
   getYearGroupTitle,

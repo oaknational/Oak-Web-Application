@@ -1,9 +1,7 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-
-import { WhoAreWeDesc as Component } from ".";
-
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
+import { WhoAreWeDesc as Component } from ".";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -14,7 +12,7 @@ const meta: Meta<typeof Component> = {
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
         <Story />
-      </OakThemeProvider>
+    </OakThemeProvider>
     ),
   ],
 };

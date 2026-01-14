@@ -3,7 +3,6 @@ import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { AboutSharedHeader as Component } from ".";
 
-
 const meta: Meta<typeof Component> = {
   component: Component,
   tags: ["autodocs"],

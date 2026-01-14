@@ -1,3 +1,8 @@
+import {
+  OakBox,
+  OakHeading,
+  OakHandDrawnHR,
+} from "@oaknational/oak-components";
 import React from "react";
 
 import SkipLink from "../OakComponentsKitchen/SkipLink";
@@ -9,11 +14,6 @@ import {
   CurricFiltersYears,
 } from "../CurricVisualiserFilters";
 
-import {
-  OakBox,
-  OakHeading,
-  OakHandDrawnHR,
-} from "@oaknational/oak-components";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { shouldDisplayFilter } from "@/utils/curriculum/filtering";

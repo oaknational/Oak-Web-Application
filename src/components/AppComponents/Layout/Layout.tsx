@@ -1,7 +1,6 @@
 import Head from "next/head";
 import React, { FC } from "react";
 import { useRouter } from "next/router";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakBox,
   OakFlex,
@@ -9,6 +8,7 @@ import {
   OakThemeProvider,
   OakColorToken,
 } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import TopNav, { TopNavProps } from "../TopNav/TopNav";
 

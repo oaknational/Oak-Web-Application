@@ -1,9 +1,9 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { OakP, OakHeading, OakMaxWidth } from "@oaknational/oak-components";
 
 import { TopNavProps } from "../TopNav/TopNav";
 
-import { OakP, OakHeading, OakMaxWidth } from "@oaknational/oak-components";
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import {
   HeaderVariant,

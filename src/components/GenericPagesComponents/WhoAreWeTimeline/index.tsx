@@ -1,5 +1,3 @@
-import { ReactNode, useMemo } from "react";
-
 import {
   OakFlex,
   OakGrid,
@@ -8,6 +6,8 @@ import {
   OakSpan,
   OakHeading,
 } from "@oaknational/oak-components";
+import { ReactNode, useMemo } from "react";
+
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
