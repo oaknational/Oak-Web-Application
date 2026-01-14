@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import { createGlobalStyle } from "styled-components";
 import {
   OakBox,
@@ -194,6 +195,10 @@ const PupilExperienceLayout = ({
 }: PupilExperienceViewProps) => {
   const ageRestriction = browseData.features?.ageRestriction;
   const hasAgeRestriction = !!ageRestriction;
+  const searchParams = useSearchParams();
+  const itemId = searchParams?.get("itemId");
+  const itemType = searchParams?.get("itemType");
+  const isClassroomAssignment = itemType === "courseWork" && itemId !== null;
 
   const getAgeRestrictionString = (
     ageRestriction: string | undefined | null,
@@ -232,7 +237,17 @@ const PupilExperienceLayout = ({
   };
 
   const handleContentGuidanceDecline = () => {
-    backUrl ? router.replace(backUrl) : router.back();
+    isClassroomAssignment
+      ? window?.parent?.postMessage(
+          {
+            type: "Classroom",
+            action: "closeIframe",
+          },
+          "*",
+        )
+      : backUrl
+        ? router.replace(backUrl)
+        : router.back();
     track.contentGuidanceDeclined({
       supervisionLevel: lessonContent.supervisionLevel || "",
       contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
