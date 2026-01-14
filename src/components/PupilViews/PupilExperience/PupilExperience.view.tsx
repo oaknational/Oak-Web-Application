@@ -234,17 +234,18 @@ const PupilExperienceLayout = ({
   };
 
   const handleContentGuidanceDecline = () => {
-    isClassroomAssignment
-      ? window?.parent?.postMessage(
-          {
-            type: "Classroom",
-            action: "closeIframe",
-          },
-          "*",
-        )
-      : backUrl
-        ? router.replace(backUrl)
-        : router.back();
+    const closeIframeMessage = {
+      type: "Classroom",
+      action: "closeIframe",
+    } as const;
+
+    if (isClassroomAssignment) {
+      window?.parent?.postMessage(closeIframeMessage, "*");
+    } else if (backUrl) {
+      router.replace(backUrl);
+    } else {
+      router.back();
+    }
     track.contentGuidanceDeclined({
       supervisionLevel: lessonContent.supervisionLevel || "",
       contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
