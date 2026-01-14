@@ -5,8 +5,8 @@ import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
 export async function POST(request: NextRequest) {
   try {
-    const accessToken = await request.headers.get("Authorization");
-    const session = await request.headers.get("x-oakgc-session");
+    const accessToken = request.headers.get("Authorization");
+    const session = request.headers.get("x-oakgc-session");
 
     if (!session || !accessToken)
       return NextResponse.json(
