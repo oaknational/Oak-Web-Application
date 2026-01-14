@@ -10,12 +10,15 @@ import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 // todo: we could create and export one from the package
 // Mock OakGoogleClassroomAddon
 const mockSignInUrl = "https://google.com/signin/url";
-jest.mock("@/node-lib/google-classroom", () => ({
-  getOakGoogleClassroomAddon: jest.fn(),
-  createClassroomErrorReporter: jest.fn(() => jest.fn()),
-  isOakGoogleClassroomException: jest.fn(() => false),
-  getStatusCodeForClassroomError: jest.fn(() => 500),
-}));
+jest.mock("@/node-lib/google-classroom", () => {
+  const reporterMock = jest.fn();
+  return {
+    getOakGoogleClassroomAddon: jest.fn(),
+    createClassroomErrorReporter: jest.fn(() => reporterMock),
+    isOakGoogleClassroomException: jest.fn(() => false),
+    __mockReportError: reporterMock,
+  };
+});
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
 const mockGetGoogleSignInUrl = jest.fn().mockResolvedValue(mockSignInUrl);
@@ -82,5 +85,80 @@ describe("GET /api/classroom/auth/sign-in", () => {
       { signInUrl: mockSignInUrl },
       { status: 200 },
     );
+  });
+  describe("error handling", () => {
+    const {
+      isOakGoogleClassroomException: mockedIsOakGoogleClassroomException,
+      __mockReportError: mockedReportError,
+    } = jest.requireMock("@/node-lib/google-classroom") as {
+      isOakGoogleClassroomException: jest.Mock;
+      __mockReportError: jest.Mock;
+    };
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+      mockedGetOakGoogleClassroomAddon.mockReturnValue({
+        getGoogleSignInUrl: mockGetGoogleSignInUrl,
+      });
+      // Reset to default (false) - tests that need true will override
+      mockedIsOakGoogleClassroomException.mockReturnValue(false);
+    });
+
+    it("should return a 400 status code when an OakGoogleClassroomException is thrown and report to bugsnag", async () => {
+      // Arrange
+      const mockError = {
+        name: "OakGoogleClassroomException",
+        message: "Your session has expired. Please sign in again.",
+        code: "invalid_grant",
+        type: "google-oauth",
+        severity: "error",
+        shouldRetry: false,
+        context: { operation: "sign-in", service: "google-oauth" },
+      };
+      mockGetGoogleSignInUrl.mockRejectedValue(mockError);
+      mockedIsOakGoogleClassroomException.mockReturnValue(true);
+
+      // Act
+      await GET(mockRequest);
+
+      // Assert
+      expect(mockedReportError).toHaveBeenCalledWith(mockError, {
+        severity: "error",
+        code: "invalid_grant",
+        type: "google-oauth",
+        context: { operation: "sign-in", service: "google-oauth" },
+      });
+      expect(mockResponseJson).toHaveBeenCalledWith(
+        {
+          error: "Your session has expired. Please sign in again.",
+          code: "invalid_grant",
+          type: "google-oauth",
+          severity: "error",
+          shouldRetry: false,
+        },
+        { status: 400 },
+      );
+    });
+
+    it("should return a 500 status code when a generic error is thrown and report to bugsnag", async () => {
+      // Arrange
+      const mockError = new Error("Something went wrong");
+      mockGetGoogleSignInUrl.mockRejectedValue(mockError);
+
+      // Act
+      await GET(mockRequest);
+
+      // Assert
+      expect(mockedReportError).toHaveBeenCalledWith(mockError, {
+        severity: "error",
+      });
+      expect(mockResponseJson).toHaveBeenCalledWith(
+        {
+          error: "Could not get Google Sign In link",
+          details: "Something went wrong",
+        },
+        { status: 500 },
+      );
+    });
   });
 });

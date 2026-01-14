@@ -19,12 +19,16 @@ jest.mock("next/navigation", () => ({
 const mockedRedirect = redirect as unknown as jest.Mock;
 
 // Mock OakGoogleClassroomAddon
-jest.mock("@/node-lib/google-classroom", () => ({
-  getOakGoogleClassroomAddon: jest.fn(),
-  createClassroomErrorReporter: jest.fn(() => jest.fn()),
-  isOakGoogleClassroomException: jest.fn(() => false),
-  getStatusCodeForClassroomError: jest.fn(() => 500),
-}));
+jest.mock("@/node-lib/google-classroom", () => {
+  const reporterMock = jest.fn();
+  return {
+    getOakGoogleClassroomAddon: jest.fn(),
+    createClassroomErrorReporter: jest.fn(() => reporterMock),
+    isOakGoogleClassroomException: jest.fn(() => false),
+    getStatusCodeForClassroomError: jest.fn(() => 500),
+    __mockReportError: reporterMock,
+  };
+});
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
 
@@ -116,30 +120,145 @@ describe("GET /api/classroom/auth/callback", () => {
     expect(mockResponseJson).not.toHaveBeenCalled();
   });
 
-  it("should return a 400 error if 'code' is missing", async () => {
-    // Arrange
-    mockSearchParamsGet.mockImplementation((key: string) => {
-      if (key === "code") return null;
-      return null;
+  describe("error handling", () => {
+    const {
+      isOakGoogleClassroomException: mockedIsOakGoogleClassroomException,
+      __mockReportError: mockedReportError,
+    } = jest.requireMock("@/node-lib/google-classroom") as {
+      isOakGoogleClassroomException: jest.Mock;
+      __mockReportError: jest.Mock;
+    };
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+      mockedGetOakGoogleClassroomAddon.mockReturnValue({
+        handleGoogleSignInCallback: mockHandleGoogleSignInCallback,
+      });
+      mockedIsOakGoogleClassroomException.mockReturnValue(false);
     });
 
-    // Act
-    await GET(mockRequest);
+    it("should return a 400 error and report to bugsnag if 'code' is missing", async () => {
+      // Arrange
+      mockSearchParamsGet.mockImplementation((key: string) => {
+        if (key === "code") return null;
+        return null;
+      });
 
-    // Assert
-    expect(mockResponseJson).toHaveBeenCalledTimes(1);
-    expect(mockResponseJson).toHaveBeenCalledWith(
-      {
-        error: "Authentication failed",
-        details:
-          "Missing authorization code from Google. Please try signing in again.",
-      },
-      {
-        status: 400,
-      },
-    );
+      // Act
+      await GET(mockRequest);
 
-    expect(mockHandleGoogleSignInCallback).not.toHaveBeenCalled();
-    expect(mockedRedirect).not.toHaveBeenCalled();
+      // Assert
+      expect(mockedReportError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          message: "OAuth callback missing authorization code",
+        }),
+        {
+          severity: "error",
+          searchParams: {},
+        },
+      );
+      expect(mockResponseJson).toHaveBeenCalledWith(
+        {
+          error: "Authentication failed",
+          details:
+            "Missing authorization code from Google. Please try signing in again.",
+        },
+        { status: 400 },
+      );
+      expect(mockHandleGoogleSignInCallback).not.toHaveBeenCalled();
+      expect(mockedRedirect).not.toHaveBeenCalled();
+    });
+
+    it("should return a 400 error and report to bugsnag when OAuth error is present", async () => {
+      // Arrange
+      mockSearchParamsGet.mockImplementation((key: string) => {
+        if (key === "error") return "access_denied";
+        if (key === "error_description") return "User denied access";
+        return null;
+      });
+
+      // Act
+      await GET(mockRequest);
+
+      // Assert
+      expect(mockedReportError).toHaveBeenCalledWith(
+        expect.objectContaining({ message: "OAuth error: access_denied" }),
+        { severity: "warning", errorDescription: "User denied access" },
+      );
+      expect(mockResponseJson).toHaveBeenCalledWith(
+        {
+          error: "OAuth error",
+          details: "access_denied",
+          description: "User denied access",
+        },
+        { status: 400 },
+      );
+      expect(mockHandleGoogleSignInCallback).not.toHaveBeenCalled();
+    });
+
+    it("should return a 400 error and report to bugsnag when OakGoogleClassroomException is thrown", async () => {
+      // Arrange
+      const mockError = {
+        name: "OakGoogleClassroomException",
+        message: "Your authentication token is invalid. Please sign in again.",
+        code: "invalid_token",
+        type: "google-oauth",
+        severity: "error",
+        shouldRetry: true,
+        context: { operation: "callback", service: "google-oauth" },
+      };
+      mockSearchParamsGet.mockImplementation((key: string) => {
+        if (key === "code") return mockCode;
+        return null;
+      });
+      mockHandleGoogleSignInCallback.mockRejectedValue(mockError);
+      mockedIsOakGoogleClassroomException.mockReturnValue(true);
+
+      // Act
+      await GET(mockRequest);
+
+      // Assert
+      expect(mockedReportError).toHaveBeenCalledWith(mockError, {
+        severity: "error",
+        code: "invalid_token",
+        type: "google-oauth",
+        context: { operation: "callback", service: "google-oauth" },
+      });
+      expect(mockResponseJson).toHaveBeenCalledWith(
+        {
+          error: "Your authentication token is invalid. Please sign in again.",
+          code: "invalid_token",
+          type: "google-oauth",
+          severity: "error",
+          shouldRetry: true,
+        },
+        { status: 400 },
+      );
+    });
+
+    it("should return a 500 error and report to bugsnag when a generic error is thrown", async () => {
+      // Arrange
+      const mockError = new Error("Unexpected failure");
+      mockSearchParamsGet.mockImplementation((key: string) => {
+        if (key === "code") return mockCode;
+        return null;
+      });
+      mockHandleGoogleSignInCallback.mockRejectedValue(mockError);
+
+      // Act
+      await GET(mockRequest);
+
+      // Assert
+      expect(mockedReportError).toHaveBeenCalledWith(mockError, {
+        severity: "error",
+      });
+      expect(mockResponseJson).toHaveBeenCalledWith(
+        {
+          error: "Failed to process OAuth callback",
+          details: "Unexpected failure",
+        },
+        { status: 500 },
+      );
+    });
   });
 });

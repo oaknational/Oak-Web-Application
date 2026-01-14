@@ -3,7 +3,6 @@ import type { NextRequest } from "next/server";
 import {
   getOakGoogleClassroomAddon,
   isOakGoogleClassroomException,
-  getStatusCodeForClassroomError,
   createClassroomErrorReporter,
 } from "@/node-lib/google-classroom";
 
@@ -20,9 +19,8 @@ export async function GET(request: NextRequest) {
     return Response.json({ signInUrl: response }, { status: 200 });
   } catch (error) {
     if (isOakGoogleClassroomException(error)) {
-      const statusCode = getStatusCodeForClassroomError(error);
       reportError(error, {
-        severity: statusCode >= 500 ? "error" : "warning",
+        severity: "error",
         code: error.code,
         type: error.type,
         context: error.context,
@@ -36,7 +34,7 @@ export async function GET(request: NextRequest) {
           severity: error.severity,
           shouldRetry: error.shouldRetry,
         },
-        { status: statusCode },
+        { status: 400 },
       );
     }
 

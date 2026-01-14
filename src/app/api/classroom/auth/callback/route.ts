@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     const subscribeToNewsletter = searchParams.get("subscribeToNewsletter");
 
     // Check for OAuth errors from Google -
-    // TODO: Redirect to 404 Error Page
+    //Redirect to 404 Error Page
     if (error) {
       reportError(new Error(`OAuth error: ${error}`), {
         severity: "warning",

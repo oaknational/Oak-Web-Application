@@ -45,7 +45,7 @@ const sendRequest = async <returnType, payload = undefined>(
     ) {
       throw errorData;
     }
-
+    // catch other errors
     throw new Error(
       errorData?.error ||
         errorData?.details ||
