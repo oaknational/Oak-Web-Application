@@ -52,7 +52,7 @@ export async function GET(request: NextRequest) {
     }
 
     const tempSignUpToNewsletter = async (email: string) => {
-      // todo: this is temp until we have actual mailing list to subscribe to
+      // this is temp until we have actual mailing list to subscribe to
       console.log("should subscribe to newsletter", email);
     };
 
