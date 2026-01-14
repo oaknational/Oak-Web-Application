@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useSearchParams } from "next/navigation";
 import { createGlobalStyle } from "styled-components";
 import {
   OakBox,
@@ -40,6 +39,7 @@ import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsPr
 import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
+import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -195,10 +195,7 @@ const PupilExperienceLayout = ({
 }: PupilExperienceViewProps) => {
   const ageRestriction = browseData.features?.ageRestriction;
   const hasAgeRestriction = !!ageRestriction;
-  const searchParams = useSearchParams();
-  const itemId = searchParams?.get("itemId");
-  const itemType = searchParams?.get("itemType");
-  const isClassroomAssignment = itemType === "courseWork" && itemId !== null;
+  const { isClassroomAssignment } = useAssignmentSearchParams();
 
   const getAgeRestrictionString = (
     ageRestriction: string | undefined | null,

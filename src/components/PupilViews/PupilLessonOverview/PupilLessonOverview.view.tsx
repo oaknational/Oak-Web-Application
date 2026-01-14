@@ -19,7 +19,6 @@ import {
   isValidIconName,
   OakLI,
 } from "@oaknational/oak-components";
-import { useSearchParams } from "next/navigation";
 
 import {
   LessonReviewSection,
@@ -31,6 +30,7 @@ import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLe
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
+import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
 type PupilViewsLessonOverviewProps = {
   browseData: LessonBrowseData;
@@ -55,10 +55,7 @@ export const PupilViewsLessonOverview = ({
   backUrl,
   browseData,
 }: PupilViewsLessonOverviewProps) => {
-  const searchParams = useSearchParams();
-  const itemId = searchParams?.get("itemId");
-  const itemType = searchParams?.get("itemType");
-  const isClassroomAssignment = itemType === "courseWork" && itemId !== null;
+  const { isClassroomAssignment } = useAssignmentSearchParams();
   const { programmeFields, lessonData } = browseData;
   const {
     subjectSlug,

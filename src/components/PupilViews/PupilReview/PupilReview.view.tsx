@@ -16,7 +16,6 @@ import {
   OakSecondaryButton,
   OakBox,
 } from "@oaknational/oak-components";
-import { useSearchParams } from "next/navigation";
 
 import { PupilExperienceViewProps } from "../PupilExperience";
 
@@ -32,6 +31,7 @@ import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsPr
 import { LessonSummaryReviewedProperties } from "@/browser-lib/avo/Avo";
 import { useOakPupil } from "@/hooks/useOakPupil";
 import { attemptDataCamelCaseSchema } from "@/node-lib/pupil-api/types";
+import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -52,10 +52,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     exitQuizQuestionsArray,
     browseData: { programmeFields, lessonSlug, isLegacy },
   } = props;
-  const searchParams = useSearchParams();
-  const itemId = searchParams?.get("itemId");
-  const itemType = searchParams?.get("itemType");
-  const isClassroomAssignment = itemType === "courseWork" && itemId !== null;
+  const { isClassroomAssignment } = useAssignmentSearchParams();
   const { phase = "primary", yearDescription, subject } = programmeFields;
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {
