@@ -46,11 +46,13 @@ const verifySession = async (): Promise<{
   authenticated: boolean;
   session: string | undefined;
   token: string | undefined;
+  userProfilePicUrl?: string;
 }> => {
   const data = await sendRequest<{
     authenticated: boolean;
     session: string | undefined;
     token: string | undefined;
+    userProfilePicUrl?: string;
   }>(
     `/api/classroom/auth/verify`,
     "GET",
@@ -61,6 +63,7 @@ const verifySession = async (): Promise<{
     authenticated: data.authenticated ?? false,
     session: data.session,
     token: data.token,
+    userProfilePicUrl: data.userProfilePicUrl,
   };
 };
 

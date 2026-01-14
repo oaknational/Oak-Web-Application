@@ -10,8 +10,11 @@ export async function GET(request: NextRequest) {
   if (!session || !accessToken)
     return Response.json({ authenticated: false }, { status: 401 });
 
-  const verifiedSession: { session: string; token: string } | null =
-    await oakClassroomClient.verifyAuthSession(session, accessToken);
+  const verifiedSession: {
+    session: string;
+    token: string;
+    userProfilePicUrl?: string;
+  } | null = await oakClassroomClient.verifyAuthSession(session, accessToken);
 
   const authenticated = !!verifiedSession;
 
@@ -20,6 +23,7 @@ export async function GET(request: NextRequest) {
       authenticated,
       session: verifiedSession?.session,
       token: verifiedSession?.token,
+      userProfilePicUrl: verifiedSession?.userProfilePicUrl,
     },
     { status: authenticated ? 200 : 401 },
   );
