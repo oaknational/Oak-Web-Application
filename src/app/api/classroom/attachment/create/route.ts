@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createAnnouncementAttachmentArgsSchema } from "@oaknational/google-classroom-addon/types";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
     const session = await request.headers.get("x-oakgc-session");
 
     if (!session || !accessToken)
-      return Response.json(
+      return NextResponse.json(
         { message: "Authentication required" },
         { status: 401 },
       );
@@ -20,14 +20,17 @@ export async function POST(request: NextRequest) {
     const parsed = createAnnouncementAttachmentArgsSchema.safeParse(body);
 
     if (!parsed.success) {
-      return Response.json(
+      return NextResponse.json(
         { error: "Invalid query", details: parsed.error.flatten() },
         { status: 400 },
       );
     }
 
     if (!session)
-      return Response.json({ message: "Missing auth header" }, { status: 400 });
+      return NextResponse.json(
+        { message: "Missing auth header" },
+        { status: 400 },
+      );
 
     await oakClassroomClient.createAttachment(
       parsed.data,
@@ -35,9 +38,9 @@ export async function POST(request: NextRequest) {
       session,
     );
 
-    return Response.json({}, { status: 201 });
+    return NextResponse.json({}, { status: 201 });
   } catch (e) {
     console.error(JSON.stringify(e));
-    return Response.json({ error: e }, { status: 500 });
+    return NextResponse.json({ error: e }, { status: 500 });
   }
 }
