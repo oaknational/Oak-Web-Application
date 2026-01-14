@@ -1,3 +1,51 @@
+# [1.949.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.948.0...v1.949.0) (2026-01-14)
+
+
+### Features
+
+* upgrades oak-consent-client library ([4ca857e](https://github.com/oaknational/Oak-Web-Application/commit/4ca857ee3829b28500b928628f37fb6a805baa9c))
+
+# [1.948.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.947.2...v1.948.0) (2026-01-14)
+
+
+### Bug Fixes
+
+* add extra check that env values are not string undefined for new addon ([185239a](https://github.com/oaknational/Oak-Web-Application/commit/185239aca822319b884c6b246b2f447f0bfd021c))
+* add suspense boundary for success page ([280f296](https://github.com/oaknational/Oak-Web-Application/commit/280f296e1256196377febe53c3dcaa0fdf897cf2))
+* added more suspense layouts to google classroom routes ([6f45b37](https://github.com/oaknational/Oak-Web-Application/commit/6f45b3704e6dbd5872207c47be14a97475de9853))
+* bumped addon version to fix subjects page buttons ([6340ada](https://github.com/oaknational/Oak-Web-Application/commit/6340ada79b66c85c7bdd83fbfc9e85c38f582701))
+* fixed sonar cloud issues ([97051de](https://github.com/oaknational/Oak-Web-Application/commit/97051debe6ffbfbf37eb699581b8f3e310431cae))
+* fixed sonarcloud issues ([b3c1b93](https://github.com/oaknational/Oak-Web-Application/commit/b3c1b93bb9096bee3bf0c9676c1c563dbc5231e1))
+* move search params inside suspense logic ([e8600f9](https://github.com/oaknational/Oak-Web-Application/commit/e8600f9effa06430dc82567c636e25060f9e6468))
+* regen package lock and skip tsc check on orderedBrowseData ([be522ed](https://github.com/oaknational/Oak-Web-Application/commit/be522edcdd2cb8081c8026c248ef76772a43d668))
+* removed middleware config that overrides clerk config ([2f75f43](https://github.com/oaknational/Oak-Web-Application/commit/2f75f434e8cc233b301a6eb306a78ad078ce91b5))
+* updated spacing token to use new tokens ([1cc87aa](https://github.com/oaknational/Oak-Web-Application/commit/1cc87aa7691cf52c1b2ff6679026af8de33414e4))
+
+
+### Features
+
+* add bypass headers ([bf0ac4e](https://github.com/oaknational/Oak-Web-Application/commit/bf0ac4eb4ffe362f24862bf5fe0c40e12770a075))
+* add bypass headers ([2a9c804](https://github.com/oaknational/Oak-Web-Application/commit/2a9c80421534fd932a781bc7df96c51f392bdd8c))
+* add bypass headers ([a297b11](https://github.com/oaknational/Oak-Web-Application/commit/a297b11f5253fbb627517c4fbe9c15769e736bf8))
+* add bypass headers ([aae0f61](https://github.com/oaknational/Oak-Web-Application/commit/aae0f61107ef46332288c68477e09d7c543bf23e))
+* add bypass secret ([af2c305](https://github.com/oaknational/Oak-Web-Application/commit/af2c3055c55108c5c78220a8571599dce90cab3b))
+* add middleware bypass ([519dc71](https://github.com/oaknational/Oak-Web-Application/commit/519dc713ca9d19ab031e2e4b0ba7608f9474c4d8))
+* add middleware bypass ([e33fc73](https://github.com/oaknational/Oak-Web-Application/commit/e33fc7323969d75d5b27fa87d8caa567df7f544b))
+* add middleware bypass ([94cc250](https://github.com/oaknational/Oak-Web-Application/commit/94cc250203daf359c42eb53d79c8f1f0be59d41d))
+* add middleware bypass ([220c2b4](https://github.com/oaknational/Oak-Web-Application/commit/220c2b4fd9692968ad5861ec21df5cddf89efb30))
+* added browse journey routes and refactored auth flow ([dadce71](https://github.com/oaknational/Oak-Web-Application/commit/dadce71e3d4a00de41c9dcc0186f97b9ca952235))
+* added create attachment code ([8e88e62](https://github.com/oaknational/Oak-Web-Application/commit/8e88e6222a2374d902d6dff068bfb6c70f1c9905))
+* added google sign in flow api routes and pages ([9d7fad1](https://github.com/oaknational/Oak-Web-Application/commit/9d7fad120cc100b3652d276f99c02731c0504c3e))
+* added loading.tsx for google classroom pages ([25968e2](https://github.com/oaknational/Oak-Web-Application/commit/25968e23478fb2ba5c85e9a5921923e56857ff76))
+* api route to create attachment ([c1c5772](https://github.com/oaknational/Oak-Web-Application/commit/c1c5772988d4ff116da76656c7302ae878f65480))
+* api route to create attachment ([7f4fcea](https://github.com/oaknational/Oak-Web-Application/commit/7f4fceae56a2ae8db79014cb1d23f57a07440deb))
+* install google classroom addon ([08708a5](https://github.com/oaknational/Oak-Web-Application/commit/08708a51dbb5dc4d1103df6b7c1529d551785caa))
+* merge main ([f688555](https://github.com/oaknational/Oak-Web-Application/commit/f6885552bedda3bc8e850be37f95d63ad522e74f))
+* merge main ([ce48266](https://github.com/oaknational/Oak-Web-Application/commit/ce482663be7243551cc6b6b4f7e39eb33c0bb185))
+* pull from remote ([6ad39e0](https://github.com/oaknational/Oak-Web-Application/commit/6ad39e05557f1efcb9a8b54eea11f4dfd7e18de3))
+* removebypass secret ([06e341c](https://github.com/oaknational/Oak-Web-Application/commit/06e341c4be3c89092efeab5eb577acda0792d751))
+* revert unecessary oak-components version update ([a917ebd](https://github.com/oaknational/Oak-Web-Application/commit/a917ebdbc12b52d405316e641d5caa80ef61535d))
+
 ## [1.947.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.947.1...v1.947.2) (2026-01-13)
 
 
