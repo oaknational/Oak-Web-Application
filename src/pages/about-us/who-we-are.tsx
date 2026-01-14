@@ -11,10 +11,13 @@ import {
   OakBox,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import CMSClient from "@/node-lib/cms";
-import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
+import {
+  AboutWhoWeArePage,
+  NewAboutWhoWeArePage,
+  TextBlock,
+} from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
 import Card from "@/components/SharedComponents/Card";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
@@ -26,30 +29,27 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import TranscriptToggle from "@/components/TeacherComponents/TranscriptViewer/TranscriptToggle";
-import { WhoAreWeHeader } from "@/components/GenericPagesComponents/WhoAreWeHeader";
+import {
+  AboutSharedHeader,
+  AboutSharedHeaderImage,
+} from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { WhoAreWeBreakout } from "@/components/GenericPagesComponents/WhoAreWeBreakout";
 import WhoAreWeTimeline from "@/components/GenericPagesComponents/WhoAreWeTimeline";
 import { WhoAreWeDesc } from "@/components/GenericPagesComponents/WhoAreWeDesc";
-import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
-import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
-import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-const NewsletterWrapper = styled(OakBox)`
-  max-width: 100%;
-
-  @media (min-width: 750px) {
-    max-width: 870px;
-  }
-`;
-
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
+  newAboutWhoWeArePage?: NewAboutWhoWeArePage;
   enableV2?: boolean;
+  topNav: TopNavProps;
 };
 
 type TimeLineProps = TextBlock & OakGridAreaProps;
@@ -94,11 +94,16 @@ const TimeLineCard: FC<TimeLineProps> = ({
   );
 };
 
-const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
+const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
   const videoCaptions =
     pageData.intro.mediaType === "video" ? pageData.intro.video.captions : null;
+
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+    <Layout
+      seoProps={getSeoProps(pageData.seo)}
+      $background={"white"}
+      topNavProps={topNav}
+    >
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
         $mt={["spacing-56", "spacing-80"]}
@@ -211,128 +216,44 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
   );
 };
 
-export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
-  const newsletterFormProps = useNewsletterForm();
+export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
+  pageData,
+  topNav,
+  newAboutWhoWeArePage,
+}) => {
+  if (!newAboutWhoWeArePage) {
+    return <div />;
+  }
 
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <OakBox $overflow={"hidden"}>
-        <WhoAreWeHeader
+    <Layout
+      seoProps={getSeoProps(pageData.seo)}
+      $background={"white"}
+      topNavProps={topNav}
+    >
+      <AboutUsLayout>
+        <AboutSharedHeader
           title={"About Oak"}
           content={
             "We're here to support and inspire teachers to deliver great teaching, so every pupil benefits"
           }
-          imageUrl={
-            "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
-          }
-          imageAlt={""}
-        />
+        >
+          <AboutSharedHeaderImage
+            imageAlt=""
+            imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
+          />
+        </AboutSharedHeader>
         <WhoAreWeBreakout
-          imageUrl={
-            "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=640&fm=webp&q=80&fit=clip&auto=format"
-          }
-          imageAlt=""
-          content={
-            "We’re Oak, your trusted planning partner for great teaching. Our free, adaptable resources evolve with education to give teachers and schools the latest tools to deliver inspiring lessons, save time and improve pupil outcomes."
-          }
+          image={newAboutWhoWeArePage.breakout.image}
+          content={newAboutWhoWeArePage.breakout.text}
         />
         <WhoAreWeTimeline
           title={"As teaching evolves, so do we..."}
-          subtitle={"Oak’s story"}
-          items={[
-            {
-              subtitle: "From then",
-              title: "A rapid response to the pandemic",
-              text: [
-                "In 2020, teachers needed a quick way to keep pupils learning during lockdown. So we brought together a group of expert partners to support schools with thousands of lessons designed for remote learning.",
-              ],
-            },
-            {
-              subtitle: "To now",
-              title: "Complete resources for the classroom, schools and trusts",
-              text: [
-                "From early years to exam years, we now provide complete curriculum support for the classroom. Every national curriculum subject, every unit, every lesson, in one place.",
-                "We’re also transforming lesson prep with AI tools that help teachers create, adapt, and enhance their lessons in minutes, while keeping quality high and content safe.",
-              ],
-            },
-            {
-              subtitle: "And beyond",
-              title: "Staying ahead in a changing world",
-              text: [
-                "We’ve always anticipated the emerging needs of teachers – from building safe and secure AI tools, to making our platform code available to partners who want to integrate it directly. We’ll keep innovating as we find new ways to help teachers stay ahead in a changing world.",
-              ],
-            },
-          ]}
+          subTitle={"Oak’s story"}
+          items={newAboutWhoWeArePage.timeline}
         />
-        <WhoAreWeDesc
-          title={"We are..."}
-          items={[
-            {
-              title: "Built for the reality of teaching",
-              text: "We get it. Time is tight, classes vary, and only teachers can know pupils best. That’s why our materials are flexible tools to adapt, not scripts to follow: a starting point that supports your expertise and style.",
-              imageUrl:
-                "https://res.cloudinary.com/oak-web-application/image/upload/v1763393172/icons/teacher-whiteboard-illustration_qumdkt.svg",
-              imageAlt: "",
-            },
-            {
-              title: "Expert created and quality assured",
-              text: "Created by subject and curriculum experts, our resources are informed by the best available evidence of what works, aligned to the national curriculum and tested by real teachers.",
-              imageUrl:
-                "https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg",
-              imageAlt: "",
-            },
-            {
-              title: "Free, and always will be",
-              text: "We’re funded by the Department for Education. No paywalls, package tiers, or hidden costs.",
-              imageUrl:
-                "https://res.cloudinary.com/oak-web-application/image/upload/v1749033815/icons/free-tag_lijptf.svg",
-              imageAlt: "",
-            },
-            {
-              title: "Independent and optional",
-              text: "Oak is by teachers, for teachers. Our board is publicly appointed, and our partners selected through an open process.",
-              imageUrl:
-                "https://res.cloudinary.com/oak-web-application/image/upload/v1763393169/icons/teacher-planning-illustration_kgfbgx.svg",
-              imageAlt: "",
-            },
-          ]}
-        />
-        <WhoAreWeExplore
-          title={"Explore more about Oak"}
-          items={[
-            {
-              iconName: "homepage-teacher-map",
-              title: "About Oak’s curriculum",
-              href: "#",
-            },
-            {
-              iconName: "data",
-              title: "Oak’s impact",
-              href: "#",
-            },
-            {
-              iconName: "snack-break",
-              title: "Meet the team",
-              href: "#",
-            },
-            {
-              iconName: "chatting",
-              title: "Get involved",
-              href: "#",
-            },
-          ]}
-        />
-        <OakBox
-          $background={"bg-decorative1-subdued"}
-          $pv={["spacing-56", "spacing-56"]}
-        >
-          <OakMaxWidth $ph={"spacing-16"} $alignItems={"center"}>
-            <NewsletterWrapper>
-              <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
-            </NewsletterWrapper>
-          </OakMaxWidth>
-        </OakBox>
-      </OakBox>
+        <WhoAreWeDesc title={"We are..."} items={newAboutWhoWeArePage.usp} />
+      </AboutUsLayout>
     </Layout>
   );
 };
@@ -347,11 +268,15 @@ function AboutWhoWeAre(props: Readonly<AboutPageProps>) {
 export const getServerSideProps = (async (context) => {
   const isPreviewMode = context.preview === true;
 
+  const newAboutWhoWeArePage = await CMSClient.newAboutWhoWeArePage({
+    previewMode: isPreviewMode,
+  });
+
   const aboutWhoWeArePage = await CMSClient.aboutWhoWeArePage({
     previewMode: isPreviewMode,
   });
 
-  if (!aboutWhoWeArePage) {
+  if (!aboutWhoWeArePage || !newAboutWhoWeArePage) {
     return {
       notFound: true,
     };
@@ -373,10 +298,14 @@ export const getServerSideProps = (async (context) => {
       })) === true;
   }
 
+  const topNav = await curriculumApi2023.topNav();
+
   return {
     props: {
       enableV2,
       pageData: aboutWhoWeArePage,
+      newAboutWhoWeArePage,
+      topNav,
     },
   };
 }) satisfies GetServerSideProps<AboutPageProps>;

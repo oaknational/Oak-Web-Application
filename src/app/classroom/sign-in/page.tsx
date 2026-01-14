@@ -1,11 +1,12 @@
 "use client";
 
-import { GoogleSignInView } from "@oaknational/google-classroom-addon/ui";
+import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { GoogleSignInView } from "@oaknational/google-classroom-addon/ui";
 
 import { googleClassroomApi } from "@/browser-lib/google-classroom";
 
-function SignInPage() {
+function SignInContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -29,4 +30,10 @@ function SignInPage() {
   );
 }
 
-export default SignInPage;
+export default function SignInPage() {
+  return (
+    <Suspense fallback={null}>
+      <SignInContent />
+    </Suspense>
+  );
+}

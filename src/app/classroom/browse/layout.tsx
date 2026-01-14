@@ -9,7 +9,9 @@ import { googleClassroomApi } from "@/browser-lib/google-classroom";
 type Props = {
   children: React.ReactNode;
 };
-export default function BrowseGoogleClassroomLayout({ children }: Props) {
+export default function BrowseGoogleClassroomLayout({
+  children,
+}: Readonly<Props>) {
   return (
     <WithGoogleClassroomAuth
       verifySessionAction={googleClassroomApi.verifySession}

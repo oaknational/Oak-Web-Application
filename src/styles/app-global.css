@@ -1,0 +1,154 @@
+/*
+ * Extracts rules from GlobalStyle.ts into a style sheet to be used in app router
+ * Without this there is a flash while the global styles load on the client
+*/
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Set core root defaults */
+html,
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizespeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+cite {
+  font-style: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+/* stylelint-disable */
+body,
+#__next {
+  /* stylelint-enable */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-family: inherit;
+
+  /*
+     * Remove grey background on tap on ios
+     */
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  /*
+     * some browsers have a small margin by default
+     * @see https://github.com/oaknational/Oak-Web-Application/issues/709
+     */
+  margin: 0;
+
+  /*
+     * Remove grey background on tap on ios
+     */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*
+  * Inline styling for mathjax equations
+  */
+mjx-container {
+  display: inline-grid !important;
+  margin: 0 !important;
+}
+
+/*
+   * Posthog hack styles
+   * Styles for Posthog survey
+   * These styles help manage z-index conflicts with PostHog surveys
+   * https://www.notion.so/oaknationalacademy/Popup-survey-cannot-be-dismissed-when-lot-picker-is-open-mobile-17426cc4e1b180d184b5c34608e88846?pvs=4
+   */
+div[class^="PostHogSurvey"] {
+  z-index: 298 !important;
+}
+
+/* 
+   * Hacks to keep gleap button have pointer-events when modals are open
+   */
+div[class^="bb-feedback-button"] {
+  pointer-events: initial;
+}

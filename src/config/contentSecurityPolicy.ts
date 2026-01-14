@@ -26,7 +26,6 @@ const releaseStage = getReleaseStage(
     process.env.CONTEXT,
 );
 const isDevelopment: boolean = releaseStage?.includes("dev");
-const isPreview: boolean = releaseStage?.includes("preview");
 
 // Rules
 const mux: Partial<CspConfig> = {
@@ -42,7 +41,7 @@ const mux: Partial<CspConfig> = {
     "https://stream.mux.com",
     "https://inferred.litix.io",
   ],
-  imgSrc: ["https://*.mux.com/", "https://stream.mux.com/"],
+  // imgSrc: ["https://*.mux.com/", "https://stream.mux.com/"],
   styleSrc: ["https://*.mux.com"],
   mediaSrc: ["https://*.mux.com/", "https://stream.mux.com/"],
   frameSrc: ["https://stream.mux.com", "https://*.mux.com"],
@@ -50,7 +49,7 @@ const mux: Partial<CspConfig> = {
 
 const clerk: Partial<CspConfig> = {
   connectSrc: ["*.clerk.accounts.dev", "clerk-telemetry.com"],
-  imgSrc: ["https://img.clerk.com/"],
+  // imgSrc: ["https://img.clerk.com/"],
   scriptSrc: ["*.clerk.accounts.dev"],
 };
 
@@ -61,20 +60,34 @@ const avo: Partial<CspConfig> = {
 
 const posthog: Partial<CspConfig> = {
   connectSrc: ["https://eu.i.posthog.com", "*.posthog.com"],
+  scriptSrc: ["https://*.posthog.com"],
 };
 
 const cloudinary: Partial<CspConfig> = {
-  imgSrc: [
+  // imgSrc: [
+  //   "https://res.cloudinary.com/",
+  //   "https://res.cloudinary.com",
+  //   "https://oaknationalacademy-res.cloudinary.com/",
+  //   "https://oaknationalacademy-res.cloudinary.com",
+  //   "https://*.cloudinary.com/",
+  //   "https://*.cloudinary.com",
+  //   " https://res.cloudinary.com/oak-web-application/",
+  // ],
+  mediaSrc: [
     "https://res.cloudinary.com/",
     "https://oaknationalacademy-res.cloudinary.com/",
     "https://*.cloudinary.com/",
   ],
-  connectSrc: ["*.cloudinary.com"],
+  connectSrc: ["*.cloudinary.com/"],
 };
 
 const hubspot: Partial<CspConfig> = {
   connectSrc: ["*.hubspot.com", "*.hsforms.com"],
-  imgSrc: ["https://*.hubspot.com/", "https://*.hsforms.com/"],
+  // imgSrc: [
+  //   "https://*.hubspot.com/",
+  //   "https://*.hsforms.com/",
+  //   "https://track.hubspot.com/",
+  // ],
 };
 
 const cloudflare: Partial<CspConfig> = {
@@ -89,13 +102,13 @@ const vercel: Partial<CspConfig> = {
     "*.pusher.com",
     "*.pusherapp.com",
   ],
-  imgSrc: [
-    "https://vercel.live/",
-    "https://vercel.com",
-    "*.pusher.com/",
-    "data:",
-    "blob:",
-  ],
+  // imgSrc: [
+  //   "https://vercel.live/",
+  //   "https://vercel.com",
+  //   "*.pusher.com/",
+  //   "data:",
+  //   "blob:",
+  // ],
   frameSrc: ["https://vercel.live/", "https://vercel.com"],
   styleSrc: ["https://vercel.live/"],
   fontSrc: ["https://vercel.live/", "https://assets.vercel.com"],
@@ -103,7 +116,10 @@ const vercel: Partial<CspConfig> = {
 
 const gleap: Partial<CspConfig> = {
   connectSrc: ["*.gleap.io", "wss://*.gleap.io"],
-  imgSrc: ["https://*.gleap.io/"],
+  // imgSrc: ["https://*.gleap.io/"],
+  frameSrc: ["https://*.gleap.io/"],
+  scriptSrc: ["https://*.gleap.io/"],
+  mediaSrc: ["https://*.gleap.io/"],
 };
 
 const google: Partial<CspConfig> = {
@@ -111,6 +127,16 @@ const google: Partial<CspConfig> = {
   frameSrc: ["*.google.com/"],
   frameAncestors: ["*.google.com/"],
   objectSrc: ["*.google.com"],
+};
+
+const googleTranslate: Partial<CspConfig> = {
+  scriptSrc: [
+    "https://translate.google.com/",
+    "https://translate.googleapis.com/",
+    "https://www.gstatic.com/",
+    "https://*.google.com/",
+  ],
+  mediaSrc: ["https://ssl.gstatic.com"],
 };
 
 const bugsnag: Partial<CspConfig> = {
@@ -136,6 +162,7 @@ const cspBaseConfig: CspConfig = {
     "'self'",
     "blob:",
     "data:",
+    "https:",
     "*.thenational.academy/",
     "thenational.academy/",
   ],
@@ -195,20 +222,30 @@ const cspConfig: CspConfig = [
   gleap,
   google,
   bugsnag,
+  googleTranslate,
 ].reduce(mergeConfigs, cspBaseConfig);
 
-// Reporting
-const baseUrl = process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL;
-const bypassSecret = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
-const secureBaseUrl = baseUrl?.startsWith("http")
-  ? baseUrl.replace("http://", "https://")
-  : `https://${baseUrl}`;
-const bypassParam =
-  isPreview && bypassSecret
-    ? `?x-vercel-protection-bypass=${bypassSecret}`
-    : "";
-const reportCspApiUrl = `${secureBaseUrl}/api/csp-report${bypassParam}`;
-export const reportingEndpointsHeader = `oak-csp="${reportCspApiUrl}"`;
+// Reporting - PostHog CSP Dashboard
+const posthogApiKey = process.env.NEXT_PUBLIC_POSTHOG_API_KEY || "";
+const posthogApiHost =
+  process.env.NEXT_PUBLIC_POSTHOG_API_HOST || "https://eu.i.posthog.com";
+
+const posthogReportUri = posthogApiKey
+  ? `${posthogApiHost}/report/?token=${posthogApiKey}`
+  : "";
+
+// appends sample rate and version to the report uri, development mode does not append sample rate and version
+export const getReportUri = (
+  posthogReportUri: string,
+  sampleRate: number = 0.05,
+  version: string = "1",
+) => {
+  return isDevelopment
+    ? `${posthogReportUri}`
+    : `${posthogReportUri}&sample_rate=${sampleRate.toString()}&v=${version}`;
+};
+
+export const reportingEndpointsHeader = `posthog="${posthogReportUri}"`;
 
 export const cspHeader = `
     default-src ${cspConfig.defaultSrc.join(" ")};
@@ -225,7 +262,7 @@ export const cspHeader = `
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
     child-src ${cspConfig.childSrc.join(" ")};
-    report-uri ${reportCspApiUrl};
-    report-to oak-csp;
+    report-uri ${getReportUri(posthogReportUri, 0.05, "1")};
+    report-to posthog
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;

@@ -1,29 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GetInvolvedLinkCard renders 1`] = `
+exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
 <div>
   <div
-    class="sc-fqkvVR sc-kAyceB bPcfty xvJiZ"
+    class="sc-fqkvVR sc-kAyceB bPcfty kYkjWQ"
   >
     <div
       class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
     >
-      <h2
-        class="sc-kpDqfm igLHEh"
+      <h3
+        class="sc-kpDqfm dNyCKG"
       >
-        Give your feedback
-      </h2>
-      <p
-        class="sc-dLMFU gKXbKJ"
-      >
-        Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
-      </p>
+        Help us improve
+      </h3>
+      Teachers are at the heart of everything we build.
     </div>
     <div
-      class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+      class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
     >
       <div
-        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+        class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
       >
         <div
           class="sc-fqkvVR iPpXCP grey-shadow"
@@ -32,7 +28,78 @@ exports[`GetInvolvedLinkCard renders 1`] = `
           class="sc-fqkvVR iPpXCP yellow-shadow"
         />
         <a
-          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+          href="https://example.com/research"
+        >
+          <div
+            class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+          >
+            <span
+              class="sc-dAlyuH hHWgLm"
+            >
+              Join the research panel
+            </span>
+          </div>
+        </a>
+      </div>
+      <div
+        class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
+      >
+        <div
+          class="sc-fqkvVR iPpXCP grey-shadow"
+        />
+        <div
+          class="sc-fqkvVR iPpXCP yellow-shadow"
+        />
+        <a
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+          href="https://example.com/explore"
+        >
+          <div
+            class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+          >
+            <span
+              class="sc-dAlyuH hHWgLm"
+            >
+              Explore our research
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GetInvolvedLinkCard renders with single button 1`] = `
+<div>
+  <div
+    class="sc-fqkvVR sc-kAyceB bPcfty kYkjWQ"
+  >
+    <div
+      class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
+    >
+      <h2
+        class="sc-kpDqfm dNyCKG"
+      >
+        Give your feedback
+      </h2>
+      Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
+    </div>
+    <div
+      class="sc-fqkvVR sc-kAyceB fgBWrW kjCrYV"
+    >
+      <div
+        class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
+      >
+        <div
+          class="sc-fqkvVR iPpXCP grey-shadow"
+        />
+        <div
+          class="sc-fqkvVR iPpXCP yellow-shadow"
+        />
+        <a
+          class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
           href="#"
         >
           <div
@@ -43,22 +110,28 @@ exports[`GetInvolvedLinkCard renders 1`] = `
             >
               Get in touch
             </span>
-            <div
-              class="sc-fqkvVR kbnxKi"
-            >
-              <img
-                alt=""
-                class="sc-dcJsrY beWtwI"
-                data-nimg="fill"
-                decoding="async"
-                loading="lazy"
-                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-              />
-            </div>
           </div>
         </a>
       </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GetInvolvedLinkCard renders without buttons 1`] = `
+<div>
+  <div
+    class="sc-fqkvVR sc-kAyceB bPcfty kYkjWQ"
+  >
+    <div
+      class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
+    >
+      <h3
+        class="sc-kpDqfm dNyCKG"
+      >
+        No Buttons
+      </h3>
+      Content without buttons
     </div>
   </div>
 </div>

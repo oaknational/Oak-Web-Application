@@ -8,6 +8,7 @@ import CMSClient from "@/node-lib/cms";
 import { AboutPartnersPage } from "@/common-lib/cms-types";
 import AboutPartners, { getStaticProps } from "@/pages/about-us/partners";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 jest.mock("@/node-lib/cms");
 
@@ -76,7 +77,9 @@ const testPartnersPageData: AboutPartnersPage = {
 
 describe("pages/about-us/board.tsx", () => {
   it("Renders correct title ", async () => {
-    renderWithProviders()(<AboutPartners pageData={testPartnersPageData} />);
+    renderWithProviders()(
+      <AboutPartners pageData={testPartnersPageData} topNav={topNavFixture} />,
+    );
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       "About us",
@@ -84,7 +87,9 @@ describe("pages/about-us/board.tsx", () => {
   });
 
   it("Renders curriculum partners", async () => {
-    renderWithProviders()(<AboutPartners pageData={testPartnersPageData} />);
+    renderWithProviders()(
+      <AboutPartners pageData={testPartnersPageData} topNav={topNavFixture} />,
+    );
 
     const curriculumPartnersList = screen.getByTestId(
       "curriculum-partners-list",
@@ -93,7 +98,9 @@ describe("pages/about-us/board.tsx", () => {
   });
 
   it("Renders tech partners", async () => {
-    renderWithProviders()(<AboutPartners pageData={testPartnersPageData} />);
+    renderWithProviders()(
+      <AboutPartners pageData={testPartnersPageData} topNav={topNavFixture} />,
+    );
 
     const curriculumPartnersList = screen.getByTestId("tech-partners-list");
     expect(curriculumPartnersList.childElementCount).toBe(2);
@@ -102,7 +109,10 @@ describe("pages/about-us/board.tsx", () => {
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
-        <AboutPartners pageData={testPartnersPageData} />,
+        <AboutPartners
+          pageData={testPartnersPageData}
+          topNav={topNavFixture}
+        />,
       );
 
       expect(seo).toEqual({

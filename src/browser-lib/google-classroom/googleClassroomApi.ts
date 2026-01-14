@@ -1,10 +1,11 @@
 "use client";
 
 const getOakGCAuthHeaders = async (): Promise<Headers | undefined> => {
-  if (!window?.cookieStore) return undefined;
-  const session = (await window.cookieStore.get("oak-gclassroom-session"))
+  if (!globalThis?.cookieStore) return undefined;
+  const session = (await globalThis.cookieStore.get("oak-gclassroom-session"))
     ?.value;
-  const token = (await window.cookieStore.get("oak-gclassroom-token"))?.value;
+  const token = (await globalThis.cookieStore.get("oak-gclassroom-token"))
+    ?.value;
   let headers: Headers | undefined;
   if (session && token) {
     headers = new Headers();
@@ -26,17 +27,18 @@ const sendRequest = async <returnType, payload = undefined>(
     body: body && JSON.stringify(body),
     headers,
   });
-  // todo: error handling
+  // should error handle
   return res.json();
 };
 
 const getGoogleSignInUrl = async (
   loginHint: string | null,
 ): Promise<string | null> => {
-  if (!loginHint) return null;
-  const data = await sendRequest<{ signInUrl: string }>(
-    `/api/classroom/auth/sign-in?login_hint=${loginHint}`,
-  );
+  const url = loginHint
+    ? `/api/classroom/auth/sign-in?login_hint=${loginHint}`
+    : `/api/classroom/auth/sign-in`;
+
+  const data = await sendRequest<{ signInUrl: string }>(url);
   return data.signInUrl ?? null;
 };
 
@@ -68,7 +70,7 @@ const createAttachment = async (attachment: {
   addOnToken: string;
   title: string;
   lessonSlug: string;
-  programeSlug: string;
+  programmeSlug: string;
   unitSlug: string;
 }): Promise<void> => {
   try {
@@ -80,11 +82,11 @@ const createAttachment = async (attachment: {
         addOnToken: string;
         title: string;
         lessonSlug: string;
-        programeSlug: string;
+        programmeSlug: string;
         unitSlug: string;
       }
     >(
-      `/api/classroom/attachment`,
+      `/api/classroom/attachment/create`,
       "POST",
       attachment,
       await getOakGCAuthHeaders(),

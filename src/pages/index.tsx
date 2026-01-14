@@ -17,11 +17,13 @@ import curriculumApi2023, {
 } from "@/node-lib/curriculum-api-2023";
 import { HomePage as CmsHomePage } from "@/common-lib/cms-types";
 import getPageProps from "@/node-lib/getPageProps";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type HomePageProps = BlogPostProps & {
   curriculumData: KeyStagesData;
   pageData: CmsHomePage;
   posts: SerializedPost[];
+  topNav: TopNavProps;
 };
 
 const HomePage: NextPage<HomePageProps> = (props) => {
@@ -39,7 +41,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
     }
   }, [router]);
 
-  const { curriculumData, posts, pageData } = props;
+  const { curriculumData, posts, pageData, topNav } = props;
 
   const testimonials = pageData?.testimonials;
   const intro = pageData?.intro;
@@ -53,6 +55,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
           "Explore our free, time-saving teacher resources from Oak National Academy. Browse and download worksheets, quizzes and slides from KS1 to KS4. ",
       }}
       $background={"white"}
+      topNavProps={topNav}
     >
       <Banners />
       <HomePageTabImageNav current={"teachers"} />
@@ -87,11 +90,14 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 
       const curriculumData = await curriculumApi2023.keyStages();
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<HomePageProps> = {
         props: {
           pageData,
           curriculumData,
           posts,
+          topNav,
         },
       };
       return results;

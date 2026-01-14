@@ -6,6 +6,7 @@ export default clerkMiddleware();
  * Clerk middleware causes page latency, we're only enabling it for API routes or pages where
  * we need to access the user session in the backend
  */
+
 export const config: MiddlewareConfig = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params

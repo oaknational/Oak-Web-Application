@@ -26,6 +26,8 @@ import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -33,6 +35,7 @@ type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
 
 export type PolicyPageProps = {
   policy: SerializedPolicyPage;
+  topNav: TopNavProps;
 };
 
 const customPolicyComponent: PortableTextComponents = {
@@ -112,7 +115,7 @@ const customPolicyComponent: PortableTextComponents = {
   },
 };
 
-const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
+const Policies: NextPage<PolicyPageProps> = ({ policy, topNav }) => {
   return (
     <Layout
       seoProps={getSeoProps({
@@ -120,6 +123,7 @@ const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
         title: policy.seo?.title || policy.title,
       })}
       $background={"white"}
+      topNavProps={topNav}
     >
       <OakMaxWidth
         $ph={["spacing-16", "spacing-24"]}
@@ -207,9 +211,12 @@ export const getStaticProps: GetStaticProps<
         lastUpdatedAt: policyResult.lastUpdatedAt.toISOString(),
       };
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<PolicyPageProps> = {
         props: {
           policy,
+          topNav,
         },
       };
       return results;

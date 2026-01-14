@@ -2,8 +2,13 @@
 
 import { useSearchParams } from "next/navigation";
 import { OakGoogleClassroomProvider } from "@oaknational/google-classroom-addon/ui";
+import { Suspense } from "react";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+function GoogleClassroomProviderWrapper({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   const searchParams = useSearchParams();
   const courseId = searchParams?.get("courseId") ?? "";
   const itemId = searchParams?.get("itemId") ?? "";
@@ -17,5 +22,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     >
       {children}
     </OakGoogleClassroomProvider>
+  );
+}
+
+export default function Layout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <Suspense fallback={null}>
+      <GoogleClassroomProviderWrapper>
+        {children}
+      </GoogleClassroomProviderWrapper>
+    </Suspense>
   );
 }

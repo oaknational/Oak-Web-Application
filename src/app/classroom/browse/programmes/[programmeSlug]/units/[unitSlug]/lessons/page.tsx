@@ -6,26 +6,30 @@ import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/G
 
 async function GoogleClassroomLessonsListPage({
   params,
-}: {
+}: Readonly<{
   params: Promise<{ programmeSlug: string; unitSlug: string }>;
-}) {
+}>) {
   const { programmeSlug, unitSlug } = await params;
   const { browseData } = await curriculumApi2023.pupilLessonListingQuery({
     programmeSlug,
     unitSlug,
   });
-  const orderedBrowseData = browseData.sort((a, b) => {
+  const sortByOrderInUnit = (
+    a: (typeof browseData)[0],
+    b: (typeof browseData)[0],
+  ) => {
     const aLessonOrder = a.supplementaryData?.orderInUnit;
     const bLessonOrder = b.supplementaryData?.orderInUnit;
     return aLessonOrder - bLessonOrder;
-  });
-  const unitData = browseData[0]?.unitData;
-  const programmeFields = browseData[0]?.programmeFields;
+  };
+  const orderedBrowseData = [...browseData].sort(sortByOrderInUnit);
+  const unitData = orderedBrowseData[0]?.unitData;
+  const programmeFields = orderedBrowseData[0]?.programmeFields;
 
   return (
     <LessonListingView
       unitData={unitData}
-      browseData={orderedBrowseData}
+      browseData={orderedBrowseData as never}
       programmeFields={programmeFields}
       programmeSlug={programmeSlug}
       pupilLessonUrlTemplate={
