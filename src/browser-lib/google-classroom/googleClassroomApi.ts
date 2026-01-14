@@ -76,6 +76,7 @@ const verifySession = async (): Promise<{
   authenticated: boolean;
   session: string | undefined;
   token: string | undefined;
+  userProfilePicUrl?: string;
 }> => {
   try {
     const headers = await getOakGCAuthHeaders();
@@ -83,12 +84,14 @@ const verifySession = async (): Promise<{
       authenticated: boolean;
       session: string | undefined;
       token: string | undefined;
+      userProfilePicUrl?: string;
     }>(`/api/classroom/auth/verify`, "GET", undefined, headers);
 
     return {
       authenticated: data.authenticated ?? false,
       session: data.session,
       token: data.token,
+      userProfilePicUrl: data.userProfilePicUrl,
     };
   } catch (error) {
     console.error("Session verification error:", error);
@@ -96,6 +99,7 @@ const verifySession = async (): Promise<{
       authenticated: false,
       session: undefined,
       token: undefined,
+      userProfilePicUrl: undefined,
     };
   }
 };
