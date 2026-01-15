@@ -50,7 +50,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
   return (
     <Layout
       seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
+      $background={"bg-primary"}
       topNavProps={topNav}
     >
       <OakMaxWidth

@@ -62,7 +62,11 @@ const SearchResults = (props: SearchResultsProps) => {
   };
 
   return (
-    <OakFlex $background={"white"} $flexDirection="column" id="search-results">
+    <OakFlex
+      $background={"bg-primary"}
+      $flexDirection="column"
+      id="search-results"
+    >
       {hitCount ? (
         <OakUL $reset>
           {currentPageItemsWithSignPost.map((hit, index) => {

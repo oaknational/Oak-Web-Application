@@ -562,7 +562,7 @@ exports[`CurriculumTab renders 1`] = `
   -moz-letter-spacing: 0.0115rem;
   -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
-  color: #2d2d2d;
+  color: #222222;
 }
 
 .c13 {

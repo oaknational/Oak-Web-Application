@@ -528,6 +528,7 @@ describe("subjectTitleWithCase", () => {
 
   it("non-language", () => {
     expect(subjectTitleWithCase("science")).toEqual("science");
+    expect(subjectTitleWithCase("RSHE (PSHE)")).toEqual("RSHE (PSHE)");
     expect(subjectTitleWithCase("physical education")).toEqual(
       "physical education",
     );

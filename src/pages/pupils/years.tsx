@@ -101,7 +101,7 @@ const YearListingPage = ({ topNav }: YearListingPageProps) => {
                 </OakFlex>
 
                 <OakHandDrawnHR
-                  hrColor={"border-neutral-lighter"}
+                  hrColor={"bg-interactive-element2"}
                   $width={"100%"}
                   aria-hidden="true"
                 />

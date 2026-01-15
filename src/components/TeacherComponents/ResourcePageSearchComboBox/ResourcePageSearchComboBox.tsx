@@ -72,7 +72,9 @@ const ResourcePageSearchComboBox = <T extends School>(
       <OakFlex $width={"100%"} $position={"relative"} ref={inputRef}>
         <OakJauntyAngleLabel
           label={props.label + (props.required ? " (required)" : "")}
-          $color={state.isFocused || hasError ? "white" : "black"}
+          $color={
+            state.isFocused || hasError ? "text-inverted" : "text-primary"
+          }
           htmlFor={id}
           as="label"
           id={labelId}
@@ -103,7 +105,7 @@ const ResourcePageSearchComboBox = <T extends School>(
           wrapperWidth={"100%"}
           $pv="spacing-0"
           $height="spacing-56"
-          color="black"
+          color="text-primary"
         />
       </OakFlex>
       {state.isOpen && (

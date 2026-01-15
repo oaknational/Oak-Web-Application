@@ -101,7 +101,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
   return (
     <Layout
       seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
+      $background={"bg-primary"}
       topNavProps={topNav}
     >
       <OakMaxWidth
@@ -228,7 +228,7 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
   return (
     <Layout
       seoProps={getSeoProps(pageData.seo)}
-      $background={"white"}
+      $background={"bg-primary"}
       topNavProps={topNav}
     >
       <AboutUsLayout>

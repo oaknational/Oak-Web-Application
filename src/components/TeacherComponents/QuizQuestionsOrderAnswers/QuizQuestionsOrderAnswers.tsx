@@ -31,7 +31,7 @@ export const QuizQuestionsOrderAnswers = ({
           orderAnswer && (
             <OakFlex
               key={`q-${questionNumber}-answer${i}`}
-              $background={"lemon50"}
+              $background={"bg-decorative5-subdued"}
               $borderRadius="border-radius-m2"
               $ph="spacing-8"
               $alignItems={"flex-start"}

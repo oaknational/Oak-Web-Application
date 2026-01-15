@@ -1,6 +1,6 @@
 import { forwardRef, MouseEventHandler } from "react";
 import styled from "styled-components";
-import { OakColorToken } from "@oaknational/oak-components";
+import { OakUiRoleToken } from "@oaknational/oak-components";
 
 import button, {
   ButtonStylesProps,
@@ -35,7 +35,7 @@ export type ButtonProps = CommonButtonProps & {
   isCurrent?: boolean;
   currentStyles?: ButtonCurrentStyles;
   role?: string;
-  labelColor?: OakColorToken;
+  labelColor?: OakUiRoleToken;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {

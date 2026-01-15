@@ -17,7 +17,7 @@ type Story = StoryObj<typeof Component>;
 export const TagPromotional: Story = {
   render: () => {
     return (
-      <OakFlex $background={"grey30"} $pa="spacing-16">
+      <OakFlex $background={"bg-neutral-stronger"} $pa="spacing-16">
         <Component size={"small"} />
         <Component size={"medium"} />
         <Component size={"large"} />

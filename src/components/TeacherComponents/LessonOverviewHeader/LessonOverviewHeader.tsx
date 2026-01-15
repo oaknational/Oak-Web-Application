@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import {
   OakColorFilterToken,
-  OakColorToken,
   OakSmallSecondaryButtonWithDropdown,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import { TeacherShareNotesButton } from "../TeacherShareNotesButton/TeacherShareNotesButton";
@@ -53,7 +53,7 @@ export type LessonOverviewHeaderProps = {
   lessonReleaseDate?: string | null;
   // other props
   breadcrumbs: Breadcrumb[];
-  background: OakColorToken;
+  background: OakUiRoleToken;
   isNew: boolean;
   isShareable: boolean;
   subjectIconBackgroundColor: OakColorFilterToken;

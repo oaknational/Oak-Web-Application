@@ -22,9 +22,9 @@ export const OnboardingLayout = ({
 }: OnboardingLayoutProps) => {
   return (
     <OakFlex
-      $background={["white", "bg-decorative1-main"]}
+      $background={["bg-primary", "bg-decorative1-main"]}
       $overflow="auto"
-      $color="black"
+      $color="text-primary"
     >
       <OakFlex
         $justifyContent={"center"}

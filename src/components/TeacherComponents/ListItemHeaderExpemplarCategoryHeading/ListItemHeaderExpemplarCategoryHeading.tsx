@@ -13,7 +13,7 @@ const ListItemHeaderExpemplarCategoryHeading: FC<
   return (
     <OakTypography
       $font={["body-3", "heading-light-7"]}
-      $color={"grey60"}
+      $color={"text-subdued"}
       $mb="spacing-4"
     >
       {keyStageTitle}{" "}
