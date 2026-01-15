@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import {
   OakBox,
   OakFlex,
@@ -59,6 +59,11 @@ export function SubmenuContainer({
 
 export function SubmenuContent(props: TeachersSubNavData) {
   const { submenuOpen, handleClose } = useHamburgerMenu();
+  const firstItemRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    firstItemRef.current?.focus();
+  }, []);
 
   if (!submenuOpen) return null;
 
@@ -71,9 +76,10 @@ export function SubmenuContent(props: TeachersSubNavData) {
             $flexDirection={"column"}
             $gap={"spacing-16"}
           >
-            {props.aboutUs.map((link) => (
+            {props.aboutUs.map((link, i) => (
               <OakBox key={link.slug}>
                 <OakLeftAlignedButton
+                  ref={i == 0 ? firstItemRef : undefined}
                   onClick={() => {
                     handleClose();
                   }}
@@ -96,9 +102,10 @@ export function SubmenuContent(props: TeachersSubNavData) {
             $flexDirection={"column"}
             $gap={"spacing-16"}
           >
-            {props.guidance.map((link) => (
+            {props.guidance.map((link, i) => (
               <OakBox key={link.slug}>
                 <OakLeftAlignedButton
+                  ref={i == 0 ? firstItemRef : undefined}
                   onClick={() => {
                     handleClose();
                   }}
@@ -142,6 +149,7 @@ export function SubmenuContent(props: TeachersSubNavData) {
               .map((subject) => (
                 <OakBox key={subject.title + phase}>
                   <OakSubjectIconButton
+                    // TD: when React 19 update is completed, pass in first item ref
                     element={Link}
                     href={resolveOakHref({
                       page: "programme-index",
