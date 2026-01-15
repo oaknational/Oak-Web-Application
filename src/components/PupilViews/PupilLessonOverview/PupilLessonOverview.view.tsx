@@ -30,6 +30,7 @@ import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLe
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
+import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
 type PupilViewsLessonOverviewProps = {
   browseData: LessonBrowseData;
@@ -54,6 +55,7 @@ export const PupilViewsLessonOverview = ({
   backUrl,
   browseData,
 }: PupilViewsLessonOverviewProps) => {
+  const { isClassroomAssignment } = useAssignmentSearchParams();
   const { programmeFields, lessonData } = browseData;
   const {
     subjectSlug,
@@ -61,6 +63,7 @@ export const PupilViewsLessonOverview = ({
     yearDescription,
     subject,
   } = programmeFields;
+
   const { expirationDate } = lessonData;
   const {
     sectionResults,
@@ -155,14 +158,16 @@ export const PupilViewsLessonOverview = ({
         $ph={["spacing-16", "spacing-24", "spacing-0"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <ViewAllLessonsButton
-            href={backUrl}
-            onClick={() => {
-              if (isLessonComplete === false) {
-                track.lessonAbandoned({});
-              }
-            }}
-          />
+          {!isClassroomAssignment && (
+            <ViewAllLessonsButton
+              href={backUrl}
+              onClick={() => {
+                if (isLessonComplete === false) {
+                  track.lessonAbandoned({});
+                }
+              }}
+            />
+          )}
         </OakGridArea>
         <OakGridArea
           $colStart={[1, 1, 2]}
