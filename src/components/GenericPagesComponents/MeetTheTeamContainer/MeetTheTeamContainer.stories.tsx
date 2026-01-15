@@ -10,7 +10,7 @@ import { MeetTheTeamContainer as Component } from ".";
 const meta: Meta<typeof Component> = {
   component: Component,
   tags: ["autodocs"],
-  title: "Components/GenericPagesComponents/WhoAreWeDesc",
+  title: "Components/GenericPagesComponents/MeetTheTeamContainer",
   argTypes: {},
   decorators: [
     (Story) => (
