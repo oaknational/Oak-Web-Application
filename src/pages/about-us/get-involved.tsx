@@ -42,7 +42,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
   return (
     <Layout
       seoProps={getSeoProps(null)}
-      $background={"white"}
+      $background={"bg-primary"}
       topNavProps={topNav}
     >
       <AboutUsLayout>

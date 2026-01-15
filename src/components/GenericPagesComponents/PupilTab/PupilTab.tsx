@@ -17,7 +17,7 @@ const PupilTab: FC = () => {
   return (
     <OakFlex
       data-testid="pupil-tab"
-      $background={"mint"}
+      $background={"bg-decorative1-main"}
       $pv="spacing-24"
       $overflow={"hidden"}
     >
@@ -34,7 +34,11 @@ const PupilTab: FC = () => {
               $flexShrink={1}
               $flexBasis={"auto"}
             >
-              <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
+              <OakHeading
+                $font={"heading-7"}
+                tag={"h1"}
+                $color={"text-primary"}
+              >
                 Pupils
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>

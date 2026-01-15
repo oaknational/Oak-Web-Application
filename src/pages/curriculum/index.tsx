@@ -37,7 +37,7 @@ const Curriculum: NextPage<
         description:
           "Discover our free curriculum plans across subjects from KS1 to KS4, all high-quality, fully-sequenced and aligned with the national curriculum.",
       }}
-      $background={"white"}
+      $background={"bg-primary"}
       topNavProps={props.topNav}
     >
       <Banners />

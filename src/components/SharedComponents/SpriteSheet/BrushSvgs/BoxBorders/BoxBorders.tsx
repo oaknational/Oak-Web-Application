@@ -4,7 +4,7 @@ import {
   OakBox,
   OakBoxProps,
   oakBoxCss,
-  OakColorToken,
+  OakUiRoleToken,
   oakZIndexTokens,
 } from "@oaknational/oak-components";
 
@@ -42,7 +42,7 @@ export type BoxBordersProps = {
   hideBottom?: boolean;
   hideRight?: boolean;
   hideLeft?: boolean;
-  $color?: OakColorToken;
+  $color?: OakUiRoleToken;
   hideOnMobileH?: boolean;
   hideOnMobileV?: boolean;
 };
@@ -61,7 +61,7 @@ export type StyledBoxBorderProps = OakBoxProps & {
   className?: string;
   hideOnMobileH?: boolean;
   hideOnMobileV?: boolean;
-  color?: OakColorToken;
+  color?: OakUiRoleToken;
   filter?: string;
   gapPosition?: GapPosition;
 };

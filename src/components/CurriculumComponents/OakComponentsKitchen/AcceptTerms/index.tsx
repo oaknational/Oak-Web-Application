@@ -36,7 +36,7 @@ export default function AcceptTerms({
       )}
       <OakBox
         $position={"relative"}
-        $background={"grey20"}
+        $background={"bg-neutral"}
         $pv="spacing-8"
         $ph="spacing-8"
       >

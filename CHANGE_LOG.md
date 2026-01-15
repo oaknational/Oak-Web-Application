@@ -1,3 +1,40 @@
+# [1.952.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.951.0...v1.952.0) (2026-01-15)
+
+
+### Features
+
+* add OakThemeProvider to share page ([8cd0260](https://github.com/oaknational/Oak-Web-Application/commit/8cd0260fd693c7d61077162f7e85ace133ab07aa))
+* fix sonarcube issue and theme provider to videoId page ([ce1bfc4](https://github.com/oaknational/Oak-Web-Application/commit/ce1bfc480ccae1ff4e41d01e659862469f44a881))
+* missing ui tokens manual update after design review ([813b2d0](https://github.com/oaknational/Oak-Web-Application/commit/813b2d0e6fc5bb5dcc6a6d6530171e76111b2532))
+* remove accidentally commited text ([efadbd5](https://github.com/oaknational/Oak-Web-Application/commit/efadbd56f3e48a6b0aa4dce6d928167e58a6c332))
+* update related tests ([a00af8f](https://github.com/oaknational/Oak-Web-Application/commit/a00af8f1740221ebcbb703a9a6fd9206f2a46b81))
+* update remaining cases after changing type from OakCombinedColorToken to OakUiRoleToken ([47d083f](https://github.com/oaknational/Oak-Web-Application/commit/47d083f6b4423ef7f1a4f5fa88a3b3e65dcd5557))
+* update remaining occurrence of OakCombinedCOlorToken ([492b666](https://github.com/oaknational/Oak-Web-Application/commit/492b6667169b1bd461d6e8c8d60cd68c6022ef5f))
+* update tests and snapshots ([7091ed6](https://github.com/oaknational/Oak-Web-Application/commit/7091ed69782e77589a84680658207ec1d639dfa3))
+* update to ui tokens ([63f07d6](https://github.com/oaknational/Oak-Web-Application/commit/63f07d6b433200e9c5aaf862888f30f7eff1e7b7))
+
+# [1.951.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.950.0...v1.951.0) (2026-01-15)
+
+
+### Features
+
+* improve loading of links from homepage header ([0494f39](https://github.com/oaknational/Oak-Web-Application/commit/0494f39f5b895d0c7064b30a57b96afef5bfc96c))
+* **LESQ-1737:** apply updated `OakSaveCount` ([9d368f5](https://github.com/oaknational/Oak-Web-Application/commit/9d368f5be61e18cde65fa28f388705edaf203007))
+
+# [1.950.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.949.0...v1.950.0) (2026-01-14)
+
+
+### Bug Fixes
+
+* add notifications provider to top nav story ([f6ae817](https://github.com/oaknational/Oak-Web-Application/commit/f6ae817b225c704171a8bad21216242c3ca222f4))
+* get top nav props on error pages ([f3122b0](https://github.com/oaknational/Oak-Web-Application/commit/f3122b0b92617ec7cd14ae0d6d8ad2fac994e707))
+
+
+### Features
+
+* add inline banenr to top nav when data missing ([c12a5a5](https://github.com/oaknational/Oak-Web-Application/commit/c12a5a5c2f27537dbca7d323a8c523100bd4e0e4))
+* add revalidation and error handling to core layout ([7d0aa15](https://github.com/oaknational/Oak-Web-Application/commit/7d0aa15fd7cdc695cf5b0461a7224cc1fd2c2d54))
+
 # [1.949.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.948.0...v1.949.0) (2026-01-14)
 
 

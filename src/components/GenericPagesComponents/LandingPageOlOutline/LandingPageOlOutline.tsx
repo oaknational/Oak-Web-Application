@@ -5,7 +5,7 @@ import { outlineShadow } from "@/components/SharedComponents/OutlineHeading/Outl
 import { OakColorName } from "@/styles/theme";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 
-export const LandingPageOlOutline = styled(OakOL)<{ $color: OakColorName }>`
+export const LandingPageOlOutline = styled(OakOL)<{ $textColor: OakColorName }>`
   & div:last-child {
     margin-bottom: 0;
   }
@@ -26,7 +26,7 @@ export const LandingPageOlOutline = styled(OakOL)<{ $color: OakColorName }>`
     text-indent: -32px;
     content: counter(item);
     font-size: 50px;
-    color: ${(props) => getColorByName(props.$color)};
+    color: ${(props) => getColorByName(props.$textColor)};
     text-shadow: ${outlineShadow};
   }
 

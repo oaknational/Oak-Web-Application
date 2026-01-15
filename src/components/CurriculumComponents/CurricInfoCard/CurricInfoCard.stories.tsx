@@ -43,6 +43,6 @@ export const Default: Story = {
   args: {
     children: "This is some information.",
     iconName: "search",
-    background: "mint30",
+    background: "bg-decorative1-very-subdued",
   },
 };

@@ -23,7 +23,7 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
     )}
     <OakBox
       $position={"relative"}
-      $background={"grey30"}
+      $background={"bg-neutral-stronger"}
       $pv="spacing-8"
       $ph="spacing-8"
       $mb="spacing-24"

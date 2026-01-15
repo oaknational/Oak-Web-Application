@@ -79,7 +79,7 @@ exports[`CurricShowSteps basic usage 1`] = `
           >
             <div
               class="sc-fqkvVR sc-kAyceB jAHGNa kyta-DD"
-              color="white"
+              color="text-inverted"
             />
             <div
               class="sc-fqkvVR cMqhUz"

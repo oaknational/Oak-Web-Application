@@ -1,11 +1,13 @@
 import React, { forwardRef } from "react";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import VideoPlayer, {
   VideoEventCallbackArgs,
   VideoPlayerProps,
 } from "./VideoPlayer";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 let currentErrorEvent = { detail: { data: { type: "networkError" } } };
 // Override the global mock for @mux/mux-player-react/lazy
@@ -80,7 +82,7 @@ describe("VideoPlayer", () => {
   };
 
   it("handles and doesn't report network error event", async () => {
-    render(<VideoPlayer {...defaultProps} />);
+    renderWithTheme(<VideoPlayer {...defaultProps} />);
     const errorButton = screen.getByTestId("error-button");
     mockErrorReporter.mockClear();
 
@@ -90,7 +92,7 @@ describe("VideoPlayer", () => {
   });
 
   it("handles and reports unknown error event", async () => {
-    render(<VideoPlayer {...defaultProps} />);
+    renderWithTheme(<VideoPlayer {...defaultProps} />);
     const errorButton = screen.getByTestId("error-button");
     mockErrorReporter.mockClear();
 
@@ -113,7 +115,7 @@ describe("VideoPlayer", () => {
   });
 
   it("handles and reports onPlay event", async () => {
-    render(<VideoPlayer {...defaultProps} />);
+    renderWithTheme(<VideoPlayer {...defaultProps} />);
     const playButton = screen.getByTestId("play-button");
     jest.clearAllMocks();
     await userEvent.click(playButton);
@@ -127,7 +129,7 @@ describe("VideoPlayer", () => {
   });
 
   it("handles and reports onPause event", async () => {
-    render(<VideoPlayer {...defaultProps} />);
+    renderWithTheme(<VideoPlayer {...defaultProps} />);
     const playButton = screen.getByTestId("play-button");
     await userEvent.click(playButton);
     setTimeout(async () => {

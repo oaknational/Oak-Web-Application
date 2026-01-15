@@ -40,7 +40,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout
       seoProps={getSeoProps(seo)}
-      $background={"white"}
+      $background={"bg-primary"}
       topNavProps={topNav}
     >
       <OakMaxWidth

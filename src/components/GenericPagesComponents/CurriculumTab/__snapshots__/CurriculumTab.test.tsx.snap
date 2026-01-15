@@ -5,6 +5,8 @@ exports[`CurriculumTab renders 1`] = `
   position: fixed;
   right: 0rem;
   width: 100%;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: 1;
 }
@@ -326,10 +328,14 @@ exports[`CurriculumTab renders 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .c7 {
@@ -556,7 +562,7 @@ exports[`CurriculumTab renders 1`] = `
   -moz-letter-spacing: 0.0115rem;
   -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
-  color: #2d2d2d;
+  color: #222222;
 }
 
 .c13 {
@@ -950,7 +956,7 @@ exports[`CurriculumTab renders 1`] = `
 
 @media (min-width:750px) {
   .c0 {
-    right: 5.75rem;
+    right: 1.5rem;
   }
 }
 
@@ -959,6 +965,18 @@ exports[`CurriculumTab renders 1`] = `
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
+  }
+}
+
+@media (min-width:750px) {
+  .c0 {
+    padding-left: 0rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c0 {
+    padding-right: 0rem;
   }
 }
 
@@ -1147,10 +1165,10 @@ exports[`CurriculumTab renders 1`] = `
 
 @media (min-width:750px) {
   .c1 {
-    -webkit-box-pack: end;
-    -webkit-justify-content: flex-end;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
   }
 }
 
