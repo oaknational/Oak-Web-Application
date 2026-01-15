@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
         errorDescription,
       });
 
-      return Response.json(
+      return NextResponse.json(
         {
           error: "OAuth error",
           details: error,
@@ -78,11 +78,11 @@ export async function GET(request: NextRequest) {
     if (isOakGoogleClassroomException(error)) {
       const errorObject = error.toObject();
       reportError(errorObject);
-      return Response.json(errorObject, { status: 400 });
+      return NextResponse.json(errorObject, { status: 400 });
     }
 
     reportError(error, { severity: "error" });
-    return Response.json(
+    return NextResponse.json(
       {
         error: "Failed to process OAuth callback",
         details: error instanceof Error ? error.message : String(error),

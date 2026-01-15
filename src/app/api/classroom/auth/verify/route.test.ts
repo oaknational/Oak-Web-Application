@@ -12,6 +12,14 @@ import { GET } from "./route";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
+// Mock NextResponse
+const mockNextResponseJson = jest.fn();
+jest.mock("next/server", () => ({
+  NextResponse: {
+    json: (...args: unknown[]) => mockNextResponseJson(...args),
+  },
+}));
+
 // Mock OakGoogleClassroomAddon
 jest.mock("@/node-lib/google-classroom", () => {
   const reporterMock = jest.fn();
@@ -24,10 +32,6 @@ jest.mock("@/node-lib/google-classroom", () => {
 });
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
-
-// Mock the global Response.json
-const mockResponseJson = jest.fn();
-global.Response.json = mockResponseJson;
 
 const mockValidSession = "valid_session";
 const mockInvalidSession = "invalid_session";
@@ -78,8 +82,8 @@ describe("POST /api/classroom/auth/verify", () => {
       mockValidToken,
     );
 
-    expect(mockResponseJson).toHaveBeenCalledTimes(1);
-    expect(mockResponseJson).toHaveBeenCalledWith(
+    expect(mockNextResponseJson).toHaveBeenCalledTimes(1);
+    expect(mockNextResponseJson).toHaveBeenCalledWith(
       {
         authenticated: true,
         session: mockVerifiedSession,
@@ -125,8 +129,8 @@ describe("POST /api/classroom/auth/verify", () => {
         mockValidToken,
       );
 
-      expect(mockResponseJson).toHaveBeenCalledTimes(1);
-      expect(mockResponseJson).toHaveBeenCalledWith(
+      expect(mockNextResponseJson).toHaveBeenCalledTimes(1);
+      expect(mockNextResponseJson).toHaveBeenCalledWith(
         { authenticated: false, session: undefined, token: undefined },
         { status: 401 },
       );
@@ -147,8 +151,8 @@ describe("POST /api/classroom/auth/verify", () => {
       // Assert
       expect(mockVerifyAuthSession).not.toHaveBeenCalled();
 
-      expect(mockResponseJson).toHaveBeenCalledTimes(1);
-      expect(mockResponseJson).toHaveBeenCalledWith(
+      expect(mockNextResponseJson).toHaveBeenCalledTimes(1);
+      expect(mockNextResponseJson).toHaveBeenCalledWith(
         { authenticated: false },
         { status: 401 },
       );
@@ -180,7 +184,7 @@ describe("POST /api/classroom/auth/verify", () => {
 
       // Assert
       expect(mockedReportError).toHaveBeenCalledWith(mockError.toObject());
-      expect(mockResponseJson).toHaveBeenCalledWith(mockError.toObject(), {
+      expect(mockNextResponseJson).toHaveBeenCalledWith(mockError.toObject(), {
         status: 401,
       });
     });
@@ -202,7 +206,7 @@ describe("POST /api/classroom/auth/verify", () => {
       expect(mockedReportError).toHaveBeenCalledWith(mockError, {
         severity: "error",
       });
-      expect(mockResponseJson).toHaveBeenCalledWith(
+      expect(mockNextResponseJson).toHaveBeenCalledWith(
         {
           authenticated: false,
           error: "Session verification failed",

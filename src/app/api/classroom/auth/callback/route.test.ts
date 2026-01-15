@@ -17,15 +17,13 @@ const mockSession = "encrypted_session_data";
 const mockAccessToken = "google_access_token";
 const mockCode = "test_code_123";
 
-jest.mock("next/server", () => {
-  const mockJson = jest.fn();
-  return {
-    NextResponse: {
-      json: mockJson,
-    },
-    __mockNextResponseJson: mockJson,
-  };
-});
+// Mock NextResponse
+const mockNextResponseJson = jest.fn();
+jest.mock("next/server", () => ({
+  NextResponse: {
+    json: (...args: unknown[]) => mockNextResponseJson(...args),
+  },
+}));
 
 // Mock redirect
 jest.mock("next/navigation", () => ({
@@ -46,10 +44,6 @@ jest.mock("@/node-lib/google-classroom", () => {
 });
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
-
-// Mock the global Response.json
-const mockResponseJson = jest.fn();
-global.Response.json = mockResponseJson;
 
 const mockSearchParamsGet = jest.fn();
 const mockSearchParamsEntries = jest.fn();
@@ -106,7 +100,7 @@ describe("GET /api/classroom/auth/callback", () => {
       `/classroom/auth/success?s=${encodeURIComponent(mockSession)}&at=${encodeURIComponent(mockAccessToken)}`,
     );
 
-    expect(mockResponseJson).not.toHaveBeenCalled();
+    expect(mockNextResponseJson).not.toHaveBeenCalled();
   });
 
   it("should handle a successful sign-in WITHOUT subscribing to newsletter", async () => {
@@ -132,7 +126,7 @@ describe("GET /api/classroom/auth/callback", () => {
       `/classroom/auth/success?s=${encodeURIComponent(mockSession)}&at=${encodeURIComponent(mockAccessToken)}`,
     );
 
-    expect(mockResponseJson).not.toHaveBeenCalled();
+    expect(mockNextResponseJson).not.toHaveBeenCalled();
   });
 
   describe("error handling", () => {
@@ -143,9 +137,6 @@ describe("GET /api/classroom/auth/callback", () => {
       isOakGoogleClassroomException: jest.Mock;
       __mockReportError: jest.Mock;
     };
-    const { __mockNextResponseJson: mockNextResponseJson } = jest.requireMock(
-      "next/server",
-    ) as { __mockNextResponseJson: jest.Mock };
 
     beforeEach(() => {
       jest.clearAllMocks();
@@ -203,7 +194,7 @@ describe("GET /api/classroom/auth/callback", () => {
         expect.objectContaining({ message: "OAuth error: access_denied" }),
         { severity: "warning", errorDescription: "User denied access" },
       );
-      expect(mockResponseJson).toHaveBeenCalledWith(
+      expect(mockNextResponseJson).toHaveBeenCalledWith(
         {
           error: "OAuth error",
           details: "access_denied",
@@ -242,7 +233,7 @@ describe("GET /api/classroom/auth/callback", () => {
 
       // Assert
       expect(mockedReportError).toHaveBeenCalledWith(mockError.toObject());
-      expect(mockResponseJson).toHaveBeenCalledWith(mockError.toObject(), {
+      expect(mockNextResponseJson).toHaveBeenCalledWith(mockError.toObject(), {
         status: 400,
       });
     });
@@ -263,7 +254,7 @@ describe("GET /api/classroom/auth/callback", () => {
       expect(mockedReportError).toHaveBeenCalledWith(mockError, {
         severity: "error",
       });
-      expect(mockResponseJson).toHaveBeenCalledWith(
+      expect(mockNextResponseJson).toHaveBeenCalledWith(
         {
           error: "Failed to process OAuth callback",
           details: "Unexpected failure",

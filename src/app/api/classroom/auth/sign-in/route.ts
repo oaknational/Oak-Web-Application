@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 import {
   getOakGoogleClassroomAddon,
@@ -16,17 +17,17 @@ export async function GET(request: NextRequest) {
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
     const response = await oakClassroomClient.getGoogleSignInUrl(loginHint);
 
-    return Response.json({ signInUrl: response }, { status: 200 });
+    return NextResponse.json({ signInUrl: response }, { status: 200 });
   } catch (error) {
     if (isOakGoogleClassroomException(error)) {
       const errorObject = error.toObject();
       reportError(errorObject);
 
-      return Response.json(errorObject, { status: 400 });
+      return NextResponse.json(errorObject, { status: 400 });
     }
 
     reportError(error, { severity: "error" });
-    return Response.json(
+    return NextResponse.json(
       {
         error: "Could not get Google Sign In link",
         details: error instanceof Error ? error.message : String(error),

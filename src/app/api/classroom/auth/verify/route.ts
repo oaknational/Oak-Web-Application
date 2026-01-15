@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import {
   getOakGoogleClassroomAddon,
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     const session = request.headers.get("X-Oakgc-Session");
 
     if (!session || !accessToken) {
-      return Response.json({ authenticated: false }, { status: 401 });
+      return NextResponse.json({ authenticated: false }, { status: 401 });
     }
 
     const verifiedSession: {
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
 
     const authenticated = !!verifiedSession;
 
-    return Response.json(
+    return NextResponse.json(
       {
         authenticated,
         session: verifiedSession?.session,
@@ -38,14 +38,14 @@ export async function GET(request: NextRequest) {
     if (isOakGoogleClassroomException(error)) {
       const errorObject = error.toObject();
       reportError(errorObject);
-      return Response.json(errorObject, { status: 401 });
+      return NextResponse.json(errorObject, { status: 401 });
     }
 
     reportError(error, {
       severity: "error",
     });
 
-    return Response.json(
+    return NextResponse.json(
       {
         authenticated: false,
         error: "Session verification failed",

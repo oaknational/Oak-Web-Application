@@ -12,6 +12,14 @@ import { GET } from "./route";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
+// Mock NextResponse
+const mockNextResponseJson = jest.fn();
+jest.mock("next/server", () => ({
+  NextResponse: {
+    json: (...args: unknown[]) => mockNextResponseJson(...args),
+  },
+}));
+
 // todo: we could create and export one from the package
 // Mock OakGoogleClassroomAddon
 const mockSignInUrl = "https://google.com/signin/url";
@@ -27,10 +35,6 @@ jest.mock("@/node-lib/google-classroom", () => {
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
 const mockGetGoogleSignInUrl = jest.fn().mockResolvedValue(mockSignInUrl);
-
-// Mock the global Response.json
-const mockResponseJson = jest.fn();
-global.Response.json = mockResponseJson;
 
 // Mock NextResponse search params
 const mockLoginHint = "123456789";
@@ -65,8 +69,8 @@ describe("GET /api/classroom/auth/sign-in", () => {
     expect(mockGetGoogleSignInUrl).toHaveBeenCalledTimes(1);
     expect(mockGetGoogleSignInUrl).toHaveBeenCalledWith(mockLoginHint);
 
-    expect(mockResponseJson).toHaveBeenCalledTimes(1);
-    expect(mockResponseJson).toHaveBeenCalledWith(
+    expect(mockNextResponseJson).toHaveBeenCalledTimes(1);
+    expect(mockNextResponseJson).toHaveBeenCalledWith(
       { signInUrl: mockSignInUrl },
       { status: 200 },
     );
@@ -85,8 +89,8 @@ describe("GET /api/classroom/auth/sign-in", () => {
     expect(mockGetGoogleSignInUrl).toHaveBeenCalledTimes(1);
     expect(mockGetGoogleSignInUrl).toHaveBeenCalledWith(undefined);
 
-    expect(mockResponseJson).toHaveBeenCalledTimes(1);
-    expect(mockResponseJson).toHaveBeenCalledWith(
+    expect(mockNextResponseJson).toHaveBeenCalledTimes(1);
+    expect(mockNextResponseJson).toHaveBeenCalledWith(
       { signInUrl: mockSignInUrl },
       { status: 200 },
     );
@@ -130,7 +134,7 @@ describe("GET /api/classroom/auth/sign-in", () => {
 
       // Assert
       expect(mockedReportError).toHaveBeenCalledWith(mockError.toObject());
-      expect(mockResponseJson).toHaveBeenCalledWith(mockError.toObject(), {
+      expect(mockNextResponseJson).toHaveBeenCalledWith(mockError.toObject(), {
         status: 400,
       });
     });
@@ -147,7 +151,7 @@ describe("GET /api/classroom/auth/sign-in", () => {
       expect(mockedReportError).toHaveBeenCalledWith(mockError, {
         severity: "error",
       });
-      expect(mockResponseJson).toHaveBeenCalledWith(
+      expect(mockNextResponseJson).toHaveBeenCalledWith(
         {
           error: "Could not get Google Sign In link",
           details: "Something went wrong",
