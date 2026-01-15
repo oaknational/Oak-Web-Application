@@ -69,6 +69,8 @@ export function SubmenuContent(props: TeachersSubNavData) {
 
   switch (submenuOpen) {
     case "About us":
+    case "Guidance": {
+      const links = submenuOpen === "About us" ? props.aboutUs : props.guidance;
       return (
         <SubmenuContainer title={submenuOpen}>
           <OakUL
@@ -76,7 +78,7 @@ export function SubmenuContent(props: TeachersSubNavData) {
             $flexDirection={"column"}
             $gap={"spacing-16"}
           >
-            {props.aboutUs.map((link, i) => (
+            {links.map((link, i) => (
               <OakBox key={link.slug}>
                 <OakLeftAlignedButton
                   ref={i == 0 ? firstItemRef : undefined}
@@ -84,7 +86,9 @@ export function SubmenuContent(props: TeachersSubNavData) {
                     handleClose();
                   }}
                   element={Link}
-                  href={`/${link.slug}`}
+                  href={resolveOakHref({
+                    page: link.slug,
+                  } as Parameters<typeof resolveOakHref>[0])}
                 >
                   {link.title}
                 </OakLeftAlignedButton>
@@ -93,32 +97,7 @@ export function SubmenuContent(props: TeachersSubNavData) {
           </OakUL>
         </SubmenuContainer>
       );
-
-    case "Guidance":
-      return (
-        <SubmenuContainer title={submenuOpen}>
-          <OakUL
-            $display={"flex"}
-            $flexDirection={"column"}
-            $gap={"spacing-16"}
-          >
-            {props.guidance.map((link, i) => (
-              <OakBox key={link.slug}>
-                <OakLeftAlignedButton
-                  ref={i == 0 ? firstItemRef : undefined}
-                  onClick={() => {
-                    handleClose();
-                  }}
-                  element="a"
-                  href={`/${link.slug}`}
-                >
-                  {link.title}
-                </OakLeftAlignedButton>
-              </OakBox>
-            ))}
-          </OakUL>
-        </SubmenuContainer>
-      );
+    }
 
     default: {
       const phase = ["KS1", "KS2", "EYFS"].includes(submenuOpen)
