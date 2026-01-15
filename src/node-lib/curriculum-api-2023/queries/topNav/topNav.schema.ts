@@ -1,5 +1,7 @@
-import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
+import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
+
+import { OakLinkPropsSimple } from "@/common-lib/urls";
 
 export const topNavResponseSchema = z.object({
   programmes: z.array(
@@ -28,7 +30,10 @@ export type TeachersSubNavData = {
   aboutUs: SubNavLinks;
 };
 
-export type SubNavLinks = Array<{ slug: string; title: string }>;
+export type SubNavLinks = Array<{
+  slug: OakLinkPropsSimple["page"];
+  title: string;
+}>;
 
 export type TeachersBrowse = {
   phaseTitle: string;
