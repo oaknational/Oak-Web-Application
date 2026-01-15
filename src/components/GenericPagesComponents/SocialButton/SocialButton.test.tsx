@@ -14,14 +14,14 @@ describe("GetInvolvedLinkCard", () => {
   });
 
   it("doesn't find link when disabled", () => {
-    const { getByTestId } = render(
+    const { getByRole } = render(
       <SocialButton
         socialType="facebook"
         profileHref="https://test.com"
         disabled={true}
       />,
     );
-    const btn = getByTestId("socialLink");
+    const btn = getByRole("link");
     expect(btn).toBeInTheDocument();
     expect(btn).not.toHaveAttribute("href");
   });

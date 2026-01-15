@@ -67,8 +67,7 @@ export function SocialButton({
       {...props}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={getAriaLabel(socialType)}
-      data-testid="socialLink"
+      role="link"
     >
       <OakIcon
         iconName={socialType}
@@ -76,6 +75,7 @@ export function SocialButton({
         $colorFilter={
           disabled ? "icon-disabled" : (background ?? "transparent")
         }
+        alt={getAriaLabel(socialType)}
       />
     </StyledSocialLink>
   );
