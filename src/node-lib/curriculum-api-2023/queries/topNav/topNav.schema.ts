@@ -1,8 +1,6 @@
 import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
 
-import { MaybeOakPageType } from "@/common-lib/urls";
-
 export const topNavResponseSchema = z.object({
   programmes: z.array(
     z.object({
@@ -27,11 +25,15 @@ export type TeachersSubNavData = {
   primary: TeachersBrowse;
   secondary: TeachersBrowse;
   guidance: Array<{
-    slug: MaybeOakPageType;
+    slug: string;
     title: string;
     external?: boolean;
   }>;
-  aboutUs: Array<{ slug: MaybeOakPageType; title: string; external?: boolean }>;
+  aboutUs: Array<{
+    slug: string;
+    title: string;
+    external?: boolean;
+  }>;
 };
 
 export type TeachersBrowse = {
