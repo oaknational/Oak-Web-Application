@@ -1,3 +1,10 @@
+# [1.954.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.953.0...v1.954.0) (2026-01-15)
+
+
+### Features
+
+* adds drift detection workflow ([4cdabcd](https://github.com/oaknational/Oak-Web-Application/commit/4cdabcdb0c72fa82258848f38401455251b28fc3))
+
 # [1.953.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.952.0...v1.953.0) (2026-01-15)
 
 
