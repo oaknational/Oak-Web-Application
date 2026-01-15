@@ -5,18 +5,19 @@ import ErrorView from "../components/AppComponents/ErrorView";
 
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
-interface Props {
+export interface ErrorProps {
   statusCode?: number;
+  topNav: TopNavProps;
 }
 
-const ErrorPage: NextPage<Props> = ({ statusCode }) => {
+const ErrorPage: NextPage<ErrorProps> = ({ statusCode, topNav }) => {
   const router = useRouter();
   const onBackClick = () => router.back();
   return (
     <ErrorView
       onBackClick={onBackClick}
       statusCode={statusCode}
-      topNav={defaultTopNavProps}
+      topNav={topNav}
     />
   );
 };

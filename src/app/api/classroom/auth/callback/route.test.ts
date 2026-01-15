@@ -17,6 +17,16 @@ const mockSession = "encrypted_session_data";
 const mockAccessToken = "google_access_token";
 const mockCode = "test_code_123";
 
+jest.mock("next/server", () => {
+  const mockJson = jest.fn();
+  return {
+    NextResponse: {
+      json: mockJson,
+    },
+    __mockNextResponseJson: mockJson,
+  };
+});
+
 // Mock redirect
 jest.mock("next/navigation", () => ({
   redirect: jest.fn(),
@@ -133,6 +143,9 @@ describe("GET /api/classroom/auth/callback", () => {
       isOakGoogleClassroomException: jest.Mock;
       __mockReportError: jest.Mock;
     };
+    const { __mockNextResponseJson: mockNextResponseJson } = jest.requireMock(
+      "next/server",
+    ) as { __mockNextResponseJson: jest.Mock };
 
     beforeEach(() => {
       jest.clearAllMocks();
@@ -162,7 +175,7 @@ describe("GET /api/classroom/auth/callback", () => {
           searchParams: {},
         },
       );
-      expect(mockResponseJson).toHaveBeenCalledWith(
+      expect(mockNextResponseJson).toHaveBeenCalledWith(
         {
           error: "Authentication failed",
           details:

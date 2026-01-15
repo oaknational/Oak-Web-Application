@@ -1,5 +1,6 @@
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { redirect } from "next/navigation";
+import { codeSchema } from "@oaknational/google-classroom-addon/types";
 
 import {
   getOakGoogleClassroomAddon,
@@ -16,6 +17,7 @@ export async function GET(request: NextRequest) {
     const error = searchParams.get("error");
     const errorDescription = searchParams.get("error_description");
     const subscribeToNewsletter = searchParams.get("subscribeToNewsletter");
+    const parsedCode = codeSchema.safeParse(code);
 
     // Check for OAuth errors from Google -
     //Redirect to 404 Error Page
@@ -35,13 +37,13 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    if (!code) {
+    if (!parsedCode.success) {
       reportError(new Error("OAuth callback missing authorization code"), {
         severity: "error",
         searchParams: Object.fromEntries(searchParams.entries()),
       });
 
-      return Response.json(
+      return NextResponse.json(
         {
           error: "Authentication failed",
           details:
@@ -52,14 +54,15 @@ export async function GET(request: NextRequest) {
     }
 
     const tempSignUpToNewsletter = async (email: string) => {
-      // this is temp until we have actual mailing list to subscribe to
+      // This is temp until we have actual mailing list to subscribe to
+      // NOTE: This will fire on re-sign ins, so perform existence checks first
       console.log("should subscribe to newsletter", email);
     };
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
     const { encryptedSession, accessToken } =
       await oakClassroomClient.handleGoogleSignInCallback(
-        code,
+        parsedCode.data,
         subscribeToNewsletter === "true" ? tempSignUpToNewsletter : undefined,
       );
 
