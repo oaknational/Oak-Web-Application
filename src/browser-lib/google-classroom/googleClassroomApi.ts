@@ -27,19 +27,49 @@ const sendRequest = async <returnType, payload = undefined>(
     body: body && JSON.stringify(body),
     headers,
   });
-  // should error handle
+
+  if (!res.ok) {
+    let errorData;
+    try {
+      errorData = await res.json();
+    } catch {
+      throw new Error(`API request failed: ${res.status} ${res.statusText}`);
+    }
+    // If is an OakGoogleClassroomException, throw as is
+    if (
+      errorData &&
+      typeof errorData === "object" &&
+      "code" in errorData &&
+      "type" in errorData &&
+      "name" in errorData &&
+      errorData.name === "OakGoogleClassroomException"
+    ) {
+      throw errorData;
+    }
+    // catch other errors
+    throw new Error(
+      errorData?.error ||
+        errorData?.details ||
+        `Request failed with status ${res.status}`,
+    );
+  }
+
   return res.json();
 };
 
 const getGoogleSignInUrl = async (
   loginHint: string | null,
 ): Promise<string | null> => {
-  const url = loginHint
-    ? `/api/classroom/auth/sign-in?login_hint=${loginHint}`
-    : `/api/classroom/auth/sign-in`;
-
-  const data = await sendRequest<{ signInUrl: string }>(url);
-  return data.signInUrl ?? null;
+  try {
+    const url = loginHint
+      ? `/api/classroom/auth/sign-in?login_hint=${loginHint}`
+      : `/api/classroom/auth/sign-in`;
+    const data = await sendRequest<{ signInUrl: string }>(url);
+    return data.signInUrl ?? null;
+  } catch (error) {
+    console.error("Error fetching sign-in URL:", error);
+    return null;
+  }
 };
 
 const verifySession = async (): Promise<{
@@ -48,23 +78,30 @@ const verifySession = async (): Promise<{
   token: string | undefined;
   userProfilePicUrl?: string;
 }> => {
-  const data = await sendRequest<{
-    authenticated: boolean;
-    session: string | undefined;
-    token: string | undefined;
-    userProfilePicUrl?: string;
-  }>(
-    `/api/classroom/auth/verify`,
-    "GET",
-    undefined,
-    await getOakGCAuthHeaders(),
-  );
-  return {
-    authenticated: data.authenticated ?? false,
-    session: data.session,
-    token: data.token,
-    userProfilePicUrl: data.userProfilePicUrl,
-  };
+  try {
+    const headers = await getOakGCAuthHeaders();
+    const data = await sendRequest<{
+      authenticated: boolean;
+      session: string | undefined;
+      token: string | undefined;
+      userProfilePicUrl?: string;
+    }>(`/api/classroom/auth/verify`, "GET", undefined, headers);
+
+    return {
+      authenticated: data.authenticated ?? false,
+      session: data.session,
+      token: data.token,
+      userProfilePicUrl: data.userProfilePicUrl,
+    };
+  } catch (error) {
+    console.error("Session verification error:", error);
+    return {
+      authenticated: false,
+      session: undefined,
+      token: undefined,
+      userProfilePicUrl: undefined,
+    };
+  }
 };
 
 const createAttachment = async (attachment: {
