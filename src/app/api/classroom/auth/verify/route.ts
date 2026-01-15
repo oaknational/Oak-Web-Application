@@ -31,6 +31,7 @@ export async function GET(request: NextRequest) {
         authenticated,
         session: verifiedSession?.session,
         token: verifiedSession?.token,
+        userProfilePicUrl: verifiedSession?.userProfilePicUrl,
       },
       { status: authenticated ? 200 : 401 },
     );
