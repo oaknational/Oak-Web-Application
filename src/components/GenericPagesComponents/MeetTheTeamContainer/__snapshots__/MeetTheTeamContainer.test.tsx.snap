@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WhoAreWeDesc renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR kRCrXv"
+    >
+      <div
+        class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+      >
+        <h2
+          class="sc-kpDqfm jeWvUz"
+        >
+          TESTING_TITLE
+        </h2>
+        <p
+          class="sc-dLMFU gvLBvO"
+        >
+          TEST_TEXT
+        </p>
+        <div
+          class="sc-fqkvVR sc-kAyceB fgBWrW fwDdho"
+        >
+          TEST_CONTENT
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

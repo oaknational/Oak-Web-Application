@@ -1,4 +1,4 @@
-import { NextPage, GetServerSideProps } from "next";
+import { NextPage, GetServerSideProps, GetStaticPropsResult } from "next";
 
 import { mockData, Person } from "../meet-the-team";
 
@@ -83,7 +83,7 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const results = {
+  const results: GetStaticPropsResult<AboutPageProps> = {
     props: {
       pageData: aboutMeetTheTeamPersonPage,
       topNav,

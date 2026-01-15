@@ -12,6 +12,7 @@ import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -33,85 +34,71 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
           content={pageData.subTitle}
           titleHighlight="bg-decorative5-main"
         />
-        {/*  */}
         <InnerMaxWidth>
           <OakFlex $gap={"spacing-16"}>
-            <OakFlex style={{ minWidth: 200 }}>TODO: SideNav</OakFlex>
+            <OakFlex
+              $display={["none", "block", "block"]}
+              style={{ minWidth: 200 }}
+            >
+              TODO: SideNav
+            </OakFlex>
             <OakFlex
               $flexGrow={1}
               $flexDirection={"column"}
-              $gap={"spacing-56"}
+              $gap={["spacing-32", "spacing-56", "spacing-56"]}
               $pb={"spacing-80"}
             >
-              <OakBox
-                $background={"bg-decorative5-very-subdued"}
-                $pa={"spacing-24"}
+              <MeetTheTeamContainer
+                title={pageData.leadershipTitle}
+                text={pageData.leadershipText}
               >
-                <OakFlex $gap={"spacing-16"} $flexDirection={"column"}>
-                  <OakHeading tag="h2">{pageData.leadershipTitle}</OakHeading>
-                  <OakP>{pageData.leadershipText}</OakP>
-                  <OakFlex $gap={"spacing-16"} $flexWrap={"wrap"}>
-                    {pageData.leadershipList.map((leadershipItem) => {
-                      return (
-                        // TODO: Replace me!
-                        <ProfileCard
-                          name={leadershipItem.name}
-                          role={leadershipItem.position}
-                          href={`/about-us/meet-the-team/${leadershipItem.slug}`}
-                        />
-                      );
-                    })}
-                  </OakFlex>
-                </OakFlex>
-              </OakBox>
+                {pageData.leadershipList.map((leadershipItem) => {
+                  return (
+                    // TODO: Replace me!
+                    <ProfileCard
+                      name={leadershipItem.name}
+                      role={leadershipItem.position}
+                      href={`/about-us/meet-the-team/${leadershipItem.slug}`}
+                    />
+                  );
+                })}
+              </MeetTheTeamContainer>
 
-              <OakBox
-                $background={"bg-decorative5-very-subdued"}
-                $pa={"spacing-24"}
+              <MeetTheTeamContainer
+                title={pageData.boardTitle}
+                text={pageData.boardText}
               >
-                <OakFlex $gap={"spacing-16"} $flexDirection={"column"}>
-                  <OakHeading tag="h2">{pageData.boardTitle}</OakHeading>
-                  <OakP>{pageData.boardText}</OakP>
-                  <OakFlex $gap={"spacing-16"} $flexWrap={"wrap"}>
-                    {pageData.boardList.map((boardItem) => {
-                      return (
-                        // TODO: Replace me!
-                        <ProfileCard
-                          name={boardItem.name}
-                          role={boardItem.position}
-                          href={`/about-us/meet-the-team/${boardItem.slug}`}
-                        />
-                      );
-                    })}
-                  </OakFlex>
-                </OakFlex>
-              </OakBox>
+                {pageData.boardList.map((boardItem) => {
+                  return (
+                    // TODO: Replace me!
+                    <ProfileCard
+                      name={boardItem.name}
+                      role={boardItem.position}
+                      href={`/about-us/meet-the-team/${boardItem.slug}`}
+                    />
+                  );
+                })}
+              </MeetTheTeamContainer>
 
-              <OakBox
-                $background={"bg-decorative5-very-subdued"}
-                $pa={"spacing-24"}
+              <MeetTheTeamContainer
+                title={pageData.documentTitle}
+                text={pageData.documentText}
               >
-                <OakFlex $gap={"spacing-16"} $flexDirection={"column"}>
-                  <OakHeading tag="h2">{pageData.documentTitle}</OakHeading>
-                  <OakP>{pageData.documentText}</OakP>
-                  <OakFlex $gap={"spacing-16"} $flexWrap={"wrap"}>
-                    {pageData.documentList.map((documentItem) => {
-                      return (
-                        // TODO: Replace me!
-                        <OakBox
-                          $width={"spacing-240"}
-                          $pa={"spacing-16"}
-                          $borderRadius={"border-radius-m2"}
-                          $background={"bg-btn-secondary"}
-                        >
-                          <OakBox>{documentItem.title}</OakBox>
-                          <OakBox>{documentItem.subText}</OakBox>
-                        </OakBox>
-                      );
-                    })}
-                  </OakFlex>
-                </OakFlex>
-              </OakBox>
+                {pageData.documentList.map((documentItem) => {
+                  return (
+                    // TODO: Replace me!
+                    <OakBox
+                      $width={"spacing-240"}
+                      $pa={"spacing-16"}
+                      $borderRadius={"border-radius-m2"}
+                      $background={"bg-btn-secondary"}
+                    >
+                      <OakBox>{documentItem.title}</OakBox>
+                      <OakBox>{documentItem.subText}</OakBox>
+                    </OakBox>
+                  );
+                })}
+              </MeetTheTeamContainer>
 
               <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
                 <OakHeading tag="h3">{pageData.governanceTitle}</OakHeading>
@@ -141,7 +128,7 @@ export type Person = {
   slug: string;
   name: string;
   position: string;
-  image: string;
+  image?: string;
 };
 
 export const mockData = {
@@ -157,20 +144,9 @@ export const mockData = {
   boardTitle: "Our board",
   boardText:
     "Our Board oversees all of our work at Oak National Academy. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence.",
-  boardList: [
-    {
-      slug: "ian-bauckham",
-      name: "Sir Ian Bauckham CBE",
-      position: "Chair",
-      image: "#",
-    },
-    {
-      slug: "hardip-begol",
-      name: "Hardip Begol CBE",
-      position: "Board member",
-      image: "#",
-    },
-  ],
+  boardList: Array(12)
+    .fill(true)
+    .map(() => mockPerson),
   documentTitle: "Documents",
   documentText: null,
   documentList: Array(12)
