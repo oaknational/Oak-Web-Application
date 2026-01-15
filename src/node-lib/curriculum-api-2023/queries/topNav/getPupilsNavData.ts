@@ -9,6 +9,9 @@ export const getPupilsNavData = (data: TopNavResponse, phaseSlug: string) => {
     }))
     .filter(
       (programme, i, a) => a.findIndex((y) => y.slug === programme.slug) === i,
+    )
+    .sort((a, b) =>
+      a.title.localeCompare(b.title, undefined, { numeric: true }),
     );
 
   return {

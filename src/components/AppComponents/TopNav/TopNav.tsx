@@ -4,14 +4,9 @@ import { useCallback, useState } from "react";
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
+import TopNavDropdown from "./TopNavDropdown/TopNavDropdown";
 
-import {
-  OakCloseButton,
-  OakFlex,
-  OakIcon,
-  OakImage,
-  OakLink,
-} from "@/styles/oakThemeApp";
+import { OakFlex, OakIcon, OakImage, OakLink } from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
@@ -33,7 +28,9 @@ const TopNav = (props: TopNavProps) => {
   const isMobile = useMediaQuery("mobile");
 
   // TD: [integrated journey] potentially extract into a menu store
-  const [selectedMenu, setSelectedMenu] = useState<string>();
+  const [selectedMenu, setSelectedMenu] = useState<
+    keyof TeachersSubNavData | keyof PupilsSubNavData | undefined
+  >(undefined);
 
   const isMenuSelected = useCallback(
     (menuSlug: string) => {
@@ -106,7 +103,7 @@ const TopNav = (props: TopNavProps) => {
           <TeachersSubNav
             isMenuSelected={isMenuSelected}
             onClick={(menu) => {
-              setSelectedMenu(menu);
+              setSelectedMenu(selectedMenu === menu ? undefined : menu);
               console.log("selected menu ", teachers[menu]);
             }}
           />
@@ -115,23 +112,28 @@ const TopNav = (props: TopNavProps) => {
           <PupilsSubNav
             isMenuSelected={isMenuSelected}
             onClick={(menu) => {
-              setSelectedMenu(menu);
+              setSelectedMenu(selectedMenu === menu ? undefined : menu);
               console.log("selected menu ", pupils[menu]);
             }}
           />
         )}
       </OakFlex>
       {/* TD: [integrated-journey] Replace with dropdown and hamburger menus */}
-      {selectedMenu && (
-        <OakFlex
-          $width={"100%"}
-          $height="spacing-240"
-          $flexDirection={"column"}
-        >
-          <OakCloseButton onClose={() => setSelectedMenu(undefined)} />
-          {selectedMenu}
-        </OakFlex>
-      )}
+      {selectedMenu &&
+        ((activeArea === "TEACHERS" && teachers) ||
+          (activeArea === "PUPILS" && pupils)) && (
+          <OakFlex
+            $width={"100%"}
+            // $height="spacing-240"
+            $flexDirection={"column"}
+          >
+            <TopNavDropdown
+              selectedMenu={selectedMenu}
+              teachers={teachers!}
+              pupils={pupils!}
+            />
+          </OakFlex>
+        )}
     </header>
   );
 };
