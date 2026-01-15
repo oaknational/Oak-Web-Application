@@ -9,20 +9,20 @@ describe("GetInvolvedLinkCard", () => {
     const { getByRole } = render(
       <SocialButton socialType="facebook" profileHref="https://test.com" />,
     );
-    const btn = getByRole("button");
+    const btn = getByRole("link");
     expect(btn).toBeInTheDocument();
   });
 
-  it("disables button when arg passed in", () => {
-    const { getByRole } = render(
+  it("doesn't find link when disabled", () => {
+    const { getByTestId } = render(
       <SocialButton
         socialType="facebook"
         profileHref="https://test.com"
         disabled={true}
       />,
     );
-    const btn = getByRole("button");
+    const btn = getByTestId("socialLink");
     expect(btn).toBeInTheDocument();
-    expect(btn).toBeDisabled();
+    expect(btn).not.toHaveAttribute("href");
   });
 });
