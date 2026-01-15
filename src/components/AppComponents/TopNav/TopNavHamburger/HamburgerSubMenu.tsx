@@ -5,7 +5,8 @@ import {
   OakPrimaryInvertedButton,
   OakSubjectIconButton,
   OakUL,
- OakLeftAlignedButton } from "@oaknational/oak-components";
+  OakLeftAlignedButton,
+} from "@oaknational/oak-components";
 import Link from "next/link";
 
 import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
@@ -17,7 +18,6 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-
 
 export type NavItemData =
   | { type: "links"; links: SubNavLinks }
@@ -64,7 +64,6 @@ export function SubmenuContent(props: TeachersSubNavData) {
 
   switch (submenuOpen) {
     case "About us":
-      console.log(props.aboutUs);
       return (
         <SubmenuContainer title={submenuOpen}>
           <OakUL
@@ -143,14 +142,13 @@ export function SubmenuContent(props: TeachersSubNavData) {
               .map((subject) => (
                 <OakBox key={subject.title + phase}>
                   <OakSubjectIconButton
-                    element="a"
-                    // href={resolveOakHref({
-                    //   page: "unit-index",
-                    //   programmeSlug: subject.programmeSlug,
-                    // })}
-                    onClick={() => {
-                      handleClose();
-                    }}
+                    element={Link}
+                    href={resolveOakHref({
+                      page: "programme-index",
+                      keyStageSlug: keystage.slug,
+                      subjectSlug: subject.subjectSlug,
+                    })}
+                    onClick={handleClose}
                     phase={subject.nonCurriculum ? "non-curriculum" : phase}
                     subjectIconName={getValidSubjectIconName(
                       subject.subjectSlug,
@@ -163,7 +161,7 @@ export function SubmenuContent(props: TeachersSubNavData) {
               ))}
             <OakBox $width={"100%"}>
               <OakPrimaryInvertedButton
-                element="a"
+                element={Link}
                 href={resolveOakHref({
                   page: "subject-index",
                   keyStageSlug: keystage.slug,
