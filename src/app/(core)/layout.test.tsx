@@ -1,13 +1,11 @@
 import { screen } from "@testing-library/dom";
 import { OakBox } from "@oaknational/oak-components";
-import { ReactNode } from "react";
 
 import CoreLayout from "./layout";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import OakError from "@/errors/OakError";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const mockTopNav = jest.fn().mockResolvedValue(topNavFixture);
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
@@ -32,30 +30,16 @@ Object.defineProperty(window, "matchMedia", {
   })),
 });
 
-const CoreLayoutWithProviders = async ({
-  children,
-}: {
-  children: ReactNode;
-}) => {
-  return (
-    <OakNotificationsProvider>
-      {await CoreLayout({ children })}
-    </OakNotificationsProvider>
-  );
-};
+const render = renderWithProviders();
 
 describe("core layout", () => {
   it("renders a topnav", async () => {
-    renderWithTheme(
-      await CoreLayoutWithProviders({ children: <OakBox>children</OakBox> }),
-    );
+    render(await CoreLayout({ children: <OakBox>children</OakBox> }));
     const header = screen.getByTestId("app-topnav");
     expect(header).toBeInTheDocument();
   });
   it("renders children", async () => {
-    renderWithTheme(
-      await CoreLayoutWithProviders({ children: <OakBox>children</OakBox> }),
-    );
+    render(await CoreLayout({ children: <OakBox>children</OakBox> }));
     const children = screen.getByText("children");
     expect(children).toBeInTheDocument();
   });
@@ -64,8 +48,8 @@ describe("core layout", () => {
       new OakError({ code: "curriculum-api/not-found" }),
     );
     expect(async () =>
-      renderWithTheme(
-        await CoreLayoutWithProviders({
+      render(
+        await CoreLayout({
           children: <OakBox>children</OakBox>,
         }),
       ),
