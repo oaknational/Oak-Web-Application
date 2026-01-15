@@ -119,10 +119,10 @@ const CurriculumPreviousDownloadsPage = ({
           description: "Curriculum Previous Downloads",
         }),
       }}
-      $background={"white"}
+      $background={"bg-primary"}
       topNavProps={topNav}
     >
-      <OakBox $background={"mint"} $pt="spacing-20">
+      <OakBox $background={"bg-decorative1-main"} $pt="spacing-20">
         <OakBox
           $maxWidth={"spacing-1280"}
           $mh={"auto"}
@@ -156,13 +156,13 @@ const CurriculumPreviousDownloadsPage = ({
           />
 
           <OakHandDrawnHR
-            hrColor={"white"}
+            hrColor={"bg-primary"}
             $height={"spacing-2"}
             $mv={"spacing-24"}
           />
           <OakFlex>
             <OakBox
-              $background={"mint30"}
+              $background={"bg-decorative1-very-subdued"}
               $mr={"spacing-12"}
               $mv={"auto"}
               $position={"relative"}
@@ -195,7 +195,7 @@ const CurriculumPreviousDownloadsPage = ({
           </OakFlex>
         </OakBox>
       </OakBox>
-      <OakBox $background={"mint30"}>
+      <OakBox $background={"bg-decorative1-very-subdued"}>
         <OakBox
           $display={["block", "none", "none"]}
           $maxWidth={"spacing-1280"}
@@ -227,7 +227,7 @@ const CurriculumPreviousDownloadsPage = ({
           $ph={"spacing-32"}
           $pt={"spacing-32"}
         >
-          <OakP $color="grey70" $font="heading-7" $mb={"spacing-24"}>
+          <OakP $color="text-primary" $font="heading-7" $mb={"spacing-24"}>
             Select a category:
           </OakP>
           <TabularNav

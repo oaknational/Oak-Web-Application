@@ -12,11 +12,7 @@ const PostCta = (props: PortableTextComponentProps<CTA>) => {
 
   return (
     <OakBox $mt="spacing-16">
-      <OakPrimaryButton
-        element="a"
-        href={getLinkHref(cta)}
-        // background={"blue"}
-      >
+      <OakPrimaryButton element="a" href={getLinkHref(cta)}>
         {cta.label}
       </OakPrimaryButton>
     </OakBox>

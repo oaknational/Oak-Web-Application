@@ -44,7 +44,7 @@ export default function CurricTimetablingFilters({
       <OakBox $mt={"spacing-32"}>
         <OakSecondaryButton>Add next year</OakSecondaryButton>
       </OakBox>
-      <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+      <OakHandDrawnHR hrColor={"bg-interactive-element2"} $mv={"spacing-32"} />
       <CurricFiltersThreads
         filters={filters}
         onChangeFilters={onChangeFilters}

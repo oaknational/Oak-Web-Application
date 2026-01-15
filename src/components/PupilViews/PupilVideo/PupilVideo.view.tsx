@@ -236,7 +236,7 @@ export const PupilViewsVideo = ({
           )}
           <OakHandDrawnHR
             $height={"spacing-4"}
-            hrColor={"border-neutral-lighter"}
+            hrColor={"bg-interactive-element2"}
             $width={"100%"}
           />
           <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>

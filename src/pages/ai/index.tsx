@@ -30,7 +30,7 @@ const Ai: NextPage<AiHomePageProps> = (props) => {
         description:
           "Looking to create tailor-made lesson resources? Use our free AI-powered lesson assistant to make bespoke lesson plans, worksheets, quizzes and slides in minutes.",
       }}
-      $background={"white"}
+      $background={"bg-primary"}
       topNavProps={props.topNav}
     >
       <Banners />

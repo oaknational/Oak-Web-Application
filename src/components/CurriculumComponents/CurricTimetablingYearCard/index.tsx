@@ -23,7 +23,7 @@ export function CurricTimetablingYearCard({
 }: Readonly<CurricTimetablingYearCardProps>) {
   return (
     <OakBox
-      $background={"pink50"}
+      $background={"bg-decorative4-subdued"}
       $pa={"spacing-16"}
       $position={"relative"}
       $mb={"spacing-32"}

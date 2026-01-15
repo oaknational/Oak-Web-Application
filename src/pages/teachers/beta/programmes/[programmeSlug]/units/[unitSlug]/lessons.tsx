@@ -202,7 +202,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           description: `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`,
         }),
       }}
-      $background="white"
+      $background="bg-primary"
       topNavProps={topNav}
     >
       <PaginationHead
@@ -249,7 +249,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               disabled: true,
             },
           ]}
-          background={"pink30"}
+          background={"bg-decorative4-very-subdued"}
           subjectIconBackgroundColor={"pink"}
           title={unitTitle}
           programmeFactor={keyStageTitle} // this should be changed to year LESQ-242

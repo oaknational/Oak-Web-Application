@@ -38,8 +38,8 @@ const LayoutPreviewControls: FC = () => {
       $left="spacing-20"
       $pa="spacing-4"
       $alignItems="center"
-      $color="black"
-      $background="white"
+      $color="text-primary"
+      $background="bg-primary"
     >
       <OakSpan $mr="spacing-24">Preview mode enabled</OakSpan>
       <ButtonAsLink

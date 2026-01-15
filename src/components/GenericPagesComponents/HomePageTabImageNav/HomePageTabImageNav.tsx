@@ -35,7 +35,7 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
     <OakFlex $flexDirection={"column"} $justifyContent={"center"}>
       <OakFlex
         as="nav"
-        $background={"mint"}
+        $background={"bg-decorative1-main"}
         $width={"100%"}
         $alignItems={"stretch"}
         $justifyContent={"center"}
@@ -78,7 +78,7 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
           onClick={() => handleAnalytics("pupils")}
         />
       </OakFlex>
-      <OakHandDrawnHR hrColor={"white"} $height={"spacing-2"} />
+      <OakHandDrawnHR hrColor={"bg-primary"} $height={"spacing-2"} />
     </OakFlex>
   );
 };

@@ -7,7 +7,7 @@ import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithPro
 
 const props: Omit<CurricInfoCardProps, "children"> = {
   iconName: "search",
-  background: "mint30",
+  background: "bg-decorative1-very-subdued",
   iconHeight: "spacing-72",
   iconWidth: "spacing-64",
 };
@@ -33,7 +33,7 @@ describe("CurricInfoCard", () => {
     render(
       <CurricInfoCard
         iconName="clipboard"
-        background="mint30"
+        background="bg-decorative1-very-subdued"
         iconHeight={"spacing-92"}
         iconWidth={"spacing-48"}
       >

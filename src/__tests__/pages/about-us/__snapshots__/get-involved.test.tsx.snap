@@ -7147,7 +7147,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       </div>
                       <p
                         class="c179"
-                        color="black"
+                        color="text-primary"
                         id="react-use-id-test-result-newsletter-form-description"
                       >
                         Join over 100k teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
