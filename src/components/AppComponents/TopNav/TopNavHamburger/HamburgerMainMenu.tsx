@@ -1,21 +1,20 @@
 import { useEffect } from "react";
+import {
+  OakBox,
+  OakLI,
+  OakIconName,
+  OakFlex,
+  OakHeading,
+  OakSvg,
+  OakUL,
+  OakLeftAlignedButton,
+} from "@oaknational/oak-components";
+import Link from "next/link";
 
 import { TopNavProps } from "../TopNav";
 
 import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
 
-import {
-  OakBox,
-  OakLI,
-  OakSmallPrimaryInvertedButton,
-  OakIconName,
-  OakIcon,
-  OakFlex,
-  OakHeading,
-  OakSvg,
-  OakUL,
-  OakPrimaryInvertedButton,
-} from "@oaknational/oak-components";
 import { TeachersBrowse } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export function MainMenuContent(props: TopNavProps) {
@@ -37,12 +36,12 @@ export function MainMenuContent(props: TopNavProps) {
     >
       <SubjectsSection {...props.teachers?.primary} />
       <SubjectsSection {...props.teachers?.secondary} />
-      <OakBox>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <MainMenuLink href={"/"} title="Curriculum" />
         <MainMenuButton title={"About us"} />
         <MainMenuButton title={"Guidance"} />
         <MainMenuLink href={"/"} title="Ai Experiments" iconName="external" />
-      </OakBox>
+      </OakFlex>
     </OakUL>
   );
 }
@@ -50,8 +49,14 @@ export function MainMenuContent(props: TopNavProps) {
 function SubjectsSection(props: TeachersBrowse) {
   return (
     <OakBox>
-      <OakFlex $flexDirection={"column"} $width={"fit-content"}>
-        <OakHeading tag="h2">{props.phaseTitle}</OakHeading>
+      <OakFlex
+        $flexDirection={"column"}
+        $width={"fit-content"}
+        $mb={"spacing-12"}
+      >
+        <OakHeading tag="h2" $font={"heading-6"}>
+          {props.phaseTitle}
+        </OakHeading>
         <OakSvg
           $color={"mint"}
           $display={"block"}
@@ -60,12 +65,14 @@ function SubjectsSection(props: TeachersBrowse) {
           $height={"spacing-8"}
         />
       </OakFlex>
-      {props.keystages.map((keystage) => (
-        <MainMenuButton
-          key={keystage.slug + props.phaseSlug}
-          title={keystage.title}
-        />
-      ))}
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        {props.keystages.map((keystage) => (
+          <MainMenuButton
+            key={keystage.slug + props.phaseSlug}
+            title={keystage.title}
+          />
+        ))}
+      </OakFlex>
     </OakBox>
   );
 }
@@ -75,22 +82,17 @@ function MainMenuButton({ title }: { title: string }) {
   return (
     <OakBox $width={"100%"}>
       <OakLI $listStyle={"none"}>
-        <OakFlex
-          $justifyContent={"space-between"}
-          $alignItems={"center"}
-          $width={"100%"}
+        <OakLeftAlignedButton
+          rightAlignIcon
+          iconName="chevron-right"
+          width={"100%"}
+          id={title + "button"}
+          onClick={() => {
+            setSubmenuOpen(title as SubmenuState);
+          }}
         >
-          <OakSmallPrimaryInvertedButton
-            width={"100%"}
-            id={title + "button"}
-            onClick={() => {
-              setSubmenuOpen(title as SubmenuState);
-            }}
-          >
-            {title}
-          </OakSmallPrimaryInvertedButton>
-          <OakIcon iconName="chevron-right" />
-        </OakFlex>
+          {title}
+        </OakLeftAlignedButton>
       </OakLI>
     </OakBox>
   );
@@ -106,13 +108,14 @@ function MainMenuLink({
   readonly iconName?: OakIconName;
 }) {
   return (
-    <OakPrimaryInvertedButton
-      element="a"
+    <OakLeftAlignedButton
+      width={"100%"}
+      element={Link}
       isTrailingIcon
       iconName={iconName}
       href={href}
     >
       {title}
-    </OakPrimaryInvertedButton>
+    </OakLeftAlignedButton>
   );
 }

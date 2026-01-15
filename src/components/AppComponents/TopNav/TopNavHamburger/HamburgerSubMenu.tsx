@@ -1,14 +1,15 @@
 import { ReactNode } from "react";
-
-import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
-
 import {
   OakBox,
   OakFlex,
   OakPrimaryInvertedButton,
   OakSubjectIconButton,
   OakUL,
-} from "@oaknational/oak-components";
+ OakLeftAlignedButton } from "@oaknational/oak-components";
+import Link from "next/link";
+
+import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
+
 import {
   SubNavLinks,
   TeachersBrowse,
@@ -16,6 +17,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+
 
 export type NavItemData =
   | { type: "links"; links: SubNavLinks }
@@ -62,20 +64,25 @@ export function SubmenuContent(props: TeachersSubNavData) {
 
   switch (submenuOpen) {
     case "About us":
+      console.log(props.aboutUs);
       return (
         <SubmenuContainer title={submenuOpen}>
-          <OakUL>
+          <OakUL
+            $display={"flex"}
+            $flexDirection={"column"}
+            $gap={"spacing-16"}
+          >
             {props.aboutUs.map((link) => (
               <OakBox key={link.slug}>
-                <OakPrimaryInvertedButton
+                <OakLeftAlignedButton
                   onClick={() => {
                     handleClose();
                   }}
-                  element="a"
+                  element={Link}
                   href={`/${link.slug}`}
                 >
                   {link.title}
-                </OakPrimaryInvertedButton>
+                </OakLeftAlignedButton>
               </OakBox>
             ))}
           </OakUL>
@@ -92,7 +99,7 @@ export function SubmenuContent(props: TeachersSubNavData) {
           >
             {props.guidance.map((link) => (
               <OakBox key={link.slug}>
-                <OakPrimaryInvertedButton
+                <OakLeftAlignedButton
                   onClick={() => {
                     handleClose();
                   }}
@@ -100,7 +107,7 @@ export function SubmenuContent(props: TeachersSubNavData) {
                   href={`/${link.slug}`}
                 >
                   {link.title}
-                </OakPrimaryInvertedButton>
+                </OakLeftAlignedButton>
               </OakBox>
             ))}
           </OakUL>
