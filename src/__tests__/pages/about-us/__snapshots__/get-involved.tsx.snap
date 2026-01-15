@@ -1462,193 +1462,161 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   class="sc-fqkvVR sc-kAyceB jmmnzj fEqJyh"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW kyta-DD"
+                    class="sc-fqkvVR sc-kAyceB fgBWrW fXTan"
                     x="oaknational"
                   >
-                    <a
-                      aria-label="instagram for Oak National Academy"
-                      class="sc-ff5827c0-0 lkMWEO"
-                      href="https://instagram.com/oaknational"
-                      role="link"
-                      target="_blank"
-                      title="instagram for Oak National Academy"
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO sc-5fd52f83-0 wgJtD"
                     >
-                      <div
-                        class="sc-b071a727-0 eQqUiM"
+                      <a
+                        aria-label="instagram for Oak National Academy"
+                        class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                        href="https://instagram.com/oaknational"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="sc-cba1a45e-0 bgbQLJ"
+                        <div
+                          class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
                         >
-                          <span
-                            class="sc-cba1a45e-1 idsnjc"
+                          <div
+                            class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="sc-86d1d46f-0 eJtvEZ"
-                              height="100%"
-                              name="instagram-v2"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="sc-fqkvVR bfQsxh shadow"
+                            />
+                            <div
+                              class="sc-fqkvVR kbnxKi"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#instagram-v2"
+                              <img
+                                alt=""
+                                class="sc-dcJsrY beWtwI"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="sc-dAlyuH eeepiN"
                           />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      aria-label="facebook for Oak National Academy"
-                      class="sc-ff5827c0-0 lkMWEO"
-                      href="https://facebook.com/oaknationalacademy"
-                      role="link"
-                      target="_blank"
-                      title="facebook for Oak National Academy"
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO sc-5fd52f83-0 wgJtD"
                     >
-                      <div
-                        class="sc-b071a727-0 eQqUiM"
+                      <a
+                        aria-label="facebook for Oak National Academy"
+                        class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                        href="https://facebook.com/oaknationalacademy"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="sc-cba1a45e-0 bgbQLJ"
+                        <div
+                          class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
                         >
-                          <span
-                            class="sc-cba1a45e-1 idsnjc"
+                          <div
+                            class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="sc-86d1d46f-0 eJtvEZ"
-                              height="100%"
-                              name="facebook-v2"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="sc-fqkvVR bfQsxh shadow"
+                            />
+                            <div
+                              class="sc-fqkvVR kbnxKi"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#facebook-v2"
+                              <img
+                                alt=""
+                                class="sc-dcJsrY beWtwI"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="sc-dAlyuH eeepiN"
                           />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      aria-label="x for Oak National Academy"
-                      class="sc-ff5827c0-0 lkMWEO"
-                      href="https://x.com/oaknational"
-                      role="link"
-                      target="_blank"
-                      title="x for Oak National Academy"
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO sc-5fd52f83-0 wgJtD"
                     >
-                      <div
-                        class="sc-b071a727-0 eQqUiM"
+                      <a
+                        aria-label="x for Oak National Academy"
+                        class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                        href="https://x.com/oaknational"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="sc-cba1a45e-0 bgbQLJ"
+                        <div
+                          class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
                         >
-                          <span
-                            class="sc-cba1a45e-1 idsnjc"
+                          <div
+                            class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="sc-86d1d46f-0 eJtvEZ"
-                              height="100%"
-                              name="x"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="sc-fqkvVR bfQsxh shadow"
+                            />
+                            <div
+                              class="sc-fqkvVR kbnxKi"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#x"
+                              <img
+                                alt=""
+                                class="sc-dcJsrY beWtwI"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1748452854/icons/x_fpmv5f.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="sc-dAlyuH eeepiN"
                           />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      aria-label="linkedIn for Oak National Academy"
-                      class="sc-ff5827c0-0 lkMWEO"
-                      href="https://www.linkedin.com/company/oak-national-academy"
-                      role="link"
-                      target="_blank"
-                      title="linkedIn for Oak National Academy"
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO sc-5fd52f83-0 wgJtD"
                     >
-                      <div
-                        class="sc-b071a727-0 eQqUiM"
+                      <a
+                        aria-label="linkedIn for Oak National Academy"
+                        class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                        href="https://www.linkedin.com/company/oak-national-academy"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="sc-cba1a45e-0 bgbQLJ"
+                        <div
+                          class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
                         >
-                          <span
-                            class="sc-cba1a45e-1 idsnjc"
+                          <div
+                            class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="sc-86d1d46f-0 eJtvEZ"
-                              height="100%"
-                              name="linkedin-v2"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="sc-fqkvVR bfQsxh shadow"
+                            />
+                            <div
+                              class="sc-fqkvVR kbnxKi"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#linkedin-v2"
+                              <img
+                                alt=""
+                                class="sc-dcJsrY beWtwI"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="sc-dAlyuH eeepiN"
                           />
-                        </svg>
-                      </div>
-                    </a>
+                        </div>
+                      </a>
+                    </div>
                   </div>
                   <div
                     class="sc-fqkvVR sc-kAyceB ftsSZj cRvTfQ"
@@ -3086,38 +3054,16 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/pupils/years"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/pupils/years"
-                            role="link"
-                            type="page"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Learn online
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                     </ul>
                   </div>
@@ -3142,320 +3088,128 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/teachers/key-stages/early-years-foundation-stage/subjects"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/teachers/key-stages/early-years-foundation-stage/subjects"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             EYFS
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/teachers/specialist/subjects"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/teachers/specialist/subjects"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Specialist
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/teachers/key-stages/ks1/subjects"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/teachers/key-stages/ks1/subjects"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Key stage 1
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/teachers/key-stages/ks2/subjects"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/teachers/key-stages/ks2/subjects"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Key stage 2
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/teachers/key-stages/ks3/subjects"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/teachers/key-stages/ks3/subjects"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Key stage 3
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/teachers/key-stages/ks4/subjects"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/teachers/key-stages/ks4/subjects"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Key stage 4
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/teachers/curriculum"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/teachers/curriculum"
-                            role="link"
-                            type="page"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Curriculum plans
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/lesson-planning"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/lesson-planning"
-                            role="link"
-                            type="page"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Plan a lesson
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/support-your-team"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/support-your-team"
-                            role="link"
-                            type="page"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Support your team
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                     </ul>
                   </div>
@@ -3481,112 +3235,46 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/"
-                            role="link"
-                            type="page"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Home
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/about-us/who-we-are"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/about-us/who-we-are"
-                            role="link"
-                            type="page"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             About us
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          aria-label="Careers (opens in a new tab)"
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="https://jobs.thenational.academy"
                         >
-                          <a
-                            aria-label="Careers (opens in a new tab)"
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="https://jobs.thenational.academy"
-                            role="link"
-                            target="_blank"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Careers
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
+                          </span>
                           <div
-                            class="sc-fqkvVR dcODyY"
+                            class="sc-fqkvVR kbnxKi sc-dSCufp"
                           >
                             <img
                               alt=""
@@ -3598,82 +3286,37 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
                           </div>
-                        </div>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/contact-us"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/contact-us"
-                            role="link"
-                            type="page"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Contact us
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          aria-label="Help (opens in a new tab)"
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="help"
                         >
-                          <a
-                            aria-label="Help (opens in a new tab)"
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="https://support.thenational.academy"
-                            role="link"
-                            target="_blank"
-                            type="page"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Help
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
+                          </span>
                           <div
-                            class="sc-fqkvVR dcODyY"
+                            class="sc-fqkvVR kbnxKi sc-dSCufp"
                           >
                             <img
                               alt=""
@@ -3685,117 +3328,51 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
                           </div>
-                        </div>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/blog"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/blog"
-                            role="link"
-                            type="page"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Blog
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/webinars"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/webinars"
-                            role="link"
-                            type="page"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Webinars
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          aria-label="Status (opens in a new tab)"
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="https://status.thenational.academy"
                         >
-                          <a
-                            aria-label="Status (opens in a new tab)"
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="https://status.thenational.academy"
-                            role="link"
-                            target="_blank"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Status
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
+                          </span>
                           <div
-                            class="sc-fqkvVR dcODyY"
+                            class="sc-fqkvVR kbnxKi sc-dSCufp"
                           >
                             <img
                               alt=""
@@ -3807,7 +3384,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
                           </div>
-                        </div>
+                        </a>
                       </li>
                     </ul>
                   </div>
@@ -3833,363 +3410,141 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/legal/terms-and-conditions"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/legal/terms-and-conditions"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Terms & conditions
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/legal/privacy-policy"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/legal/privacy-policy"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Privacy policy
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/legal/cookie-policy"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/legal/cookie-policy"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Cookie policy
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
                         <button
-                          class="sc-ce4d7bd4-0 sc-e88beb40-0 kYyTPx cUHyFr"
-                          title="Manage cookie settings"
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
                         >
-                          <div
-                            class="sc-fqkvVR gxmQRM"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
-                            <div
-                              class="sc-fqkvVR fgBWrW"
-                            >
-                              <span
-                                class="sc-dAlyuH sc-ca3376e3-0 dYUFxg dDWCOR"
-                              >
-                                Manage cookie settings
-                              </span>
-                            </div>
-                            <svg
-                              aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-1 guutYs"
-                              height="100%"
-                              name="underline-1"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#underline-1"
-                              />
-                            </svg>
-                          </div>
-                          <svg
-                            aria-hidden="true"
-                            class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 eCYhIZ"
-                            height="100%"
-                            name="underline-1"
-                            width="100%"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <use
-                              xlink:href="/images/sprite/sprite.svg#underline-1"
-                            />
-                          </svg>
+                            Manage cookie settings
+                          </span>
                         </button>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/legal/copyright-notice"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/legal/copyright-notice"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Copyright notice
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/legal/accessibility-statement"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/legal/accessibility-statement"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Accessibility statement
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/legal/safeguarding-statement"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/legal/safeguarding-statement"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Safeguarding statement
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/legal/physical-activity-disclaimer"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/legal/physical-activity-disclaimer"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Physical activity disclaimer
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/legal/complaints"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/legal/complaints"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Complaints
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
                         class="sc-jlZhew XOrLS"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
+                        <a
+                          class="sc-fxwrCY eycZBP sc-hIUJlX"
+                          href="/legal/freedom-of-information-requests"
                         >
-                          <a
-                            class="sc-4b913d3f-0 gUuCEe"
-                            href="/legal/freedom-of-information-requests"
-                            role="link"
+                          <span
+                            class="sc-dAlyuH cRouMQ"
                           >
                             Freedom of information requests
-                            <svg
-                              aria-hidden="true"
-                              class="sc-eldPxv dlXxmR sc-e12c7d07-0 gWdEXE"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                     </ul>
                   </div>
@@ -4227,199 +3582,167 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB dbAUml jAsyYQ"
+                    class="sc-fqkvVR sc-kAyceB dbAUml hnrgPA"
                     x="oaknational"
                   >
-                    <a
-                      aria-label="instagram for Oak National Academy"
-                      class="sc-ff5827c0-0 lkMWEO"
-                      href="https://instagram.com/oaknational"
-                      role="link"
-                      target="_blank"
-                      title="instagram for Oak National Academy"
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO sc-5fd52f83-0 wgJtD"
                     >
-                      <div
-                        class="sc-b071a727-0 eQqUiM"
+                      <a
+                        aria-label="instagram for Oak National Academy"
+                        class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                        href="https://instagram.com/oaknational"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="sc-cba1a45e-0 bgbQLJ"
+                        <div
+                          class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
                         >
-                          <span
-                            class="sc-cba1a45e-1 idsnjc"
+                          <div
+                            class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="sc-86d1d46f-0 eJtvEZ"
-                              height="100%"
-                              name="instagram-v2"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="sc-fqkvVR bfQsxh shadow"
+                            />
+                            <div
+                              class="sc-fqkvVR kbnxKi"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#instagram-v2"
+                              <img
+                                alt=""
+                                class="sc-dcJsrY beWtwI"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="sc-dAlyuH eeepiN"
                           />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      aria-label="facebook for Oak National Academy"
-                      class="sc-ff5827c0-0 lkMWEO"
-                      href="https://facebook.com/oaknationalacademy"
-                      role="link"
-                      target="_blank"
-                      title="facebook for Oak National Academy"
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO sc-5fd52f83-0 wgJtD"
                     >
-                      <div
-                        class="sc-b071a727-0 eQqUiM"
+                      <a
+                        aria-label="facebook for Oak National Academy"
+                        class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                        href="https://facebook.com/oaknationalacademy"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="sc-cba1a45e-0 bgbQLJ"
+                        <div
+                          class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
                         >
-                          <span
-                            class="sc-cba1a45e-1 idsnjc"
+                          <div
+                            class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="sc-86d1d46f-0 eJtvEZ"
-                              height="100%"
-                              name="facebook-v2"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="sc-fqkvVR bfQsxh shadow"
+                            />
+                            <div
+                              class="sc-fqkvVR kbnxKi"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#facebook-v2"
+                              <img
+                                alt=""
+                                class="sc-dcJsrY beWtwI"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="sc-dAlyuH eeepiN"
                           />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      aria-label="x for Oak National Academy"
-                      class="sc-ff5827c0-0 lkMWEO"
-                      href="https://x.com/oaknational"
-                      role="link"
-                      target="_blank"
-                      title="x for Oak National Academy"
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO sc-5fd52f83-0 wgJtD"
                     >
-                      <div
-                        class="sc-b071a727-0 eQqUiM"
+                      <a
+                        aria-label="x for Oak National Academy"
+                        class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                        href="https://x.com/oaknational"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="sc-cba1a45e-0 bgbQLJ"
+                        <div
+                          class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
                         >
-                          <span
-                            class="sc-cba1a45e-1 idsnjc"
+                          <div
+                            class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="sc-86d1d46f-0 eJtvEZ"
-                              height="100%"
-                              name="x"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="sc-fqkvVR bfQsxh shadow"
+                            />
+                            <div
+                              class="sc-fqkvVR kbnxKi"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#x"
+                              <img
+                                alt=""
+                                class="sc-dcJsrY beWtwI"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1748452854/icons/x_fpmv5f.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="sc-dAlyuH eeepiN"
                           />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      aria-label="linkedIn for Oak National Academy"
-                      class="sc-ff5827c0-0 lkMWEO"
-                      href="https://www.linkedin.com/company/oak-national-academy"
-                      role="link"
-                      target="_blank"
-                      title="linkedIn for Oak National Academy"
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO sc-5fd52f83-0 wgJtD"
                     >
-                      <div
-                        class="sc-b071a727-0 eQqUiM"
+                      <a
+                        aria-label="linkedIn for Oak National Academy"
+                        class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                        href="https://www.linkedin.com/company/oak-national-academy"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="sc-cba1a45e-0 bgbQLJ"
+                        <div
+                          class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
                         >
-                          <span
-                            class="sc-cba1a45e-1 idsnjc"
+                          <div
+                            class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="sc-86d1d46f-0 eJtvEZ"
-                              height="100%"
-                              name="linkedin-v2"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="sc-fqkvVR bfQsxh shadow"
+                            />
+                            <div
+                              class="sc-fqkvVR kbnxKi"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#linkedin-v2"
+                              <img
+                                alt=""
+                                class="sc-dcJsrY beWtwI"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="sc-dAlyuH eeepiN"
                           />
-                        </svg>
-                      </div>
-                    </a>
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div
-              class="sc-fqkvVR jqqmXN sc-800b423d-0 dgdSbR"
+              class="sc-fqkvVR jqqmXN sc-bfb9e165-0 hYbNym"
               data-percy-hide="contents"
             >
               <img
@@ -4438,193 +3761,161 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-kAyceB hJZCfd dQAbsd"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB kIzSml huSEfo"
+                class="sc-fqkvVR sc-kAyceB kIzSml emKQww"
                 x="oaknational"
               >
-                <a
-                  aria-label="instagram for Oak National Academy"
-                  class="sc-ff5827c0-0 lkMWEO"
-                  href="https://instagram.com/oaknational"
-                  role="link"
-                  target="_blank"
-                  title="instagram for Oak National Academy"
+                <div
+                  class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO sc-5fd52f83-0 wgJtD"
                 >
-                  <div
-                    class="sc-b071a727-0 eQqUiM"
+                  <a
+                    aria-label="instagram for Oak National Academy"
+                    class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                    href="https://instagram.com/oaknational"
                   >
-                    <span
-                      aria-hidden="true"
-                      class="sc-cba1a45e-0 bgbQLJ"
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
                     >
-                      <span
-                        class="sc-cba1a45e-1 idsnjc"
+                      <div
+                        class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class="sc-86d1d46f-0 eJtvEZ"
-                          height="100%"
-                          name="instagram-v2"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <div
+                          class="sc-fqkvVR bfQsxh shadow"
+                        />
+                        <div
+                          class="sc-fqkvVR kbnxKi"
+                          data-icon-for="button"
                         >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#instagram-v2"
+                          <img
+                            alt=""
+                            class="sc-dcJsrY beWtwI"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </svg>
-                      </span>
-                    </span>
-                    <svg
-                      aria-hidden="true"
-                      class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                      height="100%"
-                      name="underline-1"
-                      width="100%"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use
-                        xlink:href="/images/sprite/sprite.svg#underline-1"
+                        </div>
+                      </div>
+                      <span
+                        class="sc-dAlyuH eeepiN"
                       />
-                    </svg>
-                  </div>
-                </a>
-                <a
-                  aria-label="facebook for Oak National Academy"
-                  class="sc-ff5827c0-0 lkMWEO"
-                  href="https://facebook.com/oaknationalacademy"
-                  role="link"
-                  target="_blank"
-                  title="facebook for Oak National Academy"
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO sc-5fd52f83-0 wgJtD"
                 >
-                  <div
-                    class="sc-b071a727-0 eQqUiM"
+                  <a
+                    aria-label="facebook for Oak National Academy"
+                    class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                    href="https://facebook.com/oaknationalacademy"
                   >
-                    <span
-                      aria-hidden="true"
-                      class="sc-cba1a45e-0 bgbQLJ"
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
                     >
-                      <span
-                        class="sc-cba1a45e-1 idsnjc"
+                      <div
+                        class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class="sc-86d1d46f-0 eJtvEZ"
-                          height="100%"
-                          name="facebook-v2"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <div
+                          class="sc-fqkvVR bfQsxh shadow"
+                        />
+                        <div
+                          class="sc-fqkvVR kbnxKi"
+                          data-icon-for="button"
                         >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#facebook-v2"
+                          <img
+                            alt=""
+                            class="sc-dcJsrY beWtwI"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </svg>
-                      </span>
-                    </span>
-                    <svg
-                      aria-hidden="true"
-                      class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                      height="100%"
-                      name="underline-1"
-                      width="100%"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use
-                        xlink:href="/images/sprite/sprite.svg#underline-1"
+                        </div>
+                      </div>
+                      <span
+                        class="sc-dAlyuH eeepiN"
                       />
-                    </svg>
-                  </div>
-                </a>
-                <a
-                  aria-label="x for Oak National Academy"
-                  class="sc-ff5827c0-0 lkMWEO"
-                  href="https://x.com/oaknational"
-                  role="link"
-                  target="_blank"
-                  title="x for Oak National Academy"
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO sc-5fd52f83-0 wgJtD"
                 >
-                  <div
-                    class="sc-b071a727-0 eQqUiM"
+                  <a
+                    aria-label="x for Oak National Academy"
+                    class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                    href="https://x.com/oaknational"
                   >
-                    <span
-                      aria-hidden="true"
-                      class="sc-cba1a45e-0 bgbQLJ"
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
                     >
-                      <span
-                        class="sc-cba1a45e-1 idsnjc"
+                      <div
+                        class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class="sc-86d1d46f-0 eJtvEZ"
-                          height="100%"
-                          name="x"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <div
+                          class="sc-fqkvVR bfQsxh shadow"
+                        />
+                        <div
+                          class="sc-fqkvVR kbnxKi"
+                          data-icon-for="button"
                         >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#x"
+                          <img
+                            alt=""
+                            class="sc-dcJsrY beWtwI"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1748452854/icons/x_fpmv5f.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </svg>
-                      </span>
-                    </span>
-                    <svg
-                      aria-hidden="true"
-                      class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                      height="100%"
-                      name="underline-1"
-                      width="100%"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use
-                        xlink:href="/images/sprite/sprite.svg#underline-1"
+                        </div>
+                      </div>
+                      <span
+                        class="sc-dAlyuH eeepiN"
                       />
-                    </svg>
-                  </div>
-                </a>
-                <a
-                  aria-label="linkedIn for Oak National Academy"
-                  class="sc-ff5827c0-0 lkMWEO"
-                  href="https://www.linkedin.com/company/oak-national-academy"
-                  role="link"
-                  target="_blank"
-                  title="linkedIn for Oak National Academy"
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO sc-5fd52f83-0 wgJtD"
                 >
-                  <div
-                    class="sc-b071a727-0 eQqUiM"
+                  <a
+                    aria-label="linkedIn for Oak National Academy"
+                    class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                    href="https://www.linkedin.com/company/oak-national-academy"
                   >
-                    <span
-                      aria-hidden="true"
-                      class="sc-cba1a45e-0 bgbQLJ"
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
                     >
-                      <span
-                        class="sc-cba1a45e-1 idsnjc"
+                      <div
+                        class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class="sc-86d1d46f-0 eJtvEZ"
-                          height="100%"
-                          name="linkedin-v2"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <div
+                          class="sc-fqkvVR bfQsxh shadow"
+                        />
+                        <div
+                          class="sc-fqkvVR kbnxKi"
+                          data-icon-for="button"
                         >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#linkedin-v2"
+                          <img
+                            alt=""
+                            class="sc-dcJsrY beWtwI"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </svg>
-                      </span>
-                    </span>
-                    <svg
-                      aria-hidden="true"
-                      class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                      height="100%"
-                      name="underline-1"
-                      width="100%"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use
-                        xlink:href="/images/sprite/sprite.svg#underline-1"
+                        </div>
+                      </div>
+                      <span
+                        class="sc-dAlyuH eeepiN"
                       />
-                    </svg>
-                  </div>
-                </a>
+                    </div>
+                  </a>
+                </div>
               </div>
               <div
                 class="sc-fqkvVR gNQyrX"
