@@ -15,8 +15,7 @@ export const SaveCount = () => {
     mutate,
   } = useGetEducatorData<number>("/api/educator/getSavedUnitCount");
 
-  const { savedUnitsCount, setSavedUnitsCount, loading } =
-    useSaveCountContext();
+  const { savedUnitsCount, setSavedUnitsCount } = useSaveCountContext();
 
   useEffect(() => {
     if (unitsCount !== undefined) {
@@ -26,7 +25,7 @@ export const SaveCount = () => {
 
   useEffect(() => {
     if (!isSignedIn) {
-      setSavedUnitsCount(0);
+      setSavedUnitsCount(null);
     } else {
       mutate();
     }
@@ -34,9 +33,9 @@ export const SaveCount = () => {
 
   return (
     <OakSaveCount
-      count={savedUnitsCount ?? 0}
+      count={savedUnitsCount ?? undefined}
       href={resolveOakHref({ page: "my-library" })}
-      loading={isLoading || loading}
+      loading={isLoading}
     />
   );
 };
