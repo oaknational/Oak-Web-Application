@@ -116,6 +116,8 @@ export async function generateMetadata({
 }
 
 const ProgrammePage = async ({ params }: ProgrammePageProps) => {
+  // `useFeatureFlag` is not a hook
+  //NOSONAR
   const isEnabled = await useFeatureFlag(
     "teachers-integrated-journey",
     "boolean",
