@@ -2,6 +2,7 @@
  * @jest-environment node
  */
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { redirect } from "next/navigation";
 
 import { GET } from "./route";
@@ -11,6 +12,12 @@ import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 const mockSession = "encrypted_session_data";
 const mockAccessToken = "google_access_token";
 const mockCode = "test_code_123";
+
+jest.mock("next/server", () => ({
+  NextResponse: {
+    json: jest.fn(),
+  },
+}));
 
 // Mock redirect
 jest.mock("next/navigation", () => ({
@@ -121,8 +128,8 @@ describe("GET /api/classroom/auth/callback", () => {
     await GET(mockRequest);
 
     // Assert
-    expect(mockResponseJson).toHaveBeenCalledTimes(1);
-    expect(mockResponseJson).toHaveBeenCalledWith("code is required", {
+    expect(NextResponse.json).toHaveBeenCalledTimes(1);
+    expect(NextResponse.json).toHaveBeenCalledWith("code is required", {
       status: 400,
     });
 
