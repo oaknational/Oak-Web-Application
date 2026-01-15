@@ -207,11 +207,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-kgOKUu dtUOUJ hRXrdT hUJnes"
+                  class="sc-fqkvVR sc-kAyceB sc-cMa-dbN dtUOUJ hRXrdT gqEiNe"
                 >
                   <input
                     checked=""
-                    class="sc-fBWQRz sc-fKWMtX emVWqZ helRrO"
+                    class="sc-fBWQRz sc-bfhvDw emVWqZ hMKfwK"
                     data-testid="all-years-radio"
                     id=":r0:"
                     name="yearreact-use-id-test-result"
@@ -231,10 +231,10 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-kgOKUu dtUOUJ hRXrdT hUJnes"
+                  class="sc-fqkvVR sc-kAyceB sc-cMa-dbN dtUOUJ hRXrdT gqEiNe"
                 >
                   <input
-                    class="sc-fBWQRz sc-fKWMtX emVWqZ helRrO"
+                    class="sc-fBWQRz sc-bfhvDw emVWqZ hMKfwK"
                     data-testid="year-radio"
                     id=":r1:"
                     name="yearreact-use-id-test-result"
@@ -280,7 +280,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-kAkpmW dARrbC joHkzz"
+            class="sc-fqkvVR sc-kAyceB sc-cmaqmh dARrbC joHkzz"
             focusable="false"
           >
             <svg
@@ -405,7 +405,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
         class="sc-fqkvVR sc-kAyceB kwqmrC jOTTNg"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB kUmAOC kyta-DD"
+          class="sc-fqkvVR sc-kAyceB bQOnaF kyta-DD"
         >
           <div
             class="sc-fqkvVR ioiQyz"
@@ -471,7 +471,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB eGXHla cuPHGn"
+          class="sc-fqkvVR sc-kAyceB gQeueV cuPHGn"
           data-testid="modal-footer"
         >
           <div
@@ -503,7 +503,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       class="sc-fqkvVR sc-kAyceB fgBWrW jcMcGZ"
                     >
                       <span
-                        class="sc-dAlyuH GHaIW"
+                        class="sc-dAlyuH kaYapc"
                         color="grey"
                         data-testid="coming-soon-flag"
                       >
@@ -743,11 +743,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-kgOKUu dtUOUJ hRXrdT hUJnes"
+                  class="sc-fqkvVR sc-kAyceB sc-cMa-dbN dtUOUJ hRXrdT gqEiNe"
                 >
                   <input
                     checked=""
-                    class="sc-fBWQRz sc-fKWMtX emVWqZ helRrO"
+                    class="sc-fBWQRz sc-bfhvDw emVWqZ hMKfwK"
                     data-testid="all-years-radio"
                     id=":r2:"
                     name="yearreact-use-id-test-result"
@@ -767,10 +767,10 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-kgOKUu dtUOUJ hRXrdT hUJnes"
+                  class="sc-fqkvVR sc-kAyceB sc-cMa-dbN dtUOUJ hRXrdT gqEiNe"
                 >
                   <input
-                    class="sc-fBWQRz sc-fKWMtX emVWqZ helRrO"
+                    class="sc-fBWQRz sc-bfhvDw emVWqZ hMKfwK"
                     data-testid="year-radio"
                     id=":r3:"
                     name="yearreact-use-id-test-result"
@@ -816,7 +816,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-kAkpmW dARrbC joHkzz"
+            class="sc-fqkvVR sc-kAyceB sc-cmaqmh dARrbC joHkzz"
             focusable="false"
           >
             <svg
@@ -1012,7 +1012,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                         class="sc-fqkvVR sc-85abac1-0 jdSkEU jXwLFO"
                       >
                         <a
-                          class="sc-736180ff-0 bsbMHP"
+                          class="sc-4ff2bd64-0 xHhKu"
                           data-testid="unit-info-link"
                           href="/timetabling/maths-primary/units/test-1?mode=normal&year=1"
                         >
@@ -1075,7 +1075,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                         class="sc-fqkvVR sc-85abac1-0 jdSkEU jXwLFO"
                       >
                         <a
-                          class="sc-736180ff-0 bsbMHP"
+                          class="sc-4ff2bd64-0 xHhKu"
                           data-testid="unit-info-link"
                           href="/timetabling/maths-primary/units/test-2?mode=normal&year=1"
                         >
@@ -1166,7 +1166,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
         class="sc-fqkvVR sc-kAyceB kwqmrC jOTTNg"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB kUmAOC kyta-DD"
+          class="sc-fqkvVR sc-kAyceB bQOnaF kyta-DD"
         >
           <div
             class="sc-fqkvVR ioiQyz"
@@ -1232,7 +1232,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB eGXHla cuPHGn"
+          class="sc-fqkvVR sc-kAyceB gQeueV cuPHGn"
           data-testid="modal-footer"
         >
           <div
@@ -1264,7 +1264,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-fqkvVR sc-kAyceB fgBWrW jcMcGZ"
                     >
                       <span
-                        class="sc-dAlyuH GHaIW"
+                        class="sc-dAlyuH kaYapc"
                         color="grey"
                         data-testid="coming-soon-flag"
                       >

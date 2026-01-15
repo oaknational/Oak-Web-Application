@@ -1,7 +1,7 @@
 query curriculumSequence(
-  $where: published_mv_curriculum_sequence_b_13_0_20_bool_exp
+  $where: published_mv_curriculum_sequence_b_13_0_21_bool_exp
 ) {
-  units: published_mv_curriculum_sequence_b_13_0_20(where: $where) {
+  units: published_mv_curriculum_sequence_b_13_0_21(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     connection_future_unit_title

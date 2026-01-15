@@ -36,7 +36,7 @@ const ConsentManagerTrigger: FC<{ children?: React.ReactNode }> = (props) => {
       $display="inline"
       onClick={openSettings}
     >
-      <OakSpan $color="navy">{props.children}</OakSpan>
+      <OakSpan $color="text-link-active">{props.children}</OakSpan>
     </UnstyledButton>
   );
 };

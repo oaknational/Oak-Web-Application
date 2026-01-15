@@ -44,5 +44,6 @@ export const getPupilFirestore = () => {
     authClient,
     projectId: GCP_PROJECT_ID,
     databaseId: PUPIL_FIRESTORE_ID,
+    ignoreUndefinedProperties: true,
   });
 };

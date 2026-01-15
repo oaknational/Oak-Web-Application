@@ -72,7 +72,10 @@ const GenericContactCard: FC<GenericContactCardProps> = (props) => {
           $order={[1, 2]}
           $colSpan={[12, 6, 4]}
         >
-          <OakFlex $background={"mint50"} $pa={["spacing-0", "spacing-24"]}>
+          <OakFlex
+            $background={"bg-decorative1-subdued"}
+            $pa={["spacing-0", "spacing-24"]}
+          >
             <NewsletterFormWrap onSubmit={onSubmit} />
           </OakFlex>
         </OakGridArea>

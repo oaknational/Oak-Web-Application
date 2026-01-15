@@ -36,7 +36,7 @@ export const QuizQuestionsMatchAnswers = ({
               $borderRadius="border-radius-m2"
               role="listitem"
               key={`q-${questionNumber}-answer${i}`}
-              $background={"lemon50"}
+              $background={"bg-decorative5-subdued"}
             >
               <VisuallyHidden>
                 Correct Answer:

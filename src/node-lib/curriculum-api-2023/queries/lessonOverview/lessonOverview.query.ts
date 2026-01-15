@@ -1,7 +1,7 @@
 import {
   LessonOverviewQuery,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp,
-  Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Keystage_16_0_0_Bool_Exp,
+  Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Keystage_18_0_0_Bool_Exp,
 } from "../../generated/sdk";
 import {
   lessonOverviewQuizData,
@@ -291,7 +291,7 @@ const lessonOverviewQuery =
     const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp> =
       { lesson_slug: { _eq: lessonSlug } };
 
-    const unitDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Keystage_16_0_0_Bool_Exp> =
+    const unitDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Keystage_18_0_0_Bool_Exp> =
       {
         supplementary_data: {
           _contains: { static_lesson_list: [{ slug: lessonSlug }] },

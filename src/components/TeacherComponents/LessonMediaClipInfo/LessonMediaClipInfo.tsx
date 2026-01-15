@@ -49,7 +49,7 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
         keyStageTitle={keyStageTitle}
         yearTitle={yearTitle}
         subjectTitle={subjectTitle}
-        $color={"grey60"}
+        $color={"text-subdued"}
         $mb="spacing-24"
       />
       <OakVideoTranscript

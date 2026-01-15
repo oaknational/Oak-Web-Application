@@ -129,17 +129,19 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   label={"Email (optional)"}
                   as="label"
                   $color={
-                    form.errors?.email || emailHasFocus ? "white" : "black"
+                    form.errors?.email || emailHasFocus
+                      ? "text-inverted"
+                      : "text-primary"
                   }
                   htmlFor={"email"}
                   id={"email-label"}
                   $font={"heading-7"}
                   $background={
                     form.errors?.email
-                      ? "red"
+                      ? "bg-error"
                       : emailHasFocus
-                        ? "blue"
-                        : "lemon"
+                        ? "bg-inverted"
+                        : "bg-decorative5-main"
                   }
                   $zIndex="in-front"
                   $position="absolute"

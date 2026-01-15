@@ -23,7 +23,7 @@ export const LandingPageHeroTitle: FC<{
       <OakHeading
         $mb={["spacing-8"]}
         $font={["heading-6", "heading-5"]}
-        $color={"grey50"}
+        $color={"text-disabled"}
         tag="h1"
       >
         {title}

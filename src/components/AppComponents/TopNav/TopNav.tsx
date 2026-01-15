@@ -1,17 +1,17 @@
 "use client";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
 
 import {
+  OakBox,
   OakCloseButton,
   OakFlex,
   OakIcon,
   OakImage,
   OakLink,
-  OakBox,
 } from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -22,6 +22,7 @@ import {
   TeachersSubNavData,
   PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 export type TopNavProps = {
   teachers: TeachersSubNavData | null;
@@ -44,8 +45,26 @@ const TopNav = (props: TopNavProps) => {
     [selectedMenu],
   );
 
+  const { setCurrentBannerProps } = useOakNotificationsContext();
+
+  useEffect(() => {
+    if (
+      (activeArea === "PUPILS" && !pupils) ||
+      (activeArea === "TEACHERS" && !teachers)
+    ) {
+      setCurrentBannerProps({
+        message:
+          "We’re experiencing a temporary technical issue. Thank you for your patience while we look into it.",
+        type: "warning",
+        isOpen: true,
+      });
+    } else {
+      setCurrentBannerProps(null);
+    }
+  }, [teachers, pupils, activeArea, setCurrentBannerProps]);
+
   return (
-    <header>
+    <OakBox as="header" $position="relative" data-testid="app-topnav">
       <OakBox
         $position={"absolute"}
         $zIndex={"in-front"}
@@ -142,7 +161,7 @@ const TopNav = (props: TopNavProps) => {
           {selectedMenu}
         </OakFlex>
       )}
-    </header>
+    </OakBox>
   );
 };
 

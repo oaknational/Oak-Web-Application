@@ -21,7 +21,7 @@ const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
         id="curriculum-picker"
         $font={["heading-5", "heading-4"]}
         $mb={["spacing-16", "spacing-24"]}
-        $background={"mint"}
+        $background={"bg-decorative1-main"}
         $textAlign={"left"}
       >
         See Oak's curriculum principles in practice

@@ -106,6 +106,11 @@ export function subjectTitleWithCase(title: string) {
       "",
     );
   }
+  // Assume we're dealing with uppercase word
+  const firstTwoLetters = title.slice(0, 2);
+  if (firstTwoLetters.toUpperCase() === firstTwoLetters) {
+    return title;
+  }
   return title.toLowerCase();
 }
 

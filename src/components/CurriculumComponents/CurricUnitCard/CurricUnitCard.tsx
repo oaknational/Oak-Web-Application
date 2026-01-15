@@ -69,7 +69,7 @@ export default function CurricUnitCard(props: Readonly<CurricUnitCardProps>) {
           $ph={"spacing-16"}
           $height={"100%"}
           $width={"100%"}
-          $color={isHighlighted ? "white" : "black"}
+          $color={isHighlighted ? "text-inverted" : "text-primary"}
           data-testid={isHighlighted ? "highlighted-unit-card" : "unit-card"}
           $flexDirection={"column"}
         >
