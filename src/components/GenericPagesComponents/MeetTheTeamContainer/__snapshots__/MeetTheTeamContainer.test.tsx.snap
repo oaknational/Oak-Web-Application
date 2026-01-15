@@ -4,18 +4,18 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR kRCrXv"
+      class="sc-fqkvVR bTCHtV"
     >
       <div
         class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
       >
         <h2
-          class="sc-kpDqfm jeWvUz"
+          class="sc-kpDqfm jXwDXb"
         >
           TESTING_TITLE
         </h2>
         <p
-          class="sc-dLMFU gvLBvO"
+          class="sc-dLMFU eFqtPi"
         >
           TEST_TEXT
         </p>
