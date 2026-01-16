@@ -97,6 +97,7 @@ export const ProgrammeHeader = ({
       $background={background}
       $ph={["spacing-20", "spacing-40"]}
       $pv={["spacing-40", "spacing-64"]}
+      $color="text-primary"
     >
       <OakGrid
         $cg="spacing-16"
@@ -118,7 +119,7 @@ export const ProgrammeHeader = ({
           $gap="spacing-24"
           $textWrap="balance"
         >
-          <OakHeading tag="h1" $font="heading-4">
+          <OakHeading tag="h1" $font={["heading-4", "heading-1"]}>
             {getProgrammeTitle(subjectTitle, phaseTitle, schoolYear)}
           </OakHeading>
           <OakTypography $font="body-2">{summary}</OakTypography>
