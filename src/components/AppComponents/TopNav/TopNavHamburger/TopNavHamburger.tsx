@@ -100,7 +100,6 @@ export function TopNavHamburger(props: TopNavProps) {
         isOpen={isOpen}
         onClose={() => handleClose()}
         closeOnBackgroundClick
-        largeScreenMaxWidth={480}
       >
         <HamburgerMenuContext.Provider value={contextValue}>
           <Content {...props} />
