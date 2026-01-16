@@ -10,6 +10,7 @@ import {
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import CMSClient from "@/node-lib/cms";
+import { useFeatureFlag } from "@/utils/featureFlags";
 import {
   formatCurriculumUnitsData,
   fetchSubjectPhasePickerData,
@@ -20,7 +21,10 @@ const ProgrammePage = async ({
 }: {
   params: Promise<{ subjectPhaseSlug: string }>;
 }) => {
-  const isEnabled = true;
+  const isEnabled = await useFeatureFlag(
+    "teachers-integrated-journey",
+    "boolean",
+  );
   try {
     const { subjectPhaseSlug } = await params;
 
