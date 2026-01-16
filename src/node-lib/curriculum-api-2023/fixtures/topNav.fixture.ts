@@ -10,6 +10,7 @@ export const topNavFixture: TopNavProps = {
         {
           slug: "ks1",
           title: "KS1",
+          description: "Key stage 1",
           subjects: [
             {
               title: "English",
@@ -30,6 +31,7 @@ export const topNavFixture: TopNavProps = {
         {
           slug: "ks2",
           title: "KS2",
+          description: "Key stage 2",
           subjects: [
             {
               title: "Science",
@@ -43,6 +45,7 @@ export const topNavFixture: TopNavProps = {
         {
           slug: "eyfs",
           title: "EYFS",
+          description: "Early years foundation stage",
           subjects: [],
         },
       ],
@@ -54,6 +57,7 @@ export const topNavFixture: TopNavProps = {
         {
           slug: "ks3",
           title: "KS3",
+          description: "Key stage 3",
           subjects: [
             {
               title: "History",
@@ -67,6 +71,7 @@ export const topNavFixture: TopNavProps = {
         {
           slug: "ks4",
           title: "KS4",
+          description: "Key stage 4",
           subjects: [
             {
               title: "Geography",

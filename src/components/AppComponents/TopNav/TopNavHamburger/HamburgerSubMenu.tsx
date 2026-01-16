@@ -9,8 +9,11 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
-import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
-import { getEYFSAriaLabel } from "./HamburgerMainMenu";
+import {
+  getEYFSAriaLabel,
+  SubmenuState,
+  useHamburgerMenu,
+} from "./TopNavHamburger";
 
 import {
   SubNavLinks,

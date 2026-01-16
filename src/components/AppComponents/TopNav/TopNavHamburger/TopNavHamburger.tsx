@@ -8,17 +8,17 @@ import {
   useMemo,
   useCallback,
 } from "react";
+import {
+  OakSecondaryButton,
+  OakInformativeModal,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import { TopNavProps } from "../TopNav";
 
 import { MainMenuContent } from "./HamburgerMainMenu";
 import { SubmenuContent } from "./HamburgerSubMenu";
 
-import {
-  OakSecondaryButton,
-  OakInformativeModal,
-  OakBox,
-} from "@oaknational/oak-components";
 
 export type SubmenuState =
   | "KS1"
@@ -50,6 +50,11 @@ export const useHamburgerMenu = () => {
     );
   }
   return context;
+};
+
+export const getEYFSAriaLabel = (title: SubmenuState) => {
+  const isEYFS = title === "EYFS";
+  return isEYFS ? "Early years foundation stage" : undefined;
 };
 
 export function TopNavHamburger(props: TopNavProps) {
