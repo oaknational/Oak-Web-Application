@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 
 import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
+import { getEYFSAriaLabel } from "./HamburgerMainMenu";
 
 import {
   SubNavLinks,
@@ -56,6 +57,7 @@ export function SubmenuContainer({
     >
       <OakPrimaryInvertedButton
         iconName="chevron-left"
+        aria-label={getEYFSAriaLabel(title)}
         selected={true}
         onClick={() => handleCloseSubmenu()}
       >
