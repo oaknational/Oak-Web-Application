@@ -12,6 +12,8 @@ import {
 
 import { getPageLinksForLesson } from "../helpers/lessonHelpers/getPageLinksForLessons";
 
+import { getSkipLinkUrl } from "./getSkipLinkUrl";
+
 import { LessonPageLinkAnchorId } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { containerTitleToPreselectMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/containerTitleToPreselectMap";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
@@ -103,16 +105,7 @@ export const LessonItemContainer = forwardRef<
   const [skipVideoButtonFocused, setSkipVideoButtonFocused] =
     useState<boolean>(false);
 
-  const skipContentAnchor =
-    anchorId === "video" ||
-    anchorId === "lesson-guide" ||
-    anchorId === "worksheet" ||
-    anchorId === "slide-deck" ||
-    anchorId === "quiz" ||
-    anchorId === "media-clips"
-      ? pageLinks[pageLinks.findIndex((link) => link.anchorId === anchorId) + 1]
-          ?.anchorId || undefined
-      : undefined;
+  const skipLinkUrl = getSkipLinkUrl(anchorId, pageLinks, slugs?.lessonSlug);
 
   const lowerCaseTitle = downloadTitle
     ? downloadTitle.toLowerCase()
@@ -126,22 +119,22 @@ export const LessonItemContainer = forwardRef<
         id={getContainerId(anchorId)}
         tabIndex={-1}
       >
-        <OakAnchorTarget id={anchorId} $pt={"inner-padding-xl"} ref={ref} />
+        <OakAnchorTarget id={anchorId} $pt={"spacing-24"} ref={ref} />
         <OakFlex
           $mb={
-            skipContentAnchor
-              ? ["space-between-xs", "space-between-m", "space-between-m"]
-              : ["space-between-m"]
+            skipLinkUrl
+              ? ["spacing-12", "spacing-24", "spacing-24"]
+              : ["spacing-24"]
           }
           $position={"relative"}
           $flexDirection={"column"}
-          $gap={"space-between-xs"}
+          $gap={"spacing-12"}
         >
           <OakFlex
             $flexDirection={["column", "row"]}
             $alignItems={["start", "end"]}
-            $gap={["all-spacing-3", "all-spacing-8"]}
-            $height={["auto", "inner-padding-xl3"]}
+            $gap={["spacing-12", "spacing-40"]}
+            $height={["auto", "spacing-40"]}
           >
             {title && (
               <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
@@ -176,10 +169,10 @@ export const LessonItemContainer = forwardRef<
               />
             )}
 
-            {skipContentAnchor && (
+            {skipLinkUrl && (
               <OakSecondaryButton
                 element="a"
-                href={`${slugs?.lessonSlug}#${skipContentAnchor}`}
+                href={skipLinkUrl}
                 onFocus={() => setSkipVideoButtonFocused(true)}
                 onBlur={() => setSkipVideoButtonFocused(false)}
                 style={
@@ -197,7 +190,7 @@ export const LessonItemContainer = forwardRef<
             )}
           </OakFlex>
           {subheader && (
-            <OakFlex $flexDirection="column" $maxWidth={"all-spacing-22"}>
+            <OakFlex $flexDirection="column" $maxWidth={"spacing-640"}>
               <OakHeading tag="h3" $font={"body-2"}>
                 {subheader}
               </OakHeading>
@@ -209,10 +202,10 @@ export const LessonItemContainer = forwardRef<
         {!props.isFinalElement && (
           <OakHandDrawnHR
             data-testid="hr"
-            hrColor={"pink"}
-            $height={"all-spacing-1"}
-            $mt={["space-between-m", "space-between-xl"]}
-            $mb={["space-between-xs", "space-between-m"]}
+            hrColor={"bg-decorative4-main"}
+            $height={"spacing-4"}
+            $mt={["spacing-24", "spacing-56"]}
+            $mb={["spacing-12", "spacing-24"]}
           />
         )}
       </OakFlex>

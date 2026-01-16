@@ -98,13 +98,13 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
             <SideMenu
               data-testid={"menu"}
               $position="fixed"
-              $top={"all-spacing-0"}
-              $right={"all-spacing-0"}
+              $top={"spacing-0"}
+              $right={"spacing-0"}
               $height="100%"
               $maxWidth="100%"
-              $width={"all-spacing-22"}
+              $width={"spacing-640"}
               $flexDirection={"column"}
-              $background={"pink50"}
+              $background={"bg-decorative4-subdued"}
               state={state}
               $zIndex={"neutral"}
               aria-expanded={open}
@@ -131,8 +131,8 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
               />
               <OakBox
                 $position={"fixed"}
-                $top={"all-spacing-5"}
-                $right={"all-spacing-4"}
+                $top={"spacing-20"}
+                $right={"spacing-16"}
               >
                 <IconButton
                   aria-label="Close Menu"
@@ -148,14 +148,14 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
                 $flexDirection={"column"}
                 $overflowY={"auto"}
                 $flexGrow={1}
-                $pv={["inner-padding-s", "inner-padding-xl7"]}
-                $ph={["inner-padding-m", "inner-padding-xl7"]}
+                $pv={["spacing-12", "spacing-72"]}
+                $ph={["spacing-16", "spacing-72"]}
               >
                 {/* Mobile logo */}
                 <OakFlex
                   $justifyContent={"left"}
                   $display={["flex", "none"]}
-                  $mb={["space-between-m2", "space-between-none"]}
+                  $mb={["spacing-32", "spacing-0"]}
                 >
                   <Logo variant="with text" height={48} width={104} />
                 </OakFlex>
@@ -163,15 +163,12 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
                 {/* Desktop logo */}
                 <OakFlex
                   $mt={"auto"}
-                  $pt={"inner-padding-xl4"}
+                  $pt={"spacing-48"}
                   $justifyContent={"space-between"}
                   $alignItems={"flex-end"}
                 >
                   <SocialButtons for="Oak National Academy" {...OAK_SOCIALS} />
-                  <OakFlex
-                    $display={["none", "flex"]}
-                    $mb={"space-between-sssx"}
-                  >
+                  <OakFlex $display={["none", "flex"]} $mb={"spacing-4"}>
                     <Logo variant="with text" width={150} height={63} />
                   </OakFlex>
                 </OakFlex>

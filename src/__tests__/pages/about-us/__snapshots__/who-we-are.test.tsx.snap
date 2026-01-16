@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
+<body>
+  <div>
+    <div
+      data-overlay-container="true"
+    >
+      <div
+        aria-live="polite"
+        class="sc-fqkvVR sc-kAyceB sc-fecccf71-0 CXrfz IxeqO Zjqfu"
+      />
+      <div />
+    </div>
+    <div
+      class="sc-fqkvVR eEXsKT"
+    >
+      <div
+        class="sc-fqkvVR aMutw"
+        data-testid="cookie-banner"
+      >
+        <div
+          class="sc-fqkvVR jMNzyV"
+        >
+          <div
+            class="sc-fqkvVR sc-kAyceB krbSaB jIxDmZ"
+          >
+            <div
+              class="sc-fqkvVR kJPpVN"
+            >
+              <strong
+                class="sc-dAlyuH jdEtcT"
+              >
+                This site uses cookies to store information on your computer.
+              </strong>
+               
+              Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
+            </div>
+            <div
+              class="sc-fqkvVR sc-kAyceB fgBWrW eaKFMD"
+            >
+              <div
+                class="sc-fqkvVR sc-kAyceB fOyTgd TDtQj"
+              >
+                <button
+                  class="sc-fxwrCY eycZBP sc-hIUJlX"
+                  data-testid="cookie-banner-reject"
+                  type="button"
+                >
+                  <span
+                    class="sc-dAlyuH cRouMQ"
+                  >
+                    Reject non-essential cookies
+                  </span>
+                </button>
+              </div>
+              <div
+                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
+              >
+                <div
+                  class="sc-fqkvVR iPpXCP grey-shadow"
+                />
+                <div
+                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                />
+                <button
+                  class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+                >
+                  <div
+                    class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                  >
+                    <span
+                      class="sc-dAlyuH hHWgLm"
+                    >
+                      Cookie settings
+                    </span>
+                  </div>
+                </button>
+              </div>
+              <div
+                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
+              >
+                <div
+                  class="sc-fqkvVR iPpXCP grey-shadow"
+                />
+                <div
+                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                />
+                <button
+                  class="sc-dtBdUo sc-fXSgeo bMKUbn eJTpUE internal-button"
+                  data-testid="cookie-banner-accept"
+                >
+                  <div
+                    class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                  >
+                    <span
+                      class="sc-dAlyuH hHWgLm"
+                    >
+                      Accept all cookies
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

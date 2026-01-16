@@ -154,13 +154,13 @@ export const QuizMatchAnswer = () => {
 
           return (
             <li key={id} data-testid="match-feedback">
-              <OakDroppable key={id} $mb="space-between-s" labelSlot={label}>
+              <OakDroppable key={id} $mb="spacing-16" labelSlot={label}>
                 <OakDraggableFeedback feedback={currentFeedback}>
                   {choice.label}
                 </OakDraggableFeedback>
               </OakDroppable>
               {currentFeedback === "incorrect" && (
-                <OakBox $mb="space-between-m" $pl="inner-padding-l">
+                <OakBox $mb="spacing-24" $pl="spacing-20">
                   <strong>Correct answer:</strong> {correctChoice.label} -{" "}
                   {label}
                 </OakBox>

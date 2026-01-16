@@ -26,10 +26,10 @@ export default {
 const Template: StoryFn<typeof Card> = (args) => {
   return (
     <Card {...args}>
-      <OakHeading $mb="space-between-m" $font={"heading-5"} tag={"h2"}>
+      <OakHeading $mb="spacing-24" $font={"heading-5"} tag={"h2"}>
         UL with tick icons
       </OakHeading>
-      <OakP $mb="space-between-m">
+      <OakP $mb="spacing-24">
         Pass ULTick into the component prop of a PortableText component and
         bullet points become ticks.
       </OakP>

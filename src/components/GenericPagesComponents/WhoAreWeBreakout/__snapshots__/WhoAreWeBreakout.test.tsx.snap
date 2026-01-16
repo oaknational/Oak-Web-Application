@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WhoAreWeBreakout renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-kAyceB sc-4196a4d9-0 ixZoE joHkzz dQLTeJ"
+    >
+      <div
+        class="sc-fqkvVR sc-kAyceB hsevFq bAFsaQ"
+      >
+        <img
+          alt="test"
+          class="sc-6170517-0 eeeRRY"
+          data-nimg="1"
+          decoding="async"
+          height="300"
+          loading="lazy"
+          src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
+          srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
+          style="color: transparent;"
+          width="300"
+        />
+      </div>
+      <div
+        class="sc-fqkvVR sc-kAyceB cPTgZF gSPFUg"
+      >
+        <p
+          class="sc-dLMFU Qmmuc"
+        >
+          TESTING_CONTENT
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+`;

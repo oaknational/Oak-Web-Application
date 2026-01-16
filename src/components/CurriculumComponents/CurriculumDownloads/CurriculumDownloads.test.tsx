@@ -2,14 +2,19 @@ import { useRef } from "react";
 import { useRouter } from "next/router";
 import userEvent from "@testing-library/user-event";
 import { act } from "@testing-library/react";
+import { usePathname } from "next/navigation";
 
 import CurriculumDownloads, {
   CurriculumDownloadsRef,
 } from "./CurriculumDownloads";
 
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
@@ -47,7 +52,7 @@ const frenchResource = {
   // TODO - the radio is selected based of the end of the url. This isn't ideal and should be refactored
 };
 const downloads = [frenchResource];
-const render = renderWithProviders();
+const render = renderWithProvidersByName(["theme", "oakTheme", "analytics"]);
 beforeEach(() => {
   localStorage.clear();
 });

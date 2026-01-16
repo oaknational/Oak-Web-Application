@@ -16,6 +16,7 @@ import curriculumApi2023, {
   CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -58,7 +59,11 @@ describe("LessonMediaClipsPage", () => {
   it("Renders component", () => {
     const result = render(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonMediaClipsPage curriculumData={lessonFixtureData} />,
+        <LessonMediaClipsPage
+          curriculumData={lessonFixtureData}
+          topNav={topNavFixture}
+        />
+        ,
       </OakThemeProvider>,
     );
 

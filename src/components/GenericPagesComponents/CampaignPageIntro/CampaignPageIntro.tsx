@@ -14,13 +14,13 @@ export const CampaignPageIntro = ({
 }) => {
   return (
     <OakGrid
-      $mt={["space-between-xxl", "space-between-xxl", "space-between-xxxl"]}
-      $maxWidth={["unset", "all-spacing-24"]}
+      $mt={["spacing-72", "spacing-72", "spacing-80"]}
+      $maxWidth={["unset", "spacing-1280"]}
     >
       <OakGridArea
         $colSpan={[12, 10, 10]}
         $colStart={[1, 2, 2]}
-        $mb={["space-between-m", "space-between-l"]}
+        $mb={["spacing-24", "spacing-48"]}
       >
         <PortableTextWithDefaults value={heading} components={textStyles} />
       </OakGridArea>

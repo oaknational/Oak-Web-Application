@@ -83,6 +83,9 @@ jest.mock("posthog-js", () => ({
     capture: jest.fn(),
     onFeatureFlags: jest.fn(),
     isFeatureEnabled: jest.fn(),
+    useFeatureFlagVariantKey: jest.fn(),
+    useFeatureFlagEnabled: jest.fn(),
+    getFeatureFlag: jest.fn(),
   },
 }));
 
@@ -109,7 +112,7 @@ jest.mock("@clerk/nextjs");
 
 jest.mock("nanoid", () => {
   return {
-    nanoid: (len) => Array(len).fill("x").join(""),
+    nanoid: (len) => new Array(len).fill("x").join(""),
   };
 });
 

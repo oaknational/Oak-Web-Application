@@ -29,6 +29,11 @@ import {
 import type { OakConfig } from "./scripts/build/fetch_config/config_types";
 import fetchConfig from "./scripts/build/fetch_config";
 
+import {
+  cspHeader,
+  reportingEndpointsHeader,
+} from "@/config/contentSecurityPolicy";
+
 const withBundleAnalyzer = buildWithBundleAnalyzer({
   enabled: process.env.ANALYSE_BUNDLE === "on",
 });
@@ -115,6 +120,63 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
   }
 
   const nextConfig: NextConfig = {
+    headers: async () => [
+      {
+        source: "/api/pupil/:path*",
+        headers: [
+          {
+            key: "Access-Control-Allow-Origin",
+            value:
+              releaseStage === "development"
+                ? "*"
+                : [
+                    "*.vercel-preview.thenational.academy",
+                    "*.vercel.thenational.academy",
+                    "owa.thenational.academy",
+                    "owa-vercel.thenational.academy",
+                    "www.thenational.academy",
+                  ].join(","),
+          },
+          {
+            key: "Access-Control-Allow-Methods",
+            value: "GET, POST",
+          },
+          {
+            key: "Access-Control-Allow-Headers",
+            value: "Content-Type",
+          },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' https://classroom.google.com;",
+          },
+          {
+            key: "x-vercel-set-bypass-cookie",
+            value: "samesitenone",
+          },
+        ],
+      },
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Reporting-Endpoints",
+            value: reportingEndpointsHeader,
+          },
+          {
+            key: "Content-Security-Policy-Report-Only",
+            value: cspHeader.replaceAll(/\n/g, ""),
+          },
+          // {
+          //   key: "Content-Security-Policy",
+          //   value: "frame-ancestors 'self' https://classroom.google.com;",
+          // },
+          // {
+          //   key: "x-vercel-set-bypass-cookie",
+          //   value: "samesitenone",
+          // },
+        ],
+      },
+    ],
     // Attempt to reduce the size of the build by excluding some packages.
     serverExternalPackages: ["sharp"],
     outputFileTracingExcludes: {

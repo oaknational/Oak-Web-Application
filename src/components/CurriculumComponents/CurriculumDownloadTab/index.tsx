@@ -307,7 +307,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   if (isDone) {
     return (
       <ScrollIntoViewWhenVisisble>
-        <OakBox $pv={["inner-padding-xl4"]}>
+        <OakBox $pv={["spacing-48"]}>
           <CurricSuccessMessage
             title="Thanks for downloading"
             message="We hope you find the resources useful. Click the question mark in the bottom-right corner to share your feedback."
@@ -336,13 +336,13 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         id="curriculum-downloads"
         aria-labelledby="curriculum-downloads-heading"
         tabIndex={-1}
-        $maxWidth={"all-spacing-24"}
+        $maxWidth={"spacing-1280"}
         $mh={"auto"}
-        $ph={"inner-padding-m"}
-        $pt={["inner-padding-xl4", "inner-padding-none"]}
-        $pb={["inner-padding-xl4"]}
-        $mt={["space-between-none", "space-between-l", "space-between-l"]}
-        $borderColor="red"
+        $ph={"spacing-16"}
+        $pt={["spacing-48", "spacing-0"]}
+        $pb={["spacing-48"]}
+        $mt={["spacing-0", "spacing-48", "spacing-48"]}
+        $borderColor="border-error"
         $width={"100%"}
         role="region"
       >

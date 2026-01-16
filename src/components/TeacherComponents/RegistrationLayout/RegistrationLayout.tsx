@@ -23,7 +23,7 @@ const RegistrationLayout = ({
       <OakGridArea
         $colSpan={[0, 0, 6]}
         $display={["none", "none", "flex"]}
-        $pa="inner-padding-xl2"
+        $pa="spacing-32"
         $background="bg-decorative1-main"
         $justifyContent="center"
         $alignItems="center"
@@ -31,7 +31,7 @@ const RegistrationLayout = ({
         <OakFlex
           $flexDirection="column"
           $alignItems="flex-start"
-          $gap="space-between-l"
+          $gap="spacing-48"
         >
           {asideSlot}
           {bannerSlot}
@@ -39,20 +39,20 @@ const RegistrationLayout = ({
       </OakGridArea>
       <OakGridArea
         $colSpan={[12, 12, 6]}
-        $pa="inner-padding-xl2"
-        $background="white"
+        $pa="spacing-32"
+        $background="bg-primary"
         $alignItems="center"
         $justifyContent="center"
       >
         <OakFlex
           style={{ width: "400px" }}
           $flexDirection="column"
-          $gap={["all-spacing-0", "all-spacing-0", "space-between-m"]}
+          $gap={["spacing-0", "spacing-0", "spacing-24"]}
         >
           <OakBox
             $display={["block", "block", "none"]}
             $width="max-content"
-            $ph="inner-padding-xl3"
+            $ph="spacing-40"
           >
             {bannerSlot}
           </OakBox>

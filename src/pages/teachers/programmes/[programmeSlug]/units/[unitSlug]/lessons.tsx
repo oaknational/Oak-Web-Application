@@ -55,9 +55,11 @@ import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNot
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import Banners from "@/components/SharedComponents/Banners";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
+  topNav: TopNavProps;
 };
 
 /**
@@ -84,6 +86,7 @@ function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
 
 const LessonListPage: NextPage<LessonListingPageProps> = ({
   curriculumData,
+  topNav,
 }) => {
   const {
     unitSlug,
@@ -229,7 +232,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons`,
         }),
       }}
-      $background="white"
+      $background="bg-primary"
+      topNavProps={topNav}
     >
       <PaginationHead
         prevPageUrlObject={prevPageUrlObject}
@@ -276,7 +280,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               disabled: true,
             },
           ]}
-          background={"pink30"}
+          background={"bg-decorative4-very-subdued"}
           subjectIconBackgroundColor={"pink"}
           title={unitTitle}
           programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
@@ -313,12 +317,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               : () => onSaveToggle(unitSlug)
           }
         />
-        <OakMaxWidth $ph={"inner-padding-m"}>
+        <OakMaxWidth $ph={"spacing-16"}>
           <OakGrid>
-            <OakGridArea
-              $colSpan={[12, 9]}
-              $mt={["space-between-s", "space-between-m2"]}
-            >
+            <OakGridArea $colSpan={[12, 9]} $mt={["spacing-16", "spacing-32"]}>
               {unpublishedLessonCount > 0 && (
                 <OakInlineRegistrationBanner
                   onSubmit={(email) => {
@@ -447,9 +448,12 @@ export const getStaticProps: GetStaticProps<
         return redirect ? { redirect } : { notFound: true };
       }
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<LessonListingPageProps> = {
         props: {
           curriculumData,
+          topNav,
         },
       };
       return results;

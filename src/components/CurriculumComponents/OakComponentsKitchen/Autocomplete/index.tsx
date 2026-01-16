@@ -88,7 +88,11 @@ const Autocomplete = (props: AutocompleteProps) => {
       <OakFlex $width={"100%"} $position={"relative"} ref={inputRef}>
         <OakJauntyAngleLabel
           label={props.inputProps.label}
-          $color={state.isFocused || props.inputProps.error ? "white" : "black"}
+          $color={
+            state.isFocused || props.inputProps.error
+              ? "text-inverted"
+              : "text-primary"
+          }
           htmlFor={inputProps.id}
           as="label"
           id={"autocomplete-label"}
@@ -117,9 +121,9 @@ const Autocomplete = (props: AutocompleteProps) => {
           aria-invalid={props.inputProps.error ? "true" : undefined}
           defaultValue={undefined}
           wrapperWidth={"100%"}
-          $pv="inner-padding-none"
-          $height="all-spacing-10"
-          color="black"
+          $pv="spacing-0"
+          $height="spacing-56"
+          color="text-primary"
         />
       </OakFlex>
       {isOpen && (

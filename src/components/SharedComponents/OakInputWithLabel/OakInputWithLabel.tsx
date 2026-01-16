@@ -59,14 +59,14 @@ export const OakInputWithLabel = ({
   return (
     <OakFlex $flexDirection="column" $width="100%">
       {error && (
-        <OakBox id={error} role="alert" $pb={["inner-padding-xl"]}>
+        <OakBox id={error} role="alert" $pb={["spacing-24"]}>
           <OakFieldError>{error}</OakFieldError>
         </OakBox>
       )}
       <OakFlex $position="relative" $flexDirection="column" ref={ref}>
         <OakJauntyAngleLabel
           label={label + (required === true ? " (required)" : "")}
-          $color={!!error || hasFocus ? "white" : "black"}
+          $color={!!error || hasFocus ? "text-inverted" : "text-primary"}
           htmlFor={id}
           as="label"
           id={label + "-label"}
@@ -89,9 +89,9 @@ export const OakInputWithLabel = ({
             onBlur?.(e);
             setHasFocus(false);
           }}
-          $pv="inner-padding-none"
+          $pv="spacing-0"
           wrapperWidth="100%"
-          $height="all-spacing-10"
+          $height="spacing-56"
           autoComplete={autocomplete}
           name={name}
           defaultValue={defaultValue}

@@ -4,21 +4,16 @@ import type { AriaListBoxOptions } from "@react-aria/listbox";
 import type { Node } from "@react-types/shared";
 import type { ListState } from "react-stately";
 import { useListBox, useOption } from "react-aria";
-import {
-  OakLI,
-  OakFlex,
-  OakSpan,
-  OakCombinedColorToken,
-} from "@oaknational/oak-components";
+import { OakLI, OakFlex, OakSpan } from "@oaknational/oak-components";
 
-import theme, { OakColorName } from "@/styles/theme";
+import { OakColorName } from "@/styles/theme";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export type SelectListBoxConfig = {
   states: {
     default: {
       background: OakColorName;
-      color: OakCombinedColorToken;
+      color: OakColorName;
     };
     isFocused: {
       background: OakColorName;
@@ -117,17 +112,17 @@ function Option({ item, state }: Readonly<OptionProps>) {
     >
       <OakFlex
         $width={"100%"}
-        $background={isFocused ? "grey20" : "white"}
+        $background={isFocused ? "bg-neutral" : "bg-primary"}
         $position={"relative"}
         $alignItems={"center"}
-        $pa="inner-padding-xs"
-        $pl="inner-padding-m"
+        $pa="spacing-8"
+        $pl="spacing-16"
       >
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
           {item.rendered}
         </OptionContext.Provider>
       </OakFlex>
-      <BoxBorders $color="black" hideTop />
+      <BoxBorders $color="text-primary" hideTop />
     </ListItem>
   );
 }
@@ -141,7 +136,7 @@ function Option({ item, state }: Readonly<OptionProps>) {
 export function Label({ children }: Readonly<{ children: React.ReactNode }>) {
   const { labelProps } = useContext(OptionContext);
   return (
-    <OakSpan $color={theme.selectListBox.states.default.color} {...labelProps}>
+    <OakSpan $color={"text-subdued"} {...labelProps}>
       {children}
     </OakSpan>
   );

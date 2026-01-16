@@ -23,27 +23,23 @@ export const ExpiringBanner = ({
   const title = (() => {
     switch (true) {
       case isResourcesMessage:
-        return `These resources will be removed by end of Summer Term 2025.`;
+        return `These resources were made for remote use during the pandemic, not classroom teaching.`;
       case isSingular:
-        return `This lesson will be removed by end of Summer Term 2025.`;
+        return `This lesson was made for home learning during the pandemic.`;
       default:
-        return `These lessons will be removed by end of Summer Term 2025.`;
+        return `These lessons were made for home learning during the pandemic.`;
     }
   })();
 
+  const resourceType = isSingular ? "lessons" : "resources";
+
   const message = isResourcesMessage ? (
-    <>
-      <OakP>
-        Switch to our new teaching resources now - designed by teachers and
-        leading subject experts, and tested in classrooms.
-      </OakP>
-      <OakP $mt={"space-between-m"}>
-        These resources were created for remote use during the pandemic and are
-        not designed for classroom teaching.
-      </OakP>
-    </>
+    <OakP>
+      Switch to our new teaching resources now - designed by teachers and
+      leading subject experts, and tested in classrooms.
+    </OakP>
   ) : (
-    `We've made brand-new and improved lessons for you.`
+    `We've made brand-new and improved ${resourceType} for you.`
   );
 
   return (

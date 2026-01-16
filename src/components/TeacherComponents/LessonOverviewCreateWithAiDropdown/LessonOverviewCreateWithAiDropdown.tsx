@@ -77,14 +77,14 @@ export const LessonOverviewCreateWithAiDropdown = ({
       leadingButtonIcon={
         <OakTagFunctional
           $borderRadius={"border-radius-s"}
-          $ph={"inner-padding-ssx"}
-          $gap={"all-spacing-05"}
-          $mr={"space-between-ssx"}
-          $background={"lemon"}
+          $ph={"spacing-4"}
+          $gap={"spacing-2"}
+          $mr={"spacing-8"}
+          $background={"icon-promo"}
           $alignItems={"center"}
           $justifyContent={"center"}
           label={"New"}
-          $height={"all-spacing-5"}
+          $height={"spacing-20"}
           iconName="ai"
           $font={"body-3"}
         />
@@ -112,9 +112,7 @@ export const LessonOverviewCreateWithAiDropdown = ({
           {material.label}
         </OakSmallSecondaryButtonWithDropdown.Item>
       ))}
-
       <OakSmallSecondaryButtonWithDropdown.Divider />
-
       <OakSmallPrimaryInvertedButton
         element="a"
         href="https://www.oaknationalacademy.com/ai"
@@ -125,7 +123,7 @@ export const LessonOverviewCreateWithAiDropdown = ({
           <OakSpan>Learn more about Aila, Oak’s AI </OakSpan>
           <OakFlex $font={"body-3"} $alignItems={"center"}>
             <OakSpan>lesson assistant </OakSpan>
-            <OakIcon iconHeight="all-spacing-6" iconName="external" />
+            <OakIcon iconHeight="spacing-24" iconName="external" />
           </OakFlex>
         </OakFlex>
       </OakSmallPrimaryInvertedButton>

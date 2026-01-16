@@ -7,7 +7,7 @@ import {
   OakHandDrawnCardWithIcon,
   OakHandDrawnHR,
   OakBox,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import CurriculumHeaderTabNav from "../CurriculumHeaderTabNav";
@@ -34,8 +34,8 @@ export type CurriculumHeaderPageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   keyStages: string[];
-  color1?: OakColorToken;
-  color2?: OakColorToken;
+  color1?: OakUiRoleToken;
+  color2?: OakUiRoleToken;
   tab: "overview" | "units" | "downloads";
 };
 
@@ -49,7 +49,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
 }) => {
   const subject = curriculumPhaseOptions.subjects.find(
     (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug,
-  ) as SubjectPhasePickerData["subjects"][number] | undefined;
+  );
   const phase = subject?.phases.find(
     (phase) => phase.slug === curriculumSelectionSlugs.phaseSlug,
   );
@@ -101,11 +101,11 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   return (
     <OakBox>
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
-      <OakFlex $background={color1} $pv="inner-padding-l">
+      <OakFlex $background={color1} $pv="spacing-20">
         <OakBox
-          $maxWidth="all-spacing-24"
+          $maxWidth="spacing-1280"
           $mh={"auto"}
-          $ph="inner-padding-l"
+          $ph="spacing-20"
           $width={"100%"}
         >
           <Breadcrumbs
@@ -134,9 +134,9 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           />
 
           <OakHandDrawnHR
-            hrColor={"white"}
-            $height={"all-spacing-05"}
-            $mv={"space-between-m2"}
+            hrColor={"bg-primary"}
+            $height={"spacing-2"}
+            $mv={"spacing-32"}
           />
           <SubjectPhasePicker
             {...curriculumPhaseOptions}
@@ -146,29 +146,26 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
         </OakBox>
       </OakFlex>
       <OakBox $background={color2}>
-        <OakFlex
-          $pb={"inner-padding-xl"}
-          $pt={["inner-padding-l", "inner-padding-xl2"]}
-        >
+        <OakFlex $pb={"spacing-24"} $pt={["spacing-20", "spacing-32"]}>
           <OakBox
-            $maxWidth="all-spacing-24"
+            $maxWidth="spacing-1280"
             $mh={"auto"}
-            $ph="inner-padding-l"
+            $ph="spacing-20"
             $width={"100%"}
           >
             <OakFlex>
               <OakBox
-                $minWidth="all-spacing-13"
-                $mr={["space-between-xs", "space-between-m"]}
+                $minWidth="spacing-80"
+                $mr={["spacing-12", "spacing-24"]}
                 $mv={"auto"}
               >
                 <OakHandDrawnCardWithIcon
                   iconName={getValidSubjectIconName(subject.slug)}
-                  fill={"mint50"}
-                  iconWidth={["all-spacing-13", "all-spacing-11"]}
-                  iconHeight={["all-spacing-13", "all-spacing-11"]}
-                  $width="all-spacing-13"
-                  $height="all-spacing-13"
+                  fill={"bg-decorative1-subdued"}
+                  iconWidth={["spacing-80", "spacing-64"]}
+                  iconHeight={["spacing-80", "spacing-64"]}
+                  $width="spacing-80"
+                  $height="spacing-80"
                   data-testid="subjectIcon"
                   alt=""
                 />
@@ -195,13 +192,13 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           </OakBox>
         </OakFlex>
         <OakFlex
-          $borderColor="mint30"
-          $background={"mint"}
+          $borderColor="bg-decorative1-very-subdued"
+          $background={"bg-decorative1-main"}
           $bt={"border-solid-m"}
         >
           <OakBox
-            $maxWidth="all-spacing-24"
-            $ph={["inner-padding-none", "inner-padding-l"]}
+            $maxWidth="spacing-1280"
+            $ph={["spacing-0", "spacing-20"]}
             $mh={"auto"}
             $width={"100%"}
           >
@@ -211,13 +208,13 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               links={links}
               variant="flat"
               $alignItems={"center"}
-              $height={"all-spacing-11"}
+              $height={"spacing-64"}
               trackingData={{
                 subjectSlug: currentSelection.subject.slug,
                 subjectTitle: currentSelection.subject.title,
                 phaseSlug: currentSelection.phase.slug as PhaseValueType,
               }}
-              $background={"mint"}
+              $background={"bg-decorative1-main"}
             />
           </OakBox>
         </OakFlex>

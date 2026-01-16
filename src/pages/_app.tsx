@@ -6,7 +6,6 @@ import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { ClerkProvider } from "@clerk/nextjs";
-import { OakPupilClientProvider } from "@oaknational/oak-pupil-client";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
@@ -26,11 +25,11 @@ import AnalyticsProvider, {
   AnalyticsProviderProps,
 } from "@/context/Analytics/AnalyticsProvider";
 import { MenuProvider } from "@/context/Menu";
+import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 import { ToastProvider } from "@/context/Toast";
 import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
 import AppHooks from "@/components/AppComponents/App/AppHooks";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { OakToastProvider } from "@/context/OakToast/OakToastProvider";
+import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
 
 const lexend = Lexend({ subsets: ["latin"] });
@@ -60,37 +59,20 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
               <PostHogProvider client={posthog}>
                 <AnalyticsProvider {...analyticsOptions}>
                   <DefaultSeo />
-                  <OakPupilClientProvider
-                    config={{
-                      getLessonAttemptUrl: getBrowserConfig(
-                        "oakGetLessonAttemptUrl",
-                      ),
-                      logLessonAttemptUrl: getBrowserConfig(
-                        "oakLogLessonAttemptUrl",
-                      ),
-                      getTeacherNoteUrl: getBrowserConfig(
-                        "oakGetTeacherNoteUrl",
-                      ),
-                      addTeacherNoteUrl: getBrowserConfig(
-                        "oakAddTeacherNoteUrl",
-                      ),
-                    }}
-                  >
+                  <OakPupilClientProvider>
                     <OverlayProvider>
                       <MenuProvider>
                         <ToastProvider>
                           <SaveCountProvider>
-                            <OakToastProvider>
-                              <>
-                                <style jsx global>{`
-                                  html {
-                                    font-family: ${lexend.style.fontFamily};
-                                  }
-                                `}</style>
-                              </>
+                            <OakNotificationsProvider>
+                              <style jsx global>{`
+                                html {
+                                  font-family: ${lexend.style.fontFamily};
+                                }
+                              `}</style>
                               <Component {...pageProps} />
                               <AppHooks />
-                            </OakToastProvider>
+                            </OakNotificationsProvider>
                           </SaveCountProvider>
                         </ToastProvider>
                       </MenuProvider>

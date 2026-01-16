@@ -64,8 +64,8 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
   const isFeedbackMode = questionState.mode === "feedback";
 
   return (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
-      <OakFlex $mt={["space-between-s", "space-between-l", "space-between-xl"]}>
+    <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+      <OakFlex $mt={["spacing-16", "spacing-48", "spacing-56"]}>
         <OakJauntyAngleLabel
           $background={
             currentSection === "starter-quiz"
@@ -78,7 +78,7 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
       </OakFlex>
       <OakFlex
         $flexDirection={"column"}
-        $gap={"space-between-s"}
+        $gap={"spacing-16"}
         role={"group"}
         aria-labelledby={`${questionUid}-legend`}
       >
@@ -97,16 +97,14 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
                   alt="An image in a quiz"
                   width={answerImageData.width}
                   height={answerImageData.height}
-                  $minWidth={
-                    scaled[index] ? "all-spacing-20" : "all-spacing-19"
-                  }
+                  $minWidth={scaled[index] ? "spacing-360" : "spacing-240"}
                   placeholder="oak"
                   sizes={getSizes(["100vw", 1200])}
                   role="presentation"
                 />
                 <OakFlex
-                  $width={"all-spacing-7"}
-                  $height={"all-spacing-7"}
+                  $width={"spacing-32"}
+                  $height={"spacing-32"}
                   $pointerEvents={"auto"}
                   $display={["none", "flex"]}
                 >

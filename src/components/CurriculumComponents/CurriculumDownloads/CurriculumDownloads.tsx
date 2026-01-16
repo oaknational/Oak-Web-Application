@@ -236,18 +236,18 @@ function CurriculumDownloads(
 
   return (
     <OakBox
-      $maxWidth="all-spacing-24"
+      $maxWidth="spacing-1280"
       $mh={"auto"}
       $width={"100%"}
-      $ph="inner-padding-xl"
-      $pb="inner-padding-xl8"
-      $pt="inner-padding-xl2"
+      $ph="spacing-24"
+      $pb="spacing-80"
+      $pt="spacing-32"
     >
       <OakBox $width="100%">
         <OakFlex
           $alignItems={"flex-start"}
           $flexDirection={"column"}
-          $gap={["space-between-m", "space-between-m2"]}
+          $gap={["spacing-24", "spacing-32"]}
         >
           <OakHeading
             tag="h2"
@@ -262,7 +262,7 @@ function CurriculumDownloads(
                 <OakHeading
                   tag="h2"
                   $font={["heading-6", "heading-5"]}
-                  $mb={"space-between-m"}
+                  $mb={"spacing-24"}
                 >
                   Choose your download
                 </OakHeading>
@@ -294,8 +294,8 @@ function CurriculumDownloads(
                   <OakFlex
                     $flexWrap={"wrap"}
                     data-testid="cardsContainer"
-                    $gap={"all-spacing-4"}
-                    $mb={"space-between-m"}
+                    $gap={"spacing-16"}
+                    $mb={"spacing-24"}
                   >
                     {downloads.map((download) => (
                       <ResourceCard
@@ -332,21 +332,21 @@ function CurriculumDownloads(
                   }
                 />
                 {hasFormErrors && (
-                  <OakFlex $flexDirection={"row"} $mb={"space-between-s"}>
+                  <OakFlex $flexDirection={"row"} $mb={"spacing-16"}>
                     <OakIcon
                       iconName="content-guidance"
                       $colorFilter={"red"}
-                      $width={"all-spacing-6"}
-                      $height={"all-spacing-6"}
+                      $width={"spacing-24"}
+                      $height={"spacing-24"}
                     />
                     <OakFlex $flexDirection={"column"}>
-                      <OakP $ml={"space-between-sssx"} $color={"red"}>
+                      <OakP $ml={"spacing-4"} $color={"text-error"}>
                         To complete correct the following:
                       </OakP>
-                      <OakUL $mr={"space-between-m"} data-testid="errorList">
+                      <OakUL $mr={"spacing-24"} data-testid="errorList">
                         {getFormErrorMessages(form.errors).map((err) => {
                           return (
-                            <OakLI $color={"red"} key={err}>
+                            <OakLI $color={"text-error"} key={err}>
                               {err}
                             </OakLI>
                           );
@@ -355,7 +355,7 @@ function CurriculumDownloads(
                     </OakFlex>
                   </OakFlex>
                 )}
-                <OakBox $mt={"space-between-s"}>
+                <OakBox $mt={"spacing-16"}>
                   <LoadingButton
                     type="button"
                     onClick={(event) =>
@@ -371,7 +371,7 @@ function CurriculumDownloads(
                     loadingText={"Downloading..."}
                   />
                   {hasSuccessfullyDownloaded && (
-                    <OakP $mt={"space-between-m"} data-testid="downloadSuccess">
+                    <OakP $mt={"spacing-24"} data-testid="downloadSuccess">
                       Download Successful!
                     </OakP>
                   )}

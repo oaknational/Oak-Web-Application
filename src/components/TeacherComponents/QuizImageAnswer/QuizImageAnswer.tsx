@@ -18,12 +18,14 @@ type ImageProps = {
 
 const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
   const [dims, setDims] = useState(calcDims(src.width, src.height));
-  const containerBackgroundColor = answerIsCorrect ? "lemon50" : "white";
+  const containerBackgroundColor = answerIsCorrect
+    ? "bg-decorative5-subdued"
+    : "bg-primary";
   return (
     <OakFlex
       $borderRadius={"border-radius-m2"}
       $height={"100%"}
-      $pa={"inner-padding-xs"}
+      $pa={"spacing-8"}
       $background={containerBackgroundColor}
     >
       {answerIsCorrect && (
@@ -32,32 +34,32 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
       <OakFlex
         $background={containerBackgroundColor}
         $alignItems={"center"}
-        $minWidth={"all-spacing-7"}
+        $minWidth={"spacing-32"}
         aria-hidden
       >
         {answerIsCorrect && (
           <OakIcon
             data-testid={"answer-tick"}
             iconName={"tick"}
-            $width={"all-spacing-6"}
-            $height={"all-spacing-6"}
+            $width={"spacing-24"}
+            $height={"spacing-24"}
           />
         )}
       </OakFlex>
       <OakFlex
         $ba={"border-solid-s"}
-        $background={"white"}
+        $background={"bg-primary"}
         $borderRadius={"border-radius-m2"}
       >
         <OakFlex
-          $ph={"inner-padding-s"}
-          $pv={"inner-padding-m"}
+          $ph={"spacing-12"}
+          $pv={"spacing-16"}
           $overflow={"hidden"}
           $position={"relative"}
-          $minWidth={dims.width ? undefined : "all-spacing-14"}
-          $minHeight={dims.height ? undefined : "all-spacing-14"}
+          $minWidth={dims.width ? undefined : "spacing-92"}
+          $minHeight={dims.height ? undefined : "spacing-92"}
           $justifyContent={"center"}
-          $borderColor={"grey50"}
+          $borderColor={"border-neutral"}
           $borderRadius={"border-radius-m2"}
         >
           <QuizOakImage src={src} dims={dims} setDims={setDims} alt={alt} />

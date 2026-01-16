@@ -48,8 +48,11 @@ import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareType
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
+  topNav: TopNavProps;
 };
 
 /**
@@ -76,6 +79,7 @@ function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
 
 const LessonListPage: NextPage<LessonListingPageProps> = ({
   curriculumData,
+  topNav,
 }) => {
   const {
     unitSlug,
@@ -198,7 +202,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           description: `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`,
         }),
       }}
-      $background="white"
+      $background="bg-primary"
+      topNavProps={topNav}
     >
       <PaginationHead
         prevPageUrlObject={prevPageUrlObject}
@@ -244,7 +249,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               disabled: true,
             },
           ]}
-          background={"pink30"}
+          background={"bg-decorative4-very-subdued"}
           subjectIconBackgroundColor={"pink"}
           title={unitTitle}
           programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
@@ -276,12 +281,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
         />
-        <OakMaxWidth $ph={"inner-padding-m"}>
+        <OakMaxWidth $ph={"spacing-16"}>
           <OakGrid>
-            <OakGridArea
-              $colSpan={[12, 9]}
-              $mt={["space-between-s", "space-between-m2"]}
-            >
+            <OakGridArea $colSpan={[12, 9]} $mt={["spacing-16", "spacing-32"]}>
               {unpublishedLessonCount > 0 && (
                 <OakInlineRegistrationBanner
                   onSubmit={(email) => {
@@ -393,9 +395,11 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
+      const topNav = await curriculumApi2023.topNav();
       const results: GetStaticPropsResult<LessonListingPageProps> = {
         props: {
           curriculumData,
+          topNav,
         },
       };
       return results;

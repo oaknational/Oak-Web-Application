@@ -1,9 +1,15 @@
 import { waitFor } from "@testing-library/react";
 import { useRouter } from "next/router";
 import userEvent from "@testing-library/user-event";
+import { usePathname } from "next/navigation";
 
 import CurriculumPreviousDownloadsPage from "@/pages/teachers/curriculum/previous-downloads";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 const render = renderWithProviders();
 
@@ -17,7 +23,7 @@ jest.mock("next/router", () => ({
 
 describe("CurriculumPreviousDownloadsPage", () => {
   const renderComponent = () => {
-    return render(<CurriculumPreviousDownloadsPage />);
+    return render(<CurriculumPreviousDownloadsPage topNav={topNavFixture} />);
   };
 
   afterEach(() => {

@@ -36,7 +36,7 @@ export const SupportYourTeamTextBlockCard: FC<
   return (
     <Card $pt={24} $ph={[16, 24]} $background={background}>
       <OakHeading
-        $mb={"space-between-m2"}
+        $mb={"spacing-32"}
         tag="h2"
         $font={["heading-5", "heading-4"]}
       >

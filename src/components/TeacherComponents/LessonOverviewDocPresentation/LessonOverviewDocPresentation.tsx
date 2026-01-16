@@ -1,15 +1,39 @@
 import { FC, memo } from "react";
 import { OakBox } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import errorReporter from "@/common-lib/error-reporter";
+
+const StyledIframe = styled.iframe<{ shouldZoom: boolean }>`
+  ${({ shouldZoom }) =>
+    shouldZoom === true &&
+    ` @media (min-width: 750px) {
+          zoom: 0.8;
+        }
+          @media (max-width: 750px) {
+          zoom: 0.5;
+        }
+    `}
+`;
 
 interface LessonOverviewPresentationProps {
   asset: string;
   title: string;
   isWorksheetLandscape?: boolean | null;
-  isAdditionalMaterial?: boolean;
   docType: "additional material" | "lesson guide";
 }
+
+const reportError = errorReporter("googleDocPreview");
+
+const convertToPreviewUrl = (url: string) => {
+  if (!url.includes("/edit")) {
+    return null;
+  }
+  const docsPath = url.split("/edit")[0];
+
+  return docsPath + "/preview";
+};
 
 const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
   asset,
@@ -17,23 +41,21 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
   isWorksheetLandscape,
   docType,
 }) => {
-  const extractGoogleDocId = (url: string): string | null => {
-    const pattern = /\/d\/([a-zA-Z0-9_-]+)/;
-    const match = url.match(pattern);
-    return match ? (match[1] ?? null) : null;
-  };
+  const srcUrl = convertToPreviewUrl(asset);
 
-  const docId = extractGoogleDocId(asset);
-  if (!docId) {
+  if (!srcUrl) {
+    reportError(
+      new Error(
+        `Unable to generate google doc preview url for asset with url: ${asset}`,
+      ),
+    );
     return null;
   }
 
-  const srcUrl = `https://docs.google.com/viewer?srcid=${docId}&pid=explorer&efh=false&a=v&chrome=false&embedded=true`;
-
   return (
     <OakBox $ba={["border-solid-m"]} $width={"100%"}>
-      <AspectRatio ratio={!isWorksheetLandscape ? "2:3" : "16:9"}>
-        <iframe
+      <AspectRatio ratio={isWorksheetLandscape ? "16:9" : "2:3"}>
+        <StyledIframe
           src={srcUrl}
           title={`${title} ${docType}`}
           width="100%"
@@ -45,6 +67,7 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
             border: "none",
           }}
           loading="eager"
+          shouldZoom={isWorksheetLandscape ?? false}
         />
       </AspectRatio>
     </OakBox>

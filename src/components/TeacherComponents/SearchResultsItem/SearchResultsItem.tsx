@@ -3,7 +3,7 @@ import {
   OakHeading,
   OakP,
   OakFlex,
-  OakColorToken,
+  OakUiRoleToken,
   OakIcon,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
@@ -92,11 +92,13 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
 
   const isPathwaySearchHit = pathways.length > 1;
   const searchHitDescription = description || pupilLessonOutcome || "";
-  const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
+  const [isToggleOpen, setIsToggleOpen] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  const backgroundColour: OakColorToken =
-    type === "unit" ? "lavender30" : "pink30";
+  const backgroundColour: OakUiRoleToken =
+    type === "unit"
+      ? "bg-decorative3-very-subdued"
+      : "bg-decorative4-very-subdued";
 
   type ButtonProps = {
     as: "button";
@@ -123,16 +125,18 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
       <StyledFlexWithFocusState
         {...props}
         ref={props.firstItemRef}
-        $pa="inner-padding-xl"
-        $mb="space-between-m2"
+        $pa="spacing-24"
+        $mb="spacing-32"
         $borderRadius="border-radius-m2"
         $flexDirection="column"
         onMouseEnter={() => isDesktop && setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        $background={isHovered || isToggleOpen ? backgroundColour : "white"}
+        $background={
+          isHovered || isToggleOpen ? backgroundColour : "bg-primary"
+        }
         $width="100%"
         $ba="border-solid-none"
-        $color="black"
+        $color="text-primary"
       >
         {props.children}
       </StyledFlexWithFocusState>
@@ -142,28 +146,24 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
   const CardContent = () => {
     return (
       <>
-        <OakFlex $mb="space-between-s" $alignItems={"center"}>
+        <OakFlex $mb="spacing-16" $alignItems={"center"}>
           <SearchResultsSubjectIcon subjectSlug={subjectSlug} type={type} />
-          <OakFlex $ml="space-between-xs" $flexDirection="column">
+          <OakFlex $ml="spacing-12" $flexDirection="column">
             <OakFlex>
-              <OakHeading
-                $mb="space-between-sssx"
-                tag={"h2"}
-                $font={"heading-7"}
-              >
+              <OakHeading $mb="spacing-4" tag={"h2"} $font={"heading-7"}>
                 {subjectTitle}
               </OakHeading>
               {cohort === NEW_COHORT && <TagPromotional $ml={4} size="small" />}
             </OakFlex>
             <LessonMetadata
               $font={"heading-light-7"}
-              $color={"grey60"}
+              $color={"text-subdued"}
               metadataArray={metadataArray}
             />
           </OakFlex>
         </OakFlex>
         <OakFlex
-          $mb="space-between-m2"
+          $mb="spacing-32"
           $flexDirection="column"
           $alignItems="baseline"
         >
@@ -179,7 +179,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
               dangerouslySetInnerHTML={{
                 __html: searchHitDescription,
               }}
-              $mt="space-between-s"
+              $mt="spacing-16"
               $font={"body-2"}
               $textAlign="left"
             />
@@ -203,7 +203,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         as="button"
         onClick={() => {
           const toggleOpen = !isToggleOpen;
-          setToggleOpen(toggleOpen);
+          setIsToggleOpen(toggleOpen);
           onToggleClick?.({ ...props, isToggleOpen: toggleOpen });
         }}
         aria-label={pathwaysButtonAriaLabel}
@@ -233,7 +233,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         <OakFlex $alignItems="center">
           <OakP
             $font={"heading-7"}
-            $color="navy"
+            $color="text-link-active"
             $textDecoration={isHovered ? "underline" : "none"}
           >
             {type === "unit" ? "See unit" : "See lesson"}
@@ -242,7 +242,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
           <OakIcon
             iconName="arrow-right"
             $colorFilter="navy"
-            $width="all-spacing-6"
+            $width="spacing-24"
           />
         </OakFlex>
       </ClickableSearchCard>

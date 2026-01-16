@@ -165,13 +165,13 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
             isTrailingIcon={signUpProps?.isTrailingIcon}
             {...overrideProps}
           >
-            <OakFlex $alignItems="center" $gap="space-between-xs">
+            <OakFlex $alignItems="center" $gap="spacing-12">
               {signUpProps?.showNewTag && (
                 <OakTagFunctional
                   label="New"
-                  $background="mint"
+                  $background="bg-decorative1-main"
                   $color="text-primary"
-                  $pv={"inner-padding-none"}
+                  $pv={"spacing-0"}
                 />
               )}
               {signUpProps?.name ?? "Sign up"}
@@ -192,13 +192,13 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
             disabled={buttonState === "georestricted"}
             {...overrideProps}
           >
-            <OakFlex $alignItems="center" $gap="space-between-xs">
+            <OakFlex $alignItems="center" $gap="spacing-12">
               {actionProps?.showNewTag && !actionProps?.loading && (
                 <OakTagFunctional
                   label="New"
-                  $background="mint"
+                  $background="bg-decorative1-main"
                   $color="text-primary"
-                  $pv={"inner-padding-none"}
+                  $pv={"spacing-0"}
                 />
               )}
               {actionProps?.loading && (

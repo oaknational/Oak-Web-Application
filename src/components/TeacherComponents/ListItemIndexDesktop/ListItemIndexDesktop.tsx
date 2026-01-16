@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { OakColorToken, OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
 
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 
 export type ListItemIndexDesktopProps = {
   index: number;
-  background: OakColorToken;
+  background: OakUiRoleToken;
   disabled?: boolean | null;
 };
 
@@ -17,7 +17,7 @@ const ListItemIndexDesktop: FC<ListItemIndexDesktopProps> = (props) => {
       $justifyContent={"center"}
       $display={["none", "flex"]}
       $alignItems={"center"}
-      $minWidth={"all-spacing-13"}
+      $minWidth={"spacing-80"}
       $height={"100%"}
       $background={background}
       $position={"relative"}

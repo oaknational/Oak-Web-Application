@@ -16,7 +16,7 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 const landingPortableTextComponent: PortableTextComponents = {
   list: {
     number: ({ children }) => (
-      <LandingPageOlOutline $color={"lemon50"} $mh={"space-between-none"}>
+      <LandingPageOlOutline $textColor="oakGreen" $mh="spacing-0">
         {children}
       </LandingPageOlOutline>
     ),
@@ -27,12 +27,8 @@ const landingPortableTextComponent: PortableTextComponents = {
       const listItemText = props?.value?.children[0]?.text;
 
       return (
-        <OakFlex
-          $position={"relative"}
-          $mb="space-between-l"
-          $alignItems={"center"}
-        >
-          <OakLI $color={"black"} $font={["heading-7", "heading-6"]}>
+        <OakFlex $position={"relative"} $mb="spacing-48" $alignItems={"center"}>
+          <OakLI $color={"text-primary"} $font={["heading-7", "heading-6"]}>
             {listItemText}
           </OakLI>
         </OakFlex>
@@ -52,7 +48,6 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
       $ph={[16, 56]}
     >
       <BrushBorders hideOnMobileH color={"lemon50"} />
-
       <Flex
         $minHeight={200}
         $position="relative"
@@ -71,7 +66,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
           />
         )}
         {props.mediaType == "video" && (
-          <OakFlex $alignItems={"center"} $ph="inner-padding-l">
+          <OakFlex $alignItems={"center"} $ph="spacing-20">
             <CMSVideo video={props.video} location="marketing" />
           </OakFlex>
         )}

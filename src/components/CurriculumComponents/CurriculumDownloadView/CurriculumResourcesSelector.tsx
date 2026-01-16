@@ -36,11 +36,11 @@ export function CurriculumResourcesSelector({
   onChangeDownloadTypes,
 }: Readonly<CurriculumResourcesSectionProps>) {
   return (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+    <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
       <OakHeading tag="h3" $font={["heading-5"]} data-testid="download-heading">
         Curriculum resources
       </OakHeading>
-      <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         {DOWNLOAD_TYPE_LABELS.map((download) => {
           return (
             <ResourceCard

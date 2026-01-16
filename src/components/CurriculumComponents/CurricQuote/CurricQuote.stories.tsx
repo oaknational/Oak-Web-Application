@@ -73,7 +73,7 @@ export const Default: Story = {
     children:
       "Our approach enables the rigorous application of research outcomes, science of learning and impactful best practice.",
     backgroundColor: "transparent",
-    barColor: "mint",
+    barColor: "bg-decorative1-main",
   },
 };
 
@@ -82,8 +82,8 @@ export const AlternativeColors: Story = {
     title: "Accessible & Inclusive",
     children:
       "Designed to be adaptable for all learners, ensuring every student can achieve.",
-    backgroundColor: "lemon50",
-    barColor: "oakGreen",
+    backgroundColor: "bg-decorative5-subdued",
+    barColor: "text-success",
   },
 };
 
@@ -94,11 +94,11 @@ export const WithCustomTextStyling: Story = {
     headingProps: {
       tag: "h5",
       $font: "heading-4",
-      $color: "oakGreen",
+      $color: "text-success",
     },
     paragraphProps: {
       $font: "body-2-bold",
-      $color: "grey60",
+      $color: "text-subdued",
     },
   },
 };

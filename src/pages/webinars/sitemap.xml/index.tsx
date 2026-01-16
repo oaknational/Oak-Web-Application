@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { getServerSideSitemap } from "next-sitemap";
+import { getServerSideSitemapLegacy } from "next-sitemap";
 
 import CMSClient from "../../../node-lib/cms";
 import { getServerSideSitemapFields } from "../../../node-lib/isr";
@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     webinarSlugs,
   );
 
-  return getServerSideSitemap(context, fields);
+  return getServerSideSitemapLegacy(context, fields);
 };
 
 // Default export to prevent next.js errors

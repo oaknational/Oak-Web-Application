@@ -58,7 +58,7 @@ const DelayedLoadingSpinnerWithLabel: FC<{
     $alignItems="center"
     data-testid={dataTestId}
   >
-    <OakSpan $mr="space-between-sssx" $textAlign="center">
+    <OakSpan $mr="spacing-4" $textAlign="center">
       {label}
     </OakSpan>
     <OakLoadingSpinner />
@@ -251,7 +251,7 @@ const Search: FC<SearchProps> = (props) => {
       if (suggestedFilters.status === "success") {
         return (
           <MiniDropDown label="All filters">
-            <OakBox $pt="inner-padding-m">
+            <OakBox $pt="spacing-16">
               <SearchFilters
                 {...searchFilters}
                 trackSearchModified={trackSearchModified(
@@ -299,27 +299,31 @@ const Search: FC<SearchProps> = (props) => {
   };
 
   return (
-    <OakFlex $minHeight={"100vh"} $background="white" $flexDirection={"column"}>
-      <OakMaxWidth $ph={"inner-padding-m"}>
-        <OakGrid $mt={"space-between-l"} $cg={"all-spacing-4"}>
+    <OakFlex
+      $minHeight={"100vh"}
+      $background="bg-primary"
+      $flexDirection={"column"}
+    >
+      <OakMaxWidth $ph={"spacing-16"}>
+        <OakGrid $mt={"spacing-48"} $cg={"spacing-16"}>
           <OakGridArea
             $colSpan={[12, 12, 7]}
             $colStart={1}
             $rowStart={1}
-            $mt={["space-between-none", "space-between-m"]}
-            $mb={["space-between-ssx", "space-between-ssx", "space-between-l"]}
+            $mt={["spacing-0", "spacing-24"]}
+            $mb={["spacing-8", "spacing-8", "spacing-48"]}
           >
             <OakFlex
               $flexDirection={["column"]}
-              $mb={["space-between-m", "space-between-m2"]}
-              $pt={["inner-padding-none", "inner-padding-xl"]}
+              $mb={["spacing-24", "spacing-32"]}
+              $pt={["spacing-0", "spacing-24"]}
             >
               <OakBox $display={["none", "block"]}>
-                <OakHeading tag="h1" $font={"heading-4"} $mb="space-between-m2">
+                <OakHeading tag="h1" $font={"heading-4"} $mb="spacing-32">
                   Search
                 </OakHeading>
               </OakBox>
-              <OakBox $pv={["inner-padding-xl5", "inner-padding-none"]}>
+              <OakBox $pv={["spacing-56", "spacing-0"]}>
                 <SearchForm
                   searchContext="search"
                   searchTerm={query.term}
@@ -333,7 +337,7 @@ const Search: FC<SearchProps> = (props) => {
 
               {!isAiExperimentSearchEnabled && (
                 <OakFlex
-                  $mt={["space-between-none", "space-between-m2"]}
+                  $mt={["spacing-0", "spacing-32"]}
                   $alignItems={"center"}
                   $display={["flex", "none", "none"]}
                 >
@@ -355,18 +359,18 @@ const Search: FC<SearchProps> = (props) => {
                   <OakBox
                     $position={"absolute"}
                     $width={"100%"}
-                    $ph={"inner-padding-m"}
-                    $right={"all-spacing-0"}
+                    $ph={"spacing-16"}
+                    $right={"spacing-0"}
                     $pointerEvents={"none"}
                   >
                     <MobileFilters
-                      $mt={"space-between-none"}
+                      $mt={"spacing-0"}
                       label="Filters"
                       labelOpened="Close"
                       iconOpened="cross"
                       iconClosed="filter"
                     >
-                      <OakBox $mt={["space-between-m", null, null]}>
+                      <OakBox $mt={["spacing-24", null, null]}>
                         <SearchFilters
                           {...searchFilters}
                           isMobileFilter
@@ -384,23 +388,15 @@ const Search: FC<SearchProps> = (props) => {
             {isAiExperimentSearchEnabled && (
               <OakBox
                 $display={["block", "block", "none"]}
-                $mb="space-between-xs"
-                $ph={[
-                  "inner-padding-none",
-                  "inner-padding-none",
-                  "inner-padding-xl",
-                ]}
+                $mb="spacing-12"
+                $ph={["spacing-0", "spacing-0", "spacing-24"]}
               >
                 {renderAiExperimentFilters()}
               </OakBox>
             )}
             <OakBox
-              $height={[
-                "space-between-none",
-                "space-between-none",
-                "all-spacing-1",
-              ]}
-              $mb={["space-between-l", "space-between-s"]}
+              $height={["spacing-0", "spacing-0", "spacing-4"]}
+              $mb={["spacing-48", "spacing-16"]}
             >
               <SearchActiveFilters
                 searchFilters={searchFilters}
@@ -415,7 +411,7 @@ const Search: FC<SearchProps> = (props) => {
             <OakGridArea $colSpan={[12, 3]} $colStart={[1, 1]} $rowStart={2}>
               <CustomWidthFlex
                 $flexDirection="column"
-                $mb="space-between-m2"
+                $mb="spacing-32"
                 $display={[
                   "none",
                   isAiExperimentSearchEnabled ? "none" : "flex",
@@ -427,9 +423,9 @@ const Search: FC<SearchProps> = (props) => {
                 ) : (
                   <>
                     <OakFlex
-                      $mb="space-between-s"
+                      $mb="spacing-16"
                       $flexDirection="column"
-                      $gap="space-between-ssx"
+                      $gap="spacing-8"
                     >
                       <OakHeading tag="h2" $font="heading-6">
                         Filters
@@ -450,6 +446,7 @@ const Search: FC<SearchProps> = (props) => {
                     </OakFlex>
                     <SearchFilters
                       {...searchFilters}
+                      isMobileFilter={false}
                       trackSearchModified={trackSearchModified(
                         query.term,
                         track.searchFilterModified,
@@ -477,9 +474,9 @@ const Search: FC<SearchProps> = (props) => {
                 />
               )}
               {shouldShowNoResultsMessage && (
-                <OakBox id="search-results" $mb={"space-between-xxl"}>
+                <OakBox id="search-results" $mb={"spacing-72"}>
                   <NoSearchResults searchTerm={query.term} />
-                  <OakBox $mt="space-between-m">
+                  <OakBox $mt="spacing-24">
                     <SignPostToAila
                       title="Can't find what you need?"
                       text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
@@ -497,21 +494,17 @@ const Search: FC<SearchProps> = (props) => {
               {shouldShowResults && (
                 <OakFlex
                   $flexDirection="column"
-                  $gap={[
-                    "space-between-s",
-                    "space-between-s",
-                    "space-between-xl",
-                  ]}
+                  $gap={["spacing-16", "spacing-16", "spacing-56"]}
                 >
                   <OakFlex
                     $flexDirection={"column"}
-                    $gap={"space-between-m"}
+                    $gap={"spacing-24"}
                     $display={[
                       "none",
                       isAiExperimentSearchEnabled ? "none" : "flex",
                       "flex",
                     ]}
-                    $pl="inner-padding-xl"
+                    $pl="spacing-24"
                   >
                     <ContentFilterToggle
                       contentTypeFilters={searchFilters.contentTypeFilters}

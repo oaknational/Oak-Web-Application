@@ -59,7 +59,7 @@ export const ListTitle: FC<{
 }> = ({ children, expired, index }) => {
   return (
     <OakHeading
-      $color={expired ? "grey60" : "black"}
+      $color={expired ? "text-subdued" : "text-primary"}
       $font={["heading-7", expired ? "heading-light-6" : "heading-6"]}
       tag={"h3"}
       ariaLabel={index !== undefined ? `${index + 1}. ${children}` : undefined}
@@ -124,7 +124,7 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
 
   return (
     <OakFlex>
-      <OakFlex $mb="space-between-sssx" $flexDirection={"column"}>
+      <OakFlex $mb="spacing-4" $flexDirection={"column"}>
         {!hideTopHeading &&
           !isSpecialistUnit(props) &&
           !props.isExemplarUnit && (

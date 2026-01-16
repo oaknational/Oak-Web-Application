@@ -3,7 +3,7 @@ import {
   OakP,
   OakSpan,
   OakFlex,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import { DisabledListItemHeader } from "../ListItemHeader/ListItemHeader";
@@ -141,11 +141,11 @@ const LessonListItem: FC<
     ? undefined
     : getAvailableResourceList(props);
 
-  const background: OakColorToken =
+  const background: OakUiRoleToken =
     (isUnpublishedLesson && props.isUnpublished) || props.expired
-      ? "grey30"
-      : "pink";
-  const backgroundOnHover: OakColorToken = "pink110";
+      ? "bg-neutral-stronger"
+      : "bg-decorative4-main";
+  const backgroundOnHover: OakUiRoleToken = "icon-decorative4";
 
   return (
     <ListItemCard
@@ -164,19 +164,18 @@ const LessonListItem: FC<
         background={isHovered && !disabled ? backgroundOnHover : background}
         disabled={disabled}
       />
-
       <OakFlex
         $flexDirection={"column"}
         $width={"100%"}
-        $gap={["all-spacing-1", "all-spacing-3"]}
-        $pa={["inner-padding-none", "inner-padding-xl"]}
+        $gap={["spacing-4", "spacing-12"]}
+        $pa={["spacing-0", "spacing-24"]}
       >
         <OakFlex $alignItems={"flex-start"}>
           <ListItemIndexMobile background={background} index={index + 1} />
           <OakFlex
             $flexDirection={"column"}
             $height={"100%"}
-            $pa={["inner-padding-m", "inner-padding-none"]}
+            $pa={["spacing-16", "spacing-0"]}
           >
             {disabled || isUnpublishedLesson ? (
               <DisabledListItemHeader index={index} itemTitle={lessonTitle} />
@@ -195,23 +194,23 @@ const LessonListItem: FC<
         </OakFlex>
         <OakFlex
           $flexDirection={"column"}
-          $gap={["all-spacing-3"]}
-          $pl={["inner-padding-m", "inner-padding-none"]}
-          $pr={["inner-padding-m", "inner-padding-none"]}
-          $pt={["inner-padding-s", "inner-padding-none"]}
-          $pb={["inner-padding-s", "inner-padding-none"]}
+          $gap={["spacing-12"]}
+          $pl={["spacing-16", "spacing-0"]}
+          $pr={["spacing-16", "spacing-0"]}
+          $pt={["spacing-12", "spacing-0"]}
+          $pb={["spacing-12", "spacing-0"]}
         >
           <OakFlex
-            $mt={["space-between-ssx", "space-between-none"]}
-            $mr={["space-between-s", "space-between-none"]}
+            $mt={["spacing-8", "spacing-0"]}
+            $mr={["spacing-16", "spacing-0"]}
           >
             {props.expired ? (
-              <OakP $mt="space-between-ssx" $font={["body-3", "body-2"]}>
+              <OakP $mt="spacing-8" $font={["body-3", "body-2"]}>
                 This lesson is currently unavailable.
               </OakP>
             ) : isUnpublishedLesson ? (
               <OakP
-                $mt="space-between-ssx"
+                $mt="spacing-8"
                 $font={["body-3", "body-2"]}
                 $color="text-disabled"
               >
@@ -225,10 +224,10 @@ const LessonListItem: FC<
                       __html: props.description,
                     }}
                     $font={["body-3", "body-2"]}
-                    $color={"grey70"}
+                    $color={"text-primary"}
                   />
                 ) : (
-                  <OakP $font={["body-3", "body-2"]} $color={"grey70"}>
+                  <OakP $font={["body-3", "body-2"]} $color={"text-primary"}>
                     {props.pupilLessonOutcome}
                   </OakP>
                 )}
@@ -241,7 +240,7 @@ const LessonListItem: FC<
               $justifyContent="space-between"
               $alignItems={"center"}
               $flexWrap={"wrap"}
-              $gap={"all-spacing-2"}
+              $gap={"spacing-8"}
             >
               <LessonResourceGraphics items={resources} />
               {isLessonListItem(props) && (

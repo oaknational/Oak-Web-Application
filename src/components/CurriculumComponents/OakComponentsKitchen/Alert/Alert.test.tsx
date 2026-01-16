@@ -1,10 +1,12 @@
 import Alert from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("Fieldset", () => {
   test("all options", async () => {
-    const { baseElement } = renderWithTheme(
+    const { baseElement } = render(
       <>
         <Alert type="info" message="Info example" />
         <Alert type="neutral" message="Neutral example" />
@@ -18,9 +20,7 @@ describe("Fieldset", () => {
   });
 
   test("default options", () => {
-    const { baseElement } = renderWithTheme(
-      <Alert message="Default example" />,
-    );
+    const { baseElement } = render(<Alert message="Default example" />);
 
     expect(baseElement).toMatchSnapshot();
   });

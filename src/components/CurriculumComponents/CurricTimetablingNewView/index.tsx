@@ -41,13 +41,13 @@ export const CurricTimetablingNewView = ({
   return (
     <OakFlex
       $flexDirection={"column"}
-      $pa={["inner-padding-xl", "inner-padding-xl5"]}
-      $gap={"space-between-l"}
-      $maxWidth={"all-spacing-24"}
+      $pa={["spacing-24", "spacing-56"]}
+      $gap={"spacing-48"}
+      $maxWidth={"spacing-1280"}
       $mh="auto"
       $width="100%"
     >
-      <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <OakHeading tag="h1" $font="heading-3">
           Create your{" "}
           <CurricAngledLabel>
@@ -60,12 +60,11 @@ export const CurricTimetablingNewView = ({
           adjusting for trips and non-curriculum events.
         </OakP>
       </OakFlex>
-
-      <OakFlex $flexDirection={"column"} $gap={"space-between-l"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-48"}>
         <OakFlex
           $flexDirection={"column"}
-          $gap={"space-between-m2"}
-          $maxWidth={["100%", "all-spacing-20"]}
+          $gap={"spacing-32"}
+          $maxWidth={["100%", "spacing-360"]}
         >
           <OakHeading id="autumn-heading" tag="h2" $font="heading-4">
             Autumn
@@ -76,8 +75,8 @@ export const CurricTimetablingNewView = ({
               htmlFor="autumn-lessons"
               label="Number of lessons"
               $font="heading-7"
-              $background="lemon"
-              $color="black"
+              $background="bg-decorative5-main"
+              $color="text-primary"
               $zIndex="in-front"
               $position="absolute"
               $top={"-20px"}
@@ -98,8 +97,8 @@ export const CurricTimetablingNewView = ({
 
         <OakFlex
           $flexDirection={"column"}
-          $gap={"space-between-m2"}
-          $maxWidth={["100%", "all-spacing-20"]}
+          $gap={"spacing-32"}
+          $maxWidth={["100%", "spacing-360"]}
         >
           <OakHeading id="spring-heading" tag="h2" $font="heading-4">
             Spring
@@ -110,8 +109,8 @@ export const CurricTimetablingNewView = ({
               htmlFor="spring-lessons"
               label="Number of lessons"
               $font="heading-7"
-              $background="lemon"
-              $color="black"
+              $background="bg-decorative5-main"
+              $color="text-primary"
               $zIndex="in-front"
               $position="absolute"
               $top={"-20px"}
@@ -132,8 +131,8 @@ export const CurricTimetablingNewView = ({
 
         <OakFlex
           $flexDirection={"column"}
-          $gap={"space-between-m2"}
-          $maxWidth={["100%", "all-spacing-20"]}
+          $gap={"spacing-32"}
+          $maxWidth={["100%", "spacing-360"]}
         >
           <OakHeading id="summer-heading" tag="h2" $font="heading-4">
             Summer
@@ -144,8 +143,8 @@ export const CurricTimetablingNewView = ({
               htmlFor="summer-lessons"
               label="Number of lessons"
               $font="heading-7"
-              $background="lemon"
-              $color="black"
+              $background="bg-decorative5-main"
+              $color="text-primary"
               $zIndex="in-front"
               $position="absolute"
               $top={"-20px"}
@@ -164,12 +163,11 @@ export const CurricTimetablingNewView = ({
           </OakFlex>
         </OakFlex>
       </OakFlex>
-
       <OakPrimaryButton
         element={Link}
         href={nextHref}
-        pv="inner-padding-m"
-        ph="inner-padding-l"
+        pv="spacing-16"
+        ph="spacing-20"
         style={{ height: "auto" }}
       >
         Next

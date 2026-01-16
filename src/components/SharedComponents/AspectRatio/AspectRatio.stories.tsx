@@ -11,7 +11,7 @@ export default {
 } as Meta<typeof Component>;
 
 const Template: StoryFn<typeof Component> = (args) => (
-  <OakBox $background="black" $width={"all-spacing-16"} $position="relative">
+  <OakBox $background="bg-inverted" $width={"spacing-120"} $position="relative">
     <Component {...args} />
   </OakBox>
 );

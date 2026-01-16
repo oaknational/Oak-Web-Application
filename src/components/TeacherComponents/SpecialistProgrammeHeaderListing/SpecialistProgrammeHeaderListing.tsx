@@ -7,7 +7,7 @@ import {
   OakSpan,
   OakFlex,
   OakColorFilterToken,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
@@ -21,7 +21,7 @@ import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconB
 
 export type SpecialistHeaderListingProps = {
   breadcrumbs: Breadcrumb[];
-  background?: OakColorToken;
+  background?: OakUiRoleToken;
   subjectTitle: string;
   subjectSlug: string;
   subjectIconBackgroundColor?: OakColorFilterToken;
@@ -37,7 +37,7 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
     subjectTitle,
     subjectIconBackgroundColor = "aqua",
     breadcrumbs,
-    background = "aqua50",
+    background = "bg-decorative2-subdued",
     description,
   } = props;
 
@@ -47,14 +47,10 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
         <OakGridArea $colSpan={[12, 6]}>
           <OakFlex $flexDirection={["column", "column", "row"]}>
             <OakFlex
-              $mr={["space-between-s", "space-between-l"]}
-              $maxWidth={["all-spacing-13", "all-spacing-13", "all-spacing-16"]}
+              $mr={["spacing-16", "spacing-48"]}
+              $maxWidth={["spacing-80", "spacing-80", "spacing-120"]}
               $alignItems={"flex-start"}
-              $mb={[
-                "space-between-m",
-                "space-between-m2",
-                "space-between-none",
-              ]}
+              $mb={["spacing-24", "spacing-32", "spacing-0"]}
             >
               <SubjectIconBrushBorders
                 subjectSlug={subjectSlug}
@@ -64,8 +60,8 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
             </OakFlex>
             <OakFlex $flexDirection={"column"}>
               <OakSpan
-                $mb="space-between-s"
-                $color={"grey60"}
+                $mb="spacing-16"
+                $color={"text-subdued"}
                 $font={"heading-7"}
               >
                 {title}
@@ -73,11 +69,7 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
               <OakHeading tag={"h1"} $font={["heading-4", "heading-3"]}>
                 {subjectTitle}
               </OakHeading>
-              <OakP
-                $mb="space-between-s"
-                $mt="space-between-s"
-                $font={"body-1"}
-              >
+              <OakP $mb="spacing-16" $mt="spacing-16" $font={"body-1"}>
                 {description}
               </OakP>
             </OakFlex>

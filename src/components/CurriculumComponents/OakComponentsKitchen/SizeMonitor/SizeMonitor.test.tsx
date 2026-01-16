@@ -2,7 +2,9 @@ import { waitFor } from "@testing-library/dom";
 
 import SizeMonitor from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 const width = 100;
 const height = 100;
@@ -34,7 +36,7 @@ describe("SizeMonitor", () => {
     jest.resetAllMocks();
   });
   test("render", () => {
-    const { baseElement } = renderWithTheme(
+    const { baseElement } = render(
       <SizeMonitor onChange={() => {}}>testing</SizeMonitor>,
     );
 
@@ -59,7 +61,7 @@ describe("SizeMonitor", () => {
     );
 
     const onChange = jest.fn();
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <SizeMonitor onChange={onChange}>
         <div style={{ width, height }}>testing</div>
       </SizeMonitor>,

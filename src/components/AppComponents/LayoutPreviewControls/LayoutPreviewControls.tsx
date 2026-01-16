@@ -34,15 +34,14 @@ const LayoutPreviewControls: FC = () => {
   return (
     <OakFlex
       $position="fixed"
-      $bottom="all-spacing-5"
-      $left="all-spacing-5"
-      $pa="inner-padding-ssx"
+      $bottom="spacing-20"
+      $left="spacing-20"
+      $pa="spacing-4"
       $alignItems="center"
-      $color="black"
-      $background="white"
+      $color="text-primary"
+      $background="bg-primary"
     >
-      <OakSpan $mr="space-between-m">Preview mode enabled</OakSpan>
-
+      <OakSpan $mr="spacing-24">Preview mode enabled</OakSpan>
       <ButtonAsLink
         page={null}
         label="Exit preview"
@@ -50,9 +49,7 @@ const LayoutPreviewControls: FC = () => {
         variant="minimal"
         $mr={24}
       />
-
       {secretParam && <CopyLinkButton href={previewURL} />}
-
       <BrushBorders color="white" />
     </OakFlex>
   );

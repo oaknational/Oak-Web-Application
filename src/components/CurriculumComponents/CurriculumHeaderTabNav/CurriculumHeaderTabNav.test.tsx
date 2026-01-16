@@ -1,5 +1,5 @@
 import React from "react";
-import { act, render, screen } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import { ThemeProvider } from "styled-components";
@@ -14,6 +14,9 @@ import {
   setupMockLinkClick,
   teardownMockLinkClick,
 } from "@/utils/mockLinkClick";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["theme"]);
 
 const curriculumVisualiserTabAccessed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({

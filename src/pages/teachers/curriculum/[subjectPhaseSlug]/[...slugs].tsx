@@ -52,6 +52,7 @@ import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics"
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { getUnitSeoFromYearData } from "@/utils/curriculum/seo";
 import { SeoProps } from "@/browser-lib/seo/Seo";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -61,6 +62,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumUnitsFormattedData,
   mvRefreshTime,
   curriculumDownloadsTabData,
+  topNav,
 }) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -99,13 +101,17 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
-  const onChangeFilters = (newFilters: CurriculumFilters) => {
+  const onChangeFilters = (
+    newFilters: CurriculumFilters,
+    componentType?: ComponentTypeValueType,
+  ) => {
     setFilters(newFilters);
 
     const analyticsData = buildUnitSequenceRefinedAnalytics(
       analyticsUseCase,
       curriculumUnitsTrackingData,
       newFilters,
+      componentType,
     );
 
     track.unitSequenceRefined(analyticsData);
@@ -187,6 +193,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout
+        topNavProps={topNav}
         seoProps={{
           ...getSeoProps({
             title: buildCurriculumMetadata({
@@ -210,7 +217,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           }),
           ...additionalSeo,
         }}
-        $background={"white"}
+        $background={"bg-primary"}
         skipLinkHref={tabAnchor}
       >
         <CurriculumHeader
@@ -218,11 +225,11 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
           keyStages={keyStages}
-          color1="mint"
-          color2="mint"
+          color1="bg-decorative1-main"
+          color2="bg-decorative1-main"
         />
 
-        <OakBox $background={"white"}>{tabContent}</OakBox>
+        <OakBox $background={"bg-primary"}>{tabContent}</OakBox>
       </AppLayout>
     </OakThemeProvider>
   );
@@ -299,10 +306,8 @@ export const getStaticProps: GetStaticProps<
       const curriculumOverviewSanityData =
         await CMSClient.curriculumOverviewPage({
           previewMode: isPreviewMode,
-          ...{
-            subjectTitle: curriculumOverviewTabData.subjectTitle,
-            phaseSlug: slugs.phaseSlug,
-          },
+          subjectTitle: curriculumOverviewTabData.subjectTitle,
+          phaseSlug: slugs.phaseSlug,
         });
 
       if (!curriculumOverviewSanityData) {
@@ -336,6 +341,7 @@ export const getStaticProps: GetStaticProps<
       );
 
       const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
+      const topNav = await curriculumApi2023.topNav();
 
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
@@ -346,6 +352,7 @@ export const getStaticProps: GetStaticProps<
           curriculumUnitsFormattedData,
           mvRefreshTime,
           curriculumDownloadsTabData,
+          topNav,
         },
       };
       const resultsWithIsr = decorateWithIsr(results);

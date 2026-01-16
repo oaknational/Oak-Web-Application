@@ -9,16 +9,16 @@ export function CurricLessonWarning({
   total,
 }: Readonly<CurricLessonWarningProps>) {
   return (
-    <OakFlex $alignItems={"center"} $gap={"space-between-ssx"}>
+    <OakFlex $alignItems={"center"} $gap={"spacing-8"}>
       <OakFlex
         $borderRadius={"border-radius-circle"}
         $background={"icon-warning"}
-        $width={"all-spacing-6"}
-        $height={"all-spacing-6"}
+        $width={"spacing-24"}
+        $height={"spacing-24"}
       >
         {/* <OakIcon iconName="warning" /> */}
       </OakFlex>{" "}
-      <OakSpan $color={"black"}>
+      <OakSpan $color={"text-primary"}>
         {count}/{total} lessons
       </OakSpan>
     </OakFlex>

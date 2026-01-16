@@ -137,7 +137,7 @@ export function Select<
     <SelectContainer
       $flexDirection={"column"}
       $position={"relative"}
-      $background="white"
+      $background="bg-primary"
       {...containerProps}
     >
       <BoxBorders gapPosition="rightTop" hideBottom={state.isOpen} />
@@ -157,7 +157,6 @@ export function Select<
           {props.label}
         </RotatedInputLabel>
       </OakFlex>
-
       <>
         <SelectButton
           {...mergeProps(buttonProps, focusProps)}
@@ -170,13 +169,13 @@ export function Select<
           isPlaceholder={!state.selectedItem}
           id={buttonId}
         >
-          <SelectInner $pt={"inner-padding-xs"} $alignItems={"center"}>
+          <SelectInner $pt={"spacing-8"} $alignItems={"center"}>
             {props.icon && (
               <OakIcon
-                $mr={"space-between-ssx"}
+                $mr={"spacing-8"}
                 iconName={props.icon}
-                $width={"all-spacing-6"}
-                $height={"all-spacing-6"}
+                $width={"spacing-24"}
+                $height={"spacing-24"}
               />
             )}
             <SelectSpan
@@ -192,8 +191,8 @@ export function Select<
           </SelectInner>
           <OakIcon
             iconName={state.isOpen ? "chevron-up" : "chevron-down"}
-            $width={"all-spacing-6"}
-            $height={"all-spacing-6"}
+            $width={"spacing-24"}
+            $height={"spacing-24"}
           />
         </SelectButton>
         {state.isOpen && (

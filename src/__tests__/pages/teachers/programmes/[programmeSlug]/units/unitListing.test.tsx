@@ -14,6 +14,7 @@ import unitListingFixture, {
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -37,6 +38,12 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+jest.mock("@/hooks/useContentVisibleOnClick", () => ({
+  useContentVisibleOnClick: jest
+    .fn()
+    .mockResolvedValue({ isContentVisible: false }),
+}));
+
 const render = renderWithProviders();
 
 describe("pages/programmes/[programmeSlug]/units", () => {
@@ -50,6 +57,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       <UnitListingPage
         curriculumData={unitListingFixture()}
         curriculumRefreshTime={0}
+        topNav={topNavFixture}
       />,
     );
 
@@ -59,6 +67,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   it("renders nav for tiers for programme that included tiers", () => {
     const { getByTestId } = render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumData={unitListingWithTiers()}
         curriculumRefreshTime={0}
       />,
@@ -69,6 +78,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   it("title card render correct title", () => {
     const { getByRole } = render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumData={unitListingFixture()}
         curriculumRefreshTime={0}
       />,
@@ -79,6 +89,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   it("title card rendered correct title when exam board is present", () => {
     const { getByRole } = render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumData={{
           ...unitListingFixture(),
           examBoardTitle: "OCR",
@@ -95,6 +106,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   it("finance banners are displayed", () => {
     const { getAllByTestId } = render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumRefreshTime={0}
         curriculumData={{
           ...unitListingFixture(),
@@ -112,6 +124,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   it("finance banners are not displayed", () => {
     const { queryAllByTestId } = render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumRefreshTime={0}
         curriculumData={{
           ...unitListingFixture(),
@@ -125,6 +138,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   it("does not render curriculum download button on non-cycle 2 programmes", () => {
     render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumData={unitListingFixture()}
         curriculumRefreshTime={0}
       />,
@@ -137,6 +151,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   it("does not render curriculum download button on rshe", () => {
     render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumData={{
           ...unitListingFixture(),
           programmeSlug: "rshe-secondary-ks4",
@@ -155,6 +170,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   it("renders curriculum download button on cycle 2 programmes", () => {
     render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumData={{
           ...unitListingFixture(),
           hasCycle2Content: true,
@@ -177,6 +193,7 @@ describe("SEO", () => {
   it("renders the correct SEO details for programme", async () => {
     const { seo } = renderWithSeo()(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumData={unitListingWithTiers()}
         curriculumRefreshTime={0}
       />,
@@ -202,6 +219,7 @@ describe("SEO", () => {
     utilsMock.RESULTS_PER_PAGE = 10;
     const { seo } = renderWithSeo()(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumRefreshTime={0}
         curriculumData={{
           ...unitListingFixture(),
@@ -235,6 +253,7 @@ describe("unit search filters", () => {
     });
     const { getByRole } = render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumRefreshTime={0}
         curriculumData={unitListingFixture()}
       />,
@@ -246,6 +265,7 @@ describe("unit search filters", () => {
   it("skip filters button becomes visible when focussed", async () => {
     const { getByText } = render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumRefreshTime={0}
         curriculumData={unitListingFixture()}
       />,
@@ -300,6 +320,7 @@ describe("tracking", () => {
   test("It calls tracking.unitAccessed with correct props when clicked", async () => {
     render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumData={unitListingFixture()}
         curriculumRefreshTime={0}
       />,
@@ -357,6 +378,7 @@ describe("redirected overlay", () => {
     mockRouter.setCurrentUrl("/?redirected=true");
     const { getByTestId } = render(
       <UnitListingPage
+        topNav={topNavFixture}
         curriculumData={unitListingFixture()}
         curriculumRefreshTime={0}
       />,

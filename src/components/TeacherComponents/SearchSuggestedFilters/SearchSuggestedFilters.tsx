@@ -77,12 +77,12 @@ const SuggestedFilters: FC<SuggestedFiltersProps> = ({
   return (
     <OakBox>
       <OakFieldset>
-        <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
+        <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
           Suggested filters
         </OakP>
         <OakFlex
-          $gap={"space-between-xs"}
-          $mb="space-between-m2"
+          $gap={"spacing-12"}
+          $mb="spacing-32"
           $flexDirection={"row"}
           $flexWrap={"wrap"}
         >

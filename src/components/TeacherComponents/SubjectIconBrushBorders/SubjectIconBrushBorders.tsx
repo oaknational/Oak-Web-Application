@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import {
   OakBox,
@@ -21,7 +23,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
   isNew,
 }) => (
   <OakFlex
-    $minWidth={["all-spacing-13", "all-spacing-17"]}
+    $minWidth={["spacing-80", "spacing-160"]}
     $width={"100%"}
     $height={"100%"}
     $position={"relative"}
@@ -38,8 +40,8 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
     <OakBox
       $width={"100%"}
       $height={"100%"}
-      $maxWidth={["all-spacing-13", "all-spacing-16"]}
-      $maxHeight={["all-spacing-13", "all-spacing-16"]}
+      $maxWidth={["spacing-80", "spacing-120"]}
+      $maxHeight={["spacing-80", "spacing-120"]}
     >
       <OakIcon
         iconName={getValidSubjectIconName(subjectSlug)}
@@ -52,8 +54,8 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
     {isNew && (
       <>
         <OakBox
-          $left="all-spacing-2"
-          $top="all-spacing-2"
+          $left="spacing-8"
+          $top="spacing-8"
           $zIndex={"in-front"}
           $position={"absolute"}
           $display={["none", "block"]}
@@ -61,8 +63,8 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
           <TagPromotional size={"large"} />
         </OakBox>
         <OakBox
-          $top="all-spacing-1"
-          $left="all-spacing-2"
+          $top="spacing-4"
+          $left="spacing-8"
           $zIndex={"in-front"}
           $position={"absolute"}
           $display={["block", "none"]}

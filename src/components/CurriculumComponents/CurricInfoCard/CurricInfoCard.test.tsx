@@ -1,39 +1,41 @@
 import { screen, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-
 import CurricInfoCard, { CurricInfoCardProps } from "./CurricInfoCard";
+
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const props: Omit<CurricInfoCardProps, "children"> = {
   iconName: "search",
-  background: "mint30",
-  iconHeight: "all-spacing-12",
-  iconWidth: "all-spacing-11",
+  background: "bg-decorative1-very-subdued",
+  iconHeight: "spacing-72",
+  iconWidth: "spacing-64",
 };
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricInfoCard", () => {
   it("renders the text", () => {
-    renderWithTheme(
+    render(
       <CurricInfoCard {...props}>This is some information.</CurricInfoCard>,
     );
     expect(screen.getByText("This is some information.")).toBeInTheDocument();
   });
 
   it("renders the icon", () => {
-    const { container } = renderWithTheme(
+    const { container } = render(
       <CurricInfoCard {...props}>This is some information.</CurricInfoCard>,
     );
     expect(container.querySelector("img")).toBeInTheDocument();
   });
 
   it("renders the correct icon", () => {
-    renderWithTheme(
+    render(
       <CurricInfoCard
         iconName="clipboard"
-        background="mint30"
-        iconHeight={"all-spacing-14"}
-        iconWidth={"all-spacing-9"}
+        background="bg-decorative1-very-subdued"
+        iconHeight={"spacing-92"}
+        iconWidth={"spacing-48"}
       >
         National curriculum and exam board aligned
       </CurricInfoCard>,

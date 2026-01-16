@@ -1,6 +1,6 @@
 import {
   OakBox,
-  OakColorToken,
+  OakUiRoleToken,
   OakFlex,
   OakFlexProps,
   OakIcon,
@@ -27,7 +27,7 @@ type DotWithWingsProps = {
   isFirst: boolean;
   isLast: boolean;
   iconName?: OakIconName;
-  $background?: OakColorToken;
+  $background?: OakUiRoleToken;
 };
 function DotWithWings({
   isFirst,
@@ -44,21 +44,21 @@ function DotWithWings({
       <StepLine $borderStyle={isFirst ? "none" : "solid"} />
       <OakFlex
         $background={$background}
-        $width={"all-spacing-7"}
-        $height={"all-spacing-7"}
+        $width={"spacing-32"}
+        $height={"spacing-32"}
         $borderRadius={"border-radius-circle"}
         $alignItems={"center"}
         $justifyContent={"center"}
         $borderStyle={"solid"}
         $ba="border-solid-m"
-        $borderColor={"black"}
+        $borderColor={"border-primary"}
       >
         {iconName && (
           <OakIcon
             iconName={iconName}
             $colorFilter="white"
-            $width={"all-spacing-6"}
-            $height={"all-spacing-6"}
+            $width={"spacing-24"}
+            $height={"spacing-24"}
           />
         )}
       </OakFlex>
@@ -79,72 +79,70 @@ export function CurricShowSteps({
     <div>
       <OakBox
         style={{ width: "100%", position: "relative", overflow: "hidden" }}
-        $pb={"inner-padding-xl2"}
+        $pb={"spacing-32"}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          {Array(numberOfSteps)
-            .fill(true)
-            .map((_, index) => {
-              const isLast = index === numberOfSteps - 1;
-              const isFirst = index === 0;
-              const isCurrent = index === currentStepIndex;
-              const isDone = index < currentStepIndex;
+          {new Array(numberOfSteps).fill(true).map((_, index) => {
+            const isLast = index === numberOfSteps - 1;
+            const isFirst = index === 0;
+            const isCurrent = index === currentStepIndex;
+            const isDone = index < currentStepIndex;
 
-              return (
-                <Fragment key={index}>
-                  {isDone && (
-                    <DotWithWings
-                      isFirst={isFirst}
-                      isLast={isLast}
-                      iconName="tick"
-                      $background="black"
-                    />
-                  )}
-                  {!isCurrent && !isDone && (
-                    <DotWithWings
-                      isFirst={isFirst}
-                      isLast={isLast}
-                      $background="white"
-                    />
-                  )}
-                  {isCurrent && (
+            return (
+              <Fragment key={index}>
+                {isDone && (
+                  <DotWithWings
+                    isFirst={isFirst}
+                    isLast={isLast}
+                    iconName="tick"
+                    $background="bg-inverted"
+                  />
+                )}
+                {!isCurrent && !isDone && (
+                  <DotWithWings
+                    isFirst={isFirst}
+                    isLast={isLast}
+                    $background="bg-primary"
+                  />
+                )}
+                {isCurrent && (
+                  <OakFlex
+                    $borderStyle={"solid"}
+                    $borderColor={"border-primary"}
+                    $borderRadius={"border-radius-circle"}
+                    $alignItems={"center"}
+                    $justifyContent={"center"}
+                    $ba="border-solid-m"
+                    $position={"relative"}
+                    style={{ width: DOT_SIZE, height: DOT_SIZE }}
+                  >
                     <OakFlex
-                      $borderStyle={"solid"}
-                      $borderColor={"black"}
+                      $background={"bg-inverted"}
+                      $width={"spacing-32"}
+                      $height={"spacing-32"}
                       $borderRadius={"border-radius-circle"}
+                      color="text-inverted"
                       $alignItems={"center"}
                       $justifyContent={"center"}
-                      $ba="border-solid-m"
-                      $position={"relative"}
-                      style={{ width: DOT_SIZE, height: DOT_SIZE }}
+                    />
+                    <OakBox
+                      $position="absolute"
+                      $whiteSpace={"nowrap"}
+                      data-testid="step-text"
+                      $font={"body-1"}
+                      style={{
+                        [isLast ? "right" : "left"]: 0,
+                        top: DOT_SIZE,
+                      }}
                     >
-                      <OakFlex
-                        $background={"black"}
-                        $width={"all-spacing-7"}
-                        $height={"all-spacing-7"}
-                        $borderRadius={"border-radius-circle"}
-                        color="white"
-                        $alignItems={"center"}
-                        $justifyContent={"center"}
-                      />
-                      <OakBox
-                        $position="absolute"
-                        $whiteSpace={"nowrap"}
-                        data-testid="step-text"
-                        $font={"body-1"}
-                        style={{
-                          [isLast ? "right" : "left"]: 0,
-                          top: DOT_SIZE,
-                        }}
-                      >
-                        Step {currentStepIndex + 1} of {numberOfSteps}
-                      </OakBox>
-                    </OakFlex>
-                  )}
-                  {!isLast && <StepLine />}
-                </Fragment>
-              );
-            })}
+                      Step {currentStepIndex + 1} of {numberOfSteps}
+                    </OakBox>
+                  </OakFlex>
+                )}
+                {!isLast && <StepLine />}
+              </Fragment>
+            );
+          })}
         </div>
       </OakBox>
     </div>

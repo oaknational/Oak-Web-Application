@@ -94,7 +94,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
             disabled: true,
           },
         ]}
-        background={"lavender30"}
+        background={"bg-decorative3-very-subdued"}
         subjectSlug={subjectSlug}
         subjectTitle={subjectTitle}
         subjectIconBackgroundColor="lavender"
@@ -102,24 +102,19 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
         programmeFactor="Specialist and therapies"
         isNew={false}
       />
-
-      <OakMaxWidth $ph={"inner-padding-m"}>
+      <OakMaxWidth $ph={"spacing-16"}>
         <OakGrid data-testid="specialist-unit-grid">
           <OakGridArea
             $order={[0, 2]}
             $colSpan={[12, 12, 3]}
             $display={["block", "none", "block"]}
-            $pl={[undefined, "inner-padding-xl"]}
+            $pl={[undefined, "spacing-24"]}
           >
             <OakBox
               $position={[null, "sticky"]}
               $top={[null, HEADER_HEIGHT]}
-              $mt={[
-                "space-between-none",
-                "space-between-none",
-                "space-between-m2",
-              ]}
-              $pt={["inner-padding-xl", "inner-padding-xl4"]}
+              $mt={["spacing-0", "spacing-0", "spacing-32"]}
+              $pt={["spacing-24", "spacing-48"]}
             >
               {learningThemes?.length > 1 && (
                 <OakFlex
@@ -128,9 +123,9 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                 >
                   <OakP
                     id={themeId}
-                    $color={"black"}
+                    $color={"text-primary"}
                     $font="body-3"
-                    $mb="space-between-s"
+                    $mb="spacing-16"
                   >
                     Filter by thread
                   </OakP>
@@ -168,11 +163,11 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
           <OakGridArea $order={[1, 0]} $colSpan={[12, 12, 9]}>
             <OakFlex
               $flexDirection={["column-reverse", "column"]}
-              $pt={["inner-padding-xl", "inner-padding-xl4"]}
+              $pt={["spacing-24", "spacing-48"]}
             >
               <OakFlex
-                $minWidth="all-spacing-16"
-                $mb="space-between-m"
+                $minWidth="spacing-120"
+                $mb="spacing-24"
                 $position={"relative"}
                 $justifyContent={[
                   "space-between",
@@ -206,10 +201,10 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   data-testid="development-nav"
                 >
                   <TabularNav
-                    $mb={["space-between-xs", "space-between-m"]}
+                    $mb={["spacing-12", "spacing-24"]}
                     label="themes"
                     $flexWrap={"wrap"}
-                    $gap={["space-between-xs", "space-between-none"]}
+                    $gap={["spacing-12", "spacing-0"]}
                     links={developmentStage.map(
                       ({ title, slug, lessonCount, programmeSlug }) => ({
                         label: `${title} (${lessonCount})`,

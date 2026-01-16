@@ -8,10 +8,14 @@ import { Thread, CurriculumFilters } from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { joinWords, pluralizeUnits } from "@/utils/curriculum/formatting";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersThreadsProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilters: CurriculumFilters,
+    source?: ComponentTypeValueType,
+  ) => void;
   data: CurriculumUnitsFormattedData;
 };
 
@@ -32,8 +36,8 @@ export function CurricFiltersThreads({
       <Fieldset data-testid={"threads-filter-desktop"}>
         <FieldsetLegend
           $font={["heading-7", "heading-6"]}
-          $mt="space-between-m2"
-          $mb={["space-between-sssx", "space-between-none"]}
+          $mt="spacing-32"
+          $mb={["spacing-4", "spacing-0"]}
         >
           Highlight a thread
         </FieldsetLegend>
@@ -46,8 +50,8 @@ export function CurricFiltersThreads({
           value={filters.threads[0] ?? ""}
         >
           <OakBox
-            $mv="space-between-s"
-            $pl="inner-padding-s"
+            $mv="spacing-16"
+            $pl="spacing-12"
             $bl="border-solid-s"
             $borderColor="transparent"
           >
@@ -68,14 +72,16 @@ export function CurricFiltersThreads({
             return (
               <OakBox
                 $ba="border-solid-s"
-                $background={isSelected ? "black" : "white"}
-                $borderColor={isSelected ? "black" : "grey40"}
+                $background={isSelected ? "bg-inverted" : "bg-primary"}
+                $borderColor={
+                  isSelected ? "border-primary" : "border-neutral-lighter"
+                }
                 $borderRadius="border-radius-s"
-                $color={isSelected ? "white" : "black"}
+                $color={isSelected ? "text-inverted" : "text-primary"}
                 $font={isSelected ? "heading-light-7" : "body-2"}
-                $ph="inner-padding-s"
-                $pt="inner-padding-s"
-                $mb="space-between-ssx"
+                $ph="spacing-12"
+                $pt="spacing-12"
+                $mb="spacing-8"
                 key={threadOption.slug}
               >
                 <RadioButton

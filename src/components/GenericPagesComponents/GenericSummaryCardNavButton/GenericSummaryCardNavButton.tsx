@@ -93,7 +93,7 @@ const GenericSummaryCardNavButton: FC<GenericSummaryCardNavButtonProps> = ({
         $flexWrap={"wrap"}
         $alignItems={["flex-start", "center"]}
         $flexDirection={["column", "row"]}
-        $pa="inner-padding-none"
+        $pa="spacing-0"
         {...props}
       >
         {buttons.map((button) => (

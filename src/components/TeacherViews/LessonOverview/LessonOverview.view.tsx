@@ -29,6 +29,7 @@ import {
   getPageLinksWithSubheadingsForLesson,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
+  AnalyticsBrowseData,
   LessonOverviewAll,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
@@ -150,6 +151,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+
   const commonPathway = getPathway(lesson);
   const {
     keyStageSlug,
@@ -165,6 +167,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     tierTitle,
     subjectParent,
     pathwayTitle,
+    year,
   } = commonPathway;
   const user = useUser();
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
@@ -183,6 +186,36 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
 
+  const getPhaseSlug = (keyStageSlug?: string | null) => {
+    if (!keyStageSlug) {
+      return null;
+    } else if (["ks4", "ks3"].includes(keyStageSlug)) {
+      return "secondary";
+    } else {
+      return "primary";
+    }
+  };
+
+  const browsePathwayData: AnalyticsBrowseData = {
+    keyStageSlug: keyStageSlug ?? "",
+    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+    subjectSlug: subjectSlug ?? "",
+    subjectTitle: subjectTitle ?? "",
+    unitSlug: unitSlug ?? "",
+    unitName: unitTitle ?? "",
+    lessonSlug,
+    lessonName: lessonTitle,
+    pathway: pathwayTitle as PathwayValueType,
+    tierName: tierTitle as TierNameValueType,
+    yearGroupName: yearTitle ?? "",
+    yearGroupSlug: year ? `year-${year}` : "",
+    examBoard: examBoardTitle as ExamBoardValueType,
+    releaseGroup: lesson.isLegacy ? "legacy" : "2023",
+    phase: getPhaseSlug(keyStageSlug),
+    lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
+    lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+  };
+
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
   }: {
@@ -196,19 +229,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       downloadResourceButtonName,
-      keyStageSlug,
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      subjectSlug,
-      subjectTitle,
-      unitSlug,
-      unitName: unitTitle,
-      lessonSlug,
-      lessonName: lessonTitle,
-      pathway: pathwayTitle as PathwayValueType,
-      examBoard: examBoardTitle as ExamBoardValueType,
-      tierName: tierTitle as TierNameValueType,
-      lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+      ...browsePathwayData,
     });
   };
 
@@ -224,40 +245,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       mediaClipsButtonName,
-      keyStageSlug,
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      subjectSlug,
-      subjectTitle,
-      unitSlug,
-      unitName: unitTitle,
-      lessonSlug,
-      lessonName: lessonTitle,
-      pathway: pathwayTitle as PathwayValueType,
-      tierName: null,
-      yearGroupName: null,
-      yearGroupSlug: null,
-      examBoard: null,
       learningCycle,
-      releaseGroup: lesson.isLegacy ? "legacy" : "2023",
-      phase: null,
-      lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+      ...browsePathwayData,
     });
   };
 
   const trackShareAll = () => {
-    track.lessonShareStarted({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug,
-      unitName: unitTitle,
-      unitSlug,
-      lessonName: lessonTitle,
-      lessonSlug,
-      lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
-    });
+    track.lessonShareStarted(browsePathwayData);
   };
 
   const trackCreateWithAiButtonClicked = () => {
@@ -343,6 +337,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const presentationTitle = "Lesson slides";
   const quizDownloadTitle = "quiz pdf";
 
+  const stickyDownloadALlButtonFlag = useFeatureFlagVariantKey(
+    "teachers-sticky-download-button",
+  );
+  const showDownloadAllInSidebar =
+    showDownloadAll && stickyDownloadALlButtonFlag === "test";
+
   return (
     <MathJaxLessonProvider>
       <HeaderLesson
@@ -367,7 +367,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 ),
               ]
         }
-        background={"pink30"}
+        background={"bg-decorative4-very-subdued"}
         subjectIconBackgroundColor={"pink"}
         track={track}
         analyticsUseCase={analyticsUseCase}
@@ -390,10 +390,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         trackCreateWithAiButtonClicked={trackCreateWithAiButtonClicked}
         contentRestricted={contentRestricted}
       />
-      <OakMaxWidth $ph={"inner-padding-m"} $pb={"inner-padding-xl8"}>
+      <OakMaxWidth $ph={"spacing-16"} $pb={"spacing-80"}>
         {expired ? (
-          <OakBox $pa={"inner-padding-m"} $mb={"space-between-xxl"}>
-            <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
+          <OakBox $pa={"spacing-16"} $mb={"spacing-72"}>
+            <OakHeading $font={"heading-7"} tag={"h2"} $mb="spacing-16">
               No lesson available
             </OakHeading>
             <OakTypography $font={"body-1"}>
@@ -401,13 +401,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             </OakTypography>
           </OakBox>
         ) : (
-          <OakGrid $mt={["space-between-l"]}>
+          <OakGrid $mt={["spacing-48"]}>
             <OakGridArea
               $colSpan={[12, 3]}
               $alignSelf={"start"}
               $position={"sticky"}
               $display={["none", "block"]}
-              $top={"all-spacing-14"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+              $top={"spacing-92"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
               {!showGeoBlocked && (
                 <OakFlex
@@ -415,13 +415,22 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   aria-label="page navigation"
                   $flexDirection={"column"}
                   $alignItems={"flex-start"}
-                  $gap={["all-spacing-2"]}
-                  $pr={["inner-padding-m"]}
+                  $gap={["spacing-8"]}
+                  $pr={["spacing-16"]}
                 >
                   <LessonOverviewSideNavAnchorLinks
                     contentRestricted={contentRestricted}
                     links={pageLinks}
                     currentSectionId={currentSectionId}
+                    downloadAllButtonProps={{
+                      showDownloadAll: showDownloadAllInSidebar,
+                      onClickDownloadAll: () =>
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "all",
+                        }),
+                      ...lesson,
+                      ...commonPathway,
+                    }}
                   />
                 </OakFlex>
               )}
@@ -429,7 +438,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
-                <OakBox $pb={"inner-padding-m"}>
+                <OakBox $pb={"spacing-16"}>
                   <ExpiringBanner
                     isOpen={actions?.displayExpiringBanner}
                     isResourcesMessage={true}
@@ -626,6 +635,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         title={lessonTitle}
                         transcriptSentences={transcriptSentences}
                         isLegacy={isLegacyLicense}
+                        browsePathwayData={browsePathwayData}
                       />
                     </LessonItemContainer>
                   )}
@@ -681,7 +691,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 >
                   <OakAnchorTarget
                     id={"quiz"}
-                    $pt={"inner-padding-xl"}
+                    $pt={"spacing-24"}
                     ref={quizSectionRef}
                   />
                   {pageLinks.find(

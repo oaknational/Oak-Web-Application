@@ -8,11 +8,16 @@ import {
   OakGridArea,
   OakFieldError,
   OakBox,
+  OakJauntyAngleLabel,
+  OakSelect,
+  OakOption,
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
+import z, { ZodSchema } from "zod";
 
 import {
   newsletterSignupFormSubmitSchema,
+  newsletterSignupRoleSchema,
   partialNewsletterSchema,
 } from "./CampaignNewsletterSignup.schema";
 
@@ -27,6 +32,7 @@ import { useFetch } from "@/hooks/useFetch";
 import { runSchema } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import OakError from "@/errors/OakError";
 import errorReporter from "@/common-lib/error-reporter";
+import { EDU_ROLES } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 
 const reportError = errorReporter("CampaignNewsletterSignup");
 
@@ -38,6 +44,8 @@ type NewsletterSignUpData = Partial<{
   schoolNotListed?: boolean;
   name: string;
   schoolOrg?: string;
+  role: string;
+  eduRole: string;
 }>;
 
 type NewsletterSignUpFormErrors = Partial<{
@@ -46,6 +54,8 @@ type NewsletterSignUpFormErrors = Partial<{
   schoolOrg: string;
   email: string;
   name: string;
+  role: string;
+  eduRole: string;
 }>;
 
 export type CampaignNewsletterSignupProps = NewsletterSignUp & {
@@ -87,6 +97,23 @@ const SchoolPickerInput = ({
   );
 };
 
+export function getSchema({
+  freeSchoolInput,
+  enableRole,
+}: {
+  freeSchoolInput?: boolean | null;
+  enableRole?: boolean | null;
+}) {
+  let schema: ZodSchema = newsletterSignupFormSubmitSchema;
+  if (freeSchoolInput) {
+    schema = partialNewsletterSchema;
+  }
+  if (enableRole) {
+    schema = z.intersection(schema, newsletterSignupRoleSchema);
+  }
+  return schema;
+}
+
 const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   heading,
   bodyPortableText,
@@ -94,6 +121,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   formId,
   textStyles,
   freeSchoolInput,
+  enableRole,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitError, setSubmitError] = useState<string>("");
@@ -108,6 +136,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     schools: [],
     name: undefined,
     schoolOrg: undefined,
+    eduRole: undefined,
   }));
 
   const onChange = (partial: Partial<NewsletterSignUpData>) => {
@@ -127,12 +156,11 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     setIsSubmitting(true);
     setSubmitError("");
     setSuccessMessage("");
-    const formValidation = runSchema(
-      freeSchoolInput
-        ? partialNewsletterSchema
-        : newsletterSignupFormSubmitSchema,
-      data,
-    );
+    const schema = getSchema({
+      freeSchoolInput,
+      enableRole,
+    });
+    const formValidation = runSchema(schema, data);
 
     setErrors(formValidation.errors);
     if (formValidation.success) {
@@ -148,6 +176,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           ...schoolData,
           email: data.email,
           userRole: "",
+          eduRole: data.eduRole ?? "",
           name: data.name,
         });
         setSuccessMessage("Thanks, that's been received");
@@ -176,26 +205,26 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
 
   return (
     <OakGrid
-      $mt={["space-between-xxl", "space-between-xxl", "space-between-xxxl"]}
-      $maxWidth={["unset", "all-spacing-24"]}
+      $mt={["spacing-72", "spacing-72", "spacing-80"]}
+      $maxWidth={["unset", "spacing-1280"]}
     >
       <OakGridArea
         $colSpan={[12, 10, 10]}
         $colStart={[1, 2, 2]}
-        $mb={["space-between-m", "space-between-l"]}
+        $mb={["spacing-24", "spacing-48"]}
       >
         <OakFlex
           $flexDirection={["column", "column", "row"]}
           $alignItems={"center"}
           $alignSelf={"stretch"}
-          $gap={"space-between-xxl"}
+          $gap={"spacing-72"}
           $justifyContent={"space-between"}
         >
           <OakFlex
-            $maxWidth={["100%", "all-spacing-22"]}
+            $maxWidth={["100%", "spacing-640"]}
             $alignSelf={"stretch"}
             $flexDirection={"column"}
-            $gap={"space-between-s"}
+            $gap={"spacing-16"}
           >
             <OakHeading tag="h4" $font={"heading-4"}>
               {heading}
@@ -207,14 +236,14 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           </OakFlex>
           <OakFlex
             as="form"
-            $minWidth={["100%", "100%", "all-spacing-21"]}
+            $minWidth={["100%", "100%", "spacing-480"]}
             $flexDirection={"column"}
-            $background={"white"}
-            $pa={"inner-padding-xl"}
-            $gap={"space-between-m"}
+            $background={"bg-primary"}
+            $pa={"spacing-24"}
+            $gap={"spacing-24"}
             $borderRadius={"border-radius-s"}
           >
-            <OakFlex $flexDirection={"column"} $gap={"space-between-m2"}>
+            <OakFlex $flexDirection={"column"} $gap={"spacing-32"}>
               <OakInputWithLabel
                 label="Name"
                 id="nameInput"
@@ -226,6 +255,59 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                 placeholder="Type your name"
                 defaultValue={data.name}
               />
+
+              {enableRole && (
+                <>
+                  {errors.eduRole && (
+                    <OakBox
+                      id={errors.eduRole}
+                      role="alert"
+                      $pb={["spacing-24"]}
+                    >
+                      <OakFieldError>{errors.eduRole}</OakFieldError>
+                    </OakBox>
+                  )}
+                  <OakBox
+                    $position={"relative"}
+                    data-testid="newsletter-eduRole"
+                  >
+                    <OakJauntyAngleLabel
+                      label={`Role`}
+                      $color={"text-primary"}
+                      htmlFor={"newsletter-eduRole"}
+                      as="label"
+                      $font={"heading-7"}
+                      $background={"mint"}
+                      $zIndex="in-front"
+                      $position="absolute"
+                      $top={"-20px"}
+                      $left={"5px"}
+                      $borderRadius="border-radius-square"
+                      required={true}
+                      error={errors.eduRole}
+                    />
+                    <OakSelect
+                      name="newsletter-eduRole"
+                      id="newsletter-eduRole"
+                      $display={"block"}
+                      value={data.eduRole}
+                      onChange={(e) => {
+                        onChange({ eduRole: e.target.value });
+                      }}
+                    >
+                      <OakOption asDefault={true}>Select your role</OakOption>
+                      {EDU_ROLES.map((item) => {
+                        return (
+                          <OakOption key={item} value={item}>
+                            {item}
+                          </OakOption>
+                        );
+                      })}
+                    </OakSelect>
+                  </OakBox>
+                </>
+              )}
+
               {freeSchoolInput ? (
                 <>
                   <OakInputWithLabel
@@ -273,21 +355,17 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
             </OakPrimaryButton>
             {submitError.length > 0 && (
               <OakP
-                $mt={"space-between-none"}
+                $mt={"spacing-0"}
                 $font={"body-3"}
                 aria-live="assertive"
                 role="alert"
-                $color="red"
+                $color="text-error"
               >
                 {submitError}
               </OakP>
             )}
             {successMessage.length > 0 && submitError === "" && (
-              <OakP
-                $mt={"space-between-none"}
-                $font={"body-3"}
-                aria-live="polite"
-              >
+              <OakP $mt={"spacing-0"} $font={"body-3"} aria-live="polite">
                 {!submitError && successMessage}
               </OakP>
             )}

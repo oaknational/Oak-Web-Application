@@ -3,14 +3,23 @@ import { useRouter } from "next/router";
 
 import ErrorView from "../components/AppComponents/ErrorView";
 
-interface Props {
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+
+export interface ErrorProps {
   statusCode?: number;
+  topNav: TopNavProps;
 }
 
-const ErrorPage: NextPage<Props> = ({ statusCode }) => {
+const ErrorPage: NextPage<ErrorProps> = ({ statusCode, topNav }) => {
   const router = useRouter();
   const onBackClick = () => router.back();
-  return <ErrorView onBackClick={onBackClick} statusCode={statusCode} />;
+  return (
+    <ErrorView
+      onBackClick={onBackClick}
+      statusCode={statusCode}
+      topNav={topNav}
+    />
+  );
 };
 
 export const getInitialProps = ({ res, err }: NextPageContext) => {
@@ -22,6 +31,11 @@ export const getInitialProps = ({ res, err }: NextPageContext) => {
   }
 
   return { statusCode };
+};
+
+export const defaultTopNavProps: TopNavProps = {
+  teachers: null,
+  pupils: null,
 };
 
 export default ErrorPage;

@@ -41,7 +41,7 @@ export const LessonListSeoHelper = ({
     subjectSlug === "rshe-pshe" || subjectSlug === "financial-education";
 
   return (
-    <OakBox $mb="space-between-xxl">
+    <OakBox $mb="spacing-72">
       <OakBasicAccordion
         header={
           <OakP $font="body-1" $textAlign="left">
@@ -58,7 +58,7 @@ export const LessonListSeoHelper = ({
         $borderColor="border-neutral-lighter"
         $alignItems="flex-start"
       >
-        <OakP $font="body-1" $textAlign="left" $mb="space-between-ssx">
+        <OakP $font="body-1" $textAlign="left" $mb="spacing-8">
           slide decks, worksheet PDFs, quizzes and lesson overviews. You can
           select individual lessons from: {unitTitle} unit and download the
           resources you need, or download the entire unit now. See every unit

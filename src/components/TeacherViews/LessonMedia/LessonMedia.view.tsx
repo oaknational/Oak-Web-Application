@@ -331,7 +331,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       isLegacy={false}
       isAudioClip={currentClip.mediaObject?.format === "mp3"}
       userEventCallback={handleVideoEvents}
-      loadingTextColor="white"
+      loadingTextColor="text-inverted"
       defaultHiddenCaptions={isPEPractical}
       cloudinaryUrl={currentClip.mediaObject.url}
       muxAssetId={currentClip.videoObject?.muxAssetId}
@@ -444,12 +444,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
   );
 
   return (
-    <OakMaxWidth $pb={"inner-padding-xl8"} $ph={"inner-padding-s"}>
-      <OakBox
-        $mb={"space-between-m2"}
-        $mt={"space-between-m"}
-        data-testid="media-view"
-      >
+    <OakMaxWidth $pb={"spacing-80"} $ph={"spacing-12"}>
+      <OakBox $mb={"spacing-32"} $mt={"spacing-24"} data-testid="media-view">
         <Breadcrumbs
           breadcrumbs={[
             ...getBreadcrumbsForLessonPathway(commonPathway),
@@ -470,7 +466,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
           ]}
         />
       </OakBox>
-      <OakBox $mb={"space-between-m"}>
+      <OakBox $mb={"spacing-24"}>
         {programmeSlug && unitSlug && !isCanonical && (
           <OakTertiaryButton
             element="a"
@@ -514,18 +510,14 @@ export const LessonMedia = (props: LessonMediaProps) => {
             <OakBox data-testid="media-clip-wrapper">
               <OakFlex
                 $flexDirection={["column", "column", "row"]}
-                $gap={[
-                  "space-between-m",
-                  "space-between-m",
-                  "space-between-none",
-                ]}
-                $mb={"space-between-m"}
-                $height={["auto", "auto", "all-spacing-21"]}
+                $gap={["spacing-24", "spacing-24", "spacing-0"]}
+                $mb={"spacing-24"}
+                $height={["auto", "auto", "spacing-480"]}
               >
                 <OakFlex
-                  $width={["100%", "100%", "all-spacing-23"]}
+                  $width={["100%", "100%", "spacing-960"]}
                   $alignItems={"center"}
-                  $background={"black"}
+                  $background={"bg-inverted"}
                   $overflow={["visible", "visible", "hidden"]}
                   $height={"100%"}
                   $br={"border-solid-m"}
@@ -539,16 +531,13 @@ export const LessonMedia = (props: LessonMediaProps) => {
                   <MediaClipInfo isMobile />
                 </OakBox>
                 <OakBox
-                  $width={["auto", "auto", "all-spacing-21"]}
-                  $minWidth={["auto", "auto", "all-spacing-21"]}
+                  $width={["auto", "auto", "spacing-480"]}
+                  $minWidth={["auto", "auto", "spacing-480"]}
                 >
                   {mediaClipList}
                 </OakBox>
               </OakFlex>
-              <OakBox
-                $display={["none", "none", "block"]}
-                $pb="inner-padding-xl4"
-              >
+              <OakBox $display={["none", "none", "block"]} $pb="spacing-48">
                 <OakGrid>
                   <OakGridArea $colSpan={8}>
                     <MediaClipInfo isMobile={false} />

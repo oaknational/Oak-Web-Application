@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WhoAreWeDesc renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR dtojPp"
+    >
+      <div
+        class="sc-fqkvVR sc-kAyceB bhbwbN gwxZIR"
+      >
+        <h2
+          class="sc-kpDqfm gzqUEm"
+        >
+          TESTING_TITLE
+        </h2>
+        <div
+          class="sc-fqkvVR sc-jXbUNg fgBWrW ewUxii"
+        >
+          <div
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-698d7605-0 fgBWrW joHkzz iAkSYx btCibF"
+            data-testid="who-we-are-desc-item"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+            >
+              <div
+                class="sc-fqkvVR gRLayp"
+              >
+                <img
+                  alt="ITEM_ALT_0"
+                  class="sc-6170517-0 enHtaO"
+                  data-nimg="1"
+                  decoding="async"
+                  height="300"
+                  loading="lazy"
+                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/0-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
+                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/0-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/0-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
+                  style="color: transparent;"
+                  width="300"
+                />
+              </div>
+              <div
+                class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+              >
+                <h3
+                  class="sc-kpDqfm eAMIYi"
+                >
+                  ITEM_TITLE_0
+                </h3>
+                <p
+                  class="sc-dLMFU jKnjIK"
+                >
+                  ITEM_TEXT_0
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-698d7605-0 fgBWrW joHkzz iAkSYx btCibF"
+            data-testid="who-we-are-desc-item"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+            >
+              <div
+                class="sc-fqkvVR fjbDCB"
+              >
+                <img
+                  alt="ITEM_ALT_1"
+                  class="sc-6170517-0 enHtaO"
+                  data-nimg="1"
+                  decoding="async"
+                  height="300"
+                  loading="lazy"
+                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
+                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
+                  style="color: transparent;"
+                  width="300"
+                />
+              </div>
+              <div
+                class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+              >
+                <h3
+                  class="sc-kpDqfm eAMIYi"
+                >
+                  ITEM_TITLE_1
+                </h3>
+                <p
+                  class="sc-dLMFU jKnjIK"
+                >
+                  ITEM_TEXT_1
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-698d7605-0 fgBWrW joHkzz iAkSYx btCibF"
+            data-testid="who-we-are-desc-item"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+            >
+              <div
+                class="sc-fqkvVR tlJWQ"
+              >
+                <img
+                  alt="ITEM_ALT_2"
+                  class="sc-6170517-0 enHtaO"
+                  data-nimg="1"
+                  decoding="async"
+                  height="300"
+                  loading="lazy"
+                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/2-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
+                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/2-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/2-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
+                  style="color: transparent;"
+                  width="300"
+                />
+              </div>
+              <div
+                class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+              >
+                <h3
+                  class="sc-kpDqfm eAMIYi"
+                >
+                  ITEM_TITLE_2
+                </h3>
+                <p
+                  class="sc-dLMFU jKnjIK"
+                >
+                  ITEM_TEXT_2
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-698d7605-0 fgBWrW joHkzz iAkSYx btCibF"
+            data-testid="who-we-are-desc-item"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+            >
+              <div
+                class="sc-fqkvVR hckAIM"
+              >
+                <img
+                  alt="ITEM_ALT_3"
+                  class="sc-6170517-0 enHtaO"
+                  data-nimg="1"
+                  decoding="async"
+                  height="300"
+                  loading="lazy"
+                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/3-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
+                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/3-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/3-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
+                  style="color: transparent;"
+                  width="300"
+                />
+              </div>
+              <div
+                class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+              >
+                <h3
+                  class="sc-kpDqfm eAMIYi"
+                >
+                  ITEM_TITLE_3
+                </h3>
+                <p
+                  class="sc-dLMFU jKnjIK"
+                >
+                  ITEM_TEXT_3
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

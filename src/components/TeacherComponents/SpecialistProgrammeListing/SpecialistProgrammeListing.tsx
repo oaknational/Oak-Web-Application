@@ -17,16 +17,16 @@ const SpecialistProgrammeListing: FC<{
 
   return (
     <ProgrammeListContainer
-      $background="aqua"
+      $background="bg-decorative2-main"
       $colSpan={[12, 6, programmeColSpan]}
     >
-      <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
+      <OakHeading tag="h2" $font="heading-5" $mb="spacing-32">
         Developmental stages
       </OakHeading>
       <OakFlex
         $justifyContent="flex-start"
         $flexDirection={["column", "row", "row"]}
-        $gap={"all-spacing-3"}
+        $gap={"spacing-12"}
       >
         {programmes.map((programme, index) => {
           return (

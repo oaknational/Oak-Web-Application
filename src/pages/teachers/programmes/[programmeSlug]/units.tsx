@@ -54,15 +54,18 @@ import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers"
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import Banners from "@/components/SharedComponents/Banners";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
   curriculumRefreshTime: number;
+  topNav: TopNavProps;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
   curriculumRefreshTime,
+  topNav,
 }) => {
   const {
     programmeSlug,
@@ -181,7 +184,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         subjectTitle,
         subjectSlug,
         yearGroupName: props.yearTitle,
-        yearGroupSlug: (props as UnitListItemProps).yearSlug,
+        yearGroupSlug: props.yearSlug,
         tierName: tier ?? null,
         examBoard: examBoardTitle,
         pathway: pathwayTitle,
@@ -193,7 +196,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     return tiers.length > 0 ? (
       <nav aria-label="tiers" data-testid="tiers-nav">
         <TabularNav
-          $mb={["space-between-xs", "space-between-xs", "space-between-m"]}
+          $mb={["spacing-12", "spacing-12", "spacing-24"]}
           label="tiers"
           links={tiers.map(
             ({ tierTitle: title, tierSlug: slug, tierProgrammeSlug }) => ({
@@ -208,8 +211,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
       </nav>
     ) : (
       <OakFlex
-        $minWidth={"all-spacing-16"}
-        $mb={"space-between-s"}
+        $minWidth={"spacing-120"}
+        $mb={"spacing-16"}
         $position={"relative"}
       >
         <OakHeading $font={"heading-5"} tag={"h2"}>
@@ -227,7 +230,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <AppLayout seoProps={unitsSEO}>
+      <AppLayout seoProps={unitsSEO} topNavProps={topNav}>
         <PaginationHead
           prevPageUrlObject={prevPageUrlObject}
           nextPageUrlObject={nextPageUrlObject}
@@ -259,16 +262,17 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               disabled: true,
             },
           ]}
-          background={"lavender30"}
+          background={"bg-decorative3-very-subdued"}
           subjectIconBackgroundColor={"lavender"}
           title={`${subjectTitle} ${examBoardTitle ? examBoardTitle + " " : ""}${pathwayTitle ?? ""}`}
           programmeFactor={toSentenceCase(keyStageTitle)}
           isNew={hasNewContent ?? false}
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           subjectDescriptionUnitListingData={curriculumData}
+          showUnitListingSeo
           {...curriculumData}
         />
-        <OakMaxWidth $ph={"inner-padding-m"}>
+        <OakMaxWidth $ph={"spacing-16"}>
           {/* Legacy content banner, only shown on certain legacy unit listing pages  */}
           <OakGrid>
             <OakGridArea $colSpan={[12, 12, 9]}>
@@ -287,7 +291,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             <OakGridArea
               $order={[0, 2, 2]}
               $colSpan={[12, 12, 3]}
-              $pl={["inner-padding-xl"]}
+              $pl={["spacing-24"]}
             >
               <DesktopUnitFilters
                 showFilters={isFiltersAvailable}
@@ -321,9 +325,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             <OakGridArea
               $order={[1, 1, 0]}
               $colSpan={[12, 12, 9]}
-              $mt={"space-between-m2"}
+              $mt={"spacing-32"}
             >
-              <OakFlex $flexDirection="column" $gap="space-between-m2">
+              <OakFlex $flexDirection="column" $gap="spacing-32">
                 {showCurriculumDownloadBanner && (
                   <CurriculumDownloadBanner
                     subjectSlug={subjectParentSlug ?? subjectSlug}
@@ -388,14 +392,14 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 <OakHeading
                   tag="h3"
                   $font={"heading-light-6"}
-                  $mb={"space-between-m2"}
+                  $mb={"spacing-32"}
                 >
                   No results. Please try removing some filters.
                 </OakHeading>
               )}
             </OakGridArea>
           </OakGrid>
-          <OakFlex $display={["flex", "flex", "none"]} $mb="space-between-xl">
+          <OakFlex $display={["flex", "flex", "none"]} $mb="spacing-56">
             {relatedSubjects?.map((subjectSlug) => (
               <RelatedSubjectsBanner
                 key={subjectSlug}
@@ -480,11 +484,13 @@ export const getStaticProps: GetStaticProps<
         }
 
         const curriculumRefreshTime = await getMvRefreshTime();
+        const topNav = await curriculumApi2023.topNav();
 
         const results: GetStaticPropsResult<UnitListingPageProps> = {
           props: {
             curriculumData,
             curriculumRefreshTime,
+            topNav,
           },
         };
 

@@ -23,7 +23,7 @@ const QuizQuestionsListItem: FC<QuizQuestionsListItemProps> = (props) => {
       $flexDirection={"column"}
       $width={"100%"}
       role="listitem"
-      $gap={"all-spacing-2"}
+      $gap={"spacing-8"}
     >
       <QuizQuestionsQuestionStem
         questionStem={questionStem}

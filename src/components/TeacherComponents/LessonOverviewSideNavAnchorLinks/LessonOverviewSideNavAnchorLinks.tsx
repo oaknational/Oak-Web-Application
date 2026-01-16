@@ -2,6 +2,10 @@ import { FC } from "react";
 import { OakLI, OakSideMenuNavLink, OakUL } from "@oaknational/oak-components";
 
 import { getContainerId } from "../LessonItemContainer/LessonItemContainer";
+import {
+  LessonOverviewHeaderDownloadAllButton,
+  LessonOverviewHeaderDownloadAllButtonProps,
+} from "../LessonOverviewHeaderDownloadAllButton/LessonOverviewHeaderDownloadAllButton";
 
 type LessonOverviewSideNavAnchorLinksProps = {
   contentRestricted: boolean;
@@ -11,17 +15,19 @@ type LessonOverviewSideNavAnchorLinksProps = {
     anchorId: string;
     subheading?: string;
   }[];
+  downloadAllButtonProps: LessonOverviewHeaderDownloadAllButtonProps;
 };
+
 const LessonOverviewSideNavAnchorLinks: FC<
   LessonOverviewSideNavAnchorLinksProps
-> = ({ links, currentSectionId, contentRestricted }) => {
+> = ({
+  links,
+  currentSectionId,
+  contentRestricted,
+  downloadAllButtonProps,
+}) => {
   return (
-    <OakUL
-      $reset
-      $display="flex"
-      $gap="space-between-s"
-      $flexDirection="column"
-    >
+    <OakUL $reset $display="flex" $gap="spacing-16" $flexDirection="column">
       {links.map((link, index) => {
         const { label, anchorId, subheading } = link;
 
@@ -45,12 +51,13 @@ const LessonOverviewSideNavAnchorLinks: FC<
               }}
               item={item}
               isSelected={isCurrent}
-              $pt={"inner-padding-xs"}
-              $pb={"inner-padding-xs"}
+              $pt={"spacing-8"}
+              $pb={"spacing-8"}
             />
           </OakLI>
         );
       })}
+      <LessonOverviewHeaderDownloadAllButton {...downloadAllButtonProps} />
     </OakUL>
   );
 };

@@ -23,6 +23,7 @@ import {
 } from "@/pages-helpers/pupil/units-page/units-page-helper";
 import OakError from "@/errors/OakError";
 import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type UnitsSectionData = {
   title: string | null;
@@ -44,6 +45,7 @@ export type UnitListingPageProps = {
   subjectCategories: string[];
   programmeFields: UnitListingBrowseData[number]["programmeFields"];
   relatedSubjects: SubjectSlugs[];
+  topNav: TopNavProps;
 };
 
 type PupilUnitListingPageURLParams = {
@@ -59,6 +61,7 @@ const PupilUnitListingPage = ({
   subjectCategories,
   programmeFields,
   relatedSubjects,
+  topNav,
 }: UnitListingPageProps) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -71,6 +74,7 @@ const PupilUnitListingPage = ({
           noIndex: true,
           noFollow: false,
         }}
+        topNavProps={topNav}
       >
         <PupilViewsUnitListing
           unitSections={unitSections}
@@ -182,7 +186,7 @@ export const getStaticProps: GetStaticProps<
         .filter((s) => !!s);
 
       // ts will not accept that the above removes the possibility of undefined
-      const subjectCategories = uniq(allSubjectCategories) as string[];
+      const subjectCategories = uniq(allSubjectCategories);
 
       const mainUnits: UnitListingBrowseData[number][] =
         checkAndExcludeUnitsWithAgeRestrictedLessons(
@@ -257,7 +261,7 @@ export const getStaticProps: GetStaticProps<
           });
         }
       });
-
+      const topNav = await curriculumApi2023.topNav();
       const results: GetStaticPropsResult<UnitListingPageProps> = {
         props: {
           subject,
@@ -268,6 +272,7 @@ export const getStaticProps: GetStaticProps<
           unitSections: [firstUnitSection, secondUnitSection],
           programmeFields,
           relatedSubjects: Array.from(relatedSubjectsSet),
+          topNav,
         },
       };
 

@@ -63,8 +63,8 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
       $position="relative"
       $overflow="visible"
       $alignItems="center"
-      $color={!isSelected ? "black" : "grey60"}
-      $mb="space-between-xs"
+      $color={!isSelected ? "text-primary" : "text-subdued"}
+      $mb="spacing-12"
     >
       <OwaLink
         $display="flex"

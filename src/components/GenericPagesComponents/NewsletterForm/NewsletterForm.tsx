@@ -127,33 +127,27 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
       />
       <DropdownSelect
         id={`${id}-newsletter-signup-userrole`}
-        $mt={"space-between-m2"}
+        $mt={"spacing-32"}
         label="Role"
         placeholder="What describes you best?"
         listItems={userTypeOptions}
         {...register("userRole")}
         error={errors.userRole?.message}
       />
-      <OakPrimaryButton
-        $mt="space-between-m"
-        width={"100%"}
-        isLoading={loading}
-      >
+      <OakPrimaryButton $mt="spacing-24" width={"100%"} isLoading={loading}>
         Sign up to the newsletter
       </OakPrimaryButton>
       <OakP
-        $mt={error ? "space-between-s" : "space-between-none"}
+        $mt={error ? "spacing-16" : "spacing-0"}
         $font={"body-3"}
         aria-live="assertive"
         role="alert"
-        $color="red"
+        $color="text-error"
       >
         {error}
       </OakP>
       <OakP
-        $mt={
-          !error && successMessage ? "space-between-s" : "space-between-none"
-        }
+        $mt={!error && successMessage ? "spacing-16" : "spacing-0"}
         $font={"body-3"}
         aria-live="polite"
       >

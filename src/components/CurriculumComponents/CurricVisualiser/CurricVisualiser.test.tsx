@@ -1,6 +1,7 @@
 import { within, act } from "@testing-library/react";
 import { ComponentProps } from "react";
 import mockRouter from "next-router-mock";
+import { usePathname } from "next/navigation";
 
 import {
   noMissingUnitsFixture,
@@ -21,15 +22,18 @@ import {
 
 import CurricVisualiser from ".";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { YearData } from "@/utils/curriculum/types";
 import { createUnitOption } from "@/fixtures/curriculum/unitOption";
 import { createUnit } from "@/fixtures/curriculum/unit";
 
-const render = renderWithProviders();
+const render = renderWithProvidersByName(["theme", "oakTheme"]);
 const curriculumThreadHighlighted = jest.fn();
 const yearGroupSelected = jest.fn();
 const unitOverviewAccessed = jest.fn();
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 // Mock HTMLDialogElement methods that jsdom doesn't support
 HTMLDialogElement.prototype.showModal = jest.fn();

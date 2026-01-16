@@ -29,7 +29,7 @@ const LessonOverviewCommonMisconceptions = ({
     >
       <OakHeading
         $font={"heading-5"}
-        $mb="space-between-m"
+        $mb="spacing-24"
         data-testid={"heading"}
         tag="h3"
       >
@@ -42,7 +42,7 @@ const LessonOverviewCommonMisconceptions = ({
               $flexDirection={"column"}
               key={`common-misconception-${i}`}
             >
-              <OakP $mb="space-between-m" $font={"body-1-bold"}>
+              <OakP $mb="spacing-24" $font={"body-1-bold"}>
                 {commonMisconception.misconception}
               </OakP>
               <OakP $font={["body-2", "body-1"]}>

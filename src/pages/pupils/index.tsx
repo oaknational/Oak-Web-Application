@@ -17,13 +17,14 @@ const Pupils: NextPage<HomePageProps> = (props) => {
 
   return (
     <AppLayout
+      topNavProps={props.topNav}
       seoProps={{
         title:
           "Free online lessons, videos and quizzes for pupils | Oak National Academy",
         description:
           "Looking for online lessons from KS1 to KS4? Browse and find free videos, quizzes and lessons, just find your year group, subject and lesson and get started.",
       }}
-      $background={"white"}
+      $background={"bg-primary"}
     >
       <Banners />
       <HomePageTabImageNav current={"pupils"} />

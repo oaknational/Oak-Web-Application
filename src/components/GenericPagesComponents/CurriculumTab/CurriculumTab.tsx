@@ -27,9 +27,9 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
   const { track } = useAnalytics();
   return (
     <OakBox
-      $background={"mint"}
-      $pv="inner-padding-xl"
-      $ph={"inner-padding-m"}
+      $background={"bg-decorative1-main"}
+      $pv="spacing-24"
+      $ph={"spacing-16"}
       $position={"relative"}
     >
       {/* scroll wrapper */}
@@ -60,15 +60,15 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
           />
         </div>
       </div>
-      <OakMaxWidth $pv={"inner-padding-xl"}>
+      <OakMaxWidth $pv={"spacing-24"}>
         <OakFlex>
           <OakFlex
             $flexDirection={"column"}
-            $gap={"space-between-m"}
-            $pt={"inner-padding-xl2"}
-            $width={"all-spacing-22"}
+            $gap={"spacing-24"}
+            $pt={"spacing-32"}
+            $width={"spacing-640"}
           >
-            <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
+            <OakHeading $font={"heading-7"} tag={"h1"} $color={"text-primary"}>
               Teachers & subject leads
             </OakHeading>
             <OakHeading
@@ -83,23 +83,13 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
                 All of our curriculum plans are:
               </OakTypography>
               <OakUL $font={"body-1"}>
-                <OakLI $mt={"space-between-s"}>
-                  National curriculum-aligned
-                </OakLI>
-                <OakLI $mt={"space-between-s"}>
-                  Sequenced across year groups
-                </OakLI>
-                <OakLI $mt={"space-between-s"}>
-                  Designed by curriculum experts
-                </OakLI>
+                <OakLI $mt={"spacing-16"}>National curriculum-aligned</OakLI>
+                <OakLI $mt={"spacing-16"}>Sequenced across year groups</OakLI>
+                <OakLI $mt={"spacing-16"}>Designed by curriculum experts</OakLI>
               </OakUL>
             </OakFlex>
 
-            <OakFlex
-              $gap="all-spacing-6"
-              $flexWrap={"wrap"}
-              $pb="inner-padding-xl"
-            >
+            <OakFlex $gap="spacing-24" $flexWrap={"wrap"} $pb="spacing-24">
               <OakSecondaryLink
                 href={resolveOakHref({ page: "curriculum-landing-page" })}
                 onClick={() => {
@@ -115,14 +105,18 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
                 iconName="chevron-right"
                 isTrailingIcon
               >
-                <OakTypography $font={"body-1-bold"} $color="black" as="span">
+                <OakTypography
+                  $font={"body-1-bold"}
+                  $color="text-primary"
+                  as="span"
+                >
                   Our curriculum planning approach
                 </OakTypography>
               </OakSecondaryLink>
             </OakFlex>
             <OakBox
               $display={["none", "none", "block"]}
-              $maxWidth={"all-spacing-22"}
+              $maxWidth={"spacing-640"}
             >
               <SubjectPhasePicker {...curriculumPhaseOptions} />
             </OakBox>
@@ -135,7 +129,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
             $flexGrow={1}
             $display={["none", "flex", "flex"]}
           >
-            <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
+            <OakFlex $flexDirection={"column"} $gap="spacing-8">
               <Illustration
                 $transform={["none", "none", "rotate(-2deg)"]}
                 slug={"teacher-whiteboard"}
@@ -153,8 +147,8 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
 
         <OakBox
           $display={["block", "block", "none"]}
-          $maxWidth={"all-spacing-23"}
-          $pt={"inner-padding-xl"}
+          $maxWidth={"spacing-960"}
+          $pt={"spacing-24"}
         >
           <SubjectPhasePicker {...curriculumPhaseOptions} />
         </OakBox>

@@ -62,9 +62,9 @@ const FooterLinkIconWrapper: React.FC<FooterLinkIconWrapperProps> = (props) => {
       {icon && (
         <OakIcon
           iconName={icon}
-          $height={"all-spacing-6"}
-          $width={"all-spacing-6"}
-          $ml={"space-between-sssx"}
+          $height={"spacing-24"}
+          $width={"spacing-24"}
+          $ml={"spacing-4"}
         />
       )}
     </OakFlex>
@@ -83,7 +83,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
         $font={"body-2"}
         label={props.text}
         onClick={openSettings}
-        labelColor={"black"}
+        labelColor={"text-primary"}
         $hoverStyles={["underline-link-text"]}
       />
     );
@@ -169,22 +169,20 @@ export type FooterSection = {
 };
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
-    <OakFlex
-      $flexDirection="column"
-      $mt={["space-between-m2", "space-between-none"]}
-    >
+    <OakFlex $flexDirection="column" $mt={["spacing-32", "spacing-0"]}>
       <OakHeading
-        $mb="space-between-ssx"
+        $mb="spacing-8"
         $font="heading-7"
-        $color="black"
+        $color="text-primary"
         tag="h2"
       >
         {title}
       </OakHeading>
-      <OakTypography $color={"black"} $font={"body-2"}>
+      <OakTypography $color={"text-primary"} $font={"body-2"}>
+        {/* Note: Anything with `list-style: none` (or similar) gets treated by Safari as not-a-list, so we have to add the role here */}
         <ul role="list">
           {links.map((link) => (
-            <OakLI key={link.text} $mt="space-between-xs">
+            <OakLI key={link.text} $mt="spacing-12">
               <FooterLink {...link} />
             </OakLI>
           ))}
@@ -209,32 +207,32 @@ const LayoutSiteFooter: FC = () => {
       as="footer"
       $zIndex="neutral"
       $width="100%"
-      $background="white"
+      $background="bg-primary"
       $position={"relative"}
       $overflow={"hidden"}
     >
-      <OakFlex $height="all-spacing-1" $position="relative">
+      <OakFlex $height="spacing-4" $position="relative">
         <OakSvg
           name="header-underline"
           $position={"absolute"}
-          $left={"all-spacing-0"}
-          $top={"all-spacing-0"}
+          $left={"spacing-0"}
+          $top={"spacing-0"}
         />
       </OakFlex>
-      <nav>
+      <nav id="site-footer">
         <OakMaxWidth
-          $pt={["inner-padding-m", "inner-padding-xl8"]}
+          $pt={["spacing-16", "spacing-80"]}
           $justifyContent={"center"}
           $flexDirection={"column"}
-          $ph={"inner-padding-m"}
+          $ph={"spacing-16"}
           $ma={"auto"}
           $width={"100%"}
         >
           {displaySignpost && (
             <OakFlex
               $wordWrap={"initial"}
-              $mb={["space-between-s", "space-between-xl"]}
-              $maxWidth={["all-spacing-21", "all-spacing-22", "all-spacing-22"]}
+              $mb={["spacing-16", "spacing-56"]}
+              $maxWidth={["spacing-480", "spacing-640", "spacing-640"]}
             >
               <LayoutSiteFooterSignpost />
             </OakFlex>
@@ -242,7 +240,7 @@ const LayoutSiteFooter: FC = () => {
           <OakGrid>
             <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />
-              <OakBox $mt={["space-between-none", "space-between-m2"]} />
+              <OakBox $mt={["spacing-0", "spacing-32"]} />
               <FooterSectionLinks {...sections.teachers} />
             </OakGridArea>
             <OakGridArea $colSpan={[12, 3]}>
@@ -254,7 +252,7 @@ const LayoutSiteFooter: FC = () => {
             <OakGridArea $colSpan={[12, 3]}>
               <OakFlex
                 $justifyContent={["left", "right"]}
-                $mt={["space-between-m2", "space-between-none"]}
+                $mt={["spacing-32", "spacing-0"]}
               >
                 <OakBox $display={["none", "block"]}>
                   <Logo variant="with text" height={66} width={150} />
@@ -275,13 +273,13 @@ const LayoutSiteFooter: FC = () => {
             )}
           />
           <OakFlex
-            $mb="space-between-xl"
-            $mt={"space-between-m2"}
+            $mb="spacing-56"
+            $mt={"spacing-32"}
             $width={"100%"}
             $justifyContent={["flex-start", "space-between"]}
             $flexDirection={["column", "row"]}
             $alignItems={["flex-start", "center"]}
-            $pt={["inner-padding-s", "inner-padding-none"]}
+            $pt={["spacing-12", "spacing-0"]}
           >
             <SocialButtons
               $display={["none", "flex"]}
@@ -292,7 +290,7 @@ const LayoutSiteFooter: FC = () => {
               <Logo variant="with text" height={66} width={150} />
             </OakBox>
             <OakFlex
-              $mt={["space-between-m2", "space-between-none"]}
+              $mt={["spacing-32", "spacing-0"]}
               $flexDirection={"column"}
             >
               <OakP $font={"body-3-bold"}>
@@ -317,10 +315,10 @@ const LayoutSiteFooter: FC = () => {
           "translate(25%, 15%) rotate(-10deg)",
         ]}
         $position={"absolute"}
-        $left={"all-spacing-0"}
-        $right={"all-spacing-0"}
-        $top={"all-spacing-0"}
-        $bottom={"all-spacing-0"}
+        $left={"spacing-0"}
+        $right={"spacing-0"}
+        $top={"spacing-0"}
+        $bottom={"spacing-0"}
         $width={"100%"}
         $height={"100%"}
       />
@@ -332,10 +330,10 @@ const LayoutSiteFooter: FC = () => {
         $objectFit={"fill"}
         $transform={"translate(0%, 32%)"}
         $position={"absolute"}
-        $left={"all-spacing-0"}
-        $right={"all-spacing-0"}
-        $top={"all-spacing-0"}
-        $bottom={"all-spacing-0"}
+        $left={"spacing-0"}
+        $right={"spacing-0"}
+        $top={"spacing-0"}
+        $bottom={"spacing-0"}
         $width={"100%"}
         $height={"100%"}
       />

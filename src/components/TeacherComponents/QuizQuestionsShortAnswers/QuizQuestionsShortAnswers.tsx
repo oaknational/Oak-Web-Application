@@ -27,27 +27,23 @@ export const QuizQuestionsShortAnswers = ({
   }, "");
 
   return (
-    <OakFlex
-      $flexDirection={"column"}
-      $gap="all-spacing-1"
-      $alignItems={"start"}
-    >
+    <OakFlex $flexDirection={"column"} $gap="spacing-4" $alignItems={"start"}>
       <OakFlex
-        $background={"lemon50"}
+        $background={"bg-decorative5-subdued"}
         $borderRadius="border-radius-m2"
-        $ph="inner-padding-xs"
+        $ph="spacing-8"
         $alignItems={"center"}
-        $gap="all-spacing-2"
+        $gap="spacing-8"
       >
         <VisuallyHidden>
           Correct Answer: {removeMarkdown(answerString)}
         </VisuallyHidden>
 
-        <OakBox $minWidth="all-spacing-7" aria-hidden>
+        <OakBox $minWidth="spacing-32" aria-hidden>
           <OakIcon
             iconName={"tick"}
-            $width={"all-spacing-6"}
-            $height={"all-spacing-6"}
+            $width={"spacing-24"}
+            $height={"spacing-24"}
           />
         </OakBox>
 

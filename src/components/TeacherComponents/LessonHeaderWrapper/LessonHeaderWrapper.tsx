@@ -4,7 +4,7 @@ import {
   OakMaxWidth,
   OakHandDrawnHR,
   OakBox,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import Breadcrumbs, {
@@ -19,7 +19,7 @@ import Breadcrumbs, {
 export interface LessonHeaderWrapperProps {
   children?: React.ReactNode;
   breadcrumbs: Breadcrumb[];
-  background: OakColorToken;
+  background: OakUiRoleToken;
 }
 
 export const LessonHeaderWrapper: FC<LessonHeaderWrapperProps> = (props) => {
@@ -27,18 +27,15 @@ export const LessonHeaderWrapper: FC<LessonHeaderWrapperProps> = (props) => {
 
   return (
     <OakFlex $flexGrow={1} $background={background}>
-      <OakMaxWidth
-        $ph={"inner-padding-s"}
-        $mb={["space-between-m2", "space-between-xl"]}
-      >
-        <OakBox $mt={["space-between-s", "space-between-m"]}>
+      <OakMaxWidth $ph={"spacing-12"} $mb={"spacing-24"}>
+        <OakBox $mt={["spacing-16", "spacing-24"]}>
           <Breadcrumbs breadcrumbs={breadcrumbs} />
         </OakBox>
         <OakHandDrawnHR
-          hrColor={"white"}
-          $mt={"space-between-s"}
-          $mb={"space-between-m"}
-          $height={"all-spacing-1"}
+          hrColor={"bg-primary"}
+          $mt={"spacing-16"}
+          $mb={"spacing-24"}
+          $height={"spacing-4"}
         />
         {children}
       </OakMaxWidth>

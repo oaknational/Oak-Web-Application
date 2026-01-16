@@ -62,7 +62,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       </Flex>
 
       <BoxBorders
-        $color={expired ? "grey30" : "black"}
+        $color={expired ? "bg-neutral-stronger" : "bg-inverted"}
         gapPosition="bottomRightCorner"
       />
     </Card>

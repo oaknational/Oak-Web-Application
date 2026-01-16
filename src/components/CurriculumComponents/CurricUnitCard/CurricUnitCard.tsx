@@ -65,15 +65,15 @@ export default function CurricUnitCard(props: Readonly<CurricUnitCardProps>) {
         onClick={onClick}
       >
         <OakFlex
-          $pv={"inner-padding-s"}
-          $ph={"inner-padding-m"}
+          $pv={"spacing-12"}
+          $ph={"spacing-16"}
           $height={"100%"}
           $width={"100%"}
-          $color={isHighlighted ? "white" : "black"}
+          $color={isHighlighted ? "text-inverted" : "text-primary"}
           data-testid={isHighlighted ? "highlighted-unit-card" : "unit-card"}
           $flexDirection={"column"}
         >
-          <OakFlex $flexDirection={"column"} $gap={"space-between-xs"}>
+          <OakFlex $flexDirection={"column"} $gap={"spacing-12"}>
             <OutlineHeading tag={"div"} $font={"heading-5"} $fontSize={24}>
               <span aria-hidden={true}>{index + 1}</span>
             </OutlineHeading>
@@ -96,16 +96,16 @@ export default function CurricUnitCard(props: Readonly<CurricUnitCardProps>) {
           <OakFlex
             $flexDirection={"row"}
             $justifyContent={"flex-end"}
-            $mt={"space-between-s"}
+            $mt={"spacing-16"}
             $flexGrow={1}
             $alignItems={"flex-end"}
           >
-            <OakFlex $alignItems={"center"} $gap={"space-between-sssx"}>
+            <OakFlex $alignItems={"center"} $gap={"spacing-4"}>
               <OakTypography $font={"heading-7"}>Unit info</OakTypography>
 
               <OakIcon
-                $width="all-spacing-6"
-                $height="all-spacing-6"
+                $width="spacing-24"
+                $height="spacing-24"
                 $colorFilter={isHighlighted ? "white" : "black"}
                 alt=""
                 iconName="chevron-right"

@@ -16,11 +16,11 @@ export const CardLink: Story = {
   render: () => (
     <Card $background={"grey40"}>
       <OakHeading
-        $mt={"space-between-m"}
-        $mb={"space-between-xs"}
+        $mt={"spacing-24"}
+        $mb={"spacing-12"}
         $font={"heading-5"}
         tag={"h5"}
-        $color={"grey70"}
+        $color={"text-primary"}
       >
         <Component page="home">Card link</Component>
       </OakHeading>

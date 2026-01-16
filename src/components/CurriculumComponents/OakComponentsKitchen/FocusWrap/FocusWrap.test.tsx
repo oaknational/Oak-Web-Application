@@ -2,9 +2,9 @@ import userEvent from "@testing-library/user-event";
 
 import FocusWrap from ".";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
-const render = renderWithProviders();
+const render = renderWithProvidersByName(["theme", "oakTheme"]);
 
 describe("Component - subject phase picker", () => {
   beforeEach(() => {

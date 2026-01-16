@@ -39,12 +39,12 @@ const SignInPrompt = () => (
     >
       <OakFlex
         $flexDirection={"column"}
-        $gap={"space-between-m2"}
+        $gap={"spacing-32"}
         $alignItems={"start"}
-        $maxWidth={"all-spacing-20"}
+        $maxWidth={"spacing-360"}
       >
         <OakHeading tag="h2">Sign in to continue</OakHeading>
-        <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
+        <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
           <OakP $font={"body-2"}>
             Our content remains 100% free, but to access certain copyrighted
             materials, you'll need to sign in. This ensures we’re both staying
@@ -57,8 +57,8 @@ const SignInPrompt = () => (
         </OakFlex>
       </OakFlex>
       <OakImage
-        $height={"all-spacing-19"}
-        $width={"all-spacing-19"}
+        $height={"spacing-240"}
+        $width={"spacing-240"}
         alt="An illustration of a hijabi teacher writing on a whiteboard"
         src={getCloudinaryImageUrl(
           "v1751281170/svg-illustrations/teacher-02_illustration_2_ge95qf.svg",
@@ -85,7 +85,7 @@ const GeoblockedPrompt = ({
   isCanonical?: boolean;
 }) => (
   <>
-    <OakFlex $flexDirection={"column"} $gap={"space-between-m2"}>
+    <OakFlex $flexDirection={"column"} $gap={"spacing-32"}>
       <OakHeading tag="h2" $font={"heading-5"}>
         Sorry but this content is only available in the UK.
       </OakHeading>
@@ -139,17 +139,17 @@ export function RestrictedContentPrompt({
       $flexDirection={"column"}
       $alignItems={"center"}
       $justifyContent={"center"}
-      $pa={["inner-padding-none", "inner-padding-xl2"]}
-      $pv={["inner-padding-none", "inner-padding-xl8"]}
+      $pa={["spacing-0", "spacing-32"]}
+      $pv={["spacing-0", "spacing-80"]}
       $height={"100%"}
-      $background={["bg-primary", "mint"]}
+      $background={["bg-primary", "bg-decorative1-main"]}
       $color={"text-primary"}
     >
       <FlexWithMaxWidth
         $flexDirection={"column"}
-        $gap={"space-between-xl"}
+        $gap={"spacing-56"}
         $alignItems={"start"}
-        $pa={"inner-padding-xl4"}
+        $pa={"spacing-48"}
         $borderRadius={"border-radius-l"}
         $background={"bg-primary"}
       >

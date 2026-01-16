@@ -37,17 +37,17 @@ const renderFilterSection = (
   isMobileFilter?: boolean,
 ) => (
   <OakBox
-    $mb="space-between-m2"
+    $mb="spacing-32"
     $bb={!isLast ? "border-solid-s" : null}
-    $borderColor={!isLast ? "grey40" : null}
+    $borderColor={!isLast ? "border-neutral-lighter" : null}
   >
     <OakFieldset>
-      <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
+      <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
         {title}
       </OakP>
       <OakFlex
-        $gap={"space-between-xs"}
-        $mb="space-between-m2"
+        $gap={"spacing-12"}
+        $mb="spacing-32"
         $flexDirection={"row"}
         $flexWrap={"wrap"}
       >
@@ -93,17 +93,17 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <OakBox
-        $mb="space-between-m2"
+        $mb="spacing-32"
         $bb={"border-solid-s"}
-        $borderColor={"grey40"}
+        $borderColor={"border-neutral-lighter"}
       >
         <OakFieldset>
-          <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
+          <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
             Curriculum
           </OakP>
           <OakFlex
-            $gap={"space-between-s"}
-            $mb="space-between-m2"
+            $gap={"spacing-16"}
+            $mb="spacing-32"
             $flexDirection={"column"}
             $flexWrap={"wrap"}
           >
@@ -151,17 +151,17 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
         </OakFieldset>
       </OakBox>
       <OakBox
-        $mb="space-between-m2"
+        $mb="spacing-32"
         $bb={"border-solid-s"}
-        $borderColor={"grey40"}
+        $borderColor={"border-neutral-lighter"}
       >
         <OakFieldset>
-          <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
+          <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
             Key stages
           </OakP>
           <OakFlex
-            $gap={"space-between-xs"}
-            $mb="space-between-m2"
+            $gap={"spacing-12"}
+            $mb="spacing-32"
             $flexDirection={"row"}
             $flexWrap={"wrap"}
           >

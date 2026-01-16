@@ -19,6 +19,7 @@ import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type PupilLessonListingViewProps = {
   unitData: LessonListingBrowseData[number]["unitData"];
@@ -26,10 +27,12 @@ export type PupilLessonListingViewProps = {
   orderedCurriculumData: LessonListingBrowseData;
   programmeSlug: string;
   backLink: string;
+  topNav: TopNavProps;
 };
 
 export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
-  const { unitData, programmeFields, orderedCurriculumData, backLink } = props;
+  const { unitData, programmeFields, orderedCurriculumData, backLink, topNav } =
+    props;
   const {
     yearDescription,
     yearSlug,
@@ -86,8 +89,8 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   );
 
   const lessonCount = (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-m"} $width={"100%"}>
-      <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
+    <OakFlex $flexDirection={"column"} $gap={"spacing-24"} $width={"100%"}>
+      <OakFlex $alignItems={"center"} $gap={"spacing-12"}>
         <OakInfo
           id="lesson-listing-info"
           tooltipPosition="top-left"
@@ -125,6 +128,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
           noIndex: true,
           noFollow: false,
         }}
+        topNavProps={topNav}
       >
         {" "}
         <OakPupilJourneyLayout
@@ -132,7 +136,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
           phase={phaseSlug}
           topNavSlot={BacktoUnits}
         >
-          <OakBox $mb={"space-between-xl"}>
+          <OakBox $mb={"spacing-56"}>
             {" "}
             <OakPupilJourneyList
               titleSlot={LessonListingTitle}

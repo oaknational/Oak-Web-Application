@@ -203,7 +203,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   };
 
   const contents = (
-    <OakFlex $gap={"space-between-m"} $flexDirection={"column"}>
+    <OakFlex $gap={"spacing-24"} $flexDirection={"column"}>
       <OakTertiaryOLNav
         items={navItems}
         title={"Contents"}
@@ -213,14 +213,12 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   );
 
   return (
-    <OakBox
-      $mt={["space-between-none", "space-between-none", "space-between-l"]}
-    >
+    <OakBox $mt={["spacing-0", "spacing-0", "spacing-48"]}>
       <OakBox $minWidth={"100%"} $display={["block", "block", "none"]}>
         <OakBox
           $background={"bg-decorative1-very-subdued"}
-          $ph="inner-padding-m"
-          $pv="inner-padding-l"
+          $ph="spacing-16"
+          $pv="spacing-20"
         >
           {contents}
         </OakBox>
@@ -229,13 +227,13 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         id="curriculum-overview"
         aria-labelledby="curriculum-overview-heading"
         tabIndex={-1}
-        $maxWidth="all-spacing-24"
+        $maxWidth="spacing-1280"
         $mh={"auto"}
-        $ph="inner-padding-m"
+        $ph="spacing-16"
         $width={"100%"}
         role="region"
       >
-        <OakFlex $gap={"all-spacing-16"} $alignItems={"flex-start"}>
+        <OakFlex $gap={"spacing-120"} $alignItems={"flex-start"}>
           <ScreenReaderOnly>
             <OakHeading
               tag="h2"
@@ -248,19 +246,19 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           <OakBox
             style={{ minWidth: 300 }}
             $position={["static", "static", "sticky"]}
-            $top="all-spacing-5"
-            $pb="inner-padding-xl3"
+            $top="spacing-20"
+            $pb="spacing-40"
             $display={["none", "none", "block"]}
           >
             {contents}
           </OakBox>
           <OakFlex
-            $mb="space-between-ssx"
-            $mt={["space-between-m", "space-between-m", "space-between-none"]}
+            $mb="spacing-8"
+            $mt={["spacing-24", "spacing-24", "spacing-0"]}
           >
             <OakBox
-              $pb={"inner-padding-xl4"}
-              $mh={["auto", "auto", "space-between-none"]}
+              $pb={"spacing-48"}
+              $mh={["auto", "auto", "spacing-0"]}
               $textAlign={"left"}
             >
               <OakBox data-testid="explainer">
@@ -304,8 +302,8 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             $alignItems={"center"}
             $justifyContent={"flex-start"}
             $flexDirection={["column-reverse", "row"]}
-            $gap={["all-spacing-6", "all-spacing-16"]}
-            $mb={["space-between-l", "space-between-xxxl"]}
+            $gap={["spacing-24", "spacing-120"]}
+            $mb={["spacing-48", "spacing-80"]}
           >
             <OakBox>
               <CMSVideo video={video} location="lesson" />
@@ -325,7 +323,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 Video guide
               </OakHeading>
               <OakP $font={"body-1"}>{videoExplainer}</OakP>
-              <OakSpan $font={"body-2-bold"} $color="black">
+              <OakSpan $font={"body-2-bold"} $color="text-primary">
                 <OakSecondaryLink
                   href={resolveOakHref({
                     page: "blog-single",
@@ -333,7 +331,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                   })}
                   iconName="chevron-right"
                   isTrailingIcon={true}
-                  color="black"
+                  color="text-primary"
                 >
                   Read more about our new curriculum
                 </OakSecondaryLink>
@@ -342,15 +340,15 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           </OakFlex>
         )}
       </OakBox>
-      <OakBox $background={"bg-decorative1-subdued"} $pv="inner-padding-xl4">
+      <OakBox $background={"bg-decorative1-subdued"} $pv="spacing-48">
         <OakBox
-          $maxWidth="all-spacing-24"
+          $maxWidth="spacing-1280"
           $mh={"auto"}
-          $ph="inner-padding-l"
+          $ph="spacing-20"
           $width={"100%"}
         >
           <OakFlex
-            $gap={["space-between-m", "space-between-m2"]}
+            $gap={["spacing-24", "spacing-32"]}
             $flexDirection={"column"}
           >
             <OakBox $display={["block", "none"]}>
@@ -363,7 +361,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               </OakHeading>
             </OakBox>
             <OakFlex
-              $gap={["space-between-l", "space-between-m2"]}
+              $gap={["spacing-48", "spacing-32"]}
               $flexDirection={"column"}
             >
               {curriculumPartnerOverviews.map(
@@ -377,7 +375,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                       data-testid="curriculum-partner"
                       $justifyContent={"center"}
                       $alignContent={"start"}
-                      $gap={["space-between-s", "space-between-m2"]}
+                      $gap={["spacing-16", "spacing-32"]}
                       $flexDirection={["column", "row"]}
                     >
                       <OakBox
@@ -385,10 +383,10 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                         $overflow={"hidden"}
                         $borderColor="border-neutral-lighter"
                         $borderStyle={"solid"}
-                        $maxHeight={["all-spacing-18", "all-spacing-19"]}
-                        $maxWidth={["all-spacing-18", "all-spacing-19"]}
-                        $minHeight={["all-spacing-18", "all-spacing-19"]}
-                        $minWidth={["all-spacing-18", "all-spacing-19"]}
+                        $maxHeight={["spacing-180", "spacing-240"]}
+                        $maxWidth={["spacing-180", "spacing-240"]}
+                        $minHeight={["spacing-180", "spacing-240"]}
+                        $minWidth={["spacing-180", "spacing-240"]}
                       >
                         <CMSImage
                           image={{
@@ -400,7 +398,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                       <OakFlex
                         $flexGrow={1}
                         $flexDirection={"column"}
-                        $gap={"space-between-s"}
+                        $gap={"spacing-16"}
                         $justifyContent={"center"}
                       >
                         {curriculumPartnerIndex === 0 && (

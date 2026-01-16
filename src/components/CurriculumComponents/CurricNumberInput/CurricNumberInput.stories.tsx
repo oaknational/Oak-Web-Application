@@ -45,7 +45,7 @@ const meta: Meta<typeof Component> = {
   decorators: [
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
-        <OakBox $pa="inner-padding-xl">
+        <OakBox $pa="spacing-24">
           <Story />
         </OakBox>
       </OakThemeProvider>
@@ -67,8 +67,8 @@ function InteractiveWrapper(
         htmlFor={args.id}
         label="Number of lessons"
         $font="heading-7"
-        $background="lemon"
-        $color="black"
+        $background="bg-decorative5-main"
+        $color="text-primary"
         $zIndex="in-front"
         $position="absolute"
         $top={"-20px"}
@@ -86,15 +86,15 @@ function ValidationDemo() {
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex $flexDirection="column" $gap="space-between-m">
+      <OakFlex $flexDirection="column" $gap="spacing-24">
         <OakFlex $position="relative" $flexDirection="column">
           <OakJauntyAngleLabel
             as="label"
             htmlFor="validated-input"
             label="Number of lessons"
             $font="heading-7"
-            $background="lemon"
-            $color="black"
+            $background="bg-decorative5-main"
+            $color="text-primary"
             $zIndex="in-front"
             $position="absolute"
             $top={"-20px"}
@@ -111,11 +111,11 @@ function ValidationDemo() {
             onValidationChange={setIsValid}
           />
         </OakFlex>
-        <OakBox $pa="inner-padding-m">
+        <OakBox $pa="spacing-16">
           <OakP $font="body-2">
             Validation status: {isValid ? "✓ Valid" : "✗ Invalid"}
           </OakP>
-          <OakP $font="body-3" $color="grey60">
+          <OakP $font="body-3" $color="text-subdued">
             Try entering a value outside the range (5-35) to see error feedback
           </OakP>
         </OakBox>
@@ -131,8 +131,8 @@ function MultipleInputsDemo() {
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex $flexDirection="column" $gap="space-between-l">
-        <OakFlex $flexDirection="column" $gap="space-between-m2">
+      <OakFlex $flexDirection="column" $gap="spacing-48">
+        <OakFlex $flexDirection="column" $gap="spacing-32">
           <OakHeading id="autumn-heading" tag="h3" $font="heading-3">
             Autumn
           </OakHeading>
@@ -142,8 +142,8 @@ function MultipleInputsDemo() {
               htmlFor="autumn-lessons"
               label="Number of lessons"
               $font="heading-7"
-              $background="lemon"
-              $color="black"
+              $background="bg-decorative5-main"
+              $color="text-primary"
               $zIndex="in-front"
               $position="absolute"
               $top={"-20px"}
@@ -162,7 +162,7 @@ function MultipleInputsDemo() {
           </OakFlex>
         </OakFlex>
 
-        <OakFlex $flexDirection="column" $gap="space-between-m2">
+        <OakFlex $flexDirection="column" $gap="spacing-32">
           <OakHeading id="spring-heading" tag="h3" $font="heading-3">
             Spring
           </OakHeading>
@@ -172,8 +172,8 @@ function MultipleInputsDemo() {
               htmlFor="spring-lessons"
               label="Number of lessons"
               $font="heading-7"
-              $background="lemon"
-              $color="black"
+              $background="bg-decorative5-main"
+              $color="text-primary"
               $zIndex="in-front"
               $position="absolute"
               $top={"-20px"}
@@ -192,7 +192,7 @@ function MultipleInputsDemo() {
           </OakFlex>
         </OakFlex>
 
-        <OakFlex $flexDirection="column" $gap="space-between-m2">
+        <OakFlex $flexDirection="column" $gap="spacing-32">
           <OakHeading id="summer-heading" tag="h3" $font="heading-3">
             Summer
           </OakHeading>
@@ -202,8 +202,8 @@ function MultipleInputsDemo() {
               htmlFor="summer-lessons"
               label="Number of lessons"
               $font="heading-7"
-              $background="lemon"
-              $color="black"
+              $background="bg-decorative5-main"
+              $color="text-primary"
               $zIndex="in-front"
               $position="absolute"
               $top={"-20px"}
@@ -281,7 +281,7 @@ export const WithDescription: Story = {
   },
   render: (args) => (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex $flexDirection="column" $gap="space-between-m2">
+      <OakFlex $flexDirection="column" $gap="spacing-32">
         <OakHeading id="term-heading" tag="h3" $font="heading-3">
           Autumn Term
         </OakHeading>

@@ -3,14 +3,14 @@ import {
   OakFlex,
   OakBox,
   OakHandDrawnHR,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 
 export type PromoBannerProps = {
-  background: OakColorToken;
+  background: OakUiRoleToken;
   message: ReactNode;
   ctaText: string;
 } & ResolveOakHrefProps;
@@ -27,20 +27,20 @@ const PromoBanner: FC<PromoBannerProps> = ({
         $background={background}
         $justifyContent={["center"]}
         $alignItems={"center"}
-        $pv={"inner-padding-xs"}
-        $ph={["inner-padding-xs", "inner-padding-s"]}
+        $pv={"spacing-8"}
+        $ph={["spacing-8", "spacing-12"]}
       >
         <OakFlex
           $alignItems={"center"}
           $flexWrap={"wrap"}
-          $gap={["all-spacing-1", "all-spacing-8"]}
+          $gap={["spacing-4", "spacing-40"]}
           $flexDirection={["column", "row"]}
           $justifyContent={"center"}
-          $pv={"inner-padding-none"}
+          $pv={"spacing-0"}
         >
           <OakFlex
             $alignItems={"center"}
-            $gap={["all-spacing-0", "all-spacing-1"]}
+            $gap={["spacing-0", "spacing-4"]}
             $minWidth={["fit-content"]}
           >
             {message}
@@ -57,8 +57,8 @@ const PromoBanner: FC<PromoBannerProps> = ({
           />
         </OakFlex>
       </OakFlex>
-      <OakBox $background={background} $height={"all-spacing-1"}>
-        <OakHandDrawnHR hrColor={"black"} $height={"all-spacing-1"} />
+      <OakBox $background={background} $height={"spacing-4"}>
+        <OakHandDrawnHR hrColor={"bg-inverted"} $height={"spacing-4"} />
       </OakBox>
     </OakBox>
   );

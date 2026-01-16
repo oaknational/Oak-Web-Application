@@ -29,20 +29,17 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
         $justifyContent="space-between"
         $flexDirection={["column", "row"]}
       >
-        <OakHeading tag={"h2"} $color="navy" $font={["heading-7"]}>
+        <OakHeading tag={"h2"} $color="text-link-active" $font={["heading-7"]}>
           <OwaLink page={page} categorySlug={post.category.slug}>
             {post.category.title}
           </OwaLink>
         </OakHeading>
-        <OakSpan
-          $font={"body-3"}
-          $mt={["space-between-ssx", "space-between-none"]}
-        >
+        <OakSpan $font={"body-3"} $mt={["spacing-8", "spacing-0"]}>
           {formattedDate}
         </OakSpan>
       </OakFlex>
       <OakHeading
-        $mt="space-between-xs"
+        $mt="spacing-12"
         $font={["heading-5", "heading-4"]}
         tag={"h1"}
       >
@@ -50,8 +47,8 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
       </OakHeading>
       <OakFlex
         $alignItems={"center"}
-        $mt="space-between-s"
-        $mr={["space-between-m", "space-between-none"]}
+        $mt="spacing-16"
+        $mr={["spacing-24", "spacing-0"]}
         $justifyContent={["space-between", "left"]}
       >
         {author && (
@@ -62,11 +59,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
                 {author.name}
               </OakHeading>
               {author.role && (
-                <OakP
-                  $mt="space-between-sssx"
-                  $font={"body-3"}
-                  $color={"grey60"}
-                >
+                <OakP $mt="spacing-4" $font={"body-3"} $color={"text-subdued"}>
                   {author.role}
                 </OakP>
               )}

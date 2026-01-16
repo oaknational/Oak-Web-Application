@@ -1,14 +1,12 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
-import {
-  LessonAttemptCamelCase,
-  useOakPupil,
-} from "@oaknational/oak-pupil-client";
 import { useEffect, useState } from "react";
 import {
+  oakDefaultTheme,
   OakFlex,
   OakInlineBanner,
   OakLoadingSpinner,
   OakMaxWidth,
+  OakThemeProvider,
   OakTypography,
 } from "@oaknational/oak-components";
 
@@ -22,6 +20,8 @@ import {
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { PupilViewsResults } from "@/components/PupilViews/PupilResults";
 import { convertQuizes } from "@/pages-helpers/pupil/lessons-pages/getProps";
+import { useOakPupil } from "@/hooks/useOakPupil";
+import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
 
 export type CanonicalResultsPrintablePageProps = {
   browseData: LessonBrowseData;
@@ -32,7 +32,11 @@ export type CanonicalResultsPrintablePageProps = {
 const CanonicalPrintableResultsPage = (
   props: CanonicalResultsPrintablePageProps,
 ) => {
-  return <InnerRender {...props} />;
+  return (
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <InnerRender {...props} />
+    </OakThemeProvider>
+  );
 };
 
 export const InnerRender = (props: CanonicalResultsPrintablePageProps) => {
@@ -51,7 +55,7 @@ export const InnerRender = (props: CanonicalResultsPrintablePageProps) => {
 
   if (!attemptData) {
     return (
-      <OakMaxWidth $mt={"space-between-l"}>
+      <OakMaxWidth $mt={"spacing-48"}>
         <OakInlineBanner
           isOpen
           message="To share lesson results with your teacher, select the 'Copy link' option on the lesson review page."
@@ -60,8 +64,8 @@ export const InnerRender = (props: CanonicalResultsPrintablePageProps) => {
         <OakFlex
           $justifyContent={"center"}
           $alignItems={"center"}
-          $gap={"space-between-s"}
-          $mt={"space-between-xxxl"}
+          $gap={"spacing-16"}
+          $mt={"spacing-80"}
         >
           {" "}
           <OakLoadingSpinner />
@@ -74,14 +78,13 @@ export const InnerRender = (props: CanonicalResultsPrintablePageProps) => {
   }
   return (
     <MathJaxProvider>
-      <OakMaxWidth $mt={"space-between-l"}>
+      <OakMaxWidth $mt={"spacing-48"}>
         <OakInlineBanner
           isOpen
           message="To share lesson results with your teacher, select the 'Copy link' option on the lesson review page."
           type="neutral"
         />
       </OakMaxWidth>
-
       <PupilViewsResults
         browseData={browseData}
         attemptData={attemptData}

@@ -10,6 +10,9 @@ import {
 } from "@oaknational/oak-components";
 
 import OwaLink from "../SharedComponents/OwaLink";
+import { SubjectKeystageSeoText } from "../TeacherComponents/SubjectKeystageSEO/SubjectKeystageSeoText";
+import { SubjectKeystageSeoAccordion } from "../TeacherComponents/SubjectKeystageSEO/SubjectKeystageSeoAccordion";
+import { getSubjectKeystageSeoLinks } from "../TeacherComponents/SubjectKeystageSEO/getSubjectKeystageSeoLinks";
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCard";
@@ -33,23 +36,23 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
   return (
     <OakFlex $flexDirection={"column"}>
       <OakMaxWidth
-        $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
-        $ph="inner-padding-s"
+        $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}
+        $ph="spacing-12"
       >
         <OakFlex
           $flexDirection="column"
-          $gap={"space-between-s"}
-          $mb={isEyfs ? "space-between-m" : "space-between-m2"}
-          $maxWidth={"all-spacing-23"}
+          $gap={"spacing-16"}
+          $mb={isEyfs ? "spacing-24" : "spacing-32"}
+          $maxWidth={"spacing-960"}
         >
           <OakHeading
             $font={"heading-3"}
             tag={"h1"}
-            $mt={["space-between-m2", "space-between-l"]}
+            $mt={["spacing-32", "spacing-48"]}
           >
             {title}
           </OakHeading>
-          {isEyfs && (
+          {isEyfs ? (
             <OakP $font="heading-light-7">
               These teaching resources were made during the pandemic for parents
               to use at home with their children. Now they are used by teachers
@@ -65,13 +68,15 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
               </OwaLink>
               .
             </OakP>
+          ) : (
+            <SubjectKeystageSeoText keystageSlug={keyStageSlug} />
           )}
         </OakFlex>
         <OakGrid
-          $rg={"all-spacing-4"}
-          $cg={"all-spacing-4"}
+          $rg={"spacing-16"}
+          $cg={"spacing-16"}
           $gridAutoRows={"1fr"}
-          $mb={"space-between-xxl"}
+          $mb={"spacing-72"}
         >
           {subjects.map(
             (subjectArray, i) =>
@@ -95,20 +100,20 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
           <>
             <OakHandDrawnHR
               hrColor={"bg-neutral-stronger"}
-              $height={"all-spacing-1"}
+              $height={"spacing-4"}
             />
             <OakHeading
               $font={"heading-3"}
               tag={"h1"}
-              $mv={["space-between-m2", "space-between-m"]}
+              $mv={["spacing-32", "spacing-24"]}
             >
               Further lessons
             </OakHeading>
             <OakGrid
-              $rg={"all-spacing-4"}
-              $cg={"all-spacing-4"}
+              $rg={"spacing-16"}
+              $cg={"spacing-16"}
               $gridAutoRows={"1fr"}
-              $mb={"space-between-xxl"}
+              $mb={"spacing-72"}
             >
               {furtherLessons.map((subject) => (
                 <OakGridArea
@@ -126,6 +131,16 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
               ))}
             </OakGrid>
           </>
+        )}
+        {!isEyfs && (
+          <OakGrid>
+            <OakGridArea $colSpan={[12, 12, 9]} $mb="spacing-80">
+              <SubjectKeystageSeoAccordion
+                keystageSlug={keyStageSlug}
+                links={getSubjectKeystageSeoLinks(subjects, keyStageSlug)}
+              />
+            </OakGridArea>
+          </OakGrid>
         )}
       </OakMaxWidth>
     </OakFlex>

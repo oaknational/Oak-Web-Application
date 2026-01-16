@@ -6,8 +6,11 @@ import {
   OakFlex,
   oakDefaultTheme,
   OakThemeProvider,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import TopNav, { TopNavProps } from "../TopNav/TopNav";
 
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
@@ -50,10 +53,11 @@ export type LayoutProps = {
   headerVariant?: HeaderVariant;
   footerVariant?: FooterVariant;
   breadcrumbs?: Breadcrumb[];
-  $background?: OakColorToken;
+  $background?: OakUiRoleToken;
   headerCta?: CTA | null;
   banner?: React.ReactNode;
   skipLinkHref?: string;
+  topNavProps: TopNavProps;
 };
 
 const Layout: FC<LayoutProps> = (props) => {
@@ -65,52 +69,54 @@ const Layout: FC<LayoutProps> = (props) => {
     headerVariant = "app",
     footerVariant = "default",
     banner,
+    topNavProps,
   } = props;
+  const newTopNavEnabled = useFeatureFlagEnabled("teachers-new-top-nav");
+
   const Header = headers[headerVariant];
   const Footer = footers[footerVariant];
   const { isPreview } = useRouter();
 
   return (
-    <>
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Seo {...seoProps} />
-        <Head>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <OrganizationJsonLd />
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <Seo {...seoProps} />
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <OrganizationJsonLd />
+      <OakFlex $flexDirection="column" $flexGrow={1} $background={$background}>
+        <OakBox
+          $position={"absolute"}
+          $height={"spacing-80"}
+          $width={"spacing-64"}
+          $zIndex={"in-front"}
+          $top={"spacing-92"}
+          $left={"spacing-24"}
+          $display={newTopNavEnabled ? "none" : "block"}
+        >
+          <SkipLink href={props.skipLinkHref ?? "#main"}>
+            Skip to content
+          </SkipLink>
+        </OakBox>
+        {banner}
+        {newTopNavEnabled ? (
+          <TopNav {...topNavProps} />
+        ) : (
+          <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
+        )}
         <OakFlex
           $flexDirection="column"
           $flexGrow={1}
-          $background={$background}
+          $width="100%"
+          as="main"
+          id="main"
         >
-          <OakBox
-            $position={"absolute"}
-            $height={"all-spacing-13"}
-            $width={"all-spacing-11"}
-            $zIndex={"in-front"}
-            $top={"all-spacing-14"}
-            $left={"all-spacing-6"}
-          >
-            <SkipLink href={props.skipLinkHref ?? "#main"}>
-              Skip to content
-            </SkipLink>
-          </OakBox>
-          {banner}
-          <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
-          <OakFlex
-            $flexDirection="column"
-            $flexGrow={1}
-            $width="100%"
-            as="main"
-            id="main"
-          >
-            {children}
-          </OakFlex>
-          <Footer />
-          {isPreview && <LayoutPreviewControls />}
+          {children}
         </OakFlex>
-      </OakThemeProvider>
-    </>
+        <Footer />
+        {isPreview && <LayoutPreviewControls />}
+      </OakFlex>
+    </OakThemeProvider>
   );
 };
 

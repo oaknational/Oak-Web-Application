@@ -1,6 +1,7 @@
 import { z } from "zod";
 import {
   actionsSchema,
+  keystageSlugs,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
@@ -395,3 +396,5 @@ export type Redirect = {
   outgoingPath: string;
   redirectType: 301 | 302 | 303 | 307 | 308;
 };
+
+export type KeystageSlug = z.infer<typeof keystageSlugs>;

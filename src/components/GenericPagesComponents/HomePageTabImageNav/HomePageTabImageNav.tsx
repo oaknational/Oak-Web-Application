@@ -3,6 +3,7 @@ import {
   OakHandDrawnHR,
   OakHomepageTabButton,
 } from "@oaknational/oak-components";
+import Link from "next/link";
 
 import { ProductValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -34,20 +35,20 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
     <OakFlex $flexDirection={"column"} $justifyContent={"center"}>
       <OakFlex
         as="nav"
-        $background={"mint"}
+        $background={"bg-decorative1-main"}
         $width={"100%"}
         $alignItems={"stretch"}
         $justifyContent={"center"}
-        $gap={["space-between-s", "space-between-m2"]}
-        $pt={["inner-padding-xl3", "inner-padding-xl2"]}
-        $ph={["inner-padding-s", null]}
+        $gap={["spacing-16", "spacing-32"]}
+        $pt={["spacing-40", "spacing-32"]}
+        $ph={["spacing-12", null]}
         aria-label="Site sections"
       >
         <OakHomepageTabButton
           title="Teaching resources"
           iconName="homepage-teacher"
           href="/"
-          element="a"
+          element={Link}
           isActive={current === "teachers"}
           onClick={() => handleAnalytics("teachers")}
         />
@@ -55,7 +56,7 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
           title="Curriculum plans"
           iconName="homepage-teacher-map"
           href="/curriculum"
-          element="a"
+          element={Link}
           isActive={current === "curriculum"}
           onClick={() => handleAnalytics("curriculum")}
         />
@@ -63,7 +64,7 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
           title="AI experiments"
           iconName="homepage-robot-waving"
           href="/ai"
-          element="a"
+          element={Link}
           isActive={current === "ai"}
           showNewIcon={true}
           onClick={() => handleAnalytics("ai")}
@@ -72,12 +73,12 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
           title="Pupils"
           iconName="homepage-three-pupils"
           href="/pupils"
-          element="a"
+          element={Link}
           isActive={current === "pupils"}
           onClick={() => handleAnalytics("pupils")}
         />
       </OakFlex>
-      <OakHandDrawnHR hrColor={"white"} $height={"all-spacing-05"} />
+      <OakHandDrawnHR hrColor={"bg-primary"} $height={"spacing-2"} />
     </OakFlex>
   );
 };

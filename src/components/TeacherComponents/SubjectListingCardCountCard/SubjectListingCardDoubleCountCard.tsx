@@ -49,7 +49,7 @@ const SubjectListingCardCountCard: FC<SubjectListingCardCountCardProps> = ({
 
   return (
     <SubjectListingTextTile
-      $background={"white"}
+      $background={"bg-primary"}
       $flexDirection={"column"}
       $position={"relative"}
       $borderRadius={"border-radius-s"}
@@ -83,7 +83,7 @@ const SubjectListingCardCountCard: FC<SubjectListingCardCountCardProps> = ({
           });
         }}
       >
-        <OakFlex $flexDirection={"column"} $pa="inner-padding-m">
+        <OakFlex $flexDirection={"column"} $pa="spacing-16">
           <OakFlex>
             <OakSpan>
               {`${unitCount} ${unitCount > 1 ? "units" : "unit"}`}{" "}

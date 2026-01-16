@@ -19,10 +19,14 @@ import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/ta
 import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurricVisualiserFiltersProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilters: CurriculumFilters,
+    source?: ComponentTypeValueType,
+  ) => void;
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
   ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
@@ -36,13 +40,11 @@ export default function CurricVisualiserFiltersDesktop({
   ks4Options,
 }: Readonly<CurricVisualiserFiltersProps>) {
   return (
-    <OakBox $mr={"space-between-s"}>
+    <OakBox $mr={"spacing-16"}>
       <SkipLink href="#content">Skip to units</SkipLink>
-
-      <OakHeading tag="h3" $font={"heading-5"} $mb="space-between-m">
+      <OakHeading tag="h3" $font={"heading-5"} $mb="spacing-24">
         Filter and highlight
       </OakHeading>
-
       {shouldDisplayFilter(data, filters, "years") && (
         <>
           <CurricFiltersYears
@@ -52,10 +54,12 @@ export default function CurricVisualiserFiltersDesktop({
             ks4Options={ks4Options}
             slugs={slugs}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
-
       {shouldDisplayFilter(data, filters, "subjectCategories") && (
         <>
           <CurricFiltersSubjectCategories
@@ -64,10 +68,12 @@ export default function CurricVisualiserFiltersDesktop({
             data={data}
             slugs={slugs}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
-
       {shouldDisplayFilter(data, filters, "childSubjects") && (
         <>
           <CurricFiltersChildSubjects
@@ -75,7 +81,10 @@ export default function CurricVisualiserFiltersDesktop({
             onChangeFilters={onChangeFilters}
             data={data}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {shouldDisplayFilter(data, filters, "tiers") && (
@@ -85,18 +94,18 @@ export default function CurricVisualiserFiltersDesktop({
             onChangeFilters={onChangeFilters}
             data={data}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
-        </>
-      )}
-
-      {shouldDisplayFilter(data, filters, "threads") && (
-        <>
-          <CurricFiltersThreads
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
           />
         </>
+      )}
+      {shouldDisplayFilter(data, filters, "threads") && (
+        <CurricFiltersThreads
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          data={data}
+        />
       )}
     </OakBox>
   );

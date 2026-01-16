@@ -17,24 +17,28 @@ const PupilTab: FC = () => {
   return (
     <OakFlex
       data-testid="pupil-tab"
-      $background={"mint"}
-      $pv="inner-padding-xl"
+      $background={"bg-decorative1-main"}
+      $pv="spacing-24"
       $overflow={"hidden"}
     >
-      <OakMaxWidth $ph={["inner-padding-m"]} $pb={"inner-padding-xl"}>
-        <OakGrid $cg={"all-spacing-4"}>
+      <OakMaxWidth $ph={["spacing-16"]} $pb={"spacing-24"}>
+        <OakGrid $cg={"spacing-16"}>
           <OakGridArea $colSpan={[12, 6]}>
             <OakFlex
               $flexDirection={"column"}
-              $maxWidth={"all-spacing-22"}
-              $pt={"inner-padding-xl2"}
+              $maxWidth={"spacing-640"}
+              $pt={"spacing-32"}
               $alignItems={"flex-start"}
-              $gap={"space-between-m"}
+              $gap={"spacing-24"}
               $flexGrow={0}
               $flexShrink={1}
               $flexBasis={"auto"}
             >
-              <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
+              <OakHeading
+                $font={"heading-7"}
+                tag={"h1"}
+                $color={"text-primary"}
+              >
                 Pupils
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>
@@ -70,8 +74,8 @@ const PupilTab: FC = () => {
               <OakIcon
                 iconName="burst"
                 $position={"absolute"}
-                $top={"all-spacing-0"}
-                $left={"all-spacing-0"}
+                $top={"spacing-0"}
+                $left={"spacing-0"}
                 $width={"100%"}
                 $height={"100%"}
                 $display={["none", "none", "block"]}

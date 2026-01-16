@@ -10,13 +10,13 @@ import {
   OakQuizPrintableSubHeader,
   OakThemeProvider,
 } from "@oaknational/oak-components";
-import { LessonAttemptCamelCase } from "@oaknational/oak-pupil-client";
 
 import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { QuizResultInner } from "@/components/PupilComponents/QuizResultInner";
 import { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
+import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
 
 type PupilViewsResultsProps = {
   attemptData: LessonAttemptCamelCase;
@@ -48,9 +48,9 @@ const QuizSectionRender = (props: QuizResultsProps) => {
       $position={"relative"}
       $flexDirection={"column"}
       key={`section-${index}`}
-      $gap={"all-spacing-5"}
+      $gap={"spacing-20"}
     >
-      <OakFlex $pb={["inner-padding-xl", "inner-padding-none"]}>
+      <OakFlex $pb={["spacing-24", "spacing-0"]}>
         <QuizResultInner
           index={index}
           displayIndex={displayIndex}
@@ -61,17 +61,17 @@ const QuizSectionRender = (props: QuizResultsProps) => {
       </OakFlex>
       <OakHandDrawnHR
         hrColor={
-          index !== quizQuestionArray.length - 1 ? "black" : "transparent"
+          index !== quizQuestionArray.length - 1 ? "bg-inverted" : "transparent"
         }
-        $height={"all-spacing-1"}
-        $pl={["inner-padding-none", "inner-padding-xl"]}
-        $ml={["space-between-none", "space-between-s"]}
+        $height={"spacing-4"}
+        $pl={["spacing-0", "spacing-24"]}
+        $ml={["spacing-0", "spacing-16"]}
       />
       {!isHint && (
         <OakJauntyAngleLabel
           $position={"absolute"}
-          $bottom={"all-spacing-5"}
-          $right={"all-spacing-0"}
+          $bottom={"spacing-20"}
+          $right={"spacing-0"}
           $background={"bg-neutral"}
           $font={"heading-light-7"}
           label={`Question hint used - ${questionResult.offerHint}`}
@@ -108,10 +108,10 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <OakMaxWidth
-        $gap={"space-between-m"}
+        $gap={"spacing-24"}
         $flexDirection={"column"}
-        $mt={"space-between-l"}
-        $ph={"inner-padding-s"}
+        $mt={"spacing-48"}
+        $ph={"spacing-16"}
       >
         <OakQuizPrintableHeader
           alt="icon"
@@ -122,14 +122,14 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
           worksheetDownloaded={worksheetDownloaded}
           workSheetAvailable={worksheetAvailable}
         />
-        <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+        <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
           <OakHeading tag="h2" $font={"heading-5"}>
             Results
           </OakHeading>
 
           {starterQuiz?.questionResults && (
             <>
-              <OakHandDrawnHR $height={"all-spacing-1"} />
+              <OakHandDrawnHR $height={"spacing-4"} />
               <OakQuizPrintableSubHeader
                 title={"Starter quiz"}
                 grade={starterQuiz.grade ?? 0}
@@ -157,7 +157,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
 
           {exitQuiz?.questionResults && (
             <>
-              <OakHandDrawnHR $height={"all-spacing-1"} />
+              <OakHandDrawnHR $height={"spacing-4"} />
               <OakQuizPrintableSubHeader
                 title={"Exit quiz"}
                 grade={exitQuiz.grade ?? 0}

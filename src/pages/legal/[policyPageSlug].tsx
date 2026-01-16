@@ -26,6 +26,8 @@ import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -33,14 +35,15 @@ type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
 
 export type PolicyPageProps = {
   policy: SerializedPolicyPage;
+  topNav: TopNavProps;
 };
 
 const customPolicyComponent: PortableTextComponents = {
   block: {
     h2: ({ children }) => (
       <OakHeading
-        $mb={["space-between-m2", "space-between-l"]}
-        $mt={["space-between-xl", "space-between-xxxl"]}
+        $mb={["spacing-32", "spacing-48"]}
+        $mt={["spacing-56", "spacing-80"]}
         tag={"h2"}
         $font={["heading-5", "heading-4"]}
       >
@@ -49,8 +52,8 @@ const customPolicyComponent: PortableTextComponents = {
     ),
     h3: ({ children }) => (
       <OakHeading
-        $mb={["space-between-m", "space-between-m2"]}
-        $mt={["space-between-m2", "space-between-xl"]}
+        $mb={["spacing-24", "spacing-32"]}
+        $mt={["spacing-32", "spacing-56"]}
         tag={"h3"}
         $font={["heading-6", "heading-5"]}
       >
@@ -59,8 +62,8 @@ const customPolicyComponent: PortableTextComponents = {
     ),
     h4: ({ children }) => (
       <OakHeading
-        $mb={["space-between-m", "space-between-m2"]}
-        $mt={["space-between-m2", "space-between-l"]}
+        $mb={["spacing-24", "spacing-32"]}
+        $mt={["spacing-32", "spacing-48"]}
         tag={"h4"}
         $font={["heading-7", "heading-6"]}
       >
@@ -68,7 +71,7 @@ const customPolicyComponent: PortableTextComponents = {
       </OakHeading>
     ),
     normal: ({ children }) => (
-      <OakP $font={["body-2", "body-1"]} $mb={["space-between-m"]}>
+      <OakP $font={["body-2", "body-1"]} $mb={["spacing-24"]}>
         {children}
       </OakP>
     ),
@@ -112,30 +115,31 @@ const customPolicyComponent: PortableTextComponents = {
   },
 };
 
-const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
+const Policies: NextPage<PolicyPageProps> = ({ policy, topNav }) => {
   return (
     <Layout
       seoProps={getSeoProps({
         ...policy.seo,
         title: policy.seo?.title || policy.title,
       })}
-      $background={"white"}
+      $background={"bg-primary"}
+      topNavProps={topNav}
     >
       <OakMaxWidth
-        $ph={["inner-padding-m", "inner-padding-xl"]}
-        $maxWidth={["all-spacing-22"]}
+        $ph={["spacing-16", "spacing-24"]}
+        $maxWidth={["spacing-640"]}
       >
         <OakGrid>
           <OakGridArea $colSpan={[12, 12, 12]}>
             <OakHeading
-              $mt={"space-between-xxxl"}
-              $mb={"space-between-m2"}
+              $mt={"spacing-80"}
+              $mb={"spacing-32"}
               $font={"heading-3"}
               tag={"h1"}
             >
               {policy.title}
             </OakHeading>
-            <OakP $mb={"space-between-s"} $font={"body-3"}>
+            <OakP $mb={"spacing-16"} $font={"body-3"}>
               Updated{" "}
               <time dateTime={policy.lastUpdatedAt}>
                 {new Date(policy.lastUpdatedAt).toLocaleDateString("en-GB", {
@@ -207,9 +211,12 @@ export const getStaticProps: GetStaticProps<
         lastUpdatedAt: policyResult.lastUpdatedAt.toISOString(),
       };
 
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<PolicyPageProps> = {
         props: {
           policy,
+          topNav,
         },
       };
       return results;

@@ -16,8 +16,11 @@ import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderLi
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
-const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
+const ProgrammesListingPage: NextPage<
+  ProgrammeListingPageData & { topNav: TopNavProps }
+> = (props) => {
   const {
     programmes,
     keyStageSlug,
@@ -26,6 +29,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
     subjectTitle,
     pathwayTitle,
     legacy,
+    topNav,
   } = props;
   if (!programmes[0]) {
     throw new Error("No programmes");
@@ -112,7 +116,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   };
 
   return (
-    <AppLayout seoProps={programmesSEO}>
+    <AppLayout seoProps={programmesSEO} topNavProps={topNav}>
       <HeaderListing
         breadcrumbs={[
           {
@@ -135,7 +139,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
             label: subjectTitle,
           },
         ]}
-        background={"lavender30"}
+        background={"bg-decorative3-very-subdued"}
         subjectIconBackgroundColor={"lavender"}
         title={`${subjectTitle} ${pathwayTitle ?? ""}`}
         programmeFactor={keyStageTitle}
@@ -145,9 +149,9 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         isNew={!legacy} // we have no way to know if it's new based on cohort information at this level
       />
       <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxl"]}
-        $ph={"inner-padding-m"}
+        $mb={["spacing-56", "spacing-80"]}
+        $mt={["spacing-56", "spacing-72"]}
+        $ph={"spacing-16"}
       >
         <SubjectProgrammeListing {...props} onClick={handleProgrammeClick} />
       </OakMaxWidth>
@@ -210,11 +214,13 @@ export const getStaticProps: GetStaticProps<
           notFound: true,
         };
       }
+      const topNav = await curriculumApi2023.topNav();
 
       const results = {
         props: {
           ...curriculumData,
           legacy: isLegacy,
+          topNav,
         },
       };
 

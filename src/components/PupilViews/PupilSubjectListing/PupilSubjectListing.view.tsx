@@ -6,7 +6,7 @@ import {
   OakGridArea,
   OakHeading,
   OakPupilJourneyLayout,
-  OakPupilJourneySubjectButton,
+  OakSubjectIconButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 import { yearDescriptions } from "@oaknational/oak-curriculum-schema";
@@ -96,7 +96,8 @@ export const PupilViewsSubjectListing = ({
     return (
       <OakGridArea $colSpan={1} key={subjectSlug} role="listitem">
         <OakFlex $height={"100%"}>
-          <OakPupilJourneySubjectButton
+          <OakSubjectIconButton
+            variant="vertical"
             key={subjectSlug}
             element="a"
             subjectIconName={
@@ -123,7 +124,7 @@ export const PupilViewsSubjectListing = ({
             }}
           >
             {subject.programmeFields.subject}
-          </OakPupilJourneySubjectButton>
+          </OakSubjectIconButton>
         </OakFlex>
       </OakGridArea>
     );
@@ -144,15 +145,15 @@ export const PupilViewsSubjectListing = ({
         </OakTertiaryButton>
       }
     >
-      <OakFlex $flexDirection="column" $pb="inner-padding-xl2">
+      <OakFlex $flexDirection="column" $pb="spacing-32">
         <OakFlex
           $background={"bg-primary"}
-          $pt={["inner-padding-xl5", "inner-padding-xl7"]}
-          $ph={["inner-padding-l", "inner-padding-xl"]}
+          $pt={["spacing-56", "spacing-72"]}
+          $ph={["spacing-20", "spacing-24"]}
           $borderRadius={"border-radius-l"}
           $ba={"border-solid-s"}
           $borderColor={"border-decorative1-stronger"}
-          $mb={"space-between-m2"}
+          $mb={"spacing-32"}
           $flexDirection={"column"}
           $alignItems={"center"}
         >
@@ -165,15 +166,15 @@ export const PupilViewsSubjectListing = ({
             Now choose a subject
           </OakHeading>
           <OakGrid
-            $mt={"space-between-l"}
-            $pb={"inner-padding-xl4"}
+            $mt={"spacing-48"}
+            $pb={"spacing-48"}
             $gridTemplateColumns={[
               "repeat(2, 1fr)",
               "repeat(4, 1fr)",
               "repeat(5, 1fr)",
             ]}
-            $rg={"space-between-s"}
-            $cg={"space-between-s"}
+            $rg={"spacing-16"}
+            $cg={"spacing-16"}
             role="list"
           >
             {orderedKeys.map((subjectSlug) =>
@@ -190,15 +191,15 @@ export const PupilViewsSubjectListing = ({
                 Further lessons
               </OakHeading>
               <OakGrid
-                $mt={"space-between-l"}
-                $pb={"inner-padding-xl"}
+                $mt={"spacing-48"}
+                $pb={"spacing-24"}
                 $gridTemplateColumns={[
                   "repeat(2, 1fr)",
                   "repeat(4, 1fr)",
                   "repeat(5, 1fr)",
                 ]}
-                $rg={"space-between-s"}
-                $cg={"space-between-s"}
+                $rg={"spacing-16"}
+                $cg={"spacing-16"}
                 role="list"
               >
                 {orderedKeys.map((subjectSlug) =>

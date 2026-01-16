@@ -3,12 +3,14 @@ import { oakColorTokens } from "@oaknational/oak-components";
 
 import CurricQuote from "./CurricQuote";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricQuote", () => {
   it("renders the title correctly", () => {
-    renderWithTheme(
-      <CurricQuote title="My title" barColor={"red"}>
+    render(
+      <CurricQuote title="My title" barColor={"bg-error"}>
         This is the test children content.
       </CurricQuote>,
     );
@@ -16,8 +18,8 @@ describe("CurricQuote", () => {
   });
 
   it("renders the children correctly", () => {
-    renderWithTheme(
-      <CurricQuote title="My title" barColor={"red"}>
+    render(
+      <CurricQuote title="My title" barColor={"bg-error"}>
         This is the test children content.
       </CurricQuote>,
     );
@@ -27,7 +29,7 @@ describe("CurricQuote", () => {
   });
 
   it("applies a transparent background by default", () => {
-    renderWithTheme(
+    render(
       <CurricQuote title="My title">
         This is the test children content.
       </CurricQuote>,
@@ -37,8 +39,8 @@ describe("CurricQuote", () => {
   });
 
   it("applies the specified background color", () => {
-    renderWithTheme(
-      <CurricQuote title="My title" backgroundColor="lemon">
+    render(
+      <CurricQuote title="My title" backgroundColor="bg-decorative5-main">
         This is the test children content.
       </CurricQuote>,
     );
@@ -47,7 +49,7 @@ describe("CurricQuote", () => {
   });
 
   it("applies the default bar color", () => {
-    renderWithTheme(
+    render(
       <CurricQuote title="My title">
         This is the test children content.
       </CurricQuote>,
@@ -59,8 +61,8 @@ describe("CurricQuote", () => {
   });
 
   it("applies the specified bar color", () => {
-    renderWithTheme(
-      <CurricQuote title="My title" barColor={"red"}>
+    render(
+      <CurricQuote title="My title" barColor={"bg-error"}>
         This is the test children content.
       </CurricQuote>,
     );

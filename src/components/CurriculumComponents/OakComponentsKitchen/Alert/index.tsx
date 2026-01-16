@@ -21,32 +21,32 @@ const alertTypes: Record<
   info: {
     icon: "info",
     iconColorFilter: "black",
-    backgroundColour: "lavender30",
-    borderColour: "lavender",
+    backgroundColour: "bg-decorative3-very-subdued",
+    borderColour: "border-decorative3",
   },
   neutral: {
     icon: "info",
     iconColorFilter: "black",
-    backgroundColour: "grey20",
-    borderColour: "grey40",
+    backgroundColour: "bg-neutral",
+    borderColour: "border-neutral-lighter",
   },
   success: {
     icon: "success",
     iconColorFilter: "black",
-    backgroundColour: "mint30",
-    borderColour: "mint110",
+    backgroundColour: "bg-decorative1-very-subdued",
+    borderColour: "border-decorative1-stronger",
   },
   alert: {
     icon: "warning",
     iconColorFilter: "black",
-    backgroundColour: "lemon30",
-    borderColour: "lemon50",
+    backgroundColour: "bg-decorative5-very-subdued",
+    borderColour: "border-decorative5-stronger",
   },
   error: {
     icon: "error",
     iconColorFilter: "red",
-    backgroundColour: "red30",
-    borderColour: "red",
+    backgroundColour: "bg-incorrect",
+    borderColour: "border-error",
   },
 } as const;
 
@@ -65,12 +65,12 @@ export default function Alert(props: AlertProps) {
     <OakFlex
       data-testid="oak-inline-banner"
       $background={alertTypes[type]?.backgroundColour}
-      $pa={"inner-padding-m"}
+      $pa={"spacing-16"}
       $borderRadius={"border-radius-m2"}
       $borderStyle={"solid"}
       $borderColor={alertTypes[type]?.borderColour}
       $flexDirection={"row"}
-      $gap="space-between-xs"
+      $gap="spacing-12"
       $alignItems={"center"}
       {...rest}
     >
@@ -78,8 +78,8 @@ export default function Alert(props: AlertProps) {
         <OakIcon
           iconName={iconResult}
           $colorFilter={iconColorFilterResult}
-          $width="all-spacing-7"
-          $height="all-spacing-7"
+          $width="spacing-32"
+          $height="spacing-32"
           data-testid="inline-banner-icon"
         />
       </OakBox>

@@ -42,15 +42,15 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
 }: LessonMediaClipInfoProps) => {
   return (
     <OakBox>
-      <OakHeading tag="h5" $font={"heading-5"} $mb="space-between-xs">
+      <OakHeading tag="h5" $font={"heading-5"} $mb="spacing-12">
         {clipTitle}
       </OakHeading>
       <LessonMetadata
         keyStageTitle={keyStageTitle}
         yearTitle={yearTitle}
         subjectTitle={subjectTitle}
-        $color={"grey60"}
-        $mb="space-between-m"
+        $color={"text-subdued"}
+        $mb="spacing-24"
       />
       <OakVideoTranscript
         id={`video-transcript-${isMobile ? "mobile" : "desktop"}`}

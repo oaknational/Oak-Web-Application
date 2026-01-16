@@ -14,10 +14,10 @@ const PostCallout = (
   return (
     <OakFlex
       $flexDirection={"column"}
-      $mt="space-between-xl"
-      $pv="inner-padding-xl"
-      $ph="inner-padding-m"
-      $background="lemon50"
+      $mt="spacing-56"
+      $pv="spacing-24"
+      $ph="spacing-16"
+      $background="bg-decorative5-subdued"
     >
       <PortableTextWithDefaults
         value={props.value.body}

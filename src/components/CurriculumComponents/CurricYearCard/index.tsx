@@ -25,10 +25,12 @@ export function CurricYearCard({
 }: Readonly<CurricYearCardProps>) {
   return (
     <OakBox
-      $background={isExamboard ? "pink50" : "pink30"}
-      $pa={"inner-padding-xl2"}
+      $background={
+        isExamboard ? "bg-decorative4-subdued" : "bg-decorative4-very-subdued"
+      }
+      $pa={"spacing-32"}
       $position={"relative"}
-      $mb={"space-between-m2"}
+      $mb={"spacing-32"}
       $borderRadius={"border-radius-s"}
       className="mobileYearDisplay"
     >
@@ -36,7 +38,7 @@ export function CurricYearCard({
         <OakHeading
           tag="h3"
           $font={["heading-5", "heading-4"]}
-          $mb={yearSubheading ? "space-between-xs" : "space-between-s"}
+          $mb={yearSubheading ? "spacing-12" : "spacing-16"}
           data-testid="year-heading"
         >
           {yearTitle}
@@ -55,13 +57,12 @@ export function CurricYearCard({
         <OakHeading
           tag="h4"
           $font={["heading-7", "heading-6"]}
-          $mb="space-between-s"
+          $mb="spacing-16"
           data-testid="year-subheading"
         >
           {yearSubheading}
         </OakHeading>
       )}
-
       <OakBox>{additional}</OakBox>
       <OakBox>{children}</OakBox>
     </OakBox>

@@ -72,7 +72,7 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
             disabled: true,
           },
         ]}
-        background={"pink30"}
+        background={"bg-decorative4-very-subdued"}
         subjectIconBackgroundColor={"pink"}
         subjectSlug={subjectSlug}
         subjectTitle={subjectTitle}
@@ -80,12 +80,9 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
         title={unitTitle}
         isNew={false}
       />
-      <OakMaxWidth $ph={"inner-padding-m"}>
+      <OakMaxWidth $ph={"spacing-16"}>
         <OakGrid data-testid="specialist-lesson-grid">
-          <OakGridArea
-            $colSpan={[12, 9]}
-            $mt={["space-between-s", "space-between-m2"]}
-          >
+          <OakGridArea $colSpan={[12, 9]} $mt={["spacing-16", "spacing-32"]}>
             <LessonList
               {...curriculumData}
               lessonCount={lessons.length}

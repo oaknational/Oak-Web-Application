@@ -25,6 +25,7 @@ import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostT
 import { FactorData } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 import { getFactorDataFromSlug } from "@/pages-helpers/pupil/options-pages/getFactorDataFromSlug";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
@@ -35,6 +36,7 @@ export type PupilViewsProgrammeListingProps = {
   tiers: FactorData[];
   pathwaySlug?: PupilProgrammeListingData["programmeFields"]["pathwaySlug"];
   pathways: FactorData[];
+  topNav: TopNavProps;
 };
 
 export const PupilViewsProgrammeListing = ({
@@ -46,6 +48,7 @@ export const PupilViewsProgrammeListing = ({
   tiers,
   pathwaySlug,
   pathways,
+  topNav,
 }: PupilViewsProgrammeListingProps) => {
   const { track } = useAnalytics();
 
@@ -244,7 +247,7 @@ export const PupilViewsProgrammeListing = ({
   const iconSlug = `subject-${subjectSlug}`;
 
   const optionTitleSlot = (
-    <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
+    <OakFlex $alignItems={"center"} $gap={"spacing-12"}>
       <OakInfo
         id="option-info"
         tooltipPosition="top-left"
@@ -267,6 +270,7 @@ export const PupilViewsProgrammeListing = ({
           noIndex: true,
           noFollow: false,
         }}
+        topNavProps={topNav}
       >
         {" "}
         <OakPupilJourneyLayout
@@ -274,8 +278,8 @@ export const PupilViewsProgrammeListing = ({
           phase={phaseSlug}
           topNavSlot={topNavSlot()}
         >
-          <OakBox $mb={"space-between-m2"}>
-            <OakBox $mb={"space-between-m2"}>
+          <OakBox $mb={"spacing-32"}>
+            <OakBox $mb={"spacing-32"}>
               <OakPupilJourneyProgrammeOptions
                 optionTitleSlot={optionTitleSlot}
                 phase={phaseSlug}

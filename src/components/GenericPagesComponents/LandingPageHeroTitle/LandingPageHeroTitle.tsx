@@ -21,9 +21,9 @@ export const LandingPageHeroTitle: FC<{
       $ph={16}
     >
       <OakHeading
-        $mb={["space-between-ssx"]}
+        $mb={["spacing-8"]}
         $font={["heading-6", "heading-5"]}
-        $color={"grey50"}
+        $color={"text-disabled"}
         tag="h1"
       >
         {title}
@@ -31,7 +31,7 @@ export const LandingPageHeroTitle: FC<{
       {heading && (
         <OakHeading
           $font={["heading-4", "heading-5"]}
-          $mv={["space-between-none"]}
+          $mv={["spacing-0"]}
           tag="h2"
           $textAlign={["left", leftAlign ? "start" : "center"]}
         >

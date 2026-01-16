@@ -57,12 +57,12 @@ export function OakModalNew({
               direction={animateFrom}
               data-testid={"sidebar-modal"}
               $position="fixed"
-              $top="all-spacing-0"
-              $right="all-spacing-0"
+              $top="spacing-0"
+              $right="spacing-0"
               $height="100%"
               $width={modalWidth}
               $maxWidth="100%"
-              $background={"white"}
+              $background={"bg-primary"}
               state={animationState}
               $zIndex="modal-dialog"
             >

@@ -24,12 +24,15 @@ import BioCardList from "@/components/GenericPagesComponents/BioCardList";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
+  topNav: TopNavProps;
 };
 
-const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
+const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
   const {
     seo,
     introPortableText,
@@ -40,11 +43,16 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   } = pageData;
 
   const bioModalsEnabled = useFeatureFlagEnabled("about-us--board--bio-modals");
+
   return (
-    <Layout seoProps={getSeoProps(seo)} $background={"white"}>
+    <Layout
+      seoProps={getSeoProps(seo)}
+      $background={"bg-primary"}
+      topNavProps={topNav}
+    >
       <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxxl"]}
+        $mb={["spacing-56", "spacing-80"]}
+        $mt={["spacing-56", "spacing-80"]}
       >
         <GenericSummaryCard {...pageData} />
         <GenericIntroCard
@@ -58,7 +66,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         {boardMembers && (
           <>
             <OakHeading
-              $mb={["space-between-l", "space-between-m2"]}
+              $mb={["spacing-48", "spacing-32"]}
               $font={["heading-6", "heading-5"]}
               tag={"h2"}
               $textAlign={["center"]}
@@ -66,8 +74,8 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
               {boardHeader}
             </OakHeading>
             <BioCardList
-              $mb={["space-between-xxxl", "space-between-xl"]}
-              $ph={["inner-padding-m", "inner-padding-none"]}
+              $mb={["spacing-80", "spacing-56"]}
+              $ph={["spacing-16", "spacing-0"]}
               bios={boardMembers}
               withModals={bioModalsEnabled}
             />
@@ -80,22 +88,16 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         >
           Documents
         </OakHeading>
-        <OakFlex
-          $mh={["space-between-s", "space-between-none"]}
-          $flexDirection={"column"}
-        >
+        <OakFlex $mh={["spacing-16", "spacing-0"]} $flexDirection={"column"}>
           <OakTypography $width={"100%"}>
             <OakHandDrawnHR
-              hrColor={"aqua"}
-              $mv={"space-between-m2"}
-              $height={"all-spacing-05"}
+              hrColor={"bg-decorative2-main"}
+              $mv={"spacing-32"}
+              $height={"spacing-2"}
             />
           </OakTypography>
 
-          <OakGrid
-            $rg={"all-spacing-4"}
-            $cg={["all-spacing-3", "all-spacing-5"]}
-          >
+          <OakGrid $rg={"spacing-16"} $cg={["spacing-12", "spacing-20"]}>
             {documents.map((doc) => {
               const fileSizeInMB = (doc.file.asset.size / 1012 / 1012).toFixed(
                 1,
@@ -131,9 +133,9 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           </OakGrid>
           <OakTypography $width={"100%"}>
             <OakHandDrawnHR
-              hrColor={"aqua"}
-              $mv={"space-between-m2"}
-              $height={"all-spacing-05"}
+              hrColor={"bg-decorative2-main"}
+              $mv={"spacing-32"}
+              $height={"spacing-2"}
             />
           </OakTypography>
         </OakFlex>
@@ -144,7 +146,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           $pv={0}
           $width={["100%", "70%"]}
         >
-          <OakHeading $mb={"space-between-m"} $font={"heading-5"} tag={"h2"}>
+          <OakHeading $mb={"spacing-24"} $font={"heading-5"} tag={"h2"}>
             Governance
           </OakHeading>
           <OakTypography $font={["body-1", "body-2"]}>
@@ -173,6 +175,8 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
         previewMode: isPreviewMode,
       });
 
+      const topNav = await curriculumApi2023.topNav();
+
       if (!aboutBoardPage) {
         return {
           notFound: true,
@@ -182,6 +186,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
       const results: GetStaticPropsResult<AboutPageProps> = {
         props: {
           pageData: aboutBoardPage,
+          topNav,
         },
       };
 

@@ -22,22 +22,22 @@ const FieldError = (props: FieldErrorProps) => {
   }
   return (
     <OakFlex
-      $mt="space-between-sssx"
+      $mt="spacing-4"
       $alignItems={"center"}
       $flexDirection={"row"}
-      $mb={withoutMarginBottom ? "space-between-none" : "space-between-m"}
+      $mb={withoutMarginBottom ? "spacing-0" : "spacing-24"}
       aria-hidden={props.ariaHidden}
     >
-      <OakFlex $alignSelf={"flex-start"} $mr="space-between-sssx">
+      <OakFlex $alignSelf={"flex-start"} $mr="spacing-4">
         <OakIcon
           iconName="content-guidance"
           $colorFilter={"red"}
-          $width={"all-spacing-6"}
-          $height={"all-spacing-6"}
+          $width={"spacing-24"}
+          $height={"spacing-24"}
         />
       </OakFlex>
       <OakSpan
-        $color="red"
+        $color="text-error"
         $font={variant === "large" ? ["body-2-bold", "body-1-bold"] : "body-2"}
         id={id}
         aria-live={props.ariaLive || "off"}

@@ -326,18 +326,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     downloadsFilteredByCopyright.length === 0;
 
   return (
-    <OakBox
-      $ph={["inner-padding-m", "inner-padding-none"]}
-      $background={"grey20"}
-    >
+    <OakBox $ph={["spacing-16", "spacing-0"]} $background={"bg-neutral"}>
       {isDownloadSuccessful && <Banners />}
       <OakMaxWidth
-        $pb="inner-padding-xl8"
-        $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
+        $pb="spacing-80"
+        $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}
       >
         <OakBox
-          $mb={isDownloadSuccessful ? "space-between-none" : "space-between-m2"}
-          $mt={"space-between-m"}
+          $mb={isDownloadSuccessful ? "spacing-0" : "spacing-32"}
+          $mt={"spacing-24"}
         >
           <Breadcrumbs
             breadcrumbs={
@@ -372,10 +369,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             }
           />
           <OakHandDrawnHR
-            hrColor={"grey60"}
-            $height={"all-spacing-1"}
-            $mt={"space-between-m"}
-            $mb={"space-between-m"}
+            hrColor={"text-subdued"}
+            $height={"spacing-4"}
+            $mt={"spacing-24"}
+            $mb={"spacing-24"}
           />
         </OakBox>
         {showGeoBlocked ? (

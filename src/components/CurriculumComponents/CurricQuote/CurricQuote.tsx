@@ -3,7 +3,7 @@ import {
   OakFlex,
   OakHeading,
   OakP,
-  OakColorToken,
+  OakUiRoleToken,
   OakHeadingProps,
   OakPProps,
 } from "@oaknational/oak-components";
@@ -11,8 +11,8 @@ import {
 export type CurricQuoteProps = {
   title: string;
   children: string;
-  backgroundColor?: OakColorToken;
-  barColor?: OakColorToken;
+  backgroundColor?: OakUiRoleToken;
+  barColor?: OakUiRoleToken;
   headingProps?: OakHeadingProps;
   paragraphProps?: OakPProps;
 };
@@ -21,21 +21,17 @@ export default function CurricQuote({
   title,
   children,
   backgroundColor = "transparent",
-  barColor = "mint30",
+  barColor = "bg-decorative1-very-subdued",
   headingProps,
   paragraphProps,
 }: Readonly<CurricQuoteProps>) {
   return (
     <OakBox $background={backgroundColor} data-testid="curric-quote">
-      <OakFlex
-        $flexDirection="row"
-        $pr={"inner-padding-xl"}
-        $columnGap="space-between-m"
-      >
+      <OakFlex $flexDirection="row" $pr={"spacing-24"} $columnGap="spacing-24">
         {barColor !== "transparent" && (
           <OakFlex
             data-testid="decorative-bar"
-            $width="all-spacing-2"
+            $width="spacing-8"
             $background={barColor}
             $flexShrink={0}
           />
@@ -44,13 +40,13 @@ export default function CurricQuote({
           <OakHeading
             tag="h3"
             $font={["heading-5"]}
-            $mb="space-between-s"
+            $mb="spacing-16"
             {...headingProps}
-            $color={"black"}
+            $color={"text-primary"}
           >
             {title}
           </OakHeading>
-          <OakP $font={["body-1"]} $color={"black"} {...paragraphProps}>
+          <OakP $font={["body-1"]} $color={"text-primary"} {...paragraphProps}>
             {children}
           </OakP>
         </OakFlex>

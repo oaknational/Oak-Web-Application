@@ -4,28 +4,28 @@ import { ColorProps } from "@/styles/utils/color";
 
 const TAG_COLOR_MAP = {
   lavender: {
-    background: "lavender30",
-    borderColor: "lavender50",
+    background: "bg-decorative3-very-subdued",
+    borderColor: "border-decorative3",
   },
   pink: {
-    background: "pink30",
-    borderColor: "pink50",
+    background: "bg-decorative4-very-subdued",
+    borderColor: "border-decorative4",
   },
   aqua: {
-    background: "aqua30",
-    borderColor: "aqua50",
+    background: "bg-decorative2-very-subdued",
+    borderColor: "border-decorative2",
   },
   mint: {
-    background: "mint30",
-    borderColor: "mint50",
+    background: "bg-decorative1-very-subdued",
+    borderColor: "border-decorative1",
   },
   lemon: {
-    background: "lemon30",
-    borderColor: "lemon50",
+    background: "bg-decorative5-very-subdued",
+    borderColor: "border-decorative5",
   },
   grey: {
-    background: "grey30",
-    borderColor: "grey40",
+    background: "bg-neutral-stronger",
+    borderColor: "border-neutral-lighter",
   },
 } as const;
 
@@ -44,11 +44,11 @@ export function TagFunctional({ text, ...styleProps }: TagFunctionalProps) {
       $borderColor={borderColor}
       $borderRadius="border-radius-s"
       $ba="border-solid-s"
-      $pv="inner-padding-ssx"
-      $ph="inner-padding-xs"
+      $pv="spacing-4"
+      $ph="spacing-8"
       $font="heading-light-7"
       {...styleProps}
-      $color={"grey70"}
+      $color={"text-primary"}
     >
       {text}
     </OakSpan>

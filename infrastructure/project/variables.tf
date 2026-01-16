@@ -10,6 +10,7 @@ variable "custom_env_vars" {
       CURRICULUM_API_2023_URL = string
       OVERRIDE_URL            = string
       OAK_CONFIG_LOCATION     = string
+      PUPIL_FIRESTORE_ID      = string
     }))
   })
   default = {}
@@ -20,6 +21,7 @@ variable "sensitive_custom_env_vars" {
   type = object({
     staging = optional(object({
       GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT = string
+      CLERK_SECRET_KEY                      = string
     }))
   })
   sensitive = true
@@ -29,8 +31,8 @@ variable "sensitive_custom_env_vars" {
 variable "env_vars" {
   type = object({
     shared = optional(object({
-      NEXT_PUBLIC_CLERK_SIGN_IN_URL   = optional(string, "/sign-in")
-      NEXT_PUBLIC_CLERK_SIGN_UP_URL   = optional(string, "/sign-in")
+      NEXT_PUBLIC_CLERK_SIGN_IN_URL   = optional(string)
+      NEXT_PUBLIC_CLERK_SIGN_UP_URL   = optional(string)
       NEXT_PUBLIC_CLIENT_APP_BASE_URL = optional(string)
     }))
     prod = optional(object({

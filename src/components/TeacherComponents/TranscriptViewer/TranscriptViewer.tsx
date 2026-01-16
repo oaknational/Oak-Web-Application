@@ -16,10 +16,10 @@ export const TranscriptViewer: FC<TranscriptViewerProps> = ({
       role="article"
       aria-label="The video transcript"
       $width={["100%"]}
-      $maxHeight={["all-spacing-20", "all-spacing-22", "all-spacing-22"]}
-      $background="grey30"
-      $ph="inner-padding-m"
-      $pv="inner-padding-xl2"
+      $maxHeight={["spacing-360", "spacing-640", "spacing-640"]}
+      $background="bg-neutral-stronger"
+      $ph="spacing-16"
+      $pv="spacing-32"
       $borderRadius={["border-radius-m2", "border-radius-s", "border-radius-s"]}
     >
       <Flex
@@ -31,10 +31,10 @@ export const TranscriptViewer: FC<TranscriptViewerProps> = ({
         $flexDirection={"column"}
         $alignItems={"start"}
       >
-        <OakBox $maxWidth={["all-spacing-22"]}>
+        <OakBox $maxWidth={["spacing-640"]}>
           {transcriptSentences?.map((transcriptSentence: string) => (
             <OakP
-              $mb={["space-between-m", "space-between-s"]}
+              $mb={["spacing-24", "spacing-16"]}
               $font={"body-1"}
               key={uuidv4()}
             >

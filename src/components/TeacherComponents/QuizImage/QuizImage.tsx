@@ -14,8 +14,8 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
     <OakFlex
       $overflow={"hidden"}
       $position={"relative"}
-      $minWidth={dims.width ? undefined : "all-spacing-14"}
-      $minHeight={dims.height ? undefined : "all-spacing-14"}
+      $minWidth={dims.width ? undefined : "spacing-92"}
+      $minHeight={dims.height ? undefined : "spacing-92"}
       $justifyContent={"center"}
     >
       <QuizOakImage src={src} dims={dims} setDims={setDims} alt={alt} />

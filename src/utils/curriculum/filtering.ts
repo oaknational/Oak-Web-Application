@@ -144,13 +144,12 @@ export function useFilters(
 ): [CurriculumFilters, (newFilters: CurriculumFilters) => void] {
   const searchParams = useSearchParams();
   const router = useRouter();
-
-  const [filters, setLocalFilters] = useState<CurriculumFilters>(defaultFilter);
+  const [filters, setFilters] = useState<CurriculumFilters>(defaultFilter);
   useLayoutEffect(() => {
-    setLocalFilters(mergeInFilterParams(defaultFilter, searchParams));
+    setFilters(mergeInFilterParams(defaultFilter, searchParams));
   }, [searchParams, defaultFilter]);
 
-  const setFilters = useCallback(
+  const setExternalFilters = useCallback(
     (newFilters: CurriculumFilters) => {
       const url =
         location.pathname +
@@ -158,17 +157,19 @@ export function useFilters(
         new URLSearchParams(
           Object.entries(filtersToQuery(newFilters, defaultFilter)),
         ).toString();
+
       router.replace(url, undefined, {
         shallow: true,
+
         scroll: false,
       });
 
-      setLocalFilters(newFilters);
+      setFilters(newFilters);
     },
-    [router, defaultFilter],
+    [defaultFilter, router],
   );
 
-  return [filters, setFilters];
+  return [filters, setExternalFilters];
 }
 
 export function getFilterData(
@@ -225,7 +226,7 @@ export function filteringFromYears(
   yearData: YearData[number],
   filters: CurriculumFilters,
 ) {
-  const { childSubjects, subjectCategories, tiers } = yearData!;
+  const { childSubjects, subjectCategories, tiers } = yearData;
   const output = {
     childSubjects: childSubjects.length > 0 ? filters.childSubjects : undefined,
     subjectCategories:
@@ -516,7 +517,7 @@ export function getNumberOfSelectedUnits(
 
   Object.entries(yearData).forEach(([year, yearDataItem]) => {
     const units = yearDataItem.units;
-    const yearBasedFilters = filteringFromYears(yearDataItem!, filters);
+    const yearBasedFilters = filteringFromYears(yearDataItem, filters);
 
     if (units && filters.years.includes(year)) {
       const filteredUnits = units.filter((unit: Unit) => {

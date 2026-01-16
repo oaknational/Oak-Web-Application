@@ -12,59 +12,61 @@ import LandingPageHero from "@/components/GenericPagesComponents/LandingPageHero
 import getPageProps from "@/node-lib/getPageProps";
 import { getABTestedLandingPage } from "@/node-lib/cms/ab-testing";
 import Layout from "@/components/AppComponents/Layout";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type LandingPageProps = {
   pageData: LandingPage;
+  topNav: TopNavProps;
 };
 
-const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
+const Landing: NextPage<LandingPageProps> = ({ pageData, topNav }) => {
   return (
     <Layout
       headerVariant="landing-pages"
       headerCta={pageData.headerCta}
       seoProps={getSeoProps(pageData.seo)}
+      topNavProps={topNav}
     >
-      <>
-        <OakMaxWidth $justifyContent={"flex-start"}>
-          <LandingPageHero hero={pageData.hero} />
-          <>
-            {pageData.content.map((content, index) => {
-              if (content.type == "LandingPageTextAndMediaBlock") {
-                return (
-                  <LandingPageTextAndMedia
-                    key={`${index}:${content.textAndMedia.title}`}
-                    {...content.textAndMedia}
-                  />
-                );
-              }
-              if (content.type == "LandingPageQuoteBlock") {
-                return (
-                  <LandingPageQuote
-                    key={`${index}:${content.quote.text}`}
-                    {...content.quote}
-                  />
-                );
-              }
-              if (content.type == "LandingPageFormBlock") {
-                return (
-                  <LandingPageSignupPrompt
-                    key={`${index}:${content.title}`}
-                    {...content}
-                  />
-                );
-              }
-              if (content.type == "LandingPageTextBlock") {
-                return (
-                  <LandingPageTextBlock
-                    key={`${index}:${content.bodyPortableText[0]._key}`}
-                    {...content}
-                  />
-                );
-              }
-            })}
-          </>
-        </OakMaxWidth>
-      </>
+      <OakMaxWidth $justifyContent={"flex-start"}>
+        <LandingPageHero hero={pageData.hero} />
+        <>
+          {pageData.content.map((content, index) => {
+            if (content.type == "LandingPageTextAndMediaBlock") {
+              return (
+                <LandingPageTextAndMedia
+                  key={`${index}:${content.textAndMedia.title}`}
+                  {...content.textAndMedia}
+                />
+              );
+            }
+            if (content.type == "LandingPageQuoteBlock") {
+              return (
+                <LandingPageQuote
+                  key={`${index}:${content.quote.text}`}
+                  {...content.quote}
+                />
+              );
+            }
+            if (content.type == "LandingPageFormBlock") {
+              return (
+                <LandingPageSignupPrompt
+                  key={`${index}:${content.title}`}
+                  {...content}
+                />
+              );
+            }
+            if (content.type == "LandingPageTextBlock") {
+              return (
+                <LandingPageTextBlock
+                  key={`${index}:${content.bodyPortableText[0]._key}`}
+                  {...content}
+                />
+              );
+            }
+          })}
+        </>
+      </OakMaxWidth>
     </Layout>
   );
 };
@@ -120,10 +122,12 @@ export const getServerSideProps: GetServerSideProps<
           notFound: true,
         };
       }
+      const topNav = await curriculumApi2023.topNav();
 
       const results: GetServerSidePropsResult<LandingPageProps> = {
         props: {
           pageData: landingPageResult,
+          topNav,
         },
       };
       return results;

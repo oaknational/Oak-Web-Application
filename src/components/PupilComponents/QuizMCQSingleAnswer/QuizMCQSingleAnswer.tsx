@@ -55,8 +55,8 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   const isFeedbackMode = questionState.mode === "feedback";
 
   return (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
-      <OakFlex $mt={["space-between-s", "space-between-l", "space-between-xl"]}>
+    <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+      <OakFlex $mt={["spacing-16", "spacing-48", "spacing-56"]}>
         <OakJauntyAngleLabel
           $background={
             currentSection === "starter-quiz"
@@ -67,11 +67,10 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
           label="Select one answer"
         />
       </OakFlex>
-
       <OakRadioGroup
         name={questionUid || "mcq-single-answer"}
         $flexDirection={"column"}
-        $gap={"space-between-s"}
+        $gap={"spacing-16"}
         onChange={onChange}
         disabled={isFeedbackMode}
         aria-labelledby={`${questionUid}-legend`}
@@ -80,15 +79,15 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
           const label = answer.answer.find(isText);
           const image = getStemImage({
             stem: answer.answer.filter(isImage),
-            minWidth: "all-spacing-19",
+            minWidth: "spacing-240",
             scaled: scaled[i] ? true : false,
           });
           const ResizeableImage = image ? (
             <OakFlex>
               {image}
               <OakFlex
-                $width={"all-spacing-7"}
-                $height={"all-spacing-7"}
+                $width={"spacing-32"}
+                $height={"spacing-32"}
                 $pointerEvents={"auto"}
                 $display={["none", "flex"]}
               >

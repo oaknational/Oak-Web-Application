@@ -50,7 +50,7 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
       $overflow="hidden"
       $cover
     >
-      <OakBox $maxWidth="all-spacing-20" $zIndex="in-front">
+      <OakBox $maxWidth="spacing-360" $zIndex="in-front">
         <OakHeading tag={headingTag} $font={["heading-6", "heading-5"]}>
           {headingText}
         </OakHeading>
@@ -66,10 +66,9 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
           $iconPosition="trailing"
         />
       </OakBox>
-
       <OakGrid
-        $right="all-spacing-0"
-        $bottom="all-spacing-0"
+        $right="spacing-0"
+        $bottom="spacing-0"
         $height="100%"
         $width="100%"
         $position="absolute"

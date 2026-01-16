@@ -24,6 +24,8 @@ import { getVideoThumbnail } from "@/components/SharedComponents/VideoPlayer/get
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
@@ -33,10 +35,11 @@ export type SerializedWebinar = Omit<Webinar, "date"> & {
 export type WebinarSinglePageProps = {
   webinar: SerializedWebinar;
   categories: { title: string; slug: string }[];
+  topNav: TopNavProps;
 };
 
 const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
-  const { webinar, categories } = props;
+  const { webinar, categories, topNav } = props;
   const { track } = useAnalytics();
   useEffect(() => {
     track.webinarPageViewed({
@@ -48,6 +51,7 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
 
   return (
     <Layout
+      topNavProps={topNav}
       seoProps={getSeoProps({
         ...props.webinar.seo,
         title: webinar.seo?.title || webinar.title,
@@ -58,7 +62,7 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
           height: 900,
         }),
       })}
-      $background="white"
+      $background="bg-primary"
     >
       <PostSingleLayout
         content={props}
@@ -69,10 +73,10 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
           "Webinars",
         )}
       >
-        <OakFlex $position={"relative"} $mt="space-between-xl">
+        <OakFlex $position={"relative"} $mt="spacing-56">
           <WebinarVideo webinar={webinar} />
         </OakFlex>
-        <OakBox $mt="space-between-l">
+        <OakBox $mt="spacing-48">
           <BlogPortableText portableText={webinar.summaryPortableText} />
         </OakBox>
       </PostSingleLayout>
@@ -135,10 +139,12 @@ export const getStaticProps: GetStaticProps<
         author: webinarResult.hosts[0], // make the first host equivalent to a blog author
       };
 
+      const topNav = await curriculumApi2023.topNav();
       const results: GetStaticPropsResult<WebinarSinglePageProps> = {
         props: {
           webinar,
           categories,
+          topNav,
         },
       };
       return results;

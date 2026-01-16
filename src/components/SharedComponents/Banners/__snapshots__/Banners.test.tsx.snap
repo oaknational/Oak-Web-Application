@@ -22,7 +22,7 @@ exports[`Banners shows mythbusting banner 1`] = `
               style="display: inline-block; transform: rotate(-1.5deg); padding: 4px 8px;"
             >
               <span
-                class="sc-dAlyuH hyKzfI"
+                class="sc-dAlyuH fyCkiE"
               >
                 Myths
               </span>
@@ -35,7 +35,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           </p>
         </div>
         <a
-          class="sc-f63c4ba9-0 kBeHeL"
+          class="sc-f63c4ba9-0 jtFtcT"
           href="/campaigns/mythbusting"
           role="link"
           title="Learn why"
@@ -85,7 +85,7 @@ exports[`Banners shows mythbusting banner 1`] = `
               class="sc-fqkvVR fgBWrW"
             >
               <span
-                class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
               >
                 Learn why
               </span>
@@ -93,7 +93,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           </div>
           <svg
             aria-hidden="true"
-            class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+            class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
             height="100%"
             name="underline-1"
             width="100%"
@@ -105,7 +105,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           </svg>
           <svg
             aria-hidden="true"
-            class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+            class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
             height="100%"
             name="underline-1"
             width="100%"
@@ -122,11 +122,11 @@ exports[`Banners shows mythbusting banner 1`] = `
       class="sc-fqkvVR jAGTee"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB sc-ggpjZQ hGVAzf joHkzz"
+        class="sc-fqkvVR sc-kAyceB sc-kAkpmW hGVAzf joHkzz"
         focusable="false"
       >
         <svg
-          class="sc-hzhJZQ dBiKOq"
+          class="sc-fHjqPf gWkUUq"
           height="100%"
           preserveAspectRatio="none"
           viewBox="0 0 866 8"

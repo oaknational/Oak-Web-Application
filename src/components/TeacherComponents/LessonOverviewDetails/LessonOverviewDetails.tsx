@@ -103,9 +103,9 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
         <OakFlex
           $flexDirection={"column"}
           $flexGrow={1}
-          $mr="space-between-s"
-          $gap="all-spacing-9"
-          $mb="space-between-m"
+          $mr="spacing-16"
+          $gap="spacing-48"
+          $mb="spacing-24"
         >
           {hasVocabAndTranscripts && displayVocab && (
             <OakBox>
@@ -156,9 +156,9 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
       <OakGridArea $colSpan={[12, 4]} $colStart={[0, 9]} $rowStart={[2, 1]}>
         <OakFlex
           $flexDirection={"column"}
-          $mt={["space-between-l", "space-between-none"]}
-          $gap={"all-spacing-9"}
-          $mb={"space-between-m"}
+          $mt={["spacing-48", "spacing-0"]}
+          $gap={"spacing-48"}
+          $mb={"spacing-24"}
         >
           {additionalFiles && (
             <LessonOverviewFilesNeeded

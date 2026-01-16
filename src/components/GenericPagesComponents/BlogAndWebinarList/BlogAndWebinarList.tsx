@@ -1,6 +1,6 @@
 import {
   OakBox,
-  OakColorToken,
+  OakUiRoleToken,
   OakFlex,
   OakHeading,
   OakTypography,
@@ -15,7 +15,7 @@ import PostList, {
 export type BlogAndWebinarListProps = {
   blogListPosts: PostListProps;
   showImageOnTablet?: boolean;
-  backgroundColor: OakColorToken;
+  backgroundColor: OakUiRoleToken;
   displayOnPhone: boolean;
   isBackgroundWhite?: boolean;
   title: string;
@@ -31,29 +31,29 @@ const BlogAndWebinarList: FC<BlogAndWebinarListProps> = ({
 }) => {
   return (
     <OakBox
-      $ph={["inner-padding-m", "inner-padding-xl"]}
-      $pv={isBackgroundWhite ? null : ["inner-padding-m", "inner-padding-xl"]}
+      $ph={["spacing-16", "spacing-24"]}
+      $pv={isBackgroundWhite ? null : ["spacing-16", "spacing-24"]}
       $background={backgroundColor}
       $borderRadius={"border-radius-l"}
-      $mv={["space-between-m", "space-between-xl"]}
+      $mv={["spacing-24", "spacing-56"]}
       $display={displayOnPhone ? "block" : ["none", "none", "block"]}
     >
       <OakFlex
         $width={"100%"}
         $alignItems={["flex-start", "center"]}
         $justifyContent={"space-between"}
-        $mb={"space-between-l"}
+        $mb={"spacing-48"}
         $flexDirection={["column", "row"]}
       >
         <OakHeading
           tag="h2"
           $font={"heading-5"}
-          $mb={["space-between-m", "space-between-none"]}
+          $mb={["spacing-24", "spacing-0"]}
         >
           {title}
         </OakHeading>
         <OakFlex $flexDirection={"row"}>
-          <OakTypography $mr={"space-between-s"} $font={"heading-7"}>
+          <OakTypography $mr={"spacing-16"} $font={"heading-7"}>
             <OwaLink page={"webinar-index"}>All webinars</OwaLink>
           </OakTypography>
           <OakTypography $font={"heading-7"}>

@@ -13,10 +13,14 @@ import {
   presentAtKeyStageSlugs,
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersTiersProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilters: CurriculumFilters,
+    source: ComponentTypeValueType,
+  ) => void;
   data: CurriculumUnitsFormattedData;
 };
 
@@ -34,7 +38,7 @@ export function CurricFiltersTiers({
   const tiersAt = presentAtKeyStageSlugs(keyStageSlugData, "tiers");
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({ ...filters, [key]: [newValue] });
+    onChangeFilters({ ...filters, [key]: [newValue] }, "learning_tier_button");
   }
 
   return (
@@ -45,8 +49,8 @@ export function CurricFiltersTiers({
             id={"tiers-label"}
             tag="h4"
             $font={["heading-7", "heading-6"]}
-            $mt="space-between-none"
-            $mb={["space-between-m", "space-between-s"]}
+            $mt="spacing-0"
+            $mb={["spacing-24", "spacing-16"]}
           >
             Learning tier{" "}
             {tiersAt.length === 1 ? `(${tiersAt[0]?.toUpperCase()})` : ""}
@@ -54,10 +58,10 @@ export function CurricFiltersTiers({
           <OakRadioGroup
             name={"tiers" + id}
             onChange={(e) => setSingleInFilter("tiers", e.target.value)}
-            value={filters.tiers[0]!}
+            value={filters.tiers[0]}
             $flexDirection="row"
             $flexWrap="wrap"
-            $gap="space-between-ssx"
+            $gap="spacing-8"
             aria-labelledby="tiers-label"
           >
             {tiers.map((tier) => (

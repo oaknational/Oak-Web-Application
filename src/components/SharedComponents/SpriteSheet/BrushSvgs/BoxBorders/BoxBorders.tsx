@@ -4,7 +4,7 @@ import {
   OakBox,
   OakBoxProps,
   oakBoxCss,
-  OakColorToken,
+  OakUiRoleToken,
   oakZIndexTokens,
 } from "@oaknational/oak-components";
 
@@ -42,7 +42,7 @@ export type BoxBordersProps = {
   hideBottom?: boolean;
   hideRight?: boolean;
   hideLeft?: boolean;
-  $color?: OakColorToken;
+  $color?: OakUiRoleToken;
   hideOnMobileH?: boolean;
   hideOnMobileV?: boolean;
 };
@@ -61,7 +61,7 @@ export type StyledBoxBorderProps = OakBoxProps & {
   className?: string;
   hideOnMobileH?: boolean;
   hideOnMobileV?: boolean;
-  color?: OakColorToken;
+  color?: OakUiRoleToken;
   filter?: string;
   gapPosition?: GapPosition;
 };
@@ -75,10 +75,10 @@ const StyledBoxBorderTop: FC<StyledBoxBorderProps> = (props) => {
       height="100%"
       $position={"absolute"}
       $objectFit={"cover"}
-      $top={"all-spacing-0"}
-      $right={"all-spacing-0"}
-      $left={"all-spacing-0"}
-      $bottom={"all-spacing-0"}
+      $top={"spacing-0"}
+      $right={"spacing-0"}
+      $left={"spacing-0"}
+      $bottom={"spacing-0"}
       {...props}
       style={{
         bottom: "unset",
@@ -99,10 +99,10 @@ const StyledBoxBorderRight: FC<StyledBoxBorderProps> = (props) => {
       height="100%"
       $position={"absolute"}
       $objectFit={"cover"}
-      $top={"all-spacing-0"}
-      $right={"all-spacing-0"}
-      $left={"all-spacing-0"}
-      $bottom={"all-spacing-0"}
+      $top={"spacing-0"}
+      $right={"spacing-0"}
+      $left={"spacing-0"}
+      $bottom={"spacing-0"}
       {...props}
       style={{
         top: "unset",
@@ -126,10 +126,10 @@ const StyledBoxBorderBottom: FC<StyledBoxBorderProps> = (props) => {
       height="100%"
       $position={"absolute"}
       $objectFit={"cover"}
-      $top={"all-spacing-0"}
-      $right={"all-spacing-0"}
-      $left={"all-spacing-0"}
-      $bottom={"all-spacing-0"}
+      $top={"spacing-0"}
+      $right={"spacing-0"}
+      $left={"spacing-0"}
+      $bottom={"spacing-0"}
       {...props}
       style={{
         top: "unset",
@@ -151,10 +151,10 @@ const StyledBoxBorderLeft: FC<StyledBoxBorderProps> = (props) => {
       height="100%"
       $position={"absolute"}
       $objectFit={"cover"}
-      $top={"all-spacing-0"}
-      $right={"all-spacing-0"}
-      $left={"all-spacing-0"}
-      $bottom={"all-spacing-0"}
+      $top={"spacing-0"}
+      $right={"spacing-0"}
+      $left={"spacing-0"}
+      $bottom={"spacing-0"}
       {...props}
       style={{
         right: "unset",

@@ -1,16 +1,22 @@
 import { screen } from "@testing-library/react";
 import { forwardRef } from "react";
+import { GetServerSidePropsContext } from "next";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import AboutWhoWeAre, {
-  getStaticProps,
+  getServerSideProps,
 } from "../../../pages/about-us/who-we-are";
 import CMSClient from "../../../node-lib/cms";
-import { AboutWhoWeArePage } from "../../../common-lib/cms-types";
+import {
+  AboutWhoWeArePage,
+  NewAboutWhoWeArePage,
+} from "../../../common-lib/cms-types";
 import { mockSeoResult, portableTextFromString } from "../../__helpers__/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
+
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 jest.mock("../../../node-lib/cms");
 jest.mock("@mux/mux-player-react/lazy", () => {
@@ -21,6 +27,31 @@ jest.mock("@mux/mux-player-react/lazy", () => {
 });
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+
+const newTestAboutWhoWeArePageData: NewAboutWhoWeArePage = {
+  header: {
+    title: "",
+    subTitle: "",
+  },
+  breakout: {
+    image: {},
+    text: "",
+  },
+  timeline: [
+    {
+      title: "",
+      text: [],
+      subTitle: "",
+    },
+  ],
+  usp: [
+    {
+      title: "",
+      image: {},
+      text: "",
+    },
+  ],
+};
 
 const testAboutWhoWeArePageData: AboutWhoWeArePage = {
   ...testAboutPageBaseData,
@@ -116,6 +147,13 @@ const testAboutWhoWeArePageData: AboutWhoWeArePage = {
   ],
 };
 
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  __esModule: true,
+  default: {
+    topNav: () => jest.fn().mockResolvedValue(topNavFixture)(),
+  },
+}));
+
 describe("pages/about/who-we-are.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -124,7 +162,10 @@ describe("pages/about/who-we-are.tsx", () => {
 
   it("Renders correct title ", () => {
     renderWithProviders()(
-      <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />,
+      <AboutWhoWeAre
+        pageData={testAboutWhoWeArePageData}
+        topNav={topNavFixture}
+      />,
     );
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
@@ -135,7 +176,10 @@ describe("pages/about/who-we-are.tsx", () => {
   describe("SEO", () => {
     it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
-        <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />,
+        <AboutWhoWeAre
+          pageData={testAboutWhoWeArePageData}
+          topNav={topNavFixture}
+        />,
       );
 
       expect(seo).toEqual({
@@ -154,13 +198,59 @@ describe("pages/about/who-we-are.tsx", () => {
     it("should return notFound when the page data is missing", async () => {
       mockCMSClient.aboutWhoWeArePage.mockResolvedValueOnce(null);
 
-      const propsResult = await getStaticProps({
+      const propsResult = await getServerSideProps({
+        req: {},
+        res: {},
+        query: {},
         params: {},
-      });
+      } as unknown as GetServerSidePropsContext);
 
       expect(propsResult).toMatchObject({
         notFound: true,
       });
     });
+
+    it("should not return notFound when the page data is missing", async () => {
+      mockCMSClient.aboutWhoWeArePage.mockResolvedValueOnce(
+        testAboutWhoWeArePageData,
+      );
+
+      mockCMSClient.newAboutWhoWeArePage.mockResolvedValueOnce(
+        newTestAboutWhoWeArePageData,
+      );
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: {},
+        params: {},
+      } as unknown as GetServerSidePropsContext);
+
+      expect(propsResult).toMatchObject({
+        props: {
+          enableV2: false,
+          pageData: testAboutWhoWeArePageData,
+        },
+      });
+    });
+  });
+});
+
+describe("pages/about/who-we-are.tsx (v2 enabled)", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+  });
+
+  it("renders ", () => {
+    const { baseElement } = renderWithProviders()(
+      <AboutWhoWeAre
+        enableV2={true}
+        pageData={testAboutWhoWeArePageData}
+        topNav={topNavFixture}
+      />,
+    );
+
+    expect(baseElement).toMatchSnapshot();
   });
 });

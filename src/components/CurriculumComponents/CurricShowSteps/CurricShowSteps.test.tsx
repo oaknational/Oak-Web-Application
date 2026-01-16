@@ -1,10 +1,12 @@
 import { CurricShowSteps } from "./CurricShowSteps";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricShowSteps", () => {
   test("basic usage", () => {
-    const { baseElement, getByTestId } = renderWithTheme(
+    const { baseElement, getByTestId } = render(
       <CurricShowSteps numberOfSteps={4} currentStepIndex={2} />,
     );
     expect(baseElement).toMatchSnapshot();

@@ -30,10 +30,12 @@ import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { convertQuestionMath } from "@/pages-helpers/shared/lesson-pages/quizMathjax";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
   isSpecialist: boolean;
+  topNav: TopNavProps;
 };
 
 export type URLParams = {
@@ -43,6 +45,7 @@ export type URLParams = {
 export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
+  topNav,
 }: Readonly<PageProps>): JSX.Element {
   const {
     teacherNotesButton,
@@ -78,6 +81,7 @@ export default function LessonOverviewCanonicalPage({
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
     <AppLayout
+      topNavProps={topNav}
       seoProps={{
         ...getSeoProps({
           title: `Lesson: ${lesson.lessonTitle}`,
@@ -100,8 +104,8 @@ export default function LessonOverviewCanonicalPage({
           isBeta={false}
         />
         {!isSpecialist && (
-          <OakFlex $background={"pink50"} $width={"100%"}>
-            <OakMaxWidth $pv="inner-padding-xl8">
+          <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
+            <OakMaxWidth $pv="spacing-80">
               <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
             </OakMaxWidth>
           </OakFlex>
@@ -185,6 +189,9 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
         });
         return redirect ? { redirect } : { notFound: true };
       }
+
+      const topNav = await curriculumApi2023.topNav();
+
       const results: GetStaticPropsResult<PageProps> = {
         props: {
           lesson: {
@@ -193,6 +200,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
             exitQuiz: convertQuestionMath(lesson.exitQuiz),
           },
           isSpecialist,
+          topNav,
         },
       };
 

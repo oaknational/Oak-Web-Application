@@ -22,12 +22,16 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
   formattedData: CurriculumUnitsFormattedData;
   filters: CurriculumFilters;
-  onChangeFilters: (newFilter: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilter: CurriculumFilters,
+    componentType?: ComponentTypeValueType,
+  ) => void;
   slugs: CurriculumSelectionSlugs;
   basePath: string;
   selectedUnitSlug?: string;
@@ -83,10 +87,10 @@ export default function UnitsTab({
         id="curriculum-units"
         aria-labelledby="curriculum-unit-sequence-heading"
         tabIndex={-1}
-        $maxWidth={"all-spacing-24"}
+        $maxWidth={"spacing-1280"}
         $mh={"auto"}
-        $ph={["inner-padding-none", "inner-padding-l"]}
-        $mt={["space-between-none", "space-between-l", "space-between-l"]}
+        $ph={["spacing-0", "spacing-20"]}
+        $mt={["spacing-0", "spacing-48", "spacing-48"]}
         $width={"100%"}
         role="region"
       >
@@ -94,8 +98,8 @@ export default function UnitsTab({
           <OakHeading
             id="curriculum-unit-sequence-heading"
             tag="h2"
-            $mb="space-between-m"
-            $ml={["space-between-s", "space-between-none"]}
+            $mb="spacing-24"
+            $ml={["spacing-16", "spacing-0"]}
             $font={["heading-5", "heading-4"]}
           >
             Unit sequence

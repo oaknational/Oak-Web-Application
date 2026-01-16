@@ -62,7 +62,11 @@ const SearchResults = (props: SearchResultsProps) => {
   };
 
   return (
-    <OakFlex $background={"white"} $flexDirection="column" id="search-results">
+    <OakFlex
+      $background={"bg-primary"}
+      $flexDirection="column"
+      id="search-results"
+    >
       {hitCount ? (
         <OakUL $reset>
           {currentPageItemsWithSignPost.map((hit, index) => {
@@ -104,13 +108,12 @@ const SearchResults = (props: SearchResultsProps) => {
           })}
         </OakUL>
       ) : null}
-
       {hits.length > RESULTS_PER_PAGE && (
         <OakBox
           $width="100%"
-          $mt={["space-between-none", "auto"]}
-          $pb="inner-padding-xl7"
-          $pt="inner-padding-xl4"
+          $mt={["spacing-0", "auto"]}
+          $pb="spacing-72"
+          $pt="spacing-48"
         >
           <OakPagination
             {...paginationProps}

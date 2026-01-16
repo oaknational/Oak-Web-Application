@@ -1,9 +1,14 @@
 import { screen } from "@testing-library/react";
+import { usePathname } from "next/navigation";
 
 import SpecialistLesson from "./SpecialistLesson.view";
 
 import specialistLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/specialistLessonOverview.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+jest.mock("next/navigation");
+
+(usePathname as jest.Mock).mockReturnValue("/");
 
 const render = renderWithProviders();
 

@@ -24,7 +24,7 @@ const SubjectListingCardCountCardWithPathways: FC<
 > = ({ keyStageSlug, subjectPathwaysArray }) => {
   const { track } = useAnalytics();
   return (
-    <OakFlex $flexGrow={1} $gap={"all-spacing-3"}>
+    <OakFlex $flexGrow={1} $gap={"spacing-12"}>
       {subjectPathwaysArray.map((subjectPathway) => {
         const isLegacyLesson = !subjectPathway.hasNewContent;
 
@@ -62,7 +62,7 @@ const SubjectListingCardCountCardWithPathways: FC<
 
         return (
           <SubjectListingTextTile
-            $background={"white"}
+            $background={"bg-primary"}
             $flexDirection={"column"}
             $position={"relative"}
             key={pathwaySlug}
@@ -91,8 +91,8 @@ const SubjectListingCardCountCardWithPathways: FC<
               <OakBox $borderRadius={"border-radius-s"} $overflow={"hidden"}>
                 <OakFlex
                   $background={"bg-decorative3-very-subdued"}
-                  $ph={"inner-padding-m"}
-                  $height={"all-spacing-7"}
+                  $ph={"spacing-16"}
+                  $height={"spacing-32"}
                   $font={"body-3-bold"}
                   $alignItems={"center"}
                 >
@@ -102,7 +102,7 @@ const SubjectListingCardCountCardWithPathways: FC<
                 </OakFlex>
                 <OakFlex
                   $flexDirection={"column"}
-                  $pa="inner-padding-m"
+                  $pa="spacing-16"
                   $position={"relative"}
                 >
                   {!isLegacyLesson && (

@@ -51,15 +51,11 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
         });
   };
   return (
-    <OakBox $background={"aqua50"} $position={"relative"}>
-      <OakFlex
-        $flexDirection={"column"}
-        $pa={"inner-padding-xl"}
-        $gap={"all-spacing-4"}
-      >
+    <OakBox $background={"bg-decorative2-subdued"} $position={"relative"}>
+      <OakFlex $flexDirection={"column"} $pa={"spacing-24"} $gap={"spacing-16"}>
         <OakFlex $flexDirection={"row"} $alignItems={"center"}>
-          <OakIcon iconName="additional-material" $width={"all-spacing-5"} />
-          <OakP $ml={"space-between-ssx"} $font={"heading-7"}>
+          <OakIcon iconName="additional-material" $width={"spacing-20"} />
+          <OakP $ml={"spacing-8"} $font={"heading-7"}>
             {`${isPlural ? "Files" : "File"} needed for this lesson`}
           </OakP>
         </OakFlex>
@@ -67,7 +63,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           <OakUL
             $display={"flex"}
             $flexDirection={"column"}
-            $gap={"all-spacing-1"}
+            $gap={"spacing-4"}
             $reset
           >
             {additionalFiles.map((file, index) => {

@@ -112,16 +112,12 @@ export const QuizRenderer = (props: QuizRenderProps) => {
         as="form"
         id={formId}
         onSubmit={handleSubmit}
-        $maxWidth={["100%", "all-spacing-22", "all-spacing-23"]}
-        $minWidth={["100%", "all-spacing-21", "all-spacing-23"]}
-        $ph={["inner-padding-m", "inner-padding-none", "inner-padding-xl"]}
+        $maxWidth={["100%", "spacing-640", "spacing-960"]}
+        $minWidth={["100%", "spacing-480", "spacing-960"]}
+        $ph={["spacing-16", "spacing-0", "spacing-24"]}
         $height={"100%"}
       >
-        <OakFlex
-          $flexDirection={"column"}
-          $gap={"space-between-m"}
-          $height={"100%"}
-        >
+        <OakFlex $flexDirection={"column"} $gap={"spacing-24"} $height={"100%"}>
           {questionStem && (
             <QuizQuestionStem
               questionUid={currentQuestionData.questionUid}
@@ -144,7 +140,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
       $flexDirection={"column"}
       $alignItems={"center"}
       $color="text-subdued"
-      $pa={["inner-padding-none", "inner-padding-xl"]}
+      $pa={["spacing-0", "spacing-24"]}
       $width={"100%"}
       $height={"100%"}
     >

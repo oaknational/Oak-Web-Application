@@ -75,7 +75,7 @@ const MiniDropdown: FC<MiniDropdownProps> = ({
           >
             <OakSpan
               $font="heading-7"
-              $color={isOpen ? "navy120" : "navy"}
+              $color={isOpen ? "text-link-pressed" : "text-link-active"}
               $textDecoration={isHovered && !isOpen ? "underline" : "none"}
               $textAlign={"center"}
             >
@@ -84,7 +84,7 @@ const MiniDropdown: FC<MiniDropdownProps> = ({
             <OakIcon
               iconName={isOpen ? "chevron-up" : "chevron-down"}
               $colorFilter={isOpen ? "navy120" : "navy"}
-              $width="all-spacing-6"
+              $width="spacing-24"
               aria-hidden="true"
             />
           </OakFlex>

@@ -57,20 +57,12 @@ const stemComponents: PortableTextComponents = {
               title="An empty space to write an answer in"
               data-testid="underline"
             />{" "}
-            <OakCodeRenderer
-              string={text}
-              $font="code-3"
-              $mt={"space-between-ssx"}
-            />
+            <OakCodeRenderer string={text} $font="code-3" $mt={"spacing-8"} />
           </Fragment>
         );
       } else {
         return (
-          <OakCodeRenderer
-            string={text}
-            $font="code-3"
-            $mt={"space-between-ssx"}
-          />
+          <OakCodeRenderer string={text} $font="code-3" $mt={"spacing-8"} />
         );
       }
     },
@@ -78,13 +70,7 @@ const stemComponents: PortableTextComponents = {
       props: PortableTextTypeComponentProps<{ text: string; type: "code" }>,
     ) => {
       const text = props.value.text;
-      return (
-        <OakCodeRenderer
-          string={text}
-          $font="code-3"
-          $mt={"space-between-ssx"}
-        />
-      );
+      return <OakCodeRenderer string={text} $font="code-3" $mt={"spacing-8"} />;
     },
     math: (
       props: PortableTextTypeComponentProps<{

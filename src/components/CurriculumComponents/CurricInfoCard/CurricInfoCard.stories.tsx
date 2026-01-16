@@ -24,10 +24,10 @@ const meta: Meta<typeof CurricInfoCard> = {
   },
   parameters: {
     iconWidth: {
-      default: "all-spacing-11",
+      default: "spacing-64",
     },
     iconHeight: {
-      default: "all-spacing-12",
+      default: "spacing-72",
     },
     backgrounds: {
       default: "white",
@@ -43,6 +43,6 @@ export const Default: Story = {
   args: {
     children: "This is some information.",
     iconName: "search",
-    background: "mint30",
+    background: "bg-decorative1-very-subdued",
   },
 };

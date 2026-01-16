@@ -13,7 +13,6 @@ import {
   CampaignPage,
 } from "@/common-lib/cms-types/campaignPage";
 import CMSClient from "@/node-lib/cms";
-import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023, {
   KeyStagesData,
@@ -27,10 +26,13 @@ import {
   shouldSkipInitialBuild,
   getFallbackBlockingConfig,
 } from "@/node-lib/isr";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
   keyStages: KeyStagesData;
+  topNav: TopNavProps;
 };
 
 export const campaignTextStyles: PortableTextComponents = {
@@ -64,7 +66,7 @@ export const campaignTextStyles: PortableTextComponents = {
         <OakHeading
           $font={["heading-6", "heading-5", "heading-4"]}
           tag="h4"
-          $mb={"space-between-m"}
+          $mb={"spacing-24"}
         >
           {props.children}
         </OakHeading>
@@ -75,7 +77,7 @@ export const campaignTextStyles: PortableTextComponents = {
         <OakHeading
           $font={["heading-6", "heading-6", "heading-5"]}
           tag="h3"
-          $mb={"space-between-m"}
+          $mb={"spacing-24"}
         >
           {props.children}
         </OakHeading>
@@ -89,22 +91,21 @@ export const campaignTextStyles: PortableTextComponents = {
 const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
   return (
     <AppLayout
+      topNavProps={props.topNav}
       seoProps={{
         ...getSeoProps({
           ...props.campaign.seo,
           title: props.campaign.seo?.title || props.campaign.title,
           description: props.campaign.seo?.description,
         }),
-        noIndex: true,
-        noFollow: true,
       }}
     >
       <OakFlex
         $alignItems="center"
         $flexDirection="column"
         $width="100%"
-        $pv={"inner-padding-xl2"}
-        $ph={["inner-padding-l", "inner-padding-l", "inner-padding-xl5"]}
+        $pv={"spacing-32"}
+        $ph={["spacing-20", "spacing-20", "spacing-56"]}
       >
         <CampaignPageHeader
           campaignHeader={props.campaign.header}
@@ -209,11 +210,12 @@ export const getStaticProps: GetStaticProps<
           notFound: true,
         };
       }
-
+      const topNav = await curriculumApi2023.topNav();
       const results: GetStaticPropsResult<CampaignSinglePageProps> = {
         props: {
           campaign: campaignPageResult,
           keyStages,
+          topNav,
         },
       };
       return results;

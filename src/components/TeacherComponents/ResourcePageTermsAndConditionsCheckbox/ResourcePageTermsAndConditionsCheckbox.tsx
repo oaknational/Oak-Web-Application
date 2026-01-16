@@ -15,7 +15,7 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
 > = ({ checked, onChange, errorMessage, ...props }) => (
   <>
     {errorMessage && (
-      <OakBox $mb="space-between-s">
+      <OakBox $mb="spacing-16">
         <FieldError ariaLive="polite" id={"terms-error"} withoutMarginBottom>
           {errorMessage}
         </FieldError>
@@ -23,10 +23,10 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
     )}
     <OakBox
       $position={"relative"}
-      $background={"grey30"}
-      $pv="inner-padding-xs"
-      $ph="inner-padding-xs"
-      $mb="space-between-m"
+      $background={"bg-neutral-stronger"}
+      $pv="spacing-8"
+      $ph="spacing-8"
+      $mb="spacing-24"
       data-testid="termsCheckbox"
     >
       <BrushBorders hideOnMobileH hideOnMobileV color={"grey30"} />

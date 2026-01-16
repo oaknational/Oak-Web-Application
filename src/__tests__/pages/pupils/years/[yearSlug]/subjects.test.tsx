@@ -5,6 +5,7 @@ import PupilSubjectListing, {
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import { subjectBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/subjectBrowseData.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
@@ -13,7 +14,10 @@ jest.mock("next/router", () => require("next-router-mock"));
 describe("PupilSubjectListing", () => {
   it("renders correctly", () => {
     const { getByText } = render(
-      <PupilSubjectListing curriculumData={[subjectBrowseDataFixture({})]} />,
+      <PupilSubjectListing
+        curriculumData={[subjectBrowseDataFixture({})]}
+        topNav={topNavFixture}
+      />,
     );
 
     expect(getByText("Now choose a subject")).toBeInTheDocument();

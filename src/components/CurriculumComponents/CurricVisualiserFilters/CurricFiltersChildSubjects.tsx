@@ -14,10 +14,14 @@ import {
   presentAtKeyStageSlugs,
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersChildSubjectsProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilters: CurriculumFilters,
+    source: ComponentTypeValueType,
+  ) => void;
   data: CurriculumUnitsFormattedData<Unit>;
 };
 
@@ -39,7 +43,7 @@ export function CurricFiltersChildSubjects({
   );
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({ ...filters, [key]: [newValue] });
+    onChangeFilters({ ...filters, [key]: [newValue] }, "child_subject_button");
   }
 
   return (
@@ -50,8 +54,8 @@ export function CurricFiltersChildSubjects({
             id="child-subjects-label"
             tag="h4"
             $font={["heading-7", "heading-6"]}
-            $mt="space-between-none"
-            $mb={["space-between-m", "space-between-s"]}
+            $mt="spacing-0"
+            $mb={["spacing-24", "spacing-16"]}
           >
             Exam subject
             {childSubjectsAt.length === 1
@@ -64,7 +68,7 @@ export function CurricFiltersChildSubjects({
             value={String(filters.childSubjects[0]!)}
             $flexDirection="row"
             $flexWrap="wrap"
-            $gap="space-between-ssx"
+            $gap="spacing-8"
             aria-labelledby="child-subjects-label"
           >
             {childSubjects.map((childSubject) => (

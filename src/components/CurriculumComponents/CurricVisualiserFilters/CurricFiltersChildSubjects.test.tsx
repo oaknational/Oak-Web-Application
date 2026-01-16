@@ -3,11 +3,13 @@ import { act } from "@testing-library/react";
 import { CurricFiltersChildSubjects } from "./CurricFiltersChildSubjects";
 import { ks4Setup, ks3and4Setup } from "./CurricFiltersChildSubjects.fixtures";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricFiltersChildSubjects", () => {
   it("renders correctly ks4 only", () => {
-    const { getAllByRole, getByRole } = renderWithTheme(
+    const { getAllByRole, getByRole } = render(
       <CurricFiltersChildSubjects
         filters={{
           childSubjects: [],
@@ -31,7 +33,7 @@ describe("CurricFiltersChildSubjects", () => {
   });
 
   it("renders correctly ks3 & ks4", () => {
-    const { getAllByRole, getByRole } = renderWithTheme(
+    const { getAllByRole, getByRole } = render(
       <CurricFiltersChildSubjects
         filters={{
           childSubjects: [],
@@ -56,7 +58,7 @@ describe("CurricFiltersChildSubjects", () => {
 
   it("interacts correctly", () => {
     const onChangeFilters = jest.fn();
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole } = render(
       <CurricFiltersChildSubjects
         filters={{
           childSubjects: [],
@@ -75,31 +77,40 @@ describe("CurricFiltersChildSubjects", () => {
     expect(elements.length).toEqual(3);
 
     act(() => elements[0]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      childSubjects: ["biology"],
-      subjectCategories: [],
-      threads: [],
-      tiers: [],
-      years: ["10", "11"],
-      pathways: [],
-    });
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
+        childSubjects: ["biology"],
+        subjectCategories: [],
+        threads: [],
+        tiers: [],
+        years: ["10", "11"],
+        pathways: [],
+      },
+      "child_subject_button",
+    );
     act(() => elements[1]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      childSubjects: ["chemistry"],
-      subjectCategories: [],
-      threads: [],
-      tiers: [],
-      years: ["10", "11"],
-      pathways: [],
-    });
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
+        childSubjects: ["chemistry"],
+        subjectCategories: [],
+        threads: [],
+        tiers: [],
+        years: ["10", "11"],
+        pathways: [],
+      },
+      "child_subject_button",
+    );
     act(() => elements[2]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      childSubjects: ["physics"],
-      subjectCategories: [],
-      threads: [],
-      tiers: [],
-      years: ["10", "11"],
-      pathways: [],
-    });
+    expect(onChangeFilters).toHaveBeenCalledWith(
+      {
+        childSubjects: ["physics"],
+        subjectCategories: [],
+        threads: [],
+        tiers: [],
+        years: ["10", "11"],
+        pathways: [],
+      },
+      "child_subject_button",
+    );
   });
 });

@@ -15,10 +15,14 @@ import {
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurricFiltersSubjectCategoriesProps = {
   filters: CurriculumFilters;
-  onChangeFilters: (newFilters: CurriculumFilters) => void;
+  onChangeFilters: (
+    newFilters: CurriculumFilters,
+    source: ComponentTypeValueType,
+  ) => void;
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
 };
@@ -47,7 +51,10 @@ export function CurricFiltersSubjectCategories({
   ).filter((ks) => !childSubjectsAt.includes(ks));
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({ ...filters, [key]: [newValue] });
+    onChangeFilters(
+      { ...filters, [key]: [newValue] },
+      "subject_category_button",
+    );
   }
 
   const subjectCategoryIdAsString = useMemo(() => {
@@ -62,8 +69,8 @@ export function CurricFiltersSubjectCategories({
             id="subject-categories-label"
             tag="h4"
             $font={["heading-7", "heading-6"]}
-            $mt="space-between-none"
-            $mb={["space-between-m", "space-between-s"]}
+            $mt="spacing-0"
+            $mb={["spacing-24", "spacing-16"]}
           >
             Category
             {subjectCategoriesAt.length === 1
@@ -79,7 +86,7 @@ export function CurricFiltersSubjectCategories({
             value={subjectCategoryIdAsString}
             $flexDirection="row"
             $flexWrap="wrap"
-            $gap="space-between-ssx"
+            $gap="spacing-8"
             aria-labelledby="subject-categories-label"
           >
             {subjectCategories.map((subjectCategory) => {

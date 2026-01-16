@@ -202,18 +202,18 @@ const OnboardingForm = ({
   return (
     <OakFlex
       $flexDirection="column"
-      $gap="space-between-m"
+      $gap="spacing-24"
       $justifyContent={"center"}
       $alignSelf={"start"}
     >
       <OakFlex
         $flexDirection="column"
         $alignItems="flex-start"
-        $gap="all-spacing-8"
-        $pa="inner-padding-xl3"
+        $gap="spacing-40"
+        $pa="spacing-40"
         $dropShadow={[null, "drop-shadow-standard"]}
         $borderRadius="border-radius-m2"
-        $background={"white"}
+        $background={"bg-primary"}
         as="form"
         noValidate
         onSubmit={
@@ -232,22 +232,14 @@ const OnboardingForm = ({
             id={"form-legend"}
             $font="heading-6"
             as="legend"
-            $mb={props.subheading ? "space-between-ssx" : "space-between-m"}
-            $pa="inner-padding-none"
+            $mb={props.subheading ? "spacing-8" : "spacing-24"}
+            $pa="spacing-0"
           >
             {props.heading}
           </OakSpan>
-          <OakFlex
-            $gap="space-between-m"
-            $flexDirection={"column"}
-            $width="100%"
-          >
+          <OakFlex $gap="spacing-24" $flexDirection={"column"} $width="100%">
             {props.subheading && (
-              <OakP
-                $font="body-2"
-                $color="text-subdued"
-                $mb={"space-between-s"}
-              >
+              <OakP $font="body-2" $color="text-subdued" $mb={"spacing-16"}>
                 {props.subheading}
               </OakP>
             )}
@@ -259,16 +251,12 @@ const OnboardingForm = ({
                   type="error"
                   message={submitError}
                   $width="100%"
-                  $mt="space-between-m"
+                  $mt="spacing-24"
                 />
               )}
             </OakBox>
             <OakBox>{props.children}</OakBox>
-            <OakFlex
-              $pv="inner-padding-xl"
-              $gap="space-between-xs"
-              $flexDirection="column"
-            >
+            <OakFlex $pv="spacing-24" $gap="spacing-12" $flexDirection="column">
               <OakPrimaryButton
                 disabled={isSubmitting}
                 width="100%"

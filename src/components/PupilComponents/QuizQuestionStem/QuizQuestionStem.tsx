@@ -38,7 +38,7 @@ export const QuizQuestionStem = ({
     <CodeRenderWrapper>
       <OakFlex
         $flexDirection={"column"}
-        $gap={"space-between-s"}
+        $gap={"spacing-16"}
         $color={"text-primary"}
         $height={takeFullHeight ? "100%" : "auto"}
         $justifyContent={["center", "flex-start"]}
@@ -47,8 +47,8 @@ export const QuizQuestionStem = ({
           key="stem-header"
           $mt={
             takeFullHeight
-              ? ["space-between-none", "space-between-xl", "space-between-xxl"]
-              : "space-between-none"
+              ? ["spacing-0", "spacing-56", "spacing-72"]
+              : "spacing-0"
           }
         >
           {questionStem[0]?.type === "text" && (
@@ -77,7 +77,7 @@ export const QuizQuestionStem = ({
           } else if (stemItem.type === "image") {
             return (
               <OakFlex
-                $pv={"inner-padding-xl"}
+                $pv={"spacing-24"}
                 key={`q-${displayNumber}-stem-element-${i}`}
               >
                 {stemItem.imageObject.publicId && (
@@ -87,15 +87,15 @@ export const QuizQuestionStem = ({
                       height={stemItem.imageObject.height}
                       width={stemItem.imageObject.width}
                       alt={"An image in a quiz"}
-                      $minWidth={scaled ? "all-spacing-20" : "all-spacing-19"}
+                      $minWidth={scaled ? "spacing-360" : "spacing-240"}
                       placeholder="oak"
                       sizes={getSizes(["100vw", 1200])}
                       $background={"white"}
                       role="presentation"
                     />
                     <OakFlex
-                      $width={"all-spacing-7"}
-                      $height={"all-spacing-7"}
+                      $width={"spacing-32"}
+                      $height={"spacing-32"}
                       $pointerEvents={"auto"}
                     >
                       <OakScaleImageButton

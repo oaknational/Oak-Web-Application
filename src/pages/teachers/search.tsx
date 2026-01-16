@@ -14,13 +14,15 @@ import usePagination from "@/components/SharedComponents/Pagination/usePaginatio
 import { RESULTS_PER_PAGE } from "@/components/TeacherComponents/SearchResults";
 import getPageProps from "@/node-lib/getPageProps";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 type SearchPageProps = {
   curriculumData: SearchPageData;
+  topNav: TopNavProps;
 };
 
 const SearchPage: NextPage<SearchPageProps> = (props) => {
-  const { curriculumData } = props;
+  const { curriculumData, topNav } = props;
   const {
     subjects: allSubjects,
     keyStages: allKeyStages,
@@ -72,6 +74,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
         isLastPage={isLastPage}
       />
       <AppLayout
+        topNavProps={topNav}
         seoProps={{
           ...getSeoProps({
             title: `Search for Free Teaching Resources${paginationTitle}`,
@@ -79,7 +82,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
           }),
           noIndex: true,
         }}
-        $background="grey20"
+        $background="bg-btn-secondary-hover"
       >
         <Search
           {...searchProps}
@@ -99,10 +102,12 @@ export const getStaticProps: GetStaticProps<SearchPageProps> = async (
     context,
     getProps: async () => {
       const curriculumData = await curriculumApi2023.searchPage();
+      const topNav = await curriculumApi2023.topNav();
 
       const results = {
         props: {
           curriculumData,
+          topNav,
         },
       };
       return results;

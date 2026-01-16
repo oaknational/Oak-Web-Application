@@ -1,6 +1,8 @@
 import { FC, useId } from "react";
 import { OakMaxWidth } from "@oaknational/oak-components";
 
+import { TopNavProps } from "../AppComponents/TopNav/TopNav";
+
 import PostCategoryList, {
   PostCategoryPage,
 } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
@@ -44,6 +46,7 @@ type PostListingProps = {
     slug: CrumbPageVariant;
     title: string;
   };
+  topNav: TopNavProps;
 };
 
 const PostListing: FC<PostListingProps> = ({
@@ -55,6 +58,7 @@ const PostListing: FC<PostListingProps> = ({
   posts,
   variant,
   page,
+  topNav,
 }) => {
   const triggerId = useId();
 
@@ -67,8 +71,12 @@ const PostListing: FC<PostListingProps> = ({
   );
 
   return (
-    <Layout seoProps={getSeoProps(seo)} $background="white">
-      <OakMaxWidth $pt={"inner-padding-l"} $display={["none", "flex"]}>
+    <Layout
+      seoProps={getSeoProps(seo)}
+      $background="bg-primary"
+      topNavProps={topNav}
+    >
+      <OakMaxWidth $pt={"spacing-20"} $display={["none", "flex"]}>
         <Breadcrumbs
           breadcrumbs={getBlogWebinarListBreadcrumbs(
             categories,
@@ -79,8 +87,8 @@ const PostListing: FC<PostListingProps> = ({
         />
       </OakMaxWidth>
       <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $pt={["inner-padding-none", "inner-padding-xl", "inner-padding-xl"]}
+        $mb={["spacing-56", "spacing-80"]}
+        $pt={["spacing-0", "spacing-24", "spacing-24"]}
       >
         <SummaryCard
           {...pageData}
@@ -89,8 +97,8 @@ const PostListing: FC<PostListingProps> = ({
         <MobileFilters page={page} label={"Categories"}>
           <PostCategoryList
             labelledBy={triggerId}
-            $pv={"inner-padding-xl"}
-            $ph={"inner-padding-m"}
+            $pv={"spacing-24"}
+            $ph={"spacing-16"}
             categories={categories}
             selectedCategorySlug={categorySlug}
             page={page}
@@ -101,6 +109,7 @@ const PostListing: FC<PostListingProps> = ({
           {...postsWithCategories}
           blogs={postListItems}
           page={page}
+          topNav={topNav}
         />
       </OakMaxWidth>
       <PostListJsonLd blogs={posts} />

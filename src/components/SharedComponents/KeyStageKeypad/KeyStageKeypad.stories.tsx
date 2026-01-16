@@ -18,18 +18,18 @@ type Story = StoryObj<typeof Component>;
 export const KeyStageKeypad: Story = {
   render: () => {
     return (
-      <OakFlex $flexDirection={"column"} $pa="inner-padding-m">
+      <OakFlex $flexDirection={"column"} $pa="spacing-16">
         <OakFlex
-          $background={"mint50"}
-          $pa="inner-padding-m"
-          $mb="space-between-xs"
+          $background={"bg-decorative1-subdued"}
+          $pa="spacing-16"
+          $mb="spacing-12"
         >
           <Component {...keyStageKeypad} />
         </OakFlex>
         <OakFlex
-          $background={"mint50"}
-          $pa="inner-padding-m"
-          $mb="space-between-xs"
+          $background={"bg-decorative1-subdued"}
+          $pa="spacing-16"
+          $mb="spacing-12"
         >
           <Component
             keyStages={keyStageKeypad.keyStages}

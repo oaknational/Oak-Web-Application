@@ -21,9 +21,11 @@ import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSumma
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type AboutPageProps = {
-  pageData: AboutWorkWithUsPage;
+  pageData: AboutWorkWithUsPage & { topNav: TopNavProps };
 };
 
 const getWorkWithUsCards = (aboutPage: AboutWorkWithUsPage) => {
@@ -33,12 +35,17 @@ const getWorkWithUsCards = (aboutPage: AboutWorkWithUsPage) => {
 };
 
 const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
-  const { seo } = pageData;
+  const { seo, topNav } = pageData;
+
   return (
-    <Layout seoProps={getSeoProps(seo)} $background={"white"}>
+    <Layout
+      seoProps={getSeoProps(seo)}
+      $background={"bg-primary"}
+      topNavProps={topNav}
+    >
       <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxxl"]}
+        $mb={["spacing-56", "spacing-80"]}
+        $mt={["spacing-56", "spacing-80"]}
       >
         <GenericSummaryCard {...pageData} />
         <GenericIntroCard
@@ -50,9 +57,9 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           bodyPortableText={pageData.introPortableText}
         />
         <OakGrid
-          $mb={["space-between-xxl", "space-between-xxxl"]}
-          $cg={"space-between-m"}
-          $rg={["space-between-none", "space-between-m2"]}
+          $mb={["spacing-72", "spacing-80"]}
+          $cg={"spacing-24"}
+          $rg={["spacing-0", "spacing-32"]}
         >
           {getWorkWithUsCards(pageData).map((card) => (
             <Fragment key={card.title}>
@@ -61,12 +68,12 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                   <OakHeading
                     $font={["heading-6", "heading-5"]}
                     tag={"h2"}
-                    $mb={"space-between-m"}
+                    $mb={"spacing-24"}
                   >
                     {card.title}
                   </OakHeading>
                   <OakTypography
-                    $mb={"space-between-m2"}
+                    $mb={"spacing-32"}
                     $font={["body-2", "body-1"]}
                   >
                     <PortableTextWithDefaults value={card.bodyPortableText} />
@@ -109,7 +116,9 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
         previewMode: isPreviewMode,
       });
 
-      if (!aboutWorkWithUsPage) {
+      const topNavData = await curriculumApi2023.topNav();
+
+      if (!aboutWorkWithUsPage || !topNavData) {
         return {
           notFound: true,
         };
@@ -117,7 +126,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
 
       const results: GetStaticPropsResult<AboutPageProps> = {
         props: {
-          pageData: aboutWorkWithUsPage,
+          pageData: { ...aboutWorkWithUsPage, topNav: topNavData },
         },
       };
 

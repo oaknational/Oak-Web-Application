@@ -18,8 +18,8 @@ const SearchResultsSubjectIcon: FC<SearchResultsSubjectIconProps> = (props) => {
     <Circle $background={"pink"} size={56}>
       <OakIcon
         iconName={getValidSubjectIconName(subjectSlug)}
-        $height="all-spacing-8"
-        $width="all-spacing-8"
+        $height="spacing-40"
+        $width="spacing-40"
         alt=""
       />
     </Circle>
@@ -28,14 +28,14 @@ const SearchResultsSubjectIcon: FC<SearchResultsSubjectIconProps> = (props) => {
       $alignItems={"center"}
       $justifyContent={"center"}
       $borderRadius="border-radius-s"
-      $background={"lavender50"}
-      $height="all-spacing-10"
-      $width="all-spacing-10"
+      $background={"bg-decorative3-subdued"}
+      $height="spacing-56"
+      $width="spacing-56"
     >
       <OakIcon
         iconName={getValidSubjectIconName(subjectSlug)}
-        $height="all-spacing-8"
-        $width="all-spacing-8"
+        $height="spacing-40"
+        $width="spacing-40"
         alt=""
       />
     </OakFlex>

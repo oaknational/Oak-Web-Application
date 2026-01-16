@@ -80,13 +80,13 @@ const Page = () => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <OakFlex
-        $background={"lemon"}
+        $background={"bg-decorative5-main"}
         $width={"100vw"}
         $height={"100vh"}
         $flexDirection={"column"}
         $alignItems={"center"}
         $justifyContent={"center"}
-        $gap={"all-spacing-3"}
+        $gap={"spacing-12"}
       >
         <OakHeading tag="h1">Pupil AB Demo</OakHeading>
         <OakHeading tag="h2">

@@ -34,7 +34,7 @@ const CategoryFilterList = <T extends CategoryLinkProps>(
 
   return (
     <nav aria-labelledby={labelledBy}>
-      <OakUL {...boxProps} $reset $mr={"space-between-m2"}>
+      <OakUL {...boxProps} $reset $mr={"spacing-32"}>
         {categories.map((category) => {
           return (
             <CategoryFilterListItem

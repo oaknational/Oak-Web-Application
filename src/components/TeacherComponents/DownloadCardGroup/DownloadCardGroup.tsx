@@ -102,8 +102,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
             as={"legend"}
             tag={"h3"}
             $font={"body-3"}
-            $mb={"space-between-s"}
-            $mt={"space-between-xs"}
+            $mb={"spacing-16"}
+            $mt={"spacing-12"}
           >
             {groupTitle}
           </OakHeading>
@@ -112,8 +112,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
               $position="relative"
               $width="max-content"
               $gridTemplateColumns={["1fr", "1fr 1fr"]}
-              $cg={"space-between-s"}
-              $rg={"space-between-s"}
+              $cg={"spacing-16"}
+              $rg={"spacing-16"}
             >
               {filteredItems.map((download) => {
                 const downloadType =
@@ -133,7 +133,10 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
               })}
             </OakGrid>
           </OakBox>
-          <OakHandDrawnHR hrColor="grey40" $mt={"space-between-s"} />
+          <OakHandDrawnHR
+            hrColor="bg-interactive-element2"
+            $mt={"spacing-16"}
+          />
         </OakFieldset>
       </OakBox>
     );

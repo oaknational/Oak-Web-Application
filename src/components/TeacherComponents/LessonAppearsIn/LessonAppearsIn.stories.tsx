@@ -10,8 +10,8 @@ export default {
 } as Meta<typeof Component>;
 
 const Template: StoryFn<typeof Component> = (args) => (
-  <OakFlex $background={"pink50"}>
-    <OakMaxWidth $pa="inner-padding-xl8">
+  <OakFlex $background={"bg-decorative4-subdued"}>
+    <OakMaxWidth $pa="spacing-80">
       <Component {...args} />
     </OakMaxWidth>
   </OakFlex>

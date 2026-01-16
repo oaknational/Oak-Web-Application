@@ -7,7 +7,7 @@ import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 import { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import { ShareMediumValueType } from "@/browser-lib/avo/Avo";
-import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 const copyToClipboard = (textToCopy: string, callback: () => void) => {
   if (navigator.clipboard) {
@@ -26,7 +26,7 @@ const LessonShareLinks: FC<{
   onSubmit: (shareMedium: ShareMediumValueType) => void;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
-  const { setCurrentToastProps } = useOakToastContext();
+  const { setCurrentToastProps } = useOakNotificationsContext();
 
   useEffect(() => {
     setIsShareSuccessful(false);
@@ -35,14 +35,14 @@ const LessonShareLinks: FC<{
   return (
     <>
       <OakHeading
-        $mt="space-between-m"
-        $mb="space-between-sssx"
+        $mt="spacing-24"
+        $mb="spacing-4"
         tag={"h4"}
         $font={"heading-7"}
       >
         Share options:
       </OakHeading>
-      <OakFlex $flexWrap={"wrap"} $width={"100%"} $gap={"all-spacing-3"}>
+      <OakFlex $flexWrap={"wrap"} $width={"100%"} $gap={"spacing-12"}>
         <LoadingButton
           text={
             isShareSuccessful

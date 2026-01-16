@@ -1,6 +1,6 @@
 import assert from "assert";
 
-import { NextPage } from "next";
+import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -28,12 +28,19 @@ import CurriculumDownloads, {
 } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import getPageProps from "@/node-lib/getPageProps";
 
 type Document = ReturnType<
   typeof curriculumPreviousDownloadsFixture
 >["documents"][0];
 
-const CurriculumPreviousDownloadsPage: NextPage = () => {
+const CurriculumPreviousDownloadsPage = ({
+  topNav,
+}: {
+  topNav: TopNavProps;
+}) => {
   const router = useRouter();
   const data = curriculumPreviousDownloadsFixture();
   const [activeTab, setActiveTab] = useState<DownloadCategory>("EYFS");
@@ -74,7 +81,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
 
   for (const category of Object.keys(categoryDocuments) as DownloadCategory[]) {
     if (category == activeTab) {
-      categoryDocuments[category as DownloadCategory]?.forEach((document) => {
+      categoryDocuments[category]?.forEach((document) => {
         downloads.push({
           label: document.subject,
           url: `${LEGACY_DOWNLOADS_API_URL}/api/download-asset?type=curriculum-map&extension=pdf&id=${document.slug}`,
@@ -112,14 +119,15 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
           description: "Curriculum Previous Downloads",
         }),
       }}
-      $background={"white"}
+      $background={"bg-primary"}
+      topNavProps={topNav}
     >
-      <OakBox $background={"mint"} $pt="inner-padding-l">
+      <OakBox $background={"bg-decorative1-main"} $pt="spacing-20">
         <OakBox
-          $maxWidth={"all-spacing-24"}
+          $maxWidth={"spacing-1280"}
           $mh={"auto"}
-          $ph={"inner-padding-xl"}
-          $pb={"inner-padding-xl5"}
+          $ph={"spacing-24"}
+          $pb={"spacing-56"}
           $width={"100%"}
           data-testid="breadcrumbsContainer"
         >
@@ -148,35 +156,35 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
           />
 
           <OakHandDrawnHR
-            hrColor={"white"}
-            $height={"all-spacing-05"}
-            $mv={"space-between-m"}
+            hrColor={"bg-primary"}
+            $height={"spacing-2"}
+            $mv={"spacing-24"}
           />
           <OakFlex>
             <OakBox
-              $background={"mint30"}
-              $mr={"space-between-xs"}
+              $background={"bg-decorative1-very-subdued"}
+              $mr={"spacing-12"}
               $mv={"auto"}
               $position={"relative"}
             >
               <BrushBorders color="mint30" />
               <OakIcon
                 iconName={"download"}
-                $width={"all-spacing-16"}
-                $height={"all-spacing-16"}
+                $width={"spacing-120"}
+                $height={"spacing-120"}
                 data-testid="icon"
               />
             </OakBox>
-            <OakBox $ml="space-between-m2">
+            <OakBox $ml="spacing-32">
               <OakHeading
                 tag={"h1"}
                 $font={["heading-4", "heading-3"]}
-                $mb={"space-between-m"}
+                $mb={"spacing-24"}
                 data-testid="heading1"
               >
                 Previously released curricula
               </OakHeading>
-              <OakBox $maxWidth={"all-spacing-22"}>
+              <OakBox $maxWidth={"spacing-640"}>
                 <OakP $font="body-1" data-testid="description">
                   Download our curricula from previous academic years to explore
                   our curriculum sequences, lesson information and the
@@ -187,14 +195,13 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
           </OakFlex>
         </OakBox>
       </OakBox>
-
-      <OakBox $background={"mint30"}>
+      <OakBox $background={"bg-decorative1-very-subdued"}>
         <OakBox
           $display={["block", "none", "none"]}
-          $maxWidth={"all-spacing-24"}
+          $maxWidth={"spacing-1280"}
           $mh={"auto"}
-          $ph={"inner-padding-xl"}
-          $pv={"inner-padding-xl"}
+          $ph={"spacing-24"}
+          $pv={"spacing-24"}
           $width={"100%"}
         >
           <DropdownSelect
@@ -214,18 +221,18 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
         </OakBox>
         <OakBox
           $display={["none", "block", "block"]}
-          $maxWidth={"all-spacing-24"}
+          $maxWidth={"spacing-1280"}
           $mh={"auto"}
           $width={"100%"}
-          $ph={"inner-padding-xl2"}
-          $pt={"inner-padding-xl2"}
+          $ph={"spacing-32"}
+          $pt={"spacing-32"}
         >
-          <OakP $color="grey70" $font="heading-7" $mb={"space-between-m"}>
+          <OakP $color="text-primary" $font="heading-7" $mb={"spacing-24"}>
             Select a category:
           </OakP>
           <TabularNav
             $font={"heading-6"}
-            $maxWidth={"all-spacing-24"}
+            $maxWidth={"spacing-1280"}
             $mh={"auto"}
             label="Curriculum Selection"
             links={links}
@@ -233,7 +240,6 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
           />
         </OakBox>
       </OakBox>
-
       <CurriculumDownloads
         category={activeTab}
         downloads={downloads}
@@ -241,6 +247,24 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       />
     </AppLayout>
   );
+};
+
+export const getStaticProps: GetStaticProps<{ topNav: TopNavProps }> = async (
+  context,
+) => {
+  return getPageProps({
+    page: "teachers-curriculum-downloads::getStaticProps",
+    context,
+    getProps: async () => {
+      const topNav = await curriculumApi2023.topNav();
+
+      return {
+        props: {
+          topNav,
+        },
+      };
+    },
+  });
 };
 
 export default CurriculumPreviousDownloadsPage;

@@ -19,7 +19,8 @@ type PageProps = {
  */
 
 const Page = (props: PageProps) => {
-  const background = props.variantKey === "test" ? "lemon" : "mint";
+  const background =
+    props.variantKey === "test" ? "bg-decorative5-main" : "bg-decorative1-main";
 
   return (
     <OakFlex
@@ -29,7 +30,7 @@ const Page = (props: PageProps) => {
       $flexDirection={"column"}
       $alignItems={"center"}
       $justifyContent={"center"}
-      $gap={"all-spacing-2"}
+      $gap={"spacing-8"}
     >
       <OakHeading tag="h1">Server Side Rendered Page</OakHeading>
       <OakSpan>Variant Key: {props.variantKey}</OakSpan>

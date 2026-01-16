@@ -5,9 +5,9 @@ import { DOWNLOAD_TYPES } from "./helper";
 
 import CurriculumDownloadView, { CurriculumDownloadViewData } from ".";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
-const render = renderWithProviders();
+const render = renderWithProvidersByName(["theme", "oakTheme"]);
 
 jest.mock("@clerk/nextjs", () => ({
   useUser: jest.fn(() => ({
