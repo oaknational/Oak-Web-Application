@@ -83,6 +83,7 @@ function MainMenuButton({ title }: { title: string }) {
     <OakBox $width={"100%"}>
       <OakLI $listStyle={"none"}>
         <OakLeftAlignedButton
+          aria-haspopup={true}
           rightAlignIcon
           iconName="chevron-right"
           width={"100%"}
