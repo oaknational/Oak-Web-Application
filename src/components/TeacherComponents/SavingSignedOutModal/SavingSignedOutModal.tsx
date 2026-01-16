@@ -15,7 +15,7 @@ const SavingSignedOutModalContent = () => {
       <OakFlex $alignItems="start" $gap="spacing-12" $mb="spacing-24">
         <OakTagFunctional
           label="New"
-          $background="mint"
+          $background="bg-decorative1-main"
           $color="text-primary"
           $ph="spacing-4"
         />

@@ -6,7 +6,7 @@ import {
   OakFlex,
   oakDefaultTheme,
   OakThemeProvider,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
@@ -53,7 +53,7 @@ export type LayoutProps = {
   headerVariant?: HeaderVariant;
   footerVariant?: FooterVariant;
   breadcrumbs?: Breadcrumb[];
-  $background?: OakColorToken;
+  $background?: OakUiRoleToken;
   headerCta?: CTA | null;
   banner?: React.ReactNode;
   skipLinkHref?: string;
@@ -92,6 +92,7 @@ const Layout: FC<LayoutProps> = (props) => {
           $zIndex={"in-front"}
           $top={"spacing-92"}
           $left={"spacing-24"}
+          $display={newTopNavEnabled ? "none" : "block"}
         >
           <SkipLink href={props.skipLinkHref ?? "#main"}>
             Skip to content

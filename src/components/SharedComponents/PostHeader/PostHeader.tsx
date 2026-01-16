@@ -29,7 +29,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
         $justifyContent="space-between"
         $flexDirection={["column", "row"]}
       >
-        <OakHeading tag={"h2"} $color="navy" $font={["heading-7"]}>
+        <OakHeading tag={"h2"} $color="text-link-active" $font={["heading-7"]}>
           <OwaLink page={page} categorySlug={post.category.slug}>
             {post.category.title}
           </OwaLink>
@@ -59,7 +59,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
                 {author.name}
               </OakHeading>
               {author.role && (
-                <OakP $mt="spacing-4" $font={"body-3"} $color={"grey60"}>
+                <OakP $mt="spacing-4" $font={"body-3"} $color={"text-subdued"}>
                   {author.role}
                 </OakP>
               )}

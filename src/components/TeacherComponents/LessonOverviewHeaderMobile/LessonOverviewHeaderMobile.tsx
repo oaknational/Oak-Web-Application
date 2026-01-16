@@ -90,7 +90,7 @@ export const LessonOverviewHeaderMobile: FC<
         </OakBox>
         <OakFlex $flexDirection={"column"} $gap="spacing-8">
           {(examBoardTitle || yearTitle || tierTitle) && (
-            <OakSpan $color={"grey60"} $font={"heading-light-7"}>
+            <OakSpan $color={"text-subdued"} $font={"heading-light-7"}>
               <LessonMetadata
                 examBoardTitle={examBoardTitle}
                 yearTitle={yearTitle}

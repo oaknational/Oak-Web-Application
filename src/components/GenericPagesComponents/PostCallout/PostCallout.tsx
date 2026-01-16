@@ -17,7 +17,7 @@ const PostCallout = (
       $mt="spacing-56"
       $pv="spacing-24"
       $ph="spacing-16"
-      $background="lemon50"
+      $background="bg-decorative5-subdued"
     >
       <PortableTextWithDefaults
         value={props.value.body}

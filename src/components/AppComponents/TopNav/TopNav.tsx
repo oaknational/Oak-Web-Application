@@ -1,20 +1,28 @@
 "use client";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
 import TopNavDropdown from "./TopNavDropdown/TopNavDropdown";
 
-import { OakFlex, OakIcon, OakImage, OakLink } from "@/styles/oakThemeApp";
+import {
+  OakBox,
+  OakFlex,
+  OakIcon,
+  OakImage,
+  OakLink,
+} from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useSelectedArea from "@/hooks/useSelectedArea";
+import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import {
   TeachersSubNavData,
   PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 export type TopNavProps = {
   teachers: TeachersSubNavData | null;
@@ -40,8 +48,34 @@ const TopNav = (props: TopNavProps) => {
     [selectedMenu],
   );
 
+  const { setCurrentBannerProps } = useOakNotificationsContext();
+
+  useEffect(() => {
+    if (
+      (activeArea === "PUPILS" && !pupils) ||
+      (activeArea === "TEACHERS" && !teachers)
+    ) {
+      setCurrentBannerProps({
+        message:
+          "We’re experiencing a temporary technical issue. Thank you for your patience while we look into it.",
+        type: "warning",
+        isOpen: true,
+      });
+    } else {
+      setCurrentBannerProps(null);
+    }
+  }, [teachers, pupils, activeArea, setCurrentBannerProps]);
+
   return (
-    <header>
+    <OakBox as="header" $position="relative" data-testid="app-topnav">
+      <OakBox
+        $position={"absolute"}
+        $zIndex={"in-front"}
+        $top={"spacing-160"} // TD: [integrated journey] adjust position when dropdown is open
+        $left={"spacing-24"}
+      >
+        <SkipLink href={"#main"}>Skip to content</SkipLink>
+      </OakBox>
       <OakFlex
         $background={"bg-btn-primary"}
         $ph={["spacing-20", "spacing-40"]}
@@ -133,7 +167,7 @@ const TopNav = (props: TopNavProps) => {
             />
           </OakFlex>
         )}
-    </header>
+    </OakBox>
   );
 };
 

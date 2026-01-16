@@ -12,8 +12,12 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { ReactNode } from "react";
+import { PortableTextReactComponents } from "@portabletext/react";
 
 import { InnerMaxWidth } from "../InnerMaxWidth";
+
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { PortableTextJSON } from "@/common-lib/cms-types";
 
 const CustomHeaderTextOakGridArea = styled(OakGridArea)`
   grid-column: span 6;
@@ -91,9 +95,24 @@ export function AboutSharedHeaderImage({
   );
 }
 
+const portableTextComponents: Partial<PortableTextReactComponents> = {
+  block: {
+    normal: (props) => {
+      return (
+        <OakP
+          $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
+          $color={"text-primary"}
+        >
+          {props.children}
+        </OakP>
+      );
+    },
+  },
+};
+
 export type AboutSharedHeaderProps = {
   title: string;
-  content: string;
+  content: PortableTextJSON | string;
   children?: ReactNode;
   titleHighlight?: OakCombinedColorToken;
 };
@@ -121,16 +140,24 @@ export function AboutSharedHeader({
                   {title}
                 </OakSpan>
               </OakHeading>
-              <OakP
-                $font={[
-                  "heading-light-5",
-                  "heading-light-3",
-                  "heading-light-3",
-                ]}
-                $color={"text-primary"}
-              >
-                {content}
-              </OakP>
+              {typeof content === "string" ? (
+                <OakP
+                  $font={[
+                    "heading-light-5",
+                    "heading-light-3",
+                    "heading-light-3",
+                  ]}
+                  $color={"text-primary"}
+                >
+                  {content}
+                </OakP>
+              ) : (
+                <PortableTextWithDefaults
+                  value={content}
+                  withoutDefaultComponents={true}
+                  components={portableTextComponents}
+                />
+              )}
             </OakFlex>
           </CustomHeaderTextOakGridArea>
           <CustomHeaderImageOakGridArea $colSpan={4} $colStart={9}>

@@ -7,7 +7,7 @@ import {
   OakHandDrawnCardWithIcon,
   OakHandDrawnHR,
   OakBox,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import CurriculumHeaderTabNav from "../CurriculumHeaderTabNav";
@@ -34,8 +34,8 @@ export type CurriculumHeaderPageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   keyStages: string[];
-  color1?: OakColorToken;
-  color2?: OakColorToken;
+  color1?: OakUiRoleToken;
+  color2?: OakUiRoleToken;
   tab: "overview" | "units" | "downloads";
 };
 
@@ -134,7 +134,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           />
 
           <OakHandDrawnHR
-            hrColor={"white"}
+            hrColor={"bg-primary"}
             $height={"spacing-2"}
             $mv={"spacing-32"}
           />
@@ -161,7 +161,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               >
                 <OakHandDrawnCardWithIcon
                   iconName={getValidSubjectIconName(subject.slug)}
-                  fill={"mint50"}
+                  fill={"bg-decorative1-subdued"}
                   iconWidth={["spacing-80", "spacing-64"]}
                   iconHeight={["spacing-80", "spacing-64"]}
                   $width="spacing-80"
@@ -192,8 +192,8 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           </OakBox>
         </OakFlex>
         <OakFlex
-          $borderColor="mint30"
-          $background={"mint"}
+          $borderColor="bg-decorative1-very-subdued"
+          $background={"bg-decorative1-main"}
           $bt={"border-solid-m"}
         >
           <OakBox
@@ -214,7 +214,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 subjectTitle: currentSelection.subject.title,
                 phaseSlug: currentSelection.phase.slug as PhaseValueType,
               }}
-              $background={"mint"}
+              $background={"bg-decorative1-main"}
             />
           </OakBox>
         </OakFlex>

@@ -169,7 +169,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
               {signUpProps?.showNewTag && (
                 <OakTagFunctional
                   label="New"
-                  $background="mint"
+                  $background="bg-decorative1-main"
                   $color="text-primary"
                   $pv={"spacing-0"}
                 />
@@ -196,7 +196,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
               {actionProps?.showNewTag && !actionProps?.loading && (
                 <OakTagFunctional
                   label="New"
-                  $background="mint"
+                  $background="bg-decorative1-main"
                   $color="text-primary"
                   $pv={"spacing-0"}
                 />

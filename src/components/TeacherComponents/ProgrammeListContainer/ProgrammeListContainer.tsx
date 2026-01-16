@@ -2,20 +2,20 @@ import { FC } from "react";
 import {
   OakGridArea,
   OakGridAreaProps,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 export type ProgrammeListContainer = {
   children?: React.ReactNode;
   numberOfProgrammes?: number;
-  $background?: OakColorToken;
+  $background?: OakUiRoleToken;
 } & OakGridAreaProps;
 
 const ProgrammeListContainer: FC<ProgrammeListContainer> = (props) => {
   const {
     children,
     numberOfProgrammes,
-    $background = "lavender30",
+    $background = "bg-decorative3-very-subdued",
     ...gridAreaProps
   } = props;
   return (

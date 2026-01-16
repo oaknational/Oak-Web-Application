@@ -32,7 +32,7 @@ Default.args = {
   hideBottom: false,
   hideRight: false,
   hideLeft: false,
-  $color: "black",
+  $color: "text-primary",
   hideOnMobileH: false,
   hideOnMobileV: false,
 };

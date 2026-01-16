@@ -23,7 +23,7 @@ export function ModalContent({
         $position={"relative"}
         $justifyContent={"center"}
         $alignItems={"center"}
-        $borderColor={"grey30"}
+        $borderColor={"border-neutral-lighter"}
       >
         {title && (
           <OakHeading tag="h3" $font={"heading-1"} data-testid="modal-title">
@@ -59,12 +59,12 @@ export function ModalContent({
         <OakFlex
           data-testid="modal-footer"
           $width={"100%"}
-          $background={"white"}
+          $background={"bg-primary"}
           $ph={"spacing-16"}
           $pv={"spacing-12"}
           $justifyContent={"left"}
           $bt={"border-solid-s"}
-          $borderColor={"grey30"}
+          $borderColor={"border-neutral-lighter"}
         >
           {footer}
         </OakFlex>
