@@ -5,13 +5,15 @@
  *
  */
 
-import { StemObject } from "../shared.schema";
+import {
+  MatchAnswer,
+  MCAnswer,
+  OrderAnswer,
+  ShortAnswer,
+  StemObject,
+} from "../shared.schema";
 
 import {
-  MCAnswer,
-  ShortAnswer,
-  OrderAnswer,
-  MatchAnswer,
   ImageItem,
   QuizQuestion,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
@@ -274,7 +276,7 @@ export const matchAnswers: MatchAnswer[] = [
   },
 ];
 
-export const quizQuestions: NonNullable<QuizQuestion>[] = [
+export const quizQuestions: NonNullable<QuizQuestion[]> = [
   {
     hint: "Main clause is the most powerful of the clauses.",
     active: false,

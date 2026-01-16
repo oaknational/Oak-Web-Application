@@ -19,9 +19,9 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { PupilViewsResults } from "@/components/PupilViews/PupilResults";
-import { convertQuizes } from "@/pages-helpers/pupil/lessons-pages/getProps";
 import { useOakPupil } from "@/hooks/useOakPupil";
 import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
+import { convertQuestionMathIdentity } from "@/pages-helpers/shared/lesson-pages/quizMathjax";
 
 export type CanonicalResultsPrintablePageProps = {
   browseData: LessonBrowseData;
@@ -127,7 +127,9 @@ export const getStaticProps: GetStaticProps<
           props: {
             browseData,
             content: {
-              ...convertQuizes(content),
+              ...content,
+              starterQuiz: convertQuestionMathIdentity(content.starterQuiz),
+              exitQuiz: convertQuestionMathIdentity(content.exitQuiz),
             },
             attemptId,
           },

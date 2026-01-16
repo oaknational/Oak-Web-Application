@@ -30,12 +30,12 @@ import {
 } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { QuizCorrectAnswers } from "@/components/PupilComponents/QuizCorrectAnswers";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { useGetQuizTrackingData } from "@/hooks/useGetQuizTrackingData";
 import { shortAnswerInputId } from "@/components/PupilComponents/QuizShortAnswer";
 import { multipleChoiceAnswerId } from "@/components/PupilComponents/QuizMCQMultiAnswer";
+import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -318,7 +318,7 @@ export const PupilViewsQuiz = ({ questionsArray }: PupilViewsQuizProps) => {
   );
 };
 
-function pickTooltip(answers: QuizQuestionAnswers) {
+function pickTooltip(answers: AnswersSchema) {
   switch (true) {
     case isOrderAnswer(answers):
       return "You need to order to move on!";
@@ -333,10 +333,7 @@ function pickTooltip(answers: QuizQuestionAnswers) {
   }
 }
 
-function pickTabId(
-  answers: QuizQuestionAnswers,
-  questionUid: string | undefined,
-) {
+function pickTabId(answers: AnswersSchema, questionUid: string | undefined) {
   switch (true) {
     case isOrderAnswer(answers):
       return OakQuizOrderitemId("1");

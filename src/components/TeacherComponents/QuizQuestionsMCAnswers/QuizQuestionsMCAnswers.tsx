@@ -23,7 +23,7 @@ export const QuizQuestionsMCAnswers = (props: {
   const containsImages =
     answers.filter(
       (choice) =>
-        choice.answer.filter((answerItem) => answerItem.type === "image")
+        choice.answer.filter((answerItem) => answerItem?.type === "image")
           .length > 0,
     ).length > 0;
 
@@ -36,7 +36,7 @@ export const QuizQuestionsMCAnswers = (props: {
     >
       {answers.map((choice, i) => {
         const imageAnswers = choice.answer.filter(
-          (answerItem) => answerItem.type === "image",
+          (answerItem) => answerItem?.type === "image",
         );
         const encloseAnswer = imageAnswers.length > 0;
         const imageAnswer =
@@ -58,7 +58,7 @@ export const QuizQuestionsMCAnswers = (props: {
             $maxWidth={encloseAnswer ? 450 : "100%"}
           >
             {choice.answer.map((answerItem, j) => {
-              if (answerItem.type === "text" && !choice.answerIsCorrect) {
+              if (answerItem?.type === "text" && !choice.answerIsCorrect) {
                 return (
                   <Typography
                     key={`q-${questionNumber}-answer-element-${j}`}
@@ -68,7 +68,10 @@ export const QuizQuestionsMCAnswers = (props: {
                     <Stem stem={answerItem} />
                   </Typography>
                 );
-              } else if (answerItem.type === "text" && choice.answerIsCorrect) {
+              } else if (
+                answerItem?.type === "text" &&
+                choice.answerIsCorrect
+              ) {
                 return (
                   <OakFlex
                     key={`q-${questionNumber}-answer-element-${j}`}
@@ -92,12 +95,12 @@ export const QuizQuestionsMCAnswers = (props: {
                     </OakTypography>
                   </OakFlex>
                 );
-              } else if (answerItem.type === "image") {
+              } else if (answerItem?.type === "image") {
                 return imageAnswer ? (
                   <QuizImageAnswer
                     key={`q-${questionNumber}-answer-element-${j}`}
-                    src={answerItem.imageObject}
-                    answerIsCorrect={choice.answerIsCorrect && imageAnswer}
+                    src={answerItem?.imageObject}
+                    answerIsCorrect={!!choice.answerIsCorrect && imageAnswer}
                     alt="An image in a quiz"
                   />
                 ) : (

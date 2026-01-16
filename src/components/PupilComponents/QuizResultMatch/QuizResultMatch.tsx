@@ -4,8 +4,8 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
-import { MatchAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { QuestionFeedbackType } from "@/components/PupilComponents/QuizUtils/questionTypes";
+import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type QuizResultMatchProps = {
   answers: MatchAnswer[];

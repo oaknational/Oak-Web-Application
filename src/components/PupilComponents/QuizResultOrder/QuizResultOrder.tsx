@@ -4,11 +4,11 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
-import { OrderAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import {
   PupilAnswerOrder,
   QuestionFeedbackType,
 } from "@/components/PupilComponents/QuizUtils/questionTypes";
+import { OrderAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type QuizResultOrderProps = {
   answers: OrderAnswer[];

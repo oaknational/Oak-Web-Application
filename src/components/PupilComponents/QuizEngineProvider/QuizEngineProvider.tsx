@@ -9,10 +9,7 @@ import React, {
 
 import { usePupilAnalytics } from "../PupilAnalyticsProvider/usePupilAnalytics";
 
-import type {
-  QuizQuestion,
-  MCAnswer,
-} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import type { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import {
   isLessonReviewSection,
   useLessonEngineContext,
@@ -32,6 +29,7 @@ import {
   isMatchAnswer,
   isOrderAnswer,
 } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
+import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type QuestionsArray = NonNullable<QuizQuestion[]>;
 
@@ -176,6 +174,8 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       const feedback = questionAnswers?.map((answer) => {
         // every answer receives feedback whether the student has selected it or not
         // which are the correct choices are implied by the combination of whether it is selected and the feedback
+        console.log("diego array", pupilAnswerArray[0]);
+        console.log("diego answer", answer);
         if (pupilAnswerArray.includes(answer)) {
           // Where pupils have selected an answer
           return correctAnswers?.includes(answer) ? "correct" : "incorrect";

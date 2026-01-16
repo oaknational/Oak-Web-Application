@@ -9,48 +9,30 @@ import {
   lessonContentSchema as lessonContentSchemaFull,
   syntheticUnitvariantLessonsSchema,
   quizQuestionSchema,
-  multipleChoiceSchema,
-  shortAnswerSchema,
-  orderSchema,
-  matchSchema,
   imageItemSchema,
   textItemSchema,
   additionalFileObjectSchema,
   additionalFilesSchema,
 } from "@oaknational/oak-curriculum-schema";
 
+import { AnswersSchema } from "../../shared.schema";
+
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
-import { QuizQuestionWithHtml } from "@/pages-helpers/pupil/lessons-pages/getProps";
 import { ConvertTextItem } from "@/components/SharedComponents/Stem";
 
 export type QuizQuestion = ConvertTextItem<
   ConvertKeysToCamelCase<z.infer<typeof quizQuestionSchema>>
 > & {
-  answers?: QuizQuestionAnswers | null;
+  answers?: AnswersSchema | null;
 };
 
-export type QuizQuestionAnswers = {
-  "multiple-choice"?: MCAnswer[];
-  "short-answer"?: ShortAnswer[];
-  order?: OrderAnswer[];
-  match?: MatchAnswer[];
+export type QuizQuestionWithHtml = QuizQuestion & {
+  questionStem?:
+    | (QuizQuestion["questionStem"] & {
+        html?: string;
+      })
+    | null;
 };
-
-export type MCAnswer = ConvertTextItem<
-  ConvertKeysToCamelCase<z.infer<typeof multipleChoiceSchema>>
->;
-
-export type ShortAnswer = ConvertTextItem<
-  ConvertKeysToCamelCase<z.infer<typeof shortAnswerSchema>>
->;
-
-export type OrderAnswer = ConvertTextItem<
-  ConvertKeysToCamelCase<z.infer<typeof orderSchema>>
->;
-
-export type MatchAnswer = ConvertTextItem<
-  ConvertKeysToCamelCase<z.infer<typeof matchSchema>>
->;
 
 export type ImageItem = ConvertKeysToCamelCase<z.infer<typeof imageItemSchema>>;
 export type TextItem = ConvertKeysToCamelCase<z.infer<typeof textItemSchema>>;

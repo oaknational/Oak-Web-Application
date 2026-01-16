@@ -3,10 +3,10 @@ import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import { QuizAttribution } from "../QuizAttribution/QuizAttribution";
 
-import type { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
+import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type QuizRenderProps = {
   formId: string;

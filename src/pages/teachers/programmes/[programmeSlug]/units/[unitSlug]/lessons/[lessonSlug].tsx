@@ -26,7 +26,7 @@ import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNot
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import Banners from "@/components/SharedComponents/Banners";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { convertQuestionMath } from "@/pages-helpers/shared/lesson-pages/quizMathjax";
+import { convertQuestionMathIdentity } from "@/pages-helpers/shared/lesson-pages/quizMathjax";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -203,8 +203,10 @@ export const getStaticProps: GetStaticProps<
         props: {
           curriculumData: {
             ...lessonPageData,
-            starterQuiz: convertQuestionMath(lessonPageData.starterQuiz),
-            exitQuiz: convertQuestionMath(lessonPageData.exitQuiz),
+            starterQuiz: convertQuestionMathIdentity(
+              lessonPageData.starterQuiz,
+            ),
+            exitQuiz: convertQuestionMathIdentity(lessonPageData.exitQuiz),
           },
           topNav,
         },

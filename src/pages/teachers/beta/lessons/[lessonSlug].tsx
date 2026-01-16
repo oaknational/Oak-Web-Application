@@ -8,7 +8,7 @@ import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/l
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
-import { convertQuestionMath } from "@/pages-helpers/shared/lesson-pages/quizMathjax";
+import { convertQuestionMathIdentity } from "@/pages-helpers/shared/lesson-pages/quizMathjax";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 export type TeacherPreviewLessonPageProps = {
@@ -80,8 +80,10 @@ export const getStaticProps: GetStaticProps<
           topNav,
           curriculumData: {
             ...curriculumData,
-            starterQuiz: convertQuestionMath(curriculumData.starterQuiz),
-            exitQuiz: convertQuestionMath(curriculumData.exitQuiz),
+            starterQuiz: convertQuestionMathIdentity(
+              curriculumData.starterQuiz,
+            ),
+            exitQuiz: convertQuestionMathIdentity(curriculumData.exitQuiz),
           },
         },
       };

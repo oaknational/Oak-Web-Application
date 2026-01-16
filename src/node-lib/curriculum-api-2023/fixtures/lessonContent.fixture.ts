@@ -2,7 +2,7 @@ import { lessonContentFixture as lessonContentFixtureSnake } from "@oaknational/
 
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { convertQuizes } from "@/pages-helpers/pupil/lessons-pages/getProps";
+import { convertQuestionMathIdentity } from "@/pages-helpers/shared/lesson-pages/quizMathjax";
 
 export const lessonContentFixture = (
   overrides: Partial<LessonContent>,
@@ -14,5 +14,9 @@ export const lessonContentFixture = (
     ...overrides,
   };
 
-  return convertQuizes(content);
+  return {
+    ...content,
+    starterQuiz: convertQuestionMathIdentity(content.starterQuiz),
+    exitQuiz: convertQuestionMathIdentity(content.exitQuiz),
+  };
 };

@@ -10,8 +10,8 @@ import { QuizOrderAnswer } from "./QuizOrderAnswer";
 
 import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { OrderAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { stemToPortableText } from "@/utils/portableText";
+import { OrderAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 jest.mock("@oaknational/oak-components", () => {
   return {

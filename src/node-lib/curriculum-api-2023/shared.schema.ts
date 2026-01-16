@@ -87,9 +87,9 @@ export type StemObject = StemPortableText | StemImageObject;
 
 const mcAnswer = z.object({
   answer: z
-    .array(z.union([stemTextObjectSchema, stemImageObjectSchema]))
+    .array(z.union([stemTextObjectSchema, stemImageObjectSchema]).optional())
     .min(1),
-  answerIsCorrect: z.boolean(),
+  answerIsCorrect: z.boolean().optional(),
 });
 
 export type MCAnswer = z.infer<typeof mcAnswer>;
@@ -116,10 +116,10 @@ const shortAnswer = z.object({
 export type ShortAnswer = z.infer<typeof shortAnswer>;
 
 const answersSchema = z.object({
-  "multiple-choice": z.array(mcAnswer).nullable().optional(),
-  match: z.array(matchAnswer).nullable().optional(),
-  order: z.array(orderAnswer).nullable().optional(),
-  "short-answer": z.array(shortAnswer).nullable().optional(),
+  "multiple-choice": z.array(mcAnswer).nullish(),
+  match: z.array(matchAnswer).nullish(),
+  order: z.array(orderAnswer).nullish(),
+  "short-answer": z.array(shortAnswer).nullish(),
   "explanatory-text": z.null().optional(),
 });
 

@@ -1,4 +1,7 @@
-import { convertQuestionItem, convertQuestionMath } from "./quizMathjax";
+import {
+  convertQuestionItem,
+  convertQuestionMathIdentity,
+} from "./quizMathjax";
 
 import { PortableTextText } from "@/utils/portableText";
 import { StemPortableText } from "@/components/SharedComponents/Stem";
@@ -32,9 +35,9 @@ describe("convertQuestionItem", () => {
   });
 });
 
-describe("convertQuestionMath", () => {
+describe("convertQuestionMathIdentity", () => {
   it("converts quit items", () => {
-    const result = convertQuestionMath([
+    const result = convertQuestionMathIdentity([
       {
         questionId: 1,
         questionUid: "1",

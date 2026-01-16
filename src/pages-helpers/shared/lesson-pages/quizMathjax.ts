@@ -4,42 +4,33 @@ import {
   LessonOverviewQuizData,
   StemImageObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { stemToPortableText } from "@/utils/portableText";
 import { StemPortableText } from "@/components/SharedComponents/Stem";
+import {
+  QuizQuestion,
+  QuizQuestionWithHtml,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
-export function convertQuestionItem<T extends TextItem | StemImageObject>(
-  answer: T,
-): T | StemPortableText {
-  if (answer && answer.type === "text") {
-    const portableText = stemToPortableText(answer.text);
-    return {
-      ...answer,
-      portableText,
-    };
-  }
-  return answer;
-}
+/**
+ * Functions to convert mathjax within pupil and teacher quizzes into server rendered SVGs
+ */
+export function convertQuestionMathIdentity<T extends LessonOverviewQuizData>(
+  value: T,
+): T;
 
-export function convertQuestionItemArray<
-  T extends { answer?: Array<TextItem | StemImageObject> },
->(item: T) {
-  if (item.answer && item.answer.length > 0) {
-    const newItemAnswer = item.answer.map(convertQuestionItem);
-    return {
-      ...item,
-      answer: newItemAnswer,
-    };
-  } else {
-    return item;
-  }
-}
+export function convertQuestionMathIdentity<T extends QuizQuestionWithHtml[]>(
+  questions: T,
+): T;
 
-export function convertQuestionMath(questions: LessonOverviewQuizData) {
+export function convertQuestionMathIdentity<
+  T extends QuizQuestion[] | LessonOverviewQuizData,
+>(questions: T) {
   return questions?.map((question) => {
     let newQuestionStem = question.questionStem;
     if (question.questionStem) {
-      newQuestionStem = question.questionStem.map(convertQuestionItem);
+      newQuestionStem = question.questionStem
+        .map(convertQuestionItem)
+        .filter((q) => !!q);
     }
     const newAnswers = question.answers;
     if (newAnswers) {
@@ -83,10 +74,29 @@ export function convertQuestionMath(questions: LessonOverviewQuizData) {
   });
 }
 
-export function convertQuizzes(content: LessonOverviewPageData) {
-  return {
-    ...content,
-    starterQuiz: convertQuestionMath(content.starterQuiz),
-    exitQuiz: convertQuestionMath(content.exitQuiz),
-  };
+export function convertQuestionItem<
+  T extends TextItem | StemImageObject | undefined,
+>(answer: T): T | StemPortableText {
+  if (answer && answer.type === "text") {
+    const portableText = stemToPortableText(answer.text);
+    return {
+      ...answer,
+      portableText,
+    };
+  }
+  return answer;
+}
+
+export function convertQuestionItemArray<
+  T extends { answer?: Array<TextItem | StemImageObject | undefined> },
+>(item: T) {
+  if (item.answer && item.answer.length > 0) {
+    const newItemAnswer = item.answer.map(convertQuestionItem);
+    return {
+      ...item,
+      answer: newItemAnswer,
+    };
+  } else {
+    return item;
+  }
 }
