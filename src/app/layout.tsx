@@ -18,6 +18,7 @@ import {
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "@/image-data";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 
 // https://nextjs.org/docs/app/getting-started/metadata-and-og-images
 export const metadata: Metadata = {
@@ -83,9 +84,11 @@ export default function RootLayout({
                   }}
                 >
                   <AnalyticsWrapper>
-                    <OakBox $width="100vw" $height="100vh">
-                      {children}
-                    </OakBox>
+                    <OakNotificationsProvider>
+                      <OakBox $width="100vw" $height="100vh">
+                        {children}
+                      </OakBox>
+                    </OakNotificationsProvider>
                   </AnalyticsWrapper>
                 </ClerkProvider>
               </CookieConsentProvider>
