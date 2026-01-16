@@ -1,11 +1,11 @@
 import { ReactNode, useEffect, useRef } from "react";
 import {
   OakBox,
-  OakFlex,
   OakPrimaryInvertedButton,
   OakSubjectIconButton,
   OakUL,
   OakLeftAlignedButton,
+  OakFlex,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
@@ -36,13 +36,23 @@ export function SubmenuContainer({
   readonly children: ReactNode;
 }) {
   const { submenuOpen, handleCloseSubmenu } = useHamburgerMenu();
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (submenuOpen && containerRef.current) {
+      const focusableElements =
+        containerRef.current.querySelectorAll<HTMLElement>("[href]");
+      focusableElements[0]?.focus();
+    }
+  }, [submenuOpen]);
   return (
     <OakFlex
       $ph={"spacing-40"}
       $pb={"spacing-40"}
       $gap={"spacing-40"}
       $flexDirection={"column"}
-      $display={submenuOpen === title ? "flex" : "none"}
+      ref={containerRef}
     >
       <OakPrimaryInvertedButton
         iconName="chevron-left"
@@ -59,11 +69,6 @@ export function SubmenuContainer({
 
 export function SubmenuContent(props: TeachersSubNavData) {
   const { submenuOpen, handleClose } = useHamburgerMenu();
-  const firstItemRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    firstItemRef.current?.focus();
-  }, []);
 
   if (!submenuOpen) return null;
 
@@ -78,10 +83,9 @@ export function SubmenuContent(props: TeachersSubNavData) {
             $flexDirection={"column"}
             $gap={"spacing-16"}
           >
-            {links.map((link, i) => (
+            {links.map((link) => (
               <OakBox key={link.slug}>
                 <OakLeftAlignedButton
-                  ref={i == 0 ? firstItemRef : undefined}
                   onClick={() => {
                     handleClose();
                   }}
@@ -128,7 +132,6 @@ export function SubmenuContent(props: TeachersSubNavData) {
               .map((subject) => (
                 <OakBox key={subject.title + phase}>
                   <OakSubjectIconButton
-                    // TD: when React 19 update is completed, pass in first item ref
                     element={Link}
                     href={resolveOakHref({
                       page: "programme-index",
