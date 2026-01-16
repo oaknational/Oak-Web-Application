@@ -1,3 +1,9 @@
+import {
+  OakGoogleClassroomException,
+  ErrorSeverity,
+  ExceptionType,
+} from "@oaknational/google-classroom-addon/server";
+
 import GoogleClassroomApi from "./googleClassroomApi";
 
 // Mock fetch
@@ -6,11 +12,30 @@ global.fetch = mockFetch;
 
 // Create fetch mock helper
 const mockJsonResponse = (data: unknown, status = 200) => {
-  mockFetch.mockResolvedValue({
-    ok: status >= 200 && status < 300,
+  const statusText = status === 200 ? "OK" : "Error";
+  const response = new Response(JSON.stringify(data), {
     status,
-    json: async () => data,
-  } as Response);
+    statusText,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  mockFetch.mockResolvedValue(response);
+};
+
+const mockJsonParseError = (
+  status = 500,
+  statusText = "Internal Server Error",
+) => {
+  const response = new Response("not-json", {
+    status,
+    statusText,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  jest.spyOn(response, "json").mockRejectedValue(new Error("Invalid JSON"));
+  mockFetch.mockResolvedValue(response);
 };
 
 // Mock cookieStore
@@ -24,8 +49,15 @@ Object.defineProperty(window, "cookieStore", {
 });
 
 describe("Google Classroom API", () => {
+  const originalConsoleError = console.error;
+
   beforeEach(() => {
     jest.clearAllMocks();
+    console.error = jest.fn();
+  });
+
+  afterEach(() => {
+    console.error = originalConsoleError;
   });
 
   describe("getOakGCAuthHeaders", () => {
@@ -258,7 +290,7 @@ describe("Google Classroom API", () => {
         addOnToken: "token789",
         title: "Test Lesson",
         lessonSlug: "test-lesson",
-        programeSlug: "test-programme",
+        programmeSlug: "test-programme",
         unitSlug: "test-unit",
       };
 
@@ -294,7 +326,7 @@ describe("Google Classroom API", () => {
         addOnToken: "token789",
         title: "Test Lesson",
         lessonSlug: "test-lesson",
-        programeSlug: "test-programme",
+        programmeSlug: "test-programme",
         unitSlug: "test-unit",
       };
 
@@ -305,6 +337,158 @@ describe("Google Classroom API", () => {
       const callArgs = mockFetch.mock.calls[0][1];
       expect(callArgs.headers.get("Authorization")).toBe("test-token");
       expect(callArgs.headers.get("X-Oakgc-Session")).toBe("test-session");
+    });
+  });
+
+  describe("sendRequest error handling", () => {
+    const mockAttachmentSetup = () => {
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === "oak-gclassroom-session")
+          return Promise.resolve({ value: "test-session" });
+        if (name === "oak-gclassroom-token")
+          return Promise.resolve({ value: "test-token" });
+        return Promise.resolve(null);
+      });
+    };
+
+    const testAttachment = {
+      courseId: "course123",
+      itemId: "item456",
+      addOnToken: "token789",
+      title: "Test Lesson",
+      lessonSlug: "test-lesson",
+      programmeSlug: "test-programme",
+      unitSlug: "test-unit",
+    };
+
+    it("should throw generic error when response is not ok and JSON parsing fails", async () => {
+      // Arrange
+      mockAttachmentSetup();
+      mockJsonParseError(500, "Internal Server Error");
+
+      // Act & Assert
+      await expect(
+        GoogleClassroomApi.createAttachment(testAttachment),
+      ).rejects.toThrow("API request failed: 500 Internal Server Error");
+    });
+
+    it("should re-throw OakGoogleClassroomException errors", async () => {
+      // Arrange
+      mockAttachmentSetup();
+      const oakError = new OakGoogleClassroomException(
+        "Access was denied. Please grant permission to continue.",
+        ExceptionType.GoogleOAuth,
+        {
+          code: "access_denied",
+          shouldRetry: false,
+          severity: ErrorSeverity.Error,
+        },
+      );
+
+      mockJsonResponse(oakError.toObject(), 400);
+
+      // Act & Assert
+      await expect(
+        GoogleClassroomApi.createAttachment(testAttachment),
+      ).rejects.toEqual(oakError.toObject());
+    });
+
+    it("should throw error with error field from response", async () => {
+      // Arrange
+      mockAttachmentSetup();
+      mockJsonResponse({ error: "Custom error message" }, 400);
+
+      // Act & Assert
+      await expect(
+        GoogleClassroomApi.createAttachment(testAttachment),
+      ).rejects.toThrow("Custom error message");
+    });
+
+    it("should throw error with details field from response when error field is missing", async () => {
+      // Arrange
+      mockAttachmentSetup();
+      mockJsonResponse({ details: "Detailed error info" }, 400);
+
+      // Act & Assert
+      await expect(
+        GoogleClassroomApi.createAttachment(testAttachment),
+      ).rejects.toThrow("Detailed error info");
+    });
+
+    it("should throw generic status error when response has no error or details field", async () => {
+      // Arrange
+      mockAttachmentSetup();
+      mockJsonResponse({ someOtherField: "value" }, 403);
+
+      // Act & Assert
+      await expect(
+        GoogleClassroomApi.createAttachment(testAttachment),
+      ).rejects.toThrow("Request failed with status 403");
+    });
+
+    it("should propagate OakGoogleClassroomException from createAttachment", async () => {
+      // Arrange
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === "oak-gclassroom-session")
+          return Promise.resolve({ value: "test-session" });
+        if (name === "oak-gclassroom-token")
+          return Promise.resolve({ value: "test-token" });
+        return Promise.resolve(null);
+      });
+
+      const oakError = new OakGoogleClassroomException(
+        "User does not have permission",
+        ExceptionType.Firestore,
+        {
+          code: "permission_denied",
+          shouldRetry: false,
+          severity: ErrorSeverity.Error,
+        },
+      );
+
+      mockJsonResponse(oakError.toObject(), 403);
+
+      const attachment = {
+        courseId: "course123",
+        itemId: "item456",
+        addOnToken: "token789",
+        title: "Test Lesson",
+        lessonSlug: "test-lesson",
+        programmeSlug: "test-programme",
+        unitSlug: "test-unit",
+      };
+
+      // Act & Assert
+      await expect(
+        GoogleClassroomApi.createAttachment(attachment),
+      ).rejects.toEqual(oakError.toObject());
+    });
+
+    it("should return default values when verifySession encounters an error", async () => {
+      // Arrange
+      mockCookieStore.get.mockResolvedValue(null);
+      mockJsonResponse({ error: "Server error" }, 500);
+
+      // Act
+      const result = await GoogleClassroomApi.verifySession();
+
+      // Assert
+      expect(result).toEqual({
+        authenticated: false,
+        session: undefined,
+        token: undefined,
+      });
+    });
+
+    it("should return null when getGoogleSignInUrl encounters an error", async () => {
+      // Arrange
+      mockJsonResponse({ error: "Server error" }, 500);
+
+      // Act
+      const result = await GoogleClassroomApi.getGoogleSignInUrl("test");
+
+      // Assert
+      expect(result).toBeNull();
     });
   });
 });

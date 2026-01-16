@@ -31,6 +31,7 @@ import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsPr
 import { LessonSummaryReviewedProperties } from "@/browser-lib/avo/Avo";
 import { useOakPupil } from "@/hooks/useOakPupil";
 import { attemptDataCamelCaseSchema } from "@/node-lib/pupil-api/types";
+import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -51,6 +52,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     exitQuizQuestionsArray,
     browseData: { programmeFields, lessonSlug, isLegacy },
   } = props;
+  const { isClassroomAssignment } = useAssignmentSearchParams();
   const { phase = "primary", yearDescription, subject } = programmeFields;
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {
@@ -100,7 +102,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     storeResultsInLocalStorage();
   }
 
-  const bottomNavSlot = (
+  const bottomNavSlot = !isClassroomAssignment && (
     <OakLessonBottomNav>
       <OakPrimaryButton
         element="a"
@@ -254,7 +256,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
                 Lesson review
               </OakHeading>
-              {hasQuiz && (
+              {hasQuiz && !isClassroomAssignment && (
                 <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
                   <OakHeading tag="h2" $font={"body-2-bold"}>
                     Share options:
