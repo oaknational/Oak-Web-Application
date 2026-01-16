@@ -1439,7 +1439,7 @@ exports[`CurriculumTab renders 1`] = `
               <div
                 class="c8 c14"
               >
-
+                 
                 <div
                   class="c15 c16"
                 >
@@ -1449,17 +1449,17 @@ exports[`CurriculumTab renders 1`] = `
                   class="c17"
                 >
                   <li
-                    class="sc-jlZhew fvZvGD"
+                    class="c18"
                   >
                     National curriculum-aligned
                   </li>
                   <li
-                    class="sc-jlZhew fvZvGD"
+                    class="c18"
                   >
                     Sequenced across year groups
                   </li>
                   <li
-                    class="sc-jlZhew fvZvGD"
+                    class="c18"
                   >
                     Designed by curriculum experts
                   </li>
@@ -1881,7 +1881,7 @@ exports[`CurriculumTab renders 1`] = `
               >
                 This site uses cookies to store information on your computer.
               </strong>
-
+               
               Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div

@@ -7151,7 +7151,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         id="react-use-id-test-result-newsletter-form-description"
                       >
                         Join over 100k teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
-
+                         
                         <a
                           class="c40 c180"
                           href="/legal/privacy-policy"
@@ -7297,7 +7297,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                   class="c22"
                                 >
                                   Name
-
+                                   
                                   <span
                                     class="c192"
                                   >
@@ -7457,7 +7457,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                   class="c22"
                                 >
                                   Email
-
+                                   
                                   <span
                                     class="c192"
                                   >
@@ -9388,7 +9388,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             >
               This site uses cookies to store information on your computer.
             </strong>
-
+             
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
