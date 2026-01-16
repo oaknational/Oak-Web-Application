@@ -175,6 +175,7 @@ const ProgrammePage = async ({ params }: ProgrammePageProps) => {
       },
     );
 
+    // TD: [integrated-journey] This data is not used in `ProgrammeView`, maybe we can remove it?
     if (!curriculumOverviewSanityData) {
       return notFound();
     }
@@ -186,7 +187,7 @@ const ProgrammePage = async ({ params }: ProgrammePageProps) => {
       curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
       curriculumPhaseOptions,
       subjectTitle: programmeUnitsData.subjectTitle,
-      curriculumOverviewSanityData,
+      phaseTitle: programmeUnitsData.phaseTitle,
       curriculumUnitsFormattedData,
     };
 
