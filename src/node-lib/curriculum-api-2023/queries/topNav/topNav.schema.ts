@@ -41,6 +41,7 @@ export type TeachersBrowse = {
   keystages: Array<{
     title: string;
     slug: string;
+    description: string;
     subjects: Array<{
       title: string;
       subjectSlug: string;

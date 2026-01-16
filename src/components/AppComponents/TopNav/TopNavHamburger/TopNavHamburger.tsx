@@ -45,6 +45,11 @@ const useHamburgerMenu = () => {
   return context;
 };
 
+export const getEYFSAriaLabel = (title: SubmenuState) => {
+  const isEYFS = title === "EYFS";
+  return isEYFS ? "Early years foundation stage" : undefined;
+};
+
 export function TopNavHamburger(props: TopNavProps) {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpen = () => {

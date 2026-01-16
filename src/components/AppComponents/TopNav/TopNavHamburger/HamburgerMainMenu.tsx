@@ -13,14 +13,13 @@ import Link from "next/link";
 
 import { TopNavProps } from "../TopNav";
 
-import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
+import {
+  getEYFSAriaLabel,
+  SubmenuState,
+  useHamburgerMenu,
+} from "./TopNavHamburger";
 
 import { TeachersBrowse } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-
-export const getEYFSAriaLabel = (title: SubmenuState) => {
-  const isEYFS = title === "EYFS";
-  return isEYFS ? "Early Years Foundation Stage" : undefined;
-};
 
 export function MainMenuContent(props: TopNavProps) {
   const { submenuOpen, prevSubmenu } = useHamburgerMenu();
@@ -75,6 +74,7 @@ function SubjectsSection(props: TeachersBrowse) {
           <MainMenuButton
             key={keystage.slug + props.phaseSlug}
             title={keystage.title as SubmenuState}
+            description={keystage.description}
           />
         ))}
       </OakFlex>
@@ -82,9 +82,16 @@ function SubjectsSection(props: TeachersBrowse) {
   );
 }
 
-function MainMenuButton({ title }: { title: SubmenuState }) {
+function MainMenuButton({
+  title,
+  description,
+}: {
+  title: SubmenuState;
+  description?: string;
+}) {
   const { setSubmenuOpen } = useHamburgerMenu();
-
+  const isEYFS = title === "EYFS";
+  const showDescription = !isEYFS && description;
   return (
     <OakBox $width={"100%"}>
       <OakLI $listStyle={"none"}>
@@ -99,7 +106,7 @@ function MainMenuButton({ title }: { title: SubmenuState }) {
             setSubmenuOpen(title as SubmenuState);
           }}
         >
-          {title}
+          {showDescription ? description : title}
         </OakLeftAlignedButton>
       </OakLI>
     </OakBox>

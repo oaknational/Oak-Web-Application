@@ -30,6 +30,7 @@ const getKeystages = (
     .map((p) => ({
       slug: p.programme_fields.keystage_slug,
       title: p.programme_fields.keystage,
+      description: p.programme_fields.keystage_description,
     }))
     .filter((p, i, a) => a.findIndex((k) => k.slug === p.slug) === i);
 
@@ -86,6 +87,7 @@ const getKeystages = (
           return {
             subjectSlug: p.programme_fields.subject_slug,
             title,
+            description: ks.description,
             nonCurriculum: Boolean(p.features.non_curriculum),
             programmeSlug: programmeCount > 1 ? null : p.programme_slug,
             programmeCount,
