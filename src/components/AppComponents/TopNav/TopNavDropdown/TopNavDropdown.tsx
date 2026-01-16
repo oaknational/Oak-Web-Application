@@ -14,14 +14,14 @@ import {
   OakPrimaryInvertedButton,
 } from "@oaknational/oak-components";
 
-import useSelectedArea from "@/hooks/useSelectedArea";
 import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import {
   TeachersSubNavData,
   PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
-type TopNavDropdownProps = {
+export type TopNavDropdownProps = {
+  activeArea: "TEACHERS" | "PUPILS";
   selectedMenu: keyof TeachersSubNavData | keyof PupilsSubNavData;
   teachers: TeachersSubNavData;
   pupils: PupilsSubNavData;
@@ -174,32 +174,38 @@ const TeachersPhaseSection = ({
     menuData.keystages
       .find((k) => k.slug === selectedKeystage)
       ?.subjects.filter((subject) => !subject.nonCurriculum) ?? undefined;
-
   const nonCurriculumSubjects =
     menuData.keystages
       .find((k) => k.slug === selectedKeystage)
       ?.subjects.filter((subject) => subject.nonCurriculum) ?? undefined;
-  console.log({ subjects, nonCurriculumSubjects });
+
   return (
     <OakFlex $gap={"spacing-40"}>
-      <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
+      <OakUL
+        $display={"flex"}
+        $flexDirection={"column"}
+        $gap={"spacing-8"}
+        $pa={"spacing-0"}
+        $reset
+      >
         {menuData.keystages.map((keystage) => (
-          <OakLeftAlignedButton
-            key={keystage.slug}
-            iconName="chevron-right"
-            isTrailingIcon
-            rightAlignIcon
-            width={"spacing-160"}
-            selected={selectedKeystage === keystage.slug}
-            onClick={() => setSelectedKeystage(keystage.slug)}
-            aria-current={
-              selectedKeystage === keystage.slug ? "true" : undefined
-            }
-          >
-            {keystage.title.replace("KS", "Key stage ")}
-          </OakLeftAlignedButton>
+          <OakLI key={keystage.slug}>
+            <OakLeftAlignedButton
+              iconName="chevron-right"
+              isTrailingIcon
+              rightAlignIcon
+              width={"spacing-160"}
+              selected={selectedKeystage === keystage.slug}
+              onClick={() => setSelectedKeystage(keystage.slug)}
+              aria-current={
+                selectedKeystage === keystage.slug ? "true" : undefined
+              }
+            >
+              {keystage.title.replace("KS", "Key stage ")}
+            </OakLeftAlignedButton>
+          </OakLI>
         ))}
-      </OakFlex>
+      </OakUL>
       {subjects && (
         <SubjectButtons
           selectedMenu={selectedMenu}
@@ -303,9 +309,7 @@ const PupilsSection = ({
 };
 
 const TopNavDropdown = (props: TopNavDropdownProps) => {
-  const { selectedMenu, teachers, pupils } = props;
-
-  const activeArea = useSelectedArea();
+  const { activeArea, selectedMenu, teachers, pupils } = props;
 
   return (
     <OakFlex $pa={"spacing-40"}>

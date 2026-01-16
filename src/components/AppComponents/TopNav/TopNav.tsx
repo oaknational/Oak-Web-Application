@@ -126,6 +126,7 @@ const TopNav = (props: TopNavProps) => {
         isDesktop && (
           <OakFlex $width={"100%"} $flexDirection={"column"}>
             <TopNavDropdown
+              activeArea={activeArea}
               selectedMenu={selectedMenu}
               teachers={teachers!}
               pupils={pupils!}
