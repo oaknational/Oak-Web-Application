@@ -5,24 +5,24 @@ exports[`CurricShowSteps basic usage 1`] = `
   <div>
     <div>
       <div
-        class="sc-fqkvVR gnlYEe"
+        class="sc-fqkvVR hrLDNc"
         style="width: 100%; position: relative; overflow: hidden;"
       >
         <div
           style="display: flex; align-items: center;"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB aZqjs kyta-DD"
+            class="sc-fqkvVR sc-kAyceB fgBWrW kyta-DD"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB doYJNf bAFsaQ"
+              class="sc-fqkvVR sc-kAyceB ibvSUR bAFsaQ"
             />
             <div
-              class="sc-fqkvVR sc-kAyceB kQpkPK kyta-DD"
+              class="sc-fqkvVR sc-kAyceB hvDzQc kyta-DD"
             >
               <div
-                class="sc-fqkvVR hCMPss"
+                class="sc-fqkvVR kbnxKi"
               >
                 <img
                   alt=""
@@ -36,24 +36,24 @@ exports[`CurricShowSteps basic usage 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB emCZlQ bAFsaQ"
+              class="sc-fqkvVR sc-kAyceB jkxpdi bAFsaQ"
             />
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB fcIGbi bAFsaQ"
+            class="sc-fqkvVR sc-kAyceB cdDatI bAFsaQ"
           />
           <div
-            class="sc-fqkvVR sc-kAyceB aZqjs kyta-DD"
+            class="sc-fqkvVR sc-kAyceB fgBWrW kyta-DD"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB emCZlQ bAFsaQ"
+              class="sc-fqkvVR sc-kAyceB jkxpdi bAFsaQ"
             />
             <div
-              class="sc-fqkvVR sc-kAyceB kQpkPK kyta-DD"
+              class="sc-fqkvVR sc-kAyceB hvDzQc kyta-DD"
             >
               <div
-                class="sc-fqkvVR hCMPss"
+                class="sc-fqkvVR kbnxKi"
               >
                 <img
                   alt=""
@@ -67,22 +67,22 @@ exports[`CurricShowSteps basic usage 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB emCZlQ bAFsaQ"
+              class="sc-fqkvVR sc-kAyceB jkxpdi bAFsaQ"
             />
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB fcIGbi bAFsaQ"
+            class="sc-fqkvVR sc-kAyceB cdDatI bAFsaQ"
           />
           <div
-            class="sc-fqkvVR sc-kAyceB diPmKX kyta-DD"
+            class="sc-fqkvVR sc-kAyceB ffuCSZ kyta-DD"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB gxBcmE kyta-DD"
+              class="sc-fqkvVR sc-kAyceB jAHGNa kyta-DD"
               color="text-inverted"
             />
             <div
-              class="sc-fqkvVR gAsgCZ"
+              class="sc-fqkvVR cMqhUz"
               data-testid="step-text"
               style="left: 0px; top: 44px;"
             >
@@ -93,20 +93,20 @@ exports[`CurricShowSteps basic usage 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB fcIGbi bAFsaQ"
+            class="sc-fqkvVR sc-kAyceB cdDatI bAFsaQ"
           />
           <div
-            class="sc-fqkvVR sc-kAyceB aZqjs kyta-DD"
+            class="sc-fqkvVR sc-kAyceB fgBWrW kyta-DD"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB emCZlQ bAFsaQ"
+              class="sc-fqkvVR sc-kAyceB jkxpdi bAFsaQ"
             />
             <div
-              class="sc-fqkvVR sc-kAyceB bBHyNS kyta-DD"
+              class="sc-fqkvVR sc-kAyceB jGUeSQ kyta-DD"
             />
             <div
-              class="sc-fqkvVR sc-kAyceB doYJNf bAFsaQ"
+              class="sc-fqkvVR sc-kAyceB ibvSUR bAFsaQ"
             />
           </div>
         </div>

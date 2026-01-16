@@ -4,25 +4,25 @@ exports[`SkipLink functions as expected 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-fjvvzt gQBvmm kIRemE"
+      class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
     >
       <div
-        class="sc-fqkvVR hHxuBp grey-shadow"
+        class="sc-fqkvVR iPpXCP grey-shadow"
       />
       <div
-        class="sc-fqkvVR hHxuBp yellow-shadow"
+        class="sc-fqkvVR iPpXCP yellow-shadow"
       />
       <a
-        class="sc-dtBdUo sc-fXSgeo vwEYe iwHZRx internal-button"
+        class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
         data-testid="skip-link"
         href="foo"
         style=""
       >
         <div
-          class="sc-fqkvVR sc-kAyceB aZqjs cHFgFN"
+          class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
         >
           <span
-            class="sc-dAlyuH dYZdPz"
+            class="sc-dAlyuH hHWgLm"
           >
             test
           </span>
