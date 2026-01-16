@@ -1,12 +1,11 @@
+import { TextItem } from "@oaknational/oak-curriculum-schema";
+
 import {
-  AnswersSchema,
   LessonOverviewQuizData,
   StemImageObject,
-  StemObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { stemToPortableText } from "@/utils/portableText";
-import { TextItem } from "@oaknational/oak-curriculum-schema";
 import { StemPortableText } from "@/components/SharedComponents/Stem";
 
 export function convertQuestionItem<T extends TextItem | StemImageObject>(
@@ -36,21 +35,13 @@ export function convertQuestionItemArray<
   }
 }
 
-export function convertQuestionMath<
-  T extends
-    | Array<{
-        questionStem?: Array<StemObject>;
-        answers?: AnswersSchema | null;
-      }>
-    | undefined
-    | null,
->(questions: T) {
+export function convertQuestionMath(questions: LessonOverviewQuizData) {
   return questions?.map((question) => {
     let newQuestionStem = question.questionStem;
     if (question.questionStem) {
       newQuestionStem = question.questionStem.map(convertQuestionItem);
     }
-    let newAnswers = question.answers;
+    const newAnswers = question.answers;
     if (newAnswers) {
       const multipleChoiceAnswers = newAnswers["multiple-choice"];
       const matchAnswers = newAnswers["match"];

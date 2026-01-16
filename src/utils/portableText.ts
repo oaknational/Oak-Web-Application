@@ -41,7 +41,7 @@ export const portableTextTextSchema = z.object({
     ]),
   ),
 });
-type PortableTextText = z.infer<typeof portableTextTextSchema>;
+export type PortableTextText = z.infer<typeof portableTextTextSchema>;
 
 export const portableTextItemSchema = z.union([
   portableTextTextSchema,
