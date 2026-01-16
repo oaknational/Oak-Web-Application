@@ -17,6 +17,11 @@ import { SubmenuState, useHamburgerMenu } from "./TopNavHamburger";
 
 import { TeachersBrowse } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
+export const getEYFSAriaLabel = (title: SubmenuState) => {
+  const isEYFS = title === "EYFS";
+  return isEYFS ? "Early Years Foundation Stage" : undefined;
+};
+
 export function MainMenuContent(props: TopNavProps) {
   const { submenuOpen, prevSubmenu } = useHamburgerMenu();
   useEffect(() => {
@@ -69,7 +74,7 @@ function SubjectsSection(props: TeachersBrowse) {
         {props.keystages.map((keystage) => (
           <MainMenuButton
             key={keystage.slug + props.phaseSlug}
-            title={keystage.title}
+            title={keystage.title as SubmenuState}
           />
         ))}
       </OakFlex>
@@ -77,13 +82,15 @@ function SubjectsSection(props: TeachersBrowse) {
   );
 }
 
-function MainMenuButton({ title }: { title: string }) {
+function MainMenuButton({ title }: { title: SubmenuState }) {
   const { setSubmenuOpen } = useHamburgerMenu();
+
   return (
     <OakBox $width={"100%"}>
       <OakLI $listStyle={"none"}>
         <OakLeftAlignedButton
           aria-haspopup={true}
+          aria-label={getEYFSAriaLabel(title)}
           rightAlignIcon
           iconName="chevron-right"
           width={"100%"}
