@@ -1,41 +1,47 @@
 "use client";
 import {
-  createContext,
   Dispatch,
-  ReactNode,
   SetStateAction,
-  useContext,
   useState,
+  createContext,
+  useContext,
+  useMemo,
+  useCallback,
 } from "react";
 import {
   OakSecondaryButton,
   OakInformativeModal,
   OakBox,
-  OakUL,
-  OakLI,
-  OakPrimaryInvertedButton,
-  OakSubjectIconButton,
-  OakIconName,
-  OakHeading,
-  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
 import { TopNavProps } from "../TopNav";
-import {
-  SubNavLinks,
-  TeachersBrowse,
-} from "../../../../node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+
+import { MainMenuContent } from "./HamburgerMainMenu";
+import { SubmenuContent } from "./HamburgerSubMenu";
+
+export type SubmenuState =
+  | "KS1"
+  | "KS2"
+  | "EYFS"
+  | "KS3"
+  | "KS4"
+  | "About us"
+  | "Guidance"
+  | false;
 
 type HamburgerMenuContextType = {
-  hideMainMenu: boolean;
-  setHideMainMenu: Dispatch<SetStateAction<boolean>>;
+  submenuOpen: SubmenuState;
+  setSubmenuOpen: Dispatch<SetStateAction<SubmenuState>>;
+  prevSubmenu: SubmenuState;
+  handleClose: () => void;
+  handleCloseSubmenu: () => void;
 };
 
 const HamburgerMenuContext = createContext<HamburgerMenuContextType | null>(
   null,
 );
 
-const useHamburgerMenu = () => {
+export const useHamburgerMenu = () => {
   const context = useContext(HamburgerMenuContext);
   if (!context) {
     throw new Error(
@@ -52,12 +58,36 @@ export const getEYFSAriaLabel = (title: SubmenuState) => {
 
 export function TopNavHamburger(props: TopNavProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const handleOpen = () => {
+  const [submenuOpen, setSubmenuOpen] = useState<SubmenuState>(false);
+  const [prevSubmenu, setPrevSubmenu] = useState<SubmenuState>(false);
+
+  const handleOpen = useCallback(() => {
     setIsOpen(true);
-  };
-  const handleClose = () => {
+    setSubmenuOpen(false);
+  }, [setIsOpen, setSubmenuOpen]);
+
+  const handleClose = useCallback(() => {
+    setSubmenuOpen(false);
+    setPrevSubmenu(false);
     setIsOpen(false);
-  };
+  }, [setSubmenuOpen, setPrevSubmenu, setIsOpen]);
+
+  const handleCloseSubmenu = useCallback(() => {
+    const prevState = submenuOpen;
+    setPrevSubmenu(prevState);
+    setSubmenuOpen(false);
+  }, [submenuOpen, setPrevSubmenu, setSubmenuOpen]);
+
+  const contextValue = useMemo(
+    () => ({
+      submenuOpen,
+      setSubmenuOpen,
+      handleClose,
+      prevSubmenu,
+      handleCloseSubmenu,
+    }),
+    [submenuOpen, setSubmenuOpen, handleClose, prevSubmenu, handleCloseSubmenu],
+  );
 
   return (
     <OakBox $display={["block", "block", "none"]}>
@@ -72,180 +102,24 @@ export function TopNavHamburger(props: TopNavProps) {
         closeOnBackgroundClick
         largeScreenMaxWidth={480}
       >
-        <Content {...props} />
+        <HamburgerMenuContext.Provider value={contextValue}>
+          <Content {...props} />
+        </HamburgerMenuContext.Provider>
       </OakInformativeModal>
     </OakBox>
   );
 }
 
 function Content(props: TopNavProps) {
-  const [hideMainMenu, setHideMainMenu] = useState(false);
+  const { submenuOpen } = useHamburgerMenu();
   if (!props.teachers) return;
-
   return (
-    <HamburgerMenuContext.Provider value={{ hideMainMenu, setHideMainMenu }}>
-      <OakBox $position={"relative"} $width={"100%"} $height={"100%"}>
-        <OakUL>
-          <SubjectsSection {...props.teachers?.primary} />
-          <SubjectsSection {...props.teachers?.secondary} />
-          <MainMenuContentWrapper>
-            <OakSecondaryLink href={"/"}>Curriculum</OakSecondaryLink>
-          </MainMenuContentWrapper>
-          <NavSection
-            title="Guidance"
-            data={{ type: "links", links: props.teachers.guidance }}
-          />
-          <NavSection
-            title="About us"
-            data={{ type: "links", links: props.teachers.aboutUs }}
-          />
-        </OakUL>
-      </OakBox>
-    </HamburgerMenuContext.Provider>
-  );
-}
-
-type NavItemData =
-  | { type: "links"; links: SubNavLinks }
-  | {
-      type: "subjects";
-      subjects: TeachersBrowse["keystages"][number]["subjects"];
-      keystage: string;
-      phase: "primary" | "secondary";
-    };
-
-function NavSection({
-  title,
-  data,
-  renderSubmenu,
-}: {
-  readonly title: string;
-  readonly data: NavItemData;
-  readonly renderSubmenu?: (
-    submenuIsOpen: boolean,
-    setSubmenuIsOpen: Dispatch<SetStateAction<boolean>>,
-  ) => ReactNode;
-}) {
-  const [submenuIsOpen, setSubmenuIsOpen] = useState(false);
-  const { setHideMainMenu } = useHamburgerMenu();
-
-  const defaultSubmenu = (
-    <OakBox
-      $display={submenuIsOpen ? "block" : "none"}
-      $position={"absolute"}
-      $top={"spacing-0"}
-      $left={"spacing-0"}
-      $zIndex={"modal-dialog"}
-    >
-      <OakPrimaryInvertedButton
-        iconName="chevron-left"
-        selected={true}
-        onClick={() => {
-          setHideMainMenu(false);
-          setSubmenuIsOpen(false);
-        }}
-      >
-        Back
-      </OakPrimaryInvertedButton>
-      {data.type === "links" && (
-        <>
-          {data.links.map((link) => (
-            <OakLI key={title + link.slug}>
-              <OakSecondaryLink href={link.slug}>{link.title}</OakSecondaryLink>
-            </OakLI>
-          ))}
-        </>
-      )}
-      {data.type === "subjects" && (
-        <OakUL>
-          {data.subjects.map((s) => (
-            <OakLI key={s.subjectSlug + data.keystage}>
-              <OakSubjectIconButton
-                phase={data.phase}
-                variant="horizontal"
-                subjectIconName={("subject-" + s.subjectSlug) as OakIconName}
-                onClick={() => setSubmenuIsOpen(false)}
-              >
-                {s.title}
-              </OakSubjectIconButton>
-            </OakLI>
-          ))}
-        </OakUL>
+    <OakBox $width={"100%"} $height={"100%"}>
+      {submenuOpen ? (
+        <SubmenuContent {...props.teachers} />
+      ) : (
+        <MainMenuContent {...props} />
       )}
     </OakBox>
   );
-
-  return (
-    <MainContent setSubmenuIsOpen={setSubmenuIsOpen} title={title}>
-      {renderSubmenu
-        ? renderSubmenu(submenuIsOpen, setSubmenuIsOpen)
-        : defaultSubmenu}
-    </MainContent>
-  );
-}
-
-function SubjectsSection(props: TeachersBrowse) {
-  const { hideMainMenu } = useHamburgerMenu();
-
-  return (
-    <>
-      <OakBox $display={hideMainMenu ? "none" : "block"}>
-        <OakHeading tag="h2">{props.phaseTitle}</OakHeading>
-      </OakBox>
-      {props.keystages.map((keystage) => (
-        <NavSection
-          key={keystage.slug}
-          title={keystage.title}
-          data={{
-            type: "subjects",
-            subjects: keystage.subjects,
-            keystage: keystage.title,
-            phase: props.phaseSlug as "primary" | "secondary",
-          }}
-        />
-      ))}
-    </>
-  );
-}
-
-function MainContent({
-  title,
-  children,
-  setSubmenuIsOpen,
-}: {
-  readonly title: string;
-  readonly children: ReactNode;
-  readonly setSubmenuIsOpen: Dispatch<SetStateAction<boolean>>;
-}) {
-  const { setHideMainMenu } = useHamburgerMenu();
-
-  return (
-    <OakBox $width={"100%"}>
-      <OakLI>
-        <MainMenuContentWrapper>
-          <OakPrimaryInvertedButton
-            onClick={() => {
-              setHideMainMenu(true);
-              setSubmenuIsOpen(true);
-            }}
-          >
-            {title}
-          </OakPrimaryInvertedButton>
-        </MainMenuContentWrapper>
-        {children}
-      </OakLI>
-    </OakBox>
-  );
-}
-
-/**
- * Hides content when the submenu is open
- */
-function MainMenuContentWrapper({
-  children,
-}: {
-  readonly children: ReactNode;
-}) {
-  const { hideMainMenu } = useHamburgerMenu();
-  return <OakBox $display={hideMainMenu ? "none" : "block"}>{children}</OakBox>;
 }
