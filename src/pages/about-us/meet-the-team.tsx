@@ -47,18 +47,6 @@ export type AboutUsMeetTheTeamPage = {
   topNav: TopNavProps;
 };
 
-const mockPerson = {
-  slug: "ed-southall",
-  name: "Ed Southall",
-  position: "Subject Lead (maths)",
-};
-
-const mockDownload = {
-  title: "Impact evaluation of Oak: 2023/24",
-  subText: "PDF, 1.6MB",
-  href: "#",
-};
-
 export const mockData: AboutUsMeetTheTeamPage["pageData"] = {
   // title: "Meet the team",
   subTitle:
@@ -68,18 +56,30 @@ export const mockData: AboutUsMeetTheTeamPage["pageData"] = {
     "Our leadership team brings together experts to deliver the best support to teachers and value for money for the public. Learn more about them below.",
   leadershipList: Array(12)
     .fill(true)
-    .map(() => mockPerson),
+    .map((_, index) => ({
+      slug: `ed-southall-${index}`,
+      name: "Ed Southall",
+      position: "Subject Lead (maths)",
+    })),
   boardTitle: "Our board",
   boardText:
     "Our Board oversees all of our work at Oak National Academy. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence.",
   boardList: Array(12)
     .fill(true)
-    .map(() => mockPerson),
+    .map((_, index) => ({
+      slug: `ed-southall-${index}`,
+      name: "Ed Southall",
+      position: "Subject Lead (maths)",
+    })),
   documentTitle: "Documents",
   documentText: null,
   documentList: Array(12)
     .fill(true)
-    .map(() => mockDownload),
+    .map((_, index) => ({
+      title: "Impact evaluation of Oak: 2023/24",
+      subText: "PDF, 1.6MB",
+      href: `#${index}`,
+    })),
   governanceTitle: "Governance",
   governanceText:
     "Oak National Academy is a limited company incorporated under the Companies Act 2006 in September 2022 and whose sole shareholder is the Secretary of State for Education. It is a non-departmental public body (NDPB) which was established to work with schools, teachers and the wider education system and has a framework agreement with the Department for Education.",
@@ -119,30 +119,28 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
                 title={pageData.leadershipTitle}
                 text={pageData.leadershipText}
               >
-                {pageData.leadershipList.map(
-                  (leadershipItem, leadershipItemIndex) => {
-                    return (
-                      // TODO: Replace me!
-                      <ProfileCard
-                        key={leadershipItemIndex}
-                        name={leadershipItem.name}
-                        role={leadershipItem.position}
-                        href={`/about-us/meet-the-team/${leadershipItem.slug}`}
-                      />
-                    );
-                  },
-                )}
+                {pageData.leadershipList.map((leadershipItem) => {
+                  return (
+                    // TODO: Replace me!
+                    <ProfileCard
+                      key={leadershipItem.slug}
+                      name={leadershipItem.name}
+                      role={leadershipItem.position}
+                      href={`/about-us/meet-the-team/${leadershipItem.slug}`}
+                    />
+                  );
+                })}
               </MeetTheTeamContainer>
 
               <MeetTheTeamContainer
                 title={pageData.boardTitle}
                 text={pageData.boardText}
               >
-                {pageData.boardList.map((boardItem, boardItemIndex) => {
+                {pageData.boardList.map((boardItem) => {
                   return (
                     // TODO: Replace me!
                     <ProfileCard
-                      key={boardItemIndex}
+                      key={boardItem.slug}
                       name={boardItem.name}
                       role={boardItem.position}
                       href={`/about-us/meet-the-team/${boardItem.slug}`}
@@ -155,23 +153,21 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
                 title={pageData.documentTitle}
                 text={pageData.documentText}
               >
-                {pageData.documentList.map(
-                  (documentItem, documentItemIndex) => {
-                    return (
-                      // TODO: Replace me!
-                      <OakBox
-                        key={documentItemIndex}
-                        $width={"spacing-240"}
-                        $pa={"spacing-16"}
-                        $borderRadius={"border-radius-m2"}
-                        $background={"bg-btn-secondary"}
-                      >
-                        <OakBox>{documentItem.title}</OakBox>
-                        <OakBox>{documentItem.subText}</OakBox>
-                      </OakBox>
-                    );
-                  },
-                )}
+                {pageData.documentList.map((documentItem) => {
+                  return (
+                    // TODO: Replace me!
+                    <OakBox
+                      key={documentItem.href}
+                      $width={"spacing-240"}
+                      $pa={"spacing-16"}
+                      $borderRadius={"border-radius-m2"}
+                      $background={"bg-btn-secondary"}
+                    >
+                      <OakBox>{documentItem.title}</OakBox>
+                      <OakBox>{documentItem.subText}</OakBox>
+                    </OakBox>
+                  );
+                })}
               </MeetTheTeamContainer>
 
               <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>

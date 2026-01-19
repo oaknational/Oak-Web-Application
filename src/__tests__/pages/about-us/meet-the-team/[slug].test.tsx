@@ -70,7 +70,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
         res: {},
         query: {},
         params: {
-          slug: "ed-southall",
+          slug: "ed-southall-1",
         },
       } as unknown as GetServerSidePropsContext<{ slug: string }>);
 
