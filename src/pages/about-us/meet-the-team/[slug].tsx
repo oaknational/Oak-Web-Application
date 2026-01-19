@@ -1,5 +1,7 @@
 import { NextPage, GetServerSideProps, GetStaticPropsResult } from "next";
 
+import { mockData } from "../meet-the-team";
+
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -7,7 +9,6 @@ import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { testAboutWhoWeArePageData } from "@/__tests__/pages/about-us/meet-the-team.test";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -20,9 +21,6 @@ export type AboutUsMeetTheTeamPersonPage = {
   };
   topNav: TopNavProps;
 };
-
-// TODO: Replace me with sanity call
-const mockData = testAboutWhoWeArePageData;
 
 const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPage> = ({
   pageData,

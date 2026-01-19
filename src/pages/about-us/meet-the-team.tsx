@@ -48,6 +48,44 @@ export type AboutUsMeetTheTeamPage = {
   topNav: TopNavProps;
 };
 
+const mockPerson = {
+  slug: "ed-southall",
+  name: "Ed Southall",
+  position: "Subject Lead (maths)",
+};
+
+const mockDownload = {
+  title: "Impact evaluation of Oak: 2023/24",
+  subText: "PDF, 1.6MB",
+  href: "#",
+};
+
+export const mockData: AboutUsMeetTheTeamPage["pageData"] = {
+  // title: "Meet the team",
+  subTitle:
+    "Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.",
+  leadershipTitle: "Our leadership",
+  leadershipText:
+    "Our leadership team brings together experts to deliver the best support to teachers and value for money for the public. Learn more about them below.",
+  leadershipList: Array(12)
+    .fill(true)
+    .map(() => mockPerson),
+  boardTitle: "Our board",
+  boardText:
+    "Our Board oversees all of our work at Oak National Academy. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence.",
+  boardList: Array(12)
+    .fill(true)
+    .map(() => mockPerson),
+  documentTitle: "Documents",
+  documentText: null,
+  documentList: Array(12)
+    .fill(true)
+    .map(() => mockDownload),
+  governanceTitle: "Governance",
+  governanceText:
+    "Oak National Academy is a limited company incorporated under the Companies Act 2006 in September 2022 and whose sole shareholder is the Secretary of State for Education. It is a non-departmental public body (NDPB) which was established to work with schools, teachers and the wider education system and has a framework agreement with the Department for Education.",
+};
+
 const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
   pageData,
   topNav,

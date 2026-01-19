@@ -20,12 +20,11 @@ const mockPerson = {
   position: "Subject Lead (maths)",
 };
 
-export const testAboutWhoWeArePageData: AboutUsMeetTheTeamPersonPage["pageData"] =
-  {
-    ...testAboutPageBaseData,
-    // title: "Meet the team",
-    ...mockPerson,
-  };
+const testAboutWhoWeArePageData: AboutUsMeetTheTeamPersonPage["pageData"] = {
+  ...testAboutPageBaseData,
+  // title: "Meet the team",
+  ...mockPerson,
+};
 
 describe("pages/about/meet-the-team/[slug].tsx", () => {
   beforeEach(() => {
