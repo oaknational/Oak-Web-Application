@@ -10,7 +10,7 @@ export const LessonMediaAttributions = ({
       {mediaClipsWithAttributions.map((clip) => (
         <OakSpan
           $font="body-3"
-          $color="grey60"
+          $color="text-subdued"
           key={clip.name + clip.attribution}
         >
           <OakSpan $font="body-3-bold">{clip.name}</OakSpan>{" "}

@@ -342,7 +342,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         $pt={["spacing-48", "spacing-0"]}
         $pb={["spacing-48"]}
         $mt={["spacing-0", "spacing-48", "spacing-48"]}
-        $borderColor="red"
+        $borderColor="border-error"
         $width={"100%"}
         role="region"
       >

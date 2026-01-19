@@ -10,7 +10,11 @@ export default {
 } as Meta<typeof Component>;
 
 const Template: StoryFn<typeof Component> = (args) => (
-  <OakFlex $background={"lavender50"} $justifyContent={"center"} $width="100%">
+  <OakFlex
+    $background={"bg-decorative3-subdued"}
+    $justifyContent={"center"}
+    $width="100%"
+  >
     <Component {...args} />
   </OakFlex>
 );

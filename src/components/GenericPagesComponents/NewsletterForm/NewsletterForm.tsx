@@ -142,7 +142,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         $font={"body-3"}
         aria-live="assertive"
         role="alert"
-        $color="red"
+        $color="text-error"
       >
         {error}
       </OakP>

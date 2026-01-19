@@ -38,7 +38,7 @@ export function LessonAppearsInPathwayCard(
   return (
     <OakFlex
       $flexDirection={["column"]}
-      $background="white"
+      $background="bg-primary"
       $borderRadius="border-radius-s"
     >
       <OakHeading tag={headingTag}>

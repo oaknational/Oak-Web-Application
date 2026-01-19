@@ -10,7 +10,7 @@ import { extractUrnAndSchool } from "../helpers/downloadAndShareHelpers/getForma
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ResourceTypeValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
-import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 
 export type useCurriculumDownloadsProps = {
@@ -35,7 +35,7 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
   } = props;
 
   const { track } = useAnalytics();
-  const { setCurrentToastProps } = useOakToastContext();
+  const { setCurrentToastProps } = useOakNotificationsContext();
 
   const [data, setData] = useState<CurriculumDownloadViewData>(() => ({
     schoolId: undefined,

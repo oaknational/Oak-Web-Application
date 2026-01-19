@@ -181,7 +181,7 @@ export function LessonShare(props: LessonShareProps) {
   };
 
   return (
-    <OakBox $ph={["spacing-16", null]} $background={"grey20"}>
+    <OakBox $ph={["spacing-16", null]} $background={"bg-neutral"}>
       <OakMaxWidth $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}>
         <OakBox $mb={"spacing-32"} $mt={"spacing-24"}>
           <Breadcrumbs
@@ -217,7 +217,7 @@ export function LessonShare(props: LessonShareProps) {
             }
           />
           <OakHandDrawnHR
-            hrColor={"grey60"}
+            hrColor={"text-subdued"}
             $height={"spacing-4"}
             $mt={"spacing-24"}
             $mb={"spacing-24"}

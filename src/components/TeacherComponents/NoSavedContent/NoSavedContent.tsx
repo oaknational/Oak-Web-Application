@@ -13,10 +13,10 @@ const NoSavedContent = () => {
     <OakBox $ph={["spacing-20", "spacing-48"]}>
       <OakFlex
         $width="100%"
-        $background="grey20"
+        $background="bg-neutral"
         $borderRadius="border-radius-m2"
         $borderStyle="dashed"
-        $borderColor="grey50"
+        $borderColor="border-neutral"
         $height={["spacing-240", "spacing-360"]}
         $justifyContent="center"
         $alignItems="center"

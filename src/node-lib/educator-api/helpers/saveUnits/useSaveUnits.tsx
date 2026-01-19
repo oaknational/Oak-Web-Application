@@ -11,7 +11,7 @@ import {
   UnsavedToastProps,
 } from "./utils";
 
-import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import errorReporter from "@/common-lib/error-reporter";
@@ -75,7 +75,7 @@ export const useSaveUnits = (
     [isSavingUnit],
   );
 
-  const { setCurrentToastProps } = useOakToastContext();
+  const { setCurrentToastProps } = useOakNotificationsContext();
 
   const onSave = async (unitSlug: string) => {
     setLocallySavedUnits((prev) => [...prev, unitSlug]);
