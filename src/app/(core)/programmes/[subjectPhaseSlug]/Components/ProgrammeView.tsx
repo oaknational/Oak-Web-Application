@@ -7,7 +7,10 @@ import { useSearchParams } from "next/navigation";
 import ProgrammePageFiltersMobile from "./Filters/ProgrammePageFiltersMobile";
 import ProgrammePageFiltersDesktop from "./Filters/ProgrammePageFiltersDesktop";
 import ProgrammeSequence from "./Sequence";
-import { ProgrammeHeader } from "./ProgrammeHeader";
+import {
+  ProgrammeHeader,
+  pickSubjectTitleFromFilters,
+} from "./ProgrammeHeader";
 import { SubjectHeroImageName } from "./getSubjectHeroImageUrl";
 
 import { CurricVisualiserLayout } from "@/components/CurriculumComponents/CurricVisualiserLayout";
@@ -35,6 +38,7 @@ type ProgrammePageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
   subjectTitle: string;
   phaseTitle: string;
+  examboardTitle: string | undefined;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
 };
 
@@ -43,6 +47,7 @@ export const ProgrammeView = ({
   curriculumPhaseOptions,
   subjectTitle,
   phaseTitle,
+  examboardTitle,
   curriculumUnitsFormattedData,
 }: ProgrammePageProps) => {
   const isMobile = useMediaQuery("mobile");
@@ -118,8 +123,12 @@ export const ProgrammeView = ({
     <>
       <ProgrammeHeader
         subject={subjectForLayout.slug as SubjectHeroImageName}
-        subjectTitle={subjectTitle}
+        subjectTitle={
+          pickSubjectTitleFromFilters(curriculumUnitsFormattedData, filters) ??
+          subjectTitle
+        }
         phaseTitle={phaseTitle}
+        examboardTitle={examboardTitle}
         schoolYear={schoolYear}
         summary="This is some placeholder text for the summary. If this goes into production then we've still got work to do."
         bullets={[

@@ -11,8 +11,17 @@ import {
   OakLI,
   OakIcon,
 } from "@oaknational/oak-components";
+import { capitalize } from "lodash";
 
 import { getSubjectHeroImageUrl, SubjectName } from "./getSubjectHeroImageUrl";
+
+import { CurriculumFilters } from "@/utils/curriculum/types";
+import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
+import {
+  childSubjectForFilter,
+  subjectCategoryForFilter,
+} from "@/utils/curriculum/filteringApp";
+import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 export type ProgrammeHeaderProps = {
   /**
@@ -26,8 +35,19 @@ export type ProgrammeHeaderProps = {
    */
   phaseTitle: string;
   /**
+   * The title of the examboard of the programme.
+   *
+   * E.g 'AQA'
+   */
+  examboardTitle?: string;
+  /**
+   * Key stage
+   */
+  keyStage?: "ks1" | "ks2" | "ks3" | "ks4";
+  /**
    * School year
    *
+   * E.g '7'
    */
   schoolYear?: string;
   /**
@@ -82,7 +102,9 @@ export type ProgrammeHeaderProps = {
 export const ProgrammeHeader = ({
   subjectTitle,
   phaseTitle,
+  examboardTitle,
   schoolYear,
+  keyStage,
   summary,
   bullets,
   headerSlot,
@@ -120,7 +142,13 @@ export const ProgrammeHeader = ({
           $textWrap="balance"
         >
           <OakHeading tag="h1" $font={["heading-4", "heading-1"]}>
-            {getProgrammeTitle(subjectTitle, phaseTitle, schoolYear)}
+            {getProgrammeTitle(
+              subjectTitle,
+              phaseTitle,
+              schoolYear,
+              keyStage,
+              examboardTitle,
+            )}
           </OakHeading>
           <OakTypography $font="body-2">{summary}</OakTypography>
           {bullets && bullets.length > 0 && (
@@ -188,14 +216,122 @@ export const ProgrammeHeader = ({
   );
 };
 
+/**
+ * Picks a subject title from filters based on childSubjects and subjectCategories.
+ * Returns the selected value if exactly one filter is active, otherwise null.
+ */
+export function pickSubjectTitleFromFilters(
+  data: CurriculumUnitsFormattedData,
+  filters: CurriculumFilters,
+): string | null {
+  const childSubjectsDisplayed = shouldDisplayFilter(
+    data,
+    filters,
+    "childSubjects",
+  );
+  const subjectCategoriesDisplayed = shouldDisplayFilter(
+    data,
+    filters,
+    "subjectCategories",
+  );
+
+  // Filters can be present even when they are not applied. If the UI is hiding
+  // a filter, ignore its value entirely for our purposes.
+  const appliedChildSubjects = childSubjectsDisplayed
+    ? filters.childSubjects
+    : [];
+  const appliedSubjectCategories = subjectCategoriesDisplayed
+    ? filters.subjectCategories
+    : [];
+
+  // Only proceed if exactly one filter is selected in each category
+  const hasSingleChildSubject = appliedChildSubjects.length === 1;
+  const hasSingleSubjectCategory = appliedSubjectCategories.length === 1;
+
+  // Get the actual objects from data (returns undefined if not found or empty)
+  const childSubject = hasSingleChildSubject
+    ? childSubjectForFilter(data, filters)
+    : undefined;
+  const subjectCategory = hasSingleSubjectCategory
+    ? subjectCategoryForFilter(data, filters)
+    : undefined;
+
+  const childSubjectSlug = childSubject?.subject_slug;
+  const subjectCategorySlug = subjectCategory?.slug;
+
+  // When subjectCategoriesDisplayed and subjectCategories === "all" return null
+  if (subjectCategoriesDisplayed && subjectCategorySlug === "all") {
+    return null;
+  }
+
+  // When both filters are displayed and selected, check if they match
+  if (
+    hasSingleChildSubject &&
+    hasSingleSubjectCategory &&
+    childSubjectsDisplayed &&
+    subjectCategoriesDisplayed
+  ) {
+    // Both are selected and they match - return childSubject title
+    if (
+      childSubject &&
+      subjectCategory &&
+      childSubjectSlug === subjectCategorySlug
+    ) {
+      return childSubject.subject;
+    }
+    // Both are selected but don't match - return null
+    return null;
+  }
+
+  // Return subjectCategory when subjectCategories is the only subject filter displayed
+  // and subjectCategory is not "all"
+  if (
+    !childSubjectsDisplayed &&
+    subjectCategoriesDisplayed &&
+    subjectCategory &&
+    subjectCategorySlug &&
+    subjectCategorySlug !== "all"
+  ) {
+    return subjectCategory.title;
+  }
+
+  // Return childSubject title when childSubjects is the only subject filter displayed
+  if (!subjectCategoriesDisplayed && childSubjectsDisplayed && childSubject) {
+    return childSubject.subject;
+  }
+
+  return null;
+}
+
+/**
+ * Returns the title of the programme
+ *
+ * Combines the subject title, phase title, school year, key stage, and examboard title into a single string.
+ */
 function getProgrammeTitle(
   subjectTitle: string,
   phaseTitle: string,
   schoolYear?: string,
+  keyStage?: "ks1" | "ks2" | "ks3" | "ks4",
+  examboardTitle?: string,
 ) {
+  const parts: Array<string | undefined> = [capitalize(subjectTitle)];
+
   if (schoolYear) {
-    return `${subjectTitle} year ${schoolYear}`;
+    parts.push(`year ${schoolYear}`);
+
+    if (schoolYear === "10" || schoolYear === "11") {
+      parts.push(examboardTitle);
+    }
+  } else if (keyStage) {
+    parts.push(keyStage?.toUpperCase());
+
+    if (keyStage === "ks4") {
+      parts.push(examboardTitle);
+    }
+  } else {
+    parts.push(phaseTitle?.toLowerCase(), examboardTitle);
   }
 
-  return `${subjectTitle} ${phaseTitle?.toLowerCase()}`;
+  return parts.filter(Boolean).join(" ");
 }
