@@ -1,6 +1,9 @@
 import { act } from "@testing-library/react";
 
-import { getEYFSAriaLabel, TopNavHamburger } from "./TopNavHamburger";
+import {
+  getEYFSAriaLabel,
+  TeachersTopNavHamburger,
+} from "./TeachersTopNavHamburger";
 
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -186,19 +189,21 @@ const mockTopNavProps: TopNavProps = {
 
 const render = renderWithProviders();
 
-describe("TopNavHamburger", () => {
+describe("TeachersTopNavHamburger", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it("should render the component", () => {
-    const { getByTestId } = render(<TopNavHamburger {...mockTopNavProps} />);
+    const { getByTestId } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
     expect(getByTestId("top-nav-hamburger-button")).toBeInTheDocument();
   });
 
   it("should display main menu content when no submenu is open", () => {
     const { getByTestId, getByText } = render(
-      <TopNavHamburger {...mockTopNavProps} />,
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
     const button = getByTestId("top-nav-hamburger-button");
     act(() => {
@@ -209,7 +214,7 @@ describe("TopNavHamburger", () => {
 
   it("should display submenu content when a submenu is opened", () => {
     const { getByTestId, getByText } = render(
-      <TopNavHamburger {...mockTopNavProps} />,
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
     const button = getByTestId("top-nav-hamburger-button");
     act(() => {
@@ -224,7 +229,7 @@ describe("TopNavHamburger", () => {
 
   it("should focus the first list item when submenu is opened", () => {
     const { getByTestId, getByText } = render(
-      <TopNavHamburger {...mockTopNavProps} />,
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
     const button = getByTestId("top-nav-hamburger-button");
     act(() => {
@@ -242,7 +247,7 @@ describe("TopNavHamburger", () => {
 
   it("should close submenu and return to main menu when back button is triggered", () => {
     const { getByTestId, getByText, queryByText } = render(
-      <TopNavHamburger {...mockTopNavProps} />,
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
     const button = getByTestId("top-nav-hamburger-button");
     act(() => {
@@ -262,7 +267,7 @@ describe("TopNavHamburger", () => {
 
   it("should focus the triggering element when returning to main menu from submenu", () => {
     const { getByTestId, getByText } = render(
-      <TopNavHamburger {...mockTopNavProps} />,
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
     const button = getByTestId("top-nav-hamburger-button");
     act(() => {
@@ -281,7 +286,7 @@ describe("TopNavHamburger", () => {
 
   it("should reset all states when modal closes", () => {
     const { getByTestId, getByText, queryByText, getByLabelText } = render(
-      <TopNavHamburger {...mockTopNavProps} />,
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
     const button = getByTestId("top-nav-hamburger-button");
     act(() => {

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
-import { TopNavHamburger } from "./TopNavHamburger/TopNavHamburger";
+import { TeachersTopNavHamburger } from "./TeachersTopNavHamburger/TeachersTopNavHamburger";
 
 import {
   OakBox,
@@ -141,7 +141,7 @@ const TopNav = (props: TopNavProps) => {
                 console.log("selected menu ", teachers[menu]);
               }}
             />
-            <TopNavHamburger {...props} />
+            <TeachersTopNavHamburger {...props} />
           </>
         )}
         {activeArea === "PUPILS" && pupils && (

@@ -17,7 +17,7 @@ import {
   getEYFSAriaLabel,
   SubmenuState,
   useHamburgerMenu,
-} from "./TopNavHamburger";
+} from "./TeachersTopNavHamburger";
 
 import { TeachersBrowse } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";

@@ -13,7 +13,7 @@ import {
   getEYFSAriaLabel,
   SubmenuState,
   useHamburgerMenu,
-} from "./TopNavHamburger";
+} from "./TeachersTopNavHamburger";
 
 import {
   SubNavLinks,
