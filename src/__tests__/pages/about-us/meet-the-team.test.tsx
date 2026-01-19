@@ -15,6 +15,10 @@ import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fi
 
 jest.mock("@/node-lib/posthog/getFeatureFlag");
 jest.mock("../../../node-lib/cms");
+jest.mock("@/node-lib/posthog/getPosthogId", () => ({
+  __esModule: true,
+  getPosthogIdFromCookie: jest.fn().mockReturnValue("test-posthog-id"),
+}));
 
 export const testAboutWhoWeArePageData: AboutUsMeetTheTeamPage["pageData"] = {
   ...testAboutPageBaseData,
@@ -38,7 +42,7 @@ describe("pages/about/meet-the-team.tsx", () => {
     expect(container).toMatchSnapshot();
   });
 
-  describe("getStaticProps", () => {
+  describe("getServerSideProps", () => {
     it("should 404 when not enabled", async () => {
       (getFeatureFlag as jest.Mock).mockResolvedValue(false);
       const propsResult = await getServerSideProps({
@@ -50,6 +54,20 @@ describe("pages/about/meet-the-team.tsx", () => {
 
       expect(propsResult).toMatchObject({
         notFound: true,
+      });
+    });
+
+    it("should 200 when enabled", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: {},
+        params: {},
+      } as unknown as GetServerSidePropsContext);
+
+      expect(propsResult).toMatchObject({
+        props: expect.anything(),
       });
     });
   });
