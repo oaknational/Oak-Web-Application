@@ -13,15 +13,45 @@ import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
+import { testAboutWhoWeArePageData } from "@/__tests__/pages/about-us/meet-the-team.test";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-export type AboutPageProps = {
-  pageData: typeof mockData;
+type Download = {
+  title: string;
+  subText: string;
+  href: string;
+};
+
+type Person = {
+  slug: string;
+  name: string;
+  position: string;
+  image?: string;
+};
+
+export type AboutUsMeetTheTeamPage = {
+  pageData: {
+    subTitle: string;
+    leadershipTitle: string;
+    leadershipText: string;
+    leadershipList: Person[];
+    boardTitle: string;
+    boardText: string;
+    boardList: Person[];
+    documentTitle: string;
+    documentText: string | null;
+    documentList: Download[];
+    governanceTitle: string;
+    governanceText: string;
+  };
   topNav: TopNavProps;
 };
 
-const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
+const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
+  pageData,
+  topNav,
+}) => {
   return (
     <Layout
       seoProps={getSeoProps(null)}
@@ -52,26 +82,30 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
                 title={pageData.leadershipTitle}
                 text={pageData.leadershipText}
               >
-                {pageData.leadershipList.map((leadershipItem) => {
-                  return (
-                    // TODO: Replace me!
-                    <ProfileCard
-                      name={leadershipItem.name}
-                      role={leadershipItem.position}
-                      href={`/about-us/meet-the-team/${leadershipItem.slug}`}
-                    />
-                  );
-                })}
+                {pageData.leadershipList.map(
+                  (leadershipItem, leadershipItemIndex) => {
+                    return (
+                      // TODO: Replace me!
+                      <ProfileCard
+                        key={leadershipItemIndex}
+                        name={leadershipItem.name}
+                        role={leadershipItem.position}
+                        href={`/about-us/meet-the-team/${leadershipItem.slug}`}
+                      />
+                    );
+                  },
+                )}
               </MeetTheTeamContainer>
 
               <MeetTheTeamContainer
                 title={pageData.boardTitle}
                 text={pageData.boardText}
               >
-                {pageData.boardList.map((boardItem) => {
+                {pageData.boardList.map((boardItem, boardItemIndex) => {
                   return (
                     // TODO: Replace me!
                     <ProfileCard
+                      key={boardItemIndex}
                       name={boardItem.name}
                       role={boardItem.position}
                       href={`/about-us/meet-the-team/${boardItem.slug}`}
@@ -84,20 +118,23 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
                 title={pageData.documentTitle}
                 text={pageData.documentText}
               >
-                {pageData.documentList.map((documentItem) => {
-                  return (
-                    // TODO: Replace me!
-                    <OakBox
-                      $width={"spacing-240"}
-                      $pa={"spacing-16"}
-                      $borderRadius={"border-radius-m2"}
-                      $background={"bg-btn-secondary"}
-                    >
-                      <OakBox>{documentItem.title}</OakBox>
-                      <OakBox>{documentItem.subText}</OakBox>
-                    </OakBox>
-                  );
-                })}
+                {pageData.documentList.map(
+                  (documentItem, documentItemIndex) => {
+                    return (
+                      // TODO: Replace me!
+                      <OakBox
+                        key={documentItemIndex}
+                        $width={"spacing-240"}
+                        $pa={"spacing-16"}
+                        $borderRadius={"border-radius-m2"}
+                        $background={"bg-btn-secondary"}
+                      >
+                        <OakBox>{documentItem.title}</OakBox>
+                        <OakBox>{documentItem.subText}</OakBox>
+                      </OakBox>
+                    );
+                  },
+                )}
               </MeetTheTeamContainer>
 
               <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
@@ -112,54 +149,9 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
   );
 };
 
-const mockPerson = {
-  slug: "ed-southall",
-  name: "Ed Southall",
-  position: "Subject Lead (maths)",
-};
-
-const mockDownload = {
-  title: "Impact evaluation of Oak: 2023/24",
-  subText: "PDF, 1.6MB",
-  href: "#",
-};
-
-export type Person = {
-  slug: string;
-  name: string;
-  position: string;
-  image?: string;
-};
-
-export const mockData = {
-  // title: "Meet the team",
-  subTitle:
-    "Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.",
-  leadershipTitle: "Our leadership",
-  leadershipText:
-    "Our leadership team brings together experts to deliver the best support to teachers and value for money for the public. Learn more about them below.",
-  leadershipList: Array(12)
-    .fill(true)
-    .map(() => mockPerson),
-  boardTitle: "Our board",
-  boardText:
-    "Our Board oversees all of our work at Oak National Academy. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence.",
-  boardList: Array(12)
-    .fill(true)
-    .map(() => mockPerson),
-  documentTitle: "Documents",
-  documentText: null,
-  documentList: Array(12)
-    .fill(true)
-    .map(() => mockDownload),
-  governanceTitle: "Governance",
-  governanceText:
-    "Oak National Academy is a limited company incorporated under the Companies Act 2006 in September 2022 and whose sole shareholder is the Secretary of State for Education. It is a non-departmental public body (NDPB) which was established to work with schools, teachers and the wider education system and has a framework agreement with the Department for Education.",
-};
-
-export const getServerSideProps: GetServerSideProps<AboutPageProps> = async (
-  context,
-) => {
+export const getServerSideProps: GetServerSideProps<
+  AboutUsMeetTheTeamPage
+> = async (context) => {
   const posthogUserId = getPosthogIdFromCookie(
     context.req.cookies,
     posthogApiKey,
@@ -186,7 +178,8 @@ export const getServerSideProps: GetServerSideProps<AboutPageProps> = async (
   //   previewMode: isPreviewMode,
   // });
 
-  const aboutMeetTheTeamPage = mockData;
+  // TODO: Remove mock data `testAboutWhoWeArePageData`
+  const aboutMeetTheTeamPage = testAboutWhoWeArePageData;
 
   const topNav = await curriculumApi2023.topNav();
 
@@ -196,7 +189,7 @@ export const getServerSideProps: GetServerSideProps<AboutPageProps> = async (
     };
   }
 
-  const results: GetStaticPropsResult<AboutPageProps> = {
+  const results: GetStaticPropsResult<AboutUsMeetTheTeamPage> = {
     props: {
       pageData: aboutMeetTheTeamPage,
       topNav,
@@ -205,4 +198,4 @@ export const getServerSideProps: GetServerSideProps<AboutPageProps> = async (
   return results;
 };
 
-export default AboutUsLeadership;
+export default AboutUsMeetTheTeam;
