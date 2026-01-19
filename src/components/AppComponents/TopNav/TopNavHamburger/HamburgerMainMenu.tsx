@@ -44,7 +44,7 @@ export function MainMenuContent(props: TopNavProps) {
         <MainMenuLink href={"/"} title="Curriculum" />
         <MainMenuButton title={"About us"} />
         <MainMenuButton title={"Guidance"} />
-        <MainMenuLink href={"/"} title="Ai Experiments" iconName="external" />
+        <MainMenuLink href={"/"} title="AI Experiments" iconName="external" />
       </OakFlex>
     </OakUL>
   );

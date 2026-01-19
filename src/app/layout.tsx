@@ -3,6 +3,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Lexend } from "next/font/google";
 import parse from "html-react-parser";
 
+import { OakNotificationsProvider } from "../context/OakNotifications/OakNotificationsProvider";
+
 import { PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
@@ -72,7 +74,9 @@ export default function RootLayout({
                 >
                   <AnalyticsWrapper>
                     <OakBox $width="100vw" $height="100vh">
-                      {children}
+                      <OakNotificationsProvider>
+                        {children}
+                      </OakNotificationsProvider>
                     </OakBox>
                   </AnalyticsWrapper>
                 </ClerkProvider>
