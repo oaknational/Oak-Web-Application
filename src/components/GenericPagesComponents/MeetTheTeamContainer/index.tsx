@@ -9,7 +9,7 @@ export function MeetTheTeamContainer({
   title,
   text,
   children,
-}: MeetTheTeamContainerProps) {
+}: Readonly<MeetTheTeamContainerProps>) {
   return (
     <OakBox
       $background={"bg-decorative5-very-subdued"}

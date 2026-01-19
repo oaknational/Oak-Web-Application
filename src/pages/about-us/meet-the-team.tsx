@@ -13,7 +13,6 @@ import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
-import { testAboutWhoWeArePageData } from "@/__tests__/pages/about-us/meet-the-team.test";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -217,7 +216,7 @@ export const getServerSideProps: GetServerSideProps<
   // });
 
   // TODO: Remove mock data `testAboutWhoWeArePageData`
-  const aboutMeetTheTeamPage = testAboutWhoWeArePageData;
+  const aboutMeetTheTeamPage = mockData;
 
   const topNav = await curriculumApi2023.topNav();
 
