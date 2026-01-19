@@ -92,6 +92,7 @@ export function TopNavHamburger(props: TopNavProps) {
   return (
     <OakBox $display={["block", "block", "none"]}>
       <OakSecondaryButton
+        data-testid="top-nav-hamburger-button"
         $borderStyle={"none"}
         iconName="hamburger"
         onClick={() => handleOpen()}
