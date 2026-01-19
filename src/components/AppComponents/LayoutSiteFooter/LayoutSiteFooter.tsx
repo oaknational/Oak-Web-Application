@@ -21,7 +21,6 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import Logo from "@/components/AppComponents/Logo";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
@@ -186,7 +185,15 @@ const LayoutSiteFooter: FC = () => {
                 $mt={["spacing-32", "spacing-0"]}
               >
                 <OakBox $display={["none", "block"]}>
-                  <Logo variant="with text" height={66} width={150} />
+                  <OakImage
+                    src={getCloudinaryImageUrl(
+                      "v1765468420/OakLogoWithText.svg",
+                    )}
+                    alt=""
+                    $height={"spacing-64"}
+                    $width={"spacing-160"}
+                    $pa={"spacing-0"}
+                  />
                 </OakBox>
                 <SocialButtons
                   $display={["flex", "none"]}
@@ -218,7 +225,13 @@ const LayoutSiteFooter: FC = () => {
               {...OAK_SOCIALS}
             />
             <OakBox $display={["block", "none"]}>
-              <Logo variant="with text" height={66} width={150} />
+              <OakImage
+                src={getCloudinaryImageUrl("v1765468420/OakLogoWithText.svg")}
+                alt=""
+                $height={"spacing-64"}
+                $width={"spacing-160"}
+                $pa={"spacing-0"}
+              />
             </OakBox>
             <OakFlex
               $mt={["spacing-32", "spacing-0"]}
