@@ -1,5 +1,7 @@
 import { OakIconName } from "@oaknational/oak-components";
 
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+
 type SubjectIconName = Extract<OakIconName, `subject-${string}`>;
 export type SubjectName = SubjectIconName extends `subject-${infer Name}`
   ? Name
@@ -116,5 +118,6 @@ export function getSubjectHeroImageUrl(subject: SubjectName) {
   if (!imageId) {
     return null;
   }
-  return `https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/${imageId}`;
+
+  return getCloudinaryImageUrl(imageId);
 }
