@@ -4,13 +4,13 @@ exports[`ProfileCard renders correctly with image 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-kAyceB gZbrTB FywIr"
+      class="sc-fqkvVR sc-kAyceB ekdrjj FywIr"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+        class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
       >
         <div
-          class="sc-fqkvVR ggFquz"
+          class="sc-fqkvVR bXvcRV"
         >
           <img
             alt=""
@@ -26,33 +26,33 @@ exports[`ProfileCard renders correctly with image 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR fgBWrW"
+        class="sc-fqkvVR aZqjs"
       >
         <h3
-          class="sc-kpDqfm laqALl"
+          class="sc-kpDqfm dLONQs"
         >
           Ed Southall
         </h3>
       </div>
       <div
-        class="sc-fqkvVR TgDlp"
+        class="sc-fqkvVR dRREzf"
       >
         Subject Lead (maths)
       </div>
       <div
-        class="sc-fqkvVR sc-kAyceB edWxbp bQAWYR"
+        class="sc-fqkvVR sc-kAyceB deAHWb bQAWYR"
       >
         <a
-          class="sc-fxwrCY eycZBP sc-hIUJlX"
+          class="sc-fxwrCY bSyRHN sc-hIUJlX"
           href="#"
         >
           <span
-            class="sc-dAlyuH cRouMQ"
+            class="sc-dAlyuH eMKgAN"
           >
             See bio
           </span>
           <div
-            class="sc-fqkvVR kbnxKi sc-dSCufp"
+            class="sc-fqkvVR hCMPss sc-dSCufp"
           >
             <img
               alt=""
@@ -75,43 +75,43 @@ exports[`ProfileCard renders correctly without image 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-kAyceB gZbrTB FywIr"
+      class="sc-fqkvVR sc-kAyceB ekdrjj FywIr"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+        class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
       >
         <div
-          class="sc-fqkvVR frVDDj"
+          class="sc-fqkvVR fSPNQN"
         />
       </div>
       <div
-        class="sc-fqkvVR fgBWrW"
+        class="sc-fqkvVR aZqjs"
       >
         <h3
-          class="sc-kpDqfm laqALl"
+          class="sc-kpDqfm dLONQs"
         >
           John Roberts
         </h3>
       </div>
       <div
-        class="sc-fqkvVR TgDlp"
+        class="sc-fqkvVR dRREzf"
       >
         Chief Executive
       </div>
       <div
-        class="sc-fqkvVR sc-kAyceB edWxbp bQAWYR"
+        class="sc-fqkvVR sc-kAyceB deAHWb bQAWYR"
       >
         <a
-          class="sc-fxwrCY eycZBP sc-hIUJlX"
+          class="sc-fxwrCY bSyRHN sc-hIUJlX"
           href="#"
         >
           <span
-            class="sc-dAlyuH cRouMQ"
+            class="sc-dAlyuH eMKgAN"
           >
             See bio
           </span>
           <div
-            class="sc-fqkvVR kbnxKi sc-dSCufp"
+            class="sc-fqkvVR hCMPss sc-dSCufp"
           >
             <img
               alt=""

@@ -4,19 +4,19 @@ exports[`<Terms/> 1`] = `
 <body>
   <div>
     <p
-      class="sc-dLMFU MdFoC"
+      class="sc-dLMFU btSlnv"
     >
       This content is © Oak National Academy (2023), licensed on
        
       <a
-        class="sc-fxwrCY cHaphN"
+        class="sc-fxwrCY fvoCcP"
         href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
         rel="external"
         style="display: inline;"
         target="_blank"
       >
         <span
-          class="sc-dAlyuH cRouMQ"
+          class="sc-dAlyuH eMKgAN"
         >
           Open Government Licence version 3.0
         </span>
@@ -25,14 +25,14 @@ exports[`<Terms/> 1`] = `
       except where otherwise stated. See
        
       <a
-        class="sc-fxwrCY cHaphN"
+        class="sc-fxwrCY fvoCcP"
         href="/legal/terms-and-conditions"
         rel="external"
         style="display: inline;"
         target="_blank"
       >
         <span
-          class="sc-dAlyuH cRouMQ"
+          class="sc-dAlyuH eMKgAN"
         >
           Oak's terms and conditions
         </span>
