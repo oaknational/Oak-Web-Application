@@ -73,12 +73,7 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  // TODO: Replace the mock data with something like the following
-  // const isPreviewMode = context.preview === true;
-  // const aboutWhoWeArePage = await CMSClient.newAboutGetInvolvedPage({
-  //   previewMode: isPreviewMode,
-  // });
-
+  // Replace me with non-mocked data
   const aboutMeetTheTeamPersonPage = context.params?.slug
     ? findPerson(context.params.slug)
     : null;

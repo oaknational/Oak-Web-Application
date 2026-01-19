@@ -107,7 +107,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               $display={["none", "block", "block"]}
               style={{ minWidth: 200 }}
             >
-              TODO: SideNav
+              SideNav placeholder
             </OakFlex>
             <OakFlex
               $flexGrow={1}
@@ -121,7 +121,6 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               >
                 {pageData.leadershipList.map((leadershipItem) => {
                   return (
-                    // TODO: Replace me!
                     <ProfileCard
                       key={leadershipItem.slug}
                       name={leadershipItem.name}
@@ -138,7 +137,6 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               >
                 {pageData.boardList.map((boardItem) => {
                   return (
-                    // TODO: Replace me!
                     <ProfileCard
                       key={boardItem.slug}
                       name={boardItem.name}
@@ -155,7 +153,6 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               >
                 {pageData.documentList.map((documentItem) => {
                   return (
-                    // TODO: Replace me!
                     <OakBox
                       key={documentItem.href}
                       $width={"spacing-240"}
@@ -205,13 +202,7 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  // TODO: Replace the mock data with something like the following
-  // const isPreviewMode = context.preview === true;
-  // const aboutWhoWeArePage = await CMSClient.newAboutGetInvolvedPage({
-  //   previewMode: isPreviewMode,
-  // });
-
-  // TODO: Remove mock data `testAboutWhoWeArePageData`
+  // Replace me with non-mocked data
   const aboutMeetTheTeamPage = mockData;
 
   const topNav = await curriculumApi2023.topNav();
