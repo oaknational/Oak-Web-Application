@@ -58,16 +58,18 @@ function SubjectsSection(props: TeachersBrowse) {
         $width={"fit-content"}
         $mb={"spacing-12"}
       >
-        <OakHeading tag="h2" $font={"heading-6"}>
-          {props.phaseTitle}
-        </OakHeading>
-        <OakSvg
-          $color={"mint"}
-          $display={"block"}
-          $width={"spacing-120"}
-          name={"underline"}
-          $height={"spacing-8"}
-        />
+        <OakBox $position={"relative"}>
+          <OakHeading tag="h2" $font={"heading-6"}>
+            {props.phaseTitle}
+          </OakHeading>
+          <OakSvg
+            $position={"absolute"}
+            $color={"mint"}
+            $display={"block"}
+            name={"underline"}
+            $height={"spacing-8"}
+          />
+        </OakBox>
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         {props.keystages.map((keystage) => (
