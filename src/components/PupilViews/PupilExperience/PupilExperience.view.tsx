@@ -240,7 +240,7 @@ const PupilExperienceLayout = ({
           type: "Classroom",
           action: "closeIframe",
         },
-        "*",
+        "https://classroom.google.com",
       );
     } else if (backUrl) {
       router.replace(backUrl);
