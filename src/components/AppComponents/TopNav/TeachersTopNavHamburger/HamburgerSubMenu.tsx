@@ -72,7 +72,7 @@ export function SubmenuContainer({
   );
 }
 
-export function SubmenuContent(props: TeachersSubNavData) {
+export function SubmenuContent(props: Readonly<TeachersSubNavData>) {
   const { submenuOpen, handleClose } = useHamburgerMenu();
 
   if (!submenuOpen) return null;

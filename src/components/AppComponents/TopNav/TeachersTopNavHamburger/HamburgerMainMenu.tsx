@@ -22,7 +22,7 @@ import {
 import { TeachersBrowse } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 
-export function MainMenuContent(props: TopNavProps) {
+export function MainMenuContent(props: Readonly<TopNavProps>) {
   const { submenuOpen, prevSubmenu } = useHamburgerMenu();
   useEffect(() => {
     if (prevSubmenu) {
@@ -62,7 +62,7 @@ export function MainMenuContent(props: TopNavProps) {
   );
 }
 
-function SubjectsSection(props: TeachersBrowse) {
+function SubjectsSection(props: Readonly<TeachersBrowse>) {
   return (
     <OakBox>
       <OakFlex
@@ -100,8 +100,8 @@ function MainMenuButton({
   title,
   description,
 }: {
-  title: SubmenuState;
-  description?: string;
+  readonly title: SubmenuState;
+  readonly description?: string;
 }) {
   const { setSubmenuOpen } = useHamburgerMenu();
   const isEYFS = title === "EYFS";
@@ -117,7 +117,7 @@ function MainMenuButton({
           width={"100%"}
           id={title + "button"}
           onClick={() => {
-            setSubmenuOpen(title as SubmenuState);
+            setSubmenuOpen(title);
           }}
         >
           {showDescription ? description : title}

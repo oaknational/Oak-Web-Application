@@ -56,7 +56,7 @@ export const getEYFSAriaLabel = (title: SubmenuState) => {
   return isEYFS ? "Early years foundation stage" : undefined;
 };
 
-export function TeachersTopNavHamburger(props: TopNavProps) {
+export function TeachersTopNavHamburger(props: Readonly<TopNavProps>) {
   const [isOpen, setIsOpen] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState<SubmenuState>(false);
   const [prevSubmenu, setPrevSubmenu] = useState<SubmenuState>(false);
@@ -110,7 +110,7 @@ export function TeachersTopNavHamburger(props: TopNavProps) {
   );
 }
 
-function Content(props: TopNavProps) {
+function Content(props: Readonly<TopNavProps>) {
   const { submenuOpen } = useHamburgerMenu();
   if (!props.teachers) return;
   return (
