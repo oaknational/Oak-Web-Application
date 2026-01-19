@@ -11,7 +11,7 @@ import { testAboutWhoWeArePageData } from "@/__tests__/pages/about-us/meet-the-t
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-export type AboutPageProps = {
+export type AboutUsMeetTheTeamPersonPage = {
   pageData: {
     slug: string;
     name: string;
@@ -24,7 +24,10 @@ export type AboutPageProps = {
 // TODO: Replace me with sanity call
 const mockData = testAboutWhoWeArePageData;
 
-const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
+const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPage> = ({
+  pageData,
+  topNav,
+}) => {
   return (
     <Layout
       seoProps={getSeoProps(null)}
@@ -49,7 +52,7 @@ type URLParams = {
 };
 
 export const getServerSideProps: GetServerSideProps<
-  AboutPageProps,
+  AboutUsMeetTheTeamPersonPage,
   URLParams
 > = async (context) => {
   const posthogUserId = getPosthogIdFromCookie(
@@ -90,7 +93,7 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const results: GetStaticPropsResult<AboutPageProps> = {
+  const results: GetStaticPropsResult<AboutUsMeetTheTeamPersonPage> = {
     props: {
       pageData: aboutMeetTheTeamPersonPage,
       topNav,
@@ -99,4 +102,4 @@ export const getServerSideProps: GetServerSideProps<
   return results;
 };
 
-export default AboutUsLeadership;
+export default AboutUsMeetTheTeamPerson;
