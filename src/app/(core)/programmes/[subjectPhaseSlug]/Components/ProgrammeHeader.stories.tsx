@@ -63,6 +63,26 @@ const meta: Meta<typeof ProgrammeHeader> = {
         "11",
       ],
     },
+    keyStage: {
+      control: {
+        type: "select",
+      },
+      options: [undefined, "ks1", "ks2", "ks3", "ks4"],
+    },
+    examboardTitle: {
+      control: {
+        type: "select",
+      },
+      options: [
+        undefined,
+        "AQA",
+        "Edexcel",
+        "Edexcel B",
+        "Eduqas",
+        "OCR",
+        "WJEC",
+      ],
+    },
     summary: {
       control: {
         type: "text",
@@ -82,6 +102,8 @@ const meta: Meta<typeof ProgrammeHeader> = {
         "subjectTitle",
         "phaseTitle",
         "schoolYear",
+        "keyStage",
+        "examboardTitle",
         "summary",
         "bullets",
       ],
@@ -200,6 +222,55 @@ export const WithSchoolYear: Story = {
       "Curriculum-aligned content",
       "Engaging practical activities",
       "Assessment support materials",
+    ],
+  },
+};
+
+export const WithKeyStage: Story = {
+  args: {
+    subject: "maths",
+    subjectTitle: "Maths",
+    phaseTitle: "Primary",
+    keyStage: "ks2",
+    summary:
+      "This example demonstrates the component with a key stage specified. When a key stage is provided, the heading format changes to include 'KS1', 'KS2', 'KS3', or 'KS4' instead of the phase title.",
+    bullets: [
+      "National curriculum-aligned",
+      "Progressive skill development",
+      "Assessment-ready resources",
+    ],
+  },
+};
+
+export const WithExamboard: Story = {
+  args: {
+    subject: "science",
+    subjectTitle: "Science",
+    phaseTitle: "Secondary",
+    examboardTitle: "AQA",
+    summary:
+      "This example demonstrates the component with an exam board specified. When an exam board is provided with KS4 or years 10-11, it appears in the heading after the key stage or year.",
+    bullets: [
+      "National curriculum-aligned",
+      "Progressive skill development",
+      "Assessment-ready resources",
+    ],
+  },
+};
+
+export const WithSchoolYearAndExamboard: Story = {
+  args: {
+    subject: "maths",
+    subjectTitle: "Maths",
+    phaseTitle: "Secondary",
+    schoolYear: "10",
+    examboardTitle: "Edexcel",
+    summary:
+      "This example demonstrates the component with both a school year and exam board. For years 10 and 11, the exam board appears after the year in the heading.",
+    bullets: [
+      "National curriculum-aligned",
+      "Progressive skill development",
+      "Assessment-ready resources",
     ],
   },
 };
