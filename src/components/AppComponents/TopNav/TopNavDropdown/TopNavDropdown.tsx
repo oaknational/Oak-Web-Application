@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import {
-  isValidIconName,
-  OakFlex,
-  OakPupilJourneyYearButton,
-  OakUL,
-  OakLI,
-  OakHeading,
-  OakSvg,
   OakBox,
+  OakFlex,
   OakGrid,
+  OakHeading,
   OakLeftAlignedButton,
-  OakSubjectIconButton,
-  OakPrimaryInvertedButton,
+  OakLI,
+  OakPupilJourneyYearButton,
+  OakSvg,
+  OakUL,
 } from "@oaknational/oak-components";
+
+import TopNavSubjectButtons from "./TopNavSubjectButtons";
 
 import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import {
@@ -25,130 +24,6 @@ export type TopNavDropdownProps = {
   selectedMenu: keyof TeachersSubNavData | keyof PupilsSubNavData;
   teachers: TeachersSubNavData;
   pupils: PupilsSubNavData;
-};
-
-const getIconName = (subjectSlug: string) => {
-  const iconName = `subject-${subjectSlug}`;
-  return isValidIconName(iconName) ? iconName : "question-mark";
-};
-
-const getSubjectLinkProps = ({
-  programmeCount,
-  subjectSlug,
-  programmeSlug,
-  keyStageSlug,
-}: {
-  programmeCount: number;
-  subjectSlug: string;
-  programmeSlug: string | null;
-  keyStageSlug?: string;
-}): ResolveOakHrefProps => {
-  return programmeCount > 1 && keyStageSlug
-    ? // If there are multiple programmes, link to the programme listing page
-      {
-        page: "programme-index",
-        subjectSlug,
-        keyStageSlug,
-      }
-    : // If there is only one programme, link to the unit listing page for that programme
-      {
-        page: "unit-index",
-        programmeSlug: programmeSlug!,
-      };
-};
-
-const SubjectButtons = ({
-  selectedMenu,
-  subjects,
-  nonCurriculumSubjects,
-  keyStageSlug,
-  keyStageTitle,
-}: {
-  selectedMenu: keyof TeachersSubNavData;
-  subjects: TeachersSubNavData[
-    | "primary"
-    | "secondary"]["keystages"][number]["subjects"];
-  nonCurriculumSubjects?: TeachersSubNavData[
-    | "primary"
-    | "secondary"]["keystages"][number]["subjects"];
-  keyStageSlug: string;
-  keyStageTitle: string;
-}) => {
-  return (
-    <OakUL
-      $display={"flex"}
-      $flexGrow={1}
-      $flexWrap={"wrap"}
-      $gap={"spacing-16"}
-      $reset
-    >
-      {(subjects &&
-        subjects.length > 0 &&
-        subjects.map((subject) => {
-          const { programmeCount, subjectSlug, programmeSlug } = subject;
-
-          return (
-            <OakLI key={subjectSlug}>
-              <OakSubjectIconButton
-                variant={"horizontal"}
-                key={subjectSlug}
-                element="a"
-                subjectIconName={getIconName(subjectSlug)}
-                href={resolveOakHref(
-                  getSubjectLinkProps({
-                    programmeCount,
-                    subjectSlug,
-                    programmeSlug,
-                    keyStageSlug,
-                  }),
-                )}
-                phase={selectedMenu as "primary" | "secondary"}
-              >
-                {subject.title}
-              </OakSubjectIconButton>
-            </OakLI>
-          );
-        })) ??
-        null}
-      {nonCurriculumSubjects &&
-        nonCurriculumSubjects.length > 0 &&
-        nonCurriculumSubjects.map((subject) => {
-          const { programmeCount, subjectSlug, programmeSlug } = subject;
-
-          return (
-            <OakLI key={subject.subjectSlug}>
-              <OakSubjectIconButton
-                variant={"horizontal"}
-                key={subjectSlug}
-                element="a"
-                subjectIconName={getIconName(subjectSlug)}
-                href={resolveOakHref(
-                  getSubjectLinkProps({
-                    programmeCount,
-                    subjectSlug,
-                    programmeSlug,
-                    keyStageSlug,
-                  }),
-                )}
-                phase={"non-curriculum"}
-              >
-                {subject.title}
-              </OakSubjectIconButton>
-            </OakLI>
-          );
-        })}
-      <OakLI>
-        <OakPrimaryInvertedButton
-          element="a"
-          iconName="arrow-right"
-          isTrailingIcon
-          href={resolveOakHref({ page: "subject-index", keyStageSlug })}
-        >
-          All {keyStageTitle} subjects
-        </OakPrimaryInvertedButton>
-      </OakLI>
-    </OakUL>
-  );
 };
 
 const TeachersPhaseSection = ({
@@ -207,7 +82,7 @@ const TeachersPhaseSection = ({
         ))}
       </OakUL>
       {subjects && (
-        <SubjectButtons
+        <TopNavSubjectButtons
           selectedMenu={selectedMenu}
           subjects={subjects}
           nonCurriculumSubjects={nonCurriculumSubjects}
