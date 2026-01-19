@@ -52,7 +52,8 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     exitQuizQuestionsArray,
     browseData: { programmeFields, lessonSlug, isLegacy },
   } = props;
-  const { isClassroomAssignment } = useAssignmentSearchParams();
+  const { isClassroomAssignment, classroomAssignmentChecked } =
+    useAssignmentSearchParams();
   const { phase = "primary", yearDescription, subject } = programmeFields;
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {
@@ -102,19 +103,20 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     storeResultsInLocalStorage();
   }
 
-  const bottomNavSlot = !isClassroomAssignment && (
-    <OakLessonBottomNav>
-      <OakPrimaryButton
-        element="a"
-        href={backUrl || undefined}
-        iconName="arrow-right"
-        isTrailingIcon
-        width={["100%", "max-content"]}
-      >
-        View all lessons
-      </OakPrimaryButton>
-    </OakLessonBottomNav>
-  );
+  const bottomNavSlot = classroomAssignmentChecked &&
+    !isClassroomAssignment && (
+      <OakLessonBottomNav>
+        <OakPrimaryButton
+          element="a"
+          href={backUrl || undefined}
+          iconName="arrow-right"
+          isTrailingIcon
+          width={["100%", "max-content"]}
+        >
+          View all lessons
+        </OakPrimaryButton>
+      </OakLessonBottomNav>
+    );
   const handleShareResultsClick = () => {
     const attemptData = {
       lessonData: { slug: lessonSlug, title: lessonTitle },
@@ -256,78 +258,89 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
                 Lesson review
               </OakHeading>
-              {hasQuiz && !isClassroomAssignment && (
-                <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-                  <OakHeading tag="h2" $font={"body-2-bold"}>
-                    Share options:
-                  </OakHeading>
-                  <OakFlex
-                    $gap={"spacing-16"}
-                    $flexDirection={["column", "row"]}
-                  >
-                    {storedAttemptLocally.stored && (
-                      <OakBox $display={["none", "flex"]}>
+              <OakFlex
+                $flexDirection={"column"}
+                $gap={"spacing-16"}
+                $minHeight={"spacing-92"}
+              >
+                {hasQuiz &&
+                  classroomAssignmentChecked &&
+                  !isClassroomAssignment && (
+                    <>
+                      <OakHeading tag="h2" $font={"body-2-bold"}>
+                        Share options:
+                      </OakHeading>
+                      <OakFlex
+                        $gap={"spacing-16"}
+                        $flexDirection={["column", "row"]}
+                      >
+                        {storedAttemptLocally.stored && (
+                          <OakBox $display={["none", "flex"]}>
+                            <OakSecondaryButton
+                              element="a"
+                              href={resolveOakHref({
+                                page: "pupil-lesson-results-canonical-printable",
+                                lessonSlug,
+                                attemptId: storedAttemptLocally.attemptId,
+                              })}
+                              target="_blank"
+                              aria-label="Printable results, opens in a new tab"
+                              title="Printable results (opens in a new tab)"
+                              iconName={"external"}
+                              isTrailingIcon
+                              data-testid="printable-results-button"
+                            >
+                              Printable results
+                            </OakSecondaryButton>
+                          </OakBox>
+                        )}
                         <OakSecondaryButton
-                          element="a"
-                          href={resolveOakHref({
-                            page: "pupil-lesson-results-canonical-printable",
-                            lessonSlug,
-                            attemptId: storedAttemptLocally.attemptId,
-                          })}
-                          target="_blank"
-                          aria-label="Printable results, opens in a new tab"
-                          title="Printable results (opens in a new tab)"
-                          iconName={"external"}
+                          type="button"
+                          role="button"
+                          aria-label="Copy link to clipboard"
+                          title="Copy link to clipboard"
+                          onClick={handleShareResultsClick}
+                          iconName={"copy"}
                           isTrailingIcon
-                          data-testid="printable-results-button"
+                          data-testid="share-results-button"
                         >
-                          Printable results
+                          Copy link
                         </OakSecondaryButton>
-                      </OakBox>
-                    )}
-                    <OakSecondaryButton
-                      type="button"
-                      role="button"
-                      aria-label="Copy link to clipboard"
-                      title="Copy link to clipboard"
-                      onClick={handleShareResultsClick}
-                      iconName={"copy"}
-                      isTrailingIcon
-                      data-testid="share-results-button"
-                    >
-                      Copy link
-                    </OakSecondaryButton>
-                  </OakFlex>
-                  {isAttemptingShare === "shared" && (
-                    <OakFlex $gap={"spacing-4"} $alignItems={"center"}>
-                      <OakIcon
-                        iconName={"tick"}
-                        $colorFilter={"text-success"}
-                      />
-                      <OakHeading
-                        tag="h2"
-                        $font={"heading-light-7"}
-                        $color={"text-success"}
-                      >
-                        Link copied to clipboard! You can share this with your
-                        teacher.
-                      </OakHeading>
-                    </OakFlex>
+                      </OakFlex>
+                      {isAttemptingShare === "shared" && (
+                        <OakFlex $gap={"spacing-4"} $alignItems={"center"}>
+                          <OakIcon
+                            iconName={"tick"}
+                            $colorFilter={"text-success"}
+                          />
+                          <OakHeading
+                            tag="h2"
+                            $font={"heading-light-7"}
+                            $color={"text-success"}
+                          >
+                            Link copied to clipboard! You can share this with
+                            your teacher.
+                          </OakHeading>
+                        </OakFlex>
+                      )}
+                      {isAttemptingShare === "failed" && (
+                        <OakFlex $gap={"spacing-4"} $alignItems={"center"}>
+                          <OakIcon
+                            iconName={"cross"}
+                            $colorFilter={"text-error"}
+                          />
+                          <OakHeading
+                            tag="h2"
+                            $font={"heading-light-7"}
+                            $color={"text-error"}
+                          >
+                            Failed to share results. Please try again.
+                          </OakHeading>
+                        </OakFlex>
+                      )}
+                    </>
                   )}
-                  {isAttemptingShare === "failed" && (
-                    <OakFlex $gap={"spacing-4"} $alignItems={"center"}>
-                      <OakIcon iconName={"cross"} $colorFilter={"text-error"} />
-                      <OakHeading
-                        tag="h2"
-                        $font={"heading-light-7"}
-                        $color={"text-error"}
-                      >
-                        Failed to share results. Please try again.
-                      </OakHeading>
-                    </OakFlex>
-                  )}
-                </OakFlex>
-              )}
+              </OakFlex>
               <OakHeading tag="h2" $font={"heading-light-7"}>
                 {lessonTitle}
               </OakHeading>
