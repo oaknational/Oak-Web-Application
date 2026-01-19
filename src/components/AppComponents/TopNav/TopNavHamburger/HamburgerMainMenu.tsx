@@ -20,6 +20,7 @@ import {
 } from "./TopNavHamburger";
 
 import { TeachersBrowse } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export function MainMenuContent(props: TopNavProps) {
   const { submenuOpen, prevSubmenu } = useHamburgerMenu();
@@ -41,10 +42,21 @@ export function MainMenuContent(props: TopNavProps) {
       <SubjectsSection {...props.teachers?.primary} />
       <SubjectsSection {...props.teachers?.secondary} />
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        <MainMenuLink href={"/"} title="Curriculum" />
+        <MainMenuLink
+          href={resolveOakHref({
+            page: "curriculum-landing-page",
+          })}
+          title="Curriculum"
+        />
         <MainMenuButton title={"About us"} />
         <MainMenuButton title={"Guidance"} />
-        <MainMenuLink href={"/"} title="AI Experiments" iconName="external" />
+        <MainMenuLink
+          href={resolveOakHref({
+            page: "labs",
+          })}
+          title="AI Experiments"
+          iconName="external"
+        />
       </OakFlex>
     </OakUL>
   );
