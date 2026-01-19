@@ -1,3 +1,48 @@
+# [1.955.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.954.0...v1.955.0) (2026-01-15)
+
+
+### Bug Fixes
+
+* added missing return from avatar url ([f19a0c9](https://github.com/oaknational/Oak-Web-Application/commit/f19a0c949c033d6cd771a4a7d0a954e806f6961c))
+* broken tests ([6bd610b](https://github.com/oaknational/Oak-Web-Application/commit/6bd610bb2efc782244d9716026f2ddadc50b671a))
+* code coverage ([8d8967a](https://github.com/oaknational/Oak-Web-Application/commit/8d8967a1ba3d6c439ed88f67d1c5aaa0c1c3ee00))
+* duplicated package downloads ([2bc5977](https://github.com/oaknational/Oak-Web-Application/commit/2bc5977534c464fc4288e666c49c4f8f310a5464))
+* fix tests for the classroom error handling ([46c9677](https://github.com/oaknational/Oak-Web-Application/commit/46c9677215237e28e6abefcb676a8d241b838dc8))
+* fixed typo in programmeSlug ([d438d56](https://github.com/oaknational/Oak-Web-Application/commit/d438d56c904dbc156caacab8228dda9908e368c2))
+* merge conflicts ([3eb8c17](https://github.com/oaknational/Oak-Web-Application/commit/3eb8c17298d1bc3bf508d0c48df455181e95c77c))
+* merge errors ([7c5b20c](https://github.com/oaknational/Oak-Web-Application/commit/7c5b20c02edf09d0177489e7353179244927bcb2))
+* merge main ([7676688](https://github.com/oaknational/Oak-Web-Application/commit/76766880c262c6048c8662069197dee114856648))
+* name typo ([783dabe](https://github.com/oaknational/Oak-Web-Application/commit/783dabedb52ec17a1f5f2c48cd5e319d96870cc5))
+* programmeSlug typo ([cf90898](https://github.com/oaknational/Oak-Web-Application/commit/cf9089845a87519ea13103c8b515eeac9a9f88ca))
+* remove await ([da4c819](https://github.com/oaknational/Oak-Web-Application/commit/da4c81984f24f996ed660b7f0773618833cba8fa))
+* rephrase decline method ([7116014](https://github.com/oaknational/Oak-Web-Application/commit/7116014585d61f9b57aa00c931d510ada74e86e7))
+* rephrase decline method ([234b58d](https://github.com/oaknational/Oak-Web-Application/commit/234b58d3bedee29c8b20642318d1ebc20a08e022))
+* test coverage ([748dc67](https://github.com/oaknational/Oak-Web-Application/commit/748dc670eb17624f028bbb6a7f1ed065915b896d))
+* test coverage ([414a056](https://github.com/oaknational/Oak-Web-Application/commit/414a0560289ac5e6a9a36a6c8f96d63e680b7633))
+* trigger ci:cd ([9d740ac](https://github.com/oaknational/Oak-Web-Application/commit/9d740ac35c01b8add0744d9b8458cfef6aed20be))
+
+
+### Features
+
+* add error handling to catch from routes ([500860d](https://github.com/oaknational/Oak-Web-Application/commit/500860d03fb12f95ff0f0c42923bf20a00730512))
+* add zod schema to route ([0fe4470](https://github.com/oaknational/Oak-Web-Application/commit/0fe447073386cb4051acd5327ed05af07765fd73))
+* add zod schema to route ([24fcbee](https://github.com/oaknational/Oak-Web-Application/commit/24fcbee7395d9fa8c279e3528283c7f2eb891b8a))
+* merge ([e0ec2ac](https://github.com/oaknational/Oak-Web-Application/commit/e0ec2acc02c99375ac8759f13cc5d23050301b91))
+* merge feat branch ([f9af0a5](https://github.com/oaknational/Oak-Web-Application/commit/f9af0a5bbe4668af266c272b48ec8642d2b13a79))
+* merge zod schema ([3affc6b](https://github.com/oaknational/Oak-Web-Application/commit/3affc6be75cbe475c4f97580c2b051dd722b341d))
+* next response ([2459a37](https://github.com/oaknational/Oak-Web-Application/commit/2459a374c0faec406a63a3bb863a5c96c33da5fe))
+* pull origin ([c40d63d](https://github.com/oaknational/Oak-Web-Application/commit/c40d63d12d9c42bc79b04e7708d7de4503471f60))
+* pull origin ([904a003](https://github.com/oaknational/Oak-Web-Application/commit/904a003161d244f4be5d0d5344dc2d804ebe27bb))
+* remove links for classroom use ([5927d1f](https://github.com/oaknational/Oak-Web-Application/commit/5927d1f551c529e42da58d406aa2871995297f36))
+* return to classroom apon declining content guidance ([c95573c](https://github.com/oaknational/Oak-Web-Application/commit/c95573c03acd65a97ba77512ce322e121c325a38))
+* setup feature branch for google classroom review tickets ([92de8c8](https://github.com/oaknational/Oak-Web-Application/commit/92de8c8fecca0f8627d8c4ef1ae9d3d1bdbab0d0))
+* update addon version with loader ([bf4f544](https://github.com/oaknational/Oak-Web-Application/commit/bf4f5447dfa68a0347e0a888a0dc3e503ae2326b))
+* update addon version with loader ([4058dbf](https://github.com/oaknational/Oak-Web-Application/commit/4058dbffc5ad6969eee80b3b3cc0d7552969655a))
+* updated google classroom addon version to latest ([bc345cf](https://github.com/oaknational/Oak-Web-Application/commit/bc345cfcd00ffe9f7fabfc89f64c1eb2609c7e15))
+* updates google-classroom version ([3a8daed](https://github.com/oaknational/Oak-Web-Application/commit/3a8daed2cf72eaf0ea24be6b4e414ab11515a891))
+* upgrades version of google classroom and amend typo in test file ([7763358](https://github.com/oaknational/Oak-Web-Application/commit/77633581934c0760842e2c580a83d4cb6922b6ac))
+* useAssignmentSearchParam hook ([7fdb8a2](https://github.com/oaknational/Oak-Web-Application/commit/7fdb8a2771f3fddb0356a5415acdfd2a542905af))
+
 # [1.954.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.953.0...v1.954.0) (2026-01-15)
 
 
