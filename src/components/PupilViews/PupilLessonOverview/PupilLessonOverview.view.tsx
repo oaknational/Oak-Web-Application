@@ -55,7 +55,8 @@ export const PupilViewsLessonOverview = ({
   backUrl,
   browseData,
 }: PupilViewsLessonOverviewProps) => {
-  const { isClassroomAssignment } = useAssignmentSearchParams();
+  const { isClassroomAssignment, classroomAssignmentChecked } =
+    useAssignmentSearchParams();
   const { programmeFields, lessonData } = browseData;
   const {
     subjectSlug,
@@ -158,7 +159,7 @@ export const PupilViewsLessonOverview = ({
         $ph={["spacing-16", "spacing-24", "spacing-0"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          {!isClassroomAssignment && (
+          {classroomAssignmentChecked && !isClassroomAssignment && (
             <ViewAllLessonsButton
               href={backUrl}
               onClick={() => {

@@ -234,14 +234,12 @@ const PupilExperienceLayout = ({
   };
 
   const handleContentGuidanceDecline = () => {
-    const closeIframeMessage = {
-      type: "Classroom",
-      action: "closeIframe",
-    } as const;
-
     if (isClassroomAssignment) {
       window?.parent?.postMessage(
-        closeIframeMessage,
+        {
+          type: "Classroom",
+          action: "closeIframe",
+        },
         "https://classroom.google.com",
       );
     } else if (backUrl) {

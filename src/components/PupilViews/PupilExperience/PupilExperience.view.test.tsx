@@ -53,6 +53,7 @@ const mockedUseAssignmentSearchParams =
 
 mockedUseAssignmentSearchParams.mockReturnValue({
   isClassroomAssignment: true,
+  classroomAssignmentChecked: true,
 });
 
 jest.mock("@/components/PupilViews/PupilLessonOverview", () => {
@@ -311,6 +312,7 @@ describe("PupilExperienceView", () => {
   it("should close iframe if isClassroom and content guidance is declined", async () => {
     mockedUseAssignmentSearchParams.mockReturnValue({
       isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
     });
     const supervisionLevel = "Supervision Level";
     const contentguidanceLabel = "Guidance Title";
@@ -352,6 +354,7 @@ describe("PupilExperienceView", () => {
   it("should close iframe if not isClassroom and content guidance is declined", async () => {
     mockedUseAssignmentSearchParams.mockReturnValue({
       isClassroomAssignment: false,
+      classroomAssignmentChecked: true,
     });
     const supervisionLevel = "Supervision Level";
     const contentguidanceLabel = "Guidance Title";
