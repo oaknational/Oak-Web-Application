@@ -1,18 +1,22 @@
-import { OakColorFilterToken, OakIcon } from "@oaknational/oak-components";
+import {
+  oakAllSpacingTokens,
+  OakColorFilterToken,
+  OakIcon,
+} from "@oaknational/oak-components";
 import { capitalize } from "lodash";
 import styled from "styled-components";
 
 const StyledSocialLink = styled.a`
   margin: auto;
-  padding: 0;
+  padding: ${oakAllSpacingTokens["spacing-0"]};
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: var(--Border-Radius-border-radius-s, 4px);
+  border-radius: ${oakAllSpacingTokens["spacing-4"]}px;
   background: var(--Tokens-Background-bg-btn-secondary, #fff);
-  height: 32px;
-  width: 32px;
+  height: ${oakAllSpacingTokens["spacing-32"]}px;
+  width: ${oakAllSpacingTokens["spacing-32"]}px;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
 
@@ -68,6 +72,7 @@ export function SocialButton({
       target="_blank"
       rel="noopener noreferrer"
       role="link"
+      aria-disabled={disabled}
     >
       <OakIcon
         iconName={socialType}
