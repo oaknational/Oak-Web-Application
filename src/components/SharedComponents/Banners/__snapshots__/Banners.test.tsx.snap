@@ -3,26 +3,26 @@
 exports[`Banners shows mythbusting banner 1`] = `
 <div>
   <div
-    class="sc-fqkvVR aZqjs"
+    class="sc-fqkvVR fgBWrW"
     role="banner"
   >
     <div
-      class="sc-fqkvVR sc-kAyceB fRRvJZ kyta-DD"
+      class="sc-fqkvVR sc-kAyceB duJUbP kyta-DD"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB hWpwmY hDpTCw"
+        class="sc-fqkvVR sc-kAyceB klgPPC hDpTCw"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB iBUdTf iCbXJE"
+          class="sc-fqkvVR sc-kAyceB jSUKNp iCbXJE"
         >
           <p
-            class="sc-dLMFU fkJETQ"
+            class="sc-dLMFU cDKcwR"
           >
             <span
               style="display: inline-block; transform: rotate(-1.5deg); padding: 4px 8px;"
             >
               <span
-                class="sc-dAlyuH gJIcKd"
+                class="sc-dAlyuH fyCkiE"
               >
                 Myths
               </span>
@@ -41,7 +41,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           title="Learn why"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB gcMams zqmPr"
+            class="sc-fqkvVR sc-kAyceB gHxmiG zqmPr"
           >
             <span
               aria-hidden="true"
@@ -79,13 +79,13 @@ exports[`Banners shows mythbusting banner 1`] = `
             </span>
           </div>
           <div
-            class="sc-fqkvVR XEhki"
+            class="sc-fqkvVR gxmQRM"
           >
             <div
-              class="sc-fqkvVR aZqjs"
+              class="sc-fqkvVR fgBWrW"
             >
               <span
-                class="sc-dAlyuH sc-ca3376e3-0 dzodLg eEriKr"
+                class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
               >
                 Learn why
               </span>
@@ -119,10 +119,10 @@ exports[`Banners shows mythbusting banner 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR llBGLI"
+      class="sc-fqkvVR jAGTee"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB sc-cmaqmh fiJKsZ joHkzz"
+        class="sc-fqkvVR sc-kAyceB sc-cmaqmh hGVAzf joHkzz"
         focusable="false"
       >
         <svg

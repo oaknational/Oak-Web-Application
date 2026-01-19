@@ -4,7 +4,7 @@ exports[`<Terms/> 1`] = `
 <body>
   <div>
     <p
-      class="sc-dLMFU btSlnv"
+      class="sc-dLMFU MdFoC"
     >
       This content is © Oak National Academy (2023), licensed on
        
@@ -16,7 +16,7 @@ exports[`<Terms/> 1`] = `
         target="_blank"
       >
         <span
-          class="sc-dAlyuH eMKgAN"
+          class="sc-dAlyuH cRouMQ"
         >
           Open Government Licence version 3.0
         </span>
@@ -32,7 +32,7 @@ exports[`<Terms/> 1`] = `
         target="_blank"
       >
         <span
-          class="sc-dAlyuH eMKgAN"
+          class="sc-dAlyuH cRouMQ"
         >
           Oak's terms and conditions
         </span>
