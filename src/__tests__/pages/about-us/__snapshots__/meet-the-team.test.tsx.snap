@@ -5822,7 +5822,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c118 c119"
                 style="min-width: 200px;"
               >
-                TODO: SideNav
+                SideNav placeholder
               </div>
               <div
                 class="c120 c121"
