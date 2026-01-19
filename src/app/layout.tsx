@@ -15,6 +15,7 @@ import {
 } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "@/image-data";
+import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 
 export const metadata = {
   title: "Oak National Academy",
@@ -36,46 +37,48 @@ export default function RootLayout({
           <PHProvider>
             <OakThemeProvider theme={oakDefaultTheme}>
               <CookieConsentProvider>
-                <ClerkProvider
-                  signInUrl={"/sign-in"}
-                  signUpUrl={"/sign-in"}
-                  localization={{
-                    signUp: {
-                      start: {
-                        title: "Sign up to Oak in seconds",
-                        subtitle: "Choose a method",
+                <OakNotificationsProvider>
+                  <ClerkProvider
+                    signInUrl={"/sign-in"}
+                    signUpUrl={"/sign-in"}
+                    localization={{
+                      signUp: {
+                        start: {
+                          title: "Sign up to Oak in seconds",
+                          subtitle: "Choose a method",
+                        },
                       },
-                    },
-                  }}
-                  appearance={{
-                    variables: {
-                      colorPrimary: "#222222",
-                      fontFamily: lexend.style.fontFamily,
-                      borderRadius: "4px",
-                    },
-                    elements: {
-                      cardBox: {
-                        boxShadow: "none",
-                        overflow: "auto",
-                        borderRadius: "8px",
+                    }}
+                    appearance={{
+                      variables: {
+                        colorPrimary: "#222222",
+                        fontFamily: lexend.style.fontFamily,
+                        borderRadius: "4px",
                       },
-                      card: {
-                        paddingBlock: "40px",
-                        boxShadow: "none",
-                        borderRadius: "8px",
+                      elements: {
+                        cardBox: {
+                          boxShadow: "none",
+                          overflow: "auto",
+                          borderRadius: "8px",
+                        },
+                        card: {
+                          paddingBlock: "40px",
+                          boxShadow: "none",
+                          borderRadius: "8px",
+                        },
+                        footer: {
+                          background: "#ffffff",
+                        },
                       },
-                      footer: {
-                        background: "#ffffff",
-                      },
-                    },
-                  }}
-                >
-                  <AnalyticsWrapper>
-                    <OakBox $width="100vw" $height="100vh">
-                      {children}
-                    </OakBox>
-                  </AnalyticsWrapper>
-                </ClerkProvider>
+                    }}
+                  >
+                    <AnalyticsWrapper>
+                      <OakBox $width="100vw" $height="100vh">
+                        {children}
+                      </OakBox>
+                    </AnalyticsWrapper>
+                  </ClerkProvider>
+                </OakNotificationsProvider>
               </CookieConsentProvider>
             </OakThemeProvider>
           </PHProvider>
