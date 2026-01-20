@@ -1306,8 +1306,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font: inherit;
   background: none;
   border: none;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+  -webkit-text-decoration: none;
+  text-decoration: none;
   cursor: pointer;
   color: #222222;
 }
@@ -2573,6 +2573,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   .c20:hover,
   .c20:visited:hover {
     color: #0a1d9d;
+    -webkit-text-decoration: underline;
+    text-decoration: underline;
   }
 }
 
@@ -2580,6 +2582,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   .c151:hover,
   .c151:visited:hover {
     color: #222222;
+    -webkit-text-decoration: underline;
+    text-decoration: underline;
   }
 }
 
