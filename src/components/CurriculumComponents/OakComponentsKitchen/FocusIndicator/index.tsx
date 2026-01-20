@@ -1,7 +1,6 @@
 import {
   OakBox,
   oakColorTokens,
-  oakDefaultTheme,
   oakDropShadowTokens,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
@@ -35,9 +34,7 @@ const FocusIndicator = styled(OakBox)<{
   &:has(button:hover:not(:active${isJSDOM() ? "" : ", :focus-visible"})) {
     z-index: 1;
     background-color: ${(props) =>
-      props.disableMouseHover
-        ? ""
-        : `${oakColorTokens[oakDefaultTheme.uiColors["bg-neutral"]!]};`};
+      props.disableMouseHover ? "" : `${oakColorTokens["grey20"]};`};
   }
   &:has(a:hover, button:hover) {
     box-shadow: ${(props) =>
