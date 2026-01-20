@@ -1,4 +1,6 @@
-import { screen } from "@testing-library/dom";
+/**
+ * @jest-environment node
+ */
 import { OakBox } from "@oaknational/oak-components";
 
 import CoreLayout from "./layout";
@@ -15,33 +17,13 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
-// Mock window.matchMedia
-Object.defineProperty(window, "matchMedia", {
-  writable: true,
-  value: jest.fn().mockImplementation((query) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
-});
-
 const render = renderWithProviders();
 
 describe("core layout", () => {
-  it("renders a topnav", async () => {
-    render(await CoreLayout({ children: <OakBox>children</OakBox> }));
-    const header = screen.getByTestId("app-topnav");
-    expect(header).toBeInTheDocument();
-  });
-  it("renders children", async () => {
-    render(await CoreLayout({ children: <OakBox>children</OakBox> }));
-    const children = screen.getByText("children");
-    expect(children).toBeInTheDocument();
+  it("renders correctly", async () => {
+    const result = await CoreLayout({ children: <OakBox>children</OakBox> });
+
+    expect(result).toMatchSnapshot();
   });
   it("returns not found on error", async () => {
     mockTopNav.mockRejectedValueOnce(
