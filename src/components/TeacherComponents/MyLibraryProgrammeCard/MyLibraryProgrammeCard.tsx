@@ -9,20 +9,10 @@ import {
   OakLink,
   OakFlex,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import MyLibraryUnitCard, {
   MyLibraryUnitCardProps,
 } from "../MyLibraryUnitCard/MyLibraryUnitCard";
-
-const StyledLink = styled(OakSecondaryLink)`
-  text-decoration: none;
-  display: flex;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
 
 const ProgrammeHeader = ({
   headingIdString,
@@ -92,13 +82,13 @@ export default function MyLibraryProgrammeCard(
       $position="relative"
     >
       <OakAnchorTarget id={anchorId} />
-      <StyledLink href={programmeHref} onClick={trackBrowseRefined}>
+      <OakSecondaryLink href={programmeHref} onClick={trackBrowseRefined}>
         <ProgrammeHeader
           headingIdString={headingIdString}
           iconName={iconName}
           programmeTitle={programmeTitle}
         />
-      </StyledLink>
+      </OakSecondaryLink>
       <OakFlex
         as="ul"
         $gap="spacing-32"
