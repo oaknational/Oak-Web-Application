@@ -210,18 +210,57 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c98 {
+.c97 {
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c104 {
+  position: relative;
+  width: 2rem;
+  min-width: 2rem;
+  height: 2rem;
+  color: #222222;
+  background: #ffffff;
+  border-radius: 6.25rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c106 {
+  position: absolute;
+  top: 0rem;
+  width: 100%;
+  height: 100%;
+  border: 0.125rem solid;
+  border-color: #222222;
+  border-radius: 6.25rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c107 {
+  position: relative;
+  width: 1.5rem;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  min-height: 1.5rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c109 {
   margin-bottom: 0.25rem;
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c101 {
+.c112 {
   width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c102 {
+.c113 {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -231,13 +270,13 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   z-index: 0;
 }
 
-.c103 {
+.c114 {
   position: relative;
   height: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c105 {
+.c115 {
   width: 100%;
   max-width: 30rem;
   padding-left: 1rem;
@@ -249,12 +288,12 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c109 {
+.c119 {
   margin-top: 2rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c111 {
+.c121 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
@@ -266,34 +305,20 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c114 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c114:hover {
-  cursor: pointer;
-}
-
-.c116 {
+.c125 {
   margin-top: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c117 {
+.c127 {
   position: relative;
-  width: 1.5rem;
-  min-width: 1.5rem;
-  height: 1.5rem;
-  min-height: 1.5rem;
-  margin-left: 0.25rem;
+  width: 10rem;
+  height: 4rem;
+  padding: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c126 {
+.c129 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -301,13 +326,13 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c128 {
+.c131 {
   position: relative;
   width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c131 {
+.c133 {
   width: 100%;
   padding-top: 0.75rem;
   margin-top: 2rem;
@@ -315,12 +340,12 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c133 {
+.c135 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c137 {
+.c139 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -338,7 +363,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   z-index: -1;
 }
 
-.c139 {
+.c141 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -356,7 +381,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   z-index: -1;
 }
 
-.c141 {
+.c143 {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
@@ -364,7 +389,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   z-index: 299;
 }
 
-.c142 {
+.c144 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -372,13 +397,13 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c143 {
+.c145 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c144 {
+.c146 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -386,7 +411,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c146 {
+.c148 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -397,7 +422,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c149 {
+.c151 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -419,19 +444,25 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   object-fit: fill;
 }
 
-.c138 {
+.c108 {
+  -webkit-filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  filter: invert(10%) sepia(1%) saturate(236%) hue-rotate(314deg) brightness(95%) contrast(91%);
+  object-fit: contain;
+}
+
+.c140 {
   -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   object-fit: fill;
 }
 
-.c140 {
+.c142 {
   -webkit-filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   object-fit: fill;
 }
 
-.c130 {
+.c128 {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHBhdGggZmlsbD0iIzIyMiIgZD0iTTI4Ljc3OSAxOS4xNzZhMjcuMTkxIDI3LjE5MSAwIDAgMC0zLjggMS42IDE2LjcgMTYuNyAwIDAgMC03LjEgOC40YzAgLjEtLjEuMi0uMS4zLS43IDIuNC0uNiAyIDEuMyAyLjMgMS45LjMgMSAuNSAxIDEuMy0uMSA4LjggNC4xIDE1LjEgMTEuNCAxOS42YTEuNSAxLjUgMCAwIDAgMS43LjJjNS43LTIuNiA5LjMtNyAxMC4zLTEzLjJhMSAxIDAgMCAxIDEtMWwzLS4yYy44IDAgMS4zLjIgMS4yIDEuMmExNy45IDE3LjkgMCAwIDEtMy4yIDkuMiAyMy43IDIzLjcgMCAwIDEtMTAuOSA5LjEgNS40MDEgNS40MDEgMCAwIDEtNC41LS4yIDI2LjI5OCAyNi4yOTggMCAwIDEtOC41LTYuNiAyNS45IDI1LjkgMCAwIDEtNi40LTE0LjRjMC0uNi0uMi0uNy0uOC0uOC0yLjUtLjQtMi41LS4xLTIuMy0yLjlhMTkuMyAxOS4zIDAgMCAxIDEwLjgtMTYuNiAzOC45OTkgMzguOTk5IDAgMCAxIDUuNy0yLjEgMi4xIDIuMSAwIDAgMCAuOS0xLjMgMTQuMSAxNC4xIDAgMCAxIDMuNS02LjNsLjMtLjNjMS45LTIgMi42LTIgNC4zLjJsLjQuNWMxLjEgMS4xIDEgMS41LS4xIDIuNmExMS45IDExLjkgMCAwIDAtMy4yIDQuNCAxNi45IDE2LjkgMCAwIDEgNy41IDIuM2M1LjcgMy41IDkuMiA4LjMgOS45IDE1IC4wMTYuOTAxLS4wMTcgMS44MDItLjEgMi43IDAgLjgtLjYgMS0xLjIgMS4yYTE2LjEgMTYuMSAwIDAgMS0xMS0uNyAxNy45MDEgMTcuOTAxIDAgMCAxLTEwLjktMTMuNiA5Ljc5NiA5Ljc5NiAwIDAgMS0uMS0xLjlabTE4LjEgMTIuMmMuNC01LjUtNi45LTEyLjYtMTMtMTIuMS41IDYuNSA3LjYgMTIuOCAxMyAxMi4xWiIgb3BhY2l0eT0iLjEiLz48L3N2Zz4=);
   background-color: #e7f6f5;
   background-size: 4rem;
@@ -699,20 +730,55 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  gap: 1rem;
 }
 
-.c99 {
-  display: none;
-}
-
-.c104 {
+.c98 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c106 {
+.c103 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 0rem;
+}
+
+.c105 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c110 {
+  display: none;
+}
+
+.c116 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -730,14 +796,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c115 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-.c124 {
+.c126 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -748,7 +807,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   justify-content: left;
 }
 
-.c127 {
+.c130 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -761,9 +820,10 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  gap: 1rem;
 }
 
-.c132 {
+.c134 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -781,7 +841,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   justify-content: flex-start;
 }
 
-.c134 {
+.c136 {
   display: none;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -791,9 +851,10 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  gap: 1rem;
 }
 
-.c145 {
+.c147 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -808,7 +869,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c148 {
+.c150 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -830,7 +891,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c150 {
+.c152 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -841,13 +902,13 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   align-items: center;
 }
 
-.c107 {
+.c117 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
 }
 
-.c108 {
+.c118 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -867,7 +928,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c110 {
+.c120 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -919,19 +980,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c119 {
-  color: #222222;
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
-  letter-spacing: -0.005rem;
-}
-
-.c147 {
+.c149 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
@@ -951,7 +1000,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   display: revert;
 }
 
-.c113 {
+.c123 {
   margin-top: 0.75rem;
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -960,7 +1009,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   display: revert;
 }
 
-.c135 {
+.c137 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
@@ -971,7 +1020,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c136 {
+.c138 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
@@ -997,7 +1046,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   transition: all 0.3s ease;
 }
 
-.c112 {
+.c122 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -1080,7 +1129,26 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   cursor: default;
 }
 
-.c152 {
+.c101 {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  font-family: unset;
+  outline: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+  color: #222222;
+}
+
+.c101:disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.c153 {
   background: none;
   color: inherit;
   border: none;
@@ -1102,9 +1170,52 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c152:disabled {
+.c153:disabled {
   pointer-events: none;
   cursor: default;
+}
+
+.c102 {
+  display: inline-block;
+  position: relative;
+}
+
+.c102:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #575757;
+}
+
+.c102:active {
+  color: #222222;
+}
+
+.c102:disabled {
+  color: #808080;
+}
+
+.c99 > :first-child:focus-visible .shadow {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c99 > :first-child:hover .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
+}
+
+.c99 > :first-child:active .shadow {
+  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%), 0.25rem 0.25rem 0 rgba(87,87,87,100%);
+}
+
+.c99 > :first-child:disabled .icon-container {
+  background: #e4e4e4;
+}
+
+.c99 > :first-child:hover .icon-container {
+  background: #ffffff;
+}
+
+.c99 > :first-child:active .icon-container {
+  background: #ffffff;
 }
 
 .c10 {
@@ -1185,14 +1296,14 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   display: none;
 }
 
-.c153 {
+.c154 {
   position: relative;
   width: 100%;
   height: 100%;
   display: inline-block;
 }
 
-.c153:hover {
+.c154:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #ffffff;
@@ -1200,27 +1311,27 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   border-color: #575757;
 }
 
-.c153:hover [data-state="selected"] {
+.c154:hover [data-state="selected"] {
   display: none;
 }
 
-.c153:active {
+.c154:active {
   background: #222222;
   border-color: #222222;
   color: #ffffff;
 }
 
-.c153:active [data-state="selected"] {
+.c154:active [data-state="selected"] {
   display: none;
 }
 
-.c153:disabled {
+.c154:disabled {
   background: #808080;
   border-color: #808080;
   color: #ffffff;
 }
 
-.c153:disabled [data-state="selected"] {
+.c154:disabled [data-state="selected"] {
   display: none;
 }
 
@@ -1289,7 +1400,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   color: #808080;
 }
 
-.c151 {
+.c124 {
   display: inline;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1312,19 +1423,19 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   color: #222222;
 }
 
-.c151:focus-visible {
+.c124:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c151:visited {
+.c124:visited {
   color: #222222;
 }
 
-.c151:active {
+.c124:active {
   color: #222222;
 }
 
-.c151[disabled] {
+.c124[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
@@ -1364,14 +1475,9 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   height: 24px;
 }
 
-.c100 {
+.c111 {
   width: 150px;
   height: 63px;
-}
-
-.c125 {
-  width: 150px;
-  height: 66px;
 }
 
 .c46 {
@@ -1495,29 +1601,24 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   display: none;
 }
 
-.c51 {
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  height: 30px;
-  width: 30px;
-  min-width: 30px;
-  color: black;
+.c100 .icon-container > *:first-child {
+  border: 0;
 }
 
-.c51:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.c61 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #222222;
+  -webkit-transition: opacity 250ms ease-in-out;
+  transition: opacity 250ms ease-in-out;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .c54 {
@@ -1729,7 +1830,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   color: transparent;
 }
 
-.c97 {
+.c51 {
+  position: relative;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1746,59 +1848,11 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   width: 30px;
   min-width: 30px;
   color: black;
-  margin-right: 1rem;
 }
 
-.c97:disabled {
+.c51:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-.c97 .c91 {
-  -webkit-transition: filter 0.3s ease-in-out;
-  transition: filter 0.3s ease-in-out;
-}
-
-.c97:hover .c91 {
-  -webkit-filter: drop-shadow(0 0 3px rgb(0 0 0 / 50%));
-  filter: drop-shadow(0 0 3px rgb(0 0 0 / 50%));
-}
-
-.c97:focus {
-  outline: none;
-}
-
-.c97 .c56 {
-  display: none;
-}
-
-.c97:focus .c56 {
-  display: block;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 8px;
-  -webkit-transform: rotate(-2deg);
-  -ms-transform: rotate(-2deg);
-  transform: rotate(-2deg);
-  -webkit-filter: drop-shadow(1px 2px 0 rgb(0 0 0));
-  filter: drop-shadow(1px 2px 0 rgb(0 0 0));
-}
-
-.c61 {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #222222;
-  -webkit-transition: opacity 250ms ease-in-out;
-  transition: opacity 250ms ease-in-out;
-  opacity: 0;
-  visibility: hidden;
 }
 
 .c49 {
@@ -1920,35 +1974,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   overflow: hidden;
 }
 
-.c120 {
-  display: inline-block;
-  vertical-align: text-top;
-  max-width: 100%;
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005em;
-  -moz-letter-spacing: -0.005em;
-  -ms-letter-spacing: -0.005em;
-  letter-spacing: -0.005em;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  min-width: 0;
-  overflow: hidden;
-}
-
 .c85 {
   color: #222222;
-  position: absolute;
-}
-
-.c123 {
-  color: #ffe555;
-  position: absolute;
-}
-
-.c122 {
-  color: #ffe555;
   position: absolute;
 }
 
@@ -1997,10 +2024,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   display: none;
 }
 
-.c79 .c121 {
-  display: none;
-}
-
 .c79 .c86 {
   display: none;
   left: 0;
@@ -2028,104 +2051,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   display: block;
 }
 
-.c118 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  max-width: 100%;
-  position: relative;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  height: 30px;
-  padding: 0 0px;
-  background-color: transparent;
-  color: black;
-  -webkit-transition: box-shadow 0.3s ease-in-out;
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.c118:focus {
-  outline: none;
-}
-
-.c118:disabled {
-  cursor: not-allowed;
-}
-
-.c118 .c84 {
-  display: none;
-}
-
-.c118 .c121 {
-  display: none;
-}
-
-.c118 .c86 {
-  display: none;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 4px;
-}
-
-.c118 .c91 {
-  -webkit-transition: filter 0.3s ease-in-out;
-  transition: filter 0.3s ease-in-out;
-}
-
-.c118:hover .c91 {
-  -webkit-filter: drop-shadow(0 0 3px rgb(0 0 0 / 50%));
-  filter: drop-shadow(0 0 3px rgb(0 0 0 / 50%));
-}
-
-.c118:focus .c121 {
-  display: block;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 7px;
-}
-
-.c118 .c121 {
-  -webkit-filter: drop-shadow(1px 4px 0px rgb(0 0 0));
-  filter: drop-shadow(1px 4px 0px rgb(0 0 0));
-}
-
-.c118 .c56 {
-  display: none;
-}
-
-.c118:focus .c56 {
-  display: block;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 8px;
-  -webkit-transform: rotate(-2deg);
-  -ms-transform: rotate(-2deg);
-  transform: rotate(-2deg);
-  -webkit-filter: drop-shadow(1px 2px 0 rgb(0 0 0));
-  filter: drop-shadow(1px 2px 0 rgb(0 0 0));
-}
-
-.c118:hover:not(:focus) .c81 {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.c129 {
+.c132 {
   height: 87px;
   width: 77px;
   margin-top: 2rem;
@@ -2218,7 +2144,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c98 {
+  .c109 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -2227,43 +2153,43 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c105 {
+  .c115 {
     max-width: 80rem;
   }
 }
 
 @media (min-width:750px) {
-  .c105 {
+  .c115 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c109 {
+  .c119 {
     margin-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c116 {
+  .c125 {
     margin-top: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c126 {
+  .c129 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c131 {
+  .c133 {
     padding-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c133 {
+  .c135 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -2272,13 +2198,13 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c137 {
+  .c139 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c137 {
+  .c139 {
     -webkit-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     -ms-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     transform: translate(25%,25%) scale(0.7) rotate(-10deg);
@@ -2286,7 +2212,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c137 {
+  .c139 {
     -webkit-transform: translate(25%,15%) rotate(-10deg);
     -ms-transform: translate(25%,15%) rotate(-10deg);
     transform: translate(25%,15%) rotate(-10deg);
@@ -2294,55 +2220,55 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c139 {
+  .c141 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c144 {
+  .c146 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c144 {
+  .c146 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c144 {
+  .c146 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c144 {
+  .c146 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c146 {
+  .c148 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c146 {
+  .c148 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c146 {
+  .c148 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c146 {
+  .c148 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -2402,7 +2328,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c99 {
+  .c110 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -2411,7 +2337,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c124 {
+  .c126 {
     -webkit-box-pack: right;
     -webkit-justify-content: right;
     -ms-flex-pack: right;
@@ -2420,13 +2346,13 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c127 {
+  .c130 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c132 {
+  .c134 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -2434,7 +2360,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c132 {
+  .c134 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -2443,7 +2369,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c132 {
+  .c134 {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
@@ -2452,7 +2378,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c134 {
+  .c136 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -2461,7 +2387,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c145 {
+  .c147 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -2469,7 +2395,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c145 {
+  .c147 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -2477,7 +2403,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c145 {
+  .c147 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -2486,7 +2412,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c145 {
+  .c147 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -2495,19 +2421,19 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c145 {
+  .c147 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c145 {
+  .c147 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c148 {
+  .c150 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -2515,7 +2441,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c148 {
+  .c150 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -2523,7 +2449,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c148 {
+  .c150 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -2531,37 +2457,37 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c148 {
+  .c150 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c108 {
+  .c118 {
     grid-column: span 3;
   }
 }
 
 @media (min-width:750px) {
-  .c147 {
+  .c149 {
     font-weight: 700;
   }
 }
 
 @media (min-width:750px) {
-  .c147 {
+  .c149 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c147 {
+  .c149 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c147 {
+  .c149 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -2579,8 +2505,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 @media (hover:hover) {
-  .c151:hover,
-  .c151:visited:hover {
+  .c124:hover,
+  .c124:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -4072,196 +3998,164 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                     class="c11 c96"
                     x="oaknational"
                   >
-                    <a
-                      aria-label="instagram for Oak National Academy"
-                      class="c97"
-                      href="https://instagram.com/oaknational"
-                      role="link"
-                      target="_blank"
-                      title="instagram for Oak National Academy"
+                    <div
+                      class="c97 c98 c99 c100"
                     >
-                      <div
-                        class="c51"
+                      <a
+                        aria-label="instagram for Oak National Academy"
+                        class="c101 c102"
+                        href="https://instagram.com/oaknational"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="c52"
+                        <div
+                          class="c11 c103"
                         >
-                          <span
-                            class="c53"
+                          <div
+                            class="c104 c105 icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="c54"
-                              height="100%"
-                              name="instagram-v2"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="c106 shadow"
+                            />
+                            <div
+                              class="c107"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#instagram-v2"
+                              <img
+                                alt=""
+                                class="c108"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="c55 c56 c57"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="c82"
                           />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      aria-label="facebook for Oak National Academy"
-                      class="c97"
-                      href="https://facebook.com/oaknationalacademy"
-                      role="link"
-                      target="_blank"
-                      title="facebook for Oak National Academy"
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="c97 c98 c99 c100"
                     >
-                      <div
-                        class="c51"
+                      <a
+                        aria-label="facebook for Oak National Academy"
+                        class="c101 c102"
+                        href="https://facebook.com/oaknationalacademy"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="c52"
+                        <div
+                          class="c11 c103"
                         >
-                          <span
-                            class="c53"
+                          <div
+                            class="c104 c105 icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="c54"
-                              height="100%"
-                              name="facebook-v2"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="c106 shadow"
+                            />
+                            <div
+                              class="c107"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#facebook-v2"
+                              <img
+                                alt=""
+                                class="c108"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="c55 c56 c57"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="c82"
                           />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      aria-label="x for Oak National Academy"
-                      class="c97"
-                      href="https://x.com/oaknational"
-                      role="link"
-                      target="_blank"
-                      title="x for Oak National Academy"
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="c97 c98 c99 c100"
                     >
-                      <div
-                        class="c51"
+                      <a
+                        aria-label="x for Oak National Academy"
+                        class="c101 c102"
+                        href="https://x.com/oaknational"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="c52"
+                        <div
+                          class="c11 c103"
                         >
-                          <span
-                            class="c53"
+                          <div
+                            class="c104 c105 icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="c54"
-                              height="100%"
-                              name="x"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="c106 shadow"
+                            />
+                            <div
+                              class="c107"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#x"
+                              <img
+                                alt=""
+                                class="c108"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1748452854/icons/x_fpmv5f.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="c55 c56 c57"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="c82"
                           />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      aria-label="linkedIn for Oak National Academy"
-                      class="c97"
-                      href="https://www.linkedin.com/company/oak-national-academy"
-                      role="link"
-                      target="_blank"
-                      title="linkedIn for Oak National Academy"
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="c97 c98 c99 c100"
                     >
-                      <div
-                        class="c51"
+                      <a
+                        aria-label="linkedIn for Oak National Academy"
+                        class="c101 c102"
+                        href="https://www.linkedin.com/company/oak-national-academy"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="c52"
+                        <div
+                          class="c11 c103"
                         >
-                          <span
-                            class="c53"
+                          <div
+                            class="c104 c105 icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="c54"
-                              height="100%"
-                              name="linkedin-v2"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="c106 shadow"
+                            />
+                            <div
+                              class="c107"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#linkedin-v2"
+                              <img
+                                alt=""
+                                class="c108"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="c55 c56 c57"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="c82"
                           />
-                        </svg>
-                      </div>
-                    </a>
+                        </div>
+                      </a>
+                    </div>
                   </div>
                   <div
-                    class="c98 c99"
+                    class="c109 c110"
                   >
                     <div
-                      class="c100"
+                      class="c111"
                       height="63"
                       width="150"
                     >
@@ -4294,7 +4188,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
         </div>
       </header>
       <main
-        class="c101 c4"
+        class="c112 c4"
         id="main"
       >
         <pre>
@@ -4433,10 +4327,10 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
         </pre>
       </main>
       <footer
-        class="c102"
+        class="c113"
       >
         <div
-          class="c103 c104"
+          class="c114 c98"
         >
           <svg
             aria-hidden="true"
@@ -4463,532 +4357,253 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
           id="site-footer"
         >
           <div
-            class="c105 c106"
+            class="c115 c116"
           >
             <div
-              class="c11 c107"
+              class="c11 c117"
             >
               <div
-                class="c11 c104 c108"
+                class="c11 c98 c118"
               >
                 <div
-                  class="c109 c63"
+                  class="c119 c63"
                 >
                   <h2
-                    class="c110"
+                    class="c120"
                   >
                     Pupils
                   </h2>
                   <div
-                    class="c111 c112"
+                    class="c121 c122"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/pupils/years"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/pupils/years"
-                            role="link"
-                            type="page"
+                          <span
+                            class="c22"
                           >
                             Learn online
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div
-                  class="c116"
+                  class="c125"
                 />
                 <div
-                  class="c109 c63"
+                  class="c119 c63"
                 >
                   <h2
-                    class="c110"
+                    class="c120"
                   >
                     Teachers
                   </h2>
                   <div
-                    class="c111 c112"
+                    class="c121 c122"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/teachers/key-stages/early-years-foundation-stage/subjects"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/teachers/key-stages/early-years-foundation-stage/subjects"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             EYFS
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/teachers/specialist/subjects"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/teachers/specialist/subjects"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Specialist
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/teachers/key-stages/ks1/subjects"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/teachers/key-stages/ks1/subjects"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Key stage 1
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/teachers/key-stages/ks2/subjects"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/teachers/key-stages/ks2/subjects"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Key stage 2
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/teachers/key-stages/ks3/subjects"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/teachers/key-stages/ks3/subjects"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Key stage 3
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/teachers/key-stages/ks4/subjects"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/teachers/key-stages/ks4/subjects"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Key stage 4
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/teachers/curriculum"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/teachers/curriculum"
-                            role="link"
-                            type="page"
+                          <span
+                            class="c22"
                           >
                             Curriculum plans
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/lesson-planning"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/lesson-planning"
-                            role="link"
-                            type="page"
+                          <span
+                            class="c22"
                           >
                             Plan a lesson
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/support-your-team"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/support-your-team"
-                            role="link"
-                            type="page"
+                          <span
+                            class="c22"
                           >
                             Support your team
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
               <div
-                class="c11 c104 c108"
+                class="c11 c98 c118"
               >
                 <div
-                  class="c109 c63"
+                  class="c119 c63"
                 >
                   <h2
-                    class="c110"
+                    class="c120"
                   >
                     Oak
                   </h2>
                   <div
-                    class="c111 c112"
+                    class="c121 c122"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/"
-                            role="link"
-                            type="page"
+                          <span
+                            class="c22"
                           >
                             Home
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/about-us/who-we-are"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/about-us/who-we-are"
-                            role="link"
-                            type="page"
+                          <span
+                            class="c22"
                           >
                             About us
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          aria-label="Careers (opens in a new tab)"
+                          class="c124 "
+                          href="https://jobs.thenational.academy"
+                          target="_blank"
                         >
-                          <a
-                            aria-label="Careers (opens in a new tab)"
-                            class="c40 c48"
-                            href="https://jobs.thenational.academy"
-                            role="link"
-                            target="_blank"
+                          <span
+                            class="c22"
                           >
                             Careers
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
+                          </span>
                           <div
-                            class="c117"
+                            class="c107 "
                           >
                             <img
                               alt=""
@@ -5000,82 +4615,38 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
                           </div>
-                        </div>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/contact-us"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/contact-us"
-                            role="link"
-                            type="page"
+                          <span
+                            class="c22"
                           >
                             Contact us
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          aria-label="Help (opens in a new tab)"
+                          class="c124 "
+                          href="https://support.thenational.academy"
+                          target="_blank"
                         >
-                          <a
-                            aria-label="Help (opens in a new tab)"
-                            class="c40 c48"
-                            href="https://support.thenational.academy"
-                            role="link"
-                            target="_blank"
-                            type="page"
+                          <span
+                            class="c22"
                           >
                             Help
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
+                          </span>
                           <div
-                            class="c117"
+                            class="c107 "
                           >
                             <img
                               alt=""
@@ -5087,117 +4658,52 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
                           </div>
-                        </div>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/blog"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/blog"
-                            role="link"
-                            type="page"
+                          <span
+                            class="c22"
                           >
                             Blog
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/webinars"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/webinars"
-                            role="link"
-                            type="page"
+                          <span
+                            class="c22"
                           >
                             Webinars
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          aria-label="Status (opens in a new tab)"
+                          class="c124 "
+                          href="https://status.thenational.academy"
+                          target="_blank"
                         >
-                          <a
-                            aria-label="Status (opens in a new tab)"
-                            class="c40 c48"
-                            href="https://status.thenational.academy"
-                            role="link"
-                            target="_blank"
+                          <span
+                            class="c22"
                           >
                             Status
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
+                          </span>
                           <div
-                            class="c117"
+                            class="c107 "
                           >
                             <img
                               alt=""
@@ -5209,624 +4715,362 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
                           </div>
-                        </div>
+                        </a>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
               <div
-                class="c11 c104 c108"
+                class="c11 c98 c118"
               >
                 <div
-                  class="c109 c63"
+                  class="c119 c63"
                 >
                   <h2
-                    class="c110"
+                    class="c120"
                   >
                     Legal
                   </h2>
                   <div
-                    class="c111 c112"
+                    class="c121 c122"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/legal/terms-and-conditions"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/legal/terms-and-conditions"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Terms & conditions
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/legal/privacy-policy"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/legal/privacy-policy"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Privacy policy
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/legal/cookie-policy"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/legal/cookie-policy"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Cookie policy
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
                         <button
-                          class="c49 c118"
-                          title="Manage cookie settings"
+                          class="c124 "
                         >
-                          <div
-                            class="c80"
+                          <span
+                            class="c22"
                           >
-                            <div
-                              class="c11"
-                            >
-                              <span
-                                class="c81 c119 c120"
-                              >
-                                Manage cookie settings
-                              </span>
-                            </div>
-                            <svg
-                              aria-hidden="true"
-                              class="c55 c121 c122"
-                              height="100%"
-                              name="underline-1"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#underline-1"
-                              />
-                            </svg>
-                          </div>
-                          <svg
-                            aria-hidden="true"
-                            class="c55 c84 c123"
-                            height="100%"
-                            name="underline-1"
-                            width="100%"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <use
-                              xlink:href="/images/sprite/sprite.svg#underline-1"
-                            />
-                          </svg>
+                            Manage cookie settings
+                          </span>
                         </button>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/legal/copyright-notice"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/legal/copyright-notice"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Copyright notice
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/legal/accessibility-statement"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/legal/accessibility-statement"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Accessibility statement
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/legal/safeguarding-statement"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/legal/safeguarding-statement"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Safeguarding statement
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/legal/physical-activity-disclaimer"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/legal/physical-activity-disclaimer"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Physical activity disclaimer
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/legal/complaints"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/legal/complaints"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Complaints
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                       <li
-                        class="c113"
+                        class="c123"
                       >
-                        <div
-                          class="c114 c115"
+                        <a
+                          class="c124 "
+                          href="/legal/freedom-of-information-requests"
                         >
-                          <a
-                            class="c40 c48"
-                            href="/legal/freedom-of-information-requests"
-                            role="link"
+                          <span
+                            class="c22"
                           >
                             Freedom of information requests
-                            <svg
-                              aria-hidden="true"
-                              class="c42 c45 c46"
-                              height="100%"
-                              name="underline"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <svg
-                                fill="none"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 242 7"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M241.809 5.35522C238.36 6.16872 234.702 6.32558 230.891 6.32486C205.669 6.32316 180.5 6.37674 155.305 6.30837C129.075 6.24358 102.854 6.03729 76.6237 5.95308C56.5815 5.88912 36.5201 5.94726 16.4689 5.88333C12.7528 5.83207 9.06734 5.66827 5.46556 5.3943C2.2246 5.18082 0.243077 4.15307 0.612482 3.14495C0.747438 2.77609 0.777943 2.40475 0.703578 2.03516C0.55282 1.68536 0.336376 1.33881 0.0553455 0.997265C1.97028 0.852173 3.91666 0.752723 5.87716 0.699803C20.5698 0.635225 35.2904 0.4596 49.9632 0.59757C65.3746 0.744085 80.7791 0.654862 96.1825 0.682135C131.421 0.745426 166.657 0.827222 201.889 0.927517C210.582 0.955764 219.254 1.16715 227.928 1.3286C230.171 1.37618 232.39 1.49113 234.554 1.67184C239.334 2.0603 241.604 3.03436 241.735 4.57053C241.705 4.81749 241.766 5.04471 241.809 5.35522ZM9.4054 5.0229L9.4071 4.83429L6.81271 4.84324C6.81204 4.91813 6.81136 4.99303 6.81066 5.07069L9.4054 5.0229ZM9.13633 1.89234C7.94722 2.89775 7.94725 2.89774 9.92041 2.8521C9.70711 2.53109 9.43974 2.21027 9.18139 1.89219L9.13633 1.89234ZM72.3962 1.26072L72.5866 1.12415L68.0824 1.1397L68.0812 1.27561L72.3962 1.26072ZM73.8843 3.05572L74.0187 3.14677L76.4058 3.13853L76.4066 3.04701L73.8843 3.05572ZM5.19841 1.04886L5.04392 1.20194L8.42203 1.19028L8.4234 1.03773L5.19841 1.04886Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </svg>
-                          </a>
-                        </div>
+                          </span>
+                        </a>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
               <div
-                class="c11 c104 c108"
+                class="c11 c98 c118"
               >
                 <div
-                  class="c109 c124"
+                  class="c119 c126"
                 >
                   <div
                     class="c18"
                   >
                     <div
-                      class="c125"
-                      height="66"
-                      width="150"
+                      class="c127"
                     >
-                      <span
-                        class="c24"
-                      >
-                        Oak National Academy
-                      </span>
-                      <svg
-                        aria-hidden="true"
-                        height="100%"
-                        width="100%"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <use
-                          xlink:href="#logo-with-text"
-                        />
-                      </svg>
+                      <img
+                        alt=""
+                        class="c128"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
                     </div>
                   </div>
                   <div
-                    class="c126 c127"
+                    class="c129 c130"
                     x="oaknational"
                   >
-                    <a
-                      aria-label="instagram for Oak National Academy"
-                      class="c97"
-                      href="https://instagram.com/oaknational"
-                      role="link"
-                      target="_blank"
-                      title="instagram for Oak National Academy"
+                    <div
+                      class="c97 c98 c99 c100"
                     >
-                      <div
-                        class="c51"
+                      <a
+                        aria-label="instagram for Oak National Academy"
+                        class="c101 c102"
+                        href="https://instagram.com/oaknational"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="c52"
+                        <div
+                          class="c11 c103"
                         >
-                          <span
-                            class="c53"
+                          <div
+                            class="c104 c105 icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="c54"
-                              height="100%"
-                              name="instagram-v2"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="c106 shadow"
+                            />
+                            <div
+                              class="c107"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#instagram-v2"
+                              <img
+                                alt=""
+                                class="c108"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="c55 c56 c57"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="c82"
                           />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      aria-label="facebook for Oak National Academy"
-                      class="c97"
-                      href="https://facebook.com/oaknationalacademy"
-                      role="link"
-                      target="_blank"
-                      title="facebook for Oak National Academy"
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="c97 c98 c99 c100"
                     >
-                      <div
-                        class="c51"
+                      <a
+                        aria-label="facebook for Oak National Academy"
+                        class="c101 c102"
+                        href="https://facebook.com/oaknationalacademy"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="c52"
+                        <div
+                          class="c11 c103"
                         >
-                          <span
-                            class="c53"
+                          <div
+                            class="c104 c105 icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="c54"
-                              height="100%"
-                              name="facebook-v2"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="c106 shadow"
+                            />
+                            <div
+                              class="c107"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#facebook-v2"
+                              <img
+                                alt=""
+                                class="c108"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="c55 c56 c57"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="c82"
                           />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      aria-label="x for Oak National Academy"
-                      class="c97"
-                      href="https://x.com/oaknational"
-                      role="link"
-                      target="_blank"
-                      title="x for Oak National Academy"
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="c97 c98 c99 c100"
                     >
-                      <div
-                        class="c51"
+                      <a
+                        aria-label="x for Oak National Academy"
+                        class="c101 c102"
+                        href="https://x.com/oaknational"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="c52"
+                        <div
+                          class="c11 c103"
                         >
-                          <span
-                            class="c53"
+                          <div
+                            class="c104 c105 icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="c54"
-                              height="100%"
-                              name="x"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="c106 shadow"
+                            />
+                            <div
+                              class="c107"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#x"
+                              <img
+                                alt=""
+                                class="c108"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1748452854/icons/x_fpmv5f.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="c55 c56 c57"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="c82"
                           />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      aria-label="linkedIn for Oak National Academy"
-                      class="c97"
-                      href="https://www.linkedin.com/company/oak-national-academy"
-                      role="link"
-                      target="_blank"
-                      title="linkedIn for Oak National Academy"
+                        </div>
+                      </a>
+                    </div>
+                    <div
+                      class="c97 c98 c99 c100"
                     >
-                      <div
-                        class="c51"
+                      <a
+                        aria-label="linkedIn for Oak National Academy"
+                        class="c101 c102"
+                        href="https://www.linkedin.com/company/oak-national-academy"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="c52"
+                        <div
+                          class="c11 c103"
                         >
-                          <span
-                            class="c53"
+                          <div
+                            class="c104 c105 icon-container"
                           >
-                            <svg
-                              aria-hidden="true"
-                              class="c54"
-                              height="100%"
-                              name="linkedin-v2"
-                              width="100%"
-                              xmlns="http://www.w3.org/2000/svg"
+                            <div
+                              class="c106 shadow"
+                            />
+                            <div
+                              class="c107"
+                              data-icon-for="button"
                             >
-                              <use
-                                xlink:href="/images/sprite/sprite.svg#linkedin-v2"
+                              <img
+                                alt=""
+                                class="c108"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </svg>
-                          </span>
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          class="c55 c56 c57"
-                          height="100%"
-                          name="underline-1"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#underline-1"
+                            </div>
+                          </div>
+                          <span
+                            class="c82"
                           />
-                        </svg>
-                      </div>
-                    </a>
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div
-              class="c128 c129"
+              class="c131 c132"
               data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"
-                class="c130"
+                class="c128"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -5837,232 +5081,192 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
               />
             </div>
             <div
-              class="c131 c132"
+              class="c133 c134"
             >
               <div
-                class="c133 c134"
+                class="c135 c136"
                 x="oaknational"
               >
-                <a
-                  aria-label="instagram for Oak National Academy"
-                  class="c97"
-                  href="https://instagram.com/oaknational"
-                  role="link"
-                  target="_blank"
-                  title="instagram for Oak National Academy"
+                <div
+                  class="c97 c98 c99 c100"
                 >
-                  <div
-                    class="c51"
+                  <a
+                    aria-label="instagram for Oak National Academy"
+                    class="c101 c102"
+                    href="https://instagram.com/oaknational"
                   >
-                    <span
-                      aria-hidden="true"
-                      class="c52"
+                    <div
+                      class="c11 c103"
                     >
-                      <span
-                        class="c53"
+                      <div
+                        class="c104 c105 icon-container"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class="c54"
-                          height="100%"
-                          name="instagram-v2"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <div
+                          class="c106 shadow"
+                        />
+                        <div
+                          class="c107"
+                          data-icon-for="button"
                         >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#instagram-v2"
+                          <img
+                            alt=""
+                            class="c108"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </svg>
-                      </span>
-                    </span>
-                    <svg
-                      aria-hidden="true"
-                      class="c55 c56 c57"
-                      height="100%"
-                      name="underline-1"
-                      width="100%"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use
-                        xlink:href="/images/sprite/sprite.svg#underline-1"
+                        </div>
+                      </div>
+                      <span
+                        class="c82"
                       />
-                    </svg>
-                  </div>
-                </a>
-                <a
-                  aria-label="facebook for Oak National Academy"
-                  class="c97"
-                  href="https://facebook.com/oaknationalacademy"
-                  role="link"
-                  target="_blank"
-                  title="facebook for Oak National Academy"
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="c97 c98 c99 c100"
                 >
-                  <div
-                    class="c51"
+                  <a
+                    aria-label="facebook for Oak National Academy"
+                    class="c101 c102"
+                    href="https://facebook.com/oaknationalacademy"
                   >
-                    <span
-                      aria-hidden="true"
-                      class="c52"
+                    <div
+                      class="c11 c103"
                     >
-                      <span
-                        class="c53"
+                      <div
+                        class="c104 c105 icon-container"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class="c54"
-                          height="100%"
-                          name="facebook-v2"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <div
+                          class="c106 shadow"
+                        />
+                        <div
+                          class="c107"
+                          data-icon-for="button"
                         >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#facebook-v2"
+                          <img
+                            alt=""
+                            class="c108"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </svg>
-                      </span>
-                    </span>
-                    <svg
-                      aria-hidden="true"
-                      class="c55 c56 c57"
-                      height="100%"
-                      name="underline-1"
-                      width="100%"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use
-                        xlink:href="/images/sprite/sprite.svg#underline-1"
+                        </div>
+                      </div>
+                      <span
+                        class="c82"
                       />
-                    </svg>
-                  </div>
-                </a>
-                <a
-                  aria-label="x for Oak National Academy"
-                  class="c97"
-                  href="https://x.com/oaknational"
-                  role="link"
-                  target="_blank"
-                  title="x for Oak National Academy"
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="c97 c98 c99 c100"
                 >
-                  <div
-                    class="c51"
+                  <a
+                    aria-label="x for Oak National Academy"
+                    class="c101 c102"
+                    href="https://x.com/oaknational"
                   >
-                    <span
-                      aria-hidden="true"
-                      class="c52"
+                    <div
+                      class="c11 c103"
                     >
-                      <span
-                        class="c53"
+                      <div
+                        class="c104 c105 icon-container"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class="c54"
-                          height="100%"
-                          name="x"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <div
+                          class="c106 shadow"
+                        />
+                        <div
+                          class="c107"
+                          data-icon-for="button"
                         >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#x"
+                          <img
+                            alt=""
+                            class="c108"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1748452854/icons/x_fpmv5f.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </svg>
-                      </span>
-                    </span>
-                    <svg
-                      aria-hidden="true"
-                      class="c55 c56 c57"
-                      height="100%"
-                      name="underline-1"
-                      width="100%"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use
-                        xlink:href="/images/sprite/sprite.svg#underline-1"
+                        </div>
+                      </div>
+                      <span
+                        class="c82"
                       />
-                    </svg>
-                  </div>
-                </a>
-                <a
-                  aria-label="linkedIn for Oak National Academy"
-                  class="c97"
-                  href="https://www.linkedin.com/company/oak-national-academy"
-                  role="link"
-                  target="_blank"
-                  title="linkedIn for Oak National Academy"
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="c97 c98 c99 c100"
                 >
-                  <div
-                    class="c51"
+                  <a
+                    aria-label="linkedIn for Oak National Academy"
+                    class="c101 c102"
+                    href="https://www.linkedin.com/company/oak-national-academy"
                   >
-                    <span
-                      aria-hidden="true"
-                      class="c52"
+                    <div
+                      class="c11 c103"
                     >
-                      <span
-                        class="c53"
+                      <div
+                        class="c104 c105 icon-container"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class="c54"
-                          height="100%"
-                          name="linkedin-v2"
-                          width="100%"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <div
+                          class="c106 shadow"
+                        />
+                        <div
+                          class="c107"
+                          data-icon-for="button"
                         >
-                          <use
-                            xlink:href="/images/sprite/sprite.svg#linkedin-v2"
+                          <img
+                            alt=""
+                            class="c108"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </svg>
-                      </span>
-                    </span>
-                    <svg
-                      aria-hidden="true"
-                      class="c55 c56 c57"
-                      height="100%"
-                      name="underline-1"
-                      width="100%"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use
-                        xlink:href="/images/sprite/sprite.svg#underline-1"
+                        </div>
+                      </div>
+                      <span
+                        class="c82"
                       />
-                    </svg>
-                  </div>
-                </a>
+                    </div>
+                  </a>
+                </div>
               </div>
               <div
                 class="c27"
               >
                 <div
-                  class="c125"
-                  height="66"
-                  width="150"
+                  class="c127"
                 >
-                  <span
-                    class="c24"
-                  >
-                    Oak National Academy
-                  </span>
-                  <svg
-                    aria-hidden="true"
-                    height="100%"
-                    width="100%"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <use
-                      xlink:href="#logo-with-text"
-                    />
-                  </svg>
+                  <img
+                    alt=""
+                    class="c128"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
                 </div>
               </div>
               <div
-                class="c109 c63"
+                class="c119 c63"
               >
                 <p
-                  class="c135"
+                  class="c137"
                 >
                   © Oak National Academy Limited, No 14174888
                 </p>
                 <p
-                  class="c136"
+                  class="c138"
                 >
                   1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                 </p>
@@ -6071,11 +5275,11 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
           </div>
         </nav>
         <div
-          class="c137"
+          class="c139"
         >
           <img
             alt=""
-            class="c138"
+            class="c140"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -6084,11 +5288,11 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
           />
         </div>
         <div
-          class="c139"
+          class="c141"
         >
           <img
             alt=""
-            class="c140"
+            class="c142"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -6100,23 +5304,23 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
     </div>
   </div>
   <div
-    class="c141"
+    class="c143"
   >
     <div
-      class="c142"
+      class="c144"
       data-testid="cookie-banner"
     >
       <div
-        class="c143"
+        class="c145"
       >
         <div
-          class="c144 c145"
+          class="c146 c147"
         >
           <div
-            class="c146"
+            class="c148"
           >
             <strong
-              class="c147"
+              class="c149"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -6124,13 +5328,13 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="c11 c148"
+            class="c11 c150"
           >
             <div
-              class="c149 c150"
+              class="c151 c152"
             >
               <button
-                class="c151 "
+                class="c124 "
                 data-testid="cookie-banner-reject"
                 type="button"
               >
@@ -6174,7 +5378,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                 class="c8 yellow-shadow"
               />
               <button
-                class="c152 c153 internal-button"
+                class="c153 c154 internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div
