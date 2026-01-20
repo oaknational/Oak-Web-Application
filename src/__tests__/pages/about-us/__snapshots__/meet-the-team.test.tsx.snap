@@ -2903,7 +2903,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 .c146:has( a,button ) {
   border-radius: border-radius-m2;
   z-index: 2;
-  box-shadow: rgb(255,229,85) 0px 0px 0px 0.125rem,rgb(87,87,87) 0px 0px 0px 0.3rem;
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
 .c146:has(a:hover,button:hover),
@@ -2918,7 +2918,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c146:has(a:active,button:active) {
   z-index: 2;
-  box-shadow: rgb(255,229,85) 0.125rem 0.125rem 0px,rgb(87,87,87) 0.25rem 0.25rem 0px;
+  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
 .c149:hover {
