@@ -1,3 +1,10 @@
+# [1.958.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.957.0...v1.958.0) (2026-01-20)
+
+
+### Features
+
+* **LESQ-1700:** add metadata to app router layout and programmes page ([74bff96](https://github.com/oaknational/Oak-Web-Application/commit/74bff9626292b2969c0b484450d7fbd9cfc0cf8d))
+
 # [1.957.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.956.0...v1.957.0) (2026-01-20)
 
 
