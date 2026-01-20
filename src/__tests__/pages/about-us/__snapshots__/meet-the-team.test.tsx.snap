@@ -5831,18 +5831,22 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   class="c122"
                 >
                   <div
-                    class="c11 c123"
+                    class="c11 c72"
                   >
-                    <h2
-                      class="c124"
+                    <div
+                      class="c11 c123"
                     >
-                      Our leadership
-                    </h2>
-                    <p
-                      class="c125"
-                    >
-                      Our leadership team brings together experts to deliver the best support to teachers and value for money for the public. Learn more about them below.
-                    </p>
+                      <h2
+                        class="c124"
+                      >
+                        Our leadership
+                      </h2>
+                      <p
+                        class="c125"
+                      >
+                        Our leadership team brings together experts to deliver the best support to teachers and value for money for the public. Learn more about them below.
+                      </p>
+                    </div>
                     <div
                       class="c11 c126"
                     >
@@ -6477,18 +6481,22 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   class="c122"
                 >
                   <div
-                    class="c11 c123"
+                    class="c11 c72"
                   >
-                    <h2
-                      class="c124"
+                    <div
+                      class="c11 c123"
                     >
-                      Our board
-                    </h2>
-                    <p
-                      class="c125"
-                    >
-                      Our Board oversees all of our work at Oak National Academy. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence.
-                    </p>
+                      <h2
+                        class="c124"
+                      >
+                        Our board
+                      </h2>
+                      <p
+                        class="c125"
+                      >
+                        Our Board oversees all of our work at Oak National Academy. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence.
+                      </p>
+                    </div>
                     <div
                       class="c11 c126"
                     >
@@ -7123,13 +7131,17 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   class="c122"
                 >
                   <div
-                    class="c11 c123"
+                    class="c11 c72"
                   >
-                    <h2
-                      class="c124"
+                    <div
+                      class="c11 c123"
                     >
-                      Documents
-                    </h2>
+                      <h2
+                        class="c124"
+                      >
+                        Documents
+                      </h2>
+                    </div>
                     <div
                       class="c11 c126"
                     >
