@@ -1,3 +1,15 @@
+# [1.957.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.956.0...v1.957.0) (2026-01-20)
+
+
+### Bug Fixes
+
+* auto merge mishap with snapshots ([5d050b9](https://github.com/oaknational/Oak-Web-Application/commit/5d050b900f765636673326b1cb369359c39cce3e))
+
+
+### Features
+
+* replace secondary links with primary in curiculum explainer ([31cbda7](https://github.com/oaknational/Oak-Web-Application/commit/31cbda74cd5614ea4af1f0a9e92d0e4a4f85a144))
+
 # [1.956.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.955.0...v1.956.0) (2026-01-20)
 
 
