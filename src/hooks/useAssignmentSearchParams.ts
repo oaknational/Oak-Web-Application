@@ -14,7 +14,7 @@ export function useAssignmentSearchParams() {
     useState(false);
 
   const checkIsAssignment = useCallback(() => {
-    if (typeof globalThis?.window === "undefined" || !searchParams) return;
+    if (!globalThis?.window || !searchParams) return;
     const itemId = searchParams?.get("itemId");
     const itemType = searchParams?.get("itemType");
 
