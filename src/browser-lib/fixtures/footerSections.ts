@@ -90,7 +90,7 @@ const footerSections: FooterSections = {
       {
         text: "Help",
         type: "link",
-        href: "help",
+        href: resolveOakHref({ page: "help" }),
         icon: "external",
         ariaLabel: "Help (opens in a new tab)",
       },
