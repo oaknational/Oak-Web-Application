@@ -532,6 +532,14 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
+.c234 {
+  position: relative;
+  width: 10rem;
+  height: 4rem;
+  padding: 0rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
 .c235 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -2174,11 +2182,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 .c111 {
   width: 150px;
   height: 63px;
-}
-
-.c234 {
-  width: 150px;
-  height: 66px;
 }
 
 .c180 {
@@ -7855,6 +7858,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           aria-label="Careers (opens in a new tab)"
                           class="c231 "
                           href="https://jobs.thenational.academy"
+                          target="_blank"
                         >
                           <span
                             class="c22"
@@ -7896,7 +7900,8 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         <a
                           aria-label="Help (opens in a new tab)"
                           class="c231 "
-                          href="help"
+                          href="https://support.thenational.academy"
+                          target="_blank"
                         >
                           <span
                             class="c22"
@@ -7953,6 +7958,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           aria-label="Status (opens in a new tab)"
                           class="c231 "
                           href="https://status.thenational.academy"
+                          target="_blank"
                         >
                           <span
                             class="c22"
@@ -8149,24 +8155,16 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   >
                     <div
                       class="c234"
-                      height="66"
-                      width="150"
                     >
-                      <span
-                        class="c24"
-                      >
-                        Oak National Academy
-                      </span>
-                      <svg
-                        aria-hidden="true"
-                        height="100%"
-                        width="100%"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <use
-                          xlink:href="#logo-with-text"
-                        />
-                      </svg>
+                      <img
+                        alt=""
+                        class="c139"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
                     </div>
                   </div>
                   <div
@@ -8510,24 +8508,16 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               >
                 <div
                   class="c234"
-                  height="66"
-                  width="150"
                 >
-                  <span
-                    class="c24"
-                  >
-                    Oak National Academy
-                  </span>
-                  <svg
-                    aria-hidden="true"
-                    height="100%"
-                    width="100%"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <use
-                      xlink:href="#logo-with-text"
-                    />
-                  </svg>
+                  <img
+                    alt=""
+                    class="c139"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
                 </div>
               </div>
               <div
