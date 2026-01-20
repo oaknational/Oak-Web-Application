@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
 import TopNav from "@/components/AppComponents/TopNav/TopNav";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -16,11 +17,11 @@ export default async function CoreLayout({
   try {
     const topNavProps = await curriculumApi2023.topNav();
 
-    // TD: [integrated-journey]  Footer
     return (
       <>
         <TopNav {...topNavProps} />
-        {children}
+        <main id="main">{children}</main>
+        <LayoutSiteFooter />
       </>
     );
   } catch (error) {
