@@ -159,7 +159,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
           $transition="standard-ease"
           $width="100%"
           $zIndex="mobile-filters"
-          $background={isOpen ? "bg-inverted" : "transparent"}
+          $background={isOpen ? "bg-primary" : "transparent"}
           $dropShadow={"drop-shadow-standard"}
           $pointerEvents={"all"}
         >
