@@ -1,5 +1,7 @@
 import {
   oakAllSpacingTokens,
+  oakDropShadowTokens,
+  oakDefaultTheme,
   OakColorFilterToken,
   OakIcon,
 } from "@oaknational/oak-components";
@@ -14,7 +16,7 @@ const StyledSocialLink = styled.a`
   justify-content: center;
   border: none;
   border-radius: ${oakAllSpacingTokens["spacing-4"]}px;
-  background: var(--Tokens-Background-bg-btn-secondary, #fff);
+  background: ${oakDefaultTheme.uiColors["bg-btn-secondary"]};
   height: ${oakAllSpacingTokens["spacing-32"]}px;
   width: ${oakAllSpacingTokens["spacing-32"]}px;
   -webkit-box-shadow: none;
@@ -23,21 +25,19 @@ const StyledSocialLink = styled.a`
   :focus {
     /* drop-shadow-focus */
     outline: none;
-    box-shadow:
-      0 0 0 2px #ffe555,
-      0 0 0 5px #575757;
+    box-shadow: ${oakDropShadowTokens["drop-shadow-centered-lemon"]},
+      ${oakDropShadowTokens["drop-shadow-centered-grey"]};
   }
 
   :hover {
     /* drop-shadow-lemon */
-    box-shadow: 2px 2px 0 0 #ffe555;
+    box-shadow: ${oakDropShadowTokens["drop-shadow-centered-lemon"]};
   }
 
   :active {
     /* drop-shadow-pressed */
-    box-shadow:
-      2px 2px 0 0 #ffe555,
-      4px 4px 0 0 #575757;
+    box-shadow: ${oakDropShadowTokens["drop-shadow-centered-lemon"]},
+      ${oakDropShadowTokens["drop-shadow-centered-grey"]};
   }
 `;
 type SocialMediaTypes = "linkedin" | "facebook" | "x" | "instagram";
