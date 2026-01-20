@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/about/get-involved.tsx renders 1`] = `
+exports[`pages/about/meet-the-team.tsx renders 1`] = `
 .c0 {
   position: fixed;
   right: 0rem;
@@ -289,49 +289,38 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c127 {
-  position: relative;
-  width: 2rem;
-  min-width: 2rem;
-  height: 2rem;
-  min-height: 2rem;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c129 {
-  background: #e3e9fb;
+.c128 {
+  display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
 .c130 {
-  padding-top: 3.5rem;
-  padding-bottom: 3.5rem;
+  padding-bottom: 5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c135 {
-  height: 100%;
+.c132 {
+  padding: 1rem;
+  background: #fff7cc;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
 .c137 {
-  position: relative;
-  width: 100%;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c141 {
+  width: 15rem;
+  padding: 1rem;
   background: #ffffff;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c142 {
-  padding: 1.5rem;
+.c138 {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: #f2f2f2;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c151 {
+.c140 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -342,19 +331,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c156 {
-  width: 100%;
-  aspect-ratio: 16/9;
+.c141 {
   font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
 }
 
-.c160 {
+.c146 {
   position: relative;
   background: #bef2bd;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c161 {
+.c147 {
   position: absolute;
   top: 0rem;
   left: 0rem;
@@ -369,7 +363,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c162 {
+.c148 {
   position: relative;
   max-width: 80rem;
   padding-left: 1rem;
@@ -379,25 +373,25 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c163 {
+.c149 {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c168 {
+.c154 {
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c170 {
+.c156 {
   padding: 1rem;
   background: #ffffff;
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c173 {
+.c159 {
   position: relative;
   width: 3.5rem;
   min-width: 3.5rem;
@@ -406,7 +400,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c174 {
+.c160 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 700;
@@ -418,14 +412,23 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c176 {
+.c162 {
+  position: relative;
+  width: 2rem;
+  min-width: 2rem;
+  height: 2rem;
+  min-height: 2rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c163 {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
   background: #dff9de;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c177 {
+.c164 {
   width: 100%;
   max-width: 30rem;
   padding-left: 1rem;
@@ -435,12 +438,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c184 {
+.c171 {
   margin-bottom: 1.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c186 {
+.c173 {
   position: relative;
   width: 3.5rem;
   min-width: 3.5rem;
@@ -453,36 +456,36 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c190 {
+.c177 {
   margin-top: 0.75rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c206 {
+.c193 {
   position: relative;
   margin-top: 2rem;
   background: #ffffff;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c209 {
+.c196 {
   position: absolute;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c211 {
+.c198 {
   padding-top: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c216 {
+.c203 {
   position: relative;
   width: 100%;
   height: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c221 {
+.c208 {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -492,13 +495,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   z-index: 0;
 }
 
-.c222 {
+.c209 {
   position: relative;
   height: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c223 {
+.c210 {
   width: 100%;
   max-width: 30rem;
   padding-left: 1rem;
@@ -510,12 +513,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c226 {
+.c213 {
   margin-top: 2rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c228 {
+.c215 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
@@ -527,12 +530,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c232 {
+.c218 {
   margin-top: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c234 {
+.c220 {
   position: relative;
   width: 10rem;
   height: 4rem;
@@ -540,7 +543,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c235 {
+.c222 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -548,7 +551,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c238 {
+.c224 {
+  position: relative;
+  width: 100%;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c226 {
   width: 100%;
   padding-top: 0.75rem;
   margin-top: 2rem;
@@ -556,12 +565,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c240 {
+.c228 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c244 {
+.c232 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -579,7 +588,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c246 {
+.c234 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -597,7 +606,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c248 {
+.c236 {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
@@ -605,7 +614,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   z-index: 299;
 }
 
-.c249 {
+.c237 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -613,13 +622,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c250 {
+.c238 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c251 {
+.c239 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -627,7 +636,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c253 {
+.c241 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -638,7 +647,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c256 {
+.c244 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -666,34 +675,25 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c245 {
+.c233 {
   -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   object-fit: fill;
 }
 
-.c247 {
+.c235 {
   -webkit-filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   object-fit: fill;
 }
 
-.c139 {
+.c221 {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHBhdGggZmlsbD0iIzIyMiIgZD0iTTI4Ljc3OSAxOS4xNzZhMjcuMTkxIDI3LjE5MSAwIDAgMC0zLjggMS42IDE2LjcgMTYuNyAwIDAgMC03LjEgOC40YzAgLjEtLjEuMi0uMS4zLS43IDIuNC0uNiAyIDEuMyAyLjMgMS45LjMgMSAuNSAxIDEuMy0uMSA4LjggNC4xIDE1LjEgMTEuNCAxOS42YTEuNSAxLjUgMCAwIDAgMS43LjJjNS43LTIuNiA5LjMtNyAxMC4zLTEzLjJhMSAxIDAgMCAxIDEtMWwzLS4yYy44IDAgMS4zLjIgMS4yIDEuMmExNy45IDE3LjkgMCAwIDEtMy4yIDkuMiAyMy43IDIzLjcgMCAwIDEtMTAuOSA5LjEgNS40MDEgNS40MDEgMCAwIDEtNC41LS4yIDI2LjI5OCAyNi4yOTggMCAwIDEtOC41LTYuNiAyNS45IDI1LjkgMCAwIDEtNi40LTE0LjRjMC0uNi0uMi0uNy0uOC0uOC0yLjUtLjQtMi41LS4xLTIuMy0yLjlhMTkuMyAxOS4zIDAgMCAxIDEwLjgtMTYuNiAzOC45OTkgMzguOTk5IDAgMCAxIDUuNy0yLjEgMi4xIDIuMSAwIDAgMCAuOS0xLjMgMTQuMSAxNC4xIDAgMCAxIDMuNS02LjNsLjMtLjNjMS45LTIgMi42LTIgNC4zLjJsLjQuNWMxLjEgMS4xIDEgMS41LS4xIDIuNmExMS45IDExLjkgMCAwIDAtMy4yIDQuNCAxNi45IDE2LjkgMCAwIDEgNy41IDIuM2M1LjcgMy41IDkuMiA4LjMgOS45IDE1IC4wMTYuOTAxLS4wMTcgMS44MDItLjEgMi43IDAgLjgtLjYgMS0xLjIgMS4yYTE2LjEgMTYuMSAwIDAgMS0xMS0uNyAxNy45MDEgMTcuOTAxIDAgMCAxLTEwLjktMTMuNiA5Ljc5NiA5Ljc5NiAwIDAgMS0uMS0xLjlabTE4LjEgMTIuMmMuNC01LjUtNi45LTEyLjYtMTMtMTIuMS41IDYuNSA3LjYgMTIuOCAxMyAxMi4xWiIgb3BhY2l0eT0iLjEiLz48L3N2Zz4=);
   background-color: #e7f6f5;
   background-size: 4rem;
   background-position: center;
   background-repeat: no-repeat;
   object-fit: contain;
-}
-
-.c157 {
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHBhdGggZmlsbD0iIzIyMiIgZD0iTTI4Ljc3OSAxOS4xNzZhMjcuMTkxIDI3LjE5MSAwIDAgMC0zLjggMS42IDE2LjcgMTYuNyAwIDAgMC03LjEgOC40YzAgLjEtLjEuMi0uMS4zLS43IDIuNC0uNiAyIDEuMyAyLjMgMS45LjMgMSAuNSAxIDEuMy0uMSA4LjggNC4xIDE1LjEgMTEuNCAxOS42YTEuNSAxLjUgMCAwIDAgMS43LjJjNS43LTIuNiA5LjMtNyAxMC4zLTEzLjJhMSAxIDAgMCAxIDEtMWwzLS4yYy44IDAgMS4zLjIgMS4yIDEuMmExNy45IDE3LjkgMCAwIDEtMy4yIDkuMiAyMy43IDIzLjcgMCAwIDEtMTAuOSA5LjEgNS40MDEgNS40MDEgMCAwIDEtNC41LS4yIDI2LjI5OCAyNi4yOTggMCAwIDEtOC41LTYuNiAyNS45IDI1LjkgMCAwIDEtNi40LTE0LjRjMC0uNi0uMi0uNy0uOC0uOC0yLjUtLjQtMi41LS4xLTIuMy0yLjlhMTkuMyAxOS4zIDAgMCAxIDEwLjgtMTYuNiAzOC45OTkgMzguOTk5IDAgMCAxIDUuNy0yLjEgMi4xIDIuMSAwIDAgMCAuOS0xLjMgMTQuMSAxNC4xIDAgMCAxIDMuNS02LjNsLjMtLjNjMS45LTIgMi42LTIgNC4zLjJsLjQuNWMxLjEgMS4xIDEgMS41LS4xIDIuNmExMS45IDExLjkgMCAwIDAtMy4yIDQuNCAxNi45IDE2LjkgMCAwIDEgNy41IDIuM2M1LjcgMy41IDkuMiA4LjMgOS45IDE1IC4wMTYuOTAxLS4wMTcgMS44MDItLjEgMi43IDAgLjgtLjYgMS0xLjIgMS4yYTE2LjEgMTYuMSAwIDAgMS0xMS0uNyAxNy45MDEgMTcuOTAxIDAgMCAxLTEwLjktMTMuNiA5Ljc5NiA5Ljc5NiAwIDAgMS0uMS0xLjlabTE4LjEgMTIuMmMuNC01LjUtNi45LTEyLjYtMTMtMTIuMS41IDYuNSA3LjYgMTIuOCAxMyAxMi4xWiIgb3BhY2l0eT0iLjEiLz48L3N2Zz4=);
-  background-color: #e7f6f5;
-  background-size: 4rem;
-  background-position: center;
-  background-repeat: no-repeat;
-  object-fit: cover;
 }
 
 .c1 {
@@ -1025,106 +1025,67 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
+.c127 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+.c129 {
+  display: none;
+}
+
+.c131 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  gap: 2rem;
+}
+
+.c133 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .c136 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
-}
-
-.c143 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.c147 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.c149 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-}
-
-.c152 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.c153 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
-.c155 {
+.c142 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 1.5rem;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
 }
 
-.c158 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  row-gap: 1.5rem;
-}
-
-.c164 {
+.c150 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1135,7 +1096,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 2rem;
 }
 
-.c171 {
+.c157 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1150,7 +1111,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c175 {
+.c161 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1161,7 +1122,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c178 {
+.c165 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1179,7 +1140,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c185 {
+.c172 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1193,7 +1154,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   align-items: center;
 }
 
-.c212 {
+.c199 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1204,7 +1165,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   align-items: center;
 }
 
-.c224 {
+.c211 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1222,7 +1183,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c233 {
+.c219 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1233,7 +1194,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   justify-content: left;
 }
 
-.c236 {
+.c223 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1249,7 +1210,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c239 {
+.c227 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1267,7 +1228,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   justify-content: flex-start;
 }
 
-.c241 {
+.c229 {
   display: none;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1280,7 +1241,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c252 {
+.c240 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1295,7 +1256,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c255 {
+.c243 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1326,26 +1287,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   column-gap: 1rem;
 }
 
-.c131 {
-  display: grid;
-  grid-template-columns: repeat(12,1fr);
-  width: 100%;
-  row-gap: 2rem;
-  -webkit-column-gap: 1rem;
-  column-gap: 1rem;
-  grid-template-columns: repeat(4,1fr);
-}
-
-.c148 {
-  display: grid;
-  grid-template-columns: repeat(12,1fr);
-  width: 100%;
-  row-gap: 2.5rem;
-  -webkit-column-gap: 0rem;
-  column-gap: 0rem;
-}
-
-.c166 {
+.c152 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
@@ -1355,7 +1297,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-auto-rows: 1fr;
 }
 
-.c182 {
+.c169 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
@@ -1380,60 +1322,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-column-start: 9;
 }
 
-.c132 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  grid-column: 1 / span 4;
-  grid-row: 1 / span undefined;
-  grid-row: span 1;
-  grid-column-start: 1;
-  grid-row-start: 1;
-}
-
-.c134 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  grid-column: 3 / span 2;
-  grid-row: 3 / span 1;
-  grid-row: span 1,1,1;
-  grid-column-start: 3;
-  grid-row-start: 3;
-}
-
-.c140 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  grid-column: 1 / span 4;
-  grid-row: 2 / span undefined;
-  grid-row: span 1;
-  grid-column-start: 1;
-  grid-row-start: 2;
-}
-
-.c150 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  grid-column: 1 / span 12;
-  grid-row: span undefined;
-  grid-row: span 1;
-  grid-column-start: 1;
-}
-
-.c154 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  grid-column: 1 / span 12;
-  grid-row: span undefined;
-  grid-row: span 1;
-  grid-column-start: 1;
-}
-
-.c167 {
+.c153 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -1442,7 +1331,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-row: span 1;
 }
 
-.c183 {
+.c170 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -1451,7 +1340,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-row: span 1;
 }
 
-.c225 {
+.c212 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -1482,7 +1371,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c133 {
+.c134 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1491,10 +1380,9 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   -moz-letter-spacing: 0.0115rem;
   -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
-  color: #222222;
 }
 
-.c144 {
+.c139 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
@@ -1503,10 +1391,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   -moz-letter-spacing: 0.0115rem;
   -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
-  color: #222222;
 }
 
-.c165 {
+.c144 {
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c151 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1519,7 +1410,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #222222;
 }
 
-.c227 {
+.c214 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1573,13 +1464,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 .c123 {
   color: #222222;
-  background: #a0b6f2;
+  background: #ffe555;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c201 {
+.c188 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
   font-size: 1rem;
@@ -1590,7 +1481,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c214 {
+.c201 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -1601,7 +1492,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c254 {
+.c242 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
@@ -1621,7 +1512,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: revert;
 }
 
-.c230 {
+.c217 {
   margin-top: 0.75rem;
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -1642,25 +1533,28 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #222222;
 }
 
-.c145 {
+.c135 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   -webkit-letter-spacing: -0.005rem;
   -moz-letter-spacing: -0.005rem;
   -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
-  margin-top: 1rem;
 }
 
-.c188 {
+.c145 {
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c175 {
   font-family: --var(google-font),Lexend,sans-serif;
   margin-right: 0rem;
   margin-bottom: 1.5rem;
 }
 
-.c219 {
+.c206 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -1673,7 +1567,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   margin-top: 0rem;
 }
 
-.c220 {
+.c207 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -1685,7 +1579,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   margin-top: 0rem;
 }
 
-.c242 {
+.c230 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
@@ -1696,7 +1590,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c243 {
+.c231 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
@@ -1722,7 +1616,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   transition: all 0.3s ease;
 }
 
-.c229 {
+.c216 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -1824,7 +1718,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   cursor: default;
 }
 
-.c217 {
+.c204 {
   background: none;
   color: inherit;
   border: none;
@@ -1847,12 +1741,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c217:disabled {
+.c204:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c257 {
+.c245 {
   background: none;
   color: inherit;
   border: none;
@@ -1874,7 +1768,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c257:disabled {
+.c245:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -2000,14 +1894,14 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: none;
 }
 
-.c218 {
+.c205 {
   position: relative;
   width: 100%;
   height: 100%;
   display: inline-block;
 }
 
-.c218:hover {
+.c205:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #ffffff;
@@ -2015,27 +1909,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   border-color: #575757;
 }
 
-.c218:hover [data-state="selected"] {
+.c205:hover [data-state="selected"] {
   display: none;
 }
 
-.c218:active {
+.c205:active {
   background: #222222;
   border-color: #222222;
   color: #ffffff;
 }
 
-.c218:active [data-state="selected"] {
+.c205:active [data-state="selected"] {
   display: none;
 }
 
-.c218:disabled {
+.c205:disabled {
   background: #808080;
   border-color: #808080;
   color: #ffffff;
 }
 
-.c218:disabled [data-state="selected"] {
+.c205:disabled [data-state="selected"] {
   display: none;
 }
 
@@ -2104,7 +1998,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #808080;
 }
 
-.c231 {
+.c143 {
   display: inline;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -2127,19 +2021,19 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #222222;
 }
 
-.c231:focus-visible {
+.c143:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c231:visited {
+.c143:visited {
   color: #222222;
 }
 
-.c231:active {
+.c143:active {
   color: #222222;
 }
 
-.c231[disabled] {
+.c143[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
@@ -2184,7 +2078,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   height: 63px;
 }
 
-.c180 {
+.c167 {
   position: relative;
   padding: 1.5rem;
   padding-left: 1.5rem;
@@ -2200,23 +2094,23 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: flex;
 }
 
-.c180::-webkit-scrollbar-track {
+.c167::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c180::-webkit-scrollbar {
+.c167::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c180::-webkit-scrollbar-thumb {
+.c167::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
 
-.c192 {
+.c179 {
   width: 100%;
   margin-bottom: 2rem;
   background-color: #fff;
@@ -2227,23 +2121,23 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: flex;
 }
 
-.c192::-webkit-scrollbar-track {
+.c179::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c192::-webkit-scrollbar {
+.c179::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c192::-webkit-scrollbar-thumb {
+.c179::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
 
-.c195 {
+.c182 {
   position: relative;
   width: 100%;
   display: -webkit-box;
@@ -2252,23 +2146,23 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: flex;
 }
 
-.c195::-webkit-scrollbar-track {
+.c182::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c195::-webkit-scrollbar {
+.c182::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c195::-webkit-scrollbar-thumb {
+.c182::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
 
-.c197 {
+.c184 {
   position: absolute;
   display: -webkit-box;
   display: -webkit-flex;
@@ -2276,18 +2170,18 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: flex;
 }
 
-.c197::-webkit-scrollbar-track {
+.c184::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c197::-webkit-scrollbar {
+.c184::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c197::-webkit-scrollbar-thumb {
+.c184::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
@@ -2402,7 +2296,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   text-decoration: underline;
 }
 
-.c189 {
+.c176 {
   overflow-wrap: break-word;
   display: inline;
   -webkit-text-decoration: underline;
@@ -2410,27 +2304,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #0D24C4;
 }
 
-.c189::-webkit-scrollbar-track {
+.c176::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c189::-webkit-scrollbar {
+.c176::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c189::-webkit-scrollbar-thumb {
+.c176::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
 
-.c189:hover {
+.c176:hover {
   cursor: pointer;
 }
 
-.c189:hover {
+.c176:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
@@ -2802,7 +2696,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c181 {
+.c168 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2812,7 +2706,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c193 {
+.c180 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2913,42 +2807,42 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   display: block;
 }
 
-.c237 {
+.c225 {
   height: 87px;
   width: 77px;
   margin-top: 2rem;
 }
 
-.c169 {
+.c155 {
   box-shadow: none;
 }
 
-.c169:has( a,button ) {
+.c155:has( a,button ) {
   border-radius: border-radius-m2;
   z-index: 2;
   box-shadow: rgb(255,229,85) 0px 0px 0px 0.125rem,rgb(87,87,87) 0px 0px 0px 0.3rem;
 }
 
-.c169:has(a:hover,button:hover),
-.c169:has(button:hover:not(:active)) {
+.c155:has(a:hover,button:hover),
+.c155:has(button:hover:not(:active)) {
   z-index: 1;
   background-color: #f2f2f2;
 }
 
-.c169:has(a:hover,button:hover) {
+.c155:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
-.c169:has(a:active,button:active) {
+.c155:has(a:active,button:active) {
   z-index: 2;
   box-shadow: rgb(255,229,85) 0.125rem 0.125rem 0px,rgb(87,87,87) 0.25rem 0.25rem 0px;
 }
 
-.c172:hover {
+.c158:hover {
   box-shadow: 2px 2px 0 0 #ffe555;
 }
 
-.c196 {
+.c183 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -2960,7 +2854,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   transition: all 0.3s ease;
 }
 
-.c202 {
+.c189 {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -2971,32 +2865,32 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: fontFamily;
 }
 
-.c202::-webkit-input-placeholder {
+.c189::-webkit-input-placeholder {
   color: #575757;
 }
 
-.c202::-moz-placeholder {
+.c189::-moz-placeholder {
   color: #575757;
 }
 
-.c202:-ms-input-placeholder {
+.c189:-ms-input-placeholder {
   color: #575757;
 }
 
-.c202::placeholder {
+.c189::placeholder {
   color: #575757;
 }
 
-.c202::-webkit-search-decoration,
-.c202::-webkit-search-cancel-button,
-.c202::-webkit-search-results-button,
-.c202::-webkit-search-results-decoration {
+.c189::-webkit-search-decoration,
+.c189::-webkit-search-cancel-button,
+.c189::-webkit-search-results-button,
+.c189::-webkit-search-results-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
-.c199 {
+.c186 {
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
@@ -3006,7 +2900,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115em;
 }
 
-.c205 {
+.c192 {
   display: none;
   position: absolute;
   bottom: -4px;
@@ -3019,7 +2913,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   z-index: 1;
 }
 
-.c200 {
+.c187 {
   position: relative;
   padding: 4px 8px;
   -webkit-transform: rotate(-2deg) translateY(-16px) translateX(8px);
@@ -3030,16 +2924,16 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #222222;
 }
 
-.c194:focus-within .c198 {
+.c181:focus-within .c185 {
   background: #374cf1;
   color: #fff;
 }
 
-.c194:focus-within .c204 {
+.c181:focus-within .c191 {
   display: inline;
 }
 
-.c203 {
+.c190 {
   color: #222222;
   height: 60px;
   border-radius: 8px;
@@ -3055,7 +2949,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   outline: none;
 }
 
-.c203::-webkit-input-placeholder {
+.c190::-webkit-input-placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: fontFamily;
@@ -3063,7 +2957,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   opacity: 1;
 }
 
-.c203::-moz-placeholder {
+.c190::-moz-placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: fontFamily;
@@ -3071,7 +2965,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   opacity: 1;
 }
 
-.c203:-ms-input-placeholder {
+.c190:-ms-input-placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: fontFamily;
@@ -3079,7 +2973,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   opacity: 1;
 }
 
-.c203::placeholder {
+.c190::placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: fontFamily;
@@ -3087,40 +2981,40 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   opacity: 1;
 }
 
-.c203:valid:not([value=""]) {
+.c190:valid:not([value=""]) {
   border-color: #2d2d2d;
 }
 
-.c203:valid:not([value=""])::-webkit-input-placeholder {
+.c190:valid:not([value=""])::-webkit-input-placeholder {
   font-size: 16px;
   color: #575757;
 }
 
-.c203:valid:not([value=""])::-moz-placeholder {
+.c190:valid:not([value=""])::-moz-placeholder {
   font-size: 16px;
   color: #575757;
 }
 
-.c203:valid:not([value=""]):-ms-input-placeholder {
+.c190:valid:not([value=""]):-ms-input-placeholder {
   font-size: 16px;
   color: #575757;
 }
 
-.c203:valid:not([value=""])::placeholder {
+.c190:valid:not([value=""])::placeholder {
   font-size: 16px;
   color: #575757;
 }
 
-.c208 {
+.c195 {
   display: none;
 }
 
-.c207:focus-within .c198 {
+.c194:focus-within .c185 {
   background: #374cf1;
   color: #fff;
 }
 
-.c210 {
+.c197 {
   color: #222222;
   height: 60px;
   padding-left: 16px;
@@ -3147,23 +3041,23 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   color: #575757;
 }
 
-.c213 {
+.c200 {
   max-width: calc(100% - 20px);
 }
 
-.c215 {
+.c202 {
   white-space: nowrap;
   text-overflow: ellipsis;
   min-width: 0;
   overflow: hidden;
 }
 
-.c191 {
+.c178 {
   width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c187 {
+.c174 {
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 2rem;
@@ -3173,12 +3067,8 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: 0.0115em;
 }
 
-.c179 {
+.c166 {
   max-width: 100%;
-}
-
-.c146:first-child {
-  margin-top: 0;
 }
 
 .c120 {
@@ -3187,26 +3077,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 
 .c126 {
   display: block;
-}
-
-.c128 {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  -webkit-filter: invert(70%) sepia(24%) saturate(580%) hue-rotate(188deg) brightness(100%) contrast(94%);
-  filter: invert(70%) sepia(24%) saturate(580%) hue-rotate(188deg) brightness(100%) contrast(94%);
-}
-
-.c138 {
-  height: 260px;
-}
-
-.c159 {
-  max-height: 40px;
-  height: auto;
-  width: auto;
-  object-fit: contain;
 }
 
 @media (min-width:750px) {
@@ -3329,79 +3199,37 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c130 {
-    padding-top: 5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c130 {
-    padding-bottom: 5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c151 {
-    font-weight: 300;
+  .c128 {
+    display: block;
   }
 }
 
 @media (min-width:1280px) {
-  .c151 {
-    font-weight: 300;
-  }
-}
-
-@media (min-width:750px) {
-  .c151 {
-    font-size: 1.125rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c151 {
-    font-size: 1.125rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c151 {
-    line-height: 1.75rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c151 {
-    line-height: 1.75rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c151 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
-    letter-spacing: -0.005rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c151 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
-    letter-spacing: -0.005rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c161 {
+  .c128 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c161 {
+  .c132 {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c132 {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c147 {
+    display: block;
+  }
+}
+
+@media (min-width:750px) {
+  .c147 {
     -webkit-transform: scale(1.1) translateX(-0.65%) translateY(4%);
     -ms-transform: scale(1.1) translateX(-0.65%) translateY(4%);
     transform: scale(1.1) translateX(-0.65%) translateY(4%);
@@ -3409,7 +3237,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c161 {
+  .c147 {
     -webkit-transform: scale(1.4) translateY(4%);
     -ms-transform: scale(1.4) translateY(4%);
     transform: scale(1.4) translateY(4%);
@@ -3417,109 +3245,109 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c162 {
+  .c148 {
     padding-left: 1rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c162 {
+  .c148 {
     padding-left: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c162 {
+  .c148 {
     padding-right: 1rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c162 {
+  .c148 {
     padding-right: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c163 {
+  .c149 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c163 {
+  .c149 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c163 {
+  .c149 {
     padding-bottom: 5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c163 {
+  .c149 {
     padding-bottom: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c176 {
+  .c163 {
     padding-top: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c176 {
+  .c163 {
     padding-bottom: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c177 {
+  .c164 {
     max-width: 80rem;
   }
 }
 
 @media (min-width:750px) {
-  .c223 {
+  .c210 {
     max-width: 80rem;
   }
 }
 
 @media (min-width:750px) {
-  .c223 {
+  .c210 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c226 {
+  .c213 {
     margin-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c232 {
+  .c218 {
     margin-top: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c235 {
+  .c222 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c238 {
+  .c226 {
     padding-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c240 {
+  .c228 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3528,13 +3356,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c244 {
+  .c232 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c244 {
+  .c232 {
     -webkit-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     -ms-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     transform: translate(25%,25%) scale(0.7) rotate(-10deg);
@@ -3542,7 +3370,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c244 {
+  .c232 {
     -webkit-transform: translate(25%,15%) rotate(-10deg);
     -ms-transform: translate(25%,15%) rotate(-10deg);
     transform: translate(25%,15%) rotate(-10deg);
@@ -3550,55 +3378,55 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c246 {
+  .c234 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c251 {
+  .c239 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c251 {
+  .c239 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c251 {
+  .c239 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c251 {
+  .c239 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c253 {
+  .c241 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c253 {
+  .c241 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c253 {
+  .c241 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c253 {
+  .c241 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3667,83 +3495,43 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c143 {
-    gap: 1.5rem;
+  .c129 {
+    display: block;
   }
 }
 
 @media (min-width:1280px) {
-  .c143 {
-    gap: 1.5rem;
+  .c129 {
+    display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c149 {
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-  }
-}
-
-@media (min-width:1280px) {
-  .c149 {
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-  }
-}
-
-@media (min-width:750px) {
-  .c152 {
-    gap: 1.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c155 {
-    gap: 1.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c155 {
-    gap: 2rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c158 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-}
-
-@media (min-width:1280px) {
-  .c158 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-  }
-}
-
-@media (min-width:750px) {
-  .c164 {
+  .c131 {
     gap: 3.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c164 {
+  .c131 {
     gap: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c233 {
+  .c150 {
+    gap: 3.5rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c150 {
+    gap: 3.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c219 {
     -webkit-box-pack: right;
     -webkit-justify-content: right;
     -ms-flex-pack: right;
@@ -3752,13 +3540,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c236 {
+  .c223 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c239 {
+  .c227 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3766,7 +3554,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c239 {
+  .c227 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -3775,7 +3563,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c239 {
+  .c227 {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
@@ -3784,7 +3572,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c241 {
+  .c229 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3793,7 +3581,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c252 {
+  .c240 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -3801,7 +3589,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c252 {
+  .c240 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3809,7 +3597,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c252 {
+  .c240 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -3818,7 +3606,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c252 {
+  .c240 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -3827,19 +3615,19 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c252 {
+  .c240 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c252 {
+  .c240 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c255 {
+  .c243 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3847,7 +3635,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c255 {
+  .c243 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -3855,7 +3643,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c255 {
+  .c243 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -3863,249 +3651,31 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c255 {
+  .c243 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c131 {
-    row-gap: 2.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c131 {
-    row-gap: 1rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c131 {
-    grid-template-columns: repeat(8,1fr);
-  }
-}
-
-@media (min-width:1280px) {
-  .c131 {
-    grid-template-columns: repeat(12,1fr);
-  }
-}
-
-@media (min-width:750px) {
-  .c148 {
-    row-gap: 2.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c148 {
-    row-gap: 1rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c148 {
-    -webkit-column-gap: 2.5rem;
-    column-gap: 2.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c148 {
-    -webkit-column-gap: 1rem;
-    column-gap: 1rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c132 {
-    grid-column: 1 / span 4;
-  }
-}
-
-@media (min-width:1280px) {
-  .c132 {
-    grid-column: 1 / span 5;
-  }
-}
-
-@media (min-width:750px) {
-  .c132 {
-    grid-column-start: 1;
-  }
-}
-
-@media (min-width:1280px) {
-  .c132 {
-    grid-column-start: 1;
-  }
-}
-
-@media (min-width:750px) {
-  .c132 {
-    grid-row-start: 1;
-  }
-}
-
-@media (min-width:1280px) {
-  .c132 {
-    grid-row-start: 1;
-  }
-}
-
-@media (min-width:750px) {
-  .c134 {
-    grid-column: 2 / span 3;
-  }
-}
-
-@media (min-width:1280px) {
-  .c134 {
-    grid-column: 3 / span 3;
-  }
-}
-
-@media (min-width:750px) {
-  .c134 {
-    grid-row: 1 / span 1;
-  }
-}
-
-@media (min-width:1280px) {
-  .c134 {
-    grid-row: 1 / span 1;
-  }
-}
-
-@media (min-width:750px) {
-  .c134 {
-    grid-column-start: 2;
-  }
-}
-
-@media (min-width:1280px) {
-  .c134 {
-    grid-column-start: 3;
-  }
-}
-
-@media (min-width:750px) {
-  .c134 {
-    grid-row-start: 1;
-  }
-}
-
-@media (min-width:1280px) {
-  .c134 {
-    grid-row-start: 1;
-  }
-}
-
-@media (min-width:750px) {
-  .c140 {
-    grid-column: 5 / span 4;
-  }
-}
-
-@media (min-width:1280px) {
-  .c140 {
-    grid-column: 7 / span 6;
-  }
-}
-
-@media (min-width:750px) {
-  .c140 {
-    grid-column-start: 5;
-  }
-}
-
-@media (min-width:1280px) {
-  .c140 {
-    grid-column-start: 7;
-  }
-}
-
-@media (min-width:750px) {
-  .c140 {
-    grid-row-start: 1;
-  }
-}
-
-@media (min-width:1280px) {
-  .c140 {
-    grid-row-start: 1;
-  }
-}
-
-@media (min-width:750px) {
-  .c150 {
-    grid-column: 1 / span 6;
-  }
-}
-
-@media (min-width:1280px) {
-  .c150 {
-    grid-column: 1 / span 4;
-  }
-}
-
-@media (min-width:750px) {
-  .c150 {
-    grid-column-start: 1;
-  }
-}
-
-@media (min-width:1280px) {
-  .c150 {
-    grid-column-start: 1;
-  }
-}
-
-@media (min-width:750px) {
-  .c154 {
-    grid-column: 7 / span 6;
-  }
-}
-
-@media (min-width:1280px) {
-  .c154 {
-    grid-column: 6 / span 7;
-  }
-}
-
-@media (min-width:750px) {
-  .c154 {
-    grid-column-start: 7;
-  }
-}
-
-@media (min-width:1280px) {
-  .c154 {
-    grid-column-start: 6;
-  }
-}
-
-@media (min-width:750px) {
-  .c167 {
+  .c153 {
     grid-column: span 6;
   }
 }
 
 @media (min-width:1280px) {
-  .c167 {
+  .c153 {
     grid-column: span 6;
   }
 }
 
 @media (min-width:750px) {
-  .c183 {
+  .c170 {
     grid-column: span 6;
   }
 }
 
 @media (min-width:750px) {
-  .c225 {
+  .c212 {
     grid-column: span 3;
   }
 }
@@ -4165,43 +3735,43 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c133 {
+  .c134 {
     font-weight: 600;
   }
 }
 
 @media (min-width:1280px) {
-  .c133 {
+  .c134 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c133 {
+  .c134 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c133 {
+  .c134 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c133 {
+  .c134 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c133 {
+  .c134 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:750px) {
-  .c133 {
+  .c134 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -4210,7 +3780,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c133 {
+  .c134 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -4219,43 +3789,43 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c144 {
+  .c151 {
     font-weight: 600;
   }
 }
 
 @media (min-width:1280px) {
-  .c144 {
+  .c151 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c144 {
+  .c151 {
     font-size: 2rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c144 {
+  .c151 {
     font-size: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c144 {
+  .c151 {
     line-height: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c144 {
+  .c151 {
     line-height: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c144 {
+  .c151 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -4264,7 +3834,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c144 {
+  .c151 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -4273,79 +3843,25 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c165 {
-    font-weight: 600;
-  }
-}
-
-@media (min-width:1280px) {
-  .c165 {
-    font-weight: 600;
-  }
-}
-
-@media (min-width:750px) {
-  .c165 {
-    font-size: 2rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c165 {
-    font-size: 2rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c165 {
-    line-height: 2.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c165 {
-    line-height: 2.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c165 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
-    letter-spacing: 0.0115rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c165 {
-    -webkit-letter-spacing: 0.0115rem;
-    -moz-letter-spacing: 0.0115rem;
-    -ms-letter-spacing: 0.0115rem;
-    letter-spacing: 0.0115rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c254 {
+  .c242 {
     font-weight: 700;
   }
 }
 
 @media (min-width:750px) {
-  .c254 {
+  .c242 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c254 {
+  .c242 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c254 {
+  .c242 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -4408,40 +3924,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c145 {
-    font-weight: 300;
-  }
-}
-
-@media (min-width:750px) {
-  .c145 {
-    font-size: 1.125rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c145 {
-    line-height: 1.75rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c145 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
-    letter-spacing: -0.005rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c145 {
-    margin-top: 1.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c188 {
+  .c175 {
     margin-right: 1.5rem;
   }
 }
@@ -4456,8 +3939,8 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (hover:hover) {
-  .c231:hover,
-  .c231:visited:hover {
+  .c143:hover,
+  .c143:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -4465,13 +3948,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c180 {
+  .c167 {
     padding-top: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c180 {
+  .c167 {
     padding-bottom: 2.5rem;
   }
 }
@@ -4507,13 +3990,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (max-width:750px) {
-  .c203 {
+  .c190 {
     font-size: 16px;
   }
 }
 
 @media (min-width:750px) {
-  .c179 {
+  .c166 {
     max-width: 870px;
   }
 }
@@ -4527,77 +4010,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 @media (max-width:920px) {
   .c126 {
     display: none;
-  }
-}
-
-@media (min-width:750px) {
-  .c128 {
-    min-width: 400px;
-  }
-}
-
-@media (min-width:921px) and (max-width:1050px) {
-  .c128 {
-    display: block;
-    -webkit-translate: 14% -35%;
-    translate: 14% -35%;
-    -webkit-transform: scale(1.65) rotate(-10deg);
-    -ms-transform: scale(1.65) rotate(-10deg);
-    transform: scale(1.65) rotate(-10deg);
-  }
-}
-
-@media (min-width:1051px) and (max-width:1180px) {
-  .c128 {
-    -webkit-translate: 21% -33%;
-    translate: 21% -33%;
-    -webkit-transform: scale(1.6) rotate(-9deg);
-    -ms-transform: scale(1.6) rotate(-9deg);
-    transform: scale(1.6) rotate(-9deg);
-  }
-}
-
-@media (min-width:1181px) and (max-width:1279px) {
-  .c128 {
-    -webkit-transform: scale(1.55) rotate(-8.5deg);
-    -ms-transform: scale(1.55) rotate(-8.5deg);
-    transform: scale(1.55) rotate(-8.5deg);
-    -webkit-translate: 20% -34%;
-    translate: 20% -34%;
-  }
-}
-
-@media (min-width:1280px) {
-  .c128 {
-    -webkit-translate: 20% -41%;
-    translate: 20% -41%;
-    -webkit-transform: scale(1.7) rotate(-8deg);
-    -ms-transform: scale(1.7) rotate(-8deg);
-    transform: scale(1.7) rotate(-8deg);
-  }
-}
-
-@media (min-width:750px) {
-  .c138 {
-    height: 380px;
-  }
-}
-
-@media (min-width:1280px) {
-  .c138 {
-    height: 430px;
-  }
-}
-
-@media (min-width:750px) {
-  .c159 {
-    max-height: 56px;
-  }
-}
-
-@media (min-width:1280px) {
-  .c159 {
-    max-height: 64px;
   }
 }
 
@@ -6273,242 +5685,19 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       <span
                         class="c123"
                       >
-                        Get involved
+                        Meet the team
                       </span>
                     </h1>
                     <p
                       class="c124"
                     >
-                      We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.
+                      Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.
                     </p>
                   </div>
                 </div>
                 <div
                   class="c11 c98 c125 c126"
-                >
-                  <div
-                    class="c127 c128"
-                    data-testid="about-shared-loop"
-                  >
-                    <img
-                      alt=""
-                      class="c34"
-                      data-nimg="fill"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
-                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="c129"
-          >
-            <div
-              class="c114"
-            >
-              <div
-                class="c130 c63"
-              >
-                <div
-                  class="c11 c131"
-                >
-                  <div
-                    class="c11 c98 c132"
-                  >
-                    <h2
-                      class="c133"
-                    >
-                      Collaborate with us
-                    </h2>
-                  </div>
-                  <div
-                    class="c11 c98 c134"
-                  >
-                    <div
-                      class="c135 c136"
-                    >
-                      <div
-                        class="c137 c138"
-                      >
-                        <img
-                          alt=""
-                          class="c139"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://res.cloudinary.com/oak-web-application/image/upload/v1763393163/icons/chatting-illustration_l52zaf.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="c11 c98 c140"
-                  >
-                    <div
-                      class="c11 c121"
-                    >
-                      <div
-                        class="c141"
-                      >
-                        <div
-                          class="c142 c72"
-                        >
-                          <div
-                            class="c11 c143"
-                          >
-                            <h3
-                              class="c144"
-                            >
-                              Join our teacher research panel
-                            </h3>
-                            <p
-                              class="c145 c146"
-                            >
-                              Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
-                            </p>
-                          </div>
-                          <div
-                            class="c11 c147"
-                          >
-                            <div
-                              class="c6 c7"
-                            >
-                              <div
-                                class="c8 grey-shadow"
-                              />
-                              <div
-                                class="c8 yellow-shadow"
-                              />
-                              <a
-                                class="c9 c10 internal-button"
-                                href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                              >
-                                <div
-                                  class="c11 c12"
-                                >
-                                  <span
-                                    class="c13"
-                                  >
-                                    Join the research panel
-                                  </span>
-                                  <div
-                                    class="c107"
-                                  >
-                                    <img
-                                      alt="external"
-                                      class="c34"
-                                      data-nimg="fill"
-                                      decoding="async"
-                                      loading="lazy"
-                                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                    />
-                                  </div>
-                                </div>
-                              </a>
-                            </div>
-                            <div
-                              class="c6 c7"
-                            >
-                              <div
-                                class="c8 grey-shadow"
-                              />
-                              <div
-                                class="c8 yellow-shadow"
-                              />
-                              <a
-                                class="c9 c10 internal-button"
-                                href="/blog/categories/research-and-insights"
-                              >
-                                <div
-                                  class="c11 c12"
-                                >
-                                  <span
-                                    class="c13"
-                                  >
-                                    Explore our research
-                                  </span>
-                                </div>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="c141"
-                      >
-                        <div
-                          class="c142 c72"
-                        >
-                          <div
-                            class="c11 c143"
-                          >
-                            <h3
-                              class="c144"
-                            >
-                              Give your feedback
-                            </h3>
-                            <p
-                              class="c145 c146"
-                            >
-                              Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school. 
-                            </p>
-                          </div>
-                          <div
-                            class="c11 c147"
-                          >
-                            <div
-                              class="c6 c7"
-                            >
-                              <div
-                                class="c8 grey-shadow"
-                              />
-                              <div
-                                class="c8 yellow-shadow"
-                              />
-                              <a
-                                class="c9 c10 internal-button"
-                                href="https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                              >
-                                <div
-                                  class="c11 c12"
-                                >
-                                  <span
-                                    class="c13"
-                                  >
-                                    Get in touch
-                                  </span>
-                                  <div
-                                    class="c107"
-                                  >
-                                    <img
-                                      alt="external"
-                                      class="c34"
-                                      data-nimg="fill"
-                                      decoding="async"
-                                      loading="lazy"
-                                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                    />
-                                  </div>
-                                </div>
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                />
               </div>
             </div>
           </div>
@@ -6516,169 +5705,1516 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             class="c114"
           >
             <div
-              class="c130 c148"
+              class="c11 c127"
             >
               <div
-                class="c11 c149 c150"
+                class="c128 c129"
+                style="min-width: 200px;"
+              >
+                SideNav placeholder
+              </div>
+              <div
+                class="c130 c131"
               >
                 <div
-                  class="c11 c72"
+                  class="c132"
                 >
                   <div
-                    class="c11 c121"
+                    class="c11 c133"
                   >
                     <h2
-                      class="c133"
+                      class="c134"
                     >
-                      Work with us
+                      Our leadership
                     </h2>
-                    <div
-                      class="c151 c152"
+                    <p
+                      class="c135"
                     >
-                      <p
-                        class="c145 c146"
-                      >
-                        We're a fast-paced and innovative team, working to support and inspire teachers to deliver great teaching, so every pupil benefits. All our roles are remote-first. If you want to be part of something unique that's making a difference to millions of children's lives, we'd love to hear from you.
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="c11 c153"
-                  >
+                      Our leadership team brings together experts to deliver the best support to teachers and value for money for the public. Learn more about them below.
+                    </p>
                     <div
-                      class="c6 c7"
+                      class="c11 c136"
                     >
                       <div
-                        class="c8 grey-shadow"
-                      />
-                      <div
-                        class="c8 yellow-shadow"
-                      />
-                      <a
-                        class="c9 c10 internal-button"
-                        href="https://app.beapplied.com/org/1574/oak-national-academy/"
-                        rel="noopener noreferrer"
-                        target="_blank"
+                        class="c137 c133"
                       >
                         <div
-                          class="c11 c12"
+                          class="c11 c98"
                         >
-                          <span
-                            class="c13"
-                          >
-                            Permanent roles
-                          </span>
                           <div
-                            class="c107"
-                          >
-                            <img
-                              alt="external"
-                              class="c34"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
-                          </div>
+                            class="c138"
+                          />
                         </div>
-                      </a>
-                    </div>
-                    <div
-                      class="c6 c7"
-                    >
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-0"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
                       <div
-                        class="c8 grey-shadow"
-                      />
-                      <div
-                        class="c8 yellow-shadow"
-                      />
-                      <a
-                        class="c9 c10 internal-button"
-                        href="https://app.beapplied.com/org/1767/oak-national-academy-freelancers/"
-                        rel="noopener noreferrer"
-                        target="_blank"
+                        class="c137 c133"
                       >
                         <div
-                          class="c11 c12"
+                          class="c11 c98"
                         >
-                          <span
-                            class="c13"
-                          >
-                            Freelance roles
-                          </span>
                           <div
-                            class="c107"
-                          >
-                            <img
-                              alt="external"
-                              class="c34"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
-                          </div>
+                            class="c138"
+                          />
                         </div>
-                      </a>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-1"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-2"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-3"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-4"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-5"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-6"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-7"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-8"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-9"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-10"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-11"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div
-                class="c11 c118 c154"
-              >
                 <div
-                  class="c11 c155"
+                  class="c132"
                 >
                   <div
-                    class="c156 c98"
+                    class="c11 c133"
                   >
-                    <div
-                      class="c137"
+                    <h2
+                      class="c134"
                     >
-                      <img
-                        alt=""
-                        class="c157"
-                        data-nimg="fill"
-                        decoding="async"
-                        loading="lazy"
-                        sizes="(max-width: 750px) 100vw, (max-width: 1280px) 50vw, 58vw"
-                        src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=3840&q=75"
-                        srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=384&q=75 384w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=3840&q=75 3840w"
-                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                      />
+                      Our board
+                    </h2>
+                    <p
+                      class="c135"
+                    >
+                      Our Board oversees all of our work at Oak National Academy. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence.
+                    </p>
+                    <div
+                      class="c11 c136"
+                    >
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-0"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-1"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-2"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-3"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-4"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-5"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-6"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-7"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-8"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-9"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-10"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div
+                        class="c137 c133"
+                      >
+                        <div
+                          class="c11 c98"
+                        >
+                          <div
+                            class="c138"
+                          />
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          <h3
+                            class="c139"
+                          >
+                            Ed Southall
+                          </h3>
+                        </div>
+                        <div
+                          class="c140"
+                        >
+                          Subject Lead (maths)
+                        </div>
+                        <div
+                          class="c141 c142"
+                        >
+                          <a
+                            class="c143 "
+                            href="/about-us/meet-the-team/ed-southall-11"
+                          >
+                            <span
+                              class="c22"
+                            >
+                              See bio
+                            </span>
+                            <div
+                              class="c107 "
+                            >
+                              <img
+                                alt=""
+                                class="c34"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                </div>
+                <div
+                  class="c132"
+                >
                   <div
-                    class="c11 c158"
+                    class="c11 c133"
                   >
-                    <img
-                      alt="'In Escape the City's top 1% of employers'"
-                      class="c159"
-                      src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
-                    />
-                    <img
-                      alt="Awarded Gold in Investors In People"
-                      class="c159"
-                      src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
-                    />
-                    <img
-                      alt="Certified as Disability Confident Committed"
-                      class="c159"
-                      src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
-                    />
+                    <h2
+                      class="c134"
+                    >
+                      Documents
+                    </h2>
+                    <div
+                      class="c11 c136"
+                    >
+                      <div
+                        class="c137"
+                      >
+                        <div
+                          class="c11"
+                        >
+                          Impact evaluation of Oak: 2023/24
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          PDF, 1.6MB
+                        </div>
+                      </div>
+                      <div
+                        class="c137"
+                      >
+                        <div
+                          class="c11"
+                        >
+                          Impact evaluation of Oak: 2023/24
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          PDF, 1.6MB
+                        </div>
+                      </div>
+                      <div
+                        class="c137"
+                      >
+                        <div
+                          class="c11"
+                        >
+                          Impact evaluation of Oak: 2023/24
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          PDF, 1.6MB
+                        </div>
+                      </div>
+                      <div
+                        class="c137"
+                      >
+                        <div
+                          class="c11"
+                        >
+                          Impact evaluation of Oak: 2023/24
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          PDF, 1.6MB
+                        </div>
+                      </div>
+                      <div
+                        class="c137"
+                      >
+                        <div
+                          class="c11"
+                        >
+                          Impact evaluation of Oak: 2023/24
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          PDF, 1.6MB
+                        </div>
+                      </div>
+                      <div
+                        class="c137"
+                      >
+                        <div
+                          class="c11"
+                        >
+                          Impact evaluation of Oak: 2023/24
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          PDF, 1.6MB
+                        </div>
+                      </div>
+                      <div
+                        class="c137"
+                      >
+                        <div
+                          class="c11"
+                        >
+                          Impact evaluation of Oak: 2023/24
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          PDF, 1.6MB
+                        </div>
+                      </div>
+                      <div
+                        class="c137"
+                      >
+                        <div
+                          class="c11"
+                        >
+                          Impact evaluation of Oak: 2023/24
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          PDF, 1.6MB
+                        </div>
+                      </div>
+                      <div
+                        class="c137"
+                      >
+                        <div
+                          class="c11"
+                        >
+                          Impact evaluation of Oak: 2023/24
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          PDF, 1.6MB
+                        </div>
+                      </div>
+                      <div
+                        class="c137"
+                      >
+                        <div
+                          class="c11"
+                        >
+                          Impact evaluation of Oak: 2023/24
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          PDF, 1.6MB
+                        </div>
+                      </div>
+                      <div
+                        class="c137"
+                      >
+                        <div
+                          class="c11"
+                        >
+                          Impact evaluation of Oak: 2023/24
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          PDF, 1.6MB
+                        </div>
+                      </div>
+                      <div
+                        class="c137"
+                      >
+                        <div
+                          class="c11"
+                        >
+                          Impact evaluation of Oak: 2023/24
+                        </div>
+                        <div
+                          class="c11"
+                        >
+                          PDF, 1.6MB
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <div
+                  class="c11 c133"
+                >
+                  <h3
+                    class="c144"
+                  >
+                    Governance
+                  </h3>
+                  <p
+                    class="c145"
+                  >
+                    Oak National Academy is a limited company incorporated under the Companies Act 2006 in September 2022 and whose sole shareholder is the Secretary of State for Education. It is a non-departmental public body (NDPB) which was established to work with schools, teachers and the wider education system and has a framework agreement with the Department for Education.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="c160"
+            class="c146"
           >
             <div
-              class="c161"
+              class="c147"
               style="pointer-events: none;"
             >
               <img
@@ -6692,38 +7228,38 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               />
             </div>
             <div
-              class="c162"
+              class="c148"
             >
               <div
-                class="c163 c164"
+                class="c149 c150"
               >
                 <h2
-                  class="c165"
+                  class="c151"
                 >
                   Explore more about Oak
                 </h2>
                 <div
-                  class="c11 c166"
+                  class="c11 c152"
                 >
                   <div
-                    class="c11 c98 c167"
+                    class="c11 c98 c153"
                   >
                     <div
-                      class="c168 c169"
+                      class="c154 c155"
                     >
                       <a
                         href="/about-us/who-we-are"
                         style="outline: none;"
                       >
                         <div
-                          class="c170 c171 c172"
+                          class="c156 c157 c158"
                           data-testid="who-we-are-explore-item"
                         >
                           <div
                             class="c11 c98"
                           >
                             <div
-                              class="c173"
+                              class="c159"
                             >
                               <img
                                 alt=""
@@ -6737,7 +7273,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </div>
                           </div>
                           <div
-                            class="c174 c175"
+                            class="c160 c161"
                           >
                             About Oak
                           </div>
@@ -6745,7 +7281,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             class="c11 c98"
                           >
                             <div
-                              class="c127"
+                              class="c162"
                             >
                               <img
                                 alt=""
@@ -6763,24 +7299,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="c11 c98 c167"
+                    class="c11 c98 c153"
                   >
                     <div
-                      class="c168 c169"
+                      class="c154 c155"
                     >
                       <a
                         href="/#"
                         style="outline: none;"
                       >
                         <div
-                          class="c170 c171 c172"
+                          class="c156 c157 c158"
                           data-testid="who-we-are-explore-item"
                         >
                           <div
                             class="c11 c98"
                           >
                             <div
-                              class="c173"
+                              class="c159"
                             >
                               <img
                                 alt=""
@@ -6794,7 +7330,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </div>
                           </div>
                           <div
-                            class="c174 c175"
+                            class="c160 c161"
                           >
                             About Oak's curriculum
                           </div>
@@ -6802,7 +7338,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             class="c11 c98"
                           >
                             <div
-                              class="c127"
+                              class="c162"
                             >
                               <img
                                 alt=""
@@ -6820,24 +7356,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="c11 c98 c167"
+                    class="c11 c98 c153"
                   >
                     <div
-                      class="c168 c169"
+                      class="c154 c155"
                     >
                       <a
                         href="/#"
                         style="outline: none;"
                       >
                         <div
-                          class="c170 c171 c172"
+                          class="c156 c157 c158"
                           data-testid="who-we-are-explore-item"
                         >
                           <div
                             class="c11 c98"
                           >
                             <div
-                              class="c173"
+                              class="c159"
                             >
                               <img
                                 alt=""
@@ -6851,7 +7387,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </div>
                           </div>
                           <div
-                            class="c174 c175"
+                            class="c160 c161"
                           >
                             Oak's impact
                           </div>
@@ -6859,7 +7395,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             class="c11 c98"
                           >
                             <div
-                              class="c127"
+                              class="c162"
                             >
                               <img
                                 alt=""
@@ -6877,24 +7413,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="c11 c98 c167"
+                    class="c11 c98 c153"
                   >
                     <div
-                      class="c168 c169"
+                      class="c154 c155"
                     >
                       <a
                         href="/#"
                         style="outline: none;"
                       >
                         <div
-                          class="c170 c171 c172"
+                          class="c156 c157 c158"
                           data-testid="who-we-are-explore-item"
                         >
                           <div
                             class="c11 c98"
                           >
                             <div
-                              class="c173"
+                              class="c159"
                             >
                               <img
                                 alt=""
@@ -6908,7 +7444,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </div>
                           </div>
                           <div
-                            class="c174 c175"
+                            class="c160 c161"
                           >
                             Meet the team
                           </div>
@@ -6916,7 +7452,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             class="c11 c98"
                           >
                             <div
-                              class="c127"
+                              class="c162"
                             >
                               <img
                                 alt=""
@@ -6934,24 +7470,24 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="c11 c98 c167"
+                    class="c11 c98 c153"
                   >
                     <div
-                      class="c168 c169"
+                      class="c154 c155"
                     >
                       <a
                         href="/about-us/get-involved"
                         style="outline: none;"
                       >
                         <div
-                          class="c170 c171 c172"
+                          class="c156 c157 c158"
                           data-testid="who-we-are-explore-item"
                         >
                           <div
                             class="c11 c98"
                           >
                             <div
-                              class="c173"
+                              class="c159"
                             >
                               <img
                                 alt=""
@@ -6965,7 +7501,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </div>
                           </div>
                           <div
-                            class="c174 c175"
+                            class="c160 c161"
                           >
                             Get involved
                           </div>
@@ -6973,7 +7509,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             class="c11 c98"
                           >
                             <div
-                              class="c127"
+                              class="c162"
                             >
                               <img
                                 alt=""
@@ -6995,28 +7531,28 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c176"
+            class="c163"
           >
             <div
-              class="c177 c178"
+              class="c164 c165"
             >
               <div
-                class="c11 c179"
+                class="c11 c166"
               >
                 <div
-                  class="c180 c181"
+                  class="c167 c168"
                 >
                   <div
-                    class="c11 c182"
+                    class="c11 c169"
                   >
                     <div
-                      class="c11 c98 c183"
+                      class="c11 c98 c170"
                     >
                       <div
-                        class="c184 c185"
+                        class="c171 c172"
                       >
                         <div
-                          class="c186"
+                          class="c173"
                         >
                           <img
                             alt=""
@@ -7029,20 +7565,20 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           />
                         </div>
                         <h2
-                          class="c187"
+                          class="c174"
                         >
                           Don’t miss out
                         </h2>
                       </div>
                       <p
-                        class="c188"
+                        class="c175"
                         color="text-primary"
                         id="react-use-id-test-result-newsletter-form-description"
                       >
                         Join over 100k teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
                          
                         <a
-                          class="c40 c189"
+                          class="c40 c176"
                           href="/legal/privacy-policy"
                           role="link"
                         >
@@ -7052,18 +7588,18 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="c190 c98 c183"
+                      class="c177 c98 c170"
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
-                        class="c191"
+                        class="c178"
                         novalidate=""
                       >
                         <div
-                          class="c192 c193 c194"
+                          class="c179 c180 c181"
                         >
                           <div
-                            class="c195 "
+                            class="c182 "
                           >
                             <div
                               aria-hidden="true"
@@ -7072,7 +7608,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             >
                               <svg
                                 aria-hidden="true"
-                                class="c196"
+                                class="c183"
                                 height="100%"
                                 name="box-border-top"
                                 style="height: 3px;"
@@ -7097,7 +7633,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c196"
+                                class="c183"
                                 height="100%"
                                 name="box-border-right"
                                 style="width: 3px; height: 90%;"
@@ -7122,7 +7658,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c196"
+                                class="c183"
                                 height="100%"
                                 name="box-border-bottom"
                                 style="height: 3px; width: 100%;"
@@ -7147,7 +7683,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c196"
+                                class="c183"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -7172,11 +7708,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                             </div>
                             <div
-                              class="c197 "
+                              class="c184 "
                             >
                               <label
                                 aria-hidden="true"
-                                class="c198 c199 c200"
+                                class="c185 c186 c187"
                                 color="black"
                                 data-testid="rotated-input-label"
                                 for="react-use-id-test-result-newsletter-signup-name"
@@ -7188,7 +7724,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                   Name
                                    
                                   <span
-                                    class="c201"
+                                    class="c188"
                                   >
                                     (required)
                                   </span>
@@ -7199,7 +7735,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               aria-invalid="false"
                               aria-labelledby="react-use-id-test-result-newsletter-signup-name-label"
                               autocomplete="name"
-                              class="c202 c203"
+                              class="c189 c190"
                               id="react-use-id-test-result-newsletter-signup-name"
                               name="name"
                               placeholder="Anna Smith"
@@ -7207,7 +7743,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             />
                             <svg
                               aria-hidden="true"
-                              class="c55 c204 c205"
+                              class="c55 c191 c192"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -7220,10 +7756,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="c192 c193 c194"
+                          class="c179 c180 c181"
                         >
                           <div
-                            class="c195 "
+                            class="c182 "
                           >
                             <div
                               aria-hidden="true"
@@ -7232,7 +7768,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             >
                               <svg
                                 aria-hidden="true"
-                                class="c196"
+                                class="c183"
                                 height="100%"
                                 name="box-border-top"
                                 style="height: 3px;"
@@ -7257,7 +7793,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c196"
+                                class="c183"
                                 height="100%"
                                 name="box-border-right"
                                 style="width: 3px; height: 90%;"
@@ -7282,7 +7818,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c196"
+                                class="c183"
                                 height="100%"
                                 name="box-border-bottom"
                                 style="height: 3px; width: 100%;"
@@ -7307,7 +7843,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c196"
+                                class="c183"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -7332,11 +7868,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               </svg>
                             </div>
                             <div
-                              class="c197 "
+                              class="c184 "
                             >
                               <label
                                 aria-hidden="true"
-                                class="c198 c199 c200"
+                                class="c185 c186 c187"
                                 color="black"
                                 data-testid="rotated-input-label"
                                 for="react-use-id-test-result-newsletter-signup-email"
@@ -7348,7 +7884,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                   Email
                                    
                                   <span
-                                    class="c201"
+                                    class="c188"
                                   >
                                     (required)
                                   </span>
@@ -7359,7 +7895,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               aria-invalid="false"
                               aria-labelledby="react-use-id-test-result-newsletter-signup-email-label"
                               autocomplete="email"
-                              class="c202 c203"
+                              class="c189 c190"
                               id="react-use-id-test-result-newsletter-signup-email"
                               name="email"
                               placeholder="anna@amail.com"
@@ -7367,7 +7903,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             />
                             <svg
                               aria-hidden="true"
-                              class="c55 c204 c205"
+                              class="c55 c191 c192"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -7380,7 +7916,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="c206 c63 c207"
+                          class="c193 c63 c194"
                         >
                           <div
                             aria-hidden="true"
@@ -7389,7 +7925,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="c196"
+                              class="c183"
                               height="100%"
                               name="box-border-top"
                               style="height: 3px;"
@@ -7414,7 +7950,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="c196"
+                              class="c183"
                               height="100%"
                               name="box-border-right"
                               style="width: 3px; height: 90%;"
@@ -7439,7 +7975,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="c196"
+                              class="c183"
                               height="100%"
                               name="box-border-bottom"
                               style="height: 3px; width: 100%;"
@@ -7464,7 +8000,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="c196"
+                              class="c183"
                               height="100%"
                               name="box-border-left"
                               style="width: 3px;"
@@ -7490,7 +8026,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           </div>
                           <svg
                             aria-hidden="true"
-                            class="c55 c204 c205 c208"
+                            class="c55 c191 c192 c195"
                             height="100%"
                             name="underline-1"
                             width="100%"
@@ -7501,10 +8037,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             />
                           </svg>
                           <div
-                            class="c209 c98"
+                            class="c196 c98"
                           >
                             <label
-                              class="c198 c199 c200"
+                              class="c185 c186 c187"
                               color="black"
                               id="react-use-id-test-result"
                             >
@@ -7516,16 +8052,16 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             aria-haspopup="listbox"
                             aria-invalid="false"
                             aria-labelledby="react-use-id-test-result react-use-id-test-result-button"
-                            class="c49 c210"
+                            class="c49 c197"
                             data-testid="select"
                             id="react-use-id-test-result-button"
                             type="button"
                           >
                             <div
-                              class="c211 c212 c213"
+                              class="c198 c199 c200"
                             >
                               <span
-                                class="c214 c215"
+                                class="c201 c202"
                                 data-testid="select-span"
                                 id="react-use-id-test-result-value"
                                 title="What describes you best?"
@@ -7549,7 +8085,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           </button>
                         </div>
                         <div
-                          class="c216 c7"
+                          class="c203 c7"
                         >
                           <div
                             class="c8 grey-shadow"
@@ -7558,7 +8094,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             class="c8 yellow-shadow"
                           />
                           <button
-                            class="c217 c218 internal-button"
+                            class="c204 c205 internal-button"
                           >
                             <div
                               class="c11 c12"
@@ -7573,12 +8109,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </div>
                         <p
                           aria-live="assertive"
-                          class="c219"
+                          class="c206"
                           role="alert"
                         />
                         <p
                           aria-live="polite"
-                          class="c220"
+                          class="c207"
                         />
                       </form>
                     </div>
@@ -7590,10 +8126,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
         </div>
       </main>
       <footer
-        class="c221"
+        class="c208"
       >
         <div
-          class="c222 c98"
+          class="c209 c98"
         >
           <svg
             aria-hidden="true"
@@ -7620,33 +8156,33 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
           id="site-footer"
         >
           <div
-            class="c223 c224"
+            class="c210 c211"
           >
             <div
-              class="c11 c182"
+              class="c11 c169"
             >
               <div
-                class="c11 c98 c225"
+                class="c11 c98 c212"
               >
                 <div
-                  class="c226 c63"
+                  class="c213 c63"
                 >
                   <h2
-                    class="c227"
+                    class="c214"
                   >
                     Pupils
                   </h2>
                   <div
-                    class="c228 c229"
+                    class="c215 c216"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/pupils/years"
                         >
                           <span
@@ -7660,27 +8196,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c232"
+                  class="c218"
                 />
                 <div
-                  class="c226 c63"
+                  class="c213 c63"
                 >
                   <h2
-                    class="c227"
+                    class="c214"
                   >
                     Teachers
                   </h2>
                   <div
-                    class="c228 c229"
+                    class="c215 c216"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/teachers/key-stages/early-years-foundation-stage/subjects"
                         >
                           <span
@@ -7691,10 +8227,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/teachers/specialist/subjects"
                         >
                           <span
@@ -7705,10 +8241,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/teachers/key-stages/ks1/subjects"
                         >
                           <span
@@ -7719,10 +8255,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/teachers/key-stages/ks2/subjects"
                         >
                           <span
@@ -7733,10 +8269,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/teachers/key-stages/ks3/subjects"
                         >
                           <span
@@ -7747,10 +8283,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/teachers/key-stages/ks4/subjects"
                         >
                           <span
@@ -7761,10 +8297,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/teachers/curriculum"
                         >
                           <span
@@ -7775,10 +8311,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/lesson-planning"
                         >
                           <span
@@ -7789,10 +8325,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/support-your-team"
                         >
                           <span
@@ -7807,27 +8343,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c11 c98 c225"
+                class="c11 c98 c212"
               >
                 <div
-                  class="c226 c63"
+                  class="c213 c63"
                 >
                   <h2
-                    class="c227"
+                    class="c214"
                   >
                     Oak
                   </h2>
                   <div
-                    class="c228 c229"
+                    class="c215 c216"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/"
                         >
                           <span
@@ -7838,10 +8374,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/about-us/who-we-are"
                         >
                           <span
@@ -7852,11 +8388,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="c231 "
+                          class="c143 "
                           href="https://jobs.thenational.academy"
                           target="_blank"
                         >
@@ -7881,10 +8417,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/contact-us"
                         >
                           <span
@@ -7895,11 +8431,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="c231 "
+                          class="c143 "
                           href="https://support.thenational.academy"
                           target="_blank"
                         >
@@ -7924,10 +8460,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/blog"
                         >
                           <span
@@ -7938,10 +8474,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/webinars"
                         >
                           <span
@@ -7952,11 +8488,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="c231 "
+                          class="c143 "
                           href="https://status.thenational.academy"
                           target="_blank"
                         >
@@ -7985,27 +8521,27 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c11 c98 c225"
+                class="c11 c98 c212"
               >
                 <div
-                  class="c226 c63"
+                  class="c213 c63"
                 >
                   <h2
-                    class="c227"
+                    class="c214"
                   >
                     Legal
                   </h2>
                   <div
-                    class="c228 c229"
+                    class="c215 c216"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/legal/terms-and-conditions"
                         >
                           <span
@@ -8016,10 +8552,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/legal/privacy-policy"
                         >
                           <span
@@ -8030,10 +8566,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/legal/cookie-policy"
                         >
                           <span
@@ -8044,10 +8580,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <button
-                          class="c231 "
+                          class="c143 "
                         >
                           <span
                             class="c22"
@@ -8057,10 +8593,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </button>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/legal/copyright-notice"
                         >
                           <span
@@ -8071,10 +8607,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/legal/accessibility-statement"
                         >
                           <span
@@ -8085,10 +8621,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/legal/safeguarding-statement"
                         >
                           <span
@@ -8099,10 +8635,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/legal/physical-activity-disclaimer"
                         >
                           <span
@@ -8113,10 +8649,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/legal/complaints"
                         >
                           <span
@@ -8127,10 +8663,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c230"
+                        class="c217"
                       >
                         <a
-                          class="c231 "
+                          class="c143 "
                           href="/legal/freedom-of-information-requests"
                         >
                           <span
@@ -8145,20 +8681,20 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c11 c98 c225"
+                class="c11 c98 c212"
               >
                 <div
-                  class="c226 c233"
+                  class="c213 c219"
                 >
                   <div
                     class="c18"
                   >
                     <div
-                      class="c234"
+                      class="c220"
                     >
                       <img
                         alt=""
-                        class="c139"
+                        class="c221"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -8168,7 +8704,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="c235 c236"
+                    class="c222 c223"
                     x="oaknational"
                   >
                     <div
@@ -8328,12 +8864,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               </div>
             </div>
             <div
-              class="c137 c237"
+              class="c224 c225"
               data-percy-hide="contents"
             >
               <img
                 alt="Cyber Essentials Logo"
-                class="c139"
+                class="c221"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -8344,10 +8880,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               />
             </div>
             <div
-              class="c238 c239"
+              class="c226 c227"
             >
               <div
-                class="c240 c241"
+                class="c228 c229"
                 x="oaknational"
               >
                 <div
@@ -8507,11 +9043,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 class="c27"
               >
                 <div
-                  class="c234"
+                  class="c220"
                 >
                   <img
                     alt=""
-                    class="c139"
+                    class="c221"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
@@ -8521,15 +9057,15 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c226 c63"
+                class="c213 c63"
               >
                 <p
-                  class="c242"
+                  class="c230"
                 >
                   © Oak National Academy Limited, No 14174888
                 </p>
                 <p
-                  class="c243"
+                  class="c231"
                 >
                   1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                 </p>
@@ -8538,11 +9074,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
           </div>
         </nav>
         <div
-          class="c244"
+          class="c232"
         >
           <img
             alt=""
-            class="c245"
+            class="c233"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -8551,11 +9087,11 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
           />
         </div>
         <div
-          class="c246"
+          class="c234"
         >
           <img
             alt=""
-            class="c247"
+            class="c235"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -8567,23 +9103,23 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
     </div>
   </div>
   <div
-    class="c248"
+    class="c236"
   >
     <div
-      class="c249"
+      class="c237"
       data-testid="cookie-banner"
     >
       <div
-        class="c250"
+        class="c238"
       >
         <div
-          class="c251 c252"
+          class="c239 c240"
         >
           <div
-            class="c253"
+            class="c241"
           >
             <strong
-              class="c254"
+              class="c242"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -8591,13 +9127,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="c11 c255"
+            class="c11 c243"
           >
             <div
-              class="c256 c212"
+              class="c244 c199"
             >
               <button
-                class="c231 "
+                class="c143 "
                 data-testid="cookie-banner-reject"
                 type="button"
               >
@@ -8641,7 +9177,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 class="c8 yellow-shadow"
               />
               <button
-                class="c257 c218 internal-button"
+                class="c245 c205 internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div

@@ -4,7 +4,7 @@ exports[`ProfileCard renders correctly with image 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-kAyceB gZbrTB FywIr"
+      class="sc-fqkvVR sc-kAyceB cGaTOt FywIr"
     >
       <div
         class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
@@ -43,7 +43,7 @@ exports[`ProfileCard renders correctly with image 1`] = `
         class="sc-fqkvVR sc-kAyceB edWxbp bQAWYR"
       >
         <a
-          class="sc-fxwrCY eycZBP sc-hIUJlX"
+          class="sc-fxwrCY bSyRHN sc-hIUJlX"
           href="#"
         >
           <span
@@ -75,7 +75,7 @@ exports[`ProfileCard renders correctly without image 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-kAyceB gZbrTB FywIr"
+      class="sc-fqkvVR sc-kAyceB cGaTOt FywIr"
     >
       <div
         class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
@@ -102,7 +102,7 @@ exports[`ProfileCard renders correctly without image 1`] = `
         class="sc-fqkvVR sc-kAyceB edWxbp bQAWYR"
       >
         <a
-          class="sc-fxwrCY eycZBP sc-hIUJlX"
+          class="sc-fxwrCY bSyRHN sc-hIUJlX"
           href="#"
         >
           <span

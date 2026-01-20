@@ -8,6 +8,7 @@ import {
   OakBox,
   OakTertiaryOLNav,
   OakSecondaryLink,
+  OakLink,
   OakSpan,
 } from "@oaknational/oak-components";
 import {
@@ -120,7 +121,7 @@ const blockHeadingComponents: PortableTextComponents["block"] = {
 
 const markComponents: PortableTextComponents["marks"] = {
   link: ({ children, value }) => {
-    return <OakSecondaryLink {...value}>{children}</OakSecondaryLink>;
+    return <OakLink {...value}>{children}</OakLink>;
   },
 };
 
