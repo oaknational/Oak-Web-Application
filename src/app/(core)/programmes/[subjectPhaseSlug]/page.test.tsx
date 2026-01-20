@@ -58,6 +58,7 @@ jest.mock("@/node-lib/cms", () => ({
       curriculumPartnerOverviews: [],
       curriculumSeoTextRaw: null,
     }),
+    programmePageBySlug: jest.fn(),
   },
 }));
 
