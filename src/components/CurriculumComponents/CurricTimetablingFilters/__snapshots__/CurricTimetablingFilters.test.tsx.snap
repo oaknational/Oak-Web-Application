@@ -55,11 +55,11 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-kgOKUu dtUOUJ hRXrdT hUJnes"
+              class="sc-fqkvVR sc-kAyceB sc-cMa-dbN dtUOUJ hRXrdT gqEiNe"
             >
               <input
                 checked=""
-                class="sc-fBWQRz sc-fKWMtX emVWqZ helRrO"
+                class="sc-fBWQRz sc-bfhvDw emVWqZ hMKfwK"
                 data-testid="all-years-radio"
                 id=":r0:"
                 name="yearreact-use-id-test-result"
@@ -79,10 +79,10 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-kgOKUu dtUOUJ hRXrdT hUJnes"
+              class="sc-fqkvVR sc-kAyceB sc-cMa-dbN dtUOUJ hRXrdT gqEiNe"
             >
               <input
-                class="sc-fBWQRz sc-fKWMtX emVWqZ helRrO"
+                class="sc-fBWQRz sc-bfhvDw emVWqZ hMKfwK"
                 data-testid="year-radio"
                 id=":r1:"
                 name="yearreact-use-id-test-result"
@@ -102,10 +102,10 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-kgOKUu dtUOUJ hRXrdT hUJnes"
+              class="sc-fqkvVR sc-kAyceB sc-cMa-dbN dtUOUJ hRXrdT gqEiNe"
             >
               <input
-                class="sc-fBWQRz sc-fKWMtX emVWqZ helRrO"
+                class="sc-fBWQRz sc-bfhvDw emVWqZ hMKfwK"
                 data-testid="year-radio"
                 id=":r2:"
                 name="yearreact-use-id-test-result"
@@ -151,7 +151,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR sc-kAyceB sc-kAkpmW dARrbC joHkzz"
+        class="sc-fqkvVR sc-kAyceB sc-cmaqmh dARrbC joHkzz"
         focusable="false"
       >
         <svg

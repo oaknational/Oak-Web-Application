@@ -1,3 +1,4 @@
+"use client";
 import {
   oakDefaultTheme,
   OakFlex,
@@ -7,7 +8,7 @@ import {
   OakToast,
   OakToastProps,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import { createContext, FC, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
@@ -36,7 +37,7 @@ export const OakNotificationsProvider: FC<{
 
   const [offsetTop, setOffsetTop] = useState<number>(82);
   const [id, setId] = useState(0);
-  const { asPath } = useRouter();
+  const path = usePathname();
 
   const newTopNavEnabled = useFeatureFlagEnabled("teachers-new-top-nav");
 
@@ -74,7 +75,7 @@ export const OakNotificationsProvider: FC<{
       clearTimeout(timeOut);
       observer?.disconnect();
     };
-  }, [asPath, newTopNavEnabled]);
+  }, [path, newTopNavEnabled]);
 
   const setToastPropsAndId = (props: OakToastProps | null) => {
     setId((prevId) => prevId + 1);

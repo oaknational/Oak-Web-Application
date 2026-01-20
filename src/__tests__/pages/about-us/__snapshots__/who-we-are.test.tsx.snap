@@ -8,7 +8,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
     >
       <div
         aria-live="polite"
-        class="sc-fqkvVR sc-kAyceB sc-fecccf71-0 CXrfz IxeqO Zjqfu"
+        class="sc-fqkvVR sc-kAyceB sc-73796c8c-0 CXrfz IxeqO kULYhW"
       />
       <div />
     </div>
@@ -43,7 +43,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB fOyTgd TDtQj"
               >
                 <button
-                  class="sc-fxwrCY eycZBP sc-hIUJlX"
+                  class="sc-fxwrCY bSyRHN sc-hIUJlX"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
