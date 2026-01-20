@@ -61,6 +61,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
       aria-label={props.ariaLabel ?? undefined}
       iconName={props.icon}
       isTrailingIcon
+      target={props.icon === "external" ? "_blank" : undefined}
       onClick={() => {
         const sentenceCaseText = props.text
           .split(" ")
