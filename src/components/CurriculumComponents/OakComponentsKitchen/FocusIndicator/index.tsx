@@ -1,4 +1,8 @@
-import { OakBox } from "@oaknational/oak-components";
+import {
+  OakBox,
+  oakDefaultTheme,
+  oakDropShadowTokens,
+} from "@oaknational/oak-components";
 import styled from "styled-components";
 
 function isJSDOM() {
@@ -11,7 +15,9 @@ const FocusIndicator = styled(OakBox)<{
   disableActive?: boolean;
 }>`
   box-shadow: ${(props) =>
-    props.subFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
+    props.subFocus
+      ? `${oakDropShadowTokens["drop-shadow-centered-grey"]}`
+      : "none"};
   z-index: ${(props) => (props.subFocus ? "2" : "")};
 
   &:has(
@@ -20,26 +26,30 @@ const FocusIndicator = styled(OakBox)<{
     ) {
     border-radius: ${(props) => props.$borderRadius ?? "0.25em;"};
     z-index: 2;
-    box-shadow:
-      rgb(255, 229, 85) 0px 0px 0px 0.125rem,
-      rgb(87, 87, 87) 0px 0px 0px 0.3rem;
+    box-shadow: ${oakDropShadowTokens["drop-shadow-centered-lemon"]},
+      ${oakDropShadowTokens["drop-shadow-centered-grey"]};
   }
 
   &:has(a:hover, button:hover),
   &:has(button:hover:not(:active${isJSDOM() ? "" : ", :focus-visible"})) {
     z-index: 1;
-    background-color: ${(props) => (props.disableMouseHover ? "" : `#f2f2f2;`)};
+    background-color: ${(props) =>
+      props.disableMouseHover
+        ? ""
+        : `${oakDefaultTheme.uiColors["bg-neutral"]};`};
   }
   &:has(a:hover, button:hover) {
     box-shadow: ${(props) =>
-      props.subFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
+      props.subFocus
+        ? oakDropShadowTokens["drop-shadow-centered-grey"]
+        : "none"};
   }
   &:has(a:active, button:active) {
     z-index: 2;
     box-shadow: ${(props) =>
       props.disableActive
         ? ""
-        : "rgb(255, 229, 85) 0.125rem 0.125rem 0px, rgb(87, 87, 87) 0.25rem 0.25rem 0px;"};
+        : `${oakDropShadowTokens["drop-shadow-lemon"]}, ${oakDropShadowTokens["drop-shadow-grey"]};`};
   }
 `;
 
