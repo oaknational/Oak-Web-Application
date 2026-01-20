@@ -1,3 +1,20 @@
+# [1.956.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.955.0...v1.956.0) (2026-01-20)
+
+
+### Bug Fixes
+
+* exclude /about-us/meet-the-team from sitemap for now ([dff3ce9](https://github.com/oaknational/Oak-Web-Application/commit/dff3ce9ebe73169b0777a45e268d573cf1c6c39b))
+* more mock data fixes ([7807de1](https://github.com/oaknational/Oak-Web-Application/commit/7807de1c2dc6f5586824bb0dbbac42e4914700d0))
+* move mock data into correct place in codebase (fixes build issue) ([5aea756](https://github.com/oaknational/Oak-Web-Application/commit/5aea75698f7f323f6f3f5eb3cc591c6e257227d5))
+* storybook story name ([c2f2633](https://github.com/oaknational/Oak-Web-Application/commit/c2f263312a51b71ee4c6a0bd96e8e5a6a1a308ac))
+* use non-index for react keys ([62e710d](https://github.com/oaknational/Oak-Web-Application/commit/62e710db9b7f6a65db8556760da136be5d2eef4f))
+
+
+### Features
+
+* extracted out <MeetTheTeamContainer/> + more meet-the-team styling ([01b9cb8](https://github.com/oaknational/Oak-Web-Application/commit/01b9cb8809b2ee825f1ad3ac6869f37114b2f7ed))
+* initial meet-the-team page with mock content ([59ddad9](https://github.com/oaknational/Oak-Web-Application/commit/59ddad905c33e84a3e4e17ed86bb160a32affb43))
+
 # [1.955.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.954.0...v1.955.0) (2026-01-15)
 
 
