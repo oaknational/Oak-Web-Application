@@ -2,8 +2,10 @@
 
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export function useAssignmentSearchParams() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [isClassroomAssignment, setIsClassroomAssignment] = useState<
     boolean | null
@@ -12,6 +14,7 @@ export function useAssignmentSearchParams() {
     useState(false);
 
   const checkIsAssignment = useCallback(() => {
+    if (!globalThis?.window || !searchParams) return;
     const itemId = searchParams?.get("itemId");
     const itemType = searchParams?.get("itemType");
 
@@ -20,12 +23,12 @@ export function useAssignmentSearchParams() {
   }, [searchParams]);
 
   useEffect(() => {
-    checkIsAssignment();
+    if (router.isReady) checkIsAssignment();
     return () => {
       setIsClassroomAssignment(null);
       setClassroomAssignmentChecked(false);
     };
-  }, [checkIsAssignment]);
+  }, [checkIsAssignment, router]);
 
   return { isClassroomAssignment, classroomAssignmentChecked };
 }
