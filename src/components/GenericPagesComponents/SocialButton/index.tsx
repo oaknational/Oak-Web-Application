@@ -1,28 +1,30 @@
 import {
-  oakAllSpacingTokens,
   OakColorFilterToken,
   OakIcon,
+  parseColor,
+  parseDropShadow,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import { capitalize } from "lodash";
 import styled from "styled-components";
 
 const StyledSocialLink = styled.a`
   margin: auto;
-  padding: ${oakAllSpacingTokens["spacing-0"]};
+  padding: ${parseSpacing("spacing-0")};
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: ${oakAllSpacingTokens["spacing-4"]}px;
-  background: var(--Tokens-Background-bg-btn-secondary, #fff);
-  height: ${oakAllSpacingTokens["spacing-32"]}px;
-  width: ${oakAllSpacingTokens["spacing-32"]}px;
+  border-radius: ${parseSpacing("spacing-4")};
+  background: ${parseColor("bg-btn-secondary")};
+  height: ${parseSpacing("spacing-32")};
+  width: ${parseSpacing("spacing-32")};
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
 
   :focus {
-    /* drop-shadow-focus */
     outline: none;
+
     box-shadow:
       0 0 0 2px #ffe555,
       0 0 0 5px #575757;
@@ -30,7 +32,7 @@ const StyledSocialLink = styled.a`
 
   :hover {
     /* drop-shadow-lemon */
-    box-shadow: 2px 2px 0 0 #ffe555;
+    box-shadow: ${parseDropShadow("drop-shadow-lemon")};
   }
 
   :active {
