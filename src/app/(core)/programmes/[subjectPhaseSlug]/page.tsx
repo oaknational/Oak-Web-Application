@@ -180,6 +180,14 @@ const ProgrammePage = async ({ params }: ProgrammePageProps) => {
       return notFound();
     }
 
+    const subjectPhaseSanityData = await CMSClient.programmePageBySlug(
+      `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
+    );
+
+    if (!subjectPhaseSanityData) {
+      // TD: report error
+    }
+
     const curriculumUnitsFormattedData =
       formatCurriculumUnitsData(curriculumUnitsData);
 
@@ -197,6 +205,7 @@ const ProgrammePage = async ({ params }: ProgrammePageProps) => {
       phaseTitle: programmeUnitsData.phaseTitle,
       examboardTitle: ks4Option?.title,
       curriculumUnitsFormattedData,
+      subjectPhaseSanityData,
     };
 
     return <ProgrammeView {...results} />;
