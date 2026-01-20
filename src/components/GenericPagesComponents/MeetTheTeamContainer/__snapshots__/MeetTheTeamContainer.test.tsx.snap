@@ -1,24 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`WhoAreWeDesc renders correctly 1`] = `
+exports[`MeetTheTeamContainer renders correctly 1`] = `
 <body>
   <div>
     <div
       class="sc-fqkvVR bTCHtV"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+        class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
       >
-        <h2
-          class="sc-kpDqfm jXwDXb"
+        <div
+          class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
         >
-          TESTING_TITLE
-        </h2>
-        <p
-          class="sc-dLMFU eFqtPi"
-        >
-          TEST_TEXT
-        </p>
+          <h2
+            class="sc-kpDqfm jXwDXb"
+          >
+            TESTING_TITLE
+          </h2>
+          <p
+            class="sc-dLMFU eFqtPi"
+          >
+            TEST_TEXT
+          </p>
+        </div>
         <div
           class="sc-fqkvVR sc-kAyceB fgBWrW fwDdho"
         >
