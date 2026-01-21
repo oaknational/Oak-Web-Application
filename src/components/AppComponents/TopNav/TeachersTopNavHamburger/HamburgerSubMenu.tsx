@@ -12,7 +12,7 @@ import Link from "next/link";
 import {
   getEYFSAriaLabel,
   SubmenuState,
-  useHamburgerMenu,
+  HamburgerMenuHook,
 } from "./TeachersTopNavHamburger";
 
 import {
@@ -35,11 +35,13 @@ export type NavItemData =
 export function SubmenuContainer({
   title,
   children,
+  hamburgerMenu,
 }: {
   readonly title: SubmenuState;
   readonly children: ReactNode;
+  readonly hamburgerMenu: HamburgerMenuHook;
 }) {
-  const { submenuOpen, handleCloseSubmenu } = useHamburgerMenu();
+  const { submenuOpen, handleCloseSubmenu } = hamburgerMenu;
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -72,17 +74,21 @@ export function SubmenuContainer({
   );
 }
 
-export function SubmenuContent(props: Readonly<TeachersSubNavData>) {
-  const { submenuOpen, handleClose } = useHamburgerMenu();
+export function SubmenuContent(
+  props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
+) {
+  const { hamburgerMenu, ...navData } = props;
+  const { submenuOpen, handleClose } = hamburgerMenu;
 
   if (!submenuOpen) return null;
 
   switch (submenuOpen) {
     case "About us":
     case "Guidance": {
-      const links = submenuOpen === "About us" ? props.aboutUs : props.guidance;
+      const links =
+        submenuOpen === "About us" ? navData.aboutUs : navData.guidance;
       return (
-        <SubmenuContainer title={submenuOpen}>
+        <SubmenuContainer title={submenuOpen} hamburgerMenu={hamburgerMenu}>
           <OakUL
             $display={"flex"}
             $flexDirection={"column"}
@@ -112,14 +118,14 @@ export function SubmenuContent(props: Readonly<TeachersSubNavData>) {
       const phase = ["KS1", "KS2", "EYFS"].includes(submenuOpen)
         ? "primary"
         : "secondary";
-      const phaseData = props[phase];
+      const phaseData = navData[phase];
       const keystage = phaseData.keystages.find(
         (ks) => ks.title === submenuOpen,
       );
 
       if (!keystage) return null;
       return (
-        <SubmenuContainer title={submenuOpen}>
+        <SubmenuContainer title={submenuOpen} hamburgerMenu={hamburgerMenu}>
           <OakUL
             $ph={"spacing-0"}
             $display={"flex"}

@@ -14,7 +14,7 @@ import Link from "next/link";
 import {
   getEYFSAriaLabel,
   SubmenuState,
-  useHamburgerMenu,
+  HamburgerMenuHook,
 } from "./TeachersTopNavHamburger";
 
 import {
@@ -23,9 +23,14 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 
-export function MainMenuContent(props: Readonly<TeachersSubNavData>) {
-  const { submenuOpen, prevSubmenu } = useHamburgerMenu();
+export function MainMenuContent(
+  props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
+) {
+  const { hamburgerMenu, ...navData } = props;
+  const { submenuOpen, prevSubmenu } = hamburgerMenu;
+
   useEffect(() => {
+    // We're navigating back from a submenu, focus the triggering element
     if (prevSubmenu) {
       const element = document.getElementById(prevSubmenu + "button");
       element?.focus();
@@ -39,8 +44,8 @@ export function MainMenuContent(props: Readonly<TeachersSubNavData>) {
       $pa={"spacing-40"}
       $gap={"spacing-40"}
     >
-      <SubjectsSection {...props.primary} />
-      <SubjectsSection {...props.secondary} />
+      <SubjectsSection {...navData.primary} hamburgerMenu={hamburgerMenu} />
+      <SubjectsSection {...navData.secondary} hamburgerMenu={hamburgerMenu} />
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <MainMenuLink
           href={resolveOakHref({
@@ -48,8 +53,8 @@ export function MainMenuContent(props: Readonly<TeachersSubNavData>) {
           })}
           title="Curriculum"
         />
-        <MainMenuButton title={"About us"} />
-        <MainMenuButton title={"Guidance"} />
+        <MainMenuButton title={"About us"} hamburgerMenu={hamburgerMenu} />
+        <MainMenuButton title={"Guidance"} hamburgerMenu={hamburgerMenu} />
         <MainMenuLink
           href={resolveOakHref({
             page: "labs",
@@ -62,7 +67,10 @@ export function MainMenuContent(props: Readonly<TeachersSubNavData>) {
   );
 }
 
-function SubjectsSection(props: Readonly<TeachersBrowse>) {
+function SubjectsSection(
+  props: Readonly<TeachersBrowse & { hamburgerMenu: HamburgerMenuHook }>,
+) {
+  const { hamburgerMenu, ...browseData } = props;
   return (
     <OakBox>
       <OakFlex
@@ -72,7 +80,7 @@ function SubjectsSection(props: Readonly<TeachersBrowse>) {
       >
         <OakBox $position={"relative"}>
           <OakHeading tag="h2" $font={"heading-6"}>
-            {props.phaseTitle}
+            {browseData.phaseTitle}
           </OakHeading>
           <OakSvg
             $position={"absolute"}
@@ -84,11 +92,12 @@ function SubjectsSection(props: Readonly<TeachersBrowse>) {
         </OakBox>
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        {props.keystages.map((keystage) => (
+        {browseData.keystages.map((keystage) => (
           <MainMenuButton
-            key={keystage.slug + props.phaseSlug}
+            key={keystage.slug + browseData.phaseSlug}
             title={keystage.title as SubmenuState}
             description={keystage.description}
+            hamburgerMenu={hamburgerMenu}
           />
         ))}
       </OakFlex>
@@ -99,13 +108,15 @@ function SubjectsSection(props: Readonly<TeachersBrowse>) {
 function MainMenuButton({
   title,
   description,
+  hamburgerMenu,
 }: {
   readonly title: SubmenuState;
+  readonly hamburgerMenu: HamburgerMenuHook;
   readonly description?: string;
 }) {
-  const { setSubmenuOpen } = useHamburgerMenu();
+  const { setSubmenuOpen } = hamburgerMenu;
   const isEYFS = title === "EYFS";
-  const showDescription = !isEYFS && description;
+  const shouldShowDescription = !isEYFS && description;
   return (
     <OakBox $width={"100%"}>
       <OakLI $listStyle={"none"}>
@@ -120,7 +131,7 @@ function MainMenuButton({
             setSubmenuOpen(title);
           }}
         >
-          {showDescription ? description : title}
+          {shouldShowDescription ? description : title}
         </OakLeftAlignedButton>
       </OakLI>
     </OakBox>

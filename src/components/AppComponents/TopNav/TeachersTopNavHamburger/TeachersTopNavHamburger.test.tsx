@@ -5,186 +5,172 @@ import {
   TeachersTopNavHamburger,
 } from "./TeachersTopNavHamburger";
 
-import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
-const mockTopNavProps: TopNavProps = {
-  teachers: {
-    primary: {
-      phaseTitle: "Primary",
-      phaseSlug: "primary",
-      keystages: [
-        {
-          title: "KS1",
-          slug: "ks1",
-          description: "Key Stage 1",
-          subjects: [
-            {
-              title: "test-subject-1",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-1",
-              subjectSlug: "test-subject-slug-1",
-            },
-            {
-              title: "test-subject-2",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-2",
-              subjectSlug: "test-subject-slug-2",
-            },
-            {
-              title: "test-subject-3",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-3",
-              subjectSlug: "test-subject-slug-3",
-            },
-          ],
-        },
-        {
-          title: "KS2",
-          slug: "ks2",
-          description: "Key Stage 2",
-          subjects: [
-            {
-              title: "test-subject-1",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-1",
-              subjectSlug: "test-subject-slug-1",
-            },
-            {
-              title: "test-subject-2",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-2",
-              subjectSlug: "test-subject-slug-2",
-            },
-            {
-              title: "test-subject-3",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-3",
-              subjectSlug: "test-subject-slug-3",
-            },
-          ],
-        },
-        {
-          title: "EYFS",
-          slug: "eyfs",
-          description: "Early Years Foundation Stage",
-          subjects: [
-            {
-              title: "test-subject-1",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-1",
-              subjectSlug: "test-subject-slug-1",
-            },
-            {
-              title: "test-subject-2",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-2",
-              subjectSlug: "test-subject-slug-2",
-            },
-            {
-              title: "test-subject-3",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-3",
-              subjectSlug: "test-subject-slug-3",
-            },
-          ],
-        },
-      ],
-    },
-    secondary: {
-      phaseTitle: "Secondary",
-      phaseSlug: "secondary",
-      keystages: [
-        {
-          title: "KS3",
-          slug: "ks3",
-          description: "Key Stage 3",
-          subjects: [
-            {
-              title: "test-subject-1",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-1",
-              subjectSlug: "test-subject-slug-1",
-            },
-            {
-              title: "test-subject-2",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-2",
-              subjectSlug: "test-subject-slug-2",
-            },
-            {
-              title: "test-subject-3",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-3",
-              subjectSlug: "test-subject-slug-3",
-            },
-          ],
-        },
-        {
-          title: "KS4",
-          slug: "ks4",
-          description: "Key Stage 4",
-          subjects: [
-            {
-              title: "test-subject-1",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-1",
-              subjectSlug: "test-subject-slug-1",
-            },
-            {
-              title: "test-subject-2",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-2",
-              subjectSlug: "test-subject-slug-2",
-            },
-            {
-              title: "test-subject-3",
-              nonCurriculum: false,
-              programmeCount: 0,
-              programmeSlug: "test-programme-slug-3",
-              subjectSlug: "test-subject-slug-3",
-            },
-          ],
-        },
-      ],
-    },
-    aboutUs: [
-      { title: "test-link-1", slug: "home" },
-      { title: "test-link-2", slug: "home" },
-      { title: "test-link-3", slug: "home" },
-    ],
-    guidance: [
-      { title: "test-link-1", slug: "home" },
-      { title: "test-link-2", slug: "home" },
-      { title: "test-link-3", slug: "home" },
+const mockTopNavProps: TeachersSubNavData = {
+  primary: {
+    phaseTitle: "Primary",
+    phaseSlug: "primary",
+    keystages: [
+      {
+        title: "KS1",
+        slug: "ks1",
+        description: "Key Stage 1",
+        subjects: [
+          {
+            title: "test-subject-1",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-1",
+            subjectSlug: "test-subject-slug-1",
+          },
+          {
+            title: "test-subject-2",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-2",
+            subjectSlug: "test-subject-slug-2",
+          },
+          {
+            title: "test-subject-3",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-3",
+            subjectSlug: "test-subject-slug-3",
+          },
+        ],
+      },
+      {
+        title: "KS2",
+        slug: "ks2",
+        description: "Key Stage 2",
+        subjects: [
+          {
+            title: "test-subject-1",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-1",
+            subjectSlug: "test-subject-slug-1",
+          },
+          {
+            title: "test-subject-2",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-2",
+            subjectSlug: "test-subject-slug-2",
+          },
+          {
+            title: "test-subject-3",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-3",
+            subjectSlug: "test-subject-slug-3",
+          },
+        ],
+      },
+      {
+        title: "EYFS",
+        slug: "eyfs",
+        description: "Early Years Foundation Stage",
+        subjects: [
+          {
+            title: "test-subject-1",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-1",
+            subjectSlug: "test-subject-slug-1",
+          },
+          {
+            title: "test-subject-2",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-2",
+            subjectSlug: "test-subject-slug-2",
+          },
+          {
+            title: "test-subject-3",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-3",
+            subjectSlug: "test-subject-slug-3",
+          },
+        ],
+      },
     ],
   },
-  pupils: {
-    primary: {
-      phaseSlug: "primary",
-      phaseTitle: "Primary",
-      years: [{ slug: "year-1", title: "Year 1" }],
-    },
-    secondary: {
-      phaseSlug: "secondary",
-      phaseTitle: "Secondary",
-      years: [{ slug: "year-1", title: "Year 1" }],
-    },
+  secondary: {
+    phaseTitle: "Secondary",
+    phaseSlug: "secondary",
+    keystages: [
+      {
+        title: "KS3",
+        slug: "ks3",
+        description: "Key Stage 3",
+        subjects: [
+          {
+            title: "test-subject-1",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-1",
+            subjectSlug: "test-subject-slug-1",
+          },
+          {
+            title: "test-subject-2",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-2",
+            subjectSlug: "test-subject-slug-2",
+          },
+          {
+            title: "test-subject-3",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-3",
+            subjectSlug: "test-subject-slug-3",
+          },
+        ],
+      },
+      {
+        title: "KS4",
+        slug: "ks4",
+        description: "Key Stage 4",
+        subjects: [
+          {
+            title: "test-subject-1",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-1",
+            subjectSlug: "test-subject-slug-1",
+          },
+          {
+            title: "test-subject-2",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-2",
+            subjectSlug: "test-subject-slug-2",
+          },
+          {
+            title: "test-subject-3",
+            nonCurriculum: false,
+            programmeCount: 0,
+            programmeSlug: "test-programme-slug-3",
+            subjectSlug: "test-subject-slug-3",
+          },
+        ],
+      },
+    ],
   },
+  aboutUs: [
+    { title: "test-link-1", slug: "home" },
+    { title: "test-link-2", slug: "home" },
+    { title: "test-link-3", slug: "home" },
+  ],
+  guidance: [
+    { title: "test-link-1", slug: "home" },
+    { title: "test-link-2", slug: "home" },
+    { title: "test-link-3", slug: "home" },
+  ],
 };
 
 const render = renderWithProviders();
@@ -307,8 +293,10 @@ describe("TeachersTopNavHamburger", () => {
     expect(getByText("Primary")).toBeInTheDocument();
   });
 
-  it('should return "Early years foundation stage" for EYFS title', () => {
-    const ariaLabel = getEYFSAriaLabel("EYFS");
-    expect(ariaLabel).toBe("Early years foundation stage");
+  it('should only return "Early years foundation stage" for EYFS title', () => {
+    const EYFS = getEYFSAriaLabel("EYFS");
+    const Ks1 = getEYFSAriaLabel("KS1");
+    expect(EYFS).toBe("Early years foundation stage");
+    expect(Ks1).toBeUndefined();
   });
 });
