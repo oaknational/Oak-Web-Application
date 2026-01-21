@@ -4,63 +4,63 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR bZZBuO"
+      class="sc-fqkvVR eFnhMc"
     >
       <div
-        class="sc-fqkvVR sc-jXbUNg hwnObW hXDxZw"
+        class="sc-fqkvVR sc-jXbUNg fXwKwU hXDxZw"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW bAHJVP bDcDWT"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs bAHJVP bDcDWT"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
+            class="sc-fqkvVR sc-kAyceB aZqjs kYkjWQ"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+              class="sc-fqkvVR sc-kAyceB aZqjs kKfJVM"
             >
               <h2
-                class="sc-kpDqfm eceTdU"
+                class="sc-kpDqfm ihxtLl"
               >
                 Work with us
               </h2>
               <div
-                class="sc-fqkvVR sc-kAyceB cThXxF iVYVEn"
+                class="sc-fqkvVR sc-kAyceB hUgHLL iVYVEn"
               >
                 <p
-                  class="sc-dLMFU sc-ff4f593d-0 hdyvdE imPMXG"
+                  class="sc-dLMFU sc-ff4f593d-0 gInKlR imPMXG"
                 >
                   TESTING_PARAGRAPH_1
                 </p>
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB fgBWrW bxbio"
+              class="sc-fqkvVR sc-kAyceB aZqjs bxbio"
             >
               <div
-                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
+                class="sc-fqkvVR sc-fjvvzt gQBvmm kIRemE"
               >
                 <div
-                  class="sc-fqkvVR iPpXCP grey-shadow"
+                  class="sc-fqkvVR hHxuBp grey-shadow"
                 />
                 <div
-                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                  class="sc-fqkvVR hHxuBp yellow-shadow"
                 />
                 <a
-                  class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+                  class="sc-dtBdUo sc-fXSgeo vwEYe iwHZRx internal-button"
                   href="https://example.com/permanent"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                    class="sc-fqkvVR sc-kAyceB aZqjs cHFgFN"
                   >
                     <span
-                      class="sc-dAlyuH hHWgLm"
+                      class="sc-dAlyuH dYZdPz"
                     >
                       Permanent roles
                     </span>
                     <div
-                      class="sc-fqkvVR kbnxKi"
+                      class="sc-fqkvVR hCMPss"
                     >
                       <img
                         alt="external"
@@ -76,30 +76,30 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                 </a>
               </div>
               <div
-                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
+                class="sc-fqkvVR sc-fjvvzt gQBvmm kIRemE"
               >
                 <div
-                  class="sc-fqkvVR iPpXCP grey-shadow"
+                  class="sc-fqkvVR hHxuBp grey-shadow"
                 />
                 <div
-                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                  class="sc-fqkvVR hHxuBp yellow-shadow"
                 />
                 <a
-                  class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+                  class="sc-dtBdUo sc-fXSgeo vwEYe iwHZRx internal-button"
                   href="https://example.com/freelance"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                    class="sc-fqkvVR sc-kAyceB aZqjs cHFgFN"
                   >
                     <span
-                      class="sc-dAlyuH hHWgLm"
+                      class="sc-dAlyuH dYZdPz"
                     >
                       Freelance roles
                     </span>
                     <div
-                      class="sc-fqkvVR kbnxKi"
+                      class="sc-fqkvVR hCMPss"
                     >
                       <img
                         alt="external"
@@ -118,16 +118,16 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW djyvKT cDIrlY"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs djyvKT cDIrlY"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB fgBWrW loubfV"
+            class="sc-fqkvVR sc-kAyceB aZqjs loubfV"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB fIaYTx joHkzz"
+              class="sc-fqkvVR sc-kAyceB jWFnez joHkzz"
             >
               <div
-                class="sc-fqkvVR jqqmXN"
+                class="sc-fqkvVR eAnxgr"
               >
                 <img
                   alt="Team working together"
@@ -143,7 +143,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB fgBWrW dBzTSe"
+              class="sc-fqkvVR sc-kAyceB aZqjs dBzTSe"
             >
               <img
                 alt="Badge 1"
