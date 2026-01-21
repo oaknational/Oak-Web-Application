@@ -49,7 +49,9 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
           playbackId={
             signLanguageVideo && signLanguageOn ? signLanguageVideo : video
           }
-          playbackPolicy={"signed"}
+          playbackPolicy={
+            signLanguageVideo && signLanguageOn ? "public" : "signed"
+          }
           title={title}
           location={"lesson"}
           isLegacy={isLegacy}
