@@ -17,12 +17,18 @@ const PupilsSubNav = ({
       <OakSmallPrimaryInvertedButton
         onClick={() => onClick("primary")}
         selected={isMenuSelected("primary")}
+        aria-expanded={isMenuSelected("primary")}
+        aria-controls={`topnav-pupils-primary`}
+        aria-haspopup
       >
         Primary
       </OakSmallPrimaryInvertedButton>
       <OakSmallPrimaryInvertedButton
         onClick={() => onClick("secondary")}
         selected={isMenuSelected("secondary")}
+        aria-expanded={isMenuSelected("secondary")}
+        aria-controls={"topnav-pupils-secondary"}
+        aria-haspopup
       >
         Secondary
       </OakSmallPrimaryInvertedButton>

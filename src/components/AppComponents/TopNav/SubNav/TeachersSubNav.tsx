@@ -32,12 +32,18 @@ const TeachersSubNav = ({ onClick, isMenuSelected }: TeachersSubNavProps) => {
           <OakSmallPrimaryInvertedButton
             onClick={() => onClick("primary")}
             selected={isMenuSelected("primary")}
+            aria-expanded={isMenuSelected("primary")}
+            aria-controls={`topnav-teachers-primary`}
+            aria-haspopup
           >
             Primary
           </OakSmallPrimaryInvertedButton>
           <OakSmallPrimaryInvertedButton
             onClick={() => onClick("secondary")}
             selected={isMenuSelected("secondary")}
+            aria-expanded={isMenuSelected("secondary")}
+            aria-controls={`topnav-teachers-secondary`}
+            aria-haspopup
           >
             Secondary
           </OakSmallPrimaryInvertedButton>
@@ -50,12 +56,18 @@ const TeachersSubNav = ({ onClick, isMenuSelected }: TeachersSubNavProps) => {
           <OakSmallPrimaryInvertedButton
             onClick={() => onClick("guidance")}
             selected={isMenuSelected("guidance")}
+            aria-expanded={isMenuSelected("guidance")}
+            aria-controls={`topnav-teachers-guidance`}
+            aria-haspopup
           >
             Guidance
           </OakSmallPrimaryInvertedButton>
           <OakSmallPrimaryInvertedButton
             onClick={() => onClick("aboutUs")}
             selected={isMenuSelected("aboutUs")}
+            aria-expanded={isMenuSelected("aboutUs")}
+            aria-controls={`topnav-teachers-aboutUs`}
+            aria-haspopup
           >
             About us
           </OakSmallPrimaryInvertedButton>

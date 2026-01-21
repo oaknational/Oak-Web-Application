@@ -87,6 +87,7 @@ const TopNav = (props: TopNavProps) => {
         <TabLink
           isSelected={activeArea === "TEACHERS"}
           href={resolveOakHref({ page: "teachers-home-page" })}
+          aria-current={activeArea === "TEACHERS"}
         >
           Teachers
         </TabLink>
@@ -101,6 +102,7 @@ const TopNav = (props: TopNavProps) => {
             />
           }
           isTrailingIcon
+          aria-current={activeArea === "PUPILS"}
         >
           Pupils
         </TabLink>

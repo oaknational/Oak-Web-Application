@@ -45,6 +45,13 @@ const TeachersPhaseSection = ({
     setSelectedKeystage(defaultKeystage);
   }, [defaultKeystage]);
 
+  useEffect(() => {
+    const element = document.getElementById(
+      `topnav-teachers-keystage-${menuData.keystages[0]?.slug}-button`,
+    );
+    element?.focus();
+  }, [menuData]);
+
   const subjects =
     menuData.keystages
       .find((k) => k.slug === selectedKeystage)
@@ -62,6 +69,7 @@ const TeachersPhaseSection = ({
         $gap={"spacing-8"}
         $pa={"spacing-0"}
         $reset
+        id={`topnav-teachers-${selectedMenu}`}
       >
         {menuData.keystages.map((keystage) => (
           <OakLI key={keystage.slug}>
@@ -75,6 +83,7 @@ const TeachersPhaseSection = ({
               aria-current={
                 selectedKeystage === keystage.slug ? "true" : undefined
               }
+              id={`topnav-teachers-keystage-${keystage.slug}-button`}
             >
               {keystage.title.replace("KS", "Key stage ")}
             </OakLeftAlignedButton>
@@ -109,6 +118,14 @@ const TeachersLinksSection = ({
     aboutUs: "About us",
   };
 
+  useEffect(() => {
+    const element = document.getElementById(
+      `topnav-teachers-${menuData[0]?.slug}-link`,
+    );
+    element?.focus();
+    console.log({ element });
+  }, [menuData]);
+
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-40"}>
       <OakBox $width={"fit-content"} $position={"relative"}>
@@ -128,6 +145,7 @@ const TeachersLinksSection = ({
         $pa={"spacing-0"}
         $ma={"spacing-0"}
         style={{ listStyleType: "none" }}
+        id={`topnav-teachers-${selectedMenu}`}
       >
         {menuData.map((link) => (
           <OakLI key={link.slug}>
@@ -143,6 +161,7 @@ const TeachersLinksSection = ({
                 link.external ? `${link.title} (opens in a new tab)` : undefined
               }
               width={"spacing-160"}
+              id={`topnav-teachers-${link.slug}-link`}
             >
               {link.title}
             </OakLeftAlignedButton>
@@ -162,8 +181,20 @@ const PupilsSection = ({
 }) => {
   const menuYears = pupils[selectedMenu].years;
 
+  useEffect(() => {
+    const element = document.getElementById(
+      `topnav-pupils-${menuYears?.[0]?.slug}`,
+    );
+    element?.focus();
+  }, [menuYears]);
+
   return (
-    <OakUL $display={"flex"} $gap={"spacing-16"} $reset>
+    <OakUL
+      $display={"flex"}
+      $gap={"spacing-16"}
+      $reset
+      id={`topnav-pupils-${selectedMenu}`}
+    >
       {menuYears.map((year) => (
         <OakLI key={year.slug}>
           <OakPupilJourneyYearButton
@@ -174,6 +205,7 @@ const PupilsSection = ({
               page: "pupil-subject-index",
               yearSlug: year.slug,
             })}
+            id={`topnav-pupils-${year.slug}`}
           >
             {year.title}
           </OakPupilJourneyYearButton>
