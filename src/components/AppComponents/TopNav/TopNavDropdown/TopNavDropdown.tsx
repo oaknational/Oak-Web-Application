@@ -61,6 +61,15 @@ const TeachersPhaseSection = ({
       .find((k) => k.slug === selectedKeystage)
       ?.subjects.filter((subject) => subject.nonCurriculum) ?? undefined;
 
+  const onKeystageClick = (keystageSlug: string) => {
+    setSelectedKeystage(keystageSlug as typeof selectedKeystage);
+
+    const element = document.getElementById(
+      `topnav-teachers-subject-${subjects?.[0]?.subjectSlug}`,
+    );
+    element?.focus();
+  };
+
   return (
     <OakFlex $gap={"spacing-40"}>
       <OakUL
@@ -79,11 +88,13 @@ const TeachersPhaseSection = ({
               rightAlignIcon
               width={"spacing-160"}
               selected={selectedKeystage === keystage.slug}
-              onClick={() => setSelectedKeystage(keystage.slug)}
+              onClick={() => onKeystageClick(keystage.slug)}
               aria-current={
                 selectedKeystage === keystage.slug ? "true" : undefined
               }
               id={`topnav-teachers-keystage-${keystage.slug}-button`}
+              aria-expanded={selectedKeystage === keystage.slug}
+              aria-controls={`topnav-teachers-${keystage.slug}-subjects`}
             >
               {keystage.title.replace("KS", "Key stage ")}
             </OakLeftAlignedButton>
@@ -123,7 +134,6 @@ const TeachersLinksSection = ({
       `topnav-teachers-${menuData[0]?.slug}-link`,
     );
     element?.focus();
-    console.log({ element });
   }, [menuData]);
 
   return (

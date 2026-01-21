@@ -58,6 +58,7 @@ const TopNavSubjectButtons = ({
       $flexWrap={"wrap"}
       $gap={"spacing-16"}
       $reset
+      id={`topnav-teachers-${keyStageSlug}-subjects`}
     >
       {(subjects &&
         subjects.length > 0 &&
@@ -80,6 +81,7 @@ const TopNavSubjectButtons = ({
                   }),
                 )}
                 phase={selectedMenu as "primary" | "secondary"}
+                id={`topnav-teachers-subject-${subjectSlug}`}
               >
                 {subject.title}
               </OakSubjectIconButton>
