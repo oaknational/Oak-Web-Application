@@ -8,26 +8,256 @@ exports[`core layout renders correctly 1`] = `
         "primary": {
           "phaseSlug": "primary",
           "phaseTitle": "Primary",
-          "years": [],
+          "years": [
+            {
+              "slug": "year-1",
+              "title": "Year 1",
+            },
+            {
+              "slug": "year-2",
+              "title": "Year 2",
+            },
+            {
+              "slug": "year-3",
+              "title": "Year 3",
+            },
+            {
+              "slug": "year-4",
+              "title": "Year 4",
+            },
+            {
+              "slug": "year-5",
+              "title": "Year 5",
+            },
+            {
+              "slug": "year-6",
+              "title": "Year 6",
+            },
+          ],
         },
         "secondary": {
           "phaseSlug": "secondary",
           "phaseTitle": "Secondary",
-          "years": [],
+          "years": [
+            {
+              "slug": "year-7",
+              "title": "Year 7",
+            },
+            {
+              "slug": "year-8",
+              "title": "Year 8",
+            },
+            {
+              "slug": "year-9",
+              "title": "Year 9",
+            },
+            {
+              "slug": "year-10",
+              "title": "Year 10",
+            },
+            {
+              "slug": "year-11",
+              "title": "Year 11",
+            },
+          ],
         },
       }
     }
     teachers={
       {
-        "aboutUs": [],
-        "guidance": [],
+        "aboutUs": [
+          {
+            "slug": "about-who-we-are",
+            "title": "Who we are",
+          },
+          {
+            "slug": "about-board",
+            "title": "Board",
+          },
+          {
+            "slug": "about-work-with-us",
+            "title": "Work with us",
+          },
+          {
+            "slug": "about-leadership",
+            "title": "Leadership",
+          },
+          {
+            "slug": "about-partners",
+            "title": "Partners",
+          },
+          {
+            "slug": "contact",
+            "title": "Contact us",
+          },
+        ],
+        "guidance": [
+          {
+            "slug": "lesson-planning",
+            "title": "Plan a lesson",
+          },
+          {
+            "slug": "blog-index",
+            "title": "Blogs",
+          },
+          {
+            "external": true,
+            "slug": "help",
+            "title": "Help",
+          },
+          {
+            "slug": "support-your-team",
+            "title": "Support your team",
+          },
+          {
+            "slug": "webinar-index",
+            "title": "Webinars",
+          },
+        ],
         "primary": {
-          "keystages": [],
+          "keystages": [
+            {
+              "slug": "ks1",
+              "subjects": [
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 2,
+                  "programmeSlug": null,
+                  "subjectSlug": "art",
+                  "title": "Art and design",
+                },
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 1,
+                  "programmeSlug": "computing-primary-ks1",
+                  "subjectSlug": "computing",
+                  "title": "Computing",
+                },
+                {
+                  "nonCurriculum": true,
+                  "programmeCount": 1,
+                  "programmeSlug": "financial-education-primary-ks1",
+                  "subjectSlug": "financial-education",
+                  "title": "Financial education",
+                },
+              ],
+              "title": "KS1",
+            },
+            {
+              "slug": "ks2",
+              "subjects": [
+                {
+                  "nonCurriculum": true,
+                  "programmeCount": 1,
+                  "programmeSlug": "financial-education-primary-ks2",
+                  "subjectSlug": "financial-education",
+                  "title": "Financial education",
+                },
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 2,
+                  "programmeSlug": null,
+                  "subjectSlug": "art",
+                  "title": "Art and design",
+                },
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 2,
+                  "programmeSlug": null,
+                  "subjectSlug": "computing",
+                  "title": "Computing",
+                },
+              ],
+              "title": "KS2",
+            },
+            {
+              "slug": "early-years-foundation-stage",
+              "subjects": [
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 1,
+                  "programmeSlug": "expressive-arts-and-design-foundation-early-years-foundation-stage-l",
+                  "subjectSlug": "expressive-arts-and-design",
+                  "title": "Expressive arts and design",
+                },
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 1,
+                  "programmeSlug": "literacy-foundation-early-years-foundation-stage-l",
+                  "subjectSlug": "literacy",
+                  "title": "Literacy",
+                },
+              ],
+              "title": "EYFS",
+            },
+          ],
           "phaseSlug": "primary",
           "phaseTitle": "Primary",
         },
         "secondary": {
-          "keystages": [],
+          "keystages": [
+            {
+              "slug": "ks3",
+              "subjects": [
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 2,
+                  "programmeSlug": null,
+                  "subjectSlug": "art",
+                  "title": "Art and design",
+                },
+                {
+                  "nonCurriculum": true,
+                  "programmeCount": 1,
+                  "programmeSlug": "financial-education-secondary-ks3",
+                  "subjectSlug": "financial-education",
+                  "title": "Financial education",
+                },
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 2,
+                  "programmeSlug": null,
+                  "subjectSlug": "citizenship",
+                  "title": "Citizenship",
+                },
+              ],
+              "title": "KS3",
+            },
+            {
+              "slug": "ks4",
+              "subjects": [
+                {
+                  "nonCurriculum": true,
+                  "programmeCount": 1,
+                  "programmeSlug": "financial-education-secondary-ks4",
+                  "subjectSlug": "financial-education",
+                  "title": "Financial education",
+                },
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 1,
+                  "programmeSlug": "physical-education-secondary-ks4-core",
+                  "subjectSlug": "physical-education",
+                  "title": "Physical education (Core)",
+                },
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 3,
+                  "programmeSlug": null,
+                  "subjectSlug": "physical-education",
+                  "title": "Physical education (GCSE)",
+                },
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 3,
+                  "programmeSlug": null,
+                  "subjectSlug": "spanish",
+                  "title": "Spanish",
+                },
+              ],
+              "title": "KS4",
+            },
+          ],
           "phaseSlug": "secondary",
           "phaseTitle": "Secondary",
         },

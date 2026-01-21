@@ -368,7 +368,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 href="/timetabling/maths-primary/units/test-1?mode=debug&year=1"
                 style="text-decoration: underline;"
               >
-                📦
+                📦 
                 Test 1
               </a>
               <ul />
@@ -378,7 +378,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 href="/timetabling/maths-primary/units/test-2?mode=debug&year=1"
                 style="text-decoration: underline;"
               >
-                📦
+                📦 
                 Test 2
               </a>
               <ul />
