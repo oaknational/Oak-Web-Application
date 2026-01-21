@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`core layout renders correctly 1`] = `
+<React.Fragment>
+  <TopNav
+    pupils={
+      {
+        "primary": {
+          "phaseSlug": "primary",
+          "phaseTitle": "Primary",
+          "years": [],
+        },
+        "secondary": {
+          "phaseSlug": "secondary",
+          "phaseTitle": "Secondary",
+          "years": [],
+        },
+      }
+    }
+    teachers={
+      {
+        "aboutUs": [],
+        "guidance": [],
+        "primary": {
+          "keystages": [],
+          "phaseSlug": "primary",
+          "phaseTitle": "Primary",
+        },
+        "secondary": {
+          "keystages": [],
+          "phaseSlug": "secondary",
+          "phaseTitle": "Secondary",
+        },
+      }
+    }
+  />
+  <main
+    id="main"
+  >
+    <styled.div>
+      children
+    </styled.div>
+  </main>
+  <LayoutSiteFooter />
+</React.Fragment>
+`;

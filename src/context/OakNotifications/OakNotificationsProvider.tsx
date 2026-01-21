@@ -38,7 +38,7 @@ export const OakNotificationsProvider: FC<{
 
   const [offsetTop, setOffsetTop] = useState<number>(82);
   const [id, setId] = useState(0);
-  const pathName = usePathname();
+  const path = usePathname();
 
   const newTopNavEnabled = useFeatureFlagEnabled("teachers-new-top-nav");
 
@@ -76,7 +76,7 @@ export const OakNotificationsProvider: FC<{
       clearTimeout(timeOut);
       observer?.disconnect();
     };
-  }, [pathName, newTopNavEnabled]);
+  }, [path, newTopNavEnabled]);
 
   const setToastPropsAndId = (props: OakToastProps | null) => {
     setId((prevId) => prevId + 1);

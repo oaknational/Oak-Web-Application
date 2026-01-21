@@ -1,26 +1,123 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
+import { Metadata } from "next";
+import React, { cache } from "react";
+import { uniq } from "lodash";
 
 import { ProgrammeView } from "./Components/ProgrammeView";
+import { getProgrammeData } from "./getProgrammeData";
 
 import {
   getKs4RedirectSlug,
   isValidSubjectPhaseSlug,
-  parseSubjectPhaseSlug,
 } from "@/utils/curriculum/slugs";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import CMSClient from "@/node-lib/cms";
+import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import { useFeatureFlag } from "@/utils/featureFlags";
-import {
-  formatCurriculumUnitsData,
-  fetchSubjectPhasePickerData,
-} from "@/pages-helpers/curriculum/docx/tab-helpers";
+import errorReporter from "@/common-lib/error-reporter";
 
-const ProgrammePage = async ({
-  params,
-}: {
+// TD: [integrated journey] get revalidate from env somehow
+export const revalidate = 7200;
+
+const reportError = errorReporter("ProgrammePage.tsx");
+
+// Single cached function to fetch all common programme data
+// This deduplicates requests between generateMetadata and page component
+const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) => {
+  return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
+});
+
+type ProgrammePageProps = {
   params: Promise<{ subjectPhaseSlug: string }>;
-}) => {
+};
+
+export async function generateMetadata({
+  params,
+}: ProgrammePageProps): Promise<Metadata> {
+  const { subjectPhaseSlug } = await params;
+
+  try {
+    const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
+    if (!cachedData) {
+      return {};
+    }
+
+    const {
+      programmeUnitsData,
+      curriculumUnitsData,
+      curriculumPhaseOptions,
+      subjectPhaseKeystageSlugs,
+    } = cachedData;
+
+    const curriculumUnitsFormattedData =
+      formatCurriculumUnitsData(curriculumUnitsData);
+
+    // Extract keyStages from yearData
+    const keyStages = uniq(
+      Object.values(curriculumUnitsFormattedData.yearData).flatMap(
+        ({ units }) => units.map((unit) => unit.keystage_slug),
+      ),
+    );
+    const ks4Options =
+      curriculumPhaseOptions.subjects.find(
+        (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
+      )?.ks4_options ?? [];
+    const ks4Option = ks4Options.find(
+      (ks4opt) => ks4opt.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
+    );
+
+    const title = buildCurriculumMetadata({
+      metadataType: "title",
+      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
+      subjectTitle: programmeUnitsData.subjectTitle,
+      ks4OptionSlug: ks4Option?.slug ?? null,
+      ks4OptionTitle: ks4Option?.title ?? null,
+      keyStages: keyStages,
+      tab: "units",
+    });
+    const description = buildCurriculumMetadata({
+      metadataType: "description",
+      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
+      subjectTitle: programmeUnitsData.subjectTitle,
+      ks4OptionSlug: ks4Option?.slug ?? null,
+      ks4OptionTitle: ks4Option?.title ?? null,
+      keyStages: keyStages,
+      tab: "units",
+    });
+    const canonicalURL = new URL(
+      `/programmes/${subjectPhaseSlug}`,
+      getBrowserConfig("seoAppUrl"),
+    ).toString();
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: canonicalURL,
+      },
+      openGraph: getOpenGraphMetadata({
+        title,
+        description,
+      }),
+      twitter: getTwitterMetadata({
+        title,
+        description,
+      }),
+    };
+  } catch (error) {
+    reportError(error);
+    // Return and fallback to layout metadata
+    return {};
+  }
+}
+
+const ProgrammePage = async ({ params }: ProgrammePageProps) => {
+  // `useFeatureFlag` is not a hook
+  //NOSONAR
   const isEnabled = await useFeatureFlag(
     "teachers-integrated-journey",
     "boolean",
@@ -28,11 +125,22 @@ const ProgrammePage = async ({
   try {
     const { subjectPhaseSlug } = await params;
 
-    const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
-
-    if (!subjectPhaseKeystageSlugs || !isEnabled) {
+    if (!isEnabled) {
       return notFound();
     }
+
+    const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
+
+    if (!cachedData) {
+      return notFound();
+    }
+
+    const {
+      programmeUnitsData,
+      curriculumUnitsData,
+      curriculumPhaseOptions,
+      subjectPhaseKeystageSlugs,
+    } = cachedData;
 
     const validSubjectPhases = await curriculumApi2023.curriculumPhaseOptions();
     const isValid = isValidSubjectPhaseSlug(
@@ -59,10 +167,6 @@ const ProgrammePage = async ({
       }
     }
 
-    const programmeUnitsData = await curriculumApi2023.curriculumOverview({
-      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
-      phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-    });
     const curriculumOverviewSanityData = await CMSClient.curriculumOverviewPage(
       {
         previewMode: false, // TD: [integrated-journey] preview mode
@@ -75,26 +179,8 @@ const ProgrammePage = async ({
       return notFound();
     }
 
-    const curriculumUnitsData = await curriculumApi2023.curriculumSequence(
-      subjectPhaseKeystageSlugs,
-    );
-    // Sort the units to have examboard versions first - this is so non-examboard units are removed
-    // in the visualiser
-
-    curriculumUnitsData.units.sort((a) => {
-      if (a.examboard) {
-        return -1;
-      }
-      return 1;
-    });
-
-    // Sort by unit order
-    curriculumUnitsData.units.sort((a, b) => a.order - b.order);
-
     const curriculumUnitsFormattedData =
       formatCurriculumUnitsData(curriculumUnitsData);
-
-    const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
 
     const results = {
       curriculumSelectionSlugs: subjectPhaseKeystageSlugs,

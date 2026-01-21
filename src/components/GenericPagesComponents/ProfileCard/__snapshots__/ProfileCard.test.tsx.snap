@@ -4,7 +4,7 @@ exports[`ProfileCard renders correctly with image 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-kAyceB ekdrjj FywIr"
+      class="sc-fqkvVR sc-kAyceB cGaTOt FywIr"
     >
       <div
         class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
@@ -75,7 +75,7 @@ exports[`ProfileCard renders correctly without image 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-kAyceB ekdrjj FywIr"
+      class="sc-fqkvVR sc-kAyceB cGaTOt FywIr"
     >
       <div
         class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
