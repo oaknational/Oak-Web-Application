@@ -1,3 +1,10 @@
+## [1.959.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.959.0...v1.959.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* update search filters bg on mobile ([72a19ea](https://github.com/oaknational/Oak-Web-Application/commit/72a19ea9c6d8ef03a2da98cec327f46befff03fc))
+
 # [1.959.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.958.0...v1.959.0) (2026-01-20)
 
 
