@@ -286,6 +286,7 @@ const PupilExperienceLayout = ({
               onAccept={handleContentGuidanceAccept}
               onDecline={handleContentGuidanceDecline}
               title={getAgeRestrictionString(ageRestriction)}
+              declineText={isClassroomAssignment ? "Exit lesson" : undefined}
               contentGuidance={
                 lessonContent.contentGuidance
                   ? lessonContent.contentGuidance
@@ -311,6 +312,7 @@ const PupilExperienceLayout = ({
               onDecline={handleContentGuidanceDecline}
               contentGuidance={lessonContent.contentGuidance}
               supervisionLevel={lessonContent.supervisionLevel}
+              declineText={isClassroomAssignment ? "Exit lesson" : undefined}
             />
           )}
 
