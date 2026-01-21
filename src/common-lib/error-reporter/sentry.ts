@@ -16,9 +16,9 @@ type Logger = Pick<typeof console, "log" | "warn" | "error">;
  *
  * @param logger - logger instance to use (default: `console`)
  */
-const getSentryBeforeSend = (
-  { logger }: { logger: Logger } = { logger: console },
-) => {
+const getSentryBeforeSend = ({
+  logger = console,
+}: { logger?: Logger } = {}) => {
   return (event: ErrorEvent) => {
     const userAgent = event.request?.headers?.["User-Agent"];
     if (userAgent && matchesUserAgent(userAgent)) {
