@@ -141,7 +141,7 @@ const TopNav = (props: TopNavProps) => {
                 console.log("selected menu ", teachers[menu]);
               }}
             />
-            <TeachersTopNavHamburger {...props} />
+            <TeachersTopNavHamburger {...teachers} />
           </>
         )}
         {activeArea === "PUPILS" && pupils && (

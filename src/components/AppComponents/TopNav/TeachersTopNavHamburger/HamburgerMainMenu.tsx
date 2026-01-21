@@ -11,18 +11,19 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
-import { TopNavProps } from "../TopNav";
-
 import {
   getEYFSAriaLabel,
   SubmenuState,
   useHamburgerMenu,
 } from "./TeachersTopNavHamburger";
 
-import { TeachersBrowse } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import {
+  TeachersBrowse,
+  TeachersSubNavData,
+} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 
-export function MainMenuContent(props: Readonly<TopNavProps>) {
+export function MainMenuContent(props: Readonly<TeachersSubNavData>) {
   const { submenuOpen, prevSubmenu } = useHamburgerMenu();
   useEffect(() => {
     if (prevSubmenu) {
@@ -31,7 +32,6 @@ export function MainMenuContent(props: Readonly<TopNavProps>) {
     }
   }, [submenuOpen, prevSubmenu]);
 
-  if (!props.teachers) return;
   return (
     <OakUL
       $display={"flex"}
@@ -39,8 +39,8 @@ export function MainMenuContent(props: Readonly<TopNavProps>) {
       $pa={"spacing-40"}
       $gap={"spacing-40"}
     >
-      <SubjectsSection {...props.teachers?.primary} />
-      <SubjectsSection {...props.teachers?.secondary} />
+      <SubjectsSection {...props.primary} />
+      <SubjectsSection {...props.secondary} />
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <MainMenuLink
           href={resolveOakHref({

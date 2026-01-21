@@ -14,10 +14,10 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 
-import { TopNavProps } from "../TopNav";
-
 import { MainMenuContent } from "./HamburgerMainMenu";
 import { SubmenuContent } from "./HamburgerSubMenu";
+
+import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export type SubmenuState =
   | "KS1"
@@ -27,7 +27,7 @@ export type SubmenuState =
   | "KS4"
   | "About us"
   | "Guidance"
-  | false;
+  | null;
 
 type HamburgerMenuContextType = {
   submenuOpen: SubmenuState;
@@ -56,26 +56,26 @@ export const getEYFSAriaLabel = (title: SubmenuState) => {
   return isEYFS ? "Early years foundation stage" : undefined;
 };
 
-export function TeachersTopNavHamburger(props: Readonly<TopNavProps>) {
+export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
   const [isOpen, setIsOpen] = useState(false);
-  const [submenuOpen, setSubmenuOpen] = useState<SubmenuState>(false);
-  const [prevSubmenu, setPrevSubmenu] = useState<SubmenuState>(false);
+  const [submenuOpen, setSubmenuOpen] = useState<SubmenuState>(null);
+  const [prevSubmenu, setPrevSubmenu] = useState<SubmenuState>(null);
 
   const handleOpen = useCallback(() => {
     setIsOpen(true);
-    setSubmenuOpen(false);
+    setSubmenuOpen(null);
   }, [setIsOpen, setSubmenuOpen]);
 
   const handleClose = useCallback(() => {
-    setSubmenuOpen(false);
-    setPrevSubmenu(false);
+    setSubmenuOpen(null);
+    setPrevSubmenu(null);
     setIsOpen(false);
   }, [setSubmenuOpen, setPrevSubmenu, setIsOpen]);
 
   const handleCloseSubmenu = useCallback(() => {
     const prevState = submenuOpen;
     setPrevSubmenu(prevState);
-    setSubmenuOpen(false);
+    setSubmenuOpen(null);
   }, [submenuOpen, setPrevSubmenu, setSubmenuOpen]);
 
   const contextValue = useMemo(
@@ -111,13 +111,13 @@ export function TeachersTopNavHamburger(props: Readonly<TopNavProps>) {
   );
 }
 
-function Content(props: Readonly<TopNavProps>) {
+function Content(props: Readonly<TeachersSubNavData>) {
   const { submenuOpen } = useHamburgerMenu();
-  if (!props.teachers) return;
+
   return (
     <OakBox $width={"100%"} $height={"100%"}>
       {submenuOpen ? (
-        <SubmenuContent {...props.teachers} />
+        <SubmenuContent {...props} />
       ) : (
         <MainMenuContent {...props} />
       )}

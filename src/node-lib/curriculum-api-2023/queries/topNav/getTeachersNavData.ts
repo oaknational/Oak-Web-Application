@@ -87,7 +87,6 @@ const getKeystages = (
           return {
             subjectSlug: p.programme_fields.subject_slug,
             title,
-            description: ks.description,
             nonCurriculum: Boolean(p.features.non_curriculum),
             programmeSlug: programmeCount > 1 ? null : p.programme_slug,
             programmeCount,
