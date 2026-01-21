@@ -19,9 +19,9 @@ import {
   LessonEngineContext,
   LessonEngineContextType,
 } from "@/components/PupilComponents/LessonEngineProvider";
-import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { invariant } from "@/utils/invariant";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const usePupilAnalyticsMock = {
   track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
@@ -238,8 +238,10 @@ describe("QuizEngineContext", () => {
         "multiple-choice"
       ]?.filter((answer) => answer.answerIsCorrect);
 
+      if (!pupilAnswers) throw new Error("No pupil answers");
+
       act(() => {
-        handleSubmitMCAnswer(pupilAnswers);
+        handleSubmitMCAnswer(pupilAnswers as MCAnswer[]);
       });
 
       const { questionState } = result.current;

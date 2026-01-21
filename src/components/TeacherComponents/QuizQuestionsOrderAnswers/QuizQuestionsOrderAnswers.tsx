@@ -9,6 +9,7 @@ import {
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { OrderAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { Stem } from "@/components/SharedComponents/Stem";
 
 export const QuizQuestionsOrderAnswers = ({
   answers,
@@ -56,14 +57,15 @@ export const QuizQuestionsOrderAnswers = ({
               <OakTypography $font={["body-2-bold", "body-1-bold"]} aria-hidden>
                 {item.correctOrder}
               </OakTypography>
-              <OakTypography $font={["body-2", "body-1"]} aria-hidden>
-                -{" "}
-                <OakCodeRenderer
-                  string={removeMarkdown(orderAnswer.text)}
-                  $font={"code-3"}
-                  $mt={"spacing-0"}
-                />
-              </OakTypography>
+
+              <OakFlex
+                $font={["body-2", "body-1"]}
+                aria-hidden
+                $alignItems={"center"}
+                $gap={"spacing-8"}
+              >
+                <Stem stem={orderAnswer} />
+              </OakFlex>
             </OakFlex>
           )
         );

@@ -3,10 +3,10 @@ import { pickAnswerComponent } from "./pickAnswerComponent";
 import { QuizMCQMultiAnswer } from "@/components/PupilComponents/QuizMCQMultiAnswer";
 import { QuizMCQSingleAnswer } from "@/components/PupilComponents/QuizMCQSingleAnswer";
 import { QuizShortAnswer } from "@/components/PupilComponents/QuizShortAnswer";
-import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 describe("pickAnswerComponent", () => {
-  const multiAnswer: QuizQuestionAnswers = {
+  const multiAnswer: AnswersSchema = {
     "multiple-choice": [
       {
         answerIsCorrect: true,
@@ -15,9 +15,9 @@ describe("pickAnswerComponent", () => {
         answerIsCorrect: true,
       },
     ],
-  } as QuizQuestionAnswers;
+  } as AnswersSchema;
 
-  const singleAnswer: QuizQuestionAnswers = {
+  const singleAnswer: AnswersSchema = {
     "multiple-choice": [
       {
         answerIsCorrect: true,
@@ -26,11 +26,11 @@ describe("pickAnswerComponent", () => {
         answerIsCorrect: false,
       },
     ],
-  } as QuizQuestionAnswers;
+  } as AnswersSchema;
 
-  const shortAnswer: QuizQuestionAnswers = {
+  const shortAnswer: AnswersSchema = {
     "short-answer": [{}],
-  } as QuizQuestionAnswers;
+  } as AnswersSchema;
 
   describe("pickAnswerComponent", () => {
     it("should return QuizMCQMultiAnswer if isMultiAnswerMCQ is true", () => {

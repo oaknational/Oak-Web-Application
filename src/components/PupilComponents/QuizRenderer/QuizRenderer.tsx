@@ -3,11 +3,10 @@ import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import { QuizAttribution } from "../QuizAttribution/QuizAttribution";
 
-import type { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type QuizRenderProps = {
   formId: string;
@@ -119,19 +118,17 @@ export const QuizRenderer = (props: QuizRenderProps) => {
         $height={"100%"}
       >
         <OakFlex $flexDirection={"column"} $gap={"spacing-24"} $height={"100%"}>
-          <MathJaxWrap>
-            {questionStem && (
-              <QuizQuestionStem
-                questionUid={currentQuestionData.questionUid}
-                questionStem={questionStem}
-                index={currentQuestionIndex}
-                takeFullHeight={
-                  currentQuestionData?.questionType === "explanatory-text"
-                }
-              />
-            )}
-            {answerRender}
-          </MathJaxWrap>
+          {questionStem && (
+            <QuizQuestionStem
+              questionUid={currentQuestionData.questionUid}
+              questionStem={questionStem}
+              index={currentQuestionIndex}
+              takeFullHeight={
+                currentQuestionData?.questionType === "explanatory-text"
+              }
+            />
+          )}
+          {answerRender}
           <QuizAttribution questionData={currentQuestionData} />
         </OakFlex>
       </OakBox>

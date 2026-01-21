@@ -21,6 +21,7 @@ import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { PupilViewsResults } from "@/components/PupilViews/PupilResults";
 import { useOakPupil } from "@/hooks/useOakPupil";
 import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
+import { convertQuestionMathIdentity } from "@/pages-helpers/shared/lesson-pages/quizMathjax";
 
 export type CanonicalResultsPrintablePageProps = {
   browseData: LessonBrowseData;
@@ -125,7 +126,11 @@ export const getStaticProps: GetStaticProps<
         {
           props: {
             browseData,
-            content,
+            content: {
+              ...content,
+              starterQuiz: convertQuestionMathIdentity(content.starterQuiz),
+              exitQuiz: convertQuestionMathIdentity(content.exitQuiz),
+            },
             attemptId,
           },
         };

@@ -1,10 +1,7 @@
 import React from "react";
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import styled from "styled-components";
-import {
-  MissingComponentHandler,
-  PortableTextComponents,
-} from "@portabletext/react";
+import { PortableTextComponents } from "@portabletext/react";
 import {
   OakHeading,
   OakP,
@@ -24,23 +21,13 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { logMissingPortableTextComponents } from "@/utils/portableText";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type ContactPageProps = {
   pageData: ContactPage;
   topNav: TopNavProps;
-};
-
-// @TODO: extract
-const logMissingPortableTextComponents: MissingComponentHandler = (
-  message,
-  options,
-) => {
-  console.log(message, {
-    type: options.type,
-    nodeType: options.nodeType,
-  });
 };
 
 const BodyHeading = styled(OakHeading)`

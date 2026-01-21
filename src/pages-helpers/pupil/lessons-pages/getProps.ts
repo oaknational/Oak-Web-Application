@@ -15,6 +15,7 @@ import {
 } from "@/components/PupilViews/PupilExperience";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { invariant } from "@/utils/invariant";
+import { convertQuestionMathIdentity } from "@/pages-helpers/shared/lesson-pages/quizMathjax";
 
 export type PupilLessonPageURLParams = {
   lessonSlug: string;
@@ -138,6 +139,8 @@ export const getProps = ({
         lessonContent: {
           ...content,
           transcriptSentences: transcriptSentences ?? [],
+          starterQuiz: convertQuestionMathIdentity(content.starterQuiz),
+          exitQuiz: convertQuestionMathIdentity(content.exitQuiz),
         },
         browseData,
         hasWorksheet: !!content.hasWorksheetAssetObject,
