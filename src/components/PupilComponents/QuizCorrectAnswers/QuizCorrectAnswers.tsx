@@ -22,7 +22,7 @@ export const QuizCorrectAnswers = () => {
         return (
           "Correct answers: " +
           currentQuestionState.correctAnswer
-            .filter((answer) => isString(answer))
+            .filter((answer) => isString(answer) && answer?.trim() !== "")
             .join(", ")
         );
       case currentQuestionState &&
