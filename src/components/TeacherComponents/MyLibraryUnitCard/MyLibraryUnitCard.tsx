@@ -24,22 +24,6 @@ const StyledOakLI = styled(OakLI)`
   }
 `;
 
-const LessonLink = styled(OakSecondaryLink)`
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const UnitLink = styled(OakSecondaryLink)`
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
 const getLastSavedText = (date: string) => {
   const dateObj = new Date(date);
   const isToday = dateObj.toDateString() === new Date().toDateString();
@@ -79,7 +63,7 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
             {superTitle}
           </OakP>
         )}
-        <UnitLink
+        <OakSecondaryLink
           href={resolveOakHref({
             page: "lesson-index",
             programmeSlug: props.programmeSlug,
@@ -94,7 +78,7 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
           >
             {mainTitle}
           </OakHeading>
-        </UnitLink>
+        </OakSecondaryLink>
         <OakP $color={"text-subdued"} $font={"body-2"}>
           {year}
           <OakSpan $ph={"spacing-8"}>•</OakSpan>
@@ -179,9 +163,9 @@ const UnitCardContent = ({
                         {i + 1}.{" "}
                       </OakP>
                       {lesson.state === "published" ? (
-                        <LessonLink $font={"heading-light-7"} href={href}>
+                        <OakSecondaryLink href={href}>
                           {lesson.title}
-                        </LessonLink>
+                        </OakSecondaryLink>
                       ) : (
                         <OakP $color={"text-disabled"}>{lesson.title}</OakP>
                       )}

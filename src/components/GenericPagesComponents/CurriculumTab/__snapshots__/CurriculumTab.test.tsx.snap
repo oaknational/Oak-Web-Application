@@ -846,8 +846,8 @@ exports[`CurriculumTab renders 1`] = `
   font: inherit;
   background: none;
   border: none;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+  -webkit-text-decoration: none;
+  text-decoration: none;
   cursor: pointer;
   color: #222222;
 }
@@ -1365,6 +1365,8 @@ exports[`CurriculumTab renders 1`] = `
   .c21:hover,
   .c21:visited:hover {
     color: #222222;
+    -webkit-text-decoration: underline;
+    text-decoration: underline;
   }
 }
 

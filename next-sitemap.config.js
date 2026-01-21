@@ -63,6 +63,7 @@ module.exports = {
     "/people-and-partners",
     "/contact",
     "/about-us/get-involved",
+    "/about-us/meet-the-team",
   ].concat(
     // Exclude dynamically created sitemaps
     shouldSkipInitialBuild ? serversideSitemapPaths : [],
