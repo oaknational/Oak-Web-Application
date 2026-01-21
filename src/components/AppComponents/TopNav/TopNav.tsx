@@ -66,6 +66,25 @@ const TopNav = (props: TopNavProps) => {
     }
   }, [teachers, pupils, activeArea, setCurrentBannerProps]);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!selectedMenu) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setSelectedMenu(undefined);
+      }
+    };
+
+    if (selectedMenu) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedMenu]);
+
   return (
     <OakBox as="header" $position="relative" data-testid="app-topnav">
       <OakBox
