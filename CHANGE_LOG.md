@@ -1,3 +1,10 @@
+# [1.961.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.960.0...v1.961.0) (2026-01-22)
+
+
+### Features
+
+* added <MeetTheTeamContainer/> component ([8bdd5d4](https://github.com/oaknational/Oak-Web-Application/commit/8bdd5d4fb88850983cd401f35f30580373d465b5))
+
 # [1.960.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.959.2...v1.960.0) (2026-01-21)
 
 
