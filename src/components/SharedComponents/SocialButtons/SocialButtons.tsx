@@ -1,11 +1,11 @@
 import { FC, useId } from "react";
-import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
-
-import { PixelSpacing } from "@/styles/theme";
-import { ResponsiveValues } from "@/styles/utils/responsive";
-import { ButtonSize } from "@/components/SharedComponents/Button/common";
-import { IconName } from "@/components/SharedComponents/Icon.deprecated";
-import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
+import {
+  OakFlex,
+  OakFlexProps,
+  OakIconName,
+  OakTertiaryInvertedButton,
+} from "@oaknational/oak-components";
+import styled from "styled-components";
 
 export const OAK_SOCIALS: Record<SocialNetwork, string> = {
   instagram: "oaknational",
@@ -31,16 +31,16 @@ const SOCIAL_NETWORKS = ["instagram", "facebook", "x", "linkedIn"] as const;
 type SocialNetwork = (typeof SOCIAL_NETWORKS)[number];
 type SocialButtonConfig = {
   label: string;
-  icon: IconName;
+  icon: OakIconName;
 };
 const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
   instagram: {
     label: "instagram",
-    icon: "instagram-v2",
+    icon: "instagram",
   },
   facebook: {
     label: "facebook",
-    icon: "facebook-v2",
+    icon: "facebook",
   },
   x: {
     label: "x",
@@ -48,7 +48,7 @@ const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
   },
   linkedIn: {
     label: "linkedIn",
-    icon: "linkedin-v2",
+    icon: "linkedin",
   },
 } as const;
 
@@ -62,16 +62,16 @@ type SocialButtonsProps = OakFlexProps &
      * @example Joan Baez
      */
     for: string;
-    size?: ButtonSize;
-    spaceBetween?: ResponsiveValues<PixelSpacing>;
   };
+
+const StyledIconButton = styled(OakTertiaryInvertedButton)`
+  .icon-container > *:first-child {
+    border: 0;
+  }
+`;
+
 const SocialButtons: FC<SocialButtonsProps> = (props) => {
-  props = {
-    size: "large",
-    spaceBetween: 16,
-    ...props,
-  };
-  const { size, spaceBetween, for: accountHolder, ...flexProps } = props;
+  const { for: accountHolder, ...flexProps } = props;
   const id = useId();
   const socialsToShow = SOCIAL_NETWORKS.filter((network) => props[network]);
 
@@ -80,7 +80,12 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
   }
 
   return (
-    <OakFlex $alignItems={"center"} $justifyContent={"center"} {...flexProps}>
+    <OakFlex
+      $alignItems={"center"}
+      $justifyContent={"center"}
+      $gap={"spacing-16"}
+      {...flexProps}
+    >
       {socialsToShow.map((network) => {
         const { label, icon } = SOCIAL_BUTTON_CONFIGS[network];
         const profile = props[network];
@@ -92,15 +97,12 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
           return null;
         }
         return (
-          <IconButtonAsLink
+          <StyledIconButton
+            iconName={icon}
+            element="a"
+            href={href}
             key={`SocialButtons-${id}-${network}`}
             aria-label={`${label} for ${accountHolder}`}
-            icon={icon}
-            href={href}
-            page={null}
-            variant={"minimal"}
-            $mr={spaceBetween}
-            size={size}
           />
         );
       })}

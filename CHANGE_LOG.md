@@ -1,3 +1,86 @@
+# [1.961.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.960.0...v1.961.0) (2026-01-22)
+
+
+### Features
+
+* added <MeetTheTeamContainer/> component ([8bdd5d4](https://github.com/oaknational/Oak-Web-Application/commit/8bdd5d4fb88850983cd401f35f30580373d465b5))
+
+# [1.960.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.959.2...v1.960.0) (2026-01-21)
+
+
+### Bug Fixes
+
+* add role back to link and change label to icon alt text ([c93da79](https://github.com/oaknational/Oak-Web-Application/commit/c93da799a040c641ed479d6d27e0f04ca923dcbc))
+
+
+### Features
+
+* add social button ([e4c826b](https://github.com/oaknational/Oak-Web-Application/commit/e4c826b16fca9b391fd6184a88f0415dfec60814))
+* add spacing tokens and aria-disabled ([0fd7aa5](https://github.com/oaknational/Oak-Web-Application/commit/0fd7aa5de9f1b3fef3dbe8e8a4a6aac1281e44a3))
+* update button to link ([81efa6d](https://github.com/oaknational/Oak-Web-Application/commit/81efa6dc58e3b4e3a288a3e76297c25330c0e7e7))
+
+## [1.959.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.959.1...v1.959.2) (2026-01-21)
+
+## [1.959.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.959.0...v1.959.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* update search filters bg on mobile ([72a19ea](https://github.com/oaknational/Oak-Web-Application/commit/72a19ea9c6d8ef03a2da98cec327f46befff03fc))
+
+# [1.959.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.958.0...v1.959.0) (2026-01-20)
+
+
+### Bug Fixes
+
+* add OakNotificationsProvider ([fbdb9a5](https://github.com/oaknational/Oak-Web-Application/commit/fbdb9a5c2781715b881a00cb568a1a8c53cf274b))
+* ensure links open in a new tab when they should ([600214a](https://github.com/oaknational/Oak-Web-Application/commit/600214a13fa4bbcab1ce25b1165d2ede7540b546))
+* use correct url for help page ([01a409f](https://github.com/oaknational/Oak-Web-Application/commit/01a409f425fcbf6eb41394fc06b8cdc0a76eeff7))
+
+
+### Features
+
+* replace useRouter with usePathname ([d96a86e](https://github.com/oaknational/Oak-Web-Application/commit/d96a86e3de012baf75a5292e4a885fb673466eb3))
+* update links in footer ([06b4075](https://github.com/oaknational/Oak-Web-Application/commit/06b4075cd92be2a0e404929ff3768cb4d2e81954))
+* update social buttons to be compatible with new theme ([579e705](https://github.com/oaknational/Oak-Web-Application/commit/579e705bd1a3184e334d7557c658c2190ad8b2be))
+* use OakImage for logo in footer ([f6dca61](https://github.com/oaknational/Oak-Web-Application/commit/f6dca6179affa9fc82e97808537b60e45200056a))
+
+# [1.958.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.957.0...v1.958.0) (2026-01-20)
+
+
+### Features
+
+* **LESQ-1700:** add metadata to app router layout and programmes page ([74bff96](https://github.com/oaknational/Oak-Web-Application/commit/74bff9626292b2969c0b484450d7fbd9cfc0cf8d))
+
+# [1.957.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.956.0...v1.957.0) (2026-01-20)
+
+
+### Bug Fixes
+
+* auto merge mishap with snapshots ([5d050b9](https://github.com/oaknational/Oak-Web-Application/commit/5d050b900f765636673326b1cb369359c39cce3e))
+
+
+### Features
+
+* replace secondary links with primary in curiculum explainer ([31cbda7](https://github.com/oaknational/Oak-Web-Application/commit/31cbda74cd5614ea4af1f0a9e92d0e4a4f85a144))
+
+# [1.956.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.955.0...v1.956.0) (2026-01-20)
+
+
+### Bug Fixes
+
+* exclude /about-us/meet-the-team from sitemap for now ([dff3ce9](https://github.com/oaknational/Oak-Web-Application/commit/dff3ce9ebe73169b0777a45e268d573cf1c6c39b))
+* more mock data fixes ([7807de1](https://github.com/oaknational/Oak-Web-Application/commit/7807de1c2dc6f5586824bb0dbbac42e4914700d0))
+* move mock data into correct place in codebase (fixes build issue) ([5aea756](https://github.com/oaknational/Oak-Web-Application/commit/5aea75698f7f323f6f3f5eb3cc591c6e257227d5))
+* storybook story name ([c2f2633](https://github.com/oaknational/Oak-Web-Application/commit/c2f263312a51b71ee4c6a0bd96e8e5a6a1a308ac))
+* use non-index for react keys ([62e710d](https://github.com/oaknational/Oak-Web-Application/commit/62e710db9b7f6a65db8556760da136be5d2eef4f))
+
+
+### Features
+
+* extracted out <MeetTheTeamContainer/> + more meet-the-team styling ([01b9cb8](https://github.com/oaknational/Oak-Web-Application/commit/01b9cb8809b2ee825f1ad3ac6869f37114b2f7ed))
+* initial meet-the-team page with mock content ([59ddad9](https://github.com/oaknational/Oak-Web-Application/commit/59ddad905c33e84a3e4e17ed86bb160a32affb43))
+
 # [1.955.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.954.0...v1.955.0) (2026-01-15)
 
 

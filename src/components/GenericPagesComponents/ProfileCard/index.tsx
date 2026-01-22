@@ -25,6 +25,7 @@ export default function ProfileCard({
       $gap={"spacing-16"}
       $flexDirection={"column"}
       $borderRadius={"border-radius-m2"}
+      $background={"bg-btn-secondary"}
     >
       <OakFlex>
         {image && (
