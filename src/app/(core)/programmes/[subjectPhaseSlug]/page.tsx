@@ -186,6 +186,12 @@ const ProgrammePage = async ({ params }: ProgrammePageProps) => {
 
     if (!subjectPhaseSanityData) {
       // TD: report error
+      reportError(
+        new OakError({
+          code: "cms/missing-programme-page-data",
+          meta: { subjectPhaseSlug },
+        }),
+      );
     }
 
     const curriculumUnitsFormattedData =
