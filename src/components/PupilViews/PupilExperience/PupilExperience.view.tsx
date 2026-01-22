@@ -197,6 +197,8 @@ const PupilExperienceLayout = ({
   const hasAgeRestriction = !!ageRestriction;
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
+  const isGoogleClassroomAssignment =
+    isClassroomAssignment && classroomAssignmentChecked;
 
   const getAgeRestrictionString = (
     ageRestriction: string | undefined | null,
@@ -287,10 +289,9 @@ const PupilExperienceLayout = ({
               onAccept={handleContentGuidanceAccept}
               onDecline={handleContentGuidanceDecline}
               title={getAgeRestrictionString(ageRestriction)}
+              declineIcon={isGoogleClassroomAssignment ? "cross" : undefined}
               declineText={
-                isClassroomAssignment && classroomAssignmentChecked
-                  ? "Exit lesson"
-                  : undefined
+                isGoogleClassroomAssignment ? "Exit lesson" : undefined
               }
               contentGuidance={
                 lessonContent.contentGuidance
@@ -317,10 +318,9 @@ const PupilExperienceLayout = ({
               onDecline={handleContentGuidanceDecline}
               contentGuidance={lessonContent.contentGuidance}
               supervisionLevel={lessonContent.supervisionLevel}
+              declineIcon={isGoogleClassroomAssignment ? "cross" : undefined}
               declineText={
-                isClassroomAssignment && classroomAssignmentChecked
-                  ? "Exit lesson"
-                  : undefined
+                isGoogleClassroomAssignment ? "Exit lesson" : undefined
               }
             />
           )}
