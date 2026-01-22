@@ -7,8 +7,8 @@ import { useSearchParams } from "next/navigation";
 import {
   ProgrammeHeader,
   pickSubjectTitleFromFilters,
-} from "./ProgrammeHeader/ProgrammeHeader";
-import { SubjectHeroImageName } from "./ProgrammeHeader/getSubjectHeroImageUrl";
+} from "./ProgrammeHeader";
+import { SubjectHeroImageName } from "./getSubjectHeroImageUrl";
 import { UnitSequenceView } from "./UnitSequence/UnitSequenceView";
 
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
