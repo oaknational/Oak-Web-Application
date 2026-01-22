@@ -3,7 +3,9 @@ import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNa
 import {
   OakBox,
   OakFlex,
+  OakLI,
   OakSmallPrimaryInvertedButton,
+  OakUL,
 } from "@/styles/oakThemeApp";
 import SearchBar from "@/components/AppComponents/SearchBar";
 
@@ -24,54 +26,65 @@ const TeachersSubNav = ({ onClick, isMenuSelected }: TeachersSubNavProps) => {
       $alignItems="center"
     >
       <OakBox>
-        <OakFlex
+        <OakUL
           $display={["none", "none", "flex"]}
           $gap={"spacing-12"}
           $alignItems={"center"}
+          $reset
         >
-          <OakSmallPrimaryInvertedButton
-            onClick={() => onClick("primary")}
-            selected={isMenuSelected("primary")}
-            aria-expanded={isMenuSelected("primary")}
-            aria-controls={`topnav-teachers-primary`}
-            aria-haspopup
-          >
-            Primary
-          </OakSmallPrimaryInvertedButton>
-          <OakSmallPrimaryInvertedButton
-            onClick={() => onClick("secondary")}
-            selected={isMenuSelected("secondary")}
-            aria-expanded={isMenuSelected("secondary")}
-            aria-controls={`topnav-teachers-secondary`}
-            aria-haspopup
-          >
-            Secondary
-          </OakSmallPrimaryInvertedButton>
-          <OakSmallPrimaryInvertedButton
-            element="a"
-            href={resolveOakHref({ page: "curriculum-landing-page" })}
-          >
-            Curriculum
-          </OakSmallPrimaryInvertedButton>
-          <OakSmallPrimaryInvertedButton
-            onClick={() => onClick("guidance")}
-            selected={isMenuSelected("guidance")}
-            aria-expanded={isMenuSelected("guidance")}
-            aria-controls={`topnav-teachers-guidance`}
-            aria-haspopup
-          >
-            Guidance
-          </OakSmallPrimaryInvertedButton>
-          <OakSmallPrimaryInvertedButton
-            onClick={() => onClick("aboutUs")}
-            selected={isMenuSelected("aboutUs")}
-            aria-expanded={isMenuSelected("aboutUs")}
-            aria-controls={`topnav-teachers-aboutUs`}
-            aria-haspopup
-          >
-            About us
-          </OakSmallPrimaryInvertedButton>
-        </OakFlex>
+          <OakLI>
+            <OakSmallPrimaryInvertedButton
+              onClick={() => onClick("primary")}
+              selected={isMenuSelected("primary")}
+              aria-expanded={isMenuSelected("primary")}
+              aria-controls={`topnav-teachers-primary`}
+              aria-haspopup
+            >
+              Primary
+            </OakSmallPrimaryInvertedButton>
+          </OakLI>
+          <OakLI>
+            <OakSmallPrimaryInvertedButton
+              onClick={() => onClick("secondary")}
+              selected={isMenuSelected("secondary")}
+              aria-expanded={isMenuSelected("secondary")}
+              aria-controls={`topnav-teachers-secondary`}
+              aria-haspopup
+            >
+              Secondary
+            </OakSmallPrimaryInvertedButton>
+          </OakLI>
+          <OakLI>
+            <OakSmallPrimaryInvertedButton
+              element="a"
+              href={resolveOakHref({ page: "curriculum-landing-page" })}
+            >
+              Curriculum
+            </OakSmallPrimaryInvertedButton>
+          </OakLI>
+          <OakLI>
+            <OakSmallPrimaryInvertedButton
+              onClick={() => onClick("guidance")}
+              selected={isMenuSelected("guidance")}
+              aria-expanded={isMenuSelected("guidance")}
+              aria-controls={`topnav-teachers-guidance`}
+              aria-haspopup
+            >
+              Guidance
+            </OakSmallPrimaryInvertedButton>
+          </OakLI>
+          <OakLI>
+            <OakSmallPrimaryInvertedButton
+              onClick={() => onClick("aboutUs")}
+              selected={isMenuSelected("aboutUs")}
+              aria-expanded={isMenuSelected("aboutUs")}
+              aria-controls={`topnav-teachers-aboutUs`}
+              aria-haspopup
+            >
+              About us
+            </OakSmallPrimaryInvertedButton>
+          </OakLI>
+        </OakUL>
       </OakBox>
 
       <SearchBar />
