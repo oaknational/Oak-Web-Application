@@ -3,15 +3,13 @@ import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
-import { testAboutPageBaseData } from "./about-us.fixtures";
-
 import AboutUsMeetTheTeam, {
-  AboutUsMeetTheTeamPage,
+  AboutUsMeetTheTeamPageProps,
   getServerSideProps,
-  mockData,
 } from "@/pages/about-us/meet-the-team";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import CMSClient from "@/node-lib/cms";
 
 jest.mock("@/node-lib/posthog/getFeatureFlag");
 jest.mock("../../../node-lib/cms");
@@ -20,23 +18,42 @@ jest.mock("@/node-lib/posthog/getPosthogId", () => ({
   getPosthogIdFromCookie: jest.fn().mockReturnValue("test-posthog-id"),
 }));
 
-export const testAboutWhoWeArePageData: AboutUsMeetTheTeamPage["pageData"] = {
-  ...testAboutPageBaseData,
-  ...mockData,
+const mockTeamMember = {
+  id: "test-id",
+  name: "Ed Southall",
+  role: "Subject Lead (maths)",
+  slug: { current: "ed-southall" },
+  image: null,
+  bioPortableText: null,
+  socials: null,
+  hotspot: null,
+};
+
+const mockPageData: AboutUsMeetTheTeamPageProps["pageData"] = {
+  id: "test-page-id",
+  title: "Meet the Team",
+  leadershipTeam: [mockTeamMember],
+  boardMembers: [mockTeamMember],
+  documents: null,
+  governancePortableText: [
+    {
+      _type: "block",
+      children: [{ _type: "span", text: "Test governance text" }],
+    },
+  ],
+  seo: null,
 };
 
 describe("pages/about/meet-the-team.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
+    (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(mockPageData);
   });
 
   it("renders", () => {
     const { container } = renderWithProviders()(
-      <AboutUsMeetTheTeam
-        pageData={testAboutWhoWeArePageData}
-        topNav={topNavFixture}
-      />,
+      <AboutUsMeetTheTeam pageData={mockPageData} topNav={topNavFixture} />,
     );
 
     expect(container).toMatchSnapshot();
@@ -68,6 +85,22 @@ describe("pages/about/meet-the-team.tsx", () => {
 
       expect(propsResult).toMatchObject({
         props: expect.anything(),
+      });
+    });
+
+    it("should 404 when CMS returns no data", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(null);
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: {},
+        params: {},
+      } as unknown as GetServerSidePropsContext);
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
       });
     });
   });
