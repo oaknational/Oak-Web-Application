@@ -1,3 +1,26 @@
+# [1.960.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.959.2...v1.960.0) (2026-01-21)
+
+
+### Bug Fixes
+
+* add role back to link and change label to icon alt text ([c93da79](https://github.com/oaknational/Oak-Web-Application/commit/c93da799a040c641ed479d6d27e0f04ca923dcbc))
+
+
+### Features
+
+* add social button ([e4c826b](https://github.com/oaknational/Oak-Web-Application/commit/e4c826b16fca9b391fd6184a88f0415dfec60814))
+* add spacing tokens and aria-disabled ([0fd7aa5](https://github.com/oaknational/Oak-Web-Application/commit/0fd7aa5de9f1b3fef3dbe8e8a4a6aac1281e44a3))
+* update button to link ([81efa6d](https://github.com/oaknational/Oak-Web-Application/commit/81efa6dc58e3b4e3a288a3e76297c25330c0e7e7))
+
+## [1.959.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.959.1...v1.959.2) (2026-01-21)
+
+## [1.959.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.959.0...v1.959.1) (2026-01-21)
+
+
+### Bug Fixes
+
+* update search filters bg on mobile ([72a19ea](https://github.com/oaknational/Oak-Web-Application/commit/72a19ea9c6d8ef03a2da98cec327f46befff03fc))
+
 # [1.959.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.958.0...v1.959.0) (2026-01-20)
 
 
