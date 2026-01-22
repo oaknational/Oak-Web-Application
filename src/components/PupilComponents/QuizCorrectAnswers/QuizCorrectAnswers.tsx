@@ -21,9 +21,11 @@ export const QuizCorrectAnswers = () => {
         currentQuestionState.correctAnswer.length > 1:
         return (
           "Correct answers: " +
-          currentQuestionState.correctAnswer
-            .filter((answer) => isString(answer) && answer?.trim() !== "")
-            .join(", ")
+          (
+            currentQuestionState.correctAnswer.filter(
+              (answer) => isString(answer) && answer?.trim() !== "",
+            ) as string[]
+          ).join(", ")
         );
       case currentQuestionState &&
         Array.isArray(currentQuestionState.correctAnswer):
