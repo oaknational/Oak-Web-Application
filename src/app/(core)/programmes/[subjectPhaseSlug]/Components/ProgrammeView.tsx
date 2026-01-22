@@ -83,6 +83,7 @@ export const ProgrammeView = ({
           tabs: TAB_OPTIONS,
         })}
       />
+      {/* TD: [integrate journey] move to separate pages for each tab */}
       {activeTab === "Unit sequence" ? (
         <UnitSequenceView
           curriculumPhaseOptions={curriculumPhaseOptions}
