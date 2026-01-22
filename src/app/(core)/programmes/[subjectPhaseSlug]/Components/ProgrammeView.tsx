@@ -25,7 +25,8 @@ type ProgrammePageProps = {
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
 };
 
-type TabOption = "Unit sequence" | "Explainer" | "Download";
+const TAB_OPTIONS = ["Unit sequence", "Explainer", "Download"];
+type TabOption = (typeof TAB_OPTIONS)[number];
 
 export const ProgrammeView = ({
   curriculumSelectionSlugs,
@@ -74,15 +75,13 @@ export const ProgrammeView = ({
           "This is another bullet point",
           "This is a third bullet point",
         ]}
-        footerSlot={
-          <OakTabs
-            sizeVariant={["compact", "default"]}
-            colorVariant="black"
-            tabs={["Unit sequence", "Explainer", "Download"]}
-            activeTab={activeTab}
-            onTabClick={(tab) => setActiveTab(tab)}
-          />
-        }
+        footerSlot={OakTabs<TabOption>({
+          sizeVariant: ["compact", "default"],
+          colorVariant: "black",
+          activeTab,
+          onTabClick: (tab) => setActiveTab(tab),
+          tabs: TAB_OPTIONS,
+        })}
       />
       {activeTab === "Unit sequence" ? (
         <UnitSequenceView

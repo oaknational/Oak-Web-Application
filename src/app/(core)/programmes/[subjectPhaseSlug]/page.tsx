@@ -20,9 +20,6 @@ import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import { useFeatureFlag } from "@/utils/featureFlags";
 import errorReporter from "@/common-lib/error-reporter";
 
-// TD: [integrated journey] get revalidate from env somehow
-export const revalidate = 7200;
-
 const reportError = errorReporter("ProgrammePage.tsx");
 
 // Single cached function to fetch all common programme data
