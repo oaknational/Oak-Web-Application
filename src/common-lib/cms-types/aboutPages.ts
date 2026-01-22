@@ -133,3 +133,15 @@ export const newAboutGetInvolvedPageSchema = z.object({
 export type AboutGetInvolvedPage = z.infer<
   typeof newAboutGetInvolvedPageSchema
 >;
+
+export const meetTheTeamPageSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  leadershipTeam: z.array(teamMemberSchema),
+  boardMembers: z.array(teamMemberSchema),
+  documents: z.array(attachmentSchema).nullish(),
+  governancePortableText: portableTextSchema,
+  seo: seoSchema.nullish(),
+});
+
+export type MeetTheTeamPage = z.infer<typeof meetTheTeamPageSchema>;

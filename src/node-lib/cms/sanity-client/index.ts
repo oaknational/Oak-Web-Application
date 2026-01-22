@@ -23,6 +23,8 @@ import {
   curriculumOverviewCMSSchema,
   newAboutGetInvolvedPageSchema,
   newAboutWhoWeArePageSchema,
+  meetTheTeamPageSchema,
+  teamMemberSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 import getProxiedSanityAssetUrl from "../../../common-lib/urls/getProxiedSanityAssetUrl";
@@ -231,6 +233,28 @@ const getSanityClient = () => ({
     sanityGraphqlApi.campaignBySlug,
     campaignPageSchema,
     (result) => result?.allCampaignPage?.[0],
+  ),
+  meetTheTeamPage: getSingleton(
+    sanityGraphqlApi.meetTheTeamPage,
+    meetTheTeamPageSchema,
+    (result) => {
+      const meetTheTeamData = result?.allNewAboutCorePageMeetTheTeam?.[0];
+      if (meetTheTeamData?.documents) {
+        meetTheTeamData.documents.forEach((doc) => {
+          const url = doc?.file?.asset?.url;
+          const proxiedUrl = getProxiedSanityAssetUrl(url);
+          if (doc?.file?.asset?.url) {
+            doc.file.asset.url = proxiedUrl;
+          }
+        });
+      }
+      return meetTheTeamData;
+    },
+  ),
+  teamMemberBySlug: getBySlug(
+    sanityGraphqlApi.teamMemberBySlug,
+    teamMemberSchema,
+    (result) => result?.allTeamMember?.[0],
   ),
 });
 
