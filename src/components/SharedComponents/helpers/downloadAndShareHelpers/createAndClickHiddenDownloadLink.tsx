@@ -11,7 +11,20 @@ export const hideAndClickDownloadLink = (url: string, a: HTMLAnchorElement) => {
   a.click();
 };
 
+const isInSandboxedIframe = (): boolean => {
+  try {
+    return window.self !== window.top;
+  } catch {
+    return true;
+  }
+};
+
 const createAndClickHiddenDownloadLink = (url: string) => {
+  if (isInSandboxedIframe()) {
+    window.open(encodeURI(url), "_blank");
+    return;
+  }
+
   const link = createLink();
   hideAndClickDownloadLink(url, link);
 };
