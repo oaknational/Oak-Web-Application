@@ -160,7 +160,6 @@ const TopNav = (props: TopNavProps) => {
             isMenuSelected={isMenuSelected}
             onClick={(menu) => {
               setSelectedMenu(selectedMenu === menu ? undefined : menu);
-              console.log("selected menu ", teachers[menu]);
             }}
           />
         )}
@@ -169,12 +168,10 @@ const TopNav = (props: TopNavProps) => {
             isMenuSelected={isMenuSelected}
             onClick={(menu) => {
               setSelectedMenu(selectedMenu === menu ? undefined : menu);
-              console.log("selected menu ", pupils[menu]);
             }}
           />
         )}
       </OakFlex>
-      {/* TD: [integrated-journey] Replace with dropdown and hamburger menus */}
       {selectedMenu &&
         ((activeArea === "TEACHERS" && teachers) ||
           (activeArea === "PUPILS" && pupils)) &&

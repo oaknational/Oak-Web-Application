@@ -45,6 +45,7 @@ const TeachersPhaseSection = ({
     setSelectedKeystage(defaultKeystage);
   }, [defaultKeystage]);
 
+  // Move focus to first keystage button when sub menu opens
   useEffect(() => {
     const element = document.getElementById(
       `topnav-teachers-keystage-${menuData.keystages[0]?.slug}-button`,
@@ -61,8 +62,9 @@ const TeachersPhaseSection = ({
       .find((k) => k.slug === selectedKeystage)
       ?.subjects.filter((subject) => subject.nonCurriculum) ?? undefined;
 
+  // Move focus to first subject link when keystage is changed
   const onKeystageClick = (keystageSlug: string) => {
-    setSelectedKeystage(keystageSlug as typeof selectedKeystage);
+    setSelectedKeystage(keystageSlug);
 
     const element = document.getElementById(
       `topnav-teachers-subject-${subjects?.[0]?.subjectSlug}`,
@@ -191,6 +193,7 @@ const PupilsSection = ({
 }) => {
   const menuYears = pupils[selectedMenu].years;
 
+  // Move focus to first year button when sub menu opens
   useEffect(() => {
     const element = document.getElementById(
       `topnav-pupils-${menuYears?.[0]?.slug}`,
