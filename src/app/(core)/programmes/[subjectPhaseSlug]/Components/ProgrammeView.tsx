@@ -1,7 +1,7 @@
 "use client";
 
-import { OakTabs } from "@oaknational/oak-components";
-import { useMemo } from "react";
+import { OakHeading, OakTabs } from "@oaknational/oak-components";
+import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import {
@@ -25,6 +25,8 @@ type ProgrammePageProps = {
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
 };
 
+type TabOption = "Unit sequence" | "Explainer" | "Download";
+
 export const ProgrammeView = ({
   curriculumSelectionSlugs,
   curriculumPhaseOptions,
@@ -39,6 +41,7 @@ export const ProgrammeView = ({
     return getDefaultFilter(curriculumUnitsFormattedData);
   }, [curriculumUnitsFormattedData]);
   const [filters, setFilters] = useFilters(defaultFilter);
+  const [activeTab, setActiveTab] = useState<TabOption>("Unit sequence");
 
   const subjectForLayout = curriculumPhaseOptions.subjects.find(
     (s) => s.slug === curriculumSelectionSlugs.subjectSlug,
@@ -76,20 +79,26 @@ export const ProgrammeView = ({
             sizeVariant={["compact", "default"]}
             colorVariant="black"
             tabs={["Unit sequence", "Explainer", "Download"]}
-            activeTab="Unit sequence"
-            onTabClick={(tab) => console.log("Tab clicked" + tab)}
+            activeTab={activeTab}
+            onTabClick={(tab) => setActiveTab(tab)}
           />
         }
       />
-      <UnitSequenceView
-        curriculumPhaseOptions={curriculumPhaseOptions}
-        curriculumSelectionSlugs={curriculumSelectionSlugs}
-        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-        filters={filters}
-        setFilters={setFilters}
-        subjectForLayout={subjectForLayout}
-        subjectTitle={subjectTitle}
-      />
+      {activeTab === "Unit sequence" ? (
+        <UnitSequenceView
+          curriculumPhaseOptions={curriculumPhaseOptions}
+          curriculumSelectionSlugs={curriculumSelectionSlugs}
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+          filters={filters}
+          setFilters={setFilters}
+          subjectForLayout={subjectForLayout}
+          subjectTitle={subjectTitle}
+        />
+      ) : activeTab === "Explainer" ? (
+        <OakHeading tag="h3">Explainer tab</OakHeading>
+      ) : (
+        <OakHeading tag="h3">Download tab</OakHeading>
+      )}
     </>
   );
 };
