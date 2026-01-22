@@ -34,7 +34,6 @@ const TopNav = (props: TopNavProps) => {
 
   const activeArea = useSelectedArea();
   const isMobile = useMediaQuery("mobile");
-  const isDesktop = useMediaQuery("desktop");
 
   // TD: [integrated journey] potentially extract into a menu store
   const [selectedMenu, setSelectedMenu] = useState<
@@ -174,8 +173,7 @@ const TopNav = (props: TopNavProps) => {
       </OakFlex>
       {selectedMenu &&
         ((activeArea === "TEACHERS" && teachers) ||
-          (activeArea === "PUPILS" && pupils)) &&
-        isDesktop && (
+          (activeArea === "PUPILS" && pupils)) && (
           <OakFlex $width={"100%"} $flexDirection={"column"}>
             <TopNavDropdown
               activeArea={activeArea}
