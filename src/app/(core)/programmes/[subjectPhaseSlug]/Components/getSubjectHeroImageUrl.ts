@@ -45,7 +45,7 @@ const subjectHeroAssets = {
   latin: "v1768402224/subject-hero-illustrations/latin-hero_aqdwwu.svg",
   history: "v1768402223/subject-hero-illustrations/history-hero_kcyxc1.svg",
   grammar: "v1768402223/subject-hero-illustrations/grammar-hero_lrcao3.svg",
-  german: "v1768402222/subject-hero-illustrations/french-hero_t0m7yd.svg",
+  german: "v1768402222/subject-hero-illustrations/german-hero_m8xyuy.svg",
 } as const;
 
 export const subjectHeroImages: Record<SubjectName, string | null> = {
