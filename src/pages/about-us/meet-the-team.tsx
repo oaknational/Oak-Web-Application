@@ -1,5 +1,9 @@
 import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
-import { OakBox, OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakTypography,
+} from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
@@ -13,86 +17,56 @@ import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
+import CMSClient from "@/node-lib/cms";
+import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import Card from "@/components/SharedComponents/Card";
+import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-type Download = {
-  title: string;
-  subText: string;
-  href: string;
-};
-
-type Person = {
-  slug: string;
-  name: string;
-  position: string;
-  image?: string;
-};
-
-export type AboutUsMeetTheTeamPage = {
-  pageData: {
-    subTitle: string;
-    leadershipTitle: string;
-    leadershipText: string;
-    leadershipList: Person[];
-    boardTitle: string;
-    boardText: string;
-    boardList: Person[];
-    documentTitle: string;
-    documentText: string | null;
-    documentList: Download[];
-    governanceTitle: string;
-    governanceText: string;
-  };
-  topNav: TopNavProps;
-};
-
-export const mockData: AboutUsMeetTheTeamPage["pageData"] = {
-  // title: "Meet the team",
+// Hard-coded text for section titles/descriptions
+const PAGE_TEXT = {
   subTitle:
     "Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.",
   leadershipTitle: "Our leadership",
   leadershipText:
     "Our leadership team brings together experts to deliver the best support to teachers and value for money for the public. Learn more about them below.",
-  leadershipList: new Array(12).fill(true).map((_, index) => ({
-    slug: `ed-southall-${index}`,
-    name: "Ed Southall",
-    position: "Subject Lead (maths)",
-  })),
   boardTitle: "Our board",
   boardText:
     "Our Board oversees all of our work at Oak National Academy. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence.",
-  boardList: new Array(12).fill(true).map((_, index) => ({
-    slug: `ed-southall-${index}`,
-    name: "Ed Southall",
-    position: "Subject Lead (maths)",
-  })),
   documentTitle: "Documents",
-  documentText: null,
-  documentList: new Array(12).fill(true).map((_, index) => ({
-    title: "Impact evaluation of Oak: 2023/24",
-    subText: "PDF, 1.6MB",
-    href: `#${index}`,
-  })),
   governanceTitle: "Governance",
-  governanceText:
-    "Oak National Academy is a limited company incorporated under the Companies Act 2006 in September 2022 and whose sole shareholder is the Secretary of State for Education. It is a non-departmental public body (NDPB) which was established to work with schools, teachers and the wider education system and has a framework agreement with the Department for Education.",
 };
 
-const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
+export type AboutUsMeetTheTeamPageProps = {
+  pageData: MeetTheTeamPage;
+  topNav: TopNavProps;
+};
+
+const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
   pageData,
   topNav,
 }) => {
+  const {
+    leadershipTeam,
+    boardMembers,
+    documents,
+    governancePortableText,
+    seo,
+  } = pageData;
+
   return (
     <Layout
-      seoProps={getSeoProps(null)}
+      seoProps={getSeoProps(seo)}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
       <AboutUsLayout>
         <AboutSharedHeader
           title={"Meet the team"}
-          content={pageData.subTitle}
+          content={PAGE_TEXT.subTitle}
           titleHighlight="bg-decorative5-main"
         />
         <InnerMaxWidth>
@@ -110,60 +84,96 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               $pb={"spacing-80"}
             >
               <MeetTheTeamContainer
-                title={pageData.leadershipTitle}
-                text={pageData.leadershipText}
+                title={PAGE_TEXT.leadershipTitle}
+                text={PAGE_TEXT.leadershipText}
               >
-                {pageData.leadershipList.map((leadershipItem) => {
+                {leadershipTeam.map((member) => {
+                  const slug = member.slug?.current ?? member.id;
                   return (
                     <ProfileCard
-                      key={leadershipItem.slug}
-                      name={leadershipItem.name}
-                      role={leadershipItem.position}
-                      href={`/about-us/meet-the-team/${leadershipItem.slug}`}
+                      key={member.id}
+                      name={member.name}
+                      role={member.role ?? ""}
+                      image={member.image?.asset?.url}
+                      href={`/about-us/meet-the-team/${slug}`}
                     />
                   );
                 })}
               </MeetTheTeamContainer>
 
               <MeetTheTeamContainer
-                title={pageData.boardTitle}
-                text={pageData.boardText}
+                title={PAGE_TEXT.boardTitle}
+                text={PAGE_TEXT.boardText}
               >
-                {pageData.boardList.map((boardItem) => {
+                {boardMembers.map((member) => {
+                  const slug = member.slug?.current ?? member.id;
                   return (
                     <ProfileCard
-                      key={boardItem.slug}
-                      name={boardItem.name}
-                      role={boardItem.position}
-                      href={`/about-us/meet-the-team/${boardItem.slug}`}
+                      key={member.id}
+                      name={member.name}
+                      role={member.role ?? ""}
+                      image={member.image?.asset?.url}
+                      href={`/about-us/meet-the-team/${slug}`}
                     />
                   );
                 })}
               </MeetTheTeamContainer>
 
-              <MeetTheTeamContainer
-                title={pageData.documentTitle}
-                text={pageData.documentText}
-              >
-                {pageData.documentList.map((documentItem) => {
-                  return (
-                    <OakBox
-                      key={documentItem.href}
-                      $width={"spacing-240"}
-                      $pa={"spacing-16"}
-                      $borderRadius={"border-radius-m2"}
-                      $background={"bg-btn-secondary"}
-                    >
-                      <OakBox>{documentItem.title}</OakBox>
-                      <OakBox>{documentItem.subText}</OakBox>
-                    </OakBox>
-                  );
-                })}
-              </MeetTheTeamContainer>
+              {documents && documents.length > 0 && (
+                <MeetTheTeamContainer
+                  title={PAGE_TEXT.documentTitle}
+                  text={null}
+                >
+                  {documents.map((doc) => {
+                    const fileSizeInMB = (
+                      doc.file.asset.size /
+                      1024 /
+                      1024
+                    ).toFixed(1);
+                    return (
+                      <Card key={doc.title} $width={240} $pa={16}>
+                        <BoxBorders gapPosition="rightTop" />
+                        <OakFlex
+                          $justifyContent={"space-between"}
+                          $flexDirection={"column"}
+                          $height={"100%"}
+                          $gap={"spacing-8"}
+                        >
+                          <OakTypography $font={"heading-7"}>
+                            {doc.title}
+                          </OakTypography>
+                          <OakFlex
+                            $alignItems={"center"}
+                            $justifyContent={"space-between"}
+                          >
+                            <OakTypography
+                              $font={"body-3"}
+                            >{`${fileSizeInMB}MB ${doc.file.asset.extension.toUpperCase()}`}</OakTypography>
+                            <IconButtonAsLink
+                              icon={"download"}
+                              aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
+                              page={null}
+                              href={`${doc.file.asset.url}?dl`}
+                              background={"blue"}
+                            />
+                          </OakFlex>
+                        </OakFlex>
+                      </Card>
+                    );
+                  })}
+                </MeetTheTeamContainer>
+              )}
 
               <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-                <OakHeading tag="h3">{pageData.governanceTitle}</OakHeading>
-                <OakP>{pageData.governanceText}</OakP>
+                <OakHeading tag="h3" $font={"heading-5"}>
+                  {PAGE_TEXT.governanceTitle}
+                </OakHeading>
+                <OakTypography $font={["body-1", "body-2"]}>
+                  <PortableTextWithDefaults
+                    value={governancePortableText}
+                    withoutDefaultComponents
+                  />
+                </OakTypography>
               </OakFlex>
             </OakFlex>
           </OakFlex>
@@ -174,14 +184,16 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
 };
 
 export const getServerSideProps: GetServerSideProps<
-  AboutUsMeetTheTeamPage
+  AboutUsMeetTheTeamPageProps
 > = async (context) => {
+  // TODO: Remove isLocalDev bypass before merging
+  const isLocalDev = process.env.NODE_ENV === "development";
   const posthogUserId = getPosthogIdFromCookie(
     context.req.cookies,
     posthogApiKey,
   );
-  let enableV2: boolean = false;
-  if (posthogUserId) {
+  let enableV2: boolean = isLocalDev;
+  if (posthogUserId && !isLocalDev) {
     // get the variant key for the user
     enableV2 =
       (await getFeatureFlag({
@@ -196,20 +208,22 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  // Replace me with non-mocked data
-  const aboutMeetTheTeamPage = mockData;
+  const isPreviewMode = context.preview === true;
+  const meetTheTeamPage = await CMSClient.meetTheTeamPage({
+    previewMode: isPreviewMode,
+  });
 
   const topNav = await curriculumApi2023.topNav();
 
-  if (!aboutMeetTheTeamPage) {
+  if (!meetTheTeamPage) {
     return {
       notFound: true,
     };
   }
 
-  const results: GetStaticPropsResult<AboutUsMeetTheTeamPage> = {
+  const results: GetStaticPropsResult<AboutUsMeetTheTeamPageProps> = {
     props: {
-      pageData: aboutMeetTheTeamPage,
+      pageData: meetTheTeamPage,
       topNav,
     },
   };
