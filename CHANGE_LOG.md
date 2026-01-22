@@ -1,3 +1,10 @@
+## [1.961.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.961.0...v1.961.1) (2026-01-22)
+
+
+### Bug Fixes
+
+* **LESQ-1765:** skip to results button intersecting the new nav menu ([85ce6bd](https://github.com/oaknational/Oak-Web-Application/commit/85ce6bd102f4f035eeef5540325c767502ec6f41))
+
 # [1.961.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.960.0...v1.961.0) (2026-01-22)
 
 
