@@ -2,10 +2,9 @@ import { createContext, FC, useState } from "react";
 
 type SaveContext = {
   savedUnitsCount: number | null;
-  setSavedUnitsCount: (count: number) => void;
+  setSavedUnitsCount: (count: number | null) => void;
   incrementSavedUnitsCount: () => void;
   decrementSavedUnitsCount: () => void;
-  loading: boolean;
 };
 export const saveCountContext = createContext<SaveContext | null>(null);
 
@@ -32,7 +31,6 @@ export const SaveCountProvider: FC<{
         setSavedUnitsCount,
         incrementSavedUnitsCount,
         decrementSavedUnitsCount,
-        loading: savedUnitsCount === null,
       }}
     >
       {children}

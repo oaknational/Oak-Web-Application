@@ -31,7 +31,7 @@ describe("LessonOverviewCreateWithAiDropdown", () => {
       isSpecialist: false,
       isCanonical: true,
       breadcrumbs: [],
-      background: "mint50",
+      background: "bg-decorative1-subdued",
       isNew: true,
       isShareable: true,
       subjectIconBackgroundColor: "mint",

@@ -54,7 +54,7 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
           .crop("center")
           .url(),
       })}
-      $background="white"
+      $background="bg-primary"
     >
       <PostSingleLayout
         content={props}

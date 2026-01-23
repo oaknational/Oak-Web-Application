@@ -1,6 +1,6 @@
 import { act, waitFor } from "@testing-library/react";
 
-import { useOakToastContext } from "./useOakToastContext";
+import { useOakNotificationsContext } from "./useOakNotificationsContext";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -30,7 +30,8 @@ afterEach(() => {
 });
 
 const TestComponent = () => {
-  const { currentToastProps, setCurrentToastProps } = useOakToastContext();
+  const { currentToastProps, setCurrentToastProps } =
+    useOakNotificationsContext();
   return (
     <div>
       <button

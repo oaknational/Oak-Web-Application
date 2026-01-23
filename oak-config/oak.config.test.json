@@ -108,5 +108,13 @@
   },
   "aiGateway": {
     "requiredSecrets": ["AI_GATEWAY_API_KEY", "AI_GATEWAY_URL"]
+  },
+  "googleClassroom": {
+    "requiredSecrets": [
+      "GOOGLE_CLASSROOM_ENCRYPTION_SECRET",
+      "GOOGLE_CLASSROOM_OAUTH_CLIENT_ID",
+      "GOOGLE_CLASSROOM_OAUTH_CLIENT_SECRET",
+      "GOOGLE_CLASSROOM_SESSION_SECRET"
+    ]
   }
 }

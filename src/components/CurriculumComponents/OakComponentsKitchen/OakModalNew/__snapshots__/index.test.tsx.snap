@@ -8,50 +8,50 @@ exports[`OakModalNew should match snapshot 1`] = `
     style="z-index: 320;"
   >
     <div
-      class="sc-fqkvVR sc-fd1b6bd3-0 hJRGVt jsTHOJ"
+      class="sc-fqkvVR sc-fd1b6bd3-0 byMRNH jsTHOJ"
     />
     <div
-      class="sc-fqkvVR sc-kAyceB sc-702fbad0-0 hBVYLH joHkzz igbdss"
+      class="sc-fqkvVR sc-kAyceB sc-702fbad0-0 guzaUp joHkzz igbdss"
       data-testid="sidebar-modal"
       direction="right"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB kwqmrC jOTTNg"
+        class="sc-fqkvVR sc-kAyceB gOVyMA jOTTNg"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB kUmAOC kyta-DD"
+          class="sc-fqkvVR sc-kAyceB egDUAL kyta-DD"
         >
           <h3
-            class="sc-kpDqfm iMTebT"
+            class="sc-kpDqfm gyJJNO"
             data-testid="modal-title"
           >
             test_title
           </h3>
           <div
-            class="sc-fqkvVR ioiQyz"
+            class="sc-fqkvVR hEQzMZ"
           >
             <div
-              class="sc-fqkvVR sc-5f217d9c-0 fgBWrW fhZaSX"
+              class="sc-fqkvVR sc-5f217d9c-0 aZqjs jxsPIm"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB sc-kOPcWz eJBGXR joHkzz OSOXO"
+                class="sc-fqkvVR sc-kAyceB sc-kOPcWz kHbkzj joHkzz OSOXO"
               >
                 <button
                   aria-label="Close"
-                  class="sc-dtBdUo sc-dtInlm bDwHsD gGmtwB"
+                  class="sc-dtBdUo sc-dtInlm dGVKuO gGmtwB"
                   data-testid="close-modal-button"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW cYfcBm"
+                    class="sc-fqkvVR sc-kAyceB aZqjs cYfcBm"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB LKlih kyta-DD icon-container"
+                      class="sc-fqkvVR sc-kAyceB dqQcKf kyta-DD icon-container"
                     >
                       <div
-                        class="sc-fqkvVR bfQsxh shadow"
+                        class="sc-fqkvVR fuNJcz shadow"
                       />
                       <div
-                        class="sc-fqkvVR kbnxKi"
+                        class="sc-fqkvVR hCMPss"
                         data-icon-for="button"
                       >
                         <img
@@ -66,7 +66,7 @@ exports[`OakModalNew should match snapshot 1`] = `
                       </div>
                     </div>
                     <span
-                      class="sc-dAlyuH eeepiN"
+                      class="sc-dAlyuH dzodLg"
                     />
                   </div>
                 </button>
@@ -75,13 +75,13 @@ exports[`OakModalNew should match snapshot 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB dWuEkM jFSWFH"
+          class="sc-fqkvVR sc-kAyceB bhfoK jFSWFH"
           data-testid="modal-content"
         >
           test_content
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB eGXHla cuPHGn"
+          class="sc-fqkvVR sc-kAyceB eXLPyT cuPHGn"
           data-testid="modal-footer"
         >
           test_footer

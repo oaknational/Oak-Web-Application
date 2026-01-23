@@ -73,7 +73,7 @@ const PostListing: FC<PostListingProps> = ({
   return (
     <Layout
       seoProps={getSeoProps(seo)}
-      $background="white"
+      $background="bg-primary"
       topNavProps={topNav}
     >
       <OakMaxWidth $pt={"spacing-20"} $display={["none", "flex"]}>

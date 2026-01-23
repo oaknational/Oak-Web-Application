@@ -4,10 +4,10 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR kDpsQP"
+      class="sc-fqkvVR gVzFgl"
     >
       <div
-        class="sc-fqkvVR howriz"
+        class="sc-fqkvVR kgcpTx"
         style="pointer-events: none;"
       >
         <img
@@ -21,38 +21,38 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
         />
       </div>
       <div
-        class="sc-fqkvVR IDCoS"
+        class="sc-fqkvVR caVZsU"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB ebGLGq gwxZIR"
+          class="sc-fqkvVR sc-kAyceB fPYsZM gwxZIR"
         >
           <h2
-            class="sc-kpDqfm hazha-D"
+            class="sc-kpDqfm iuktHK"
           >
             TEST_TITLE
           </h2>
           <div
-            class="sc-fqkvVR sc-jXbUNg fgBWrW iwxQGX"
+            class="sc-fqkvVR sc-jXbUNg aZqjs iwxQGX"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
             >
               <div
-                class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
               >
                 <a
                   href="#item_one"
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
                     >
                       <div
-                        class="sc-fqkvVR kKvKAa"
+                        class="sc-fqkvVR gjLiRo"
                       >
                         <img
                           alt=""
@@ -66,15 +66,15 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
+                      class="sc-fqkvVR sc-kAyceB fzzIIf bAFsaQ"
                     >
                       ITEM_ONE
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
                     >
                       <div
-                        class="sc-fqkvVR erqloa"
+                        class="sc-fqkvVR dbPreQ"
                       >
                         <img
                           alt=""
@@ -92,24 +92,24 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
             >
               <div
-                class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
               >
                 <a
                   href="#item_two"
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
                     >
                       <div
-                        class="sc-fqkvVR kKvKAa"
+                        class="sc-fqkvVR gjLiRo"
                       >
                         <img
                           alt=""
@@ -123,15 +123,15 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
+                      class="sc-fqkvVR sc-kAyceB fzzIIf bAFsaQ"
                     >
                       ITEM_TWO
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
                     >
                       <div
-                        class="sc-fqkvVR erqloa"
+                        class="sc-fqkvVR dbPreQ"
                       >
                         <img
                           alt=""
@@ -149,24 +149,24 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
             >
               <div
-                class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
               >
                 <a
                   href="#item_three"
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
                     >
                       <div
-                        class="sc-fqkvVR kKvKAa"
+                        class="sc-fqkvVR gjLiRo"
                       >
                         <img
                           alt=""
@@ -180,15 +180,15 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
+                      class="sc-fqkvVR sc-kAyceB fzzIIf bAFsaQ"
                     >
                       ITEM_THREE
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
                     >
                       <div
-                        class="sc-fqkvVR erqloa"
+                        class="sc-fqkvVR dbPreQ"
                       >
                         <img
                           alt=""
@@ -206,24 +206,24 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
             >
               <div
-                class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
               >
                 <a
                   href="#item_four"
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
                     >
                       <div
-                        class="sc-fqkvVR kKvKAa"
+                        class="sc-fqkvVR gjLiRo"
                       >
                         <img
                           alt=""
@@ -237,15 +237,15 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
+                      class="sc-fqkvVR sc-kAyceB fzzIIf bAFsaQ"
                     >
                       ITEM_FOUR
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
                     >
                       <div
-                        class="sc-fqkvVR erqloa"
+                        class="sc-fqkvVR dbPreQ"
                       >
                         <img
                           alt=""

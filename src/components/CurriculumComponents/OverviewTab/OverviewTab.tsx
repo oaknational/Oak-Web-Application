@@ -8,6 +8,7 @@ import {
   OakBox,
   OakTertiaryOLNav,
   OakSecondaryLink,
+  OakLink,
   OakSpan,
 } from "@oaknational/oak-components";
 import {
@@ -120,7 +121,7 @@ const blockHeadingComponents: PortableTextComponents["block"] = {
 
 const markComponents: PortableTextComponents["marks"] = {
   link: ({ children, value }) => {
-    return <OakSecondaryLink {...value}>{children}</OakSecondaryLink>;
+    return <OakLink {...value}>{children}</OakLink>;
   },
 };
 
@@ -323,7 +324,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 Video guide
               </OakHeading>
               <OakP $font={"body-1"}>{videoExplainer}</OakP>
-              <OakSpan $font={"body-2-bold"} $color="black">
+              <OakSpan $font={"body-2-bold"} $color="text-primary">
                 <OakSecondaryLink
                   href={resolveOakHref({
                     page: "blog-single",
@@ -331,7 +332,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                   })}
                   iconName="chevron-right"
                   isTrailingIcon={true}
-                  color="black"
+                  color="text-primary"
                 >
                   Read more about our new curriculum
                 </OakSecondaryLink>
