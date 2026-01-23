@@ -2,12 +2,13 @@ import { ReactNode, useEffect, useRef } from "react";
 import {
   OakBox,
   OakPrimaryInvertedButton,
-  OakSubjectIconButton,
   OakUL,
   OakLeftAlignedButton,
   OakFlex,
 } from "@oaknational/oak-components";
 import Link from "next/link";
+
+import TopNavSubjectButtons from "../TopNavDropdown/TopNavSubjectButtons";
 
 import {
   getEYFSAriaLabel,
@@ -21,7 +22,6 @@ import {
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
-import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type NavItemData =
   | { type: "links"; links: SubNavLinks }
@@ -122,61 +122,20 @@ export function SubmenuContent(
       const keystage = phaseData.keystages.find(
         (ks) => ks.title === submenuOpen,
       );
-
       if (!keystage) return null;
+      const subjects = keystage.subjects.filter((s) => !s.nonCurriculum);
+      const nonCurriculumSubjects = keystage.subjects.filter(
+        (s) => s.nonCurriculum,
+      );
       return (
         <SubmenuContainer title={submenuOpen} hamburgerMenu={hamburgerMenu}>
-          <OakUL
-            $ph={"spacing-0"}
-            $display={"flex"}
-            $flexDirection={"row"}
-            $flexWrap={"wrap"}
-            $gap={"spacing-16"}
-          >
-            {keystage.subjects
-              .toSorted((a, b) => {
-                const aNon = !!a.nonCurriculum;
-                const bNon = !!b.nonCurriculum;
-                if (aNon === bNon) return a.title.localeCompare(b.title);
-                return aNon ? 1 : -1;
-              })
-              .map((subject) => (
-                <OakBox key={subject.title + phase}>
-                  <OakSubjectIconButton
-                    element={Link}
-                    href={resolveOakHref({
-                      page: "programme-index",
-                      keyStageSlug: keystage.slug,
-                      subjectSlug: subject.subjectSlug,
-                    })}
-                    onClick={handleClose}
-                    phase={subject.nonCurriculum ? "non-curriculum" : phase}
-                    subjectIconName={getValidSubjectIconName(
-                      subject.subjectSlug,
-                    )}
-                    variant="horizontal"
-                  >
-                    {subject.title}
-                  </OakSubjectIconButton>
-                </OakBox>
-              ))}
-            <OakBox $width={"100%"}>
-              <OakPrimaryInvertedButton
-                element={Link}
-                href={resolveOakHref({
-                  page: "subject-index",
-                  keyStageSlug: keystage.slug,
-                })}
-                onClick={() => {
-                  handleClose();
-                }}
-                isTrailingIcon
-                iconName="arrow-right"
-              >
-                {`All ${keystage.title} subjects`}
-              </OakPrimaryInvertedButton>
-            </OakBox>
-          </OakUL>
+          <TopNavSubjectButtons
+            selectedMenu={phase}
+            subjects={subjects}
+            nonCurriculumSubjects={nonCurriculumSubjects}
+            keyStageSlug={keystage.slug}
+            keyStageTitle={keystage.title}
+          />
         </SubmenuContainer>
       );
     }

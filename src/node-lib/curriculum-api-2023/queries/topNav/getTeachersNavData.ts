@@ -123,7 +123,18 @@ export const getProgrammeCount = ({
     .filter(
       (p, i, a) =>
         a.findIndex((k) => k.programme_slug === p.programme_slug) === i,
-    );
+    )
+    // filter out legacy programmes when there are only 2 programmes and one is legacy
+    .filter((p, _, a) => {
+      const onlyTwoProgrammes = a.length === 2;
+      if (
+        onlyTwoProgrammes &&
+        a.some((prog) => prog.programme_fields.dataset === "legacy")
+      ) {
+        return p.programme_fields.dataset !== "legacy";
+      }
+      return true;
+    });
 
   return programmesForKs.length;
 };
