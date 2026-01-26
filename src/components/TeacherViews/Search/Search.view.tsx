@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -42,9 +42,17 @@ import SearchSuggestedFilters from "@/components/TeacherComponents/SearchSuggest
 import { useSuggestedFilters } from "@/context/Search/useSuggestedFilters";
 import { SearchSuggestionBanner } from "@/components/TeacherComponents/SearchSuggestionBanner/SearchSuggestionBanner";
 import DelayedLoadingContainer from "@/components/SharedComponents/DelayedLoadingContainer";
+import { srOnlyCss } from "@/components/SharedComponents/ScreenReaderOnly";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
+`;
+
+// Skip to results is visually hidden until focused
+const SkipToResultsButton = styled(OakSecondaryButton)`
+  &:not(:focus-within) {
+    ${srOnlyCss};
+  }
 `;
 
 const DelayedLoadingSpinnerWithLabel: FC<{
@@ -240,8 +248,6 @@ const Search: FC<SearchProps> = (props) => {
     }
   };
 
-  const [filterButtonFocussed, setFilterButtonFocussed] = useState(false);
-
   const renderAiExperimentFilters = () => {
     if (!shouldShowResults) {
       return null;
@@ -430,19 +436,9 @@ const Search: FC<SearchProps> = (props) => {
                       <OakHeading tag="h2" $font="heading-6">
                         Filters
                       </OakHeading>
-                      <OakSecondaryButton
-                        element="a"
-                        href="#search-results"
-                        onFocus={() => setFilterButtonFocussed(true)}
-                        onBlur={() => setFilterButtonFocussed(false)}
-                        style={
-                          filterButtonFocussed
-                            ? {}
-                            : { position: "absolute", top: "-600px" }
-                        }
-                      >
+                      <SkipToResultsButton element="a" href="#search-results">
                         Skip to results
-                      </OakSecondaryButton>
+                      </SkipToResultsButton>
                     </OakFlex>
                     <SearchFilters
                       {...searchFilters}

@@ -15,11 +15,13 @@ export function MeetTheTeamContainer({
       $background={"bg-decorative5-very-subdued"}
       $pa={["spacing-16", "spacing-24", "spacing-24"]}
     >
-      <OakFlex $gap={["spacing-16"]} $flexDirection={"column"}>
-        <OakHeading tag="h2" $font={["heading-5", "heading-3", "heading-3"]}>
-          {title}
-        </OakHeading>
-        {text && <OakP $font={"body-1"}>{text}</OakP>}
+      <OakFlex $gap={["spacing-32"]} $flexDirection={"column"}>
+        <OakFlex $gap={["spacing-16"]} $flexDirection={"column"}>
+          <OakHeading tag="h2" $font={["heading-5", "heading-3", "heading-3"]}>
+            {title}
+          </OakHeading>
+          {text && <OakP $font={"body-1"}>{text}</OakP>}
+        </OakFlex>
         <OakFlex $gap={"spacing-16"} $flexWrap={"wrap"}>
           {children}
         </OakFlex>

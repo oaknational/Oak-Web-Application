@@ -2,10 +2,16 @@
 
 import { OakBox, OakHeading } from "@oaknational/oak-components";
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import ProgrammePageFiltersMobile from "./Filters/ProgrammePageFiltersMobile";
 import ProgrammePageFiltersDesktop from "./Filters/ProgrammePageFiltersDesktop";
 import ProgrammeSequence from "./Sequence";
+import {
+  ProgrammeHeader,
+  pickSubjectTitleFromFilters,
+} from "./ProgrammeHeader";
+import { SubjectHeroImageName } from "./getSubjectHeroImageUrl";
 
 import { CurricVisualiserLayout } from "@/components/CurriculumComponents/CurricVisualiserLayout";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
@@ -31,6 +37,8 @@ type ProgrammePageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumPhaseOptions: SubjectPhasePickerData;
   subjectTitle: string;
+  phaseTitle: string;
+  examboardTitle: string | undefined;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
 };
 
@@ -38,9 +46,12 @@ export const ProgrammeView = ({
   curriculumSelectionSlugs,
   curriculumPhaseOptions,
   subjectTitle,
+  phaseTitle,
+  examboardTitle,
   curriculumUnitsFormattedData,
 }: ProgrammePageProps) => {
   const isMobile = useMediaQuery("mobile");
+  const searchParams = useSearchParams();
 
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
   const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
@@ -104,78 +115,100 @@ export const ProgrammeView = ({
     track.unitSequenceRefined(analyticsData);
   };
 
+  const schoolYear = filters.years.find(
+    (year) => searchParams?.get("years") === year,
+  );
+
   return (
-    <OakBox
-      id="programme-units"
-      aria-labelledby="programme-unit-sequence-heading"
-      tabIndex={-1}
-      $maxWidth={"spacing-1280"}
-      $mh={"auto"}
-      $ph={["spacing-0", "spacing-20"]}
-      $mt={["spacing-0", "spacing-48", "spacing-48"]}
-      $width={"100%"}
-      as="section"
-    >
-      <ScreenReaderOnly>
-        <OakHeading
-          id="programme-unit-sequence-heading"
-          tag="h2"
-          $mb="spacing-24"
-          $ml={["spacing-16", "spacing-0"]}
-          $font={["heading-5", "heading-4"]}
-        >
-          Unit sequence
-        </OakHeading>
-      </ScreenReaderOnly>
-      {isMobile && (
-        <ProgrammePageFiltersMobile
-          selectedYear={mobileSelectedYear}
-          onSelectYear={setMobileSelectedYear}
-          filters={filters}
-          onChangeFilters={onChangeFilters}
-          data={curriculumUnitsFormattedData}
-          slugs={curriculumSelectionSlugs}
-          trackingData={curriculumUnitsTrackingData}
-          ks4Options={ks4Options}
-        />
-      )}
-      <CurricVisualiserLayout
-        filters={
-          isMobile ? null : (
-            <ProgrammePageFiltersDesktop
-              filters={filters}
-              onChangeFilters={onChangeFilters}
-              data={curriculumUnitsFormattedData}
-              slugs={curriculumSelectionSlugs}
-              ks4Options={ks4Options}
-            />
-          )
+    <>
+      <ProgrammeHeader
+        subject={subjectForLayout.slug as SubjectHeroImageName}
+        subjectTitle={
+          pickSubjectTitleFromFilters(curriculumUnitsFormattedData, filters) ??
+          subjectTitle
         }
-        units={
-          <ProgrammeSequence
-            filters={filters}
-            ks4OptionSlug={ks4OptionSlug}
-            ks4Options={ks4Options}
-            yearData={yearData}
-            setVisibleMobileYearRefID={setVisibleMobileYearRefID}
-            threadOptions={threadOptions}
-          />
-        }
-        curriculumSeoText={undefined} // TD: [integrated journey] seo text
-        subject={subjectForLayout}
+        phaseTitle={phaseTitle}
+        examboardTitle={examboardTitle}
+        schoolYear={schoolYear}
+        summary="This is some placeholder text for the summary. If this goes into production then we've still got work to do."
+        bullets={[
+          "This is a bullet point",
+          "This is another bullet point",
+          "This is a third bullet point",
+        ]}
       />
-      <ScreenReaderOnly aria-live="polite" aria-atomic="true">
-        <p>
-          {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
-        </p>
-        {filters.threads[0] && (
-          <p>
-            {highlightedUnits}
-            {highlightedUnits === 1 ? "unit" : "units"}
-            highlighted
-          </p>
+      <OakBox
+        id="programme-units"
+        aria-labelledby="programme-unit-sequence-heading"
+        tabIndex={-1}
+        $maxWidth={"spacing-1280"}
+        $mh={"auto"}
+        $ph={["spacing-0", "spacing-20"]}
+        $mt={["spacing-0", "spacing-48", "spacing-48"]}
+        $width={"100%"}
+        as="section"
+      >
+        <ScreenReaderOnly>
+          <OakHeading
+            id="programme-unit-sequence-heading"
+            tag="h2"
+            $mb="spacing-24"
+            $ml={["spacing-16", "spacing-0"]}
+            $font={["heading-5", "heading-4"]}
+          >
+            Unit sequence
+          </OakHeading>
+        </ScreenReaderOnly>
+        {isMobile && (
+          <ProgrammePageFiltersMobile
+            selectedYear={mobileSelectedYear}
+            onSelectYear={setMobileSelectedYear}
+            filters={filters}
+            onChangeFilters={onChangeFilters}
+            data={curriculumUnitsFormattedData}
+            slugs={curriculumSelectionSlugs}
+            trackingData={curriculumUnitsTrackingData}
+            ks4Options={ks4Options}
+          />
         )}
-      </ScreenReaderOnly>
-    </OakBox>
+        <CurricVisualiserLayout
+          filters={
+            isMobile ? null : (
+              <ProgrammePageFiltersDesktop
+                filters={filters}
+                onChangeFilters={onChangeFilters}
+                data={curriculumUnitsFormattedData}
+                slugs={curriculumSelectionSlugs}
+                ks4Options={ks4Options}
+              />
+            )
+          }
+          units={
+            <ProgrammeSequence
+              filters={filters}
+              ks4OptionSlug={ks4OptionSlug}
+              ks4Options={ks4Options}
+              yearData={yearData}
+              setVisibleMobileYearRefID={setVisibleMobileYearRefID}
+              threadOptions={threadOptions}
+            />
+          }
+          curriculumSeoText={undefined} // TD: [integrated journey] seo text
+          subject={subjectForLayout}
+        />
+        <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+          <p>
+            {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
+          </p>
+          {filters.threads[0] && (
+            <p>
+              {highlightedUnits}
+              {highlightedUnits === 1 ? "unit" : "units"}
+              highlighted
+            </p>
+          )}
+        </ScreenReaderOnly>
+      </OakBox>
+    </>
   );
 };
