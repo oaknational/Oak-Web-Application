@@ -106,9 +106,9 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
             <OakFlex
               $display={["none", "block", "block"]}
               style={{ minWidth: 200 }}
-              aria-label="Page sections"
             >
               <OakSideMenuNav
+                aria-label="Page sections"
                 heading=""
                 anchorTargetId=""
                 menuItems={[
