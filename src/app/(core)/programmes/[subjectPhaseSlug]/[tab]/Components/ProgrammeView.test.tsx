@@ -7,6 +7,10 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import {
+  curriculumOverviewCMSFixture,
+  curriculumOverviewMVFixture,
+} from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 
 const usePathnameMock = jest
   .fn()
@@ -54,6 +58,8 @@ const defaultProps = {
   curriculumUnitsFormattedData: formatCurriculumUnitsData(
     curriculumUnitsTabFixture(),
   ),
+  curriculumInfo: curriculumOverviewMVFixture(),
+  curriculumCMSInfo: curriculumOverviewCMSFixture(),
   subjectPhaseSanityData: null,
   tabSlug: "units" as const,
   examboardTitle: "AQA",
@@ -86,7 +92,7 @@ describe("ProgrammeView", () => {
       "/programmes/science-secondary-aqa/overview",
     );
     render(<ProgrammeView {...defaultProps} tabSlug="overview" />);
-    const heading = screen.getByText("Overview tab");
+    const heading = screen.getByRole("heading", { name: "Aims and purpose" });
     expect(heading).toBeInTheDocument();
   });
   it("renders the correct tab content for download", () => {

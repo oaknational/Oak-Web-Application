@@ -22,6 +22,10 @@ import {
   UnitSequenceViewProps,
 } from "./UnitSequence/UnitSequenceView";
 import { SubjectHeroImageName } from "./ProgrammeHeader/getSubjectHeroImageUrl";
+import {
+  ProgrammeOverview,
+  ProgrammeOverviewProps,
+} from "./ProgrammeOverview/ProgrammeOverview";
 
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import {
@@ -35,6 +39,8 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 
 type ProgrammePageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
@@ -44,6 +50,8 @@ type ProgrammePageProps = {
   examboardTitle: string | undefined;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   subjectPhaseSanityData: ProgrammePageHeaderCMS | null;
+  curriculumCMSInfo: CurriculumOverviewSanityData;
+  curriculumInfo: CurriculumOverviewMVData;
   tabSlug: TabSlug;
 };
 
@@ -55,6 +63,8 @@ export const ProgrammeView = ({
   examboardTitle,
   curriculumUnitsFormattedData,
   subjectPhaseSanityData,
+  curriculumCMSInfo,
+  curriculumInfo,
   tabSlug,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
@@ -154,6 +164,8 @@ export const ProgrammeView = ({
           curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+          curriculumInfo={curriculumInfo}
+          curriculumCMSInfo={curriculumCMSInfo}
           subjectForLayout={subjectForLayout}
           subjectTitle={subjectTitle}
           filters={filters}
@@ -168,12 +180,14 @@ const TabContent = ({
   tabSlug,
   curriculumPhaseOptions,
   curriculumSelectionSlugs,
+  curriculumInfo,
   curriculumUnitsFormattedData,
+  curriculumCMSInfo,
   subjectForLayout,
   subjectTitle,
   filters,
   setFilters,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps) => {
+}: { tabSlug: TabSlug } & UnitSequenceViewProps & ProgrammeOverviewProps) => {
   if (tabSlug === "units") {
     return (
       <UnitSequenceView
@@ -187,7 +201,13 @@ const TabContent = ({
       />
     );
   } else if (tabSlug === "overview") {
-    return <OakBox>Overview tab</OakBox>;
+    return (
+      <ProgrammeOverview
+        curriculumInfo={curriculumInfo}
+        curriculumCMSInfo={curriculumCMSInfo}
+        curriculumSelectionSlugs={curriculumSelectionSlugs}
+      />
+    );
   } else if (tabSlug === "download") {
     return <OakBox>Download tab</OakBox>;
   }
