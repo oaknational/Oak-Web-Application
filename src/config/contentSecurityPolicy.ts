@@ -136,6 +136,10 @@ const googleTranslate: Partial<CspConfig> = {
     "https://www.gstatic.com/",
     "https://*.google.com/",
   ],
+  imgSrc: [
+    "https://translate.googleusercontent.com",
+    "https://ssl.gstatic.com",
+  ],
   mediaSrc: ["https://ssl.gstatic.com"],
 };
 
