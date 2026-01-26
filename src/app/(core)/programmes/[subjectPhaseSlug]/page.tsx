@@ -21,7 +21,7 @@ import { useFeatureFlag } from "@/utils/featureFlags";
 import errorReporter from "@/common-lib/error-reporter";
 import getAppPageProps from "@/node-lib/getAppPageProps";
 
-const reportError = errorReporter("ProgrammePage.tsx");
+const reportError = errorReporter("programme-page::app");
 
 // Single cached function to fetch all common programme data
 // This deduplicates requests between generateMetadata and page component
@@ -188,7 +188,6 @@ const ProgrammePage = async (
       );
 
       if (!subjectPhaseSanityData) {
-        // TD: report error
         reportError(
           new OakError({
             code: "cms/missing-programme-page-data",

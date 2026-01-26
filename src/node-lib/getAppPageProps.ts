@@ -16,12 +16,11 @@ if (getBrowserConfig("sentryEnabled") === "true") {
 }
 
 /**
- * This function is intended to wrap NextJS page functions (e.g. getStaticProps,
- * getServerSideProps, etc.).It takes an async getProps() function as an argument
+ * This function is intended to wrap NextJS app page.tsx functions.
+ * It takes an async getProps() function as an argument which should return a page component
  * and it catches any errors thrown during the execution of the getProps(), and
  * reports them to our error reporting service. It then rethrows the error so
  * that NextJS can handle it.
- * Before returning results, it decorates the object with ISR props.
  */
 const getAppPageProps = async <T extends AppRoutes>({
   page,
