@@ -86,7 +86,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     const teamMemberWithImage = {
       ...mockTeamMember,
       image: {
-        asset: { url: "https://example.com/image.jpg" },
+        asset: { url: "https://example.com/image.jpg", _id: "image-id" },
         altText: "Test alt text",
       },
     };
