@@ -6,7 +6,6 @@ import errorReporter, {
 } from "../common-lib/error-reporter";
 import OakError from "../errors/OakError";
 
-import { AppRoutes } from ".next/types/routes";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 if (getBrowserConfig("sentryEnabled") === "true") {
@@ -15,6 +14,11 @@ if (getBrowserConfig("sentryEnabled") === "true") {
   initialiseBugsnag(null);
 }
 
+type AppPageProps = {
+  params: Promise<Record<string, string>>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
 /**
  * This function is intended to wrap NextJS app page.tsx functions.
  * It takes an async getProps() function as an argument which should return a page component
@@ -22,7 +26,7 @@ if (getBrowserConfig("sentryEnabled") === "true") {
  * reports them to our error reporting service. It then rethrows the error so
  * that NextJS can handle it.
  */
-const getAppPageProps = async <T extends AppRoutes>({
+const getAppPageProps = async ({
   page,
   props,
   getProps,
@@ -36,7 +40,7 @@ const getAppPageProps = async <T extends AppRoutes>({
    * The props passed to the page function. This is passed to
    * the error reporting service.
    */
-  props: PageProps<T>;
+  props: AppPageProps;
   /**
    * The page function to wrap
    */
