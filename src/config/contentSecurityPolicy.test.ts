@@ -20,7 +20,7 @@ const prodCspHeaderFixture = `
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
     report-uri https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1;
-    report-to posthog
+    report-to posthog;
 `;
 
 const devCspHeaderFixture = `
@@ -39,7 +39,7 @@ const devCspHeaderFixture = `
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
     report-uri https://eu.i.posthog.com/report/?token=test-api-key;
-    report-to posthog
+    report-to posthog;
 `;
 
 describe("Content-Security-Policy Header", () => {

@@ -263,6 +263,6 @@ export const cspHeader = `
     worker-src ${cspConfig.workerSrc.join(" ")};
     child-src ${cspConfig.childSrc.join(" ")};
     report-uri ${getReportUri(posthogReportUri, 0.05, "1")};
-    report-to posthog
+    report-to posthog;
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;
