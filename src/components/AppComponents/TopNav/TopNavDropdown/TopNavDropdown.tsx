@@ -249,10 +249,7 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
         )}
       {activeArea === "PUPILS" &&
         (selectedMenu === "primary" || selectedMenu === "secondary") && (
-          <PupilsSection
-            selectedMenu={selectedMenu as keyof PupilsSubNavData}
-            pupils={pupils}
-          />
+          <PupilsSection selectedMenu={selectedMenu} pupils={pupils} />
         )}
     </OakFlex>
   );
