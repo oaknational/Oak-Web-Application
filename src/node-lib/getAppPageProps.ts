@@ -9,7 +9,6 @@ import OakError from "../errors/OakError";
 import { AppRoutes } from ".next/types/routes";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
-
 if (getBrowserConfig("sentryEnabled") === "true") {
   initialiseSentry(null);
 } else {
