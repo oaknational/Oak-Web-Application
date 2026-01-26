@@ -1,3 +1,18 @@
+# [1.963.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.962.0...v1.963.0) (2026-01-26)
+
+
+### Bug Fixes
+
+* german illustration pointing at french 🤦‍♂️ ([50ab794](https://github.com/oaknational/Oak-Web-Application/commit/50ab794675714ce81c68525a374de55b594b8f76))
+
+
+### Features
+
+* add `ProgrammeHeader` ([f5429ba](https://github.com/oaknational/Oak-Web-Application/commit/f5429bac854600eb00f26c5635ea6580f1366771))
+* display selected subject from filters when possible ([4f91f61](https://github.com/oaknational/Oak-Web-Application/commit/4f91f61ca0e2fa58a8634894aad6671aef5cccd4))
+* use heading-4 for mobile ([9830a06](https://github.com/oaknational/Oak-Web-Application/commit/9830a0631ef97ee993e10d2a0a1bcc43849bc228))
+* wire the programme header up to the page ([21dc253](https://github.com/oaknational/Oak-Web-Application/commit/21dc253ef3795be162bf84c2fb9976537eab351f))
+
 # [1.962.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.961.1...v1.962.0) (2026-01-22)
 
 
