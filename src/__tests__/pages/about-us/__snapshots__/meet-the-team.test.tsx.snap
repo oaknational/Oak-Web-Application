@@ -5913,6 +5913,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
               class="c11 c127"
             >
               <div
+                aria-label="Page sections"
                 class="c128 c129"
                 style="min-width: 200px;"
               >
