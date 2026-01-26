@@ -74,6 +74,7 @@ export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
   return (
     <OakBox $display={["block", "block", "none"]}>
       <OakSecondaryButton
+        iconGap={"spacing-0"}
         data-testid="top-nav-hamburger-button"
         $borderStyle={"none"}
         iconName="hamburger"

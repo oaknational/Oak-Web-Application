@@ -56,6 +56,7 @@ export function SubmenuContainer({
     <OakFlex
       $ph={"spacing-40"}
       $pb={"spacing-40"}
+      $pt={"spacing-4"}
       $gap={"spacing-40"}
       $flexDirection={"column"}
       ref={containerRef}
@@ -130,6 +131,7 @@ export function SubmenuContent(
       return (
         <SubmenuContainer title={submenuOpen} hamburgerMenu={hamburgerMenu}>
           <TopNavSubjectButtons
+            handleClick={handleClose}
             selectedMenu={phase}
             subjects={subjects}
             nonCurriculumSubjects={nonCurriculumSubjects}

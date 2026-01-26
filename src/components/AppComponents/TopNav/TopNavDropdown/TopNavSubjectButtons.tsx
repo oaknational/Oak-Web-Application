@@ -41,6 +41,7 @@ const TopNavSubjectButtons = ({
   nonCurriculumSubjects,
   keyStageSlug,
   keyStageTitle,
+  handleClick,
 }: {
   selectedMenu: keyof TeachersSubNavData;
   subjects: TeachersSubNavData[
@@ -51,6 +52,7 @@ const TopNavSubjectButtons = ({
     | "secondary"]["keystages"][number]["subjects"];
   keyStageSlug: string;
   keyStageTitle: string;
+  handleClick?: () => void;
 }) => {
   return (
     <OakUL
@@ -80,6 +82,7 @@ const TopNavSubjectButtons = ({
                     keyStageSlug,
                   }),
                 )}
+                onClick={handleClick}
                 phase={selectedMenu as "primary" | "secondary"}
                 id={`topnav-teachers-subject-${subjectSlug}`}
               >
@@ -109,6 +112,7 @@ const TopNavSubjectButtons = ({
                     keyStageSlug,
                   }),
                 )}
+                onClick={handleClick}
                 phase={"non-curriculum"}
               >
                 {subject.title}
