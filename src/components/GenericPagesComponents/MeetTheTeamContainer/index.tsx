@@ -4,16 +4,19 @@ export type MeetTheTeamContainerProps = {
   title: string;
   text?: string | null;
   children: React.ReactNode;
+  anchor?: string;
 };
 export function MeetTheTeamContainer({
   title,
   text,
   children,
+  anchor,
 }: Readonly<MeetTheTeamContainerProps>) {
   return (
     <OakBox
       $background={"bg-decorative5-very-subdued"}
       $pa={["spacing-16", "spacing-24", "spacing-24"]}
+      id={anchor}
     >
       <OakFlex $gap={["spacing-32"]} $flexDirection={"column"}>
         <OakFlex $gap={["spacing-16"]} $flexDirection={"column"}>
