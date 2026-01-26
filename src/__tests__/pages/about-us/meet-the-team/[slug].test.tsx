@@ -82,6 +82,87 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     expect(container).toMatchSnapshot();
   });
 
+  it("renders with image", () => {
+    const teamMemberWithImage = {
+      ...mockTeamMember,
+      image: {
+        asset: { url: "https://example.com/image.jpg" },
+        altText: "Test alt text",
+      },
+    };
+
+    const { getByAltText } = renderWithProviders()(
+      <AboutUsMeetTheTeamPerson
+        pageData={teamMemberWithImage}
+        topNav={topNavFixture}
+        navigation={mockNavigation}
+      />,
+    );
+
+    expect(getByAltText("Test alt text")).toBeInTheDocument();
+  });
+
+  it("renders with socials", () => {
+    const teamMemberWithSocials = {
+      ...mockTeamMember,
+      socials: {
+        twitterUsername: "testuser",
+        linkedinUrl: "https://linkedin.com/in/testuser",
+      },
+    };
+
+    const { getByText } = renderWithProviders()(
+      <AboutUsMeetTheTeamPerson
+        pageData={teamMemberWithSocials}
+        topNav={topNavFixture}
+        navigation={mockNavigation}
+      />,
+    );
+
+    expect(getByText("Twitter")).toBeInTheDocument();
+    expect(getByText("LinkedIn")).toBeInTheDocument();
+  });
+
+  it("renders without navigation when no prev/next", () => {
+    const noNavigation = {
+      prevSlug: null,
+      prevName: null,
+      nextSlug: null,
+      nextName: null,
+    };
+
+    const { queryByText } = renderWithProviders()(
+      <AboutUsMeetTheTeamPerson
+        pageData={mockTeamMember}
+        topNav={topNavFixture}
+        navigation={noNavigation}
+      />,
+    );
+
+    expect(queryByText("Previous profile")).not.toBeInTheDocument();
+    expect(queryByText("Next profile")).not.toBeInTheDocument();
+  });
+
+  it("renders with only previous navigation", () => {
+    const prevOnlyNavigation = {
+      prevSlug: "previous-member",
+      prevName: "Previous Member",
+      nextSlug: null,
+      nextName: null,
+    };
+
+    const { getByText, queryByText } = renderWithProviders()(
+      <AboutUsMeetTheTeamPerson
+        pageData={mockTeamMember}
+        topNav={topNavFixture}
+        navigation={prevOnlyNavigation}
+      />,
+    );
+
+    expect(getByText("Previous profile")).toBeInTheDocument();
+    expect(queryByText("Next profile")).not.toBeInTheDocument();
+  });
+
   describe("getServerSideProps", () => {
     it("should 404 when not enabled", async () => {
       (getFeatureFlag as jest.Mock).mockResolvedValue(false);
@@ -144,6 +225,158 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
 
       expect(propsResult).toMatchObject({
         notFound: true,
+      });
+    });
+
+    it("should return navigation with prev and next when member is in the middle", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: {},
+        params: {
+          slug: "ed-southall",
+        },
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(propsResult).toMatchObject({
+        props: {
+          navigation: {
+            prevSlug: "previous-member",
+            nextSlug: "next-member",
+          },
+        },
+      });
+    });
+
+    it("should return no prev navigation for first member", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: {},
+        params: {
+          slug: "previous-member",
+        },
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(propsResult).toMatchObject({
+        props: {
+          navigation: {
+            prevSlug: null,
+            nextSlug: "ed-southall",
+          },
+        },
+      });
+    });
+
+    it("should return no next navigation for last member", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: {},
+        params: {
+          slug: "next-member",
+        },
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(propsResult).toMatchObject({
+        props: {
+          navigation: {
+            prevSlug: "ed-southall",
+            nextSlug: null,
+          },
+        },
+      });
+    });
+
+    it("should handle member with id fallback when no slug", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      const pageWithIdOnlyMember = {
+        ...mockMeetTheTeamPage,
+        leadershipTeam: [
+          { id: "id-only-member", name: "ID Only Member", slug: null },
+        ],
+        boardMembers: [],
+      };
+      (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(
+        pageWithIdOnlyMember,
+      );
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: {},
+        params: {
+          slug: "id-only-member",
+        },
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(propsResult).toMatchObject({
+        props: {
+          navigation: {
+            prevSlug: null,
+            nextSlug: null,
+          },
+        },
+      });
+    });
+
+    it("should return empty navigation when meetTheTeamPage is null", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(null);
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: {},
+        params: {
+          slug: "ed-southall",
+        },
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(propsResult).toMatchObject({
+        props: {
+          navigation: {
+            prevSlug: null,
+            prevName: null,
+            nextSlug: null,
+            nextName: null,
+          },
+        },
+      });
+    });
+
+    it("should return empty navigation when member not found in list", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      const teamMemberNotInList = {
+        ...mockTeamMember,
+        slug: { current: "unlisted-member" },
+      };
+      (CMSClient.teamMemberBySlug as jest.Mock).mockResolvedValue(
+        teamMemberNotInList,
+      );
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: {},
+        params: {
+          slug: "unlisted-member",
+        },
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(propsResult).toMatchObject({
+        props: {
+          navigation: {
+            prevSlug: null,
+            nextSlug: null,
+          },
+        },
       });
     });
   });
