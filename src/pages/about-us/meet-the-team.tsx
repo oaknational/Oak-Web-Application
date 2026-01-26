@@ -50,6 +50,9 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
   topNav,
 }) => {
   const {
+    introText,
+    leadershipText,
+    boardText,
     leadershipTeam,
     boardMembers,
     documents,
@@ -66,7 +69,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
       <AboutUsLayout>
         <AboutSharedHeader
           title={"Meet the team"}
-          content={PAGE_TEXT.subTitle}
+          content={introText ?? PAGE_TEXT.subTitle}
           titleHighlight="bg-decorative5-main"
         />
         <InnerMaxWidth>
@@ -85,7 +88,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
             >
               <MeetTheTeamContainer
                 title={PAGE_TEXT.leadershipTitle}
-                text={PAGE_TEXT.leadershipText}
+                text={leadershipText ?? PAGE_TEXT.leadershipText}
               >
                 {leadershipTeam.map((member) => {
                   const slug = member.slug?.current ?? member.id;
@@ -103,7 +106,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
 
               <MeetTheTeamContainer
                 title={PAGE_TEXT.boardTitle}
-                text={PAGE_TEXT.boardText}
+                text={boardText ?? PAGE_TEXT.boardText}
               >
                 {boardMembers.map((member) => {
                   const slug = member.slug?.current ?? member.id;

@@ -6,6 +6,9 @@ query meetTheTeamPage($isDraftFilter: Sanity_DocumentFilter) {
   ) {
     id: _id
     title
+    introText
+    leadershipText
+    boardText
     leadershipTeam {
       ...TeamMember
     }

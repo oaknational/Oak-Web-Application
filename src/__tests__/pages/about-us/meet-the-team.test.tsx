@@ -32,6 +32,9 @@ const mockTeamMember = {
 const mockPageData: AboutUsMeetTheTeamPageProps["pageData"] = {
   id: "test-page-id",
   title: "Meet the Team",
+  introText: null,
+  leadershipText: null,
+  boardText: null,
   leadershipTeam: [mockTeamMember],
   boardMembers: [mockTeamMember],
   documents: null,

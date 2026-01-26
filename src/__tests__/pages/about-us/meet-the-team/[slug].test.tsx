@@ -44,6 +44,9 @@ const mockNavigation: AboutUsMeetTheTeamPersonPageProps["navigation"] = {
 const mockMeetTheTeamPage = {
   id: "page-id",
   title: "Meet the Team",
+  introText: null,
+  leadershipText: null,
+  boardText: null,
   leadershipTeam: [
     {
       id: "prev-id",

@@ -2658,9 +2658,15 @@ export type NewAboutCorePageMeetTheTeam = Document & {
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
   boardMembers?: Maybe<Array<Maybe<TeamMember>>>;
+  /** Body text displayed below the 'Our board' heading */
+  boardText?: Maybe<Scalars['String']['output']>;
   documents?: Maybe<Array<Maybe<Attachment>>>;
   governanceRaw?: Maybe<Scalars['JSON']['output']>;
+  /** Introductory text displayed below the page title */
+  introText?: Maybe<Scalars['String']['output']>;
   leadershipTeam?: Maybe<Array<Maybe<TeamMember>>>;
+  /** Body text displayed below the 'Our leadership' heading */
+  leadershipText?: Maybe<Scalars['String']['output']>;
   seo?: Maybe<Seo>;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -2674,6 +2680,9 @@ export type NewAboutCorePageMeetTheTeamFilter = {
   _rev?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
+  boardText?: InputMaybe<StringFilter>;
+  introText?: InputMaybe<StringFilter>;
+  leadershipText?: InputMaybe<StringFilter>;
   seo?: InputMaybe<SeoFilter>;
   title?: InputMaybe<StringFilter>;
 };
@@ -2685,6 +2694,9 @@ export type NewAboutCorePageMeetTheTeamSorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
+  boardText?: InputMaybe<SortOrder>;
+  introText?: InputMaybe<SortOrder>;
+  leadershipText?: InputMaybe<SortOrder>;
   seo?: InputMaybe<SeoSorting>;
   title?: InputMaybe<SortOrder>;
 };
@@ -5739,7 +5751,7 @@ export type MeetTheTeamPageQueryVariables = Exact<{
 }>;
 
 
-export type MeetTheTeamPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageMeetTheTeam: Array<{ __typename?: 'NewAboutCorePageMeetTheTeam', title?: string | null, id?: string | null, governancePortableText?: any | null, leadershipTeam?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null, boardMembers?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null, documents?: Array<{ __typename?: 'Attachment', title?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type MeetTheTeamPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageMeetTheTeam: Array<{ __typename?: 'NewAboutCorePageMeetTheTeam', title?: string | null, introText?: string | null, leadershipText?: string | null, boardText?: string | null, id?: string | null, governancePortableText?: any | null, leadershipTeam?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null, boardMembers?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null, documents?: Array<{ __typename?: 'Attachment', title?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type NewAboutWhoWeArePageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6736,6 +6748,9 @@ export const MeetTheTeamPageDocument = gql`
   ) {
     id: _id
     title
+    introText
+    leadershipText
+    boardText
     leadershipTeam {
       ...TeamMember
     }
