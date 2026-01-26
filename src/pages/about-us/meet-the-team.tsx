@@ -2,6 +2,7 @@ import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
 import {
   OakFlex,
   OakHeading,
+  OakSideMenuNav,
   OakTypography,
 } from "@oaknational/oak-components";
 
@@ -26,7 +27,7 @@ import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxB
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-// Hard-coded text for section titles/descriptions
+// Hard-coded text for section titles/descriptions (fallbacks)
 const PAGE_TEXT = {
   subTitle:
     "Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.",
@@ -78,7 +79,24 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               $display={["none", "block", "block"]}
               style={{ minWidth: 200 }}
             >
-              SideNav placeholder
+              <OakSideMenuNav
+                heading="Page sections"
+                anchorTargetId=""
+                menuItems={[
+                  {
+                    heading: "Our leadership",
+                    href: "#our-leadership",
+                  },
+                  {
+                    heading: "Our board",
+                    href: "#our-board",
+                  },
+                  {
+                    heading: "Documents",
+                    href: "#documents",
+                  },
+                ]}
+              />
             </OakFlex>
             <OakFlex
               $flexGrow={1}
@@ -89,6 +107,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               <MeetTheTeamContainer
                 title={PAGE_TEXT.leadershipTitle}
                 text={leadershipText ?? PAGE_TEXT.leadershipText}
+                anchor="our-leadership"
               >
                 {leadershipTeam.map((member) => {
                   const slug = member.slug?.current ?? member.id;
@@ -107,6 +126,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               <MeetTheTeamContainer
                 title={PAGE_TEXT.boardTitle}
                 text={boardText ?? PAGE_TEXT.boardText}
+                anchor="our-board"
               >
                 {boardMembers.map((member) => {
                   const slug = member.slug?.current ?? member.id;
@@ -126,6 +146,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                 <MeetTheTeamContainer
                   title={PAGE_TEXT.documentTitle}
                   text={null}
+                  anchor="documents"
                 >
                   {documents.map((doc) => {
                     const fileSizeInMB = (
