@@ -18,7 +18,6 @@ import {
 } from "@portabletext/react";
 import styled from "styled-components";
 import slugify from "slugify";
-import { useRouter } from "next/router";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
@@ -34,6 +33,7 @@ import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 
 export type OverviewTabProps = {
+  onClickNavItem: (pathname: string) => void;
   data: {
     curriculumInfo: CurriculumOverviewMVData;
     curriculumCMSInfo: CurriculumOverviewSanityData;
@@ -125,12 +125,13 @@ const markComponents: PortableTextComponents["marks"] = {
   },
 };
 
-const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
-  const router = useRouter();
+const OverviewTab: FC<OverviewTabProps> = ({
+  onClickNavItem,
+  data,
+}: OverviewTabProps) => {
   const { track } = useAnalytics();
 
-  const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
-    props.data;
+  const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } = data;
   const { subjectTitle } = curriculumInfo;
   const { subjectSlug, phaseSlug } = curriculumSelectionSlugs;
   const {
@@ -190,14 +191,14 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     });
   };
 
-  const onClickNavItem = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClickNavItem = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (e.target instanceof HTMLElement) {
       const anchor = findContainingAnchor(e.target);
       if (anchor) {
         const url = new URL(anchor.href);
         handleAnalytics();
-        router.replace(url.hash);
+        onClickNavItem(url.hash);
         goToAnchor(url.hash);
       }
     }
@@ -208,7 +209,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       <OakTertiaryOLNav
         items={navItems}
         title={"Contents"}
-        onClick={onClickNavItem}
+        onClick={handleClickNavItem}
       />
     </OakFlex>
   );
