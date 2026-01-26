@@ -14,8 +14,9 @@ if (getBrowserConfig("sentryEnabled") === "true") {
   initialiseBugsnag(null);
 }
 
-type AppPageProps = {
-  params: Promise<Record<string, string>>;
+type PageParams = Record<string, string>;
+export type AppPageProps<T extends PageParams> = {
+  params: Promise<T>;
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
@@ -26,7 +27,7 @@ type AppPageProps = {
  * reports them to our error reporting service. It then rethrows the error so
  * that NextJS can handle it.
  */
-const getAppPageProps = async ({
+const getAppPageProps = async <T extends PageParams>({
   page,
   props,
   getProps,
@@ -40,7 +41,7 @@ const getAppPageProps = async ({
    * The props passed to the page function. This is passed to
    * the error reporting service.
    */
-  props: AppPageProps;
+  props: AppPageProps<T>;
   /**
    * The page function to wrap
    */

@@ -19,7 +19,7 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import { useFeatureFlag } from "@/utils/featureFlags";
 import errorReporter from "@/common-lib/error-reporter";
-import getAppPageProps from "@/node-lib/getAppPageProps";
+import getAppPageProps, { AppPageProps } from "@/node-lib/getAppPageProps";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -29,13 +29,13 @@ const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) => {
   return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
 });
 
-type ProgrammePageProps = {
-  params: Promise<{ subjectPhaseSlug: string }>;
-};
+type ProgrammePageProps = { subjectPhaseSlug: string };
 
 export async function generateMetadata({
   params,
-}: ProgrammePageProps): Promise<Metadata> {
+}: {
+  params: Promise<ProgrammePageProps>;
+}): Promise<Metadata> {
   const { subjectPhaseSlug } = await params;
 
   try {
@@ -113,9 +113,7 @@ export async function generateMetadata({
   }
 }
 
-const ProgrammePage = async (
-  props: PageProps<"/programmes/[subjectPhaseSlug]">,
-) => {
+const ProgrammePage = async (props: AppPageProps<ProgrammePageProps>) => {
   // `useFeatureFlag` is not a hook
   const isEnabled = await useFeatureFlag(
     "teachers-integrated-journey",
