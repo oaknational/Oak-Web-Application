@@ -71,7 +71,7 @@ const cloudinary: Partial<CspConfig> = {
     "https://oaknationalacademy-res.cloudinary.com",
     "https://*.cloudinary.com/",
     "https://*.cloudinary.com",
-    " https://res.cloudinary.com/oak-web-application/",
+    "https://res.cloudinary.com/oak-web-application/",
   ],
   mediaSrc: [
     "https://res.cloudinary.com/",
@@ -181,9 +181,9 @@ const cspBaseConfig: CspConfig = {
   frameSrc: ["'self'", "*.thenational.academy/"],
   workerSrc: ["'self'", "blob:", "*.thenational.academy/"],
   childSrc: ["blob:"],
-  upgradeInsecureRequests: false,
+  // upgradeInsecureRequests: false,
   // when we change from report only we can uncomment this
-  // upgradeInsecureRequests: !isDevelopment,
+  upgradeInsecureRequests: !isDevelopment,
 };
 
 // Construct CSP headers
