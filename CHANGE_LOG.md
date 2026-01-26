@@ -1,3 +1,11 @@
+# [1.964.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.963.1...v1.964.0) (2026-01-26)
+
+
+### Features
+
+* add heading to nav ([d4c9ff9](https://github.com/oaknational/Oak-Web-Application/commit/d4c9ff9005281b35b1910e5803e4a4cf639f5580))
+* added side nav to meet the team ([75c8b51](https://github.com/oaknational/Oak-Web-Application/commit/75c8b51dd233ef4672b3fe6ca4883335236503da))
+
 ## [1.963.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.963.0...v1.963.1) (2026-01-26)
 
 # [1.963.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.962.0...v1.963.0) (2026-01-26)
