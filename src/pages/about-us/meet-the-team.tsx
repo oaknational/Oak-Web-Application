@@ -186,14 +186,12 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
 export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPageProps
 > = async (context) => {
-  // TODO: Remove isLocalDev bypass before merging
-  const isLocalDev = process.env.NODE_ENV === "development";
   const posthogUserId = getPosthogIdFromCookie(
     context.req.cookies,
     posthogApiKey,
   );
-  let enableV2: boolean = isLocalDev;
-  if (posthogUserId && !isLocalDev) {
+  let enableV2: boolean = false;
+  if (posthogUserId) {
     // get the variant key for the user
     enableV2 =
       (await getFeatureFlag({

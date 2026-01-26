@@ -1,4 +1,4 @@
-import { NextPage, GetServerSideProps, GetStaticPropsResult } from "next";
+import { NextPage, GetServerSideProps } from "next";
 import {
   OakFlex,
   OakHeading,
@@ -175,6 +175,39 @@ type URLParams = {
   slug: string;
 };
 
+type TeamMemberRef = {
+  id: string;
+  name: string;
+  slug?: { current?: string } | null;
+};
+
+function getMemberSlug(member: TeamMemberRef): string {
+  return member.slug?.current ?? member.id;
+}
+
+function buildProfileNavigation(
+  allMembers: TeamMemberRef[],
+  currentSlug: string,
+): ProfileNavigation {
+  const currentIndex = allMembers.findIndex(
+    (member) => getMemberSlug(member) === currentSlug,
+  );
+
+  if (currentIndex === -1) {
+    return { prevSlug: null, prevName: null, nextSlug: null, nextName: null };
+  }
+
+  const prevMember = allMembers[currentIndex - 1];
+  const nextMember = allMembers[currentIndex + 1];
+
+  return {
+    prevSlug: prevMember ? getMemberSlug(prevMember) : null,
+    prevName: prevMember?.name ?? null,
+    nextSlug: nextMember ? getMemberSlug(nextMember) : null,
+    nextName: nextMember?.name ?? null,
+  };
+}
+
 export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPersonPageProps,
   URLParams
@@ -185,7 +218,6 @@ export const getServerSideProps: GetServerSideProps<
   );
   let enableV2: boolean = false;
   if (posthogUserId) {
-    // get the variant key for the user
     enableV2 =
       (await getFeatureFlag({
         featureFlagKey: "about-us--who-we-are--v2",
@@ -194,9 +226,7 @@ export const getServerSideProps: GetServerSideProps<
   }
 
   if (!enableV2) {
-    return {
-      notFound: true,
-    };
+    return { notFound: true };
   }
 
   const slug = context.params?.slug;
@@ -206,7 +236,6 @@ export const getServerSideProps: GetServerSideProps<
 
   const isPreviewMode = context.preview === true;
 
-  // Fetch both the team member and the page data for navigation
   const [teamMember, meetTheTeamPage, topNav] = await Promise.all([
     CMSClient.teamMemberBySlug(slug, { previewMode: isPreviewMode }),
     CMSClient.meetTheTeamPage({ previewMode: isPreviewMode }),
@@ -214,61 +243,22 @@ export const getServerSideProps: GetServerSideProps<
   ]);
 
   if (!teamMember) {
-    return {
-      notFound: true,
-    };
+    return { notFound: true };
   }
 
-  // Build navigation by combining leadership and board members
-  const navigation: ProfileNavigation = {
-    prevSlug: null,
-    prevName: null,
-    nextSlug: null,
-    nextName: null,
-  };
+  const allMembers = [
+    ...(meetTheTeamPage?.leadershipTeam ?? []),
+    ...(meetTheTeamPage?.boardMembers ?? []),
+  ];
+  const navigation = buildProfileNavigation(allMembers, slug);
 
-  if (meetTheTeamPage) {
-    // Combine both arrays to create full list for navigation
-    const allMembers = [
-      ...(meetTheTeamPage.leadershipTeam ?? []),
-      ...(meetTheTeamPage.boardMembers ?? []),
-    ];
-
-    // Find current member's position
-    const currentIndex = allMembers.findIndex((member) => {
-      const memberSlug = member.slug?.current ?? member.id;
-      return memberSlug === slug;
-    });
-
-    if (currentIndex !== -1) {
-      // Get previous member (if exists)
-      if (currentIndex > 0) {
-        const prevMember = allMembers[currentIndex - 1];
-        if (prevMember) {
-          navigation.prevSlug = prevMember.slug?.current ?? prevMember.id;
-          navigation.prevName = prevMember.name;
-        }
-      }
-
-      // Get next member (if exists)
-      if (currentIndex < allMembers.length - 1) {
-        const nextMember = allMembers[currentIndex + 1];
-        if (nextMember) {
-          navigation.nextSlug = nextMember.slug?.current ?? nextMember.id;
-          navigation.nextName = nextMember.name;
-        }
-      }
-    }
-  }
-
-  const results: GetStaticPropsResult<AboutUsMeetTheTeamPersonPageProps> = {
+  return {
     props: {
       pageData: teamMember,
       topNav,
       navigation,
     },
   };
-  return results;
 };
 
 export default AboutUsMeetTheTeamPerson;
