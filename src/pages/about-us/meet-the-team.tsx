@@ -108,8 +108,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               style={{ minWidth: 200 }}
             >
               <OakSideMenuNav
-                aria-label="Page sections"
-                heading=""
+                heading="Page sections"
                 anchorTargetId=""
                 menuItems={[
                   {
