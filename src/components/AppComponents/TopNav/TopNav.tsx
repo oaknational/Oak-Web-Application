@@ -174,7 +174,11 @@ const TopNav = (props: TopNavProps) => {
       {selectedMenu &&
         ((activeArea === "TEACHERS" && teachers) ||
           (activeArea === "PUPILS" && pupils)) && (
-          <OakFlex $width={"100%"} $flexDirection={"column"}>
+          <OakFlex
+            $display={["none", "none", "flex"]}
+            $width={"100%"}
+            $flexDirection={"column"}
+          >
             <TopNavDropdown
               activeArea={activeArea}
               selectedMenu={selectedMenu}

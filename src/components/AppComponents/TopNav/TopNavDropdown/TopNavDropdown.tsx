@@ -232,7 +232,7 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
   const { activeArea, selectedMenu, teachers, pupils } = props;
 
   return (
-    <OakFlex $display={["none", "none", "flex"]} $pa={"spacing-40"}>
+    <OakFlex $pa={"spacing-40"}>
       {activeArea === "TEACHERS" &&
         (selectedMenu === "primary" || selectedMenu === "secondary") && (
           <TeachersPhaseSection
