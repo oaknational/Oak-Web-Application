@@ -869,6 +869,29 @@ exports[`CurriculumTab renders 1`] = `
   color: #808080;
 }
 
+.c37 {
+  box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c37:has( a, button ) {
+  z-index: 2;
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c37:has(a:hover,button:hover),
+.c37:has(button:hover:not(:active)) {
+  z-index: 1;
+}
+
+.c37:has(a:hover,button:hover) {
+  box-shadow: none;
+}
+
+.c37:has(a:active,button:active) {
+  z-index: 2;
+  box-shadow: none;
+}
+
 .c63 {
   object-fit: contain;
   width: 100%;
@@ -909,27 +932,8 @@ exports[`CurriculumTab renders 1`] = `
   transition: all 0.3s ease;
 }
 
-.c37 {
+.c38 {
   box-shadow: none;
-}
-
-.c37:has( a,button ) {
-  border-radius: 0.25em;
-  z-index: 2;
-  box-shadow: rgb(255,229,85) 0px 0px 0px 0.125rem,rgb(87,87,87) 0px 0px 0px 0.3rem;
-}
-
-.c37:has(a:hover,button:hover),
-.c37:has(button:hover:not(:active)) {
-  z-index: 1;
-}
-
-.c37:has(a:hover,button:hover) {
-  box-shadow: none;
-}
-
-.c37:has(a:active,button:active) {
-  z-index: 2;
 }
 
 .c39 {
@@ -944,10 +948,6 @@ exports[`CurriculumTab renders 1`] = `
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
-}
-
-.c38:hover {
-  background: #f2f2f2;
 }
 
 .c2 {
