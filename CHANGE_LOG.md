@@ -1,3 +1,65 @@
+# [1.964.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.963.1...v1.964.0) (2026-01-26)
+
+
+### Features
+
+* add heading to nav ([d4c9ff9](https://github.com/oaknational/Oak-Web-Application/commit/d4c9ff9005281b35b1910e5803e4a4cf639f5580))
+* added side nav to meet the team ([75c8b51](https://github.com/oaknational/Oak-Web-Application/commit/75c8b51dd233ef4672b3fe6ca4883335236503da))
+
+## [1.963.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.963.0...v1.963.1) (2026-01-26)
+
+# [1.963.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.962.0...v1.963.0) (2026-01-26)
+
+
+### Bug Fixes
+
+* german illustration pointing at french 🤦‍♂️ ([50ab794](https://github.com/oaknational/Oak-Web-Application/commit/50ab794675714ce81c68525a374de55b594b8f76))
+
+
+### Features
+
+* add `ProgrammeHeader` ([f5429ba](https://github.com/oaknational/Oak-Web-Application/commit/f5429bac854600eb00f26c5635ea6580f1366771))
+* display selected subject from filters when possible ([4f91f61](https://github.com/oaknational/Oak-Web-Application/commit/4f91f61ca0e2fa58a8634894aad6671aef5cccd4))
+* use heading-4 for mobile ([9830a06](https://github.com/oaknational/Oak-Web-Application/commit/9830a0631ef97ee993e10d2a0a1bcc43849bc228))
+* wire the programme header up to the page ([21dc253](https://github.com/oaknational/Oak-Web-Application/commit/21dc253ef3795be162bf84c2fb9976537eab351f))
+
+# [1.962.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.961.1...v1.962.0) (2026-01-22)
+
+
+### Bug Fixes
+
+* adds additional boolean check ([277d207](https://github.com/oaknational/Oak-Web-Application/commit/277d207a602a867b85810e6aeb9eb3280e164329))
+* allow push ([3c57310](https://github.com/oaknational/Oak-Web-Application/commit/3c573100be6c9a31d8f03f5d5f2fa3418c347364))
+* allow push ([8a84141](https://github.com/oaknational/Oak-Web-Application/commit/8a8414163356e440ab0e8e5a428317efe5e12de6))
+* check router before checking query params ([51ab4c8](https://github.com/oaknational/Oak-Web-Application/commit/51ab4c8d1b3a68fbf8b389e19c5b918c0dd8a7c2))
+* filter correctAnswers with empty strings when rendering QuizResultItem ([b104986](https://github.com/oaknational/Oak-Web-Application/commit/b104986e18846336b04a8c07166ce1b04a2aea55))
+* fixed sonar cloud issues ([d94b303](https://github.com/oaknational/Oak-Web-Application/commit/d94b30335cd229c6d302eb87f6bc5484e36b548a))
+* fixed sonar cloud issues ([347fa19](https://github.com/oaknational/Oak-Web-Application/commit/347fa19602dc4f8a8093df7630598decdd9df5d9))
+* prevent flashing of share buttons at end of pupil lesson within google classroom ([bd34e51](https://github.com/oaknational/Oak-Web-Application/commit/bd34e51265064150dd59dabce68edaa33150ec86))
+* revert change to postMessage origin ([f317e79](https://github.com/oaknational/Oak-Web-Application/commit/f317e793acab817e901b938717fc2868afe0dc58))
+* update modal button text ([8481f55](https://github.com/oaknational/Oak-Web-Application/commit/8481f5538e2039395701ad093600f209cb8aaa2b))
+
+
+### Features
+
+* setup feature branch for pre-bett conference google classroom changes ([6a90e33](https://github.com/oaknational/Oak-Web-Application/commit/6a90e3394c0ed1e1460aefc8f1a9a700cb0d5019))
+* updated addon package version to include version with responsive ui ([2d643b8](https://github.com/oaknational/Oak-Web-Application/commit/2d643b8401815346cb59534490b64fc72a5d16c4))
+* updates google-classroom-addon version ([f0619d0](https://github.com/oaknational/Oak-Web-Application/commit/f0619d0a3d77d75b4b29fe34e0c2886ef5cc81db))
+
+## [1.961.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.961.0...v1.961.1) (2026-01-22)
+
+
+### Bug Fixes
+
+* **LESQ-1765:** skip to results button intersecting the new nav menu ([85ce6bd](https://github.com/oaknational/Oak-Web-Application/commit/85ce6bd102f4f035eeef5540325c767502ec6f41))
+
+# [1.961.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.960.0...v1.961.0) (2026-01-22)
+
+
+### Features
+
+* added <MeetTheTeamContainer/> component ([8bdd5d4](https://github.com/oaknational/Oak-Web-Application/commit/8bdd5d4fb88850983cd401f35f30580373d465b5))
+
 # [1.960.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.959.2...v1.960.0) (2026-01-21)
 
 

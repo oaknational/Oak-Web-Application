@@ -117,11 +117,11 @@ export async function generateMetadata({
 
 const ProgrammePage = async ({ params }: ProgrammePageProps) => {
   // `useFeatureFlag` is not a hook
-  //NOSONAR
   const isEnabled = await useFeatureFlag(
     "teachers-integrated-journey",
     "boolean",
   );
+
   try {
     const { subjectPhaseSlug } = await params;
 
@@ -175,6 +175,7 @@ const ProgrammePage = async ({ params }: ProgrammePageProps) => {
       },
     );
 
+    // TD: [integrated-journey] This data is not used in `ProgrammeView`, maybe we can remove it?
     if (!curriculumOverviewSanityData) {
       return notFound();
     }
@@ -182,11 +183,19 @@ const ProgrammePage = async ({ params }: ProgrammePageProps) => {
     const curriculumUnitsFormattedData =
       formatCurriculumUnitsData(curriculumUnitsData);
 
+    // Find examboard title from subject phases
+    const ks4Option = validSubjectPhases
+      .flatMap((subject) => subject.ks4_options)
+      .find(
+        (ks4opt) => ks4opt?.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
+      );
+
     const results = {
       curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
       curriculumPhaseOptions,
       subjectTitle: programmeUnitsData.subjectTitle,
-      curriculumOverviewSanityData,
+      phaseTitle: programmeUnitsData.phaseTitle,
+      examboardTitle: ks4Option?.title,
       curriculumUnitsFormattedData,
     };
 

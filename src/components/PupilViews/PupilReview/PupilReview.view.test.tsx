@@ -61,6 +61,13 @@ jest.mock(
   },
 );
 
+jest.mock("@/hooks/useAssignmentSearchParams", () => ({
+  useAssignmentSearchParams: jest.fn().mockReturnValue({
+    isClassroomAssignment: false,
+    classroomAssignmentChecked: true,
+  }),
+}));
+
 describe("PupilReview", () => {
   it("error messages when the phase is foundation", () => {
     console.error = jest.fn();
