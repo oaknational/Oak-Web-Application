@@ -58,7 +58,7 @@ export type ProgrammeHeaderProps = {
   /**
    * Bullet points rendered as a list with a tick icon
    */
-  bullets?: React.ReactNode[];
+  bullets?: string[];
   /**
    * A slot for content that appears above the main content
    *
@@ -159,9 +159,9 @@ export const ProgrammeHeader = ({
               $flexDirection="column"
               $gap="spacing-12"
             >
-              {bullets.map((bullet, index) => (
+              {bullets.map((bullet) => (
                 <OakLI
-                  key={index}
+                  key={bullet}
                   $display="flex"
                   $alignItems="center"
                   $gap="spacing-8"
