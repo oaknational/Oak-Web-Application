@@ -177,7 +177,6 @@ describe("generateMetadata", () => {
         subjectPhaseSlug: "maths-primary",
         tab: "units",
       }),
-      searchParams: Promise.resolve({}),
     });
 
     expect(result).toEqual({});
@@ -219,7 +218,6 @@ describe("generateMetadata", () => {
         subjectPhaseSlug: "maths-primary",
         tab: "units",
       }),
-      searchParams: Promise.resolve({}),
     });
 
     expect(result.title).toBe("KS2 maths curriculum unit sequence");
@@ -244,7 +242,6 @@ describe("generateMetadata", () => {
         subjectPhaseSlug: "maths-primary",
         tab: "units",
       }),
-      searchParams: Promise.resolve({}),
     });
 
     expect(result).toEqual({});
