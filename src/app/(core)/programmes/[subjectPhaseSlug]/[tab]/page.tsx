@@ -23,11 +23,9 @@ const reportError = errorReporter("programme-page::app");
 
 // Single cached function to fetch all common programme data
 // This deduplicates requests between generateMetadata and page component
-export const getCachedProgrammeData = cache(
-  async (subjectPhaseSlug: string) => {
-    return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
-  },
-);
+const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) => {
+  return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
+});
 
 export async function generateMetadata({
   params,
