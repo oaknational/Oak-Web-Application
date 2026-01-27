@@ -19,7 +19,7 @@ describe("TopNavDropdown", () => {
           />,
         );
 
-        const keystageButtons = await screen.findAllByRole("button");
+        const keystageButtons = await screen.findAllByRole("tab");
 
         expect(keystageButtons).toHaveLength(3);
         expect(keystageButtons[0]).toHaveTextContent("Key stage 1");

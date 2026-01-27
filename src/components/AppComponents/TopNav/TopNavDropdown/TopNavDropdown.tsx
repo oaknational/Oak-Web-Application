@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   OakBox,
   OakFlex,
@@ -45,6 +45,53 @@ const TeachersPhaseSection = ({
     setSelectedKeystage(defaultKeystage);
   }, [defaultKeystage]);
 
+  const keystagesRef = useRef<HTMLUListElement>(null);
+  const getFocusableElements = () => {
+    if (!keystagesRef.current) return [];
+    return Array.from(
+      keystagesRef.current.querySelectorAll("button"),
+    ) as HTMLElement[];
+  };
+
+  // Handle navigating keystages with arrow keys
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!selectedKeystage) return;
+
+      const focusableElements = getFocusableElements();
+      const currentIndex = focusableElements.indexOf(
+        document.activeElement as HTMLElement,
+      );
+
+      switch (event.key) {
+        case "ArrowDown": {
+          event.preventDefault();
+          if (focusableElements.length === 0) return;
+          const nextDownIndex =
+            currentIndex >= focusableElements.length - 1 ? 0 : currentIndex + 1;
+          focusableElements[nextDownIndex]?.focus();
+          break;
+        }
+        case "ArrowUp": {
+          event.preventDefault();
+          if (focusableElements.length === 0) return;
+          const nextUpIndex =
+            currentIndex <= 0 ? focusableElements.length - 1 : currentIndex - 1;
+          focusableElements[nextUpIndex]?.focus();
+          break;
+        }
+      }
+    };
+
+    if (selectedKeystage) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedKeystage]);
+
   // Move focus to first keystage button when sub menu opens
   useEffect(() => {
     const element = document.getElementById(
@@ -81,6 +128,8 @@ const TeachersPhaseSection = ({
         $pa={"spacing-0"}
         $reset
         id={`topnav-teachers-${selectedMenu}`}
+        role="tablist"
+        ref={keystagesRef}
       >
         {menuData.keystages.map((keystage) => (
           <OakLI key={keystage.slug}>
@@ -97,6 +146,8 @@ const TeachersPhaseSection = ({
               id={`topnav-teachers-keystage-${keystage.slug}-button`}
               aria-expanded={selectedKeystage === keystage.slug}
               aria-controls={`topnav-teachers-${keystage.slug}-subjects`}
+              role="tab"
+              aria-selected={selectedKeystage === keystage.slug}
             >
               {keystage.title.replace("KS", "Key stage ")}
             </OakLeftAlignedButton>
