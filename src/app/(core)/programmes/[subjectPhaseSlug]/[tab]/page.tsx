@@ -109,9 +109,9 @@ export async function generateMetadata({
 
 export default async function ProgrammePageTabs({
   params,
-}: {
+}: Readonly<{
   params: Promise<{ subjectPhaseSlug: string; tab: string }>;
-}) {
+}>) {
   try {
     const { subjectPhaseSlug, tab } = await params;
 
