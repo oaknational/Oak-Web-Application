@@ -1,6 +1,7 @@
 /**
  * @jest-environment node
  */
+
 import { getProgrammeData } from "./getProgrammeData";
 
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
