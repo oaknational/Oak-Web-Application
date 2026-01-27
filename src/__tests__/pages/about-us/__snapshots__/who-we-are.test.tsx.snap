@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
+<body>
+  <div>
+    <div
+      data-overlay-container="true"
+    >
+      <div
+        aria-live="polite"
+        class="sc-aXZVg sc-gEvEer sc-73796c8c-0 bVvYJx hpzNYH kULYhW"
+      />
+      <div />
+    </div>
+    <div
+      class="sc-aXZVg dkbHCd"
+    >
+      <div
+        class="sc-aXZVg fYQhtG"
+        data-testid="cookie-banner"
+      >
+        <div
+          class="sc-aXZVg eEXNqX"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer lhniLH hPCrxg"
+          >
+            <div
+              class="sc-aXZVg bKlBKD"
+            >
+              <strong
+                class="sc-eqUAAy iUJMa-D"
+              >
+                This site uses cookies to store information on your computer.
+              </strong>
+               
+              Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
+            </div>
+            <div
+              class="sc-aXZVg sc-gEvEer hdseiA buEORy"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer gNEYPb uEMma"
+              >
+                <button
+                  class="sc-hzhJZQ hCUlEv sc-fHjqPf"
+                  data-testid="cookie-banner-reject"
+                  type="button"
+                >
+                  <span
+                    class="sc-eqUAAy dtaNGQ"
+                  >
+                    Reject non-essential cookies
+                  </span>
+                </button>
+              </div>
+              <div
+                class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+              >
+                <div
+                  class="sc-aXZVg kMGxHZ grey-shadow"
+                />
+                <div
+                  class="sc-aXZVg kMGxHZ yellow-shadow"
+                />
+                <button
+                  class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+                  >
+                    <span
+                      class="sc-eqUAAy bkXwYG"
+                    >
+                      Cookie settings
+                    </span>
+                  </div>
+                </button>
+              </div>
+              <div
+                class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+              >
+                <div
+                  class="sc-aXZVg kMGxHZ grey-shadow"
+                />
+                <div
+                  class="sc-aXZVg kMGxHZ yellow-shadow"
+                />
+                <button
+                  class="sc-dcJsrY sc-jXbUNg gqXsav hHLXEI internal-button"
+                  data-testid="cookie-banner-accept"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+                  >
+                    <span
+                      class="sc-eqUAAy bkXwYG"
+                    >
+                      Accept all cookies
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

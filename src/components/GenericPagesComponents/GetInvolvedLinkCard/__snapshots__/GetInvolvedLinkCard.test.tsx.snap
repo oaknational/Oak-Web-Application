@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
+<div>
+  <div
+    class="sc-aXZVg sc-gEvEer biKcTw iwFTtF"
+  >
+    <div
+      class="sc-aXZVg sc-gEvEer hdseiA dfjiUz"
+    >
+      <h3
+        class="sc-eldPxv gEVowR"
+      >
+        Help us improve
+      </h3>
+      Teachers are at the heart of everything we build.
+    </div>
+    <div
+      class="sc-aXZVg sc-gEvEer hdseiA ehpWeg"
+    >
+      <div
+        class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+      >
+        <div
+          class="sc-aXZVg kMGxHZ grey-shadow"
+        />
+        <div
+          class="sc-aXZVg kMGxHZ yellow-shadow"
+        />
+        <a
+          class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+          href="https://example.com/research"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+          >
+            <span
+              class="sc-eqUAAy bkXwYG"
+            >
+              Join the research panel
+            </span>
+          </div>
+        </a>
+      </div>
+      <div
+        class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+      >
+        <div
+          class="sc-aXZVg kMGxHZ grey-shadow"
+        />
+        <div
+          class="sc-aXZVg kMGxHZ yellow-shadow"
+        />
+        <a
+          class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+          href="https://example.com/explore"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+          >
+            <span
+              class="sc-eqUAAy bkXwYG"
+            >
+              Explore our research
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GetInvolvedLinkCard renders with single button 1`] = `
+<div>
+  <div
+    class="sc-aXZVg sc-gEvEer biKcTw iwFTtF"
+  >
+    <div
+      class="sc-aXZVg sc-gEvEer hdseiA dfjiUz"
+    >
+      <h2
+        class="sc-eldPxv gEVowR"
+      >
+        Give your feedback
+      </h2>
+      Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
+    </div>
+    <div
+      class="sc-aXZVg sc-gEvEer hdseiA ehpWeg"
+    >
+      <div
+        class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+      >
+        <div
+          class="sc-aXZVg kMGxHZ grey-shadow"
+        />
+        <div
+          class="sc-aXZVg kMGxHZ yellow-shadow"
+        />
+        <a
+          class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+          href="#"
+        >
+          <div
+            class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+          >
+            <span
+              class="sc-eqUAAy bkXwYG"
+            >
+              Get in touch
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GetInvolvedLinkCard renders without buttons 1`] = `
+<div>
+  <div
+    class="sc-aXZVg sc-gEvEer biKcTw iwFTtF"
+  >
+    <div
+      class="sc-aXZVg sc-gEvEer hdseiA dfjiUz"
+    >
+      <h3
+        class="sc-eldPxv gEVowR"
+      >
+        No Buttons
+      </h3>
+      Content without buttons
+    </div>
+  </div>
+</div>
+`;

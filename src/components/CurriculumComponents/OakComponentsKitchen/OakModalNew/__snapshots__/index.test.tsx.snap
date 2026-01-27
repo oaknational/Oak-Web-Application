@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OakModalNew should match snapshot 1`] = `
+<div>
+  <dialog
+    class="sc-692ca-0 jfQDcn"
+    data-testid="modal"
+    style="z-index: 320;"
+  >
+    <div
+      class="sc-aXZVg sc-fd1b6bd3-0 frwMNv jsTHOJ"
+    />
+    <div
+      class="sc-aXZVg sc-gEvEer sc-702fbad0-0 OYyZF iDBIXi igbdss"
+      data-testid="sidebar-modal"
+      direction="right"
+    >
+      <div
+        class="sc-aXZVg sc-gEvEer eAZuMw fUxOFh"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer fRNXtL jMLdOa"
+        >
+          <h3
+            class="sc-eldPxv jfInuY"
+            data-testid="modal-title"
+          >
+            test_title
+          </h3>
+          <div
+            class="sc-aXZVg eXMwzZ"
+          >
+            <div
+              class="sc-aXZVg sc-5f217d9c-0 hdseiA jxsPIm"
+            >
+              <div
+                class="sc-aXZVg sc-gEvEer sc-jlZhew cPOqJf iDBIXi klOkwi"
+              >
+                <button
+                  aria-label="Close"
+                  class="sc-dcJsrY sc-dAlyuH foenqX emFNcG"
+                  data-testid="close-modal-button"
+                >
+                  <div
+                    class="sc-aXZVg sc-gEvEer hdseiA btEZOP"
+                  >
+                    <div
+                      class="sc-aXZVg sc-gEvEer fbXuuz jMLdOa icon-container"
+                    >
+                      <div
+                        class="sc-aXZVg jUsDlH shadow"
+                      />
+                      <div
+                        class="sc-aXZVg anoZA"
+                        data-icon-for="button"
+                      >
+                        <img
+                          alt=""
+                          class="sc-iGgWBj lcrpYX"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895179/icons/xigimrbivcaxt4omxamp.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </div>
+                    </div>
+                    <span
+                      class="sc-eqUAAy WYobB"
+                    />
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-aXZVg sc-gEvEer ieXcUy eUIBLO"
+          data-testid="modal-content"
+        >
+          test_content
+        </div>
+        <div
+          class="sc-aXZVg sc-gEvEer eisgfD cSOHri"
+          data-testid="modal-footer"
+        >
+          test_footer
+        </div>
+      </div>
+    </div>
+  </dialog>
+</div>
+`;

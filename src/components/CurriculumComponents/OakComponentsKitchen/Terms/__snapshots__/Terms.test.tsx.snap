@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Terms/> 1`] = `
+<body>
+  <div>
+    <p
+      class="sc-ikkxIA fRTqlQ"
+    >
+      This content is © Oak National Academy (2023), licensed on
+       
+      <a
+        class="sc-hzhJZQ fCGScF"
+        href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+        rel="external"
+        style="display: inline;"
+        target="_blank"
+      >
+        <span
+          class="sc-eqUAAy dtaNGQ"
+        >
+          Open Government Licence version 3.0
+        </span>
+      </a>
+       
+      except where otherwise stated. See
+       
+      <a
+        class="sc-hzhJZQ fCGScF"
+        href="/legal/terms-and-conditions"
+        rel="external"
+        style="display: inline;"
+        target="_blank"
+      >
+        <span
+          class="sc-eqUAAy dtaNGQ"
+        >
+          Oak's terms and conditions
+        </span>
+      </a>
+      .
+    </p>
+  </div>
+</body>
+`;
