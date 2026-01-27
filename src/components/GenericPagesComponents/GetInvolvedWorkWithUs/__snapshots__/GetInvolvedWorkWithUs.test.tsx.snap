@@ -37,7 +37,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
               class="sc-fqkvVR sc-kAyceB aZqjs bxbio"
             >
               <div
-                class="sc-fqkvVR sc-hknOHE gQBvmm jlgHyZ"
+                class="sc-fqkvVR sc-bbSZdi gQBvmm jHeWJm"
               >
                 <div
                   class="sc-fqkvVR hHxuBp grey-shadow"
@@ -46,7 +46,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                   class="sc-fqkvVR hHxuBp yellow-shadow"
                 />
                 <a
-                  class="sc-kOPcWz sc-bbSZdi bojcmk bliGbZ internal-button"
+                  class="sc-kOHTFB sc-JrDLc EtDni kHmUTS internal-button"
                   href="https://example.com/permanent"
                   rel="noopener noreferrer"
                   target="_blank"
@@ -76,7 +76,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                 </a>
               </div>
               <div
-                class="sc-fqkvVR sc-hknOHE gQBvmm jlgHyZ"
+                class="sc-fqkvVR sc-bbSZdi gQBvmm jHeWJm"
               >
                 <div
                   class="sc-fqkvVR hHxuBp grey-shadow"
@@ -85,7 +85,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                   class="sc-fqkvVR hHxuBp yellow-shadow"
                 />
                 <a
-                  class="sc-kOPcWz sc-bbSZdi bojcmk bliGbZ internal-button"
+                  class="sc-kOHTFB sc-JrDLc EtDni kHmUTS internal-button"
                   href="https://example.com/freelance"
                   rel="noopener noreferrer"
                   target="_blank"
