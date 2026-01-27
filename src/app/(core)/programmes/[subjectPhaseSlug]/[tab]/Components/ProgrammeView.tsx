@@ -16,7 +16,10 @@ import {
   ProgrammeHeader,
   pickSubjectTitleFromFilters,
 } from "./ProgrammeHeader/ProgrammeHeader";
-import { UnitSequenceView } from "./UnitSequence/UnitSequenceView";
+import {
+  UnitSequenceView,
+  UnitSequenceViewProps,
+} from "./UnitSequence/UnitSequenceView";
 import { SubjectHeroImageName } from "./ProgrammeHeader/getSubjectHeroImageUrl";
 
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -132,23 +135,46 @@ export const ProgrammeView = ({
           tabs: TAB_NAMES,
         })}
       />
-      {tabSlug === "units" ? (
-        <UnitSequenceView
-          curriculumPhaseOptions={curriculumPhaseOptions}
-          curriculumSelectionSlugs={curriculumSelectionSlugs}
-          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          subjectForLayout={subjectForLayout}
-          subjectTitle={subjectTitle}
-          filters={filters}
-          setFilters={onChangeFilters}
-        />
-      ) : tabSlug === "overview" ? (
-        <OakBox>Overview tab</OakBox>
-      ) : tabSlug === "download" ? (
-        <OakBox>Download tab</OakBox>
-      ) : (
-        notFound()
-      )}
+      <TabContent
+        tabSlug={tabSlug}
+        curriculumPhaseOptions={curriculumPhaseOptions}
+        curriculumSelectionSlugs={curriculumSelectionSlugs}
+        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+        subjectForLayout={subjectForLayout}
+        subjectTitle={subjectTitle}
+        filters={filters}
+        setFilters={onChangeFilters}
+      />
     </>
   );
+};
+
+const TabContent = ({
+  tabSlug,
+  curriculumPhaseOptions,
+  curriculumSelectionSlugs,
+  curriculumUnitsFormattedData,
+  subjectForLayout,
+  subjectTitle,
+  filters,
+  setFilters,
+}: { tabSlug: TabSlug } & UnitSequenceViewProps) => {
+  if (tabSlug === "units") {
+    return (
+      <UnitSequenceView
+        curriculumPhaseOptions={curriculumPhaseOptions}
+        curriculumSelectionSlugs={curriculumSelectionSlugs}
+        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+        subjectForLayout={subjectForLayout}
+        subjectTitle={subjectTitle}
+        filters={filters}
+        setFilters={setFilters}
+      />
+    );
+  } else if (tabSlug === "overview") {
+    return <OakBox>Overview tab</OakBox>;
+  } else if (tabSlug === "download") {
+    return <OakBox>Download tab</OakBox>;
+  }
+  return notFound();
 };

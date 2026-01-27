@@ -26,7 +26,7 @@ import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPha
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumPhaseOption } from "@/node-lib/curriculum-api-2023";
 
-type UnitSequenceViewProps = {
+export type UnitSequenceViewProps = {
   filters: CurriculumFilters;
   setFilters: (newFilters: CurriculumFilters) => void;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
