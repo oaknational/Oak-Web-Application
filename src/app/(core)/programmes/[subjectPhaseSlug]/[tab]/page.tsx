@@ -1,16 +1,33 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect, RedirectType } from "next/navigation";
 import { uniq } from "lodash";
 import { Metadata } from "next";
+import { cache } from "react";
 
-import { UnitSequenceView } from "./Components/UnitSequence/UnitSequenceView";
-import { getCachedProgrammeData } from "./getProgrammeData";
-import { tabsMap } from "./layout";
+import { ProgrammeView } from "./Components/ProgrammeView";
+import { tabSlugToName } from "./tabSchema";
+import { getProgrammeData } from "./getProgrammeData";
 
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
-import { OakBox } from "@/styles/oakThemeApp";
+import OakError from "@/errors/OakError";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import {
+  isValidSubjectPhaseSlug,
+  getKs4RedirectSlug,
+} from "@/utils/curriculum/slugs";
+import errorReporter from "@/common-lib/error-reporter";
+
+const reportError = errorReporter("programme-page::app");
+
+// Single cached function to fetch all common programme data
+// This deduplicates requests between generateMetadata and page component
+export const getCachedProgrammeData = cache(
+  async (subjectPhaseSlug: string) => {
+    return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
+  },
+);
 
 export async function generateMetadata({
   params,
@@ -100,7 +117,7 @@ export default async function ProgrammePageTabs({
   try {
     const { subjectPhaseSlug, tab } = await params;
 
-    const tabName = tabsMap[tab];
+    const tabName = tabSlugToName[tab];
     if (!tabName) {
       return notFound();
     }
@@ -118,8 +135,40 @@ export default async function ProgrammePageTabs({
       subjectPhaseKeystageSlugs,
     } = cachedData;
 
+    const validSubjectPhases = await curriculumApi2023.curriculumPhaseOptions();
+    const isValid = isValidSubjectPhaseSlug(
+      validSubjectPhases,
+      subjectPhaseKeystageSlugs,
+    );
+
+    if (!isValid) {
+      const redirectParams = getKs4RedirectSlug(
+        validSubjectPhases,
+        subjectPhaseKeystageSlugs,
+      );
+      if (redirectParams) {
+        const { subjectSlug, phaseSlug, ks4OptionSlug } = redirectParams;
+
+        return redirect(
+          `/programmes/${subjectSlug}-${phaseSlug}-${ks4OptionSlug}`,
+          RedirectType.replace,
+        );
+      } else {
+        throw new OakError({
+          code: "curriculum-api/not-found",
+        });
+      }
+    }
+
     const curriculumUnitsFormattedData =
       formatCurriculumUnitsData(curriculumUnitsData);
+
+    // Find examboard title from subject phases
+    const ks4Option = validSubjectPhases
+      .flatMap((subject) => subject.ks4_options)
+      .find(
+        (ks4opt) => ks4opt?.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
+      );
 
     const subjectForLayout = curriculumPhaseOptions.subjects.find(
       (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
@@ -131,23 +180,24 @@ export default async function ProgrammePageTabs({
       );
     }
 
-    return tab === "units" ? (
-      <UnitSequenceView
-        curriculumPhaseOptions={curriculumPhaseOptions}
-        curriculumSelectionSlugs={subjectPhaseKeystageSlugs}
-        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-        subjectForLayout={subjectForLayout}
-        subjectTitle={programmeUnitsData.subjectTitle}
-      />
-    ) : tab === "overview" ? (
-      <OakBox>Overview tab</OakBox>
-    ) : tab === "download" ? (
-      <OakBox>Download tab</OakBox>
-    ) : (
-      notFound()
-    );
+    const results = {
+      curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
+      curriculumPhaseOptions,
+      subjectTitle: programmeUnitsData.subjectTitle,
+      phaseTitle: programmeUnitsData.phaseTitle,
+      examboardTitle: ks4Option?.title,
+      curriculumUnitsFormattedData,
+      tabSlug: tab,
+    };
+
+    return <ProgrammeView {...results} />;
   } catch (error) {
-    // todo error handling
-    console.log("diego error", error);
+    if (error instanceof OakError) {
+      if (error.config.responseStatusCode === 404) {
+        return notFound();
+      }
+    }
+    // TD: [integrated journey] error reporting
+    throw error;
   }
 }

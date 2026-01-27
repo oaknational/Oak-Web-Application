@@ -17,10 +17,10 @@ import { capitalize } from "lodash";
 import { SubjectName, getSubjectHeroImageUrl } from "./getSubjectHeroImageUrl";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
-import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
 import {
   childSubjectForFilter,
   subjectCategoryForFilter,
+  shouldDisplayFilter,
 } from "@/utils/curriculum/filteringApp";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 

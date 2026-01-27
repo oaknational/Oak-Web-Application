@@ -1,19 +1,9 @@
-import { cache } from "react";
-
-import curriculumApi2023, {
+import {
   CurriculumUnit,
   type CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
-
-// Single cached function to fetch all common programme data
-// This deduplicates requests between generateMetadata and page component
-export const getCachedProgrammeData = cache(
-  async (subjectPhaseSlug: string) => {
-    return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
-  },
-);
 
 // Helper function to sort units consistently
 const sortUnits = (units: CurriculumUnit[]): CurriculumUnit[] => {

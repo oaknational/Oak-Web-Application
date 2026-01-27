@@ -1,6 +1,6 @@
 "use client";
 import { OakBox, OakHeading } from "@oaknational/oak-components";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import ProgrammePageFiltersDesktop from "../Filters/ProgrammePageFiltersDesktop";
 import ProgrammePageFiltersMobile from "../Filters/ProgrammePageFiltersMobile";
@@ -18,10 +18,8 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
 import {
-  getDefaultFilter,
   getNumberOfSelectedUnits,
   highlightedUnitCount,
-  useFilters,
 } from "@/utils/curriculum/filteringApp";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -29,6 +27,8 @@ import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumPhaseOption } from "@/node-lib/curriculum-api-2023";
 
 type UnitSequenceViewProps = {
+  filters: CurriculumFilters;
+  setFilters: (newFilters: CurriculumFilters) => void;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumPhaseOptions: SubjectPhasePickerData;
   subjectTitle: string;
@@ -37,6 +37,8 @@ type UnitSequenceViewProps = {
 };
 
 export const UnitSequenceView = ({
+  filters,
+  setFilters,
   curriculumSelectionSlugs,
   curriculumPhaseOptions,
   subjectTitle,
@@ -62,11 +64,6 @@ export const UnitSequenceView = ({
   };
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
-
-  const defaultFilter = useMemo(() => {
-    return getDefaultFilter(curriculumUnitsFormattedData);
-  }, [curriculumUnitsFormattedData]);
-  const [filters, setFilters] = useFilters(defaultFilter);
 
   const unitCount = getNumberOfSelectedUnits(yearData, filters);
 
