@@ -4,35 +4,35 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR dlmVuU"
+      class="sc-aXZVg ceucFg"
     >
       <div
-        class="sc-fqkvVR bAanKg"
+        class="sc-aXZVg iEkPos"
         style="max-width: 1360px;"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB dbNERh dAAIBQ"
+          class="sc-aXZVg sc-gEvEer kEMXaV iORRmx"
         >
           <div
-            class="sc-fqkvVR sc-jXbUNg aZqjs gdCncd"
+            class="sc-aXZVg sc-tagGq hdseiA jFIZYB"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz bzXGlP"
+              class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA iDBIXi jjoyDC"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB aZqjs gOiVFh"
+                class="sc-aXZVg sc-gEvEer hdseiA gWBhKY"
               >
                 <div
-                  class="sc-fqkvVR gewAha"
+                  class="sc-aXZVg jPuUIi"
                 >
                   <span
-                    class="sc-dAlyuH bBYhJg"
+                    class="sc-eqUAAy itItFl"
                   >
                     TEST_SUBTITLE
                   </span>
                 </div>
                 <h2
-                  class="sc-kpDqfm etvoxn"
+                  class="sc-eldPxv lhWwtt"
                 >
                   TEST_TITLE
                 </h2>
@@ -40,50 +40,50 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-jXbUNg aZqjs gdCncd"
+            class="sc-aXZVg sc-tagGq hdseiA jFIZYB"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz ezsJUC"
+              class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA iDBIXi eYuJTT"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB aZqjs eeevb"
+                class="sc-aXZVg sc-gEvEer hdseiA bktafW"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB aZqjs ddfwpL"
+                  class="sc-aXZVg sc-gEvEer hdseiA dXoawi"
                   data-testid="timetable-timeline-item"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB ePmqDn bhNOkF"
+                    class="sc-aXZVg sc-gEvEer kjMLKn fmOGAU"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB hmMqoz czRjkZ"
+                      class="sc-aXZVg sc-gEvEer bPiArz jOLRMs"
                     />
                     <div
-                      class="sc-fqkvVR sc-kAyceB impELM bAFsaQ"
+                      class="sc-aXZVg sc-gEvEer jLnTIE fXHtRp"
                     />
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB bLDLOt gOiVFh"
+                    class="sc-aXZVg sc-gEvEer jhkTYN gWBhKY"
                   >
                     <div
-                      class="sc-fqkvVR guQlkB"
+                      class="sc-aXZVg ifqfxt"
                     >
                       <span
-                        class="sc-dAlyuH bBYhJg"
+                        class="sc-eqUAAy itItFl"
                       >
                         ITEM_SUBTITLE_1
                       </span>
                     </div>
                     <h3
-                      class="sc-kpDqfm cqtImb"
+                      class="sc-eldPxv iiMZRB"
                     >
                       ITEM_TITLE_1
                     </h3>
                     <div
-                      class="sc-fqkvVR sc-kAyceB imgHEH iVYVEn"
+                      class="sc-aXZVg sc-gEvEer fVXChP cofRDW"
                     >
                       <p
-                        class="sc-dLMFU sc-ff4f593d-0 gInKlR imPMXG"
+                        class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
                       >
                         ITEM_TEXT_1
                       </p>
@@ -91,41 +91,41 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB aZqjs ddfwpL"
+                  class="sc-aXZVg sc-gEvEer hdseiA dXoawi"
                   data-testid="timetable-timeline-item"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB ePmqDn bhNOkF"
+                    class="sc-aXZVg sc-gEvEer kjMLKn fmOGAU"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB hmMqoz czRjkZ"
+                      class="sc-aXZVg sc-gEvEer bPiArz jOLRMs"
                     />
                     <div
-                      class="sc-fqkvVR sc-kAyceB impELM bAFsaQ"
+                      class="sc-aXZVg sc-gEvEer jLnTIE fXHtRp"
                     />
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB bLDLOt gOiVFh"
+                    class="sc-aXZVg sc-gEvEer jhkTYN gWBhKY"
                   >
                     <div
-                      class="sc-fqkvVR guQlkB"
+                      class="sc-aXZVg ifqfxt"
                     >
                       <span
-                        class="sc-dAlyuH bBYhJg"
+                        class="sc-eqUAAy itItFl"
                       >
                         ITEM_SUBTITLE_2
                       </span>
                     </div>
                     <h3
-                      class="sc-kpDqfm cqtImb"
+                      class="sc-eldPxv iiMZRB"
                     >
                       ITEM_TITLE_2
                     </h3>
                     <div
-                      class="sc-fqkvVR sc-kAyceB imgHEH iVYVEn"
+                      class="sc-aXZVg sc-gEvEer fVXChP cofRDW"
                     >
                       <p
-                        class="sc-dLMFU sc-ff4f593d-0 gInKlR imPMXG"
+                        class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
                       >
                         ITEM_TEXT_2
                       </p>
@@ -133,41 +133,41 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB aZqjs ddfwpL"
+                  class="sc-aXZVg sc-gEvEer hdseiA dXoawi"
                   data-testid="timetable-timeline-item"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB ePmqDn bhNOkF"
+                    class="sc-aXZVg sc-gEvEer kjMLKn fmOGAU"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB hmMqoz czRjkZ"
+                      class="sc-aXZVg sc-gEvEer bPiArz jOLRMs"
                     />
                     <div
-                      class="sc-fqkvVR sc-kAyceB fsbXe bAFsaQ"
+                      class="sc-aXZVg sc-gEvEer iJrpna fXHtRp"
                     />
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB bLDLOt gOiVFh"
+                    class="sc-aXZVg sc-gEvEer jhkTYN gWBhKY"
                   >
                     <div
-                      class="sc-fqkvVR guQlkB"
+                      class="sc-aXZVg ifqfxt"
                     >
                       <span
-                        class="sc-dAlyuH bBYhJg"
+                        class="sc-eqUAAy itItFl"
                       >
                         ITEM_SUBTITLE_3
                       </span>
                     </div>
                     <h3
-                      class="sc-kpDqfm cqtImb"
+                      class="sc-eldPxv iiMZRB"
                     >
                       ITEM_TITLE_3
                     </h3>
                     <div
-                      class="sc-fqkvVR sc-kAyceB imgHEH iVYVEn"
+                      class="sc-aXZVg sc-gEvEer fVXChP cofRDW"
                     >
                       <p
-                        class="sc-dLMFU sc-ff4f593d-0 gInKlR imPMXG"
+                        class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
                       >
                         ITEM_TEXT_3
                       </p>
