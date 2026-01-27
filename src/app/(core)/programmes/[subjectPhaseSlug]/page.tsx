@@ -19,7 +19,9 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import { useFeatureFlag } from "@/utils/featureFlags";
 import errorReporter from "@/common-lib/error-reporter";
-import getAppPageProps, { AppPageProps } from "@/node-lib/getAppPageProps";
+import withPageErrorHandling, {
+  AppPageProps,
+} from "@/hocs/withPageErrorHandling";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -29,12 +31,12 @@ const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) => {
   return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
 });
 
-type ProgrammePageProps = { subjectPhaseSlug: string };
+type ProgrammePageParams = { subjectPhaseSlug: string };
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<ProgrammePageProps>;
+  params: Promise<ProgrammePageParams>;
 }): Promise<Metadata> {
   const { subjectPhaseSlug } = await params;
 
@@ -113,7 +115,7 @@ export async function generateMetadata({
   }
 }
 
-const ProgrammePage = async (props: AppPageProps<ProgrammePageProps>) => {
+const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   // `useFeatureFlag` is not a hook
   const isEnabled = await useFeatureFlag(
     "teachers-integrated-journey",
@@ -124,99 +126,94 @@ const ProgrammePage = async (props: AppPageProps<ProgrammePageProps>) => {
     return notFound();
   }
 
-  return getAppPageProps({
-    props,
-    page: "programme-page::app",
-    getProps: async () => {
-      const { subjectPhaseSlug } = await props.params;
+  const { subjectPhaseSlug } = await props.params;
 
-      const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
+  const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
 
-      if (!cachedData) {
-        return notFound();
-      }
+  if (!cachedData) {
+    return notFound();
+  }
 
-      const {
-        programmeUnitsData,
-        curriculumUnitsData,
-        curriculumPhaseOptions,
-        subjectPhaseKeystageSlugs,
-      } = cachedData;
+  const {
+    programmeUnitsData,
+    curriculumUnitsData,
+    curriculumPhaseOptions,
+    subjectPhaseKeystageSlugs,
+  } = cachedData;
 
-      const validSubjectPhases =
-        await curriculumApi2023.curriculumPhaseOptions();
-      const isValid = isValidSubjectPhaseSlug(
-        validSubjectPhases,
-        subjectPhaseKeystageSlugs,
+  const validSubjectPhases = await curriculumApi2023.curriculumPhaseOptions();
+  const isValid = isValidSubjectPhaseSlug(
+    validSubjectPhases,
+    subjectPhaseKeystageSlugs,
+  );
+
+  if (!isValid) {
+    const redirectParams = getKs4RedirectSlug(
+      validSubjectPhases,
+      subjectPhaseKeystageSlugs,
+    );
+    if (redirectParams) {
+      const { subjectSlug, phaseSlug, ks4OptionSlug } = redirectParams;
+
+      return redirect(
+        `/programmes/${subjectSlug}-${phaseSlug}-${ks4OptionSlug}`,
+        RedirectType.replace,
       );
+    } else {
+      throw new OakError({
+        code: "curriculum-api/not-found",
+      });
+    }
+  }
 
-      if (!isValid) {
-        const redirectParams = getKs4RedirectSlug(
-          validSubjectPhases,
-          subjectPhaseKeystageSlugs,
-        );
-        if (redirectParams) {
-          const { subjectSlug, phaseSlug, ks4OptionSlug } = redirectParams;
-
-          return redirect(
-            `/programmes/${subjectSlug}-${phaseSlug}-${ks4OptionSlug}`,
-            RedirectType.replace,
-          );
-        } else {
-          throw new OakError({
-            code: "curriculum-api/not-found",
-          });
-        }
-      }
-
-      const curriculumOverviewSanityData =
-        await CMSClient.curriculumOverviewPage({
-          previewMode: false, // TD: [integrated-journey] preview mode
-          subjectTitle: programmeUnitsData.subjectTitle,
-          phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-        });
-
-      // TD: [integrated-journey] This data is not used in `ProgrammeView`, maybe we can remove it?
-      if (!curriculumOverviewSanityData) {
-        return notFound();
-      }
-
-      const subjectPhaseSanityData = await CMSClient.programmePageBySlug(
-        `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
-      );
-
-      if (!subjectPhaseSanityData) {
-        reportError(
-          new OakError({
-            code: "cms/missing-programme-page-data",
-            meta: { subjectPhaseSlug },
-          }),
-        );
-      }
-
-      const curriculumUnitsFormattedData =
-        formatCurriculumUnitsData(curriculumUnitsData);
-
-      // Find examboard title from subject phases
-      const ks4Option = validSubjectPhases
-        .flatMap((subject) => subject.ks4_options)
-        .find(
-          (ks4opt) => ks4opt?.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
-        );
-
-      const results = {
-        curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
-        curriculumPhaseOptions,
-        subjectTitle: programmeUnitsData.subjectTitle,
-        phaseTitle: programmeUnitsData.phaseTitle,
-        examboardTitle: ks4Option?.title,
-        curriculumUnitsFormattedData,
-        subjectPhaseSanityData,
-      };
-
-      return <ProgrammeView {...results} />;
-    },
+  const curriculumOverviewSanityData = await CMSClient.curriculumOverviewPage({
+    previewMode: false, // TD: [integrated-journey] preview mode
+    subjectTitle: programmeUnitsData.subjectTitle,
+    phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
   });
+
+  // TD: [integrated-journey] This data is not used in `ProgrammeView`, maybe we can remove it?
+  if (!curriculumOverviewSanityData) {
+    return notFound();
+  }
+
+  const subjectPhaseSanityData = await CMSClient.programmePageBySlug(
+    `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
+  );
+
+  if (!subjectPhaseSanityData) {
+    reportError(
+      new OakError({
+        code: "cms/missing-programme-page-data",
+        meta: { subjectPhaseSlug },
+      }),
+    );
+  }
+
+  const curriculumUnitsFormattedData =
+    formatCurriculumUnitsData(curriculumUnitsData);
+
+  // Find examboard title from subject phases
+  const ks4Option = validSubjectPhases
+    .flatMap((subject) => subject.ks4_options)
+    .find((ks4opt) => ks4opt?.slug === subjectPhaseKeystageSlugs.ks4OptionSlug);
+
+  const results = {
+    curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
+    curriculumPhaseOptions,
+    subjectTitle: programmeUnitsData.subjectTitle,
+    phaseTitle: programmeUnitsData.phaseTitle,
+    examboardTitle: ks4Option?.title,
+    curriculumUnitsFormattedData,
+    subjectPhaseSanityData,
+  };
+
+  return <ProgrammeView {...results} />;
 };
+
+const ProgrammePage = withPageErrorHandling(
+  InnerProgrammePage,
+  "programme-page::app",
+);
 
 export default ProgrammePage;
