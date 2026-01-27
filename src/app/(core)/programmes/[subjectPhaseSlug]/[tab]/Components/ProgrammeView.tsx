@@ -2,7 +2,7 @@
 
 import { OakBox, OakTabs } from "@oaknational/oak-components";
 import { useMemo } from "react";
-import { notFound, useSearchParams , useRouter } from "next/navigation";
+import { notFound, useSearchParams, useRouter } from "next/navigation";
 
 import {
   TabName,
@@ -15,9 +15,9 @@ import {
 import {
   ProgrammeHeader,
   pickSubjectTitleFromFilters,
-} from "./ProgrammeHeader";
-import { SubjectHeroImageName } from "./getSubjectHeroImageUrl";
+} from "./ProgrammeHeader/ProgrammeHeader";
 import { UnitSequenceView } from "./UnitSequence/UnitSequenceView";
+import { SubjectHeroImageName } from "./ProgrammeHeader/getSubjectHeroImageUrl";
 
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import {

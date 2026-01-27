@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   OakBox,
@@ -13,13 +14,13 @@ import {
 } from "@oaknational/oak-components";
 import { capitalize } from "lodash";
 
-import { getSubjectHeroImageUrl, SubjectName } from "./getSubjectHeroImageUrl";
+import { SubjectName, getSubjectHeroImageUrl } from "./getSubjectHeroImageUrl";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
-import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
 import {
   childSubjectForFilter,
   subjectCategoryForFilter,
+  shouldDisplayFilter,
 } from "@/utils/curriculum/filteringApp";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
@@ -311,7 +312,7 @@ export function pickSubjectTitleFromFilters(
 function getProgrammeTitle(
   subjectTitle: string,
   phaseTitle: string,
-  schoolYear?: string,
+  schoolYear?: string | null,
   keyStage?: "ks1" | "ks2" | "ks3" | "ks4",
   examboardTitle?: string,
 ) {
