@@ -4,13 +4,12 @@ import {
   OakIcon,
   OakSpan,
   OakTypography,
+  OakFocusIndicator,
 } from "@oaknational/oak-components";
 import { VisuallyHidden } from "react-aria";
 import styled from "styled-components";
 import Link from "next/link";
 import { ReactNode } from "react";
-
-import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
@@ -48,12 +47,12 @@ export default function CurricUnitCard(props: Readonly<CurricUnitCardProps>) {
   const { href, isHighlighted, unit, index, onClick } = props;
   const isUnitOption = "unit_options" in unit;
   return (
-    <FocusIndicator
+    <OakFocusIndicator
       $height={"100%"}
       $width={"100%"}
       $borderRadius={"border-radius-s"}
       $overflow={"hidden"}
-      disableMouseHover={isHighlighted}
+      hoverBackground="bg-decorative6-main"
     >
       <StyledLink
         href={href}
@@ -117,6 +116,6 @@ export default function CurricUnitCard(props: Readonly<CurricUnitCardProps>) {
           )}
         </OakFlex>
       </StyledLink>
-    </FocusIndicator>
+    </OakFocusIndicator>
   );
 }

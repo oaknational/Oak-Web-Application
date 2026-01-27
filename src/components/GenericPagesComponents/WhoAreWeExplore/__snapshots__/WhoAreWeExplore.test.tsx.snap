@@ -38,14 +38,14 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
             >
               <div
-                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
+                class="sc-fqkvVR sc-dAbbOL niMRt fEZzly"
               >
                 <a
                   href="#item_one"
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
+                    class="sc-fqkvVR sc-kAyceB sc-7609481f-0 jtCAPK fQLyIH bCChgO"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -95,14 +95,14 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
             >
               <div
-                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
+                class="sc-fqkvVR sc-dAbbOL niMRt fEZzly"
               >
                 <a
                   href="#item_two"
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
+                    class="sc-fqkvVR sc-kAyceB sc-7609481f-0 jtCAPK fQLyIH bCChgO"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -152,14 +152,14 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
             >
               <div
-                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
+                class="sc-fqkvVR sc-dAbbOL niMRt fEZzly"
               >
                 <a
                   href="#item_three"
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
+                    class="sc-fqkvVR sc-kAyceB sc-7609481f-0 jtCAPK fQLyIH bCChgO"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -209,14 +209,14 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
             >
               <div
-                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
+                class="sc-fqkvVR sc-dAbbOL niMRt fEZzly"
               >
                 <a
                   href="#item_four"
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
+                    class="sc-fqkvVR sc-kAyceB sc-7609481f-0 jtCAPK fQLyIH bCChgO"
                     data-testid="who-we-are-explore-item"
                   >
                     <div

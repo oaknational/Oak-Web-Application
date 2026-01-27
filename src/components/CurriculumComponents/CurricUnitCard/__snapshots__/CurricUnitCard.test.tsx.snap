@@ -4,10 +4,10 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-85abac1-0 iflqQC jXwLFO"
+      class="sc-fqkvVR sc-dAbbOL iflqQC hXdTPn"
     >
       <a
-        class="sc-4ff2bd64-0 xHhKu"
+        class="sc-b7bf0004-0 fsARVh"
         data-testid="unit-info-link"
         href="/"
       >
@@ -81,10 +81,10 @@ exports[`CurricUnitCard highlighted state 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-85abac1-0 iflqQC bySaAG"
+      class="sc-fqkvVR sc-dAbbOL iflqQC hXdTPn"
     >
       <a
-        class="sc-4ff2bd64-0 iMeEZM"
+        class="sc-b7bf0004-0 cwLwDX"
         data-testid="unit-info-link"
         href="/"
       >
@@ -163,10 +163,10 @@ exports[`CurricUnitCard index is correct 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-85abac1-0 iflqQC jXwLFO"
+      class="sc-fqkvVR sc-dAbbOL iflqQC hXdTPn"
     >
       <a
-        class="sc-4ff2bd64-0 xHhKu"
+        class="sc-b7bf0004-0 fsARVh"
         data-testid="unit-info-link"
         href="/"
       >
@@ -240,10 +240,10 @@ exports[`CurricUnitCard render 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-85abac1-0 iflqQC jXwLFO"
+      class="sc-fqkvVR sc-dAbbOL iflqQC hXdTPn"
     >
       <a
-        class="sc-4ff2bd64-0 xHhKu"
+        class="sc-b7bf0004-0 fsARVh"
         data-testid="unit-info-link"
         href="/"
       >

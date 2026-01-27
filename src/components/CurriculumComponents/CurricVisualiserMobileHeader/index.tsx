@@ -1,8 +1,12 @@
 import React, { useState, Fragment } from "react";
-import { OakSpan, OakBox, OakSecondaryLink } from "@oaknational/oak-components";
+import {
+  OakSpan,
+  OakBox,
+  OakSecondaryLink,
+  OakFocusIndicator,
+} from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
 
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
@@ -276,7 +280,7 @@ export default function CurricVisualiserMobileHeader({
                     : isSelectedYear(yearOption);
                   return (
                     <OakBox key={yearOption} $pt="spacing-8" $ml="spacing-4">
-                      <FocusIndicator
+                      <OakFocusIndicator
                         data-testid="year-group-focus-indicator"
                         $display={"inline-block"}
                         $mb="spacing-8"
@@ -289,7 +293,11 @@ export default function CurricVisualiserMobileHeader({
                         }
                         $borderRadius={"border-radius-s"}
                         $font="heading-7"
-                        disableMouseHover={isSelectedYear(yearOption)}
+                        hoverBackground={
+                          isSelectedYear(yearOption)
+                            ? "bg-neutral"
+                            : "bg-decorative6-main"
+                        }
                       >
                         <StyledButton
                           data-testid="year-group-filter-button"
@@ -311,7 +319,7 @@ export default function CurricVisualiserMobileHeader({
                             })(),
                           )}
                         </StyledButton>
-                      </FocusIndicator>
+                      </OakFocusIndicator>
                     </OakBox>
                   );
                 })}
