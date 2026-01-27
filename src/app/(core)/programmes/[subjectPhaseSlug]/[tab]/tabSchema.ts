@@ -10,8 +10,18 @@ export const tabSlugToName: Record<TabSlug, TabName> = {
   download: "Download",
 };
 
-export const tabNameToSlug: Record<TabName, TabSlug> = {
+const tabNameToSlug: Record<TabName, TabSlug> = {
   "Unit sequence": "units",
   Explainer: "overview",
   Download: "download",
+};
+
+export const getTabName = (tabSlug: TabSlug): TabName => {
+  const tabName = tabSlugToName[tabSlug];
+  return tabName as TabName;
+};
+
+export const getTabSlug = (tabName: TabName): TabSlug => {
+  const tabSlug = tabNameToSlug[tabName];
+  return tabSlug as TabSlug;
 };

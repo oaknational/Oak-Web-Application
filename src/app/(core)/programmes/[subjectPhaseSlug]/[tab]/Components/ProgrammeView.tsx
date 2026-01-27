@@ -2,9 +2,15 @@
 
 import { OakBox, OakTabs } from "@oaknational/oak-components";
 import { useMemo } from "react";
-import { notFound, useSearchParams } from "next/navigation";
+import { notFound, useSearchParams , useRouter } from "next/navigation";
 
-import { TabName, TAB_NAMES, TabSlug, tabSlugToName } from "../tabSchema";
+import {
+  TabName,
+  TAB_NAMES,
+  TabSlug,
+  getTabSlug,
+  getTabName,
+} from "../tabSchema";
 
 import {
   ProgrammeHeader,
@@ -45,6 +51,7 @@ export const ProgrammeView = ({
   tabSlug,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
 
@@ -117,9 +124,10 @@ export const ProgrammeView = ({
         footerSlot={OakTabs<TabName>({
           sizeVariant: ["compact", "default"],
           colorVariant: "black",
-          activeTab: tabSlugToName[tabSlug] as TabName,
-          onTabClick: () => {
-            // TODO: navigation
+          activeTab: getTabName(tabSlug),
+          onTabClick: (tabName) => {
+            const tabSlug = getTabSlug(tabName);
+            router.push(tabSlug, { scroll: false });
           },
           tabs: TAB_NAMES,
         })}
