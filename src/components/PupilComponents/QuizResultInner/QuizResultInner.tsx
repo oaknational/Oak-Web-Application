@@ -44,6 +44,10 @@ const CorrectAnswerSection = (props: CorectAnswerSectionProps) => {
               ? correctAnswer?.imageObject.secureUrl
               : undefined;
 
+            if (!correctAnswerText && !imageURL) {
+              return null;
+            }
+
             return (
               <MathJaxWrap key={`result-${index}`}>
                 <OakQuizResultItem
