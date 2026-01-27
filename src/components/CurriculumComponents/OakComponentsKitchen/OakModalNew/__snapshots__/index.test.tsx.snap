@@ -34,11 +34,11 @@ exports[`OakModalNew should match snapshot 1`] = `
               class="sc-fqkvVR sc-5f217d9c-0 aZqjs jxsPIm"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB sc-dCFHLb kHbkzj joHkzz nnQtL"
+                class="sc-fqkvVR sc-kAyceB sc-kOPcWz kHbkzj joHkzz OSOXO"
               >
                 <button
                   aria-label="Close"
-                  class="sc-kOPcWz sc-eBMEME iRzzBI dfcIzE"
+                  class="sc-dtBdUo sc-dtInlm dGVKuO gGmtwB"
                   data-testid="close-modal-button"
                 >
                   <div

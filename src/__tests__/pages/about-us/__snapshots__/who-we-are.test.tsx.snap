@@ -43,7 +43,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB kRyrBD TDtQj"
               >
                 <button
-                  class="sc-dZoequ hDBYim sc-eZkCL"
+                  class="sc-fxwrCY bSyRHN sc-hIUJlX"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
@@ -55,7 +55,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-hknOHE gQBvmm jlgHyZ"
+                class="sc-fqkvVR sc-fjvvzt gQBvmm kIRemE"
               >
                 <div
                   class="sc-fqkvVR hHxuBp grey-shadow"
@@ -64,7 +64,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR hHxuBp yellow-shadow"
                 />
                 <button
-                  class="sc-kOPcWz sc-bbSZdi bojcmk bliGbZ internal-button"
+                  class="sc-dtBdUo sc-fXSgeo vwEYe iwHZRx internal-button"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB aZqjs cHFgFN"
@@ -78,7 +78,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-hknOHE gQBvmm jlgHyZ"
+                class="sc-fqkvVR sc-fjvvzt gQBvmm kIRemE"
               >
                 <div
                   class="sc-fqkvVR hHxuBp grey-shadow"
@@ -87,7 +87,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR hHxuBp yellow-shadow"
                 />
                 <button
-                  class="sc-kOPcWz sc-bbSZdi ckELrw ihSFqs internal-button"
+                  class="sc-dtBdUo sc-fXSgeo kfqBbO eJTpUE internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
