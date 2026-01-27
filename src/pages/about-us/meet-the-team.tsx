@@ -1,5 +1,11 @@
 import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
-import { OakCard, OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import {
+  OakCard,
+  OakFlex,
+  OakHeading,
+  OakP,
+  OakSideMenuNav,
+} from "@oaknational/oak-components";
 
 import placeholderImage from "../../../public/images/oak-national-academy-logo-512.png";
 
@@ -102,7 +108,24 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               $display={["none", "block", "block"]}
               style={{ minWidth: 200 }}
             >
-              SideNav placeholder
+              <OakSideMenuNav
+                heading="Page sections"
+                anchorTargetId=""
+                menuItems={[
+                  {
+                    heading: "Our leadership",
+                    href: "#our-leadership",
+                  },
+                  {
+                    heading: "Our board",
+                    href: "#our-board",
+                  },
+                  {
+                    heading: "Documents",
+                    href: "#documents",
+                  },
+                ]}
+              />
             </OakFlex>
             <OakFlex
               $flexGrow={1}
@@ -113,6 +136,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               <MeetTheTeamContainer
                 title={pageData.leadershipTitle}
                 text={pageData.leadershipText}
+                anchor="our-leadership"
               >
                 {pageData.leadershipList.map((leadershipItem) => {
                   return (
@@ -134,6 +158,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               <MeetTheTeamContainer
                 title={pageData.boardTitle}
                 text={pageData.boardText}
+                anchor="our-board"
               >
                 {pageData.boardList.map((boardItem) => {
                   return (
@@ -155,6 +180,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               <MeetTheTeamContainer
                 title={pageData.documentTitle}
                 text={pageData.documentText}
+                anchor="documents"
               >
                 {pageData.documentList.map((documentItem) => {
                   return (
