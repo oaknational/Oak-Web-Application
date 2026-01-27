@@ -1733,6 +1733,30 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
+.c169 {
+  box-shadow: none;
+}
+
+.c169:has( a, button ) {
+  border-radius: 0.5rem;
+  z-index: 2;
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c169:has(a:hover,button:hover),
+.c169:has(button:hover:not(:active)) {
+  z-index: 1;
+}
+
+.c169:has(a:hover,button:hover) {
+  box-shadow: none;
+}
+
+.c169:has(a:active,button:active) {
+  z-index: 2;
+  box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
+}
+
 .c9 {
   background: none;
   color: inherit;
@@ -2917,31 +2941,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   height: 87px;
   width: 77px;
   margin-top: 2rem;
-}
-
-.c169 {
-  box-shadow: none;
-}
-
-.c169:has( a,button ) {
-  border-radius: border-radius-m2;
-  z-index: 2;
-  box-shadow: rgb(255,229,85) 0px 0px 0px 0.125rem,rgb(87,87,87) 0px 0px 0px 0.3rem;
-}
-
-.c169:has(a:hover,button:hover),
-.c169:has(button:hover:not(:active)) {
-  z-index: 1;
-  background-color: #f2f2f2;
-}
-
-.c169:has(a:hover,button:hover) {
-  box-shadow: none;
-}
-
-.c169:has(a:active,button:active) {
-  z-index: 2;
-  box-shadow: rgb(255,229,85) 0.125rem 0.125rem 0px,rgb(87,87,87) 0.25rem 0.25rem 0px;
 }
 
 .c172:hover {
