@@ -8,28 +8,28 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
     >
       <div
         aria-live="polite"
-        class="sc-fqkvVR sc-kAyceB sc-73796c8c-0 eMIwKF IxeqO kULYhW"
+        class="sc-aXZVg sc-gEvEer sc-73796c8c-0 bVvYJx hpzNYH kULYhW"
       />
       <div />
     </div>
     <div
-      class="sc-fqkvVR fEpwVZ"
+      class="sc-aXZVg dkbHCd"
     >
       <div
-        class="sc-fqkvVR fDqhCq"
+        class="sc-aXZVg fYQhtG"
         data-testid="cookie-banner"
       >
         <div
-          class="sc-fqkvVR hhKPov"
+          class="sc-aXZVg eEXNqX"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB ctRoNT jIxDmZ"
+            class="sc-aXZVg sc-gEvEer lhniLH hPCrxg"
           >
             <div
-              class="sc-fqkvVR cVXwPn"
+              class="sc-aXZVg bKlBKD"
             >
               <strong
-                class="sc-dAlyuH jFgytS"
+                class="sc-eqUAAy iUJMa-D"
               >
                 This site uses cookies to store information on your computer.
               </strong>
@@ -37,40 +37,40 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB aZqjs eaKFMD"
+              class="sc-aXZVg sc-gEvEer hdseiA buEORy"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB kRyrBD TDtQj"
+                class="sc-aXZVg sc-gEvEer gNEYPb uEMma"
               >
                 <button
-                  class="sc-dZoequ hDBYim sc-eZkCL"
+                  class="sc-hzhJZQ hCUlEv sc-fHjqPf"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
                   <span
-                    class="sc-dAlyuH eMKgAN"
+                    class="sc-eqUAAy dtaNGQ"
                   >
                     Reject non-essential cookies
                   </span>
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-hknOHE gQBvmm jlgHyZ"
+                class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
               >
                 <div
-                  class="sc-fqkvVR hHxuBp grey-shadow"
+                  class="sc-aXZVg kMGxHZ grey-shadow"
                 />
                 <div
-                  class="sc-fqkvVR hHxuBp yellow-shadow"
+                  class="sc-aXZVg kMGxHZ yellow-shadow"
                 />
                 <button
-                  class="sc-kOPcWz sc-bbSZdi bojcmk bliGbZ internal-button"
+                  class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB aZqjs cHFgFN"
+                    class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
                   >
                     <span
-                      class="sc-dAlyuH dYZdPz"
+                      class="sc-eqUAAy bkXwYG"
                     >
                       Cookie settings
                     </span>
@@ -78,23 +78,23 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-hknOHE gQBvmm jlgHyZ"
+                class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
               >
                 <div
-                  class="sc-fqkvVR hHxuBp grey-shadow"
+                  class="sc-aXZVg kMGxHZ grey-shadow"
                 />
                 <div
-                  class="sc-fqkvVR hHxuBp yellow-shadow"
+                  class="sc-aXZVg kMGxHZ yellow-shadow"
                 />
                 <button
-                  class="sc-kOPcWz sc-bbSZdi ckELrw ihSFqs internal-button"
+                  class="sc-dcJsrY sc-jXbUNg gqXsav hHLXEI internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB aZqjs cHFgFN"
+                    class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
                   >
                     <span
-                      class="sc-dAlyuH dYZdPz"
+                      class="sc-eqUAAy bkXwYG"
                     >
                       Accept all cookies
                     </span>
