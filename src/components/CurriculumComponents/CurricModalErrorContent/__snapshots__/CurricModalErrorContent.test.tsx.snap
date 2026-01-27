@@ -3,20 +3,20 @@
 exports[`CurricModalErrorContent should render additional when supplied 1`] = `
 <div>
   <div
-    class="sc-fqkvVR sc-kAyceB fWTlzE FywIr"
+    class="sc-aXZVg sc-gEvEer iXSzFI fVNIMq"
   >
     <h1
-      class="sc-kpDqfm sc-fbfc102a-0 gcpdjG jTTcqg"
+      class="sc-eldPxv sc-fbfc102a-0 ioPmOs jTTcqg"
     >
       404
     </h1>
     <h2
-      class="sc-kpDqfm etJCSt"
+      class="sc-eldPxv cULEmf"
     >
       Missing!
     </h2>
     <p
-      class="sc-dLMFU iQQWzT"
+      class="sc-ikkxIA jLdkNc"
     >
       Close this modal
     </p>
@@ -27,15 +27,15 @@ exports[`CurricModalErrorContent should render additional when supplied 1`] = `
 exports[`CurricModalErrorContent should render correctly 1`] = `
 <div>
   <div
-    class="sc-fqkvVR sc-kAyceB fWTlzE FywIr"
+    class="sc-aXZVg sc-gEvEer iXSzFI fVNIMq"
   >
     <h1
-      class="sc-kpDqfm sc-fbfc102a-0 gcpdjG jTTcqg"
+      class="sc-eldPxv sc-fbfc102a-0 ioPmOs jTTcqg"
     >
       404
     </h1>
     <h2
-      class="sc-kpDqfm etJCSt"
+      class="sc-eldPxv cULEmf"
     >
       Missing!
     </h2>
