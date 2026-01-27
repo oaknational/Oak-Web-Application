@@ -1,3 +1,10 @@
+# [1.965.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.964.1...v1.965.0) (2026-01-27)
+
+
+### Features
+
+* update from using <FocusIndicator/> to <OakFocusIndicator/> ([25c5f6c](https://github.com/oaknational/Oak-Web-Application/commit/25c5f6c282cc89bf6a9fc474b30d474926359eae))
+
 ## [1.964.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.964.0...v1.964.1) (2026-01-27)
 
 # [1.964.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.963.1...v1.964.0) (2026-01-26)
