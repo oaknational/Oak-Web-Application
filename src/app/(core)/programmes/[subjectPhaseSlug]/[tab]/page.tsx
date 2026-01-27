@@ -29,7 +29,9 @@ const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) => {
 
 export async function generateMetadata({
   params,
-}: PageProps<"/programmes/[subjectPhaseSlug]/[tab]">): Promise<Metadata> {
+}: {
+  params: Promise<{ subjectPhaseSlug: string; tab: string }>;
+}): Promise<Metadata> {
   const { subjectPhaseSlug } = await params;
 
   try {
