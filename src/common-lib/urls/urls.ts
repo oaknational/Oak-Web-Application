@@ -369,6 +369,34 @@ type MyLibraryProps = {
   page: "my-library";
 };
 
+export type OakLinkPropsSimple =
+  | HomeLinkProps
+  | HelpLinkProps
+  | CareersLinkProps
+  | ContactUsLinkProps
+  | LessonPlanningLinkProps
+  | SupportYourTeamLinkProps
+  | OurTeachersLinkProps
+  | OakCurriculumLinkProps
+  | ClassroomLinkProps
+  | LabsLinkProps
+  | TeacherHubLinkProps
+  | CurriculumLandingPageLinkProps
+  | AboutUsBoardLinkProps
+  | AboutUsWhoWeAreLinkProps
+  | AboutUsLeadershipLinkProps
+  | AboutUsPartnersLinkProps
+  | AboutUsWorkWithUsLinkProps
+  | TeachersHomePageProps
+  | PupilYearListingLinkProps
+  | SpecialistSubjectListingLinkProps
+  | OnboardingSchoolSelectionLinkProps
+  | OnboardingRoleSelectionLinkProps
+  | OnboardingUseOfOak
+  | MyLibraryProps
+  | BlogListingLinkProps
+  | WebinarListingLinkProps;
+
 export type OakLinkProps =
   | LabsLinkProps
   | LabsTeachingMaterialsLinkProps
