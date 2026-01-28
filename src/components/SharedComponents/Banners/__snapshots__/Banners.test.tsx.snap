@@ -3,26 +3,26 @@
 exports[`Banners shows mythbusting banner 1`] = `
 <div>
   <div
-    class="sc-fqkvVR aZqjs"
+    class="sc-aXZVg hdseiA"
     role="banner"
   >
     <div
-      class="sc-fqkvVR sc-kAyceB fRRvJZ kyta-DD"
+      class="sc-aXZVg sc-gEvEer fWVRat jMLdOa"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB hWpwmY hDpTCw"
+        class="sc-aXZVg sc-gEvEer fnaVYg jUblXJ"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB iBUdTf iCbXJE"
+          class="sc-aXZVg sc-gEvEer cPJSoT jVmVJV"
         >
           <p
-            class="sc-dLMFU fkJETQ"
+            class="sc-ikkxIA jTavWX"
           >
             <span
               style="display: inline-block; transform: rotate(-1.5deg); padding: 4px 8px;"
             >
               <span
-                class="sc-dAlyuH gJIcKd"
+                class="sc-eqUAAy hQoPqw"
               >
                 Myths
               </span>
@@ -41,7 +41,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           title="Learn why"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB gcMams zqmPr"
+            class="sc-aXZVg sc-gEvEer ekMPMw bRncHa"
           >
             <span
               aria-hidden="true"
@@ -79,13 +79,13 @@ exports[`Banners shows mythbusting banner 1`] = `
             </span>
           </div>
           <div
-            class="sc-fqkvVR XEhki"
+            class="sc-aXZVg jxyORG"
           >
             <div
-              class="sc-fqkvVR aZqjs"
+              class="sc-aXZVg hdseiA"
             >
               <span
-                class="sc-dAlyuH sc-ca3376e3-0 dzodLg eEriKr"
+                class="sc-eqUAAy sc-ca3376e3-0 WYobB eEriKr"
               >
                 Learn why
               </span>
@@ -119,14 +119,14 @@ exports[`Banners shows mythbusting banner 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR llBGLI"
+      class="sc-aXZVg cPLGjM"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB sc-cmaqmh fiJKsZ joHkzz"
+        class="sc-aXZVg sc-gEvEer sc-cVzyXs cleqNB iDBIXi"
         focusable="false"
       >
         <svg
-          class="sc-fHjqPf gWkUUq"
+          class="sc-ihgnxF gCtXAf"
           height="100%"
           preserveAspectRatio="none"
           viewBox="0 0 866 8"
