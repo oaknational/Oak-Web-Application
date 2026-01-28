@@ -95,7 +95,7 @@ export type ProgrammeHeaderProps = {
  * |-------------|  |-------------|-------------|  |-------------|-------------|
  * | headerSlot  |  | headerSlot  | headerSlot  |  | headerSlot  | headerSlot  |
  * | subjectHero |  | contentArea | subjectHero |  | contentArea | subjectHero |
- * | contentArea |  | footerSlot  | footerSlot  |  | footerSlot  | subjectHero |
+ * | contentArea |  | footerSlot  | footerSlot  |  | footerSlot  | footerSlot  |
  * | footerSlot  |  |-------------|-------------|  |-------------|-------------|
  * |-------------|
  * ```
@@ -180,11 +180,7 @@ export const ProgrammeHeader = ({
         </OakGridArea>
 
         {footerSlot && (
-          <OakGridArea
-            $colSpan={[12, 12, 7]}
-            $order={4}
-            $flexDirection="column"
-          >
+          <OakGridArea $colSpan={12} $order={4} $flexDirection="column">
             {footerSlot}
           </OakGridArea>
         )}
