@@ -11,12 +11,20 @@ import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CMSClient from "@/node-lib/cms";
 
+jest.mock("posthog-js/react", () => ({
+  ...jest.requireActual("posthog-js/react"),
+  useFeatureFlagEnabled: () => ({ enabled: {} }),
+}));
 jest.mock("@/node-lib/posthog/getFeatureFlag");
 jest.mock("../../../node-lib/cms");
 jest.mock("@/node-lib/posthog/getPosthogId", () => ({
   __esModule: true,
   getPosthogIdFromCookie: jest.fn().mockReturnValue("test-posthog-id"),
 }));
+
+globalThis.matchMedia = jest.fn().mockReturnValue({
+  matches: true,
+});
 
 const mockTeamMember = {
   id: "test-id",
@@ -56,8 +64,7 @@ describe("pages/about/meet-the-team.tsx", () => {
     (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(mockPageData);
   });
 
-  // TODO: Fix render test - component type error during merge resolution
-  it.skip("renders", () => {
+  it("renders", () => {
     const { container } = renderWithProviders()(
       <AboutUsMeetTheTeam pageData={mockPageData} topNav={topNavFixture} />,
     );
