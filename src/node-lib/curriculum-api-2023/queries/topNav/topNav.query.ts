@@ -41,7 +41,7 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
     guidance: [
       { title: "Plan a lesson", slug: "lesson-planning" },
       { title: "Blogs", slug: "blog-index" },
-      { title: "Help", slug: "help" },
+      { title: "Help", slug: "help", external: true },
       { title: "Support your team", slug: "support-your-team" },
       { title: "Webinars", slug: "webinar-index" },
     ],
