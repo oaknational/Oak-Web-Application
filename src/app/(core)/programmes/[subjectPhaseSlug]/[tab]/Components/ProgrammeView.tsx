@@ -1,8 +1,8 @@
 "use client";
 
 import { OakBox, OakTabs } from "@oaknational/oak-components";
-import { useMemo } from "react";
-import { notFound, useSearchParams, useRouter } from "next/navigation";
+import { useMemo, useState } from "react";
+import { notFound, useSearchParams } from "next/navigation";
 
 import {
   TabName,
@@ -57,7 +57,7 @@ export const ProgrammeView = ({
   tabSlug,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
-  const router = useRouter();
+  const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
 
   const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
 
@@ -126,16 +126,18 @@ export const ProgrammeView = ({
         footerSlot={OakTabs<TabName>({
           sizeVariant: ["compact", "default"],
           colorVariant: "black",
-          activeTab: getTabName(tabSlug),
+          activeTab: getTabName(activeTab),
           onTabClick: (tabName) => {
             const tabSlug = getTabSlug(tabName);
-            router.push(tabSlug, { scroll: false });
+            setActiveTab(tabSlug);
+            // Prevents a full page reload using client side nav
+            globalThis.history.pushState(null, "", tabSlug);
           },
           tabs: TAB_NAMES,
         })}
       />
       <TabContent
-        tabSlug={tabSlug}
+        tabSlug={activeTab}
         curriculumPhaseOptions={curriculumPhaseOptions}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}

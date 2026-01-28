@@ -8,15 +8,12 @@ import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOption
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
-const mockPush = jest.fn();
 jest.mock("next/navigation", () => {
   return {
     __esModule: true,
     usePathname: () => "/programmes/science-secondary-aqa/units",
     useSearchParams: jest.fn(),
-    useRouter: () => ({
-      push: mockPush,
-    }),
+    useRouter: () => jest.fn(),
   };
 });
 
@@ -33,6 +30,12 @@ Object.defineProperty(globalThis, "matchMedia", {
     removeEventListener: jest.fn(),
     dispatchEvent: jest.fn(),
   })),
+});
+
+// Mock window history
+let pushSpy: jest.SpyInstance;
+beforeEach(() => {
+  pushSpy = jest.spyOn(globalThis.history, "pushState");
 });
 
 const defaultProps = {
@@ -89,6 +92,6 @@ describe("ProgrammeView", () => {
     const overviewTabButton = screen.getByRole("button", { name: "Explainer" });
     const user = userEvent.setup();
     await user.click(overviewTabButton);
-    expect(mockPush).toHaveBeenCalledWith("overview", { scroll: false });
+    expect(pushSpy).toHaveBeenCalledWith(null, "", "overview");
   });
 });
