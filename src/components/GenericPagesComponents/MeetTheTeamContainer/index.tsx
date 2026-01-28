@@ -1,4 +1,10 @@
-import { OakBox, OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakGrid,
+  OakHeading,
+  OakP,
+} from "@oaknational/oak-components";
 
 export type MeetTheTeamContainerProps = {
   title: string;
@@ -25,9 +31,13 @@ export function MeetTheTeamContainer({
           </OakHeading>
           {text && <OakP $font={"body-1"}>{text}</OakP>}
         </OakFlex>
-        <OakFlex $gap={"spacing-16"} $flexWrap={"wrap"}>
+        <OakGrid
+          $gridTemplateColumns={"repeat(auto-fit, minmax(192px, 1fr))"}
+          $cg={"spacing-16"}
+          $rg={"spacing-16"}
+        >
           {children}
-        </OakFlex>
+        </OakGrid>
       </OakFlex>
     </OakBox>
   );
