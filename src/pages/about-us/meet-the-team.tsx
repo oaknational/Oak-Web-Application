@@ -1,5 +1,6 @@
 import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
 import {
+  OakCard,
   OakFlex,
   OakHeading,
   OakSideMenuNav,
@@ -12,7 +13,6 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { AboutSharedHeader } from "@/components/GenericPagesComponents/AboutSharedHeader";
-import ProfileCard from "@/components/GenericPagesComponents/ProfileCard";
 import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
@@ -106,16 +106,20 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               >
                 {leadershipTeam.map((member) => {
                   const slug = member.slug?.current ?? member.id;
-                  const imageUrl =
-                    getProxiedSanityAssetUrl(member.image?.asset?.url) ??
-                    undefined;
+                  const imageUrl = getProxiedSanityAssetUrl(
+                    member.image?.asset?.url,
+                  );
                   return (
-                    <ProfileCard
+                    <OakCard
                       key={member.id}
-                      name={member.name}
-                      role={member.role ?? ""}
-                      image={imageUrl}
+                      heading={member.name}
                       href={`/about-us/meet-the-team/${slug}`}
+                      cardWidth={"100%"}
+                      imageSrc={imageUrl}
+                      imageAlt={`Photo of ${member.name}`}
+                      subCopy={member.role ?? ""}
+                      linkText="See bio"
+                      linkIconName="chevron-right"
                     />
                   );
                 })}
@@ -128,16 +132,20 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               >
                 {boardMembers.map((member) => {
                   const slug = member.slug?.current ?? member.id;
-                  const imageUrl =
-                    getProxiedSanityAssetUrl(member.image?.asset?.url) ??
-                    undefined;
+                  const imageUrl = getProxiedSanityAssetUrl(
+                    member.image?.asset?.url,
+                  );
                   return (
-                    <ProfileCard
+                    <OakCard
                       key={member.id}
-                      name={member.name}
-                      role={member.role ?? ""}
-                      image={imageUrl}
+                      heading={member.name}
                       href={`/about-us/meet-the-team/${slug}`}
+                      cardWidth={"100%"}
+                      imageSrc={imageUrl}
+                      imageAlt={`Photo of ${member.name}`}
+                      subCopy={member.role ?? ""}
+                      linkText="See bio"
+                      linkIconName="chevron-right"
                     />
                   );
                 })}
