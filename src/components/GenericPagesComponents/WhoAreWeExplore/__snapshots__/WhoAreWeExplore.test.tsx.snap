@@ -4,15 +4,15 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR gVzFgl"
+      class="sc-aXZVg tbBTB"
     >
       <div
-        class="sc-fqkvVR kgcpTx"
+        class="sc-aXZVg fGFMqx"
         style="pointer-events: none;"
       >
         <img
           alt=""
-          class="sc-dcJsrY cDKKvZ"
+          class="sc-iGgWBj cMzyFO"
           data-nimg="fill"
           decoding="async"
           loading="lazy"
@@ -21,42 +21,42 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
         />
       </div>
       <div
-        class="sc-fqkvVR caVZsU"
+        class="sc-aXZVg epoPXw"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB fPYsZM gwxZIR"
+          class="sc-aXZVg sc-gEvEer kQLqxs cLpNFw"
         >
           <h2
-            class="sc-kpDqfm iuktHK"
+            class="sc-eldPxv iGDTao"
           >
             TEST_TITLE
           </h2>
           <div
-            class="sc-fqkvVR sc-jXbUNg aZqjs iwxQGX"
+            class="sc-aXZVg sc-tagGq hdseiA knYjJT"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
+              class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA iDBIXi iIsMWd"
             >
               <div
-                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
+                class="sc-aXZVg sc-fiCwlc bpmavV cXLvKw"
               >
                 <a
                   href="#item_one"
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
+                    class="sc-aXZVg sc-gEvEer sc-7609481f-0 krhsqK egjftS bCChgO"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
+                      class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                     >
                       <div
-                        class="sc-fqkvVR gjLiRo"
+                        class="sc-aXZVg cEXryM"
                       >
                         <img
                           alt=""
-                          class="sc-dcJsrY cDKKvZ"
+                          class="sc-iGgWBj cMzyFO"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -66,19 +66,19 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB fzzIIf bAFsaQ"
+                      class="sc-aXZVg sc-gEvEer jfQrXn fXHtRp"
                     >
                       ITEM_ONE
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
+                      class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                     >
                       <div
-                        class="sc-fqkvVR dbPreQ"
+                        class="sc-aXZVg dhXyYU"
                       >
                         <img
                           alt=""
-                          class="sc-dcJsrY cDKKvZ"
+                          class="sc-iGgWBj cMzyFO"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -92,28 +92,28 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
+              class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA iDBIXi iIsMWd"
             >
               <div
-                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
+                class="sc-aXZVg sc-fiCwlc bpmavV cXLvKw"
               >
                 <a
                   href="#item_two"
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
+                    class="sc-aXZVg sc-gEvEer sc-7609481f-0 krhsqK egjftS bCChgO"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
+                      class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                     >
                       <div
-                        class="sc-fqkvVR gjLiRo"
+                        class="sc-aXZVg cEXryM"
                       >
                         <img
                           alt=""
-                          class="sc-dcJsrY cDKKvZ"
+                          class="sc-iGgWBj cMzyFO"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -123,19 +123,19 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB fzzIIf bAFsaQ"
+                      class="sc-aXZVg sc-gEvEer jfQrXn fXHtRp"
                     >
                       ITEM_TWO
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
+                      class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                     >
                       <div
-                        class="sc-fqkvVR dbPreQ"
+                        class="sc-aXZVg dhXyYU"
                       >
                         <img
                           alt=""
-                          class="sc-dcJsrY cDKKvZ"
+                          class="sc-iGgWBj cMzyFO"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -149,28 +149,28 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
+              class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA iDBIXi iIsMWd"
             >
               <div
-                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
+                class="sc-aXZVg sc-fiCwlc bpmavV cXLvKw"
               >
                 <a
                   href="#item_three"
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
+                    class="sc-aXZVg sc-gEvEer sc-7609481f-0 krhsqK egjftS bCChgO"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
+                      class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                     >
                       <div
-                        class="sc-fqkvVR gjLiRo"
+                        class="sc-aXZVg cEXryM"
                       >
                         <img
                           alt=""
-                          class="sc-dcJsrY cDKKvZ"
+                          class="sc-iGgWBj cMzyFO"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -180,19 +180,19 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB fzzIIf bAFsaQ"
+                      class="sc-aXZVg sc-gEvEer jfQrXn fXHtRp"
                     >
                       ITEM_THREE
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
+                      class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                     >
                       <div
-                        class="sc-fqkvVR dbPreQ"
+                        class="sc-aXZVg dhXyYU"
                       >
                         <img
                           alt=""
-                          class="sc-dcJsrY cDKKvZ"
+                          class="sc-iGgWBj cMzyFO"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -206,28 +206,28 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
+              class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA iDBIXi iIsMWd"
             >
               <div
-                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
+                class="sc-aXZVg sc-fiCwlc bpmavV cXLvKw"
               >
                 <a
                   href="#item_four"
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
+                    class="sc-aXZVg sc-gEvEer sc-7609481f-0 krhsqK egjftS bCChgO"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
+                      class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                     >
                       <div
-                        class="sc-fqkvVR gjLiRo"
+                        class="sc-aXZVg cEXryM"
                       >
                         <img
                           alt=""
-                          class="sc-dcJsrY cDKKvZ"
+                          class="sc-iGgWBj cMzyFO"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -237,19 +237,19 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB fzzIIf bAFsaQ"
+                      class="sc-aXZVg sc-gEvEer jfQrXn fXHtRp"
                     >
                       ITEM_FOUR
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
+                      class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                     >
                       <div
-                        class="sc-fqkvVR dbPreQ"
+                        class="sc-aXZVg dhXyYU"
                       >
                         <img
                           alt=""
-                          class="sc-dcJsrY cDKKvZ"
+                          class="sc-iGgWBj cMzyFO"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"

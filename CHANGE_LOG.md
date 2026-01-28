@@ -1,3 +1,57 @@
+# [1.968.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.967.0...v1.968.0) (2026-01-28)
+
+
+### Bug Fixes
+
+* allow push ([9e10e8c](https://github.com/oaknational/Oak-Web-Application/commit/9e10e8c2e2c624bda325eab354567e7eb888e928))
+
+
+### Features
+
+* add boolean check for icon ([13c0592](https://github.com/oaknational/Oak-Web-Application/commit/13c0592b1a5d36254b3e7537da09eea9c40da538))
+
+# [1.967.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.966.0...v1.967.0) (2026-01-28)
+
+
+### Bug Fixes
+
+* german illustration pointing at french 🤦‍♂️ ([36cf52f](https://github.com/oaknational/Oak-Web-Application/commit/36cf52f05f924243212b9bef3aa37f75e8a4c5ff))
+* issue with PageProps generic type ([f380842](https://github.com/oaknational/Oak-Web-Application/commit/f38084270f0a4e33e192083b3b8beb9921802b56))
+* ready `OakNotificationsProvider` for app router ([29c6e78](https://github.com/oaknational/Oak-Web-Application/commit/29c6e78111462a7ede01bfb98647b9c6feb66d37))
+* revert snapshot changes ([09b586a](https://github.com/oaknational/Oak-Web-Application/commit/09b586a9dbde7c2065ac2cdaffeb7732855947cf))
+* still unhappy with the previous types so created own definition ([e189adb](https://github.com/oaknational/Oak-Web-Application/commit/e189adb007412feeaa6edff45a7a28cb4f9d9410))
+
+
+### Features
+
+* add `ProgrammeHeader` ([5d0a616](https://github.com/oaknational/Oak-Web-Application/commit/5d0a616982fb959286a3b2a8144769b787aaacb7))
+* add `ProgrammeHeader` ([3304aa8](https://github.com/oaknational/Oak-Web-Application/commit/3304aa815356cd76edd233da5e5a1dba75c82c36))
+* add error report on missing programme page data ([0231646](https://github.com/oaknational/Oak-Web-Application/commit/02316469b461d6e497a348893c8d0365fa100e65))
+* add getAppPageProps helper fn ([5f5ca00](https://github.com/oaknational/Oak-Web-Application/commit/5f5ca0004898908ac132aa6423dd81412fca7359))
+* add query for programme page sanity data ([6124eb1](https://github.com/oaknational/Oak-Web-Application/commit/6124eb1b0a6f6fd55123bb170f695ae275a78abe))
+* display selected subject from filters when possible ([b539713](https://github.com/oaknational/Oak-Web-Application/commit/b539713155ae56154de7b2416c4be3f57fabac4e))
+* display selected subject from filters when possible ([2044f6c](https://github.com/oaknational/Oak-Web-Application/commit/2044f6c45335ac9efadc4931d9b0426fba415c79))
+* fetch sanity data for programme header ([35137a0](https://github.com/oaknational/Oak-Web-Application/commit/35137a0c0afbf2fc99bd2180f988d8adbac84513))
+* use heading-4 for mobile ([d7e4b0e](https://github.com/oaknational/Oak-Web-Application/commit/d7e4b0eee9d5b33dd0811c562638679991860746))
+* use heading-4 for mobile ([06a07fd](https://github.com/oaknational/Oak-Web-Application/commit/06a07fd236ed6add3c0e88f4209014de6a5b0e0f))
+* wire the programme header up to the page ([169c88f](https://github.com/oaknational/Oak-Web-Application/commit/169c88fe8b25fbcb4f76c0dd0e63eb57dfd61119))
+* wire the programme header up to the page ([2ce5c97](https://github.com/oaknational/Oak-Web-Application/commit/2ce5c976e900efd555005f80d6b4f1428c593426))
+
+# [1.966.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.965.0...v1.966.0) (2026-01-27)
+
+
+### Features
+
+* update snapshot tests ([5f0dc00](https://github.com/oaknational/Oak-Web-Application/commit/5f0dc004d19e28a1c8ae0bbbb7aa9aab82b765f7))
+* update to oak components v1.188.0 ([c379c48](https://github.com/oaknational/Oak-Web-Application/commit/c379c4891ee9e343e83082bd2d07f40515cbd2f7))
+
+# [1.965.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.964.1...v1.965.0) (2026-01-27)
+
+
+### Features
+
+* update from using <FocusIndicator/> to <OakFocusIndicator/> ([25c5f6c](https://github.com/oaknational/Oak-Web-Application/commit/25c5f6c282cc89bf6a9fc474b30d474926359eae))
+
 ## [1.964.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.964.0...v1.964.1) (2026-01-27)
 
 # [1.964.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.963.1...v1.964.0) (2026-01-26)

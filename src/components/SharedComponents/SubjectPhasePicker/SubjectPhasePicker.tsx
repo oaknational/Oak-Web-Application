@@ -13,6 +13,7 @@ import {
   OakSecondaryButton,
   OakSpan,
   OakHandDrawnHR,
+  OakFocusIndicator,
 } from "@oaknational/oak-components";
 import { sortBy } from "lodash";
 import { flushSync } from "react-dom";
@@ -31,7 +32,6 @@ import type {
   CurriculumPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/FocusWrap";
@@ -46,6 +46,14 @@ const TruncatedFlex = styled(OakFlex)`
   @media (min-width: 750px) {
     max-width: calc(100% - 8rem);
   }
+`;
+
+const OakFocusIndicatorAlt = styled(OakFocusIndicator)<{
+  assertFocus: boolean;
+}>`
+  box-shadow: ${(props) =>
+    props.assertFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
+  z-index: ${(props) => (props.assertFocus ? "2" : "")};
 `;
 
 // FIXME: This is from <@/pages-helpers/pupil/options-pages/options-pages-helpers> being duplicated here to fix bundle issues.
@@ -173,12 +181,6 @@ const PickerButton = styled.button`
   text-align: left;
   user-select: none;
   cursor: pointer;
-`;
-
-const FocusIndicatorAlt = styled(FocusIndicator)<object>`
-  &:hover {
-    background: #f2f2f2;
-  }
 `;
 
 const SelectionDropDownBox = styled(OakBox)<object>`
@@ -665,10 +667,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               $background={showSubjects ? "bg-primary" : null}
               style={{ width: "50%" }}
             >
-              <FocusIndicatorAlt
-                disableMouseHover={true}
-                subFocus={showSubjects}
-                disableActive={true}
+              <OakFocusIndicatorAlt
+                dropShadow="drop-shadow-centered-grey"
+                assertFocus={showSubjects}
+                activeDropShadow="drop-shadow-none"
                 $width={"100%"}
                 $bblr={["border-radius-square", "border-radius-s"]}
                 $bbrr={["border-radius-square", "border-radius-s"]}
@@ -721,7 +723,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     </OakP>
                   </OakBox>
                 </PickerButton>
-              </FocusIndicatorAlt>
+              </OakFocusIndicatorAlt>
             </OakFlex>
             {/* DESKTOP SUBJECT PICKER */}
             {showSubjects && !isMobile && !isMobileLotPickerModalOpen && (
@@ -913,10 +915,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $gap="spacing-16"
                 $background={showPhases ? "bg-primary" : null}
               >
-                <FocusIndicatorAlt
-                  disableMouseHover={true}
-                  subFocus={showPhases}
-                  disableActive={true}
+                <OakFocusIndicatorAlt
+                  dropShadow="drop-shadow-centered-grey"
+                  assertFocus={showPhases}
+                  activeDropShadow="drop-shadow-none"
                   $width={"100%"}
                   $bblr={["border-radius-square", "border-radius-s"]}
                   $bbrr={["border-radius-square", "border-radius-s"]}
@@ -994,7 +996,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       </OakBox>
                     </OakBox>
                   </PickerButton>
-                </FocusIndicatorAlt>
+                </OakFocusIndicatorAlt>
 
                 {/* DESKTOP PHASE PICKER */}
                 {showPhases && !isMobile && (

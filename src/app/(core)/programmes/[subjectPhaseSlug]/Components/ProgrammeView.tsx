@@ -32,6 +32,7 @@ import { CurriculumFilters } from "@/utils/curriculum/types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 
 type ProgrammePageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
@@ -40,6 +41,7 @@ type ProgrammePageProps = {
   phaseTitle: string;
   examboardTitle: string | undefined;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
+  subjectPhaseSanityData: ProgrammePageHeaderCMS | null;
 };
 
 export const ProgrammeView = ({
@@ -49,6 +51,7 @@ export const ProgrammeView = ({
   phaseTitle,
   examboardTitle,
   curriculumUnitsFormattedData,
+  subjectPhaseSanityData,
 }: ProgrammePageProps) => {
   const isMobile = useMediaQuery("mobile");
   const searchParams = useSearchParams();
@@ -130,12 +133,8 @@ export const ProgrammeView = ({
         phaseTitle={phaseTitle}
         examboardTitle={examboardTitle}
         schoolYear={schoolYear}
-        summary="This is some placeholder text for the summary. If this goes into production then we've still got work to do."
-        bullets={[
-          "This is a bullet point",
-          "This is another bullet point",
-          "This is a third bullet point",
-        ]}
+        summary={subjectPhaseSanityData?.bodyCopy}
+        bullets={subjectPhaseSanityData?.bullets}
       />
       <OakBox
         id="programme-units"
