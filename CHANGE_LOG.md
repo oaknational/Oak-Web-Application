@@ -1,3 +1,15 @@
+# [1.968.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.967.0...v1.968.0) (2026-01-28)
+
+
+### Bug Fixes
+
+* allow push ([9e10e8c](https://github.com/oaknational/Oak-Web-Application/commit/9e10e8c2e2c624bda325eab354567e7eb888e928))
+
+
+### Features
+
+* add boolean check for icon ([13c0592](https://github.com/oaknational/Oak-Web-Application/commit/13c0592b1a5d36254b3e7537da09eea9c40da538))
+
 # [1.967.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.966.0...v1.967.0) (2026-01-28)
 
 
