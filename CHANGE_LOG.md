@@ -1,3 +1,19 @@
+## [1.968.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.968.0...v1.968.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* merge main ([2563646](https://github.com/oaknational/Oak-Web-Application/commit/2563646d0b143c0fb6138551e92a4f8a529f02bc))
+* remove ProfileCard component ([f9487b4](https://github.com/oaknational/Oak-Web-Application/commit/f9487b4a49b4e87c11a4d511e988d88812580a67))
+* replace profile card with oak card in meet us page ([09e4952](https://github.com/oaknational/Oak-Web-Application/commit/09e49522212d278d2190f039e411b1b48a60eac1))
+* update meet the team container to grid to dynamically stretch cards ([3c79474](https://github.com/oaknational/Oak-Web-Application/commit/3c79474118c5e0094a86e65671c5e07130f91ddf))
+* update meet the team snapshot ([b522d5e](https://github.com/oaknational/Oak-Web-Application/commit/b522d5ef75c05c17525edd5aed5da944ab70e3f4))
+* update meet us page snapshots ([4781dc5](https://github.com/oaknational/Oak-Web-Application/commit/4781dc579c19d8f15b5fbdc701a0f11caa257b7e))
+* update package json ([9f212c9](https://github.com/oaknational/Oak-Web-Application/commit/9f212c93fc9e3ca1d8e0fb40fcb62f2ae2e86f78))
+* update package json oak components ([75dbe33](https://github.com/oaknational/Oak-Web-Application/commit/75dbe33c058420ddfaa7af51ed033bafe711789a))
+* update snapshots ([f46f43b](https://github.com/oaknational/Oak-Web-Application/commit/f46f43b3ff4a685e4868a57ad43cca3c7925ddd4))
+* use spacing token for min grid card ([ffdbaa0](https://github.com/oaknational/Oak-Web-Application/commit/ffdbaa082f64efdf8c5d9eba8a0b219fcd953fb2))
+
 # [1.968.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.967.0...v1.968.0) (2026-01-28)
 
 
