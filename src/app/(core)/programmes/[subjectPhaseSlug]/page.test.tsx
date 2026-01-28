@@ -58,6 +58,7 @@ jest.mock("@/node-lib/cms", () => ({
       curriculumPartnerOverviews: [],
       curriculumSeoTextRaw: null,
     }),
+    programmePageBySlug: jest.fn(),
   },
 }));
 
@@ -98,6 +99,7 @@ describe("Programme page", () => {
     await expect(
       ProgrammePage({
         params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+        searchParams: Promise.resolve({}),
       }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
@@ -135,6 +137,7 @@ describe("Programme page", () => {
 
     const result = await ProgrammePage({
       params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+      searchParams: Promise.resolve({}),
     });
 
     expect(result).toBeDefined();
@@ -147,6 +150,7 @@ describe("Programme page", () => {
     await expect(
       ProgrammePage({
         params: Promise.resolve({ subjectPhaseSlug: "fake-slug" }),
+        searchParams: Promise.resolve({}),
       }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
