@@ -61,6 +61,7 @@ export function MainMenuContent(
           href={resolveOakHref({
             page: "labs",
           })}
+          external={true}
           title="AI Experiments"
           iconName="external"
         />
@@ -144,11 +145,13 @@ function MainMenuLink({
   href,
   title,
   iconName,
+  external,
   hamburgerMenu,
 }: {
   readonly href: string;
   readonly title: string;
   readonly hamburgerMenu: HamburgerMenuHook;
+  readonly external?: boolean;
   readonly iconName?: OakIconName;
 }) {
   const { handleCloseHamburger } = hamburgerMenu;
@@ -159,6 +162,7 @@ function MainMenuLink({
       isTrailingIcon
       iconName={iconName}
       href={href}
+      target={external ? "_blank" : "_self"}
       onClick={handleCloseHamburger}
     >
       {title}

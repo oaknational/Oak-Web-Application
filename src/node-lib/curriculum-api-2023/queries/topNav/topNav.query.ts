@@ -43,7 +43,7 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
       { title: "Support your team", slug: "support-your-team" as const },
       { title: "Blogs", slug: "blog-index" as const },
       { title: "Webinars", slug: "webinar-index" as const },
-      { title: "Help", slug: "help" as const },
+      { title: "Help", slug: "help" as const, external: true },
     ],
   };
 

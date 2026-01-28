@@ -5,6 +5,7 @@ import {
   OakUL,
   OakLeftAlignedButton,
   OakFlex,
+  OakHeading,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
@@ -21,7 +22,10 @@ import {
   TeachersBrowse,
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { resolveOakHref } from "@/common-lib/urls";
+import {
+  OakLinkPropsRequiringPageOnly,
+  resolveOakHref,
+} from "@/common-lib/urls";
 
 export type NavItemData =
   | { type: "links"; links: SubNavLinks }
@@ -70,7 +74,9 @@ export function SubmenuContainer({
         selected={true}
         onClick={() => handleCloseSubmenu()}
       >
-        {description ? description : title}
+        <OakHeading $font="heading-6" tag="h3">
+          {description ? description : title}
+        </OakHeading>
       </OakPrimaryInvertedButton>
 
       {children}
@@ -96,6 +102,7 @@ export function SubmenuContent(
           <OakUL
             $display={"flex"}
             $flexDirection={"column"}
+            $pl="spacing-40"
             $gap={"spacing-16"}
           >
             {links.map((link) => (
@@ -105,9 +112,12 @@ export function SubmenuContent(
                     handleCloseHamburger();
                   }}
                   element={Link}
+                  target={link.external ? "_blank" : "_self"}
+                  iconName={link.external ? "external" : undefined}
+                  isTrailingIcon
                   href={resolveOakHref({
                     page: link.slug,
-                  } as Parameters<typeof resolveOakHref>[0])}
+                  } as OakLinkPropsRequiringPageOnly)}
                 >
                   {link.title}
                 </OakLeftAlignedButton>

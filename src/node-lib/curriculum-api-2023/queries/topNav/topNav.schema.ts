@@ -33,6 +33,7 @@ export type TeachersSubNavData = {
 export type SubNavLinks = Array<{
   slug: OakLinkPropsRequiringPageOnly["page"];
   title: string;
+  external?: boolean;
 }>;
 
 export type TeachersBrowse = {
