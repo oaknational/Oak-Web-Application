@@ -109,8 +109,8 @@ export function createTeacherProgrammeSlug(
     if (tierSlug) parts.push(tierSlug);
     if (pathwaySlug) parts.push(pathwaySlug);
 
-    if (examboardSlug && !["core", "gcse"].includes(examboardSlug))
-      parts.push(examboardSlug);
+    if (examboardSlug && pathwaySlug !== "core") parts.push(examboardSlug);
+
     return parts.join("-");
   } else if (unitData) {
     return [
