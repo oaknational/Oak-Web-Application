@@ -95,6 +95,8 @@ jest.mock("./getProgrammeData", () => ({
 const mockErrorReporter = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
+  initialiseBugsnag: jest.fn(),
+  initialiseSentry: jest.fn(),
   default:
     () =>
     (...args: []) =>
