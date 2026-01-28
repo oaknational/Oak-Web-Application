@@ -1,7 +1,7 @@
 import z from "zod";
 import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 
-import { OakLinkPropsSimple } from "@/common-lib/urls";
+import { OakLinkPropsRequiringPageOnly } from "@/common-lib/urls";
 
 export const topNavResponseSchema = z.object({
   programmes: z.array(
@@ -31,13 +31,13 @@ export type TeachersSubNavData = {
 };
 
 export type SubNavLinks = Array<{
-  slug: OakLinkPropsSimple["page"];
+  slug: OakLinkPropsRequiringPageOnly["page"];
   title: string;
 }>;
 
 export type TeachersBrowse = {
-  phaseTitle: string;
-  phaseSlug: string;
+  phaseTitle: "Primary" | "Secondary";
+  phaseSlug: "primary" | "secondary";
   keystages: Array<{
     title: string;
     slug: string;
@@ -58,7 +58,7 @@ export type PupilsSubNavData = {
 };
 
 type PupilsBrowse = {
-  phaseTitle: string;
-  phaseSlug: string;
+  phaseTitle: "Primary" | "Secondary";
+  phaseSlug: "primary" | "secondary";
   years: Array<{ title: string; slug: string }>;
 };

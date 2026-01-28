@@ -1,5 +1,4 @@
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { OakLinkPropsSimple } from "@/common-lib/urls";
 
 export const topNavFixture: TopNavProps = {
   teachers: {
@@ -86,22 +85,19 @@ export const topNavFixture: TopNavProps = {
     },
     aboutUs: [
       {
-        slug: "about-us/who-we-are" as OakLinkPropsSimple["page"],
+        slug: "about-who-we-are",
         title: "Who we are",
       },
-      {
-        slug: "about-us/our-mission" as OakLinkPropsSimple["page"],
-        title: "Our mission",
-      },
+      { slug: "about-board", title: "Board" },
     ],
     guidance: [
       {
-        slug: "guidance/teaching-tips" as OakLinkPropsSimple["page"],
-        title: "Teaching tips",
+        slug: "lesson-planning",
+        title: "Plan a lesson",
       },
       {
-        slug: "guidance/safeguarding" as OakLinkPropsSimple["page"],
-        title: "Safeguarding",
+        slug: "blog-index",
+        title: "Blogs",
       },
     ],
   },

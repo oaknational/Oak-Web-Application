@@ -369,33 +369,16 @@ type MyLibraryProps = {
   page: "my-library";
 };
 
-export type OakLinkPropsSimple =
-  | HomeLinkProps
-  | HelpLinkProps
-  | CareersLinkProps
-  | ContactUsLinkProps
-  | LessonPlanningLinkProps
-  | SupportYourTeamLinkProps
-  | OurTeachersLinkProps
-  | OakCurriculumLinkProps
-  | ClassroomLinkProps
-  | LabsLinkProps
-  | TeacherHubLinkProps
-  | CurriculumLandingPageLinkProps
-  | AboutUsBoardLinkProps
-  | AboutUsWhoWeAreLinkProps
-  | AboutUsLeadershipLinkProps
-  | AboutUsPartnersLinkProps
-  | AboutUsWorkWithUsLinkProps
-  | TeachersHomePageProps
-  | PupilYearListingLinkProps
-  | SpecialistSubjectListingLinkProps
-  | OnboardingSchoolSelectionLinkProps
-  | OnboardingRoleSelectionLinkProps
-  | OnboardingUseOfOak
-  | MyLibraryProps
-  | BlogListingLinkProps
-  | WebinarListingLinkProps;
+type OnlyPageRequired<T> = T extends { page: string }
+  ? { page: T["page"] } extends T
+    ? T
+    : never
+  : never;
+
+export type OakLinkPropsRequiringPageOnly = Extract<
+  OakLinkProps,
+  OnlyPageRequired<OakLinkProps>
+>;
 
 export type OakLinkProps =
   | LabsLinkProps

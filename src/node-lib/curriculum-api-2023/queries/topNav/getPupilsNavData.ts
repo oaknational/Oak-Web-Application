@@ -1,6 +1,9 @@
 import { TopNavResponse } from "./topNav.schema";
 
-export const getPupilsNavData = (data: TopNavResponse, phaseSlug: string) => {
+export const getPupilsNavData = (
+  data: TopNavResponse,
+  phaseSlug: "primary" | "secondary",
+) => {
   const yearsByPhase = data.programmes
     .filter((programme) => programme.programme_fields.phase_slug === phaseSlug)
     .map((programme) => ({
@@ -13,7 +16,9 @@ export const getPupilsNavData = (data: TopNavResponse, phaseSlug: string) => {
 
   return {
     phaseSlug,
-    phaseTitle: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}`,
+    phaseTitle: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as
+      | "Primary"
+      | "Secondary",
     years: yearsByPhase,
   };
 };

@@ -8,7 +8,9 @@ export const getTeachersNavData = (
 
   return {
     phaseSlug: phaseSlug,
-    phaseTitle: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}`,
+    phaseTitle: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as
+      | "Primary"
+      | "Secondary",
     keystages:
       phaseSlug === "primary"
         ? keystagesForPhase.concat(getKeystages(teachersData, "foundation"))

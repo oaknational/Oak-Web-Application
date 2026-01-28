@@ -4,8 +4,6 @@ import { Lexend } from "next/font/google";
 import parse from "html-react-parser";
 import { Metadata } from "next";
 
-import { OakNotificationsProvider } from "../context/OakNotifications/OakNotificationsProvider";
-
 import { PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
 import AnalyticsWrapper from "./components/AnalyticsWrapper";
@@ -20,6 +18,7 @@ import {
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "@/image-data";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 
 // https://nextjs.org/docs/app/getting-started/metadata-and-og-images
 export const metadata: Metadata = {

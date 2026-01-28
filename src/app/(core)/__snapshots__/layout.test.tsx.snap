@@ -21,22 +21,22 @@ exports[`core layout renders correctly 1`] = `
       {
         "aboutUs": [
           {
-            "slug": "about-us/who-we-are",
+            "slug": "about-who-we-are",
             "title": "Who we are",
           },
           {
-            "slug": "about-us/our-mission",
-            "title": "Our mission",
+            "slug": "about-board",
+            "title": "Board",
           },
         ],
         "guidance": [
           {
-            "slug": "guidance/teaching-tips",
-            "title": "Teaching tips",
+            "slug": "lesson-planning",
+            "title": "Plan a lesson",
           },
           {
-            "slug": "guidance/safeguarding",
-            "title": "Safeguarding",
+            "slug": "blog-index",
+            "title": "Blogs",
           },
         ],
         "primary": {

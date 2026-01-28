@@ -81,8 +81,8 @@ function MainMenuContent(
 
 function YearSection(
   props: Readonly<{
-    phaseTitle: string;
-    phaseSlug: string;
+    phaseTitle: "Primary" | "Secondary";
+    phaseSlug: "primary" | "secondary";
     years: Array<{ title: string; slug: string }>;
     onClick: () => void;
   }>,
@@ -116,7 +116,7 @@ function YearSection(
         {props.years.map((year) => (
           <OakLI key={year.slug} $listStyle={"none"}>
             <OakPupilJourneyYearButton
-              phase={props.phaseSlug as "primary" | "secondary"}
+              phase={props.phaseSlug}
               element={Link}
               onClick={props.onClick}
               href={resolveOakHref({
