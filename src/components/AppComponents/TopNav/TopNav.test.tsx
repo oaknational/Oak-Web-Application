@@ -1,4 +1,5 @@
 import { act, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import TopNav, { TopNavProps } from "./TopNav";
 
@@ -109,5 +110,32 @@ describe("TopNav", () => {
 
     const secondaryButton = screen.queryByRole("button", { name: "Secondary" });
     expect(secondaryButton).not.toBeInTheDocument();
+  });
+  it("renders dropdown when a subnav button is clicked", async () => {
+    renderWithTheme(<TopNavWithProviders {...mockProps} />);
+    const primaryButton = await screen.findByText("Primary");
+    act(() => {
+      primaryButton.click();
+    });
+
+    const dropdown = await screen.findByTestId("topnav-dropdown-container");
+    expect(dropdown).toBeInTheDocument();
+  });
+  it("closes dropdown when escape key is pressed", async () => {
+    const user = userEvent.setup();
+    renderWithTheme(<TopNavWithProviders {...mockProps} />);
+    const primaryButton = await screen.findByText("Primary");
+    act(() => {
+      primaryButton.click();
+    });
+
+    const dropdown = await screen.findByTestId("topnav-dropdown-container");
+    expect(dropdown).toBeInTheDocument();
+
+    act(() => {
+      user.keyboard("{Escape}");
+    });
+
+    expect(dropdown).not.toBeVisible();
   });
 });

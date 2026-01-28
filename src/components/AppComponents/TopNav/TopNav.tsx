@@ -179,6 +179,7 @@ const TopNav = (props: TopNavProps) => {
             $width={"100%"}
             $flexDirection={"column"}
             $background={"white"}
+            data-testid="topnav-dropdown-container"
           >
             <TopNavDropdown
               activeArea={activeArea}
