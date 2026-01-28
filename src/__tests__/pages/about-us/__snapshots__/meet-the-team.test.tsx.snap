@@ -2059,7 +2059,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   row-gap: 1rem;
   -webkit-column-gap: 1rem;
   column-gap: 1rem;
-  grid-template-columns: repeat(auto-fit,minmax(192px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(11.25rem,1fr));
 }
 
 .c165 {
