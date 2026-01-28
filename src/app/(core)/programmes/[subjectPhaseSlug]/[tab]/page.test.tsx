@@ -56,6 +56,7 @@ jest.mock("@/node-lib/cms", () => ({
       curriculumPartnerOverviews: [],
       curriculumSeoTextRaw: null,
     }),
+    programmePageBySlug: jest.fn(),
   },
 }));
 
@@ -107,6 +108,7 @@ describe("Programme page tabs", () => {
         params: Promise.resolve({
           subjectPhaseSlug: "maths-primary",
           tab: "units",
+          searchParams: Promise.resolve({}),
         }),
       }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
@@ -148,6 +150,7 @@ describe("Programme page tabs", () => {
         subjectPhaseSlug: "maths-primary",
         tab: "units",
       }),
+      searchParams: Promise.resolve({}),
     });
 
     expect(result).toBeDefined();
@@ -163,6 +166,7 @@ describe("Programme page tabs", () => {
           subjectPhaseSlug: "fake-slug",
           tab: "units",
         }),
+        searchParams: Promise.resolve({}),
       }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
