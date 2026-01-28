@@ -1,0 +1,26 @@
+query meetTheTeamPage($isDraftFilter: Sanity_DocumentFilter) {
+  allNewAboutCorePageMeetTheTeam(
+    where: { _: $isDraftFilter, _id: { matches: "*newAboutCorePage.meetTheTeam" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    title
+    introText
+    leadershipText
+    boardText
+    leadershipTeam {
+      ...TeamMember
+    }
+    boardMembers {
+      ...TeamMember
+    }
+    documents {
+      ...Attachment
+    }
+    governancePortableText: governanceRaw
+    seo {
+      ...Seo
+    }
+  }
+}
