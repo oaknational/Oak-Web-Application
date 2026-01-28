@@ -243,7 +243,7 @@ describe("TeachersTopNavHamburger", () => {
     act(() => {
       keyStageItem.click();
     });
-    const backButton = getByText("KS1");
+    const backButton = getByText("Key Stage 1");
     act(() => {
       backButton.click();
     });
@@ -263,7 +263,7 @@ describe("TeachersTopNavHamburger", () => {
     act(() => {
       keyStageItem.click();
     });
-    const backButton = getByText("KS3");
+    const backButton = getByText("Key Stage 3");
     act(() => {
       backButton.click();
     });

@@ -125,6 +125,7 @@ const TopNavSubjectButtons = ({
           element="a"
           iconName="arrow-right"
           isTrailingIcon
+          onClick={handleClick}
           href={resolveOakHref({ page: "subject-index", keyStageSlug })}
         >
           All {keyStageTitle} subjects

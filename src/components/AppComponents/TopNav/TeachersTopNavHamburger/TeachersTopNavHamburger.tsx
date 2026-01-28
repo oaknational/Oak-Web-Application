@@ -22,10 +22,12 @@ export type SubmenuState =
   | null;
 
 export type HamburgerMenuHook = {
+  hamburgerIsOpen: boolean;
   submenuOpen: SubmenuState;
   setSubmenuOpen: Dispatch<SetStateAction<SubmenuState>>;
   prevSubmenu: SubmenuState;
-  handleClose: () => void;
+  handleOpen: () => void;
+  handleCloseHamburger: () => void;
   handleCloseSubmenu: () => void;
 };
 
@@ -35,12 +37,14 @@ export const getEYFSAriaLabel = (title: SubmenuState) => {
 };
 
 export const useHamburgerMenuState = (): HamburgerMenuHook => {
+  const [hamburgerIsOpen, setHamburgerIsOpen] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState<SubmenuState>(null);
   const [prevSubmenu, setPrevSubmenu] = useState<SubmenuState>(null);
 
-  const handleClose = useCallback(() => {
-    setSubmenuOpen(null);
+  const handleOpen = useCallback(() => {
+    setHamburgerIsOpen(true);
     setPrevSubmenu(null);
+    setSubmenuOpen(null);
   }, []);
 
   const handleCloseSubmenu = useCallback(() => {
@@ -48,28 +52,26 @@ export const useHamburgerMenuState = (): HamburgerMenuHook => {
     setSubmenuOpen(null);
   }, [submenuOpen]);
 
+  const handleCloseHamburger = useCallback(() => {
+    handleCloseSubmenu();
+    setPrevSubmenu(null);
+    setHamburgerIsOpen(false);
+  }, [handleCloseSubmenu]);
+
   return {
+    hamburgerIsOpen,
     submenuOpen,
     setSubmenuOpen,
     prevSubmenu,
-    handleClose,
+    handleOpen,
+    handleCloseHamburger,
     handleCloseSubmenu,
   };
 };
 
 export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
-  const [isOpen, setIsOpen] = useState(false);
   const hamburgerMenu = useHamburgerMenuState();
-
-  const handleOpen = useCallback(() => {
-    setIsOpen(true);
-    hamburgerMenu.setSubmenuOpen(null);
-  }, [hamburgerMenu]);
-
-  const handleClose = useCallback(() => {
-    hamburgerMenu.handleClose();
-    setIsOpen(false);
-  }, [hamburgerMenu]);
+  const { hamburgerIsOpen, handleOpen, handleCloseHamburger } = hamburgerMenu;
 
   return (
     <OakBox $display={["block", "block", "none"]}>
@@ -78,11 +80,11 @@ export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
         data-testid="top-nav-hamburger-button"
         $borderStyle={"none"}
         iconName="hamburger"
-        onClick={() => handleOpen()}
+        onClick={handleOpen}
       />
       <OakInformativeModal
-        isOpen={isOpen}
-        onClose={() => handleClose()}
+        isOpen={hamburgerIsOpen}
+        onClose={handleCloseHamburger}
         closeOnBackgroundClick
         largeScreenMaxWidth={480}
       >

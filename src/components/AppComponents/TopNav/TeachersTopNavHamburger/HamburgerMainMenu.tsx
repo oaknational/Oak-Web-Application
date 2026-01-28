@@ -48,6 +48,7 @@ export function MainMenuContent(
       <SubjectsSection {...navData.secondary} hamburgerMenu={hamburgerMenu} />
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <MainMenuLink
+          hamburgerMenu={hamburgerMenu}
           href={resolveOakHref({
             page: "curriculum-landing-page",
           })}
@@ -56,6 +57,7 @@ export function MainMenuContent(
         <MainMenuButton title={"About us"} hamburgerMenu={hamburgerMenu} />
         <MainMenuButton title={"Guidance"} hamburgerMenu={hamburgerMenu} />
         <MainMenuLink
+          hamburgerMenu={hamburgerMenu}
           href={resolveOakHref({
             page: "labs",
           })}
@@ -142,11 +144,14 @@ function MainMenuLink({
   href,
   title,
   iconName,
+  hamburgerMenu,
 }: {
   readonly href: string;
   readonly title: string;
+  readonly hamburgerMenu: HamburgerMenuHook;
   readonly iconName?: OakIconName;
 }) {
+  const { handleCloseHamburger } = hamburgerMenu;
   return (
     <OakLeftAlignedButton
       width={"100%"}
@@ -154,6 +159,7 @@ function MainMenuLink({
       isTrailingIcon
       iconName={iconName}
       href={href}
+      onClick={handleCloseHamburger}
     >
       {title}
     </OakLeftAlignedButton>

@@ -34,10 +34,12 @@ export type NavItemData =
 
 export function SubmenuContainer({
   title,
+  description,
   children,
   hamburgerMenu,
 }: {
   readonly title: SubmenuState;
+  readonly description?: string;
   readonly children: ReactNode;
   readonly hamburgerMenu: HamburgerMenuHook;
 }) {
@@ -46,6 +48,7 @@ export function SubmenuContainer({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // focus the first link in the submenu when it opens
     if (submenuOpen && containerRef.current) {
       const focusableElements =
         containerRef.current.querySelectorAll<HTMLElement>("[href]");
@@ -67,7 +70,7 @@ export function SubmenuContainer({
         selected={true}
         onClick={() => handleCloseSubmenu()}
       >
-        {title}
+        {description ? description : title}
       </OakPrimaryInvertedButton>
 
       {children}
@@ -79,7 +82,7 @@ export function SubmenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...navData } = props;
-  const { submenuOpen, handleClose } = hamburgerMenu;
+  const { submenuOpen, handleCloseHamburger } = hamburgerMenu;
 
   if (!submenuOpen) return null;
 
@@ -99,7 +102,7 @@ export function SubmenuContent(
               <OakBox key={link.slug}>
                 <OakLeftAlignedButton
                   onClick={() => {
-                    handleClose();
+                    handleCloseHamburger();
                   }}
                   element={Link}
                   href={resolveOakHref({
@@ -129,9 +132,13 @@ export function SubmenuContent(
         (s) => s.nonCurriculum,
       );
       return (
-        <SubmenuContainer title={submenuOpen} hamburgerMenu={hamburgerMenu}>
+        <SubmenuContainer
+          description={keystage.description}
+          title={submenuOpen}
+          hamburgerMenu={hamburgerMenu}
+        >
           <TopNavSubjectButtons
-            handleClick={handleClose}
+            handleClick={handleCloseHamburger}
             selectedMenu={phase}
             subjects={subjects}
             nonCurriculumSubjects={nonCurriculumSubjects}
