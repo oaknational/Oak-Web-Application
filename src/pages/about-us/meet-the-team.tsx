@@ -1,10 +1,10 @@
 import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
 import {
-  OakBox,
+  OakCard,
   OakFlex,
   OakHeading,
-  OakP,
   OakSideMenuNav,
+  OakTypography,
 } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -13,92 +13,59 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { AboutSharedHeader } from "@/components/GenericPagesComponents/AboutSharedHeader";
-import ProfileCard from "@/components/GenericPagesComponents/ProfileCard";
 import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
+import CMSClient from "@/node-lib/cms";
+import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import Card from "@/components/SharedComponents/Card";
+import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-type Download = {
-  title: string;
-  subText: string;
-  href: string;
+const SECTION_TITLES = {
+  leadership: "Our leadership",
+  board: "Our board",
+  documents: "Documents",
+  governance: "Governance",
 };
 
-type Person = {
-  slug: string;
-  name: string;
-  position: string;
-  image?: string;
-};
-
-export type AboutUsMeetTheTeamPage = {
-  pageData: {
-    subTitle: string;
-    leadershipTitle: string;
-    leadershipText: string;
-    leadershipList: Person[];
-    boardTitle: string;
-    boardText: string;
-    boardList: Person[];
-    documentTitle: string;
-    documentText: string | null;
-    documentList: Download[];
-    governanceTitle: string;
-    governanceText: string;
-  };
+export type AboutUsMeetTheTeamPageProps = {
+  pageData: MeetTheTeamPage;
   topNav: TopNavProps;
 };
 
-export const mockData: AboutUsMeetTheTeamPage["pageData"] = {
-  // title: "Meet the team",
-  subTitle:
-    "Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.",
-  leadershipTitle: "Our leadership",
-  leadershipText:
-    "Our leadership team brings together experts to deliver the best support to teachers and value for money for the public. Learn more about them below.",
-  leadershipList: new Array(12).fill(true).map((_, index) => ({
-    slug: `ed-southall-${index}`,
-    name: "Ed Southall",
-    position: "Subject Lead (maths)",
-  })),
-  boardTitle: "Our board",
-  boardText:
-    "Our Board oversees all of our work at Oak National Academy. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence.",
-  boardList: new Array(12).fill(true).map((_, index) => ({
-    slug: `ed-southall-${index}`,
-    name: "Ed Southall",
-    position: "Subject Lead (maths)",
-  })),
-  documentTitle: "Documents",
-  documentText: null,
-  documentList: new Array(12).fill(true).map((_, index) => ({
-    title: "Impact evaluation of Oak: 2023/24",
-    subText: "PDF, 1.6MB",
-    href: `#${index}`,
-  })),
-  governanceTitle: "Governance",
-  governanceText:
-    "Oak National Academy is a limited company incorporated under the Companies Act 2006 in September 2022 and whose sole shareholder is the Secretary of State for Education. It is a non-departmental public body (NDPB) which was established to work with schools, teachers and the wider education system and has a framework agreement with the Department for Education.",
-};
-
-const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
+const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
   pageData,
   topNav,
 }) => {
+  const {
+    introText,
+    leadershipText,
+    boardText,
+    leadershipTeam,
+    boardMembers,
+    documents,
+    governancePortableText,
+    seo,
+  } = pageData;
+
   return (
     <Layout
-      seoProps={getSeoProps(null)}
+      seoProps={getSeoProps(seo)}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
       <AboutUsLayout>
         <AboutSharedHeader
           title={"Meet the team"}
-          content={pageData.subTitle}
+          content={introText}
           titleHighlight="bg-decorative5-main"
         />
         <InnerMaxWidth>
@@ -133,63 +100,111 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               $pb={"spacing-80"}
             >
               <MeetTheTeamContainer
-                title={pageData.leadershipTitle}
-                text={pageData.leadershipText}
+                title={SECTION_TITLES.leadership}
+                text={leadershipText}
                 anchor="our-leadership"
               >
-                {pageData.leadershipList.map((leadershipItem) => {
+                {leadershipTeam.map((member) => {
+                  const slug = member.slug?.current ?? member.id;
+                  const imageUrl = getProxiedSanityAssetUrl(
+                    member.image?.asset?.url,
+                  );
                   return (
-                    <ProfileCard
-                      key={leadershipItem.slug}
-                      name={leadershipItem.name}
-                      role={leadershipItem.position}
-                      href={`/about-us/meet-the-team/${leadershipItem.slug}`}
+                    <OakCard
+                      key={member.id}
+                      heading={member.name}
+                      href={`/about-us/meet-the-team/${slug}`}
+                      cardWidth={"100%"}
+                      imageSrc={imageUrl}
+                      imageAlt={`Photo of ${member.name}`}
+                      subCopy={member.role ?? ""}
+                      linkText="See bio"
+                      linkIconName="chevron-right"
                     />
                   );
                 })}
               </MeetTheTeamContainer>
 
               <MeetTheTeamContainer
-                title={pageData.boardTitle}
-                text={pageData.boardText}
+                title={SECTION_TITLES.board}
+                text={boardText}
                 anchor="our-board"
               >
-                {pageData.boardList.map((boardItem) => {
+                {boardMembers.map((member) => {
+                  const slug = member.slug?.current ?? member.id;
+                  const imageUrl = getProxiedSanityAssetUrl(
+                    member.image?.asset?.url,
+                  );
                   return (
-                    <ProfileCard
-                      key={boardItem.slug}
-                      name={boardItem.name}
-                      role={boardItem.position}
-                      href={`/about-us/meet-the-team/${boardItem.slug}`}
+                    <OakCard
+                      key={member.id}
+                      heading={member.name}
+                      href={`/about-us/meet-the-team/${slug}`}
+                      cardWidth={"100%"}
+                      imageSrc={imageUrl}
+                      imageAlt={`Photo of ${member.name}`}
+                      subCopy={member.role ?? ""}
+                      linkText="See bio"
+                      linkIconName="chevron-right"
                     />
                   );
                 })}
               </MeetTheTeamContainer>
 
-              <MeetTheTeamContainer
-                title={pageData.documentTitle}
-                text={pageData.documentText}
-                anchor="documents"
-              >
-                {pageData.documentList.map((documentItem) => {
-                  return (
-                    <OakBox
-                      key={documentItem.href}
-                      $width={"spacing-240"}
-                      $pa={"spacing-16"}
-                      $borderRadius={"border-radius-m2"}
-                      $background={"bg-btn-secondary"}
-                    >
-                      <OakBox>{documentItem.title}</OakBox>
-                      <OakBox>{documentItem.subText}</OakBox>
-                    </OakBox>
-                  );
-                })}
-              </MeetTheTeamContainer>
+              {documents && documents.length > 0 && (
+                <MeetTheTeamContainer
+                  title={SECTION_TITLES.documents}
+                  text={null}
+                  anchor="documents"
+                >
+                  {documents.map((doc) => {
+                    const fileSize = convertBytesToMegabytes(
+                      doc.file.asset.size,
+                    );
+                    return (
+                      <Card key={doc.title} $width={240} $pa={16}>
+                        <BoxBorders gapPosition="rightTop" />
+                        <OakFlex
+                          $justifyContent={"space-between"}
+                          $flexDirection={"column"}
+                          $height={"100%"}
+                          $gap={"spacing-8"}
+                        >
+                          <OakTypography $font={"heading-7"}>
+                            {doc.title}
+                          </OakTypography>
+                          <OakFlex
+                            $alignItems={"center"}
+                            $justifyContent={"space-between"}
+                          >
+                            <OakTypography
+                              $font={"body-3"}
+                            >{`${fileSize} ${doc.file.asset.extension.toUpperCase()}`}</OakTypography>
+                            <IconButtonAsLink
+                              icon={"download"}
+                              aria-label={`Download ${doc.title} (${fileSize} ${doc.file.asset.extension.toUpperCase()})`}
+                              page={null}
+                              href={`${doc.file.asset.url}?dl`}
+                              background={"blue"}
+                            />
+                          </OakFlex>
+                        </OakFlex>
+                      </Card>
+                    );
+                  })}
+                </MeetTheTeamContainer>
+              )}
 
               <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-                <OakHeading tag="h3">{pageData.governanceTitle}</OakHeading>
-                <OakP>{pageData.governanceText}</OakP>
+                <OakHeading tag="h3" $font={"heading-5"}>
+                  {SECTION_TITLES.governance}
+                </OakHeading>
+                <OakTypography $font={["body-1", "body-2"]}>
+                  <PortableTextWithDefaults
+                    value={governancePortableText}
+                    withoutDefaultComponents
+                  />
+                </OakTypography>
               </OakFlex>
             </OakFlex>
           </OakFlex>
@@ -200,7 +215,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
 };
 
 export const getServerSideProps: GetServerSideProps<
-  AboutUsMeetTheTeamPage
+  AboutUsMeetTheTeamPageProps
 > = async (context) => {
   const posthogUserId = getPosthogIdFromCookie(
     context.req.cookies,
@@ -222,20 +237,22 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  // Replace me with non-mocked data
-  const aboutMeetTheTeamPage = mockData;
+  const isPreviewMode = context.preview === true;
+  const meetTheTeamPage = await CMSClient.meetTheTeamPage({
+    previewMode: isPreviewMode,
+  });
 
   const topNav = await curriculumApi2023.topNav();
 
-  if (!aboutMeetTheTeamPage) {
+  if (!meetTheTeamPage) {
     return {
       notFound: true,
     };
   }
 
-  const results: GetStaticPropsResult<AboutUsMeetTheTeamPage> = {
+  const results: GetStaticPropsResult<AboutUsMeetTheTeamPageProps> = {
     props: {
-      pageData: aboutMeetTheTeamPage,
+      pageData: meetTheTeamPage,
       topNav,
     },
   };
