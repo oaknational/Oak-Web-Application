@@ -1,11 +1,13 @@
 import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
 import {
-  OakBox,
+  OakCard,
   OakFlex,
   OakHeading,
   OakP,
   OakSideMenuNav,
 } from "@oaknational/oak-components";
+
+import placeholderImage from "../../../public/images/oak-national-academy-logo-512.png";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
@@ -13,7 +15,6 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { AboutSharedHeader } from "@/components/GenericPagesComponents/AboutSharedHeader";
-import ProfileCard from "@/components/GenericPagesComponents/ProfileCard";
 import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
@@ -139,11 +140,16 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               >
                 {pageData.leadershipList.map((leadershipItem) => {
                   return (
-                    <ProfileCard
+                    <OakCard
                       key={leadershipItem.slug}
-                      name={leadershipItem.name}
-                      role={leadershipItem.position}
+                      heading={leadershipItem.name}
                       href={`/about-us/meet-the-team/${leadershipItem.slug}`}
+                      cardWidth={"100%"}
+                      imageSrc={placeholderImage.src}
+                      imageAlt={`Picture of ${leadershipItem.name}`}
+                      subCopy={leadershipItem.position}
+                      linkText="See bio"
+                      linkIconName="chevron-right"
                     />
                   );
                 })}
@@ -156,11 +162,16 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               >
                 {pageData.boardList.map((boardItem) => {
                   return (
-                    <ProfileCard
+                    <OakCard
                       key={boardItem.slug}
-                      name={boardItem.name}
-                      role={boardItem.position}
+                      heading={boardItem.name}
                       href={`/about-us/meet-the-team/${boardItem.slug}`}
+                      cardWidth={"100%"}
+                      imageSrc={placeholderImage.src}
+                      imageAlt={`Picture of ${boardItem.name}`}
+                      subCopy={boardItem.position}
+                      linkText="See bio"
+                      linkIconName="chevron-right"
                     />
                   );
                 })}
@@ -173,16 +184,15 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPage> = ({
               >
                 {pageData.documentList.map((documentItem) => {
                   return (
-                    <OakBox
+                    <OakCard
                       key={documentItem.href}
-                      $width={"spacing-240"}
-                      $pa={"spacing-16"}
-                      $borderRadius={"border-radius-m2"}
-                      $background={"bg-btn-secondary"}
-                    >
-                      <OakBox>{documentItem.title}</OakBox>
-                      <OakBox>{documentItem.subText}</OakBox>
-                    </OakBox>
+                      heading={documentItem.title}
+                      href={documentItem.href}
+                      cardWidth={"100%"}
+                      subCopy={documentItem.subText}
+                      linkText="Download"
+                      linkIconName="download"
+                    />
                   );
                 })}
               </MeetTheTeamContainer>
