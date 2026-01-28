@@ -6133,7 +6133,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       <p
                         class="c146"
                       >
-                        Our leadership team brings together experts to deliver the best support to teachers and value for money for the public. Learn more about them below.
+                        Our leadership team brings together experts to deliver the best support to teachers and value for money for the public.
                       </p>
                     </div>
                     <div
@@ -6212,7 +6212,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       <p
                         class="c146"
                       >
-                        Our Board oversees all of our work at Oak National Academy. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence.
+                        Our Board oversees all of our work at Oak National Academy. They provide strategic direction and safeguard our independence.
                       </p>
                     </div>
                     <div

@@ -137,9 +137,9 @@ export type AboutGetInvolvedPage = z.infer<
 export const meetTheTeamPageSchema = z.object({
   id: z.string(),
   title: z.string(),
-  introText: z.string().nullish(),
-  leadershipText: z.string().nullish(),
-  boardText: z.string().nullish(),
+  introText: z.string(),
+  leadershipText: z.string(),
+  boardText: z.string(),
   leadershipTeam: z.array(teamMemberSchema),
   boardMembers: z.array(teamMemberSchema),
   documents: z.array(attachmentSchema).nullish(),

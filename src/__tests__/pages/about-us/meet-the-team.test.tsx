@@ -32,9 +32,12 @@ const mockTeamMember = {
 const mockPageData: AboutUsMeetTheTeamPageProps["pageData"] = {
   id: "test-page-id",
   title: "Meet the Team",
-  introText: null,
-  leadershipText: null,
-  boardText: null,
+  introText:
+    "Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.",
+  leadershipText:
+    "Our leadership team brings together experts to deliver the best support to teachers and value for money for the public.",
+  boardText:
+    "Our Board oversees all of our work at Oak National Academy. They provide strategic direction and safeguard our independence.",
   leadershipTeam: [mockTeamMember],
   boardMembers: [mockTeamMember],
   documents: null,

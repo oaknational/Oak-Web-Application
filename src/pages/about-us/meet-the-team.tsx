@@ -24,21 +24,25 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 import Card from "@/components/SharedComponents/Card";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-// Hard-coded text for section titles/descriptions (fallbacks)
-const PAGE_TEXT = {
-  subTitle:
-    "Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.",
-  leadershipTitle: "Our leadership",
-  leadershipText:
-    "Our leadership team brings together experts to deliver the best support to teachers and value for money for the public. Learn more about them below.",
-  boardTitle: "Our board",
-  boardText:
-    "Our Board oversees all of our work at Oak National Academy. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence.",
-  documentTitle: "Documents",
-  governanceTitle: "Governance",
+/**
+ * Converts file size from bytes to megabytes and formats to 1 decimal place.
+ * Returns just the number (e.g., "1.5") for custom formatting in the UI.
+ * Note: We don't use convertBytesToMegabytes from lesson.helpers.ts because
+ * it returns a different format with unit included (e.g., "1.5 MB").
+ */
+function formatFileSizeInMB(bytes: number): string {
+  return (bytes / 1024 / 1024).toFixed(1);
+}
+
+const SECTION_TITLES = {
+  leadership: "Our leadership",
+  board: "Our board",
+  documents: "Documents",
+  governance: "Governance",
 };
 
 export type AboutUsMeetTheTeamPageProps = {
@@ -70,7 +74,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
       <AboutUsLayout>
         <AboutSharedHeader
           title={"Meet the team"}
-          content={introText ?? PAGE_TEXT.subTitle}
+          content={introText}
           titleHighlight="bg-decorative5-main"
         />
         <InnerMaxWidth>
@@ -105,18 +109,21 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               $pb={"spacing-80"}
             >
               <MeetTheTeamContainer
-                title={PAGE_TEXT.leadershipTitle}
-                text={leadershipText ?? PAGE_TEXT.leadershipText}
+                title={SECTION_TITLES.leadership}
+                text={leadershipText}
                 anchor="our-leadership"
               >
                 {leadershipTeam.map((member) => {
                   const slug = member.slug?.current ?? member.id;
+                  const imageUrl = getProxiedSanityAssetUrl(
+                    member.image?.asset?.url,
+                  );
                   return (
                     <ProfileCard
                       key={member.id}
                       name={member.name}
                       role={member.role ?? ""}
-                      image={member.image?.asset?.url}
+                      image={imageUrl}
                       href={`/about-us/meet-the-team/${slug}`}
                     />
                   );
@@ -124,18 +131,21 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               </MeetTheTeamContainer>
 
               <MeetTheTeamContainer
-                title={PAGE_TEXT.boardTitle}
-                text={boardText ?? PAGE_TEXT.boardText}
+                title={SECTION_TITLES.board}
+                text={boardText}
                 anchor="our-board"
               >
                 {boardMembers.map((member) => {
                   const slug = member.slug?.current ?? member.id;
+                  const imageUrl = getProxiedSanityAssetUrl(
+                    member.image?.asset?.url,
+                  );
                   return (
                     <ProfileCard
                       key={member.id}
                       name={member.name}
                       role={member.role ?? ""}
-                      image={member.image?.asset?.url}
+                      image={imageUrl}
                       href={`/about-us/meet-the-team/${slug}`}
                     />
                   );
@@ -144,16 +154,14 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
 
               {documents && documents.length > 0 && (
                 <MeetTheTeamContainer
-                  title={PAGE_TEXT.documentTitle}
+                  title={SECTION_TITLES.documents}
                   text={null}
                   anchor="documents"
                 >
                   {documents.map((doc) => {
-                    const fileSizeInMB = (
-                      doc.file.asset.size /
-                      1024 /
-                      1024
-                    ).toFixed(1);
+                    const fileSizeInMB = formatFileSizeInMB(
+                      doc.file.asset.size,
+                    );
                     return (
                       <Card key={doc.title} $width={240} $pa={16}>
                         <BoxBorders gapPosition="rightTop" />
@@ -190,7 +198,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
 
               <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
                 <OakHeading tag="h3" $font={"heading-5"}>
-                  {PAGE_TEXT.governanceTitle}
+                  {SECTION_TITLES.governance}
                 </OakHeading>
                 <OakTypography $font={["body-1", "body-2"]}>
                   <PortableTextWithDefaults
