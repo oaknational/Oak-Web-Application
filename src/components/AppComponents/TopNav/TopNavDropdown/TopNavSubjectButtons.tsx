@@ -122,6 +122,11 @@ const TopNavSubjectButtons = ({
           iconName="arrow-right"
           isTrailingIcon
           href={resolveOakHref({ page: "subject-index", keyStageSlug })}
+          aria-label={
+            keyStageTitle === "EYFS"
+              ? "All Early years foundation stage subjects"
+              : undefined
+          }
         >
           All {keyStageTitle} subjects
         </OakPrimaryInvertedButton>

@@ -148,6 +148,11 @@ const TeachersPhaseSection = ({
               aria-controls={`topnav-teachers-${keystage.slug}-subjects`}
               role="tab"
               aria-selected={selectedKeystage === keystage.slug}
+              aria-label={
+                keystage.title === "EYFS"
+                  ? "Early years foundation stage"
+                  : undefined
+              }
             >
               {keystage.title.replace("KS", "Key stage ")}
             </OakLeftAlignedButton>
