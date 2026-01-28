@@ -25,18 +25,9 @@ import Card from "@/components/SharedComponents/Card";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
-
-/**
- * Converts file size from bytes to megabytes and formats to 1 decimal place.
- * Returns just the number (e.g., "1.5") for custom formatting in the UI.
- * Note: We don't use convertBytesToMegabytes from lesson.helpers.ts because
- * it returns a different format with unit included (e.g., "1.5 MB").
- */
-function formatFileSizeInMB(bytes: number): string {
-  return (bytes / 1024 / 1024).toFixed(1);
-}
 
 const SECTION_TITLES = {
   leadership: "Our leadership",
@@ -159,7 +150,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                   anchor="documents"
                 >
                   {documents.map((doc) => {
-                    const fileSizeInMB = formatFileSizeInMB(
+                    const fileSize = convertBytesToMegabytes(
                       doc.file.asset.size,
                     );
                     return (
@@ -180,10 +171,10 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                           >
                             <OakTypography
                               $font={"body-3"}
-                            >{`${fileSizeInMB}MB ${doc.file.asset.extension.toUpperCase()}`}</OakTypography>
+                            >{`${fileSize} ${doc.file.asset.extension.toUpperCase()}`}</OakTypography>
                             <IconButtonAsLink
                               icon={"download"}
-                              aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
+                              aria-label={`Download ${doc.title} (${fileSize} ${doc.file.asset.extension.toUpperCase()})`}
                               page={null}
                               href={`${doc.file.asset.url}?dl`}
                               background={"blue"}
