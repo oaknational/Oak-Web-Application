@@ -23,6 +23,7 @@ const ERROR_CODES = [
   "preview/zod-error",
   "cms/invalid-reference-data",
   "cms/invalid-hubspot-form",
+  "cms/missing-programme-page-data",
   "getRefreshedMVTime/params-incorrect",
   "curriculum-api/not-found",
   "curriculum-api/uniqueness-assumption-violated",
@@ -203,6 +204,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "educator-api/failed-to-unsave-unit": {
     message: "Failed to unsave unit from the educator API",
+    shouldNotify: true,
+  },
+  "cms/missing-programme-page-data": {
+    message: "Could not find programme page data for subject phase",
     shouldNotify: true,
   },
 };
