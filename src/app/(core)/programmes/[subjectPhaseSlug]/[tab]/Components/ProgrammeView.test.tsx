@@ -8,7 +8,6 @@ import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOption
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
-
 const mockPush = jest.fn();
 jest.mock("next/navigation", () => {
   return {
