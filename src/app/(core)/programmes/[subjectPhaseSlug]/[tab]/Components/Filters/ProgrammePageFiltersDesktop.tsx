@@ -86,13 +86,6 @@ export default function ProgrammePageFiltersDesktop({
         </>
       )}
       {/* TD: [integrated journey] add thread filters */}
-      {/* {shouldDisplayFilter(data, filters, "threads") && (
-        <CurricFiltersThreads
-          filters={filters}
-          onChangeFilters={onChangeFilters}
-          data={data}
-        />
-      )} */}
     </OakBox>
   );
 }

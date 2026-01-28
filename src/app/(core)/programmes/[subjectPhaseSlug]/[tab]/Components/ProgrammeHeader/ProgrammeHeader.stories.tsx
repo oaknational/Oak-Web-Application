@@ -7,8 +7,8 @@ import {
   OakThemeProvider,
 } from "@oaknational/oak-components";
 
-import { ProgrammeHeader } from "./ProgrammeHeader";
 import { subjectHeroImages } from "./getSubjectHeroImageUrl";
+import { ProgrammeHeader } from "./ProgrammeHeader";
 
 const meta: Meta<typeof ProgrammeHeader> = {
   component: ProgrammeHeader,
