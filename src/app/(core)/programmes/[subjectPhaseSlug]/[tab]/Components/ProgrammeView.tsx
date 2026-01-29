@@ -1,6 +1,6 @@
 "use client";
 
-import { OakBox, OakTabs } from "@oaknational/oak-components";
+import { OakBox, OakMaxWidth, OakTabs } from "@oaknational/oak-components";
 import { useMemo, useState } from "react";
 import { notFound, useSearchParams } from "next/navigation";
 
@@ -111,7 +111,7 @@ export const ProgrammeView = ({
   );
 
   return (
-    <>
+    <OakMaxWidth>
       <ProgrammeHeader
         subject={subjectForLayout.slug as SubjectHeroImageName}
         subjectTitle={
@@ -123,19 +123,22 @@ export const ProgrammeView = ({
         schoolYear={schoolYear}
         summary={subjectPhaseSanityData?.bodyCopy}
         bullets={subjectPhaseSanityData?.bullets}
-        footerSlot={OakTabs<TabName>({
-          sizeVariant: ["compact", "default"],
-          colorVariant: "black",
-          activeTab: getTabName(activeTab),
-          onTabClick: (tabName) => {
+      />
+      <OakBox $ph={["spacing-20", "spacing-20", "spacing-0"]}>
+        <OakTabs<TabName>
+          sizeVariant={["compact", "default"]}
+          colorVariant="black"
+          activeTab={getTabName(activeTab)}
+          onTabClick={(tabName) => {
             const tabSlug = getTabSlug(tabName);
             setActiveTab(tabSlug);
             // Prevents a full page reload using client side nav
             globalThis.history.pushState(null, "", tabSlug);
-          },
-          tabs: TAB_NAMES,
-        })}
-      />
+          }}
+          tabs={TAB_NAMES}
+        />
+      </OakBox>
+
       <TabContent
         tabSlug={activeTab}
         curriculumPhaseOptions={curriculumPhaseOptions}
@@ -146,7 +149,7 @@ export const ProgrammeView = ({
         filters={filters}
         setFilters={onChangeFilters}
       />
-    </>
+    </OakMaxWidth>
   );
 };
 
