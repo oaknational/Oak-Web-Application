@@ -8,8 +8,8 @@ import {
   TabName,
   TAB_NAMES,
   TabSlug,
-  getTabSlug,
-  getTabName,
+  tabNameToSlug,
+  tabSlugToName,
 } from "../tabSchema";
 
 import {
@@ -128,14 +128,14 @@ export const ProgrammeView = ({
         <OakTabs<TabName>
           sizeVariant={["compact", "default"]}
           colorVariant="black"
-          activeTab={getTabName(activeTab)}
+          activeTab={tabSlugToName[activeTab]}
           onTabClick={(tabName) => {
-            const tabSlug = getTabSlug(tabName);
+            const tabSlug = tabNameToSlug[tabName];
             setActiveTab(tabSlug);
             // Prevents a full page reload using client side nav
             globalThis.history.pushState(null, "", tabSlug);
           }}
-          tabs={TAB_NAMES}
+          tabs={[...TAB_NAMES]}
         />
       </OakBox>
 

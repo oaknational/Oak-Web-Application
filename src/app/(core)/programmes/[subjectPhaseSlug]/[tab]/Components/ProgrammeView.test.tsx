@@ -51,7 +51,7 @@ const defaultProps = {
     curriculumUnitsTabFixture(),
   ),
   subjectPhaseSanityData: null,
-  tabSlug: "units",
+  tabSlug: "units" as const,
   examboardTitle: "AQA",
 };
 

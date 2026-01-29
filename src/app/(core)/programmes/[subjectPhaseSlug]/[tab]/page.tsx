@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { cache } from "react";
 
 import { ProgrammeView } from "./Components/ProgrammeView";
-import { tabSlugToName } from "./tabSchema";
+import { isTabSlug } from "./tabSchema";
 import { getProgrammeData } from "./getProgrammeData";
 
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
@@ -128,11 +128,9 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   }
   const { subjectPhaseSlug, tab } = await props.params;
 
-  const tabName = tabSlugToName[tab];
-  if (!tabName) {
+  if (!isTabSlug(tab)) {
     return notFound();
   }
-
   const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
 
   if (!cachedData) {
