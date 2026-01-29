@@ -106,9 +106,9 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               >
                 {leadershipTeam.map((member) => {
                   const slug = member.slug?.current ?? member.id;
-                  const imageUrl = getProxiedSanityAssetUrl(
-                    member.image?.asset?.url,
-                  );
+                  const imageUrl =
+                    getProxiedSanityAssetUrl(member.image?.asset?.url) ??
+                    undefined;
                   return (
                     <OakCard
                       key={member.id}
@@ -132,9 +132,9 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               >
                 {boardMembers.map((member) => {
                   const slug = member.slug?.current ?? member.id;
-                  const imageUrl = getProxiedSanityAssetUrl(
-                    member.image?.asset?.url,
-                  );
+                  const imageUrl =
+                    getProxiedSanityAssetUrl(member.image?.asset?.url) ??
+                    undefined;
                   return (
                     <OakCard
                       key={member.id}

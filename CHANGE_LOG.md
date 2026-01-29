@@ -1,3 +1,24 @@
+## [1.969.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.969.2...v1.969.3) (2026-01-29)
+
+
+### Bug Fixes
+
+* dont report nextjs redirect or 404 errors in app router ([eb4a6be](https://github.com/oaknational/Oak-Web-Application/commit/eb4a6be8073bab4ca248fcd0c43299d020361851))
+
+## [1.969.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.969.1...v1.969.2) (2026-01-29)
+
+
+### Bug Fixes
+
+* coerce null to undefined for OakCard imageSrc prop ([d5f5aeb](https://github.com/oaknational/Oak-Web-Application/commit/d5f5aeb14fa39f59a51c9f5093fe9d21c4d19b2f))
+
+## [1.969.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.969.0...v1.969.1) (2026-01-29)
+
+
+### Bug Fixes
+
+* **LESQ-1722:** logo on sign-up page linking to labs ([6c6e4d0](https://github.com/oaknational/Oak-Web-Application/commit/6c6e4d00a5ec50a5a912bde9093c13379e8d5c7d))
+
 # [1.969.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.968.1...v1.969.0) (2026-01-28)
 
 
