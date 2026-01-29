@@ -5,6 +5,8 @@ import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
 import TopNavDropdown from "./TopNavDropdown/TopNavDropdown";
+import { TeachersTopNavHamburger } from "./TeachersTopNavHamburger/TeachersTopNavHamburger";
+import { PupilsTopNavHamburger } from "./PupilsTopNavHamburger/PupilsTopNavHamburger";
 
 import {
   OakBox,
@@ -155,20 +157,26 @@ const TopNav = (props: TopNavProps) => {
           />
         </OakLink>
         {activeArea === "TEACHERS" && teachers && (
-          <TeachersSubNav
-            isMenuSelected={isMenuSelected}
-            onClick={(menu) => {
-              setSelectedMenu(selectedMenu === menu ? undefined : menu);
-            }}
-          />
+          <>
+            <TeachersSubNav
+              isMenuSelected={isMenuSelected}
+              onClick={(menu) => {
+                setSelectedMenu(selectedMenu === menu ? undefined : menu);
+              }}
+            />
+            <TeachersTopNavHamburger {...teachers} />
+          </>
         )}
         {activeArea === "PUPILS" && pupils && (
-          <PupilsSubNav
-            isMenuSelected={isMenuSelected}
-            onClick={(menu) => {
-              setSelectedMenu(selectedMenu === menu ? undefined : menu);
-            }}
-          />
+          <>
+            <PupilsSubNav
+              isMenuSelected={isMenuSelected}
+              onClick={(menu) => {
+                setSelectedMenu(selectedMenu === menu ? undefined : menu);
+              }}
+            />
+            <PupilsTopNavHamburger {...pupils} />
+          </>
         )}
       </OakFlex>
       {selectedMenu &&

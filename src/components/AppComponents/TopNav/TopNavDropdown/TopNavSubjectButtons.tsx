@@ -4,12 +4,13 @@ import {
   OakSubjectIconButton,
   OakUL,
 } from "@oaknational/oak-components";
+import Link from "next/link";
 
 import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
-const getSubjectLinkProps = ({
+export const getSubjectLinkProps = ({
   programmeCount,
   subjectSlug,
   programmeSlug,
@@ -40,6 +41,7 @@ const TopNavSubjectButtons = ({
   nonCurriculumSubjects,
   keyStageSlug,
   keyStageTitle,
+  handleClick,
 }: {
   selectedMenu: keyof TeachersSubNavData;
   subjects: TeachersSubNavData[
@@ -50,6 +52,7 @@ const TopNavSubjectButtons = ({
     | "secondary"]["keystages"][number]["subjects"];
   keyStageSlug: string;
   keyStageTitle: string;
+  handleClick?: () => void;
 }) => {
   return (
     <OakUL
@@ -66,11 +69,10 @@ const TopNavSubjectButtons = ({
           const { programmeCount, subjectSlug, programmeSlug } = subject;
 
           return (
-            <OakLI key={subjectSlug}>
+            <OakLI key={subject.title}>
               <OakSubjectIconButton
                 variant={"horizontal"}
-                key={subjectSlug}
-                element="a"
+                element={Link}
                 subjectIconName={getValidSubjectIconName(subjectSlug)}
                 href={resolveOakHref(
                   getSubjectLinkProps({
@@ -80,6 +82,7 @@ const TopNavSubjectButtons = ({
                     keyStageSlug,
                   }),
                 )}
+                onClick={handleClick}
                 phase={selectedMenu as "primary" | "secondary"}
                 id={`topnav-teachers-subject-${subjectSlug}`}
               >
@@ -99,7 +102,7 @@ const TopNavSubjectButtons = ({
               <OakSubjectIconButton
                 variant={"horizontal"}
                 key={subjectSlug}
-                element="a"
+                element={Link}
                 subjectIconName={getValidSubjectIconName(subjectSlug)}
                 href={resolveOakHref(
                   getSubjectLinkProps({
@@ -109,6 +112,7 @@ const TopNavSubjectButtons = ({
                     keyStageSlug,
                   }),
                 )}
+                onClick={handleClick}
                 phase={"non-curriculum"}
               >
                 {subject.title}
@@ -121,12 +125,8 @@ const TopNavSubjectButtons = ({
           element="a"
           iconName="arrow-right"
           isTrailingIcon
+          onClick={handleClick}
           href={resolveOakHref({ page: "subject-index", keyStageSlug })}
-          aria-label={
-            keyStageTitle === "EYFS"
-              ? "All Early years foundation stage subjects"
-              : undefined
-          }
         >
           All {keyStageTitle} subjects
         </OakPrimaryInvertedButton>

@@ -74,22 +74,6 @@ exports[`core layout renders correctly 1`] = `
             "slug": "about-board",
             "title": "Board",
           },
-          {
-            "slug": "about-work-with-us",
-            "title": "Work with us",
-          },
-          {
-            "slug": "about-leadership",
-            "title": "Leadership",
-          },
-          {
-            "slug": "about-partners",
-            "title": "Partners",
-          },
-          {
-            "slug": "contact",
-            "title": "Contact us",
-          },
         ],
         "guidance": [
           {
@@ -100,94 +84,48 @@ exports[`core layout renders correctly 1`] = `
             "slug": "blog-index",
             "title": "Blogs",
           },
-          {
-            "external": true,
-            "slug": "help",
-            "title": "Help",
-          },
-          {
-            "slug": "support-your-team",
-            "title": "Support your team",
-          },
-          {
-            "slug": "webinar-index",
-            "title": "Webinars",
-          },
         ],
         "primary": {
           "keystages": [
             {
+              "description": "Key stage 1",
               "slug": "ks1",
               "subjects": [
                 {
                   "nonCurriculum": false,
-                  "programmeCount": 2,
-                  "programmeSlug": null,
-                  "subjectSlug": "art",
-                  "title": "Art and design",
+                  "programmeCount": 0,
+                  "programmeSlug": "english-primary-ks1",
+                  "subjectSlug": "english",
+                  "title": "English",
                 },
                 {
                   "nonCurriculum": false,
-                  "programmeCount": 1,
-                  "programmeSlug": "computing-primary-ks1",
-                  "subjectSlug": "computing",
-                  "title": "Computing",
-                },
-                {
-                  "nonCurriculum": true,
-                  "programmeCount": 1,
-                  "programmeSlug": "financial-education-primary-ks1",
-                  "subjectSlug": "financial-education",
-                  "title": "Financial education",
+                  "programmeCount": 0,
+                  "programmeSlug": "maths-primary-ks1",
+                  "subjectSlug": "maths",
+                  "title": "Maths",
                 },
               ],
               "title": "KS1",
             },
             {
+              "description": "Key stage 2",
               "slug": "ks2",
               "subjects": [
                 {
-                  "nonCurriculum": true,
-                  "programmeCount": 1,
-                  "programmeSlug": "financial-education-primary-ks2",
-                  "subjectSlug": "financial-education",
-                  "title": "Financial education",
-                },
-                {
                   "nonCurriculum": false,
-                  "programmeCount": 2,
-                  "programmeSlug": null,
-                  "subjectSlug": "art",
-                  "title": "Art and design",
-                },
-                {
-                  "nonCurriculum": false,
-                  "programmeCount": 2,
-                  "programmeSlug": null,
-                  "subjectSlug": "computing",
-                  "title": "Computing",
+                  "programmeCount": 0,
+                  "programmeSlug": "science-primary-ks2",
+                  "subjectSlug": "science",
+                  "title": "Science",
                 },
               ],
               "title": "KS2",
             },
             {
-              "slug": "early-years-foundation-stage",
-              "subjects": [
-                {
-                  "nonCurriculum": false,
-                  "programmeCount": 1,
-                  "programmeSlug": "expressive-arts-and-design-foundation-early-years-foundation-stage-l",
-                  "subjectSlug": "expressive-arts-and-design",
-                  "title": "Expressive arts and design",
-                },
-                {
-                  "nonCurriculum": false,
-                  "programmeCount": 1,
-                  "programmeSlug": "literacy-foundation-early-years-foundation-stage-l",
-                  "subjectSlug": "literacy",
-                  "title": "Literacy",
-                },
-              ],
+              "description": "Early years foundation stage",
+              "slug": "eyfs",
+              "subjects": [],
               "title": "EYFS",
             },
           ],
@@ -197,62 +135,29 @@ exports[`core layout renders correctly 1`] = `
         "secondary": {
           "keystages": [
             {
+              "description": "Key stage 3",
               "slug": "ks3",
               "subjects": [
                 {
                   "nonCurriculum": false,
-                  "programmeCount": 2,
-                  "programmeSlug": null,
-                  "subjectSlug": "art",
-                  "title": "Art and design",
-                },
-                {
-                  "nonCurriculum": true,
-                  "programmeCount": 1,
-                  "programmeSlug": "financial-education-secondary-ks3",
-                  "subjectSlug": "financial-education",
-                  "title": "Financial education",
-                },
-                {
-                  "nonCurriculum": false,
-                  "programmeCount": 2,
-                  "programmeSlug": null,
-                  "subjectSlug": "citizenship",
-                  "title": "Citizenship",
+                  "programmeCount": 0,
+                  "programmeSlug": "history-secondary-ks3",
+                  "subjectSlug": "history",
+                  "title": "History",
                 },
               ],
               "title": "KS3",
             },
             {
+              "description": "Key stage 4",
               "slug": "ks4",
               "subjects": [
                 {
-                  "nonCurriculum": true,
-                  "programmeCount": 1,
-                  "programmeSlug": "financial-education-secondary-ks4",
-                  "subjectSlug": "financial-education",
-                  "title": "Financial education",
-                },
-                {
                   "nonCurriculum": false,
-                  "programmeCount": 1,
-                  "programmeSlug": "physical-education-secondary-ks4-core",
-                  "subjectSlug": "physical-education",
-                  "title": "Physical education (Core)",
-                },
-                {
-                  "nonCurriculum": false,
-                  "programmeCount": 3,
-                  "programmeSlug": null,
-                  "subjectSlug": "physical-education",
-                  "title": "Physical education (GCSE)",
-                },
-                {
-                  "nonCurriculum": false,
-                  "programmeCount": 3,
-                  "programmeSlug": null,
-                  "subjectSlug": "spanish",
-                  "title": "Spanish",
+                  "programmeCount": 0,
+                  "programmeSlug": "geography-secondary-ks4",
+                  "subjectSlug": "geography",
+                  "title": "Geography",
                 },
               ],
               "title": "KS4",

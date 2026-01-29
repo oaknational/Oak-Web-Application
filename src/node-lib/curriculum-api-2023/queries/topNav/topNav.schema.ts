@@ -1,5 +1,7 @@
-import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
+import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
+
+import { OakLinkPropsRequiringPageOnly } from "@/common-lib/urls";
 
 export const topNavResponseSchema = z.object({
   programmes: z.array(
@@ -24,24 +26,23 @@ export type TopNavResponse = z.infer<typeof topNavResponseSchema>;
 export type TeachersSubNavData = {
   primary: TeachersBrowse;
   secondary: TeachersBrowse;
-  guidance: Array<{
-    slug: string;
-    title: string;
-    external?: boolean;
-  }>;
-  aboutUs: Array<{
-    slug: string;
-    title: string;
-    external?: boolean;
-  }>;
+  guidance: SubNavLinks;
+  aboutUs: SubNavLinks;
 };
 
+export type SubNavLinks = Array<{
+  slug: OakLinkPropsRequiringPageOnly["page"];
+  title: string;
+  external?: boolean;
+}>;
+
 export type TeachersBrowse = {
-  phaseTitle: string;
-  phaseSlug: string;
+  phaseTitle: "Primary" | "Secondary";
+  phaseSlug: "primary" | "secondary";
   keystages: Array<{
     title: string;
     slug: string;
+    description: string;
     subjects: Array<{
       title: string;
       subjectSlug: string;
@@ -58,7 +59,7 @@ export type PupilsSubNavData = {
 };
 
 type PupilsBrowse = {
-  phaseTitle: string;
-  phaseSlug: string;
+  phaseTitle: "Primary" | "Secondary";
+  phaseSlug: "primary" | "secondary";
   years: Array<{ title: string; slug: string }>;
 };
