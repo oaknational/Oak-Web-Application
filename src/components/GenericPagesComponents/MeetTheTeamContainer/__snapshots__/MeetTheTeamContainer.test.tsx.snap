@@ -4,27 +4,27 @@ exports[`MeetTheTeamContainer renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR ecLOrf"
+      class="sc-aXZVg llJJmf"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB aZqjs kYkjWQ"
+        class="sc-aXZVg sc-gEvEer hdseiA iwFTtF"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB aZqjs FywIr"
+          class="sc-aXZVg sc-gEvEer hdseiA fVNIMq"
         >
           <h2
-            class="sc-kpDqfm TGDaq"
+            class="sc-eldPxv iiNDPs"
           >
             TESTING_TITLE
           </h2>
           <p
-            class="sc-dLMFU iQQWzT"
+            class="sc-ikkxIA jLdkNc"
           >
             TEST_TEXT
           </p>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB aZqjs fwDdho"
+          class="sc-aXZVg sc-tagGq hdseiA czWmNT"
         >
           TEST_CONTENT
         </div>

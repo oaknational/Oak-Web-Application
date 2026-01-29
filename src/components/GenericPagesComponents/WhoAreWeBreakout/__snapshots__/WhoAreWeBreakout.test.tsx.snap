@@ -4,10 +4,10 @@ exports[`WhoAreWeBreakout renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-kAyceB sc-4196a4d9-0 smQva joHkzz dQLTeJ"
+      class="sc-aXZVg sc-gEvEer sc-4196a4d9-0 hoHbUq iDBIXi dQLTeJ"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB URonQ bAFsaQ"
+        class="sc-aXZVg sc-gEvEer kWBqWY fXHtRp"
       >
         <img
           alt="test"
@@ -23,10 +23,10 @@ exports[`WhoAreWeBreakout renders correctly 1`] = `
         />
       </div>
       <div
-        class="sc-fqkvVR sc-kAyceB DgAhT gSPFUg"
+        class="sc-aXZVg sc-gEvEer fThKUn jwSfkN"
       >
         <p
-          class="sc-dLMFU dfffBt"
+          class="sc-ikkxIA laqBky"
         >
           TESTING_CONTENT
         </p>

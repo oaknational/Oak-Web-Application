@@ -1,3 +1,102 @@
+# [1.969.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.968.1...v1.969.0) (2026-01-28)
+
+
+### Bug Fixes
+
+* add missing side nav and anchor props after merge resolution ([80a5a3f](https://github.com/oaknational/Oak-Web-Application/commit/80a5a3fcb33b5b1f945b12ee5b16a40f3021af43))
+* add the required _id property to the image asset mock ([f559a4b](https://github.com/oaknational/Oak-Web-Application/commit/f559a4b60ada38b81226e11a9720098422f77c68))
+* make meet-the-team text fields required and use proxied image URLs ([321501e](https://github.com/oaknational/Oak-Web-Application/commit/321501e199738c4f677a10e5ace44c86bd58fab6))
+* resolve merge conflicts with main ([ecfc35d](https://github.com/oaknational/Oak-Web-Application/commit/ecfc35dae20211b6c49b7e759e7c641cc0754f38))
+* resolve teamMemberBySlug type error and update snapshots ([43fb633](https://github.com/oaknational/Oak-Web-Application/commit/43fb633aca23fee22784b1065ee3cae454f1aacb))
+* restore generated image data to use production dataset ([5464cdb](https://github.com/oaknational/Oak-Web-Application/commit/5464cdb545331299015df2f115443100de1abae2))
+
+
+### Features
+
+* add graphql queries and types ([2691ad4](https://github.com/oaknational/Oak-Web-Application/commit/2691ad423a0fe93ea3c043fa7746d94478600e42))
+* integrate further fields into the meet the team page ([6e3b6dc](https://github.com/oaknational/Oak-Web-Application/commit/6e3b6dce670d274e341beb6819f62e843894fb62))
+* integrate sanity into the meet the team pages ([4a61430](https://github.com/oaknational/Oak-Web-Application/commit/4a6143046dff6849862f5fbe9c82a64cac9c9575))
+
+## [1.968.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.968.0...v1.968.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* merge main ([2563646](https://github.com/oaknational/Oak-Web-Application/commit/2563646d0b143c0fb6138551e92a4f8a529f02bc))
+* remove ProfileCard component ([f9487b4](https://github.com/oaknational/Oak-Web-Application/commit/f9487b4a49b4e87c11a4d511e988d88812580a67))
+* replace profile card with oak card in meet us page ([09e4952](https://github.com/oaknational/Oak-Web-Application/commit/09e49522212d278d2190f039e411b1b48a60eac1))
+* update meet the team container to grid to dynamically stretch cards ([3c79474](https://github.com/oaknational/Oak-Web-Application/commit/3c79474118c5e0094a86e65671c5e07130f91ddf))
+* update meet the team snapshot ([b522d5e](https://github.com/oaknational/Oak-Web-Application/commit/b522d5ef75c05c17525edd5aed5da944ab70e3f4))
+* update meet us page snapshots ([4781dc5](https://github.com/oaknational/Oak-Web-Application/commit/4781dc579c19d8f15b5fbdc701a0f11caa257b7e))
+* update package json ([9f212c9](https://github.com/oaknational/Oak-Web-Application/commit/9f212c93fc9e3ca1d8e0fb40fcb62f2ae2e86f78))
+* update package json oak components ([75dbe33](https://github.com/oaknational/Oak-Web-Application/commit/75dbe33c058420ddfaa7af51ed033bafe711789a))
+* update snapshots ([f46f43b](https://github.com/oaknational/Oak-Web-Application/commit/f46f43b3ff4a685e4868a57ad43cca3c7925ddd4))
+* use spacing token for min grid card ([ffdbaa0](https://github.com/oaknational/Oak-Web-Application/commit/ffdbaa082f64efdf8c5d9eba8a0b219fcd953fb2))
+
+# [1.968.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.967.0...v1.968.0) (2026-01-28)
+
+
+### Bug Fixes
+
+* allow push ([9e10e8c](https://github.com/oaknational/Oak-Web-Application/commit/9e10e8c2e2c624bda325eab354567e7eb888e928))
+
+
+### Features
+
+* add boolean check for icon ([13c0592](https://github.com/oaknational/Oak-Web-Application/commit/13c0592b1a5d36254b3e7537da09eea9c40da538))
+
+# [1.967.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.966.0...v1.967.0) (2026-01-28)
+
+
+### Bug Fixes
+
+* german illustration pointing at french 🤦‍♂️ ([36cf52f](https://github.com/oaknational/Oak-Web-Application/commit/36cf52f05f924243212b9bef3aa37f75e8a4c5ff))
+* issue with PageProps generic type ([f380842](https://github.com/oaknational/Oak-Web-Application/commit/f38084270f0a4e33e192083b3b8beb9921802b56))
+* ready `OakNotificationsProvider` for app router ([29c6e78](https://github.com/oaknational/Oak-Web-Application/commit/29c6e78111462a7ede01bfb98647b9c6feb66d37))
+* revert snapshot changes ([09b586a](https://github.com/oaknational/Oak-Web-Application/commit/09b586a9dbde7c2065ac2cdaffeb7732855947cf))
+* still unhappy with the previous types so created own definition ([e189adb](https://github.com/oaknational/Oak-Web-Application/commit/e189adb007412feeaa6edff45a7a28cb4f9d9410))
+
+
+### Features
+
+* add `ProgrammeHeader` ([5d0a616](https://github.com/oaknational/Oak-Web-Application/commit/5d0a616982fb959286a3b2a8144769b787aaacb7))
+* add `ProgrammeHeader` ([3304aa8](https://github.com/oaknational/Oak-Web-Application/commit/3304aa815356cd76edd233da5e5a1dba75c82c36))
+* add error report on missing programme page data ([0231646](https://github.com/oaknational/Oak-Web-Application/commit/02316469b461d6e497a348893c8d0365fa100e65))
+* add getAppPageProps helper fn ([5f5ca00](https://github.com/oaknational/Oak-Web-Application/commit/5f5ca0004898908ac132aa6423dd81412fca7359))
+* add query for programme page sanity data ([6124eb1](https://github.com/oaknational/Oak-Web-Application/commit/6124eb1b0a6f6fd55123bb170f695ae275a78abe))
+* display selected subject from filters when possible ([b539713](https://github.com/oaknational/Oak-Web-Application/commit/b539713155ae56154de7b2416c4be3f57fabac4e))
+* display selected subject from filters when possible ([2044f6c](https://github.com/oaknational/Oak-Web-Application/commit/2044f6c45335ac9efadc4931d9b0426fba415c79))
+* fetch sanity data for programme header ([35137a0](https://github.com/oaknational/Oak-Web-Application/commit/35137a0c0afbf2fc99bd2180f988d8adbac84513))
+* use heading-4 for mobile ([d7e4b0e](https://github.com/oaknational/Oak-Web-Application/commit/d7e4b0eee9d5b33dd0811c562638679991860746))
+* use heading-4 for mobile ([06a07fd](https://github.com/oaknational/Oak-Web-Application/commit/06a07fd236ed6add3c0e88f4209014de6a5b0e0f))
+* wire the programme header up to the page ([169c88f](https://github.com/oaknational/Oak-Web-Application/commit/169c88fe8b25fbcb4f76c0dd0e63eb57dfd61119))
+* wire the programme header up to the page ([2ce5c97](https://github.com/oaknational/Oak-Web-Application/commit/2ce5c976e900efd555005f80d6b4f1428c593426))
+
+# [1.966.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.965.0...v1.966.0) (2026-01-27)
+
+
+### Features
+
+* update snapshot tests ([5f0dc00](https://github.com/oaknational/Oak-Web-Application/commit/5f0dc004d19e28a1c8ae0bbbb7aa9aab82b765f7))
+* update to oak components v1.188.0 ([c379c48](https://github.com/oaknational/Oak-Web-Application/commit/c379c4891ee9e343e83082bd2d07f40515cbd2f7))
+
+# [1.965.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.964.1...v1.965.0) (2026-01-27)
+
+
+### Features
+
+* update from using <FocusIndicator/> to <OakFocusIndicator/> ([25c5f6c](https://github.com/oaknational/Oak-Web-Application/commit/25c5f6c282cc89bf6a9fc474b30d474926359eae))
+
+## [1.964.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.964.0...v1.964.1) (2026-01-27)
+
+# [1.964.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.963.1...v1.964.0) (2026-01-26)
+
+
+### Features
+
+* add heading to nav ([d4c9ff9](https://github.com/oaknational/Oak-Web-Application/commit/d4c9ff9005281b35b1910e5803e4a4cf639f5580))
+* added side nav to meet the team ([75c8b51](https://github.com/oaknational/Oak-Web-Application/commit/75c8b51dd233ef4672b3fe6ca4883335236503da))
+
 ## [1.963.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.963.0...v1.963.1) (2026-01-26)
 
 # [1.963.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.962.0...v1.963.0) (2026-01-26)

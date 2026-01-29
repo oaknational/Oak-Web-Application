@@ -7,6 +7,7 @@ import {
   OakSmallPrimaryButton,
   OakSmallSecondaryButton,
   OakPrimaryButtonProps,
+  OakFocusIndicator,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -26,7 +27,6 @@ import {
   groupUnitsByPathway,
 } from "@/utils/curriculum/by-pathway";
 import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
-import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
@@ -271,7 +271,7 @@ export default function ProgrammeFiltersHeaderMobile({
                     : isSelectedYear(yearOption);
                   return (
                     <OakBox key={yearOption} $pt="spacing-8" $ml="spacing-4">
-                      <FocusIndicator
+                      <OakFocusIndicator
                         data-testid="year-group-focus-indicator"
                         $display={"inline-block"}
                         $mb="spacing-8"
@@ -280,7 +280,11 @@ export default function ProgrammeFiltersHeaderMobile({
                         $color={isYearSelected ? "white" : "black"}
                         $borderRadius={"border-radius-s"}
                         $font="heading-7"
-                        disableMouseHover={isSelectedYear(yearOption)}
+                        hoverBackground={
+                          isSelectedYear(yearOption)
+                            ? "bg-neutral"
+                            : "bg-decorative6-main"
+                        }
                       >
                         {/* TD: [integrated journey] update to use new button with selected state? */}
                         <StyledButton
@@ -303,7 +307,7 @@ export default function ProgrammeFiltersHeaderMobile({
                             })(),
                           )}
                         </StyledButton>
-                      </FocusIndicator>
+                      </OakFocusIndicator>
                     </OakBox>
                   );
                 })}
