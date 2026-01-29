@@ -1,0 +1,9 @@
+query teamMemberBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
+  allTeamMember(
+    where: { _: $isDraftFilter, slug: { current: { eq: $slug } } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    ...TeamMember
+  }
+}

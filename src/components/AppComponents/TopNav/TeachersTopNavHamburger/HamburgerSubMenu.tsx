@@ -75,7 +75,7 @@ export function SubmenuContainer({
         onClick={() => handleCloseSubmenu()}
       >
         <OakHeading $font="heading-6" tag="h3">
-          {description ? description : title}
+          {description || title}
         </OakHeading>
       </OakPrimaryInvertedButton>
 
