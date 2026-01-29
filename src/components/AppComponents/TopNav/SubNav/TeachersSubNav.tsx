@@ -1,4 +1,3 @@
-import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -18,7 +17,6 @@ type TeachersSubNavProps = {
 };
 
 const TeachersSubNav = ({ onClick, isMenuSelected }: TeachersSubNavProps) => {
-  const { isSignedIn } = useUser();
   const pathname = usePathname();
 
   return (
@@ -78,7 +76,6 @@ const TeachersSubNav = ({ onClick, isMenuSelected }: TeachersSubNavProps) => {
             page: "onboarding",
             query: { returnTo: pathname ?? "/" },
           })}
-          isSignedIn={isSignedIn}
         />
       </OakFlex>
     </OakFlex>

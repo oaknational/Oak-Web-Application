@@ -1,4 +1,4 @@
-import { UserButton, SignUpButton } from "@clerk/nextjs";
+import { UserButton, SignUpButton, useUser } from "@clerk/nextjs";
 import {
   oakColorTokens,
   OakSmallSecondaryButton,
@@ -16,9 +16,9 @@ import { SelectedArea } from "@/components/AppComponents/AppHeader/AppHeader";
  */
 const TeacherAccountButton: FC<{
   selectedArea: SelectedArea;
-  isSignedIn?: boolean;
   onboardingRedirectUrl: string;
-}> = ({ selectedArea, isSignedIn, onboardingRedirectUrl }) => {
+}> = ({ selectedArea, onboardingRedirectUrl }) => {
+  const { isSignedIn } = useUser();
   if (isSignedIn) {
     return (
       <UserButton

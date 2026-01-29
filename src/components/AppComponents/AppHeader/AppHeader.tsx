@@ -1,6 +1,5 @@
 import { FC, useRef } from "react";
 import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
-import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
@@ -42,7 +41,6 @@ const AppHeader: FC<HeaderProps> = () => {
   const { openMenu, open } = useMenuContext();
   const { track } = useAnalytics();
   const selectedArea = useSelectedArea();
-  const { isSignedIn } = useUser();
   const router = useRouter();
 
   return (
@@ -89,7 +87,6 @@ const AppHeader: FC<HeaderProps> = () => {
             {selectedArea == siteAreas.teachers && <SaveCount />}
             <TeacherAccountButton
               selectedArea={selectedArea}
-              isSignedIn={isSignedIn ? true : false}
               onboardingRedirectUrl={resolveOakHref({
                 page: "onboarding",
                 query: { returnTo: router.asPath },
