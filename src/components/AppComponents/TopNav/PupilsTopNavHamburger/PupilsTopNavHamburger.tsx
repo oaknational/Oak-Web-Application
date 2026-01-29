@@ -31,12 +31,15 @@ export function PupilsTopNavHamburger(props: Readonly<PupilsSubNavData>) {
   return (
     <OakBox $display={["block", "block", "none"]}>
       <OakSecondaryButton
-        iconGap={"spacing-0"}
+        iconGap={"spacing-8"}
         data-testid="pupils-top-nav-hamburger-button"
         $borderStyle={"none"}
+        isTrailingIcon
         iconName="hamburger"
         onClick={() => handleOpen()}
-      />
+      >
+        Menu
+      </OakSecondaryButton>
       <OakInformativeModal
         isOpen={isOpen}
         onClose={() => handleClose()}
@@ -68,6 +71,7 @@ function MainMenuContent(
           width={"100%"}
           element={Link}
           rightAlignIcon
+          target="_blank"
           iconName="external"
           onClick={props.onClick}
           href={resolveOakHref({ page: "help" })}
