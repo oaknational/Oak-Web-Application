@@ -61,7 +61,7 @@ describe("TopNavDropdown", () => {
         const subjectButtons = await screen.findAllByRole("link");
 
         expect(subjectButtons).toHaveLength(4);
-        expect(subjectButtons[0]).toHaveTextContent("Art and design");
+        expect(subjectButtons[0]).toHaveTextContent("English");
         expect(subjectButtons[3]).toHaveTextContent("All KS1 subjects");
       });
 
@@ -148,11 +148,11 @@ describe("TopNavDropdown", () => {
         expect(heading).toBeInTheDocument();
 
         const links = await screen.findAllByRole("link");
-        expect(links).toHaveLength(5);
+        expect(links).toHaveLength(2);
         expect(links[0]).toHaveFocus();
       });
 
-      it("renders external links correctly", async () => {
+      it("renders internal links correctly", async () => {
         renderWithTheme(
           <TopNavDropdown
             {...({
@@ -164,10 +164,8 @@ describe("TopNavDropdown", () => {
         );
 
         const links = await screen.findAllByRole("link");
-        expect(links[2]).toHaveAttribute(
-          "aria-label",
-          "Help (opens in a new tab)",
-        );
+        expect(links[0]).toHaveTextContent("Plan a lesson");
+        expect(links[1]).toHaveTextContent("Blogs");
       });
     });
   });

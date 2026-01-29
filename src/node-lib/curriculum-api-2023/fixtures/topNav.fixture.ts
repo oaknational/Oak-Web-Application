@@ -25,6 +25,13 @@ export const topNavFixture: TopNavProps = {
               nonCurriculum: false,
               programmeCount: 0,
             },
+            {
+              title: "Financial education",
+              subjectSlug: "financial-education",
+              programmeSlug: "financial-education-primary-ks1",
+              nonCurriculum: true,
+              programmeCount: 0,
+            },
           ],
         },
         {
