@@ -1,3 +1,12 @@
+## [1.970.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.970.1...v1.970.2) (2026-01-29)
+
+
+### Bug Fixes
+
+* more createTeacherProgrammeSlug() bug fixing ([7da30ac](https://github.com/oaknational/Oak-Web-Application/commit/7da30acf1d7519789aae92b2e70249ab3e1a0e74))
+* prevent duplicate pathway in programme slug for GCSE Citizenship ([ef90c26](https://github.com/oaknational/Oak-Web-Application/commit/ef90c26de8463ef0dd15298898eaf5709904f7bf))
+* url generation in createTeacherProgrammeSlug(...) ([512fa3b](https://github.com/oaknational/Oak-Web-Application/commit/512fa3b412edab3a74432f096d47d4d602e5d80d))
+
 ## [1.970.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.970.0...v1.970.1) (2026-01-29)
 
 # [1.970.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.969.3...v1.970.0) (2026-01-29)
