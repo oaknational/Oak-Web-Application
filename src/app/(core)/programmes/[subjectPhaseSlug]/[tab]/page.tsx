@@ -172,21 +172,22 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     }
   }
 
-  const curriculumCMSInfo = await CMSClient.curriculumOverviewPage({
-    previewMode: false, // TD: [integrated-journey] preview mode
-    subjectTitle: programmeUnitsData.subjectTitle,
-    phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-  });
+  const [curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime] =
+    await Promise.all([
+      CMSClient.curriculumOverviewPage({
+        previewMode: false, // TD: [integrated-journey] preview mode
+        subjectTitle: programmeUnitsData.subjectTitle,
+        phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+      }),
+      CMSClient.programmePageBySlug(
+        `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
+      ),
+      getMvRefreshTime(),
+    ]);
 
   if (!curriculumCMSInfo) {
     return notFound();
   }
-
-  const subjectPhaseSanityData = await CMSClient.programmePageBySlug(
-    `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
-  );
-
-  const mvRefreshTime = await getMvRefreshTime();
 
   if (!subjectPhaseSanityData) {
     reportError(

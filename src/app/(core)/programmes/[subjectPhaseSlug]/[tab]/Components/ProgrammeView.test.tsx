@@ -99,8 +99,8 @@ describe("ProgrammeView", () => {
       "/programmes/science-secondary-aqa/download",
     );
     render(<ProgrammeView {...defaultProps} tabSlug="download" />);
-    const heading = screen.getByText("Download tab");
-    expect(heading).toBeInTheDocument();
+    const content = screen.getByTestId("download-heading");
+    expect(content).toBeInTheDocument();
   });
   it("navigates on tab click", async () => {
     render(<ProgrammeView {...defaultProps} />);
