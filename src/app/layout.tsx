@@ -62,6 +62,9 @@ export default function RootLayout({
                       },
                     }}
                     appearance={{
+                      layout: {
+                        logoLinkUrl: "/",
+                      },
                       variables: {
                         colorPrimary: "#222222",
                         fontFamily: lexend.style.fontFamily,
