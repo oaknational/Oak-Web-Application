@@ -10,6 +10,7 @@ import {
   OakSecondaryLink,
   OakLink,
   OakSpan,
+  OakBoxProps,
 } from "@oaknational/oak-components";
 import {
   PortableText,
@@ -33,7 +34,22 @@ import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 
 export type OverviewTabProps = {
+  /**
+   * Handler allowing the parent to control the navigation behaviour.
+   * Lets us use this component in both app and pages router.
+   *
+   * Can be removed once the integrated programme page is launched and components are reorganised.
+   */
   onClickNavItem: (pathname: string) => void;
+  /**
+   * Inline padding for the content area.
+   *
+   * The integrated programme page layout has different padding requirements, so
+   * so we use this prop to control the padding.
+   *
+   * Can be removed once the integrated programme page is launched and components are reorganised.
+   */
+  ph?: OakBoxProps["$ph"];
   data: {
     curriculumInfo: CurriculumOverviewMVData;
     curriculumCMSInfo: CurriculumOverviewSanityData;
@@ -127,6 +143,7 @@ const markComponents: PortableTextComponents["marks"] = {
 
 const OverviewTab: FC<OverviewTabProps> = ({
   onClickNavItem,
+  ph = "spacing-16",
   data,
 }: OverviewTabProps) => {
   const { track } = useAnalytics();
@@ -219,7 +236,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
       <OakBox $minWidth={"100%"} $display={["block", "block", "none"]}>
         <OakBox
           $background={"bg-decorative1-very-subdued"}
-          $ph="spacing-16"
+          $ph={ph}
           $pv="spacing-20"
         >
           {contents}
@@ -231,7 +248,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
         tabIndex={-1}
         $maxWidth="spacing-1280"
         $mh={"auto"}
-        $ph="spacing-16"
+        $ph={ph}
         $width={"100%"}
         role="region"
       >
