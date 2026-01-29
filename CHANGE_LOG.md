@@ -1,3 +1,10 @@
+## [1.969.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.969.0...v1.969.1) (2026-01-29)
+
+
+### Bug Fixes
+
+* **LESQ-1722:** logo on sign-up page linking to labs ([6c6e4d0](https://github.com/oaknational/Oak-Web-Application/commit/6c6e4d00a5ec50a5a912bde9093c13379e8d5c7d))
+
 # [1.969.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.968.1...v1.969.0) (2026-01-28)
 
 
