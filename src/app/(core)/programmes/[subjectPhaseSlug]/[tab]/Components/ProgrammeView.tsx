@@ -1,6 +1,6 @@
 "use client";
 
-import { OakBox, OakMaxWidth, OakTabs } from "@oaknational/oak-components";
+import { OakMaxWidth, OakTabs } from "@oaknational/oak-components";
 import { useEffect, useMemo, useState } from "react";
 import { notFound, usePathname, useSearchParams } from "next/navigation";
 
@@ -26,9 +26,14 @@ import {
   ProgrammeOverview,
   ProgrammeOverviewProps,
 } from "./ProgrammeOverview/ProgrammeOverview";
+import {
+  ProgrammeDownloads,
+  ProgrammeDownloadsProps,
+} from "./ProgrammeDownloads/ProgrammeDownloads";
 
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import {
+  CurriculumDownloadsTierSubjectProps,
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
@@ -52,6 +57,8 @@ type ProgrammePageProps = {
   subjectPhaseSanityData: ProgrammePageHeaderCMS | null;
   curriculumCMSInfo: CurriculumOverviewSanityData;
   curriculumInfo: CurriculumOverviewMVData;
+  curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
+  mvRefreshTime: number;
   tabSlug: TabSlug;
 };
 
@@ -65,6 +72,8 @@ export const ProgrammeView = ({
   subjectPhaseSanityData,
   curriculumCMSInfo,
   curriculumInfo,
+  curriculumDownloadsTabData,
+  mvRefreshTime,
   tabSlug,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
@@ -168,6 +177,8 @@ export const ProgrammeView = ({
         curriculumCMSInfo={curriculumCMSInfo}
         subjectForLayout={subjectForLayout}
         subjectTitle={subjectTitle}
+        curriculumDownloadsTabData={curriculumDownloadsTabData}
+        mvRefreshTime={mvRefreshTime}
         filters={filters}
         setFilters={onChangeFilters}
       />
@@ -184,9 +195,16 @@ const TabContent = ({
   curriculumCMSInfo,
   subjectForLayout,
   subjectTitle,
+  curriculumDownloadsTabData,
+  mvRefreshTime,
   filters,
   setFilters,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps & ProgrammeOverviewProps) => {
+}: {
+  tabSlug: TabSlug;
+  curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
+} & UnitSequenceViewProps &
+  ProgrammeOverviewProps &
+  ProgrammeDownloadsProps) => {
   if (tabSlug === "units") {
     return (
       <OakMaxWidth>
@@ -210,7 +228,15 @@ const TabContent = ({
       />
     );
   } else if (tabSlug === "download") {
-    return <OakBox>Download tab</OakBox>;
+    return (
+      <ProgrammeDownloads
+        mvRefreshTime={mvRefreshTime}
+        curriculumSelectionSlugs={curriculumSelectionSlugs}
+        curriculumDownloadsTabData={curriculumDownloadsTabData}
+        curriculumInfo={curriculumInfo}
+        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+      />
+    );
   }
   return notFound();
 };
