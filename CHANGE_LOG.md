@@ -1,3 +1,10 @@
+## [1.969.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.969.2...v1.969.3) (2026-01-29)
+
+
+### Bug Fixes
+
+* dont report nextjs redirect or 404 errors in app router ([eb4a6be](https://github.com/oaknational/Oak-Web-Application/commit/eb4a6be8073bab4ca248fcd0c43299d020361851))
+
 ## [1.969.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.969.1...v1.969.2) (2026-01-29)
 
 
