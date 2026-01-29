@@ -105,6 +105,13 @@ exports[`core layout renders correctly 1`] = `
                   "subjectSlug": "maths",
                   "title": "Maths",
                 },
+                {
+                  "nonCurriculum": true,
+                  "programmeCount": 0,
+                  "programmeSlug": "financial-education-primary-ks1",
+                  "subjectSlug": "financial-education",
+                  "title": "Financial education",
+                },
               ],
               "title": "KS1",
             },
