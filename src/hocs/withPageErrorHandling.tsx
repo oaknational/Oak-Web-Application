@@ -45,14 +45,24 @@ function withPageErrorHandling<T extends PageParams>(
         }
       }
 
-      /**
-       * Report error to error reporting service
-       */
-      const { params, searchParams } = props;
-      await errorReporter(page)(error, {
-        ...(await params),
-        ...(await searchParams),
-      });
+      // Next.js redirect() and notFound() functions throw an error and are handled in nextjs internals, we don't want to report these
+      const shouldReport = !(
+        error instanceof Error &&
+        (error.message === "NEXT_REDIRECT" ||
+          error.message === "NEXT_HTTP_ERROR_FALLBACK;404")
+      );
+
+      if (shouldReport) {
+        /**
+         * Report error to error reporting service
+         */
+        const { params, searchParams } = props;
+        await errorReporter(page)(error, {
+          ...(await params),
+          ...(await searchParams),
+        });
+      }
+
       /**
        * Rethrow error so that NextJS can handle it
        */
