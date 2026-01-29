@@ -7,7 +7,10 @@ import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
 import { getProgrammeData } from "./getProgrammeData";
 
-import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import {
+  createDownloadsData,
+  formatCurriculumUnitsData,
+} from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
@@ -23,6 +26,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { useFeatureFlag } from "@/utils/featureFlags";
 import CMSClient from "@/node-lib/cms";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -183,6 +187,8 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
   );
 
+  const mvRefreshTime = await getMvRefreshTime();
+
   if (!subjectPhaseSanityData) {
     reportError(
       new OakError({
@@ -210,6 +216,10 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     );
   }
 
+  const curriculumDownloadsTabData = createDownloadsData(
+    curriculumUnitsData.units,
+  );
+
   const results = {
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
     curriculumPhaseOptions,
@@ -221,6 +231,8 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     tabSlug: tab,
     curriculumCMSInfo,
     curriculumInfo: cachedData.programmeUnitsData,
+    curriculumDownloadsTabData,
+    mvRefreshTime,
   };
 
   return <ProgrammeView {...results} />;

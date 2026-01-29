@@ -43,6 +43,11 @@ const defaultProps = {
   curriculumUnitsFormattedData: formatCurriculumUnitsData(
     curriculumUnitsTabFixture(),
   ),
+  curriculumDownloadsTabData: {
+    tiers: [],
+    child_subjects: [],
+  },
+  mvRefreshTime: 0,
   curriculumInfo: curriculumOverviewMVFixture(),
   curriculumCMSInfo: curriculumOverviewCMSFixture(),
   subjectPhaseSanityData: null,
