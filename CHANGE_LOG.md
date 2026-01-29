@@ -1,3 +1,10 @@
+## [1.969.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.969.1...v1.969.2) (2026-01-29)
+
+
+### Bug Fixes
+
+* coerce null to undefined for OakCard imageSrc prop ([d5f5aeb](https://github.com/oaknational/Oak-Web-Application/commit/d5f5aeb14fa39f59a51c9f5093fe9d21c4d19b2f))
+
 ## [1.969.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.969.0...v1.969.1) (2026-01-29)
 
 
