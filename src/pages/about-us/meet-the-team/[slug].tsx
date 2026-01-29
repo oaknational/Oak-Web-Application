@@ -1,6 +1,13 @@
-import { NextPage, GetServerSideProps, GetStaticPropsResult } from "next";
-
-import { mockData } from "../meet-the-team";
+import { NextPage, GetServerSideProps } from "next";
+import {
+  OakFlex,
+  OakHeading,
+  OakImage,
+  OakMaxWidth,
+  OakTypography,
+  OakBox,
+  OakSecondaryLink,
+} from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
@@ -9,48 +16,200 @@ import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import CMSClient from "@/node-lib/cms";
+import { TeamMember } from "@/common-lib/cms-types/teamMember";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-export type AboutUsMeetTheTeamPersonPage = {
-  pageData: {
-    slug: string;
-    name: string;
-    position: string;
-    image?: string;
-  };
-  topNav: TopNavProps;
+type ProfileNavigation = {
+  prevSlug: string | null;
+  prevName: string | null;
+  nextSlug: string | null;
+  nextName: string | null;
 };
 
-const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPage> = ({
+export type AboutUsMeetTheTeamPersonPageProps = {
+  pageData: TeamMember;
+  topNav: TopNavProps;
+  navigation: ProfileNavigation;
+};
+
+const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   pageData,
   topNav,
+  navigation,
 }) => {
+  const { name, role, image, bioPortableText, socials } = pageData;
+  const { prevSlug, nextSlug } = navigation;
+
   return (
     <Layout
-      seoProps={getSeoProps(null)}
+      seoProps={getSeoProps({
+        title: `${name} - Meet the Team | Oak National Academy`,
+        description: role ?? undefined,
+      })}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
-      <pre>
-        <code>{JSON.stringify(pageData, null, 2)}</code>
-      </pre>
+      <OakMaxWidth
+        $mb={["spacing-56", "spacing-80"]}
+        $mt={["spacing-56", "spacing-80"]}
+        $ph={["spacing-16", "spacing-32"]}
+      >
+        <OakBox $mb={"spacing-24"}>
+          <OakSecondaryLink
+            href="/about-us/meet-the-team"
+            iconName="arrow-left"
+          >
+            Back to Meet the Team
+          </OakSecondaryLink>
+        </OakBox>
+
+        <OakFlex
+          $flexDirection={["column", "row"]}
+          $gap={["spacing-32", "spacing-56"]}
+        >
+          {image?.asset?.url && (
+            <OakBox
+              $width={["100%", "spacing-240"]}
+              $minWidth={["auto", "spacing-240"]}
+            >
+              <OakImage
+                src={image.asset.url}
+                alt={image.altText ?? `Photo of ${name}`}
+                $width={"100%"}
+                $aspectRatio={"1/1"}
+                $objectFit={"cover"}
+                $borderRadius={"border-radius-m"}
+              />
+            </OakBox>
+          )}
+
+          <OakFlex $flexDirection={"column"} $gap={"spacing-16"} $flexGrow={1}>
+            <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
+              {name}
+            </OakHeading>
+
+            {role && (
+              <OakTypography $font={"heading-6"} $color={"text-subdued"}>
+                {role}
+              </OakTypography>
+            )}
+
+            {socials && (socials.twitterUsername || socials.linkedinUrl) && (
+              <OakFlex $gap={"spacing-16"} $mt={"spacing-8"}>
+                {socials.twitterUsername && (
+                  <OakSecondaryLink
+                    href={`https://twitter.com/${socials.twitterUsername}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Twitter
+                  </OakSecondaryLink>
+                )}
+                {socials.linkedinUrl && (
+                  <OakSecondaryLink
+                    href={socials.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LinkedIn
+                  </OakSecondaryLink>
+                )}
+              </OakFlex>
+            )}
+
+            {bioPortableText && (
+              <OakTypography $font={["body-1", "body-2"]} $mt={"spacing-16"}>
+                <PortableTextWithDefaults
+                  value={bioPortableText}
+                  withoutDefaultComponents
+                />
+              </OakTypography>
+            )}
+          </OakFlex>
+        </OakFlex>
+
+        {(prevSlug || nextSlug) && (
+          <OakFlex $gap={"spacing-16"} $mt={["spacing-32", "spacing-56"]}>
+            {prevSlug && (
+              <OakBox
+                $borderColor={"border-neutral-lighter"}
+                $ba={"border-solid-s"}
+                $borderRadius={"border-radius-s"}
+                $pa={"spacing-12"}
+              >
+                <OakSecondaryLink
+                  href={`/about-us/meet-the-team/${prevSlug}`}
+                  iconName="arrow-left"
+                >
+                  Previous profile
+                </OakSecondaryLink>
+              </OakBox>
+            )}
+            {nextSlug && (
+              <OakBox
+                $borderColor={"border-neutral-lighter"}
+                $ba={"border-solid-s"}
+                $borderRadius={"border-radius-s"}
+                $pa={"spacing-12"}
+              >
+                <OakSecondaryLink
+                  href={`/about-us/meet-the-team/${nextSlug}`}
+                  iconName="arrow-right"
+                  isTrailingIcon
+                >
+                  Next profile
+                </OakSecondaryLink>
+              </OakBox>
+            )}
+          </OakFlex>
+        )}
+      </OakMaxWidth>
     </Layout>
   );
 };
-
-function findPerson(slug: string) {
-  return [...mockData.leadershipList, ...mockData.boardList].find(
-    (l) => l.slug === slug,
-  );
-}
 
 type URLParams = {
   slug: string;
 };
 
+type TeamMemberRef = {
+  id: string;
+  name: string;
+  slug?: { current?: string } | null;
+};
+
+function getMemberSlug(member: TeamMemberRef): string {
+  return member.slug?.current ?? member.id;
+}
+
+function buildProfileNavigation(
+  allMembers: TeamMemberRef[],
+  currentSlug: string,
+): ProfileNavigation {
+  const currentIndex = allMembers.findIndex(
+    (member) => getMemberSlug(member) === currentSlug,
+  );
+
+  if (currentIndex === -1) {
+    return { prevSlug: null, prevName: null, nextSlug: null, nextName: null };
+  }
+
+  const prevMember = allMembers[currentIndex - 1];
+  const nextMember = allMembers[currentIndex + 1];
+
+  return {
+    prevSlug: prevMember ? getMemberSlug(prevMember) : null,
+    prevName: prevMember?.name ?? null,
+    nextSlug: nextMember ? getMemberSlug(nextMember) : null,
+    nextName: nextMember?.name ?? null,
+  };
+}
+
 export const getServerSideProps: GetServerSideProps<
-  AboutUsMeetTheTeamPersonPage,
+  AboutUsMeetTheTeamPersonPageProps,
   URLParams
 > = async (context) => {
   const posthogUserId = getPosthogIdFromCookie(
@@ -59,7 +218,6 @@ export const getServerSideProps: GetServerSideProps<
   );
   let enableV2: boolean = false;
   if (posthogUserId) {
-    // get the variant key for the user
     enableV2 =
       (await getFeatureFlag({
         featureFlagKey: "about-us--who-we-are--v2",
@@ -68,31 +226,39 @@ export const getServerSideProps: GetServerSideProps<
   }
 
   if (!enableV2) {
-    return {
-      notFound: true,
-    };
+    return { notFound: true };
   }
 
-  // Replace me with non-mocked data
-  const aboutMeetTheTeamPersonPage = context.params?.slug
-    ? findPerson(context.params.slug)
-    : null;
-
-  const topNav = await curriculumApi2023.topNav();
-
-  if (!aboutMeetTheTeamPersonPage) {
-    return {
-      notFound: true,
-    };
+  const slug = context.params?.slug;
+  if (!slug) {
+    return { notFound: true };
   }
 
-  const results: GetStaticPropsResult<AboutUsMeetTheTeamPersonPage> = {
+  const isPreviewMode = context.preview === true;
+
+  const [teamMember, meetTheTeamPage, topNav] = await Promise.all([
+    CMSClient.teamMemberBySlug(slug, { previewMode: isPreviewMode }),
+    CMSClient.meetTheTeamPage({ previewMode: isPreviewMode }),
+    curriculumApi2023.topNav(),
+  ]);
+
+  if (!teamMember) {
+    return { notFound: true };
+  }
+
+  const allMembers = [
+    ...(meetTheTeamPage?.leadershipTeam ?? []),
+    ...(meetTheTeamPage?.boardMembers ?? []),
+  ];
+  const navigation = buildProfileNavigation(allMembers, slug);
+
+  return {
     props: {
-      pageData: aboutMeetTheTeamPersonPage,
+      pageData: teamMember,
       topNav,
+      navigation,
     },
   };
-  return results;
 };
 
 export default AboutUsMeetTheTeamPerson;
