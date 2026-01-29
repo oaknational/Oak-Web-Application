@@ -2,9 +2,9 @@ import { act, screen } from "@testing-library/react";
 
 import TopNav, { TopNavProps } from "./TopNav";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
+const render = renderWithProviders();
 const mockSelectedArea = jest.fn().mockReturnValue("TEACHERS");
 jest.mock("@/hooks/useSelectedArea", () => ({
   __esModule: true,
@@ -32,17 +32,9 @@ const mockProps: TopNavProps = {
   },
 };
 
-const TopNavWithProviders = (props: TopNavProps) => {
-  return (
-    <OakNotificationsProvider>
-      <TopNav {...props} />
-    </OakNotificationsProvider>
-  );
-};
-
 describe("TopNav", () => {
   it("renders links for pupils and teachers", async () => {
-    renderWithTheme(<TopNavWithProviders {...mockProps} />);
+    render(<TopNav {...mockProps} />);
     const teachersLink = await screen.findByRole("link", { name: "Teachers" });
     expect(teachersLink).toBeInTheDocument();
 
@@ -50,7 +42,7 @@ describe("TopNav", () => {
     expect(pupilsLink).toBeInTheDocument();
   });
   it("renders active tab with the correct style", async () => {
-    renderWithTheme(<TopNavWithProviders {...mockProps} />);
+    render(<TopNav {...mockProps} />);
 
     const teachersLink = await screen.findByRole("link", { name: "Teachers" });
     expect(teachersLink).toBeInTheDocument();
@@ -61,14 +53,14 @@ describe("TopNav", () => {
     expect(pupilsLink).toHaveStyle({ background: "rgb(34,34,34)" });
   });
   it("renders the correct subnav for teachers", async () => {
-    renderWithTheme(<TopNavWithProviders {...mockProps} />);
+    render(<TopNav {...mockProps} />);
 
     const teachersSubnav = await screen.findByTestId("teachers-subnav");
     expect(teachersSubnav).toBeInTheDocument();
   });
   it("renders the correct subnav for pupils", async () => {
     mockSelectedArea.mockReturnValue("PUPILS");
-    renderWithTheme(<TopNavWithProviders {...mockProps} />);
+    render(<TopNav {...mockProps} />);
 
     const teachersLink = await screen.findByRole("link", {
       name: "Go to teachers",
@@ -81,7 +73,7 @@ describe("TopNav", () => {
     expect(pupilsSubnav).toBeInTheDocument();
   });
   it("renders a hidden skip to content button until focused", () => {
-    renderWithTheme(<TopNavWithProviders {...mockProps} />);
+    render(<TopNav {...mockProps} />);
     const skipButtonLink = screen.getByText("Skip to content").closest("a");
 
     if (!skipButtonLink) {
@@ -103,7 +95,7 @@ describe("TopNav", () => {
     expect(skipButtonLink).not.toHaveFocus();
   });
   it("renders an empty subnav when data is null", async () => {
-    renderWithTheme(<TopNavWithProviders teachers={null} pupils={null} />);
+    render(<TopNav teachers={null} pupils={null} />);
     const primaryButton = screen.queryByRole("button", { name: "Primary" });
     expect(primaryButton).not.toBeInTheDocument();
 

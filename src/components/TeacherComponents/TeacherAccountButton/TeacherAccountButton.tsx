@@ -16,7 +16,7 @@ import { SelectedArea } from "@/components/AppComponents/AppHeader/AppHeader";
  */
 const TeacherAccountButton: FC<{
   selectedArea: SelectedArea;
-  isSignedIn: boolean;
+  isSignedIn?: boolean;
   onboardingRedirectUrl: string;
 }> = ({ selectedArea, isSignedIn, onboardingRedirectUrl }) => {
   if (isSignedIn) {
