@@ -1,11 +1,16 @@
 import { renderHook } from "@testing-library/react";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 
 import "../__tests__/__helpers__/LocalStorageMock";
 
 import useUtmParams from "./useUtmParams";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
+jest.mock("next/navigation", () => ({
+  ...jest.requireActual("next/navigation"),
+  useSearchParams: jest.fn(),
+}));
+
+const mockUseSearchParams = jest.mocked(useSearchParams);
 
 describe("useUtmParams()", () => {
   beforeEach(() => {
@@ -16,18 +21,16 @@ describe("useUtmParams()", () => {
     jest.clearAllMocks();
   });
 
-  jest.mock("next/dist/client/router", () => require("next-router-mock"));
-
   test("defaults to empty object", () => {
-    useRouter.mockReturnValue({ query: {} });
+    mockUseSearchParams.mockReturnValue(new ReadonlyURLSearchParams());
 
     const { result } = renderHook(() => useUtmParams());
     expect(result.current).toMatchObject({});
   });
   test("returns utm params", () => {
-    useRouter.mockReturnValueOnce({
-      query: { utm_source: "twitter", bar: "baz" },
-    });
+    mockUseSearchParams.mockReturnValue(
+      new ReadonlyURLSearchParams({ utm_source: "twitter", bar: "baz" }),
+    );
     const { result } = renderHook(() => useUtmParams());
     expect(result.current).toMatchObject({ utm_source: "twitter" });
   });
@@ -36,30 +39,29 @@ describe("useUtmParams()", () => {
       "oak-utm-params",
       JSON.stringify({ utm_campaign: "tests rule", utm_term: "hella yeah" }),
     );
+    mockUseSearchParams.mockReturnValue(new ReadonlyURLSearchParams());
     const { result } = renderHook(() => useUtmParams());
     expect(result.current).toMatchObject({
       utm_campaign: "tests rule",
       utm_term: "hella yeah",
     });
-    useRouter.mockReturnValueOnce({
-      query: { utm_source: "twitter", bar: "baz" },
-    });
   });
   test("utm params local storage gets updated when they change in the query", () => {
-    useRouter.mockReturnValueOnce({
-      query: {
+    mockUseSearchParams.mockReturnValue(
+      new ReadonlyURLSearchParams({
         utm_campaign: "tests rule",
         utm_term: "hella yeah",
-      },
-    });
+      }),
+    );
     const { result, rerender } = renderHook(() => useUtmParams());
     expect(result.current).toMatchObject({
       utm_campaign: "tests rule",
       utm_term: "hella yeah",
     });
-    useRouter.mockReturnValueOnce({
-      query: { utm_source: "twitter", bar: "baz" },
-    });
+
+    mockUseSearchParams.mockReturnValue(
+      new ReadonlyURLSearchParams({ utm_source: "twitter", bar: "baz" }),
+    );
     rerender();
     expect(window.localStorage.getItem("oak-utm-params")).toMatch(
       JSON.stringify({
