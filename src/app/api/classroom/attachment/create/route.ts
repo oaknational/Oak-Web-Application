@@ -32,13 +32,35 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
 
+    const { lessonSlug } = parsed.data;
+
+    const worksheetDownloadsLink = `http://localhost:3030/api/lesson/${lessonSlug}/asset?resource=worksheet-pdf-questions`;
+    const worksheetResponse = await fetch(worksheetDownloadsLink);
+    const worksheetData = await worksheetResponse.json();
+    const worksheetURL = worksheetData.data.url;
+
     await oakClassroomClient.createAttachment(
       parsed.data,
       accessToken,
       session,
     );
 
-    return NextResponse.json({}, { status: 201 });
+    // Upload worksheet to user's Google Drive
+    const driveClient = await oakClassroomClient.getGoogleDriveClient(
+      accessToken,
+      session,
+    );
+
+    const driveResult = await driveClient.uploadFileFromUrl({
+      fileUrl: worksheetURL,
+      fileName: `${lessonSlug}-worksheet.pdf`,
+      mimeType: "application/pdf",
+    });
+
+    return NextResponse.json(
+      { driveFileId: driveResult.fileId, webViewLink: driveResult.webViewLink },
+      { status: 201 },
+    );
   } catch (e) {
     console.error(JSON.stringify(e));
     return NextResponse.json({ error: e }, { status: 500 });

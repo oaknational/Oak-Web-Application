@@ -82,6 +82,7 @@
     "@google-cloud/firestore": "^7.11.6",
     "@google-cloud/storage": "^7.17.0",
     "@googleapis/classroom": "4.9.0",
+    "@googleapis/drive": "^20.0.1",
     "@hookform/resolvers": "^3.10.0",
     "@hubspot/api-client": "^11.2.0",
     "@mdx-js/loader": "^3.1.0",
