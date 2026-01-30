@@ -24,7 +24,7 @@ const baseProps = {
   breadcrumbs: [],
   background: "bg-primary" as OakUiRoleToken,
   isNew: false,
-  subjectIconBackgroundColor: "text-inverted" as OakUiRoleToken,
+  subjectIconBackgroundColor: "bg-primary" as OakUiRoleToken,
   subjectSlug: "test-subject",
   keyStageSlug: "test-keystage",
   keyStageTitle: "Test Key Stage",

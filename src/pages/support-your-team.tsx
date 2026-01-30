@@ -61,7 +61,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData, topNav }) => {
         <OakFlex $justifyContent={"center"}>
           <OakFlex $flexDirection={["column", "row", "row"]}>
             <SupportYourTeamBubbleMessage
-              background={"border-decorative2"}
+              background={"bg-decorative2-main"}
               variant="bubble-1"
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
