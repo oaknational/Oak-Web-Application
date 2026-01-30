@@ -1,3 +1,48 @@
+## [1.970.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.970.1...v1.970.2) (2026-01-29)
+
+
+### Bug Fixes
+
+* more createTeacherProgrammeSlug() bug fixing ([7da30ac](https://github.com/oaknational/Oak-Web-Application/commit/7da30acf1d7519789aae92b2e70249ab3e1a0e74))
+* prevent duplicate pathway in programme slug for GCSE Citizenship ([ef90c26](https://github.com/oaknational/Oak-Web-Application/commit/ef90c26de8463ef0dd15298898eaf5709904f7bf))
+* url generation in createTeacherProgrammeSlug(...) ([512fa3b](https://github.com/oaknational/Oak-Web-Application/commit/512fa3b412edab3a74432f096d47d4d602e5d80d))
+
+## [1.970.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.970.0...v1.970.1) (2026-01-29)
+
+# [1.970.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.969.3...v1.970.0) (2026-01-29)
+
+
+### Bug Fixes
+
+* add notifications provider and usePathname ([3c0da13](https://github.com/oaknational/Oak-Web-Application/commit/3c0da13b0d5213e9feff8fb7a8fd26844f6404bf))
+* close menu when clicking subject links, fix focus outlines ([703be38](https://github.com/oaknational/Oak-Web-Application/commit/703be385dded63b667d15622e21850deb1315b75))
+* fix broken links for subject buttons, pull in subject buttons component from other branch ([2f43c37](https://github.com/oaknational/Oak-Web-Application/commit/2f43c374b39282ce3f0138d37cf4edc6e9438357))
+* fix subject icon links ([80ba905](https://github.com/oaknational/Oak-Web-Application/commit/80ba905106eab3b942b464b1c909cd5e72a1c190))
+* header underline alignment ([c5e0027](https://github.com/oaknational/Oak-Web-Application/commit/c5e00276e20d660d568e87c10c3cd23645fa0d75))
+* main menu links ([d8a5545](https://github.com/oaknational/Oak-Web-Application/commit/d8a5545aa99907e26920e4f9897dfd483d9fb6b6))
+* pupil menu text and ext link ([912c8fa](https://github.com/oaknational/Oak-Web-Application/commit/912c8fa39ba06d4b9501714c60a152e2b3b580ed))
+* pupils hamburger alignment and years button sorting ([1bce03c](https://github.com/oaknational/Oak-Web-Application/commit/1bce03c35ddd32b3288f406403306f4c7f73e0dd))
+* refactor menu state to ensure hamburger closes when expected ([65cbfdb](https://github.com/oaknational/Oak-Web-Application/commit/65cbfdb98faa1e610d117c4b82ee6c39855b996d))
+* sonarcloud warning fix ([e99fdf2](https://github.com/oaknational/Oak-Web-Application/commit/e99fdf26b45e4ae8d0f87e0347842265a49c7792))
+* temp remove maxwidth from modal ([85a3d08](https://github.com/oaknational/Oak-Web-Application/commit/85a3d0821b6d98e15354043f81736c3689d528a2))
+* update hamburger menu ([681cf86](https://github.com/oaknational/Oak-Web-Application/commit/681cf86058c30226180be1e68aa3b9f25b7e0885))
+
+
+### Features
+
+* add new button component ([0a74157](https://github.com/oaknational/Oak-Web-Application/commit/0a7415710ceff0ca62c8a5b04c89477306aa6ace))
+* add pupil nav ([946702c](https://github.com/oaknational/Oak-Web-Application/commit/946702cee7d6086906a79e2d63451ab9175cb259))
+* aria label for EYFS ([826878e](https://github.com/oaknational/Oak-Web-Application/commit/826878efe76c24725704bcbc857e98b2e099af88))
+* fix about us and guidance links and types ([7d8b1e1](https://github.com/oaknational/Oak-Web-Application/commit/7d8b1e1be6743e222c0b43515f892e98bed60a23))
+* fix about us and guidance links and types ([3f101ab](https://github.com/oaknational/Oak-Web-Application/commit/3f101abac1500ae75a35db104e4ee2eac030c9fb))
+* focus first item in list when submenu opened ([44e33fc](https://github.com/oaknational/Oak-Web-Application/commit/44e33fc6b26e81abfc8dda2ea2825088ebe9800e))
+* handle external links ([fe2a8f3](https://github.com/oaknational/Oak-Web-Application/commit/fe2a8f356a108d144812d78266f781030fb60fef))
+* hide/show submenu behaviour ([3f1d083](https://github.com/oaknational/Oak-Web-Application/commit/3f1d0835cbea1247e50eca518abac5d0d6b21ba3))
+* max width 480 ([c29641f](https://github.com/oaknational/Oak-Web-Application/commit/c29641f3dae85977977f132cd55d4351054de307))
+* pull data for menu and populate main and subnav ([b5711a4](https://github.com/oaknational/Oak-Web-Application/commit/b5711a49656533611281b8022c1e574d8fe8fef1))
+* skeleton of hamburger behaviour ([1b6483e](https://github.com/oaknational/Oak-Web-Application/commit/1b6483e68d8b009b39b7b2a7fda2dc027a6bf1e1))
+* use descriptions for buttons, not titles ([1dd5359](https://github.com/oaknational/Oak-Web-Application/commit/1dd53590c7147da2b503dbd314e6096e49947fc9))
+
 ## [1.969.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.969.2...v1.969.3) (2026-01-29)
 
 

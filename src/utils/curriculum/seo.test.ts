@@ -146,11 +146,11 @@ describe("getUnitSeoFromYearData", () => {
         },
         slug: "foo",
         ks4OptionSlug: "core",
-        tier: "core",
+        tier: "foundation",
       }),
     ).toEqual({
       canonicalURL:
-        "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/transfiguration-primary-ks4-core/units/foo/lessons",
+        "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/transfiguration-primary-ks4-foundation-core/units/foo/lessons",
       noIndex: true,
     });
   });
