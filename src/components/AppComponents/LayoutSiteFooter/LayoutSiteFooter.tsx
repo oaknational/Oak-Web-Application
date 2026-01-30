@@ -250,7 +250,7 @@ const LayoutSiteFooter: FC = () => {
       </nav>
       <OakIcon
         iconName="looping-line-3"
-        $colorFilter={"mint"}
+        $colorFilter={"bg-decorative1-main"}
         $zIndex={"behind"}
         $display={["none", "block"]}
         $objectFit={"fill"}
@@ -269,7 +269,7 @@ const LayoutSiteFooter: FC = () => {
       />
       <OakIcon
         iconName="looping-line-4"
-        $colorFilter={"pink50"}
+        $colorFilter={"bg-decorative4-subdued"}
         $zIndex={"behind"}
         $display={["block", "none"]}
         $objectFit={"fill"}

@@ -51,7 +51,10 @@ export default function ProgrammePageFiltersDesktop({
             ks4Options={ks4Options}
             slugs={slugs}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {shouldDisplayFilter(data, filters, "subjectCategories") && (
@@ -62,7 +65,10 @@ export default function ProgrammePageFiltersDesktop({
             data={data}
             slugs={slugs}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {shouldDisplayFilter(data, filters, "childSubjects") && (
@@ -72,7 +78,10 @@ export default function ProgrammePageFiltersDesktop({
             onChangeFilters={onChangeFilters}
             data={data}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {shouldDisplayFilter(data, filters, "tiers") && (
@@ -82,7 +91,10 @@ export default function ProgrammePageFiltersDesktop({
             onChangeFilters={onChangeFilters}
             data={data}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {/* TD: [integrated journey] add thread filters */}

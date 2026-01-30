@@ -61,7 +61,7 @@ const SearchDropdown: FC<
         </OakP>
         <OakIcon
           iconName={isToggleOpen ? "chevron-up" : "chevron-down"}
-          $colorFilter={isToggleOpen ? "navy120" : "navy"}
+          $colorFilter={isToggleOpen ? "icon-link-pressed" : "icon-link-active"}
           $width="spacing-24"
         />
       </OakFlex>

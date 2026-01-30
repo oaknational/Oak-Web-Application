@@ -105,7 +105,7 @@ export default function CurricUnitCard(props: Readonly<CurricUnitCardProps>) {
               <OakIcon
                 $width="spacing-24"
                 $height="spacing-24"
-                $colorFilter={isHighlighted ? "white" : "black"}
+                $colorFilter={isHighlighted ? "text-inverted" : "icon-primary"}
                 alt=""
                 iconName="chevron-right"
               />

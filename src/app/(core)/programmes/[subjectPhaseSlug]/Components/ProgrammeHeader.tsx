@@ -4,7 +4,7 @@ import {
   OakGrid,
   OakGridArea,
   OakImage,
-  OakCombinedColorToken,
+  OakUiRoleToken,
   OakHeading,
   OakTypography,
   OakUL,
@@ -79,7 +79,7 @@ export type ProgrammeHeaderProps = {
   /**
    * The background color of the programme header. Defaults to transparent.
    */
-  background?: Extract<OakCombinedColorToken, `bg-decorative${number}-main`>;
+  background?: Extract<OakUiRoleToken, `bg-decorative${number}-main`>;
 };
 
 /**

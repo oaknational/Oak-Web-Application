@@ -1,7 +1,4 @@
-import {
-  OakColorFilterToken,
-  OakUiRoleToken,
-} from "@oaknational/oak-components";
+import { OakUiRoleToken } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderShareAllButton } from "./LessonOverviewHeaderShareAllButton";
 
@@ -27,7 +24,7 @@ const baseProps = {
   breadcrumbs: [],
   background: "bg-primary" as OakUiRoleToken,
   isNew: false,
-  subjectIconBackgroundColor: "white" as OakColorFilterToken,
+  subjectIconBackgroundColor: "text-inverted" as OakUiRoleToken,
   subjectSlug: "test-subject",
   keyStageSlug: "test-keystage",
   keyStageTitle: "Test Key Stage",
