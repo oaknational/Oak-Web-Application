@@ -71,20 +71,40 @@ export const useQuizEngineContext = () => {
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
-  const { updateSectionResult, completeActivity, currentSection } =
-    useLessonEngineContext();
+  const {
+    updateSectionResult,
+    completeActivity,
+    currentSection,
+    sectionResults,
+  } = useLessonEngineContext();
+  console.log(
+    "sectionResults in QuizEngineProviderContext",
+    sectionResults?.[currentSection]?.questionResults,
+  );
   const { track } = usePupilAnalytics();
 
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(
+    sectionResults?.[currentSection]?.questionResults.findIndex(
+      (item) => item.mode !== "feedback",
+    ) ?? 0,
+  );
   const currentQuestionData = questionsArray[currentQuestionIndex];
 
   const [questionState, setQuestionState] = useState<QuestionState[]>(
-    questionsArray.map(() => ({
-      mode: "init",
-      offerHint: false,
-      grade: 0,
-    })),
+    questionsArray.map((question, index) => {
+      console.log(
+        "sectionResults context mapping",
+        sectionResults?.[currentSection]?.questionResults?.[index],
+      );
+      return (
+        sectionResults?.[currentSection]?.questionResults?.[index] ?? {
+          mode: "init",
+          offerHint: false,
+          grade: 0,
+        }
+      );
+    }),
   );
 
   const numQuestions = questionsArray.length;
@@ -114,6 +134,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         });
       }
       setQuestionState((currentState) => {
+        console.log("currentState context", currentState);
         const newState = [...currentState];
         newState[currentQuestionIndex] = {
           offerHint: false,

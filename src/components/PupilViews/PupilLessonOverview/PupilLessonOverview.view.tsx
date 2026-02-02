@@ -314,6 +314,7 @@ export const PupilViewsLessonOverview = ({
                     numQuestions={starterQuizNumQuestions}
                     grade={sectionResults["starter-quiz"]?.grade ?? 0}
                     data-testid="starter-quiz"
+                    disabled={sectionResults["starter-quiz"]?.isComplete}
                   />
                 </OakLI>
               )}
@@ -341,6 +342,7 @@ export const PupilViewsLessonOverview = ({
                     numQuestions={exitQuizNumQuestions}
                     grade={sectionResults["exit-quiz"]?.grade ?? 0}
                     data-testid="exit-quiz"
+                    disabled={sectionResults["exit-quiz"]?.isComplete}
                   />
                 </OakLI>
               )}

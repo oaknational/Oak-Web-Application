@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   OakFlex,
   OakGrid,
@@ -32,6 +32,7 @@ import { LessonSummaryReviewedProperties } from "@/browser-lib/avo/Avo";
 import { useOakPupil } from "@/hooks/useOakPupil";
 import { attemptDataCamelCaseSchema } from "@/node-lib/pupil-api/types";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import { googleClassroomApi } from "@/browser-lib/google-classroom";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -52,7 +53,14 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     exitQuizQuestionsArray,
     browseData: { programmeFields, lessonSlug, isLegacy },
   } = props;
-  const { isClassroomAssignment } = useAssignmentSearchParams();
+  const {
+    isClassroomAssignment,
+    attachmentId,
+    courseId,
+    itemId,
+    submissionId,
+  } = useAssignmentSearchParams();
+  console.log("PARAMS", attachmentId, courseId, itemId, submissionId);
   const { phase = "primary", yearDescription, subject } = programmeFields;
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {
@@ -61,6 +69,10 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     isLessonComplete,
     lessonReviewSections,
   } = useLessonEngineContext();
+  const [newSectionResults, setNewSectionResults] = useState(sectionResults);
+  console.log("SECTION RESULTS", sectionResults, lessonReviewSections);
+  const exitQuizGrade = sectionResults["exit-quiz"]?.grade;
+  const starterQuizGrade = sectionResults["starter-quiz"]?.grade;
   const { track } = usePupilAnalytics();
   const getSectionLinkProps = useGetSectionLinkProps();
 
@@ -68,6 +80,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     isLessonComplete,
     sectionResults,
   );
+  console.log("FINAL FEEDBACK", finalFeedback);
 
   const pupilClient = useOakPupil();
   const { logAttempt } = pupilClient;
@@ -101,6 +114,18 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   if (storedAttemptLocally.stored === false && isLessonComplete) {
     storeResultsInLocalStorage();
   }
+
+  useEffect(() => {
+    const fetchSubmissionData = async () => {
+      if (submissionId) {
+        const data =
+          await googleClassroomApi.getClassroomSubmission(submissionId);
+        console.log("FETCHED SUBMISSION DATA", data);
+        setNewSectionResults(data.sectionResults);
+      }
+    };
+    fetchSubmissionData();
+  }, [submissionId, googleClassroomApi]);
 
   const bottomNavSlot = !isClassroomAssignment && (
     <OakLessonBottomNav>
@@ -354,7 +379,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                   <OakLessonReviewIntroVideo
                     key={lessonSection}
                     lessonSectionName={lessonSection}
-                    completed={!!sectionResults[lessonSection]?.isComplete}
+                    completed={!!newSectionResults[lessonSection]?.isComplete}
                   />
                 );
               } else if (
@@ -369,14 +394,14 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                   <OakLessonReviewQuiz
                     key={lessonSection}
                     lessonSectionName={lessonSection}
-                    completed={!!sectionResults[lessonSection]?.isComplete}
-                    grade={sectionResults[lessonSection]?.grade ?? 0}
+                    completed={!!newSectionResults[lessonSection]?.isComplete}
+                    grade={newSectionResults[lessonSection]?.grade ?? 0}
                     numQuestions={
-                      sectionResults[lessonSection]?.numQuestions ?? 0
+                      newSectionResults[lessonSection]?.numQuestions ?? 0
                     }
                     resultsSlot={
                       <QuizResults
-                        sectionResults={sectionResults}
+                        sectionResults={newSectionResults}
                         quizArray={quizArray}
                         lessonSection={lessonSection}
                         copyrightNotice={
@@ -407,6 +432,21 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                 {finalFeedback}
               </OakFlex>
             </OakHandDrawnCard>
+            <button
+              type="button"
+              onClick={() =>
+                googleClassroomApi.submitAssignment({
+                  addOnToken: "",
+                  attachmentId: attachmentId || "",
+                  itemId: itemId || "",
+                  courseId: courseId || "",
+                  pointsEarned: (exitQuizGrade ?? 0) + (starterQuizGrade ?? 0),
+                  sectionResults: sectionResults,
+                })
+              }
+            >
+              Share Results
+            </button>
           </OakFlex>
         </OakGridArea>
       </OakGrid>

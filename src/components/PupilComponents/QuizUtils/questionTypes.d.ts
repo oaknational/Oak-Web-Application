@@ -17,8 +17,8 @@ export type PupilAnswer =
   | PupilAnswerMatch
   | PupilAnswerOrder
   | PupilAnswerShort
-  | PupilAnswerMCQ
-  | PupilAnswerMCQs;
+  | PupilAnswerMCQ;
+// | PupilAnswerMCQs;
 
 type QuestionState = {
   mode: QuestionModeType;

@@ -62,6 +62,7 @@ const QuizInner = () => {
     numQuestions,
     numInteractiveQuestions,
   } = quizEngineContext;
+  console.log("quizEngineContext", quizEngineContext);
 
   const getSectionLinkProps = useGetSectionLinkProps();
   const { track } = usePupilAnalytics();

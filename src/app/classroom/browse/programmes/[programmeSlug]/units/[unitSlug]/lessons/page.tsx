@@ -23,13 +23,20 @@ async function GoogleClassroomLessonsListPage({
     return aLessonOrder - bLessonOrder;
   };
   const orderedBrowseData = [...browseData].sort(sortByOrderInUnit);
+  const orderedBrowseDataWithMaxPoints = orderedBrowseData.map((lesson) => {
+    const maxPoints = 12;
+    return {
+      ...lesson,
+      maxPoints,
+    };
+  });
   const unitData = orderedBrowseData[0]?.unitData;
   const programmeFields = orderedBrowseData[0]?.programmeFields;
 
   return (
     <LessonListingView
       unitData={unitData}
-      browseData={orderedBrowseData as never}
+      browseData={orderedBrowseDataWithMaxPoints as never}
       programmeFields={programmeFields}
       programmeSlug={programmeSlug}
       pupilLessonUrlTemplate={

@@ -40,6 +40,9 @@ import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import { WithGoogleClassroomAuth } from "@oaknational/google-classroom-addon/ui";
+
+import { googleClassroomApi } from "@/browser-lib/google-classroom";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -77,7 +80,8 @@ export const PupilPageContent = ({
   worksheetInfo,
   additionalFiles,
 }: Omit<PupilExperienceViewProps, "initialSection">) => {
-  const { currentSection } = useLessonEngineContext();
+  const { currentSection, sectionResults } = useLessonEngineContext();
+  console.log("lesson context", useLessonEngineContext());
   const {
     starterQuiz,
     exitQuiz,
@@ -358,7 +362,12 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
       pupilPathwayData={getPupilPathwayData(browseData)}
       lessonContent={lessonContent}
     >
-      <PupilExperienceLayout {...props} worksheetInfo={worksheetInfo} />
+      <WithGoogleClassroomAuth
+        verifySessionAction={googleClassroomApi.verifySession}
+        signInUrl={"/classroom/sign-in"}
+      >
+        <PupilExperienceLayout {...props} worksheetInfo={worksheetInfo} />
+      </WithGoogleClassroomAuth>
     </PupilAnalyticsProvider>
   );
 };

@@ -18,7 +18,9 @@ function SignInContent() {
 
   const onSuccessfulSignIn = () => {
     const currentParams = searchParams?.toString() ?? "";
+    // if (!searchParams?.get("attachmentId")) {
     router.push(`/classroom/browse?${currentParams}`);
+    // }
   };
 
   return (
