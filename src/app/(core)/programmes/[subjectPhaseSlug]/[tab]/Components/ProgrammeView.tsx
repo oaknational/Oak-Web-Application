@@ -143,7 +143,6 @@ export const ProgrammeView = ({
           activeTab={tabSlugToName[activeTab]}
           onTabClick={(tabName) => {
             const tabSlug = tabNameToSlug[tabName];
-            setActiveTab(tabSlug);
             // Prevents a full page reload using client side nav
             globalThis.history.pushState(null, "", tabSlug);
           }}
