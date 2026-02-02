@@ -18,8 +18,6 @@ import {
   OakBox,
   OakCookieConsent,
   OakCookieConsentProvider,
-  oakDefaultTheme,
-  OakThemeProvider,
   useCookieConsent as useCookieConsentUI,
 } from "@oaknational/oak-components";
 
@@ -54,14 +52,12 @@ const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
       onConsentChange={logConsents}
     >
       {children}
-      <OakThemeProvider theme={oakDefaultTheme}>
-        {isMounted && (
-          <OakBox $position={"sticky"} $bottom={"spacing-0"} $zIndex={"banner"}>
-            <OakCookieConsent policyURL="/legal/cookie-policy" />
-            <RequiresInteraction />
-          </OakBox>
-        )}
-      </OakThemeProvider>
+      {isMounted && (
+        <OakBox $position={"sticky"} $bottom={"spacing-0"} $zIndex={"banner"}>
+          <OakCookieConsent policyURL="/legal/cookie-policy" />
+          <RequiresInteraction />
+        </OakBox>
+      )}
     </OakCookieConsentProvider>
   );
 };

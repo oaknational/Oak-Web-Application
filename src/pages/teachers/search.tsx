@@ -1,6 +1,5 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import useSearch from "@/context/Search/useSearch";
@@ -66,7 +65,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
   });
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
+    <>
       <PaginationHead
         prevPageUrlObject={prevPageUrlObject}
         nextPageUrlObject={nextPageUrlObject}
@@ -90,7 +89,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
           allKeyStages={allKeyStages}
         />
       </AppLayout>
-    </OakThemeProvider>
+    </>
   );
 };
 

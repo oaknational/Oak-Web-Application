@@ -9,8 +9,6 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
-  OakThemeProvider,
-  oakDefaultTheme,
   OakFlex,
   OakMaxWidth,
 } from "@oaknational/oak-components";
@@ -229,191 +227,181 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     hasCycle2Content && subjectSlug !== "rshe-pshe";
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <AppLayout seoProps={unitsSEO} topNavProps={topNav}>
-        <PaginationHead
-          prevPageUrlObject={prevPageUrlObject}
-          nextPageUrlObject={nextPageUrlObject}
-          isFirstPage={isFirstPage}
-          isLastPage={isLastPage}
-        />
-        <Banners />
-        <HeaderListing
-          breadcrumbs={[
-            {
-              oakLinkProps: { page: "home" },
-              label: "Home",
-            },
-            {
-              oakLinkProps: {
-                page: "subject-index",
+    <AppLayout seoProps={unitsSEO} topNavProps={topNav}>
+      <PaginationHead
+        prevPageUrlObject={prevPageUrlObject}
+        nextPageUrlObject={nextPageUrlObject}
+        isFirstPage={isFirstPage}
+        isLastPage={isLastPage}
+      />
+      <Banners />
+      <HeaderListing
+        breadcrumbs={[
+          {
+            oakLinkProps: { page: "home" },
+            label: "Home",
+          },
+          {
+            oakLinkProps: {
+              page: "subject-index",
 
-                keyStageSlug,
-              },
-              label: toSentenceCase(keyStageTitle),
+              keyStageSlug,
             },
-            {
-              oakLinkProps: {
-                page: "unit-index",
+            label: toSentenceCase(keyStageTitle),
+          },
+          {
+            oakLinkProps: {
+              page: "unit-index",
 
-                programmeSlug,
-              },
-              label: subjectTitle,
-              disabled: true,
+              programmeSlug,
             },
-          ]}
-          background={"bg-decorative3-very-subdued"}
-          subjectIconBackgroundColor={"lavender"}
-          title={`${subjectTitle} ${examBoardTitle ? examBoardTitle + " " : ""}${pathwayTitle ?? ""}`}
-          programmeFactor={toSentenceCase(keyStageTitle)}
-          isNew={hasNewContent ?? false}
-          hasCurriculumDownload={isSlugLegacy(programmeSlug)}
-          subjectDescriptionUnitListingData={curriculumData}
-          showUnitListingSeo
-          {...curriculumData}
-        />
-        <OakMaxWidth $ph={"spacing-16"}>
-          {/* Legacy content banner, only shown on certain legacy unit listing pages  */}
-          <OakGrid>
-            <OakGridArea $colSpan={[12, 12, 9]}>
-              <NewContentBanner
-                keyStageSlug={keyStageSlug}
-                subjectSlug={subjectSlug}
-                subjectTitle={subjectTitle.toLowerCase()}
-                programmeSlug={programmeSlug}
-                isUnitListing={true}
-                isLegacy={isSlugLegacy(programmeSlug)}
-              />
-            </OakGridArea>
-          </OakGrid>
-          <OakGrid>
-            {/* Desktop filters side bar */}
-            <OakGridArea
-              $order={[0, 2, 2]}
-              $colSpan={[12, 12, 3]}
-              $pl={["spacing-24"]}
-            >
-              <DesktopUnitFilters
-                showFilters={isFiltersAvailable}
-                onFocus={() => setSkipFiltersButton(true)}
-                onBlur={() => setSkipFiltersButton(false)}
-                yearGroups={yearGroups}
-                subjectCategories={subjectCategories}
-                learningThemes={learningThemes}
-                filtersRef={filtersRef}
-                skipFiltersButton={skipFiltersButton}
-                learningThemesId={learningThemesId}
-                updateQuery={handleUpdateAndSubmitFilterQuery}
-                incomingCategorySlug={incomingCategorySlug}
-                incomingYearSlug={incomingYearSlug}
-                incomingThemeSlug={incomingThemeSlug}
-              />
-              <OakFlex $display={["none", "none", "flex"]}>
-                {relatedSubjects?.map((subjectSlug) => (
-                  <RelatedSubjectsBanner
-                    key={subjectSlug}
-                    subjectSlug={subjectSlug}
-                    keyStageSlug={keyStageSlug}
-                    phase={phase}
-                    isDesktop={true}
-                  />
-                ))}
-              </OakFlex>
-            </OakGridArea>
+            label: subjectTitle,
+            disabled: true,
+          },
+        ]}
+        background={"bg-decorative3-very-subdued"}
+        subjectIconBackgroundColor={"lavender"}
+        title={`${subjectTitle} ${examBoardTitle ? examBoardTitle + " " : ""}${pathwayTitle ?? ""}`}
+        programmeFactor={toSentenceCase(keyStageTitle)}
+        isNew={hasNewContent ?? false}
+        hasCurriculumDownload={isSlugLegacy(programmeSlug)}
+        subjectDescriptionUnitListingData={curriculumData}
+        showUnitListingSeo
+        {...curriculumData}
+      />
+      <OakMaxWidth $ph={"spacing-16"}>
+        {/* Legacy content banner, only shown on certain legacy unit listing pages  */}
+        <OakGrid>
+          <OakGridArea $colSpan={[12, 12, 9]}>
+            <NewContentBanner
+              keyStageSlug={keyStageSlug}
+              subjectSlug={subjectSlug}
+              subjectTitle={subjectTitle.toLowerCase()}
+              programmeSlug={programmeSlug}
+              isUnitListing={true}
+              isLegacy={isSlugLegacy(programmeSlug)}
+            />
+          </OakGridArea>
+        </OakGrid>
+        <OakGrid>
+          {/* Desktop filters side bar */}
+          <OakGridArea
+            $order={[0, 2, 2]}
+            $colSpan={[12, 12, 3]}
+            $pl={["spacing-24"]}
+          >
+            <DesktopUnitFilters
+              showFilters={isFiltersAvailable}
+              onFocus={() => setSkipFiltersButton(true)}
+              onBlur={() => setSkipFiltersButton(false)}
+              yearGroups={yearGroups}
+              subjectCategories={subjectCategories}
+              learningThemes={learningThemes}
+              filtersRef={filtersRef}
+              skipFiltersButton={skipFiltersButton}
+              learningThemesId={learningThemesId}
+              updateQuery={handleUpdateAndSubmitFilterQuery}
+              incomingCategorySlug={incomingCategorySlug}
+              incomingYearSlug={incomingYearSlug}
+              incomingThemeSlug={incomingThemeSlug}
+            />
+            <OakFlex $display={["none", "none", "flex"]}>
+              {relatedSubjects?.map((subjectSlug) => (
+                <RelatedSubjectsBanner
+                  key={subjectSlug}
+                  subjectSlug={subjectSlug}
+                  keyStageSlug={keyStageSlug}
+                  phase={phase}
+                  isDesktop={true}
+                />
+              ))}
+            </OakFlex>
+          </OakGridArea>
 
-            {/* Header Row */}
-            <OakGridArea
-              $order={[1, 1, 0]}
-              $colSpan={[12, 12, 9]}
-              $mt={"spacing-32"}
-            >
-              <OakFlex $flexDirection="column" $gap="spacing-32">
-                {showCurriculumDownloadBanner && (
-                  <CurriculumDownloadBanner
-                    subjectSlug={subjectParentSlug ?? subjectSlug}
-                    subjectTitle={subjectTitle}
-                    phaseSlug={phase}
-                    examBoardSlug={examBoardSlug}
-                    tierSlug={tierSlug}
-                    mvRefreshTime={curriculumRefreshTime}
-                    pathwaySlug={pathwaySlug}
-                    childSubjectSlug={subjectParentSlug ? subjectSlug : null}
-                  />
-                )}
+          {/* Header Row */}
+          <OakGridArea
+            $order={[1, 1, 0]}
+            $colSpan={[12, 12, 9]}
+            $mt={"spacing-32"}
+          >
+            <OakFlex $flexDirection="column" $gap="spacing-32">
+              {showCurriculumDownloadBanner && (
+                <CurriculumDownloadBanner
+                  subjectSlug={subjectParentSlug ?? subjectSlug}
+                  subjectTitle={subjectTitle}
+                  phaseSlug={phase}
+                  examBoardSlug={examBoardSlug}
+                  tierSlug={tierSlug}
+                  mvRefreshTime={curriculumRefreshTime}
+                  pathwaySlug={pathwaySlug}
+                  childSubjectSlug={subjectParentSlug ? subjectSlug : null}
+                />
+              )}
+              <OakFlex
+                $flexDirection={["column-reverse", "column-reverse", "column"]}
+              >
                 <OakFlex
-                  $flexDirection={[
-                    "column-reverse",
-                    "column-reverse",
-                    "column",
-                  ]}
+                  $justifyContent={"space-between"}
+                  $flexDirection={"row"}
+                  $minWidth={["100%", "auto"]}
+                  $position={"relative"}
                 >
-                  <OakFlex
-                    $justifyContent={"space-between"}
-                    $flexDirection={"row"}
-                    $minWidth={["100%", "auto"]}
-                    $position={"relative"}
-                  >
-                    <TierTabsOrUnitCountHeader />
-                    {isFiltersAvailable && (
-                      <MobileUnitFilters
-                        {...curriculumData}
-                        numberOfUnits={filteredUnits.length}
-                        learningThemesFilterId={learningThemesFilterId}
-                        updateActiveFilters={handleUpdateActiveFilters}
-                        isOpen={isMobileFilterDrawerOpen}
-                        setIsOpen={setIsMobileFilterDrawerOpen}
-                        handleSubmitQuery={handleSubmitFilterQuery}
-                        incomingThemeSlug={incomingThemeSlug}
-                        incomingCategorySlug={incomingCategorySlug}
-                        incomingYearGroupSlug={incomingYearSlug}
-                      />
-                    )}
-                  </OakFlex>
+                  <TierTabsOrUnitCountHeader />
+                  {isFiltersAvailable && (
+                    <MobileUnitFilters
+                      {...curriculumData}
+                      numberOfUnits={filteredUnits.length}
+                      learningThemesFilterId={learningThemesFilterId}
+                      updateActiveFilters={handleUpdateActiveFilters}
+                      isOpen={isMobileFilterDrawerOpen}
+                      setIsOpen={setIsMobileFilterDrawerOpen}
+                      handleSubmitQuery={handleSubmitFilterQuery}
+                      incomingThemeSlug={incomingThemeSlug}
+                      incomingCategorySlug={incomingCategorySlug}
+                      incomingYearGroupSlug={incomingYearSlug}
+                    />
+                  )}
                 </OakFlex>
               </OakFlex>
+            </OakFlex>
 
-              {/* Main Content */}
-              {currentPageItems.length >= 1 ? (
-                <UnitList
-                  {...curriculumData}
-                  currentPageItems={currentPageItems}
-                  paginationProps={paginationProps}
-                  filteredUnits={filteredUnits}
-                  onClick={(props) =>
-                    trackUnitSelected(
-                      props,
-                      curriculumData.examBoardTitle,
-                      curriculumData.tierSlug,
-                      curriculumData.tiers,
-                    )
-                  }
-                />
-              ) : (
-                <OakHeading
-                  tag="h3"
-                  $font={"heading-light-6"}
-                  $mb={"spacing-32"}
-                >
-                  No results. Please try removing some filters.
-                </OakHeading>
-              )}
-            </OakGridArea>
-          </OakGrid>
-          <OakFlex $display={["flex", "flex", "none"]} $mb="spacing-56">
-            {relatedSubjects?.map((subjectSlug) => (
-              <RelatedSubjectsBanner
-                key={subjectSlug}
-                subjectSlug={subjectSlug}
-                keyStageSlug={keyStageSlug}
-                phase={phase}
-                isDesktop={false}
+            {/* Main Content */}
+            {currentPageItems.length >= 1 ? (
+              <UnitList
+                {...curriculumData}
+                currentPageItems={currentPageItems}
+                paginationProps={paginationProps}
+                filteredUnits={filteredUnits}
+                onClick={(props) =>
+                  trackUnitSelected(
+                    props,
+                    curriculumData.examBoardTitle,
+                    curriculumData.tierSlug,
+                    curriculumData.tiers,
+                  )
+                }
               />
-            ))}
-          </OakFlex>
-        </OakMaxWidth>
-        <TeacherRedirectedOverlay />
-      </AppLayout>
-    </OakThemeProvider>
+            ) : (
+              <OakHeading tag="h3" $font={"heading-light-6"} $mb={"spacing-32"}>
+                No results. Please try removing some filters.
+              </OakHeading>
+            )}
+          </OakGridArea>
+        </OakGrid>
+        <OakFlex $display={["flex", "flex", "none"]} $mb="spacing-56">
+          {relatedSubjects?.map((subjectSlug) => (
+            <RelatedSubjectsBanner
+              key={subjectSlug}
+              subjectSlug={subjectSlug}
+              keyStageSlug={keyStageSlug}
+              phase={phase}
+              isDesktop={false}
+            />
+          ))}
+        </OakFlex>
+      </OakMaxWidth>
+      <TeacherRedirectedOverlay />
+    </AppLayout>
   );
 };
 
