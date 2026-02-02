@@ -312,14 +312,13 @@ describe("createTeacherProgrammeSlug", () => {
     );
   });
 
-  test("unit data with exam board and tier returns the correct programme slug", () => {
+  test("core pathway excludes examboard from slug (Computing)", () => {
     const unitData = {
       planned_number_of_lessons: 5,
       connection_future_unit_description: null,
       connection_prior_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -327,19 +326,18 @@ describe("createTeacherProgrammeSlug", () => {
       order: 1,
       phase: "Secondary",
       phase_slug: "secondary",
-      slug: "cellular-respiration-and-atp",
-      subject: "Combined Science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
-      subject_slug: "combined-science",
-
+      slug: "online-safety",
+      subject: "Computing",
+      subject_parent: null,
+      subject_parent_slug: null,
+      subject_slug: "computing",
       subjectcategories: null,
       threads: [],
       tier: null,
       tier_slug: null,
-      title: "Aerobic and anaerobic cellular respiration",
+      title: "Online safety",
       unit_options: [],
-      year: "11",
+      year: "10",
       cycle: "1",
       why_this_why_now: null,
       description: null,
@@ -348,7 +346,82 @@ describe("createTeacherProgrammeSlug", () => {
       prior_knowledge_requirements: [],
     };
     expect(
-      createTeacherProgrammeSlug(unitData, "aqa", "foundation", "gcse"),
-    ).toEqual("combined-science-secondary-ks4-foundation-gcse-aqa");
+      createTeacherProgrammeSlug(unitData, "ocr", undefined, "core"),
+    ).toEqual("computing-secondary-ks4-core");
   });
+
+  test("core pathway excludes examboard from slug (PE)", () => {
+    const unitData = {
+      planned_number_of_lessons: 5,
+      connection_future_unit_description: null,
+      connection_prior_unit_description: null,
+      connection_future_unit_title: null,
+      connection_prior_unit_title: null,
+      examboard: null,
+      examboard_slug: null,
+      keystage_slug: "ks4",
+      lessons: [],
+      order: 1,
+      phase: "Secondary",
+      phase_slug: "secondary",
+      slug: "health-fitness-and-wellbeing",
+      subject: "Physical Education",
+      subject_parent: null,
+      subject_parent_slug: null,
+      subject_slug: "physical-education",
+      subjectcategories: null,
+      threads: [],
+      tier: null,
+      tier_slug: null,
+      title: "Health, fitness and wellbeing",
+      unit_options: [],
+      year: "10",
+      cycle: "1",
+      why_this_why_now: null,
+      description: null,
+      state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
+    };
+    expect(
+      createTeacherProgrammeSlug(unitData, "ocr", undefined, "core"),
+    ).toEqual("physical-education-secondary-ks4-core");
+  });
+});
+test("gcse pathway excludes examboard when examboard equals pathway", () => {
+  const unitData = {
+    planned_number_of_lessons: 5,
+    connection_future_unit_description: null,
+    connection_prior_unit_description: null,
+    connection_future_unit_title: null,
+    connection_prior_unit_title: null,
+    examboard: null,
+    examboard_slug: null,
+    keystage_slug: "ks4",
+    lessons: [],
+    order: 1,
+    phase: "Secondary",
+    phase_slug: "secondary",
+    slug: "what-can-we-do-to-reduce-crime",
+    subject: "Citizenship",
+    subject_parent: null,
+    subject_parent_slug: null,
+    subject_slug: "citizenship",
+    subjectcategories: null,
+    threads: [],
+    tier: null,
+    tier_slug: null,
+    title: "What can we do to reduce crime?",
+    unit_options: [],
+    year: "10",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
+    state: "published",
+    national_curriculum_content: [],
+    prior_knowledge_requirements: [],
+  };
+  expect(
+    createTeacherProgrammeSlug(unitData, "gcse", undefined, "gcse"),
+  ).toEqual("citizenship-secondary-ks4-gcse");
 });

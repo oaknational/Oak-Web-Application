@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
+import { TeachersTopNavHamburger } from "./TeachersTopNavHamburger/TeachersTopNavHamburger";
+import { PupilsTopNavHamburger } from "./PupilsTopNavHamburger/PupilsTopNavHamburger";
 
 import {
   OakBox,
@@ -132,22 +134,28 @@ const TopNav = (props: TopNavProps) => {
           />
         </OakLink>
         {activeArea === "TEACHERS" && teachers && (
-          <TeachersSubNav
-            isMenuSelected={isMenuSelected}
-            onClick={(menu) => {
-              setSelectedMenu(menu);
-              console.log("selected menu ", teachers[menu]);
-            }}
-          />
+          <>
+            <TeachersSubNav
+              isMenuSelected={isMenuSelected}
+              onClick={(menu) => {
+                setSelectedMenu(menu);
+                console.log("selected menu ", teachers[menu]);
+              }}
+            />
+            <TeachersTopNavHamburger {...teachers} />
+          </>
         )}
         {activeArea === "PUPILS" && pupils && (
-          <PupilsSubNav
-            isMenuSelected={isMenuSelected}
-            onClick={(menu) => {
-              setSelectedMenu(menu);
-              console.log("selected menu ", pupils[menu]);
-            }}
-          />
+          <>
+            <PupilsSubNav
+              isMenuSelected={isMenuSelected}
+              onClick={(menu) => {
+                setSelectedMenu(menu);
+                console.log("selected menu ", pupils[menu]);
+              }}
+            />
+            <PupilsTopNavHamburger {...pupils} />
+          </>
         )}
       </OakFlex>
       {/* TD: [integrated-journey] Replace with dropdown and hamburger menus */}
