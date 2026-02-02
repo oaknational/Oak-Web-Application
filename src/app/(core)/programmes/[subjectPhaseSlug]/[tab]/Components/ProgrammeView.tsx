@@ -1,8 +1,8 @@
 "use client";
 
 import { OakBox, OakMaxWidth, OakTabs } from "@oaknational/oak-components";
-import { useMemo, useState } from "react";
-import { notFound, useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+import { notFound, usePathname, useSearchParams } from "next/navigation";
 
 import {
   TabName,
@@ -10,6 +10,7 @@ import {
   TabSlug,
   tabNameToSlug,
   tabSlugToName,
+  isTabSlug,
 } from "../tabSchema";
 
 import {
@@ -109,6 +110,17 @@ export const ProgrammeView = ({
   const schoolYear = filters.years.find(
     (year) => searchParams?.get("years") === year,
   );
+
+  // Ensure the active tab matches the one in the latest pathname
+  const pathname = usePathname();
+  useEffect(() => {
+    if (pathname) {
+      const tab = pathname.split("/").pop();
+      if (isTabSlug(tab)) {
+        setActiveTab(tab);
+      }
+    }
+  }, [pathname]);
 
   return (
     <>

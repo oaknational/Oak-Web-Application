@@ -8,10 +8,14 @@ import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOption
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
+const usePathnameMock = jest
+  .fn()
+  .mockReturnValue("/programmes/science-secondary-aqa/units");
+
 jest.mock("next/navigation", () => {
   return {
     __esModule: true,
-    usePathname: () => "/programmes/science-secondary-aqa/units",
+    usePathname: () => usePathnameMock(),
     useSearchParams: jest.fn(),
     useRouter: () => jest.fn(),
   };
@@ -78,11 +82,17 @@ describe("ProgrammeView", () => {
     expect(heading).toBeInTheDocument();
   });
   it("renders the correct tab content for overview", () => {
+    usePathnameMock.mockReturnValue(
+      "/programmes/science-secondary-aqa/overview",
+    );
     render(<ProgrammeView {...defaultProps} tabSlug="overview" />);
     const heading = screen.getByText("Overview tab");
     expect(heading).toBeInTheDocument();
   });
   it("renders the correct tab content for download", () => {
+    usePathnameMock.mockReturnValue(
+      "/programmes/science-secondary-aqa/download",
+    );
     render(<ProgrammeView {...defaultProps} tabSlug="download" />);
     const heading = screen.getByText("Download tab");
     expect(heading).toBeInTheDocument();
