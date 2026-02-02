@@ -20,13 +20,13 @@ jest.mock("@clerk/nextjs/server", () => ({
   currentUser: () => mockCurrentUser(),
 }));
 
-const mockUnitvariantLessonsById = jest.fn();
+const mockGetIsUnitvariantGeorestrictedQuery = jest.fn();
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
   default: {
-    unitvariantLessonsById: (...args: unknown[]) =>
-      mockUnitvariantLessonsById(...args),
+    getIsUnitvariantGeorestrictedQuery: (...args: unknown[]) =>
+      mockGetIsUnitvariantGeorestrictedQuery(...args),
   },
 }));
 
@@ -71,7 +71,7 @@ describe("GET /api/unit/[unitProgrammeSlug]/download", () => {
       id: "user-123",
       privateMetadata: { region: "uk" },
     });
-    mockUnitvariantLessonsById.mockResolvedValue(false);
+    mockGetIsUnitvariantGeorestrictedQuery.mockResolvedValue(false);
   });
 
   it("should return 200 with signed URL on success", async () => {
@@ -123,7 +123,7 @@ describe("GET /api/unit/[unitProgrammeSlug]/download", () => {
   });
 
   it("should return 403 when unit is geo restricted and user region is not allowed", async () => {
-    mockUnitvariantLessonsById.mockResolvedValueOnce(true);
+    mockGetIsUnitvariantGeorestrictedQuery.mockResolvedValueOnce(true);
     mockCurrentUser.mockResolvedValueOnce({
       id: "user-123",
       privateMetadata: { region: "us" },
@@ -143,8 +143,8 @@ describe("GET /api/unit/[unitProgrammeSlug]/download", () => {
     );
   });
 
-  it.only("should return 200 when unit is geo restricted but user region is allowed", async () => {
-    mockUnitvariantLessonsById.mockResolvedValueOnce(true);
+  it("should return 200 when unit is geo restricted but user region is allowed", async () => {
+    mockGetIsUnitvariantGeorestrictedQuery.mockResolvedValueOnce(true);
     mockCurrentUser.mockResolvedValueOnce({
       id: "user-123",
       privateMetadata: { region: "GB" },
