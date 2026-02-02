@@ -3,6 +3,7 @@ import { FC } from "react";
 import { ThemeProvider } from "styled-components";
 import Bugsnag from "@bugsnag/js";
 import { MockOakConsentClient } from "@oaknational/oak-consent-client";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import ErrorBoundary from ".";
 
@@ -41,7 +42,11 @@ const TantrumChild = () => {
 };
 
 const WithThemeProvider: FC = (props) => {
-  return <ThemeProvider theme={theme} {...props} />;
+  return (
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <ThemeProvider theme={theme} {...props} />
+    </OakThemeProvider>
+  );
 };
 
 const WithoutStatisticsConsent: FC = (props) => {
@@ -49,9 +54,11 @@ const WithoutStatisticsConsent: FC = (props) => {
   client.getConsent = () => "denied";
 
   return (
-    <ThemeProvider theme={theme}>
-      <CookieConsentProvider client={client} {...props} />
-    </ThemeProvider>
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <ThemeProvider theme={theme}>
+        <CookieConsentProvider client={client} {...props} />
+      </ThemeProvider>
+    </OakThemeProvider>
   );
 };
 
