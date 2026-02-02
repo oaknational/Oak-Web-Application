@@ -111,7 +111,7 @@ export const ProgrammeView = ({
   );
 
   return (
-    <OakMaxWidth>
+    <>
       <ProgrammeHeader
         subject={subjectForLayout.slug as SubjectHeroImageName}
         subjectTitle={
@@ -124,7 +124,7 @@ export const ProgrammeView = ({
         summary={subjectPhaseSanityData?.bodyCopy}
         bullets={subjectPhaseSanityData?.bullets}
       />
-      <OakBox $ph={["spacing-20", "spacing-20", "spacing-0"]}>
+      <OakMaxWidth $ph={["spacing-20", "spacing-20", "spacing-0"]}>
         <OakTabs<TabName>
           sizeVariant={["compact", "default"]}
           colorVariant="black"
@@ -137,19 +137,19 @@ export const ProgrammeView = ({
           }}
           tabs={[...TAB_NAMES]}
         />
-      </OakBox>
 
-      <TabContent
-        tabSlug={activeTab}
-        curriculumPhaseOptions={curriculumPhaseOptions}
-        curriculumSelectionSlugs={curriculumSelectionSlugs}
-        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-        subjectForLayout={subjectForLayout}
-        subjectTitle={subjectTitle}
-        filters={filters}
-        setFilters={onChangeFilters}
-      />
-    </OakMaxWidth>
+        <TabContent
+          tabSlug={activeTab}
+          curriculumPhaseOptions={curriculumPhaseOptions}
+          curriculumSelectionSlugs={curriculumSelectionSlugs}
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+          subjectForLayout={subjectForLayout}
+          subjectTitle={subjectTitle}
+          filters={filters}
+          setFilters={onChangeFilters}
+        />
+      </OakMaxWidth>
+    </>
   );
 };
 
