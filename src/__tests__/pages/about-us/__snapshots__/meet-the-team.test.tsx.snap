@@ -4562,7 +4562,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                     <span
                       class="c38"
                     >
-                      Sign up
+                      Sign in
                     </span>
                   </div>
                 </button>

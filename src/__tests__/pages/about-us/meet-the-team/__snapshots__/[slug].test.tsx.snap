@@ -3035,7 +3035,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                     <span
                       class="c39"
                     >
-                      Sign up
+                      Sign in
                     </span>
                   </div>
                 </button>
