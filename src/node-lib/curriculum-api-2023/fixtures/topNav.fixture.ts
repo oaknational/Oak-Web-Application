@@ -25,6 +25,13 @@ export const topNavFixture: TopNavProps = {
               nonCurriculum: false,
               programmeCount: 0,
             },
+            {
+              title: "Financial education",
+              subjectSlug: "financial-education",
+              programmeSlug: "financial-education-primary-ks1",
+              nonCurriculum: true,
+              programmeCount: 0,
+            },
           ],
         },
         {
@@ -102,7 +109,28 @@ export const topNavFixture: TopNavProps = {
     ],
   },
   pupils: {
-    primary: { phaseSlug: "primary", phaseTitle: "Primary", years: [] },
-    secondary: { phaseSlug: "secondary", phaseTitle: "Secondary", years: [] },
+    primary: {
+      phaseSlug: "primary",
+      phaseTitle: "Primary",
+      years: [
+        { slug: "year-1", title: "Year 1" },
+        { slug: "year-2", title: "Year 2" },
+        { slug: "year-3", title: "Year 3" },
+        { slug: "year-4", title: "Year 4" },
+        { slug: "year-5", title: "Year 5" },
+        { slug: "year-6", title: "Year 6" },
+      ],
+    },
+    secondary: {
+      phaseSlug: "secondary",
+      phaseTitle: "Secondary",
+      years: [
+        { slug: "year-7", title: "Year 7" },
+        { slug: "year-8", title: "Year 8" },
+        { slug: "year-9", title: "Year 9" },
+        { slug: "year-10", title: "Year 10" },
+        { slug: "year-11", title: "Year 11" },
+      ],
+    },
   },
 };

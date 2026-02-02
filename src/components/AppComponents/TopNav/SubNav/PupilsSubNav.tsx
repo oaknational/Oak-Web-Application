@@ -1,5 +1,10 @@
+import {
+  OakLI,
+  OakSmallPrimaryInvertedButton,
+  OakUL,
+} from "@oaknational/oak-components";
+
 import { PupilsSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { OakFlex, OakSmallPrimaryInvertedButton } from "@/styles/oakThemeApp";
 
 const PupilsSubNav = ({
   onClick,
@@ -9,31 +14,35 @@ const PupilsSubNav = ({
   isMenuSelected: (menu: keyof PupilsSubNavData) => boolean;
 }) => {
   return (
-    <OakFlex
+    <OakUL
       data-testid="pupils-subnav"
-      $justifyContent="space-between"
-      $flexGrow={1}
-      $alignItems="center"
+      $display={["none", "none", "flex"]}
+      $gap={"spacing-12"}
+      $reset
     >
-      <OakFlex
-        $display={["none", "none", "flex"]}
-        $gap={"spacing-12"}
-        $alignItems={"center"}
-      >
+      <OakLI>
         <OakSmallPrimaryInvertedButton
           onClick={() => onClick("primary")}
           selected={isMenuSelected("primary")}
+          aria-expanded={isMenuSelected("primary")}
+          aria-controls={`topnav-pupils-primary`}
+          aria-haspopup
         >
           Primary
         </OakSmallPrimaryInvertedButton>
+      </OakLI>
+      <OakLI>
         <OakSmallPrimaryInvertedButton
           onClick={() => onClick("secondary")}
           selected={isMenuSelected("secondary")}
+          aria-expanded={isMenuSelected("secondary")}
+          aria-controls={"topnav-pupils-secondary"}
+          aria-haspopup
         >
           Secondary
         </OakSmallPrimaryInvertedButton>
-      </OakFlex>
-    </OakFlex>
+      </OakLI>
+    </OakUL>
   );
 };
 

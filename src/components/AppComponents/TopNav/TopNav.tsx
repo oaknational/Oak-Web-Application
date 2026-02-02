@@ -4,12 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
+import TopNavDropdown from "./TopNavDropdown/TopNavDropdown";
 import { TeachersTopNavHamburger } from "./TeachersTopNavHamburger/TeachersTopNavHamburger";
 import { PupilsTopNavHamburger } from "./PupilsTopNavHamburger/PupilsTopNavHamburger";
 
 import {
   OakBox,
-  OakCloseButton,
   OakFlex,
   OakIcon,
   OakImage,
@@ -38,7 +38,9 @@ const TopNav = (props: TopNavProps) => {
   const isMobile = useMediaQuery("mobile");
 
   // TD: [integrated journey] potentially extract into a menu store
-  const [selectedMenu, setSelectedMenu] = useState<string>();
+  const [selectedMenu, setSelectedMenu] = useState<
+    keyof TeachersSubNavData | keyof PupilsSubNavData | undefined
+  >(undefined);
 
   const isMenuSelected = useCallback(
     (menuSlug: string) => {
@@ -65,6 +67,25 @@ const TopNav = (props: TopNavProps) => {
     }
   }, [teachers, pupils, activeArea, setCurrentBannerProps]);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!selectedMenu) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setSelectedMenu(undefined);
+      }
+    };
+
+    if (selectedMenu) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedMenu]);
+
   return (
     <OakBox as="header" $position="relative" data-testid="app-topnav">
       <OakBox
@@ -86,6 +107,7 @@ const TopNav = (props: TopNavProps) => {
         <TabLink
           isSelected={activeArea === "TEACHERS"}
           href={resolveOakHref({ page: "teachers-home-page" })}
+          aria-current={activeArea === "TEACHERS"}
         >
           Teachers
         </TabLink>
@@ -100,6 +122,7 @@ const TopNav = (props: TopNavProps) => {
             />
           }
           isTrailingIcon
+          aria-current={activeArea === "PUPILS"}
         >
           Pupils
         </TabLink>
@@ -138,8 +161,7 @@ const TopNav = (props: TopNavProps) => {
             <TeachersSubNav
               isMenuSelected={isMenuSelected}
               onClick={(menu) => {
-                setSelectedMenu(menu);
-                console.log("selected menu ", teachers[menu]);
+                setSelectedMenu(selectedMenu === menu ? undefined : menu);
               }}
             />
             <TeachersTopNavHamburger {...teachers} />
@@ -150,25 +172,31 @@ const TopNav = (props: TopNavProps) => {
             <PupilsSubNav
               isMenuSelected={isMenuSelected}
               onClick={(menu) => {
-                setSelectedMenu(menu);
-                console.log("selected menu ", pupils[menu]);
+                setSelectedMenu(selectedMenu === menu ? undefined : menu);
               }}
             />
             <PupilsTopNavHamburger {...pupils} />
           </>
         )}
       </OakFlex>
-      {/* TD: [integrated-journey] Replace with dropdown and hamburger menus */}
-      {selectedMenu && (
-        <OakFlex
-          $width={"100%"}
-          $height="spacing-240"
-          $flexDirection={"column"}
-        >
-          <OakCloseButton onClose={() => setSelectedMenu(undefined)} />
-          {selectedMenu}
-        </OakFlex>
-      )}
+      {selectedMenu &&
+        ((activeArea === "TEACHERS" && teachers) ||
+          (activeArea === "PUPILS" && pupils)) && (
+          <OakFlex
+            $display={["none", "none", "flex"]}
+            $width={"100%"}
+            $flexDirection={"column"}
+            $background={"white"}
+            data-testid="topnav-dropdown-container"
+          >
+            <TopNavDropdown
+              activeArea={activeArea}
+              selectedMenu={selectedMenu}
+              teachers={teachers!}
+              pupils={pupils!}
+            />
+          </OakFlex>
+        )}
     </OakBox>
   );
 };

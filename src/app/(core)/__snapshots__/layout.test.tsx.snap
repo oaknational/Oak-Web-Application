@@ -8,12 +8,58 @@ exports[`core layout renders correctly 1`] = `
         "primary": {
           "phaseSlug": "primary",
           "phaseTitle": "Primary",
-          "years": [],
+          "years": [
+            {
+              "slug": "year-1",
+              "title": "Year 1",
+            },
+            {
+              "slug": "year-2",
+              "title": "Year 2",
+            },
+            {
+              "slug": "year-3",
+              "title": "Year 3",
+            },
+            {
+              "slug": "year-4",
+              "title": "Year 4",
+            },
+            {
+              "slug": "year-5",
+              "title": "Year 5",
+            },
+            {
+              "slug": "year-6",
+              "title": "Year 6",
+            },
+          ],
         },
         "secondary": {
           "phaseSlug": "secondary",
           "phaseTitle": "Secondary",
-          "years": [],
+          "years": [
+            {
+              "slug": "year-7",
+              "title": "Year 7",
+            },
+            {
+              "slug": "year-8",
+              "title": "Year 8",
+            },
+            {
+              "slug": "year-9",
+              "title": "Year 9",
+            },
+            {
+              "slug": "year-10",
+              "title": "Year 10",
+            },
+            {
+              "slug": "year-11",
+              "title": "Year 11",
+            },
+          ],
         },
       }
     }
@@ -58,6 +104,13 @@ exports[`core layout renders correctly 1`] = `
                   "programmeSlug": "maths-primary-ks1",
                   "subjectSlug": "maths",
                   "title": "Maths",
+                },
+                {
+                  "nonCurriculum": true,
+                  "programmeCount": 0,
+                  "programmeSlug": "financial-education-primary-ks1",
+                  "subjectSlug": "financial-education",
+                  "title": "Financial education",
                 },
               ],
               "title": "KS1",
