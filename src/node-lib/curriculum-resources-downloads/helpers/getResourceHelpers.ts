@@ -5,10 +5,6 @@
  */
 
 import type {
-  LessonAssets,
-  AdditionalAsset,
-} from "../schemas/lessonAssets.schema";
-import type {
   ResourceDefinition,
   ResourceError,
   ResourceFileType,
@@ -17,6 +13,8 @@ import type {
 } from "../types/resource.types";
 import { SELECTION_TO_FILES_MAP } from "../types/resource.types";
 
+import type { AdditionalAsset } from "@/node-lib/curriculum-api-2023/queries/curriculumResourcesDownloads/additionalAssets.schema";
+import type { LessonAssets } from "@/node-lib/curriculum-api-2023/queries/curriculumResourcesDownloads/lessonAssets.schema";
 import truthy from "@/utils/truthy";
 
 /**

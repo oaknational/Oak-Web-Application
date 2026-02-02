@@ -1,5 +1,3 @@
-export * from "./schemas/lessonAssets.schema";
-
 export * from "./types/resource.types";
 
 export * from "./helpers/getResourceHelpers";

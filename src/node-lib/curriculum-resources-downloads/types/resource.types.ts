@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import type { LessonAssets } from "../schemas/lessonAssets.schema";
+import type { LessonAssets } from "@/node-lib/curriculum-api-2023/queries/curriculumResourcesDownloads/lessonAssets.schema";
 
 /**
  * Resource file types available for download
