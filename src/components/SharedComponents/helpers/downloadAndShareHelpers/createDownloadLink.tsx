@@ -9,6 +9,23 @@ import { GetToken } from "clerk";
 const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 
 /**
+ * Feature flag for using internal OWA download endpoints instead of external downloads-api.
+ * When enabled, download requests go to same-origin /api/ routes and use Clerk cookies.
+ */
+const USE_INTERNAL_DOWNLOADS_API =
+  process.env.NEXT_PUBLIC_USE_INTERNAL_DOWNLOADS_API === "true";
+
+// TODO: update config with new env vars and 1pass too
+
+/**
+ * Get the base URL for downloads API.
+ * Returns empty string for internal API (same-origin) or external URL.
+ */
+function getDownloadsBaseUrl(): string {
+  return USE_INTERNAL_DOWNLOADS_API ? "" : DOWNLOADS_API_URL;
+}
+
+/**
  * Expected response schema
  */
 const schema = z.object({
@@ -38,14 +55,19 @@ const getDownloadLink = async ({
   };
   authToken?: string | null;
 }) => {
-  const authHeader = authToken
-    ? { Authorization: `Bearer ${authToken}` }
-    : undefined;
+  // For internal API, Clerk cookies are sent automatically (same-origin).
+  // For external API, we need to pass the bearer token.
+  const authHeader =
+    !USE_INTERNAL_DOWNLOADS_API && authToken
+      ? { Authorization: `Bearer ${authToken}` }
+      : undefined;
 
   const res = await fetch(downloadEndpoint, {
     headers: {
       ...authHeader,
     },
+    // Include credentials for same-origin requests (internal API)
+    credentials: USE_INTERNAL_DOWNLOADS_API ? "same-origin" : "omit",
   });
 
   if (!res.ok) {
@@ -74,11 +96,13 @@ export const createLessonDownloadLink = async ({
   additionalFilesIdsSelection?: string;
   authToken?: string | null;
 }) => {
+  const baseUrl = getDownloadsBaseUrl();
   const selectionString = selection ? `?selection=${selection}` : "";
   const additionalFilesIdsSelectionString = additionalFilesIdsSelection
     ? `&additionalFiles=${additionalFilesIdsSelection}`
     : "";
-  const downloadEndpoint = `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/download${selectionString}${additionalFilesIdsSelectionString}`;
+  const downloadEndpoint = `${baseUrl}/api/lesson/${lessonSlug}/download${selectionString}${additionalFilesIdsSelectionString}`;
+  console.log("downloadEndpoint", downloadEndpoint);
   const meta = {
     downloadSlug: lessonSlug,
     selection,
@@ -99,8 +123,11 @@ export const createUnitDownloadLink = async ({
   unitFileId: string;
   getToken: GetToken;
 }) => {
-  const downloadEndpoint = `${DOWNLOADS_API_URL}/api/unit/${unitFileId}/download`;
-  const authToken = await getToken();
+  const baseUrl = getDownloadsBaseUrl();
+  const downloadEndpoint = `${baseUrl}/api/unit/${unitFileId}/download`;
+
+  // For internal API, we don't need a token (Clerk cookies are sent automatically)
+  const authToken = USE_INTERNAL_DOWNLOADS_API ? null : await getToken();
   const meta = {
     downloadSlug: unitFileId,
   };
