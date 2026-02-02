@@ -55,7 +55,7 @@ const TeacherAccountButton: FC<{
   } else if (selectedArea === "TEACHERS") {
     return (
       <SignUpButton forceRedirectUrl={onboardingRedirectUrl}>
-        <ButtonVariant $font={"body-3-bold"}>Sign up</ButtonVariant>
+        <ButtonVariant $font={"body-3-bold"}>Sign in</ButtonVariant>
       </SignUpButton>
     );
   }
