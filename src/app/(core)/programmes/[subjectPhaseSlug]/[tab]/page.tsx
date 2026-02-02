@@ -129,7 +129,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   const { subjectPhaseSlug, tab } = await props.params;
 
   if (!isTabSlug(tab)) {
-    return notFound();
+    return redirect("units");
   }
   const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
 
