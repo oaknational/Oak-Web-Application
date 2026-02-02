@@ -54,43 +54,33 @@ const TeachersPhaseSection = ({
   };
 
   // Handle navigating keystages with arrow keys
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (!selectedKeystage) return;
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+    if (!selectedKeystage) return;
 
-      const focusableElements = getFocusableElements();
-      const currentIndex = focusableElements.indexOf(
-        document.activeElement as HTMLElement,
-      );
+    const focusableElements = getFocusableElements();
+    const currentIndex = focusableElements.indexOf(
+      document.activeElement as HTMLElement,
+    );
 
-      switch (event.key) {
-        case "ArrowDown": {
-          event.preventDefault();
-          if (focusableElements.length === 0) return;
-          const nextDownIndex =
-            currentIndex >= focusableElements.length - 1 ? 0 : currentIndex + 1;
-          focusableElements[nextDownIndex]?.focus();
-          break;
-        }
-        case "ArrowUp": {
-          event.preventDefault();
-          if (focusableElements.length === 0) return;
-          const nextUpIndex =
-            currentIndex <= 0 ? focusableElements.length - 1 : currentIndex - 1;
-          focusableElements[nextUpIndex]?.focus();
-          break;
-        }
+    switch (event.key) {
+      case "ArrowDown": {
+        event.preventDefault();
+        if (focusableElements.length === 0) return;
+        const nextDownIndex =
+          currentIndex >= focusableElements.length - 1 ? 0 : currentIndex + 1;
+        focusableElements[nextDownIndex]?.focus();
+        break;
       }
-    };
-
-    if (selectedKeystage) {
-      document.addEventListener("keydown", handleKeyDown);
+      case "ArrowUp": {
+        event.preventDefault();
+        if (focusableElements.length === 0) return;
+        const nextUpIndex =
+          currentIndex <= 0 ? focusableElements.length - 1 : currentIndex - 1;
+        focusableElements[nextUpIndex]?.focus();
+        break;
+      }
     }
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [selectedKeystage]);
+  };
 
   // Move focus to first keystage button when sub menu opens
   useEffect(() => {
@@ -130,6 +120,7 @@ const TeachersPhaseSection = ({
         id={`topnav-teachers-${selectedMenu}`}
         role="tablist"
         ref={keystagesRef}
+        onKeyDown={handleKeyDown}
       >
         {menuData.keystages.map((keystage) => (
           <OakLI key={keystage.slug}>
