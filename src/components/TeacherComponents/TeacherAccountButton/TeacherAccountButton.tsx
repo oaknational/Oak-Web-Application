@@ -32,7 +32,6 @@ const TeacherAccountButton: FC<{
           elements: {
             userButtonAvatarBox: {
               [`@media (max-width: ${getBreakpoint("small")}px)`]: {
-                width: "100%",
                 maxWidth: "100%",
               },
             },
