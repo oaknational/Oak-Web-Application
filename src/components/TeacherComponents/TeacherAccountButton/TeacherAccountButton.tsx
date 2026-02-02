@@ -1,6 +1,7 @@
 import { UserButton, SignUpButton, useUser } from "@clerk/nextjs";
 import {
   oakColorTokens,
+  OakSmallPrimaryButton,
   OakSmallSecondaryButton,
 } from "@oaknational/oak-components";
 import { FC } from "react";
@@ -17,8 +18,13 @@ import { SelectedArea } from "@/components/AppComponents/AppHeader/AppHeader";
 const TeacherAccountButton: FC<{
   selectedArea: SelectedArea;
   onboardingRedirectUrl: string;
-}> = ({ selectedArea, onboardingRedirectUrl }) => {
+  buttonVariant: "primary" | "secondary";
+}> = ({ selectedArea, onboardingRedirectUrl, buttonVariant }) => {
   const { isSignedIn } = useUser();
+  const ButtonVariant =
+    buttonVariant === "primary"
+      ? OakSmallPrimaryButton
+      : OakSmallSecondaryButton;
   if (isSignedIn) {
     return (
       <UserButton
@@ -50,7 +56,7 @@ const TeacherAccountButton: FC<{
   } else if (selectedArea === "TEACHERS") {
     return (
       <SignUpButton forceRedirectUrl={onboardingRedirectUrl}>
-        <OakSmallSecondaryButton>Sign up</OakSmallSecondaryButton>
+        <ButtonVariant $font={"body-3-bold"}>Sign up</ButtonVariant>
       </SignUpButton>
     );
   }

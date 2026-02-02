@@ -91,6 +91,7 @@ const AppHeader: FC<HeaderProps> = () => {
                 page: "onboarding",
                 query: { returnTo: router.asPath },
               })}
+              buttonVariant="secondary"
             />
             <OwaLink
               page={"teachers-home-page"}

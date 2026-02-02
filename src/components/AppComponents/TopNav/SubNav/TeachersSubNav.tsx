@@ -76,6 +76,7 @@ const TeachersSubNav = ({ onClick, isMenuSelected }: TeachersSubNavProps) => {
             page: "onboarding",
             query: { returnTo: pathname ?? "/" },
           })}
+          buttonVariant="primary"
         />
       </OakFlex>
     </OakFlex>
