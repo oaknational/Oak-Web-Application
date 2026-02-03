@@ -1,12 +1,10 @@
-import { OakBox } from "@oaknational/oak-components";
+import { OakBox, OakSecondaryLink } from "@oaknational/oak-components";
 import { FC, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 
 import { DownloadType, School } from "./helper";
 import SignedOutFlow from "./SignedOutFlow";
 import SignedInFlow from "./SignedInFlow";
-
-import Button from "@/components/SharedComponents/Button";
 
 export type CurriculumDownloadViewData = {
   schools: School[];
@@ -28,6 +26,7 @@ export type CurriculumDownloadViewProps = {
   availableDownloadTypes: DownloadType[];
   submitError?: string;
 };
+
 const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
   const [downloadTypes, setDownloadTypes] = useState(
     props.availableDownloadTypes,
@@ -38,14 +37,14 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
     <OakBox $color="text-primary">
       {props.onBackToKs4Options && (
         <OakBox $mb="spacing-24">
-          <Button
-            variant={"buttonStyledAsLink"}
-            icon="chevron-left"
+          <OakSecondaryLink
+            element="button"
             data-testid="back-to-downloads-link"
-            size="small"
-            label="Back to KS4 options"
+            iconName="chevron-left"
             onClick={props.onBackToKs4Options}
-          />
+          >
+            Back to KS4 options
+          </OakSecondaryLink>
         </OakBox>
       )}
       {user.isLoaded && (
