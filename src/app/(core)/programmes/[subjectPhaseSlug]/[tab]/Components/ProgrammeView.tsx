@@ -158,20 +158,19 @@ export const ProgrammeView = ({
           }}
           tabs={[...TAB_NAMES]}
         />
-
-        <TabContent
-          tabSlug={activeTab}
-          curriculumPhaseOptions={curriculumPhaseOptions}
-          curriculumSelectionSlugs={curriculumSelectionSlugs}
-          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          curriculumInfo={curriculumInfo}
-          curriculumCMSInfo={curriculumCMSInfo}
-          subjectForLayout={subjectForLayout}
-          subjectTitle={subjectTitle}
-          filters={filters}
-          setFilters={onChangeFilters}
-        />
       </OakMaxWidth>
+      <TabContent
+        tabSlug={activeTab}
+        curriculumPhaseOptions={curriculumPhaseOptions}
+        curriculumSelectionSlugs={curriculumSelectionSlugs}
+        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+        curriculumInfo={curriculumInfo}
+        curriculumCMSInfo={curriculumCMSInfo}
+        subjectForLayout={subjectForLayout}
+        subjectTitle={subjectTitle}
+        filters={filters}
+        setFilters={onChangeFilters}
+      />
     </>
   );
 };
@@ -190,15 +189,17 @@ const TabContent = ({
 }: { tabSlug: TabSlug } & UnitSequenceViewProps & ProgrammeOverviewProps) => {
   if (tabSlug === "units") {
     return (
-      <UnitSequenceView
-        curriculumPhaseOptions={curriculumPhaseOptions}
-        curriculumSelectionSlugs={curriculumSelectionSlugs}
-        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-        subjectForLayout={subjectForLayout}
-        subjectTitle={subjectTitle}
-        filters={filters}
-        setFilters={setFilters}
-      />
+      <OakMaxWidth>
+        <UnitSequenceView
+          curriculumPhaseOptions={curriculumPhaseOptions}
+          curriculumSelectionSlugs={curriculumSelectionSlugs}
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+          subjectForLayout={subjectForLayout}
+          subjectTitle={subjectTitle}
+          filters={filters}
+          setFilters={setFilters}
+        />
+      </OakMaxWidth>
     );
   } else if (tabSlug === "overview") {
     return (
