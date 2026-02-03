@@ -20,8 +20,6 @@ const getSocialUrl = (network: SocialNetwork, usernameOrUrl: string) => {
       return `https://instagram.com/${usernameOrUrl}`;
     case "facebook":
       return `https://facebook.com/${usernameOrUrl}`;
-    case "x":
-      return `https://x.com/${usernameOrUrl}`;
     case "linkedIn":
       return usernameOrUrl;
   }

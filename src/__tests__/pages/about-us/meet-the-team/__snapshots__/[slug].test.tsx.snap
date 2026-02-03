@@ -4337,44 +4337,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       class="c97 c98 c99 c100"
                     >
                       <a
-                        aria-label="x for Oak National Academy"
-                        class="c101 c102"
-                        href="https://x.com/oaknational"
-                      >
-                        <div
-                          class="c11 c103"
-                        >
-                          <div
-                            class="c104 c105 icon-container"
-                          >
-                            <div
-                              class="c106 shadow"
-                            />
-                            <div
-                              class="c107"
-                              data-icon-for="button"
-                            >
-                              <img
-                                alt=""
-                                class="c108"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1748452854/icons/x_fpmv5f.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
-                          <span
-                            class="c82"
-                          />
-                        </div>
-                      </a>
-                    </div>
-                    <div
-                      class="c97 c98 c99 c100"
-                    >
-                      <a
                         aria-label="linkedIn for Oak National Academy"
                         class="c101 c102"
                         href="https://www.linkedin.com/company/oak-national-academy"
@@ -5227,44 +5189,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       class="c97 c98 c99 c100"
                     >
                       <a
-                        aria-label="x for Oak National Academy"
-                        class="c101 c102"
-                        href="https://x.com/oaknational"
-                      >
-                        <div
-                          class="c11 c103"
-                        >
-                          <div
-                            class="c104 c105 icon-container"
-                          >
-                            <div
-                              class="c106 shadow"
-                            />
-                            <div
-                              class="c107"
-                              data-icon-for="button"
-                            >
-                              <img
-                                alt=""
-                                class="c108"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1748452854/icons/x_fpmv5f.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
-                          <span
-                            class="c82"
-                          />
-                        </div>
-                      </a>
-                    </div>
-                    <div
-                      class="c97 c98 c99 c100"
-                    >
-                      <a
                         aria-label="linkedIn for Oak National Academy"
                         class="c101 c102"
                         href="https://www.linkedin.com/company/oak-national-academy"
@@ -5392,44 +5316,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             decoding="async"
                             loading="lazy"
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </div>
-                      </div>
-                      <span
-                        class="c82"
-                      />
-                    </div>
-                  </a>
-                </div>
-                <div
-                  class="c97 c98 c99 c100"
-                >
-                  <a
-                    aria-label="x for Oak National Academy"
-                    class="c101 c102"
-                    href="https://x.com/oaknational"
-                  >
-                    <div
-                      class="c11 c103"
-                    >
-                      <div
-                        class="c104 c105 icon-container"
-                      >
-                        <div
-                          class="c106 shadow"
-                        />
-                        <div
-                          class="c107"
-                          data-icon-for="button"
-                        >
-                          <img
-                            alt=""
-                            class="c108"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1748452854/icons/x_fpmv5f.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
                         </div>
