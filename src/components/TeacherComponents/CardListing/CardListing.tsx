@@ -2,26 +2,32 @@ import {
   OakFlex,
   OakIconName,
   OakSecondaryLink,
-  OakSmallPrimaryButton,
-  OakSmallTertiaryInvertedButton,
   OakTagFunctional,
   OakTypography,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
+import { SaveUnitButton } from "../SaveButton/SaveButton";
+
 type CardListingProps = {
   layoutVariant: "horizontal" | "vertical";
   isHighlighted: boolean;
   index: number;
-  title: string;
   subcopy?: string;
   tags?: Array<{ label: string; icon?: OakIconName }>;
   lessonCount?: number;
   showSave?: boolean;
+  unitProps: {
+    unitSlug: string;
+    unitTitle: string;
+    programmeSlug: string;
+  };
 };
 
 const CardListing = (props: CardListingProps) => {
-  const { layoutVariant, isHighlighted, lessonCount, showSave } = props;
+  const { layoutVariant, isHighlighted, lessonCount, showSave, unitProps } =
+    props;
+
   const showFooter = lessonCount !== undefined || showSave;
 
   return (
@@ -57,7 +63,12 @@ const CardListing = (props: CardListingProps) => {
               $font={"heading-light-7"}
               $gap={"spacing-20"}
             >
-              <LessonCount {...props} /> <SaveButton {...props} />
+              <LessonCount {...props} />{" "}
+              <SaveUnitButton
+                buttonVariant={isHighlighted ? "inverted" : "default"}
+                showSave={showSave}
+                {...unitProps}
+              />
             </OakFlex>
           )}
         </OakFlex>
@@ -79,7 +90,12 @@ const CardListing = (props: CardListingProps) => {
           </StyledLink>
           {showFooter && (
             <OakFlex $justifyContent={"space-between"} $alignItems={"center"}>
-              <LessonCount {...props} /> <SaveButton {...props} />
+              <LessonCount {...props} />{" "}
+              <SaveUnitButton
+                buttonVariant={isHighlighted ? "inverted" : "default"}
+                showSave={showSave}
+                {...unitProps}
+              />
             </OakFlex>
           )}
         </OakFlex>
@@ -90,14 +106,14 @@ const CardListing = (props: CardListingProps) => {
 
 export default CardListing;
 
-const Title = ({ title, isHighlighted }: CardListingProps) => {
+const Title = ({ unitProps, isHighlighted }: CardListingProps) => {
   return (
     <OakTypography
       $color={isHighlighted ? "text-inverted" : "text-primary"}
       $font={"heading-7"}
       className="card-listing-header"
     >
-      {title}
+      {unitProps.unitTitle}
     </OakTypography>
   );
 };
@@ -122,53 +138,6 @@ const Index = ({ index, isHighlighted }: CardListingProps) => {
       {index}
     </OakTypography>
   );
-};
-
-const SaveButton = ({ showSave, isHighlighted }: CardListingProps) => {
-  // TODO: saving
-  const isSaved = false;
-  const onSave = () => console.log("save");
-  const unavailable = false;
-  const title = "unit 1";
-  const isLoading = false;
-
-  const StyledSmallPrimaryButton = styled(OakSmallPrimaryButton)`
-    span {
-      font-weight: unset;
-      font-size: unset;
-    }
-    button {
-      padding-top: 0;
-      padding-bottom: 0;
-      padding-left: 0;
-      padding-right: 0;
-      border: none;
-    }
-  `;
-
-  const buttonProps = {
-    iconName: isSaved
-      ? "bookmark-filled"
-      : ("bookmark-outlined" as OakIconName),
-    isTrailingIcon: true,
-    "aria-disabled": isLoading,
-    disabled: unavailable,
-    onClick: onSave,
-    $justifyContent: "end",
-    "aria-label": `${isSaved ? "Unsave" : "Save"} this unit: ${title} `,
-  };
-
-  return showSave ? (
-    isHighlighted ? (
-      <StyledSmallPrimaryButton {...buttonProps}>
-        {isSaved ? "Saved" : "Save"}
-      </StyledSmallPrimaryButton>
-    ) : (
-      <OakSmallTertiaryInvertedButton {...buttonProps}>
-        {isSaved ? "Saved" : "Save"}
-      </OakSmallTertiaryInvertedButton>
-    )
-  ) : null;
 };
 
 const CardTags = ({ tags }: CardListingProps) => {
