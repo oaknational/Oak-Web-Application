@@ -1,13 +1,12 @@
-import { notFound } from "@hapi/boom";
-
 import checkFilesHandler, {
   CheckFilesDependencies,
   CheckFilesParams,
 } from "./check-files.handler";
 
-import type { GCSHelpers } from "@/node-lib/curriculum-resources-downloads";
+import OakError from "@/errors/OakError";
 import type { LessonAssets } from "@/node-lib/curriculum-api-2023/queries/curriculumResourcesDownloads/lessonAssets.schema";
 import type { AdditionalAsset } from "@/node-lib/curriculum-api-2023/queries/curriculumResourcesDownloads/additionalAssets.schema";
+import { createMockGcsHelpers } from "@/node-lib/curriculum-resources-downloads/gcs/gcsHelpers.mocks";
 
 const lesson: LessonAssets = {
   slug: "test-lesson",
@@ -55,8 +54,7 @@ const additionalAssets: AdditionalAsset[] = [
   },
 ];
 
-// Mock GCS helpers
-const mockGcsHelpers: GCSHelpers = {
+const mockGcsHelpers = createMockGcsHelpers({
   checkFileExistsInBucket: jest.fn().mockResolvedValue(true),
   checkFileExistsAndGetSize: jest.fn().mockResolvedValue({
     exists: true,
@@ -64,9 +62,9 @@ const mockGcsHelpers: GCSHelpers = {
   }),
   getFileSize: jest.fn().mockResolvedValue("10MB"),
   getSignedUrl: jest.fn().mockResolvedValue("https://signed-url.com/file"),
-  fetchResourceAsBuffer: jest.fn().mockResolvedValue(Buffer.from("test")),
-  uploadBuffer: jest.fn().mockResolvedValue(undefined),
-};
+  fetchResourceFromGCS: jest.fn().mockResolvedValue(Buffer.from("test")),
+  getFileWriteStream: jest.fn().mockResolvedValue(Buffer.from("test")),
+});
 
 const createParams = (
   overrides: Partial<CheckFilesParams> = {},
@@ -87,13 +85,13 @@ describe("/api/lesson/{lessonSlug}/check-files", () => {
     jest.clearAllMocks();
   });
 
-  test("throws notFound if lesson is null (not found)", async () => {
+  test("throws OakError if lesson is null (not found)", async () => {
     await expect(
       checkFilesHandler(
         createParams({ lesson: null as unknown as LessonAssets }),
         deps,
       ),
-    ).rejects.toEqual(notFound("Lesson not found"));
+    ).rejects.toThrow(OakError);
   });
 
   test("returns {exists:false,errors:[...]} when requested resource has invalid updatedAt", async () => {

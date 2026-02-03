@@ -4,6 +4,8 @@ import {
   getGCSHelpers,
   storage,
   createDownloadsErrorReporter,
+  isOakError,
+  oakErrorToResponse,
 } from "@/node-lib/curriculum-resources-downloads";
 import getServerConfig from "@/node-lib/getServerConfig";
 
@@ -33,16 +35,8 @@ export async function GET(
     const gcsDirForUnitZips = getServerConfig("gcsDirForUnitZips");
 
     // validate env vars - TODO: move to a utils file?
-    if (!gcsBucketNameForZips) {
+    if (!gcsBucketNameForZips || !gcsDirForUnitZips) {
       console.error("GCS_BUCKET_NAME_FOR_ZIPS is not configured");
-      return NextResponse.json(
-        { error: { message: "Download service not configured" } },
-        { status: 500 },
-      );
-    }
-
-    if (!gcsDirForUnitZips) {
-      console.error("GCS_DIR_FOR_UNIT_ZIPS is not configured");
       return NextResponse.json(
         { error: { message: "Download service not configured" } },
         { status: 500 },
@@ -69,10 +63,13 @@ export async function GET(
       data: { exists, fileSize },
     });
   } catch (error) {
+    if (isOakError(error)) {
+      reportError(error, { severity: "error" });
+      return oakErrorToResponse(error);
+    }
+
     console.error("Unexpected error in unit check-files route:", error);
     reportError(error, { severity: "error" });
-
-    // TODO: utilise boom errors?
 
     return NextResponse.json(
       { error: { message: "Internal server error" } },

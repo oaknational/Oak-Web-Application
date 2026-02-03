@@ -1,6 +1,31 @@
+import { Readable } from "stream";
+
 import { z } from "zod";
 
 import type { LessonAssets } from "@/node-lib/curriculum-api-2023/queries/curriculumResourcesDownloads/lessonAssets.schema";
+
+/**
+ * These are the resource options available for download
+ * Includes multi-file options (worksheet-pdf, worksheet-pptx) that bundle multiple files.
+ */
+export const RESOURCE_SELECTION_OPTIONS = [
+  "intro-quiz-questions",
+  "intro-quiz-answers",
+  "exit-quiz-questions",
+  "exit-quiz-answers",
+  "presentation",
+  "worksheet-pdf", // Bundles questions + answers
+  "worksheet-pdf-questions",
+  "worksheet-pdf-answers",
+  "worksheet-pptx", // Bundles questions + answers
+  "worksheet-pptx-questions",
+  "worksheet-pptx-answers",
+  "supplementary-pdf",
+  "supplementary-docx",
+  "lesson-guide-docx",
+  "lesson-guide-pdf",
+  "additional-files",
+] as const;
 
 /**
  * Resource file types available for download
@@ -123,9 +148,6 @@ export const SINGLE_FILE_SELECTION_MAP: Record<
   },
 };
 
-/**
- * Resource definition for extracting file info from a lesson
- */
 export type ResourceDefinition = {
   getGCSFilePath: (lesson: LessonAssets) => string | null | undefined;
   getGCSBucketName: (lesson: LessonAssets) => string | null | undefined;
@@ -141,9 +163,6 @@ export type ResourceError = {
   message: string;
 };
 
-/**
- * Zod schema for validating asset search params
- */
 export const AssetSearchParamsSchema = z
   .object({
     resource: z.enum(SINGLE_FILE_RESOURCE_OPTIONS, {
@@ -187,29 +206,6 @@ export const AssetSearchParamsSchema = z
 
 export type AssetSearchParams = z.infer<typeof AssetSearchParamsSchema>;
 
-/**
- * Full resource selection options for ZIP downloads.
- * Includes multi-file options (worksheet-pdf, worksheet-pptx) that bundle multiple files.
- */
-export const RESOURCE_SELECTION_OPTIONS = [
-  "intro-quiz-questions",
-  "intro-quiz-answers",
-  "exit-quiz-questions",
-  "exit-quiz-answers",
-  "presentation",
-  "worksheet-pdf", // Bundles questions + answers
-  "worksheet-pdf-questions",
-  "worksheet-pdf-answers",
-  "worksheet-pptx", // Bundles questions + answers
-  "worksheet-pptx-questions",
-  "worksheet-pptx-answers",
-  "supplementary-pdf",
-  "supplementary-docx",
-  "lesson-guide-docx",
-  "lesson-guide-pdf",
-  "additional-files",
-] as const;
-
 export type ResourceSelectionOption =
   (typeof RESOURCE_SELECTION_OPTIONS)[number];
 
@@ -239,9 +235,6 @@ export const SELECTION_TO_FILES_MAP: Record<
   "additional-files": ["additional-files"],
 };
 
-/**
- * Zod schema for validating resource selection (used in download endpoint)
- */
 export const ResourceSelectionOptionsSchema = z
   .array(z.enum(RESOURCE_SELECTION_OPTIONS), {
     invalid_type_error: `Must be a comma separated list of: ${RESOURCE_SELECTION_OPTIONS.join(", ")}`,
@@ -254,8 +247,51 @@ export type ResourceSelectionOptionsType = z.infer<
 >;
 
 /**
- * Zod schema for validating download search params
+ * Downloadable resource
  */
+export type ValidResource = {
+  isPublished: boolean;
+  gcsFilePath: string;
+  gcsBucketName: string;
+  pathInZip: string;
+  updatedAt: string;
+  ext: string;
+  fileSize: string;
+  type: ResourceFileType;
+  lesson: LessonAssets;
+  isValid: true;
+  errors: ResourceError[];
+};
+/**
+ * Non-downloadable resource
+ */
+export type InvalidResource = {
+  isPublished: boolean;
+  gcsFilePath: string | null | undefined;
+  gcsBucketName: string | null | undefined;
+  pathInZip: string | null | undefined;
+  updatedAt: string | null;
+  ext: string;
+  fileSize: string;
+  type: ResourceFileType;
+  lesson: LessonAssets;
+  isValid: false | null;
+  errors: ResourceError[];
+};
+
+export type Resource = ValidResource | InvalidResource;
+
+export type FileForZip = {
+  // The path at which we can find the file in the downloads bucket
+  gcsFilePath: string;
+  // A function that will return a readable stream for the file
+  getFileReadStream: () => Promise<Readable>;
+  // The path for the file in the output zip (slashes will nest directories)
+  pathInZip: string;
+  // The resource type (currently only for debugging)
+  resourceType: string;
+};
+
 export const DownloadSearchParamsSchema = z.object({
   selection: ResourceSelectionOptionsSchema,
   additionalFiles: z.array(z.string()).optional(),

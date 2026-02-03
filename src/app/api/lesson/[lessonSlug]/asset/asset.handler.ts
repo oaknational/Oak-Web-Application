@@ -3,9 +3,9 @@
  * Handler for single asset downloads. Returns signed URL and metadata.
  */
 
-import { notFound } from "@hapi/boom";
 import { z } from "zod";
 
+import OakError from "@/errors/OakError";
 import type {
   GCSHelpers,
   SingleFileResourceOption,
@@ -67,9 +67,9 @@ export default async function assetHandler(
   if (resource === "additional-files") {
     // Handle additional files
     if (!additionalAsset) {
-      throw notFound("Additional file not found", {
-        lessonSlug: lesson.slug,
-        resource,
+      throw new OakError({
+        code: "downloads/additional-file-not-found",
+        meta: { lessonSlug: lesson.slug, resource },
       });
     }
 
@@ -78,26 +78,38 @@ export default async function assetHandler(
       (file) => file.asset_id === additionalAsset.asset_id,
     );
     if (!belongsToLesson) {
-      throw notFound("Additional file does not belong to this lesson", {
-        lessonSlug: lesson.slug,
-        assetId: additionalAsset.asset_id,
+      throw new OakError({
+        code: "downloads/additional-file-not-found",
+        meta: {
+          lessonSlug: lesson.slug,
+          assetId: additionalAsset.asset_id,
+          reason: "Additional file does not belong to this lesson",
+        },
       });
     }
 
     // Extract file info from additional asset
     const assetType = Object.keys(additionalAsset.asset_object)[0];
     if (!assetType) {
-      throw notFound("Additional file has no valid file type", {
-        lessonSlug: lesson.slug,
-        assetId: additionalAsset.asset_id,
+      throw new OakError({
+        code: "downloads/additional-file-invalid",
+        meta: {
+          lessonSlug: lesson.slug,
+          assetId: additionalAsset.asset_id,
+          reason: "Additional file has no valid file type",
+        },
       });
     }
     const fileLocation = additionalAsset.asset_object[assetType];
 
     if (!fileLocation?.bucket_path || !fileLocation?.bucket_name) {
-      throw notFound("Additional file has no valid file location", {
-        lessonSlug: lesson.slug,
-        assetId: additionalAsset.asset_id,
+      throw new OakError({
+        code: "downloads/additional-file-invalid",
+        meta: {
+          lessonSlug: lesson.slug,
+          assetId: additionalAsset.asset_id,
+          reason: "Additional file has no valid file location",
+        },
       });
     }
 
@@ -133,9 +145,9 @@ export default async function assetHandler(
     );
 
     if (!resourceInfo) {
-      throw notFound("Resource definition not found", {
-        lessonSlug: lesson.slug,
-        resource,
+      throw new OakError({
+        code: "downloads/resource-not-found",
+        meta: { lessonSlug: lesson.slug, resource },
       });
     }
 
@@ -150,9 +162,9 @@ export default async function assetHandler(
     }
 
     if (!resourceInfo.gcsFilePath || !resourceInfo.gcsBucketName) {
-      throw notFound("Resource file not found", {
-        lessonSlug: lesson.slug,
-        resource,
+      throw new OakError({
+        code: "downloads/file-not-found",
+        meta: { lessonSlug: lesson.slug, resource },
       });
     }
 
@@ -176,15 +188,15 @@ export default async function assetHandler(
       gcsFilePath,
       gcsBucketName,
     });
-    throw notFound("File not found", {
-      lessonSlug: lesson.slug,
-      resource,
+    throw new OakError({
+      code: "downloads/file-not-found",
+      meta: { lessonSlug: lesson.slug, resource, gcsFilePath },
     });
   }
 
   const fileSize = size || "Unknown";
 
-  // Generate signed URL
+  // Generate signed URL - not proxied as asset was not downladable
   const url = await gcsHelpers.getSignedUrl({
     gcsFilePath,
     gcsBucketName,

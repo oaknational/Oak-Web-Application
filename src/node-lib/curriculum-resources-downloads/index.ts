@@ -8,7 +8,11 @@ export { validateSelection } from "./helpers/validationHelpers";
 export { parseDownloadParams } from "./parsers/parseDownloadParams";
 export { parseAssetParams } from "./parsers/parseAssetParams";
 
-export { createDownloadsErrorReporter } from "./errors/downloadsErrorHandling";
+export {
+  isOakError,
+  oakErrorToResponse,
+  createDownloadsErrorReporter,
+} from "./error";
 
 export { storage } from "./gcs/storage";
 export { getGCSHelpers, convertFileSize } from "./gcs/getGCSHelpers";

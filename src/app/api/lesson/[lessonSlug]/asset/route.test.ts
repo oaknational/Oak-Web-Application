@@ -28,6 +28,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
 
 jest.mock("@/node-lib/curriculum-resources-downloads", () => {
   const reporterMock = jest.fn();
+  const actualOakError = jest.requireActual("@/errors/OakError").default;
   return {
     AssetSearchParamsSchema: {
       parse: jest.fn((params) => params),
@@ -46,6 +47,13 @@ jest.mock("@/node-lib/curriculum-resources-downloads", () => {
     checkDownloadAuthorization: jest
       .fn()
       .mockResolvedValue({ authorized: true, user: null }),
+    isOakError: (error: unknown) => error instanceof actualOakError,
+    oakErrorToResponse: (error: InstanceType<typeof actualOakError>) => {
+      return mockNextResponseJson(
+        { error: { message: error.message } },
+        { status: error.config.responseStatusCode ?? 500 },
+      );
+    },
     __mockReportError: reporterMock,
   };
 });
@@ -245,9 +253,11 @@ describe("GET /api/lesson/[lessonSlug]/asset", () => {
     );
   });
 
-  it("should return boom error with correct status code", async () => {
-    const { notFound } = await import("@hapi/boom");
-    mockAssetHandler.mockRejectedValueOnce(notFound("Resource not found"));
+  it("should return OakError with correct status code", async () => {
+    const OakError = (await import("@/errors/OakError")).default;
+    mockAssetHandler.mockRejectedValueOnce(
+      new OakError({ code: "downloads/resource-not-found" }),
+    );
 
     const mockRequest = new Request(
       "http://localhost:3000/api/lesson/test-lesson/asset?resource=presentation",
@@ -258,7 +268,7 @@ describe("GET /api/lesson/[lessonSlug]/asset", () => {
     });
 
     expect(mockNextResponseJson).toHaveBeenCalledWith(
-      { error: { message: "Resource not found" } },
+      { error: { message: "Requested download resources not found" } },
       { status: 404 },
     );
     expect(mockReportError).toHaveBeenCalled();

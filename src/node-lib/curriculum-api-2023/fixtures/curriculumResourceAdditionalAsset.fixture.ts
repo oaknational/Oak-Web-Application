@@ -6,15 +6,15 @@ const curriculumResourceAdditionalAssetFixture = (
   return {
     asset_id: 123,
     asset_type: "downloadable_file",
-    asset_uid: "additional-123",
-    updated_at: "2024-01-01T00:00:00.000Z",
+    asset_uid: "asset_uid",
     asset_object: {
       mp3: {
         bucket_name: "bucket--ingested-assets",
-        bucket_path: "additional/file.mp3",
+        bucket_path: "sample-additional-file.pdf",
       },
     },
-    title: "test-audio",
+    updated_at: "2023-01-01T00:00:00.000Z",
+    title: "Sample Additional File",
     ...partial,
   };
 };

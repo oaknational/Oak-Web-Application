@@ -1,20 +1,27 @@
 import { GET } from "./route";
 
+const mockNextResponseJson = jest.fn().mockImplementation((data, init) => ({
+  status: init?.status ?? 200,
+  json: async () => data,
+}));
+
 jest.mock("next/server", () => ({
   NextResponse: {
     json: (...args: unknown[]) => mockNextResponseJson(...args),
   },
 }));
 
+const mockCheckFileExistsInBucket = jest.fn();
+const mockGetFileSize = jest.fn();
+
 jest.mock("@/node-lib/curriculum-resources-downloads", () => {
   const reporterMock = jest.fn();
   return {
     getGCSHelpers: jest.fn(() => ({
-      checkFileExistsInBucket: jest.fn().mockResolvedValue(true),
-      getFileSize: jest.fn().mockResolvedValue("10MB"),
+      checkFileExistsInBucket: (...args: unknown[]) =>
+        mockCheckFileExistsInBucket(...args),
+      getFileSize: (...args: unknown[]) => mockGetFileSize(...args),
       getSignedUrl: jest.fn().mockResolvedValue("https://signed-url.com"),
-      fetchResourceAsBuffer: jest.fn().mockResolvedValue(Buffer.from("test")),
-      uploadBuffer: jest.fn().mockResolvedValue(undefined),
     })),
     storage: {},
     createDownloadsErrorReporter: jest.fn(() => reporterMock),
@@ -25,14 +32,11 @@ jest.mock("@/node-lib/curriculum-resources-downloads", () => {
   };
 });
 
-const mockNextResponseJson = jest.fn().mockImplementation((data, init) => ({
-  status: init?.status ?? 200,
-  json: async () => data,
-}));
-
 describe("GET /api/unit/[unitProgrammeSlug]/check-files", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockCheckFileExistsInBucket.mockResolvedValue(true);
+    mockGetFileSize.mockResolvedValue("10MB");
   });
 
   it("should return JSON response with correct values on success", async () => {
@@ -50,17 +54,7 @@ describe("GET /api/unit/[unitProgrammeSlug]/check-files", () => {
   });
 
   it("should return correct data when unit does not exist", async () => {
-    const { getGCSHelpers } = jest.requireMock(
-      "@/node-lib/curriculum-resources-downloads",
-    ) as { getGCSHelpers: jest.Mock };
-
-    getGCSHelpers.mockReturnValueOnce({
-      checkFileExistsInBucket: jest.fn().mockResolvedValue(false),
-      getFileSize: jest.fn(),
-      getSignedUrl: jest.fn(),
-      fetchResourceAsBuffer: jest.fn(),
-      uploadBuffer: jest.fn(),
-    });
+    mockCheckFileExistsInBucket.mockResolvedValueOnce(false);
 
     const mockRequest = new Request(
       "http://localhost:3000/api/unit/test-unit-slug/check-files",

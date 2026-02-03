@@ -10,6 +10,9 @@ import type {
   ResourceFileType,
   ResourceSelectionOption,
   ResourceSelectionOptionsType,
+  Resource,
+  ValidResource,
+  InvalidResource,
 } from "../types/resource.types";
 import { SELECTION_TO_FILES_MAP } from "../types/resource.types";
 
@@ -20,45 +23,10 @@ import truthy from "@/utils/truthy";
 /**
  * Validates that a date string can be parsed into a valid Date object
  */
-function dateStringIsValid(dateString: string): boolean {
+export function dateStringIsValid(dateString: string): boolean {
   const date = new Date(dateString);
   return date instanceof Date && !isNaN(date.valueOf());
 }
-
-/**
- * Represents a validated downloadable resource
- */
-export type ValidResource = {
-  isPublished: boolean;
-  gcsFilePath: string;
-  gcsBucketName: string;
-  pathInZip: string;
-  updatedAt: string;
-  ext: string;
-  fileSize: string;
-  type: ResourceFileType;
-  lesson: LessonAssets;
-  isValid: true;
-  errors: ResourceError[];
-};
-/**
- * Non-downloadable resource
- */
-export type InvalidResource = {
-  isPublished: boolean;
-  gcsFilePath: string | null | undefined;
-  gcsBucketName: string | null | undefined;
-  pathInZip: string | null | undefined;
-  updatedAt: string | null;
-  ext: string;
-  fileSize: string;
-  type: ResourceFileType;
-  lesson: LessonAssets;
-  isValid: false | null;
-  errors: ResourceError[];
-};
-
-export type Resource = ValidResource | InvalidResource;
 
 export function getResourceHelpers() {
   const resourceDefinitions: ResourceDefinition[] = [

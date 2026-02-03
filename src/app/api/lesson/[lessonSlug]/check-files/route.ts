@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
-import { isBoom } from "@hapi/boom";
 
 import checkFilesHandler from "./check-files.handler";
 
@@ -11,6 +10,8 @@ import {
   parseDownloadParams,
   createDownloadsErrorReporter,
   checkDownloadAuthorization,
+  isOakError,
+  oakErrorToResponse,
 } from "@/node-lib/curriculum-resources-downloads";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
@@ -55,7 +56,6 @@ export async function GET(
       parseDownloadParams(searchParams),
     );
 
-    // Fetch lesson data
     const lessonData = await curriculumApi2023.lessonAssets({ lessonSlug });
 
     if (!lessonData) {
@@ -67,7 +67,6 @@ export async function GET(
 
     const { lesson, isGeoRestricted, isLoginRequired } = lessonData;
 
-    // Authorization checks
     const authResult = await checkDownloadAuthorization(
       isGeoRestricted,
       isLoginRequired,
@@ -76,7 +75,6 @@ export async function GET(
       return authResult.response;
     }
 
-    // Fetch additional assets if needed
     const additionalFilesIds =
       additionalFiles?.map((file) => Number(file)) || [];
     const additionalFilesAssets =
@@ -86,7 +84,6 @@ export async function GET(
           })
         : [];
 
-    // Add titles from lesson's downloadable files
     const additionalFilesAssetsWithTitles = additionalFilesAssets.map(
       (asset) => {
         const assetTitle = lesson.tpc_downloadablefiles?.find(
@@ -130,20 +127,13 @@ export async function GET(
         { status: 400 },
       );
     }
-    // TODO: We currently don't utilise Boom errors outside of downloads use consistent error handlign pattern
-    if (isBoom(error)) {
-      reportError(error, {
-        severity: "error",
-      });
-      return NextResponse.json(
-        { error: { message: error.message } },
-        { status: error.output.statusCode },
-      );
+    if (isOakError(error)) {
+      reportError(error, { severity: "error" });
+      return oakErrorToResponse(error);
     }
 
-    reportError(error, {
-      severity: "error",
-    });
+    console.error("Unexpected error in check-files route:", error);
+    reportError(error, { severity: "error" });
 
     return NextResponse.json(
       { error: { message: "Internal server error" } },

@@ -1,3 +1,3 @@
 export { getHashedZipName } from "./getHashedZipName";
-export { createZipFromFiles, getZipHelpers } from "./getZipHelpers";
-export type { ZipFile, ZipHelpers } from "./getZipHelpers";
+export { getZipHelpers } from "./getZipHelpers";
+export type { ZipHelpers } from "./getZipHelpers";

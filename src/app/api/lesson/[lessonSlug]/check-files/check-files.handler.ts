@@ -4,8 +4,7 @@
  * Returns existence status and file metadata for each selected resource.
  */
 
-import { notFound } from "@hapi/boom";
-
+import OakError from "@/errors/OakError";
 import type {
   GCSHelpers,
   ResourceSelectionOptionsType,
@@ -46,7 +45,10 @@ export default async function checkFilesHandler(
   const { gcsHelpers } = deps;
   const { lesson, selection, additionalFiles, additionalFilesAssets } = params;
   if (!lesson) {
-    throw notFound("Lesson not found");
+    throw new OakError({
+      code: "curriculum-api/not-found",
+      meta: { resource: "lesson" },
+    });
   }
 
   const resourceHelpers = getResourceHelpers();

@@ -4,12 +4,13 @@
  * Creates ZIP files from selected resources and caches them in GCS.
  */
 
-import { notFound } from "@hapi/boom";
+import { Readable } from "stream";
 
+import OakError from "@/errors/OakError";
 import type {
   GCSHelpers,
   ZipHelpers,
-  ZipFile,
+  FileForZip,
   ResourceSelectionOptionsType,
   ValidResource,
 } from "@/node-lib/curriculum-resources-downloads";
@@ -32,7 +33,6 @@ export type DownloadDependencies = {
   gcsHelpers: GCSHelpers;
   zipHelpers: ZipHelpers;
   gcsBucketNameForZips: string;
-  gcsDirForLessonZips: string;
 };
 
 export type DownloadResult = {
@@ -40,12 +40,29 @@ export type DownloadResult = {
   invalidResources: string[];
 };
 
+/**
+ * Converts a ValidResource into a FileForZip with a stream getter
+ */
+function resourceToFileForZip(
+  resource: ValidResource,
+  gcsHelpers: GCSHelpers,
+): FileForZip {
+  return {
+    gcsFilePath: resource.gcsFilePath,
+    pathInZip: resource.pathInZip,
+    resourceType: resource.type,
+    getFileReadStream: async (): Promise<Readable> => {
+      const stream = await gcsHelpers.fetchResourceFromGCS(resource);
+      return Readable.fromWeb(stream);
+    },
+  };
+}
+
 export default async function downloadHandler(
   params: DownloadParams,
   deps: DownloadDependencies,
 ): Promise<DownloadResult> {
-  const { gcsHelpers, zipHelpers, gcsBucketNameForZips, gcsDirForLessonZips } =
-    deps;
+  const { gcsHelpers, zipHelpers, gcsBucketNameForZips } = deps;
   const { lesson, selection, additionalFilesIds, additionalFilesAssets } =
     params;
   const lessonSlug = lesson.slug;
@@ -60,7 +77,10 @@ export default async function downloadHandler(
     });
 
   if (availableSelectionOptions.length === 0) {
-    throw notFound("No resources found", { lessonSlug });
+    throw new OakError({
+      code: "downloads/resource-not-found",
+      meta: { lessonSlug },
+    });
   }
 
   validateSelection({ selection, availableSelectionOptions });
@@ -85,15 +105,19 @@ export default async function downloadHandler(
       selection.includes("additional-files") &&
       additionalFilesAssets.length === 0
     ) {
-      throw notFound(
-        "Specify additional files to download with &additionalFiles=[assetid],[anotherAssetId] parameter in the url or if you did verify whether requested files belong to the lesson",
-        { lessonSlug, selection },
-      );
+      throw new OakError({
+        code: "downloads/no-valid-resources",
+        meta: {
+          lessonSlug,
+          selection,
+          hint: "Specify additional files to download with &additionalFiles=[assetid],[anotherAssetId] parameter in the url or verify whether requested files belong to the lesson",
+        },
+      });
     }
 
-    throw notFound("No (valid) resources found for selection", {
-      lessonSlug,
-      selection,
+    throw new OakError({
+      code: "downloads/no-valid-resources",
+      meta: { lessonSlug, selection },
     });
   }
 
@@ -117,8 +141,9 @@ export default async function downloadHandler(
   );
 
   if (!assetsUpdatedAt) {
-    throw notFound("Could not determine assets updated timestamp", {
-      lessonSlug,
+    throw new OakError({
+      code: "downloads/missing-timestamp",
+      meta: { lessonSlug },
     });
   }
 
@@ -129,56 +154,32 @@ export default async function downloadHandler(
     assetsUpdatedAt,
   });
 
-  const zipFilePath = `${gcsDirForLessonZips}/${zipFileName}`;
+  const zipFilePath = zipHelpers.getZipFilePath({ fileName: zipFileName });
 
-  // Check if ZIP already exists in cache
-  const zipExists = await gcsHelpers.checkFileExistsInBucket({
-    gcsFilePath: zipFilePath,
-    gcsBucketName: gcsBucketNameForZips,
-  });
-
-  if (zipExists) {
-    // Return cached ZIP
-    const url = await gcsHelpers.getSignedUrl({
-      gcsFilePath: zipFilePath,
-      gcsBucketName: gcsBucketNameForZips,
-      shouldProxy: true,
-    });
-
-    return { url, invalidResources: invalidResourceTypes };
-  }
-
-  // Download all files and create ZIP
-  const filesForZip: ZipFile[] = await Promise.all(
-    validResources.map(async (resource) => {
-      const buffer = await gcsHelpers.fetchResourceAsBuffer({
-        gcsFilePath: resource.gcsFilePath,
-        gcsBucketName: resource.gcsBucketName,
-      });
-
-      return {
-        pathInZip: resource.pathInZip,
-        buffer,
-      };
-    }),
+  // Convert valid resources to FileForZip objects
+  const fileList: FileForZip[] = validResources.map((resource) =>
+    resourceToFileForZip(resource, gcsHelpers),
   );
 
-  // Create ZIP
-  const zipBuffer = await zipHelpers.createZipFromFiles(filesForZip);
-
-  // Upload ZIP to GCS
-  await gcsHelpers.uploadBuffer({
-    gcsFilePath: zipFilePath,
-    gcsBucketName: gcsBucketNameForZips,
-    buffer: zipBuffer,
-    contentType: "application/zip",
-  });
-
-  // Return signed URL for the new ZIP
-  const url = await gcsHelpers.getSignedUrl({
-    gcsFilePath: zipFilePath,
-    gcsBucketName: gcsBucketNameForZips,
-    shouldProxy: true,
+  // Get or create the ZIP file and return signed URL
+  const url = await zipHelpers.getOrCreateZip({
+    zipFilePath,
+    fileList,
+    zipFileWriteStream: gcsHelpers.getFileWriteStream({
+      gcsFilePath: zipFilePath,
+      gcsBucketName: gcsBucketNameForZips,
+    }),
+    checkIfZipFileExists: (path: string) =>
+      gcsHelpers.checkFileExistsInBucket({
+        gcsFilePath: path,
+        gcsBucketName: gcsBucketNameForZips,
+      }),
+    getSignedUrlForZip: (path: string) =>
+      gcsHelpers.getSignedUrl({
+        gcsFilePath: path,
+        gcsBucketName: gcsBucketNameForZips,
+        shouldProxy: true,
+      }),
   });
 
   return { url, invalidResources: invalidResourceTypes };

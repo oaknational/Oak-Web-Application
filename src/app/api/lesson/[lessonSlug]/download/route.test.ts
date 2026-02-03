@@ -28,6 +28,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
 
 jest.mock("@/node-lib/curriculum-resources-downloads", () => {
   const reporterMock = jest.fn();
+  const OakError = jest.requireActual("@/errors/OakError").default;
   return {
     DownloadSearchParamsSchema: {
       parse: jest.fn((params) => params),
@@ -41,8 +42,6 @@ jest.mock("@/node-lib/curriculum-resources-downloads", () => {
       checkFileExistsInBucket: jest.fn().mockResolvedValue(true),
       getFileSize: jest.fn().mockResolvedValue("10MB"),
       getSignedUrl: jest.fn().mockResolvedValue("https://signed-url.com"),
-      fetchResourceAsBuffer: jest.fn().mockResolvedValue(Buffer.from("test")),
-      uploadBuffer: jest.fn().mockResolvedValue(undefined),
     })),
     getZipHelpers: jest.fn(() => ({
       createZipFromFiles: jest.fn().mockResolvedValue(Buffer.from("zip")),
@@ -52,6 +51,13 @@ jest.mock("@/node-lib/curriculum-resources-downloads", () => {
     checkDownloadAuthorization: jest
       .fn()
       .mockResolvedValue({ authorized: true, user: null }),
+    isOakError: (error: unknown) => error instanceof OakError,
+    oakErrorToResponse: (error: InstanceType<typeof OakError>) => {
+      return mockNextResponseJson(
+        { error: { message: error.message } },
+        { status: error.config.responseStatusCode ?? 500 },
+      );
+    },
     __mockReportError: reporterMock,
   };
 });
@@ -215,7 +221,6 @@ describe("GET /api/lesson/[lessonSlug]/download", () => {
         gcsHelpers: expect.any(Object),
         zipHelpers: expect.any(Object),
         gcsBucketNameForZips: "test-bucket",
-        gcsDirForLessonZips: "lesson-zips",
       }),
     );
   });

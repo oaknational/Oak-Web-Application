@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
-import { isBoom } from "@hapi/boom";
 
 import downloadHandler from "./download.handler";
 
@@ -12,6 +11,8 @@ import {
   parseDownloadParams,
   createDownloadsErrorReporter,
   checkDownloadAuthorization,
+  isOakError,
+  oakErrorToResponse,
 } from "@/node-lib/curriculum-resources-downloads";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getServerConfig from "@/node-lib/getServerConfig";
@@ -127,7 +128,7 @@ export async function GET(
     );
 
     const gcsHelpers = getGCSHelpers({ storage });
-    const zipHelpers = getZipHelpers();
+    const zipHelpers = getZipHelpers({ lessonZipsDir: gcsDirForLessonZips });
 
     const { url } = await downloadHandler(
       {
@@ -140,7 +141,6 @@ export async function GET(
         gcsHelpers,
         zipHelpers,
         gcsBucketNameForZips,
-        gcsDirForLessonZips,
       },
     );
 
@@ -163,14 +163,13 @@ export async function GET(
       );
     }
 
-    if (isBoom(error)) {
-      return NextResponse.json(
-        { error: { message: error.message } },
-        { status: error.output.statusCode },
-      );
+    if (isOakError(error)) {
+      reportError(error, { severity: "error" });
+      return oakErrorToResponse(error);
     }
 
     console.error("Unexpected error in download route:", error);
+    reportError(error, { severity: "error" });
 
     return NextResponse.json(
       { error: { message: "Internal server error" } },

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
-import { isBoom } from "@hapi/boom";
 
 import assetHandler from "./asset.handler";
 
@@ -11,6 +10,8 @@ import {
   parseAssetParams,
   createDownloadsErrorReporter,
   checkDownloadAuthorization,
+  isOakError,
+  oakErrorToResponse,
 } from "@/node-lib/curriculum-resources-downloads";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
@@ -112,21 +113,13 @@ export async function GET(
       );
     }
 
-    if (isBoom(error)) {
-      reportError(error, {
-        severity: "error",
-      });
-      return NextResponse.json(
-        { error: { message: error.message } },
-        { status: error.output.statusCode },
-      );
+    if (isOakError(error)) {
+      reportError(error, { severity: "error" });
+      return oakErrorToResponse(error);
     }
 
     console.error("Unexpected error in asset route:", error);
-
-    reportError(error, {
-      severity: "error",
-    });
+    reportError(error, { severity: "error" });
 
     return NextResponse.json(
       { error: { message: "Internal server error" } },

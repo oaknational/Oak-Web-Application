@@ -1,10 +1,17 @@
 /**
  * @fileoverview
- * GCS helpers for downloading files and generating signed URLs.
- * Used by the lesson asset download endpoint.
+ * This file exports getGCSHelpers()
+ * These GCS helpers are intended to be used to download and upload files to GCS.
+ * They are used by the zip helpers to create a zip file from a list of files.
  */
 
+import type { ReadableStream as WebReadableStream } from "node:stream/web";
+
 import { Storage } from "@google-cloud/storage";
+
+import type { ValidResource } from "../types/resource.types";
+
+import OakError from "@/errors/OakError";
 
 /**
  * Converts a byte size into a human readable format
@@ -25,6 +32,79 @@ export const convertFileSize = (
 };
 
 export function getGCSHelpers({ storage }: { storage: Storage }) {
+  const fetchResourceFromGCS = async ({
+    gcsFilePath,
+    gcsBucketName,
+    type,
+  }: ValidResource): Promise<WebReadableStream> => {
+    const bucket = storage.bucket(gcsBucketName);
+    const file = bucket.file(gcsFilePath);
+
+    try {
+      await file.get();
+    } catch (err) {
+      throw new OakError({
+        code: "downloads/file-not-found",
+        meta: { type, gcsFilePath, gcsBucketName },
+        originalError: err,
+      });
+    }
+
+    const url = await getSignedUrl({ gcsFilePath, gcsBucketName });
+
+    if (!url) {
+      throw new OakError({
+        code: "downloads/failed-to-fetch",
+        meta: {
+          reason: "No url from file.getSignedUrl",
+          gcsFilePath,
+          gcsBucketName,
+        },
+      });
+    }
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new OakError({
+        code: "downloads/failed-to-fetch",
+        meta: {
+          reason: "Response not ok from fetch(url)",
+          status: response.status,
+          gcsFilePath,
+          gcsBucketName,
+        },
+      });
+    }
+
+    if (!response.body) {
+      throw new OakError({
+        code: "downloads/failed-to-fetch",
+        meta: {
+          reason: "No body in response object from fetch(url)",
+          gcsFilePath,
+          gcsBucketName,
+        },
+      });
+    }
+
+    return response.body as WebReadableStream;
+  };
+
+  function getFileWriteStream({
+    gcsFilePath,
+    gcsBucketName,
+  }: {
+    gcsFilePath: string;
+    gcsBucketName: string;
+  }) {
+    const bucket = storage.bucket(gcsBucketName);
+    const file = bucket.file(gcsFilePath);
+    const fileWriteStream = file.createWriteStream();
+
+    return fileWriteStream;
+  }
+
   async function checkFileExistsInBucket({
     gcsFilePath,
     gcsBucketName,
@@ -121,56 +201,13 @@ export function getGCSHelpers({ storage }: { storage: Storage }) {
     return url;
   };
 
-  /**
-   * Fetch a file from GCS and return as Buffer.
-   * Used for downloading resources to include in ZIP files.
-   */
-
-  async function fetchResourceAsBuffer({
-    gcsFilePath,
-    gcsBucketName,
-  }: {
-    gcsFilePath: string;
-    gcsBucketName: string;
-  }): Promise<Buffer> {
-    const bucket = storage.bucket(gcsBucketName);
-    const file = bucket.file(gcsFilePath);
-
-    const [contents] = await file.download();
-    return contents;
-  }
-
-  /**
-   * Upload a buffer to GCS.
-   * Used for uploading generated ZIP files.
-   */
-  async function uploadBuffer({
-    gcsFilePath,
-    gcsBucketName,
-    buffer,
-    contentType = "application/zip",
-  }: {
-    gcsFilePath: string;
-    gcsBucketName: string;
-    buffer: Buffer;
-    contentType?: string;
-  }): Promise<void> {
-    const bucket = storage.bucket(gcsBucketName);
-    const file = bucket.file(gcsFilePath);
-
-    await file.save(buffer, {
-      contentType,
-      resumable: false,
-    });
-  }
-
   return {
     checkFileExistsInBucket,
     getFileSize,
     checkFileExistsAndGetSize,
+    fetchResourceFromGCS,
+    getFileWriteStream,
     getSignedUrl,
-    fetchResourceAsBuffer,
-    uploadBuffer,
   };
 }
 

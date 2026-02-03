@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
-import { isBoom, notFound } from "@hapi/boom";
 
+import OakError from "@/errors/OakError";
 import {
   getGCSHelpers,
   storage,
   createDownloadsErrorReporter,
+  isOakError,
+  oakErrorToResponse,
 } from "@/node-lib/curriculum-resources-downloads";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { ALLOWED_REGIONS } from "@/utils/onboarding/getRegion";
@@ -41,16 +43,8 @@ export async function GET(
     const gcsBucketNameForZips = getServerConfig("gcsBucketNameForZips");
     const gcsDirForUnitZips = getServerConfig("gcsDirForUnitZips");
 
-    if (!gcsBucketNameForZips) {
+    if (!gcsBucketNameForZips || !gcsDirForUnitZips) {
       console.error("GCS_BUCKET_NAME_FOR_ZIPS is not configured");
-      return NextResponse.json(
-        { error: { message: "Download service not configured" } },
-        { status: 500 },
-      );
-    }
-
-    if (!gcsDirForUnitZips) {
-      console.error("GCS_DIR_FOR_UNIT_ZIPS is not configured");
       return NextResponse.json(
         { error: { message: "Download service not configured" } },
         { status: 500 },
@@ -67,10 +61,13 @@ export async function GET(
     });
 
     if (!exists) {
-      throw notFound("No file found", { unitProgrammeSlug });
+      throw new OakError({
+        code: "downloads/file-not-found",
+        meta: { unitProgrammeSlug },
+      });
     }
 
-    // unit downloads require login in place of jwt auth can check clerk user
+    // can access clerk user data directly
     const user = await currentUser();
 
     if (!user) {
@@ -108,11 +105,9 @@ export async function GET(
       data: { url },
     });
   } catch (error) {
-    if (isBoom(error)) {
-      return NextResponse.json(
-        { error: { message: error.message } },
-        { status: error.output.statusCode },
-      );
+    if (isOakError(error)) {
+      reportError(error, { severity: "error" });
+      return oakErrorToResponse(error);
     }
 
     console.error("Unexpected error in unit download route:", error);

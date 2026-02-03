@@ -35,6 +35,7 @@ const mockGetSignedUrl = jest.fn();
 
 jest.mock("@/node-lib/curriculum-resources-downloads", () => {
   const reporterMock = jest.fn();
+  const OakError = jest.requireActual("@/errors/OakError").default;
   return {
     getGCSHelpers: jest.fn(() => ({
       checkFileExistsInBucket: (...args: unknown[]) =>
@@ -43,6 +44,13 @@ jest.mock("@/node-lib/curriculum-resources-downloads", () => {
     })),
     storage: {},
     createDownloadsErrorReporter: jest.fn(() => reporterMock),
+    isOakError: (error: unknown) => error instanceof OakError,
+    oakErrorToResponse: jest.fn((error: InstanceType<typeof OakError>) => {
+      return mockNextResponseJson(
+        { error: { message: error.message } },
+        { status: error.config.responseStatusCode ?? 500 },
+      );
+    }),
     __mockReportError: reporterMock,
   };
 });
@@ -100,7 +108,7 @@ describe("GET /api/unit/[unitProgrammeSlug]/download", () => {
     });
 
     expect(mockNextResponseJson).toHaveBeenCalledWith(
-      { error: { message: "No file found" } },
+      { error: { message: "Requested file not found" } },
       { status: 404 },
     );
   });

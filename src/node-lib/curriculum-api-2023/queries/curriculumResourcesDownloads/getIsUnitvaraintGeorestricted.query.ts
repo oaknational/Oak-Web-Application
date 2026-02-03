@@ -1,8 +1,8 @@
-import { notFound } from "@hapi/boom";
-
 import { Sdk } from "../../sdk";
 
 import { UnitvariantLessonsSchema } from "./getIsUnitvariantGeorestricted.schema";
+
+import OakError from "@/errors/OakError";
 
 const getIsUnitvariantGeorestrictedQuery =
   (sdk: Sdk) =>
@@ -34,7 +34,10 @@ const getIsUnitvariantGeorestrictedQuery =
     }
 
     if (!unitvariant_lessons || unitvariant_lessons.length === 0) {
-      throw notFound(`Lessons for unitvariant not found`);
+      throw new OakError({
+        code: "curriculum-api/not-found",
+        meta: { resource: "unitvariant_lessons", unitvariantId },
+      });
     }
 
     // Check if any lesson is geo-restricted

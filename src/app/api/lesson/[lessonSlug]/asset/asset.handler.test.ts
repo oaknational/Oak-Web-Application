@@ -10,16 +10,16 @@ const mockCheckFileExistsInBucket = jest.fn();
 const mockGetFileSize = jest.fn();
 const mockCheckFileExistsAndGetSize = jest.fn();
 const mockGetSignedUrl = jest.fn();
-const mockFetchResourceAsBuffer = jest.fn();
-const mockUploadBuffer = jest.fn();
+const mockFetchResourceFromGCS = jest.fn();
+const mockGetFileWriteStream = jest.fn();
 
 const mockGcsHelpers = {
+  fetchResourceFromGCS: mockFetchResourceFromGCS,
+  getFileWriteStream: mockGetFileWriteStream,
   checkFileExistsInBucket: mockCheckFileExistsInBucket,
   getFileSize: mockGetFileSize,
   checkFileExistsAndGetSize: mockCheckFileExistsAndGetSize,
   getSignedUrl: mockGetSignedUrl,
-  fetchResourceAsBuffer: mockFetchResourceAsBuffer,
-  uploadBuffer: mockUploadBuffer,
 };
 
 const mockGetResourceInfoByFileType = jest.fn();
@@ -109,7 +109,7 @@ describe("assetHandler", () => {
           },
           { gcsHelpers: mockGcsHelpers },
         ),
-      ).rejects.toThrow("Resource definition not found");
+      ).rejects.toThrow("Requested download resources not found");
     });
 
     it("should throw ZodError when resource is not published", async () => {
@@ -143,7 +143,7 @@ describe("assetHandler", () => {
           },
           { gcsHelpers: mockGcsHelpers },
         ),
-      ).rejects.toThrow("File not found");
+      ).rejects.toThrow("Requested file not found");
     });
 
     it("should return Unknown for file size when not available", async () => {
@@ -180,7 +180,7 @@ describe("assetHandler", () => {
 
       expect(result).toEqual({
         url: "https://signed-url.com/asset.pptx",
-        filename: "test-audio.mp3",
+        filename: "Sample Additional File.mp3",
         fileSize: "10MB",
         contentType: "audio/mpeg",
       });
@@ -231,7 +231,7 @@ describe("assetHandler", () => {
           },
           { gcsHelpers: mockGcsHelpers },
         ),
-      ).rejects.toThrow("Additional file does not belong to this lesson");
+      ).rejects.toThrow("Additional file not found");
     });
 
     it("should throw notFound when additional file has no valid file type", async () => {
@@ -248,7 +248,7 @@ describe("assetHandler", () => {
           },
           { gcsHelpers: mockGcsHelpers },
         ),
-      ).rejects.toThrow("Additional file has no valid file type");
+      ).rejects.toThrow("Additional file is invalid or missing required data");
     });
 
     it("should throw notFound when additional file has no valid location", async () => {
@@ -267,7 +267,7 @@ describe("assetHandler", () => {
           },
           { gcsHelpers: mockGcsHelpers },
         ),
-      ).rejects.toThrow("Additional file has no valid file location");
+      ).rejects.toThrow("Additional file is invalid or missing required data");
     });
   });
 

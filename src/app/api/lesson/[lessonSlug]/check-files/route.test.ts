@@ -4,6 +4,8 @@
 import { GET } from "./route";
 import checkFilesHandler from "./check-files.handler";
 
+import { createMockGcsHelpers } from "@/node-lib/curriculum-resources-downloads/gcs/gcsHelpers.mocks";
+
 const mockNextResponseJson = jest.fn().mockImplementation((data, init) => ({
   status: init?.status ?? 200,
   json: async () => data,
@@ -41,13 +43,11 @@ jest.mock("@/node-lib/curriculum-resources-downloads", () => {
       additionalFiles:
         searchParams.get("additionalFiles")?.split(",") ?? undefined,
     })),
-    getGCSHelpers: jest.fn(() => ({
+    getGCSHelpers: createMockGcsHelpers({
       checkFileExistsInBucket: jest.fn().mockResolvedValue(true),
       getFileSize: jest.fn().mockResolvedValue("10MB"),
       getSignedUrl: jest.fn().mockResolvedValue("https://signed-url.com"),
-      fetchResourceAsBuffer: jest.fn().mockResolvedValue(Buffer.from("test")),
-      uploadBuffer: jest.fn().mockResolvedValue(undefined),
-    })),
+    }),
     storage: {},
     createDownloadsErrorReporter: jest.fn(() => reporterMock),
     checkDownloadAuthorization: jest

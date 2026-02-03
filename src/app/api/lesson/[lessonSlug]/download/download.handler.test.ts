@@ -1,4 +1,5 @@
-import { notFound } from "@hapi/boom";
+import { Writable } from "stream";
+
 import { ZodError } from "zod";
 
 import downloadHandler, {
@@ -6,32 +7,26 @@ import downloadHandler, {
   DownloadParams,
 } from "./download.handler";
 
-import type {
-  GCSHelpers,
-  ZipHelpers,
-} from "@/node-lib/curriculum-resources-downloads";
+import OakError from "@/errors/OakError";
+import type { ZipHelpers } from "@/node-lib/curriculum-resources-downloads";
+import { createMockGcsHelpers } from "@/node-lib/curriculum-resources-downloads/gcs/gcsHelpers.mocks";
 import curriculumResourceLessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumResourceLessonDownloads.fixture";
 import curriculumResourceAdditionalAssetFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumResourceAdditionalAsset.fixture";
 
 const lesson = curriculumResourceLessonDownloadsFixture();
 const additionalAssets = [curriculumResourceAdditionalAssetFixture()];
 
-const mockGcsHelpers: GCSHelpers = {
-  checkFileExistsInBucket: jest.fn().mockResolvedValue(false),
-  checkFileExistsAndGetSize: jest.fn().mockResolvedValue({
-    exists: false,
-    fileSize: undefined,
-  }),
-  getFileSize: jest.fn().mockResolvedValue("10MB"),
-  getSignedUrl: jest.fn().mockImplementation(async ({ gcsFilePath }) => {
-    return `https://signed-url.com/${gcsFilePath}`;
-  }),
-  fetchResourceAsBuffer: jest.fn().mockResolvedValue(Buffer.from("test")),
-  uploadBuffer: jest.fn().mockResolvedValue(undefined),
-};
+const mockGcsHelpers = createMockGcsHelpers();
 
 const mockZipHelpers: ZipHelpers = {
-  createZipFromFiles: jest.fn().mockResolvedValue(Buffer.from("zip-content")),
+  getOrCreateZip: jest
+    .fn()
+    .mockImplementation(async ({ getSignedUrlForZip, zipFilePath }) =>
+      getSignedUrlForZip(zipFilePath),
+    ),
+  getZipFilePath: jest.fn().mockImplementation(({ fileName }) => {
+    return `lesson-zips/${fileName}`;
+  }),
 };
 
 const defaultParams: DownloadParams = {
@@ -45,7 +40,6 @@ const deps: DownloadDependencies = {
   gcsHelpers: mockGcsHelpers,
   zipHelpers: mockZipHelpers,
   gcsBucketNameForZips: "bucket--lesson-download-zips",
-  gcsDirForLessonZips: "lesson-zips",
 };
 
 function makeUpdatedAtLater(dateStr: string): string {
@@ -61,7 +55,7 @@ describe("lessonDownloadHandler", () => {
     );
   });
 
-  test("throws notFound if all requested resources don't exist on lesson", async () => {
+  test("throws OakError if all requested resources don't exist on lesson", async () => {
     /**
      * This test is for when no resources are found on the lesson. We treat it
      * as though the lesson does not exist.
@@ -91,12 +85,10 @@ describe("lessonDownloadHandler", () => {
         },
         deps,
       ),
-    ).rejects.toMatchObject(
-      notFound(`No (valid) resources found for selection`),
-    );
+    ).rejects.toThrow(OakError);
   });
 
-  test("throws notFound if additional files ids are not specified", async () => {
+  test("throws OakError if additional files ids are not specified", async () => {
     /**
      * This test is for when additional asset ids are not specified.
      */
@@ -126,11 +118,7 @@ describe("lessonDownloadHandler", () => {
         },
         deps,
       ),
-    ).rejects.toMatchObject(
-      notFound(
-        `Specify additional files to download with &additionalFiles=[assetid],[anotherAssetId] parameter in the url or if you did verify whether requested files belong to the lesson`,
-      ),
-    );
+    ).rejects.toThrow(OakError);
   });
 
   test("throws ZodError when selection contains resource types which don't exist for the lesson", async () => {
@@ -222,7 +210,6 @@ describe("lessonDownloadHandler", () => {
     );
 
     expect(url).toContain("https://signed-url.com/");
-    expect(url).toContain("lesson-zips/test-lesson");
     expect(invalidResources).toContain("slidedeck--pptx");
   });
 
@@ -315,30 +302,44 @@ describe("lessonDownloadHandler", () => {
   });
 
   test("returns cached zip when it already exists", async () => {
-    (mockGcsHelpers.checkFileExistsInBucket as jest.Mock).mockResolvedValue(
-      true,
+    (mockZipHelpers.getOrCreateZip as jest.Mock).mockImplementationOnce(
+      async ({ getSignedUrlForZip, zipFilePath }) => {
+        // Simulate cache hit - just return signed URL without creating
+        return getSignedUrlForZip(zipFilePath);
+      },
     );
 
     const { url } = await downloadHandler(defaultParams, deps);
 
     expect(url).toContain("https://signed-url.com/");
-    expect(mockZipHelpers.createZipFromFiles).not.toHaveBeenCalled();
-    expect(mockGcsHelpers.uploadBuffer).not.toHaveBeenCalled();
+    expect(mockZipHelpers.getOrCreateZip).toHaveBeenCalled();
   });
 
   test("creates and uploads zip when it does not exist", async () => {
-    (mockGcsHelpers.checkFileExistsInBucket as jest.Mock).mockResolvedValue(
-      false,
+    let capturedFileList: unknown[] = [];
+    let capturedWriteStream: Writable | undefined;
+
+    (mockZipHelpers.getOrCreateZip as jest.Mock).mockImplementationOnce(
+      async ({
+        fileList,
+        zipFileWriteStream,
+        getSignedUrlForZip,
+        zipFilePath,
+      }) => {
+        capturedFileList = fileList;
+        capturedWriteStream = zipFileWriteStream;
+        return getSignedUrlForZip(zipFilePath);
+      },
     );
 
     await downloadHandler(defaultParams, deps);
 
-    expect(mockGcsHelpers.fetchResourceAsBuffer).toHaveBeenCalled();
-    expect(mockZipHelpers.createZipFromFiles).toHaveBeenCalled();
-    expect(mockGcsHelpers.uploadBuffer).toHaveBeenCalledWith(
+    expect(mockZipHelpers.getOrCreateZip).toHaveBeenCalled();
+    expect(capturedFileList.length).toBeGreaterThan(0);
+    expect(capturedWriteStream).toBeDefined();
+    expect(mockGcsHelpers.getFileWriteStream).toHaveBeenCalledWith(
       expect.objectContaining({
         gcsBucketName: "bucket--lesson-download-zips",
-        contentType: "application/zip",
       }),
     );
   });
@@ -355,6 +356,15 @@ describe("lessonDownloadHandler", () => {
       ],
     });
 
+    let capturedFileList: Array<{ gcsFilePath: string }> = [];
+
+    (mockZipHelpers.getOrCreateZip as jest.Mock).mockImplementationOnce(
+      async ({ fileList, getSignedUrlForZip, zipFilePath }) => {
+        capturedFileList = fileList;
+        return getSignedUrlForZip(zipFilePath);
+      },
+    );
+
     await downloadHandler(
       {
         ...defaultParams,
@@ -366,11 +376,9 @@ describe("lessonDownloadHandler", () => {
       deps,
     );
 
-    expect(mockGcsHelpers.fetchResourceAsBuffer).toHaveBeenCalledWith(
-      expect.objectContaining({
-        gcsFilePath: "additional/file.mp3",
-        gcsBucketName: "bucket--ingested-assets",
-      }),
+    const additionalFile = capturedFileList.find((f) =>
+      f.gcsFilePath.includes("additional"),
     );
+    expect(additionalFile).toBeDefined();
   });
 });
