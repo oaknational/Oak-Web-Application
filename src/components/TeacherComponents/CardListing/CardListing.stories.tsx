@@ -117,6 +117,7 @@ export const Customisable: Story = {
         "isHighlighted",
         "showSave",
         "tags",
+        "disabled",
       ],
     },
   },
@@ -186,6 +187,14 @@ export const Vertical: Story = {
         <OakTypography $font={"heading-5"}>Without save button</OakTypography>
         <CardListing {...args} layoutVariant="vertical" saveProps={undefined} />
       </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"}>Disabled</OakTypography>
+        <CardListing {...args} layoutVariant="vertical" disabled />
+      </OakFlex>
     </OakFlex>
   ),
   args: defaultArgs,
@@ -238,6 +247,10 @@ export const Horizontal: Story = {
           layoutVariant="horizontal"
           saveProps={undefined}
         />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Disabled</OakTypography>
+        <CardListing {...args} layoutVariant="horizontal" disabled />
       </OakFlex>
     </OakFlex>
   ),

@@ -23,10 +23,18 @@ type CardListingProps = {
     unitTitle: string;
     programmeSlug: string;
   };
+  disabled?: boolean;
 };
 
 const CardListing = (props: CardListingProps) => {
-  const { layoutVariant, isHighlighted, lessonCount, saveProps, href } = props;
+  const {
+    layoutVariant,
+    isHighlighted,
+    lessonCount,
+    saveProps,
+    href,
+    disabled,
+  } = props;
 
   const showSave = saveProps !== undefined;
   const showFooter = lessonCount !== undefined || showSave;
@@ -35,7 +43,13 @@ const CardListing = (props: CardListingProps) => {
     <OakFlex
       $borderRadius={"border-radius-m2"}
       $background={isHighlighted ? "bg-inverted" : "bg-primary"}
-      $color={isHighlighted ? "text-inverted" : "text-primary"}
+      $color={
+        disabled
+          ? "text-disabled"
+          : isHighlighted
+            ? "text-inverted"
+            : "text-primary"
+      }
       $pa={"spacing-20"}
       $gap={"spacing-20"}
       $flexDirection={layoutVariant === "horizontal" ? "row" : "column"}
@@ -43,7 +57,7 @@ const CardListing = (props: CardListingProps) => {
     >
       {layoutVariant === "horizontal" ? (
         <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
-          <StyledLink href={href}>
+          <StyledLink href={href} disabled={disabled}>
             <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
               <Index {...props} />
               <OakFlex
@@ -68,6 +82,7 @@ const CardListing = (props: CardListingProps) => {
               {showSave && (
                 <SaveUnitButton
                   buttonVariant={isHighlighted ? "inverted" : "default"}
+                  disabled={disabled}
                   {...saveProps}
                 />
               )}
@@ -82,7 +97,7 @@ const CardListing = (props: CardListingProps) => {
           $height={"100%"}
           $justifyContent={"space-between"}
         >
-          <StyledLink href={href}>
+          <StyledLink href={href} disabled={disabled}>
             <OakFlex $gap={"spacing-20"} $flexDirection={"column"}>
               <Index {...props} />
               <Title {...props} />
@@ -96,6 +111,7 @@ const CardListing = (props: CardListingProps) => {
               {showSave && (
                 <SaveUnitButton
                   buttonVariant={isHighlighted ? "inverted" : "default"}
+                  disabled={disabled}
                   {...saveProps}
                 />
               )}
@@ -109,10 +125,16 @@ const CardListing = (props: CardListingProps) => {
 
 export default CardListing;
 
-const Title = ({ title, isHighlighted }: CardListingProps) => {
+const Title = ({ title, isHighlighted, disabled }: CardListingProps) => {
   return (
     <OakTypography
-      $color={isHighlighted ? "text-inverted" : "text-primary"}
+      $color={
+        disabled
+          ? "text-disabled"
+          : isHighlighted
+            ? "text-inverted"
+            : "text-primary"
+      }
       $font={"heading-7"}
       className="card-listing-header"
     >
@@ -132,10 +154,16 @@ const StyledLink = styled(OakSecondaryLink)`
   }
 `;
 
-const Index = ({ index, isHighlighted }: CardListingProps) => {
+const Index = ({ index, isHighlighted, disabled }: CardListingProps) => {
   return (
     <OakTypography
-      $color={isHighlighted ? "text-inverted" : "text-primary"}
+      $color={
+        disabled
+          ? "text-disabled"
+          : isHighlighted
+            ? "text-inverted"
+            : "text-primary"
+      }
       $font={"heading-7"}
     >
       {index}
@@ -143,7 +171,7 @@ const Index = ({ index, isHighlighted }: CardListingProps) => {
   );
 };
 
-const CardTags = ({ tags }: CardListingProps) => {
+const CardTags = ({ tags, disabled }: CardListingProps) => {
   return tags ? (
     <OakFlex
       $flexWrap={"wrap"}
@@ -158,31 +186,47 @@ const CardTags = ({ tags }: CardListingProps) => {
           $background={"bg-neutral"}
           isTrailingIcon
           iconName={tag.icon}
-          $color={"text-primary"}
+          $color={disabled ? "text-disabled" : "text-primary"}
         />
       ))}
     </OakFlex>
   ) : null;
 };
 
-const SubCopy = ({ subcopy, isHighlighted }: CardListingProps) => {
+const SubCopy = ({ subcopy, isHighlighted, disabled }: CardListingProps) => {
   return subcopy ? (
     <OakTypography
       $font={"body-2"}
-      $color={isHighlighted ? "text-inverted" : "text-subdued"}
+      $color={
+        disabled
+          ? "text-disabled"
+          : isHighlighted
+            ? "text-inverted"
+            : "text-subdued"
+      }
     >
       {subcopy}
     </OakTypography>
   ) : null;
 };
 
-const LessonCount = ({ lessonCount, isHighlighted }: CardListingProps) => {
+const LessonCount = ({
+  lessonCount,
+  isHighlighted,
+  disabled,
+}: CardListingProps) => {
   return lessonCount === undefined ? null : (
     <OakTypography
       $font={"heading-light-7"}
       $width={"max-content"}
       $textWrap={"nowrap"}
-      $color={isHighlighted ? "text-inverted" : "text-subdued"}
+      $color={
+        disabled
+          ? "text-disabled"
+          : isHighlighted
+            ? "text-inverted"
+            : "text-subdued"
+      }
     >
       {lessonCount + " lesson" + (lessonCount === 1 ? "" : "s")}
     </OakTypography>

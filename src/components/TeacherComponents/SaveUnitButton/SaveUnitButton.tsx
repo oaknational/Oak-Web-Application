@@ -12,6 +12,7 @@ type SaveButtonProps = {
   programmeSlug: string;
   unitSlug: string;
   unitTitle: string;
+  disabled?: boolean;
 };
 
 const StyledSmallPrimaryButton = styled(OakSmallPrimaryButton)`
@@ -33,6 +34,7 @@ export const SaveUnitButton = ({
   programmeSlug,
   unitSlug,
   unitTitle,
+  disabled,
 }: SaveButtonProps) => {
   const { isUnitSaved, onSaveToggle, isUnitSaving } = useSaveUnits(
     programmeSlug,
@@ -51,7 +53,7 @@ export const SaveUnitButton = ({
       : ("bookmark-outlined" as OakIconName),
     isTrailingIcon: true,
     "aria-disabled": isUnitSaving(unitSlug),
-    disabled: false, // todo: unavailable
+    disabled,
     onClick: () => onSaveToggle(unitSlug),
     $justifyContent: "end",
     "aria-label": `${isUnitSaved(unitSlug) ? "Unsave" : "Save"} this unit: ${unitTitle} `,
