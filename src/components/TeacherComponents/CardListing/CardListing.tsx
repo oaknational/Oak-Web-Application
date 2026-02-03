@@ -21,7 +21,7 @@ type CardListingProps = {
 };
 
 const CardListing = (props: CardListingProps) => {
-  const { layoutVariant, isHighlighted } = props;
+  const { layoutVariant, isHighlighted, lessonCount, showSave } = props;
   return (
     <OakFlex
       $borderRadius={"border-radius-m2"}
@@ -67,9 +67,11 @@ const CardListing = (props: CardListingProps) => {
               <CardTags {...props} />
             </OakFlex>
           </StyledLink>
-          <OakFlex $justifyContent={"space-between"}>
-            <LessonCount {...props} /> <SaveButton {...props} />
-          </OakFlex>
+          {(lessonCount !== undefined || showSave) && (
+            <OakFlex $justifyContent={"space-between"} $alignItems={"center"}>
+              <LessonCount {...props} /> <SaveButton {...props} />
+            </OakFlex>
+          )}
         </OakFlex>
       )}
     </OakFlex>
@@ -116,29 +118,51 @@ const SaveButton = ({ showSave, isHighlighted }: CardListingProps) => {
   const isSaved = false;
   const onSave = () => console.log("save");
   const unavailable = false;
-  const saveButtonId = "1";
   const title = "unit 1";
   const isLoading = false;
 
-  const ButtonVariant = isHighlighted
-    ? OakSmallPrimaryButton
-    : OakSmallTertiaryInvertedButton;
+  const StyledSmallPrimaryButton = styled(OakSmallPrimaryButton)`
+    span {
+      font-weight: unset;
+      font-size: unset;
+    }
+    button {
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  `;
+
+  const buttonProps = {
+    iconName: isSaved
+      ? "bookmark-filled"
+      : ("bookmark-outlined" as OakIconName),
+    isTrailingIcon: true,
+    "aria-disabled": isLoading,
+    disabled: unavailable,
+    onClick: onSave,
+    $justifyContent: "end",
+    "aria-label": `${isSaved ? "Unsave" : "Save"} this unit: ${title} `,
+  };
 
   return showSave ? (
-    <OakFlex $alignSelf={"flex-end"} $flexDirection={"column"}>
-      <ButtonVariant
-        iconName={isSaved ? "bookmark-filled" : "bookmark-outlined"}
-        isTrailingIcon
-        aria-disabled={isLoading}
-        disabled={unavailable}
-        onClick={onSave}
-        width="spacing-100"
-        $justifyContent="end"
-        aria-label={`${isSaved ? "Unsave" : "Save"} this unit: ${title} `}
-        id={saveButtonId}
-      >
-        {isSaved ? "Saved" : "Save"}
-      </ButtonVariant>
+    <OakFlex
+      $alignSelf={"flex-end"}
+      $flexDirection={"column"}
+      $height={"spacing-32"}
+      $justifyContent={"center"}
+      $font={"heading-light-7"}
+    >
+      {isHighlighted ? (
+        <StyledSmallPrimaryButton {...buttonProps}>
+          {isSaved ? "Saved" : "Save"}
+        </StyledSmallPrimaryButton>
+      ) : (
+        <OakSmallTertiaryInvertedButton {...buttonProps}>
+          {isSaved ? "Saved" : "Save"}
+        </OakSmallTertiaryInvertedButton>
+      )}
     </OakFlex>
   ) : null;
 };
@@ -172,7 +196,7 @@ const SubCopy = ({ subcopy, isHighlighted }: CardListingProps) => {
 };
 
 const LessonCount = ({ lessonCount, isHighlighted }: CardListingProps) => {
-  return lessonCount ? (
+  return lessonCount !== undefined ? (
     <OakTypography
       $font={"heading-light-7"}
       $width={"max-content"}
