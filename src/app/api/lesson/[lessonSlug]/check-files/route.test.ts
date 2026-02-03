@@ -4,8 +4,6 @@
 import { GET } from "./route";
 import checkFilesHandler from "./check-files.handler";
 
-import { createMockGcsHelpers } from "@/node-lib/curriculum-resources-downloads/gcs/gcsHelpers.mocks";
-
 const mockNextResponseJson = jest.fn().mockImplementation((data, init) => ({
   status: init?.status ?? 200,
   json: async () => data,
@@ -34,6 +32,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
 
 jest.mock("@/node-lib/curriculum-resources-downloads", () => {
   const reporterMock = jest.fn();
+  const OakError = jest.requireActual("@/errors/OakError").default;
   return {
     DownloadSearchParamsSchema: {
       parse: jest.fn((params) => params),
@@ -43,16 +42,23 @@ jest.mock("@/node-lib/curriculum-resources-downloads", () => {
       additionalFiles:
         searchParams.get("additionalFiles")?.split(",") ?? undefined,
     })),
-    getGCSHelpers: createMockGcsHelpers({
+    getGCSHelpers: jest.fn(() => ({
       checkFileExistsInBucket: jest.fn().mockResolvedValue(true),
       getFileSize: jest.fn().mockResolvedValue("10MB"),
       getSignedUrl: jest.fn().mockResolvedValue("https://signed-url.com"),
-    }),
+    })),
     storage: {},
     createDownloadsErrorReporter: jest.fn(() => reporterMock),
     checkDownloadAuthorization: jest
       .fn()
       .mockResolvedValue({ authorized: true, user: null }),
+    isOakError: (error: unknown) => error instanceof OakError,
+    oakErrorToResponse: (error: InstanceType<typeof OakError>) => {
+      return mockNextResponseJson(
+        { error: { message: error.message } },
+        { status: error.config.responseStatusCode ?? 500 },
+      );
+    },
     __mockReportError: reporterMock,
   };
 });
