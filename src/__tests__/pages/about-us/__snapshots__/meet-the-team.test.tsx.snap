@@ -6458,7 +6458,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </div>
                   <div
                     class="c197 c198"
-                    x="oaknational"
                   >
                     <div
                       class="c47 c48 c199 c200"
@@ -6540,44 +6539,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c47 c48 c199 c200"
                     >
                       <a
-                        aria-label="x for Oak National Academy"
-                        class="c50 c51"
-                        href="https://x.com/oaknational"
-                      >
-                        <div
-                          class="c11 c52"
-                        >
-                          <div
-                            class="c201 c54 icon-container"
-                          >
-                            <div
-                              class="c202 shadow"
-                            />
-                            <div
-                              class="c24"
-                              data-icon-for="button"
-                            >
-                              <img
-                                alt=""
-                                class="c69"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1748452854/icons/x_fpmv5f.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
-                          <span
-                            class="c57"
-                          />
-                        </div>
-                      </a>
-                    </div>
-                    <div
-                      class="c47 c48 c199 c200"
-                    >
-                      <a
                         aria-label="linkedIn for Oak National Academy"
                         class="c50 c51"
                         href="https://www.linkedin.com/company/oak-national-academy"
@@ -6637,7 +6598,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             >
               <div
                 class="c207 c208"
-                x="oaknational"
               >
                 <div
                   class="c47 c48 c199 c200"
@@ -6705,44 +6665,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             decoding="async"
                             loading="lazy"
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
-                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                          />
-                        </div>
-                      </div>
-                      <span
-                        class="c57"
-                      />
-                    </div>
-                  </a>
-                </div>
-                <div
-                  class="c47 c48 c199 c200"
-                >
-                  <a
-                    aria-label="x for Oak National Academy"
-                    class="c50 c51"
-                    href="https://x.com/oaknational"
-                  >
-                    <div
-                      class="c11 c52"
-                    >
-                      <div
-                        class="c201 c54 icon-container"
-                      >
-                        <div
-                          class="c202 shadow"
-                        />
-                        <div
-                          class="c24"
-                          data-icon-for="button"
-                        >
-                          <img
-                            alt=""
-                            class="c69"
-                            data-nimg="fill"
-                            decoding="async"
-                            loading="lazy"
-                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1748452854/icons/x_fpmv5f.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
                         </div>
