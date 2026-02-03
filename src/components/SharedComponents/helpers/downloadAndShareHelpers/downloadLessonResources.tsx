@@ -8,13 +8,11 @@ const downloadLessonResources = async ({
   selectedResourceTypes,
   selectedAdditionalFilesIds,
   isLegacyDownload,
-  authToken,
 }: {
   lessonSlug: string;
   selectedResourceTypes: (DownloadResourceType | "worksheet-pdf-questions")[]; // FIXME: a new solution is required for types which are shared across different journeys . Also should the downloads schemas be added to oak-curriculum schema?
   selectedAdditionalFilesIds?: number[];
   isLegacyDownload: boolean;
-  authToken?: string | null;
 }) => {
   if (selectedResourceTypes?.length === 0) {
     console.log("no resources to download");
@@ -29,7 +27,6 @@ const downloadLessonResources = async ({
     selection,
     additionalFilesIdsSelection,
     isLegacyDownload,
-    authToken,
   });
 
   if (downloadResourcesLink) {

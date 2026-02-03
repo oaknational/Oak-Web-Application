@@ -147,24 +147,6 @@ describe("createLessonDownloadLink()", () => {
       process.env = originalEnv;
     }
   });
-  it("should fetch with correct headers including Authorization when authToken is provided", async () => {
-    const authToken = "testToken";
-    await createLessonDownloadLink({
-      lessonSlug: "lesson-slug",
-      selection: "exit-quiz-answers,worksheet-pdf",
-      isLegacyDownload: true,
-      authToken,
-    });
-
-    expect(global.fetch).toBeCalledWith(
-      expect.any(String),
-      expect.objectContaining({
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      }),
-    );
-  });
 
   it("should not throw an error if no auth token provided", async () => {
     expect(async () => {
@@ -172,7 +154,6 @@ describe("createLessonDownloadLink()", () => {
         lessonSlug: "lesson-slug",
         selection: "exit-quiz-answers,worksheet-pdf",
         isLegacyDownload: true,
-        authToken: null,
       });
     }).not.toThrow();
   });
