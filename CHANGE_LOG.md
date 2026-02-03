@@ -1,3 +1,30 @@
+# [1.972.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.971.0...v1.972.0) (2026-02-03)
+
+
+### Bug Fixes
+
+* don't export getCachedProgrammeData ([7114e21](https://github.com/oaknational/Oak-Web-Application/commit/7114e2124b0d60beb1a0fdaa20a6779d8c86157f))
+* german illustration pointing at french 🤦‍♂️ ([4316c7f](https://github.com/oaknational/Oak-Web-Application/commit/4316c7f26f5f4af483c6020e5602557a91fd0ee8))
+* handle manual browser navigation between tabs ([8b89fc7](https://github.com/oaknational/Oak-Web-Application/commit/8b89fc756747d25d89729ba0a8c3a65dc7d11e23))
+* move oakTabs out of programme header footer slot ([1d3f766](https://github.com/oaknational/Oak-Web-Application/commit/1d3f766e390197952cfa56005a6b21fd25b71d51))
+* pageprops not recognised in vercel build ([2b1ed32](https://github.com/oaknational/Oak-Web-Application/commit/2b1ed321d073f6304423aac09ba9164315c21ae5))
+* refactor max width and padding to ensure components are aligned ([c11696b](https://github.com/oaknational/Oak-Web-Application/commit/c11696b07a0a99d8d0252edd98928d00c06d680d))
+* revert programme header layout change ([d346502](https://github.com/oaknational/Oak-Web-Application/commit/d346502a92e13461c643ff2cf61e038a9ffd525e))
+* type the tab names properly ([e19d4ff](https://github.com/oaknational/Oak-Web-Application/commit/e19d4ffbf73b49534fab42b7b7420af0d359c8d2))
+* use native history for nav to prevent trips to server and maintain ([97d4ef8](https://github.com/oaknational/Oak-Web-Application/commit/97d4ef8e27af567a6490c93b16639d3789ef2e9f))
+
+
+### Features
+
+* add `ProgrammeHeader` ([1388114](https://github.com/oaknational/Oak-Web-Application/commit/138811441628f27b49baf9b9aa60ab867976d56d))
+* add nav on tab click ([6276dc8](https://github.com/oaknational/Oak-Web-Application/commit/6276dc8953fdbb190a537e3bcce4e1fcbd88eb72))
+* add tabs selection functionality ([f40e3e2](https://github.com/oaknational/Oak-Web-Application/commit/f40e3e22b69520a9196ceb37626cb2dda5b547c2))
+* display selected subject from filters when possible ([67fcc55](https://github.com/oaknational/Oak-Web-Application/commit/67fcc5548f1fe75439ddb994ccedd582bb179dc6))
+* redirect to units tab when invalid tab slug is entered ([fad1f1b](https://github.com/oaknational/Oak-Web-Application/commit/fad1f1bcab530fc5c87fe368bc83a7edfb494e95))
+* use heading-4 for mobile ([fb1413f](https://github.com/oaknational/Oak-Web-Application/commit/fb1413f4155b44ca95b4443b252f63c48ef79b7d))
+* use TabOption to define params for tabs ([7b461cd](https://github.com/oaknational/Oak-Web-Application/commit/7b461cdc358189c059abd7128fa75e525ea80e23))
+* wire the programme header up to the page ([68c04f6](https://github.com/oaknational/Oak-Web-Application/commit/68c04f6a250b1a2161111d83953def0adc7fa3ec))
+
 # [1.971.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.970.2...v1.971.0) (2026-02-03)
 
 
