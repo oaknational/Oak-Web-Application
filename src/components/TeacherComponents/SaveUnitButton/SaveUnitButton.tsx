@@ -52,8 +52,8 @@ export const SaveUnitButton = ({
       ? "bookmark-filled"
       : ("bookmark-outlined" as OakIconName),
     isTrailingIcon: true,
-    "aria-disabled": isUnitSaving(unitSlug),
-    disabled,
+    "aria-disabled": disabled || isUnitSaving(unitSlug),
+    disabled: disabled || isUnitSaving(unitSlug),
     onClick: () => onSaveToggle(unitSlug),
     $justifyContent: "end",
     "aria-label": `${isUnitSaved(unitSlug) ? "Unsave" : "Save"} this unit: ${unitTitle} `,
