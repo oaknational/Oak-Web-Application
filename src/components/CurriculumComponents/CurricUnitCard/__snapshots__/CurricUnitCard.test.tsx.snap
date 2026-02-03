@@ -4,7 +4,7 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-fiCwlc ioKvvK fSFaQB"
+      class="sc-aXZVg sc-kMkxaj ioKvvK hImOLL"
     >
       <a
         class="sc-b7bf0004-0 fsARVh"
@@ -81,7 +81,7 @@ exports[`CurricUnitCard highlighted state 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-fiCwlc ioKvvK fSFaQB"
+      class="sc-aXZVg sc-kMkxaj ioKvvK hImOLL"
     >
       <a
         class="sc-b7bf0004-0 cwLwDX"
@@ -163,7 +163,7 @@ exports[`CurricUnitCard index is correct 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-fiCwlc ioKvvK fSFaQB"
+      class="sc-aXZVg sc-kMkxaj ioKvvK hImOLL"
     >
       <a
         class="sc-b7bf0004-0 fsARVh"
@@ -240,7 +240,7 @@ exports[`CurricUnitCard render 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-fiCwlc ioKvvK fSFaQB"
+      class="sc-aXZVg sc-kMkxaj ioKvvK hImOLL"
     >
       <a
         class="sc-b7bf0004-0 fsARVh"
