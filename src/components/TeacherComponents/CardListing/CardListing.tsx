@@ -22,6 +22,8 @@ type CardListingProps = {
 
 const CardListing = (props: CardListingProps) => {
   const { layoutVariant, isHighlighted, lessonCount, showSave } = props;
+  const showFooter = lessonCount !== undefined || showSave;
+
   return (
     <OakFlex
       $borderRadius={"border-radius-m2"}
@@ -44,21 +46,29 @@ const CardListing = (props: CardListingProps) => {
               >
                 <Title {...props} />
                 <SubCopy {...props} />
-                <OakFlex
-                  $justifyContent={"space-between"}
-                  $alignItems={"flex-end"}
-                >
-                  <CardTags {...props} />
-                  <LessonCount {...props} />
-                </OakFlex>
+                <CardTags {...props} />
               </OakFlex>
             </OakFlex>
           </StyledLink>
-          <SaveButton {...props} />
+          {showFooter && (
+            <OakFlex
+              $alignItems={"center"}
+              $alignSelf={"flex-end"}
+              $font={"heading-light-7"}
+              $gap={"spacing-20"}
+            >
+              <LessonCount {...props} /> <SaveButton {...props} />
+            </OakFlex>
+          )}
         </OakFlex>
       ) : (
         // Vertical Layout
-        <OakFlex $flexDirection={"column"} $gap={"spacing-20"}>
+        <OakFlex
+          $flexDirection={"column"}
+          $gap={"spacing-20"}
+          $height={"100%"}
+          $justifyContent={"space-between"}
+        >
           <StyledLink href="">
             <OakFlex $gap={"spacing-20"} $flexDirection={"column"}>
               <Index {...props} />
@@ -67,7 +77,7 @@ const CardListing = (props: CardListingProps) => {
               <CardTags {...props} />
             </OakFlex>
           </StyledLink>
-          {(lessonCount !== undefined || showSave) && (
+          {showFooter && (
             <OakFlex $justifyContent={"space-between"} $alignItems={"center"}>
               <LessonCount {...props} /> <SaveButton {...props} />
             </OakFlex>
@@ -94,6 +104,7 @@ const Title = ({ title, isHighlighted }: CardListingProps) => {
 
 const StyledLink = styled(OakSecondaryLink)`
   width: 100%;
+  height: 100%;
   &:hover {
     text-decoration: none;
     .card-listing-header {
@@ -131,6 +142,7 @@ const SaveButton = ({ showSave, isHighlighted }: CardListingProps) => {
       padding-bottom: 0;
       padding-left: 0;
       padding-right: 0;
+      border: none;
     }
   `;
 
@@ -147,29 +159,26 @@ const SaveButton = ({ showSave, isHighlighted }: CardListingProps) => {
   };
 
   return showSave ? (
-    <OakFlex
-      $alignSelf={"flex-end"}
-      $flexDirection={"column"}
-      $height={"spacing-32"}
-      $justifyContent={"center"}
-      $font={"heading-light-7"}
-    >
-      {isHighlighted ? (
-        <StyledSmallPrimaryButton {...buttonProps}>
-          {isSaved ? "Saved" : "Save"}
-        </StyledSmallPrimaryButton>
-      ) : (
-        <OakSmallTertiaryInvertedButton {...buttonProps}>
-          {isSaved ? "Saved" : "Save"}
-        </OakSmallTertiaryInvertedButton>
-      )}
-    </OakFlex>
+    isHighlighted ? (
+      <StyledSmallPrimaryButton {...buttonProps}>
+        {isSaved ? "Saved" : "Save"}
+      </StyledSmallPrimaryButton>
+    ) : (
+      <OakSmallTertiaryInvertedButton {...buttonProps}>
+        {isSaved ? "Saved" : "Save"}
+      </OakSmallTertiaryInvertedButton>
+    )
   ) : null;
 };
 
 const CardTags = ({ tags }: CardListingProps) => {
   return tags ? (
-    <OakFlex $flexWrap={"wrap"} $width={"100%"} $gap={"spacing-8"}>
+    <OakFlex
+      $flexWrap={"wrap"}
+      $width={"100%"}
+      $gap={"spacing-8"}
+      $pb={"spacing-8"}
+    >
       {tags.map((tag) => (
         <OakTagFunctional
           key={tag.label}
