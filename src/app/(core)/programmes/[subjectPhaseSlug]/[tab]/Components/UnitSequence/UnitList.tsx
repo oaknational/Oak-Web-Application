@@ -79,7 +79,7 @@ export function ProgrammeUnitList({
           {getSubjectCategoryMessage(yearData, year, filters.subjectCategories)}
         </OakP>
       )}
-      {units.map(getItems)}
+      {units.map((unit, index) => getItems(unit, index))}
     </OakGrid>
   );
 }
