@@ -1422,6 +1422,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: unset;
   outline: none;
   font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
   color: #222222;
   background: #ffffff;
   padding-left: 0.5rem;
@@ -4833,7 +4840,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     <span
                       class="c39"
                     >
-                      Sign up
+                      Sign in
                     </span>
                   </div>
                 </button>
