@@ -1,27 +1,28 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
-import { Metadata } from "next";
-import React, { cache } from "react";
 import { uniq } from "lodash";
+import { Metadata } from "next";
+import { cache } from "react";
 
 import { ProgrammeView } from "./Components/ProgrammeView";
+import { isTabSlug } from "./tabSchema";
 import { getProgrammeData } from "./getProgrammeData";
 
-import {
-  getKs4RedirectSlug,
-  isValidSubjectPhaseSlug,
-} from "@/utils/curriculum/slugs";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import OakError from "@/errors/OakError";
-import CMSClient from "@/node-lib/cms";
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
-import { useFeatureFlag } from "@/utils/featureFlags";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
+import OakError from "@/errors/OakError";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import {
+  isValidSubjectPhaseSlug,
+  getKs4RedirectSlug,
+} from "@/utils/curriculum/slugs";
 import errorReporter from "@/common-lib/error-reporter";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
+import { useFeatureFlag } from "@/utils/featureFlags";
+import CMSClient from "@/node-lib/cms";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -31,7 +32,7 @@ const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) => {
   return getProgrammeData(curriculumApi2023, subjectPhaseSlug);
 });
 
-type ProgrammePageParams = { subjectPhaseSlug: string };
+type ProgrammePageParams = { subjectPhaseSlug: string; tab: string };
 
 export async function generateMetadata({
   params,
@@ -125,9 +126,11 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   if (!isEnabled) {
     return notFound();
   }
+  const { subjectPhaseSlug, tab } = await props.params;
 
-  const { subjectPhaseSlug } = await props.params;
-
+  if (!isTabSlug(tab)) {
+    return redirect("units");
+  }
   const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
 
   if (!cachedData) {
@@ -146,7 +149,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     validSubjectPhases,
     subjectPhaseKeystageSlugs,
   );
-
   if (!isValid) {
     const redirectParams = getKs4RedirectSlug(
       validSubjectPhases,
@@ -156,7 +158,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
       const { subjectSlug, phaseSlug, ks4OptionSlug } = redirectParams;
 
       return redirect(
-        `/programmes/${subjectSlug}-${phaseSlug}-${ks4OptionSlug}`,
+        `/programmes/${subjectSlug}-${phaseSlug}-${ks4OptionSlug}/${tab}`,
         RedirectType.replace,
       );
     } else {
@@ -198,6 +200,16 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     .flatMap((subject) => subject.ks4_options)
     .find((ks4opt) => ks4opt?.slug === subjectPhaseKeystageSlugs.ks4OptionSlug);
 
+  const subjectForLayout = curriculumPhaseOptions.subjects.find(
+    (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
+  );
+
+  if (!subjectForLayout) {
+    throw new Error(
+      "Selected subject not found in curriculumPhaseOptions for programme page",
+    );
+  }
+
   const results = {
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
     curriculumPhaseOptions,
@@ -206,6 +218,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     examboardTitle: ks4Option?.title,
     curriculumUnitsFormattedData,
     subjectPhaseSanityData,
+    tabSlug: tab,
   };
 
   return <ProgrammeView {...results} />;
