@@ -1,8 +1,11 @@
 import { FC } from "react";
-import { OakHeading, OakP, OakFlex, OakBox } from "@oaknational/oak-components";
-
-import Button from "@/components/SharedComponents/Button";
-import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
+import {
+  OakHeading,
+  OakP,
+  OakFlex,
+  OakBox,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
 
 export type ResourcePageDetailsCompletedProps = {
   email?: string;
@@ -31,9 +34,9 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
       $height={"max-content"}
       $position="relative"
       $background="bg-neutral-stronger"
+      $borderRadius={"border-radius-m"}
       data-testid="details-completed"
     >
-      <BrushBorders color="grey30" />
       <OakFlex
         $flexDirection="column"
         $gap="spacing-24"
@@ -58,18 +61,18 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
             <OakP $font={"body-2"}>{email ? email : "Not provided"}</OakP>
           </OakFlex>
         </OakFlex>
-        <Button
-          label="Edit"
-          variant="minimal"
-          icon="edit"
-          $iconPosition="trailing"
-          iconBackground="black"
-          onClick={() => {
-            onEditClick();
-          }}
-          $mt={8}
-          aria-label="Edit details"
-        />
+        <OakBox $mt="spacing-8">
+          <OakPrimaryButton
+            iconName="edit"
+            isTrailingIcon
+            onClick={() => {
+              onEditClick();
+            }}
+            aria-label="Edit details"
+          >
+            Edit
+          </OakPrimaryButton>
+        </OakBox>
       </OakFlex>
     </OakBox>
   );
