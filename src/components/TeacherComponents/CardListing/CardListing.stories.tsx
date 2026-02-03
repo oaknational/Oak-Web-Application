@@ -3,17 +3,58 @@ import {
   oakDefaultTheme,
   OakFlex,
   OakThemeProvider,
+  OakTypography,
 } from "@oaknational/oak-components";
+import { ClerkProvider } from "@clerk/nextjs";
+import { ReactNode } from "react";
 
 import CardListing from "./CardListing";
+
+import { saveCountContext } from "@/context/SaveCount/SaveCountProvider";
+import { oakNotificationsContext } from "@/context/OakNotifications/OakNotificationsProvider";
+
+
+const MockSaveCountProvider = ({ children }: { children: ReactNode }) => {
+  const SaveCountProvider = saveCountContext.Provider;
+
+  const value = {
+    savedUnitsCount: 0,
+    incrementSavedUnitsCount: () => console.log("save +1"),
+    decrementSavedUnitsCount: () => console.log("save -1"),
+    setSavedUnitsCount: () => console.log("save units count"),
+  };
+
+  return <SaveCountProvider value={value}>{children}</SaveCountProvider>;
+};
+
+const MockNotificationsProvider = ({ children }: { children: ReactNode }) => {
+  const NotificationsProvider = oakNotificationsContext.Provider;
+
+  const value = {
+    currentToastProps: null,
+    setCurrentToastProps: () => console.log("set toast props"),
+    currentBannerProps: null,
+    setCurrentBannerProps: () => console.log("set banner props"),
+  };
+
+  return (
+    <NotificationsProvider value={value}>{children}</NotificationsProvider>
+  );
+};
 
 const meta: Meta<typeof CardListing> = {
   component: CardListing,
   decorators: [
     (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
+      <ClerkProvider>
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <MockSaveCountProvider>
+            <MockNotificationsProvider>
+              <Story />
+            </MockNotificationsProvider>
+          </MockSaveCountProvider>
+        </OakThemeProvider>
+      </ClerkProvider>
     ),
   ],
   parameters: {
@@ -28,8 +69,6 @@ export default meta;
 const defaultArgs = {
   isHighlighted: false,
   index: 10,
-  title:
-    "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
   subcopy: "Ullamcorper auctor volutpat",
   tags: [
     { label: "Tag 1" },
@@ -41,6 +80,12 @@ const defaultArgs = {
   ],
   showSave: true,
   lessonCount: 10,
+  unitProps: {
+    unitTitle:
+      "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
+    unitSlug: "unit-slug",
+    programmeSlug: "programme-slug",
+  },
 };
 
 type Story = StoryObj<typeof CardListing>;
@@ -78,38 +123,67 @@ export const Customisable: Story = {
 
 export const Vertical: Story = {
   render: (args) => (
-    <OakFlex $gap={"spacing-20"}>
-      <OakFlex $width={"spacing-240"}>
-        <CardListing
-          {...args}
-          title="Vertical layout"
-          layoutVariant="vertical"
-        />
+    <OakFlex $flexWrap={"wrap"} $gap={"spacing-20"}>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"}>Vertical layout</OakTypography>
+        <CardListing {...args} layoutVariant="vertical" />
       </OakFlex>
-      <OakFlex $width={"spacing-240"}>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"}>
+          With no optional props
+        </OakTypography>
         <CardListing
           {...args}
           layoutVariant="vertical"
           subcopy={undefined}
-          title="Without subcopy"
-        />
-      </OakFlex>
-      <OakFlex $width={"spacing-240"}>
-        <CardListing
-          {...args}
-          layoutVariant="vertical"
-          isHighlighted={true}
-          title="Highlighted"
-        />
-      </OakFlex>
-      <OakFlex $width={"spacing-240"}>
-        <CardListing
-          {...args}
-          layoutVariant="vertical"
           showSave={false}
           lessonCount={undefined}
-          title="Without lesson count and save button"
+          tags={undefined}
         />
+      </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"}>With no subcopy</OakTypography>
+        <CardListing {...args} layoutVariant="vertical" subcopy={undefined} />
+      </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"}>Highlighted</OakTypography>
+        <CardListing {...args} layoutVariant="vertical" isHighlighted={true} />
+      </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"}>Without lesson count</OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="vertical"
+          lessonCount={undefined}
+        />
+      </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"}>Without save button</OakTypography>
+        <CardListing {...args} layoutVariant="vertical" showSave={false} />
       </OakFlex>
     </OakFlex>
   ),
@@ -119,30 +193,47 @@ export const Vertical: Story = {
 export const Horizontal: Story = {
   render: (args) => (
     <OakFlex $flexDirection={"column"} $gap={"spacing-20"}>
-      <CardListing
-        {...args}
-        layoutVariant="horizontal"
-        title="Horizontal layout"
-      />
-      <CardListing
-        {...args}
-        layoutVariant="horizontal"
-        subcopy={undefined}
-        title="Without subcopy"
-      />
-      <CardListing
-        {...args}
-        layoutVariant="horizontal"
-        isHighlighted={true}
-        title="Highlighted"
-      />
-      <CardListing
-        {...args}
-        layoutVariant="horizontal"
-        showSave={false}
-        lessonCount={undefined}
-        title="Without lesson count and save button"
-      />
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Horizontal layout</OakTypography>
+        <CardListing {...args} layoutVariant="horizontal" />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>
+          With no optional props
+        </OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          subcopy={undefined}
+          showSave={false}
+          lessonCount={undefined}
+          tags={undefined}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>With no subcopy</OakTypography>
+        <CardListing {...args} layoutVariant="horizontal" subcopy={undefined} />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Highlighted</OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          isHighlighted={true}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Without lesson count</OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          lessonCount={undefined}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Without save button</OakTypography>
+        <CardListing {...args} layoutVariant="horizontal" showSave={false} />
+      </OakFlex>
     </OakFlex>
   ),
   args: defaultArgs,
