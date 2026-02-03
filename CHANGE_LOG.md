@@ -1,3 +1,18 @@
+# [1.971.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.970.2...v1.971.0) (2026-02-03)
+
+
+### Bug Fixes
+
+* user btn avatar width on safari mobile ([5f31b68](https://github.com/oaknational/Oak-Web-Application/commit/5f31b68c2f174d60acc6f1e56a0f8f8c6fd99317))
+
+
+### Features
+
+* add my library and sign in button to teachers subnav ([2effe76](https://github.com/oaknational/Oak-Web-Application/commit/2effe7601d61bda6a3489f00568166bbfdbf0de9))
+* add save count provider to app router ([34c1e95](https://github.com/oaknational/Oak-Web-Application/commit/34c1e95c93f72e6f7cad001ae754e30fd1df6e9f))
+* make sign up button accept variant prop for primary or secondary ([82fa786](https://github.com/oaknational/Oak-Web-Application/commit/82fa786ddf084f87527c119aad43cc3b4fcd84bc))
+* update button text to "sign in" instead of "sign up" ([2e83947](https://github.com/oaknational/Oak-Web-Application/commit/2e839477b3855020e948c64a3287bbc17138df96))
+
 ## [1.970.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.970.1...v1.970.2) (2026-01-29)
 
 
