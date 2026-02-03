@@ -82,8 +82,9 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     console.log(`Found app version: "${appVersion}"`);
   }
 
-  const SANITY_ASSET_CDN_HOST =
-    process.env.SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost;
+  const SANITY_ASSET_CDN_HOST = (
+    process.env.SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost
+  )?.replace(/^https?:\/\//, "");
 
   const imageRemotePatterns = [
     {
@@ -107,6 +108,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     {
       protocol: "https" as const,
       hostname: "image.mux.com",
+      pathname: "/**",
+    },
+    {
+      protocol: "https" as const,
+      hostname: "cdn.sanity.io",
       pathname: "/**",
     },
   ];
