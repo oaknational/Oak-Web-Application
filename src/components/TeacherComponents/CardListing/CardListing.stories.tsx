@@ -135,7 +135,9 @@ export const Vertical: Story = {
         $gap={"spacing-16"}
         $width={"spacing-240"}
       >
-        <OakTypography $font={"heading-5"}>Vertical layout</OakTypography>
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          Vertical layout
+        </OakTypography>
         <CardListing {...args} layoutVariant="vertical" />
       </OakFlex>
       <OakFlex
@@ -143,7 +145,7 @@ export const Vertical: Story = {
         $gap={"spacing-16"}
         $width={"spacing-240"}
       >
-        <OakTypography $font={"heading-5"}>
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
           With no optional props
         </OakTypography>
         <CardListing
@@ -160,7 +162,9 @@ export const Vertical: Story = {
         $gap={"spacing-16"}
         $width={"spacing-240"}
       >
-        <OakTypography $font={"heading-5"}>With no subcopy</OakTypography>
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          With no subcopy
+        </OakTypography>
         <CardListing {...args} layoutVariant="vertical" subcopy={undefined} />
       </OakFlex>
       <OakFlex
@@ -168,7 +172,9 @@ export const Vertical: Story = {
         $gap={"spacing-16"}
         $width={"spacing-240"}
       >
-        <OakTypography $font={"heading-5"}>Highlighted</OakTypography>
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          Highlighted
+        </OakTypography>
         <CardListing {...args} layoutVariant="vertical" isHighlighted={true} />
       </OakFlex>
       <OakFlex
@@ -176,7 +182,9 @@ export const Vertical: Story = {
         $gap={"spacing-16"}
         $width={"spacing-240"}
       >
-        <OakTypography $font={"heading-5"}>Without lesson count</OakTypography>
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          Without lesson count
+        </OakTypography>
         <CardListing
           {...args}
           layoutVariant="vertical"
@@ -188,7 +196,9 @@ export const Vertical: Story = {
         $gap={"spacing-16"}
         $width={"spacing-240"}
       >
-        <OakTypography $font={"heading-5"}>Without save button</OakTypography>
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          Without save button
+        </OakTypography>
         <CardListing {...args} layoutVariant="vertical" saveProps={undefined} />
       </OakFlex>
       <OakFlex
@@ -196,7 +206,9 @@ export const Vertical: Story = {
         $gap={"spacing-16"}
         $width={"spacing-240"}
       >
-        <OakTypography $font={"heading-5"}>Disabled</OakTypography>
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          Disabled
+        </OakTypography>
         <CardListing {...args} layoutVariant="vertical" disabled />
       </OakFlex>
       <OakFlex
@@ -204,7 +216,9 @@ export const Vertical: Story = {
         $gap={"spacing-16"}
         $width={"spacing-240"}
       >
-        <OakTypography $font={"heading-5"}>Visited link</OakTypography>
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          Visited link (google.com)
+        </OakTypography>
         <CardListing
           {...args}
           layoutVariant="vertical"
@@ -269,7 +283,9 @@ export const Horizontal: Story = {
         <CardListing {...args} layoutVariant="horizontal" disabled />
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        <OakTypography $font={"heading-5"}>Visited link</OakTypography>
+        <OakTypography $font={"heading-5"}>
+          Visited link (google.com)
+        </OakTypography>
         <CardListing
           {...args}
           layoutVariant="horizontal"
