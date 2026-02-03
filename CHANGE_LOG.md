@@ -1,3 +1,10 @@
+## [1.972.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.972.0...v1.972.1) (2026-02-03)
+
+
+### Bug Fixes
+
+* only remove the oaknational twitter (x) handle ([676fe5e](https://github.com/oaknational/Oak-Web-Application/commit/676fe5ee3eab95b0391299ddf457ef5b9fef819c))
+
 # [1.972.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.971.0...v1.972.0) (2026-02-03)
 
 
