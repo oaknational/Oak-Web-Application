@@ -113,7 +113,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     <OakCard
                       key={member.id}
                       heading={member.name}
-                      href={`/about-us/meet-the-team/${slug}`}
+                      href={`/about-us/meet-the-team/${slug}?section=leadership`}
                       cardWidth={"100%"}
                       imageSrc={imageUrl}
                       imageAlt={`Photo of ${member.name}`}
@@ -139,7 +139,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     <OakCard
                       key={member.id}
                       heading={member.name}
-                      href={`/about-us/meet-the-team/${slug}`}
+                      href={`/about-us/meet-the-team/${slug}?section=board`}
                       cardWidth={"100%"}
                       imageSrc={imageUrl}
                       imageAlt={`Photo of ${member.name}`}
@@ -221,8 +221,8 @@ export const getServerSideProps: GetServerSideProps<
     context.req.cookies,
     posthogApiKey,
   );
-  let enableV2: boolean = false;
-  if (posthogUserId) {
+  let enableV2: boolean = true; // Temporarily enabled for development
+  if (posthogUserId && !enableV2) {
     // get the variant key for the user
     enableV2 =
       (await getFeatureFlag({
