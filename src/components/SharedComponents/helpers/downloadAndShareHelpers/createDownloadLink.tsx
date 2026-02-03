@@ -37,9 +37,7 @@ const getDownloadLink = async ({
 }) => {
   console.log(downloadEndpoint, "DOWNLOAD ENDPOINT LINK");
 
-  const res = await fetch(downloadEndpoint, {
-    credentials: "same-origin",
-  });
+  const res = await fetch(downloadEndpoint);
 
   if (!res.ok) {
     throw new OakError({
