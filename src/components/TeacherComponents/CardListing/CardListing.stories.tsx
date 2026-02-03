@@ -86,7 +86,7 @@ const defaultArgs = {
     unitSlug: "my-world-art-and-nature",
     programmeSlug: "art-primary-ks1",
   },
-  href: "www.google.com",
+  href: "fakeurl.com",
 };
 
 type Story = StoryObj<typeof CardListing>;
@@ -106,6 +106,10 @@ export const Customisable: Story = {
         none: undefined,
       },
     },
+    saveProps: {
+      control: { type: "select" },
+      options: [undefined, defaultArgs.saveProps],
+    },
   },
   parameters: {
     controls: {
@@ -115,9 +119,9 @@ export const Customisable: Story = {
         "subcopy",
         "lessonCount",
         "isHighlighted",
-        "showSave",
         "tags",
         "disabled",
+        "saveProps",
       ],
     },
   },
@@ -195,6 +199,18 @@ export const Vertical: Story = {
         <OakTypography $font={"heading-5"}>Disabled</OakTypography>
         <CardListing {...args} layoutVariant="vertical" disabled />
       </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"}>Visited link</OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="vertical"
+          href="https://google.com"
+        />
+      </OakFlex>
     </OakFlex>
   ),
   args: defaultArgs,
@@ -251,6 +267,14 @@ export const Horizontal: Story = {
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <OakTypography $font={"heading-5"}>Disabled</OakTypography>
         <CardListing {...args} layoutVariant="horizontal" disabled />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Visited link</OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          href="https://google.com"
+        />
       </OakFlex>
     </OakFlex>
   ),

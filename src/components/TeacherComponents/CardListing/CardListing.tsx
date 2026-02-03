@@ -1,9 +1,10 @@
 import {
   OakFlex,
   OakIconName,
-  OakSecondaryLink,
+  OakLink,
   OakTagFunctional,
   OakTypography,
+  parseColor,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -38,18 +39,16 @@ const CardListing = (props: CardListingProps) => {
 
   const showSave = saveProps !== undefined;
   const showFooter = lessonCount !== undefined || showSave;
+  const defaultTextColor = disabled
+    ? "text-disabled"
+    : isHighlighted
+      ? "text-inverted"
+      : undefined;
 
   return (
     <OakFlex
       $borderRadius={"border-radius-m2"}
       $background={isHighlighted ? "bg-inverted" : "bg-primary"}
-      $color={
-        disabled
-          ? "text-disabled"
-          : isHighlighted
-            ? "text-inverted"
-            : "text-primary"
-      }
       $pa={"spacing-20"}
       $gap={"spacing-20"}
       $flexDirection={layoutVariant === "horizontal" ? "row" : "column"}
@@ -58,7 +57,12 @@ const CardListing = (props: CardListingProps) => {
       {layoutVariant === "horizontal" ? (
         <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
           <StyledLink href={href} disabled={disabled}>
-            <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
+            <OakFlex
+              $flexDirection={"row"}
+              $gap={"spacing-20"}
+              $width={"100%"}
+              $color={defaultTextColor}
+            >
               <Index {...props} />
               <OakFlex
                 $flexDirection={"column"}
@@ -78,7 +82,7 @@ const CardListing = (props: CardListingProps) => {
               $font={"heading-light-7"}
               $gap={"spacing-20"}
             >
-              <LessonCount {...props} />{" "}
+              <LessonCount {...props} />
               {showSave && (
                 <SaveUnitButton
                   buttonVariant={isHighlighted ? "inverted" : "default"}
@@ -98,7 +102,11 @@ const CardListing = (props: CardListingProps) => {
           $justifyContent={"space-between"}
         >
           <StyledLink href={href} disabled={disabled}>
-            <OakFlex $gap={"spacing-20"} $flexDirection={"column"}>
+            <OakFlex
+              $gap={"spacing-20"}
+              $flexDirection={"column"}
+              $color={defaultTextColor}
+            >
               <Index {...props} />
               <Title {...props} />
               <SubCopy {...props} />
@@ -107,7 +115,7 @@ const CardListing = (props: CardListingProps) => {
           </StyledLink>
           {showFooter && (
             <OakFlex $justifyContent={"space-between"} $alignItems={"center"}>
-              <LessonCount {...props} />{" "}
+              <LessonCount {...props} />
               {showSave && (
                 <SaveUnitButton
                   buttonVariant={isHighlighted ? "inverted" : "default"}
@@ -125,27 +133,13 @@ const CardListing = (props: CardListingProps) => {
 
 export default CardListing;
 
-const Title = ({ title, isHighlighted, disabled }: CardListingProps) => {
-  return (
-    <OakTypography
-      $color={
-        disabled
-          ? "text-disabled"
-          : isHighlighted
-            ? "text-inverted"
-            : "text-primary"
-      }
-      $font={"heading-7"}
-      className="card-listing-header"
-    >
-      {title}
-    </OakTypography>
-  );
-};
-
-const StyledLink = styled(OakSecondaryLink)`
+const StyledLink = styled(OakLink)`
   width: 100%;
   height: 100%;
+  text-decoration: none;
+  &:not(:visited) {
+    color: ${parseColor("text-primary")};
+  }
   &:hover {
     text-decoration: none;
     .card-listing-header {
@@ -154,21 +148,16 @@ const StyledLink = styled(OakSecondaryLink)`
   }
 `;
 
-const Index = ({ index, isHighlighted, disabled }: CardListingProps) => {
+const Title = ({ title }: CardListingProps) => {
   return (
-    <OakTypography
-      $color={
-        disabled
-          ? "text-disabled"
-          : isHighlighted
-            ? "text-inverted"
-            : "text-primary"
-      }
-      $font={"heading-7"}
-    >
-      {index}
+    <OakTypography $font={"heading-7"} className="card-listing-header">
+      {title}
     </OakTypography>
   );
+};
+
+const Index = ({ index }: CardListingProps) => {
+  return <OakTypography $font={"heading-7"}>{index}</OakTypography>;
 };
 
 const CardTags = ({ tags, disabled }: CardListingProps) => {
@@ -193,40 +182,24 @@ const CardTags = ({ tags, disabled }: CardListingProps) => {
   ) : null;
 };
 
-const SubCopy = ({ subcopy, isHighlighted, disabled }: CardListingProps) => {
+const SubCopy = ({ subcopy, isHighlighted }: CardListingProps) => {
   return subcopy ? (
     <OakTypography
       $font={"body-2"}
-      $color={
-        disabled
-          ? "text-disabled"
-          : isHighlighted
-            ? "text-inverted"
-            : "text-subdued"
-      }
+      $color={isHighlighted ? "text-inverted" : "text-subdued"}
     >
       {subcopy}
     </OakTypography>
   ) : null;
 };
 
-const LessonCount = ({
-  lessonCount,
-  isHighlighted,
-  disabled,
-}: CardListingProps) => {
+const LessonCount = ({ lessonCount, isHighlighted }: CardListingProps) => {
   return lessonCount === undefined ? null : (
     <OakTypography
       $font={"heading-light-7"}
       $width={"max-content"}
       $textWrap={"nowrap"}
-      $color={
-        disabled
-          ? "text-disabled"
-          : isHighlighted
-            ? "text-inverted"
-            : "text-subdued"
-      }
+      $color={isHighlighted ? "text-inverted" : "text-subdued"}
     >
       {lessonCount + " lesson" + (lessonCount === 1 ? "" : "s")}
     </OakTypography>
