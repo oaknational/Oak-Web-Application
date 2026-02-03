@@ -13,7 +13,6 @@ import CardListing from "./CardListing";
 import { saveCountContext } from "@/context/SaveCount/SaveCountProvider";
 import { oakNotificationsContext } from "@/context/OakNotifications/OakNotificationsProvider";
 
-
 const MockSaveCountProvider = ({ children }: { children: ReactNode }) => {
   const SaveCountProvider = saveCountContext.Provider;
 
@@ -80,12 +79,14 @@ const defaultArgs = {
   ],
   showSave: true,
   lessonCount: 10,
-  unitProps: {
-    unitTitle:
-      "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
-    unitSlug: "unit-slug",
-    programmeSlug: "programme-slug",
+  title:
+    "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
+  saveProps: {
+    unitTitle: "My world: Art and nature",
+    unitSlug: "my-world-art-and-nature",
+    programmeSlug: "art-primary-ks1",
   },
+  href: "www.google.com",
 };
 
 type Story = StoryObj<typeof CardListing>;
@@ -144,9 +145,9 @@ export const Vertical: Story = {
           {...args}
           layoutVariant="vertical"
           subcopy={undefined}
-          showSave={false}
           lessonCount={undefined}
           tags={undefined}
+          saveProps={undefined}
         />
       </OakFlex>
       <OakFlex
@@ -183,7 +184,7 @@ export const Vertical: Story = {
         $width={"spacing-240"}
       >
         <OakTypography $font={"heading-5"}>Without save button</OakTypography>
-        <CardListing {...args} layoutVariant="vertical" showSave={false} />
+        <CardListing {...args} layoutVariant="vertical" saveProps={undefined} />
       </OakFlex>
     </OakFlex>
   ),
@@ -205,7 +206,7 @@ export const Horizontal: Story = {
           {...args}
           layoutVariant="horizontal"
           subcopy={undefined}
-          showSave={false}
+          saveProps={undefined}
           lessonCount={undefined}
           tags={undefined}
         />
@@ -232,7 +233,11 @@ export const Horizontal: Story = {
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <OakTypography $font={"heading-5"}>Without save button</OakTypography>
-        <CardListing {...args} layoutVariant="horizontal" showSave={false} />
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          saveProps={undefined}
+        />
       </OakFlex>
     </OakFlex>
   ),

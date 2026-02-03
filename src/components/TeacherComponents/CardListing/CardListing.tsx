@@ -7,17 +7,18 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import { SaveUnitButton } from "../SaveButton/SaveButton";
+import { SaveUnitButton } from "../SaveUnitButton/SaveUnitButton";
 
 type CardListingProps = {
   layoutVariant: "horizontal" | "vertical";
   isHighlighted: boolean;
   index: number;
+  title: string;
   subcopy?: string;
   tags?: Array<{ label: string; icon?: OakIconName }>;
   lessonCount?: number;
-  showSave?: boolean;
-  unitProps: {
+  href: string;
+  saveProps?: {
     unitSlug: string;
     unitTitle: string;
     programmeSlug: string;
@@ -25,9 +26,9 @@ type CardListingProps = {
 };
 
 const CardListing = (props: CardListingProps) => {
-  const { layoutVariant, isHighlighted, lessonCount, showSave, unitProps } =
-    props;
+  const { layoutVariant, isHighlighted, lessonCount, saveProps, href } = props;
 
+  const showSave = saveProps !== undefined;
   const showFooter = lessonCount !== undefined || showSave;
 
   return (
@@ -42,7 +43,7 @@ const CardListing = (props: CardListingProps) => {
     >
       {layoutVariant === "horizontal" ? (
         <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
-          <StyledLink href="">
+          <StyledLink href={href}>
             <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
               <Index {...props} />
               <OakFlex
@@ -64,11 +65,12 @@ const CardListing = (props: CardListingProps) => {
               $gap={"spacing-20"}
             >
               <LessonCount {...props} />{" "}
-              <SaveUnitButton
-                buttonVariant={isHighlighted ? "inverted" : "default"}
-                showSave={showSave}
-                {...unitProps}
-              />
+              {showSave && (
+                <SaveUnitButton
+                  buttonVariant={isHighlighted ? "inverted" : "default"}
+                  {...saveProps}
+                />
+              )}
             </OakFlex>
           )}
         </OakFlex>
@@ -80,7 +82,7 @@ const CardListing = (props: CardListingProps) => {
           $height={"100%"}
           $justifyContent={"space-between"}
         >
-          <StyledLink href="">
+          <StyledLink href={href}>
             <OakFlex $gap={"spacing-20"} $flexDirection={"column"}>
               <Index {...props} />
               <Title {...props} />
@@ -91,11 +93,12 @@ const CardListing = (props: CardListingProps) => {
           {showFooter && (
             <OakFlex $justifyContent={"space-between"} $alignItems={"center"}>
               <LessonCount {...props} />{" "}
-              <SaveUnitButton
-                buttonVariant={isHighlighted ? "inverted" : "default"}
-                showSave={showSave}
-                {...unitProps}
-              />
+              {showSave && (
+                <SaveUnitButton
+                  buttonVariant={isHighlighted ? "inverted" : "default"}
+                  {...saveProps}
+                />
+              )}
             </OakFlex>
           )}
         </OakFlex>
@@ -106,14 +109,14 @@ const CardListing = (props: CardListingProps) => {
 
 export default CardListing;
 
-const Title = ({ unitProps, isHighlighted }: CardListingProps) => {
+const Title = ({ title, isHighlighted }: CardListingProps) => {
   return (
     <OakTypography
       $color={isHighlighted ? "text-inverted" : "text-primary"}
       $font={"heading-7"}
       className="card-listing-header"
     >
-      {unitProps.unitTitle}
+      {title}
     </OakTypography>
   );
 };
@@ -174,7 +177,7 @@ const SubCopy = ({ subcopy, isHighlighted }: CardListingProps) => {
 };
 
 const LessonCount = ({ lessonCount, isHighlighted }: CardListingProps) => {
-  return lessonCount !== undefined ? (
+  return lessonCount === undefined ? null : (
     <OakTypography
       $font={"heading-light-7"}
       $width={"max-content"}
@@ -183,5 +186,5 @@ const LessonCount = ({ lessonCount, isHighlighted }: CardListingProps) => {
     >
       {lessonCount + " lesson" + (lessonCount === 1 ? "" : "s")}
     </OakTypography>
-  ) : null;
+  );
 };

@@ -8,7 +8,6 @@ import styled from "styled-components";
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 
 type SaveButtonProps = {
-  showSave?: boolean;
   buttonVariant: "default" | "inverted";
   programmeSlug: string;
   unitSlug: string;
@@ -30,7 +29,6 @@ const StyledSmallPrimaryButton = styled(OakSmallPrimaryButton)`
 `;
 
 export const SaveUnitButton = ({
-  showSave,
   buttonVariant,
   programmeSlug,
   unitSlug,
@@ -59,15 +57,13 @@ export const SaveUnitButton = ({
     "aria-label": `${isUnitSaved(unitSlug) ? "Unsave" : "Save"} this unit: ${unitTitle} `,
   };
 
-  return showSave ? (
-    buttonVariant === "inverted" ? (
-      <StyledSmallPrimaryButton {...buttonProps}>
-        {isUnitSaved(unitSlug) ? "Saved" : "Save"}
-      </StyledSmallPrimaryButton>
-    ) : (
-      <OakSmallTertiaryInvertedButton {...buttonProps}>
-        {isUnitSaved(unitSlug) ? "Saved" : "Save"}
-      </OakSmallTertiaryInvertedButton>
-    )
-  ) : null;
+  return buttonVariant === "inverted" ? (
+    <StyledSmallPrimaryButton {...buttonProps}>
+      {isUnitSaved(unitSlug) ? "Saved" : "Save"}
+    </StyledSmallPrimaryButton>
+  ) : (
+    <OakSmallTertiaryInvertedButton {...buttonProps}>
+      {isUnitSaved(unitSlug) ? "Saved" : "Save"}
+    </OakSmallTertiaryInvertedButton>
+  );
 };
