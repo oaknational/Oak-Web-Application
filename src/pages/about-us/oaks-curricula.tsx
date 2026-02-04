@@ -51,7 +51,9 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
               <OakBox $pa={"spacing-16"} $background={"text-inverted"}>
                 TODO: Guiding principals
               </OakBox>
-              <SubjectPhasePicker {...pageData.curriculumPhaseOptions} />
+              <OakBox $maxWidth={"spacing-640"}>
+                <SubjectPhasePicker {...pageData.curriculumPhaseOptions} />
+              </OakBox>
             </OakFlex>
           </OakMaxWidth>
         </OakBox>
