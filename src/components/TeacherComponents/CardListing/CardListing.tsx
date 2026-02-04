@@ -30,6 +30,23 @@ type CardListingProps = {
   disabled?: boolean;
 };
 
+export const getDefaultTextColour = ({
+  disabled,
+  isHighlighted,
+}: {
+  disabled?: boolean;
+  isHighlighted?: boolean;
+}) => {
+  if (disabled) {
+    return "text-disabled";
+  } else if (isHighlighted) {
+    return "text-inverted";
+  }
+
+  // use the default colour value for the component
+  return undefined;
+};
+
 const CardListing = (props: CardListingProps) => {
   const {
     layoutVariant,
@@ -42,11 +59,7 @@ const CardListing = (props: CardListingProps) => {
 
   const showSave = saveProps !== undefined;
   const showFooter = lessonCount !== undefined || showSave;
-  const defaultTextColor = disabled
-    ? "text-disabled"
-    : isHighlighted
-      ? "text-inverted"
-      : undefined;
+  const defaultTextColour = getDefaultTextColour({ disabled, isHighlighted });
 
   return (
     <OakFlex
@@ -68,7 +81,7 @@ const CardListing = (props: CardListingProps) => {
               $flexDirection={"row"}
               $gap={"spacing-20"}
               $width={"100%"}
-              $color={defaultTextColor}
+              $color={defaultTextColour}
             >
               <Index {...props} />
               <OakFlex
@@ -116,7 +129,7 @@ const CardListing = (props: CardListingProps) => {
             <OakFlex
               $gap={"spacing-20"}
               $flexDirection={"column"}
-              $color={defaultTextColor}
+              $color={defaultTextColour}
             >
               <Index {...props} />
               <Title {...props} />
