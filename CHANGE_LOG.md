@@ -1,3 +1,15 @@
+# [1.974.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.973.1...v1.974.0) (2026-02-04)
+
+
+### Bug Fixes
+
+* exclude /about-us/oaks-curricula from sitemap ([ff8865f](https://github.com/oaknational/Oak-Web-Application/commit/ff8865fb2cf52bb93b71a92b8f4301ac3d59b0f0))
+
+
+### Features
+
+* created stub page for /about-us/oaks-curricula ([34869c5](https://github.com/oaknational/Oak-Web-Application/commit/34869c5e71fa2b45315287c4accf053b85a5e39b))
+
 ## [1.973.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.973.0...v1.973.1) (2026-02-04)
 
 
