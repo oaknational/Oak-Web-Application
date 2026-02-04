@@ -1,0 +1,60 @@
+import { GetServerSidePropsContext } from "next";
+import "jest-styled-components";
+
+import renderWithProviders from "../../__helpers__/renderWithProviders";
+
+import { testAboutPageBaseData } from "./about-us.fixtures";
+
+import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
+import { portableTextFromString } from "@/__tests__/__helpers__/cms";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import OaksCurricula, {
+  OaksCurriculaPage,
+  getServerSideProps,
+} from "@/pages/about-us/oaks-curricula";
+
+jest.mock("@/node-lib/posthog/getFeatureFlag");
+jest.mock("../../../node-lib/cms");
+
+const testAboutWhoWeArePageData: OaksCurriculaPage["pageData"] = {
+  ...testAboutPageBaseData,
+  header: {
+    textRaw: portableTextFromString(
+      "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
+    ),
+  },
+};
+
+describe("pages/about/oaks-curricula.tsx", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+  });
+
+  it("renders", () => {
+    const { container } = renderWithProviders()(
+      <OaksCurricula
+        pageData={testAboutWhoWeArePageData}
+        topNav={topNavFixture}
+      />,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
+  describe("getStaticProps", () => {
+    it("should 404 when not enabled", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(false);
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: {},
+        params: {},
+      } as unknown as GetServerSidePropsContext);
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
+    });
+  });
+});
