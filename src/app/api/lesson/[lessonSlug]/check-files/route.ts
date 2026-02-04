@@ -14,8 +14,9 @@ import {
   oakErrorToResponse,
 } from "@/node-lib/curriculum-resources-downloads";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import OakError from "@/errors/OakError";
 
-const reportError = createDownloadsErrorReporter("check-files");
+const reportError = createDownloadsErrorReporter("lesson-check-files");
 
 /**
  * @swagger
@@ -59,10 +60,10 @@ export async function GET(
     const lessonData = await curriculumApi2023.lessonAssets({ lessonSlug });
 
     if (!lessonData) {
-      return NextResponse.json(
-        { error: { message: "Lesson not found" } },
-        { status: 404 },
-      );
+      throw new OakError({
+        code: "downloads/lesson-not-found",
+        meta: { lessonSlug },
+      });
     }
 
     const { lesson, isGeoRestricted, isLoginRequired } = lessonData;

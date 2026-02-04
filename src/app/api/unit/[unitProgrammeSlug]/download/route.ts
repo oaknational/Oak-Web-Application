@@ -13,7 +13,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { ALLOWED_REGIONS } from "@/utils/onboarding/getRegion";
 import getServerConfig from "@/node-lib/getServerConfig";
 
-const reportError = createDownloadsErrorReporter("unit-download");
+const reportError = createDownloadsErrorReporter("unit-zip-download");
 
 /**
  * @swagger

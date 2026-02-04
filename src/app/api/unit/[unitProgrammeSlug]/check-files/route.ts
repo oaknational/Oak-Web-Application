@@ -30,7 +30,6 @@ export async function GET(
 ) {
   try {
     const { unitProgrammeSlug } = await params;
-    console.log("unitProgrammeSlug OWA API", unitProgrammeSlug);
     const gcsBucketNameForZips = getServerConfig("gcsBucketNameForZips");
     const gcsDirForUnitZips = getServerConfig("gcsDirForUnitZips");
 

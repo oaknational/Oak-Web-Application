@@ -174,7 +174,6 @@ export default async function assetHandler(
     ext = selectionInfo.ext;
   }
 
-  // Check file exists and get size in a single GCS call
   const { exists, fileSize: size } = await gcsHelpers.checkFileExistsAndGetSize(
     {
       gcsFilePath,

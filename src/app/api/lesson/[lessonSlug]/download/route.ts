@@ -16,8 +16,9 @@ import {
 } from "@/node-lib/curriculum-resources-downloads";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getServerConfig from "@/node-lib/getServerConfig";
+import OakError from "@/errors/OakError";
 
-const reportError = createDownloadsErrorReporter("lesson-download");
+const reportError = createDownloadsErrorReporter("lesson-zip-download");
 
 // Allow up to 60 seconds for ZIP generation
 export const maxDuration = 60;
@@ -66,7 +67,7 @@ export async function GET(
     const gcsDirForLessonZips = getServerConfig("gcsDirForLessonZips");
 
     // Validate required environment variables
-    if (!gcsBucketNameForZips) {
+    if (!gcsBucketNameForZips || !gcsDirForLessonZips) {
       console.error("GCS_BUCKET_NAME_FOR_ZIPS is not configured");
       return NextResponse.json(
         { error: { message: "Download service not configured" } },
@@ -74,27 +75,17 @@ export async function GET(
       );
     }
 
-    if (!gcsDirForLessonZips) {
-      console.error("GCS_DIR_FOR_LESSON_ZIPS is not configured");
-      return NextResponse.json(
-        { error: { message: "Download service not configured" } },
-        { status: 500 },
-      );
-    }
-
-    // Fetch lesson data
     const lessonData = await curriculumApi2023.lessonAssets({ lessonSlug });
 
     if (!lessonData) {
-      return NextResponse.json(
-        { error: { message: "Lesson not found" } },
-        { status: 404 },
-      );
+      throw new OakError({
+        code: "downloads/lesson-not-found",
+        meta: { lessonSlug },
+      });
     }
 
     const { lesson, isGeoRestricted, isLoginRequired } = lessonData;
 
-    // Authorization checks
     const authResult = await checkDownloadAuthorization(
       isGeoRestricted,
       isLoginRequired,

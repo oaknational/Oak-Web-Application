@@ -5,8 +5,6 @@ import { getParsedData } from "./getParsedData";
 import OakError from "@/errors/OakError";
 import { GetToken } from "clerk";
 
-// TODO: update config with new env vars and 1pass too
-
 /**
  * Expected response schema
  */

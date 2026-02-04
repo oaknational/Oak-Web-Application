@@ -137,7 +137,7 @@ describe("GET /api/lesson/[lessonSlug]/check-files", () => {
     });
 
     expect(mockNextResponseJson).toHaveBeenCalledWith(
-      { error: { message: "Lesson not found" } },
+      { error: { message: "Requested lesson not found" } },
       { status: 404 },
     );
   });

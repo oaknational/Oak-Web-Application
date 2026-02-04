@@ -33,6 +33,7 @@ const ERROR_CODES = [
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
   "downloads/check-files-failed",
+  "downloads/lesson-not-found",
   "downloads/missing-auth-token",
   "downloads/resource-not-found",
   "downloads/no-valid-resources",
@@ -194,6 +195,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "downloads/resource-not-found": {
     message: "Requested download resources not found",
+    shouldNotify: false,
+    responseStatusCode: 404,
+  },
+  "downloads/lesson-not-found": {
+    message: "Requested lesson not found",
     shouldNotify: false,
     responseStatusCode: 404,
   },
