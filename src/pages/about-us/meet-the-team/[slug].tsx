@@ -65,24 +65,33 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
         $mt={["spacing-56", "spacing-80"]}
         $ph={["spacing-16", "spacing-32"]}
       >
-        <OakGrid $cg={["spacing-0", "spacing-16"]}>
-          {/* Header content - category, name, job title (mobile: first/stacked, tablet+: after image/side-by-side) */}
-          <OakGridArea $colSpan={[12, 5, 8]} $order={[1, 2]}>
+        <OakGrid
+          $cg={["spacing-0", "spacing-16"]}
+          $rg={["spacing-24", "spacing-0"]}
+        >
+          {/* Header content - category, name, job title */}
+          <OakGridArea $colSpan={[12, 7, 8]} $order={[1, 2]}>
             <OakFlex
               $flexDirection={"column"}
               $ph={["spacing-0", "spacing-40"]}
+              $gap={"spacing-24"}
             >
-              <OakTypography $font={"heading-light-6"} $color={"text-primary"}>
-                {category}
-              </OakTypography>
+              {/* Category + Name group */}
+              <OakFlex $flexDirection={"column"} $gap={"spacing-4"}>
+                <OakTypography
+                  $font={"heading-light-6"}
+                  $color={"text-primary"}
+                >
+                  {category}
+                </OakTypography>
+                <OakHeading tag="h1" $font={"heading-2"}>
+                  {name}
+                </OakHeading>
+              </OakFlex>
 
-              <OakHeading tag="h1" $font={"heading-2"} $mt={"spacing-4"}>
-                {name}
-              </OakHeading>
-
+              {/* Job title */}
               {role && (
                 <OakBox
-                  $mt={"spacing-24"}
                   $background={"lemon"}
                   $ph={"spacing-4"}
                   style={{ width: "fit-content" }}
@@ -95,14 +104,10 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
             </OakFlex>
           </OakGridArea>
 
-          {/* Image (mobile: 4 cols stacked, tablet: 3 cols, desktop: 4 cols side-by-side) */}
-          <OakGridArea $colSpan={[4, 3, 4]} $order={[2, 1]} $rowSpan={[1, 2]}>
+          {/* Image */}
+          <OakGridArea $colSpan={[9, 5, 4]} $order={[2, 1]} $rowSpan={[1, 2]}>
             {image?.asset?.url && (
-              <OakBox
-                $borderRadius={"border-radius-l"}
-                $overflow={"hidden"}
-                $mt={["spacing-24", "spacing-0"]}
-              >
+              <OakBox $borderRadius={"border-radius-l"} $overflow={"hidden"}>
                 <OakImage
                   src={image.asset.url}
                   alt={image.altText ?? `Photo of ${name}`}
@@ -116,44 +121,45 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
           </OakGridArea>
 
           {/* Body content - socials, bio, navigation */}
-          <OakGridArea $colSpan={[12, 5, 8]} $order={[3, 3]}>
+          <OakGridArea $colSpan={[12, 7, 8]} $order={[3, 3]}>
             <OakFlex
               $flexDirection={"column"}
               $ph={["spacing-0", "spacing-40"]}
+              $gap={"spacing-40"}
             >
-              {socials && (socials.twitterUsername || socials.linkedinUrl) && (
-                <OakFlex
-                  $mt={"spacing-24"}
-                  $gap={"spacing-12"}
-                  style={{ width: "fit-content" }}
-                >
-                  {socials.linkedinUrl && (
-                    <SocialButton
-                      socialType="linkedin"
-                      profileHref={socials.linkedinUrl}
-                    />
+              {/* Socials + Bio group with 24px gap */}
+              <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+                {socials &&
+                  (socials.twitterUsername || socials.linkedinUrl) && (
+                    <OakFlex
+                      $gap={"spacing-12"}
+                      style={{ width: "fit-content" }}
+                    >
+                      {socials.linkedinUrl && (
+                        <SocialButton
+                          socialType="linkedin"
+                          profileHref={socials.linkedinUrl}
+                        />
+                      )}
+                      {socials.twitterUsername && (
+                        <SocialButton
+                          socialType="x"
+                          profileHref={`https://x.com/${socials.twitterUsername}`}
+                        />
+                      )}
+                    </OakFlex>
                   )}
-                  {socials.twitterUsername && (
-                    <SocialButton
-                      socialType="x"
-                      profileHref={`https://x.com/${socials.twitterUsername}`}
-                    />
-                  )}
-                </OakFlex>
-              )}
 
-              {bioPortableText && (
-                <OakBox
-                  $font={"body-1"}
-                  $color={"text-subdued"}
-                  $mt={"spacing-24"}
-                >
-                  <PortableTextWithDefaults value={bioPortableText} />
-                </OakBox>
-              )}
+                {bioPortableText && (
+                  <OakBox $font={"body-1"} $color={"text-subdued"}>
+                    <PortableTextWithDefaults value={bioPortableText} />
+                  </OakBox>
+                )}
+              </OakFlex>
 
+              {/* Navigation buttons */}
               {(prevHref || nextHref) && (
-                <OakFlex $gap={"spacing-16"} $mt={"spacing-40"}>
+                <OakFlex $gap={"spacing-16"}>
                   {prevHref && (
                     <OakSmallSecondaryButton
                       element="a"
