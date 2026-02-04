@@ -7,10 +7,9 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-export const OAK_SOCIALS: Record<SocialNetwork, string> = {
+export const OAK_SOCIALS: Partial<Record<SocialNetwork, string>> = {
   instagram: "oaknational",
   facebook: "oaknationalacademy",
-  x: "oaknational",
   linkedIn: "https://www.linkedin.com/company/oak-national-academy",
 };
 

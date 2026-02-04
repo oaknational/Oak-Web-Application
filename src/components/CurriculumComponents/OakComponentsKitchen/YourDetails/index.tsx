@@ -1,6 +1,6 @@
 import {
   OakCheckBox,
-  OakColorToken,
+  OakUiRoleToken,
   OakFlex,
   OakLink,
   OakP,
@@ -109,7 +109,7 @@ type YourDetailsProps = {
     }>,
   ) => void;
   schools: School[];
-  labelBackground?: OakColorToken;
+  labelBackground?: OakUiRoleToken;
   hidePrivacyPolicy?: boolean;
   emailRequired?: boolean;
 };

@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import {
-  OakColorFilterToken,
   OakSmallSecondaryButtonWithDropdown,
   OakUiRoleToken,
 } from "@oaknational/oak-components";
@@ -56,7 +55,7 @@ export type LessonOverviewHeaderProps = {
   background: OakUiRoleToken;
   isNew: boolean;
   isShareable: boolean;
-  subjectIconBackgroundColor: OakColorFilterToken;
+  subjectIconBackgroundColor: OakUiRoleToken;
   track: TrackFns;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilLessonOutcome?: string | null;

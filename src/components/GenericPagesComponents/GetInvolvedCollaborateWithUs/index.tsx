@@ -94,7 +94,7 @@ export function GetInvolvedCollaborateWithUs({
                 {cards.map((card) => (
                   <OakBox
                     key={card.headingTitle}
-                    $background="white"
+                    $background="bg-primary"
                     $borderRadius={"border-radius-s"}
                   >
                     <GetInvolvedLinkCard

@@ -335,7 +335,7 @@ function CurriculumDownloads(
                   <OakFlex $flexDirection={"row"} $mb={"spacing-16"}>
                     <OakIcon
                       iconName="content-guidance"
-                      $colorFilter={"red"}
+                      $colorFilter={"icon-error"}
                       $width={"spacing-24"}
                       $height={"spacing-24"}
                     />
