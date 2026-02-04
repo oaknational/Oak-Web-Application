@@ -65,47 +65,9 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
         $mt={["spacing-56", "spacing-80"]}
         $ph={["spacing-16", "spacing-32"]}
       >
-        <OakGrid
-          $cg={["spacing-0", "spacing-16"]}
-          $rg={["spacing-24", "spacing-0"]}
-        >
-          {/* Header content - category, name, job title */}
-          <OakGridArea $colSpan={[12, 7, 8]} $order={[1, 2]}>
-            <OakFlex
-              $flexDirection={"column"}
-              $ph={["spacing-0", "spacing-40"]}
-              $gap={"spacing-24"}
-            >
-              {/* Category + Name group */}
-              <OakFlex $flexDirection={"column"} $gap={"spacing-4"}>
-                <OakTypography
-                  $font={"heading-light-6"}
-                  $color={"text-primary"}
-                >
-                  {category}
-                </OakTypography>
-                <OakHeading tag="h1" $font={"heading-2"}>
-                  {name}
-                </OakHeading>
-              </OakFlex>
-
-              {/* Job title */}
-              {role && (
-                <OakBox
-                  $background={"lemon"}
-                  $ph={"spacing-4"}
-                  style={{ width: "fit-content" }}
-                >
-                  <OakTypography $font={"heading-light-4"}>
-                    {role}
-                  </OakTypography>
-                </OakBox>
-              )}
-            </OakFlex>
-          </OakGridArea>
-
+        <OakGrid $cg={["spacing-0", "spacing-16"]} $rg={"spacing-24"}>
           {/* Image */}
-          <OakGridArea $colSpan={[9, 5, 4]} $order={[2, 1]} $rowSpan={[1, 2]}>
+          <OakGridArea $colSpan={[9, 5, 4]} $order={1}>
             {image?.asset?.url && (
               <OakBox $borderRadius={"border-radius-l"} $overflow={"hidden"}>
                 <OakImage
@@ -120,14 +82,49 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
             )}
           </OakGridArea>
 
-          {/* Body content - socials, bio, navigation */}
-          <OakGridArea $colSpan={[12, 7, 8]} $order={[3, 3]}>
+          {/* All text content */}
+          <OakGridArea $colSpan={[12, 7, 8]} $order={2}>
             <OakFlex
               $flexDirection={"column"}
               $ph={["spacing-0", "spacing-40"]}
-              $gap={"spacing-40"}
+              $gap={"spacing-24"}
             >
-              {/* Socials + Bio group with 24px gap */}
+              {/* Header group - category, name, job title */}
+              <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+                {/* Category + Name */}
+                <OakFlex $flexDirection={"column"} $gap={"spacing-4"}>
+                  <OakTypography
+                    $font={["heading-light-7", "heading-light-6"]}
+                    $color={"text-primary"}
+                  >
+                    {category}
+                  </OakTypography>
+                  <OakHeading
+                    tag="h1"
+                    $font={["heading-3", "heading-2"]}
+                    $color={"text-primary"}
+                  >
+                    {name}
+                  </OakHeading>
+                </OakFlex>
+
+                {/* Job title */}
+                {role && (
+                  <OakBox
+                    $background={"lemon"}
+                    $ph={"spacing-4"}
+                    style={{ width: "fit-content" }}
+                  >
+                    <OakTypography
+                      $font={["heading-light-5", "heading-light-4"]}
+                    >
+                      {role}
+                    </OakTypography>
+                  </OakBox>
+                )}
+              </OakFlex>
+
+              {/* Socials + Bio group */}
               <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
                 {socials &&
                   (socials.twitterUsername || socials.linkedinUrl) && (
@@ -151,7 +148,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                   )}
 
                 {bioPortableText && (
-                  <OakBox $font={"body-1"} $color={"text-subdued"}>
+                  <OakBox $font={["body-2", "body-1"]} $color={"text-primary"}>
                     <PortableTextWithDefaults value={bioPortableText} />
                   </OakBox>
                 )}
@@ -159,7 +156,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 
               {/* Navigation buttons */}
               {(prevHref || nextHref) && (
-                <OakFlex $gap={"spacing-16"}>
+                <OakFlex $gap={"spacing-16"} $mt={"spacing-16"}>
                   {prevHref && (
                     <OakSmallSecondaryButton
                       element="a"
