@@ -1,11 +1,11 @@
 import React from "react";
 import "@testing-library/jest-dom";
 
+import { subjectHeroImages } from "./getSubjectHeroImageUrl";
 import {
   ProgrammeHeader,
   pickSubjectTitleFromFilters,
 } from "./ProgrammeHeader";
-import { subjectHeroImages } from "./getSubjectHeroImageUrl";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { createFilter } from "@/fixtures/curriculum/filters";
