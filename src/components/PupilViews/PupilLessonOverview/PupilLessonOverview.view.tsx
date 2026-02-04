@@ -255,7 +255,7 @@ export const PupilViewsLessonOverview = ({
                   $alignItems="center"
                   $mb="spacing-16"
                 >
-                  <OakIcon iconName="warning" $colorFilter="amber" />
+                  <OakIcon iconName="warning" $colorFilter="icon-warning" />
                   <OakHeading tag="h2" $font="heading-7">
                     Content guidance
                   </OakHeading>

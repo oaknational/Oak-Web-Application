@@ -97,7 +97,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
         background={"bg-decorative3-very-subdued"}
         subjectSlug={subjectSlug}
         subjectTitle={subjectTitle}
-        subjectIconBackgroundColor="lavender"
+        subjectIconBackgroundColor="bg-decorative3-main"
         title={subjectTitle}
         programmeFactor="Specialist and therapies"
         isNew={false}

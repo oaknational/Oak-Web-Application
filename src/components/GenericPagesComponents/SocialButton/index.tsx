@@ -1,5 +1,5 @@
 import {
-  OakColorFilterToken,
+  OakUiRoleToken,
   OakIcon,
   parseColor,
   parseDropShadow,
@@ -54,7 +54,7 @@ type SocialButtonProps = {
   socialType: SocialMediaTypes;
   profileHref: string;
   disabled?: boolean;
-  background?: OakColorFilterToken;
+  background?: OakUiRoleToken;
 };
 
 export function SocialButton({

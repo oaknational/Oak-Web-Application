@@ -54,7 +54,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
           <OakIcon
             $display={["none", "none", "block"]}
             iconName={"looping-line-5"}
-            $colorFilter={"mint30"}
+            $colorFilter={"bg-decorative1-very-subdued"}
             $width={"100%"}
             $height={"100%"}
           />

@@ -7,8 +7,8 @@ import {
   OakThemeProvider,
 } from "@oaknational/oak-components";
 
-import { ProgrammeHeader } from "./ProgrammeHeader";
 import { subjectHeroImages } from "./getSubjectHeroImageUrl";
+import { ProgrammeHeader } from "./ProgrammeHeader";
 
 const meta: Meta<typeof ProgrammeHeader> = {
   component: ProgrammeHeader,
@@ -185,7 +185,7 @@ export const WithHeaderAndFooterSlots: Story = {
           $pa="spacing-8"
           $alignItems="center"
           $height="spacing-32"
-          $background="amber"
+          $background="bg-decorative6-main"
         >
           Breadcrumb placeholder
         </OakFlex>
