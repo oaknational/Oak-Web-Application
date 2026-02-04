@@ -84,7 +84,7 @@ const TopNavSubjectButtons = ({
                 )}
                 onClick={handleClick}
                 phase={selectedMenu as "primary" | "secondary"}
-                id={`topnav-teachers-subject-${subjectSlug}`}
+                id={`${keyStageSlug}-${subjectSlug}-subject-button`}
               >
                 {subject.title}
               </OakSubjectIconButton>
@@ -122,7 +122,8 @@ const TopNavSubjectButtons = ({
         })}
       <OakLI>
         <OakPrimaryInvertedButton
-          element="a"
+          id={`${keyStageSlug}-all-keystages-button`}
+          element={Link}
           iconName="arrow-right"
           isTrailingIcon
           onClick={handleClick}

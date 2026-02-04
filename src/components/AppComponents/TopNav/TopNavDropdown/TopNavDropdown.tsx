@@ -10,6 +10,9 @@ import {
   OakSvg,
   OakUL,
 } from "@oaknational/oak-components";
+import Link from "next/link";
+
+import { DropDownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
 import TopNavSubjectButtons from "./TopNavSubjectButtons";
 
@@ -20,6 +23,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export type TopNavDropdownProps = {
+  focusManager: DropDownFocusManager;
   activeArea: "TEACHERS" | "PUPILS";
   selectedMenu: keyof TeachersSubNavData | keyof PupilsSubNavData;
   teachers: TeachersSubNavData;
@@ -29,9 +33,11 @@ export type TopNavDropdownProps = {
 const TeachersPhaseSection = ({
   selectedMenu,
   menuData,
+  focusManager,
 }: {
   selectedMenu: keyof TeachersSubNavData;
   menuData: TeachersSubNavData["primary" | "secondary"];
+  focusManager: DropDownFocusManager;
 }) => {
   const defaultKeystage =
     menuData.keystages[0]?.slug || (selectedMenu === "primary" ? "ks1" : "ks3");
@@ -46,49 +52,6 @@ const TeachersPhaseSection = ({
   }, [defaultKeystage]);
 
   const keystagesRef = useRef<HTMLUListElement>(null);
-  const getFocusableElements = () => {
-    if (!keystagesRef.current) return [];
-    return Array.from(
-      keystagesRef.current.querySelectorAll("button"),
-    ) as HTMLElement[];
-  };
-
-  // Handle navigating keystages with arrow keys
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
-    if (!selectedKeystage) return;
-
-    const focusableElements = getFocusableElements();
-    const currentIndex = focusableElements.indexOf(
-      document.activeElement as HTMLElement,
-    );
-
-    switch (event.key) {
-      case "ArrowDown": {
-        event.preventDefault();
-        if (focusableElements.length === 0) return;
-        const nextDownIndex =
-          currentIndex >= focusableElements.length - 1 ? 0 : currentIndex + 1;
-        focusableElements[nextDownIndex]?.focus();
-        break;
-      }
-      case "ArrowUp": {
-        event.preventDefault();
-        if (focusableElements.length === 0) return;
-        const nextUpIndex =
-          currentIndex <= 0 ? focusableElements.length - 1 : currentIndex - 1;
-        focusableElements[nextUpIndex]?.focus();
-        break;
-      }
-    }
-  };
-
-  // Move focus to first keystage button when sub menu opens
-  useEffect(() => {
-    const element = document.getElementById(
-      `topnav-teachers-keystage-${menuData.keystages[0]?.slug}-button`,
-    );
-    element?.focus();
-  }, [menuData]);
 
   const subjects =
     menuData.keystages
@@ -99,14 +62,8 @@ const TeachersPhaseSection = ({
       .find((k) => k.slug === selectedKeystage)
       ?.subjects.filter((subject) => subject.nonCurriculum) ?? undefined;
 
-  // Move focus to first subject link when keystage is changed
   const onKeystageClick = (keystageSlug: string) => {
     setSelectedKeystage(keystageSlug);
-
-    const element = document.getElementById(
-      `topnav-teachers-subject-${subjects?.[0]?.subjectSlug}`,
-    );
-    element?.focus();
   };
 
   return (
@@ -120,7 +77,6 @@ const TeachersPhaseSection = ({
         id={`topnav-teachers-${selectedMenu}`}
         role="tablist"
         ref={keystagesRef}
-        onKeyDown={handleKeyDown}
       >
         {menuData.keystages.map((keystage) => (
           <OakLI key={keystage.slug}>
@@ -131,10 +87,16 @@ const TeachersPhaseSection = ({
               width={"spacing-160"}
               selected={selectedKeystage === keystage.slug}
               onClick={() => onKeystageClick(keystage.slug)}
+              onKeyDown={(e) =>
+                focusManager.handleKeyDown(
+                  e,
+                  `${keystage.slug}-dropdown-button`,
+                )
+              }
               aria-current={
                 selectedKeystage === keystage.slug ? "true" : undefined
               }
-              id={`topnav-teachers-keystage-${keystage.slug}-button`}
+              id={`${keystage.slug}-dropdown-button`}
               aria-expanded={selectedKeystage === keystage.slug}
               aria-controls={`topnav-teachers-${keystage.slug}-subjects`}
               role="tab"
@@ -178,13 +140,6 @@ const TeachersLinksSection = ({
     aboutUs: "About us",
   };
 
-  useEffect(() => {
-    const element = document.getElementById(
-      `topnav-teachers-${menuData[0]?.slug}-link`,
-    );
-    element?.focus();
-  }, [menuData]);
-
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-40"}>
       <OakBox $width={"fit-content"} $position={"relative"}>
@@ -209,7 +164,7 @@ const TeachersLinksSection = ({
         {menuData.map((link) => (
           <OakLI key={link.slug}>
             <OakLeftAlignedButton
-              element={"a"}
+              element={Link}
               key={link.slug}
               href={resolveOakHref({
                 page: link.slug,
@@ -220,7 +175,7 @@ const TeachersLinksSection = ({
                 link.external ? `${link.title} (opens in a new tab)` : undefined
               }
               width={"spacing-160"}
-              id={`topnav-teachers-${link.slug}-link`}
+              id={`${link.slug}-dropdown-button`}
             >
               {link.title}
             </OakLeftAlignedButton>
@@ -239,14 +194,6 @@ const PupilsSection = ({
   pupils: PupilsSubNavData;
 }) => {
   const menuYears = pupils[selectedMenu].years;
-
-  // Move focus to first year button when sub menu opens
-  useEffect(() => {
-    const element = document.getElementById(
-      `topnav-pupils-${menuYears?.[0]?.slug}`,
-    );
-    element?.focus();
-  }, [menuYears]);
 
   return (
     <OakUL
@@ -283,6 +230,7 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
       {activeArea === "TEACHERS" &&
         (selectedMenu === "primary" || selectedMenu === "secondary") && (
           <TeachersPhaseSection
+            focusManager={props.focusManager}
             selectedMenu={selectedMenu}
             menuData={teachers[selectedMenu]}
           />

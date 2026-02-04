@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
@@ -7,6 +7,7 @@ import PupilsSubNav from "./SubNav/PupilsSubNav";
 import TopNavDropdown from "./TopNavDropdown/TopNavDropdown";
 import { TeachersTopNavHamburger } from "./TeachersTopNavHamburger/TeachersTopNavHamburger";
 import { PupilsTopNavHamburger } from "./PupilsTopNavHamburger/PupilsTopNavHamburger";
+import { DropdownFocusManager } from "./DropdownFocusManager/DropdownFocusManager";
 
 import {
   OakBox,
@@ -32,6 +33,10 @@ export type TopNavProps = {
 };
 
 const TopNav = (props: TopNavProps) => {
+  const focusManager = useMemo(
+    () => (props.teachers ? new DropdownFocusManager(props.teachers) : null),
+    [props.teachers],
+  );
   const { teachers, pupils } = props;
 
   const activeArea = useSelectedArea();
@@ -66,25 +71,6 @@ const TopNav = (props: TopNavProps) => {
       setCurrentBannerProps(null);
     }
   }, [teachers, pupils, activeArea, setCurrentBannerProps]);
-
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (!selectedMenu) return;
-
-      if (event.key === "Escape") {
-        event.preventDefault();
-        setSelectedMenu(undefined);
-      }
-    };
-
-    if (selectedMenu) {
-      document.addEventListener("keydown", handleKeyDown);
-    }
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [selectedMenu]);
 
   return (
     <OakBox as="header" $position="relative" data-testid="app-topnav">
@@ -159,6 +145,7 @@ const TopNav = (props: TopNavProps) => {
         {activeArea === "TEACHERS" && teachers && (
           <>
             <TeachersSubNav
+              focusManager={focusManager!}
               isMenuSelected={isMenuSelected}
               onClick={(menu) => {
                 setSelectedMenu(selectedMenu === menu ? undefined : menu);
@@ -190,6 +177,7 @@ const TopNav = (props: TopNavProps) => {
             data-testid="topnav-dropdown-container"
           >
             <TopNavDropdown
+              focusManager={focusManager!}
               activeArea={activeArea}
               selectedMenu={selectedMenu}
               teachers={teachers!}

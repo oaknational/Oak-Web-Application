@@ -1,5 +1,4 @@
-import { act, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/react";
 
 import TopNavDropdown, { TopNavDropdownProps } from "./TopNavDropdown";
 
@@ -9,7 +8,7 @@ import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fi
 describe("TopNavDropdown", () => {
   describe("Teachers area", () => {
     describe("phases sections", () => {
-      it("renders keystage menu, defaulting and focussing on KS1 for primary", async () => {
+      it("renders keystage menu", async () => {
         renderWithTheme(
           <TopNavDropdown
             {...({
@@ -25,10 +24,9 @@ describe("TopNavDropdown", () => {
         expect(keystageButtons).toHaveLength(3);
         expect(keystageButtons[0]).toHaveTextContent("Key stage 1");
         expect(keystageButtons[0]).toHaveAttribute("aria-current", "true");
-        expect(keystageButtons[0]).toHaveFocus();
       });
 
-      it("renders keystage menu, defaulting and focussing on KS3 for secondary", async () => {
+      it("renders keystage menu", async () => {
         renderWithTheme(
           <TopNavDropdown
             {...({
@@ -44,7 +42,6 @@ describe("TopNavDropdown", () => {
         expect(keystageButtons).toHaveLength(2);
         expect(keystageButtons[0]).toHaveTextContent("Key stage 3");
         expect(keystageButtons[0]).toHaveAttribute("aria-current", "true");
-        expect(keystageButtons[0]).toHaveFocus();
       });
 
       it("renders subject buttons and link to all key stage page", async () => {
@@ -83,55 +80,9 @@ describe("TopNavDropdown", () => {
           background: "rgb(235, 251, 235)",
         });
       });
-
-      it("focuses on first subject button when keystage is clicked", async () => {
-        renderWithTheme(
-          <TopNavDropdown
-            {...({
-              ...topNavFixture,
-              activeArea: "TEACHERS",
-              selectedMenu: "primary",
-            } as TopNavDropdownProps)}
-          />,
-        );
-
-        const keystageButtons = await screen.findAllByRole("tab");
-        expect(keystageButtons).toHaveLength(3);
-
-        act(() => {
-          keystageButtons[0]?.click();
-        });
-
-        const subjectButtons = await screen.findAllByRole("link");
-
-        expect(subjectButtons[0]).toHaveFocus();
-      });
-
-      it("can navigate keystage list with arrow keys", async () => {
-        const user = userEvent.setup();
-        renderWithTheme(
-          <TopNavDropdown
-            {...({
-              ...topNavFixture,
-              activeArea: "TEACHERS",
-              selectedMenu: "primary",
-            } as TopNavDropdownProps)}
-          />,
-        );
-
-        const keystageButtons = await screen.findAllByRole("tab");
-        expect(keystageButtons[0]).toHaveFocus();
-
-        await user.keyboard("{ArrowDown}");
-        waitFor(() => expect(keystageButtons[1]).toHaveFocus());
-
-        await user.keyboard("{ArrowUp}");
-        waitFor(() => expect(keystageButtons[0]).toHaveFocus());
-      });
     });
-
     describe("links sections", () => {
-      it("renders heading and links with first link in focus", async () => {
+      it("renders heading and links", async () => {
         renderWithTheme(
           <TopNavDropdown
             {...({
@@ -149,7 +100,6 @@ describe("TopNavDropdown", () => {
 
         const links = await screen.findAllByRole("link");
         expect(links).toHaveLength(2);
-        expect(links[0]).toHaveFocus();
       });
 
       it("renders internal links correctly", async () => {
@@ -172,7 +122,7 @@ describe("TopNavDropdown", () => {
 
   describe("Pupils area", () => {
     describe("links sections", () => {
-      it("renders primary year buttons with Year 1 in focus", async () => {
+      it("renders primary year buttons", async () => {
         renderWithTheme(
           <TopNavDropdown
             {...({
@@ -186,10 +136,9 @@ describe("TopNavDropdown", () => {
         const links = await screen.findAllByRole("link");
         expect(links).toHaveLength(6);
         expect(links[0]).toHaveTextContent("Year 1");
-        expect(links[0]).toHaveFocus();
       });
 
-      it("renders secondary year buttons with Year 7 in focus", async () => {
+      it("renders secondary year buttons", async () => {
         renderWithTheme(
           <TopNavDropdown
             {...({
@@ -203,7 +152,6 @@ describe("TopNavDropdown", () => {
         const links = await screen.findAllByRole("link");
         expect(links).toHaveLength(5);
         expect(links[0]).toHaveTextContent("Year 7");
-        expect(links[0]).toHaveFocus();
       });
     });
   });
