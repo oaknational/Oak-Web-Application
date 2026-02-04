@@ -10,12 +10,10 @@ import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import curriculumApi2023, {
-  CurriculumPhaseOptions,
-} from "@/node-lib/curriculum-api-2023";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
-import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
+import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -83,25 +81,6 @@ const mockData: Omit<OaksCurriculaPage["pageData"], "curriculumPhaseOptions"> =
       ],
     },
   };
-
-const filterValidCurriculumPhaseOptions = (
-  subjects: CurriculumPhaseOptions,
-) => {
-  subjects.forEach(({ ks4_options }) => {
-    if (
-      ks4_options &&
-      ks4_options.some(({ slug }: { slug: string }) => isExamboardSlug(slug))
-    ) {
-      const gcseIndex = ks4_options.findIndex(
-        ({ slug }: { slug: string }) => slug === "gcse",
-      );
-      if (gcseIndex > 0) {
-        ks4_options.splice(gcseIndex, 1);
-      }
-    }
-  });
-  return subjects;
-};
 
 const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
