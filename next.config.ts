@@ -82,9 +82,8 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     console.log(`Found app version: "${appVersion}"`);
   }
 
-  const SANITY_ASSET_CDN_HOST = (
-    process.env.SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost
-  )?.replace(/^https?:\/\//, "");
+  const SANITY_ASSET_CDN_HOST =
+    process.env.SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost;
 
   const imageRemotePatterns = [
     {
