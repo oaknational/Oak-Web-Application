@@ -11,6 +11,8 @@ import {
   OakLink,
   OakSpan,
   OakBoxProps,
+  OakGrid,
+  OakGridArea,
 } from "@oaknational/oak-components";
 import {
   PortableText,
@@ -50,6 +52,15 @@ export type OverviewTabProps = {
    * Can be removed once the integrated programme page is launched and components are reorganised.
    */
   ph?: OakBoxProps["$ph"];
+  /**
+   * Outer padding for the content area.
+   *
+   * The integrated programme page layout has different padding requirements, to fill
+   * the 1280px grid we use this prop to control the padding outside the grid.
+   *
+   * Can be removed once the integrated programme page is launched and components are reorganised.
+   */
+  outerPh?: OakBoxProps["$ph"];
   data: {
     curriculumInfo: CurriculumOverviewMVData;
     curriculumCMSInfo: CurriculumOverviewSanityData;
@@ -144,6 +155,7 @@ const markComponents: PortableTextComponents["marks"] = {
 const OverviewTab: FC<OverviewTabProps> = ({
   onClickNavItem,
   ph = "spacing-16",
+  outerPh = "spacing-0",
   data,
 }: OverviewTabProps) => {
   const { track } = useAnalytics();
@@ -232,140 +244,142 @@ const OverviewTab: FC<OverviewTabProps> = ({
   );
 
   return (
-    <OakBox $mt={["spacing-0", "spacing-0", "spacing-48"]}>
+    <OakBox $mt={["spacing-0", "spacing-0", "spacing-56"]}>
       <OakBox $minWidth={"100%"} $display={["block", "block", "none"]}>
         <OakBox
           $background={"bg-decorative1-very-subdued"}
           $ph={ph}
-          $pv="spacing-20"
+          $pv="spacing-32"
         >
           {contents}
         </OakBox>
       </OakBox>
-      <OakBox
-        id="curriculum-overview"
-        aria-labelledby="curriculum-overview-heading"
-        tabIndex={-1}
-        $maxWidth="spacing-1280"
-        $mh={"auto"}
-        $ph={ph}
-        $width={"100%"}
-        role="region"
-      >
-        <OakFlex $gap={"spacing-120"} $alignItems={"flex-start"}>
-          <ScreenReaderOnly>
-            <OakHeading
-              tag="h2"
-              data-testid="overview-heading"
-              id="curriculum-overview-heading"
-            >
-              Explainer
-            </OakHeading>
-          </ScreenReaderOnly>
-          <OakBox
-            style={{ minWidth: 300 }}
-            $position={["static", "static", "sticky"]}
-            $top="spacing-20"
-            $pb="spacing-40"
-            $display={["none", "none", "block"]}
-          >
-            {contents}
-          </OakBox>
-          <OakFlex
-            $mb="spacing-8"
-            $mt={["spacing-24", "spacing-24", "spacing-0"]}
-          >
-            <OakBox
-              $pb={"spacing-48"}
-              $mh={["auto", "auto", "spacing-0"]}
-              $textAlign={"left"}
-            >
-              <OakBox data-testid="explainer">
-                <ExplainerStyles>
-                  <PortableText
-                    value={curriculumExplainer.explainerRaw}
-                    components={{
-                      ...basePortableTextComponents.list,
-                      listItem: {
-                        bullet: (props) => (
-                          <OakLI $font={["list-item-2", "list-item-1"]}>
-                            {props.children}
-                          </OakLI>
-                        ),
-                        number: (props) => (
-                          <OakLI $font={["list-item-2", "list-item-1"]}>
-                            {props.children}
-                          </OakLI>
-                        ),
-                      },
-                      block: {
-                        ...basePortableTextComponents.block,
-                        ...blockHeadingComponents,
-                      } as PortableTextBlockComponent,
-                      types: {},
-                      marks: {
-                        strong: basePortableTextComponents.marks!.strong,
-                        em: basePortableTextComponents.marks!.em,
-                        link: markComponents.link,
-                      },
-                    }}
-                  />
-                </ExplainerStyles>
-              </OakBox>
-            </OakBox>
-          </OakFlex>
-        </OakFlex>
-        {isVideoEnabled && (
-          <OakFlex
-            data-testid="video-guide"
-            $alignItems={"center"}
-            $justifyContent={"flex-start"}
-            $flexDirection={["column-reverse", "row"]}
-            $gap={["spacing-24", "spacing-120"]}
-            $mb={["spacing-48", "spacing-80"]}
-          >
-            <OakBox>
-              <CMSVideo video={video} location="lesson" />
-            </OakBox>
-            {/* @todo replace with OakFlex - work out $maxWidth */}
-            <Flex
-              $flexDirection={"column"}
-              $maxWidth={["100%", "30%"]}
-              $alignItems={"flex-start"}
-              $gap={[16, 24]}
-            >
-              <OakHeading
-                tag="h3"
-                $font={["heading-6", "heading-5"]}
-                id="header-video-guide"
-              >
-                Video guide
-              </OakHeading>
-              <OakP $font={"body-1"}>{videoExplainer}</OakP>
-              <OakSpan $font={"body-2-bold"} $color="text-primary">
-                <OakSecondaryLink
-                  href={resolveOakHref({
-                    page: "blog-single",
-                    blogSlug: "our-approach-to-curriculum",
-                  })}
-                  iconName="chevron-right"
-                  isTrailingIcon={true}
-                  color="text-primary"
-                >
-                  Read more about our new curriculum
-                </OakSecondaryLink>
-              </OakSpan>
-            </Flex>
-          </OakFlex>
-        )}
-      </OakBox>
-      <OakBox $background={"bg-decorative1-subdued"} $pv="spacing-48">
+      <OakBox $ph={outerPh}>
         <OakBox
+          id="curriculum-overview"
+          aria-labelledby="curriculum-overview-heading"
+          tabIndex={-1}
           $maxWidth="spacing-1280"
           $mh={"auto"}
-          $ph="spacing-20"
           $width={"100%"}
+          role="region"
+          $ph={ph}
         >
+          <OakGrid $cg={"spacing-16"}>
+            <ScreenReaderOnly>
+              <OakHeading
+                tag="h2"
+                data-testid="overview-heading"
+                id="curriculum-overview-heading"
+              >
+                Explainer
+              </OakHeading>
+            </ScreenReaderOnly>
+            <OakGridArea
+              $display={["none", "none", "block"]}
+              $colSpan={[12, 12, 3]}
+            >
+              <OakBox
+                $position={["static", "static", "sticky"]}
+                $top="spacing-20"
+                $pb="spacing-40"
+              >
+                {contents}
+              </OakBox>
+            </OakGridArea>
+            <OakGridArea
+              $mb="spacing-8"
+              $mt={["spacing-32", "spacing-32", "spacing-0"]}
+              $colSpan={[12, 12, 6]}
+              $colStart={[1, 1, 5]}
+            >
+              <OakBox
+                $pb={"spacing-48"}
+                $mh={["auto", "auto", "spacing-0"]}
+                $textAlign={"left"}
+              >
+                <OakBox data-testid="explainer">
+                  <ExplainerStyles>
+                    <PortableText
+                      value={curriculumExplainer.explainerRaw}
+                      components={{
+                        ...basePortableTextComponents.list,
+                        listItem: {
+                          bullet: (props) => (
+                            <OakLI $font={["list-item-2", "list-item-1"]}>
+                              {props.children}
+                            </OakLI>
+                          ),
+                          number: (props) => (
+                            <OakLI $font={["list-item-2", "list-item-1"]}>
+                              {props.children}
+                            </OakLI>
+                          ),
+                        },
+                        block: {
+                          ...basePortableTextComponents.block,
+                          ...blockHeadingComponents,
+                        } as PortableTextBlockComponent,
+                        types: {},
+                        marks: {
+                          strong: basePortableTextComponents.marks!.strong,
+                          em: basePortableTextComponents.marks!.em,
+                          link: markComponents.link,
+                        },
+                      }}
+                    />
+                  </ExplainerStyles>
+                </OakBox>
+              </OakBox>
+            </OakGridArea>
+          </OakGrid>
+          {isVideoEnabled && (
+            <OakFlex
+              data-testid="video-guide"
+              $alignItems={"center"}
+              $justifyContent={"flex-start"}
+              $flexDirection={["column-reverse", "row"]}
+              $gap={["spacing-24", "spacing-120"]}
+              $mb={["spacing-48", "spacing-80"]}
+            >
+              <OakBox>
+                <CMSVideo video={video} location="lesson" />
+              </OakBox>
+              {/* @todo replace with OakFlex - work out $maxWidth */}
+              <Flex
+                $flexDirection={"column"}
+                $maxWidth={["100%", "30%"]}
+                $alignItems={"flex-start"}
+                $gap={[16, 24]}
+              >
+                <OakHeading
+                  tag="h3"
+                  $font={["heading-6", "heading-5"]}
+                  id="header-video-guide"
+                >
+                  Video guide
+                </OakHeading>
+                <OakP $font={"body-1"}>{videoExplainer}</OakP>
+                <OakSpan $font={"body-2-bold"} $color="text-primary">
+                  <OakSecondaryLink
+                    href={resolveOakHref({
+                      page: "blog-single",
+                      blogSlug: "our-approach-to-curriculum",
+                    })}
+                    iconName="chevron-right"
+                    isTrailingIcon={true}
+                    color="text-primary"
+                  >
+                    Read more about our new curriculum
+                  </OakSecondaryLink>
+                </OakSpan>
+              </Flex>
+            </OakFlex>
+          )}
+        </OakBox>
+      </OakBox>
+      <OakBox $background={"bg-decorative1-subdued"} $pv="spacing-48">
+        <OakBox $maxWidth="spacing-1280" $mh={"auto"} $ph={ph} $width={"100%"}>
           <OakFlex
             $gap={["spacing-24", "spacing-32"]}
             $flexDirection={"column"}
