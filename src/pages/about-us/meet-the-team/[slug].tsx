@@ -22,18 +22,46 @@ import CMSClient from "@/node-lib/cms";
 import { TeamMember } from "@/common-lib/cms-types/teamMember";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { SocialButton } from "@/components/GenericPagesComponents/SocialButton";
+import {
+  ProfileNavigation,
+  MemberCategory,
+  buildProfileNavigation,
+  determineMemberSection,
+  getMemberCategory,
+} from "@/pages-helpers/shared/about-us-pages/profileNavigation";
+import { PortableTextJSON } from "@/common-lib/cms-types/portableText";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-type ProfileNavigation = {
-  prevHref: string | null;
-  prevName: string | null;
-  nextHref: string | null;
-  nextName: string | null;
-};
+/**
+ * Checks if a portable text block is empty (contains no text content)
+ */
+function isEmptyBlock(block: Record<string, unknown>): boolean {
+  if (block._type !== "block") return false;
+  const children = block.children as Array<{ text?: string }> | undefined;
+  if (!children || children.length === 0) return true;
+  return children.every((child) => !child.text || child.text.trim() === "");
+}
 
-type MemberCategory = "Our leadership" | "Our board";
-type MemberSection = "leadership" | "board";
+/**
+ * Removes trailing empty blocks from portable text
+ */
+function trimTrailingEmptyBlocks(
+  blocks: PortableTextJSON | null | undefined,
+): PortableTextJSON | null {
+  if (!blocks || blocks.length === 0) return null;
+
+  // Find the last non-empty block index
+  let lastNonEmptyIndex = blocks.length - 1;
+  while (lastNonEmptyIndex >= 0 && isEmptyBlock(blocks[lastNonEmptyIndex])) {
+    lastNonEmptyIndex--;
+  }
+
+  if (lastNonEmptyIndex < 0) return null;
+  if (lastNonEmptyIndex === blocks.length - 1) return blocks;
+
+  return blocks.slice(0, lastNonEmptyIndex + 1);
+}
 
 export type AboutUsMeetTheTeamPersonPageProps = {
   pageData: TeamMember;
@@ -50,6 +78,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 }) => {
   const { name, role, image, bioPortableText, socials } = pageData;
   const { prevHref, nextHref } = navigation;
+  const trimmedBio = trimTrailingEmptyBlocks(bioPortableText);
 
   return (
     <Layout
@@ -164,15 +193,15 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
               )}
 
               {/* Bio */}
-              {bioPortableText && (
+              {trimmedBio && (
                 <OakBox $font={["body-2", "body-1"]} $color={"text-primary"}>
-                  <PortableTextWithDefaults value={bioPortableText} />
+                  <PortableTextWithDefaults value={trimmedBio} />
                 </OakBox>
               )}
 
               {/* Navigation buttons */}
               {(prevHref || nextHref) && (
-                <OakFlex $gap={"spacing-16"} $mt={"spacing-16"}>
+                <OakFlex $gap={"spacing-16"}>
                   {prevHref && (
                     <OakSmallSecondaryButton
                       element="a"
@@ -205,139 +234,6 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 type URLParams = {
   slug: string;
 };
-
-type TeamMemberRef = {
-  id: string;
-  name: string;
-  slug?: { current?: string } | null;
-};
-
-function getMemberSlug(member: TeamMemberRef): string {
-  return member.slug?.current ?? member.id;
-}
-
-function buildMemberHref(slug: string, section: MemberSection): string {
-  return `/about-us/meet-the-team/${slug}?section=${section}`;
-}
-
-function getNeighbor(
-  currentList: TeamMemberRef[],
-  otherList: TeamMemberRef[],
-  currentIndex: number,
-  currentSection: MemberSection,
-  direction: "prev" | "next",
-): { href: string | null; name: string | null } {
-  const otherSection: MemberSection =
-    currentSection === "leadership" ? "board" : "leadership";
-  const atBoundary =
-    direction === "prev"
-      ? currentIndex === 0
-      : currentIndex === currentList.length - 1;
-
-  // Not at boundary - return neighbor in same section
-  if (!atBoundary) {
-    const neighbor =
-      currentList[currentIndex + (direction === "prev" ? -1 : 1)];
-    if (neighbor) {
-      return {
-        href: buildMemberHref(getMemberSlug(neighbor), currentSection),
-        name: neighbor.name,
-      };
-    }
-  }
-
-  // At boundary - wrap to other section if it has members
-  if (otherList.length > 0) {
-    const wrap = direction === "prev" ? otherList.at(-1) : otherList[0];
-    if (wrap) {
-      return {
-        href: buildMemberHref(getMemberSlug(wrap), otherSection),
-        name: wrap.name,
-      };
-    }
-  }
-
-  // Other section empty - wrap within same section if more than one member
-  if (currentList.length > 1) {
-    const wrap = direction === "prev" ? currentList.at(-1) : currentList[0];
-    if (wrap) {
-      return {
-        href: buildMemberHref(getMemberSlug(wrap), currentSection),
-        name: wrap.name,
-      };
-    }
-  }
-
-  return { href: null, name: null };
-}
-
-function buildProfileNavigation(
-  leadershipTeam: TeamMemberRef[],
-  boardMembers: TeamMemberRef[],
-  currentSlug: string,
-  currentSection: MemberSection,
-): ProfileNavigation {
-  const currentList =
-    currentSection === "leadership" ? leadershipTeam : boardMembers;
-  const otherList =
-    currentSection === "leadership" ? boardMembers : leadershipTeam;
-
-  const currentIndex = currentList.findIndex(
-    (member) => getMemberSlug(member) === currentSlug,
-  );
-
-  if (currentIndex === -1) {
-    return { prevHref: null, prevName: null, nextHref: null, nextName: null };
-  }
-
-  const prev = getNeighbor(
-    currentList,
-    otherList,
-    currentIndex,
-    currentSection,
-    "prev",
-  );
-  const next = getNeighbor(
-    currentList,
-    otherList,
-    currentIndex,
-    currentSection,
-    "next",
-  );
-
-  return {
-    prevHref: prev.href,
-    prevName: prev.name,
-    nextHref: next.href,
-    nextName: next.name,
-  };
-}
-
-function determineMemberSection(
-  leadershipTeam: TeamMemberRef[],
-  boardMembers: TeamMemberRef[],
-  currentSlug: string,
-  requestedSection: MemberSection | null,
-): MemberSection {
-  const inLeadership = leadershipTeam.some(
-    (member) => getMemberSlug(member) === currentSlug,
-  );
-  const inBoard = boardMembers.some(
-    (member) => getMemberSlug(member) === currentSlug,
-  );
-
-  // If a section was requested and the member exists in that section, use it
-  if (requestedSection === "leadership" && inLeadership) return "leadership";
-  if (requestedSection === "board" && inBoard) return "board";
-
-  // Default: prefer leadership if member is in both
-  if (inLeadership) return "leadership";
-  return "board";
-}
-
-function getMemberCategory(section: MemberSection): MemberCategory {
-  return section === "leadership" ? "Our leadership" : "Our board";
-}
 
 export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPersonPageProps,
