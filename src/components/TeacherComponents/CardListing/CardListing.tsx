@@ -153,7 +153,7 @@ const StyledLink = styled(OakLink)`
   }
   &:hover {
     text-decoration: none;
-    &:not([data-disabled]) {
+    &:not([data-disabled="true"]) {
       .card-listing-header {
         text-decoration: underline;
       }
