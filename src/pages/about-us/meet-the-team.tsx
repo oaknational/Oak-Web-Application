@@ -221,8 +221,8 @@ export const getServerSideProps: GetServerSideProps<
     context.req.cookies,
     posthogApiKey,
   );
-  let enableV2: boolean = true; // Temporarily enabled for development
-  if (posthogUserId && !enableV2) {
+  let enableV2: boolean = false;
+  if (posthogUserId) {
     // get the variant key for the user
     enableV2 =
       (await getFeatureFlag({

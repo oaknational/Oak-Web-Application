@@ -193,8 +193,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
   });
 
   describe("getServerSideProps", () => {
-    // Skipped: Feature flag is temporarily bypassed for development (enableV2 = true)
-    it.skip("should 404 when not enabled", async () => {
+    it("should 404 when not enabled", async () => {
       (getFeatureFlag as jest.Mock).mockResolvedValue(false);
       const propsResult = await getServerSideProps({
         req: { cookies: {} },

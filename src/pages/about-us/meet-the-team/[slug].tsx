@@ -213,8 +213,8 @@ export const getServerSideProps: GetServerSideProps<
     context.req.cookies,
     posthogApiKey,
   );
-  let enableV2: boolean = true; // Temporarily enabled for development
-  if (posthogUserId && !enableV2) {
+  let enableV2: boolean = false;
+  if (posthogUserId) {
     enableV2 =
       (await getFeatureFlag({
         featureFlagKey: "about-us--who-we-are--v2",
