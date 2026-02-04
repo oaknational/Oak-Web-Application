@@ -61,6 +61,11 @@ const CardListing = (props: CardListingProps) => {
   const showFooter = lessonCount !== undefined || showSave;
   const defaultTextColour = getDefaultTextColour({ disabled, isHighlighted });
 
+  // If the card is disabled use a div for the container, otherwise use a link element
+  const cardLinkProps = disabled
+    ? { "data-disabled": true, as: "div" as const }
+    : { href };
+
   return (
     <OakFlex
       $borderRadius={"border-radius-m2"}
@@ -72,11 +77,7 @@ const CardListing = (props: CardListingProps) => {
     >
       {layoutVariant === "horizontal" ? (
         <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
-          <StyledLink
-            href={href}
-            as={disabled ? "div" : "a"}
-            data-disabled={disabled}
-          >
+          <StyledLink {...cardLinkProps}>
             <OakFlex
               $flexDirection={"row"}
               $gap={"spacing-20"}
@@ -121,11 +122,7 @@ const CardListing = (props: CardListingProps) => {
           $height={"100%"}
           $justifyContent={"space-between"}
         >
-          <StyledLink
-            href={href}
-            as={disabled ? "div" : "a"}
-            data-disabled={disabled}
-          >
+          <StyledLink {...cardLinkProps}>
             <OakFlex
               $gap={"spacing-20"}
               $flexDirection={"column"}
@@ -162,7 +159,6 @@ const StyledLink = styled(OakSecondaryLink)`
   height: 100%;
   &:visited {
     color: ${parseColor("text-link-visited")};
-    color: ${parseColor("text-primary")};
   }
   &:hover {
     text-decoration: none;
