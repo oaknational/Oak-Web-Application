@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import { GetServerSidePropsContext } from "next";
 import "jest-styled-components";
 
@@ -16,12 +15,6 @@ import OaksCurricula, {
 
 jest.mock("@/node-lib/posthog/getFeatureFlag");
 jest.mock("../../../node-lib/cms");
-jest.mock("@mux/mux-player-react/lazy", () => {
-  return forwardRef((props, ref) => {
-    ref; // This prevents warning about ref not being used
-    return <div data-testid="mux-player-mock" />;
-  });
-});
 
 const testAboutWhoWeArePageData: OaksCurriculaPage["pageData"] = {
   ...testAboutPageBaseData,
