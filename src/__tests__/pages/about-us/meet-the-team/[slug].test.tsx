@@ -95,7 +95,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
       },
     };
 
-    const { getByAltText } = renderWithProviders()(
+    const { getAllByAltText } = renderWithProviders()(
       <AboutUsMeetTheTeamPerson
         pageData={teamMemberWithImage}
         topNav={topNavFixture}
@@ -104,7 +104,10 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
       />,
     );
 
-    expect(getByAltText("Test alt text")).toBeInTheDocument();
+    // Image is rendered twice (desktop and mobile versions)
+    const images = getAllByAltText("Test alt text");
+    expect(images).toHaveLength(2);
+    expect(images[0]).toBeInTheDocument();
   });
 
   it("renders with socials", () => {

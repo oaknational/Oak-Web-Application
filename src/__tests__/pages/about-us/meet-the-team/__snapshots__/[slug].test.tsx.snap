@@ -1628,7 +1628,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  grid-column: span 9;
+  grid-column: span 12;
   grid-row: span undefined;
   -webkit-order: 1;
   -ms-flex-order: 1;
@@ -4684,17 +4684,13 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c11 c120"
+                  class="c127"
                 >
-                  <div
-                    class="c127"
+                  <p
+                    class="c128 c129"
                   >
-                    <p
-                      class="c128 c129"
-                    >
-                      Test bio text
-                    </p>
-                  </div>
+                    Test bio text
+                  </p>
                 </div>
                 <div
                   class="c130 c131"
