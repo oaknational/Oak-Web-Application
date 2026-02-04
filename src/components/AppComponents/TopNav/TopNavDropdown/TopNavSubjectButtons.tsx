@@ -6,6 +6,8 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
+import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
+
 import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
@@ -42,6 +44,7 @@ const TopNavSubjectButtons = ({
   keyStageSlug,
   keyStageTitle,
   handleClick,
+  focusManager,
 }: {
   selectedMenu: keyof TeachersSubNavData;
   subjects: TeachersSubNavData[
@@ -53,6 +56,7 @@ const TopNavSubjectButtons = ({
   keyStageSlug: string;
   keyStageTitle: string;
   handleClick?: () => void;
+  focusManager?: DropdownFocusManager;
 }) => {
   return (
     <OakUL
@@ -83,6 +87,12 @@ const TopNavSubjectButtons = ({
                   }),
                 )}
                 onClick={handleClick}
+                onKeyDown={(e) =>
+                  focusManager?.handleKeyDown(
+                    e,
+                    `${keyStageSlug}-${subjectSlug}-subject-button`,
+                  )
+                }
                 phase={selectedMenu as "primary" | "secondary"}
                 id={`${keyStageSlug}-${subjectSlug}-subject-button`}
               >
@@ -113,6 +123,12 @@ const TopNavSubjectButtons = ({
                   }),
                 )}
                 onClick={handleClick}
+                onKeyDown={(e) =>
+                  focusManager?.handleKeyDown(
+                    e,
+                    `${keyStageSlug}-${subjectSlug}-subject-button`,
+                  )
+                }
                 phase={"non-curriculum"}
               >
                 {subject.title}
@@ -127,6 +143,12 @@ const TopNavSubjectButtons = ({
           iconName="arrow-right"
           isTrailingIcon
           onClick={handleClick}
+          onKeyDown={(e) =>
+            focusManager?.handleKeyDown(
+              e,
+              `${keyStageSlug}-all-keystages-button`,
+            )
+          }
           href={resolveOakHref({ page: "subject-index", keyStageSlug })}
         >
           All {keyStageTitle} subjects

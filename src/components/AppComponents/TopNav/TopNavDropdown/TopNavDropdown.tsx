@@ -12,7 +12,7 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
-import { DropDownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
+import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
 import TopNavSubjectButtons from "./TopNavSubjectButtons";
 
@@ -23,7 +23,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export type TopNavDropdownProps = {
-  focusManager: DropDownFocusManager;
+  focusManager: DropdownFocusManager;
   activeArea: "TEACHERS" | "PUPILS";
   selectedMenu: keyof TeachersSubNavData | keyof PupilsSubNavData;
   teachers: TeachersSubNavData;
@@ -37,7 +37,7 @@ const TeachersPhaseSection = ({
 }: {
   selectedMenu: keyof TeachersSubNavData;
   menuData: TeachersSubNavData["primary" | "secondary"];
-  focusManager: DropDownFocusManager;
+  focusManager: DropdownFocusManager;
 }) => {
   const defaultKeystage =
     menuData.keystages[0]?.slug || (selectedMenu === "primary" ? "ks1" : "ks3");
@@ -114,6 +114,7 @@ const TeachersPhaseSection = ({
       </OakUL>
       {subjects && (
         <TopNavSubjectButtons
+          focusManager={focusManager}
           selectedMenu={selectedMenu}
           subjects={subjects}
           nonCurriculumSubjects={nonCurriculumSubjects}
@@ -129,9 +130,11 @@ const TeachersPhaseSection = ({
 };
 
 const TeachersLinksSection = ({
+  focusManager,
   selectedMenu,
   menuData,
 }: {
+  focusManager: DropdownFocusManager;
   selectedMenu: "guidance" | "aboutUs";
   menuData: TeachersSubNavData["guidance" | "aboutUs"];
 }) => {
@@ -176,6 +179,9 @@ const TeachersLinksSection = ({
               }
               width={"spacing-160"}
               id={`${link.slug}-dropdown-button`}
+              onKeyDown={(e) =>
+                focusManager.handleKeyDown(e, `${link.slug}-dropdown-button`)
+              }
             >
               {link.title}
             </OakLeftAlignedButton>
@@ -223,14 +229,14 @@ const PupilsSection = ({
 };
 
 const TopNavDropdown = (props: TopNavDropdownProps) => {
-  const { activeArea, selectedMenu, teachers, pupils } = props;
+  const { activeArea, selectedMenu, teachers, pupils, focusManager } = props;
 
   return (
     <OakFlex $pa={"spacing-40"}>
       {activeArea === "TEACHERS" &&
         (selectedMenu === "primary" || selectedMenu === "secondary") && (
           <TeachersPhaseSection
-            focusManager={props.focusManager}
+            focusManager={focusManager}
             selectedMenu={selectedMenu}
             menuData={teachers[selectedMenu]}
           />
@@ -238,6 +244,7 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
       {activeArea === "TEACHERS" &&
         (selectedMenu === "guidance" || selectedMenu === "aboutUs") && (
           <TeachersLinksSection
+            focusManager={focusManager}
             selectedMenu={selectedMenu}
             menuData={teachers[selectedMenu]}
           />

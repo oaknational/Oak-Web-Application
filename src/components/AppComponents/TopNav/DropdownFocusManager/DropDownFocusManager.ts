@@ -1,3 +1,7 @@
+import React from "react";
+
+import { subNavButtons } from "../SubNav/TeachersSubNav";
+
 import {
   SubNavLinks,
   TeachersBrowse,
@@ -6,7 +10,7 @@ import {
 
 type FocusNode = {
   id: string;
-  parent: string | null;
+  parent: { parentId: string; parentSiblings: string[] } | null;
   children: string[];
   isFirstChild?: boolean;
   isLastChild?: boolean;
@@ -25,16 +29,19 @@ export class DropdownFocusManager {
   private buildFocusTree(teachersNavData: TeachersSubNavData) {
     const focusMap = new Map<string, FocusNode>();
 
-    (Object.keys(teachersNavData) as Array<keyof TeachersSubNavData>).forEach(
-      (section) => {
-        const id = `${section}-subnav-button`;
-        focusMap.set(id, {
-          id,
-          parent: null,
-          children: this.addChildrenIds(teachersNavData[section]),
-        });
-      },
-    );
+    subNavButtons.forEach((section) => {
+      const hasChildren = section.slug !== "curriculum";
+      const id = `${section.slug}-subnav-button`;
+      focusMap.set(id, {
+        id,
+        parent: null,
+        children: hasChildren
+          ? this.addChildrenIds(
+              teachersNavData[section.slug as keyof TeachersSubNavData],
+            )
+          : [],
+      });
+    });
     this.buildChildrenNodes(focusMap, teachersNavData);
 
     return focusMap;
@@ -43,64 +50,92 @@ export class DropdownFocusManager {
     focusMap: Map<string, FocusNode>,
     teachersNavData: TeachersSubNavData,
   ) {
-    (Object.keys(teachersNavData) as Array<keyof TeachersSubNavData>).forEach(
-      (section) => {
-        const sectionData = teachersNavData[section];
-
-        if (Array.isArray(sectionData)) {
-          sectionData.forEach((link, index) => {
-            const id = `${link.slug}-dropdown-button`;
-
-            focusMap.set(id, {
-              id,
-              parent: `${section}-subnav-button`,
-              isFirstChild: index === 0,
-              isLastChild: index === sectionData.length - 1,
-              children: [],
-            });
-          });
-
-          // if teachers browse
-        } else if ("keystages" in sectionData) {
-          sectionData.keystages.forEach((keystage, index) => {
-            const keystageId = `${keystage.slug}-dropdown-button`;
-
-            focusMap.set(keystageId, {
-              id: keystageId,
-              parent: `${section}-subnav-button`,
-              isFirstChild: index === 0,
-              isLastChild: index === sectionData.keystages.length - 1,
-              children: keystage.subjects.map(
-                (subject) =>
-                  `${keystage.slug}-${subject.subjectSlug}-subject-button`,
-              ),
-            });
-
-            keystage.subjects.forEach((subject, index) => {
-              const subjectId = `${keystage.slug}-${subject.subjectSlug}-subject-button`;
-
-              focusMap.set(subjectId, {
-                id: subjectId,
-                parent: keystageId,
-                isFirstChild: index === 0,
-                children: [],
-              });
-            });
-            // The all keystages button is the last child of the subject list
-            const allKeystagesId = `${keystage.slug}-all-keystages-button`;
-            focusMap.set(allKeystagesId, {
-              id: allKeystagesId,
-              parent: keystageId,
-              isLastChild: true,
-              children: [],
-            });
-          });
-        }
-      },
+    const parentSiblings = subNavButtons.map(
+      (section) => `${section.slug}-subnav-button`,
     );
+    subNavButtons.forEach((section) => {
+      if (section.slug === "curriculum-landing-page") return;
+      const sectionData =
+        teachersNavData[section.slug as keyof TeachersSubNavData];
+
+      if (Array.isArray(sectionData)) {
+        sectionData.forEach((link, index) => {
+          const id = `${link.slug}-dropdown-button`;
+
+          focusMap.set(id, {
+            id,
+            parent: {
+              parentId: `${section.slug}-subnav-button`,
+              parentSiblings,
+            },
+            isFirstChild: index === 0,
+            isLastChild: index === sectionData.length - 1,
+            children: [],
+          });
+        });
+
+        // if teachers browse
+      } else if ("keystages" in sectionData) {
+        sectionData.keystages.forEach((keystage, index) => {
+          const keystageId = `${keystage.slug}-dropdown-button`;
+
+          focusMap.set(keystageId, {
+            id: keystageId,
+            parent: {
+              parentId: `${section.slug}-subnav-button`,
+              parentSiblings,
+            },
+            isFirstChild: index === 0,
+            isLastChild: index === sectionData.keystages.length - 1,
+            children: keystage.subjects.map(
+              (subject) =>
+                `${keystage.slug}-${subject.subjectSlug}-subject-button`,
+            ),
+          });
+
+          this.buildSubjectNodes({
+            focusMap,
+            keystage,
+            parentId: keystageId,
+            parentSiblings: sectionData.keystages.map(
+              (ks) => `${ks.slug}-dropdown-button`,
+            ),
+          });
+        });
+      }
+    });
+  }
+  private buildSubjectNodes({
+    focusMap,
+    keystage,
+    parentId,
+    parentSiblings,
+  }: {
+    focusMap: Map<string, FocusNode>;
+    keystage: TeachersBrowse["keystages"][0];
+    parentId: string;
+    parentSiblings: string[];
+  }) {
+    keystage.subjects.forEach((subject, index) => {
+      const subjectId = `${keystage.slug}-${subject.subjectSlug}-subject-button`;
+      focusMap.set(subjectId, {
+        id: subjectId,
+        parent: { parentId, parentSiblings },
+        isFirstChild: index === 0,
+        children: [],
+      });
+    });
+    // The all keystages button is the last child of the subject list
+    const allKeystagesId = `${keystage.slug}-all-keystages-button`;
+    focusMap.set(allKeystagesId, {
+      id: allKeystagesId,
+      parent: { parentId, parentSiblings },
+      isLastChild: true,
+      children: [],
+    });
   }
   private addChildrenIds(sectionData: SubNavLinks | TeachersBrowse) {
-    // if subnav links
+    if (!sectionData) return [];
     if (Array.isArray(sectionData)) {
       return sectionData.map((link) => `${link.slug}-dropdown-button`);
     }
@@ -120,29 +155,57 @@ export class DropdownFocusManager {
     return currentNode;
   }
   private focusParent(currentNode: FocusNode, event: React.KeyboardEvent) {
-    const shouldFocusParent =
-      currentNode.parent &&
-      (currentNode.isFirstChild || currentNode.isLastChild);
-    console.log("Should focus parent:", shouldFocusParent);
-    if (!shouldFocusParent) return;
-    const parentNode = this.getNode(currentNode.parent!);
-    const parentElement = document.getElementById(parentNode.id);
-    console.log("Parent Element:", parentElement);
+    if (!currentNode.parent) return;
+    const parentElement = document.getElementById(currentNode.parent.parentId);
     if (parentElement) {
       event.preventDefault();
       parentElement.focus();
     }
   }
+  private focusParentSibling(
+    currentNode: FocusNode,
+    event: React.KeyboardEvent,
+  ): undefined {
+    if (!currentNode.parent) return;
 
-  private focusFirstChild(currentNode: FocusNode, event: React.KeyboardEvent) {
+    const parentIndex = currentNode.parent.parentSiblings.indexOf(
+      currentNode.parent.parentId,
+    );
+    const siblingIndex = parentIndex + 1;
+
+    if (siblingIndex >= currentNode.parent.parentSiblings.length)
+      return this.focusParentSibling(
+        this.getNode(currentNode.parent.parentId),
+        event,
+      );
+    const siblingId = currentNode.parent.parentSiblings[siblingIndex];
+    const siblingElement = document.getElementById(siblingId!);
+    if (siblingElement) {
+      event.preventDefault();
+      siblingElement.focus();
+    }
+  }
+
+  private handleTab(currentNode: FocusNode, event: React.KeyboardEvent) {
     const hasChildren = currentNode.children.length > 0;
-    if (hasChildren) {
-      const firstChildId = currentNode.children[0]!;
+    const firstChildId = hasChildren && currentNode.children[0]!;
+    if (firstChildId) {
       const firstChildElement = document.getElementById(firstChildId);
       if (firstChildElement) {
         event.preventDefault();
-        firstChildElement.focus();
+        return firstChildElement.focus();
       }
+    }
+
+    const isLastChild = currentNode.isLastChild;
+
+    if (isLastChild) this.focusParentSibling(currentNode, event);
+  }
+  private handleShiftTab(event: React.KeyboardEvent, currentNode: FocusNode) {
+    const isFirstChild = currentNode.isFirstChild;
+    if (isFirstChild) {
+      this.focusParent(currentNode, event);
+      return;
     }
   }
 
@@ -150,9 +213,9 @@ export class DropdownFocusManager {
     if (event.key !== "Tab") return;
     const currentNode = this.getNode(elementId);
     if (event.shiftKey) {
-      //   this.focusParent(currentNode, event);
+      this.handleShiftTab(event, currentNode);
     } else if (!event.shiftKey) {
-      this.focusFirstChild(currentNode, event);
+      this.handleTab(currentNode, event);
     }
   }
 }

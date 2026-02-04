@@ -31,7 +31,7 @@ describe("DropdownFocusManager", () => {
     // Check a subject node
     const englishNode = focusMap.get("ks1-english-subject-button");
     expect(englishNode).toBeDefined();
-    expect(englishNode?.parent).toBe("ks1-dropdown-button");
+    expect(englishNode?.parent?.parentId).toBe("ks1-dropdown-button");
     expect(englishNode?.children).toEqual([]);
   });
 
@@ -90,7 +90,7 @@ describe("DropdownFocusManager", () => {
       // @ts-expect-error: access private for test
       const ks1Node = manager.getFocusMap().get("ks1-dropdown-button")!;
       // @ts-expect-error: access private for test
-      manager.focusFirstChild(ks1Node, event);
+      manager.handleTab(ks1Node, event);
       expect(event.preventDefault).toHaveBeenCalled();
       expect(focusMock).toHaveBeenCalled();
     });
@@ -100,8 +100,55 @@ describe("DropdownFocusManager", () => {
       // @ts-expect-error: access private for test
       const ks1Node = manager.getFocusMap().get("ks1-dropdown-button")!;
       // @ts-expect-error: access private for test
-      manager.focusFirstChild(ks1Node, event);
+      manager.handleTab(ks1Node, event);
       expect(event.preventDefault).not.toHaveBeenCalled();
+    });
+  });
+  describe("focusParentSibling and focusParent behavior", () => {
+    let manager: DropdownFocusManager;
+    let event: React.KeyboardEvent<HTMLDivElement>;
+    beforeEach(() => {
+      manager = new DropdownFocusManager(mockData);
+      event = {
+        preventDefault: jest.fn(),
+      } as unknown as React.KeyboardEvent<HTMLDivElement>;
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it("should focus parent's sibling when tabbing on last child using handleTab", () => {
+      // Setup: ks1-all-keystages-button is last child, its parent is ks1-dropdown-button
+      const siblingId = "ks2-dropdown-button";
+      const focusMock = jest.fn();
+      const elementMock = { focus: focusMock };
+      jest.spyOn(document, "getElementById").mockImplementation((id) => {
+        return (id === siblingId
+          ? elementMock
+          : null) as unknown as HTMLElement;
+      });
+      // @ts-expect-error: access private for test
+      const node = manager.getFocusMap().get("ks1-all-keystages-button")!;
+      // @ts-expect-error: access private for test
+      manager.handleTab(node, event);
+      expect(event.preventDefault).toHaveBeenCalled();
+      expect(focusMock).toHaveBeenCalled();
+    });
+
+    it("should focus parent when shift-tabbing on first child using handleShiftTab", () => {
+      const parentId = "ks1-dropdown-button";
+      const focusMock = jest.fn();
+      const elementMock = { focus: focusMock };
+      jest.spyOn(document, "getElementById").mockImplementation((id) => {
+        return (id === parentId ? elementMock : null) as unknown as HTMLElement;
+      });
+      // @ts-expect-error: access private for test
+      const node = manager.getFocusMap().get("ks1-english-subject-button")!;
+      // @ts-expect-error: access private for test
+      manager.handleShiftTab(event, node);
+      expect(event.preventDefault).toHaveBeenCalled();
+      expect(focusMock).toHaveBeenCalled();
     });
   });
 });
