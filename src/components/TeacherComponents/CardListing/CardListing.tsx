@@ -1,7 +1,7 @@
 import {
   OakFlex,
   OakIconName,
-  OakLink,
+  OakSecondaryLink,
   OakTagFunctional,
   OakTypography,
   parseColor,
@@ -157,11 +157,11 @@ const CardListing = (props: CardListingProps) => {
 
 export default CardListing;
 
-const StyledLink = styled(OakLink)`
+const StyledLink = styled(OakSecondaryLink)`
   width: 100%;
   height: 100%;
-  text-decoration: none;
-  &:not(:visited) {
+  &:visited {
+    color: ${parseColor("text-link-visited")};
     color: ${parseColor("text-primary")};
   }
   &:hover {
