@@ -15,19 +15,40 @@ import { UnitListProps } from "./UnitList";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
 
+const CYCLE_2_SUBJECTS = new Set([
+  "art",
+  "computing",
+  "design-technology",
+  "geography",
+  "french",
+  "german",
+  "spanish",
+  "music",
+  "physical-education",
+  "religious-education",
+  "rshe-pshe",
+]);
+
 export type UnitListLegacyBannerProps = {
   hasNewUnits: boolean;
+  subjectSlug: string;
   allLegacyUnits: UnitListProps["currentPageItems"] | UnitsSectionData["units"];
+
   userType: "teacher" | "pupil";
   onButtonClick?: () => void;
 };
 export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
   hasNewUnits,
+  subjectSlug,
   allLegacyUnits,
   userType,
   onButtonClick,
 }) => {
   const newsletterFormProps = useNewsletterForm();
+
+  // Show the take down notice banner on all cycle 2 subjects with legacy units
+  const shouldShowCycle2RemovalBanner =
+    CYCLE_2_SUBJECTS.has(subjectSlug) && allLegacyUnits.length > 0;
 
   // If any legacy units have the displayExpiringBanner action, show the banner
   const shouldShowAnExpiringBanner = allLegacyUnits.some((unit) =>
@@ -36,7 +57,7 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
     ),
   );
 
-  if (!shouldShowAnExpiringBanner) {
+  if (!shouldShowAnExpiringBanner && !shouldShowCycle2RemovalBanner) {
     return <></>;
   }
 
@@ -45,8 +66,24 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
     bodyText: React.ReactNode;
   } => {
     switch (true) {
-      case hasNewUnits && userType === "teacher":
-        // Teacher pages, legacy unit is being removed but new units exist
+      case hasNewUnits &&
+        userType === "teacher" &&
+        shouldShowCycle2RemovalBanner:
+        // Teacher pages, cycle 2 legacy units are being taken down
+        return {
+          headerText:
+            "These resources will be removed by the end of the Spring Term 2026.",
+          bodyText: (
+            <OakP>
+              Start using our brand new teaching resources now. Designed by
+              teachers and subject experts, with real classrooms in mind. The
+              older resources below were created for lockdown learning during
+              the pandemic and are not designed for classroom teaching.
+            </OakP>
+          ),
+        };
+      case hasNewUnits && userType === "teacher" && shouldShowAnExpiringBanner:
+        // Teacher pages, cycle 1 legacy unit is being removed but new units exist
         return {
           headerText:
             "These resources were made for remote use during the pandemic, not classroom teaching.",
@@ -57,8 +94,15 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
             </OakP>
           ),
         };
-      case hasNewUnits && userType === "pupil":
-        // Pupil pages, legacy unit is being removed but new units exist
+      case hasNewUnits && userType === "pupil" && shouldShowCycle2RemovalBanner:
+        // Pupil pages, cycle 2 legacy units are being taken down
+        return {
+          headerText:
+            "These lessons will be removed by the end of Spring Term 2026.",
+          bodyText: "We’ve made brand new and improved lessons for you.",
+        };
+      case hasNewUnits && userType === "pupil" && shouldShowAnExpiringBanner:
+        // Pupil pages, cycle 1 legacy unit is being removed but new units exist
         return {
           headerText:
             "These lessons were made for home learning during the pandemic.",
@@ -161,7 +205,7 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
               onClick={onButtonClick}
               tabIndex={0}
             >
-              View new resources
+              View and download new resources
             </OakPrimaryButton>
           </OakFlex>
         )

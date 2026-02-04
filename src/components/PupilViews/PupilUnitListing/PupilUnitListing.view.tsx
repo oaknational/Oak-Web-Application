@@ -110,8 +110,11 @@ export const PupilViewsUnitListing = ({
                   <PupilSubjectDescription programmeFields={programmeFields} />
                   <UnitListLegacyBanner
                     userType={"pupil"}
+                    subjectSlug={programmeFields.subjectSlug}
                     hasNewUnits={hasNewAndLegacyUnitsInAllSections}
-                    allLegacyUnits={unitSection.units}
+                    allLegacyUnits={unitSection.units.filter((unit) =>
+                      unit.every((u) => u.isLegacy),
+                    )}
                   />
                 </>
               }

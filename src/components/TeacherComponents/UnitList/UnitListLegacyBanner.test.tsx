@@ -45,6 +45,7 @@ describe("components/UnitListLegacyBanner", () => {
       <UnitListLegacyBanner
         allLegacyUnits={getLegacyUnits(false)}
         userType="teacher"
+        subjectSlug="maths"
         onButtonClick={onClick}
         hasNewUnits={false}
       />,
@@ -62,6 +63,7 @@ describe("components/UnitListLegacyBanner", () => {
       <UnitListLegacyBanner
         allLegacyUnits={getLegacyUnits(true)}
         userType="teacher"
+        subjectSlug="maths"
         onButtonClick={onClick}
         hasNewUnits={true}
       />,
@@ -83,6 +85,7 @@ describe("components/UnitListLegacyBanner", () => {
       <UnitListLegacyBanner
         allLegacyUnits={getLegacyUnits(true)}
         userType="teacher"
+        subjectSlug="maths"
         hasNewUnits={false}
       />,
     );
@@ -99,6 +102,7 @@ describe("components/UnitListLegacyBanner", () => {
       <UnitListLegacyBanner
         allLegacyUnits={getLegacyUnits(true)}
         userType="pupil"
+        subjectSlug="maths"
         hasNewUnits={true}
       />,
     );
@@ -119,6 +123,7 @@ describe("components/UnitListLegacyBanner", () => {
       <UnitListLegacyBanner
         allLegacyUnits={getLegacyUnits(true)}
         userType="pupil"
+        subjectSlug="maths"
         hasNewUnits={false}
       />,
     );

@@ -248,6 +248,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 banner={
                   <UnitListLegacyBanner
                     userType={"teacher"}
+                    subjectSlug={subjectSlug}
                     hasNewUnits={hasNewAndLegacyUnits}
                     allLegacyUnits={legacyPageItems}
                     onButtonClick={() => onPageChange(1)}
@@ -281,6 +282,7 @@ const UnitList: FC<UnitListProps> = (props) => {
             banner={
               <UnitListLegacyBanner
                 userType={"teacher"}
+                subjectSlug={subjectSlug}
                 hasNewUnits={hasNewAndLegacyUnits}
                 allLegacyUnits={legacyPageItems}
                 onButtonClick={() => onPageChange(1)}
