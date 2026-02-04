@@ -56,7 +56,11 @@ const CardListing = (props: CardListingProps) => {
     >
       {layoutVariant === "horizontal" ? (
         <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
-          <StyledLink href={href} disabled={disabled}>
+          <StyledLink
+            href={href}
+            as={disabled ? "div" : "a"}
+            data-disabled={disabled}
+          >
             <OakFlex
               $flexDirection={"row"}
               $gap={"spacing-20"}
@@ -101,7 +105,11 @@ const CardListing = (props: CardListingProps) => {
           $height={"100%"}
           $justifyContent={"space-between"}
         >
-          <StyledLink href={href} disabled={disabled}>
+          <StyledLink
+            href={href}
+            as={disabled ? "div" : "a"}
+            data-disabled={disabled}
+          >
             <OakFlex
               $gap={"spacing-20"}
               $flexDirection={"column"}
@@ -142,8 +150,10 @@ const StyledLink = styled(OakLink)`
   }
   &:hover {
     text-decoration: none;
-    .card-listing-header {
-      text-decoration: underline;
+    &:not([data-disabled]) {
+      .card-listing-header {
+        text-decoration: underline;
+      }
     }
   }
 `;
