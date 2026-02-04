@@ -26,6 +26,14 @@ const testAboutWhoWeArePageData: OaksCurriculaPage["pageData"] = {
       "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
     ),
   },
+  partners: {
+    legacy: new Array(16).fill(true).map((_, index) => {
+      return { imageUrl: `/#${index}`, alt: "" };
+    }),
+    current: new Array(16).fill(true).map((_, index) => {
+      return { imageUrl: `/#${index}`, alt: "" };
+    }),
+  },
   curriculumPhaseOptions: {
     subjects: [
       {

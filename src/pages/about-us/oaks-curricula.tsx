@@ -1,5 +1,13 @@
 import { GetServerSideProps, NextPage } from "next";
-import { OakBox, OakFlex, OakMaxWidth } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakGrid,
+  OakHeading,
+  OakImage,
+  OakMaxWidth,
+  OakP,
+} from "@oaknational/oak-components";
 
 import Layout from "@/components/AppComponents/Layout";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
@@ -22,10 +30,62 @@ export type OaksCurriculaPage = {
     header: {
       textRaw: PortableTextJSON;
     };
+    partners: {
+      current: { imageUrl: string; alt: string }[];
+      legacy: { imageUrl: string; alt: string }[];
+    };
     curriculumPhaseOptions: SubjectPhasePickerData;
   };
   topNav: TopNavProps;
 };
+
+type PartnerContainerProps = {
+  title: string;
+  text: string;
+  items: {
+    imageUrl: string;
+    alt: string;
+  }[];
+};
+function PartnerContainer({ title, text, items }: PartnerContainerProps) {
+  return (
+    <>
+      <OakFlex $gap={"spacing-24"} $flexDirection={"column"}>
+        <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
+          <OakHeading tag="h4" $font={["heading-5", "heading-4", "heading-4"]}>
+            {title}
+          </OakHeading>
+          <OakP $font={["body-1", "body-1", "body-2"]}>{text}</OakP>
+        </OakFlex>
+      </OakFlex>
+      <OakBox>
+        <OakGrid
+          $gridTemplateColumns={[
+            "repeat(3, 1fr)",
+            "repeat(5, 1fr)",
+            "repeat(6, 1fr)",
+          ]}
+          $cg={"spacing-16"}
+          $rg={"spacing-16"}
+        >
+          {items.map((item) => {
+            return (
+              <OakBox
+                key={item.imageUrl}
+                $aspectRatio={"1/1"}
+                $borderRadius={"border-radius-m"}
+                $borderColor={"border-neutral-lighter"}
+                $borderStyle={"solid"}
+              >
+                <OakImage src={item.imageUrl} alt={item.alt} />
+              </OakBox>
+            );
+          })}
+        </OakGrid>
+      </OakBox>
+    </>
+  );
+}
 
 export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
   pageData,
@@ -55,9 +115,33 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
             </OakFlex>
           </OakMaxWidth>
         </OakBox>
-        <OakBox $pa={"spacing-16"}>TODO: Subject phase picker</OakBox>
-        <OakBox $pa={"spacing-16"}>TODO: Curriculum partners</OakBox>
-        <OakBox $pa={"spacing-16"}>TODO: Can oak support you</OakBox>
+        <OakMaxWidth $pv={"spacing-80"}>
+          <OakFlex
+            $gap={"spacing-56"}
+            $pt={"spacing-80"}
+            $flexDirection={"column"}
+          >
+            <OakHeading
+              tag="h3"
+              $font={["heading-4", "heading-3", "heading-3"]}
+            >
+              Curriculum partners
+            </OakHeading>
+            <PartnerContainer
+              title="Current"
+              text="Partners involved in the creation of our new curricula (published after September 2022)."
+              items={pageData.partners.current}
+            />
+            <PartnerContainer
+              title="Legacy"
+              text="Partners involved in the creation of our previous curricula (published before September 2022)."
+              items={pageData.partners.legacy}
+            />
+          </OakFlex>
+        </OakMaxWidth>
+        <OakBox $pa={"spacing-16"} $borderStyle={"solid"}>
+          TODO: Can oak support you
+        </OakBox>
       </AboutUsLayout>
     </Layout>
   );
@@ -79,6 +163,14 @@ const mockData: Omit<OaksCurriculaPage["pageData"], "curriculumPhaseOptions"> =
           ],
         },
       ],
+    },
+    partners: {
+      current: new Array(16).fill(true).map(() => {
+        return { imageUrl: "", alt: "" };
+      }),
+      legacy: new Array(16).fill(true).map(() => {
+        return { imageUrl: "", alt: "" };
+      }),
     },
   };
 
