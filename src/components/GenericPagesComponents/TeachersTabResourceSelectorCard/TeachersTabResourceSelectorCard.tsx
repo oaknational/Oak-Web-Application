@@ -42,7 +42,7 @@ const TeachersTabResourceSelectorCard: FC<
             iconName={icon}
             $height="spacing-48"
             $width="spacing-48"
-            $colorFilter={"white"}
+            $colorFilter={"text-inverted"}
             alt=""
           />
         </OakFlex>

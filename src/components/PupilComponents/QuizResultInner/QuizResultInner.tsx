@@ -98,7 +98,7 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
           iconName={grade === 1 ? "tick" : "cross"}
           alt={grade === 1 ? "tick" : "cross"}
           $background={grade === 1 ? "icon-success" : "icon-error"}
-          $colorFilter={"white"}
+          $colorFilter={"text-inverted"}
           $borderRadius={"border-radius-circle"}
         />
       )}
