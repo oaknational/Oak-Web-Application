@@ -6,22 +6,29 @@ import {
 import {
   ImageItem,
   TextItem,
-  ImageOrTextItem,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
+import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { StemPortableText } from "@/components/SharedComponents/Stem";
 
-export const isImage = (obj?: ImageOrTextItem): obj is ImageItem =>
-  obj?.type === "image";
+export const isImage = (
+  obj?: StemImageObject | StemPortableText,
+): obj is ImageItem => obj?.type === "image";
 
-export const isText = (obj?: ImageOrTextItem): obj is TextItem =>
-  obj?.type === "text";
+export const isText = (
+  obj?: StemImageObject | StemPortableText,
+): obj is TextItem => obj?.type === "text";
 
-export const getStemImageData = (stem: ImageOrTextItem[]) => {
+export const getStemImageData = (
+  stem: (StemImageObject | StemPortableText)[],
+) => {
   const data = stem.find((a) => isImage(a));
   if (data && isImage(data)) return data;
 };
 
-export const getStemTextData = (stem: ImageOrTextItem[]) => {
+export const getStemTextData = (
+  stem: (StemImageObject | StemPortableText)[],
+) => {
   const data = stem.find((a) => isText(a));
   if (data && isText(data)) return data;
 };
@@ -31,7 +38,7 @@ export const getStemImage = ({
   minWidth = "spacing-240",
   scaled = false,
 }: {
-  stem: ImageOrTextItem[];
+  stem: (StemImageObject | StemPortableText)[];
   minWidth: OakAllSpacingToken;
   scaled?: boolean;
 }) => {

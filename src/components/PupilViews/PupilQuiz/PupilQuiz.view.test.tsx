@@ -25,14 +25,12 @@ import {
   LessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
-import {
-  QuizQuestionAnswers,
-  QuizQuestion,
-} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import "@/__tests__/__helpers__/IntersectionObserverMock";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import * as QuizEngineProvider from "@/components/PupilComponents/QuizEngineProvider";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const usePupilAnalyticsMock = {
   track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
@@ -173,9 +171,7 @@ describe("PupilQuizView", () => {
     ],
     ["order", orderAnswers, "You need to order to move on!"],
     ["match", matchAnswers, "You need to match to move on!"],
-  ] satisfies Array<
-    [keyof QuizQuestionAnswers, ValueOf<QuizQuestionAnswers>, string]
-  >)(
+  ] satisfies Array<[keyof AnswersSchema, ValueOf<AnswersSchema>, string]>)(
     "displays a tooltip for the %p question type when it is incomplete",
     (questionType, answers, tooltipText) => {
       const { getByRole } = renderWithTheme(

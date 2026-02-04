@@ -1,9 +1,9 @@
 import { isMultiAnswerMCQ, isShortAnswer } from "./answerTypeDiscriminators";
 
-import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 describe("pickAnswerComponent", () => {
-  const multiAnswer: QuizQuestionAnswers = {
+  const multiAnswer: AnswersSchema = {
     "multiple-choice": [
       {
         answerIsCorrect: true,
@@ -12,9 +12,9 @@ describe("pickAnswerComponent", () => {
         answerIsCorrect: true,
       },
     ],
-  } as QuizQuestionAnswers;
+  } as AnswersSchema;
 
-  const singleAnswer: QuizQuestionAnswers = {
+  const singleAnswer: AnswersSchema = {
     "multiple-choice": [
       {
         answerIsCorrect: true,
@@ -23,11 +23,11 @@ describe("pickAnswerComponent", () => {
         answerIsCorrect: false,
       },
     ],
-  } as QuizQuestionAnswers;
+  } as AnswersSchema;
 
-  const shortAnswer: QuizQuestionAnswers = {
+  const shortAnswer: AnswersSchema = {
     "short-answer": [{}],
-  } as QuizQuestionAnswers;
+  } as AnswersSchema;
 
   describe("isMultiAnswerMCQ", () => {
     it("should return true if there are more than one correct answers", () => {

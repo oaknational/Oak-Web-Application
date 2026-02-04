@@ -641,7 +641,7 @@ export const createAttributionObject = (
             multipleChoice.forEach(({ answer }, index) => {
               answer.forEach((stem) => {
                 if (
-                  stem.type === "image" &&
+                  stem?.type === "image" &&
                   !Array.isArray(stem.imageObject.metadata) &&
                   stem.imageObject.metadata &&
                   stem.imageObject.metadata.attribution

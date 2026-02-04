@@ -12,9 +12,9 @@ import {
 import { QuizMCQMultiAnswer } from "@/components/PupilComponents/QuizMCQMultiAnswer";
 import { QuizMCQSingleAnswer } from "@/components/PupilComponents/QuizMCQSingleAnswer";
 import { QuizShortAnswer } from "@/components/PupilComponents/QuizShortAnswer";
-import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-export const pickAnswerComponent = (answers: QuizQuestionAnswers) => {
+export const pickAnswerComponent = (answers: AnswersSchema) => {
   switch (true) {
     case isMultiAnswerMCQ(answers):
       return QuizMCQMultiAnswer;

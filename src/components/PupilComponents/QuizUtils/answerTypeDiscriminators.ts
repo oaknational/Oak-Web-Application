@@ -1,15 +1,15 @@
 // these discriminators should probably be moved outside of the components folder so that they can be consumed across the app
 
 import {
-  QuizQuestionAnswers,
-  MCAnswer,
+  AnswersSchema,
   MatchAnswer,
+  MCAnswer,
   OrderAnswer,
   ShortAnswer,
-} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const isMultiAnswerMCQ = (
-  answers: QuizQuestionAnswers,
+  answers: AnswersSchema,
 ): answers is { "multiple-choice": MCAnswer[] } => {
   const answerCount =
     answers["multiple-choice"]?.filter((a) => a?.answerIsCorrect).length ?? 0;
@@ -18,7 +18,7 @@ export const isMultiAnswerMCQ = (
 };
 
 export const isSingleAnswerMCQ = (
-  answers: QuizQuestionAnswers,
+  answers: AnswersSchema,
 ): answers is { "multiple-choice": MCAnswer[] } => {
   const answerCount =
     answers["multiple-choice"]?.filter((a) => a?.answerIsCorrect).length ?? 0;
@@ -27,19 +27,19 @@ export const isSingleAnswerMCQ = (
 };
 
 export const isShortAnswer = (
-  answers: QuizQuestionAnswers,
+  answers: AnswersSchema,
 ): answers is { "short-answer": ShortAnswer[] } => {
   return !!answers["short-answer"];
 };
 
 export const isOrderAnswer = (
-  answers: QuizQuestionAnswers,
+  answers: AnswersSchema,
 ): answers is { order: OrderAnswer[] } => {
   return !!answers["order"];
 };
 
 export const isMatchAnswer = (
-  answers: QuizQuestionAnswers,
+  answers: AnswersSchema,
 ): answers is { match: MatchAnswer[] } => {
   return !!answers["match"];
 };
