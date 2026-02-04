@@ -10,6 +10,8 @@ import styled from "styled-components";
 
 import { SaveUnitButton } from "../SaveUnitButton/SaveUnitButton";
 
+import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
+
 type CardListingProps = {
   layoutVariant: "horizontal" | "vertical";
   isHighlighted: boolean;
@@ -23,6 +25,7 @@ type CardListingProps = {
     unitSlug: string;
     unitTitle: string;
     programmeSlug: string;
+    trackingProps: TrackingProgrammeData;
   };
   disabled?: boolean;
 };

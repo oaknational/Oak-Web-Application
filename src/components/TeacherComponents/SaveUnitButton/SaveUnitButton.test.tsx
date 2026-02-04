@@ -4,8 +4,17 @@ import { screen } from "@testing-library/react";
 import { SaveUnitButton } from "./SaveUnitButton";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 
 const render = renderWithProviders();
+
+const mockTrackingProps: TrackingProgrammeData = {
+  savedFrom: "unit_listing_save_button",
+  keyStageSlug: "ks1",
+  keyStageTitle: "Key stage 1",
+  subjectSlug: "maths",
+  subjectTitle: "Maths",
+};
 
 const defaultProps = {
   buttonVariant: "default" as const,
@@ -13,6 +22,7 @@ const defaultProps = {
   unitSlug: "unit-slug",
   unitTitle: "Test unit",
   disabled: false,
+  trackingProps: mockTrackingProps,
 };
 
 const mockIsUnitSaved = jest.fn().mockReturnValue(false);

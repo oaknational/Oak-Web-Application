@@ -6,6 +6,7 @@ import {
 import styled from "styled-components";
 
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
+import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 
 type SaveButtonProps = {
   buttonVariant: "default" | "inverted";
@@ -13,6 +14,7 @@ type SaveButtonProps = {
   unitSlug: string;
   unitTitle: string;
   disabled?: boolean;
+  trackingProps: TrackingProgrammeData;
 };
 
 const StyledSmallPrimaryButton = styled(OakSmallPrimaryButton)`
@@ -35,16 +37,11 @@ export const SaveUnitButton = ({
   unitSlug,
   unitTitle,
   disabled,
+  trackingProps,
 }: SaveButtonProps) => {
   const { isUnitSaved, onSaveToggle, isUnitSaving } = useSaveUnits(
     programmeSlug,
-    {
-      savedFrom: "unit_listing_save_button",
-      keyStageSlug: "ks1",
-      keyStageTitle: "Key stage 1",
-      subjectSlug: "",
-      subjectTitle: "",
-    },
+    trackingProps,
   );
 
   const buttonProps = {

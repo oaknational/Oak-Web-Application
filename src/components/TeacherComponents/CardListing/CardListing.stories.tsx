@@ -82,9 +82,16 @@ const defaultArgs = {
   title:
     "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
   saveProps: {
-    unitTitle: "My world: Art and nature",
-    unitSlug: "my-world-art-and-nature",
-    programmeSlug: "art-primary-ks1",
+    unitSlug: "unit-slug",
+    unitTitle: "Unit title",
+    programmeSlug: "programme-slug",
+    trackingProps: {
+      savedFrom: "unit_listing_save_button" as const,
+      keyStageSlug: "ks1" as const,
+      keyStageTitle: "Key stage 1" as const,
+      subjectSlug: "maths",
+      subjectTitle: "Maths",
+    },
   },
   href: "fakeurl.com",
 };

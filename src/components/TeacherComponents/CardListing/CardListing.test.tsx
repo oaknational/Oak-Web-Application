@@ -14,6 +14,19 @@ const defaultProps = {
   href: "testUrl",
 };
 
+const saveProps = {
+  unitSlug: "unit-slug",
+  unitTitle: "Unit title",
+  programmeSlug: "programme-slug",
+  trackingProps: {
+    savedFrom: "unit_listing_save_button" as const,
+    keyStageSlug: "ks1" as const,
+    keyStageTitle: "Key stage 1" as const,
+    subjectSlug: "maths",
+    subjectTitle: "Maths",
+  },
+};
+
 describe("CardListing", () => {
   it("renders a title and an index", () => {
     render(<CardListing {...defaultProps} />);
@@ -67,16 +80,7 @@ describe("CardListing", () => {
     expect(lessonCount).toBeInTheDocument();
   });
   it("should render a save button when passed in", () => {
-    render(
-      <CardListing
-        {...defaultProps}
-        saveProps={{
-          unitSlug: "unit-slug",
-          unitTitle: "Unit title",
-          programmeSlug: "programme-slug",
-        }}
-      />,
-    );
+    render(<CardListing {...defaultProps} saveProps={saveProps} />);
 
     const saveButton = screen.getByRole("button", {
       name: "Save this unit: Unit title",
@@ -90,17 +94,7 @@ describe("CardListing", () => {
     expect(link).not.toBeInTheDocument();
   });
   it("should disable the save button in a disabled state", () => {
-    render(
-      <CardListing
-        {...defaultProps}
-        saveProps={{
-          unitSlug: "unit-slug",
-          unitTitle: "Unit title",
-          programmeSlug: "programme-slug",
-        }}
-        disabled
-      />,
-    );
+    render(<CardListing {...defaultProps} saveProps={saveProps} disabled />);
 
     const saveButton = screen.getByRole("button", {
       name: "Save this unit: Unit title",
