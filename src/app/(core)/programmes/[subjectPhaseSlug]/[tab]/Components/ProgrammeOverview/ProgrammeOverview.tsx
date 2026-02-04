@@ -18,7 +18,7 @@ export const ProgrammeOverview = (props: ProgrammeOverviewProps) => {
       data={props}
       ph={["spacing-20", "spacing-40", "spacing-0"]}
       outerPh={["spacing-0", "spacing-0", "spacing-40"]}
-      onClickNavItem={(pathname) => router.push(pathname)}
+      onClickNavItem={(pathname) => router.replace(pathname)}
     />
   );
 };

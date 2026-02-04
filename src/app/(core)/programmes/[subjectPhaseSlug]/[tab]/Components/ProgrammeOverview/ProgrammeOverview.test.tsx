@@ -8,10 +8,10 @@ import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithPro
 const render = renderWithProvidersByName(["theme", "oakTheme", "analytics"]);
 
 // Mock next/navigation
-const mockPush = jest.fn();
+const mockReplace = jest.fn();
 jest.mock("next/navigation", () => ({
   useRouter: () => ({
-    push: mockPush,
+    replace: mockReplace,
   }),
 }));
 
@@ -20,7 +20,7 @@ Element.prototype.scrollIntoView = jest.fn(() => {}) as jest.Mock;
 
 describe("ProgrammeOverview", () => {
   beforeEach(() => {
-    mockPush.mockClear();
+    mockReplace.mockClear();
   });
 
   it("renders the overview tab", () => {
@@ -33,6 +33,6 @@ describe("ProgrammeOverview", () => {
       link.click();
     });
 
-    expect(mockPush).toHaveBeenCalledWith("#header-aims-and-purpose");
+    expect(mockReplace).toHaveBeenCalledWith("#header-aims-and-purpose");
   });
 });
