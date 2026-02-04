@@ -66,6 +66,35 @@ const TeachersPhaseSection = ({
     setSelectedKeystage(keystageSlug);
   };
 
+  // Arrow key navigation for up/down in keystages
+  const handleKeystageArrowKeys = (
+    event: React.KeyboardEvent<HTMLUListElement>,
+  ) => {
+    const focusableElements = menuData.keystages.map(
+      (keystage) => `${keystage.slug}-dropdown-button`,
+    );
+    const activeElementId = document.activeElement?.id;
+    if (!activeElementId) return;
+    const currentIndex = focusableElements.indexOf(activeElementId);
+    if (focusableElements.length === 0 || currentIndex === -1) return;
+    switch (event.key) {
+      case "ArrowDown": {
+        event.preventDefault();
+        const nextIndex =
+          currentIndex >= focusableElements.length - 1 ? 0 : currentIndex + 1;
+        document.getElementById(focusableElements[nextIndex]!)?.focus();
+        break;
+      }
+      case "ArrowUp": {
+        event.preventDefault();
+        const prevIndex =
+          currentIndex <= 0 ? focusableElements.length - 1 : currentIndex - 1;
+        document.getElementById(focusableElements[prevIndex]!)?.focus();
+        break;
+      }
+    }
+  };
+
   return (
     <OakFlex $gap={"spacing-40"}>
       <OakUL
@@ -77,6 +106,7 @@ const TeachersPhaseSection = ({
         id={`topnav-teachers-${selectedMenu}`}
         role="tablist"
         ref={keystagesRef}
+        onKeyDown={handleKeystageArrowKeys}
       >
         {menuData.keystages.map((keystage) => (
           <OakLI key={keystage.slug}>

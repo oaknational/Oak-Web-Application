@@ -55,6 +55,35 @@ const TeachersSubNav = ({
     };
   };
 
+  const handleArrowKeys = (event: React.KeyboardEvent<HTMLUListElement>) => {
+    const activeElementId = document.activeElement?.id;
+    if (!activeElementId) return;
+    const focusableElements = subNavButtons.map(
+      (btn) => `${btn.slug}-subnav-button`,
+    );
+
+    const currentIndex = focusableElements.indexOf(activeElementId);
+
+    switch (event.key) {
+      case "ArrowRight": {
+        event.preventDefault();
+        if (focusableElements.length === 0) return;
+        const nextDownIndex =
+          currentIndex >= focusableElements.length - 1 ? 0 : currentIndex + 1;
+        document.getElementById(focusableElements[nextDownIndex]!)?.focus();
+        break;
+      }
+      case "ArrowLeft": {
+        event.preventDefault();
+        if (focusableElements.length === 0) return;
+        const nextUpIndex =
+          currentIndex <= 0 ? focusableElements.length - 1 : currentIndex - 1;
+        document.getElementById(focusableElements[nextUpIndex]!)?.focus();
+        break;
+      }
+    }
+  };
+
   return (
     <OakFlex
       data-testid="teachers-subnav"
@@ -68,6 +97,7 @@ const TeachersSubNav = ({
           $gap={"spacing-12"}
           $alignItems={"center"}
           $reset
+          onKeyDown={handleArrowKeys}
         >
           {subNavButtons.map((btn) => {
             const props = getButtonProps(btn.slug);
