@@ -65,26 +65,13 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
         $mt={["spacing-56", "spacing-80"]}
         $ph={["spacing-16", "spacing-32"]}
       >
-        <OakGrid $cg={"spacing-16"}>
-          {/* Image column */}
-          <OakGridArea $colSpan={[12, 4]}>
-            {image?.asset?.url && (
-              <OakBox $borderRadius={"border-radius-l"} $overflow={"hidden"}>
-                <OakImage
-                  src={image.asset.url}
-                  alt={image.altText ?? `Photo of ${name}`}
-                  $width={"100%"}
-                  $aspectRatio={"2/3"}
-                  $objectFit={"cover"}
-                  $objectPosition={"center"}
-                />
-              </OakBox>
-            )}
-          </OakGridArea>
-
-          {/* Content column */}
-          <OakGridArea $colSpan={[12, 8]}>
-            <OakFlex $flexDirection={"column"} $ph={"spacing-40"}>
+        <OakGrid $cg={["spacing-0", "spacing-16"]}>
+          {/* Header content - category, name, job title (mobile: first/stacked, tablet+: after image/side-by-side) */}
+          <OakGridArea $colSpan={[12, 5, 8]} $order={[1, 2]}>
+            <OakFlex
+              $flexDirection={"column"}
+              $ph={["spacing-0", "spacing-40"]}
+            >
               <OakTypography $font={"heading-light-6"} $color={"text-primary"}>
                 {category}
               </OakTypography>
@@ -105,7 +92,35 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                   </OakTypography>
                 </OakBox>
               )}
+            </OakFlex>
+          </OakGridArea>
 
+          {/* Image (mobile: 4 cols stacked, tablet: 3 cols, desktop: 4 cols side-by-side) */}
+          <OakGridArea $colSpan={[4, 3, 4]} $order={[2, 1]} $rowSpan={[1, 2]}>
+            {image?.asset?.url && (
+              <OakBox
+                $borderRadius={"border-radius-l"}
+                $overflow={"hidden"}
+                $mt={["spacing-24", "spacing-0"]}
+              >
+                <OakImage
+                  src={image.asset.url}
+                  alt={image.altText ?? `Photo of ${name}`}
+                  $width={"100%"}
+                  $aspectRatio={"2/3"}
+                  $objectFit={"cover"}
+                  $objectPosition={"center"}
+                />
+              </OakBox>
+            )}
+          </OakGridArea>
+
+          {/* Body content - socials, bio, navigation */}
+          <OakGridArea $colSpan={[12, 5, 8]} $order={[3, 3]}>
+            <OakFlex
+              $flexDirection={"column"}
+              $ph={["spacing-0", "spacing-40"]}
+            >
               {socials && (socials.twitterUsername || socials.linkedinUrl) && (
                 <OakFlex
                   $mt={"spacing-24"}
