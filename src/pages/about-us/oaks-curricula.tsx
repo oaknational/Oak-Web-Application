@@ -38,7 +38,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
           title={"Oak’s curricula"}
           content={pageData.header.textRaw}
           titleHighlight="bg-decorative4-main"
-         />
+        />
         <OakBox $pa={"spacing-16"}>TODO: Guiding principals</OakBox>
         <OakBox $pa={"spacing-16"}>TODO: Subject phase picker</OakBox>
         <OakBox $pa={"spacing-16"}>TODO: Curriculum partners</OakBox>
