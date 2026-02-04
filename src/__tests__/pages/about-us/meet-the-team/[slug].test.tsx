@@ -537,5 +537,182 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
         props: { category: "Our board" },
       });
     });
+
+    it("should wrap within board only when leadership is empty", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      const pageWithBoardOnly = {
+        ...mockMeetTheTeamPage,
+        leadershipTeam: [],
+        boardMembers: [
+          { id: "board-1", name: "Board One", slug: { current: "board-1" } },
+          { id: "board-2", name: "Board Two", slug: { current: "board-2" } },
+          { id: "board-3", name: "Board Three", slug: { current: "board-3" } },
+        ],
+      };
+      (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(
+        pageWithBoardOnly,
+      );
+
+      // First board member - prev should wrap to last board member
+      const firstResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: { section: "board" },
+        params: { slug: "board-1" },
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(firstResult).toMatchObject({
+        props: {
+          navigation: {
+            prevHref: "/about-us/meet-the-team/board-3?section=board",
+            nextHref: "/about-us/meet-the-team/board-2?section=board",
+          },
+        },
+      });
+
+      // Last board member - next should wrap to first board member
+      const lastResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: { section: "board" },
+        params: { slug: "board-3" },
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(lastResult).toMatchObject({
+        props: {
+          navigation: {
+            prevHref: "/about-us/meet-the-team/board-2?section=board",
+            nextHref: "/about-us/meet-the-team/board-1?section=board",
+          },
+        },
+      });
+    });
+
+    it("should wrap within leadership only when board is empty", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      const pageWithLeadershipOnly = {
+        ...mockMeetTheTeamPage,
+        leadershipTeam: [
+          { id: "leader-1", name: "Leader One", slug: { current: "leader-1" } },
+          { id: "leader-2", name: "Leader Two", slug: { current: "leader-2" } },
+          {
+            id: "leader-3",
+            name: "Leader Three",
+            slug: { current: "leader-3" },
+          },
+        ],
+        boardMembers: [],
+      };
+      (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(
+        pageWithLeadershipOnly,
+      );
+
+      // First leadership member - prev should wrap to last leadership member
+      const firstResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: { section: "leadership" },
+        params: { slug: "leader-1" },
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(firstResult).toMatchObject({
+        props: {
+          navigation: {
+            prevHref: "/about-us/meet-the-team/leader-3?section=leadership",
+            nextHref: "/about-us/meet-the-team/leader-2?section=leadership",
+          },
+        },
+      });
+
+      // Last leadership member - next should wrap to first leadership member
+      const lastResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: { section: "leadership" },
+        params: { slug: "leader-3" },
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(lastResult).toMatchObject({
+        props: {
+          navigation: {
+            prevHref: "/about-us/meet-the-team/leader-2?section=leadership",
+            nextHref: "/about-us/meet-the-team/leader-1?section=leadership",
+          },
+        },
+      });
+    });
+
+    it("should return no navigation for single member in section", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      const pageWithSingleMember = {
+        ...mockMeetTheTeamPage,
+        leadershipTeam: [
+          { id: "solo", name: "Solo Leader", slug: { current: "solo" } },
+        ],
+        boardMembers: [],
+      };
+      (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(
+        pageWithSingleMember,
+      );
+
+      const result = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: { section: "leadership" },
+        params: { slug: "solo" },
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      // Single member with no other section - no navigation
+      expect(result).toMatchObject({
+        props: {
+          navigation: {
+            prevHref: null,
+            nextHref: null,
+          },
+        },
+      });
+    });
+
+    it("should wrap last leadership member next to first board member", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: { section: "leadership" },
+        params: { slug: "ed-southall" }, // Last in leadership (index 1)
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(propsResult).toMatchObject({
+        props: {
+          navigation: {
+            prevHref:
+              "/about-us/meet-the-team/previous-member?section=leadership",
+            nextHref: "/about-us/meet-the-team/next-member?section=board", // Wraps to first board
+          },
+        },
+      });
+    });
+
+    it("should wrap first board member prev to last leadership member", async () => {
+      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: { section: "board" },
+        params: { slug: "next-member" }, // First (and only) in board
+      } as unknown as GetServerSidePropsContext<{ slug: string }>);
+
+      expect(propsResult).toMatchObject({
+        props: {
+          navigation: {
+            prevHref: "/about-us/meet-the-team/ed-southall?section=leadership", // Wraps to last leadership
+            nextHref:
+              "/about-us/meet-the-team/previous-member?section=leadership", // Wraps to first leadership
+          },
+        },
+      });
+    });
   });
 });

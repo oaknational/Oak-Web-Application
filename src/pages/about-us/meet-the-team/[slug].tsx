@@ -220,83 +220,97 @@ function buildMemberHref(slug: string, section: MemberSection): string {
   return `/about-us/meet-the-team/${slug}?section=${section}`;
 }
 
+function getNeighbor(
+  currentList: TeamMemberRef[],
+  otherList: TeamMemberRef[],
+  currentIndex: number,
+  currentSection: MemberSection,
+  direction: "prev" | "next",
+): { href: string | null; name: string | null } {
+  const otherSection: MemberSection =
+    currentSection === "leadership" ? "board" : "leadership";
+  const atBoundary =
+    direction === "prev"
+      ? currentIndex === 0
+      : currentIndex === currentList.length - 1;
+
+  // Not at boundary - return neighbor in same section
+  if (!atBoundary) {
+    const neighbor =
+      currentList[currentIndex + (direction === "prev" ? -1 : 1)];
+    if (neighbor) {
+      return {
+        href: buildMemberHref(getMemberSlug(neighbor), currentSection),
+        name: neighbor.name,
+      };
+    }
+  }
+
+  // At boundary - wrap to other section if it has members
+  if (otherList.length > 0) {
+    const wrap = direction === "prev" ? otherList.at(-1) : otherList[0];
+    if (wrap) {
+      return {
+        href: buildMemberHref(getMemberSlug(wrap), otherSection),
+        name: wrap.name,
+      };
+    }
+  }
+
+  // Other section empty - wrap within same section if more than one member
+  if (currentList.length > 1) {
+    const wrap = direction === "prev" ? currentList.at(-1) : currentList[0];
+    if (wrap) {
+      return {
+        href: buildMemberHref(getMemberSlug(wrap), currentSection),
+        name: wrap.name,
+      };
+    }
+  }
+
+  return { href: null, name: null };
+}
+
 function buildProfileNavigation(
   leadershipTeam: TeamMemberRef[],
   boardMembers: TeamMemberRef[],
   currentSlug: string,
   currentSection: MemberSection,
 ): ProfileNavigation {
-  // Get the appropriate member list based on section
   const currentList =
     currentSection === "leadership" ? leadershipTeam : boardMembers;
   const otherList =
     currentSection === "leadership" ? boardMembers : leadershipTeam;
-  const otherSection: MemberSection =
-    currentSection === "leadership" ? "board" : "leadership";
 
   const currentIndex = currentList.findIndex(
     (member) => getMemberSlug(member) === currentSlug,
   );
 
   if (currentIndex === -1) {
-    // Member not found in current section
     return { prevHref: null, prevName: null, nextHref: null, nextName: null };
   }
 
-  let prevHref: string | null = null;
-  let prevName: string | null = null;
-  let nextHref: string | null = null;
-  let nextName: string | null = null;
+  const prev = getNeighbor(
+    currentList,
+    otherList,
+    currentIndex,
+    currentSection,
+    "prev",
+  );
+  const next = getNeighbor(
+    currentList,
+    otherList,
+    currentIndex,
+    currentSection,
+    "next",
+  );
 
-  // Calculate previous navigation
-  if (currentIndex > 0) {
-    // Previous member in same section
-    const prevMember = currentList[currentIndex - 1];
-    if (prevMember) {
-      prevHref = buildMemberHref(getMemberSlug(prevMember), currentSection);
-      prevName = prevMember.name;
-    }
-  } else if (otherList.length > 0) {
-    // Wrap to last member of other section
-    const lastOther = otherList[otherList.length - 1];
-    if (lastOther) {
-      prevHref = buildMemberHref(getMemberSlug(lastOther), otherSection);
-      prevName = lastOther.name;
-    }
-  } else if (currentList.length > 1) {
-    // Wrap to last member of same section
-    const lastSame = currentList[currentList.length - 1];
-    if (lastSame) {
-      prevHref = buildMemberHref(getMemberSlug(lastSame), currentSection);
-      prevName = lastSame.name;
-    }
-  }
-
-  // Calculate next navigation
-  if (currentIndex < currentList.length - 1) {
-    // Next member in same section
-    const nextMember = currentList[currentIndex + 1];
-    if (nextMember) {
-      nextHref = buildMemberHref(getMemberSlug(nextMember), currentSection);
-      nextName = nextMember.name;
-    }
-  } else if (otherList.length > 0) {
-    // Wrap to first member of other section
-    const firstOther = otherList[0];
-    if (firstOther) {
-      nextHref = buildMemberHref(getMemberSlug(firstOther), otherSection);
-      nextName = firstOther.name;
-    }
-  } else if (currentList.length > 1) {
-    // Wrap to first member of same section
-    const firstSame = currentList[0];
-    if (firstSame) {
-      nextHref = buildMemberHref(getMemberSlug(firstSame), currentSection);
-      nextName = firstSame.name;
-    }
-  }
-
-  return { prevHref, prevName, nextHref, nextName };
+  return {
+    prevHref: prev.href,
+    prevName: prev.name,
+    nextHref: next.href,
+    nextName: next.name,
+  };
 }
 
 function determineMemberSection(
