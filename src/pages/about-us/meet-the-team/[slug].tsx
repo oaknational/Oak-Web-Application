@@ -77,7 +77,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                     $width={"100%"}
                     $aspectRatio={"2/3"}
                     $objectFit={"cover"}
-                    $objectPosition={"center"}
+                    objectPosition={"center"}
                   />
                 </OakBox>
               </OakBox>
@@ -128,7 +128,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 
               {/* Image - Mobile only (between header and socials) */}
               {image?.asset?.url && (
-                <OakBox $display={["block", "none"]} $width={"75%"}>
+                <OakBox $display={["block", "none"]} style={{ width: "75%" }}>
                   <OakBox
                     $borderRadius={"border-radius-l"}
                     $overflow={"hidden"}
@@ -139,7 +139,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                       $width={"100%"}
                       $aspectRatio={"2/3"}
                       $objectFit={"cover"}
-                      $objectPosition={"center"}
+                      objectPosition={"center"}
                     />
                   </OakBox>
                 </OakBox>
