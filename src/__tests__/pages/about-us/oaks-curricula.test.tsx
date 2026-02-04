@@ -54,7 +54,7 @@ describe("pages/about/oaks-curricula.tsx", () => {
   });
 
   it("renders", () => {
-    const { container } = renderWithProviders()(
+    const { container, getAllByRole } = renderWithProviders()(
       <OaksCurricula
         pageData={testAboutWhoWeArePageData}
         topNav={topNavFixture}
@@ -62,6 +62,8 @@ describe("pages/about/oaks-curricula.tsx", () => {
     );
 
     expect(container).toMatchSnapshot();
+    const headings = getAllByRole("heading", { level: 2 });
+    expect(headings[0]).toHaveTextContent("Curriculum partners");
   });
 
   describe("getStaticProps", () => {

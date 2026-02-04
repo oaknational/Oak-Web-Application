@@ -2,11 +2,8 @@ import { GetServerSideProps, NextPage } from "next";
 import {
   OakBox,
   OakFlex,
-  OakGrid,
   OakHeading,
-  OakImage,
   OakMaxWidth,
-  OakP,
 } from "@oaknational/oak-components";
 
 import Layout from "@/components/AppComponents/Layout";
@@ -22,6 +19,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { CurriculumPartners } from "@/components/GenericPagesComponents/CurriculumPartners";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -38,54 +36,6 @@ export type OaksCurriculaPage = {
   };
   topNav: TopNavProps;
 };
-
-type PartnerContainerProps = {
-  title: string;
-  text: string;
-  items: {
-    imageUrl: string;
-    alt: string;
-  }[];
-};
-function PartnerContainer({ title, text, items }: PartnerContainerProps) {
-  return (
-    <>
-      <OakFlex $gap={"spacing-24"} $flexDirection={"column"}>
-        <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
-          <OakHeading tag="h4" $font={["heading-5", "heading-4", "heading-4"]}>
-            {title}
-          </OakHeading>
-          <OakP $font={["body-1", "body-1", "body-2"]}>{text}</OakP>
-        </OakFlex>
-      </OakFlex>
-      <OakBox>
-        <OakGrid
-          $gridTemplateColumns={[
-            "repeat(3, 1fr)",
-            "repeat(5, 1fr)",
-            "repeat(6, 1fr)",
-          ]}
-          $cg={"spacing-16"}
-          $rg={"spacing-16"}
-        >
-          {items.map((item) => {
-            return (
-              <OakBox
-                key={item.imageUrl}
-                $aspectRatio={"1/1"}
-                $borderRadius={"border-radius-m"}
-                $borderColor={"border-neutral-lighter"}
-                $borderStyle={"solid"}
-              >
-                <OakImage src={item.imageUrl} alt={item.alt} />
-              </OakBox>
-            );
-          })}
-        </OakGrid>
-      </OakBox>
-    </>
-  );
-}
 
 export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
   pageData,
@@ -115,24 +65,24 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
             </OakFlex>
           </OakMaxWidth>
         </OakBox>
-        <OakMaxWidth $pv={"spacing-80"}>
+        <OakMaxWidth>
           <OakFlex
             $gap={"spacing-56"}
             $pt={"spacing-80"}
             $flexDirection={"column"}
           >
             <OakHeading
-              tag="h3"
+              tag="h2"
               $font={["heading-4", "heading-3", "heading-3"]}
             >
               Curriculum partners
             </OakHeading>
-            <PartnerContainer
+            <CurriculumPartners
               title="Current"
               text="Partners involved in the creation of our new curricula (published after September 2022)."
               items={pageData.partners.current}
             />
-            <PartnerContainer
+            <CurriculumPartners
               title="Legacy"
               text="Partners involved in the creation of our previous curricula (published before September 2022)."
               items={pageData.partners.legacy}
@@ -146,6 +96,13 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
     </Layout>
   );
 };
+
+const mockPartnerImages = new Array(16).fill(true).map((_, index) => {
+  return {
+    imageUrl: `/images/oak-national-academy-logo-512.png#${index}`,
+    alt: "",
+  };
+});
 
 const mockData: Omit<OaksCurriculaPage["pageData"], "curriculumPhaseOptions"> =
   {
@@ -165,12 +122,8 @@ const mockData: Omit<OaksCurriculaPage["pageData"], "curriculumPhaseOptions"> =
       ],
     },
     partners: {
-      current: new Array(16).fill(true).map(() => {
-        return { imageUrl: "", alt: "" };
-      }),
-      legacy: new Array(16).fill(true).map(() => {
-        return { imageUrl: "", alt: "" };
-      }),
+      current: mockPartnerImages,
+      legacy: mockPartnerImages,
     },
   };
 
