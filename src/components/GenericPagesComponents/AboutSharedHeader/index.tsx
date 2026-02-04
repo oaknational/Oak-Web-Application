@@ -8,7 +8,7 @@ import {
   OakSpan,
   OakImage,
   OakIcon,
-  OakCombinedColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { ReactNode } from "react";
@@ -114,7 +114,7 @@ export type AboutSharedHeaderProps = {
   title: string;
   content: PortableTextJSON | string;
   children?: ReactNode;
-  titleHighlight?: OakCombinedColorToken;
+  titleHighlight?: OakUiRoleToken;
 };
 export function AboutSharedHeader({
   title,
@@ -133,7 +133,7 @@ export function AboutSharedHeader({
                 $font={["heading-4", "heading-2", "heading-2"]}
               >
                 <OakSpan
-                  $background={titleHighlight ?? "mint"}
+                  $background={titleHighlight ?? "bg-decorative1-main"}
                   $ph={"spacing-4"}
                   $color="text-primary"
                 >

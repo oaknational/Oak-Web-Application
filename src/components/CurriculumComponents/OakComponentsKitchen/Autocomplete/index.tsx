@@ -5,7 +5,7 @@ import { useComboBox, useFilter } from "react-aria";
 import { Item } from "react-stately";
 import {
   OakBox,
-  OakColorToken,
+  OakUiRoleToken,
   OakFlex,
   OakJauntyAngleLabel,
   OakTextInput,
@@ -39,7 +39,7 @@ type AutocompleteProps = {
   onInputChange?: (value: string) => void;
   isControlled?: boolean;
   children: CollectionChildren<HTMLDivElement>;
-  labelBackground?: OakColorToken;
+  labelBackground?: OakUiRoleToken;
 };
 
 const Autocomplete = (props: AutocompleteProps) => {
