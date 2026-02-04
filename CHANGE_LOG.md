@@ -1,3 +1,11 @@
+# [1.973.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.972.2...v1.973.0) (2026-02-04)
+
+
+### Features
+
+* update icon color and remaining color tokens into UI tokens ([048277c](https://github.com/oaknational/Oak-Web-Application/commit/048277c7123eab734cfd5a677e15eb0e304b2b98))
+* update remaining color tokens to ui tokens after merge ([698d465](https://github.com/oaknational/Oak-Web-Application/commit/698d465f3adf562e583091ea643f0611c0b486f3))
+
 ## [1.972.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.972.1...v1.972.2) (2026-02-03)
 
 ## [1.972.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.972.0...v1.972.1) (2026-02-03)
