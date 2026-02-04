@@ -1,5 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
-import { OakBox } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakMaxWidth } from "@oaknational/oak-components";
 
 import Layout from "@/components/AppComponents/Layout";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
@@ -10,7 +10,12 @@ import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import curriculumApi2023, {
+  CurriculumPhaseOptions,
+} from "@/node-lib/curriculum-api-2023";
+import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -19,6 +24,7 @@ export type OaksCurriculaPage = {
     header: {
       textRaw: PortableTextJSON;
     };
+    curriculumPhaseOptions: SubjectPhasePickerData;
   };
   topNav: TopNavProps;
 };
@@ -39,7 +45,16 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
           content={pageData.header.textRaw}
           titleHighlight="bg-decorative4-main"
         />
-        <OakBox $pa={"spacing-16"}>TODO: Guiding principals</OakBox>
+        <OakBox $background={"bg-decorative4-very-subdued"}>
+          <OakMaxWidth $pv={"spacing-80"}>
+            <OakFlex $flexDirection={"column"} $gap={"spacing-56"}>
+              <OakBox $pa={"spacing-16"} $background={"text-inverted"}>
+                TODO: Guiding principals
+              </OakBox>
+              <SubjectPhasePicker {...pageData.curriculumPhaseOptions} />
+            </OakFlex>
+          </OakMaxWidth>
+        </OakBox>
         <OakBox $pa={"spacing-16"}>TODO: Subject phase picker</OakBox>
         <OakBox $pa={"spacing-16"}>TODO: Curriculum partners</OakBox>
         <OakBox $pa={"spacing-16"}>TODO: Can oak support you</OakBox>
@@ -48,23 +63,52 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
   );
 };
 
-const mockData: OaksCurriculaPage["pageData"] = {
-  header: {
-    textRaw: [
-      {
-        style: "normal",
-        _type: "block",
-        children: [
-          {
-            _type: "span",
-            marks: [],
-            text: "Oak offers complete curriculum support for clarity and coherence in every national curriculum subject - designed by experts, for every classroom.",
-          },
-        ],
-      },
-    ],
-  },
+const mockData: Omit<OaksCurriculaPage["pageData"], "curriculumPhaseOptions"> =
+  {
+    header: {
+      textRaw: [
+        {
+          style: "normal",
+          _type: "block",
+          children: [
+            {
+              _type: "span",
+              marks: [],
+              text: "Oak offers complete curriculum support for clarity and coherence in every national curriculum subject - designed by experts, for every classroom.",
+            },
+          ],
+        },
+      ],
+    },
+  };
+
+const filterValidCurriculumPhaseOptions = (
+  subjects: CurriculumPhaseOptions,
+) => {
+  subjects.forEach(({ ks4_options }) => {
+    if (
+      ks4_options &&
+      ks4_options.some(({ slug }: { slug: string }) => isExamboardSlug(slug))
+    ) {
+      const gcseIndex = ks4_options.findIndex(
+        ({ slug }: { slug: string }) => slug === "gcse",
+      );
+      if (gcseIndex > 0) {
+        ks4_options.splice(gcseIndex, 1);
+      }
+    }
+  });
+  return subjects;
 };
+
+const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
+  async () => {
+    const subjects = await curriculumApi2023.curriculumPhaseOptions();
+    return {
+      subjects: filterValidCurriculumPhaseOptions(subjects),
+      tab: "units",
+    };
+  };
 
 export const getServerSideProps = (async (context) => {
   const posthogUserId = getPosthogIdFromCookie(
@@ -72,7 +116,10 @@ export const getServerSideProps = (async (context) => {
     posthogApiKey,
   );
 
-  const pageData = mockData;
+  const pageData = {
+    ...mockData,
+    curriculumPhaseOptions: await fetchSubjectPhasePickerData(),
+  };
 
   let enableV2: boolean = false;
   if (posthogUserId) {
