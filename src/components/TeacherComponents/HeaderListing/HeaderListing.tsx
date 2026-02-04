@@ -3,7 +3,6 @@ import {
   OakFlex,
   OakHeading,
   OakSpan,
-  OakColorFilterToken,
   OakBox,
   OakInlineBanner,
   OakP,
@@ -45,7 +44,7 @@ export type HeaderListingProps = {
   subjectTitle: string;
   subjectSlug: string;
   subjectParent?: string | null;
-  subjectIconBackgroundColor: OakColorFilterToken;
+  subjectIconBackgroundColor: OakUiRoleToken;
   year?: string;
   keyStageSlug?: KeystageSlug;
   keyStageTitle?: string;

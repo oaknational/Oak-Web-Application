@@ -147,7 +147,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
     </div>
   </div>
   <div
-    class="sc-aXZVg sc-gEvEer sc-bBeLUv iiIiRe fUxOFh"
+    class="sc-aXZVg sc-gEvEer sc-fvtFIe iiIiRe fUxOFh"
   >
     <div
       class="sc-aXZVg sc-gEvEer hdseiA fjNQtm"
@@ -204,51 +204,65 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
               data-testid="year-group-filter-desktop"
             >
               <div
-                class="sc-aXZVg sc-gEvEer iDyNSC iDBIXi"
+                class="sc-aXZVg sc-gEvEer sc-fxwrCY iLxEEC doeAUE geVANU"
               >
-                <div
-                  class="sc-aXZVg sc-gEvEer sc-hIUJlX etneDb inWRga cMJwsS"
+                <span
+                  class="sc-kAyceB beiyRr"
                 >
-                  <input
-                    checked=""
-                    class="sc-fjvvzt sc-fxwrCY fqgMCl dviogd"
-                    data-testid="all-years-radio"
-                    id=":r0:"
-                    name="yearreact-use-id-test-result"
-                    type="radio"
-                    value="0"
-                  />
-                  <label
-                    class="sc-dtBdUo sc-kOHTFB sc-dtInlm fIqwRy cvDdVG kFFohY"
-                    for=":r0:"
-                    pointer-events="none"
+                  <div
+                    class="sc-aXZVg sc-gEvEer gzTYAh kgixWU"
                   >
-                    All
-                  </label>
-                </div>
+                    <input
+                      checked=""
+                      class="sc-fjvvzt fqgMCl"
+                      data-testid="all-years-radio"
+                      id=":r0:"
+                      name="yearreact-use-id-test-result"
+                      type="radio"
+                      value="0"
+                    />
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-uVWWZ kLjZsS kbmCyy iUaQHs"
+                    />
+                  </div>
+                </span>
+                <label
+                  class="sc-dtBdUo sc-kOHTFB sc-dtInlm fIqwRy cvDdVG kFFohY"
+                  for=":r0:"
+                  pointer-events="none"
+                >
+                  All
+                </label>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer iDyNSC iDBIXi"
+                class="sc-aXZVg sc-gEvEer sc-fxwrCY iLxEEC doeAUE geVANU"
               >
-                <div
-                  class="sc-aXZVg sc-gEvEer sc-hIUJlX etneDb inWRga cMJwsS"
+                <span
+                  class="sc-kAyceB beiyRr"
                 >
-                  <input
-                    class="sc-fjvvzt sc-fxwrCY fqgMCl dviogd"
-                    data-testid="year-radio"
-                    id=":r1:"
-                    name="yearreact-use-id-test-result"
-                    type="radio"
-                    value="1"
-                  />
-                  <label
-                    class="sc-dtBdUo sc-kOHTFB sc-dtInlm fIqwRy cvDdVG kFFohY"
-                    for=":r1:"
-                    pointer-events="none"
+                  <div
+                    class="sc-aXZVg sc-gEvEer gzTYAh kgixWU"
                   >
-                    Year 1
-                  </label>
-                </div>
+                    <input
+                      class="sc-fjvvzt fqgMCl"
+                      data-testid="year-radio"
+                      id=":r1:"
+                      name="yearreact-use-id-test-result"
+                      type="radio"
+                      value="1"
+                    />
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-uVWWZ kLjZsS kbmCyy iUaQHs"
+                    />
+                  </div>
+                </span>
+                <label
+                  class="sc-dtBdUo sc-kOHTFB sc-dtInlm fIqwRy cvDdVG kFFohY"
+                  for=":r1:"
+                  pointer-events="none"
+                >
+                  Year 1
+                </label>
               </div>
             </fieldset>
           </div>
@@ -280,11 +294,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-cVzyXs cBeINY iDBIXi"
+            class="sc-aXZVg sc-gEvEer sc-YysOf cBeINY iDBIXi"
             focusable="false"
           >
             <svg
-              class="sc-ihgnxF fKLPTl"
+              class="sc-bBeLUv ejVkoR"
               height="100%"
               preserveAspectRatio="none"
               viewBox="0 0 866 8"
@@ -683,7 +697,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
     </div>
   </div>
   <div
-    class="sc-aXZVg sc-gEvEer sc-bBeLUv iiIiRe fUxOFh"
+    class="sc-aXZVg sc-gEvEer sc-fvtFIe iiIiRe fUxOFh"
   >
     <div
       class="sc-aXZVg sc-gEvEer hdseiA fjNQtm"
@@ -740,51 +754,65 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
               data-testid="year-group-filter-desktop"
             >
               <div
-                class="sc-aXZVg sc-gEvEer iDyNSC iDBIXi"
+                class="sc-aXZVg sc-gEvEer sc-fxwrCY iLxEEC doeAUE geVANU"
               >
-                <div
-                  class="sc-aXZVg sc-gEvEer sc-hIUJlX etneDb inWRga cMJwsS"
+                <span
+                  class="sc-kAyceB beiyRr"
                 >
-                  <input
-                    checked=""
-                    class="sc-fjvvzt sc-fxwrCY fqgMCl dviogd"
-                    data-testid="all-years-radio"
-                    id=":r2:"
-                    name="yearreact-use-id-test-result"
-                    type="radio"
-                    value="0"
-                  />
-                  <label
-                    class="sc-dtBdUo sc-kOHTFB sc-dtInlm fIqwRy cvDdVG kFFohY"
-                    for=":r2:"
-                    pointer-events="none"
+                  <div
+                    class="sc-aXZVg sc-gEvEer gzTYAh kgixWU"
                   >
-                    All
-                  </label>
-                </div>
+                    <input
+                      checked=""
+                      class="sc-fjvvzt fqgMCl"
+                      data-testid="all-years-radio"
+                      id=":r2:"
+                      name="yearreact-use-id-test-result"
+                      type="radio"
+                      value="0"
+                    />
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-uVWWZ kLjZsS kbmCyy iUaQHs"
+                    />
+                  </div>
+                </span>
+                <label
+                  class="sc-dtBdUo sc-kOHTFB sc-dtInlm fIqwRy cvDdVG kFFohY"
+                  for=":r2:"
+                  pointer-events="none"
+                >
+                  All
+                </label>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer iDyNSC iDBIXi"
+                class="sc-aXZVg sc-gEvEer sc-fxwrCY iLxEEC doeAUE geVANU"
               >
-                <div
-                  class="sc-aXZVg sc-gEvEer sc-hIUJlX etneDb inWRga cMJwsS"
+                <span
+                  class="sc-kAyceB beiyRr"
                 >
-                  <input
-                    class="sc-fjvvzt sc-fxwrCY fqgMCl dviogd"
-                    data-testid="year-radio"
-                    id=":r3:"
-                    name="yearreact-use-id-test-result"
-                    type="radio"
-                    value="1"
-                  />
-                  <label
-                    class="sc-dtBdUo sc-kOHTFB sc-dtInlm fIqwRy cvDdVG kFFohY"
-                    for=":r3:"
-                    pointer-events="none"
+                  <div
+                    class="sc-aXZVg sc-gEvEer gzTYAh kgixWU"
                   >
-                    Year 1
-                  </label>
-                </div>
+                    <input
+                      class="sc-fjvvzt fqgMCl"
+                      data-testid="year-radio"
+                      id=":r3:"
+                      name="yearreact-use-id-test-result"
+                      type="radio"
+                      value="1"
+                    />
+                    <div
+                      class="sc-aXZVg sc-gEvEer sc-uVWWZ kLjZsS kbmCyy iUaQHs"
+                    />
+                  </div>
+                </span>
+                <label
+                  class="sc-dtBdUo sc-kOHTFB sc-dtInlm fIqwRy cvDdVG kFFohY"
+                  for=":r3:"
+                  pointer-events="none"
+                >
+                  Year 1
+                </label>
               </div>
             </fieldset>
           </div>
@@ -816,11 +844,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-cVzyXs cBeINY iDBIXi"
+            class="sc-aXZVg sc-gEvEer sc-YysOf cBeINY iDBIXi"
             focusable="false"
           >
             <svg
-              class="sc-ihgnxF fKLPTl"
+              class="sc-bBeLUv ejVkoR"
               height="100%"
               preserveAspectRatio="none"
               viewBox="0 0 866 8"
@@ -1009,10 +1037,10 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-ca470ce2-1 bfghyO"
                     >
                       <div
-                        class="sc-aXZVg sc-fiCwlc ioKvvK fSFaQB"
+                        class="sc-aXZVg sc-kMkxaj ioKvvK hImOLL"
                       >
                         <a
-                          class="sc-b7bf0004-0 fsARVh"
+                          class="sc-a6022ff2-0 ejmuOd"
                           data-testid="unit-info-link"
                           href="/timetabling/maths-primary/units/test-1?mode=normal&year=1"
                         >
@@ -1072,10 +1100,10 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-ca470ce2-1 bfghyO"
                     >
                       <div
-                        class="sc-aXZVg sc-fiCwlc ioKvvK fSFaQB"
+                        class="sc-aXZVg sc-kMkxaj ioKvvK hImOLL"
                       >
                         <a
-                          class="sc-b7bf0004-0 fsARVh"
+                          class="sc-a6022ff2-0 ejmuOd"
                           data-testid="unit-info-link"
                           href="/timetabling/maths-primary/units/test-2?mode=normal&year=1"
                         >

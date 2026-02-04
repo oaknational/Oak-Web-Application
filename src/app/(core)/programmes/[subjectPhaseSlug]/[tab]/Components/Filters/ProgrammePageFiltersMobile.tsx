@@ -137,14 +137,6 @@ const ModalContent = ({
               data={data}
             />
           )}
-
-          {/* {shouldDisplayFilter(data, filters, "threads") && (
-            <CurricFiltersThreads
-              filters={filters}
-              onChangeFilters={onChangeFilters}
-              data={data}
-            />
-          )} */}
         </OakFlex>
       </OakFlex>
     </OakFlex>

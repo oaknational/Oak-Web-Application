@@ -241,7 +241,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
 
           <OakIcon
             iconName="arrow-right"
-            $colorFilter="navy"
+            $colorFilter="icon-link-active"
             $width="spacing-24"
           />
         </OakFlex>

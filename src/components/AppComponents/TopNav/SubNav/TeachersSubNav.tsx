@@ -1,3 +1,5 @@
+import { usePathname } from "next/navigation";
+
 import { resolveOakHref } from "@/common-lib/urls";
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import {
@@ -6,16 +8,17 @@ import {
   OakSmallPrimaryInvertedButton,
 } from "@/styles/oakThemeApp";
 import SearchBar from "@/components/AppComponents/SearchBar";
+import { SaveCount } from "@/components/TeacherComponents/SaveCount/SaveCount";
+import TeacherAccountButton from "@/components/TeacherComponents/TeacherAccountButton/TeacherAccountButton";
 
 type TeachersSubNavProps = {
   onClick: (menu: keyof TeachersSubNavData) => void;
   isMenuSelected: (menu: keyof TeachersSubNavData) => boolean;
 };
 
-// TD: [integrated journey] do we want to derive menu items from available data
-// so the nav bar can be used on error pages / when data is missing or invalid
-
 const TeachersSubNav = ({ onClick, isMenuSelected }: TeachersSubNavProps) => {
+  const pathname = usePathname();
+
   return (
     <OakFlex
       data-testid="teachers-subnav"
@@ -61,8 +64,21 @@ const TeachersSubNav = ({ onClick, isMenuSelected }: TeachersSubNavProps) => {
           </OakSmallPrimaryInvertedButton>
         </OakFlex>
       </OakBox>
-
-      <SearchBar />
+      <OakFlex
+        $alignItems={"center"}
+        $gap={["spacing-24", "spacing-16", "spacing-16"]}
+      >
+        <SearchBar />
+        <SaveCount />
+        <TeacherAccountButton
+          selectedArea="TEACHERS"
+          onboardingRedirectUrl={resolveOakHref({
+            page: "onboarding",
+            query: { returnTo: pathname ?? "/" },
+          })}
+          buttonVariant="primary"
+        />
+      </OakFlex>
     </OakFlex>
   );
 };

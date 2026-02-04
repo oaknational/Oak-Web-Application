@@ -2,10 +2,8 @@
  * @jest-environment node
  */
 import { getProgrammeData } from "./getProgrammeData";
+import ProgrammePageTabs, { generateMetadata } from "./page";
 
-import ProgrammePage, {
-  generateMetadata,
-} from "@/app/(core)/programmes/[subjectPhaseSlug]/page";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
@@ -94,12 +92,26 @@ jest.mock("./getProgrammeData", () => ({
   getProgrammeData: jest.fn(),
 }));
 
-describe("Programme page", () => {
+const mockErrorReporter = jest.fn();
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  initialiseBugsnag: jest.fn(),
+  initialiseSentry: jest.fn(),
+  default:
+    () =>
+    (...args: []) =>
+      mockErrorReporter(...args),
+}));
+
+describe("Programme page tabs", () => {
   it("renders 404 page if feature flag is disabled", async () => {
     await expect(
-      ProgrammePage({
-        params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
-        searchParams: Promise.resolve({}),
+      ProgrammePageTabs({
+        params: Promise.resolve({
+          subjectPhaseSlug: "maths-primary",
+          tab: "units",
+          searchParams: Promise.resolve({}),
+        }),
       }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
@@ -135,8 +147,11 @@ describe("Programme page", () => {
       },
     });
 
-    const result = await ProgrammePage({
-      params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+    const result = await ProgrammePageTabs({
+      params: Promise.resolve({
+        subjectPhaseSlug: "maths-primary",
+        tab: "units",
+      }),
       searchParams: Promise.resolve({}),
     });
 
@@ -148,8 +163,11 @@ describe("Programme page", () => {
     jest.mocked(getProgrammeData).mockResolvedValue(null);
 
     await expect(
-      ProgrammePage({
-        params: Promise.resolve({ subjectPhaseSlug: "fake-slug" }),
+      ProgrammePageTabs({
+        params: Promise.resolve({
+          subjectPhaseSlug: "fake-slug",
+          tab: "units",
+        }),
         searchParams: Promise.resolve({}),
       }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
@@ -161,7 +179,10 @@ describe("generateMetadata", () => {
     jest.mocked(getProgrammeData).mockResolvedValueOnce(null);
 
     const result = await generateMetadata({
-      params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+      params: Promise.resolve({
+        subjectPhaseSlug: "maths-primary",
+        tab: "units",
+      }),
     });
 
     expect(result).toEqual({});
@@ -199,7 +220,10 @@ describe("generateMetadata", () => {
     jest.mocked(getProgrammeData).mockResolvedValue(mockProgrammeData);
 
     const result = await generateMetadata({
-      params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+      params: Promise.resolve({
+        subjectPhaseSlug: "maths-primary",
+        tab: "units",
+      }),
     });
 
     expect(result.title).toBe("KS2 maths curriculum unit sequence");
@@ -220,7 +244,10 @@ describe("generateMetadata", () => {
     jest.mocked(getProgrammeData).mockRejectedValue(new Error("Test error"));
 
     const result = await generateMetadata({
-      params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+      params: Promise.resolve({
+        subjectPhaseSlug: "maths-primary",
+        tab: "units",
+      }),
     });
 
     expect(result).toEqual({});

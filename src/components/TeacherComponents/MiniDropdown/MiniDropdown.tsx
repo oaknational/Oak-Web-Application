@@ -83,7 +83,7 @@ const MiniDropdown: FC<MiniDropdownProps> = ({
             </OakSpan>
             <OakIcon
               iconName={isOpen ? "chevron-up" : "chevron-down"}
-              $colorFilter={isOpen ? "navy120" : "navy"}
+              $colorFilter={isOpen ? "icon-link-pressed" : "icon-link-active"}
               $width="spacing-24"
               aria-hidden="true"
             />

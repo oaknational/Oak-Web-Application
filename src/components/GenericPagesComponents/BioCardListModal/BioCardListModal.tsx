@@ -146,7 +146,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                 <BoxBorders gapPosition="rightTop" $zIndex={"in-front"} />
                 <OakIcon
                   iconName="looping-arrow-1"
-                  $colorFilter={"oakGreen"}
+                  $colorFilter={"icon-brand"}
                   $display={["none", "block"]}
                   $position={"absolute"}
                   $top={"spacing-100"}
