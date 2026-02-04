@@ -1,3 +1,11 @@
+## [1.973.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.973.0...v1.973.1) (2026-02-04)
+
+
+### Bug Fixes
+
+* remove old curric CLI code ([0b59b5d](https://github.com/oaknational/Oak-Web-Application/commit/0b59b5dbc4f4be5125a8387cfb7075fe1482dee3))
+* revert removal of puppeteer ([f050e56](https://github.com/oaknational/Oak-Web-Application/commit/f050e56eb0c0aef13f4c495802cb6a14912ef9b9))
+
 # [1.973.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.972.2...v1.973.0) (2026-02-04)
 
 
