@@ -101,4 +101,27 @@ describe("CardListing", () => {
     });
     expect(saveButton).toBeDisabled();
   });
+  it("renders correctly in a highlighted state", () => {
+    const { rerender } = render(
+      <CardListing {...defaultProps} isHighlighted saveProps={saveProps} />,
+    );
+
+    const card = screen.getByTestId("card-listing-container");
+    expect(card).toHaveStyle({ background: "#222222" });
+
+    const saveButton = screen.getByRole("button", {
+      name: "Save this unit: Unit title",
+    });
+    expect(saveButton).toHaveStyle({ background: "#222222" });
+
+    rerender(<CardListing {...defaultProps} saveProps={saveProps} />);
+
+    const rerenderedCard = screen.getByTestId("card-listing-container");
+    expect(rerenderedCard).toHaveStyle({ background: "#ffffff" });
+
+    const rerenderedSaveButton = screen.getByRole("button", {
+      name: "Save this unit: Unit title",
+    });
+    expect(rerenderedSaveButton).toHaveStyle({ background: "none" });
+  });
 });

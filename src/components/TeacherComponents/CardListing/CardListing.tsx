@@ -74,6 +74,7 @@ const CardListing = (props: CardListingProps) => {
       $gap={"spacing-20"}
       $flexDirection={layoutVariant === "horizontal" ? "row" : "column"}
       $width={"100%"}
+      data-testid="card-listing-container"
     >
       {layoutVariant === "horizontal" ? (
         <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
