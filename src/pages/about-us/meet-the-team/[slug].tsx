@@ -30,6 +30,7 @@ import {
   getMemberCategory,
 } from "@/pages-helpers/shared/about-us-pages/profileNavigation";
 import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -49,6 +50,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   const { name, role, image, bioPortableText, socials } = pageData;
   const { prevHref, nextHref } = navigation;
   const trimmedBio = trimTrailingEmptyBlocks(bioPortableText);
+  const imageUrl = getProxiedSanityAssetUrl(image?.asset?.url);
 
   return (
     <Layout
@@ -67,12 +69,12 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
         <OakGrid $cg={["spacing-0", "spacing-16"]} $rg={"spacing-24"}>
           {/* Image - Desktop/Tablet only (left column) */}
           <OakGridArea $colSpan={[12, 5, 4]} $order={1}>
-            {image?.asset?.url && (
+            {imageUrl && (
               <OakBox $display={["none", "block"]}>
                 <OakBox $borderRadius={"border-radius-l"} $overflow={"hidden"}>
                   <OakImage
-                    src={image.asset.url}
-                    alt={image.altText ?? `Photo of ${name}`}
+                    src={imageUrl}
+                    alt={image?.altText ?? `Photo of ${name}`}
                     $width={"100%"}
                     $aspectRatio={"2/3"}
                     $objectFit={"cover"}
@@ -126,15 +128,15 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
               </OakFlex>
 
               {/* Image - Mobile only (between header and socials) */}
-              {image?.asset?.url && (
+              {imageUrl && (
                 <OakBox $display={["block", "none"]} style={{ width: "75%" }}>
                   <OakBox
                     $borderRadius={"border-radius-l"}
                     $overflow={"hidden"}
                   >
                     <OakImage
-                      src={image.asset.url}
-                      alt={image.altText ?? `Photo of ${name}`}
+                      src={imageUrl}
+                      alt={image?.altText ?? `Photo of ${name}`}
                       $width={"100%"}
                       $aspectRatio={"2/3"}
                       $objectFit={"cover"}
