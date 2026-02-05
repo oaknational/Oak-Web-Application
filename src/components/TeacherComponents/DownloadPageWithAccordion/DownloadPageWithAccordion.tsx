@@ -250,7 +250,7 @@ const DownloadPageWithAccordionContent = (
             <OakFlex $flexDirection={"row"}>
               <OakIcon
                 iconName="content-guidance"
-                $colorFilter={"red"}
+                $colorFilter={"icon-error"}
                 $width={"spacing-24"}
                 $height={"spacing-24"}
               />

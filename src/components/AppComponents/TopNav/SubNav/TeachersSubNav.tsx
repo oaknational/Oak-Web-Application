@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
@@ -12,6 +13,8 @@ import {
   OakUL,
 } from "@/styles/oakThemeApp";
 import SearchBar from "@/components/AppComponents/SearchBar";
+import { SaveCount } from "@/components/TeacherComponents/SaveCount/SaveCount";
+import TeacherAccountButton from "@/components/TeacherComponents/TeacherAccountButton/TeacherAccountButton";
 
 type TeachersSubNavProps = {
   onClick: (menu: keyof TeachersSubNavData) => void;
@@ -36,6 +39,7 @@ const TeachersSubNav = ({
   isMenuSelected,
   focusManager,
 }: TeachersSubNavProps) => {
+  const pathname = usePathname();
   const getButtonProps = (slug: string) => {
     if (slug === "curriculum-landing-page") {
       return {
@@ -87,6 +91,7 @@ const TeachersSubNav = ({
 
   return (
     <OakFlex
+      id="teachers-subnav"
       data-testid="teachers-subnav"
       $justifyContent="space-between"
       $flexGrow={1}
@@ -130,7 +135,21 @@ const TeachersSubNav = ({
           })}
         </OakUL>
       </OakBox>
-      <SearchBar />
+      <OakFlex
+        $alignItems={"center"}
+        $gap={["spacing-24", "spacing-16", "spacing-16"]}
+      >
+        <SearchBar />
+        <SaveCount />
+        <TeacherAccountButton
+          selectedArea="TEACHERS"
+          onboardingRedirectUrl={resolveOakHref({
+            page: "onboarding",
+            query: { returnTo: pathname ?? "/" },
+          })}
+          buttonVariant="primary"
+        />
+      </OakFlex>
     </OakFlex>
   );
 };

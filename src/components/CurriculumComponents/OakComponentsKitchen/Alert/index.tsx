@@ -20,31 +20,31 @@ const alertTypes: Record<
 > = {
   info: {
     icon: "info",
-    iconColorFilter: "black",
+    iconColorFilter: "icon-primary",
     backgroundColour: "bg-decorative3-very-subdued",
     borderColour: "border-decorative3",
   },
   neutral: {
     icon: "info",
-    iconColorFilter: "black",
+    iconColorFilter: "icon-primary",
     backgroundColour: "bg-neutral",
     borderColour: "border-neutral-lighter",
   },
   success: {
     icon: "success",
-    iconColorFilter: "black",
+    iconColorFilter: "icon-primary",
     backgroundColour: "bg-decorative1-very-subdued",
     borderColour: "border-decorative1-stronger",
   },
   alert: {
     icon: "warning",
-    iconColorFilter: "black",
+    iconColorFilter: "icon-primary",
     backgroundColour: "bg-decorative5-very-subdued",
     borderColour: "border-decorative5-stronger",
   },
   error: {
     icon: "error",
-    iconColorFilter: "red",
+    iconColorFilter: "icon-error",
     backgroundColour: "bg-incorrect",
     borderColour: "border-error",
   },

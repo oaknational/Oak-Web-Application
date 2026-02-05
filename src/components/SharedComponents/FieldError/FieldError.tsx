@@ -31,7 +31,7 @@ const FieldError = (props: FieldErrorProps) => {
       <OakFlex $alignSelf={"flex-start"} $mr="spacing-4">
         <OakIcon
           iconName="content-guidance"
-          $colorFilter={"red"}
+          $colorFilter={"icon-error"}
           $width={"spacing-24"}
           $height={"spacing-24"}
         />
