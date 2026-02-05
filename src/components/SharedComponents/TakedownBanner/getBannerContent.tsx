@@ -1,4 +1,4 @@
-import { OakP } from "@oaknational/oak-components";
+import { OakFlex, OakP } from "@oaknational/oak-components";
 
 export const CYCLE_2_SUBJECTS = new Set([
   "art",
@@ -33,12 +33,16 @@ export const getBannerContent = ({
         user === "pupil" ? (
           "We’ve made brand new and improved lessons for you."
         ) : (
-          <OakP>
-            Start using our brand new teaching resources now. Designed by
-            teachers and subject experts, with real classrooms in mind. The
-            older resources below were created for lockdown learning during the
-            pandemic and are not designed for classroom teaching.
-          </OakP>
+          <OakFlex $flexDirection={"column"} $gap="spacing-20">
+            <OakP>
+              Start using our brand new teaching resources now. Designed by
+              teachers and subject experts, with real classrooms in mind.{" "}
+            </OakP>
+            <OakP>
+              The older resources below were created for lockdown learning
+              during the pandemic and are not designed for classroom teaching.
+            </OakP>
+          </OakFlex>
         ),
     };
   }
