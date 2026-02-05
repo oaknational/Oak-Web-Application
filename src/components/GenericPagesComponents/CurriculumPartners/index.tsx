@@ -27,7 +27,7 @@ export function CurriculumPartners({
           <OakHeading tag="h3" $font={["heading-5", "heading-4", "heading-4"]}>
             {title}
           </OakHeading>
-          <OakP $font={["body-1", "body-1", "body-2"]}>{text}</OakP>
+          <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
         </OakFlex>
       </OakFlex>
       <OakBox>
