@@ -1,12 +1,14 @@
 import { NextPage, GetServerSideProps } from "next";
 import {
   OakFlex,
+  OakGrid,
+  OakGridArea,
   OakHeading,
   OakImage,
   OakMaxWidth,
   OakTypography,
   OakBox,
-  OakSecondaryLink,
+  OakSmallSecondaryButton,
 } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -19,29 +21,36 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import CMSClient from "@/node-lib/cms";
 import { TeamMember } from "@/common-lib/cms-types/teamMember";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { SocialButton } from "@/components/GenericPagesComponents/SocialButton";
+import {
+  ProfileNavigation,
+  MemberCategory,
+  buildProfileNavigation,
+  determineMemberSection,
+  getMemberCategory,
+} from "@/pages-helpers/shared/about-us-pages/profileNavigation";
+import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
-
-type ProfileNavigation = {
-  prevSlug: string | null;
-  prevName: string | null;
-  nextSlug: string | null;
-  nextName: string | null;
-};
 
 export type AboutUsMeetTheTeamPersonPageProps = {
   pageData: TeamMember;
   topNav: TopNavProps;
   navigation: ProfileNavigation;
+  category: MemberCategory;
 };
 
 const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   pageData,
   topNav,
   navigation,
+  category,
 }) => {
   const { name, role, image, bioPortableText, socials } = pageData;
-  const { prevSlug, nextSlug } = navigation;
+  const { prevHref, nextHref } = navigation;
+  const trimmedBio = trimTrailingEmptyBlocks(bioPortableText);
+  const imageUrl = getProxiedSanityAssetUrl(image?.asset?.url);
 
   return (
     <Layout
@@ -57,115 +66,147 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
         $mt={["spacing-56", "spacing-80"]}
         $ph={["spacing-16", "spacing-32"]}
       >
-        <OakBox $mb={"spacing-24"}>
-          <OakSecondaryLink
-            href="/about-us/meet-the-team"
-            iconName="arrow-left"
-          >
-            Back to Meet the Team
-          </OakSecondaryLink>
-        </OakBox>
-
-        <OakFlex
-          $flexDirection={["column", "row"]}
-          $gap={["spacing-32", "spacing-56"]}
-        >
-          {image?.asset?.url && (
-            <OakBox
-              $width={["100%", "spacing-240"]}
-              $minWidth={["auto", "spacing-240"]}
-            >
-              <OakImage
-                src={image.asset.url}
-                alt={image.altText ?? `Photo of ${name}`}
-                $width={"100%"}
-                $aspectRatio={"1/1"}
-                $objectFit={"cover"}
-                $borderRadius={"border-radius-m"}
-              />
-            </OakBox>
-          )}
-
-          <OakFlex $flexDirection={"column"} $gap={"spacing-16"} $flexGrow={1}>
-            <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
-              {name}
-            </OakHeading>
-
-            {role && (
-              <OakTypography $font={"heading-6"} $color={"text-subdued"}>
-                {role}
-              </OakTypography>
+        <OakGrid $cg={["spacing-0", "spacing-16"]} $rg={"spacing-24"}>
+          {/* Image - Desktop/Tablet only (left column) */}
+          <OakGridArea $colSpan={[12, 5, 4]} $order={1}>
+            {imageUrl && (
+              <OakBox $display={["none", "block"]}>
+                <OakBox $borderRadius={"border-radius-l"} $overflow={"hidden"}>
+                  <OakImage
+                    src={imageUrl}
+                    alt={image?.altText ?? ""}
+                    $width={"100%"}
+                    $aspectRatio={"2/3"}
+                    $objectFit={"cover"}
+                    style={{ objectPosition: "center" }}
+                  />
+                </OakBox>
+              </OakBox>
             )}
+          </OakGridArea>
 
-            {socials && (socials.twitterUsername || socials.linkedinUrl) && (
-              <OakFlex $gap={"spacing-16"} $mt={"spacing-8"}>
-                {socials.twitterUsername && (
-                  <OakSecondaryLink
-                    href={`https://twitter.com/${socials.twitterUsername}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+          {/* All text content (right column on desktop, full width on mobile) */}
+          <OakGridArea $colSpan={[12, 7, 8]} $order={2}>
+            <OakFlex
+              $flexDirection={"column"}
+              $ph={["spacing-0", "spacing-40"]}
+              $gap={"spacing-24"}
+            >
+              {/* Header group - category, name, job title */}
+              <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+                {/* Category + Name */}
+                <OakFlex $flexDirection={"column"} $gap={"spacing-4"}>
+                  <OakTypography
+                    $font={["heading-light-7", "heading-light-6"]}
+                    $color={"text-primary"}
                   >
-                    Twitter
-                  </OakSecondaryLink>
-                )}
-                {socials.linkedinUrl && (
-                  <OakSecondaryLink
-                    href={socials.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {category}
+                  </OakTypography>
+                  <OakHeading
+                    tag="h1"
+                    $font={["heading-3", "heading-2"]}
+                    $color={"text-primary"}
                   >
-                    LinkedIn
-                  </OakSecondaryLink>
+                    {name}
+                  </OakHeading>
+                </OakFlex>
+
+                {/* Job title */}
+                {role && (
+                  <OakBox
+                    $background={"lemon"}
+                    $ph={"spacing-4"}
+                    style={{ width: "fit-content" }}
+                  >
+                    <OakTypography
+                      $font={["heading-light-5", "heading-light-4"]}
+                    >
+                      {role}
+                    </OakTypography>
+                  </OakBox>
                 )}
               </OakFlex>
-            )}
 
-            {bioPortableText && (
-              <OakTypography $font={["body-1", "body-2"]} $mt={"spacing-16"}>
-                <PortableTextWithDefaults
-                  value={bioPortableText}
-                  withoutDefaultComponents
-                />
-              </OakTypography>
-            )}
-          </OakFlex>
-        </OakFlex>
+              {/* Image - Mobile only (between header and socials) */}
+              {imageUrl && (
+                <OakBox $display={["block", "none"]} style={{ width: "75%" }}>
+                  <OakBox
+                    $borderRadius={"border-radius-l"}
+                    $overflow={"hidden"}
+                  >
+                    <OakImage
+                      src={imageUrl}
+                      alt={image?.altText ?? ""}
+                      $width={"100%"}
+                      $aspectRatio={"2/3"}
+                      $objectFit={"cover"}
+                      style={{ objectPosition: "center" }}
+                    />
+                  </OakBox>
+                </OakBox>
+              )}
 
-        {(prevSlug || nextSlug) && (
-          <OakFlex $gap={"spacing-16"} $mt={["spacing-32", "spacing-56"]}>
-            {prevSlug && (
-              <OakBox
-                $borderColor={"border-neutral-lighter"}
-                $ba={"border-solid-s"}
-                $borderRadius={"border-radius-s"}
-                $pa={"spacing-12"}
-              >
-                <OakSecondaryLink
-                  href={`/about-us/meet-the-team/${prevSlug}`}
-                  iconName="arrow-left"
+              {/* Socials */}
+              {socials && (socials.twitterUsername || socials.linkedinUrl) && (
+                <OakFlex
+                  $gap={"spacing-12"}
+                  style={{ width: "fit-content" }}
+                  aria-label={`${name}'s social media links`}
+                  role="group"
                 >
-                  Previous profile
-                </OakSecondaryLink>
-              </OakBox>
-            )}
-            {nextSlug && (
-              <OakBox
-                $borderColor={"border-neutral-lighter"}
-                $ba={"border-solid-s"}
-                $borderRadius={"border-radius-s"}
-                $pa={"spacing-12"}
-              >
-                <OakSecondaryLink
-                  href={`/about-us/meet-the-team/${nextSlug}`}
-                  iconName="arrow-right"
-                  isTrailingIcon
+                  {socials.linkedinUrl && (
+                    <SocialButton
+                      socialType="linkedin"
+                      profileHref={socials.linkedinUrl}
+                    />
+                  )}
+                  {socials.twitterUsername && (
+                    <SocialButton
+                      socialType="x"
+                      profileHref={`https://x.com/${socials.twitterUsername}`}
+                    />
+                  )}
+                </OakFlex>
+              )}
+
+              {/* Bio */}
+              {trimmedBio && (
+                <OakBox $font={["body-2", "body-1"]} $color={"text-primary"}>
+                  <PortableTextWithDefaults value={trimmedBio} />
+                </OakBox>
+              )}
+
+              {/* Navigation buttons */}
+              {(prevHref || nextHref) && (
+                <OakFlex
+                  as="nav"
+                  $gap={"spacing-16"}
+                  aria-label="Team member navigation"
                 >
-                  Next profile
-                </OakSecondaryLink>
-              </OakBox>
-            )}
-          </OakFlex>
-        )}
+                  {prevHref && (
+                    <OakSmallSecondaryButton
+                      element="a"
+                      href={prevHref}
+                      iconName="arrow-left"
+                    >
+                      Previous profile
+                    </OakSmallSecondaryButton>
+                  )}
+                  {nextHref && (
+                    <OakSmallSecondaryButton
+                      element="a"
+                      href={nextHref}
+                      iconName="arrow-right"
+                      isTrailingIcon
+                    >
+                      Next profile
+                    </OakSmallSecondaryButton>
+                  )}
+                </OakFlex>
+              )}
+            </OakFlex>
+          </OakGridArea>
+        </OakGrid>
       </OakMaxWidth>
     </Layout>
   );
@@ -174,39 +215,6 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 type URLParams = {
   slug: string;
 };
-
-type TeamMemberRef = {
-  id: string;
-  name: string;
-  slug?: { current?: string } | null;
-};
-
-function getMemberSlug(member: TeamMemberRef): string {
-  return member.slug?.current ?? member.id;
-}
-
-function buildProfileNavigation(
-  allMembers: TeamMemberRef[],
-  currentSlug: string,
-): ProfileNavigation {
-  const currentIndex = allMembers.findIndex(
-    (member) => getMemberSlug(member) === currentSlug,
-  );
-
-  if (currentIndex === -1) {
-    return { prevSlug: null, prevName: null, nextSlug: null, nextName: null };
-  }
-
-  const prevMember = allMembers[currentIndex - 1];
-  const nextMember = allMembers[currentIndex + 1];
-
-  return {
-    prevSlug: prevMember ? getMemberSlug(prevMember) : null,
-    prevName: prevMember?.name ?? null,
-    nextSlug: nextMember ? getMemberSlug(nextMember) : null,
-    nextName: nextMember?.name ?? null,
-  };
-}
 
 export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPersonPageProps,
@@ -246,17 +254,35 @@ export const getServerSideProps: GetServerSideProps<
     return { notFound: true };
   }
 
-  const allMembers = [
-    ...(meetTheTeamPage?.leadershipTeam ?? []),
-    ...(meetTheTeamPage?.boardMembers ?? []),
-  ];
-  const navigation = buildProfileNavigation(allMembers, slug);
+  const leadershipTeam = meetTheTeamPage?.leadershipTeam ?? [];
+  const boardMembers = meetTheTeamPage?.boardMembers ?? [];
+
+  // Get section from query param (if provided)
+  const requestedSection =
+    context.query.section === "leadership" || context.query.section === "board"
+      ? context.query.section
+      : null;
+
+  const section = determineMemberSection(
+    leadershipTeam,
+    boardMembers,
+    slug,
+    requestedSection,
+  );
+  const navigation = buildProfileNavigation(
+    leadershipTeam,
+    boardMembers,
+    slug,
+    section,
+  );
+  const category = getMemberCategory(section);
 
   return {
     props: {
       pageData: teamMember,
       topNav,
       navigation,
+      category,
     },
   };
 };
