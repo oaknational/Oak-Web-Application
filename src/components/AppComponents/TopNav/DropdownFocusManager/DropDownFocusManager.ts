@@ -43,7 +43,6 @@ export class DropdownFocusManager {
       });
     });
     this.buildChildrenNodes(focusMap, teachersNavData);
-
     return focusMap;
   }
   private buildChildrenNodes(
@@ -87,10 +86,13 @@ export class DropdownFocusManager {
             },
             isFirstChild: index === 0,
             isLastChild: index === sectionData.keystages.length - 1,
-            children: keystage.subjects.map(
-              (subject) =>
-                `${keystage.slug}-${subject.subjectSlug}-subject-button`,
-            ),
+            children: [
+              ...keystage.subjects.map(
+                (subject) =>
+                  `${keystage.slug}-${subject.subjectSlug}-subject-button`,
+              ),
+              `${keystage.slug}-all-keystages-button`,
+            ],
           });
 
           this.buildSubjectNodes({
@@ -207,6 +209,34 @@ export class DropdownFocusManager {
       this.focusParent(currentNode, event);
       return;
     }
+  }
+
+  private focusNode(node: FocusNode) {
+    const element = document.getElementById(node.id);
+    if (element) {
+      element.focus();
+    }
+  }
+
+  handleEscapeKey({
+    event,
+    elementId,
+    setSelectedMenu,
+  }: {
+    event: React.KeyboardEvent;
+    elementId: string;
+    setSelectedMenu: (a: undefined) => void;
+  }) {
+    if (event.key !== "Escape") return;
+    setSelectedMenu(undefined);
+    const currentNode = this.focusMap.get(elementId);
+    if (!currentNode) return;
+    // get the oldest ancestor node (the one without a parent) and focus it
+    let ancestorNode = currentNode;
+    while (ancestorNode.parent) {
+      ancestorNode = this.focusMap.get(ancestorNode.parent.parentId)!;
+    }
+    this.focusNode(ancestorNode);
   }
 
   handleKeyDown(event: React.KeyboardEvent, elementId: string) {

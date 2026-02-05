@@ -72,14 +72,19 @@ const TopNav = (props: TopNavProps) => {
     }
   }, [teachers, pupils, activeArea, setCurrentBannerProps]);
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Escape" && selectedMenu) {
-      setSelectedMenu(undefined);
-    }
-  };
-
   return (
-    <OakBox as="header" $position="relative" data-testid="app-topnav">
+    <OakBox
+      as="header"
+      $position="relative"
+      data-testid="app-topnav"
+      onKeyDown={(event) =>
+        focusManager?.handleEscapeKey({
+          event,
+          elementId: document.activeElement?.id || "",
+          setSelectedMenu,
+        })
+      }
+    >
       <OakBox
         $position={"absolute"}
         $zIndex={"in-front"}
@@ -129,7 +134,6 @@ const TopNav = (props: TopNavProps) => {
         $gap={"spacing-24"}
         $maxHeight={"spacing-80"}
         as={"nav"}
-        onKeyDown={handleKeyDown}
       >
         <OakLink
           href={resolveOakHref({

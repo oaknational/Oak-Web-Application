@@ -19,6 +19,7 @@ type TeachersSubNavProps = {
   focusManager: DropdownFocusManager;
 };
 
+// The order of these buttons is determined here and used in the keyboard navigation logic in DropdownFocusManager
 export const subNavButtons = [
   { label: "Primary", slug: "primary" },
   { label: "Secondary", slug: "secondary" },
