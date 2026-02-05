@@ -16,9 +16,7 @@ export const getIsUnitExpiring = (
   units: UnitListProps["currentPageItems"] | UnitsSectionData["units"],
 ) => {
   return units.some((unit) =>
-    unit?.some(
-      (unitItem) => unitItem.actions && unitItem.actions?.displayExpiringBanner,
-    ),
+    unit?.some((unitItem) => unitItem.actions?.displayExpiringBanner),
   );
 };
 
