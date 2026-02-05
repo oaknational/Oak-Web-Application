@@ -3,6 +3,7 @@ import {
   OakInlineBanner,
   OakPrimaryButton,
   OakInlineRegistrationBanner,
+  OakHeading,
 } from "@oaknational/oak-components";
 
 import { getBannerContent, CYCLE_2_SUBJECTS } from "./getBannerContent";
@@ -58,7 +59,11 @@ export const TakedownBanner = ({
   if (shouldUseEmailCapture) {
     return (
       <OakInlineRegistrationBanner
-        headerText={bannerContent.header}
+        headerText={
+          <OakHeading tag="h2" $font={["heading-5", "heading-4", "heading-4"]}>
+            {bannerContent.header}
+          </OakHeading>
+        }
         bodyText={bannerContent.body}
         onSubmit={(email) => {
           const emailPattern =
