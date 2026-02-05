@@ -278,7 +278,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           },
         ]}
         background={"bg-decorative4-very-subdued"}
-        subjectIconBackgroundColor={"pink"}
+        subjectIconBackgroundColor={"bg-decorative4-main"}
         title={unitTitle}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
         isNew={isNew}

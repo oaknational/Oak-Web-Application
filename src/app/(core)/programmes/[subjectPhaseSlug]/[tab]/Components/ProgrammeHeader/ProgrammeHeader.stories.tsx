@@ -185,7 +185,7 @@ export const WithHeaderAndFooterSlots: Story = {
           $pa="spacing-8"
           $alignItems="center"
           $height="spacing-32"
-          $background="amber"
+          $background="bg-decorative6-main"
         >
           Breadcrumb placeholder
         </OakFlex>

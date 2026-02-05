@@ -30,11 +30,11 @@ describe("CurricFiltersYears", () => {
       />,
     );
 
-    const elements = getAllByRole("radio") as HTMLInputElement[];
-    expect(elements.length).toEqual(3);
-    expect(elements[0]!.nextSibling!.textContent).toEqual("All");
-    expect(elements[1]!.nextSibling!.textContent).toEqual("Year 10");
-    expect(elements[2]!.nextSibling!.textContent).toEqual("Year 11");
+    const radios = getAllByRole("radio");
+    expect(radios).toHaveLength(3);
+    expect(radios[0]).toHaveAccessibleName("All");
+    expect(radios[1]).toHaveAccessibleName("Year 10");
+    expect(radios[2]).toHaveAccessibleName("Year 11");
   });
 
   it("renders correctly (pathways)", () => {
@@ -62,13 +62,13 @@ describe("CurricFiltersYears", () => {
       />,
     );
 
-    const elements = getAllByRole("radio") as HTMLInputElement[];
-    expect(elements.length).toEqual(5);
-    expect(elements[0]!.nextSibling!.textContent).toEqual("All");
-    expect(elements[1]!.nextSibling!.textContent).toEqual("Year 10 (Core)");
-    expect(elements[2]!.nextSibling!.textContent).toEqual("Year 11 (Core)");
-    expect(elements[3]!.nextSibling!.textContent).toEqual("Year 10 (GCSE)");
-    expect(elements[4]!.nextSibling!.textContent).toEqual("Year 11 (GCSE)");
+    const radios = getAllByRole("radio");
+    expect(radios).toHaveLength(5);
+    expect(radios[0]).toHaveAccessibleName("All");
+    expect(radios[1]).toHaveAccessibleName("Year 10 (Core)");
+    expect(radios[2]).toHaveAccessibleName("Year 11 (Core)");
+    expect(radios[3]).toHaveAccessibleName("Year 10 (GCSE)");
+    expect(radios[4]).toHaveAccessibleName("Year 11 (GCSE)");
   });
 
   it("interacts correctly (non-pathway)", () => {
