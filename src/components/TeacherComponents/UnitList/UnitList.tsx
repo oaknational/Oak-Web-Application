@@ -12,7 +12,6 @@ import {
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
 import { getPageItems, getProgrammeFactors } from "./helpers";
-import { UnitListLegacyBanner } from "./UnitListLegacyBanner";
 import { areNewAndLegacyUnitsOnPage, getUnitCards } from "./getUnitCards";
 
 import {
@@ -30,6 +29,10 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
+import {
+  getIsUnitExpiring,
+  TakedownBanner,
+} from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 
 export type Tier = {
   title: string;
@@ -246,11 +249,12 @@ const UnitList: FC<UnitListProps> = (props) => {
               <OakUnitsContainer
                 isLegacy={true}
                 banner={
-                  <UnitListLegacyBanner
+                  <TakedownBanner
                     userType={"teacher"}
                     subjectSlug={subjectSlug}
                     hasNewUnits={hasNewAndLegacyUnits}
-                    allLegacyUnits={legacyPageItems}
+                    isLegacy={true}
+                    isExpiring={getIsUnitExpiring(legacyPageItems)}
                     onButtonClick={() => onPageChange(1)}
                   />
                 }
@@ -280,11 +284,12 @@ const UnitList: FC<UnitListProps> = (props) => {
           <OakUnitsContainer
             isLegacy={true}
             banner={
-              <UnitListLegacyBanner
+              <TakedownBanner
                 userType={"teacher"}
                 subjectSlug={subjectSlug}
                 hasNewUnits={hasNewAndLegacyUnits}
-                allLegacyUnits={legacyPageItems}
+                isLegacy={true}
+                isExpiring={getIsUnitExpiring(legacyPageItems)}
                 onButtonClick={() => onPageChange(1)}
               />
             }

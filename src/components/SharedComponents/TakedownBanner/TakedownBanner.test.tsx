@@ -1,49 +1,19 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { screen } from "@testing-library/react";
 
+import { TakedownBanner } from "./TakedownBanner";
+
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import unitListingFixture from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
-import {
-  UnitListLegacyBanner,
-  UnitListLegacyBannerProps,
-} from "@/components/TeacherComponents/UnitList/UnitListLegacyBanner";
 
 const onClick = jest.fn();
 
-const render = (children: React.ReactNode) =>
-  renderWithProviders()(
-    <OakThemeProvider theme={oakDefaultTheme}>{children}</OakThemeProvider>,
-  );
+const render = renderWithProviders();
 
-const unitListing = unitListingFixture();
-
-const allLegacyUnits: UnitListLegacyBannerProps["allLegacyUnits"] =
-  unitListing.units;
-
-const getLegacyUnits = (
-  addExpiringBannerAction: boolean,
-): UnitListLegacyBannerProps["allLegacyUnits"] => {
-  if (!addExpiringBannerAction) return allLegacyUnits;
-  const exampleUnit = allLegacyUnits?.[0]?.[0];
-  let groupToPrepend: UnitListLegacyBannerProps["allLegacyUnits"][number] = [];
-  if (exampleUnit) {
-    const bannerUnit = {
-      ...exampleUnit,
-      actions: { displayExpiringBanner: true },
-    };
-    groupToPrepend = [bannerUnit];
-  }
-  return [
-    groupToPrepend,
-    ...allLegacyUnits,
-  ] as UnitListLegacyBannerProps["allLegacyUnits"];
-};
-
-describe("components/UnitListLegacyBanner", () => {
+describe("TakedownBanner", () => {
   test("does not render when no units are marked for expiry and is a cycle 1 subject", () => {
     render(
-      <UnitListLegacyBanner
-        allLegacyUnits={getLegacyUnits(false)}
+      <TakedownBanner
+        isExpiring={false}
+        isLegacy={true}
         userType="teacher"
         subjectSlug="maths"
         onButtonClick={onClick}
@@ -60,8 +30,9 @@ describe("components/UnitListLegacyBanner", () => {
 
   test("renders teacher removal banner when there are new units in a cycle 1 subject", () => {
     const { getByText } = render(
-      <UnitListLegacyBanner
-        allLegacyUnits={getLegacyUnits(true)}
+      <TakedownBanner
+        isExpiring={true}
+        isLegacy={true}
         userType="teacher"
         subjectSlug="maths"
         onButtonClick={onClick}
@@ -81,8 +52,9 @@ describe("components/UnitListLegacyBanner", () => {
   });
   test("renders legacy takedown banner for cycle 2 subjects", () => {
     const { getByText } = render(
-      <UnitListLegacyBanner
-        allLegacyUnits={getLegacyUnits(true)}
+      <TakedownBanner
+        isExpiring={false}
+        isLegacy={true}
         userType="teacher"
         subjectSlug="geography"
         onButtonClick={onClick}
@@ -103,8 +75,9 @@ describe("components/UnitListLegacyBanner", () => {
 
   test("renders newsletter sign up banner when there are no new units", () => {
     const { getByText } = render(
-      <UnitListLegacyBanner
-        allLegacyUnits={getLegacyUnits(true)}
+      <TakedownBanner
+        isExpiring={true}
+        isLegacy={true}
         userType="teacher"
         subjectSlug="maths"
         hasNewUnits={false}
@@ -120,8 +93,9 @@ describe("components/UnitListLegacyBanner", () => {
 
   test("renders pupil removal banner when there are new units in a cycle 1 subject", () => {
     const { getByText } = render(
-      <UnitListLegacyBanner
-        allLegacyUnits={getLegacyUnits(true)}
+      <TakedownBanner
+        isExpiring={true}
+        isLegacy={true}
         userType="pupil"
         subjectSlug="maths"
         hasNewUnits={true}
@@ -141,8 +115,9 @@ describe("components/UnitListLegacyBanner", () => {
 
   test("renders pupil removal banner when there are no new units in a cycle 1 subject", () => {
     const { getByText } = render(
-      <UnitListLegacyBanner
-        allLegacyUnits={getLegacyUnits(true)}
+      <TakedownBanner
+        isExpiring={true}
+        isLegacy={true}
         userType="pupil"
         subjectSlug="maths"
         hasNewUnits={false}
@@ -156,8 +131,9 @@ describe("components/UnitListLegacyBanner", () => {
 
   test("renders legacy take down banner for pupils in cycle 2 legacy subjects", () => {
     const { getByText } = render(
-      <UnitListLegacyBanner
-        allLegacyUnits={getLegacyUnits(true)}
+      <TakedownBanner
+        isExpiring={false}
+        isLegacy={true}
         userType="pupil"
         subjectSlug="geography"
         hasNewUnits={true}
@@ -165,7 +141,7 @@ describe("components/UnitListLegacyBanner", () => {
     );
 
     const bannerHeader = getByText(
-      "These lessons will be removed by the end of Spring Term 2026.",
+      "These lessons will be removed by the end of the Spring Term 2026.",
     );
     expect(bannerHeader).toBeInTheDocument();
 
