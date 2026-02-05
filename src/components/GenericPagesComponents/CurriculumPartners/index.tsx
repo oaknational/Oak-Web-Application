@@ -19,7 +19,7 @@ export function CurriculumPartners({
   title,
   text,
   items,
-}: CurriculumPartnersProps) {
+}: Readonly<CurriculumPartnersProps>) {
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
       <OakFlex $gap={"spacing-24"} $flexDirection={"column"}>
