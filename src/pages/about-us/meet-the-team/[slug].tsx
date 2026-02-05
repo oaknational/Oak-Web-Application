@@ -78,7 +78,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                     $width={"100%"}
                     $aspectRatio={"2/3"}
                     $objectFit={"cover"}
-                    objectPosition={"center"}
+                    style={{ objectPosition: "center" }}
                   />
                 </OakBox>
               </OakBox>
@@ -140,7 +140,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                       $width={"100%"}
                       $aspectRatio={"2/3"}
                       $objectFit={"cover"}
-                      objectPosition={"center"}
+                      style={{ objectPosition: "center" }}
                     />
                   </OakBox>
                 </OakBox>
