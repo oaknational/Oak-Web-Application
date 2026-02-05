@@ -26,7 +26,7 @@ export type GuidingPrinciplesProps = {
 export function GuidingPrinciples({
   accentColor,
   $background,
-}: GuidingPrinciplesProps) {
+}: Readonly<GuidingPrinciplesProps>) {
   return (
     <StyledResponsiveFlex
       $justifyContent="space-between"
