@@ -243,7 +243,10 @@ const OverviewTab: FC<OverviewTabProps> = ({
   );
 
   return (
-    <OakBox $mt={["spacing-0", "spacing-0", "spacing-56"]}>
+    <OakBox
+      $mt={["spacing-0", "spacing-0", "spacing-56"]}
+      $color="text-primary"
+    >
       <OakBox $minWidth={"100%"} $display={["block", "block", "none"]}>
         <OakBox
           $background={"bg-decorative1-very-subdued"}
