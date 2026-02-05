@@ -74,7 +74,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                 <OakBox $borderRadius={"border-radius-l"} $overflow={"hidden"}>
                   <OakImage
                     src={imageUrl}
-                    alt={image?.altText ?? `Photo of ${name}`}
+                    alt={image?.altText ?? ""}
                     $width={"100%"}
                     $aspectRatio={"2/3"}
                     $objectFit={"cover"}
@@ -136,7 +136,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                   >
                     <OakImage
                       src={imageUrl}
-                      alt={image?.altText ?? `Photo of ${name}`}
+                      alt={image?.altText ?? ""}
                       $width={"100%"}
                       $aspectRatio={"2/3"}
                       $objectFit={"cover"}
