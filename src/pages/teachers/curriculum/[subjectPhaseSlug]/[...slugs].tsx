@@ -124,6 +124,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     case "overview":
       tabContent = (
         <OverviewTab
+          onClickNavItem={(pathname) => router.replace(pathname)}
           data={{
             curriculumInfo: curriculumOverviewTabData,
             curriculumCMSInfo: curriculumOverviewSanityData,

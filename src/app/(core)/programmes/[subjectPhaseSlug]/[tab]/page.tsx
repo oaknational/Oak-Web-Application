@@ -168,14 +168,14 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     }
   }
 
-  const curriculumOverviewSanityData = await CMSClient.curriculumOverviewPage({
+  const curriculumCMSInfo = await CMSClient.curriculumOverviewPage({
     previewMode: false, // TD: [integrated-journey] preview mode
     subjectTitle: programmeUnitsData.subjectTitle,
     phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
   });
 
   // TD: [integrated-journey] This data is not used in `ProgrammeView`, maybe we can remove it?
-  if (!curriculumOverviewSanityData) {
+  if (!curriculumCMSInfo) {
     return notFound();
   }
 
@@ -219,6 +219,8 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumUnitsFormattedData,
     subjectPhaseSanityData,
     tabSlug: tab,
+    curriculumCMSInfo,
+    curriculumInfo: cachedData.programmeUnitsData,
   };
 
   return <ProgrammeView {...results} />;
