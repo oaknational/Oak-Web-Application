@@ -11,6 +11,7 @@ import { getBannerContent, CYCLE_2_SUBJECTS } from "./getBannerContent";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { UnitListProps } from "@/components/TeacherComponents/UnitList/UnitList";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 export const getIsUnitExpiring = (
   units: UnitListProps["currentPageItems"] | UnitsSectionData["units"],
@@ -42,6 +43,7 @@ export const TakedownBanner = ({
   isExpiring: boolean;
 }) => {
   const newsletterFormProps = useNewsletterForm();
+  const isMobile = useMediaQuery("mobile");
   const isCycle2 = CYCLE_2_SUBJECTS.has(subjectSlug);
 
   if (!isLegacy || (!isExpiring && !isCycle2)) {
@@ -107,7 +109,7 @@ export const TakedownBanner = ({
               tabIndex={0}
               href={onwardHref}
             >
-              View and download new resources
+              View{isMobile ? "" : " and download "} new resources
             </OakPrimaryButton>
           </OakFlex>
         )
