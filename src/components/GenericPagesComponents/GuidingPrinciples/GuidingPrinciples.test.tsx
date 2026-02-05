@@ -4,7 +4,7 @@ import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithPro
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
-describe("GetInvolvedWorkWithUs", () => {
+describe("GuidingPrinciples", () => {
   it("renders correctly", () => {
     const { baseElement, getByRole, getAllByRole } = render(
       <GuidingPrinciples

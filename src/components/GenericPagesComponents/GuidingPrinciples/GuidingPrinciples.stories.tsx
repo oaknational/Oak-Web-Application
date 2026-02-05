@@ -32,5 +32,9 @@ export default meta;
 type Story = StoryObj<typeof Component>;
 
 export const Default: Story = {
+  args: {
+    $background: "bg-decorative1-subdued",
+    accentColor: "border-decorative1-stronger",
+  },
   render: (args) => <Component {...args} />,
 };
