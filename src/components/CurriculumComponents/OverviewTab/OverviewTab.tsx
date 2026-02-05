@@ -24,7 +24,6 @@ import slugify from "slugify";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import CMSImage from "@/components/SharedComponents/CMSImage";
@@ -334,23 +333,25 @@ const OverviewTab: FC<OverviewTabProps> = ({
             </OakGridArea>
           </OakGrid>
           {isVideoEnabled && (
-            <OakFlex
+            <OakGrid
               data-testid="video-guide"
-              $alignItems={"center"}
-              $justifyContent={"flex-start"}
-              $flexDirection={["column-reverse", "row"]}
-              $gap={["spacing-24", "spacing-120"]}
+              $cg={"spacing-16"}
+              $rg={"spacing-24"}
               $mb={["spacing-48", "spacing-80"]}
             >
-              <OakBox>
+              <OakGridArea
+                $colSpan={[12, 6]}
+                $justifyContent="center"
+                $order={[1, 0]}
+              >
                 <CMSVideo video={video} location="lesson" />
-              </OakBox>
-              {/* @todo replace with OakFlex - work out $maxWidth */}
-              <Flex
-                $flexDirection={"column"}
-                $maxWidth={["100%", "30%"]}
-                $alignItems={"flex-start"}
-                $gap={[16, 24]}
+              </OakGridArea>
+              <OakGridArea
+                $colSpan={[12, 6, 4]}
+                $colStart={[1, 8, 8]}
+                $justifyContent="center"
+                $gap="spacing-24"
+                $order={[0, 1]}
               >
                 <OakHeading
                   tag="h3"
@@ -360,7 +361,11 @@ const OverviewTab: FC<OverviewTabProps> = ({
                   Video guide
                 </OakHeading>
                 <OakP $font={"body-1"}>{videoExplainer}</OakP>
-                <OakSpan $font={"body-2-bold"} $color="text-primary">
+                <OakSpan
+                  $font={"body-2-bold"}
+                  $color="text-primary"
+                  $textWrap="balance"
+                >
                   <OakSecondaryLink
                     href={resolveOakHref({
                       page: "blog-single",
@@ -373,8 +378,8 @@ const OverviewTab: FC<OverviewTabProps> = ({
                     Read more about our new curriculum
                   </OakSecondaryLink>
                 </OakSpan>
-              </Flex>
-            </OakFlex>
+              </OakGridArea>
+            </OakGrid>
           )}
         </OakBox>
       </OakBox>
