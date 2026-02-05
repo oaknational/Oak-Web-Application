@@ -57,12 +57,18 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
   );
 
   return (
-    <OakBox $overflow={"hidden"} $zIndex={"neutral"}>
+    <OakBox $zIndex={"neutral"}>
       {children}
-      <WhoAreWeExplore
-        title={"Explore more about Oak"}
-        items={filteredExploreItems}
-      />
+      <OakBox
+        $overflow={"hidden"}
+        $pt={"spacing-72"}
+        style={{ marginTop: "-72px" }}
+      >
+        <WhoAreWeExplore
+          title={"Explore more about Oak"}
+          items={filteredExploreItems}
+        />
+      </OakBox>
       <OakBox
         $background={"bg-decorative1-subdued"}
         $pv={["spacing-56", "spacing-56"]}
