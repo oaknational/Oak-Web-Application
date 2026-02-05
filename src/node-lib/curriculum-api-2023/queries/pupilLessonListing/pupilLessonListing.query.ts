@@ -35,12 +35,37 @@ export const pupilLessonListingQuery =
       unitSlug,
     });
 
+    const lessonSlugs = res.browseData.map(
+      (lesson) => lesson.lesson_slug || "",
+    );
+    const contentRes = await sdk.pupilLessonListingLessonContent({
+      lessonSlugs: lessonSlugs,
+    });
+
+    const lessonContentBySlug = contentRes.data.map((content) => {
+      return {
+        exit_quiz_count: content.exit_quiz?.length || 0,
+        lesson_slug: content.lesson_slug,
+      };
+    });
+
+    const contentByLessonSlug = Object.fromEntries(
+      lessonContentBySlug.map((item) => [item.lesson_slug, item]),
+    );
+
+    const joinedBrowseDataWithContent = res.browseData.map((item) => ({
+      ...item,
+      ...(contentByLessonSlug[item?.lesson_slug || ""]
+        ? contentByLessonSlug[item?.lesson_slug || ""]
+        : {}),
+    }));
+
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       PupilLessonListingQuery["browseData"][number]
     >({
       journey: "pupil",
       queryName: "pupilLessonListingQuery",
-      browseData: res.browseData,
+      browseData: joinedBrowseDataWithContent,
     });
 
     if (modifiedBrowseData.length === 0) {
