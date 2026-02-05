@@ -1,3 +1,31 @@
+# [1.979.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.978.0...v1.979.0) (2026-02-05)
+
+
+### Bug Fixes
+
+* add a11y improvements and test coverage for bio page ([42f8470](https://github.com/oaknational/Oak-Web-Application/commit/42f847025e386db0db3cc56f7e54b5ea604991b3))
+* remove bio image alt text ([a6ed731](https://github.com/oaknational/Oak-Web-Application/commit/a6ed731019382e492276369c10c97e9b7cf4401b))
+* resolve tablet and mobile layout configuration ([b0693f1](https://github.com/oaknational/Oak-Web-Application/commit/b0693f192389d46656b843182c107f786cb4e7bc))
+* resolve TypeScript errors in bio page ([1c01989](https://github.com/oaknational/Oak-Web-Application/commit/1c01989a18ca8fb8aa632a579b4197b9b5cba01d))
+* restore feature flag checks for about-us pages ([c68fc2a](https://github.com/oaknational/Oak-Web-Application/commit/c68fc2a7a860743fa78adb081bccd2b282c03355))
+* trim trailing empty paragraphs from bio text ([b2d3d74](https://github.com/oaknational/Oak-Web-Application/commit/b2d3d7460ce34e959e32d7a8ece19da7da8b8199))
+* update image remote patterns for Sanity CDN ([887f906](https://github.com/oaknational/Oak-Web-Application/commit/887f9060c174dfcfb4e54427c67443ffe54d3667))
+* use $ prefix before objectPosition ([c72aa1a](https://github.com/oaknational/Oak-Web-Application/commit/c72aa1aef21199186e68dfa1ee90f18d5f697b9b))
+* use proxied Sanity asset URLs for team member bio images ([2ed7e8c](https://github.com/oaknational/Oak-Web-Application/commit/2ed7e8c88d3d2c07a33d24b279c7f9465e59b9c5))
+* use semantic <nav> element via as="nav" instead of role="navigation" ([98603cb](https://github.com/oaknational/Oak-Web-Application/commit/98603cb3c42371829faf865e282e162395f3c543))
+
+
+### Features
+
+* add section query param to team member card links ([b0c937c](https://github.com/oaknational/Oak-Web-Application/commit/b0c937c5433a8474cdbf5a99b43cad4e4f8472cb))
+* implement tablet and mobile layouts ([ca72463](https://github.com/oaknational/Oak-Web-Application/commit/ca72463cc32fcc6dd87471c2b294dfce652b4911))
+* redesign team member profile page layout and navigation ([d4b5923](https://github.com/oaknational/Oak-Web-Application/commit/d4b5923065877a223a5520ec9f0260c5b928085a))
+
+
+### Reverts
+
+* remove sanity cdn host regex protocol removal logic ([6286e7e](https://github.com/oaknational/Oak-Web-Application/commit/6286e7efe3e2935623724ed5da38d7dee078d0f9))
+
 # [1.978.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.977.0...v1.978.0) (2026-02-05)
 
 
