@@ -108,7 +108,7 @@ describe("TakedownBanner", () => {
     ).toBeInTheDocument();
     expect(
       getByText(
-        "Scroll up to take a look at the brand-new and improved resources we've made for you.",
+        "Take a look at the brand-new and improved lessons we've made for you.",
       ),
     ).toBeInTheDocument();
   });
