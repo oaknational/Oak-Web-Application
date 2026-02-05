@@ -4688,7 +4688,9 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                   </p>
                 </div>
                 <div
+                  aria-label="Team member navigation"
                   class="c11 c130"
+                  role="navigation"
                 >
                   <div
                     class="c6 c7"
@@ -4700,6 +4702,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <a
+                      aria-label="Previous profile: Previous Member"
                       class="c131 c37 internal-button"
                       href="/about-us/meet-the-team/previous-member?section=leadership"
                     >
@@ -4737,6 +4740,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <a
+                      aria-label="Next profile: Next Member"
                       class="c131 c37 internal-button"
                       href="/about-us/meet-the-team/next-member?section=board"
                     >

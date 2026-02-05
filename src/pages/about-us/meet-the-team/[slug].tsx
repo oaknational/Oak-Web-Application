@@ -48,7 +48,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   category,
 }) => {
   const { name, role, image, bioPortableText, socials } = pageData;
-  const { prevHref, nextHref } = navigation;
+  const { prevHref, nextHref, prevName, nextName } = navigation;
   const trimmedBio = trimTrailingEmptyBlocks(bioPortableText);
   const imageUrl = getProxiedSanityAssetUrl(image?.asset?.url);
 
@@ -78,7 +78,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                     $width={"100%"}
                     $aspectRatio={"2/3"}
                     $objectFit={"cover"}
-                    $objectPosition={"center"}
+                    objectPosition={"center"}
                   />
                 </OakBox>
               </OakBox>
@@ -140,7 +140,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                       $width={"100%"}
                       $aspectRatio={"2/3"}
                       $objectFit={"cover"}
-                      $objectPosition={"center"}
+                      objectPosition={"center"}
                     />
                   </OakBox>
                 </OakBox>
@@ -148,7 +148,12 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 
               {/* Socials */}
               {socials && (socials.twitterUsername || socials.linkedinUrl) && (
-                <OakFlex $gap={"spacing-12"} style={{ width: "fit-content" }}>
+                <OakFlex
+                  $gap={"spacing-12"}
+                  style={{ width: "fit-content" }}
+                  aria-label={`${name}'s social media links`}
+                  role="group"
+                >
                   {socials.linkedinUrl && (
                     <SocialButton
                       socialType="linkedin"
@@ -173,12 +178,21 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 
               {/* Navigation buttons */}
               {(prevHref || nextHref) && (
-                <OakFlex $gap={"spacing-16"}>
+                <OakFlex
+                  $gap={"spacing-16"}
+                  role="navigation"
+                  aria-label="Team member navigation"
+                >
                   {prevHref && (
                     <OakSmallSecondaryButton
                       element="a"
                       href={prevHref}
                       iconName="arrow-left"
+                      aria-label={
+                        prevName
+                          ? `Previous profile: ${prevName}`
+                          : "Previous profile"
+                      }
                     >
                       Previous profile
                     </OakSmallSecondaryButton>
@@ -189,6 +203,9 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                       href={nextHref}
                       iconName="arrow-right"
                       isTrailingIcon
+                      aria-label={
+                        nextName ? `Next profile: ${nextName}` : "Next profile"
+                      }
                     >
                       Next profile
                     </OakSmallSecondaryButton>
