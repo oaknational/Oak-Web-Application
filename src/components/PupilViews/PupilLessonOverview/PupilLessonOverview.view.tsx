@@ -29,8 +29,12 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
-import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import {
+  getDoesSubjectHaveNewUnits,
+  TakedownBanner,
+} from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 
 type PupilViewsLessonOverviewProps = {
   browseData: LessonBrowseData;
@@ -57,7 +61,7 @@ export const PupilViewsLessonOverview = ({
 }: PupilViewsLessonOverviewProps) => {
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
-  const { programmeFields, lessonData } = browseData;
+  const { programmeFields, lessonData, programmeSlug } = browseData;
   const {
     subjectSlug,
     phase = "primary",
@@ -116,13 +120,15 @@ export const PupilViewsLessonOverview = ({
     ));
 
   const expiringBanner = (
-    <ExpiringBanner
-      isOpen={
+    <TakedownBanner
+      isExpiring={
         expirationDate !== null ||
         browseData.actions?.displayExpiringBanner === true
       }
-      isResourcesMessage={false}
-      isSingular={true}
+      isLegacy={isSlugLegacy(programmeSlug)}
+      hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug)}
+      subjectSlug={subjectSlug}
+      userType="pupil"
       onwardHref={unitListingHref}
     />
   );

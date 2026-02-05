@@ -68,7 +68,7 @@ export const getBannerContent = ({
           : "These resources were made for remote use during the pandemic, not classroom teaching.",
       body:
         user === "pupil"
-          ? " Scroll up to take a look at the brand-new and improved resources we've made for you."
+          ? "Take a look at the brand-new and improved lessons we've made for you."
           : "Switch to our new teaching resources now - designed by teachers and leading subject experts, and tested in classrooms.",
     };
   }
