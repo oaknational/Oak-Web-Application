@@ -97,6 +97,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
             </OakGridArea>
             <OakGridArea $colSpan={10}>
               <OakFlex
+                $flexGrow={1}
                 $flexDirection={"column"}
                 $gap={["spacing-32", "spacing-56", "spacing-56"]}
                 $pb={"spacing-80"}
@@ -115,7 +116,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                       <OakCard
                         key={member.id}
                         heading={member.name}
-                        href={`/about-us/meet-the-team/${slug}`}
+                        href={`/about-us/meet-the-team/${slug}?section=leadership`}
                         cardWidth={"100%"}
                         imageSrc={imageUrl}
                         imageAlt={`Photo of ${member.name}`}
@@ -141,7 +142,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                       <OakCard
                         key={member.id}
                         heading={member.name}
-                        href={`/about-us/meet-the-team/${slug}`}
+                        href={`/about-us/meet-the-team/${slug}?section=board`}
                         cardWidth={"100%"}
                         imageSrc={imageUrl}
                         imageAlt={`Photo of ${member.name}`}
