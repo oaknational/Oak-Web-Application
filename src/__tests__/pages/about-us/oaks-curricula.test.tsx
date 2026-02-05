@@ -15,6 +15,9 @@ import OaksCurricula, {
 
 jest.mock("@/node-lib/posthog/getFeatureFlag");
 jest.mock("../../../node-lib/cms");
+globalThis.matchMedia = jest.fn().mockReturnValue({
+  matches: true,
+});
 
 const testAboutWhoWeArePageData: OaksCurriculaPage["pageData"] = {
   ...testAboutPageBaseData,
@@ -22,6 +25,17 @@ const testAboutWhoWeArePageData: OaksCurriculaPage["pageData"] = {
     textRaw: portableTextFromString(
       "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
     ),
+  },
+  curriculumPhaseOptions: {
+    subjects: [
+      {
+        title: "Maths",
+        slug: "maths",
+        phases: [],
+        ks4_options: null,
+      },
+    ],
+    tab: "units",
   },
 };
 
