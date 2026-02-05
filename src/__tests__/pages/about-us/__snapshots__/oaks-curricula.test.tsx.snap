@@ -2148,8 +2148,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 .c180 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   -webkit-letter-spacing: -0.005rem;
   -moz-letter-spacing: -0.005rem;
   -ms-letter-spacing: -0.005rem;
@@ -4582,7 +4582,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 @media (min-width:1280px) {
   .c180 {
-    font-size: 1rem;
+    font-size: 1.125rem;
   }
 }
 
@@ -4594,7 +4594,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 @media (min-width:1280px) {
   .c180 {
-    line-height: 1.5rem;
+    line-height: 1.75rem;
   }
 }
 

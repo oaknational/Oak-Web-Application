@@ -90,9 +90,7 @@ export default function RootLayout({
                   >
                     <AnalyticsWrapper>
                       <SaveCountProvider>
-                        <OakBox $width="100vw" $height="100vh">
-                          {children}
-                        </OakBox>
+                        <OakBox $height="100vh">{children}</OakBox>
                       </SaveCountProvider>
                     </AnalyticsWrapper>
                   </ClerkProvider>
