@@ -48,7 +48,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   category,
 }) => {
   const { name, role, image, bioPortableText, socials } = pageData;
-  const { prevHref, nextHref, prevName, nextName } = navigation;
+  const { prevHref, nextHref } = navigation;
   const trimmedBio = trimTrailingEmptyBlocks(bioPortableText);
   const imageUrl = getProxiedSanityAssetUrl(image?.asset?.url);
 
@@ -179,8 +179,8 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
               {/* Navigation buttons */}
               {(prevHref || nextHref) && (
                 <OakFlex
+                  as="nav"
                   $gap={"spacing-16"}
-                  role="navigation"
                   aria-label="Team member navigation"
                 >
                   {prevHref && (
@@ -188,11 +188,6 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                       element="a"
                       href={prevHref}
                       iconName="arrow-left"
-                      aria-label={
-                        prevName
-                          ? `Previous profile: ${prevName}`
-                          : "Previous profile"
-                      }
                     >
                       Previous profile
                     </OakSmallSecondaryButton>
@@ -203,9 +198,6 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                       href={nextHref}
                       iconName="arrow-right"
                       isTrailingIcon
-                      aria-label={
-                        nextName ? `Next profile: ${nextName}` : "Next profile"
-                      }
                     >
                       Next profile
                     </OakSmallSecondaryButton>
