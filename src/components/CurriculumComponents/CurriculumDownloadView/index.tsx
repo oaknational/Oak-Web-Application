@@ -1,4 +1,9 @@
-import { OakBox, OakSecondaryLink } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakGrid,
+  OakGridArea,
+  OakSecondaryLink,
+} from "@oaknational/oak-components";
 import { FC, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 
@@ -36,16 +41,20 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
   return (
     <OakBox $color="text-primary">
       {props.onBackToKs4Options && (
-        <OakBox $mb="spacing-24">
-          <OakSecondaryLink
-            element="button"
-            data-testid="back-to-downloads-link"
-            iconName="chevron-left"
-            onClick={props.onBackToKs4Options}
-          >
-            Back to KS4 options
-          </OakSecondaryLink>
-        </OakBox>
+        <OakGrid $mb="spacing-24" $cg="spacing-16">
+          <OakGridArea $colSpan={[12, 8, 12]} $colStart={[1, 3, 1]}>
+            <div>
+              <OakSecondaryLink
+                element="button"
+                data-testid="back-to-downloads-link"
+                iconName="chevron-left"
+                onClick={props.onBackToKs4Options}
+              >
+                Back to KS4 options
+              </OakSecondaryLink>
+            </div>
+          </OakGridArea>
+        </OakGrid>
       )}
       {user.isLoaded && (
         <>
