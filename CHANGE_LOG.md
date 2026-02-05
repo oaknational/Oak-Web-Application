@@ -1,3 +1,25 @@
+# [1.978.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.977.0...v1.978.0) (2026-02-05)
+
+
+### Bug Fixes
+
+* disabled hover state ([74926ee](https://github.com/oaknational/Oak-Web-Application/commit/74926ee09f6db99b11bfd47484998e3ff4fd6cbc))
+* focus state ([b327eb4](https://github.com/oaknational/Oak-Web-Application/commit/b327eb407d51952ece677fef1c2ff26b74553526))
+* visited colour ([9cbba3a](https://github.com/oaknational/Oak-Web-Application/commit/9cbba3a909538438577a0f4a8e0c802d3180eca7))
+
+
+### Features
+
+* add CardListing component ([7a76597](https://github.com/oaknational/Oak-Web-Application/commit/7a76597b9a95ed556df9472d48b490c0fe49c8ab))
+* add disabled card state ([295aada](https://github.com/oaknational/Oak-Web-Application/commit/295aada025b1537085926495dfd8cdfbf55ce4db))
+* add links to card listing variants ([832d53a](https://github.com/oaknational/Oak-Web-Application/commit/832d53a49ffd1f8315db34f4a75be34f8034e2ac))
+* add styling for visited links ([db79b05](https://github.com/oaknational/Oak-Web-Application/commit/db79b0521dc65283d9c96e616597d4a8b034fe4a))
+* add tracking props to save button component ([873eab8](https://github.com/oaknational/Oak-Web-Application/commit/873eab8f098917e61dd55c7d8f87e44dcd3cd9ae))
+* expand and label stories, mock providers ([61cf83b](https://github.com/oaknational/Oak-Web-Application/commit/61cf83bfd6279464e7841543cf4fbe3c81aef0b6))
+* extract save button into component ([a7d15f0](https://github.com/oaknational/Oak-Web-Application/commit/a7d15f07a2d9370d34ca2f23508a27ac905c1305))
+* make save button match designs ([e1dce50](https://github.com/oaknational/Oak-Web-Application/commit/e1dce503c5b6a53dba61862004083d930467428f))
+* move lesson count into saveButton section to ensure alignment ([8eb5bbf](https://github.com/oaknational/Oak-Web-Application/commit/8eb5bbf18c016782cc10e96a6ea9377913f6eed3))
+
 # [1.977.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.976.0...v1.977.0) (2026-02-05)
 
 
