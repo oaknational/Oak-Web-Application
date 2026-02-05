@@ -1,3 +1,17 @@
+# [1.975.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.974.0...v1.975.0) (2026-02-05)
+
+
+### Bug Fixes
+
+* added missing heading to <SubjectPhasePicker/> ([0eafb75](https://github.com/oaknational/Oak-Web-Application/commit/0eafb75078de16fd5d6aa3b00fd81848e97db668))
+* added missing max width of spacing-640 ([70d08e4](https://github.com/oaknational/Oak-Web-Application/commit/70d08e4dc0c6851d607c6274a1f76b77ac032f6b))
+* don't duplicate function ([5ad594b](https://github.com/oaknational/Oak-Web-Application/commit/5ad594b9a1814d56c4a3b1d041092f695437bec7))
+
+
+### Features
+
+* added <SubjectPhasePicker/> into /about-us/oaks-curricula ([4eaecbf](https://github.com/oaknational/Oak-Web-Application/commit/4eaecbf178991143629d63f6bb3f8b136ad405f3))
+
 # [1.974.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.973.1...v1.974.0) (2026-02-04)
 
 
