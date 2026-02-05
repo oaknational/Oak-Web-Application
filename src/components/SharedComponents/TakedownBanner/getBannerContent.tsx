@@ -51,7 +51,6 @@ export const getBannerContent = ({
 
   if (isCycle2 && !hasNewUnits) {
     // cycle 2 takedown where no new content exists, ie. drama and latin
-    // todo finalise copy
     return {
       header:
         "These resources were made for remote use during the pandemic, not classroom teaching.",

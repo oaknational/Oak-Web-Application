@@ -64,7 +64,7 @@ export const LegacyCycle2TakedownPupil: Story = {
   },
 };
 
-export const EmailSignUpBanner: Story = {
+export const LegacyCycle1ExpiryNoNewContent: Story = {
   render: (args) => <TakedownBanner {...args} />,
   args: {
     subjectSlug: "maths",
@@ -76,15 +76,14 @@ export const EmailSignUpBanner: Story = {
   },
 };
 
-// TODO
-// export const LegacyCycle2TakedownNoNewContent: Story = {
-//   render: (args) => <TakedownBanner {...args} />,
-//   args: {
-//     subjectSlug: "geography",
-//     isExpiring: false,
-//     isLegacy: true,
-//     userType: "teacher",
-//     hasNewUnits: false,
-//     onButtonClick: () => console.log("click"),
-//   },
-// };
+export const TODOLegacyCycle2TakedownNoNewContent: Story = {
+  render: (args) => <TakedownBanner {...args} />,
+  args: {
+    subjectSlug: "geography",
+    isExpiring: false,
+    isLegacy: true,
+    userType: "teacher",
+    hasNewUnits: false,
+    onButtonClick: () => console.log("click"),
+  },
+};
