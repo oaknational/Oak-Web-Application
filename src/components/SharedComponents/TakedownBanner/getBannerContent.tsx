@@ -15,22 +15,16 @@ export const CYCLE_2_SUBJECTS = new Set([
 ]);
 
 export const getBannerContent = ({
-  isLegacy,
   isCycle2,
   isExpiring,
   hasNewUnits,
   user,
 }: {
-  isLegacy: boolean;
   isCycle2: boolean;
   isExpiring: boolean;
   hasNewUnits: boolean;
   user: "teacher" | "pupil";
 }) => {
-  if (!isLegacy || (!isExpiring && !isCycle2)) {
-    return null;
-  }
-
   if (isCycle2 && hasNewUnits) {
     // cycle 2 take down where new content exists
     return {

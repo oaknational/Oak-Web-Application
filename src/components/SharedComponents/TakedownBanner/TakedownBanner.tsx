@@ -42,9 +42,14 @@ export const TakedownBanner = ({
   isExpiring: boolean;
 }) => {
   const newsletterFormProps = useNewsletterForm();
+  const isCycle2 = CYCLE_2_SUBJECTS.has(subjectSlug);
+
+  if (!isLegacy || (!isExpiring && !isCycle2)) {
+    return null;
+  }
+
   const bannerContent = getBannerContent({
-    isLegacy,
-    isCycle2: CYCLE_2_SUBJECTS.has(subjectSlug),
+    isCycle2,
     isExpiring,
     hasNewUnits,
     user: userType,
