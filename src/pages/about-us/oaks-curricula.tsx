@@ -54,14 +54,24 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
           titleHighlight="bg-decorative4-main"
         />
         <OakBox $background={"bg-decorative4-very-subdued"}>
-          <OakMaxWidth $pv={"spacing-80"}>
+          <OakMaxWidth $pv={"spacing-80"} $ph={["spacing-16"]}>
             <OakFlex $flexDirection={"column"} $gap={"spacing-56"}>
               <OakBox $pa={"spacing-16"} $background={"text-inverted"}>
                 TODO: Guiding principals
               </OakBox>
-              <OakBox $maxWidth={"spacing-640"}>
+              <OakFlex
+                $flexDirection="column"
+                $maxWidth={"spacing-640"}
+                $gap={["spacing-8", "spacing-12", "spacing-12"]}
+              >
+                <OakHeading
+                  tag="h2"
+                  $font={["heading-5", "heading-4", "heading-4"]}
+                >
+                  See Oak’s curriculum in practice
+                </OakHeading>
                 <SubjectPhasePicker {...pageData.curriculumPhaseOptions} />
-              </OakBox>
+              </OakFlex>
             </OakFlex>
           </OakMaxWidth>
         </OakBox>
