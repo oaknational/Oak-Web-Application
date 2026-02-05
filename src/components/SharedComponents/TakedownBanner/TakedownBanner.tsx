@@ -23,7 +23,7 @@ export const getIsUnitExpiring = (
 };
 
 export const getDoesSubjectHaveNewUnits = (subjectSlug: string) => {
-  return subjectSlug === "drama" || subjectSlug === "latin";
+  return subjectSlug !== "drama" && subjectSlug !== "latin";
 };
 
 export const TakedownBanner = ({
