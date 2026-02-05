@@ -57,7 +57,8 @@ export async function GET(
     const { resource, assetId } = AssetSearchParamsSchema.parse(
       parseAssetParams(searchParams),
     );
-
+    console.log(lessonSlug, "<<< lesson slug");
+    console.log("ROUTE INVOKED");
     // Fetch lesson assets and additional assets in parallel when needed
     const needsAdditionalAsset = resource === "additional-files" && assetId;
 
