@@ -40,7 +40,7 @@ const getLegacyUnits = (
 };
 
 describe("components/UnitListLegacyBanner", () => {
-  test("does not render when no units are marked for expiry", () => {
+  test("does not render when no units are marked for expiry and is a cycle 1 subject", () => {
     render(
       <UnitListLegacyBanner
         allLegacyUnits={getLegacyUnits(false)}
@@ -58,7 +58,7 @@ describe("components/UnitListLegacyBanner", () => {
     expect(screen.queryByText("New units on the way!")).not.toBeInTheDocument();
   });
 
-  test("renders teacher removal banner when there are new units", () => {
+  test("renders teacher removal banner when there are new units in a cycle 1 subject", () => {
     const { getByText } = render(
       <UnitListLegacyBanner
         allLegacyUnits={getLegacyUnits(true)}
@@ -79,6 +79,27 @@ describe("components/UnitListLegacyBanner", () => {
       ),
     ).toBeInTheDocument();
   });
+  test("renders legacy takedown banner for cycle 2 subjects", () => {
+    const { getByText } = render(
+      <UnitListLegacyBanner
+        allLegacyUnits={getLegacyUnits(true)}
+        userType="teacher"
+        subjectSlug="geography"
+        onButtonClick={onClick}
+        hasNewUnits={true}
+      />,
+    );
+
+    const bannerHeader = getByText(
+      "These resources will be removed by the end of the Spring Term 2026.",
+    );
+    expect(bannerHeader).toBeInTheDocument();
+
+    const bannerBody = getByText(
+      "Start using our brand new teaching resources now. Designed by teachers and subject experts, with real classrooms in mind. The older resources below were created for lockdown learning during the pandemic and are not designed for classroom teaching.",
+    );
+    expect(bannerBody).toBeInTheDocument();
+  });
 
   test("renders newsletter sign up banner when there are no new units", () => {
     const { getByText } = render(
@@ -97,7 +118,7 @@ describe("components/UnitListLegacyBanner", () => {
     ).toBeInTheDocument();
   });
 
-  test("renders pupil removal banner when there are new units", () => {
+  test("renders pupil removal banner when there are new units in a cycle 1 subject", () => {
     const { getByText } = render(
       <UnitListLegacyBanner
         allLegacyUnits={getLegacyUnits(true)}
@@ -118,7 +139,7 @@ describe("components/UnitListLegacyBanner", () => {
     ).toBeInTheDocument();
   });
 
-  test("renders pupil removal banner when there are no new units", () => {
+  test("renders pupil removal banner when there are no new units in a cycle 1 subject", () => {
     const { getByText } = render(
       <UnitListLegacyBanner
         allLegacyUnits={getLegacyUnits(true)}
@@ -131,5 +152,26 @@ describe("components/UnitListLegacyBanner", () => {
     expect(
       getByText("We're busy creating new lessons for you."),
     ).toBeInTheDocument();
+  });
+
+  test("renders legacy take down banner for pupils in cycle 2 legacy subjects", () => {
+    const { getByText } = render(
+      <UnitListLegacyBanner
+        allLegacyUnits={getLegacyUnits(true)}
+        userType="pupil"
+        subjectSlug="geography"
+        hasNewUnits={true}
+      />,
+    );
+
+    const bannerHeader = getByText(
+      "These lessons will be removed by the end of Spring Term 2026.",
+    );
+    expect(bannerHeader).toBeInTheDocument();
+
+    const bannerBody = getByText(
+      "We’ve made brand new and improved lessons for you.",
+    );
+    expect(bannerBody).toBeInTheDocument();
   });
 });
