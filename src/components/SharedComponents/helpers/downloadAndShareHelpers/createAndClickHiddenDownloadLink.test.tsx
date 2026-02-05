@@ -1,4 +1,4 @@
-import {
+import createAndClickHiddenDownloadLink, {
   hideAndClickDownloadLink,
   createLink,
 } from "./createAndClickHiddenDownloadLink";
@@ -32,5 +32,47 @@ describe("hideAndClickDownloadLink()", () => {
     hideAndClickDownloadLink("testUrl", link);
 
     expect(link.click).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("createAndClickHiddenDownloadLink()", () => {
+  const originalTop = window.top;
+  let windowOpenSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    windowOpenSpy = jest.spyOn(window, "open").mockImplementation(() => null);
+  });
+
+  afterEach(() => {
+    Object.defineProperty(window, "top", {
+      value: originalTop,
+      writable: true,
+    });
+    windowOpenSpy.mockRestore();
+  });
+
+  it("opens download in a new tab when inside an iframe", () => {
+    Object.defineProperty(window, "top", {
+      value: {}, // different object from window.self
+      writable: true,
+    });
+
+    createAndClickHiddenDownloadLink("testUrl");
+
+    expect(windowOpenSpy).toHaveBeenCalledWith("testUrl", "_blank");
+  });
+
+  it("creates a hidden download link when not in an iframe", () => {
+    Object.defineProperty(window, "top", {
+      value: window.self,
+      writable: true,
+    });
+
+    const appendSpy = jest.spyOn(document.body, "appendChild");
+    createAndClickHiddenDownloadLink("testUrl");
+
+    expect(windowOpenSpy).not.toHaveBeenCalled();
+    expect(appendSpy).toHaveBeenCalled();
+    appendSpy.mockRestore();
   });
 });
