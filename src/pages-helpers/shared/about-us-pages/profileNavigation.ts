@@ -22,55 +22,58 @@ export function buildMemberHref(slug: string, section: MemberSection): string {
   return `/about-us/meet-the-team/${slug}?section=${section}`;
 }
 
+type NeighborResult = { href: string | null; name: string | null };
+
+const NO_NEIGHBOR: NeighborResult = { href: null, name: null };
+
+function buildNeighborResult(
+  member: TeamMemberRef,
+  section: MemberSection,
+): NeighborResult {
+  return {
+    href: buildMemberHref(getMemberSlug(member), section),
+    name: member.name,
+  };
+}
+
+function getListEdge(
+  list: TeamMemberRef[],
+  direction: "prev" | "next",
+): TeamMemberRef | undefined {
+  return direction === "prev" ? list.at(-1) : list[0];
+}
+
 function getNeighbor(
   currentList: TeamMemberRef[],
   otherList: TeamMemberRef[],
   currentIndex: number,
   currentSection: MemberSection,
   direction: "prev" | "next",
-): { href: string | null; name: string | null } {
+): NeighborResult {
   const otherSection: MemberSection =
     currentSection === "leadership" ? "board" : "leadership";
-  const atBoundary =
-    direction === "prev"
-      ? currentIndex === 0
-      : currentIndex === currentList.length - 1;
+  const isPrev = direction === "prev";
+  const atBoundary = isPrev
+    ? currentIndex === 0
+    : currentIndex === currentList.length - 1;
 
   // Not at boundary - return neighbor in same section
   if (!atBoundary) {
-    const neighbor =
-      currentList[currentIndex + (direction === "prev" ? -1 : 1)];
-    if (neighbor) {
-      return {
-        href: buildMemberHref(getMemberSlug(neighbor), currentSection),
-        name: neighbor.name,
-      };
-    }
+    const neighbor = currentList[currentIndex + (isPrev ? -1 : 1)];
+    if (neighbor) return buildNeighborResult(neighbor, currentSection);
   }
 
   // At boundary - wrap to other section if it has members
-  if (otherList.length > 0) {
-    const wrap = direction === "prev" ? otherList.at(-1) : otherList[0];
-    if (wrap) {
-      return {
-        href: buildMemberHref(getMemberSlug(wrap), otherSection),
-        name: wrap.name,
-      };
-    }
-  }
+  const otherWrap = getListEdge(otherList, direction);
+  if (otherWrap) return buildNeighborResult(otherWrap, otherSection);
 
   // Other section empty - wrap within same section if more than one member
   if (currentList.length > 1) {
-    const wrap = direction === "prev" ? currentList.at(-1) : currentList[0];
-    if (wrap) {
-      return {
-        href: buildMemberHref(getMemberSlug(wrap), currentSection),
-        name: wrap.name,
-      };
-    }
+    const sameWrap = getListEdge(currentList, direction);
+    if (sameWrap) return buildNeighborResult(sameWrap, currentSection);
   }
 
-  return { href: null, name: null };
+  return NO_NEIGHBOR;
 }
 
 export function buildProfileNavigation(
