@@ -1,6 +1,5 @@
 import {
   OakSmallPrimaryButton,
-  OakIconName,
   OakSmallTertiaryInvertedButton,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
@@ -45,9 +44,6 @@ export const SaveUnitButton = ({
   );
 
   const buttonProps = {
-    iconName: isUnitSaved(unitSlug)
-      ? "bookmark-filled"
-      : ("bookmark-outlined" as OakIconName),
     isTrailingIcon: true,
     "aria-disabled": disabled || isUnitSaving(unitSlug),
     disabled: disabled || isUnitSaving(unitSlug),
@@ -56,12 +52,16 @@ export const SaveUnitButton = ({
     "aria-label": `${isUnitSaved(unitSlug) ? "Unsave" : "Save"} this unit: ${unitTitle} `,
   };
 
+  const iconName = isUnitSaved(unitSlug)
+    ? "bookmark-filled"
+    : "bookmark-outlined";
+
   return buttonVariant === "inverted" ? (
-    <StyledSmallPrimaryButton {...buttonProps}>
+    <StyledSmallPrimaryButton {...buttonProps} iconName={iconName}>
       {isUnitSaved(unitSlug) ? "Saved" : "Save"}
     </StyledSmallPrimaryButton>
   ) : (
-    <OakSmallTertiaryInvertedButton {...buttonProps}>
+    <OakSmallTertiaryInvertedButton {...buttonProps} iconName={iconName}>
       {isUnitSaved(unitSlug) ? "Saved" : "Save"}
     </OakSmallTertiaryInvertedButton>
   );
