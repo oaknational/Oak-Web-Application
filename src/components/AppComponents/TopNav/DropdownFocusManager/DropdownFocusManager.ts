@@ -17,9 +17,9 @@ type FocusNode = {
 };
 
 export class DropdownFocusManager {
-  private focusMap: Map<string, FocusNode>;
-  private closeMenu: () => void;
-  private lastSubnavButton: (typeof subNavButtons)[number];
+  private readonly focusMap: Map<string, FocusNode>;
+  private readonly closeMenu: () => void;
+  private readonly lastSubnavButton: (typeof subNavButtons)[number];
 
   constructor(
     teachersNavData: TeachersSubNavData,
@@ -27,7 +27,7 @@ export class DropdownFocusManager {
   ) {
     this.focusMap = this.buildFocusTree(teachersNavData);
     this.closeMenu = () => setSelectedMenu(undefined);
-    this.lastSubnavButton = subNavButtons[subNavButtons.length - 1]!;
+    this.lastSubnavButton = subNavButtons.at(-1)!;
   }
 
   public getFocusMap() {
