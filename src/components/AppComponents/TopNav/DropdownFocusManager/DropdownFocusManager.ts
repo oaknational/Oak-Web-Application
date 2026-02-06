@@ -1,24 +1,13 @@
 import React from "react";
 
+import { FocusNode, SubNavButton } from "./types";
+import { TeachersNavigationTreeBuilder } from "./TeachersNavigationTreeBuilder";
+import { PupilsNavigationTreeBuilder } from "./PupilsNavigationTreeBuilder";
+
 import {
-  SubNavLinks,
   TeachersSubNavData,
   PupilsSubNavData,
-  TeachersBrowse,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-
-type FocusNode = {
-  id: string;
-  parent: { parentId: string; parentSiblings: string[] } | null;
-  children: string[];
-  isFirstChild?: boolean;
-  isLastChild?: boolean;
-};
-
-type SubNavButton = {
-  slug: string;
-  label: string;
-};
 
 type NavAreaType = "teachers" | "pupils";
 
@@ -50,202 +39,18 @@ export class DropdownFocusManager<
     return this.focusMap;
   }
 
-  private isTeachersBrowse(data: unknown): data is TeachersBrowse {
-    return !!data && typeof data === "object" && "keystages" in data;
-  }
-
-  private isPupilsBrowse(data: unknown): data is PupilsSubNavData["primary"] {
-    return !!data && typeof data === "object" && "years" in data;
-  }
-
-  private isSubNavLinks(data: unknown): data is SubNavLinks {
-    return Array.isArray(data);
-  }
-
   private buildFocusTree(
     navData: T,
     subNavButtons: SubNavButton[],
   ): Map<string, FocusNode> {
-    const focusMap = new Map<string, FocusNode>();
-
-    // Build top-level subnav buttons
-    subNavButtons.forEach((section) => {
-      const sectionData = navData[section.slug as keyof T];
-      const hasChildren = this.getChildrenIds(sectionData).length > 0;
-      const id = this.createSubnavButtonId(section.slug);
-
-      focusMap.set(id, {
-        id,
-        parent: null,
-        children: hasChildren ? this.getChildrenIds(sectionData) : [],
-      });
-    });
-
-    // Build children nodes based on area type
+    // Use appropriate builder based on area type
     if (this.areaType === "teachers") {
-      this.buildTeachersChildrenNodes(
-        focusMap,
-        navData as TeachersSubNavData,
-        subNavButtons,
-      );
+      const builder = new TeachersNavigationTreeBuilder(this);
+      return builder.build(navData as TeachersSubNavData, subNavButtons);
     } else {
-      this.buildPupilsChildrenNodes(
-        focusMap,
-        navData as PupilsSubNavData,
-        subNavButtons,
-      );
+      const builder = new PupilsNavigationTreeBuilder(this);
+      return builder.build(navData as PupilsSubNavData, subNavButtons);
     }
-
-    return focusMap;
-  }
-
-  private buildTeachersChildrenNodes(
-    focusMap: Map<string, FocusNode>,
-    navData: TeachersSubNavData,
-    subNavButtons: SubNavButton[],
-  ) {
-    const parentSiblings = subNavButtons.map((section) =>
-      this.createSubnavButtonId(section.slug),
-    );
-
-    subNavButtons.forEach((section) => {
-      if (section.slug === "curriculum-landing-page") return;
-      const sectionData = navData[section.slug as keyof TeachersSubNavData];
-
-      if (this.isSubNavLinks(sectionData)) {
-        // Handle guidance/aboutUs sections
-        sectionData.forEach((link, index) => {
-          const id = this.createDropdownButtonId(link.slug);
-          focusMap.set(id, {
-            id,
-            parent: {
-              parentId: this.createSubnavButtonId(section.slug),
-              parentSiblings,
-            },
-            isFirstChild: index === 0,
-            isLastChild: index === sectionData.length - 1,
-            children: [],
-          });
-        });
-      } else if (this.isTeachersBrowse(sectionData)) {
-        // Handle primary/secondary browse sections
-        sectionData.keystages.forEach((keystage, index) => {
-          const keystageId = this.createDropdownButtonId(keystage.slug);
-
-          focusMap.set(keystageId, {
-            id: keystageId,
-            parent: {
-              parentId: this.createSubnavButtonId(section.slug),
-              parentSiblings,
-            },
-            isFirstChild: index === 0,
-            isLastChild: index === sectionData.keystages.length - 1,
-            children: [
-              ...keystage.subjects.map((subject) =>
-                this.createSubjectButtonId(keystage.slug, subject.subjectSlug),
-              ),
-              this.createAllKeystagesButtonId(keystage.slug),
-            ],
-          });
-
-          this.buildSubjectNodes({
-            focusMap,
-            keystage,
-            parentId: keystageId,
-            parentSiblings: sectionData.keystages.map((ks) =>
-              this.createDropdownButtonId(ks.slug),
-            ),
-          });
-        });
-      }
-    });
-  }
-
-  private buildPupilsChildrenNodes(
-    focusMap: Map<string, FocusNode>,
-    navData: PupilsSubNavData,
-    subNavButtons: SubNavButton[],
-  ) {
-    const parentSiblings = subNavButtons.map((section) =>
-      this.createSubnavButtonId(section.slug),
-    );
-
-    subNavButtons.forEach((section) => {
-      const sectionData = navData[section.slug as keyof PupilsSubNavData];
-
-      if (this.isPupilsBrowse(sectionData)) {
-        // Handle primary/secondary year sections for pupils
-        sectionData.years.forEach((year, index) => {
-          const id = this.createYearButtonId(year.slug);
-          focusMap.set(id, {
-            id,
-            parent: {
-              parentId: this.createSubnavButtonId(section.slug),
-              parentSiblings,
-            },
-            isFirstChild: index === 0,
-            isLastChild: index === sectionData.years.length - 1,
-            children: [],
-          });
-        });
-      }
-    });
-  }
-
-  private buildSubjectNodes({
-    focusMap,
-    keystage,
-    parentId,
-    parentSiblings,
-  }: {
-    focusMap: Map<string, FocusNode>;
-    keystage: TeachersBrowse["keystages"][0];
-    parentId: string;
-    parentSiblings: string[];
-  }) {
-    keystage.subjects.forEach((subject, index) => {
-      const subjectId = this.createSubjectButtonId(
-        keystage.slug,
-        subject.subjectSlug,
-      );
-      focusMap.set(subjectId, {
-        id: subjectId,
-        parent: { parentId, parentSiblings },
-        isFirstChild: index === 0,
-        children: [],
-      });
-    });
-
-    // The all keystages button is the last child of the subject list
-    const allKeystagesId = this.createAllKeystagesButtonId(keystage.slug);
-    focusMap.set(allKeystagesId, {
-      id: allKeystagesId,
-      parent: { parentId, parentSiblings },
-      isLastChild: true,
-      children: [],
-    });
-  }
-
-  private getChildrenIds(sectionData: unknown): string[] {
-    if (!sectionData) return [];
-
-    if (this.isSubNavLinks(sectionData)) {
-      return sectionData.map((link) => this.createDropdownButtonId(link.slug));
-    }
-
-    if (this.isTeachersBrowse(sectionData)) {
-      return sectionData.keystages.map((keystage) =>
-        this.createDropdownButtonId(keystage.slug),
-      );
-    }
-
-    if (this.isPupilsBrowse(sectionData)) {
-      return sectionData.years.map((year) =>
-        this.createYearButtonId(year.slug),
-      );
-    }
-
-    return [];
   }
 
   private focusElementById(
