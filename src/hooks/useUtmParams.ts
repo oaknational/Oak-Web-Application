@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
 import { useEffect, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { LS_KEY_UTM_PARAMS } from "../config/localStorageKeys";
 
@@ -24,7 +24,7 @@ export type UtmParams = Partial<Record<UtmParamName, string>>;
  * an edge case.
  */
 const useUtmParams = (): UtmParams => {
-  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [utmParams, setUtmParams] = useLocalStorage<UtmParams>(
     LS_KEY_UTM_PARAMS,
@@ -34,7 +34,7 @@ const useUtmParams = (): UtmParams => {
   const utmParamsFromQuery = useMemo(
     () =>
       paramNames.reduce((accum: UtmParams, curr) => {
-        const param = router.query[curr];
+        const param = searchParams?.get(curr);
 
         if (Array.isArray(param) && param[0]) {
           accum[curr] = param[0];
@@ -45,7 +45,7 @@ const useUtmParams = (): UtmParams => {
 
         return accum;
       }, {}),
-    [router.query],
+    [searchParams],
   );
 
   useEffect(() => {

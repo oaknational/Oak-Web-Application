@@ -14,6 +14,7 @@ import {
   Tier,
   Subject,
   OakBox,
+  OakBoxProps,
 } from "@oaknational/oak-components";
 import { mapKeys, camelCase, capitalize } from "lodash";
 
@@ -118,6 +119,15 @@ export type CurriculumDownloadTabProps = {
   tiers: { tier: string; tier_slug: string }[];
   child_subjects?: { subject: string; subject_slug: string }[];
   formattedData: CurriculumUnitsFormattedData;
+  /**
+   * Inline padding for the content area.
+   *
+   * The integrated programme page layout has different padding requirements, so
+   * so we use this prop to control the padding.
+   *
+   * Can be removed once the integrated programme page is launched and components are reorganised.
+   */
+  ph?: OakBoxProps["$ph"];
 };
 const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   mvRefreshTime,
@@ -126,6 +136,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   child_subjects,
   curriculumInfo,
   formattedData,
+  ph = "spacing-16",
 }) => {
   const { track } = useAnalytics();
   const { onHubspotSubmit } = useHubspotSubmit();
@@ -338,10 +349,10 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         tabIndex={-1}
         $maxWidth={"spacing-1280"}
         $mh={"auto"}
-        $ph={"spacing-16"}
+        $ph={ph}
         $pt={["spacing-48", "spacing-0"]}
         $pb={["spacing-48"]}
-        $mt={["spacing-0", "spacing-48", "spacing-48"]}
+        $mt={["spacing-0", "spacing-56", "spacing-56"]}
         $borderColor="border-error"
         $width={"100%"}
         role="region"
