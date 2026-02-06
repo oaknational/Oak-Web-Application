@@ -41,17 +41,18 @@ const TeachersSubNav = ({
 }: TeachersSubNavProps) => {
   const pathname = usePathname();
   const getButtonProps = (slug: string) => {
+    const buttonId = focusManager.createSubnavButtonId(slug);
     if (slug === "curriculum-landing-page") {
       return {
-        id: `${slug}-subnav-button`,
+        id: buttonId,
         element: Link,
         href: resolveOakHref({ page: "curriculum-landing-page" }),
       };
     }
     return {
       onKeyDown: (event: React.KeyboardEvent) =>
-        focusManager.handleKeyDown(event, `${slug}-subnav-button`),
-      id: `${slug}-subnav-button`,
+        focusManager.handleKeyDown(event, buttonId),
+      id: buttonId,
       onClick: () => onClick(slug as keyof TeachersSubNavData),
       selected: isMenuSelected(slug as keyof TeachersSubNavData),
       "aria-expanded": isMenuSelected(slug as keyof TeachersSubNavData),
@@ -63,8 +64,8 @@ const TeachersSubNav = ({
   const handleArrowKeys = (event: React.KeyboardEvent<HTMLUListElement>) => {
     const activeElementId = document.activeElement?.id;
     if (!activeElementId) return;
-    const focusableElements = subNavButtons.map(
-      (btn) => `${btn.slug}-subnav-button`,
+    const focusableElements = subNavButtons.map((btn) =>
+      focusManager.createSubnavButtonId(btn.slug),
     );
 
     const currentIndex = focusableElements.indexOf(activeElementId);
@@ -75,7 +76,8 @@ const TeachersSubNav = ({
         if (focusableElements.length === 0) return;
         const nextDownIndex =
           currentIndex >= focusableElements.length - 1 ? 0 : currentIndex + 1;
-        document.getElementById(focusableElements[nextDownIndex]!)?.focus();
+        focusableElements[nextDownIndex] &&
+          document.getElementById(focusableElements[nextDownIndex])?.focus();
         break;
       }
       case "ArrowLeft": {
@@ -83,7 +85,8 @@ const TeachersSubNav = ({
         if (focusableElements.length === 0) return;
         const nextUpIndex =
           currentIndex <= 0 ? focusableElements.length - 1 : currentIndex - 1;
-        document.getElementById(focusableElements[nextUpIndex]!)?.focus();
+        focusableElements[nextUpIndex] &&
+          document.getElementById(focusableElements[nextUpIndex])?.focus();
         break;
       }
     }

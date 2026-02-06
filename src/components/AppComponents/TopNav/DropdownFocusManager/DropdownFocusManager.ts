@@ -30,7 +30,7 @@ export class DropdownFocusManager {
     this.lastSubnavButton = subNavButtons[subNavButtons.length - 1]!;
   }
 
-  private getFocusMap() {
+  public getFocusMap() {
     return this.focusMap;
   }
   private buildFocusTree(teachersNavData: TeachersSubNavData) {
@@ -38,7 +38,7 @@ export class DropdownFocusManager {
 
     subNavButtons.forEach((section) => {
       const hasChildren = section.slug !== "curriculum";
-      const id = `${section.slug}-subnav-button`;
+      const id = this.createSubnavButtonId(section.slug);
       focusMap.set(id, {
         id,
         parent: null,
@@ -57,8 +57,8 @@ export class DropdownFocusManager {
     focusMap: Map<string, FocusNode>,
     teachersNavData: TeachersSubNavData,
   ) {
-    const parentSiblings = subNavButtons.map(
-      (section) => `${section.slug}-subnav-button`,
+    const parentSiblings = subNavButtons.map((section) =>
+      this.createSubnavButtonId(section.slug),
     );
     subNavButtons.forEach((section) => {
       if (section.slug === "curriculum-landing-page") return;
@@ -67,12 +67,12 @@ export class DropdownFocusManager {
 
       if (Array.isArray(sectionData)) {
         sectionData.forEach((link, index) => {
-          const id = `${link.slug}-dropdown-button`;
+          const id = this.createDropdownButtonId(link.slug);
 
           focusMap.set(id, {
             id,
             parent: {
-              parentId: `${section.slug}-subnav-button`,
+              parentId: this.createSubnavButtonId(section.slug),
               parentSiblings,
             },
             isFirstChild: index === 0,
@@ -84,22 +84,21 @@ export class DropdownFocusManager {
         // if teachers browse
       } else if ("keystages" in sectionData) {
         sectionData.keystages.forEach((keystage, index) => {
-          const keystageId = `${keystage.slug}-dropdown-button`;
+          const keystageId = this.createDropdownButtonId(keystage.slug);
 
           focusMap.set(keystageId, {
             id: keystageId,
             parent: {
-              parentId: `${section.slug}-subnav-button`,
+              parentId: this.createSubnavButtonId(section.slug),
               parentSiblings,
             },
             isFirstChild: index === 0,
             isLastChild: index === sectionData.keystages.length - 1,
             children: [
-              ...keystage.subjects.map(
-                (subject) =>
-                  `${keystage.slug}-${subject.subjectSlug}-subject-button`,
+              ...keystage.subjects.map((subject) =>
+                this.createSubjectButtonId(keystage.slug, subject.subjectSlug),
               ),
-              `${keystage.slug}-all-keystages-button`,
+              this.createAllKeystagesButtonId(keystage.slug),
             ],
           });
 
@@ -107,8 +106,8 @@ export class DropdownFocusManager {
             focusMap,
             keystage,
             parentId: keystageId,
-            parentSiblings: sectionData.keystages.map(
-              (ks) => `${ks.slug}-dropdown-button`,
+            parentSiblings: sectionData.keystages.map((ks) =>
+              this.createDropdownButtonId(ks.slug),
             ),
           });
         });
@@ -127,7 +126,10 @@ export class DropdownFocusManager {
     parentSiblings: string[];
   }) {
     keystage.subjects.forEach((subject, index) => {
-      const subjectId = `${keystage.slug}-${subject.subjectSlug}-subject-button`;
+      const subjectId = this.createSubjectButtonId(
+        keystage.slug,
+        subject.subjectSlug,
+      );
       focusMap.set(subjectId, {
         id: subjectId,
         parent: { parentId, parentSiblings },
@@ -136,7 +138,7 @@ export class DropdownFocusManager {
       });
     });
     // The all keystages button is the last child of the subject list
-    const allKeystagesId = `${keystage.slug}-all-keystages-button`;
+    const allKeystagesId = this.createAllKeystagesButtonId(keystage.slug);
     focusMap.set(allKeystagesId, {
       id: allKeystagesId,
       parent: { parentId, parentSiblings },
@@ -147,13 +149,13 @@ export class DropdownFocusManager {
   private addChildrenIds(sectionData: SubNavLinks | TeachersBrowse) {
     if (!sectionData) return [];
     if (Array.isArray(sectionData)) {
-      return sectionData.map((link) => `${link.slug}-dropdown-button`);
+      return sectionData.map((link) => this.createDropdownButtonId(link.slug));
     }
 
     // if teachers browse
     if ("keystages" in sectionData) {
-      return sectionData.keystages.map(
-        (keystage) => `${keystage.slug}-dropdown-button`,
+      return sectionData.keystages.map((keystage) =>
+        this.createDropdownButtonId(keystage.slug),
       );
     }
     return [];
@@ -171,6 +173,25 @@ export class DropdownFocusManager {
       return true;
     }
     return false;
+  }
+
+  public createSubnavButtonId(slug: string): string {
+    return `${slug}-subnav-button`;
+  }
+
+  public createDropdownButtonId(slug: string): string {
+    return `${slug}-dropdown-button`;
+  }
+
+  public createSubjectButtonId(
+    keystageSlug: string,
+    subjectSlug: string,
+  ): string {
+    return `${keystageSlug}-${subjectSlug}-subject-button`;
+  }
+
+  public createAllKeystagesButtonId(keystageSlug: string): string {
+    return `${keystageSlug}-all-keystages-button`;
   }
 
   private getNode(elementId: string): FocusNode {
@@ -204,11 +225,12 @@ export class DropdownFocusManager {
     }
   }
 
-  private getParentNode(currentNode: FocusNode): FocusNode | null {
-    if (!currentNode.parent) return null;
-    return this.focusMap.get(currentNode.parent.parentId) || null;
+  private getFocusableSubnavElements(): HTMLElement[] {
+    const subnav = document.getElementById("teachers-subnav");
+    return Array.from(
+      subnav?.querySelectorAll("a, button") ?? [],
+    ) as HTMLElement[];
   }
-
   private handleFinalElementTab({
     currentNode,
     event,
@@ -216,13 +238,8 @@ export class DropdownFocusManager {
     currentNode: FocusNode;
     event: React.KeyboardEvent;
   }) {
-    console.log("Handling final element tab");
     const ancestorNode = this.getAncestorNode(currentNode);
-    const subnav = document.getElementById("teachers-subnav");
-    // get focusable element ids in subnav
-    const focusableElements = Array.from(
-      subnav?.querySelectorAll("a, button") ?? [],
-    );
+    const focusableElements = this.getFocusableSubnavElements();
 
     const ancestorElementIndex = focusableElements.findIndex(
       (el) => el.id === ancestorNode.id,
@@ -232,7 +249,6 @@ export class DropdownFocusManager {
         ? 0
         : ancestorElementIndex + 1;
     const nextElement = focusableElements[nextIndex] as HTMLElement;
-    console.log("Next element to focus:", nextElement);
     event.preventDefault();
     nextElement.focus();
     return this.closeMenu();
@@ -249,7 +265,7 @@ export class DropdownFocusManager {
     const ancestorNode = this.getAncestorNode(currentNode);
     const isFinalElement =
       this.lastSubnavButton &&
-      ancestorNode.id === `${this.lastSubnavButton.slug}-subnav-button`;
+      ancestorNode.id === this.createSubnavButtonId(this.lastSubnavButton.slug);
     return isFinalElement;
   }
 
@@ -262,7 +278,7 @@ export class DropdownFocusManager {
         return;
       } else if (
         this.lastSubnavButton &&
-        currentNode.id === `${this.lastSubnavButton.slug}-subnav-button`
+        currentNode.id === this.createSubnavButtonId(this.lastSubnavButton.slug)
       ) {
         this.closeMenu();
       }
@@ -271,9 +287,9 @@ export class DropdownFocusManager {
     if (isLastChild) {
       const isFinalElement = this.getIsFinalElement(currentNode);
 
-      if (isFinalElement) {
+      if (isFinalElement)
         return this.handleFinalElementTab({ currentNode, event });
-      }
+
       this.focusParentSibling(currentNode, event);
     }
   }
@@ -296,11 +312,7 @@ export class DropdownFocusManager {
     this.closeMenu();
     const currentNode = this.focusMap.get(elementId);
     if (!currentNode) return;
-    // get the oldest ancestor node (the one without a parent) and focus it
-    let ancestorNode = currentNode;
-    while (ancestorNode.parent) {
-      ancestorNode = this.focusMap.get(ancestorNode.parent.parentId)!;
-    }
+    const ancestorNode = this.getAncestorNode(currentNode);
     this.focusElementById(ancestorNode.id);
   }
 

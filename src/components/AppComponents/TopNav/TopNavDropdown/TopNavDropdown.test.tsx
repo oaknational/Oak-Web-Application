@@ -1,21 +1,31 @@
 import { screen } from "@testing-library/react";
 
-import TopNavDropdown, { TopNavDropdownProps } from "./TopNavDropdown";
+import TopNavDropdown from "./TopNavDropdown";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { DropdownFocusManager } from "@/components/AppComponents/TopNav/DropdownFocusManager/DropdownFocusManager";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 describe("TopNavDropdown", () => {
+  let focusManager: DropdownFocusManager;
+
+  beforeEach(() => {
+    focusManager = new DropdownFocusManager(
+      topNavFixture.teachers!,
+      () => undefined,
+    );
+  });
+
   describe("Teachers area", () => {
     describe("phases sections", () => {
       it("renders keystage menu", async () => {
         renderWithTheme(
           <TopNavDropdown
-            {...({
-              ...topNavFixture,
-              activeArea: "TEACHERS",
-              selectedMenu: "primary",
-            } as TopNavDropdownProps)}
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="primary"
+            focusManager={focusManager}
           />,
         );
 
@@ -29,11 +39,11 @@ describe("TopNavDropdown", () => {
       it("renders keystage menu", async () => {
         renderWithTheme(
           <TopNavDropdown
-            {...({
-              ...topNavFixture,
-              activeArea: "TEACHERS",
-              selectedMenu: "secondary",
-            } as TopNavDropdownProps)}
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
           />,
         );
 
@@ -47,11 +57,11 @@ describe("TopNavDropdown", () => {
       it("renders subject buttons and link to all key stage page", async () => {
         renderWithTheme(
           <TopNavDropdown
-            {...({
-              ...topNavFixture,
-              activeArea: "TEACHERS",
-              selectedMenu: "primary",
-            } as TopNavDropdownProps)}
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="primary"
+            focusManager={focusManager}
           />,
         );
 
@@ -65,11 +75,11 @@ describe("TopNavDropdown", () => {
       it("renders subject buttons with non-curriculum subjects last and with correct styling", async () => {
         renderWithTheme(
           <TopNavDropdown
-            {...({
-              ...topNavFixture,
-              activeArea: "TEACHERS",
-              selectedMenu: "primary",
-            } as TopNavDropdownProps)}
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="primary"
+            focusManager={focusManager}
           />,
         );
 
@@ -85,11 +95,11 @@ describe("TopNavDropdown", () => {
       it("renders heading and links", async () => {
         renderWithTheme(
           <TopNavDropdown
-            {...({
-              ...topNavFixture,
-              activeArea: "TEACHERS",
-              selectedMenu: "guidance",
-            } as TopNavDropdownProps)}
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="guidance"
+            focusManager={focusManager}
           />,
         );
 
@@ -105,11 +115,11 @@ describe("TopNavDropdown", () => {
       it("renders internal links correctly", async () => {
         renderWithTheme(
           <TopNavDropdown
-            {...({
-              ...topNavFixture,
-              activeArea: "TEACHERS",
-              selectedMenu: "guidance",
-            } as TopNavDropdownProps)}
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="guidance"
+            focusManager={focusManager}
           />,
         );
 
@@ -125,11 +135,11 @@ describe("TopNavDropdown", () => {
       it("renders primary year buttons", async () => {
         renderWithTheme(
           <TopNavDropdown
-            {...({
-              ...topNavFixture,
-              activeArea: "PUPILS",
-              selectedMenu: "primary",
-            } as TopNavDropdownProps)}
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="PUPILS"
+            selectedMenu="primary"
+            focusManager={focusManager}
           />,
         );
 
@@ -141,11 +151,11 @@ describe("TopNavDropdown", () => {
       it("renders secondary year buttons", async () => {
         renderWithTheme(
           <TopNavDropdown
-            {...({
-              ...topNavFixture,
-              activeArea: "PUPILS",
-              selectedMenu: "secondary",
-            } as TopNavDropdownProps)}
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="PUPILS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
           />,
         );
 

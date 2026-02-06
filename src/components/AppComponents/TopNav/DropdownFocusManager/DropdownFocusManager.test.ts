@@ -6,8 +6,8 @@ const mockData = topNavFixture.teachers!;
 
 describe("DropdownFocusManager", () => {
   it("should build focusMap with correct top-level sections", () => {
-    const manager = new DropdownFocusManager(mockData);
-    // @ts-expect-error: access private for test
+    const manager = new DropdownFocusManager(mockData, () => undefined);
+
     const focusMap = manager.getFocusMap();
     // Top-level keys
     expect(focusMap.has("primary-subnav-button")).toBe(true);
@@ -17,8 +17,8 @@ describe("DropdownFocusManager", () => {
   });
 
   it("should build children for keystages and subjects", () => {
-    const manager = new DropdownFocusManager(mockData);
-    // @ts-expect-error: access private for test
+    const manager = new DropdownFocusManager(mockData, () => undefined);
+
     const focusMap = manager.getFocusMap();
     // Check a keystage node
     const ks1Node = focusMap.get("ks1-dropdown-button");
@@ -37,8 +37,8 @@ describe("DropdownFocusManager", () => {
   });
 
   it("should mark first and last children correctly", () => {
-    const manager = new DropdownFocusManager(mockData);
-    // @ts-expect-error: access private for test
+    const manager = new DropdownFocusManager(mockData, () => undefined);
+
     const focusMap = manager.getFocusMap();
     // First child in ks1
     const englishNode = focusMap.get("ks1-english-subject-button");
@@ -54,8 +54,8 @@ describe("DropdownFocusManager", () => {
   });
 
   it("should build focusMap for aboutUs and guidance sections", () => {
-    const manager = new DropdownFocusManager(mockData);
-    // @ts-expect-error: access private for test
+    const manager = new DropdownFocusManager(mockData, () => undefined);
+
     const focusMap = manager.getFocusMap();
     // AboutUs links
     expect(focusMap.has("about-who-we-are-dropdown-button")).toBe(true);
@@ -69,7 +69,7 @@ describe("DropdownFocusManager", () => {
     let manager: DropdownFocusManager;
     let event: React.KeyboardEvent<HTMLDivElement>;
     beforeEach(() => {
-      manager = new DropdownFocusManager(mockData);
+      manager = new DropdownFocusManager(mockData, () => undefined);
       event = {
         preventDefault: jest.fn(),
       } as unknown as React.KeyboardEvent<HTMLDivElement>;
@@ -88,7 +88,7 @@ describe("DropdownFocusManager", () => {
           ? elementMock
           : null) as unknown as HTMLElement;
       });
-      // @ts-expect-error: access private for test
+
       const ks1Node = manager.getFocusMap().get("ks1-dropdown-button")!;
       // @ts-expect-error: access private for test
       manager.handleTab(ks1Node, event);
@@ -98,7 +98,7 @@ describe("DropdownFocusManager", () => {
 
     it("should not focus if the first child is not in the DOM", () => {
       jest.spyOn(document, "getElementById").mockReturnValue(null);
-      // @ts-expect-error: access private for test
+
       const ks1Node = manager.getFocusMap().get("ks1-dropdown-button")!;
       // @ts-expect-error: access private for test
       manager.handleTab(ks1Node, event);
@@ -109,7 +109,7 @@ describe("DropdownFocusManager", () => {
     let manager: DropdownFocusManager;
     let event: React.KeyboardEvent<HTMLDivElement>;
     beforeEach(() => {
-      manager = new DropdownFocusManager(mockData);
+      manager = new DropdownFocusManager(mockData, () => undefined);
       event = {
         preventDefault: jest.fn(),
       } as unknown as React.KeyboardEvent<HTMLDivElement>;
@@ -129,7 +129,7 @@ describe("DropdownFocusManager", () => {
           ? elementMock
           : null) as unknown as HTMLElement;
       });
-      // @ts-expect-error: access private for test
+
       const node = manager.getFocusMap().get("ks1-all-keystages-button")!;
       // @ts-expect-error: access private for test
       manager.handleTab(node, event);
@@ -144,7 +144,7 @@ describe("DropdownFocusManager", () => {
       jest.spyOn(document, "getElementById").mockImplementation((id) => {
         return (id === parentId ? elementMock : null) as unknown as HTMLElement;
       });
-      // @ts-expect-error: access private for test
+
       const node = manager.getFocusMap().get("ks1-english-subject-button")!;
       // @ts-expect-error: access private for test
       manager.handleShiftTab(event, node);

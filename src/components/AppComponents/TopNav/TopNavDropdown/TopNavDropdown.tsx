@@ -70,8 +70,8 @@ const TeachersPhaseSection = ({
   const handleKeystageArrowKeys = (
     event: React.KeyboardEvent<HTMLUListElement>,
   ) => {
-    const focusableElements = menuData.keystages.map(
-      (keystage) => `${keystage.slug}-dropdown-button`,
+    const focusableElements = menuData.keystages.map((keystage) =>
+      focusManager.createDropdownButtonId(keystage.slug),
     );
     const activeElementId = document.activeElement?.id;
     if (!activeElementId) return;
@@ -82,14 +82,16 @@ const TeachersPhaseSection = ({
         event.preventDefault();
         const nextIndex =
           currentIndex >= focusableElements.length - 1 ? 0 : currentIndex + 1;
-        document.getElementById(focusableElements[nextIndex]!)?.focus();
+        focusableElements[nextIndex] &&
+          document.getElementById(focusableElements[nextIndex])?.focus();
         break;
       }
       case "ArrowUp": {
         event.preventDefault();
         const prevIndex =
           currentIndex <= 0 ? focusableElements.length - 1 : currentIndex - 1;
-        document.getElementById(focusableElements[prevIndex]!)?.focus();
+        focusableElements[prevIndex] &&
+          document.getElementById(focusableElements[prevIndex])?.focus();
         break;
       }
     }
@@ -108,39 +110,37 @@ const TeachersPhaseSection = ({
         ref={keystagesRef}
         onKeyDown={handleKeystageArrowKeys}
       >
-        {menuData.keystages.map((keystage) => (
-          <OakLI key={keystage.slug}>
-            <OakLeftAlignedButton
-              iconName="chevron-right"
-              isTrailingIcon
-              rightAlignIcon
-              width={"spacing-160"}
-              selected={selectedKeystage === keystage.slug}
-              onClick={() => onKeystageClick(keystage.slug)}
-              onKeyDown={(e) =>
-                focusManager.handleKeyDown(
-                  e,
-                  `${keystage.slug}-dropdown-button`,
-                )
-              }
-              aria-current={
-                selectedKeystage === keystage.slug ? "true" : undefined
-              }
-              id={`${keystage.slug}-dropdown-button`}
-              aria-expanded={selectedKeystage === keystage.slug}
-              aria-controls={`topnav-teachers-${keystage.slug}-subjects`}
-              role="tab"
-              aria-selected={selectedKeystage === keystage.slug}
-              aria-label={
-                keystage.title === "EYFS"
-                  ? "Early years foundation stage"
-                  : undefined
-              }
-            >
-              {keystage.title.replace("KS", "Key stage ")}
-            </OakLeftAlignedButton>
-          </OakLI>
-        ))}
+        {menuData.keystages.map((keystage) => {
+          const buttonId = focusManager.createDropdownButtonId(keystage.slug);
+          return (
+            <OakLI key={keystage.slug}>
+              <OakLeftAlignedButton
+                iconName="chevron-right"
+                isTrailingIcon
+                rightAlignIcon
+                width={"spacing-160"}
+                selected={selectedKeystage === keystage.slug}
+                onClick={() => onKeystageClick(keystage.slug)}
+                onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
+                aria-current={
+                  selectedKeystage === keystage.slug ? "true" : undefined
+                }
+                id={buttonId}
+                aria-expanded={selectedKeystage === keystage.slug}
+                aria-controls={`topnav-teachers-${keystage.slug}-subjects`}
+                role="tab"
+                aria-selected={selectedKeystage === keystage.slug}
+                aria-label={
+                  keystage.title === "EYFS"
+                    ? "Early years foundation stage"
+                    : undefined
+                }
+              >
+                {keystage.title.replace("KS", "Key stage ")}
+              </OakLeftAlignedButton>
+            </OakLI>
+          );
+        })}
       </OakUL>
       {subjects && (
         <TopNavSubjectButtons
@@ -194,29 +194,32 @@ const TeachersLinksSection = ({
         style={{ listStyleType: "none" }}
         id={`topnav-teachers-${selectedMenu}`}
       >
-        {menuData.map((link) => (
-          <OakLI key={link.slug}>
-            <OakLeftAlignedButton
-              element={Link}
-              key={link.slug}
-              href={resolveOakHref({
-                page: link.slug,
-              } as ResolveOakHrefProps)}
-              iconName={link.external ? "external" : undefined}
-              isTrailingIcon={link.external}
-              aria-label={
-                link.external ? `${link.title} (opens in a new tab)` : undefined
-              }
-              width={"spacing-160"}
-              id={`${link.slug}-dropdown-button`}
-              onKeyDown={(e) =>
-                focusManager.handleKeyDown(e, `${link.slug}-dropdown-button`)
-              }
-            >
-              {link.title}
-            </OakLeftAlignedButton>
-          </OakLI>
-        ))}
+        {menuData.map((link) => {
+          const buttonId = focusManager.createDropdownButtonId(link.slug);
+          return (
+            <OakLI key={link.slug}>
+              <OakLeftAlignedButton
+                element={Link}
+                key={link.slug}
+                href={resolveOakHref({
+                  page: link.slug,
+                } as ResolveOakHrefProps)}
+                iconName={link.external ? "external" : undefined}
+                isTrailingIcon={link.external}
+                aria-label={
+                  link.external
+                    ? `${link.title} (opens in a new tab)`
+                    : undefined
+                }
+                width={"spacing-160"}
+                id={buttonId}
+                onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
+              >
+                {link.title}
+              </OakLeftAlignedButton>
+            </OakLI>
+          );
+        })}
       </OakGrid>
     </OakFlex>
   );
