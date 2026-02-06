@@ -4,7 +4,6 @@ import "../__tests__/__helpers__/LocalStorageMock";
 
 import useUtmParams from "./useUtmParams";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 describe("useUtmParams()", () => {

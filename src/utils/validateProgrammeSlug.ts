@@ -66,7 +66,7 @@ export const validateProgrammeSlug = (programmeSlug: string) => {
 
   try {
     yearSlugs.parse(yearKsSlug);
-  } catch (e) {
+  } catch (_error) {
     keystageSlugs.parse(yearKsSlug);
   }
 };

@@ -1,13 +1,13 @@
 import Page from "./layout";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { useFeatureFlag } from "@/utils/featureFlags";
+import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 jest.mock("@/utils/featureFlags");
 
 describe("/timetabling/layout.tsx", () => {
   test("basic", async () => {
-    (useFeatureFlag as jest.Mock).mockResolvedValue(true);
+    (getFeatureFlagValue as jest.Mock).mockResolvedValue(true);
     const { baseElement } = renderWithTheme(
       await Page({ children: <div>TESTING</div> }),
     );
@@ -15,7 +15,7 @@ describe("/timetabling/layout.tsx", () => {
   });
 
   test("when disabled", async () => {
-    (useFeatureFlag as jest.Mock).mockResolvedValue(false);
+    (getFeatureFlagValue as jest.Mock).mockResolvedValue(false);
     expect(async () => {
       return await Page({
         children: <div>TESTING</div>,

@@ -23,7 +23,6 @@ import {
   useCookieConsent as useCookieConsentUI,
 } from "@oaknational/oak-components";
 
-// eslint-disable-next-line import/order
 import { consentClient } from "./consentClient";
 
 const RequiresInteraction = () => {

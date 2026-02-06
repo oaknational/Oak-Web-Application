@@ -20,7 +20,7 @@ export default function getLegacyAnonymousId(): string | null {
     }
 
     return z.object({ userId: z.string() }).parse(JSON.parse(oakData)).userId;
-  } catch (error) {
+  } catch (_error) {
     return null;
   }
 }
