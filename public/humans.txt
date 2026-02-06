@@ -158,10 +158,6 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/simonprose/
   From: Sheffield, lives in Nottingham, UK
 
-  Sonali Singh (Software Engineer)
-  LinkedIn: https://www.linkedin.com/in/sonalisin
-  From: Manchester, lives in London, UK
-
   Taha Hassan (Software Engineer)
   LinkedIn: https://www.linkedin.com/in/taha--hassan/
   From: London, UK
@@ -248,6 +244,10 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://linkedin.com/in/shaunorpen
   X: https://x.com/shaunorpen
   From: UK
+
+  Sonali Singh (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/sonalisin
+  From: Manchester, lives in London, UK
 
   Stef Lewandowski (Lead Software Engineer)
   Site: https://stef.io
