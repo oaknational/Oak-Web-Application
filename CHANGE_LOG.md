@@ -1,3 +1,10 @@
+# [1.980.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.979.1...v1.980.0) (2026-02-06)
+
+
+### Features
+
+* finalize header in /about-us/oaks-curricula ([fe54ae7](https://github.com/oaknational/Oak-Web-Application/commit/fe54ae733fb35d17be3d590d786b39816fd6c04c))
+
 ## [1.979.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.979.0...v1.979.1) (2026-02-05)
 
 
