@@ -44,7 +44,6 @@ import PaginationHead from "@/components/SharedComponents/Pagination/PaginationH
 import { isLessonListItem } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
 import { useShare } from "@/pages-helpers/teacher/share/useShare";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
-import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareTypes";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -56,6 +55,10 @@ import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import Banners from "@/components/SharedComponents/Banners";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import {
+  getDoesSubjectHaveNewUnits,
+  TakedownBanner,
+} from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -371,9 +374,12 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                 unitTitle={unitTitle}
                 onClick={trackLessonSelected}
                 expiringBanner={
-                  <ExpiringBanner
-                    isOpen={actions?.displayExpiringBanner ?? false}
-                    isResourcesMessage={true}
+                  <TakedownBanner
+                    isExpiring={actions?.displayExpiringBanner}
+                    isLegacy={isSlugLegacy(programmeSlug)}
+                    hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug)}
+                    subjectSlug={subjectSlug}
+                    userType="teacher"
                     onwardHref={unitListingHref}
                   />
                 }
