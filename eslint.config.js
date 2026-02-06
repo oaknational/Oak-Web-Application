@@ -127,21 +127,21 @@ module.exports = defineConfig([
     },
 
     settings: {
-  "import/parsers": {
-    "@typescript-eslint/parser": [".ts", ".tsx"],
-  },
-  "import/resolver": {
-    // reads tsconfig paths like @/*
-    typescript: {
-      project: ["./tsconfig.json"],
-      alwaysTryTypes: true,
+      "import/parsers": {
+        "@typescript-eslint/parser": [".ts", ".tsx"],
+      },
+      "import/resolver": {
+        // reads tsconfig paths like @/*
+        typescript: {
+          project: ["./tsconfig.json"],
+          alwaysTryTypes: true,
+        },
+        // lets import/no-unresolved resolve non-TS assets like .svg
+        node: {
+          extensions: [".js", ".jsx", ".ts", ".tsx", ".d.ts", ".svg"],
+        },
+      },
     },
-    // lets import/no-unresolved resolve non-TS assets like .svg
-    node: {
-      extensions: [".js", ".jsx", ".ts", ".tsx", ".d.ts", ".svg"],
-    },
-  },
-},
   },
   {
     files: ["**/*.test.{js,ts,tsx}"],
