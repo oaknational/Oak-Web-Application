@@ -61,7 +61,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
           <Breadcrumbs breadcrumbs={breadcrumbs} />
           <OakIcon
             iconName="header-underline"
-            $colorFilter="grey40"
+            $colorFilter="bg-interactive-element2"
             $height={"spacing-4"}
             $width={"100%"}
             $objectFit={"fill"}

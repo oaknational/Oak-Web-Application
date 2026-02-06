@@ -10,7 +10,9 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 
-jest.mock("next/navigation", () => require("next-router-mock"));
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/onboarding"),
+}));
 
 describe("onboarding page", () => {
   test("it renders the onboarding page", () => {

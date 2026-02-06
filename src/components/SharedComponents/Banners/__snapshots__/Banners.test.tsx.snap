@@ -3,26 +3,26 @@
 exports[`Banners shows mythbusting banner 1`] = `
 <div>
   <div
-    class="sc-fqkvVR fgBWrW"
+    class="sc-aXZVg hdseiA"
     role="banner"
   >
     <div
-      class="sc-fqkvVR sc-kAyceB duJUbP kyta-DD"
+      class="sc-aXZVg sc-gEvEer fWVRat jMLdOa"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB klgPPC hDpTCw"
+        class="sc-aXZVg sc-gEvEer fnaVYg jUblXJ"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB jSUKNp iCbXJE"
+          class="sc-aXZVg sc-gEvEer cPJSoT jVmVJV"
         >
           <p
-            class="sc-dLMFU cDKcwR"
+            class="sc-ikkxIA jTavWX"
           >
             <span
               style="display: inline-block; transform: rotate(-1.5deg); padding: 4px 8px;"
             >
               <span
-                class="sc-dAlyuH fyCkiE"
+                class="sc-eqUAAy hQoPqw"
               >
                 Myths
               </span>
@@ -35,13 +35,13 @@ exports[`Banners shows mythbusting banner 1`] = `
           </p>
         </div>
         <a
-          class="sc-f63c4ba9-0 ftmlwD"
+          class="sc-f63c4ba9-0 jtFtcT"
           href="/campaigns/mythbusting"
           role="link"
           title="Learn why"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB gHxmiG zqmPr"
+            class="sc-aXZVg sc-gEvEer ekMPMw bRncHa"
           >
             <span
               aria-hidden="true"
@@ -79,13 +79,13 @@ exports[`Banners shows mythbusting banner 1`] = `
             </span>
           </div>
           <div
-            class="sc-fqkvVR gxmQRM"
+            class="sc-aXZVg jxyORG"
           >
             <div
-              class="sc-fqkvVR fgBWrW"
+              class="sc-aXZVg hdseiA"
             >
               <span
-                class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
+                class="sc-eqUAAy sc-ca3376e3-0 WYobB eEriKr"
               >
                 Learn why
               </span>
@@ -93,7 +93,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           </div>
           <svg
             aria-hidden="true"
-            class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
+            class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
             height="100%"
             name="underline-1"
             width="100%"
@@ -105,7 +105,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           </svg>
           <svg
             aria-hidden="true"
-            class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
+            class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
             height="100%"
             name="underline-1"
             width="100%"
@@ -119,14 +119,14 @@ exports[`Banners shows mythbusting banner 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR jAGTee"
+      class="sc-aXZVg cPLGjM"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB sc-kAkpmW hGVAzf joHkzz"
+        class="sc-aXZVg sc-gEvEer sc-YysOf cleqNB iDBIXi"
         focusable="false"
       >
         <svg
-          class="sc-fHjqPf gWkUUq"
+          class="sc-bBeLUv bYMVcP"
           height="100%"
           preserveAspectRatio="none"
           viewBox="0 0 866 8"

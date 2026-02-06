@@ -26,7 +26,11 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
   const { setSearchTerm } = useSearch({});
 
   return (
-    <OakFlex $background={"mint"} $pv="spacing-24" $overflow={"hidden"}>
+    <OakFlex
+      $background={"bg-decorative1-main"}
+      $pv="spacing-24"
+      $overflow={"hidden"}
+    >
       <OakMaxWidth $ph={["spacing-16"]}>
         <OakGrid $cg={"spacing-16"}>
           <OakGridArea $color={"text-primary"} $colSpan={[12, 6]}>
@@ -40,7 +44,11 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
               $flexShrink={1}
               $flexBasis={"auto"}
             >
-              <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
+              <OakHeading
+                $font={"heading-7"}
+                tag={"h1"}
+                $color={"text-primary"}
+              >
                 Teachers
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>

@@ -54,14 +54,14 @@ const SearchDropdown: FC<
       <OakFlex $alignItems="center">
         <OakP
           $font="heading-7"
-          $color={isToggleOpen ? "navy120" : "navy"}
+          $color={isToggleOpen ? "text-link-pressed" : "text-link-active"}
           $textDecoration={isHovered && !isToggleOpen ? "underline" : "none"}
         >
           {label}
         </OakP>
         <OakIcon
           iconName={isToggleOpen ? "chevron-up" : "chevron-down"}
-          $colorFilter={isToggleOpen ? "navy120" : "navy"}
+          $colorFilter={isToggleOpen ? "icon-link-pressed" : "icon-link-active"}
           $width="spacing-24"
         />
       </OakFlex>

@@ -104,14 +104,14 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
               $maxWidth="100%"
               $width={"spacing-640"}
               $flexDirection={"column"}
-              $background={"pink50"}
+              $background={"bg-decorative4-subdued"}
               state={state}
               $zIndex={"neutral"}
               aria-expanded={open}
             >
               <OakIcon
                 iconName="looping-line-1"
-                $colorFilter={"pink"}
+                $colorFilter={"bg-decorative4-main"}
                 $zIndex={"behind"}
                 $objectFit={"fill"}
                 $display={["none", "block"]}
@@ -121,7 +121,7 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
               />
               <OakIcon
                 iconName="looping-line-2"
-                $colorFilter={"pink"}
+                $colorFilter={"bg-decorative4-main"}
                 $zIndex={"behind"}
                 $objectFit={"fill"}
                 $display={["block", "none"]}

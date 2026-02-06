@@ -17,6 +17,7 @@ import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizEleme
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import "@/__tests__/__helpers__/IntersectionObserverMock";
 import "@/__tests__/__helpers__/ResizeObserverMock";
+import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
@@ -39,6 +40,20 @@ jest.mock("@/components/PupilViews/PupilReview", () => {
       </div>
     ),
   };
+});
+
+jest.mock("@/hooks/useAssignmentSearchParams", () => ({
+  useAssignmentSearchParams: jest.fn(),
+}));
+
+const mockedUseAssignmentSearchParams =
+  useAssignmentSearchParams as jest.MockedFunction<
+    typeof useAssignmentSearchParams
+  >;
+
+mockedUseAssignmentSearchParams.mockReturnValue({
+  isClassroomAssignment: true,
+  classroomAssignmentChecked: true,
 });
 
 jest.mock("@/components/PupilViews/PupilLessonOverview", () => {
@@ -277,7 +292,7 @@ describe("PupilExperienceView", () => {
         currentSection: "overview",
       }),
     );
-    const { getByTestId, getByRole } = render(
+    const { getByTestId, queryByRole } = render(
       <PupilExperienceView
         lessonContent={lessonContent}
         browseData={lessonBrowseData}
@@ -290,8 +305,106 @@ describe("PupilExperienceView", () => {
       />,
     );
     await userEvent.click(getByTestId("acceptButton"));
-    waitFor(() => {
-      expect(getByRole("alertdialog")).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(queryByRole("alertdialog")).not.toBeInTheDocument();
+    });
+  });
+  it("should post message to parent if isClassroom and content guidance is declined", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+    const supervisionLevel = "Supervision Level";
+    const contentguidanceLabel = "Guidance Title";
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+      contentGuidance: [
+        {
+          contentguidanceLabel,
+          contentguidanceArea: "Guidance Area",
+          contentguidanceDescription: "Guidance Description",
+        },
+      ],
+      supervisionLevel,
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({});
+
+    const postMessageSpy = jest.fn();
+    Object.defineProperty(window, "parent", {
+      value: { postMessage: postMessageSpy },
+      writable: true,
+    });
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    const { getByTestId } = render(
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
+        initialSection="overview"
+        pageType="browse"
+      />,
+    );
+    await userEvent.click(getByTestId("declineButton"));
+
+    expect(postMessageSpy).toHaveBeenCalledWith(
+      {
+        type: "Classroom",
+        action: "closeIframe",
+      },
+      "https://classroom.google.com",
+    );
+  });
+  it("should navigate back if not isClassroom and content guidance is declined", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: false,
+      classroomAssignmentChecked: true,
+    });
+    const supervisionLevel = "Supervision Level";
+    const contentguidanceLabel = "Guidance Title";
+    const backUrl = "/back-url";
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+      contentGuidance: [
+        {
+          contentguidanceLabel,
+          contentguidanceArea: "Guidance Area",
+          contentguidanceDescription: "Guidance Description",
+        },
+      ],
+      supervisionLevel,
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({});
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    const { getByTestId } = render(
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
+        initialSection="overview"
+        pageType="browse"
+        backUrl={backUrl}
+      />,
+    );
+    await userEvent.click(getByTestId("declineButton"));
+
+    await waitFor(() => {
+      expect(mockRouter.asPath).toBe(backUrl);
     });
   });
 

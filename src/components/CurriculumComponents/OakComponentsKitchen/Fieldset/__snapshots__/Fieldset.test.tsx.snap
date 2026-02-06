@@ -4,10 +4,10 @@ exports[`Fieldset render 1`] = `
 <body>
   <div>
     <fieldset
-      class="sc-fqkvVR sc-6b497e8d-0 fgBWrW giVBfy"
+      class="sc-aXZVg sc-6b497e8d-0 hdseiA giVBfy"
     >
       <legend
-        class="sc-dLMFU sc-6b497e8d-1 gvLBvO cMzeWT"
+        class="sc-ikkxIA sc-6b497e8d-1 dezsnA cMzeWT"
       >
         testing
       </legend>

@@ -94,10 +94,10 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
             disabled: true,
           },
         ]}
-        background={"lavender30"}
+        background={"bg-decorative3-very-subdued"}
         subjectSlug={subjectSlug}
         subjectTitle={subjectTitle}
-        subjectIconBackgroundColor="lavender"
+        subjectIconBackgroundColor="bg-decorative3-main"
         title={subjectTitle}
         programmeFactor="Specialist and therapies"
         isNew={false}
@@ -123,7 +123,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                 >
                   <OakP
                     id={themeId}
-                    $color={"black"}
+                    $color={"text-primary"}
                     $font="body-3"
                     $mb="spacing-16"
                   >

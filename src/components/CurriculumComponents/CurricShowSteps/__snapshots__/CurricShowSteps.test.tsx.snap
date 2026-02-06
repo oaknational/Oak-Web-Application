@@ -5,28 +5,28 @@ exports[`CurricShowSteps basic usage 1`] = `
   <div>
     <div>
       <div
-        class="sc-fqkvVR hrLDNc"
+        class="sc-aXZVg eIkPGq"
         style="width: 100%; position: relative; overflow: hidden;"
       >
         <div
           style="display: flex; align-items: center;"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB fgBWrW kyta-DD"
+            class="sc-aXZVg sc-gEvEer hdseiA jMLdOa"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB ibvSUR bAFsaQ"
+              class="sc-aXZVg sc-gEvEer kiqHjz fXHtRp"
             />
             <div
-              class="sc-fqkvVR sc-kAyceB hvDzQc kyta-DD"
+              class="sc-aXZVg sc-gEvEer jkDVxO jMLdOa"
             >
               <div
-                class="sc-fqkvVR kbnxKi"
+                class="sc-aXZVg anoZA"
               >
                 <img
                   alt=""
-                  class="sc-dcJsrY bDcxkE"
+                  class="sc-iGgWBj bOyFfb"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -36,28 +36,28 @@ exports[`CurricShowSteps basic usage 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB jkxpdi bAFsaQ"
+              class="sc-aXZVg sc-gEvEer hFTcos fXHtRp"
             />
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB cdDatI bAFsaQ"
+            class="sc-aXZVg sc-gEvEer jPYCmW fXHtRp"
           />
           <div
-            class="sc-fqkvVR sc-kAyceB fgBWrW kyta-DD"
+            class="sc-aXZVg sc-gEvEer hdseiA jMLdOa"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB jkxpdi bAFsaQ"
+              class="sc-aXZVg sc-gEvEer hFTcos fXHtRp"
             />
             <div
-              class="sc-fqkvVR sc-kAyceB hvDzQc kyta-DD"
+              class="sc-aXZVg sc-gEvEer jkDVxO jMLdOa"
             >
               <div
-                class="sc-fqkvVR kbnxKi"
+                class="sc-aXZVg anoZA"
               >
                 <img
                   alt=""
-                  class="sc-dcJsrY bDcxkE"
+                  class="sc-iGgWBj bOyFfb"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -67,22 +67,22 @@ exports[`CurricShowSteps basic usage 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB jkxpdi bAFsaQ"
+              class="sc-aXZVg sc-gEvEer hFTcos fXHtRp"
             />
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB cdDatI bAFsaQ"
+            class="sc-aXZVg sc-gEvEer jPYCmW fXHtRp"
           />
           <div
-            class="sc-fqkvVR sc-kAyceB ffuCSZ kyta-DD"
+            class="sc-aXZVg sc-gEvEer geCewL jMLdOa"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB jAHGNa kyta-DD"
-              color="white"
+              class="sc-aXZVg sc-gEvEer khBpSs jMLdOa"
+              color="text-inverted"
             />
             <div
-              class="sc-fqkvVR cMqhUz"
+              class="sc-aXZVg jyegsx"
               data-testid="step-text"
               style="left: 0px; top: 44px;"
             >
@@ -93,20 +93,20 @@ exports[`CurricShowSteps basic usage 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB cdDatI bAFsaQ"
+            class="sc-aXZVg sc-gEvEer jPYCmW fXHtRp"
           />
           <div
-            class="sc-fqkvVR sc-kAyceB fgBWrW kyta-DD"
+            class="sc-aXZVg sc-gEvEer hdseiA jMLdOa"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB jkxpdi bAFsaQ"
+              class="sc-aXZVg sc-gEvEer hFTcos fXHtRp"
             />
             <div
-              class="sc-fqkvVR sc-kAyceB jGUeSQ kyta-DD"
+              class="sc-aXZVg sc-gEvEer hjPYaK jMLdOa"
             />
             <div
-              class="sc-fqkvVR sc-kAyceB ibvSUR bAFsaQ"
+              class="sc-aXZVg sc-gEvEer kiqHjz fXHtRp"
             />
           </div>
         </div>

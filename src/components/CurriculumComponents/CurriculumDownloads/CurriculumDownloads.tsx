@@ -335,18 +335,18 @@ function CurriculumDownloads(
                   <OakFlex $flexDirection={"row"} $mb={"spacing-16"}>
                     <OakIcon
                       iconName="content-guidance"
-                      $colorFilter={"red"}
+                      $colorFilter={"icon-error"}
                       $width={"spacing-24"}
                       $height={"spacing-24"}
                     />
                     <OakFlex $flexDirection={"column"}>
-                      <OakP $ml={"spacing-4"} $color={"red"}>
+                      <OakP $ml={"spacing-4"} $color={"text-error"}>
                         To complete correct the following:
                       </OakP>
                       <OakUL $mr={"spacing-24"} data-testid="errorList">
                         {getFormErrorMessages(form.errors).map((err) => {
                           return (
-                            <OakLI $color={"red"} key={err}>
+                            <OakLI $color={"text-error"} key={err}>
                               {err}
                             </OakLI>
                           );

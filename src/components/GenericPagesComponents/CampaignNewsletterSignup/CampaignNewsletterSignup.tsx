@@ -89,7 +89,7 @@ const SchoolPickerInput = ({
         schools={schools ?? []}
         errors={errors}
         onChange={onChange}
-        labelBackground="mint"
+        labelBackground="bg-decorative1-main"
         hidePrivacyPolicy={true}
         emailRequired={true}
       />
@@ -238,7 +238,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
             as="form"
             $minWidth={["100%", "100%", "spacing-480"]}
             $flexDirection={"column"}
-            $background={"white"}
+            $background={"bg-primary"}
             $pa={"spacing-24"}
             $gap={"spacing-24"}
             $borderRadius={"border-radius-s"}
@@ -251,7 +251,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                 error={errors.name}
                 onChange={(e) => onChange({ name: e.target.value })}
                 required={true}
-                labelBackground="mint"
+                labelBackground="bg-decorative1-main"
                 placeholder="Type your name"
                 defaultValue={data.name}
               />
@@ -319,7 +319,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                     required={false}
                     placeholder="Type your school or organisation"
                     name="newsletter-school"
-                    labelBackground={"mint"}
+                    labelBackground={"bg-decorative1-main"}
                     defaultValue={data.schoolOrg}
                   />
                   <OakInputWithLabel
@@ -331,7 +331,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                     required={true}
                     placeholder="Type your email address"
                     name="newsletter-email"
-                    labelBackground={"mint"}
+                    labelBackground={"bg-decorative1-main"}
                     defaultValue={data.email}
                   />
                 </>
@@ -359,7 +359,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                 $font={"body-3"}
                 aria-live="assertive"
                 role="alert"
-                $color="red"
+                $color="text-error"
               >
                 {submitError}
               </OakP>

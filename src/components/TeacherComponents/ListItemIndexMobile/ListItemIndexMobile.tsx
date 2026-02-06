@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { OakColorToken, OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
 
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
 
 export type ListItemIndexMobileProps = {
-  background: OakColorToken;
+  background: OakUiRoleToken;
   index: number;
   expired?: boolean | null;
 };

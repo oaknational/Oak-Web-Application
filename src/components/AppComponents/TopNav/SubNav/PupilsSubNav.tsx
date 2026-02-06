@@ -11,21 +11,28 @@ const PupilsSubNav = ({
   return (
     <OakFlex
       data-testid="pupils-subnav"
-      $display={["none", "none", "flex"]}
-      $gap={"spacing-12"}
+      $justifyContent="space-between"
+      $flexGrow={1}
+      $alignItems="center"
     >
-      <OakSmallPrimaryInvertedButton
-        onClick={() => onClick("primary")}
-        selected={isMenuSelected("primary")}
+      <OakFlex
+        $display={["none", "none", "flex"]}
+        $gap={"spacing-12"}
+        $alignItems={"center"}
       >
-        Primary
-      </OakSmallPrimaryInvertedButton>
-      <OakSmallPrimaryInvertedButton
-        onClick={() => onClick("secondary")}
-        selected={isMenuSelected("secondary")}
-      >
-        Secondary
-      </OakSmallPrimaryInvertedButton>
+        <OakSmallPrimaryInvertedButton
+          onClick={() => onClick("primary")}
+          selected={isMenuSelected("primary")}
+        >
+          Primary
+        </OakSmallPrimaryInvertedButton>
+        <OakSmallPrimaryInvertedButton
+          onClick={() => onClick("secondary")}
+          selected={isMenuSelected("secondary")}
+        >
+          Secondary
+        </OakSmallPrimaryInvertedButton>
+      </OakFlex>
     </OakFlex>
   );
 };

@@ -49,7 +49,7 @@ const SubjectListingCardCountCard: FC<SubjectListingCardCountCardProps> = ({
 
   return (
     <SubjectListingTextTile
-      $background={"white"}
+      $background={"bg-primary"}
       $flexDirection={"column"}
       $position={"relative"}
       $borderRadius={"border-radius-s"}

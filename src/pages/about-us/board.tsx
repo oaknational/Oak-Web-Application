@@ -47,7 +47,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
   return (
     <Layout
       seoProps={getSeoProps(seo)}
-      $background={"white"}
+      $background={"bg-primary"}
       topNavProps={topNav}
     >
       <OakMaxWidth
@@ -91,7 +91,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
         <OakFlex $mh={["spacing-16", "spacing-0"]} $flexDirection={"column"}>
           <OakTypography $width={"100%"}>
             <OakHandDrawnHR
-              hrColor={"aqua"}
+              hrColor={"bg-decorative2-main"}
               $mv={"spacing-32"}
               $height={"spacing-2"}
             />
@@ -133,7 +133,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
           </OakGrid>
           <OakTypography $width={"100%"}>
             <OakHandDrawnHR
-              hrColor={"aqua"}
+              hrColor={"bg-decorative2-main"}
               $mv={"spacing-32"}
               $height={"spacing-2"}
             />

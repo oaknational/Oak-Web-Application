@@ -68,6 +68,11 @@ module.exports = defineConfig([
   },
   globalIgnores([
     "**/.next",
+    "**/.yalc",
+    "**/jest.setup.js",
+    "**/.storybook",
+    "**/scripts",
+    "**/next.config.ts",
     "**/next-env.d.ts",
     "**/node_modules",
     "**/package-lock.json",

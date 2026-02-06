@@ -337,12 +337,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const presentationTitle = "Lesson slides";
   const quizDownloadTitle = "quiz pdf";
 
-  const stickyDownloadALlButtonFlag = useFeatureFlagVariantKey(
-    "teachers-sticky-download-button",
-  );
-  const showDownloadAllInSidebar =
-    showDownloadAll && stickyDownloadALlButtonFlag === "test";
-
   return (
     <MathJaxLessonProvider>
       <HeaderLesson
@@ -367,8 +361,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 ),
               ]
         }
-        background={"pink30"}
-        subjectIconBackgroundColor={"pink"}
+        background={"bg-decorative4-very-subdued"}
+        subjectIconBackgroundColor={"bg-decorative4-main"}
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
@@ -423,7 +417,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     links={pageLinks}
                     currentSectionId={currentSectionId}
                     downloadAllButtonProps={{
-                      showDownloadAll: showDownloadAllInSidebar,
+                      showDownloadAll,
                       onClickDownloadAll: () =>
                         trackDownloadResourceButtonClicked({
                           downloadResourceButtonName: "all",

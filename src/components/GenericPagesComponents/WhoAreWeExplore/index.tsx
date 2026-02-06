@@ -6,12 +6,11 @@ import {
   OakBox,
   OakIcon,
   OakIconProps,
+  OakFocusIndicator,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import { ReactNode } from "react";
 import styled from "styled-components";
-
-import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 
 const HoverableCard = styled(OakFlex)`
   &:hover {
@@ -45,7 +44,7 @@ export function WhoAreWeExplore({
   items,
 }: Readonly<WhoAreWeExploreProps>) {
   return (
-    <OakBox $background={"mint"} $position={"relative"}>
+    <OakBox $background={"bg-decorative1-main"} $position={"relative"}>
       <OakIcon
         iconName="confetti"
         $position={"absolute"}
@@ -79,13 +78,13 @@ export function WhoAreWeExplore({
             {items.map(({ title, iconName, href }) => {
               return (
                 <OakGridArea key={title} $colSpan={[12, 6, 6]}>
-                  <FocusIndicator $borderRadius={"border-radius-m2"}>
+                  <OakFocusIndicator $borderRadius={"border-radius-m2"}>
                     <Link style={{ outline: "none" }} href={href}>
                       <HoverableCard
                         data-testid="who-we-are-explore-item"
                         $flexDirection={"row"}
                         $pa={"spacing-16"}
-                        $background={"white"}
+                        $background={"bg-primary"}
                         $gap={"spacing-16"}
                         $alignItems={"center"}
                         $borderRadius={"border-radius-m2"}
@@ -109,7 +108,7 @@ export function WhoAreWeExplore({
                         </OakFlex>
                       </HoverableCard>
                     </Link>
-                  </FocusIndicator>
+                  </OakFocusIndicator>
                 </OakGridArea>
               );
             })}

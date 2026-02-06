@@ -8,10 +8,11 @@ import {
   OakSpan,
   OakImage,
   OakIcon,
-  OakCombinedColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { ReactNode } from "react";
+import { PortableTextReactComponents } from "@portabletext/react";
 
 import { InnerMaxWidth } from "../InnerMaxWidth";
 
@@ -94,11 +95,26 @@ export function AboutSharedHeaderImage({
   );
 }
 
+const portableTextComponents: Partial<PortableTextReactComponents> = {
+  block: {
+    normal: (props) => {
+      return (
+        <OakP
+          $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
+          $color={"text-primary"}
+        >
+          {props.children}
+        </OakP>
+      );
+    },
+  },
+};
+
 export type AboutSharedHeaderProps = {
   title: string;
   content: PortableTextJSON | string;
   children?: ReactNode;
-  titleHighlight?: OakCombinedColorToken;
+  titleHighlight?: OakUiRoleToken;
 };
 export function AboutSharedHeader({
   title,
@@ -117,7 +133,7 @@ export function AboutSharedHeader({
                 $font={["heading-4", "heading-2", "heading-2"]}
               >
                 <OakSpan
-                  $background={titleHighlight ?? "mint"}
+                  $background={titleHighlight ?? "bg-decorative1-main"}
                   $ph={"spacing-4"}
                   $color="text-primary"
                 >
@@ -136,7 +152,11 @@ export function AboutSharedHeader({
                   {content}
                 </OakP>
               ) : (
-                <PortableTextWithDefaults value={content} />
+                <PortableTextWithDefaults
+                  value={content}
+                  withoutDefaultComponents={true}
+                  components={portableTextComponents}
+                />
               )}
             </OakFlex>
           </CustomHeaderTextOakGridArea>

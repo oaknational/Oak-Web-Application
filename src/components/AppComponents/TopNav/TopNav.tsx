@@ -1,17 +1,19 @@
 "use client";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import TabLink from "./TabLink/TabLink";
 import TeachersSubNav from "./SubNav/TeachersSubNav";
 import PupilsSubNav from "./SubNav/PupilsSubNav";
+import { TeachersTopNavHamburger } from "./TeachersTopNavHamburger/TeachersTopNavHamburger";
+import { PupilsTopNavHamburger } from "./PupilsTopNavHamburger/PupilsTopNavHamburger";
 
 import {
+  OakBox,
   OakCloseButton,
   OakFlex,
   OakIcon,
   OakImage,
   OakLink,
-  OakBox,
 } from "@/styles/oakThemeApp";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -22,6 +24,7 @@ import {
   TeachersSubNavData,
   PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 export type TopNavProps = {
   teachers: TeachersSubNavData | null;
@@ -44,8 +47,26 @@ const TopNav = (props: TopNavProps) => {
     [selectedMenu],
   );
 
+  const { setCurrentBannerProps } = useOakNotificationsContext();
+
+  useEffect(() => {
+    if (
+      (activeArea === "PUPILS" && !pupils) ||
+      (activeArea === "TEACHERS" && !teachers)
+    ) {
+      setCurrentBannerProps({
+        message:
+          "We’re experiencing a temporary technical issue. Thank you for your patience while we look into it.",
+        type: "warning",
+        isOpen: true,
+      });
+    } else {
+      setCurrentBannerProps(null);
+    }
+  }, [teachers, pupils, activeArea, setCurrentBannerProps]);
+
   return (
-    <header>
+    <OakBox as="header" $position="relative" data-testid="app-topnav">
       <OakBox
         $position={"absolute"}
         $zIndex={"in-front"}
@@ -113,22 +134,28 @@ const TopNav = (props: TopNavProps) => {
           />
         </OakLink>
         {activeArea === "TEACHERS" && teachers && (
-          <TeachersSubNav
-            isMenuSelected={isMenuSelected}
-            onClick={(menu) => {
-              setSelectedMenu(menu);
-              console.log("selected menu ", teachers[menu]);
-            }}
-          />
+          <>
+            <TeachersSubNav
+              isMenuSelected={isMenuSelected}
+              onClick={(menu) => {
+                setSelectedMenu(menu);
+                console.log("selected menu ", teachers[menu]);
+              }}
+            />
+            <TeachersTopNavHamburger {...teachers} />
+          </>
         )}
         {activeArea === "PUPILS" && pupils && (
-          <PupilsSubNav
-            isMenuSelected={isMenuSelected}
-            onClick={(menu) => {
-              setSelectedMenu(menu);
-              console.log("selected menu ", pupils[menu]);
-            }}
-          />
+          <>
+            <PupilsSubNav
+              isMenuSelected={isMenuSelected}
+              onClick={(menu) => {
+                setSelectedMenu(menu);
+                console.log("selected menu ", pupils[menu]);
+              }}
+            />
+            <PupilsTopNavHamburger {...pupils} />
+          </>
         )}
       </OakFlex>
       {/* TD: [integrated-journey] Replace with dropdown and hamburger menus */}
@@ -142,7 +169,7 @@ const TopNav = (props: TopNavProps) => {
           {selectedMenu}
         </OakFlex>
       )}
-    </header>
+    </OakBox>
   );
 };
 

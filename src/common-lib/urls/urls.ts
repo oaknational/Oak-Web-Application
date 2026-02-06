@@ -369,6 +369,17 @@ type MyLibraryProps = {
   page: "my-library";
 };
 
+type OnlyPageRequired<T> = T extends { page: string }
+  ? { page: T["page"] } extends T
+    ? T
+    : never
+  : never;
+
+export type OakLinkPropsRequiringPageOnly = Extract<
+  OakLinkProps,
+  OnlyPageRequired<OakLinkProps>
+>;
+
 export type OakLinkProps =
   | LabsLinkProps
   | LabsTeachingMaterialsLinkProps

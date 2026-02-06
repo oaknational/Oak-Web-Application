@@ -1,0 +1,89 @@
+import {
+  OakUiRoleToken,
+  OakIcon,
+  parseColor,
+  parseDropShadow,
+  parseSpacing,
+} from "@oaknational/oak-components";
+import { capitalize } from "lodash";
+import styled from "styled-components";
+
+const StyledSocialLink = styled.a`
+  margin: auto;
+  padding: ${parseSpacing("spacing-0")};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: ${parseSpacing("spacing-4")};
+  background: ${parseColor("bg-btn-secondary")};
+  height: ${parseSpacing("spacing-32")};
+  width: ${parseSpacing("spacing-32")};
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+
+  :focus {
+    outline: none;
+
+    box-shadow:
+      0 0 0 2px #ffe555,
+      0 0 0 5px #575757;
+  }
+
+  :hover {
+    /* drop-shadow-lemon */
+    box-shadow: ${parseDropShadow("drop-shadow-lemon")};
+  }
+
+  :active {
+    /* drop-shadow-pressed */
+    box-shadow:
+      2px 2px 0 0 #ffe555,
+      4px 4px 0 0 #575757;
+  }
+`;
+type SocialMediaTypes = "linkedin" | "facebook" | "x" | "instagram";
+const getAriaLabel = (socialSlug: SocialMediaTypes) => {
+  if (socialSlug === "linkedin") {
+    return "LinkedIn";
+  }
+  return capitalize(socialSlug);
+};
+
+type SocialButtonProps = {
+  socialType: SocialMediaTypes;
+  profileHref: string;
+  disabled?: boolean;
+  background?: OakUiRoleToken;
+};
+
+export function SocialButton({
+  socialType,
+  profileHref,
+  disabled,
+  background,
+}: Readonly<SocialButtonProps>) {
+  // disable the link by removing href & manually removing pointer events & styling
+  const props = disabled
+    ? { style: { pointerEvents: undefined, boxShadow: "none", border: "none" } }
+    : { href: profileHref };
+
+  return (
+    <StyledSocialLink
+      {...props}
+      target="_blank"
+      rel="noopener noreferrer"
+      role="link"
+      aria-disabled={disabled}
+    >
+      <OakIcon
+        iconName={socialType}
+        $height={"spacing-20"}
+        $colorFilter={
+          disabled ? "icon-disabled" : (background ?? "transparent")
+        }
+        alt={getAriaLabel(socialType)}
+      />
+    </StyledSocialLink>
+  );
+}

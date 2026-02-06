@@ -73,6 +73,7 @@ export function CurricFiltersChildSubjects({
           >
             {childSubjects.map((childSubject) => (
               <OakRadioAsButton
+                variant="with-icon"
                 key={childSubject.subject_slug}
                 value={childSubject.subject_slug}
                 displayValue={childSubject.subject}

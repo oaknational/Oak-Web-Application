@@ -6,7 +6,7 @@ import {
 import { useFilter } from "@react-aria/i18n";
 import { useComboBox } from "react-aria";
 import {
-  OakColorToken,
+  OakUiRoleToken,
   OakFlex,
   OakJauntyAngleLabel,
   OakTextInput,
@@ -57,14 +57,14 @@ const ResourcePageSearchComboBox = <T extends School>(
   const id = useId();
   const labelId = useId();
 
-  let labelBackground: OakColorToken;
+  let labelBackground: OakUiRoleToken;
 
   if (state.isFocused) {
-    labelBackground = "blue";
+    labelBackground = "bg-inverted";
   } else if (hasError) {
-    labelBackground = "red";
+    labelBackground = "bg-error";
   } else {
-    labelBackground = "lemon";
+    labelBackground = "bg-decorative5-main";
   }
 
   return (
@@ -72,7 +72,9 @@ const ResourcePageSearchComboBox = <T extends School>(
       <OakFlex $width={"100%"} $position={"relative"} ref={inputRef}>
         <OakJauntyAngleLabel
           label={props.label + (props.required ? " (required)" : "")}
-          $color={state.isFocused || hasError ? "white" : "black"}
+          $color={
+            state.isFocused || hasError ? "text-inverted" : "text-primary"
+          }
           htmlFor={id}
           as="label"
           id={labelId}
@@ -103,7 +105,7 @@ const ResourcePageSearchComboBox = <T extends School>(
           wrapperWidth={"100%"}
           $pv="spacing-0"
           $height="spacing-56"
-          color="black"
+          color="text-primary"
         />
       </OakFlex>
       {state.isOpen && (

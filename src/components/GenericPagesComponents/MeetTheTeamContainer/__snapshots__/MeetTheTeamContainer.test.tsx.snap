@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MeetTheTeamContainer renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-aXZVg llJJmf"
+    >
+      <div
+        class="sc-aXZVg sc-gEvEer hdseiA iwFTtF"
+      >
+        <div
+          class="sc-aXZVg sc-gEvEer hdseiA fVNIMq"
+        >
+          <h2
+            class="sc-eldPxv iiNDPs"
+          >
+            TESTING_TITLE
+          </h2>
+          <p
+            class="sc-ikkxIA jLdkNc"
+          >
+            TEST_TEXT
+          </p>
+        </div>
+        <div
+          class="sc-aXZVg sc-tagGq hdseiA czWmNT"
+        >
+          TEST_CONTENT
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

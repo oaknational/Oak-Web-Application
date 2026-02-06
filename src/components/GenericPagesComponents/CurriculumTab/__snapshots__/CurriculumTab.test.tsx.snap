@@ -5,6 +5,8 @@ exports[`CurriculumTab renders 1`] = `
   position: fixed;
   right: 0rem;
   width: 100%;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: 1;
 }
@@ -305,31 +307,19 @@ exports[`CurriculumTab renders 1`] = `
   white-space: nowrap;
 }
 
-.c5 {
-  -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
-  filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
-  object-fit: contain;
-}
-
-.c26 {
-  object-fit: contain;
-}
-
-.c59 {
-  -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
-  filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
-  object-fit: contain;
-}
-
 .c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .c7 {
@@ -547,29 +537,6 @@ exports[`CurriculumTab renders 1`] = `
   align-items: center;
 }
 
-.c12 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
-  letter-spacing: 0.0115rem;
-  color: #2d2d2d;
-}
-
-.c13 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 600;
-  font-size: 2rem;
-  line-height: 2.5rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
-  letter-spacing: 0.0115rem;
-}
-
 .c22 {
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -604,62 +571,6 @@ exports[`CurriculumTab renders 1`] = `
   font-weight: 700;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
-  letter-spacing: -0.005rem;
-}
-
-.c18 {
-  margin-top: 1rem;
-  display: revert;
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-family: --var(google-font),Lexend,sans-serif;
-  display: revert;
-  display: revert;
-}
-
-.c42 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
-  letter-spacing: -0.005rem;
-  color: #222222;
-}
-
-.c16 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 300;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
-  letter-spacing: -0.005rem;
-}
-
-.c24 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
-  letter-spacing: -0.005rem;
-}
-
-.c17 {
-  margin: 0;
-  display: block;
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 300;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
   -webkit-letter-spacing: -0.005rem;
   -moz-letter-spacing: -0.005rem;
   -ms-letter-spacing: -0.005rem;
@@ -718,6 +629,22 @@ exports[`CurriculumTab renders 1`] = `
 .c75:disabled {
   pointer-events: none;
   cursor: default;
+}
+
+.c5 {
+  -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
+  filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
+  object-fit: contain;
+}
+
+.c26 {
+  object-fit: contain;
+}
+
+.c59 {
+  -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
+  filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
+  object-fit: contain;
 }
 
 .c56 {
@@ -823,6 +750,85 @@ exports[`CurriculumTab renders 1`] = `
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
+.c12 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+  color: #222222;
+}
+
+.c13 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+}
+
+.c18 {
+  margin-top: 1rem;
+  display: revert;
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-family: --var(google-font),Lexend,sans-serif;
+  display: revert;
+  display: revert;
+}
+
+.c42 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+  color: #222222;
+}
+
+.c16 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c24 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c17 {
+  margin: 0;
+  display: block;
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
 .c21 {
   display: inline;
   -webkit-align-items: center;
@@ -840,8 +846,8 @@ exports[`CurriculumTab renders 1`] = `
   font: inherit;
   background: none;
   border: none;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
+  -webkit-text-decoration: none;
+  text-decoration: none;
   cursor: pointer;
   color: #222222;
 }
@@ -861,6 +867,29 @@ exports[`CurriculumTab renders 1`] = `
 .c21[disabled] {
   cursor: not-allowed;
   color: #808080;
+}
+
+.c37 {
+  box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c37:has( a, button ) {
+  z-index: 2;
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c37:has(a:hover,button:hover),
+.c37:has(button:hover:not(:active)) {
+  z-index: 1;
+}
+
+.c37:has(a:hover,button:hover) {
+  box-shadow: none;
+}
+
+.c37:has(a:active,button:active) {
+  z-index: 2;
+  box-shadow: none;
 }
 
 .c63 {
@@ -903,27 +932,8 @@ exports[`CurriculumTab renders 1`] = `
   transition: all 0.3s ease;
 }
 
-.c37 {
+.c38 {
   box-shadow: none;
-}
-
-.c37:has( a,button ) {
-  border-radius: 0.25em;
-  z-index: 2;
-  box-shadow: rgb(255,229,85) 0px 0px 0px 0.125rem,rgb(87,87,87) 0px 0px 0px 0.3rem;
-}
-
-.c37:has(a:hover,button:hover),
-.c37:has(button:hover:not(:active)) {
-  z-index: 1;
-}
-
-.c37:has(a:hover,button:hover) {
-  box-shadow: none;
-}
-
-.c37:has(a:active,button:active) {
-  z-index: 2;
 }
 
 .c39 {
@@ -940,17 +950,13 @@ exports[`CurriculumTab renders 1`] = `
   cursor: pointer;
 }
 
-.c38:hover {
-  background: #f2f2f2;
-}
-
 .c2 {
   top: 82px;
 }
 
 @media (min-width:750px) {
   .c0 {
-    right: 5.75rem;
+    right: 1.5rem;
   }
 }
 
@@ -959,6 +965,18 @@ exports[`CurriculumTab renders 1`] = `
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
+  }
+}
+
+@media (min-width:750px) {
+  .c0 {
+    padding-left: 0rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c0 {
+    padding-right: 0rem;
   }
 }
 
@@ -1147,10 +1165,10 @@ exports[`CurriculumTab renders 1`] = `
 
 @media (min-width:750px) {
   .c1 {
-    -webkit-box-pack: end;
-    -webkit-justify-content: flex-end;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
   }
 }
 
@@ -1263,6 +1281,33 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
+  .c71 {
+    font-weight: 700;
+  }
+}
+
+@media (min-width:750px) {
+  .c71 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c71 {
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c71 {
+    -webkit-letter-spacing: -0.005rem;
+    -moz-letter-spacing: -0.005rem;
+    -ms-letter-spacing: -0.005rem;
+    letter-spacing: -0.005rem;
+  }
+}
+
+@media (min-width:750px) {
   .c13 {
     font-weight: 600;
   }
@@ -1316,37 +1361,12 @@ exports[`CurriculumTab renders 1`] = `
   }
 }
 
-@media (min-width:750px) {
-  .c71 {
-    font-weight: 700;
-  }
-}
-
-@media (min-width:750px) {
-  .c71 {
-    font-size: 1rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c71 {
-    line-height: 1.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c71 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
-    letter-spacing: -0.005rem;
-  }
-}
-
 @media (hover:hover) {
   .c21:hover,
   .c21:visited:hover {
     color: #222222;
+    -webkit-text-decoration: underline;
+    text-decoration: underline;
   }
 }
 

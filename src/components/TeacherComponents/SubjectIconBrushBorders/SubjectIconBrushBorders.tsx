@@ -1,9 +1,11 @@
+"use client";
+
 import { FC } from "react";
 import {
   OakBox,
   OakFlex,
   OakIcon,
-  OakColorFilterToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
@@ -12,7 +14,7 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 type SubjectIconBrushBoardersProps = {
   subjectSlug: string | null;
   isNew: boolean;
-  color: OakColorFilterToken;
+  color: OakUiRoleToken;
 };
 
 const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({

@@ -39,6 +39,7 @@ import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsPr
 import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
+import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -194,6 +195,10 @@ const PupilExperienceLayout = ({
 }: PupilExperienceViewProps) => {
   const ageRestriction = browseData.features?.ageRestriction;
   const hasAgeRestriction = !!ageRestriction;
+  const { isClassroomAssignment, classroomAssignmentChecked } =
+    useAssignmentSearchParams();
+  const isGoogleClassroomAssignment =
+    isClassroomAssignment && classroomAssignmentChecked;
 
   const getAgeRestrictionString = (
     ageRestriction: string | undefined | null,
@@ -232,7 +237,19 @@ const PupilExperienceLayout = ({
   };
 
   const handleContentGuidanceDecline = () => {
-    backUrl ? router.replace(backUrl) : router.back();
+    if (isClassroomAssignment) {
+      window?.parent?.postMessage(
+        {
+          type: "Classroom",
+          action: "closeIframe",
+        },
+        "https://classroom.google.com",
+      );
+    } else if (backUrl) {
+      router.replace(backUrl);
+    } else {
+      router.back();
+    }
     track.contentGuidanceDeclined({
       supervisionLevel: lessonContent.supervisionLevel || "",
       contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
@@ -248,6 +265,11 @@ const PupilExperienceLayout = ({
     });
     setTrackingSent(true);
   }
+
+  const declineIcon = isGoogleClassroomAssignment
+    ? ("cross" as const)
+    : undefined;
+  const declineText = isGoogleClassroomAssignment ? "Exit lesson" : undefined;
 
   return (
     <PupilLayout
@@ -272,6 +294,8 @@ const PupilExperienceLayout = ({
               onAccept={handleContentGuidanceAccept}
               onDecline={handleContentGuidanceDecline}
               title={getAgeRestrictionString(ageRestriction)}
+              declineIcon={declineIcon}
+              declineText={declineText}
               contentGuidance={
                 lessonContent.contentGuidance
                   ? lessonContent.contentGuidance
@@ -297,6 +321,8 @@ const PupilExperienceLayout = ({
               onDecline={handleContentGuidanceDecline}
               contentGuidance={lessonContent.contentGuidance}
               supervisionLevel={lessonContent.supervisionLevel}
+              declineIcon={declineIcon}
+              declineText={declineText}
             />
           )}
 

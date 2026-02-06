@@ -58,7 +58,9 @@
     "remove-local-schema": "npx yalc remove @oaknational/oak-curriculum-schema && $npm_execpath add @oaknational/oak-curriculum-schema",
     "use-local-pupil-client": "$npm_execpath remove @oaknational/oak-pupil-client && yalc add @oaknational/oak-pupil-client",
     "remove-local-pupil-client": "npx yalc remove @oaknational/oak-pupil-client && $npm_execpath add @oaknational/oak-pupil-client",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "use-local-classroom-addon": "$npm_execpath remove @oaknational/google-classroom-addon && yalc add @oaknational/google-classroom-addon",
+    "remove-local-classroom-addon": "yalc remove @oaknational/google-classroom-addon && $npm_execpath install @oaknational/google-classroom-addon"
   },
   "overrides": {
     "@testing-library/dom": "$@testing-library/dom",
@@ -80,13 +82,15 @@
     "@google-cloud/dlp": "^6.5.0",
     "@google-cloud/firestore": "^7.11.6",
     "@google-cloud/storage": "^7.17.0",
+    "@googleapis/classroom": "4.9.0",
     "@hookform/resolvers": "^3.10.0",
     "@hubspot/api-client": "^11.2.0",
     "@mdx-js/loader": "^3.1.0",
     "@mux/mux-node": "^9.0.1",
     "@mux/mux-player-react": "3.10.2",
-    "@oaknational/oak-components": "^1.176.0",
-    "@oaknational/oak-consent-client": "^2.1.1",
+    "@oaknational/google-classroom-addon": "^1.13.1",
+    "@oaknational/oak-components": "^2.0.0",
+    "@oaknational/oak-consent-client": "^2.4.1",
     "@oaknational/oak-curriculum-schema": "^1.67.0",
     "@oaknational/oak-pupil-client": "^2.15.0",
     "@ooxml-tools/units": "^0.3.0",
@@ -153,7 +157,8 @@
     "uuid": "^11.1.0",
     "webvtt-parser": "^2.2.0",
     "xml-js": "^1.6.11",
-    "zod": "^3.25.76"
+    "zod": "^3.25.76",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",

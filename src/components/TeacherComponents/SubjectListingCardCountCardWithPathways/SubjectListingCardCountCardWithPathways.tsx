@@ -62,7 +62,7 @@ const SubjectListingCardCountCardWithPathways: FC<
 
         return (
           <SubjectListingTextTile
-            $background={"white"}
+            $background={"bg-primary"}
             $flexDirection={"column"}
             $position={"relative"}
             key={pathwaySlug}

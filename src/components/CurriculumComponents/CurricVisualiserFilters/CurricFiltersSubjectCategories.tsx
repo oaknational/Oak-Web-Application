@@ -92,6 +92,7 @@ export function CurricFiltersSubjectCategories({
             {subjectCategories.map((subjectCategory) => {
               return (
                 <OakRadioAsButton
+                  variant="with-icon"
                   key={String(subjectCategory.slug)}
                   value={String(subjectCategory.slug)}
                   data-testid={`subject-category-radio-${subjectCategory.slug}`}

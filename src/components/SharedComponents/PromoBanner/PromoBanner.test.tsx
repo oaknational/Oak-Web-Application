@@ -6,7 +6,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 describe("HomePageBanner", () => {
   const defaultProps: PromoBannerProps = {
-    background: "lemon",
+    background: "bg-decorative5-main",
     message: (
       <div>
         <OakPromoTag /> Subjects added
@@ -64,7 +64,13 @@ describe("HomePageBanner", () => {
   });
 
   it("should handle OakColor backgrounds", () => {
-    const colors = ["white", "black", "mint", "lavender", "pink"] as const;
+    const colors = [
+      "bg-primary",
+      "bg-inverted",
+      "bg-decorative1-main",
+      "bg-decorative3-main",
+      "bg-decorative4-main",
+    ] as const;
 
     colors.forEach((color) => {
       const { getByRole, unmount } = render(

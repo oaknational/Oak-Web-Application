@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`core layout renders correctly 1`] = `
+<React.Fragment>
+  <TopNav
+    pupils={
+      {
+        "primary": {
+          "phaseSlug": "primary",
+          "phaseTitle": "Primary",
+          "years": [],
+        },
+        "secondary": {
+          "phaseSlug": "secondary",
+          "phaseTitle": "Secondary",
+          "years": [],
+        },
+      }
+    }
+    teachers={
+      {
+        "aboutUs": [
+          {
+            "slug": "about-who-we-are",
+            "title": "Who we are",
+          },
+          {
+            "slug": "about-board",
+            "title": "Board",
+          },
+        ],
+        "guidance": [
+          {
+            "slug": "lesson-planning",
+            "title": "Plan a lesson",
+          },
+          {
+            "slug": "blog-index",
+            "title": "Blogs",
+          },
+        ],
+        "primary": {
+          "keystages": [
+            {
+              "description": "Key stage 1",
+              "slug": "ks1",
+              "subjects": [
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "english-primary-ks1",
+                  "subjectSlug": "english",
+                  "title": "English",
+                },
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "maths-primary-ks1",
+                  "subjectSlug": "maths",
+                  "title": "Maths",
+                },
+              ],
+              "title": "KS1",
+            },
+            {
+              "description": "Key stage 2",
+              "slug": "ks2",
+              "subjects": [
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "science-primary-ks2",
+                  "subjectSlug": "science",
+                  "title": "Science",
+                },
+              ],
+              "title": "KS2",
+            },
+            {
+              "description": "Early years foundation stage",
+              "slug": "eyfs",
+              "subjects": [],
+              "title": "EYFS",
+            },
+          ],
+          "phaseSlug": "primary",
+          "phaseTitle": "Primary",
+        },
+        "secondary": {
+          "keystages": [
+            {
+              "description": "Key stage 3",
+              "slug": "ks3",
+              "subjects": [
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "history-secondary-ks3",
+                  "subjectSlug": "history",
+                  "title": "History",
+                },
+              ],
+              "title": "KS3",
+            },
+            {
+              "description": "Key stage 4",
+              "slug": "ks4",
+              "subjects": [
+                {
+                  "nonCurriculum": false,
+                  "programmeCount": 0,
+                  "programmeSlug": "geography-secondary-ks4",
+                  "subjectSlug": "geography",
+                  "title": "Geography",
+                },
+              ],
+              "title": "KS4",
+            },
+          ],
+          "phaseSlug": "secondary",
+          "phaseTitle": "Secondary",
+        },
+      }
+    }
+  />
+  <main
+    id="main"
+  >
+    <styled.div>
+      children
+    </styled.div>
+  </main>
+  <LayoutSiteFooter />
+</React.Fragment>
+`;

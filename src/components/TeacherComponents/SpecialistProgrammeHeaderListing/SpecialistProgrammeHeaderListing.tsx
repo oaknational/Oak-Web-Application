@@ -6,8 +6,7 @@ import {
   OakP,
   OakSpan,
   OakFlex,
-  OakColorFilterToken,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
@@ -21,10 +20,10 @@ import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconB
 
 export type SpecialistHeaderListingProps = {
   breadcrumbs: Breadcrumb[];
-  background?: OakColorToken;
+  background?: OakUiRoleToken;
   subjectTitle: string;
   subjectSlug: string;
-  subjectIconBackgroundColor?: OakColorFilterToken;
+  subjectIconBackgroundColor?: OakUiRoleToken;
   title: string;
   hasCurriculumDownload?: boolean;
   description: string;
@@ -35,9 +34,9 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
     subjectSlug,
     title,
     subjectTitle,
-    subjectIconBackgroundColor = "aqua",
+    subjectIconBackgroundColor = "bg-decorative2-main",
     breadcrumbs,
-    background = "aqua50",
+    background = "bg-decorative2-subdued",
     description,
   } = props;
 
@@ -59,7 +58,11 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
               />
             </OakFlex>
             <OakFlex $flexDirection={"column"}>
-              <OakSpan $mb="spacing-16" $color={"grey60"} $font={"heading-7"}>
+              <OakSpan
+                $mb="spacing-16"
+                $color={"text-subdued"}
+                $font={"heading-7"}
+              >
                 {title}
               </OakSpan>
               <OakHeading tag={"h1"} $font={["heading-4", "heading-3"]}>

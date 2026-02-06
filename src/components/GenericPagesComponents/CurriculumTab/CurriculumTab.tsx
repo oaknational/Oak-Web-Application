@@ -27,7 +27,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
   const { track } = useAnalytics();
   return (
     <OakBox
-      $background={"mint"}
+      $background={"bg-decorative1-main"}
       $pv="spacing-24"
       $ph={"spacing-16"}
       $position={"relative"}
@@ -54,7 +54,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
           <OakIcon
             $display={["none", "none", "block"]}
             iconName={"looping-line-5"}
-            $colorFilter={"mint30"}
+            $colorFilter={"bg-decorative1-very-subdued"}
             $width={"100%"}
             $height={"100%"}
           />
@@ -68,7 +68,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
             $pt={"spacing-32"}
             $width={"spacing-640"}
           >
-            <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
+            <OakHeading $font={"heading-7"} tag={"h1"} $color={"text-primary"}>
               Teachers & subject leads
             </OakHeading>
             <OakHeading
@@ -105,7 +105,11 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
                 iconName="chevron-right"
                 isTrailingIcon
               >
-                <OakTypography $font={"body-1-bold"} $color="black" as="span">
+                <OakTypography
+                  $font={"body-1-bold"}
+                  $color="text-primary"
+                  as="span"
+                >
                   Our curriculum planning approach
                 </OakTypography>
               </OakSecondaryLink>

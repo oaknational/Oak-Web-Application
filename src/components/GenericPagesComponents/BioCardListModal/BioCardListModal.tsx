@@ -124,7 +124,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                 </OakHeading>
                 <OakP
                   $font={["heading-light-7", "heading-light-6"]}
-                  $color="grey60"
+                  $color="text-subdued"
                   $mb={["spacing-32", "spacing-0"]}
                   $textAlign={["center", "left"]}
                 >
@@ -146,7 +146,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                 <BoxBorders gapPosition="rightTop" $zIndex={"in-front"} />
                 <OakIcon
                   iconName="looping-arrow-1"
-                  $colorFilter={"oakGreen"}
+                  $colorFilter={"icon-brand"}
                   $display={["none", "block"]}
                   $position={"absolute"}
                   $top={"spacing-100"}
@@ -159,7 +159,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                   $height={[null, "spacing-240", "spacing-360"]}
                 />
                 <AspectRatio ratio={["7:8", "7:8", "2:3"]}>
-                  <OakBox $background="white" $objectFit={"cover"} />
+                  <OakBox $background="bg-primary" $objectFit={"cover"} />
                   {image && (
                     <CMSImage
                       image={image}
@@ -195,7 +195,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
             $pb={["spacing-16", "spacing-16", "spacing-0"]}
             $pt={["spacing-16", "spacing-0"]}
             $alignItems="center"
-            $background={["white", "transparent"]}
+            $background={["bg-primary", "transparent"]}
           >
             <SocialButtons
               for={name}

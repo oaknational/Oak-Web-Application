@@ -10,7 +10,7 @@ export const UnitListItemLessonCount = ({
   expiredLessonCount,
   expired,
 }: IUnitListItemLessonCountProps) => {
-  const textColor = expired ? "grey60" : "black";
+  const textColor = expired ? "text-subdued" : "text-primary";
 
   return (
     <OakFlex $alignItems={"end"}>

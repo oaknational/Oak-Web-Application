@@ -4,24 +4,24 @@ exports[`CurricTimetableHeader basic usage 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR iYZQrv"
+      class="sc-aXZVg jsYSMF"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB fgBWrW dnkkZD"
+        class="sc-aXZVg sc-gEvEer hdseiA fjNQtm"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB fgBWrW jOTTNg"
+          class="sc-aXZVg sc-gEvEer hdseiA fUxOFh"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB cdQSNK cnUbCk"
+            class="sc-aXZVg sc-gEvEer Dxwds kjWHLN"
           >
             <div
-              class="sc-fqkvVR jqqmXN"
+              class="sc-aXZVg iGlCVz"
               style="height: 52px; width: 114px;"
             >
               <img
                 alt="Oak National Academy"
-                class="sc-dcJsrY jRtmJB"
+                class="sc-iGgWBj dZvqhO"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -31,19 +31,19 @@ exports[`CurricTimetableHeader basic usage 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+            class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB fgBWrW iJXlvX"
+              class="sc-aXZVg sc-gEvEer hdseiA gMazQC"
             >
               <h1
-                class="sc-kpDqfm jGrEMo"
+                class="sc-eldPxv hBOEef"
                 data-testid="timetable-header-title"
               >
                 TITLE
               </h1>
               <div
-                class="sc-fqkvVR fgBWrW"
+                class="sc-aXZVg hdseiA"
                 data-testid="timetable-header-additional"
               >
                 ADDITIONAL
@@ -52,7 +52,7 @@ exports[`CurricTimetableHeader basic usage 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB bygFWn dnFLNa"
+          class="sc-aXZVg sc-gEvEer fbiuPV dnBYlX"
         >
           <img
             alt=""

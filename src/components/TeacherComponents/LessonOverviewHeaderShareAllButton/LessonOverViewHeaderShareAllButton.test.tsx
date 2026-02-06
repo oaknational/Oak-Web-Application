@@ -1,7 +1,4 @@
-import {
-  OakColorFilterToken,
-  OakColorToken,
-} from "@oaknational/oak-components";
+import { OakUiRoleToken } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderShareAllButton } from "./LessonOverviewHeaderShareAllButton";
 
@@ -25,9 +22,9 @@ const baseProps = {
   geoRestricted: false,
   loginRequired: false,
   breadcrumbs: [],
-  background: "white" as OakColorToken,
+  background: "bg-primary" as OakUiRoleToken,
   isNew: false,
-  subjectIconBackgroundColor: "white" as OakColorFilterToken,
+  subjectIconBackgroundColor: "bg-primary" as OakUiRoleToken,
   subjectSlug: "test-subject",
   keyStageSlug: "test-keystage",
   keyStageTitle: "Test Key Stage",

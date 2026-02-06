@@ -4,45 +4,45 @@ exports[`AboutSharedHeader renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR bZZBuO"
+      class="sc-aXZVg flkhOM"
     >
       <div
-        class="sc-fqkvVR ddPTFm"
+        class="sc-aXZVg jDeUDY"
       >
         <div
-          class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
+          class="sc-aXZVg sc-tagGq jvobjA jFIZYB"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-6e79b090-0 fgBWrW djyvKT iAkSYx gbtYED"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-c16b5694-0 hdseiA ccwEJG giQTDM enLybh"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+              class="sc-aXZVg sc-gEvEer hdseiA daEtut"
             >
               <h1
-                class="sc-kpDqfm cRJejs"
+                class="sc-eldPxv flskuf"
               >
                 <span
-                  class="sc-dAlyuH bOvjMx"
+                  class="sc-eqUAAy itItFl"
                 >
                   TESTING_TITLE
                 </span>
               </h1>
               <p
-                class="sc-dLMFU hxKUrX"
+                class="sc-ikkxIA kMZRfZ"
               >
                 TESTING_CONTENT
               </p>
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-6e79b090-1 fgBWrW joHkzz dGlNMa lhaLhM"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-c16b5694-1 hdseiA iDBIXi doygtr fkTCLi"
           >
             <div
-              class="sc-fqkvVR jqqmXN"
+              class="sc-aXZVg iGlCVz"
             >
               <img
                 alt="Oak logo"
-                class="sc-dcJsrY jRtmJB"
+                class="sc-iGgWBj dZvqhO"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -62,46 +62,46 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR bZZBuO"
+      class="sc-aXZVg flkhOM"
     >
       <div
-        class="sc-fqkvVR ddPTFm"
+        class="sc-aXZVg jDeUDY"
       >
         <div
-          class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
+          class="sc-aXZVg sc-tagGq jvobjA jFIZYB"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-6e79b090-0 fgBWrW djyvKT iAkSYx gbtYED"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-c16b5694-0 hdseiA ccwEJG giQTDM enLybh"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+              class="sc-aXZVg sc-gEvEer hdseiA daEtut"
             >
               <h1
-                class="sc-kpDqfm cRJejs"
+                class="sc-eldPxv flskuf"
               >
                 <span
-                  class="sc-dAlyuH bOvjMx"
+                  class="sc-eqUAAy itItFl"
                 >
                   TESTING_TITLE
                 </span>
               </h1>
               <p
-                class="sc-dLMFU hxKUrX"
+                class="sc-ikkxIA kMZRfZ"
               >
                 TESTING_CONTENT
               </p>
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-6e79b090-1 fgBWrW joHkzz dGlNMa lhaLhM"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-c16b5694-1 hdseiA iDBIXi doygtr fkTCLi"
           >
             <div
-              class="sc-fqkvVR erqloa sc-6e79b090-2 cJitbW"
+              class="sc-aXZVg dhXyYU sc-c16b5694-2 fyxfMY"
               data-testid="about-shared-loop"
             >
               <img
                 alt=""
-                class="sc-dcJsrY cDKKvZ"
+                class="sc-iGgWBj cMzyFO"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
