@@ -2,8 +2,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import TabLink from "./TabLink/TabLink";
-import TeachersSubNav from "./SubNav/TeachersSubNav";
-import PupilsSubNav from "./SubNav/PupilsSubNav";
+import TeachersSubNav, { subNavButtons } from "./SubNav/TeachersSubNav";
+import PupilsSubNav, { pupilsSubNavButtons } from "./SubNav/PupilsSubNav";
 import TopNavDropdown from "./TopNavDropdown/TopNavDropdown";
 import { TeachersTopNavHamburger } from "./TeachersTopNavHamburger/TeachersTopNavHamburger";
 import { PupilsTopNavHamburger } from "./PupilsTopNavHamburger/PupilsTopNavHamburger";
@@ -43,13 +43,35 @@ const TopNav = (props: TopNavProps) => {
     keyof TeachersSubNavData | keyof PupilsSubNavData | undefined
   >(undefined);
 
-  const focusManager = useMemo(
+  const teachersFocusManager = useMemo(
     () =>
       props.teachers
-        ? new DropdownFocusManager(props.teachers, setSelectedMenu)
+        ? new DropdownFocusManager(
+            props.teachers,
+            "teachers",
+            subNavButtons,
+            setSelectedMenu,
+          )
         : null,
     [props.teachers],
   );
+
+  const pupilsFocusManager = useMemo(
+    () =>
+      props.pupils
+        ? new DropdownFocusManager(
+            props.pupils,
+            "pupils",
+            pupilsSubNavButtons,
+            setSelectedMenu,
+          )
+        : null,
+    [props.pupils],
+  );
+
+  const focusManager =
+    activeArea === "TEACHERS" ? teachersFocusManager : pupilsFocusManager;
+
   const isMenuSelected = useCallback(
     (menuSlug: string) => {
       return menuSlug === selectedMenu;
@@ -158,7 +180,7 @@ const TopNav = (props: TopNavProps) => {
         {activeArea === "TEACHERS" && teachers && (
           <>
             <TeachersSubNav
-              focusManager={focusManager!}
+              focusManager={teachersFocusManager!}
               isMenuSelected={isMenuSelected}
               onClick={(menu) => {
                 setSelectedMenu(selectedMenu === menu ? undefined : menu);
@@ -170,6 +192,7 @@ const TopNav = (props: TopNavProps) => {
         {activeArea === "PUPILS" && pupils && (
           <>
             <PupilsSubNav
+              focusManager={pupilsFocusManager!}
               isMenuSelected={isMenuSelected}
               onClick={(menu) => {
                 setSelectedMenu(selectedMenu === menu ? undefined : menu);

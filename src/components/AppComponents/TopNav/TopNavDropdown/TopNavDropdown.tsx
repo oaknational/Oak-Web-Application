@@ -23,7 +23,9 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export type TopNavDropdownProps = {
-  focusManager: DropdownFocusManager;
+  focusManager:
+    | DropdownFocusManager<TeachersSubNavData>
+    | DropdownFocusManager<PupilsSubNavData>;
   activeArea: "TEACHERS" | "PUPILS";
   selectedMenu: keyof TeachersSubNavData | keyof PupilsSubNavData;
   teachers: TeachersSubNavData;
@@ -37,7 +39,7 @@ const TeachersPhaseSection = ({
 }: {
   selectedMenu: keyof TeachersSubNavData;
   menuData: TeachersSubNavData["primary" | "secondary"];
-  focusManager: DropdownFocusManager;
+  focusManager: DropdownFocusManager<TeachersSubNavData>;
 }) => {
   const defaultKeystage =
     menuData.keystages[0]?.slug || (selectedMenu === "primary" ? "ks1" : "ks3");
@@ -164,7 +166,7 @@ const TeachersLinksSection = ({
   selectedMenu,
   menuData,
 }: {
-  focusManager: DropdownFocusManager;
+  focusManager: DropdownFocusManager<TeachersSubNavData>;
   selectedMenu: "guidance" | "aboutUs";
   menuData: TeachersSubNavData["guidance" | "aboutUs"];
 }) => {
@@ -228,9 +230,11 @@ const TeachersLinksSection = ({
 const PupilsSection = ({
   selectedMenu,
   pupils,
+  focusManager,
 }: {
   selectedMenu: keyof PupilsSubNavData;
   pupils: PupilsSubNavData;
+  focusManager: DropdownFocusManager<PupilsSubNavData>;
 }) => {
   const menuYears = pupils[selectedMenu].years;
 
@@ -241,22 +245,30 @@ const PupilsSection = ({
       $reset
       id={`topnav-pupils-${selectedMenu}`}
     >
-      {menuYears.map((year) => (
-        <OakLI key={year.slug}>
-          <OakPupilJourneyYearButton
-            phase={selectedMenu}
-            key={year.slug}
-            element="a"
-            href={resolveOakHref({
-              page: "pupil-subject-index",
-              yearSlug: year.slug,
-            })}
-            id={`topnav-pupils-${year.slug}`}
-          >
-            {year.title}
-          </OakPupilJourneyYearButton>
-        </OakLI>
-      ))}
+      {menuYears.map((year) => {
+        const buttonId = focusManager?.createYearButtonId(year.slug);
+        return (
+          <OakLI key={year.slug}>
+            <OakPupilJourneyYearButton
+              phase={selectedMenu}
+              key={year.slug}
+              element={Link}
+              href={resolveOakHref({
+                page: "pupil-subject-index",
+                yearSlug: year.slug,
+              })}
+              id={buttonId}
+              onKeyDown={
+                focusManager && buttonId
+                  ? (e) => focusManager.handleKeyDown(e, buttonId)
+                  : undefined
+              }
+            >
+              {year.title}
+            </OakPupilJourneyYearButton>
+          </OakLI>
+        );
+      })}
     </OakUL>
   );
 };
@@ -269,7 +281,9 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
       {activeArea === "TEACHERS" &&
         (selectedMenu === "primary" || selectedMenu === "secondary") && (
           <TeachersPhaseSection
-            focusManager={focusManager}
+            focusManager={
+              focusManager as DropdownFocusManager<TeachersSubNavData>
+            }
             selectedMenu={selectedMenu}
             menuData={teachers[selectedMenu]}
           />
@@ -277,14 +291,22 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
       {activeArea === "TEACHERS" &&
         (selectedMenu === "guidance" || selectedMenu === "aboutUs") && (
           <TeachersLinksSection
-            focusManager={focusManager}
+            focusManager={
+              focusManager as DropdownFocusManager<TeachersSubNavData>
+            }
             selectedMenu={selectedMenu}
             menuData={teachers[selectedMenu]}
           />
         )}
       {activeArea === "PUPILS" &&
         (selectedMenu === "primary" || selectedMenu === "secondary") && (
-          <PupilsSection selectedMenu={selectedMenu} pupils={pupils} />
+          <PupilsSection
+            selectedMenu={selectedMenu}
+            pupils={pupils}
+            focusManager={
+              focusManager as DropdownFocusManager<PupilsSubNavData>
+            }
+          />
         )}
     </OakFlex>
   );

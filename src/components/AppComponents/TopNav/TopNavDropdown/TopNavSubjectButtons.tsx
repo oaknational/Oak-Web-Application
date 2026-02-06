@@ -10,7 +10,10 @@ import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManag
 
 import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import {
+  TeachersSubNavData,
+  TeachersSubNavData as TeachersData,
+} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export const getSubjectLinkProps = ({
   programmeCount,
@@ -56,7 +59,7 @@ const TopNavSubjectButtons = ({
   keyStageSlug: string;
   keyStageTitle: string;
   handleClick?: () => void;
-  focusManager?: DropdownFocusManager;
+  focusManager?: DropdownFocusManager<TeachersData>;
 }) => {
   return (
     <OakUL

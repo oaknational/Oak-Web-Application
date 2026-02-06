@@ -19,7 +19,7 @@ import TeacherAccountButton from "@/components/TeacherComponents/TeacherAccountB
 type TeachersSubNavProps = {
   onClick: (menu: keyof TeachersSubNavData) => void;
   isMenuSelected: (menu: keyof TeachersSubNavData) => boolean;
-  focusManager: DropdownFocusManager;
+  focusManager: DropdownFocusManager<TeachersSubNavData>;
 };
 
 // The order of these buttons is determined here and used in the keyboard navigation logic in DropdownFocusManager
