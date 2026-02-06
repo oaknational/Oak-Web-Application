@@ -32,7 +32,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     global.fetch = jest.fn((url) => {
       if (
         url ===
-        "https://mockdownloads.com/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf"
+        "/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf"
       ) {
         return Promise.resolve(successResponse);
       } else {
@@ -140,7 +140,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     });
 
     expect(global.fetch).toBeCalledWith(
-      "https://mockdownloads.com/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
+      "/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
   it("should fetch from download api if isLegacyDownload = false", async () => {
@@ -151,7 +151,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     });
 
     expect(global.fetch).toBeCalledWith(
-      "https://mockdownloads.com/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
+      "/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
 });

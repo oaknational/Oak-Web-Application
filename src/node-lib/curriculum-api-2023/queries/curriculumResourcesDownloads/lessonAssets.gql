@@ -1,0 +1,58 @@
+query lessonAssets($lessonSlug: String!) {
+  lessons(
+    where: { slug: { _eq: $lessonSlug }, _state: { _eq: "published" } }
+  ) {
+    quiz_exit {
+      quiz_uid
+      quiz_object
+      updated_at
+    }
+    quiz_starter {
+      quiz_uid
+      quiz_object
+      updated_at
+    }
+    asset_slidedeck {
+      asset_type
+      asset_uid
+      asset_object
+      created_at
+      updated_at
+    }
+    asset_worksheet {
+      asset_type
+      asset_uid
+      asset_object
+      created_at
+      updated_at
+    }
+    asset_worksheet_answers {
+      asset_type
+      asset_uid
+      asset_object
+      created_at
+      updated_at
+    }
+    asset_supplementary_asset {
+      asset_type
+      asset_uid
+      asset_object
+      created_at
+      updated_at
+    }
+    asset_lesson_guide {
+      asset_type
+      asset_uid
+      asset_object
+      created_at
+      updated_at
+      url
+    }
+    tpc_downloadablefiles {
+      asset_id
+      media_object
+    }
+    features
+    slug
+  }
+}

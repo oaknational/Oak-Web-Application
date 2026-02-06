@@ -159,7 +159,6 @@ describe("useResourceFormSubmit", () => {
         lessonSlug: "lesson",
         selectedResourceTypes: ["intro-quiz-questions"],
         isLegacyDownload: true,
-        authToken: null,
         selectedAdditionalFilesIds: [],
       });
     });
@@ -192,7 +191,6 @@ describe("useResourceFormSubmit", () => {
         lessonSlug: "lesson",
         selectedResourceTypes: ["intro-quiz-questions", "additional-files"],
         isLegacyDownload: true,
-        authToken: null,
         selectedAdditionalFilesIds: [123, 345],
       });
     });

@@ -4,9 +4,6 @@ import { Meta, getParsedData } from "./getParsedData";
 
 import { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import OakError from "@/errors/OakError";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-
-const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 
 /**
  * Expected response schema
@@ -109,8 +106,8 @@ export const getLessonDownloadResourcesExistence = async ({
   isLegacyDownload: boolean;
 }) => {
   const checkWhichResourcesExistEndpoint = additionalFilesIdsString
-    ? `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}&additionalFiles=${additionalFilesIdsString}`
-    : `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
+    ? `/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}&additionalFiles=${additionalFilesIdsString}`
+    : `/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
 
   const meta = {
     lessonSlug,
@@ -126,7 +123,7 @@ export const getLessonDownloadResourcesExistence = async ({
 };
 
 export const getUnitDownloadFileExistence = async (unitFileId: string) => {
-  const checkWhichResourcesExistEndpoint = `${DOWNLOADS_API_URL}/api/unit/${unitFileId}/check-files`;
+  const checkWhichResourcesExistEndpoint = `/api/unit/${unitFileId}/check-files`;
 
   const meta = {
     unitProgrammeSlug: unitFileId,
