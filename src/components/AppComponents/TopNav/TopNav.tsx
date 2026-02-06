@@ -33,10 +33,6 @@ export type TopNavProps = {
 };
 
 const TopNav = (props: TopNavProps) => {
-  const focusManager = useMemo(
-    () => (props.teachers ? new DropdownFocusManager(props.teachers) : null),
-    [props.teachers],
-  );
   const { teachers, pupils } = props;
 
   const activeArea = useSelectedArea();
@@ -47,6 +43,13 @@ const TopNav = (props: TopNavProps) => {
     keyof TeachersSubNavData | keyof PupilsSubNavData | undefined
   >(undefined);
 
+  const focusManager = useMemo(
+    () =>
+      props.teachers
+        ? new DropdownFocusManager(props.teachers, setSelectedMenu)
+        : null,
+    [props.teachers],
+  );
   const isMenuSelected = useCallback(
     (menuSlug: string) => {
       return menuSlug === selectedMenu;
@@ -81,7 +84,6 @@ const TopNav = (props: TopNavProps) => {
         focusManager?.handleEscapeKey({
           event,
           elementId: document.activeElement?.id || "",
-          setSelectedMenu,
         })
       }
     >

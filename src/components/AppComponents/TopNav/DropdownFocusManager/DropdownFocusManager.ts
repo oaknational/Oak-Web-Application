@@ -18,9 +18,16 @@ type FocusNode = {
 
 export class DropdownFocusManager {
   private focusMap: Map<string, FocusNode>;
+  private closeMenu: () => void;
+  private lastSubnavButton: (typeof subNavButtons)[number];
 
-  constructor(teachersNavData: TeachersSubNavData) {
+  constructor(
+    teachersNavData: TeachersSubNavData,
+    setSelectedMenu: (a: undefined) => void,
+  ) {
     this.focusMap = this.buildFocusTree(teachersNavData);
+    this.closeMenu = () => setSelectedMenu(undefined);
+    this.lastSubnavButton = subNavButtons[subNavButtons.length - 1]!;
   }
 
   private getFocusMap() {
@@ -35,6 +42,7 @@ export class DropdownFocusManager {
       focusMap.set(id, {
         id,
         parent: null,
+
         children: hasChildren
           ? this.addChildrenIds(
               teachersNavData[section.slug as keyof TeachersSubNavData],
@@ -151,6 +159,20 @@ export class DropdownFocusManager {
     return [];
   }
 
+  private focusElementById(
+    elementId: string,
+    event?: React.KeyboardEvent,
+  ): boolean {
+    const element = document.getElementById(elementId);
+
+    if (element) {
+      event?.preventDefault();
+      element.focus();
+      return true;
+    }
+    return false;
+  }
+
   private getNode(elementId: string): FocusNode {
     const currentNode = this.focusMap.get(elementId);
     if (!currentNode) throw new Error("Element ID not found in focus map");
@@ -158,11 +180,7 @@ export class DropdownFocusManager {
   }
   private focusParent(currentNode: FocusNode, event: React.KeyboardEvent) {
     if (!currentNode.parent) return;
-    const parentElement = document.getElementById(currentNode.parent.parentId);
-    if (parentElement) {
-      event.preventDefault();
-      parentElement.focus();
-    }
+    this.focusElementById(currentNode.parent.parentId, event);
   }
   private focusParentSibling(
     currentNode: FocusNode,
@@ -181,28 +199,85 @@ export class DropdownFocusManager {
         event,
       );
     const siblingId = currentNode.parent.parentSiblings[siblingIndex];
-    const siblingElement = document.getElementById(siblingId!);
-    if (siblingElement) {
-      event.preventDefault();
-      siblingElement.focus();
+    if (siblingId) {
+      this.focusElementById(siblingId, event);
     }
+  }
+
+  private getParentNode(currentNode: FocusNode): FocusNode | null {
+    if (!currentNode.parent) return null;
+    return this.focusMap.get(currentNode.parent.parentId) || null;
+  }
+
+  private handleFinalElementTab({
+    currentNode,
+    event,
+  }: {
+    currentNode: FocusNode;
+    event: React.KeyboardEvent;
+  }) {
+    console.log("Handling final element tab");
+    const ancestorNode = this.getAncestorNode(currentNode);
+    const subnav = document.getElementById("teachers-subnav");
+    // get focusable element ids in subnav
+    const focusableElements = Array.from(
+      subnav?.querySelectorAll("a, button") ?? [],
+    );
+
+    const ancestorElementIndex = focusableElements.findIndex(
+      (el) => el.id === ancestorNode.id,
+    );
+    const nextIndex =
+      ancestorElementIndex >= focusableElements.length - 1
+        ? 0
+        : ancestorElementIndex + 1;
+    const nextElement = focusableElements[nextIndex] as HTMLElement;
+    console.log("Next element to focus:", nextElement);
+    event.preventDefault();
+    nextElement.focus();
+    return this.closeMenu();
+  }
+  private getAncestorNode(currentNode: FocusNode): FocusNode {
+    let ancestorNode: FocusNode = currentNode;
+    while (ancestorNode.parent) {
+      ancestorNode =
+        this.focusMap.get(ancestorNode.parent.parentId) || ancestorNode;
+    }
+    return ancestorNode;
+  }
+  private getIsFinalElement(currentNode: FocusNode): boolean {
+    const ancestorNode = this.getAncestorNode(currentNode);
+    const isFinalElement =
+      this.lastSubnavButton &&
+      ancestorNode.id === `${this.lastSubnavButton.slug}-subnav-button`;
+    return isFinalElement;
   }
 
   private handleTab(currentNode: FocusNode, event: React.KeyboardEvent) {
     const hasChildren = currentNode.children.length > 0;
     const firstChildId = hasChildren && currentNode.children[0]!;
     if (firstChildId) {
-      const firstChildElement = document.getElementById(firstChildId);
-      if (firstChildElement) {
-        event.preventDefault();
-        return firstChildElement.focus();
+      const focused = this.focusElementById(firstChildId, event);
+      if (focused) {
+        return;
+      } else if (
+        this.lastSubnavButton &&
+        currentNode.id === `${this.lastSubnavButton.slug}-subnav-button`
+      ) {
+        this.closeMenu();
       }
     }
-
     const isLastChild = currentNode.isLastChild;
+    if (isLastChild) {
+      const isFinalElement = this.getIsFinalElement(currentNode);
 
-    if (isLastChild) this.focusParentSibling(currentNode, event);
+      if (isFinalElement) {
+        return this.handleFinalElementTab({ currentNode, event });
+      }
+      this.focusParentSibling(currentNode, event);
+    }
   }
+
   private handleShiftTab(event: React.KeyboardEvent, currentNode: FocusNode) {
     const isFirstChild = currentNode.isFirstChild;
     if (isFirstChild) {
@@ -210,24 +285,15 @@ export class DropdownFocusManager {
     }
   }
 
-  private focusNode(node: FocusNode) {
-    const element = document.getElementById(node.id);
-    if (element) {
-      element.focus();
-    }
-  }
-
   handleEscapeKey({
     event,
     elementId,
-    setSelectedMenu,
   }: {
     event: React.KeyboardEvent;
     elementId: string;
-    setSelectedMenu: (a: undefined) => void;
   }) {
     if (event.key !== "Escape") return;
-    setSelectedMenu(undefined);
+    this.closeMenu();
     const currentNode = this.focusMap.get(elementId);
     if (!currentNode) return;
     // get the oldest ancestor node (the one without a parent) and focus it
@@ -235,7 +301,7 @@ export class DropdownFocusManager {
     while (ancestorNode.parent) {
       ancestorNode = this.focusMap.get(ancestorNode.parent.parentId)!;
     }
-    this.focusNode(ancestorNode);
+    this.focusElementById(ancestorNode.id);
   }
 
   handleKeyDown(event: React.KeyboardEvent, elementId: string) {
