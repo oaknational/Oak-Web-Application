@@ -227,9 +227,7 @@ export class DropdownFocusManager {
 
   private getFocusableSubnavElements(): HTMLElement[] {
     const subnav = document.getElementById("teachers-subnav");
-    return Array.from(
-      subnav?.querySelectorAll("a, button") ?? [],
-    ) as HTMLElement[];
+    return Array.from(subnav?.querySelectorAll("a, button, input") ?? []);
   }
   private handleFinalElementTab({
     currentNode,
