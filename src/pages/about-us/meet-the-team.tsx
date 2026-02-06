@@ -21,9 +21,6 @@ import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTh
 import CMSClient from "@/node-lib/cms";
 import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import Card from "@/components/SharedComponents/Card";
-import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
-import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 
@@ -162,34 +159,15 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                       doc.file.asset.size,
                     );
                     return (
-                      <Card key={doc.title} $width={240} $pa={16}>
-                        <BoxBorders gapPosition="rightTop" />
-                        <OakFlex
-                          $justifyContent={"space-between"}
-                          $flexDirection={"column"}
-                          $height={"100%"}
-                          $gap={"spacing-8"}
-                        >
-                          <OakTypography $font={"heading-7"}>
-                            {doc.title}
-                          </OakTypography>
-                          <OakFlex
-                            $alignItems={"center"}
-                            $justifyContent={"space-between"}
-                          >
-                            <OakTypography
-                              $font={"body-3"}
-                            >{`${fileSize} ${doc.file.asset.extension.toUpperCase()}`}</OakTypography>
-                            <IconButtonAsLink
-                              icon={"download"}
-                              aria-label={`Download ${doc.title} (${fileSize} ${doc.file.asset.extension.toUpperCase()})`}
-                              page={null}
-                              href={`${doc.file.asset.url}?dl`}
-                              background={"blue"}
-                            />
-                          </OakFlex>
-                        </OakFlex>
-                      </Card>
+                      <OakCard
+                        key={doc.title}
+                        heading={doc.title}
+                        href={`${doc.file.asset.url}?dl`}
+                        cardWidth={"100%"}
+                        subCopy={`${doc.file.asset.extension.toUpperCase()}, ${fileSize}`}
+                        linkText="Download"
+                        linkIconName="download"
+                      />
                     );
                   })}
                 </MeetTheTeamContainer>
