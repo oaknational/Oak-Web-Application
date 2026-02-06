@@ -24,6 +24,16 @@ describe("pupilLessonListing()", () => {
             backLinkData: [],
           }) as Promise<PupilLessonListingQuery>, // Add the correct return type
       ),
+      pupilLessonListingLessonContent: jest.fn(() =>
+        Promise.resolve({
+          data: [
+            {
+              lesson_slug: _syntheticUnitvariantLessonsFixture.lesson_slug,
+              exit_quiz: [{ id: "quiz1" }, { id: "quiz2" }],
+            },
+          ],
+        }),
+      ),
     })({
       unitSlug: "test",
       programmeSlug: "programme-slug-test-secondary-year-10",
@@ -62,6 +72,14 @@ describe("pupilLessonListing()", () => {
             browseData: fixtures as PupilLessonListingQuery["browseData"],
           }) as Promise<PupilLessonListingQuery>,
       ),
+      pupilLessonListingLessonContent: jest.fn(() =>
+        Promise.resolve({
+          data: fixtures.map((fixture) => ({
+            lesson_slug: fixture.lesson_slug,
+            exit_quiz: [{ id: "quiz1" }, { id: "quiz2" }],
+          })),
+        }),
+      ),
     })({
       unitSlug: "test",
       programmeSlug: "programme-slug-test-secondary-year-10",
@@ -98,6 +116,14 @@ describe("pupilLessonListing()", () => {
               browseData: fixtures as PupilLessonListingQuery["browseData"],
             }) as Promise<PupilLessonListingQuery>,
         ),
+        pupilLessonListingLessonContent: jest.fn(() =>
+          Promise.resolve({
+            data: fixtures.map((fixture) => ({
+              lesson_slug: fixture.lesson_slug,
+              exit_quiz: [{ id: "quiz1" }, { id: "quiz2" }],
+            })),
+          }),
+        ),
       })({
         unitSlug: "test",
         programmeSlug: "programme-slug-test-secondary-year-10",
@@ -127,6 +153,14 @@ describe("pupilLessonListing()", () => {
           Promise.resolve({
             browseData: fixtures as PupilLessonListingQuery["browseData"],
           }) as Promise<PupilLessonListingQuery>,
+      ),
+      pupilLessonListingLessonContent: jest.fn(() =>
+        Promise.resolve({
+          data: fixtures.map((fixture) => ({
+            lesson_slug: fixture.lesson_slug,
+            exit_quiz: [{ id: "quiz1" }, { id: "quiz2" }],
+          })),
+        }),
       ),
     })({
       unitSlug: "test",
