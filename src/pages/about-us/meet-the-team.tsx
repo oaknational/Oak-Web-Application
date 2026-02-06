@@ -12,7 +12,10 @@ import Layout from "@/components/AppComponents/Layout";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
-import { AboutSharedHeader } from "@/components/GenericPagesComponents/AboutSharedHeader";
+import {
+  AboutSharedHeader,
+  AboutSharedHeaderImage,
+} from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
@@ -64,7 +67,12 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
           title={"Meet the team"}
           content={introText}
           titleHighlight="bg-decorative5-main"
-        />
+        >
+          <AboutSharedHeaderImage
+            imageAlt=""
+            imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
+          />
+        </AboutSharedHeader>
         <InnerMaxWidth>
           <OakFlex $gap={"spacing-16"}>
             <OakFlex
@@ -72,7 +80,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               style={{ minWidth: 200 }}
             >
               <OakSideMenuNav
-                heading="Page sections"
+                heading=""
                 anchorTargetId=""
                 menuItems={[
                   {
