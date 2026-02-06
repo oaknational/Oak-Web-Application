@@ -27,6 +27,7 @@ describe("DropdownFocusManager", () => {
       "ks1-english-subject-button",
       "ks1-maths-subject-button",
       "ks1-financial-education-subject-button",
+      "ks1-all-keystages-button",
     ]);
     // Check a subject node
     const englishNode = focusMap.get("ks1-english-subject-button");

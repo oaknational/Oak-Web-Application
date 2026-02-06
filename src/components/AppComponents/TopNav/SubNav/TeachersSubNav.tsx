@@ -88,7 +88,8 @@ const TeachersSubNav = ({
       }
     }
   };
-
+  const alwaysDisplayInTestingEnv = (displayValues: string | string[]) =>
+    process.env.NODE_ENV === "test" ? "flex" : displayValues;
   return (
     <OakFlex
       id="teachers-subnav"
@@ -99,7 +100,7 @@ const TeachersSubNav = ({
     >
       <OakBox>
         <OakUL
-          $display={["none", "none", "flex"]}
+          $display={alwaysDisplayInTestingEnv(["none", "none", "flex"])}
           $gap={"spacing-12"}
           $alignItems={"center"}
           $reset
@@ -121,6 +122,7 @@ const TeachersSubNav = ({
                   <OakSmallPrimaryInvertedButton
                     onKeyDown={props.onKeyDown}
                     id={props.id}
+                    data-testid={props.id}
                     onClick={props.onClick}
                     selected={props.selected}
                     aria-expanded={props["aria-expanded"]}

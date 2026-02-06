@@ -207,7 +207,6 @@ export class DropdownFocusManager {
     const isFirstChild = currentNode.isFirstChild;
     if (isFirstChild) {
       this.focusParent(currentNode, event);
-      return;
     }
   }
 
