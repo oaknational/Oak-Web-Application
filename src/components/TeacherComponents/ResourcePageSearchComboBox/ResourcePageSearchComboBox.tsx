@@ -6,7 +6,7 @@ import {
 import { useFilter } from "@react-aria/i18n";
 import { useComboBox } from "react-aria";
 import {
-  OakColorToken,
+  OakUiRoleToken,
   OakFlex,
   OakJauntyAngleLabel,
   OakTextInput,
@@ -57,14 +57,14 @@ const ResourcePageSearchComboBox = <T extends School>(
   const id = useId();
   const labelId = useId();
 
-  let labelBackground: OakColorToken;
+  let labelBackground: OakUiRoleToken;
 
   if (state.isFocused) {
-    labelBackground = "blue";
+    labelBackground = "bg-inverted";
   } else if (hasError) {
-    labelBackground = "red";
+    labelBackground = "bg-error";
   } else {
-    labelBackground = "lemon";
+    labelBackground = "bg-decorative5-main";
   }
 
   return (

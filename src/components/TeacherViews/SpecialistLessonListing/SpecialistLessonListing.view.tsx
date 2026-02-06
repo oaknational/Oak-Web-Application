@@ -73,7 +73,7 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
           },
         ]}
         background={"bg-decorative4-very-subdued"}
-        subjectIconBackgroundColor={"pink"}
+        subjectIconBackgroundColor={"bg-decorative4-main"}
         subjectSlug={subjectSlug}
         subjectTitle={subjectTitle}
         programmeFactor={programmeTitle}
