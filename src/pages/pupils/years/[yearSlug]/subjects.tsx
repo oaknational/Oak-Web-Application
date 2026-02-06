@@ -1,5 +1,4 @@
 import { GetStaticProps } from "next";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
@@ -25,19 +24,17 @@ const PupilSubjectListing = (props: SubjectListingPageProps) => {
   const { yearDescription } = curriculumData[0].programmeFields;
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <AppLayout
-        topNavProps={topNav}
-        seoProps={{
-          ...getSeoProps({
-            title: `${yearDescription} - Subject listing`,
-            description: `Subject listing for ${yearDescription}`,
-          }),
-        }}
-      >
-        <PupilViewsSubjectListing subjects={curriculumData} />
-      </AppLayout>
-    </OakThemeProvider>
+    <AppLayout
+      topNavProps={topNav}
+      seoProps={{
+        ...getSeoProps({
+          title: `${yearDescription} - Subject listing`,
+          description: `Subject listing for ${yearDescription}`,
+        }),
+      }}
+    >
+      <PupilViewsSubjectListing subjects={curriculumData} />
+    </AppLayout>
   );
 };
 

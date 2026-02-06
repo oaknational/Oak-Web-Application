@@ -8,9 +8,7 @@ import {
   OakPupilJourneyLayout,
   OakPupilJourneyProgrammeOptions,
   OakTertiaryButton,
-  OakThemeProvider,
   isValidIconName,
-  oakDefaultTheme,
 } from "@oaknational/oak-components";
 
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
@@ -260,47 +258,45 @@ export const PupilViewsProgrammeListing = ({
   );
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <AppLayout
-        seoProps={{
-          ...getSeoProps({
-            title: `${subjectDescription}, ${phaseSlug}, ${yearDescriptions} - Programme listing`,
-            description: `Programme listing for ${subjectDescription}, ${phaseSlug}, ${yearDescriptions}`,
-          }),
-          noIndex: true,
-          noFollow: false,
-        }}
-        topNavProps={topNav}
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: `${subjectDescription}, ${phaseSlug}, ${yearDescriptions} - Programme listing`,
+          description: `Programme listing for ${subjectDescription}, ${phaseSlug}, ${yearDescriptions}`,
+        }),
+        noIndex: true,
+        noFollow: false,
+      }}
+      topNavProps={topNav}
+    >
+      {" "}
+      <OakPupilJourneyLayout
+        sectionName={"tier-listing"}
+        phase={phaseSlug}
+        topNavSlot={topNavSlot()}
       >
-        {" "}
-        <OakPupilJourneyLayout
-          sectionName={"tier-listing"}
-          phase={phaseSlug}
-          topNavSlot={topNavSlot()}
-        >
+        <OakBox $mb={"spacing-32"}>
           <OakBox $mb={"spacing-32"}>
-            <OakBox $mb={"spacing-32"}>
-              <OakPupilJourneyProgrammeOptions
-                optionTitleSlot={optionTitleSlot}
-                phase={phaseSlug}
-                titleSlot={
-                  <OakPupilJourneyHeader
-                    iconBackground={phaseSlug}
-                    iconName={
-                      isValidIconName(iconSlug) ? iconSlug : "question-mark"
-                    }
-                    title={subjectDescription}
-                    breadcrumbs={breadcrumbs}
-                  />
-                }
-              >
-                <BrowseOptions />
-              </OakPupilJourneyProgrammeOptions>
-            </OakBox>
-            <SignpostTeachersInlineBanner onClose={setFocusAfterClose} />
+            <OakPupilJourneyProgrammeOptions
+              optionTitleSlot={optionTitleSlot}
+              phase={phaseSlug}
+              titleSlot={
+                <OakPupilJourneyHeader
+                  iconBackground={phaseSlug}
+                  iconName={
+                    isValidIconName(iconSlug) ? iconSlug : "question-mark"
+                  }
+                  title={subjectDescription}
+                  breadcrumbs={breadcrumbs}
+                />
+              }
+            >
+              <BrowseOptions />
+            </OakPupilJourneyProgrammeOptions>
           </OakBox>
-        </OakPupilJourneyLayout>
-      </AppLayout>
-    </OakThemeProvider>
+          <SignpostTeachersInlineBanner onClose={setFocusAfterClose} />
+        </OakBox>
+      </OakPupilJourneyLayout>
+    </AppLayout>
   );
 };

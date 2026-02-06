@@ -3,8 +3,6 @@ import {
   OakP,
   OakFlex,
   OakSearchFilterCheckBox,
-  oakDefaultTheme,
-  OakThemeProvider,
   OakBox,
   OakFieldset,
 } from "@oaknational/oak-components";
@@ -91,7 +89,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
   } = props;
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
+    <>
       <OakBox
         $mb="spacing-32"
         $bb={"border-solid-s"}
@@ -221,7 +219,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
           isMobileFilter,
         )}
       </>
-    </OakThemeProvider>
+    </>
   );
 };
 
