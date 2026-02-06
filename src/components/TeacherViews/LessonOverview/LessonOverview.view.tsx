@@ -362,7 +362,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
               ]
         }
         background={"bg-decorative4-very-subdued"}
-        subjectIconBackgroundColor={"pink"}
+        subjectIconBackgroundColor={"bg-decorative4-main"}
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}

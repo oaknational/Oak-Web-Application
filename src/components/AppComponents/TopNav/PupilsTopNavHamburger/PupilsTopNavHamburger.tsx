@@ -104,7 +104,7 @@ function YearSection(
           </OakHeading>
           <OakSvg
             $position={"absolute"}
-            $color={"mint"}
+            $color={"bg-decorative1-main"}
             $display={"block"}
             name={"underline"}
             $height={"spacing-8"}

@@ -111,7 +111,7 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
             >
               <OakIcon
                 iconName="looping-line-1"
-                $colorFilter={"pink"}
+                $colorFilter={"bg-decorative4-main"}
                 $zIndex={"behind"}
                 $objectFit={"fill"}
                 $display={["none", "block"]}
@@ -121,7 +121,7 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
               />
               <OakIcon
                 iconName="looping-line-2"
-                $colorFilter={"pink"}
+                $colorFilter={"bg-decorative4-main"}
                 $zIndex={"behind"}
                 $objectFit={"fill"}
                 $display={["block", "none"]}

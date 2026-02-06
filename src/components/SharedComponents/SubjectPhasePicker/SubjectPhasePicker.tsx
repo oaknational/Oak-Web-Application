@@ -257,7 +257,7 @@ function SubjectContainer({
         >
           <OakIcon
             iconName="content-guidance"
-            $colorFilter={"red"}
+            $colorFilter={"icon-error"}
             $height={"spacing-24"}
           />
           <OakP $color={"text-error"}>
@@ -702,7 +702,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       <OakFlex>
                         <OakIcon
                           iconName="content-guidance"
-                          $colorFilter={"red"}
+                          $colorFilter={"icon-error"}
                           $height={"spacing-24"}
                         />
                         <OakSpan
@@ -955,7 +955,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           <OakFlex>
                             <OakIcon
                               iconName="content-guidance"
-                              $colorFilter={"red"}
+                              $colorFilter={"icon-error"}
                               $height={"spacing-24"}
                             />
                             Select a school phase
@@ -965,7 +965,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           <TruncatedFlex>
                             <OakIcon
                               iconName="content-guidance"
-                              $colorFilter={"red"}
+                              $colorFilter={"icon-error"}
                               $height={"spacing-24"}
                             />
                             <OakSpan
@@ -1029,7 +1029,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           >
                             <OakIcon
                               iconName="content-guidance"
-                              $colorFilter={"red"}
+                              $colorFilter={"icon-error"}
                               $height={"spacing-24"}
                             />
                             <OakP $color={"text-error"}>
@@ -1047,7 +1047,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           >
                             <OakIcon
                               iconName="content-guidance"
-                              $colorFilter={"red"}
+                              $colorFilter={"icon-error"}
                               $height={"spacing-24"}
                             />
                             <OakP $color={"text-error"}>
@@ -1255,7 +1255,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             >
                               <OakIcon
                                 iconName="content-guidance"
-                                $colorFilter={"red"}
+                                $colorFilter={"icon-error"}
                                 $height={"spacing-24"}
                               />
                               <OakP $color="text-error">
@@ -1272,7 +1272,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             >
                               <OakIcon
                                 iconName="content-guidance"
-                                $colorFilter={"red"}
+                                $colorFilter={"icon-error"}
                                 $height={"spacing-24"}
                               />
                               <OakP $color="text-error">

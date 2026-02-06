@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { OakColorToken } from "@oaknational/oak-components";
+import { OakUiRoleToken } from "@oaknational/oak-components";
 
 import CurricQuote from "./CurricQuote";
 
@@ -17,27 +17,26 @@ const meta: Meta<typeof CurricQuote> = {
     backgroundColor: {
       control: "select",
       options: [
-        "mint",
-        "mint50",
-        "mint30",
-        "lemon",
-        "lemon50",
-        "oakGreen",
-        "white",
-        "grey20",
-      ] as OakColorToken[],
+        "bg-decorative1-main",
+        "bg-decorative1-subdue",
+        "bg-decorative1-very-subdued",
+        "bg-decorative5-main",
+        "bg-decorative5-subdued",
+        "bg-primary",
+        "bg-neutral",
+      ] as OakUiRoleToken[],
       description: "Background color of the quote box",
     },
     barColor: {
       control: "select",
       options: [
-        "oakGreen",
-        "mint",
-        "mint30",
-        "lemon",
-        "black",
-        "white",
-      ] as OakColorToken[],
+        "bg-success",
+        "bg-decorative1-main",
+        "bg-decorative1-very-subdued",
+        "bg-decorative5-main",
+        "bg-inverted",
+        "bg-primary",
+      ] as OakUiRoleToken[],
       description: "Color of the decorative vertical bar",
     },
     headingProps: {

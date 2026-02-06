@@ -4813,7 +4813,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       >
                         <a
                           class="c109 c91 c110"
-                          href="/about-us/meet-the-team/ed-southall"
+                          href="/about-us/meet-the-team/ed-southall?section=leadership"
                         >
                           <div
                             class="c111 c112"
@@ -4893,7 +4893,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       >
                         <a
                           class="c109 c91 c110"
-                          href="/about-us/meet-the-team/ed-southall"
+                          href="/about-us/meet-the-team/ed-southall?section=board"
                         >
                           <div
                             class="c111 c112"
