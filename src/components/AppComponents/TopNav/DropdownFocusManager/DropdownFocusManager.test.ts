@@ -4,9 +4,22 @@ import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fi
 
 const mockData = topNavFixture.teachers!;
 
+const subNavButtons = [
+  { label: "Primary", slug: "primary" },
+  { label: "Secondary", slug: "secondary" },
+  { label: "Curriculum", slug: "curriculum-landing-page" },
+  { label: "Guidance", slug: "guidance" },
+  { label: "About us", slug: "aboutUs" },
+];
+
 describe("DropdownFocusManager", () => {
   it("should build focusMap with correct top-level sections", () => {
-    const manager = new DropdownFocusManager(mockData, () => undefined);
+    const manager = new DropdownFocusManager(
+      mockData,
+      "teachers",
+      subNavButtons,
+      () => undefined,
+    );
 
     const focusMap = manager.getFocusMap();
     // Top-level keys
@@ -17,7 +30,12 @@ describe("DropdownFocusManager", () => {
   });
 
   it("should build children for keystages and subjects", () => {
-    const manager = new DropdownFocusManager(mockData, () => undefined);
+    const manager = new DropdownFocusManager(
+      mockData,
+      "teachers",
+      subNavButtons,
+      () => undefined,
+    );
 
     const focusMap = manager.getFocusMap();
     // Check a keystage node
@@ -37,7 +55,12 @@ describe("DropdownFocusManager", () => {
   });
 
   it("should mark first and last children correctly", () => {
-    const manager = new DropdownFocusManager(mockData, () => undefined);
+    const manager = new DropdownFocusManager(
+      mockData,
+      "teachers",
+      subNavButtons,
+      () => undefined,
+    );
 
     const focusMap = manager.getFocusMap();
     // First child in ks1
@@ -54,7 +77,12 @@ describe("DropdownFocusManager", () => {
   });
 
   it("should build focusMap for aboutUs and guidance sections", () => {
-    const manager = new DropdownFocusManager(mockData, () => undefined);
+    const manager = new DropdownFocusManager(
+      mockData,
+      "teachers",
+      subNavButtons,
+      () => undefined,
+    );
 
     const focusMap = manager.getFocusMap();
     // AboutUs links
@@ -66,10 +94,15 @@ describe("DropdownFocusManager", () => {
   });
 
   describe("focusFirstChild behavior", () => {
-    let manager: DropdownFocusManager;
+    let manager: DropdownFocusManager<typeof mockData>;
     let event: React.KeyboardEvent<HTMLDivElement>;
     beforeEach(() => {
-      manager = new DropdownFocusManager(mockData, () => undefined);
+      manager = new DropdownFocusManager(
+        mockData,
+        "teachers",
+        subNavButtons,
+        () => undefined,
+      );
       event = {
         preventDefault: jest.fn(),
       } as unknown as React.KeyboardEvent<HTMLDivElement>;
@@ -106,10 +139,15 @@ describe("DropdownFocusManager", () => {
     });
   });
   describe("focusParentSibling and focusParent behavior", () => {
-    let manager: DropdownFocusManager;
+    let manager: DropdownFocusManager<typeof mockData>;
     let event: React.KeyboardEvent<HTMLDivElement>;
     beforeEach(() => {
-      manager = new DropdownFocusManager(mockData, () => undefined);
+      manager = new DropdownFocusManager(
+        mockData,
+        "teachers",
+        subNavButtons,
+        () => undefined,
+      );
       event = {
         preventDefault: jest.fn(),
       } as unknown as React.KeyboardEvent<HTMLDivElement>;
