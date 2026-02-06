@@ -44,7 +44,7 @@ export const pupilLessonListingQuery =
 
     const lessonContentBySlug = contentRes.data.map((content) => {
       return {
-        exit_quiz_count: content.exit_quiz?.length || 0,
+        exit_quiz_count: content.exit_quiz?.length,
         lesson_slug: content.lesson_slug,
       };
     });
