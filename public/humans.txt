@@ -27,6 +27,10 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Ben Protheroe (Software Engineer)
   From: London, lives in Cornwall
 
+  Cat Miller (Software Engineer)
+  LinkedIn: https://linkedin.com/in/cat-miller
+  From: Manchester, UK
+
   Dan Dupont (Product Manager)
   LinkedIn: https://www.linkedin.com/in/dandupontlopez/
   From: Bristol, UK
