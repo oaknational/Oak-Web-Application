@@ -141,7 +141,7 @@ describe("ProgrammeSequence", () => {
     resizeWindow(390, 844);
     render(<ProgrammeSequence {...CurricVisualiserFixture} />);
 
-    const unitCards = screen.getAllByTestId("unit-card");
+    const unitCards = screen.getAllByTestId("card-listing-container");
 
     expect(unitCards).toHaveLength(1);
   });
@@ -171,7 +171,7 @@ describe("Programme units sequence filter states", () => {
         />,
       );
 
-      const unitCards = screen.getAllByTestId("unit-card");
+      const unitCards = screen.getAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(5);
     });
 
@@ -256,7 +256,7 @@ describe("Programme units sequence filter states", () => {
         await screen.findAllByText(/'sub-cat-1' units continue in Year 10/i),
       ).toHaveLength(2);
 
-      const unitCards = await screen.findAllByTestId("unit-card");
+      const unitCards = await screen.findAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(2);
     });
 
@@ -285,7 +285,7 @@ describe("Programme units sequence filter states", () => {
       expect(
         await screen.findAllByText(/'sub-cat-1' units continue in Year 11/i),
       ).toHaveLength(3);
-      const unitCards = await screen.findAllByTestId("unit-card");
+      const unitCards = await screen.findAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(2);
     });
 
@@ -310,7 +310,7 @@ describe("Programme units sequence filter states", () => {
           filters={filterFixture}
         />,
       );
-      const unitCards = await screen.findAllByTestId("unit-card");
+      const unitCards = await screen.findAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(2);
       const messages = await screen.findAllByText(
         /No 'sub-cat-1' units in this year group/i,
@@ -340,7 +340,7 @@ describe("Programme units sequence filter states", () => {
         />,
       );
 
-      const unitCards = await screen.findAllByTestId("unit-card");
+      const unitCards = await screen.findAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(2);
       expect(
         await screen.findByText(/'sub-cat-1' units start in Year 8/i),
@@ -405,7 +405,7 @@ describe("Programme units sequence filter states", () => {
       expect(
         await screen.findAllByText(/'sub-cat-1' units start in Year 2/i),
       ).toHaveLength(1);
-      const unitCards = await screen.findAllByTestId("unit-card");
+      const unitCards = await screen.findAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(5);
     });
 
@@ -437,7 +437,7 @@ describe("Programme units sequence filter states", () => {
       expect(
         await screen.findAllByText(/'sub-cat-1' units continue in Year 4/i),
       ).toHaveLength(2);
-      const unitCards = await screen.findAllByTestId("unit-card");
+      const unitCards = await screen.findAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(3);
     });
   });
