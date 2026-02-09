@@ -114,7 +114,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                 {/* Job title */}
                 {role && (
                   <OakBox
-                    $background={"lemon"}
+                    $background={"bg-decorative5-main"}
                     $ph={"spacing-4"}
                     style={{ width: "fit-content" }}
                   >
