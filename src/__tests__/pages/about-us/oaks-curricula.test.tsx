@@ -15,6 +15,9 @@ import OaksCurricula, {
 
 jest.mock("@/node-lib/posthog/getFeatureFlag");
 jest.mock("../../../node-lib/cms");
+globalThis.matchMedia = jest.fn().mockReturnValue({
+  matches: true,
+});
 
 const testAboutWhoWeArePageData: OaksCurriculaPage["pageData"] = {
   ...testAboutPageBaseData,
@@ -22,6 +25,25 @@ const testAboutWhoWeArePageData: OaksCurriculaPage["pageData"] = {
     textRaw: portableTextFromString(
       "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
     ),
+  },
+  partners: {
+    legacy: new Array(16).fill(true).map((_, index) => {
+      return { imageUrl: `/#${index}`, alt: "" };
+    }),
+    current: new Array(16).fill(true).map((_, index) => {
+      return { imageUrl: `/#${index}`, alt: "" };
+    }),
+  },
+  curriculumPhaseOptions: {
+    subjects: [
+      {
+        title: "Maths",
+        slug: "maths",
+        phases: [],
+        ks4_options: null,
+      },
+    ],
+    tab: "units",
   },
 };
 
@@ -32,7 +54,7 @@ describe("pages/about/oaks-curricula.tsx", () => {
   });
 
   it("renders", () => {
-    const { container } = renderWithProviders()(
+    const { container, getAllByRole } = renderWithProviders()(
       <OaksCurricula
         pageData={testAboutWhoWeArePageData}
         topNav={topNavFixture}
@@ -40,6 +62,10 @@ describe("pages/about/oaks-curricula.tsx", () => {
     );
 
     expect(container).toMatchSnapshot();
+    const headings = getAllByRole("heading", { level: 2 });
+    expect(headings[0]).toHaveTextContent("Our guiding principles");
+    expect(headings[1]).toHaveTextContent("See Oak’s curriculum in practice");
+    expect(headings[2]).toHaveTextContent("Curriculum partners");
   });
 
   describe("getStaticProps", () => {

@@ -4896,65 +4896,61 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="c11 c109"
+                      class="c11 c106"
                     >
-                      <ul
-                        style="padding: 0px; margin: 0px;"
+                      <div
+                        class="c107 c108"
                       >
-                        <div
-                          class="c110 c111"
+                        <a
+                          class="c109 c91 c110"
+                          href="/about-us/meet-the-team/ed-southall"
                         >
-                          <a
-                            class="c112 c94 c113"
-                            href="/about-us/meet-the-team/ed-southall"
+                          <div
+                            class="c111 c112"
                           >
                             <div
-                              class="c114 c115"
+                              class="c11 c91"
+                            >
+                              <h3
+                                class="c113"
+                              >
+                                Ed Southall
+                              </h3>
+                              <p
+                                class="c114"
+                              >
+                                Subject Lead (maths)
+                              </p>
+                            </div>
+                            <div
+                              class="c11 c115"
                             >
                               <div
-                                class="c11 c94"
+                                class="c11 c43"
                               >
-                                <h3
-                                  class="c116"
+                                <span
+                                  class="c29"
                                 >
-                                  Ed Southall
-                                </h3>
-                                <p
-                                  class="c117"
-                                >
-                                  Subject Lead (maths)
-                                </p>
-                              </div>
-                              <div
-                                class="c11 c118"
-                              >
+                                  See bio
+                                </span>
                                 <div
-                                  class="c11 c43"
+                                  class="c24"
                                 >
-                                  <span
-                                    class="c29"
-                                  >
-                                    See bio
-                                  </span>
-                                  <div
-                                    class="c24"
-                                  >
-                                    <img
-                                      alt=""
-                                      class="c25"
-                                      data-nimg="fill"
-                                      decoding="async"
-                                      loading="lazy"
-                                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                    />
-                                  </div>
+                                  <img
+                                    alt=""
+                                    class="c25"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
                                 </div>
                               </div>
                             </div>
-                          </a>
-                        </div>
-                      </ul>
+                          </div>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -4980,65 +4976,61 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="c11 c109"
+                      class="c11 c106"
                     >
-                      <ul
-                        style="padding: 0px; margin: 0px;"
+                      <div
+                        class="c107 c108"
                       >
-                        <div
-                          class="c110 c111"
+                        <a
+                          class="c109 c91 c110"
+                          href="/about-us/meet-the-team/ed-southall"
                         >
-                          <a
-                            class="c112 c94 c113"
-                            href="/about-us/meet-the-team/ed-southall"
+                          <div
+                            class="c111 c112"
                           >
                             <div
-                              class="c114 c115"
+                              class="c11 c91"
+                            >
+                              <h3
+                                class="c113"
+                              >
+                                Ed Southall
+                              </h3>
+                              <p
+                                class="c114"
+                              >
+                                Subject Lead (maths)
+                              </p>
+                            </div>
+                            <div
+                              class="c11 c115"
                             >
                               <div
-                                class="c11 c94"
+                                class="c11 c43"
                               >
-                                <h3
-                                  class="c116"
+                                <span
+                                  class="c29"
                                 >
-                                  Ed Southall
-                                </h3>
-                                <p
-                                  class="c117"
-                                >
-                                  Subject Lead (maths)
-                                </p>
-                              </div>
-                              <div
-                                class="c11 c118"
-                              >
+                                  See bio
+                                </span>
                                 <div
-                                  class="c11 c43"
+                                  class="c24"
                                 >
-                                  <span
-                                    class="c29"
-                                  >
-                                    See bio
-                                  </span>
-                                  <div
-                                    class="c24"
-                                  >
-                                    <img
-                                      alt=""
-                                      class="c25"
-                                      data-nimg="fill"
-                                      decoding="async"
-                                      loading="lazy"
-                                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                    />
-                                  </div>
+                                  <img
+                                    alt=""
+                                    class="c25"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
                                 </div>
                               </div>
                             </div>
-                          </a>
-                        </div>
-                      </ul>
+                          </div>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>

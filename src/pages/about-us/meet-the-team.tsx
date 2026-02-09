@@ -141,7 +141,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     >
                       <OakCard
                         heading={member.name}
-                        href={`/about-us/meet-the-team/${slug}`}
+                        href={`/about-us/meet-the-team/${slug}?section=leadership`}
                         cardWidth={"100%"}
                         imageSrc={imageUrl}
                         subCopy={member.role ?? ""}
@@ -174,7 +174,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                       <OakCard
                         key={member.id}
                         heading={member.name}
-                        href={`/about-us/meet-the-team/${slug}`}
+                        href={`/about-us/meet-the-team/${slug}?section=board`}
                         cardWidth={"100%"}
                         imageSrc={imageUrl}
                         subCopy={member.role ?? ""}

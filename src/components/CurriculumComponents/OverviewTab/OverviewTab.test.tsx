@@ -15,22 +15,14 @@ jest.mock("@mux/mux-player-react/lazy", () => {
     return <div data-testid="mux-player-mock" />;
   });
 });
-const routeReplaceMock = jest.fn((url: string) => {
-  console.log(url);
-});
-jest.mock("next/router", () => ({
-  __esModule: true,
-  ...jest.requireActual("next/router"),
-  useRouter: () => ({
-    ...jest.requireActual("next/router").useRouter,
-    replace: (url: string) => routeReplaceMock(url),
-  }),
-}));
 
 describe("Component - Overview Tab", () => {
+  const mockOnClickNavItem = jest.fn();
+
   beforeEach(() => {
     jest.resetAllMocks();
     jest.clearAllMocks();
+    mockOnClickNavItem.mockClear();
 
     // Not supported in jsdom
     Element.prototype.checkVisibility = jest.fn(() => true) as jest.Mock;
@@ -43,7 +35,7 @@ describe("Component - Overview Tab", () => {
       "Sequences learning over time which: • Builds musical knowledge, techniques and specialist language • Promotes the understanding of a diverse range of genres, traditions and styles • Develops pupils analytical skills in responding to different types of music",
     ];
     const { getByTestId, queryByTestId } = render(
-      <OverviewTab data={fixture} />,
+      <OverviewTab data={fixture} onClickNavItem={mockOnClickNavItem} />,
     );
     const explainer = getByTestId("explainer");
     expect(explainer).toHaveTextContent("Aims and purpose");
@@ -88,7 +80,9 @@ describe("Component - Overview Tab", () => {
         curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
       },
     ];
-    const { queryAllByTestId } = render(<OverviewTab data={fixture} />);
+    const { queryAllByTestId } = render(
+      <OverviewTab data={fixture} onClickNavItem={mockOnClickNavItem} />,
+    );
     const partnerElements = queryAllByTestId("curriculum-partner");
     expect(partnerElements.length).toBe(2);
     expect(partnerElements[0]).toHaveTextContent("PARTNER_PORTABLETEXT_1");
@@ -109,7 +103,9 @@ describe("Component - Overview Tab", () => {
         curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
       },
     ];
-    const { queryAllByTestId } = render(<OverviewTab data={fixture} />);
+    const { queryAllByTestId } = render(
+      <OverviewTab data={fixture} onClickNavItem={mockOnClickNavItem} />,
+    );
     const partnerElements = queryAllByTestId("curriculum-partner");
     expect(partnerElements.length).toBe(2);
     expect(partnerElements[0]).toHaveTextContent("PARTNER_1");
@@ -124,7 +120,7 @@ describe("Component - Overview Tab", () => {
     fixture.curriculumCMSInfo.video = mockVideoAsset();
     fixture.curriculumCMSInfo.videoExplainer = "testing";
     const { getByTestId, queryByTestId } = render(
-      <OverviewTab data={fixture} />,
+      <OverviewTab data={fixture} onClickNavItem={mockOnClickNavItem} />,
     );
     const explainer = getByTestId("explainer");
     expect(explainer).toHaveTextContent("Aims and purpose");
@@ -133,21 +129,21 @@ describe("Component - Overview Tab", () => {
 
   test("click heading links", async () => {
     const fixture = curriculumOverviewTabFixture();
-    const { getAllByRole } = render(<OverviewTab data={fixture} />);
+    const { getAllByRole } = render(
+      <OverviewTab data={fixture} onClickNavItem={mockOnClickNavItem} />,
+    );
     const links = getAllByRole("link");
     expect(links[0]).toHaveTextContent("Aims and purpose");
     act(() => {
       links[0]!.click();
     });
-    expect(routeReplaceMock).toHaveBeenCalledWith("#header-aims-and-purpose");
-    routeReplaceMock.mockClear();
+    expect(mockOnClickNavItem).toHaveBeenCalledWith("#header-aims-and-purpose");
     (Element.prototype.checkVisibility as jest.Mock).mockClear();
 
     act(() => {
       links[1]!.click();
     });
-    expect(routeReplaceMock).toHaveBeenCalledWith("#header-heading-1");
-    routeReplaceMock.mockClear();
+    expect(mockOnClickNavItem).toHaveBeenCalledWith("#header-heading-1");
     (Element.prototype.checkVisibility as jest.Mock).mockClear();
   });
 });
