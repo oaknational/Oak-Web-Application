@@ -199,10 +199,10 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               )}
 
               <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-                <OakHeading tag="h3" $font={"heading-5"}>
+                <OakHeading tag="h2" $font={["heading-5", "heading-3", "heading-3"]}>
                   {SECTION_TITLES.governance}
                 </OakHeading>
-                <OakTypography $font={["body-1", "body-2"]}>
+                <OakTypography $font={["body-2", "body-1", "body-1"]}>
                   <PortableTextWithDefaults
                     value={governancePortableText}
                     withoutDefaultComponents
