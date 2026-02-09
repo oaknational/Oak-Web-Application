@@ -38,7 +38,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA iDBIXi iIsMWd"
             >
               <div
-                class="sc-aXZVg sc-kMkxaj bpmavV jEjmXi"
+                class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
               >
                 <a
                   href="#item_one"
@@ -95,7 +95,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA iDBIXi iIsMWd"
             >
               <div
-                class="sc-aXZVg sc-kMkxaj bpmavV jEjmXi"
+                class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
               >
                 <a
                   href="#item_two"
@@ -152,7 +152,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA iDBIXi iIsMWd"
             >
               <div
-                class="sc-aXZVg sc-kMkxaj bpmavV jEjmXi"
+                class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
               >
                 <a
                   href="#item_three"
@@ -209,7 +209,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
               class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA iDBIXi iIsMWd"
             >
               <div
-                class="sc-aXZVg sc-kMkxaj bpmavV jEjmXi"
+                class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
               >
                 <a
                   href="#item_four"

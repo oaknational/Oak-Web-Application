@@ -279,13 +279,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c92 {
+.c93 {
   padding: 3rem;
   background: #dff9de;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c101 {
+.c102 {
   position: relative;
   width: 1.5rem;
   min-width: 1.5rem;
@@ -296,32 +296,33 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c102 {
+.c103 {
   padding-bottom: 5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c104 {
+.c105 {
   padding: 1rem;
   background: #fff7cc;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c109 {
+.c110 {
   width: 100%;
+  height: 100%;
   background: #ffffff;
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c111 {
+.c112 {
   height: 100%;
   padding: 1rem;
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c113 {
+.c114 {
   height: 100%;
   padding-top: 0rem;
   padding-bottom: 0rem;
@@ -331,8 +332,8 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 .c119 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   -webkit-letter-spacing: -0.005rem;
   -moz-letter-spacing: -0.005rem;
   -ms-letter-spacing: -0.005rem;
@@ -911,7 +912,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: none;
 }
 
-.c93 {
+.c94 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -922,7 +923,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c99 {
+.c100 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -937,7 +938,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   column-gap: 1rem;
 }
 
-.c103 {
+.c104 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -952,7 +953,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 2rem;
 }
 
-.c105 {
+.c106 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -963,7 +964,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 2rem;
 }
 
-.c114 {
+.c115 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -978,7 +979,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c117 {
+.c118 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1244,7 +1245,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c100 {
+.c101 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
@@ -1887,7 +1888,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c94 {
+.c95 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
   font-size: 1rem;
@@ -1899,7 +1900,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #575757;
 }
 
-.c106 {
+.c107 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1910,22 +1911,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c115 {
+.c116 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.5rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
-  letter-spacing: 0.0115rem;
-}
-
-.c118 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 600;
-  font-size: 1.5rem;
-  line-height: 2rem;
   -webkit-letter-spacing: 0.0115rem;
   -moz-letter-spacing: 0.0115rem;
   -ms-letter-spacing: 0.0115rem;
@@ -1958,7 +1948,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #222222;
 }
 
-.c96 {
+.c97 {
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -1987,7 +1977,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #222222;
 }
 
-.c107 {
+.c108 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1.125rem;
@@ -1998,7 +1988,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c116 {
+.c117 {
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -2058,8 +2048,8 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 .c120 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   -webkit-letter-spacing: -0.005rem;
   -moz-letter-spacing: -0.005rem;
   -ms-letter-spacing: -0.005rem;
@@ -2077,7 +2067,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c95 {
+.c96 {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -2244,7 +2234,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   column-gap: 1rem;
 }
 
-.c108 {
+.c109 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
@@ -2316,26 +2306,26 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   grid-row: span 1;
 }
 
-.c110 {
+.c111 {
   box-shadow: none;
 }
 
-.c110:has(a:hover,button:hover) {
+.c111:has(a:hover,button:hover) {
   background-color: #f2f2f2;
   box-shadow: none;
 }
 
-.c110:has( a, button) {
+.c111:has( a, button) {
   border-radius: 0.5rem;
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c110:has( a, button)  a,
-.c110:has( a, button) button {
+.c111:has( a, button)  a,
+.c111:has( a, button) button {
   outline: none;
 }
 
-.c110:has(a:active,button:active) {
+.c111:has(a:active,button:active) {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
@@ -2361,12 +2351,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c91 {
+.c92 {
   position: absolute;
   top: 0;
 }
 
-.c112 {
+.c113 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2374,7 +2364,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c112:hover h3 {
+.c113:hover h3 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
@@ -2387,7 +2377,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c97 {
+.c98 {
   -webkit-text-decoration: none;
   text-decoration: none;
   display: -webkit-box;
@@ -2412,20 +2402,20 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   padding-right: 0rem;
 }
 
-.c97:focus-visible {
+.c98:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
   border-color: transparent;
   border-radius: 4px;
 }
 
-.c98 {
+.c99 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.c90 {
+.c91 {
   outline: none;
 }
 
@@ -2874,6 +2864,23 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: block;
 }
 
+.c90 a {
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  padding-left: 16px;
+}
+
+.c90 a:hover {
+  border-color: #222;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
 @media (min-width:750px) {
   .c0 {
     right: 1.5rem;
@@ -3073,31 +3080,31 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c92 {
+  .c93 {
     padding: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c92 {
+  .c93 {
     background: #ffffff;
   }
 }
 
 @media (min-width:750px) {
-  .c101 {
+  .c102 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c104 {
+  .c105 {
     padding: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c104 {
+  .c105 {
     padding: 1.5rem;
   }
 }
@@ -3108,19 +3115,46 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   }
 }
 
-@media (min-width:750px) {
+@media (min-width:1280px) {
   .c119 {
-    font-size: 1rem;
+    font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
   .c119 {
-    line-height: 1.5rem;
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c119 {
+    font-size: 1.125rem;
   }
 }
 
 @media (min-width:750px) {
+  .c119 {
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c119 {
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c119 {
+    -webkit-letter-spacing: -0.005rem;
+    -moz-letter-spacing: -0.005rem;
+    -ms-letter-spacing: -0.005rem;
+    letter-spacing: -0.005rem;
+  }
+}
+
+@media (min-width:1280px) {
   .c119 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
@@ -3408,7 +3442,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c99 {
+  .c100 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -3416,20 +3450,20 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c99 {
+  .c100 {
     -webkit-column-gap: 0.25rem;
     column-gap: 0.25rem;
   }
 }
 
 @media (min-width:750px) {
-  .c103 {
+  .c104 {
     gap: 3.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c103 {
+  .c104 {
     gap: 3.5rem;
   }
 }
@@ -3732,43 +3766,43 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c106 {
+  .c107 {
     font-weight: 600;
   }
 }
 
 @media (min-width:1280px) {
-  .c106 {
+  .c107 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c106 {
+  .c107 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c106 {
+  .c107 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c106 {
+  .c107 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c106 {
+  .c107 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:750px) {
-  .c106 {
+  .c107 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3777,7 +3811,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c106 {
+  .c107 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3905,19 +3939,46 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   }
 }
 
-@media (min-width:750px) {
+@media (min-width:1280px) {
   .c120 {
-    font-size: 1rem;
+    font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
   .c120 {
-    line-height: 1.5rem;
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c120 {
+    font-size: 1.125rem;
   }
 }
 
 @media (min-width:750px) {
+  .c120 {
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c120 {
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c120 {
+    -webkit-letter-spacing: -0.005rem;
+    -moz-letter-spacing: -0.005rem;
+    -ms-letter-spacing: -0.005rem;
+    letter-spacing: -0.005rem;
+  }
+}
+
+@media (min-width:1280px) {
   .c120 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
@@ -3982,11 +4043,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c97 {
+  .c98 {
     border-left: 4px solid transparent;
   }
 
-  .c97:hover {
+  .c98:hover {
     -webkit-text-decoration: underline;
     text-decoration: underline;
     border-color: #bef2bd;
@@ -3994,7 +4055,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c97 {
+  .c98 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -4002,7 +4063,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c97 {
+  .c98 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -4011,13 +4072,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c97 {
+  .c98 {
     padding-left: 0.75rem;
   }
 }
 
 @media (min-width:750px) {
-  .c97 {
+  .c98 {
     padding-right: 0.75rem;
   }
 }
@@ -4691,292 +4752,304 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c88 c89"
                 style="min-width: 200px;"
               >
-                <nav
-                  aria-labelledby="side-menu-header"
+                <div
                   class="c90"
                 >
-                  <span
+                  <nav
+                    aria-labelledby="side-menu-header"
                     class="c91"
-                    id=""
-                  />
-                  <div
-                    class="c92 c93"
                   >
-                    <h2
-                      class="c94"
-                      id="side-menu-header"
+                    <span
+                      class="c92"
+                      id=""
                     />
-                    <ul
-                      class="c95"
+                    <div
+                      class="c93 c94"
                     >
-                      <li
+                      <h2
+                        class="c95"
+                        id="side-menu-header"
+                      />
+                      <ul
                         class="c96"
                       >
-                        <a
-                          class="c97 c98"
-                          href="#our-leadership"
+                        <li
+                          class="c97"
                         >
-                          <div
-                            class="c11 c99"
+                          <a
+                            class="c98 c99"
+                            href="#our-leadership"
                           >
-                            <span
-                              class="c100"
+                            <div
+                              class="c11 c100"
                             >
-                              Our leadership
-                            </span>
-                          </div>
-                          <div
-                            class="c101"
-                          >
-                            <img
-                              alt=""
-                              class="c25"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
-                          </div>
-                        </a>
-                      </li>
-                      <li
-                        class="c96"
-                      >
-                        <a
-                          class="c97 c98"
-                          href="#our-board"
+                              <span
+                                class="c101"
+                              >
+                                Our leadership
+                              </span>
+                            </div>
+                            <div
+                              class="c102"
+                            >
+                              <img
+                                alt=""
+                                class="c25"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </li>
+                        <li
+                          class="c97"
                         >
-                          <div
-                            class="c11 c99"
+                          <a
+                            class="c98 c99"
+                            href="#our-board"
                           >
-                            <span
-                              class="c100"
+                            <div
+                              class="c11 c100"
                             >
-                              Our board
-                            </span>
-                          </div>
-                          <div
-                            class="c101"
-                          >
-                            <img
-                              alt=""
-                              class="c25"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
-                          </div>
-                        </a>
-                      </li>
-                      <li
-                        class="c96"
-                      >
-                        <a
-                          class="c97 c98"
-                          href="#documents"
+                              <span
+                                class="c101"
+                              >
+                                Our board
+                              </span>
+                            </div>
+                            <div
+                              class="c102"
+                            >
+                              <img
+                                alt=""
+                                class="c25"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </li>
+                        <li
+                          class="c97"
                         >
-                          <div
-                            class="c11 c99"
+                          <a
+                            class="c98 c99"
+                            href="#documents"
                           >
-                            <span
-                              class="c100"
+                            <div
+                              class="c11 c100"
                             >
-                              Documents
-                            </span>
-                          </div>
-                          <div
-                            class="c101"
-                          >
-                            <img
-                              alt=""
-                              class="c25"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
-                          </div>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </nav>
+                              <span
+                                class="c101"
+                              >
+                                Documents
+                              </span>
+                            </div>
+                            <div
+                              class="c102"
+                            >
+                              <img
+                                alt=""
+                                class="c25"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+                </div>
               </div>
               <div
-                class="c102 c103"
+                class="c103 c104"
               >
                 <div
-                  class="c104"
+                  class="c105"
                   id="our-leadership"
                 >
                   <div
-                    class="c11 c105"
+                    class="c11 c106"
                   >
                     <div
-                      class="c11 c93"
+                      class="c11 c94"
                     >
                       <h2
-                        class="c106"
+                        class="c107"
                       >
                         Our leadership
                       </h2>
                       <p
-                        class="c107"
+                        class="c108"
                       >
                         Our leadership team brings together experts to deliver the best support to teachers and value for money for the public.
                       </p>
                     </div>
                     <div
-                      class="c11 c108"
+                      class="c11 c109"
                     >
-                      <div
-                        class="c109 c110"
+                      <ul
+                        style="padding: 0px; margin: 0px;"
                       >
-                        <a
-                          class="c111 c93 c112"
-                          href="/about-us/meet-the-team/ed-southall"
+                        <div
+                          class="c110 c111"
                         >
-                          <div
-                            class="c113 c114"
+                          <a
+                            class="c112 c94 c113"
+                            href="/about-us/meet-the-team/ed-southall"
                           >
                             <div
-                              class="c11 c93"
-                            >
-                              <h3
-                                class="c115"
-                              >
-                                Ed Southall
-                              </h3>
-                              <p
-                                class="c116"
-                              >
-                                Subject Lead (maths)
-                              </p>
-                            </div>
-                            <div
-                              class="c11 c117"
+                              class="c114 c115"
                             >
                               <div
-                                class="c11 c43"
+                                class="c11 c94"
                               >
-                                <span
-                                  class="c29"
+                                <h3
+                                  class="c116"
                                 >
-                                  See bio
-                                </span>
+                                  Ed Southall
+                                </h3>
+                                <p
+                                  class="c117"
+                                >
+                                  Subject Lead (maths)
+                                </p>
+                              </div>
+                              <div
+                                class="c11 c118"
+                              >
                                 <div
-                                  class="c24"
+                                  class="c11 c43"
                                 >
-                                  <img
-                                    alt=""
-                                    class="c25"
-                                    data-nimg="fill"
-                                    decoding="async"
-                                    loading="lazy"
-                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                  />
+                                  <span
+                                    class="c29"
+                                  >
+                                    See bio
+                                  </span>
+                                  <div
+                                    class="c24"
+                                  >
+                                    <img
+                                      alt=""
+                                      class="c25"
+                                      data-nimg="fill"
+                                      decoding="async"
+                                      loading="lazy"
+                                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                    />
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </a>
-                      </div>
+                          </a>
+                        </div>
+                      </ul>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="c104"
+                  class="c105"
                   id="our-board"
                 >
                   <div
-                    class="c11 c105"
+                    class="c11 c106"
                   >
                     <div
-                      class="c11 c93"
+                      class="c11 c94"
                     >
                       <h2
-                        class="c106"
+                        class="c107"
                       >
                         Our board
                       </h2>
                       <p
-                        class="c107"
+                        class="c108"
                       >
                         Our Board oversees all of our work at Oak National Academy. They provide strategic direction and safeguard our independence.
                       </p>
                     </div>
                     <div
-                      class="c11 c108"
+                      class="c11 c109"
                     >
-                      <div
-                        class="c109 c110"
+                      <ul
+                        style="padding: 0px; margin: 0px;"
                       >
-                        <a
-                          class="c111 c93 c112"
-                          href="/about-us/meet-the-team/ed-southall"
+                        <div
+                          class="c110 c111"
                         >
-                          <div
-                            class="c113 c114"
+                          <a
+                            class="c112 c94 c113"
+                            href="/about-us/meet-the-team/ed-southall"
                           >
                             <div
-                              class="c11 c93"
-                            >
-                              <h3
-                                class="c115"
-                              >
-                                Ed Southall
-                              </h3>
-                              <p
-                                class="c116"
-                              >
-                                Subject Lead (maths)
-                              </p>
-                            </div>
-                            <div
-                              class="c11 c117"
+                              class="c114 c115"
                             >
                               <div
-                                class="c11 c43"
+                                class="c11 c94"
                               >
-                                <span
-                                  class="c29"
+                                <h3
+                                  class="c116"
                                 >
-                                  See bio
-                                </span>
+                                  Ed Southall
+                                </h3>
+                                <p
+                                  class="c117"
+                                >
+                                  Subject Lead (maths)
+                                </p>
+                              </div>
+                              <div
+                                class="c11 c118"
+                              >
                                 <div
-                                  class="c24"
+                                  class="c11 c43"
                                 >
-                                  <img
-                                    alt=""
-                                    class="c25"
-                                    data-nimg="fill"
-                                    decoding="async"
-                                    loading="lazy"
-                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                  />
+                                  <span
+                                    class="c29"
+                                  >
+                                    See bio
+                                  </span>
+                                  <div
+                                    class="c24"
+                                  >
+                                    <img
+                                      alt=""
+                                      class="c25"
+                                      data-nimg="fill"
+                                      decoding="async"
+                                      loading="lazy"
+                                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                    />
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </a>
-                      </div>
+                          </a>
+                        </div>
+                      </ul>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="c11 c93"
+                  class="c11 c94"
                 >
-                  <h3
-                    class="c118"
+                  <h2
+                    class="c107"
                   >
                     Governance
-                  </h3>
+                  </h2>
                   <div
                     class="c119 c120"
                   >
