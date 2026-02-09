@@ -3,8 +3,6 @@ import {
   OakBox,
   OakCard,
   OakFlex,
-  OakGrid,
-  OakGridArea,
   OakHeading,
   OakSideMenuNav,
   OakTypography,
@@ -72,9 +70,15 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
           titleHighlight="bg-decorative5-main"
         />
         <InnerMaxWidth>
-          <OakGrid $cg={"spacing-16"}>
-            <OakGridArea $colSpan={2} $pb={"spacing-80"}>
-              <OakBox $position={"sticky"} $top="spacing-20" $pb={"spacing-80"}>
+          <OakFlex $gap={["spacing-0", "spacing-16", "spacing-16"]}>
+            <OakBox $pb={"spacing-80"}>
+              <OakBox
+                $minWidth={"spacing-180"}
+                $display={["none", "block", "block"]}
+                $position={"sticky"}
+                $top="spacing-20"
+                $pb={"spacing-80"}
+              >
                 <OakSideMenuNav
                   heading="Page sections"
                   anchorTargetId=""
@@ -94,124 +98,122 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                   ]}
                 />
               </OakBox>
-            </OakGridArea>
-            <OakGridArea $colSpan={10}>
-              <OakFlex
-                $flexGrow={1}
-                $flexDirection={"column"}
-                $gap={["spacing-32", "spacing-56", "spacing-56"]}
-                $pb={"spacing-80"}
+            </OakBox>
+            <OakFlex
+              $flexGrow={1}
+              $flexDirection={"column"}
+              $gap={["spacing-32", "spacing-56", "spacing-56"]}
+              $pb={"spacing-80"}
+            >
+              <MeetTheTeamContainer
+                title={SECTION_TITLES.leadership}
+                text={leadershipText}
+                anchor="our-leadership"
               >
-                <MeetTheTeamContainer
-                  title={SECTION_TITLES.leadership}
-                  text={leadershipText}
-                  anchor="our-leadership"
-                >
-                  {leadershipTeam.map((member) => {
-                    const slug = member.slug?.current ?? member.id;
-                    const imageUrl =
-                      getProxiedSanityAssetUrl(member.image?.asset?.url) ??
-                      undefined;
-                    return (
-                      <OakCard
-                        key={member.id}
-                        heading={member.name}
-                        href={`/about-us/meet-the-team/${slug}?section=leadership`}
-                        cardWidth={"100%"}
-                        imageSrc={imageUrl}
-                        imageAlt={`Photo of ${member.name}`}
-                        subCopy={member.role ?? ""}
-                        linkText="See bio"
-                        linkIconName="chevron-right"
-                      />
-                    );
-                  })}
-                </MeetTheTeamContainer>
-
-                <MeetTheTeamContainer
-                  title={SECTION_TITLES.board}
-                  text={boardText}
-                  anchor="our-board"
-                >
-                  {boardMembers.map((member) => {
-                    const slug = member.slug?.current ?? member.id;
-                    const imageUrl =
-                      getProxiedSanityAssetUrl(member.image?.asset?.url) ??
-                      undefined;
-                    return (
-                      <OakCard
-                        key={member.id}
-                        heading={member.name}
-                        href={`/about-us/meet-the-team/${slug}?section=board`}
-                        cardWidth={"100%"}
-                        imageSrc={imageUrl}
-                        imageAlt={`Photo of ${member.name}`}
-                        subCopy={member.role ?? ""}
-                        linkText="See bio"
-                        linkIconName="chevron-right"
-                      />
-                    );
-                  })}
-                </MeetTheTeamContainer>
-
-                {documents && documents.length > 0 && (
-                  <MeetTheTeamContainer
-                    title={SECTION_TITLES.documents}
-                    text={null}
-                    anchor="documents"
-                  >
-                    {documents.map((doc) => {
-                      const fileSize = convertBytesToMegabytes(
-                        doc.file.asset.size,
-                      );
-                      return (
-                        <Card key={doc.title} $width={240} $pa={16}>
-                          <BoxBorders gapPosition="rightTop" />
-                          <OakFlex
-                            $justifyContent={"space-between"}
-                            $flexDirection={"column"}
-                            $height={"100%"}
-                            $gap={"spacing-8"}
-                          >
-                            <OakTypography $font={"heading-7"}>
-                              {doc.title}
-                            </OakTypography>
-                            <OakFlex
-                              $alignItems={"center"}
-                              $justifyContent={"space-between"}
-                            >
-                              <OakTypography
-                                $font={"body-3"}
-                              >{`${fileSize} ${doc.file.asset.extension.toUpperCase()}`}</OakTypography>
-                              <IconButtonAsLink
-                                icon={"download"}
-                                aria-label={`Download ${doc.title} (${fileSize} ${doc.file.asset.extension.toUpperCase()})`}
-                                page={null}
-                                href={`${doc.file.asset.url}?dl`}
-                                background={"blue"}
-                              />
-                            </OakFlex>
-                          </OakFlex>
-                        </Card>
-                      );
-                    })}
-                  </MeetTheTeamContainer>
-                )}
-
-                <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-                  <OakHeading tag="h3" $font={"heading-5"}>
-                    {SECTION_TITLES.governance}
-                  </OakHeading>
-                  <OakTypography $font={["body-1", "body-2"]}>
-                    <PortableTextWithDefaults
-                      value={governancePortableText}
-                      withoutDefaultComponents
+                {leadershipTeam.map((member) => {
+                  const slug = member.slug?.current ?? member.id;
+                  const imageUrl =
+                    getProxiedSanityAssetUrl(member.image?.asset?.url) ??
+                    undefined;
+                  return (
+                    <OakCard
+                      key={member.id}
+                      heading={member.name}
+                      href={`/about-us/meet-the-team/${slug}?section=leadership`}
+                      cardWidth={"100%"}
+                      imageSrc={imageUrl}
+                      imageAlt={`Photo of ${member.name}`}
+                      subCopy={member.role ?? ""}
+                      linkText="See bio"
+                      linkIconName="chevron-right"
                     />
-                  </OakTypography>
-                </OakFlex>
+                  );
+                })}
+              </MeetTheTeamContainer>
+
+              <MeetTheTeamContainer
+                title={SECTION_TITLES.board}
+                text={boardText}
+                anchor="our-board"
+              >
+                {boardMembers.map((member) => {
+                  const slug = member.slug?.current ?? member.id;
+                  const imageUrl =
+                    getProxiedSanityAssetUrl(member.image?.asset?.url) ??
+                    undefined;
+                  return (
+                    <OakCard
+                      key={member.id}
+                      heading={member.name}
+                      href={`/about-us/meet-the-team/${slug}?section=board`}
+                      cardWidth={"100%"}
+                      imageSrc={imageUrl}
+                      imageAlt={`Photo of ${member.name}`}
+                      subCopy={member.role ?? ""}
+                      linkText="See bio"
+                      linkIconName="chevron-right"
+                    />
+                  );
+                })}
+              </MeetTheTeamContainer>
+
+              {documents && documents.length > 0 && (
+                <MeetTheTeamContainer
+                  title={SECTION_TITLES.documents}
+                  text={null}
+                  anchor="documents"
+                >
+                  {documents.map((doc) => {
+                    const fileSize = convertBytesToMegabytes(
+                      doc.file.asset.size,
+                    );
+                    return (
+                      <Card key={doc.title} $width={240} $pa={16}>
+                        <BoxBorders gapPosition="rightTop" />
+                        <OakFlex
+                          $justifyContent={"space-between"}
+                          $flexDirection={"column"}
+                          $height={"100%"}
+                          $gap={"spacing-8"}
+                        >
+                          <OakTypography $font={"heading-7"}>
+                            {doc.title}
+                          </OakTypography>
+                          <OakFlex
+                            $alignItems={"center"}
+                            $justifyContent={"space-between"}
+                          >
+                            <OakTypography
+                              $font={"body-3"}
+                            >{`${fileSize} ${doc.file.asset.extension.toUpperCase()}`}</OakTypography>
+                            <IconButtonAsLink
+                              icon={"download"}
+                              aria-label={`Download ${doc.title} (${fileSize} ${doc.file.asset.extension.toUpperCase()})`}
+                              page={null}
+                              href={`${doc.file.asset.url}?dl`}
+                              background={"blue"}
+                            />
+                          </OakFlex>
+                        </OakFlex>
+                      </Card>
+                    );
+                  })}
+                </MeetTheTeamContainer>
+              )}
+
+              <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+                <OakHeading tag="h3" $font={"heading-5"}>
+                  {SECTION_TITLES.governance}
+                </OakHeading>
+                <OakTypography $font={["body-1", "body-2"]}>
+                  <PortableTextWithDefaults
+                    value={governancePortableText}
+                    withoutDefaultComponents
+                  />
+                </OakTypography>
               </OakFlex>
-            </OakGridArea>
-          </OakGrid>
+            </OakFlex>
+          </OakFlex>
         </InnerMaxWidth>
       </AboutUsLayout>
     </Layout>
