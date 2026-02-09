@@ -77,12 +77,12 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   From: Essex, UK
 
   Jessica Ababio (Software Engineer)
-  LinkedIn: https://linkedin.com/in/jessica-ab1
+  LinkedIn: https://www.linkedin.com/in/jessica-ab1/
   From: London, UK
 
   Jim Cresswell (Principal Software Engineer)
   Site: https://jimcresswell.net/
-  LinkedIn: https://uk.linkedin.com/in/jimcresswell/
+  LinkedIn: https://www.linkedin.com/in/jimcresswell/
   From: UK
 
   Jo Straw (Product Manager)
@@ -95,7 +95,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   John Roberts (Interim CEO)
   Site: https://johnroberts.me
-  LinkedIn: https://linkedin.com/in/johnrobertsuk
+  LinkedIn: https://www.linkedin.com/in/johnrobertsuk/
   X: https://x.com/johnrobeds
   From: Manchester, UK
 
@@ -114,7 +114,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Site: https://mantagen.org
 
   Michael Jenic (Software Engineering Manager)
-  LinkedIn: https://uk.linkedin.com/in/mjenic
+  LinkedIn: https://www.linkedin.com/in/mjenic/
   From: York, UK
 
   Mike Messina (Principal Product Designer)
@@ -126,7 +126,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   From: Liverpool, UK
 
   Monika Koziol (Head of Product)
-  LinkedIn: https://uk.linkedin.com/in/monika-koziol-a138a325
+  LinkedIn: https://www.linkedin.com/in/monika-koziol-a138a325/
   From: Poland, lives in London
 
   Natassja Blore (Senior Software Engineer)
@@ -202,7 +202,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   From: Standish, UK
 
   Leo Allen (Data and Analytics)
-  Site: https://linkedin.com/in/leoallen
+  Site: https://www.linkedin.com/in/leoallen/
   X: @leoallen85
   From: London, UK
 
@@ -212,7 +212,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   Mitch Lloyd (Software Engineer)
   X: @MitchellLloyd15
-  Linkedin: https://linkedin.com/in/mitchell-lloyd-a2264b151
+  Linkedin: https://www.linkedin.com/in/mitchell-lloyd-a2264b151/
   Email: mitchelllloyd154@gmail.com
   From: Manchester, UK
 
