@@ -2160,23 +2160,21 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   box-shadow: none;
 }
 
-.c170:has( a, button ) {
-  border-radius: 0.5rem;
-  z-index: 2;
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c170:has(a:hover,button:hover),
-.c170:has(button:hover:not(:active)) {
-  z-index: 1;
-}
-
 .c170:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
+.c170:has( a, button) {
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c170:has( a, button)  a,
+.c170:has( a, button) button {
+  outline: none;
+}
+
 .c170:has(a:active,button:active) {
-  z-index: 2;
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 

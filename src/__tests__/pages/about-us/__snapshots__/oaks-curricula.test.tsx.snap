@@ -2497,22 +2497,20 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c169:has( a, button ) {
-  z-index: 2;
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c169:has(a:hover,button:hover),
-.c169:has(button:hover:not(:active)) {
-  z-index: 1;
-}
-
 .c169:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
+.c169:has( a, button) {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c169:has( a, button)  a,
+.c169:has( a, button) button {
+  outline: none;
+}
+
 .c169:has(a:active,button:active) {
-  z-index: 2;
   box-shadow: none;
 }
 
@@ -2520,23 +2518,21 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   box-shadow: none;
 }
 
-.c205:has( a, button ) {
-  border-radius: 0.5rem;
-  z-index: 2;
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c205:has(a:hover,button:hover),
-.c205:has(button:hover:not(:active)) {
-  z-index: 1;
-}
-
 .c205:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
+.c205:has( a, button) {
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c205:has( a, button)  a,
+.c205:has( a, button) button {
+  outline: none;
+}
+
 .c205:has(a:active,button:active) {
-  z-index: 2;
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
