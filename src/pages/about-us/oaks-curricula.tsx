@@ -24,6 +24,7 @@ import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPha
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumPartners } from "@/components/GenericPagesComponents/CurriculumPartners";
 import { GuidingPrinciples } from "@/components/GenericPagesComponents/GuidingPrinciples";
+import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -65,6 +66,49 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
         <OakBox $background={"bg-decorative4-very-subdued"}>
           <OakMaxWidth $pv={"spacing-80"} $ph={["spacing-16"]}>
             <OakFlex $flexDirection={"column"} $gap={"spacing-56"}>
+              <OakFlex
+                $flexDirection={["column", "row"]}
+                $flexWrap="wrap"
+                $gap="spacing-16"
+                $alignItems="stretch"
+              >
+                <CurricInfoCard
+                  iconName="clipboard"
+                  background="bg-primary"
+                  iconHeight={"spacing-92"}
+                  iconWidth={"spacing-48"}
+                  borderColor="border-decorative4"
+                >
+                  National curriculum and exam board aligned
+                </CurricInfoCard>
+                <CurricInfoCard
+                  iconName="free-tag"
+                  background="bg-primary"
+                  iconHeight="spacing-92"
+                  iconWidth="spacing-80"
+                  borderColor="border-decorative4"
+                >
+                  Free and always will be
+                </CurricInfoCard>
+                <CurricInfoCard
+                  iconName="book-steps"
+                  background="bg-primary"
+                  iconHeight="spacing-92"
+                  iconWidth="spacing-72"
+                  borderColor="border-decorative4"
+                >
+                  Covers key stages 1-4 across 20 subjects
+                </CurricInfoCard>
+                <CurricInfoCard
+                  iconName="threads"
+                  background="bg-primary"
+                  iconHeight="spacing-92"
+                  iconWidth="spacing-64"
+                  borderColor="border-decorative4"
+                >
+                  Fully sequenced and ready to adapt
+                </CurricInfoCard>
+              </OakFlex>
               <GuidingPrinciples
                 $background="bg-primary"
                 accentColor="border-decorative4"
