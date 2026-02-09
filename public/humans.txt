@@ -122,7 +122,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   From: Stoke-on-Trent, lives in North Somerset
 
   Mike Ritson (Quality Assurance Analyst)
-  LinkedIn: https://www.linkedin.com/in/mikeritson
+  LinkedIn: https://www.linkedin.com/in/mikeritson/
   From: Liverpool, UK
 
   Monika Koziol (Head of Product)
@@ -180,7 +180,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   From: Preston, UK
 
   Carl Whittaker (Software Engineer)
-  LinkedIn: https://www.linkedin.com/in/carlmw 
+  LinkedIn: https://www.linkedin.com/in/carlmw/
   From: London, UK
 
   Craig McCahill (Software Engineer)
@@ -218,7 +218,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   Nirav Arvinda (Product Designer)
   Site: https://nirav.work
-  LinkedIn: https://www.linkedin.com/in/niravarvinda
+  LinkedIn: https://www.linkedin.com/in/niravarvinda/
   From: London, UK
 
   Rees McIvor (Software Engineer)
@@ -246,7 +246,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   From: UK
 
   Sonali Singh (Software Engineer)
-  LinkedIn: https://www.linkedin.com/in/sonalisin
+  LinkedIn: https://www.linkedin.com/in/sonalisin/
   From: Manchester, lives in London, UK
 
   Stef Lewandowski (Lead Software Engineer)
