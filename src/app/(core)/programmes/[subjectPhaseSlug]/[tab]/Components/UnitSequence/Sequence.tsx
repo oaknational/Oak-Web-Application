@@ -4,7 +4,7 @@ import { useRef, useEffect, useMemo } from "react";
 import { OakBox } from "@oaknational/oak-components";
 
 import { ProgrammeUnitList } from "./UnitList";
-import { Year } from "./Year";
+import { ProgrammeYear } from "./Year";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
@@ -136,7 +136,7 @@ export default function ProgrammeSequence({
               $paddingTop={mobileHeaderScrollOffset}
               id={`year-${type}-${year}`}
             />
-            <Year
+            <ProgrammeYear
               year={year}
               yearTitle={yearTitle}
               yearSubheading={yearSubheadingText}
@@ -157,7 +157,7 @@ export default function ProgrammeSequence({
                 yearData={yearData}
                 selectedThread={selectedThread}
               />
-            </Year>
+            </ProgrammeYear>
           </OakBox>
         );
       })}

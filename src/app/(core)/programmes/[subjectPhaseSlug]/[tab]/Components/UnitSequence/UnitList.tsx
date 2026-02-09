@@ -8,12 +8,12 @@ import {
   YearData,
 } from "@/utils/curriculum/types";
 import { getSubjectCategoryMessage } from "@/utils/curriculum/formatting";
-import CurricUnitCard from "@/components/CurriculumComponents/CurricUnitCard";
 import { resolveOakHref } from "@/common-lib/urls";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
+import CardListing from "@/components/TeacherComponents/CardListing/CardListing";
 
 type ProgrammeUnitListProps = {
   units: Unit[];
@@ -48,11 +48,16 @@ export function ProgrammeUnitList({
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
 
     return (
-      <OakGridArea $colSpan={[12, 4]} key={`${unit.slug}-${index}`} as="li">
-        <CurricUnitCard
-          unit={unit}
-          key={unit.slug + index}
-          index={index}
+      <OakGridArea
+        $colSpan={[12, 4]}
+        $minHeight="spacing-180"
+        key={`${unit.slug}-${index}`}
+        as="li"
+        onClick={() => onClick(unit, isHighlighted)}
+      >
+        <CardListing
+          layoutVariant="vertical"
+          title={unit.title}
           isHighlighted={isHighlighted}
           // TD: [integrated journey] optionality units
           href={resolveOakHref({
@@ -60,7 +65,20 @@ export function ProgrammeUnitList({
             unitSlug: unit.slug,
             programmeSlug: createTeacherProgrammeSlug(unit),
           })}
-          onClick={() => onClick(unit, isHighlighted)}
+          lessonCount={unit.lessons?.length}
+          saveProps={{
+            unitSlug: unit.slug,
+            unitTitle: unit.title,
+            programmeSlug: createTeacherProgrammeSlug(unit),
+            trackingProps: {
+              savedFrom: "unit_listing_save_button",
+              keyStageSlug: unit.keystage_slug,
+              keyStageTitle: getKeyStageTitle(unit.keystage_slug),
+              subjectTitle: unit.subject,
+              subjectSlug: unit.subject_slug,
+            },
+          }}
+          index={index + 1}
         />
       </OakGridArea>
     );
@@ -82,4 +100,22 @@ export function ProgrammeUnitList({
       {units.map((unit, index) => getItems(unit, index))}
     </OakGrid>
   );
+}
+
+// TODO: This should be coming from the backend, but I can't find the correct field in the schema.
+// for the overview page this seems to come from `keystage_description` and goes through some
+// indirect post processing to get the final title. It seems this field is overloaded with
+// non key stage titles, so we may need to be able to handle all of them.
+// I.e. "Early Years Foundation stage" | "Specialist" | "Therapies"
+function getKeyStageTitle(ksSlug: string) {
+  switch (ksSlug) {
+    case "ks1":
+      return "Key stage 1";
+    case "ks2":
+      return "Key stage 2";
+    case "ks3":
+      return "Key stage 3";
+    case "ks4":
+      return "Key stage 4";
+  }
 }
