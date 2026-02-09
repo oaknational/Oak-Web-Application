@@ -132,16 +132,23 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     getProxiedSanityAssetUrl(member.image?.asset?.url) ??
                     undefined;
                   return (
-                    <OakCard
+                    <ul
                       key={member.id}
-                      heading={member.name}
-                      href={`/about-us/meet-the-team/${slug}`}
-                      cardWidth={"100%"}
-                      imageSrc={imageUrl}
-                      subCopy={member.role ?? ""}
-                      linkText="See bio"
-                      linkIconName="chevron-right"
-                    />
+                      style={{
+                        padding: 0,
+                        margin: 0,
+                      }}
+                    >
+                      <OakCard
+                        heading={member.name}
+                        href={`/about-us/meet-the-team/${slug}`}
+                        cardWidth={"100%"}
+                        imageSrc={imageUrl}
+                        subCopy={member.role ?? ""}
+                        linkText="See bio"
+                        linkIconName="chevron-right"
+                      />
+                    </ul>
                   );
                 })}
               </MeetTheTeamContainer>
@@ -157,16 +164,24 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     getProxiedSanityAssetUrl(member.image?.asset?.url) ??
                     undefined;
                   return (
-                    <OakCard
+                    <ul
                       key={member.id}
-                      heading={member.name}
-                      href={`/about-us/meet-the-team/${slug}`}
-                      cardWidth={"100%"}
-                      imageSrc={imageUrl}
-                      subCopy={member.role ?? ""}
-                      linkText="See bio"
-                      linkIconName="chevron-right"
-                    />
+                      style={{
+                        padding: 0,
+                        margin: 0,
+                      }}
+                    >
+                      <OakCard
+                        key={member.id}
+                        heading={member.name}
+                        href={`/about-us/meet-the-team/${slug}`}
+                        cardWidth={"100%"}
+                        imageSrc={imageUrl}
+                        subCopy={member.role ?? ""}
+                        linkText="See bio"
+                        linkIconName="chevron-right"
+                      />
+                    </ul>
                   );
                 })}
               </MeetTheTeamContainer>
@@ -182,22 +197,33 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                       doc.file.asset.size,
                     );
                     return (
-                      <OakCard
+                      <ul
                         key={doc.title}
-                        heading={doc.title}
-                        href={`${doc.file.asset.url}?dl`}
-                        cardWidth={"100%"}
-                        subCopy={`${doc.file.asset.extension.toUpperCase()}, ${fileSize}`}
-                        linkText="Download"
-                        linkIconName="download"
-                      />
+                        style={{
+                          padding: 0,
+                          margin: 0,
+                        }}
+                      >
+                        <OakCard
+                          key={doc.title}
+                          heading={doc.title}
+                          href={`${doc.file.asset.url}?dl`}
+                          cardWidth={"100%"}
+                          subCopy={`${doc.file.asset.extension.toUpperCase()}, ${fileSize}`}
+                          linkText="Download"
+                          linkIconName="download"
+                        />
+                      </ul>
                     );
                   })}
                 </MeetTheTeamContainer>
               )}
 
               <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-                <OakHeading tag="h2" $font={["heading-5", "heading-3", "heading-3"]}>
+                <OakHeading
+                  tag="h2"
+                  $font={["heading-5", "heading-3", "heading-3"]}
+                >
                   {SECTION_TITLES.governance}
                 </OakHeading>
                 <OakTypography $font={["body-2", "body-1", "body-1"]}>
