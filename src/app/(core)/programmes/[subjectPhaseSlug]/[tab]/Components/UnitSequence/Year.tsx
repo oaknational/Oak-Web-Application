@@ -54,6 +54,7 @@ export function ProgrammeYear({
           $overflow="hidden"
           $textOverflow="ellipsis"
           $whiteSpace="nowrap"
+          data-testid="year-heading"
         >
           {yearTitle}
         </OakHeading>
