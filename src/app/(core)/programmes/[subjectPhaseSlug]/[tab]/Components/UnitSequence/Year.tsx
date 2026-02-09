@@ -5,7 +5,7 @@ import {
 } from "@oaknational/oak-components";
 import React from "react";
 
-type YearProps = {
+type ProgrammeYearProps = {
   year: string;
   yearTitle: string;
   yearSubheading?: string | null;
@@ -27,13 +27,13 @@ const yearToBackgroundColor: Record<string, OakUiRoleToken> = {
   "11": "bg-decorative5-very-subdued",
 };
 
-export function Year({
+export function ProgrammeYear({
   year,
   yearTitle,
   yearSubheading,
   additional,
   children,
-}: Readonly<YearProps>) {
+}: Readonly<ProgrammeYearProps>) {
   return (
     <>
       <OakBox
