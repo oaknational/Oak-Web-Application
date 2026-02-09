@@ -6,6 +6,7 @@ import {
   OakSideMenuNav,
   OakTypography,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
@@ -35,6 +36,20 @@ const SECTION_TITLES = {
   documents: "Documents",
   governance: "Governance",
 };
+
+const SideMenuWrapper = styled.div`
+  a {
+    height: 40px;
+    justify-content: center;
+    text-decoration: none;
+    padding-left: 16px;
+  }
+
+  a:hover {
+    border-color: #222;
+    text-decoration: none;
+  }
+`;
 
 export type AboutUsMeetTheTeamPageProps = {
   pageData: MeetTheTeamPage;
@@ -79,24 +94,26 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               $display={["none", "block", "block"]}
               style={{ minWidth: 200 }}
             >
-              <OakSideMenuNav
-                heading=""
-                anchorTargetId=""
-                menuItems={[
-                  {
-                    heading: "Our leadership",
-                    href: "#our-leadership",
-                  },
-                  {
-                    heading: "Our board",
-                    href: "#our-board",
-                  },
-                  {
-                    heading: "Documents",
-                    href: "#documents",
-                  },
-                ]}
-              />
+              <SideMenuWrapper>
+                <OakSideMenuNav
+                  heading=""
+                  anchorTargetId=""
+                  menuItems={[
+                    {
+                      heading: "Our leadership",
+                      href: "#our-leadership",
+                    },
+                    {
+                      heading: "Our board",
+                      href: "#our-board",
+                    },
+                    {
+                      heading: "Documents",
+                      href: "#documents",
+                    },
+                  ]}
+                />
+              </SideMenuWrapper>
             </OakFlex>
             <OakFlex
               $flexGrow={1}
