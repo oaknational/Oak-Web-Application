@@ -1,6 +1,9 @@
 import {
   OakBox,
+  OakFlex,
   OakHeading,
+  OakIcon,
+  OakIconName,
   OakUiRoleToken,
 } from "@oaknational/oak-components";
 import React from "react";
@@ -9,6 +12,7 @@ type ProgrammeYearProps = {
   year: string;
   yearTitle: string;
   yearSubheading?: string | null;
+  yearSubheadingIconName?: OakIconName | null;
   additional?: React.ReactNode;
   children: React.ReactNode;
 };
@@ -31,6 +35,7 @@ export function ProgrammeYear({
   year,
   yearTitle,
   yearSubheading,
+  yearSubheadingIconName,
   additional,
   children,
 }: Readonly<ProgrammeYearProps>) {
@@ -62,9 +67,31 @@ export function ProgrammeYear({
         $btrr="border-radius-l"
       >
         {yearSubheading && (
-          <OakHeading tag="h4" $font="heading-light-7" $mb="spacing-16">
+          <OakFlex
+            as="h4"
+            $flexDirection="row"
+            $alignItems="center"
+            $gap="spacing-8"
+            $font="heading-light-7"
+            $pb="spacing-20"
+            data-testid="year-subheading"
+          >
+            {yearSubheadingIconName && (
+              <OakFlex
+                $width="spacing-48"
+                $height="spacing-48"
+                $alignItems="center"
+                $justifyContent="center"
+              >
+                <OakIcon
+                  iconName={yearSubheadingIconName}
+                  $width="spacing-40"
+                  $height="spacing-40"
+                />
+              </OakFlex>
+            )}
             {yearSubheading}
-          </OakHeading>
+          </OakFlex>
         )}
         <OakBox>{additional}</OakBox>
         <OakBox>{children}</OakBox>

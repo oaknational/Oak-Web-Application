@@ -5,6 +5,7 @@ import { OakBox } from "@oaknational/oak-components";
 
 import { ProgrammeUnitList } from "./UnitList";
 import { ProgrammeYear } from "./Year";
+import { getSubheadingIconName } from "./getSubheadingIconName";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
@@ -22,7 +23,6 @@ import {
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import Alert from "@/components/CurriculumComponents/OakComponentsKitchen/Alert";
-
 type ProgrammeSequenceProps = {
   ks4OptionSlug?: string | null;
   yearData: YearData;
@@ -123,6 +123,12 @@ export default function ProgrammeSequence({
           shouldDisplayCorePathway ? type : null,
           actions,
         );
+        const yearSubheadingIconName = getSubheadingIconName(
+          year,
+          units,
+          yearData[year],
+          visualiserFilters,
+        );
 
         return (
           <OakBox
@@ -140,6 +146,7 @@ export default function ProgrammeSequence({
               year={year}
               yearTitle={yearTitle}
               yearSubheading={yearSubheadingText}
+              yearSubheadingIconName={yearSubheadingIconName}
               additional={
                 isSwimming && (
                   <Alert

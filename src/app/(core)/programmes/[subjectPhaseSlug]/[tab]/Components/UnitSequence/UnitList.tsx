@@ -90,7 +90,7 @@ export function ProgrammeUnitList({
       $cg={"spacing-16"}
       $rg={"spacing-16"}
       $pa={"spacing-0"}
-      $pt="spacing-12"
+      $mv={"spacing-0"}
     >
       {units.length < 1 && (
         <OakP>
