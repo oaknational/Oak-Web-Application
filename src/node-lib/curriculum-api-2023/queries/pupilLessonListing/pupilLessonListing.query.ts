@@ -53,12 +53,15 @@ export const pupilLessonListingQuery =
       lessonContentBySlug.map((item) => [item.lesson_slug, item]),
     );
 
-    const joinedBrowseDataWithContent = res.browseData.map((item) => ({
-      ...item,
-      ...(contentByLessonSlug[item?.lesson_slug || ""]
-        ? contentByLessonSlug[item?.lesson_slug || ""]
-        : {}),
-    }));
+    const joinedBrowseDataWithContent = res.browseData.map((item) => {
+      if (!item.lesson_slug) {
+        return item;
+      }
+      return {
+        ...item,
+        ...contentByLessonSlug[item.lesson_slug],
+      };
+    });
 
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       PupilLessonListingQuery["browseData"][number]
