@@ -3,7 +3,7 @@ import {
   OakFlex,
   OakGrid,
   OakHeading,
-  OakP
+  OakP,
 } from "@oaknational/oak-components";
 
 export type MeetTheTeamContainerProps = {
