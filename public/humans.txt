@@ -27,6 +27,10 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Ben Protheroe (Software Engineer)
   From: London, lives in Cornwall
 
+  Cat Miller (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/cat-miller/
+  From: Manchester, UK
+
   Dan Dupont (Product Manager)
   LinkedIn: https://www.linkedin.com/in/dandupontlopez/
   From: Bristol, UK
@@ -52,7 +56,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/helen-harlow/
   From: Norwich, UK
 
-  Ian Kynnersley (Head of Engineering)
+  Ian Kynnersley (Director of Product and Engineering)
   Site: https://www.iankynnersley.co.uk/
   LinkedIn: https://www.linkedin.com/in/iankynnersley/
   X: https://x.com/kpopper
@@ -71,6 +75,10 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Jamie Blair (Senior Software Engineer)
   GitHub: https://github.com/orangemug
   From: Essex, UK
+
+  Jessica Ababio (Software Engineer)
+  LinkedIn: https://linkedin.com/in/jessica-ab1
+  From: London, UK
 
   Jim Cresswell (Principal Software Engineer)
   Site: https://jimcresswell.net/
@@ -91,8 +99,16 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   X: https://x.com/johnrobeds
   From: Manchester, UK
 
+  Kaan Keskin (AI Engineer)
+  LinkedIn: https://www.linkedin.com/in/ikaankeskin/
+  From: London, UK
+
   Kofoworola Ogunleye (Platform Engineer)
   From: Northampton, UK
+
+  Margaux Dowland (AI Engineer)
+  LinkedIn: https://www.linkedin.com/in/margaux-dowland-69962529b/
+  From: London, UK
 
   Matt Gregory (Senior Software Engineer)
   Site: https://mantagen.org
@@ -101,7 +117,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://uk.linkedin.com/in/mjenic
   From: York, UK
 
-  Mike Messina (Product Designer)
+  Mike Messina (Principal Product Designer)
   LinkedIn: https://www.linkedin.com/in/messinamike/
   From: Stoke-on-Trent, lives in North Somerset
 
@@ -109,13 +125,17 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/mikeritson
   From: Liverpool, UK
 
-  Monika Koziol (Principal Product Designer)
-  Linkedin: https://uk.linkedin.com/in/monika-koziol-a138a325
+  Monika Koziol (Head of Product)
+  LinkedIn: https://uk.linkedin.com/in/monika-koziol-a138a325
   From: Poland, lives in London
 
   Natassja Blore (Senior Software Engineer)
   LinkedIn: https://www.linkedin.com/in/tash-blore-245079182/
   From: Manchester, UK
+
+  Paul Sweeting (Quality Assurance Analyst)
+  LinkedIn: https://www.linkedin.com/in/paul-sweeting-98b90323/
+  From: Plymouth, UK
 
   Reece Charsville (Senior Software Engineer)
   Site: https://reececharsville.com/
@@ -129,22 +149,14 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Sarah McKinless (Product Manager)
   From: Coventry, lives in Northern Ireland
 
-  Shaquille Hobbs-Daley (Software Engineer)
-  LinkedIn: https://linkedin.com/in/shaquillehobbsdaley
-  From: London, UK
-
   Simon Katan (Senior Software Engineer)
   LinkedIn: https://www.linkedin.com/in/simonkatan/
   From: London, UK
 
-  Simon Rose (Principal Software Engineer)
+  Simon Rose (Head of Engineering)
   Site: https://www.simon-rose.co.uk/
   LinkedIn: https://www.linkedin.com/in/simonprose/
   From: Sheffield, lives in Nottingham, UK
-
-  Sonali Singh (Software Engineer)
-  LinkedIn: https://www.linkedin.com/in/sonalisin
-  From: Manchester, lives in London, UK
 
   Taha Hassan (Software Engineer)
   LinkedIn: https://www.linkedin.com/in/taha--hassan/
@@ -223,11 +235,19 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   X: @r_mcky
   From: London, UK
 
+  Shaquille Hobbs-Daley (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/shaquillehobbsdaley/
+  From: London, UK
+
   Shaun Orpen (Software Engineer)
   Site: https://shaunorpen.com/
-  LinkedIn: https://linkedin.com/in/shaunorpen
+  LinkedIn: https://www.linkedin.com/in/shaunorpen/
   X: https://x.com/shaunorpen
   From: UK
+
+  Sonali Singh (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/sonalisin
+  From: Manchester, lives in London, UK
 
   Stef Lewandowski (Lead Software Engineer)
   Site: https://stef.io
