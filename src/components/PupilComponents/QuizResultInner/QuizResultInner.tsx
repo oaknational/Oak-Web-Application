@@ -14,7 +14,6 @@ import { QuizResultMCQ } from "@/components/PupilComponents/QuizResultMCQ/QuizRe
 import { QuizResultShortAnswer } from "@/components/PupilComponents/QuizResultShortAnswer";
 import { QuizResultOrder } from "@/components/PupilComponents/QuizResultOrder/QuizResultOrder";
 import { QuizResultMatch } from "@/components/PupilComponents/QuizResultMatch";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import type { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 type CorectAnswerSectionProps = {
@@ -49,19 +48,18 @@ const CorrectAnswerSection = (props: CorectAnswerSectionProps) => {
             }
 
             return (
-              <MathJaxWrap key={`result-${index}`}>
-                <OakQuizResultItem
-                  key={index}
-                  standardText={correctAnswerText}
-                  boldPrefixText={pickBoldPretext(
-                    quizQuestion?.questionType,
-                    index,
-                    quizQuestion?.answers,
-                  )}
-                  imageURL={imageURL}
-                  imageAlt={"Image for option " + (index + 1)}
-                />
-              </MathJaxWrap>
+              <OakQuizResultItem
+                key={index}
+                standardText={correctAnswerText}
+                boldPrefixText={pickBoldPretext(
+                  quizQuestion?.questionType,
+                  index,
+                  quizQuestion?.answers,
+                )}
+                imageURL={imageURL}
+                imageAlt={"Image for option " + (index + 1)}
+                aria-role="listItem"
+              />
             );
           })}
       </OakFlex>

@@ -1,14 +1,9 @@
 import { VisuallyHidden } from "react-aria";
-import {
-  OakP,
-  OakSpan,
-  OakFlex,
-  OakIcon,
-  OakCodeRenderer,
-} from "@oaknational/oak-components";
+import { OakFlex, OakIcon } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { Stem } from "@/components/SharedComponents/Stem";
 
 export const QuizQuestionsMatchAnswers = ({
   answers,
@@ -37,6 +32,7 @@ export const QuizQuestionsMatchAnswers = ({
               role="listitem"
               key={`q-${questionNumber}-answer${i}`}
               $background={"bg-decorative5-subdued"}
+              $alignItems={"center"}
             >
               <VisuallyHidden>
                 Correct Answer:
@@ -52,29 +48,11 @@ export const QuizQuestionsMatchAnswers = ({
               <OakFlex
                 $flexWrap={"wrap"}
                 $width={["100%", "100%", "max-content"]}
+                $font={"body-1-bold"}
+                $gap={"spacing-4"}
               >
-                <OakP
-                  $whiteSpace={"nowrap"}
-                  $font={["body-2-bold", "body-1-bold"]}
-                  aria-hidden
-                >
-                  <OakCodeRenderer
-                    string={removeMarkdown(matchOption.text)}
-                    $font="code-3"
-                    $mt={"spacing-0"}
-                  />
-                  <OakSpan>{" -"}&nbsp;</OakSpan>
-                </OakP>
-                <OakP
-                  $whiteSpace={["break-spaces", "nowrap"]}
-                  $font={["body-2", "body-1"]}
-                >
-                  <OakCodeRenderer
-                    string={removeMarkdown(correctChoice.text)}
-                    $font="code-3"
-                    $mt={"spacing-0"}
-                  />
-                </OakP>
+                <Stem stem={matchOption} />-
+                <Stem stem={correctChoice} />
               </OakFlex>
             </OakFlex>
           )

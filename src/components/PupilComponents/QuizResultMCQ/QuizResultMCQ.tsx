@@ -5,13 +5,12 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
-import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { QuestionFeedbackType } from "@/components/PupilComponents/QuizUtils/questionTypes";
 import {
   isImage,
   isText,
 } from "@/components/PupilComponents/QuizUtils/stemUtils";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type QuizResultMCQProps = {
   answers: MCAnswer[];
@@ -42,15 +41,13 @@ export const QuizResultMCQ = ({
     const standardText = isText(text) && text?.text ? text.text : undefined;
 
     return (
-      <MathJaxWrap key={`max-jax-wrap-${index}`}>
-        <OakQuizResultItem
-          key={index}
-          standardText={standardText}
-          imageURL={imageURL}
-          imageAlt={"Image for option " + (index + 1)}
-          feedbackState={feedbackState}
-        />
-      </MathJaxWrap>
+      <OakQuizResultItem
+        key={index}
+        standardText={standardText}
+        imageURL={imageURL}
+        imageAlt={"Image for option " + (index + 1)}
+        feedbackState={feedbackState}
+      />
     );
   });
 

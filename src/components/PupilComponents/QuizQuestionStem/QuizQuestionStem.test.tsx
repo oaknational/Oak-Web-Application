@@ -4,9 +4,10 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { ImageOrTextItem } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { invariant } from "@/utils/invariant";
+import { stemToPortableText } from "@/utils/portableText";
+import { StemObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const starterQuiz = quizQuestions;
 const mcqText = starterQuiz ? starterQuiz[0] : null;
@@ -51,9 +52,13 @@ describe("QuestionListItem", () => {
   it("renders text after an image", () => {
     invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
-    const questionStem: ImageOrTextItem[] = [
+    const questionStem: StemObject[] = [
       ...mcqStemImage.questionStem,
-      { text: "This is some text", type: "text" },
+      {
+        text: "This is some text",
+        type: "text",
+        portableText: stemToPortableText("This is some text"),
+      },
     ];
 
     const { getByText } = renderWithTheme(

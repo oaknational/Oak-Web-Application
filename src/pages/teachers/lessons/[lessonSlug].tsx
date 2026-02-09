@@ -29,6 +29,7 @@ import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesMo
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { convertQuestionMathIdentity } from "@/pages-helpers/shared/lesson-pages/quizMathjax";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 
 type PageProps = {
@@ -193,7 +194,11 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
 
       const results: GetStaticPropsResult<PageProps> = {
         props: {
-          lesson,
+          lesson: {
+            ...lesson,
+            starterQuiz: convertQuestionMathIdentity(lesson.starterQuiz),
+            exitQuiz: convertQuestionMathIdentity(lesson.exitQuiz),
+          },
           isSpecialist,
           topNav,
         },

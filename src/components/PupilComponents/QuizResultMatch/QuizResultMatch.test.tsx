@@ -78,7 +78,7 @@ describe("QuizResultMatch", () => {
   });
 
   it("throws error if correct choice object not found", () => {
-    matchAnswers.push({ correctChoice: [] });
+    matchAnswers.push({ correctChoice: [], matchOption: [] });
     expect(() =>
       renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>

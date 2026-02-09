@@ -2,10 +2,10 @@ import { OakCloudinaryImage } from "@oaknational/oak-components";
 
 import { getStemImage, getStemImageData } from "./stemUtils";
 
-import { ImageOrTextItem } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { StemObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 describe("stemUtils", () => {
-  const stem: ImageOrTextItem[] = [
+  const stem: StemObject[] = [
     {
       type: "image",
       imageObject: {

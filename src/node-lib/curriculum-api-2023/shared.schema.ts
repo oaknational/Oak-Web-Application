@@ -9,6 +9,8 @@ import { zodToCamelCase } from "./helpers/zodToCamelCase";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+import { portableTextItemSchema } from "@/utils/portableText";
+import { StemPortableText } from "@/components/SharedComponents/Stem";
 
 export const contentGuidanceSchemaCamelCase = z.object({
   contentGuidanceLabel: z.string(),
@@ -56,15 +58,8 @@ export const keywordsSchema = z.object({
 const stemTextObjectSchema = z.object({
   text: z.string(),
   type: z.literal("text"),
+  portableText: z.array(portableTextItemSchema).optional(),
 });
-
-export type StemTextObject = z.infer<typeof stemTextObjectSchema>;
-
-export const isStemTextObject = (
-  obj: StemTextObject | StemImageObject,
-): obj is StemTextObject => {
-  return obj.type === "text";
-};
 
 const stemImageObjectSchema = z.object({
   imageObject: z.object({
@@ -88,13 +83,13 @@ const stemImageObjectSchema = z.object({
 
 export type StemImageObject = z.infer<typeof stemImageObjectSchema>;
 
-export type StemObject = StemTextObject | StemImageObject;
+export type StemObject = StemPortableText | StemImageObject;
 
 const mcAnswer = z.object({
   answer: z
-    .array(z.union([stemTextObjectSchema, stemImageObjectSchema]))
+    .array(z.union([stemTextObjectSchema, stemImageObjectSchema]).optional())
     .min(1),
-  answerIsCorrect: z.boolean(),
+  answerIsCorrect: z.boolean().optional(),
 });
 
 export type MCAnswer = z.infer<typeof mcAnswer>;
@@ -121,10 +116,10 @@ const shortAnswer = z.object({
 export type ShortAnswer = z.infer<typeof shortAnswer>;
 
 const answersSchema = z.object({
-  "multiple-choice": z.array(mcAnswer).nullable().optional(),
-  match: z.array(matchAnswer).nullable().optional(),
-  order: z.array(orderAnswer).nullable().optional(),
-  "short-answer": z.array(shortAnswer).nullable().optional(),
+  "multiple-choice": z.array(mcAnswer).nullish(),
+  match: z.array(matchAnswer).nullish(),
+  order: z.array(orderAnswer).nullish(),
+  "short-answer": z.array(shortAnswer).nullish(),
   "explanatory-text": z.null().optional(),
 });
 

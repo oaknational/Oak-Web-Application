@@ -33,10 +33,10 @@ const hasQuizMathJax = (
       // Check in answers by type
       const answerCheck = Object.entries(question.answers ?? {}).some(
         ([type]) => {
-          const findMatch = (answer: StemObject[]) => {
+          const findMatch = (answer: Array<StemObject | undefined>) => {
             if (!answer) return false;
             return answer.some(
-              (a) => a.type === "text" && containsMathJax(a.text),
+              (a) => a?.type === "text" && containsMathJax(a.text),
             );
           };
 

@@ -4,12 +4,11 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
-import { OrderAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import {
   PupilAnswerOrder,
   QuestionFeedbackType,
 } from "@/components/PupilComponents/QuizUtils/questionTypes";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import { OrderAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type QuizResultOrderProps = {
   answers: OrderAnswer[];
@@ -40,14 +39,12 @@ export const QuizResultOrder = ({
     }
 
     return (
-      <MathJaxWrap key={`${standardText?.trim()}-${index}`}>
-        <OakQuizResultItem
-          key={standardText?.trim()}
-          boldPrefixText={`${pupilAnswer}`}
-          standardText={standardText}
-          feedbackState={feedbackState}
-        />
-      </MathJaxWrap>
+      <OakQuizResultItem
+        key={`${standardText?.trim()}-${index}`}
+        boldPrefixText={`${pupilAnswer}`}
+        standardText={standardText}
+        feedbackState={feedbackState}
+      />
     );
   });
 

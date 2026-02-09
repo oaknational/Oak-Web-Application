@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from "react";
+import React, { FC } from "react";
 import {
   OakBox,
   OakFlex,
@@ -25,7 +25,6 @@ import {
   ContentGuidance,
   Equipment,
 } from "@/components/TeacherComponents/LessonOverviewRequirements/LessonOverviewRequirements";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import LessonOverviewVocabButton from "@/components/TeacherComponents/LessonOverviewVocabButton";
 import LessonOverviewFilesNeeded from "@/components/TeacherComponents/LessonOverviewFilesNeeded";
 import { Slugs } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
@@ -69,7 +68,6 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   contentGuidance,
   supervisionLevel,
   isLegacyLicense,
-  isMathJaxLesson,
   updatedAt,
   hasVocabAndTranscripts,
   displayVocab,
@@ -99,100 +97,97 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
     unitSlug &&
     programmeSlug &&
     subjectSlug;
-  const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
   return (
-    <MathJaxWrapper>
-      <OakGrid>
-        <OakGridArea $colSpan={[12, 8]} $rowStart={1}>
-          <OakFlex
-            $flexDirection={"column"}
-            $flexGrow={1}
-            $mr="spacing-16"
-            $gap="spacing-48"
-            $mb="spacing-24"
-          >
-            {hasVocabAndTranscripts && displayVocab && (
-              <OakBox>
-                <LessonOverviewVocabButton />
-              </OakBox>
-            )}
-            {keyLearningPoints && (
-              <OakBox>
-                <LessonOverviewKeyLearningPoints
-                  keyLearningPoints={keyLearningPoints}
-                />
-              </OakBox>
-            )}
-            {keyWords && (
-              <OakBox>
-                <LessonOverviewKeywords keyWords={keyWords} />
-              </OakBox>
-            )}
-            {commonMisconceptions && (
-              <OakBox>
-                <LessonOverviewCommonMisconceptions
-                  commonMisconceptions={commonMisconceptions}
-                />
-              </OakBox>
-            )}
-            {showLessonHelperAccordion && (
-              <LessonSeoHelper
-                loginRequired={loginRequired}
-                geoRestricted={geoRestricted}
-                lessonSlug={lessonSlug}
-                year={year}
-                programmeSlug={programmeSlug}
-                unitSlug={unitSlug}
-                subject={subject}
-                unit={unit}
-                keystage={keystage}
-                examBoardSlug={examBoardSlug}
-                subjectSlug={subjectSlug}
-                parentSubject={subjectParent}
-                disablePupilLink={
-                  disablePupilLink || geoRestricted || loginRequired
-                }
-                lesson={lesson}
+    <OakGrid>
+      <OakGridArea $colSpan={[12, 8]} $rowStart={1}>
+        <OakFlex
+          $flexDirection={"column"}
+          $flexGrow={1}
+          $mr="spacing-16"
+          $gap="spacing-48"
+          $mb="spacing-24"
+        >
+          {hasVocabAndTranscripts && displayVocab && (
+            <OakBox>
+              <LessonOverviewVocabButton />
+            </OakBox>
+          )}
+          {keyLearningPoints && (
+            <OakBox>
+              <LessonOverviewKeyLearningPoints
+                keyLearningPoints={keyLearningPoints}
               />
-            )}
-          </OakFlex>
-        </OakGridArea>
-        <OakGridArea $colSpan={[12, 4]} $colStart={[0, 9]} $rowStart={[2, 1]}>
-          <OakFlex
-            $flexDirection={"column"}
-            $mt={["spacing-48", "spacing-0"]}
-            $gap={"spacing-48"}
-            $mb={"spacing-24"}
-          >
-            {additionalFiles && (
-              <LessonOverviewFilesNeeded
-                loginRequired={loginRequired}
-                geoRestricted={geoRestricted}
-                slugs={slugs}
-                additionalFiles={additionalFiles}
+            </OakBox>
+          )}
+          {keyWords && (
+            <OakBox>
+              <LessonOverviewKeywords keyWords={keyWords} />
+            </OakBox>
+          )}
+          {commonMisconceptions && (
+            <OakBox>
+              <LessonOverviewCommonMisconceptions
+                commonMisconceptions={commonMisconceptions}
               />
-            )}
-            {teacherTips && teacherTips.length > 0 && (
-              <OakBox>
-                <LessonOverviewTeacherTips teacherTips={teacherTips} />
-              </OakBox>
-            )}
-            {(equipmentAndResources && equipmentAndResources.length > 0) ||
-            (contentGuidance && contentGuidance.length > 0) ||
-            supervisionLevel ||
-            isLegacyLicense !== undefined ? (
-              <LessonOverviewHelper
-                equipment={equipmentAndResources}
-                contentGuidance={contentGuidance}
-                supervisionLevel={supervisionLevel}
-                isLegacyLicense={isLegacyLicense}
-                updatedAt={updatedAt}
-              />
-            ) : null}
-          </OakFlex>
-        </OakGridArea>
-      </OakGrid>
-    </MathJaxWrapper>
+            </OakBox>
+          )}
+          {showLessonHelperAccordion && (
+            <LessonSeoHelper
+              loginRequired={loginRequired}
+              geoRestricted={geoRestricted}
+              lessonSlug={lessonSlug}
+              year={year}
+              programmeSlug={programmeSlug}
+              unitSlug={unitSlug}
+              subject={subject}
+              unit={unit}
+              keystage={keystage}
+              examBoardSlug={examBoardSlug}
+              subjectSlug={subjectSlug}
+              parentSubject={subjectParent}
+              disablePupilLink={
+                disablePupilLink || geoRestricted || loginRequired
+              }
+              lesson={lesson}
+            />
+          )}
+        </OakFlex>
+      </OakGridArea>
+      <OakGridArea $colSpan={[12, 4]} $colStart={[0, 9]} $rowStart={[2, 1]}>
+        <OakFlex
+          $flexDirection={"column"}
+          $mt={["spacing-48", "spacing-0"]}
+          $gap={"spacing-48"}
+          $mb={"spacing-24"}
+        >
+          {additionalFiles && (
+            <LessonOverviewFilesNeeded
+              loginRequired={loginRequired}
+              geoRestricted={geoRestricted}
+              slugs={slugs}
+              additionalFiles={additionalFiles}
+            />
+          )}
+          {teacherTips && teacherTips.length > 0 && (
+            <OakBox>
+              <LessonOverviewTeacherTips teacherTips={teacherTips} />
+            </OakBox>
+          )}
+          {(equipmentAndResources && equipmentAndResources.length > 0) ||
+          (contentGuidance && contentGuidance.length > 0) ||
+          supervisionLevel ||
+          isLegacyLicense !== undefined ? (
+            <LessonOverviewHelper
+              equipment={equipmentAndResources}
+              contentGuidance={contentGuidance}
+              supervisionLevel={supervisionLevel}
+              isLegacyLicense={isLegacyLicense}
+              updatedAt={updatedAt}
+            />
+          ) : null}
+        </OakFlex>
+      </OakGridArea>
+    </OakGrid>
   );
 };
 

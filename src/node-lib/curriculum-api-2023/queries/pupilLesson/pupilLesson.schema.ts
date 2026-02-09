@@ -9,38 +9,33 @@ import {
   lessonContentSchema as lessonContentSchemaFull,
   syntheticUnitvariantLessonsSchema,
   quizQuestionSchema,
-  multipleChoiceSchema,
-  shortAnswerSchema,
-  orderSchema,
-  matchSchema,
   imageItemSchema,
   textItemSchema,
   additionalFileObjectSchema,
   additionalFilesSchema,
 } from "@oaknational/oak-curriculum-schema";
 
+import { AnswersSchema } from "../../shared.schema";
+
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+import { ConvertTextItem } from "@/components/SharedComponents/Stem";
 
-export type QuizQuestion = ConvertKeysToCamelCase<
-  z.infer<typeof quizQuestionSchema>
->;
+export type QuizQuestion = ConvertTextItem<
+  ConvertKeysToCamelCase<z.infer<typeof quizQuestionSchema>>
+> & {
+  answers?: AnswersSchema | null;
+};
 
-export type QuizQuestionAnswers = NonNullable<
-  ConvertKeysToCamelCase<z.infer<typeof quizQuestionSchema>["answers"]>
->;
-
-export type MCAnswer = ConvertKeysToCamelCase<
-  z.infer<typeof multipleChoiceSchema>
->;
-export type ShortAnswer = ConvertKeysToCamelCase<
-  z.infer<typeof shortAnswerSchema>
->;
-export type OrderAnswer = ConvertKeysToCamelCase<z.infer<typeof orderSchema>>;
-export type MatchAnswer = ConvertKeysToCamelCase<z.infer<typeof matchSchema>>;
+export type QuizQuestionWithHtml = QuizQuestion & {
+  questionStem?:
+    | (QuizQuestion["questionStem"] & {
+        html?: string;
+      })
+    | null;
+};
 
 export type ImageItem = ConvertKeysToCamelCase<z.infer<typeof imageItemSchema>>;
 export type TextItem = ConvertKeysToCamelCase<z.infer<typeof textItemSchema>>;
-export type ImageOrTextItem = ImageItem | TextItem;
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
   _state: true,
@@ -64,8 +59,8 @@ export type LessonContent = Omit<
   ConvertKeysToCamelCase<z.infer<typeof lessonContentSchema>>,
   "starterQuiz" | "exitQuiz" | "transcriptSentences"
 > & {
-  starterQuiz: QuizQuestion[];
-  exitQuiz: QuizQuestion[];
+  starterQuiz: QuizQuestionWithHtml[];
+  exitQuiz: QuizQuestionWithHtml[];
   transcriptSentences: string | string[];
 };
 
