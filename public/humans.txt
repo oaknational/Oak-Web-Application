@@ -202,7 +202,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   From: Standish, UK
 
   Leo Allen (Data and Analytics)
-  Site: https://www.linkedin.com/in/leoallen/
+  LinkedIn: https://www.linkedin.com/in/leoallen/
   X: @leoallen85
   From: London, UK
 
@@ -212,13 +212,13 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   Mitch Lloyd (Software Engineer)
   X: @MitchellLloyd15
-  Linkedin: https://www.linkedin.com/in/mitchell-lloyd-a2264b151/
+  LinkedIn: https://www.linkedin.com/in/mitchell-lloyd-a2264b151/
   Email: mitchelllloyd154@gmail.com
   From: Manchester, UK
 
   Nirav Arvinda (Product Designer)
   Site: https://nirav.work
-  Linkedin: https://www.linkedin.com/in/niravarvinda
+  LinkedIn: https://www.linkedin.com/in/niravarvinda
   From: London, UK
 
   Rees McIvor (Software Engineer)
@@ -256,7 +256,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   Stuart G Wilson (Product Designer)
   Site: qegadesign.myportfolio.com
-  Linkedin: https://www.linkedin.com/in/stuartgeorgewilson/
+  LinkedIn: https://www.linkedin.com/in/stuartgeorgewilson/
   From: Glasgow, UK
 
   Thomas Birch (Senior Software Engineer)
