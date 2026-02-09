@@ -100,7 +100,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                 $pb={"spacing-80"}
               >
                 <SideMenuWrapper>
-                <OakSideMenuNav
+                  <OakSideMenuNav
                     heading=""
                     anchorTargetId=""
                     menuItems={[
@@ -118,7 +118,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                       },
                     ]}
                   />
-              </SideMenuWrapper>
+                </SideMenuWrapper>
               </OakBox>
             </OakBox>
             <OakFlex
