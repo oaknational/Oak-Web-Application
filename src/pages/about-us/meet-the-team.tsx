@@ -1,5 +1,6 @@
 import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
 import {
+  OakBox,
   OakCard,
   OakFlex,
   OakHeading,
@@ -89,32 +90,37 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
           />
         </AboutSharedHeader>
         <InnerMaxWidth>
-          <OakFlex $gap={"spacing-16"}>
-            <OakFlex
-              $display={["none", "block", "block"]}
-              style={{ minWidth: 200 }}
-            >
-              <SideMenuWrapper>
+          <OakFlex $gap={["spacing-0", "spacing-16", "spacing-16"]}>
+            <OakBox $pb={"spacing-80"}>
+              <OakBox
+                $minWidth={"spacing-180"}
+                $display={["none", "block", "block"]}
+                $position={"sticky"}
+                $top="spacing-20"
+                $pb={"spacing-80"}
+              >
+                <SideMenuWrapper>
                 <OakSideMenuNav
-                  heading=""
-                  anchorTargetId=""
-                  menuItems={[
-                    {
-                      heading: "Our leadership",
-                      href: "#our-leadership",
-                    },
-                    {
-                      heading: "Our board",
-                      href: "#our-board",
-                    },
-                    {
-                      heading: "Documents",
-                      href: "#documents",
-                    },
-                  ]}
-                />
+                    heading=""
+                    anchorTargetId=""
+                    menuItems={[
+                      {
+                        heading: "Our leadership",
+                        href: "#our-leadership",
+                      },
+                      {
+                        heading: "Our board",
+                        href: "#our-board",
+                      },
+                      {
+                        heading: "Documents",
+                        href: "#documents",
+                      },
+                    ]}
+                  />
               </SideMenuWrapper>
-            </OakFlex>
+              </OakBox>
+            </OakBox>
             <OakFlex
               $flexGrow={1}
               $flexDirection={"column"}

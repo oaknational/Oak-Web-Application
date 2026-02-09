@@ -233,9 +233,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c71 {
-  overflow: hidden;
   font-family: --var(google-font),Lexend,sans-serif;
-  overflow: hidden;
   z-index: 0;
 }
 
@@ -268,6 +266,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c86 {
+<<<<<<< HEAD
   position: relative;
   width: 100%;
   height: 100%;
@@ -275,6 +274,18 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 .c88 {
+=======
+  padding-bottom: 5rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c87 {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 1.25rem;
+  min-width: 11.25rem;
+  padding-bottom: 5rem;
+>>>>>>> main
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -296,18 +307,26 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
+<<<<<<< HEAD
 .c103 {
   padding-bottom: 5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
 .c105 {
+=======
+.c101 {
+>>>>>>> main
   padding: 1rem;
   background: #fff7cc;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
+<<<<<<< HEAD
 .c110 {
+=======
+.c106 {
+>>>>>>> main
   overflow: hidden;
   width: 100%;
   background: #ffffff;
@@ -316,19 +335,31 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   overflow: hidden;
 }
 
+<<<<<<< HEAD
 .c112 {
+=======
+.c108 {
+>>>>>>> main
   padding: 1rem;
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
+<<<<<<< HEAD
 .c114 {
+=======
+.c110 {
+>>>>>>> main
   padding-top: 0rem;
   padding-bottom: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
+<<<<<<< HEAD
 .c119 {
+=======
+.c116 {
+>>>>>>> main
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -339,7 +370,18 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
+<<<<<<< HEAD
 .c121 {
+=======
+.c118 {
+  overflow: hidden;
+  padding-top: 4.5rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+  overflow: hidden;
+}
+
+.c119 {
+>>>>>>> main
   position: relative;
   background: #bef2bd;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -904,11 +946,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+<<<<<<< HEAD
   gap: 1rem;
 }
 
 .c89 {
   display: none;
+=======
+  gap: 0rem;
+>>>>>>> main
 }
 
 .c94 {
@@ -937,7 +983,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   column-gap: 1rem;
 }
 
+<<<<<<< HEAD
 .c104 {
+=======
+.c100 {
+>>>>>>> main
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -952,7 +1002,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 2rem;
 }
 
+<<<<<<< HEAD
 .c106 {
+=======
+.c102 {
+>>>>>>> main
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -963,7 +1017,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 2rem;
 }
 
+<<<<<<< HEAD
 .c115 {
+=======
+.c111 {
+>>>>>>> main
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -978,7 +1036,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
+<<<<<<< HEAD
 .c118 {
+=======
+.c114 {
+>>>>>>> main
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1899,7 +1961,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #575757;
 }
 
+<<<<<<< HEAD
 .c107 {
+=======
+.c103 {
+>>>>>>> main
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1910,7 +1976,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
+<<<<<<< HEAD
 .c116 {
+=======
+.c112 {
+>>>>>>> main
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
@@ -1921,7 +1991,22 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
+<<<<<<< HEAD
 .c126 {
+=======
+.c115 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+}
+
+.c124 {
+>>>>>>> main
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1976,7 +2061,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #222222;
 }
 
+<<<<<<< HEAD
 .c108 {
+=======
+.c104 {
+>>>>>>> main
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1.125rem;
@@ -1987,7 +2076,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
+<<<<<<< HEAD
 .c117 {
+=======
+.c113 {
+>>>>>>> main
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -2044,7 +2137,22 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
+<<<<<<< HEAD
 .c120 {
+=======
+.c117 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c191 {
+>>>>>>> main
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -2233,7 +2341,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   column-gap: 1rem;
 }
 
+<<<<<<< HEAD
 .c109 {
+=======
+.c105 {
+>>>>>>> main
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
@@ -2305,27 +2417,48 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   grid-row: span 1;
 }
 
+<<<<<<< HEAD
 .c111 {
   box-shadow: none;
 }
 
 .c111:has( a, button ) {
+=======
+.c107 {
+  box-shadow: none;
+}
+
+.c107:has( a, button ) {
+>>>>>>> main
   border-radius: 0.5rem;
   z-index: 2;
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
+<<<<<<< HEAD
 .c111:has(a:hover,button:hover),
 .c111:has(button:hover:not(:active)) {
+=======
+.c107:has(a:hover,button:hover),
+.c107:has(button:hover:not(:active)) {
+>>>>>>> main
   z-index: 1;
   background-color: #f2f2f2;
 }
 
+<<<<<<< HEAD
 .c111:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
 .c111:has(a:active,button:active) {
+=======
+.c107:has(a:hover,button:hover) {
+  box-shadow: none;
+}
+
+.c107:has(a:active,button:active) {
+>>>>>>> main
   z-index: 2;
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
@@ -2359,7 +2492,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   top: 0;
 }
 
+<<<<<<< HEAD
 .c113 {
+=======
+.c109 {
+>>>>>>> main
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2367,7 +2504,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
+<<<<<<< HEAD
 .c113:hover h3 {
+=======
+.c109:hover h3 {
+>>>>>>> main
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
@@ -3071,13 +3212,21 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c88 {
+=======
+  .c87 {
+>>>>>>> main
     display: block;
   }
 }
 
 @media (min-width:1280px) {
+<<<<<<< HEAD
   .c88 {
+=======
+  .c87 {
+>>>>>>> main
     display: block;
   }
 }
@@ -3101,18 +3250,27 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c105 {
+=======
+  .c101 {
+>>>>>>> main
     padding: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
+<<<<<<< HEAD
   .c105 {
+=======
+  .c101 {
+>>>>>>> main
     padding: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c119 {
     font-weight: 300;
   }
@@ -3120,11 +3278,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 @media (min-width:1280px) {
   .c119 {
+=======
+  .c116 {
+>>>>>>> main
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c119 {
     font-size: 1.125rem;
   }
@@ -3133,10 +3295,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 @media (min-width:1280px) {
   .c119 {
     font-size: 1.125rem;
+=======
+  .c116 {
+    font-size: 1rem;
+>>>>>>> main
   }
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c119 {
     line-height: 1.75rem;
   }
@@ -3145,10 +3312,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 @media (min-width:1280px) {
   .c119 {
     line-height: 1.75rem;
+=======
+  .c116 {
+    line-height: 1.5rem;
+>>>>>>> main
   }
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c119 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
@@ -3159,6 +3331,9 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 @media (min-width:1280px) {
   .c119 {
+=======
+  .c116 {
+>>>>>>> main
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3433,14 +3608,24 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c89 {
     display: block;
+=======
+  .c85 {
+    gap: 1rem;
+>>>>>>> main
   }
 }
 
 @media (min-width:1280px) {
+<<<<<<< HEAD
   .c89 {
     display: block;
+=======
+  .c85 {
+    gap: 1rem;
+>>>>>>> main
   }
 }
 
@@ -3460,13 +3645,21 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c104 {
+=======
+  .c100 {
+>>>>>>> main
     gap: 3.5rem;
   }
 }
 
 @media (min-width:1280px) {
+<<<<<<< HEAD
   .c104 {
+=======
+  .c100 {
+>>>>>>> main
     gap: 3.5rem;
   }
 }
@@ -3769,43 +3962,71 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c107 {
+=======
+  .c103 {
+>>>>>>> main
     font-weight: 600;
   }
 }
 
 @media (min-width:1280px) {
+<<<<<<< HEAD
   .c107 {
+=======
+  .c103 {
+>>>>>>> main
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c107 {
+=======
+  .c103 {
+>>>>>>> main
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
+<<<<<<< HEAD
   .c107 {
+=======
+  .c103 {
+>>>>>>> main
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c107 {
+=======
+  .c103 {
+>>>>>>> main
     line-height: 3rem;
   }
 }
 
 @media (min-width:1280px) {
+<<<<<<< HEAD
   .c107 {
+=======
+  .c103 {
+>>>>>>> main
     line-height: 3rem;
   }
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c107 {
+=======
+  .c103 {
+>>>>>>> main
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3814,7 +4035,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
+<<<<<<< HEAD
   .c107 {
+=======
+  .c103 {
+>>>>>>> main
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3937,6 +4162,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c120 {
     font-weight: 300;
   }
@@ -3944,11 +4170,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 @media (min-width:1280px) {
   .c120 {
+=======
+  .c117 {
+>>>>>>> main
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c120 {
     font-size: 1.125rem;
   }
@@ -3957,10 +4187,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 @media (min-width:1280px) {
   .c120 {
     font-size: 1.125rem;
+=======
+  .c117 {
+    font-size: 1rem;
+>>>>>>> main
   }
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c120 {
     line-height: 1.75rem;
   }
@@ -3969,10 +4204,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 @media (min-width:1280px) {
   .c120 {
     line-height: 1.75rem;
+=======
+  .c117 {
+    line-height: 1.5rem;
+>>>>>>> main
   }
 }
 
 @media (min-width:750px) {
+<<<<<<< HEAD
   .c120 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
@@ -3983,6 +4223,9 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 @media (min-width:1280px) {
   .c120 {
+=======
+  .c117 {
+>>>>>>> main
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -4752,6 +4995,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
               class="c11 c87"
             >
               <div
+<<<<<<< HEAD
                 class="c88 c89"
                 style="min-width: 200px;"
               >
@@ -4883,22 +5127,165 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 >
                   <div
                     class="c11 c106"
+=======
+                class="c86"
+              >
+                <div
+                  class="c87"
+                >
+                  <nav
+                    aria-labelledby="side-menu-header"
+                    class="c88"
+                  >
+                    <span
+                      class="c89"
+                      id=""
+                    />
+                    <div
+                      class="c90 c91"
+                    >
+                      <h2
+                        class="c92"
+                        id="side-menu-header"
+                      >
+                        Page sections
+                      </h2>
+                      <ul
+                        class="c93"
+                      >
+                        <li
+                          class="c94"
+                        >
+                          <a
+                            class="c95 c96"
+                            href="#our-leadership"
+                          >
+                            <div
+                              class="c11 c97"
+                            >
+                              <span
+                                class="c98"
+                              >
+                                Our leadership
+                              </span>
+                            </div>
+                            <div
+                              class="c99"
+                            >
+                              <img
+                                alt=""
+                                class="c25"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </li>
+                        <li
+                          class="c94"
+                        >
+                          <a
+                            class="c95 c96"
+                            href="#our-board"
+                          >
+                            <div
+                              class="c11 c97"
+                            >
+                              <span
+                                class="c98"
+                              >
+                                Our board
+                              </span>
+                            </div>
+                            <div
+                              class="c99"
+                            >
+                              <img
+                                alt=""
+                                class="c25"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </li>
+                        <li
+                          class="c94"
+                        >
+                          <a
+                            class="c95 c96"
+                            href="#documents"
+                          >
+                            <div
+                              class="c11 c97"
+                            >
+                              <span
+                                class="c98"
+                              >
+                                Documents
+                              </span>
+                            </div>
+                            <div
+                              class="c99"
+                            >
+                              <img
+                                alt=""
+                                class="c25"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+                </div>
+              </div>
+              <div
+                class="c86 c100"
+              >
+                <div
+                  class="c101"
+                  id="our-leadership"
+                >
+                  <div
+                    class="c11 c102"
+>>>>>>> main
                   >
                     <div
                       class="c11 c94"
                     >
                       <h2
+<<<<<<< HEAD
                         class="c107"
+=======
+                        class="c103"
+>>>>>>> main
                       >
                         Our leadership
                       </h2>
                       <p
+<<<<<<< HEAD
                         class="c108"
+=======
+                        class="c104"
+>>>>>>> main
                       >
                         Our leadership team brings together experts to deliver the best support to teachers and value for money for the public.
                       </p>
                     </div>
                     <div
+<<<<<<< HEAD
                       class="c11 c109"
                     >
                       <ul
@@ -4913,6 +5300,36 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           >
                             <div
                               class="c114 c115"
+=======
+                      class="c11 c105"
+                    >
+                      <div
+                        class="c106 c107"
+                      >
+                        <a
+                          class="c108 c91 c109"
+                          href="/about-us/meet-the-team/ed-southall?section=leadership"
+                        >
+                          <div
+                            class="c110 c111"
+                          >
+                            <div
+                              class="c11 c91"
+                            >
+                              <h3
+                                class="c112"
+                              >
+                                Ed Southall
+                              </h3>
+                              <p
+                                class="c113"
+                              >
+                                Subject Lead (maths)
+                              </p>
+                            </div>
+                            <div
+                              class="c11 c114"
+>>>>>>> main
                             >
                               <div
                                 class="c11 c94"
@@ -4962,27 +5379,44 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
+<<<<<<< HEAD
                   class="c105"
                   id="our-board"
                 >
                   <div
                     class="c11 c106"
+=======
+                  class="c101"
+                  id="our-board"
+                >
+                  <div
+                    class="c11 c102"
+>>>>>>> main
                   >
                     <div
                       class="c11 c94"
                     >
                       <h2
+<<<<<<< HEAD
                         class="c107"
+=======
+                        class="c103"
+>>>>>>> main
                       >
                         Our board
                       </h2>
                       <p
+<<<<<<< HEAD
                         class="c108"
+=======
+                        class="c104"
+>>>>>>> main
                       >
                         Our Board oversees all of our work at Oak National Academy. They provide strategic direction and safeguard our independence.
                       </p>
                     </div>
                     <div
+<<<<<<< HEAD
                       class="c11 c109"
                     >
                       <ul
@@ -4997,6 +5431,36 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           >
                             <div
                               class="c114 c115"
+=======
+                      class="c11 c105"
+                    >
+                      <div
+                        class="c106 c107"
+                      >
+                        <a
+                          class="c108 c91 c109"
+                          href="/about-us/meet-the-team/ed-southall?section=board"
+                        >
+                          <div
+                            class="c110 c111"
+                          >
+                            <div
+                              class="c11 c91"
+                            >
+                              <h3
+                                class="c112"
+                              >
+                                Ed Southall
+                              </h3>
+                              <p
+                                class="c113"
+                              >
+                                Subject Lead (maths)
+                              </p>
+                            </div>
+                            <div
+                              class="c11 c114"
+>>>>>>> main
                             >
                               <div
                                 class="c11 c94"
@@ -5048,13 +5512,22 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 <div
                   class="c11 c94"
                 >
+<<<<<<< HEAD
                   <h2
                     class="c107"
+=======
+                  <h3
+                    class="c115"
+>>>>>>> main
                   >
                     Governance
                   </h2>
                   <div
+<<<<<<< HEAD
                     class="c119 c120"
+=======
+                    class="c116 c117"
+>>>>>>> main
                   >
                     <p>
                       Test governance text
@@ -5065,6 +5538,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             </div>
           </div>
           <div
+<<<<<<< HEAD
             class="c121"
           >
             <div
@@ -5094,37 +5568,91 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </h2>
                 <div
                   class="c11 c127"
+=======
+            class="c118"
+            style="margin-top: -72px;"
+          >
+            <div
+              class="c119"
+            >
+              <div
+                class="c120"
+                style="pointer-events: none;"
+              >
+                <img
+                  alt=""
+                  class="c25"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </div>
+              <div
+                class="c121"
+              >
+                <div
+                  class="c122 c123"
+>>>>>>> main
                 >
+                  <h2
+                    class="c124"
+                  >
+                    Explore more about Oak
+                  </h2>
                   <div
+<<<<<<< HEAD
                     class="c11 c48 c128"
                   >
                     <div
                       class="c129 c130"
+=======
+                    class="c11 c125"
+                  >
+                    <div
+                      class="c11 c48 c126"
+>>>>>>> main
                     >
-                      <a
-                        href="/about-us/who-we-are"
-                        style="outline: none;"
+                      <div
+                        class="c127 c128"
                       >
+<<<<<<< HEAD
                         <div
                           class="c131 c132 c133"
                           data-testid="who-we-are-explore-item"
+=======
+                        <a
+                          href="/about-us/who-we-are"
+                          style="outline: none;"
+>>>>>>> main
                         >
                           <div
-                            class="c11 c48"
+                            class="c129 c130 c131"
+                            data-testid="who-we-are-explore-item"
                           >
                             <div
+<<<<<<< HEAD
                               class="c134"
+=======
+                              class="c11 c48"
+>>>>>>> main
                             >
-                              <img
-                                alt=""
-                                class="c25"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              <div
+                                class="c132"
+                              >
+                                <img
+                                  alt=""
+                                  class="c25"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
                             </div>
+<<<<<<< HEAD
                           </div>
                           <div
                             class="c135 c136"
@@ -5136,52 +5664,85 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           >
                             <div
                               class="c137"
+=======
+                            <div
+                              class="c133 c134"
+>>>>>>> main
                             >
-                              <img
-                                alt=""
-                                class="c25"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              About Oak
+                            </div>
+                            <div
+                              class="c11 c48"
+                            >
+                              <div
+                                class="c135"
+                              >
+                                <img
+                                  alt=""
+                                  class="c25"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </a>
+                        </a>
+                      </div>
                     </div>
+<<<<<<< HEAD
                   </div>
                   <div
                     class="c11 c48 c128"
                   >
                     <div
                       class="c129 c130"
+=======
+                    <div
+                      class="c11 c48 c126"
+>>>>>>> main
                     >
-                      <a
-                        href="/#"
-                        style="outline: none;"
+                      <div
+                        class="c127 c128"
                       >
+<<<<<<< HEAD
                         <div
                           class="c131 c132 c133"
                           data-testid="who-we-are-explore-item"
+=======
+                        <a
+                          href="/#"
+                          style="outline: none;"
+>>>>>>> main
                         >
                           <div
-                            class="c11 c48"
+                            class="c129 c130 c131"
+                            data-testid="who-we-are-explore-item"
                           >
                             <div
+<<<<<<< HEAD
                               class="c134"
+=======
+                              class="c11 c48"
+>>>>>>> main
                             >
-                              <img
-                                alt=""
-                                class="c25"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              <div
+                                class="c132"
+                              >
+                                <img
+                                  alt=""
+                                  class="c25"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
                             </div>
+<<<<<<< HEAD
                           </div>
                           <div
                             class="c135 c136"
@@ -5193,52 +5754,85 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           >
                             <div
                               class="c137"
+=======
+                            <div
+                              class="c133 c134"
+>>>>>>> main
                             >
-                              <img
-                                alt=""
-                                class="c25"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              About Oak's curriculum
+                            </div>
+                            <div
+                              class="c11 c48"
+                            >
+                              <div
+                                class="c135"
+                              >
+                                <img
+                                  alt=""
+                                  class="c25"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </a>
+                        </a>
+                      </div>
                     </div>
+<<<<<<< HEAD
                   </div>
                   <div
                     class="c11 c48 c128"
                   >
                     <div
                       class="c129 c130"
+=======
+                    <div
+                      class="c11 c48 c126"
+>>>>>>> main
                     >
-                      <a
-                        href="/#"
-                        style="outline: none;"
+                      <div
+                        class="c127 c128"
                       >
+<<<<<<< HEAD
                         <div
                           class="c131 c132 c133"
                           data-testid="who-we-are-explore-item"
+=======
+                        <a
+                          href="/#"
+                          style="outline: none;"
+>>>>>>> main
                         >
                           <div
-                            class="c11 c48"
+                            class="c129 c130 c131"
+                            data-testid="who-we-are-explore-item"
                           >
                             <div
+<<<<<<< HEAD
                               class="c134"
+=======
+                              class="c11 c48"
+>>>>>>> main
                             >
-                              <img
-                                alt=""
-                                class="c25"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393164/icons/data-illustration_ukwdxg.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              <div
+                                class="c132"
+                              >
+                                <img
+                                  alt=""
+                                  class="c25"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393164/icons/data-illustration_ukwdxg.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
                             </div>
+<<<<<<< HEAD
                           </div>
                           <div
                             class="c135 c136"
@@ -5250,52 +5844,85 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           >
                             <div
                               class="c137"
+=======
+                            <div
+                              class="c133 c134"
+>>>>>>> main
                             >
-                              <img
-                                alt=""
-                                class="c25"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              Oak's impact
+                            </div>
+                            <div
+                              class="c11 c48"
+                            >
+                              <div
+                                class="c135"
+                              >
+                                <img
+                                  alt=""
+                                  class="c25"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </a>
+                        </a>
+                      </div>
                     </div>
+<<<<<<< HEAD
                   </div>
                   <div
                     class="c11 c48 c128"
                   >
                     <div
                       class="c129 c130"
+=======
+                    <div
+                      class="c11 c48 c126"
+>>>>>>> main
                     >
-                      <a
-                        href="/#"
-                        style="outline: none;"
+                      <div
+                        class="c127 c128"
                       >
+<<<<<<< HEAD
                         <div
                           class="c131 c132 c133"
                           data-testid="who-we-are-explore-item"
+=======
+                        <a
+                          href="/#"
+                          style="outline: none;"
+>>>>>>> main
                         >
                           <div
-                            class="c11 c48"
+                            class="c129 c130 c131"
+                            data-testid="who-we-are-explore-item"
                           >
                             <div
+<<<<<<< HEAD
                               class="c134"
+=======
+                              class="c11 c48"
+>>>>>>> main
                             >
-                              <img
-                                alt=""
-                                class="c25"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              <div
+                                class="c132"
+                              >
+                                <img
+                                  alt=""
+                                  class="c25"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
                             </div>
+<<<<<<< HEAD
                           </div>
                           <div
                             class="c135 c136"
@@ -5307,52 +5934,85 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           >
                             <div
                               class="c137"
+=======
+                            <div
+                              class="c133 c134"
+>>>>>>> main
                             >
-                              <img
-                                alt=""
-                                class="c25"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              Meet the team
+                            </div>
+                            <div
+                              class="c11 c48"
+                            >
+                              <div
+                                class="c135"
+                              >
+                                <img
+                                  alt=""
+                                  class="c25"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </a>
+                        </a>
+                      </div>
                     </div>
+<<<<<<< HEAD
                   </div>
                   <div
                     class="c11 c48 c128"
                   >
                     <div
                       class="c129 c130"
+=======
+                    <div
+                      class="c11 c48 c126"
+>>>>>>> main
                     >
-                      <a
-                        href="/about-us/get-involved"
-                        style="outline: none;"
+                      <div
+                        class="c127 c128"
                       >
+<<<<<<< HEAD
                         <div
                           class="c131 c132 c133"
                           data-testid="who-we-are-explore-item"
+=======
+                        <a
+                          href="/about-us/get-involved"
+                          style="outline: none;"
+>>>>>>> main
                         >
                           <div
-                            class="c11 c48"
+                            class="c129 c130 c131"
+                            data-testid="who-we-are-explore-item"
                           >
                             <div
+<<<<<<< HEAD
                               class="c134"
+=======
+                              class="c11 c48"
+>>>>>>> main
                             >
-                              <img
-                                alt=""
-                                class="c25"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              <div
+                                class="c132"
+                              >
+                                <img
+                                  alt=""
+                                  class="c25"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
                             </div>
+<<<<<<< HEAD
                           </div>
                           <div
                             class="c135 c136"
@@ -5364,20 +6024,33 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           >
                             <div
                               class="c137"
+=======
+                            <div
+                              class="c133 c134"
+>>>>>>> main
                             >
-                              <img
-                                alt=""
-                                class="c25"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              Get involved
+                            </div>
+                            <div
+                              class="c11 c48"
+                            >
+                              <div
+                                class="c135"
+                              >
+                                <img
+                                  alt=""
+                                  class="c25"
+                                  data-nimg="fill"
+                                  decoding="async"
+                                  loading="lazy"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </a>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
