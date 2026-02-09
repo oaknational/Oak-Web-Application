@@ -32,7 +32,7 @@ export function MeetTheTeamContainer({
           {text && <OakP $font={"body-1"}>{text}</OakP>}
         </OakFlex>
         <OakGrid
-          $gridTemplateColumns={`repeat(auto-fit, minmax(192px, 1fr))`}
+          $gridTemplateColumns={`repeat(auto-fit, minmax(200px, 1fr))`}
           $cg={"spacing-16"}
           $rg={"spacing-16"}
         >
