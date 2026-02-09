@@ -6,9 +6,14 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
+import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
+
 import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import {
+  TeachersSubNavData,
+  TeachersSubNavData as TeachersData,
+} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 export const getSubjectLinkProps = ({
   programmeCount,
@@ -42,6 +47,7 @@ const TopNavSubjectButtons = ({
   keyStageSlug,
   keyStageTitle,
   handleClick,
+  focusManager,
 }: {
   selectedMenu: keyof TeachersSubNavData;
   subjects: TeachersSubNavData[
@@ -53,6 +59,7 @@ const TopNavSubjectButtons = ({
   keyStageSlug: string;
   keyStageTitle: string;
   handleClick?: () => void;
+  focusManager?: DropdownFocusManager<TeachersData>;
 }) => {
   return (
     <OakUL
@@ -67,6 +74,10 @@ const TopNavSubjectButtons = ({
         subjects.length > 0 &&
         subjects.map((subject) => {
           const { programmeCount, subjectSlug, programmeSlug } = subject;
+          const buttonId = focusManager?.createSubjectButtonId(
+            keyStageSlug,
+            subjectSlug,
+          );
 
           return (
             <OakLI key={subject.title}>
@@ -83,8 +94,11 @@ const TopNavSubjectButtons = ({
                   }),
                 )}
                 onClick={handleClick}
+                onKeyDown={(e) =>
+                  buttonId && focusManager?.handleKeyDown(e, buttonId)
+                }
                 phase={selectedMenu as "primary" | "secondary"}
-                id={`topnav-teachers-subject-${subjectSlug}`}
+                id={buttonId}
               >
                 {subject.title}
               </OakSubjectIconButton>
@@ -96,6 +110,10 @@ const TopNavSubjectButtons = ({
         nonCurriculumSubjects.length > 0 &&
         nonCurriculumSubjects.map((subject) => {
           const { programmeCount, subjectSlug, programmeSlug } = subject;
+          const buttonId = focusManager?.createSubjectButtonId(
+            keyStageSlug,
+            subjectSlug,
+          );
 
           return (
             <OakLI key={subject.subjectSlug}>
@@ -113,7 +131,11 @@ const TopNavSubjectButtons = ({
                   }),
                 )}
                 onClick={handleClick}
+                onKeyDown={(e) =>
+                  buttonId && focusManager?.handleKeyDown(e, buttonId)
+                }
                 phase={"non-curriculum"}
+                id={buttonId}
               >
                 {subject.title}
               </OakSubjectIconButton>
@@ -122,10 +144,17 @@ const TopNavSubjectButtons = ({
         })}
       <OakLI>
         <OakPrimaryInvertedButton
-          element="a"
+          id={focusManager?.createAllKeystagesButtonId(keyStageSlug)}
+          element={Link}
           iconName="arrow-right"
           isTrailingIcon
           onClick={handleClick}
+          onKeyDown={(e) =>
+            focusManager?.handleKeyDown(
+              e,
+              focusManager.createAllKeystagesButtonId(keyStageSlug),
+            )
+          }
           href={resolveOakHref({ page: "subject-index", keyStageSlug })}
         >
           All {keyStageTitle} subjects

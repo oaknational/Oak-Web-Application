@@ -1,39 +1,61 @@
+import {
+  OakLI,
+  OakSmallPrimaryInvertedButton,
+  OakUL,
+} from "@oaknational/oak-components";
+
+import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
+
 import { PupilsSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { OakFlex, OakSmallPrimaryInvertedButton } from "@/styles/oakThemeApp";
+
+export const pupilsSubNavButtons = [
+  { slug: "primary", label: "Primary" },
+  { slug: "secondary", label: "Secondary" },
+];
 
 const PupilsSubNav = ({
   onClick,
   isMenuSelected,
+  focusManager,
 }: {
   onClick: (menu: keyof PupilsSubNavData) => void;
   isMenuSelected: (menu: keyof PupilsSubNavData) => boolean;
+  focusManager: DropdownFocusManager<PupilsSubNavData>;
 }) => {
   return (
-    <OakFlex
+    <OakUL
       data-testid="pupils-subnav"
-      $justifyContent="space-between"
-      $flexGrow={1}
-      $alignItems="center"
+      $display={["none", "none", "flex"]}
+      $gap={"spacing-12"}
+      $reset
     >
-      <OakFlex
-        $display={["none", "none", "flex"]}
-        $gap={"spacing-12"}
-        $alignItems={"center"}
-      >
-        <OakSmallPrimaryInvertedButton
-          onClick={() => onClick("primary")}
-          selected={isMenuSelected("primary")}
-        >
-          Primary
-        </OakSmallPrimaryInvertedButton>
-        <OakSmallPrimaryInvertedButton
-          onClick={() => onClick("secondary")}
-          selected={isMenuSelected("secondary")}
-        >
-          Secondary
-        </OakSmallPrimaryInvertedButton>
-      </OakFlex>
-    </OakFlex>
+      {pupilsSubNavButtons.map((button) => (
+        <OakLI key={button.slug}>
+          <OakSmallPrimaryInvertedButton
+            onKeyDown={(e) =>
+              focusManager.handleKeyDown(
+                e,
+                focusManager.createSubnavButtonId(
+                  button.slug as keyof PupilsSubNavData,
+                ),
+              )
+            }
+            id={focusManager.createSubnavButtonId(
+              button.slug as keyof PupilsSubNavData,
+            )}
+            onClick={() => onClick(button.slug as keyof PupilsSubNavData)}
+            selected={isMenuSelected(button.slug as keyof PupilsSubNavData)}
+            aria-expanded={isMenuSelected(
+              button.slug as keyof PupilsSubNavData,
+            )}
+            aria-controls={`topnav-pupils-${button.slug}`}
+            aria-haspopup
+          >
+            {button.label}
+          </OakSmallPrimaryInvertedButton>
+        </OakLI>
+      ))}
+    </OakUL>
   );
 };
 
