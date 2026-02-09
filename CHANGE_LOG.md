@@ -1,3 +1,10 @@
+# [1.983.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.982.0...v1.983.0) (2026-02-09)
+
+
+### Features
+
+* explicitly set branch tracking name to main ([5d06683](https://github.com/oaknational/Oak-Web-Application/commit/5d0668394457db5ca1c528729c77220c8f043fc1))
+
 # [1.982.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.981.0...v1.982.0) (2026-02-09)
 
 
