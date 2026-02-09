@@ -2391,40 +2391,42 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c161:has( a, button ) {
-  z-index: 2;
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c161:has(a:hover,button:hover),
-.c161:has(button:hover:not(:active)) {
-  z-index: 1;
-}
-
 .c161:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
-.c137:has(a:hover,button:hover) {
+.c161:has( a, button) {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c161:has( a, button)  a,
+.c161:has( a, button) button {
+  outline: none;
+}
+
+.c161:has(a:active,button:active) {
   box-shadow: none;
 }
 
-.c137:has( a, button) {
+.c196 {
+  box-shadow: none;
+}
+
+.c196:has(a:hover,button:hover) {
+  box-shadow: none;
+}
+
+.c196:has( a, button) {
   border-radius: 0.5rem;
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c137:has(a:hover,button:hover),
-.c137:has(button:hover:not(:active)) {
-  z-index: 1;
+.c196:has( a, button)  a,
+.c196:has( a, button) button {
+  outline: none;
 }
 
-.c137:has(a:hover,button:hover) {
-  box-shadow: none;
-}
-
-.c137:has(a:active,button:active) {
-  z-index: 2;
+.c196:has(a:active,button:active) {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
