@@ -1,3 +1,15 @@
+# [1.981.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.980.1...v1.981.0) (2026-02-09)
+
+
+### Bug Fixes
+
+* move back to "flex" from "grid" to allow for fixed width ([5c981e7](https://github.com/oaknational/Oak-Web-Application/commit/5c981e788622d139ef77b909dde83a4e1c292c94))
+
+
+### Features
+
+* made sidenav in /about-us/meet-the-team sticky ([cfb2052](https://github.com/oaknational/Oak-Web-Application/commit/cfb20525955a21fb59a049b5f187167d156d3f82))
+
 ## [1.980.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.980.0...v1.980.1) (2026-02-09)
 
 # [1.980.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.979.1...v1.980.0) (2026-02-06)
