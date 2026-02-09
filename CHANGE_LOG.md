@@ -1,3 +1,10 @@
+# [1.982.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.981.0...v1.982.0) (2026-02-09)
+
+
+### Features
+
+* added missing <CurricInfoCard/> to /about-us/oaks-curricula ([41e4273](https://github.com/oaknational/Oak-Web-Application/commit/41e42738ab8763a5a5f4c2d07e9c14aa8979ae3c))
+
 # [1.981.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.980.1...v1.981.0) (2026-02-09)
 
 
