@@ -30,16 +30,19 @@ export type TopNavDropdownProps = {
   selectedMenu: keyof TeachersSubNavData | keyof PupilsSubNavData;
   teachers: TeachersSubNavData;
   pupils: PupilsSubNavData;
+  onClose: () => void;
 };
 
 const TeachersPhaseSection = ({
   selectedMenu,
   menuData,
   focusManager,
+  onClose,
 }: {
   selectedMenu: keyof TeachersSubNavData;
   menuData: TeachersSubNavData["primary" | "secondary"];
   focusManager: DropdownFocusManager<TeachersSubNavData>;
+  onClose: () => void;
 }) => {
   const defaultKeystage =
     menuData.keystages[0]?.slug || (selectedMenu === "primary" ? "ks1" : "ks3");
@@ -146,6 +149,7 @@ const TeachersPhaseSection = ({
       </OakUL>
       {subjects && (
         <TopNavSubjectButtons
+          handleClick={onClose}
           focusManager={focusManager}
           selectedMenu={selectedMenu}
           subjects={subjects}
@@ -165,10 +169,12 @@ const TeachersLinksSection = ({
   focusManager,
   selectedMenu,
   menuData,
+  onClose,
 }: {
   focusManager: DropdownFocusManager<TeachersSubNavData>;
   selectedMenu: "guidance" | "aboutUs";
   menuData: TeachersSubNavData["guidance" | "aboutUs"];
+  onClose: () => void;
 }) => {
   const sectionTitles = {
     guidance: "Guidance",
@@ -215,6 +221,7 @@ const TeachersLinksSection = ({
                 }
                 width={"spacing-160"}
                 id={buttonId}
+                onClick={onClose}
                 onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
               >
                 {link.title}
@@ -231,10 +238,12 @@ const PupilsSection = ({
   selectedMenu,
   pupils,
   focusManager,
+  onClose,
 }: {
   selectedMenu: keyof PupilsSubNavData;
   pupils: PupilsSubNavData;
   focusManager: DropdownFocusManager<PupilsSubNavData>;
+  onClose: () => void;
 }) => {
   const menuYears = pupils[selectedMenu].years;
 
@@ -258,6 +267,7 @@ const PupilsSection = ({
                 yearSlug: year.slug,
               })}
               id={buttonId}
+              onClick={onClose}
               onKeyDown={
                 focusManager && buttonId
                   ? (e) => focusManager.handleKeyDown(e, buttonId)
@@ -286,6 +296,7 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
             }
             selectedMenu={selectedMenu}
             menuData={teachers[selectedMenu]}
+            onClose={props.onClose}
           />
         )}
       {activeArea === "TEACHERS" &&
@@ -296,6 +307,7 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
             }
             selectedMenu={selectedMenu}
             menuData={teachers[selectedMenu]}
+            onClose={props.onClose}
           />
         )}
       {activeArea === "PUPILS" &&
@@ -306,6 +318,7 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
             focusManager={
               focusManager as DropdownFocusManager<PupilsSubNavData>
             }
+            onClose={props.onClose}
           />
         )}
     </OakFlex>

@@ -79,6 +79,10 @@ const TopNav = (props: TopNavProps) => {
     [selectedMenu],
   );
 
+  const handleCloseDropdown = useCallback(() => {
+    setSelectedMenu(undefined);
+  }, []);
+
   const { setCurrentBannerProps } = useOakNotificationsContext();
 
   useEffect(() => {
@@ -218,6 +222,7 @@ const TopNav = (props: TopNavProps) => {
               selectedMenu={selectedMenu}
               teachers={teachers!}
               pupils={pupils!}
+              onClose={handleCloseDropdown}
             />
           </OakFlex>
         )}

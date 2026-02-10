@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 
 import TopNavDropdown from "./TopNavDropdown";
 
@@ -10,8 +11,10 @@ import { subNavButtons } from "@/components/AppComponents/TopNav/SubNav/Teachers
 
 describe("TopNavDropdown", () => {
   let focusManager: DropdownFocusManager<TeachersSubNavData>;
+  let onCloseMock: jest.Mock;
 
   beforeEach(() => {
+    onCloseMock = jest.fn();
     focusManager = new DropdownFocusManager(
       topNavFixture.teachers!,
       "teachers",
@@ -30,6 +33,7 @@ describe("TopNavDropdown", () => {
             activeArea="TEACHERS"
             selectedMenu="primary"
             focusManager={focusManager}
+            onClose={onCloseMock}
           />,
         );
 
@@ -48,6 +52,7 @@ describe("TopNavDropdown", () => {
             activeArea="TEACHERS"
             selectedMenu="secondary"
             focusManager={focusManager}
+            onClose={onCloseMock}
           />,
         );
 
@@ -66,6 +71,7 @@ describe("TopNavDropdown", () => {
             activeArea="TEACHERS"
             selectedMenu="primary"
             focusManager={focusManager}
+            onClose={onCloseMock}
           />,
         );
 
@@ -84,6 +90,7 @@ describe("TopNavDropdown", () => {
             activeArea="TEACHERS"
             selectedMenu="primary"
             focusManager={focusManager}
+            onClose={onCloseMock}
           />,
         );
 
@@ -93,6 +100,78 @@ describe("TopNavDropdown", () => {
         expect(subjectButtons[2]).toHaveStyle({
           background: "rgb(235, 251, 235)",
         });
+      });
+
+      it("calls onClose when clicking a subject button", async () => {
+        const user = userEvent.setup();
+        renderWithTheme(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="primary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const englishButton = await screen.findByRole("link", {
+          name: "English",
+        });
+
+        // Prevent navigation in test
+        englishButton.addEventListener("click", (e) => e.preventDefault());
+        await user.click(englishButton);
+
+        expect(onCloseMock).toHaveBeenCalledTimes(1);
+      });
+
+      it("calls onClose when clicking 'All [keystage] subjects' button", async () => {
+        const user = userEvent.setup();
+        renderWithTheme(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="primary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const allSubjectsButton = await screen.findByRole("link", {
+          name: /All KS1 subjects/i,
+        });
+
+        // Prevent navigation in test
+        allSubjectsButton.addEventListener("click", (e) => e.preventDefault());
+        await user.click(allSubjectsButton);
+
+        expect(onCloseMock).toHaveBeenCalledTimes(1);
+      });
+
+      it("calls onClose when clicking a non-curriculum subject button", async () => {
+        const user = userEvent.setup();
+        renderWithTheme(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="primary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const financialEdButton = await screen.findByRole("link", {
+          name: "Financial education",
+        });
+
+        // Prevent navigation in test
+        financialEdButton.addEventListener("click", (e) => e.preventDefault());
+        await user.click(financialEdButton);
+
+        expect(onCloseMock).toHaveBeenCalledTimes(1);
       });
     });
     describe("links sections", () => {
@@ -104,6 +183,7 @@ describe("TopNavDropdown", () => {
             activeArea="TEACHERS"
             selectedMenu="guidance"
             focusManager={focusManager}
+            onClose={onCloseMock}
           />,
         );
 
@@ -124,12 +204,59 @@ describe("TopNavDropdown", () => {
             activeArea="TEACHERS"
             selectedMenu="guidance"
             focusManager={focusManager}
+            onClose={onCloseMock}
           />,
         );
 
         const links = await screen.findAllByRole("link");
         expect(links[0]).toHaveTextContent("Plan a lesson");
         expect(links[1]).toHaveTextContent("Blogs");
+      });
+
+      it("calls onClose when clicking a guidance link", async () => {
+        const user = userEvent.setup();
+        renderWithTheme(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="guidance"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const planLessonLink = await screen.findByRole("link", {
+          name: "Plan a lesson",
+        });
+
+        // Prevent navigation in test
+        planLessonLink.addEventListener("click", (e) => e.preventDefault());
+        await user.click(planLessonLink);
+
+        expect(onCloseMock).toHaveBeenCalledTimes(1);
+      });
+
+      it("calls onClose when clicking an about us link", async () => {
+        const user = userEvent.setup();
+        renderWithTheme(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="aboutUs"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const links = await screen.findAllByRole("link");
+
+        // Prevent navigation in test
+        links[0]?.addEventListener("click", (e) => e.preventDefault());
+        await user.click(links[0]!);
+
+        expect(onCloseMock).toHaveBeenCalledTimes(1);
       });
     });
   });
@@ -144,6 +271,7 @@ describe("TopNavDropdown", () => {
             activeArea="PUPILS"
             selectedMenu="primary"
             focusManager={focusManager}
+            onClose={onCloseMock}
           />,
         );
 
@@ -160,12 +288,61 @@ describe("TopNavDropdown", () => {
             activeArea="PUPILS"
             selectedMenu="secondary"
             focusManager={focusManager}
+            onClose={onCloseMock}
           />,
         );
 
         const links = await screen.findAllByRole("link");
         expect(links).toHaveLength(5);
         expect(links[0]).toHaveTextContent("Year 7");
+      });
+
+      it("calls onClose when clicking a primary year button", async () => {
+        const user = userEvent.setup();
+        renderWithTheme(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="PUPILS"
+            selectedMenu="primary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const year1Button = await screen.findByRole("link", {
+          name: "Year 1",
+        });
+
+        // Prevent navigation in test
+        year1Button.addEventListener("click", (e) => e.preventDefault());
+        await user.click(year1Button);
+
+        expect(onCloseMock).toHaveBeenCalledTimes(1);
+      });
+
+      it("calls onClose when clicking a secondary year button", async () => {
+        const user = userEvent.setup();
+        renderWithTheme(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="PUPILS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const year7Button = await screen.findByRole("link", {
+          name: "Year 7",
+        });
+
+        // Prevent navigation in test
+        year7Button.addEventListener("click", (e) => e.preventDefault());
+        await user.click(year7Button);
+
+        expect(onCloseMock).toHaveBeenCalledTimes(1);
       });
     });
   });
