@@ -1,4 +1,5 @@
 import { NextPage, GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 import {
   OakFlex,
   OakGrid,
@@ -50,10 +51,11 @@ const ProfileLinkButton: React.FC<{
   isTrailingIcon?: boolean;
   children: React.ReactNode;
 }> = ({ href, iconName, isTrailingIcon, children }) => {
+  const router = useRouter();
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    window.history.replaceState(null, "", href);
-    window.location.replace(href);
+    router.replace(href);
   };
 
   return (

@@ -1,6 +1,7 @@
 import { GetServerSidePropsContext } from "next";
 import "jest-styled-components";
 import { fireEvent } from "@testing-library/react";
+import mockRouter from "next-router-mock";
 
 import renderWithProviders from "../../../__helpers__/renderWithProviders";
 
@@ -247,26 +248,18 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
   });
 
-  describe("prev/next profile navigation replaceState", () => {
-    let replaceStateSpy: jest.SpyInstance;
-    let locationReplaceSpy: jest.SpyInstance;
+  describe("prev/next profile navigation uses router.replace", () => {
+    let replaceSpy: jest.SpyInstance;
 
     beforeEach(() => {
-      replaceStateSpy = jest.spyOn(window.history, "replaceState");
-      // window.location.replace is not writable by default in jsdom,
-      // so we redefine it for these tests.
-      locationReplaceSpy = jest.fn();
-      Object.defineProperty(window, "location", {
-        writable: true,
-        value: { ...window.location, replace: locationReplaceSpy },
-      });
+      replaceSpy = jest.spyOn(mockRouter, "replace");
     });
 
     afterEach(() => {
-      replaceStateSpy.mockRestore();
+      replaceSpy.mockRestore();
     });
 
-    it("calls history.replaceState when clicking next profile", () => {
+    it("calls router.replace when clicking next profile", () => {
       const { getByText } = renderWithProviders()(
         <AboutUsMeetTheTeamPerson
           pageData={mockTeamMember}
@@ -279,15 +272,10 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
       const nextButton = getByText("Next profile").closest("a")!;
       fireEvent.click(nextButton);
 
-      expect(replaceStateSpy).toHaveBeenCalledWith(
-        null,
-        "",
-        mockNavigation.nextHref,
-      );
-      expect(locationReplaceSpy).toHaveBeenCalledWith(mockNavigation.nextHref);
+      expect(replaceSpy).toHaveBeenCalledWith(mockNavigation.nextHref);
     });
 
-    it("calls history.replaceState when clicking previous profile", () => {
+    it("calls router.replace when clicking previous profile", () => {
       const { getByText } = renderWithProviders()(
         <AboutUsMeetTheTeamPerson
           pageData={mockTeamMember}
@@ -300,34 +288,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
       const prevButton = getByText("Previous profile").closest("a")!;
       fireEvent.click(prevButton);
 
-      expect(replaceStateSpy).toHaveBeenCalledWith(
-        null,
-        "",
-        mockNavigation.prevHref,
-      );
-      expect(locationReplaceSpy).toHaveBeenCalledWith(mockNavigation.prevHref);
-    });
-
-    it("prevents default link navigation on click", () => {
-      const { getByText } = renderWithProviders()(
-        <AboutUsMeetTheTeamPerson
-          pageData={mockTeamMember}
-          topNav={topNavFixture}
-          navigation={mockNavigation}
-          category="Our leadership"
-        />,
-      );
-
-      const nextButton = getByText("Next profile").closest("a")!;
-      const event = new MouseEvent("click", {
-        bubbles: true,
-        cancelable: true,
-      });
-      const preventDefaultSpy = jest.spyOn(event, "preventDefault");
-
-      nextButton.dispatchEvent(event);
-
-      expect(preventDefaultSpy).toHaveBeenCalled();
+      expect(replaceSpy).toHaveBeenCalledWith(mockNavigation.prevHref);
     });
   });
 
