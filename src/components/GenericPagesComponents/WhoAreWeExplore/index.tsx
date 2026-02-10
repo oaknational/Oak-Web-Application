@@ -8,7 +8,7 @@ import {
   parseSpacing,
 } from "@oaknational/oak-components";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ReactNode, useId } from "react";
 import styled from "styled-components";
 
 const HoverableCard = styled(OakFlex)`
@@ -17,7 +17,15 @@ const HoverableCard = styled(OakFlex)`
   }
 `;
 
-const CustomGrid = styled.div`
+const UnstyledLi = styled.li`
+  padding: 0;
+  margin: 0;
+`;
+
+const CustomUlAsGrid = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: grid;
   row-gap: ${() => parseSpacing("spacing-16")};
   column-gap: ${() => parseSpacing("spacing-16")};
@@ -54,6 +62,8 @@ export function WhoAreWeExplore({
   title,
   items,
 }: Readonly<WhoAreWeExploreProps>) {
+  const headingId = useId();
+
   return (
     <OakBox $background={"bg-decorative1-main"} $position={"relative"}>
       <OakIcon
@@ -78,6 +88,7 @@ export function WhoAreWeExplore({
           $gap={["spacing-32", "spacing-56", "spacing-56"]}
         >
           <OakHeading
+            id={headingId}
             tag="h2"
             $textAlign={"center"}
             $font={["heading-5", "heading-4", "heading-4"]}
@@ -85,46 +96,47 @@ export function WhoAreWeExplore({
           >
             {title}
           </OakHeading>
-          <CustomGrid>
-            {items.map(({ title, iconName, href }) => {
-              return (
-                <OakFocusIndicator
-                  key={title}
-                  $borderRadius={"border-radius-m2"}
-                >
-                  <Link style={{ outline: "none" }} href={href}>
-                    <HoverableCard
-                      data-testid="who-we-are-explore-item"
-                      $flexDirection={"row"}
-                      $pa={"spacing-16"}
-                      $background={"bg-primary"}
-                      $gap={"spacing-16"}
-                      $alignItems={"center"}
-                      $borderRadius={"border-radius-m2"}
-                    >
-                      <OakFlex>
-                        <OakIcon
-                          iconName={iconName}
-                          $width={"spacing-56"}
-                          $height={"spacing-56"}
-                        />
-                      </OakFlex>
-                      <OakFlex
-                        $flexGrow={1}
-                        $font={"body-1-bold"}
-                        $color="text-primary"
-                      >
-                        {title}
-                      </OakFlex>
-                      <OakFlex>
-                        <OakIcon iconName="arrow-right" />
-                      </OakFlex>
-                    </HoverableCard>
-                  </Link>
-                </OakFocusIndicator>
-              );
-            })}
-          </CustomGrid>
+          <nav aria-labelledby={headingId}>
+            <CustomUlAsGrid>
+              {items.map(({ title, iconName, href }) => {
+                return (
+                  <UnstyledLi key={title}>
+                    <OakFocusIndicator $borderRadius={"border-radius-m2"}>
+                      <Link style={{ outline: "none" }} href={href}>
+                        <HoverableCard
+                          data-testid="who-we-are-explore-item"
+                          $flexDirection={"row"}
+                          $pa={"spacing-16"}
+                          $background={"bg-primary"}
+                          $gap={"spacing-16"}
+                          $alignItems={"center"}
+                          $borderRadius={"border-radius-m2"}
+                        >
+                          <OakFlex>
+                            <OakIcon
+                              iconName={iconName}
+                              $width={"spacing-56"}
+                              $height={"spacing-56"}
+                            />
+                          </OakFlex>
+                          <OakFlex
+                            $flexGrow={1}
+                            $font={"body-1-bold"}
+                            $color="text-primary"
+                          >
+                            {title}
+                          </OakFlex>
+                          <OakFlex>
+                            <OakIcon iconName="arrow-right" />
+                          </OakFlex>
+                        </HoverableCard>
+                      </Link>
+                    </OakFocusIndicator>
+                  </UnstyledLi>
+                );
+              })}
+            </CustomUlAsGrid>
+          </nav>
         </OakFlex>
       </InnerMaxWidth>
     </OakBox>
