@@ -1,3 +1,32 @@
+## [1.984.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.984.1...v1.984.2) (2026-02-10)
+
+
+### Bug Fixes
+
+* update paragraph spacing in /about-us/get-involved ([89f502a](https://github.com/oaknational/Oak-Web-Application/commit/89f502a2b24ed21143045f21d0fac3ab6a93c574))
+
+## [1.984.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.984.0...v1.984.1) (2026-02-10)
+
+
+### Bug Fixes
+
+* failing tests by adding in provider ([091544f](https://github.com/oaknational/Oak-Web-Application/commit/091544fab8deb6c9aa4e2514ddf8f9187189e1fa))
+* remove duplicate <OakThemeProvider/> all over the place ([03314ba](https://github.com/oaknational/Oak-Web-Application/commit/03314bae3209e04eb630d2a0626528c87fcda714))
+* replace <WithThemeProvider/> with renderWithTheme(...) ([abe0812](https://github.com/oaknational/Oak-Web-Application/commit/abe0812085a407a28073bfa37e50b9d2fbb44e0d))
+* revert removal of <OakThemeProvider/> from <CookieConsentProvider/> ([bcfb255](https://github.com/oaknational/Oak-Web-Application/commit/bcfb255063de9bec64dd9341a595efe9197ffcad))
+
+# [1.984.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.983.0...v1.984.0) (2026-02-10)
+
+
+### Bug Fixes
+
+* semantic list + labelled heading in <WhoAreWeExplore/> ([049b959](https://github.com/oaknational/Oak-Web-Application/commit/049b9594b76ee1e76b9a5355aeeae000ccdaf80b))
+
+
+### Features
+
+* change explore section of new about-us pages to 3 items ([9da8fbb](https://github.com/oaknational/Oak-Web-Application/commit/9da8fbb9b1defb5ce4303f2c6738b534a6fcdb17))
+
 # [1.983.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.982.0...v1.983.0) (2026-02-09)
 
 
