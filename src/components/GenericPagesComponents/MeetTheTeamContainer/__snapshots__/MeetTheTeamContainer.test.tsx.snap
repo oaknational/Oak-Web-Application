@@ -23,11 +23,11 @@ exports[`MeetTheTeamContainer renders correctly 1`] = `
             TEST_TEXT
           </p>
         </div>
-        <div
-          class="sc-aXZVg sc-tagGq hdseiA fugleq"
+        <ul
+          class="sc-aXZVg sc-tagGq NyjaL fugleq"
         >
           TEST_CONTENT
-        </div>
+        </ul>
       </div>
     </div>
   </div>

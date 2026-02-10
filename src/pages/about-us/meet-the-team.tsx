@@ -38,9 +38,8 @@ const SECTION_TITLES = {
   governance: "Governance",
 };
 
-const UnstyledStyled = styled.ul`
-  padding: 0px;
-  margin: 0px;
+const UnstyledStyled = styled.li`
+  list-style: none;
 `;
 
 export type AboutUsMeetTheTeamPageProps = {
