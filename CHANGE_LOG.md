@@ -1,3 +1,15 @@
+# [1.984.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.983.0...v1.984.0) (2026-02-10)
+
+
+### Bug Fixes
+
+* semantic list + labelled heading in <WhoAreWeExplore/> ([049b959](https://github.com/oaknational/Oak-Web-Application/commit/049b9594b76ee1e76b9a5355aeeae000ccdaf80b))
+
+
+### Features
+
+* change explore section of new about-us pages to 3 items ([9da8fbb](https://github.com/oaknational/Oak-Web-Application/commit/9da8fbb9b1defb5ce4303f2c6738b534a6fcdb17))
+
 # [1.983.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.982.0...v1.983.0) (2026-02-09)
 
 
