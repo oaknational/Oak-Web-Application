@@ -13,7 +13,7 @@ export const hideAndClickDownloadLink = (url: string, a: HTMLAnchorElement) => {
 
 const isInIframe = () => {
   try {
-    return window.self !== window.top;
+    return globalThis.self !== globalThis.top;
   } catch {
     return true;
   }
@@ -21,7 +21,7 @@ const isInIframe = () => {
 
 const createAndClickHiddenDownloadLink = (url: string) => {
   if (isInIframe()) {
-    window.open(encodeURI(url), "_blank");
+    globalThis.open(encodeURI(url), "_blank");
     return;
   }
   const link = createLink();
