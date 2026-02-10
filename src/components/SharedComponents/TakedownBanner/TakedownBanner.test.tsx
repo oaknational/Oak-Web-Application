@@ -107,7 +107,7 @@ describe("TakedownBanner", () => {
       ),
     ).toBeInTheDocument();
     expect(
-      getByText("We’ve made brand-new and improved lessons for you."),
+      getByText("We've made brand-new and improved lessons for you."),
     ).toBeInTheDocument();
   });
 
@@ -144,7 +144,7 @@ describe("TakedownBanner", () => {
     expect(bannerHeader).toBeInTheDocument();
 
     const bannerBody = getByText(
-      "We’ve made brand new and improved lessons for you.",
+      "We've made brand new and improved lessons for you.",
     );
     expect(bannerBody).toBeInTheDocument();
   });

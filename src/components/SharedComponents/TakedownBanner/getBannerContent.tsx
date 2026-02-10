@@ -15,6 +15,48 @@ export const CYCLE_2_SUBJECTS = new Set([
   "rshe-pshe",
 ]);
 
+const getCycle2WithNewUnitsContent = (user: "teacher" | "pupil") => ({
+  header: `These ${user === "pupil" ? "lessons" : "resources"} will be removed by the end of the Spring Term 2026.`,
+  body:
+    user === "pupil" ? (
+      "We've made brand new and improved lessons for you."
+    ) : (
+      <OakFlex $flexDirection={"column"} $gap="spacing-20">
+        <OakP>
+          Start using our brand new teaching resources now. Designed by teachers
+          and subject experts, with real classrooms in mind.{" "}
+        </OakP>
+        <OakP>
+          The older resources below were created for lockdown learning during
+          the pandemic and are not designed for classroom teaching.
+        </OakP>
+      </OakFlex>
+    ),
+});
+
+const getCycle2WithoutNewUnitsContent = () => ({
+  header:
+    "These resources were made for remote use during the pandemic, not classroom teaching.",
+  body: "Switch to our brand new teaching resources now. Designed by teachers and subject experts, with real classrooms in mind.",
+});
+
+const getExpiringWithNewUnitsContent = (
+  user: "teacher" | "pupil",
+  isSingle?: boolean,
+) => {
+  const pupilHeader = `${isSingle ? "This lesson was" : "These lessons were"} made for lockdown learning during the pandemic`;
+  return {
+    header:
+      user === "pupil"
+        ? pupilHeader
+        : "These resources were made for remote use during the pandemic, not classroom teaching.",
+    body:
+      user === "pupil"
+        ? "We've made brand-new and improved lessons for you."
+        : "Switch to our brand-new teaching resources now. Designed by teachers and subject experts, with real classrooms in mind",
+  };
+};
+
 export const getBannerContent = ({
   isCycle2,
   isExpiring,
@@ -30,49 +72,17 @@ export const getBannerContent = ({
 }) => {
   if (isCycle2 && hasNewUnits) {
     // cycle 2 take down where new content exists
-    return {
-      header: `These ${user === "pupil" ? "lessons" : "resources"} will be removed by the end of the Spring Term 2026.`,
-      body:
-        user === "pupil" ? (
-          "We’ve made brand new and improved lessons for you."
-        ) : (
-          <OakFlex $flexDirection={"column"} $gap="spacing-20">
-            <OakP>
-              Start using our brand new teaching resources now. Designed by
-              teachers and subject experts, with real classrooms in mind.{" "}
-            </OakP>
-            <OakP>
-              The older resources below were created for lockdown learning
-              during the pandemic and are not designed for classroom teaching.
-            </OakP>
-          </OakFlex>
-        ),
-    };
+    return getCycle2WithNewUnitsContent(user);
   }
 
   if (isCycle2 && !hasNewUnits) {
     // cycle 2 takedown where no new content exists, ie. drama and latin
-    return {
-      header:
-        "These resources were made for remote use during the pandemic, not classroom teaching.",
-      body: "Switch to our brand new teaching resources now. Designed by teachers and subject experts, with real classrooms in mind.",
-    };
+    return getCycle2WithoutNewUnitsContent();
   }
 
   if (isExpiring && hasNewUnits) {
     // cycle 1 legacy takedown for expiring content
-    const pupilHeader = `${isSingle ? "This lesson was" : "These lessons were"} made for lockdown learning during the pandemic`;
-
-    return {
-      header:
-        user === "pupil"
-          ? pupilHeader
-          : "These resources were made for remote use during the pandemic, not classroom teaching.",
-      body:
-        user === "pupil"
-          ? "We’ve made brand-new and improved lessons for you."
-          : "Switch to our brand-new teaching resources now. Designed by teachers and subject experts, with real classrooms in mind",
-    };
+    return getExpiringWithNewUnitsContent(user, isSingle);
   }
 
   // default, content being expired where no new content exists
