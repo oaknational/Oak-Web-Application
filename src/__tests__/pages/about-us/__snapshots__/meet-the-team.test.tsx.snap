@@ -4777,7 +4777,9 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         <h2
                           class="c95"
                           id="side-menu-header"
-                        />
+                        >
+                          Page sections
+                        </h2>
                         <ul
                           class="c96"
                         >

@@ -101,7 +101,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               >
                 <SideMenuWrapper>
                   <OakSideMenuNav
-                    heading=""
+                    heading="Page sections"
                     anchorTargetId=""
                     menuItems={[
                       {
