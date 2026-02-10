@@ -61,10 +61,12 @@ export const getBannerContent = ({
 
   if (isExpiring && hasNewUnits) {
     // cycle 1 legacy takedown for expiring content
+    const pupilHeader = `${isSingle ? "This lesson was" : "These lessons were"} made for lockdown learning during the pandemic`;
+
     return {
       header:
         user === "pupil"
-          ? `${isSingle ? "this lesson was" : "These lessons were"} made for lockdown learning during the pandemic`
+          ? pupilHeader
           : "These resources were made for remote use during the pandemic, not classroom teaching.",
       body:
         user === "pupil"
