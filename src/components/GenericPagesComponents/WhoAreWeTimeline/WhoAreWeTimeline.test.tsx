@@ -1,4 +1,4 @@
-import { getByRole } from "@testing-library/dom";
+import { getByRole as getByRoleGlobal } from "@testing-library/dom";
 
 import WhoAreWeTimeline from "./";
 
@@ -17,7 +17,7 @@ function genPortableText(text: string) {
 
 describe("WhoAreWeTimeline", () => {
   it("renders correctly", () => {
-    const { baseElement, getAllByRole, getAllByTestId } = render(
+    const { baseElement, getAllByRole, getAllByTestId, getByRole } = render(
       <WhoAreWeTimeline
         title={"TEST_TITLE"}
         subTitle={"TEST_SUBTITLE"}
@@ -35,7 +35,34 @@ describe("WhoAreWeTimeline", () => {
           {
             title: "ITEM_TITLE_3",
             subTitle: "ITEM_SUBTITLE_3",
-            text: genPortableText("ITEM_TEXT_3"),
+            text: [
+              {
+                markDefs: [
+                  {
+                    anchor: "newsletter-signup",
+                    _type: "anchorLink",
+                    _key: "683215566391",
+                  },
+                ],
+                children: [
+                  {
+                    marks: [],
+                    text: "ITEM_TEXT_3",
+                    _key: "18ee5a82e52d",
+                    _type: "span",
+                  },
+                  {
+                    _type: "span",
+                    marks: ["683215566391"],
+                    text: "TEST_LINK",
+                    _key: "c8e9af4e47b7",
+                  },
+                ],
+                _type: "block",
+                style: "normal",
+                _key: "39d387e70e2a",
+              },
+            ],
           },
         ]}
       />,
@@ -46,10 +73,13 @@ describe("WhoAreWeTimeline", () => {
 
     const itemEls = getAllByTestId("timetable-timeline-item");
     itemEls.forEach((itemEl, index) => {
-      expect(getByRole(itemEl, "heading")).toHaveTextContent(
+      expect(getByRoleGlobal(itemEl, "heading")).toHaveTextContent(
         `ITEM_TITLE_${index + 1}`,
       );
       expect(itemEl).toHaveTextContent(`ITEM_TEXT_${index + 1}`);
     });
+    const linkEl = getByRole("link");
+    expect(linkEl.textContent).toEqual("TEST_LINK");
+    expect(linkEl.getAttribute("href")).toEqual("#newsletter-signup");
   });
 });
