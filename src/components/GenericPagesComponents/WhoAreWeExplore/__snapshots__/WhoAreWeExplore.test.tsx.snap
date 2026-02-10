@@ -32,7 +32,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
             TEST_TITLE
           </h2>
           <div
-            class="sc-b6a66369-1 zwGHk"
+            class="sc-e404d0fd-1 iRDiXa"
           >
             <div
               class="sc-aXZVg sc-kMkxaj bpmavV jEjmXi"
@@ -42,7 +42,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 style="outline: none;"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-b6a66369-0 krhsqK egjftS cKiauA"
+                  class="sc-aXZVg sc-gEvEer sc-e404d0fd-0 krhsqK egjftS hsrraq"
                   data-testid="who-we-are-explore-item"
                 >
                   <div
@@ -95,7 +95,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 style="outline: none;"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-b6a66369-0 krhsqK egjftS cKiauA"
+                  class="sc-aXZVg sc-gEvEer sc-e404d0fd-0 krhsqK egjftS hsrraq"
                   data-testid="who-we-are-explore-item"
                 >
                   <div
@@ -148,7 +148,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 style="outline: none;"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-b6a66369-0 krhsqK egjftS cKiauA"
+                  class="sc-aXZVg sc-gEvEer sc-e404d0fd-0 krhsqK egjftS hsrraq"
                   data-testid="who-we-are-explore-item"
                 >
                   <div
