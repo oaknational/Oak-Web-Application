@@ -7,6 +7,7 @@ import {
   OakSideMenuNav,
   OakTypography,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
@@ -36,6 +37,11 @@ const SECTION_TITLES = {
   documents: "Documents",
   governance: "Governance",
 };
+
+const UnstyledStyled = styled.ul`
+  padding: 0px;
+  margin: 0px;
+`;
 
 export type AboutUsMeetTheTeamPageProps = {
   pageData: MeetTheTeamPage;
@@ -121,14 +127,9 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     getProxiedSanityAssetUrl(member.image?.asset?.url) ??
                     undefined;
                   return (
-                    <ul
-                      key={member.id}
-                      style={{
-                        padding: 0,
-                        margin: 0,
-                      }}
-                    >
+                    <UnstyledStyled>
                       <OakCard
+                        key={member.id}
                         heading={member.name}
                         href={`/about-us/meet-the-team/${slug}?section=leadership`}
                         cardWidth={"100%"}
@@ -137,7 +138,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                         linkText="See bio"
                         linkIconName="chevron-right"
                       />
-                    </ul>
+                    </UnstyledStyled>
                   );
                 })}
               </MeetTheTeamContainer>
@@ -153,13 +154,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     getProxiedSanityAssetUrl(member.image?.asset?.url) ??
                     undefined;
                   return (
-                    <ul
-                      key={member.id}
-                      style={{
-                        padding: 0,
-                        margin: 0,
-                      }}
-                    >
+                    <UnstyledStyled>
                       <OakCard
                         key={member.id}
                         heading={member.name}
@@ -170,7 +165,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                         linkText="See bio"
                         linkIconName="chevron-right"
                       />
-                    </ul>
+                    </UnstyledStyled>
                   );
                 })}
               </MeetTheTeamContainer>
@@ -186,13 +181,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                       doc.file.asset.size,
                     );
                     return (
-                      <ul
-                        key={doc.title}
-                        style={{
-                          padding: 0,
-                          margin: 0,
-                        }}
-                      >
+                      <UnstyledStyled>
                         <OakCard
                           key={doc.title}
                           heading={doc.title}
@@ -202,7 +191,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                           linkText="Download"
                           linkIconName="download"
                         />
-                      </ul>
+                      </UnstyledStyled>
                     );
                   })}
                 </MeetTheTeamContainer>
