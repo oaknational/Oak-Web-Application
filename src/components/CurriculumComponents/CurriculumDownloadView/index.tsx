@@ -2,7 +2,7 @@ import {
   OakBox,
   OakGrid,
   OakGridArea,
-  OakSecondaryLink,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 import { FC, useState } from "react";
 import { useUser } from "@clerk/nextjs";
@@ -44,14 +44,14 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
         <OakGrid $mb="spacing-24" $cg="spacing-16">
           <OakGridArea $colSpan={[12, 8, 12]} $colStart={[1, 3, 1]}>
             <div>
-              <OakSecondaryLink
+              <OakTertiaryButton
                 element="button"
-                data-testid="back-to-downloads-link"
                 iconName="chevron-left"
+                data-testid="back-to-lesson-link"
                 onClick={props.onBackToKs4Options}
               >
                 Back to KS4 options
-              </OakSecondaryLink>
+              </OakTertiaryButton>
             </div>
           </OakGridArea>
         </OakGrid>
