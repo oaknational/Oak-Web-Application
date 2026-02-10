@@ -4,7 +4,7 @@ import {
   OakP,
   OakFlex,
   OakBox,
-  OakPrimaryButton,
+  OakSmallSecondaryButton,
 } from "@oaknational/oak-components";
 
 export type ResourcePageDetailsCompletedProps = {
@@ -62,7 +62,7 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
           </OakFlex>
         </OakFlex>
         <OakBox $mt="spacing-8">
-          <OakPrimaryButton
+          <OakSmallSecondaryButton
             iconName="edit"
             isTrailingIcon
             onClick={() => {
@@ -71,7 +71,7 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
             aria-label="Edit details"
           >
             Edit
-          </OakPrimaryButton>
+          </OakSmallSecondaryButton>
         </OakBox>
       </OakFlex>
     </OakBox>
