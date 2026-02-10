@@ -5,11 +5,24 @@ import {
   OakBox,
   OakSpan,
   OakHeading,
+  OakLink,
 } from "@oaknational/oak-components";
 import { ReactNode, useMemo } from "react";
+import { PortableTextMarkComponent } from "@portabletext/react";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+
+export const SecondaryAnchorLink: PortableTextMarkComponent<{
+  _type: "anchor";
+  anchor: string;
+}> = (props) => {
+  if (!props.value?.anchor) {
+    return null;
+  }
+
+  return <OakLink href={`#${props.value.anchor}`}>{props.children}</OakLink>;
+};
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {
   const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
@@ -130,7 +143,14 @@ export default function WhoAreWeTimeline({
                           $flexDirection={"column"}
                           $gap={["spacing-20", "spacing-24"]}
                         >
-                          <PortableTextWithDefaults value={item.text} />
+                          <PortableTextWithDefaults
+                            value={item.text}
+                            components={{
+                              marks: {
+                                anchorLink: SecondaryAnchorLink,
+                              },
+                            }}
+                          />
                         </OakFlex>
                       </OakFlex>
                     </OakFlex>
