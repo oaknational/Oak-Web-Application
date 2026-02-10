@@ -1,4 +1,6 @@
 import { OakGrid, OakGridArea, OakP } from "@oaknational/oak-components";
+import { keystageSlugs } from "@oaknational/oak-curriculum-schema";
+import z from "zod";
 
 import { isHighlightedUnit } from "@/utils/curriculum/filteringApp";
 import {
@@ -14,6 +16,9 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 import CardListing from "@/components/TeacherComponents/CardListing/CardListing";
+import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+
+type KeystageSlug = z.infer<typeof keystageSlugs>;
 
 type ProgrammeUnitListProps = {
   units: Unit[];
@@ -102,13 +107,10 @@ export function ProgrammeUnitList({
   );
 }
 
-// TODO: This should be coming from the backend, but I can't find the correct field in the schema.
-// for the overview page this seems to come from `keystage_description` and goes through some
-// indirect post processing to get the final title. It seems this field is overloaded with
-// non key stage titles, so we may need to be able to handle all of them.
-// I.e. "Early Years Foundation stage" | "Specialist" | "Therapies"
-function getKeyStageTitle(ksSlug: string) {
-  switch (ksSlug) {
+// Types are loose coming out of the API so we cast to `KeystageSlug` to
+// do our best to map it to the correct title. Fallback to undefined if we can't map it.
+function getKeyStageTitle(ksSlug: string): KeyStageTitleValueType | undefined {
+  switch (ksSlug as KeystageSlug) {
     case "ks1":
       return "Key stage 1";
     case "ks2":
@@ -117,5 +119,9 @@ function getKeyStageTitle(ksSlug: string) {
       return "Key stage 3";
     case "ks4":
       return "Key stage 4";
+    case "early-years-foundation-stage":
+      return "Early Years Foundation stage";
+    default:
+      return undefined;
   }
 }
