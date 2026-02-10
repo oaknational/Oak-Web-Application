@@ -5,8 +5,6 @@ import {
   OakPupilJourneyLayout,
   OakPupilJourneyListItem,
   OakTertiaryButton,
-  OakThemeProvider,
-  oakDefaultTheme,
   OakPupilJourneyList,
   OakPupilJourneyListCounter,
   OakBox,
@@ -117,7 +115,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   );
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
+    <>
       {" "}
       <AppLayout
         seoProps={{
@@ -164,6 +162,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
           <PupilRedirectedOverlay />
         </OakPupilJourneyLayout>
       </AppLayout>
-    </OakThemeProvider>
+    </>
   );
 };
