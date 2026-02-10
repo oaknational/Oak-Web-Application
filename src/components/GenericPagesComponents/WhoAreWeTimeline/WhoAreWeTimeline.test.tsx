@@ -1,4 +1,4 @@
-import { getByRole as getByRoleGlobal } from "@testing-library/dom";
+import { getByRole } from "@testing-library/dom";
 
 import WhoAreWeTimeline from "./";
 
@@ -17,7 +17,7 @@ function genPortableText(text: string) {
 
 describe("WhoAreWeTimeline", () => {
   it("renders correctly", () => {
-    const { baseElement, getAllByRole, getAllByTestId, getByRole } = render(
+    const { baseElement, getAllByRole, getAllByTestId } = render(
       <WhoAreWeTimeline
         title={"TEST_TITLE"}
         subTitle={"TEST_SUBTITLE"}
@@ -43,6 +43,11 @@ describe("WhoAreWeTimeline", () => {
                     _type: "anchorLink",
                     _key: "683215566391",
                   },
+                  {
+                    anchor: null,
+                    _type: "anchorLink",
+                    _key: "683215566392",
+                  },
                 ],
                 children: [
                   {
@@ -54,8 +59,14 @@ describe("WhoAreWeTimeline", () => {
                   {
                     _type: "span",
                     marks: ["683215566391"],
-                    text: "TEST_LINK",
+                    text: "TEST_LINK_1",
                     _key: "c8e9af4e47b7",
+                  },
+                  {
+                    _type: "span",
+                    marks: ["683215566392"],
+                    text: "TEST_LINK_2",
+                    _key: "c8e9af4e47b8",
                   },
                 ],
                 _type: "block",
@@ -73,13 +84,15 @@ describe("WhoAreWeTimeline", () => {
 
     const itemEls = getAllByTestId("timetable-timeline-item");
     itemEls.forEach((itemEl, index) => {
-      expect(getByRoleGlobal(itemEl, "heading")).toHaveTextContent(
+      expect(getByRole(itemEl, "heading")).toHaveTextContent(
         `ITEM_TITLE_${index + 1}`,
       );
       expect(itemEl).toHaveTextContent(`ITEM_TEXT_${index + 1}`);
     });
-    const linkEl = getByRole("link");
-    expect(linkEl.textContent).toEqual("TEST_LINK");
-    expect(linkEl.getAttribute("href")).toEqual("#newsletter-signup");
+    const linkEl = getAllByRole("link");
+    expect(linkEl[0]?.textContent).toEqual("TEST_LINK_1");
+    expect(linkEl[0]?.getAttribute("href")).toEqual("#newsletter-signup");
+    expect(linkEl[1]?.textContent).toEqual("TEST_LINK_2");
+    expect(linkEl[1]?.getAttribute("href")).toEqual("#");
   });
 });

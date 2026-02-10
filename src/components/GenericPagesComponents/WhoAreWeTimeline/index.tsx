@@ -17,11 +17,9 @@ export const SecondaryAnchorLink: PortableTextMarkComponent<{
   _type: "anchor";
   anchor: string;
 }> = (props) => {
-  if (!props.value?.anchor) {
-    return null;
-  }
-
-  return <OakLink href={`#${props.value.anchor}`}>{props.children}</OakLink>;
+  return (
+    <OakLink href={`#${props.value?.anchor ?? ""}`}>{props.children}</OakLink>
+  );
 };
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {

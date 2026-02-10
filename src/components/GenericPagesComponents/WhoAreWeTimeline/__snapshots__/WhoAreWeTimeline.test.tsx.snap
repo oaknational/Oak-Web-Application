@@ -177,7 +177,17 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                           <span
                             class="sc-eqUAAy dtaNGQ"
                           >
-                            TEST_LINK
+                            TEST_LINK_1
+                          </span>
+                        </a>
+                        <a
+                          class="sc-hzhJZQ fCGScF"
+                          href="#"
+                        >
+                          <span
+                            class="sc-eqUAAy dtaNGQ"
+                          >
+                            TEST_LINK_2
                           </span>
                         </a>
                       </p>
