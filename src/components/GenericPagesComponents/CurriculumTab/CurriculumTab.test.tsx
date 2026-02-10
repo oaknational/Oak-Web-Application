@@ -5,8 +5,6 @@ import CurriculumTab from "./CurriculumTab";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-window.matchMedia = () => ({ matches: true }) as unknown as MediaQueryList;
-
 const render = renderWithProviders();
 
 const mockCurriculumPhaseOptionsData = [

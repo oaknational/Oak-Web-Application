@@ -6,11 +6,6 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const onClick = jest.fn();
 
-jest.mock("../../../node-lib/cms");
-globalThis.matchMedia = jest.fn().mockReturnValue({
-  matches: true,
-});
-
 const render = renderWithProviders();
 
 describe("TakedownBanner", () => {

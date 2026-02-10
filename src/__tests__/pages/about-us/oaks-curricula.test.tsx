@@ -15,9 +15,6 @@ import OaksCurricula, {
 
 jest.mock("@/node-lib/posthog/getFeatureFlag");
 jest.mock("../../../node-lib/cms");
-globalThis.matchMedia = jest.fn().mockReturnValue({
-  matches: true,
-});
 
 const testAboutWhoWeArePageData: OaksCurriculaPage["pageData"] = {
   ...testAboutPageBaseData,
