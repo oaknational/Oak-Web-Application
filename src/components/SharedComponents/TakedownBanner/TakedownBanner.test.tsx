@@ -6,6 +6,11 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const onClick = jest.fn();
 
+jest.mock("../../../node-lib/cms");
+globalThis.matchMedia = jest.fn().mockReturnValue({
+  matches: true,
+});
+
 const render = renderWithProviders();
 
 describe("TakedownBanner", () => {
@@ -68,7 +73,7 @@ describe("TakedownBanner", () => {
     expect(bannerHeader).toBeInTheDocument();
 
     const bannerBody = getByText(
-      "Start using our brand new teaching resources now. Designed by teachers and subject experts, with real classrooms in mind. The older resources below were created for lockdown learning during the pandemic and are not designed for classroom teaching.",
+      "Start using our brand new teaching resources now. Designed by teachers and subject experts, with real classrooms in mind.",
     );
     expect(bannerBody).toBeInTheDocument();
   });
