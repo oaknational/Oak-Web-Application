@@ -38,7 +38,7 @@ const SECTION_TITLES = {
   governance: "Governance",
 };
 
-const UnstyledStyled = styled.li`
+const UnstyledLi = styled.li`
   list-style: none;
 `;
 
@@ -126,7 +126,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     getProxiedSanityAssetUrl(member.image?.asset?.url) ??
                     undefined;
                   return (
-                    <UnstyledStyled>
+                    <UnstyledLi>
                       <OakCard
                         key={member.id}
                         heading={member.name}
@@ -137,7 +137,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                         linkText="See bio"
                         linkIconName="chevron-right"
                       />
-                    </UnstyledStyled>
+                    </UnstyledLi>
                   );
                 })}
               </MeetTheTeamContainer>
@@ -153,7 +153,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     getProxiedSanityAssetUrl(member.image?.asset?.url) ??
                     undefined;
                   return (
-                    <UnstyledStyled>
+                    <UnstyledLi>
                       <OakCard
                         key={member.id}
                         heading={member.name}
@@ -164,7 +164,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                         linkText="See bio"
                         linkIconName="chevron-right"
                       />
-                    </UnstyledStyled>
+                    </UnstyledLi>
                   );
                 })}
               </MeetTheTeamContainer>
@@ -180,7 +180,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                       doc.file.asset.size,
                     );
                     return (
-                      <UnstyledStyled>
+                      <UnstyledLi>
                         <OakCard
                           key={doc.title}
                           heading={doc.title}
@@ -190,7 +190,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                           linkText="Download"
                           linkIconName="download"
                         />
-                      </UnstyledStyled>
+                      </UnstyledLi>
                     );
                   })}
                 </MeetTheTeamContainer>
