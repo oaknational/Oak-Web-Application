@@ -70,7 +70,6 @@ describe("AboutUsLayout", () => {
 
     expect(getByText("About Oak")).toBeInTheDocument();
     expect(getByText("Oak's curricula")).toBeInTheDocument();
-    // expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
     expect(getByText("Get involved")).toBeInTheDocument();
   });

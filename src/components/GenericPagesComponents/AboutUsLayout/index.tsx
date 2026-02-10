@@ -35,11 +35,6 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
       title: "Oak's curricula",
       href: "/about-us/oaks-curricula",
     },
-    // {
-    //   iconName: "data" as const,
-    //   title: "Oak's impact",
-    //   href: "#",
-    // },
     {
       iconName: "snack-break" as const,
       title: "Meet the team",
