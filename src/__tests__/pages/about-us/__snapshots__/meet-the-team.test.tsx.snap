@@ -5299,6 +5299,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
           </div>
           <div
             class="c136"
+            id="newsletter-signup"
           >
             <div
               class="c137 c138"
