@@ -5,6 +5,7 @@ import {
   OakGrid,
   OakGridArea,
   OakImage,
+  OakP,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -101,7 +102,20 @@ export function GetInvolvedCollaborateWithUs({
                       headingTag={card.headingTag}
                       headingTitle={card.headingTitle}
                       content={
-                        <PortableTextWithDefaults value={card.content} />
+                        <PortableTextWithDefaults
+                          value={card.content}
+                          components={{
+                            block: {
+                              normal: (props) => {
+                                return (
+                                  <OakP $font={["body-2", "body-1"]}>
+                                    {props.children}
+                                  </OakP>
+                                );
+                              },
+                            },
+                          }}
+                        />
                       }
                       buttons={card.buttons}
                     />

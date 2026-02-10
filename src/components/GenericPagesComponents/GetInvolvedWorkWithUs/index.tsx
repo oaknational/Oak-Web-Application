@@ -6,6 +6,7 @@ import {
   OakGrid,
   OakIcon,
   OakGridArea,
+  OakP,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -77,7 +78,20 @@ export function GetInvolvedWorkWithUs({
                 $flexDirection={"column"}
                 $gap={["spacing-20", "spacing-24"]}
               >
-                <PortableTextWithDefaults value={text} />
+                <PortableTextWithDefaults
+                  value={text}
+                  components={{
+                    block: {
+                      normal: (props) => {
+                        return (
+                          <OakP $font={["body-2", "body-1"]}>
+                            {props.children}
+                          </OakP>
+                        );
+                      },
+                    },
+                  }}
+                />
               </OakFlex>
             </OakFlex>
 
