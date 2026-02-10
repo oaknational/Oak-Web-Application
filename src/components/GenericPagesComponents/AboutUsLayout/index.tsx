@@ -32,18 +32,13 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
     },
     {
       iconName: "homepage-teacher-map" as const,
-      title: "About Oak's curriculum",
-      href: "#",
-    },
-    {
-      iconName: "data" as const,
-      title: "Oak's impact",
-      href: "#",
+      title: "Oak's curricula",
+      href: "/about-us/oaks-curricula",
     },
     {
       iconName: "snack-break" as const,
       title: "Meet the team",
-      href: "#",
+      href: "/about-us/meet-the-team",
     },
     {
       iconName: "chatting" as const,
@@ -57,12 +52,18 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
   );
 
   return (
-    <OakBox $overflow={"hidden"} $zIndex={"neutral"}>
+    <OakBox $zIndex={"neutral"}>
       {children}
-      <WhoAreWeExplore
-        title={"Explore more about Oak"}
-        items={filteredExploreItems}
-      />
+      <OakBox
+        $overflow={"hidden"}
+        $pt={"spacing-72"}
+        style={{ marginTop: "-72px" }}
+      >
+        <WhoAreWeExplore
+          title={"Explore more about Oak"}
+          items={filteredExploreItems}
+        />
+      </OakBox>
       <OakBox
         $background={"bg-decorative1-subdued"}
         $pv={["spacing-56", "spacing-56"]}

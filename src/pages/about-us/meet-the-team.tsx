@@ -1,5 +1,6 @@
 import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
 import {
+  OakBox,
   OakCard,
   OakFlex,
   OakHeading,
@@ -69,30 +70,35 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
           titleHighlight="bg-decorative5-main"
         />
         <InnerMaxWidth>
-          <OakFlex $gap={"spacing-16"}>
-            <OakFlex
-              $display={["none", "block", "block"]}
-              style={{ minWidth: 200 }}
-            >
-              <OakSideMenuNav
-                heading="Page sections"
-                anchorTargetId=""
-                menuItems={[
-                  {
-                    heading: "Our leadership",
-                    href: "#our-leadership",
-                  },
-                  {
-                    heading: "Our board",
-                    href: "#our-board",
-                  },
-                  {
-                    heading: "Documents",
-                    href: "#documents",
-                  },
-                ]}
-              />
-            </OakFlex>
+          <OakFlex $gap={["spacing-0", "spacing-16", "spacing-16"]}>
+            <OakBox $pb={"spacing-80"}>
+              <OakBox
+                $minWidth={"spacing-180"}
+                $display={["none", "block", "block"]}
+                $position={"sticky"}
+                $top="spacing-20"
+                $pb={"spacing-80"}
+              >
+                <OakSideMenuNav
+                  heading="Page sections"
+                  anchorTargetId=""
+                  menuItems={[
+                    {
+                      heading: "Our leadership",
+                      href: "#our-leadership",
+                    },
+                    {
+                      heading: "Our board",
+                      href: "#our-board",
+                    },
+                    {
+                      heading: "Documents",
+                      href: "#documents",
+                    },
+                  ]}
+                />
+              </OakBox>
+            </OakBox>
             <OakFlex
               $flexGrow={1}
               $flexDirection={"column"}
@@ -113,7 +119,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     <OakCard
                       key={member.id}
                       heading={member.name}
-                      href={`/about-us/meet-the-team/${slug}`}
+                      href={`/about-us/meet-the-team/${slug}?section=leadership`}
                       cardWidth={"100%"}
                       imageSrc={imageUrl}
                       imageAlt={`Photo of ${member.name}`}
@@ -139,7 +145,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     <OakCard
                       key={member.id}
                       heading={member.name}
-                      href={`/about-us/meet-the-team/${slug}`}
+                      href={`/about-us/meet-the-team/${slug}?section=board`}
                       cardWidth={"100%"}
                       imageSrc={imageUrl}
                       imageAlt={`Photo of ${member.name}`}
