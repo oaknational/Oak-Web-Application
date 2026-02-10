@@ -213,6 +213,7 @@ const TeachersLinksSection = ({
                   page: link.slug,
                 } as ResolveOakHrefProps)}
                 iconName={link.external ? "external" : undefined}
+                target={link.external ? "_blank" : undefined}
                 isTrailingIcon={link.external}
                 aria-label={
                   link.external

@@ -106,6 +106,11 @@ export const topNavFixture: TopNavProps = {
         slug: "blog-index",
         title: "Blogs",
       },
+      {
+        slug: "help",
+        title: "Help",
+        external: true,
+      },
     ],
   },
   pupils: {

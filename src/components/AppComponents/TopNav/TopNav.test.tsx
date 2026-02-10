@@ -134,11 +134,12 @@ describe("TopNav", () => {
   });
 });
 const subnavLabels = [
-  "Primary",
-  "Secondary",
-  "Curriculum",
-  "Guidance",
-  "About us",
+  { label: "Primary", element: "button" },
+  { label: "Secondary", element: "button" },
+  { label: "Curriculum", element: "link" },
+  { label: "Guidance", element: "button" },
+  { label: "About us", element: "button" },
+  { label: "Ai experiements", element: "link" },
 ];
 
 describe("TopNav accessibility", () => {
@@ -170,7 +171,11 @@ describe("TopNav accessibility", () => {
 
     for (const label of subnavLabels) {
       await user.tab();
-      const subnavButton = screen.getByRole("button", { name: label });
+
+      const subnavButton =
+        label.element === "link"
+          ? screen.getByRole("link", { name: label.label })
+          : screen.getByRole("button", { name: label.label });
       expect(subnavButton).toHaveFocus();
     }
   });
@@ -206,7 +211,7 @@ describe("TopNav accessibility", () => {
     const secondaryButton = await screen.findByRole("button", {
       name: "Secondary",
     });
-    const curriculumButton = await screen.findByRole("button", {
+    const curriculumButton = await screen.findByRole("link", {
       name: "Curriculum",
     });
 
@@ -239,32 +244,14 @@ describe("TopNav accessibility", () => {
     expect(curriculumButton).toHaveFocus();
   });
 
-  // it("Tabs to the next focusable item when tabbing from the last item in the dropdown", async () => {
-  //   const user = userEvent.setup();
-  //   render(<TopNav {...mockProps} />);
-  //   const aboutUsButton = await screen.findByRole("button", {
-  //     name: "About us",
-  //   });
-  //   const searchBar = screen.getByPlaceholderText(/Search/);
-
-  //   aboutUsButton.focus();
-  //   expect(aboutUsButton).toHaveFocus();
-  //   await user.keyboard("{Enter}");
-
-  //   const dropdownItem2 = screen.getByText("Board").closest("a");
-
-  //   expect(dropdownItem2).toBeInTheDocument();
-  //   dropdownItem2?.focus();
-
-  //   await user.tab();
-  //   expect(searchBar).toHaveFocus();
-  // });
   it("ArrowRight and ArrowLeft navigate Teachers subnav buttons", async () => {
     const user = userEvent.setup();
     render(<TopNav {...mockProps} />);
 
-    const buttons = subnavLabels.map((label) =>
-      screen.getByRole("button", { name: label }),
+    const buttons: (HTMLElement | null)[] = subnavLabels.map((label) =>
+      label.element === "link"
+        ? screen.getByRole("link", { name: label.label })
+        : screen.getByRole("button", { name: label.label }),
     );
     const [
       primaryButton,
@@ -272,13 +259,11 @@ describe("TopNav accessibility", () => {
       curriculumButton,
       guidanceButton,
       aboutUsButton,
+      aiExperimentsButton,
     ] = buttons;
 
-    await user.tab();
-    await user.tab();
-    await user.tab();
-    await user.tab();
-    await user.tab();
+    primaryButton?.focus();
+
     expect(primaryButton).toHaveFocus();
 
     await user.keyboard("{ArrowRight}");
@@ -289,12 +274,14 @@ describe("TopNav accessibility", () => {
     expect(guidanceButton).toHaveFocus();
     await user.keyboard("{ArrowRight}");
     expect(aboutUsButton).toHaveFocus();
+    await user.keyboard("{ArrowRight}");
+    expect(aiExperimentsButton).toHaveFocus();
     // should wrap around to the first button
     await user.keyboard("{ArrowRight}");
     expect(primaryButton).toHaveFocus();
     //   left arrow should also wrap
     await user.keyboard("{ArrowLeft}");
-    expect(aboutUsButton).toHaveFocus();
+    expect(aiExperimentsButton).toHaveFocus();
   });
   it("ArrowDown and ArrowUp navigate keystage buttons in dropdown", async () => {
     const user = userEvent.setup();

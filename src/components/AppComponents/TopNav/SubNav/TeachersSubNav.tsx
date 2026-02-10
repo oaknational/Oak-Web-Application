@@ -3,7 +3,10 @@ import { usePathname } from "next/navigation";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
-import { resolveOakHref } from "@/common-lib/urls";
+import {
+  OakLinkPropsRequiringPageOnly,
+  resolveOakHref,
+} from "@/common-lib/urls";
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import {
   OakBox,
@@ -22,13 +25,38 @@ type TeachersSubNavProps = {
   focusManager: DropdownFocusManager<TeachersSubNavData>;
 };
 
+type SubNavLink = {
+  slug: OakLinkPropsRequiringPageOnly["page"];
+  label: string;
+  element: "link";
+  external?: boolean;
+};
+
+type SubNavButton = {
+  slug: string;
+  label: string;
+  element: "button";
+};
+
+type SubNavButtons = Array<SubNavButton | SubNavLink>;
+
 // The order of these buttons is determined here and used in the keyboard navigation logic in DropdownFocusManager
-export const subNavButtons = [
-  { label: "Primary", slug: "primary" },
-  { label: "Secondary", slug: "secondary" },
-  { label: "Curriculum", slug: "curriculum-landing-page" },
-  { label: "Guidance", slug: "guidance" },
-  { label: "About us", slug: "aboutUs" },
+export const subNavButtons: SubNavButtons = [
+  { label: "Primary", slug: "primary", element: "button" as const },
+  { label: "Secondary", slug: "secondary", element: "button" as const },
+  {
+    label: "Curriculum",
+    slug: "curriculum-landing-page" as const,
+    element: "link" as const,
+  },
+  { label: "Guidance", slug: "guidance", element: "button" as const },
+  { label: "About us", slug: "aboutUs", element: "button" as const },
+  {
+    label: "Ai experiements",
+    slug: "labs" as const,
+    element: "link" as const,
+    external: true,
+  },
 ];
 
 // TD: [integrated journey] do we want to derive menu items from available data
@@ -40,15 +68,26 @@ const TeachersSubNav = ({
   focusManager,
 }: TeachersSubNavProps) => {
   const pathname = usePathname();
+
+  const getLinkProps = (
+    slug: OakLinkPropsRequiringPageOnly["page"],
+    external?: boolean,
+  ) => {
+    const buttonId = focusManager.createSubnavButtonId(slug);
+    return {
+      target: external ? "_blank" : undefined,
+      iconName: external ? ("external" as const) : undefined,
+      isTrailingIcon: true,
+      id: buttonId,
+      element: Link,
+      onKeyDown: (event: React.KeyboardEvent) =>
+        focusManager.handleKeyDown(event, buttonId),
+      href: resolveOakHref({ page: slug } as OakLinkPropsRequiringPageOnly),
+    };
+  };
+
   const getButtonProps = (slug: string) => {
     const buttonId = focusManager.createSubnavButtonId(slug);
-    if (slug === "curriculum-landing-page") {
-      return {
-        id: buttonId,
-        element: Link,
-        href: resolveOakHref({ page: "curriculum-landing-page" }),
-      };
-    }
     return {
       onKeyDown: (event: React.KeyboardEvent) =>
         focusManager.handleKeyDown(event, buttonId),
@@ -110,27 +149,18 @@ const TeachersSubNav = ({
           onKeyDown={handleArrowKeys}
         >
           {subNavButtons.map((btn) => {
-            const props = getButtonProps(btn.slug);
             return (
               <OakLI key={btn.slug}>
-                {btn.slug === "curriculum" ? (
+                {btn.element === "link" ? (
                   <OakSmallPrimaryInvertedButton
-                    id={props.id}
-                    element={props.element}
-                    href={props.href!}
+                    {...getLinkProps(btn.slug, btn.external)}
                   >
                     {btn.label}
                   </OakSmallPrimaryInvertedButton>
                 ) : (
                   <OakSmallPrimaryInvertedButton
-                    onKeyDown={props.onKeyDown}
-                    id={props.id}
-                    data-testid={props.id}
-                    onClick={props.onClick}
-                    selected={props.selected}
-                    aria-expanded={props["aria-expanded"]}
-                    aria-controls={props["aria-controls"]}
-                    aria-haspopup={props["aria-haspopup"]}
+                    {...getButtonProps(btn.slug)}
+                    data-testid={focusManager.createSubnavButtonId(btn.slug)}
                   >
                     {btn.label}
                   </OakSmallPrimaryInvertedButton>

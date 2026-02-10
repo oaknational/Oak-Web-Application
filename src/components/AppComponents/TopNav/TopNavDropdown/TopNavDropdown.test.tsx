@@ -193,7 +193,7 @@ describe("TopNavDropdown", () => {
         expect(heading).toBeInTheDocument();
 
         const links = await screen.findAllByRole("link");
-        expect(links).toHaveLength(2);
+        expect(links).toHaveLength(3);
       });
 
       it("renders internal links correctly", async () => {
@@ -257,6 +257,23 @@ describe("TopNavDropdown", () => {
         await user.click(links[0]!);
 
         expect(onCloseMock).toHaveBeenCalledTimes(1);
+      });
+
+      it("renders external links with correct target attribute", async () => {
+        renderWithTheme(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="guidance"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const externalLink = (await screen.findByText("Help")).closest("a");
+
+        expect(externalLink).toHaveAttribute("target", "_blank");
       });
     });
   });
