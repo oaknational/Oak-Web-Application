@@ -2,6 +2,7 @@ import { OakFlex, OakP } from "@oaknational/oak-components";
 
 export const CYCLE_2_SUBJECTS = new Set([
   "art",
+  "citizenship",
   "computing",
   "design-technology",
   "geography",
