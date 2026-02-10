@@ -9,6 +9,7 @@ import {
   OakP,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { PortableTextBlockComponent } from "@portabletext/react";
 
 import { InnerMaxWidth } from "../InnerMaxWidth";
 
@@ -29,6 +30,10 @@ const BadgeImage = styled.img`
     max-height: 64px;
   }
 `;
+
+const OakPStyled: PortableTextBlockComponent = (props) => {
+  return <OakP $font={["body-2", "body-1"]}>{props.children}</OakP>;
+};
 
 export type GetInvolvedWorkWithUsProps = {
   heading: string;
@@ -82,13 +87,7 @@ export function GetInvolvedWorkWithUs({
                   value={text}
                   components={{
                     block: {
-                      normal: (props) => {
-                        return (
-                          <OakP $font={["body-2", "body-1"]}>
-                            {props.children}
-                          </OakP>
-                        );
-                      },
+                      normal: OakPStyled,
                     },
                   }}
                 />

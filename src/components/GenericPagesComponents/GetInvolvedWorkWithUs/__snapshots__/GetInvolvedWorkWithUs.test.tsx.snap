@@ -147,17 +147,17 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
             >
               <img
                 alt="Badge 1"
-                class="sc-40ba9c3c-0 gaAnVk"
+                class="sc-279c76fc-0 fSvnbS"
                 src="http://example.com/badge1.png"
               />
               <img
                 alt="Badge 2"
-                class="sc-40ba9c3c-0 gaAnVk"
+                class="sc-279c76fc-0 fSvnbS"
                 src="http://example.com/badge2.png"
               />
               <img
                 alt="Badge 3"
-                class="sc-40ba9c3c-0 gaAnVk"
+                class="sc-279c76fc-0 fSvnbS"
                 src="http://example.com/badge3.png"
               />
             </div>
