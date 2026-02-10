@@ -2,13 +2,11 @@ import {
   OakFlex,
   OakInlineBanner,
   OakPrimaryButton,
-  OakInlineRegistrationBanner,
-  OakHeading,
 } from "@oaknational/oak-components";
 
 import { getBannerContent, CYCLE_2_SUBJECTS } from "./getBannerContent";
+import { EmailCaptureBanner } from "./EmailCaptureBanner";
 
-import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { UnitListProps } from "@/components/TeacherComponents/UnitList/UnitList";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
 import useMediaQuery from "@/hooks/useMediaQuery";
@@ -42,7 +40,6 @@ export const TakedownBanner = ({
   isLegacy: boolean;
   isExpiring: boolean;
 }) => {
-  const newsletterFormProps = useNewsletterForm();
   const isMobile = useMediaQuery("mobile");
   const isCycle2 = CYCLE_2_SUBJECTS.has(subjectSlug);
 
@@ -67,25 +64,9 @@ export const TakedownBanner = ({
 
   if (shouldUseEmailCapture) {
     return (
-      <OakInlineRegistrationBanner
-        headerText={
-          <OakHeading tag="h2" $font={["heading-5", "heading-4", "heading-4"]}>
-            {bannerContent.header}
-          </OakHeading>
-        }
-        bodyText={bannerContent.body}
-        onSubmit={(email) => {
-          const emailPattern =
-            /^[A-Z0-9._%+-]{1,64}@[A-Z0-9-]+(?:\.[A-Z0-9-]+){0,2}\.[A-Z]{2,64}$/i;
-          const isValidEmail = emailPattern.test(email);
-          if (!isValidEmail) {
-            throw new Error("Please enter a valid email address");
-          }
-          return newsletterFormProps.onSubmit({
-            email,
-            userRole: "Teacher",
-          });
-        }}
+      <EmailCaptureBanner
+        header={bannerContent.header}
+        body={bannerContent.body}
       />
     );
   }
