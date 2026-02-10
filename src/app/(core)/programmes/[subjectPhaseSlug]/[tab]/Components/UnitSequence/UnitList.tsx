@@ -1,6 +1,7 @@
 import { OakGrid, OakGridArea, OakP } from "@oaknational/oak-components";
 import { keystageSlugs } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
+import { useUser } from "@clerk/nextjs";
 
 import { isHighlightedUnit } from "@/utils/curriculum/filteringApp";
 import {
@@ -35,6 +36,7 @@ export function ProgrammeUnitList({
   selectedThread,
 }: Readonly<ProgrammeUnitListProps>) {
   const { track } = useAnalytics();
+  const { isSignedIn } = useUser();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const onClick = (unit: Unit, isHighlighted: boolean) => {
@@ -71,18 +73,22 @@ export function ProgrammeUnitList({
             programmeSlug: createTeacherProgrammeSlug(unit),
           })}
           lessonCount={unit.lessons?.length}
-          saveProps={{
-            unitSlug: unit.slug,
-            unitTitle: unit.title,
-            programmeSlug: createTeacherProgrammeSlug(unit),
-            trackingProps: {
-              savedFrom: "unit_listing_save_button",
-              keyStageSlug: unit.keystage_slug,
-              keyStageTitle: getKeyStageTitle(unit.keystage_slug),
-              subjectTitle: unit.subject,
-              subjectSlug: unit.subject_slug,
-            },
-          }}
+          saveProps={
+            isSignedIn
+              ? {
+                  unitSlug: unit.slug,
+                  unitTitle: unit.title,
+                  programmeSlug: createTeacherProgrammeSlug(unit),
+                  trackingProps: {
+                    savedFrom: "unit_listing_save_button",
+                    keyStageSlug: unit.keystage_slug,
+                    keyStageTitle: getKeyStageTitle(unit.keystage_slug),
+                    subjectTitle: unit.subject,
+                    subjectSlug: unit.subject_slug,
+                  },
+                }
+              : undefined
+          }
           index={index + 1}
         />
       </OakGridArea>
