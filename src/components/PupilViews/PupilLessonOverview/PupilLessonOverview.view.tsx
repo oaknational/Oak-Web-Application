@@ -130,6 +130,7 @@ export const PupilViewsLessonOverview = ({
       subjectSlug={subjectSlug}
       userType="pupil"
       onwardHref={unitListingHref}
+      isSingle
     />
   );
 

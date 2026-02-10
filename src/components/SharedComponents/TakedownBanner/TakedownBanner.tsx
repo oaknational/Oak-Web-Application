@@ -31,6 +31,7 @@ export const TakedownBanner = ({
   onwardHref,
   isLegacy,
   isExpiring,
+  isSingle,
 }: {
   hasNewUnits: boolean;
   subjectSlug: string;
@@ -39,6 +40,7 @@ export const TakedownBanner = ({
   onwardHref?: string;
   isLegacy: boolean;
   isExpiring: boolean;
+  isSingle?: boolean;
 }) => {
   const isMobile = useMediaQuery("mobile");
   const isCycle2 = CYCLE_2_SUBJECTS.has(subjectSlug);
@@ -52,6 +54,7 @@ export const TakedownBanner = ({
     isExpiring,
     hasNewUnits,
     user: userType,
+    isSingle,
   });
 
   if (!bannerContent) {

@@ -444,6 +444,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     subjectSlug={subjectSlug ?? ""}
                     userType="teacher"
                     onwardHref={unitListingHref}
+                    isSingle
                   />
                 </OakBox>
 

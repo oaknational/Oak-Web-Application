@@ -20,11 +20,13 @@ export const getBannerContent = ({
   isExpiring,
   hasNewUnits,
   user,
+  isSingle,
 }: {
   isCycle2: boolean;
   isExpiring: boolean;
   hasNewUnits: boolean;
   user: "teacher" | "pupil";
+  isSingle?: boolean;
 }) => {
   if (isCycle2 && hasNewUnits) {
     // cycle 2 take down where new content exists
@@ -62,12 +64,12 @@ export const getBannerContent = ({
     return {
       header:
         user === "pupil"
-          ? "These lessons were made for home learning during the pandemic."
+          ? `${isSingle ? "this lesson was" : "These lessons were"} made for lockdown learning during the pandemic`
           : "These resources were made for remote use during the pandemic, not classroom teaching.",
       body:
         user === "pupil"
-          ? "Take a look at the brand-new and improved lessons we've made for you."
-          : "Switch to our new teaching resources now - designed by teachers and leading subject experts, and tested in classrooms.",
+          ? "We’ve made brand-new and improved lessons for you."
+          : "Switch to our brand-new teaching resources now. Designed by teachers and subject experts, with real classrooms in mind",
     };
   }
 

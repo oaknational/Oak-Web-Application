@@ -46,7 +46,7 @@ describe("TakedownBanner", () => {
     ).toBeInTheDocument();
     expect(
       getByText(
-        "Switch to our new teaching resources now - designed by teachers and leading subject experts, and tested in classrooms.",
+        "Switch to our brand-new teaching resources now. Designed by teachers and subject experts, with real classrooms in mind",
       ),
     ).toBeInTheDocument();
   });
@@ -103,13 +103,11 @@ describe("TakedownBanner", () => {
     );
     expect(
       getByText(
-        "These lessons were made for home learning during the pandemic.",
+        "These lessons were made for lockdown learning during the pandemic",
       ),
     ).toBeInTheDocument();
     expect(
-      getByText(
-        "Take a look at the brand-new and improved lessons we've made for you.",
-      ),
+      getByText("We’ve made brand-new and improved lessons for you."),
     ).toBeInTheDocument();
   });
 
