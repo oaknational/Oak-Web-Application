@@ -90,6 +90,8 @@ export const TakedownBanner = ({
     );
   }
 
+  const buttonText = `View ${!isMobile && userType === "teacher" ? "and download " : ""}new ${userType === "teacher" ? "resources" : "lessons"}`;
+
   return (
     <OakInlineBanner
       isOpen={true}
@@ -109,7 +111,7 @@ export const TakedownBanner = ({
               tabIndex={0}
               href={onwardHref}
             >
-              View{isMobile ? "" : " and download "} new resources
+              {buttonText}
             </OakPrimaryButton>
           </OakFlex>
         )
