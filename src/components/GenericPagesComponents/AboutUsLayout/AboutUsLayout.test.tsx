@@ -69,8 +69,8 @@ describe("AboutUsLayout", () => {
     );
 
     expect(getByText("About Oak")).toBeInTheDocument();
-    expect(getByText("About Oak's curriculum")).toBeInTheDocument();
-    expect(getByText("Oak's impact")).toBeInTheDocument();
+    expect(getByText("Oak's curricula")).toBeInTheDocument();
+    // expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
     expect(getByText("Get involved")).toBeInTheDocument();
   });
@@ -92,8 +92,8 @@ describe("AboutUsLayout", () => {
     expect(queryByText("About Oak")).not.toBeInTheDocument();
 
     // Should still render other links
-    expect(getByText("About Oak's curriculum")).toBeInTheDocument();
-    expect(getByText("Oak's impact")).toBeInTheDocument();
+    expect(getByText("Oak's curricula")).toBeInTheDocument();
+    // expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
     expect(getByText("Get involved")).toBeInTheDocument();
   });
@@ -116,8 +116,8 @@ describe("AboutUsLayout", () => {
 
     // Should still render other links
     expect(getByText("About Oak")).toBeInTheDocument();
-    expect(getByText("About Oak's curriculum")).toBeInTheDocument();
-    expect(getByText("Oak's impact")).toBeInTheDocument();
+    expect(getByText("Oak's curricula")).toBeInTheDocument();
+    // expect(getByText("Oak's impact")).toBeInTheDocument();
     expect(getByText("Meet the team")).toBeInTheDocument();
   });
 
@@ -133,7 +133,7 @@ describe("AboutUsLayout", () => {
     expect(form).toBeInTheDocument();
   });
 
-  it("only shows 4 links when current page matches one of the explore items", () => {
+  it("only shows 3 links when current page matches one of the explore items", () => {
     mockUseRouter.mockReturnValue({
       pathname: "/about-us/who-we-are",
       query: {},
@@ -150,10 +150,10 @@ describe("AboutUsLayout", () => {
     const exploreItems = container.querySelectorAll(
       '[data-testid="who-we-are-explore-item"]',
     );
-    expect(exploreItems).toHaveLength(4);
+    expect(exploreItems).toHaveLength(3);
   });
 
-  it("shows 5 links when current page does not match any explore item", () => {
+  it("shows 4 links when current page does not match any explore item", () => {
     mockUseRouter.mockReturnValue({
       pathname: "/different-page",
       query: {},
@@ -170,6 +170,6 @@ describe("AboutUsLayout", () => {
     const exploreItems = container.querySelectorAll(
       '[data-testid="who-we-are-explore-item"]',
     );
-    expect(exploreItems).toHaveLength(5);
+    expect(exploreItems).toHaveLength(4);
   });
 });
