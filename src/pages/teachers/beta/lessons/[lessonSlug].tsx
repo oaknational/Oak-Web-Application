@@ -1,5 +1,4 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 import getPageProps from "@/node-lib/getPageProps";
@@ -36,16 +35,14 @@ const TeacherPreviewLessonPage: NextPage<TeacherPreviewLessonPageProps> = ({
       }}
       topNavProps={topNav}
     >
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonOverview
-          lesson={{
-            ...curriculumData,
-            isCanonical: false,
-            isSpecialist: false,
-          }}
-          isBeta={true}
-        />
-      </OakThemeProvider>
+      <LessonOverview
+        lesson={{
+          ...curriculumData,
+          isCanonical: false,
+          isSpecialist: false,
+        }}
+        isBeta={true}
+      />
     </AppLayout>
   );
 };

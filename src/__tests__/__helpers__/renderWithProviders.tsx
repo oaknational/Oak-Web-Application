@@ -63,12 +63,12 @@ const providersByName: {
     Partial<ProviderPropsByName[K]>?,
   ];
 } = {
+  oakTheme: [OakThemeProvider, { theme: oakDefaultTheme }],
   cookieConsent: [
     CookieConsentProvider,
     { client: new MockOakConsentClient() },
   ],
   theme: [ThemeProvider, { theme }],
-  oakTheme: [OakThemeProvider, { theme: oakDefaultTheme }],
   errorBoundary: [ErrorBoundary],
   analytics: [MockedAnalyticsProvider],
   router: [MemoryRouterProvider],

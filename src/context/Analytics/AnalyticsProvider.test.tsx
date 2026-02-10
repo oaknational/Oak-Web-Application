@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import { PostHogProvider } from "posthog-js/react";
 import { useEffect } from "react";
 import { MockOakConsentClient } from "@oaknational/oak-consent-client";
@@ -7,6 +6,7 @@ import AnalyticsProvider, { getPathAndQuery } from "./AnalyticsProvider";
 import useAnalytics from "./useAnalytics";
 
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 // mock window.location.search
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -88,7 +88,7 @@ describe("useAnalytics", () => {
       identify("someone", {}, ["posthog"]),
     );
 
-    render(<CallIdentify />);
+    renderWithTheme(<CallIdentify />);
 
     expect(console.log).toHaveBeenCalledWith(
       "[avo] Event Sent:",
@@ -108,7 +108,7 @@ describe("useAnalytics", () => {
       identify("someone", {}, ["hubspot"]),
     );
 
-    render(<CallIdentify />);
+    renderWithTheme(<CallIdentify />);
 
     expect(console.log).toHaveBeenCalledWith(
       "[avo] Event Sent:",
@@ -126,7 +126,7 @@ describe("useAnalytics", () => {
   test("service.identify() should be called if no services array passed", () => {
     callWithArgs.mockImplementation((identify) => identify("someone", {}));
 
-    render(<CallIdentify />);
+    renderWithTheme(<CallIdentify />);
 
     expect(console.log).toHaveBeenCalledWith(
       "[avo] Event Sent:",
