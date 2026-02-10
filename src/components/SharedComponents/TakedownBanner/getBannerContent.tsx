@@ -15,24 +15,31 @@ export const CYCLE_2_SUBJECTS = new Set([
   "rshe-pshe",
 ]);
 
-const getCycle2WithNewUnitsContent = (user: "teacher" | "pupil") => ({
-  header: `These ${user === "pupil" ? "lessons" : "resources"} will be removed by the end of the Spring Term 2026.`,
-  body:
-    user === "pupil" ? (
-      "We've made brand new and improved lessons for you."
-    ) : (
-      <OakFlex $flexDirection={"column"} $gap="spacing-20">
-        <OakP>
-          Start using our brand new teaching resources now. Designed by teachers
-          and subject experts, with real classrooms in mind.{" "}
-        </OakP>
-        <OakP>
-          The older resources below were created for lockdown learning during
-          the pandemic and are not designed for classroom teaching.
-        </OakP>
-      </OakFlex>
-    ),
-});
+const getCycle2WithNewUnitsContent = (
+  user: "teacher" | "pupil",
+  isSingle?: boolean,
+) => {
+  const pupilHeader = `${isSingle ? "This lesson" : "These lessons"} will be removed by the end of the Spring Term 2026.`;
+  const teacherHeader = `These resources will be removed by the end of the Spring Term 2026.`;
+  return {
+    header: user === "pupil" ? pupilHeader : teacherHeader,
+    body:
+      user === "pupil" ? (
+        "We've made brand new and improved lessons for you."
+      ) : (
+        <OakFlex $flexDirection={"column"} $gap="spacing-20">
+          <OakP>
+            Start using our brand new teaching resources now. Designed by
+            teachers and subject experts, with real classrooms in mind.{" "}
+          </OakP>
+          <OakP>
+            The older resources below were created for lockdown learning during
+            the pandemic and are not designed for classroom teaching.
+          </OakP>
+        </OakFlex>
+      ),
+  };
+};
 
 const getCycle2WithoutNewUnitsContent = () => ({
   header:
