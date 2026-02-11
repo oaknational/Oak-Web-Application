@@ -27,7 +27,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                 class="sc-aXZVg sc-gEvEer fSrtDr cofRDW"
               >
                 <p
-                  class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
+                  class="sc-ikkxIA esDZwj"
                 >
                   TESTING_PARAGRAPH_1
                 </p>
@@ -147,17 +147,17 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
             >
               <img
                 alt="Badge 1"
-                class="sc-a395ada3-0 efrhno"
+                class="sc-279c76fc-0 fSvnbS"
                 src="http://example.com/badge1.png"
               />
               <img
                 alt="Badge 2"
-                class="sc-a395ada3-0 efrhno"
+                class="sc-279c76fc-0 fSvnbS"
                 src="http://example.com/badge2.png"
               />
               <img
                 alt="Badge 3"
-                class="sc-a395ada3-0 efrhno"
+                class="sc-279c76fc-0 fSvnbS"
                 src="http://example.com/badge3.png"
               />
             </div>

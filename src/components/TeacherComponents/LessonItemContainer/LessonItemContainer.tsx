@@ -3,8 +3,6 @@ import {
   OakHeading,
   OakFlex,
   OakSecondaryButton,
-  OakThemeProvider,
-  oakDefaultTheme,
   OakHandDrawnHR,
   OakBox,
   OakAnchorTarget,
@@ -112,103 +110,101 @@ export const LessonItemContainer = forwardRef<
     : title.toLowerCase();
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
+    <OakFlex
+      $flexDirection="column"
+      $position={"relative"}
+      id={getContainerId(anchorId)}
+      tabIndex={-1}
+    >
+      <OakAnchorTarget id={anchorId} $pt={"spacing-24"} ref={ref} />
       <OakFlex
-        $flexDirection="column"
+        $mb={
+          skipLinkUrl
+            ? ["spacing-12", "spacing-24", "spacing-24"]
+            : ["spacing-24"]
+        }
         $position={"relative"}
-        id={getContainerId(anchorId)}
-        tabIndex={-1}
+        $flexDirection={"column"}
+        $gap={"spacing-12"}
       >
-        <OakAnchorTarget id={anchorId} $pt={"spacing-24"} ref={ref} />
         <OakFlex
-          $mb={
-            skipLinkUrl
-              ? ["spacing-12", "spacing-24", "spacing-24"]
-              : ["spacing-24"]
-          }
-          $position={"relative"}
-          $flexDirection={"column"}
-          $gap={"spacing-12"}
+          $flexDirection={["column", "row"]}
+          $alignItems={["start", "end"]}
+          $gap={["spacing-12", "spacing-40"]}
+          $height={["auto", "spacing-40"]}
         >
-          <OakFlex
-            $flexDirection={["column", "row"]}
-            $alignItems={["start", "end"]}
-            $gap={["spacing-12", "spacing-40"]}
-            $height={["auto", "spacing-40"]}
-          >
-            {title && (
-              <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
-                {title}
-              </OakHeading>
-            )}
-            {displayMediaClipButton && slugs && (
-              <LessonPlayAllButton
-                {...slugs}
-                isCanonical={isCanonical}
-                onTrackingCallback={onPlayAllMediaClipButtonClick}
-              />
-            )}
-            {downloadable && slugs && (
-              <LessonItemContainerLink
-                page={"download"}
-                resourceTitle={lowerCaseTitle}
-                onClick={onDownloadButtonClick}
-                preselected={preselectedDownload}
-                isSpecialist={props.isSpecialist}
-                {...slugs}
-              />
-            )}
-            {shareable && slugs && (
-              <LessonItemContainerLink
-                page={"share"}
-                resourceTitle={lowerCaseTitle}
-                onClick={onDownloadButtonClick}
-                preselected={preselectedShare}
-                isSpecialist={props.isSpecialist}
-                {...slugs}
-              />
-            )}
+          {title && (
+            <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
+              {title}
+            </OakHeading>
+          )}
+          {displayMediaClipButton && slugs && (
+            <LessonPlayAllButton
+              {...slugs}
+              isCanonical={isCanonical}
+              onTrackingCallback={onPlayAllMediaClipButtonClick}
+            />
+          )}
+          {downloadable && slugs && (
+            <LessonItemContainerLink
+              page={"download"}
+              resourceTitle={lowerCaseTitle}
+              onClick={onDownloadButtonClick}
+              preselected={preselectedDownload}
+              isSpecialist={props.isSpecialist}
+              {...slugs}
+            />
+          )}
+          {shareable && slugs && (
+            <LessonItemContainerLink
+              page={"share"}
+              resourceTitle={lowerCaseTitle}
+              onClick={onDownloadButtonClick}
+              preselected={preselectedShare}
+              isSpecialist={props.isSpecialist}
+              {...slugs}
+            />
+          )}
 
-            {skipLinkUrl && (
-              <OakSecondaryButton
-                element="a"
-                href={skipLinkUrl}
-                onFocus={() => setSkipVideoButtonFocused(true)}
-                onBlur={() => setSkipVideoButtonFocused(false)}
-                style={
-                  skipVideoButtonFocused
-                    ? {}
-                    : {
-                        position: "absolute",
-                        left: "-1000px",
-                        opacity: 0,
-                      }
-                }
-              >
-                {`Skip ${lowerCaseTitle}`}
-              </OakSecondaryButton>
-            )}
-          </OakFlex>
-          {subheader && (
-            <OakFlex $flexDirection="column" $maxWidth={"spacing-640"}>
-              <OakHeading tag="h3" $font={"body-2"}>
-                {subheader}
-              </OakHeading>
-            </OakFlex>
+          {skipLinkUrl && (
+            <OakSecondaryButton
+              element="a"
+              href={skipLinkUrl}
+              onFocus={() => setSkipVideoButtonFocused(true)}
+              onBlur={() => setSkipVideoButtonFocused(false)}
+              style={
+                skipVideoButtonFocused
+                  ? {}
+                  : {
+                      position: "absolute",
+                      left: "-1000px",
+                      opacity: 0,
+                    }
+              }
+            >
+              {`Skip ${lowerCaseTitle}`}
+            </OakSecondaryButton>
           )}
         </OakFlex>
-
-        <OakBox>{children}</OakBox>
-        {!props.isFinalElement && (
-          <OakHandDrawnHR
-            data-testid="hr"
-            hrColor={"bg-decorative4-main"}
-            $height={"spacing-4"}
-            $mt={["spacing-24", "spacing-56"]}
-            $mb={["spacing-12", "spacing-24"]}
-          />
+        {subheader && (
+          <OakFlex $flexDirection="column" $maxWidth={"spacing-640"}>
+            <OakHeading tag="h3" $font={"body-2"}>
+              {subheader}
+            </OakHeading>
+          </OakFlex>
         )}
       </OakFlex>
-    </OakThemeProvider>
+
+      <OakBox>{children}</OakBox>
+      {!props.isFinalElement && (
+        <OakHandDrawnHR
+          data-testid="hr"
+          hrColor={"bg-decorative4-main"}
+          $height={"spacing-4"}
+          $mt={["spacing-24", "spacing-56"]}
+          $mb={["spacing-12", "spacing-24"]}
+        />
+      )}
+    </OakFlex>
   );
 });

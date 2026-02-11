@@ -39,10 +39,6 @@ jest.mock("next/navigation");
 HTMLDialogElement.prototype.showModal = jest.fn();
 HTMLDialogElement.prototype.close = jest.fn();
 
-window.matchMedia = jest.fn().mockReturnValue({
-  matches: true,
-});
-
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
