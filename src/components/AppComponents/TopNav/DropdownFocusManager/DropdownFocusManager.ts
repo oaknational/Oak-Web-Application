@@ -67,28 +67,32 @@ export class DropdownFocusManager<
     return false;
   }
 
-  // ID creation methods
-  public createSubnavButtonId(slug: string): string {
-    return `${slug}-subnav-button`;
-  }
-
-  public createDropdownButtonId(slug: string): string {
-    return `${slug}-dropdown-button`;
-  }
-
-  public createSubjectButtonId(
-    keystageSlug: string,
-    subjectSlug: string,
+  // ID creation method
+  public createId(
+    type:
+      | "subnav-button"
+      | "dropdown-button"
+      | "subject-button"
+      | "all-keystages-button"
+      | "year-button",
+    slug: string,
+    keystageSlug?: string,
   ): string {
-    return `${keystageSlug}-${subjectSlug}-subject-button`;
-  }
-
-  public createAllKeystagesButtonId(keystageSlug: string): string {
-    return `${keystageSlug}-all-keystages-button`;
-  }
-
-  public createYearButtonId(yearSlug: string): string {
-    return `${yearSlug}-year-button`;
+    switch (type) {
+      case "subnav-button":
+        return `${slug}-subnav-button`;
+      case "dropdown-button":
+        return `${slug}-dropdown-button`;
+      case "subject-button":
+        if (!keystageSlug) {
+          throw new Error("keystageSlug is required for subject-button");
+        }
+        return `${keystageSlug}-${slug}-subject-button`;
+      case "all-keystages-button":
+        return `${slug}-all-keystages-button`;
+      case "year-button":
+        return `${slug}-year-button`;
+    }
   }
 
   private getNode(elementId: string): FocusNode {
@@ -123,8 +127,7 @@ export class DropdownFocusManager<
   }
 
   private getFocusableSubnavElements(): HTMLElement[] {
-    const subnavId =
-      this.areaType === "teachers" ? "teachers-subnav" : "pupils-subnav";
+    const subnavId = `${this.areaType}-subnav`;
     const subnav = document.getElementById(subnavId);
     return Array.from(subnav?.querySelectorAll("a, button, input") ?? []);
   }
@@ -167,7 +170,8 @@ export class DropdownFocusManager<
     const ancestorNode = this.getAncestorNode(currentNode);
     const isFinalElement =
       this.lastSubnavButton &&
-      ancestorNode.id === this.createSubnavButtonId(this.lastSubnavButton.slug);
+      ancestorNode.id ===
+        this.createId("subnav-button", this.lastSubnavButton.slug);
     return isFinalElement;
   }
 
@@ -184,7 +188,8 @@ export class DropdownFocusManager<
   private isLastSubnavButton(currentNode: FocusNode): boolean {
     return (
       !!this.lastSubnavButton &&
-      currentNode.id === this.createSubnavButtonId(this.lastSubnavButton.slug)
+      currentNode.id ===
+        this.createId("subnav-button", this.lastSubnavButton.slug)
     );
   }
 

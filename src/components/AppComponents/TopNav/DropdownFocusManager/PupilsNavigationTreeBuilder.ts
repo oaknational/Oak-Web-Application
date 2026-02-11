@@ -3,8 +3,16 @@ import { FocusNode, SubNavButton } from "./types";
 import { PupilsSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 interface IdGenerator {
-  createSubnavButtonId(slug: string): string;
-  createYearButtonId(yearSlug: string): string;
+  createId(
+    type:
+      | "subnav-button"
+      | "dropdown-button"
+      | "subject-button"
+      | "all-keystages-button"
+      | "year-button",
+    slug: string,
+    keystageSlug?: string,
+  ): string;
 }
 
 export class PupilsNavigationTreeBuilder {
@@ -18,7 +26,7 @@ export class PupilsNavigationTreeBuilder {
 
     // Build top-level subnav buttons
     subNavButtons.forEach((section) => {
-      const id = this.idGenerator.createSubnavButtonId(section.slug);
+      const id = this.idGenerator.createId("subnav-button", section.slug);
       const sectionData = navData[section.slug as keyof PupilsSubNavData];
       const hasChildren = this.getChildrenIds(sectionData).length > 0;
 
@@ -41,7 +49,7 @@ export class PupilsNavigationTreeBuilder {
     subNavButtons: SubNavButton[],
   ) {
     const parentSiblings = subNavButtons.map((section) =>
-      this.idGenerator.createSubnavButtonId(section.slug),
+      this.idGenerator.createId("subnav-button", section.slug),
     );
 
     subNavButtons.forEach((section) => {
@@ -54,11 +62,14 @@ export class PupilsNavigationTreeBuilder {
       ) {
         // Handle primary/secondary year sections for pupils
         sectionData.years.forEach((year, index) => {
-          const id = this.idGenerator.createYearButtonId(year.slug);
+          const id = this.idGenerator.createId("year-button", year.slug);
           focusMap.set(id, {
             id,
             parent: {
-              parentId: this.idGenerator.createSubnavButtonId(section.slug),
+              parentId: this.idGenerator.createId(
+                "subnav-button",
+                section.slug,
+              ),
               parentSiblings,
             },
             isFirstChild: index === 0,
@@ -80,7 +91,7 @@ export class PupilsNavigationTreeBuilder {
       Array.isArray(sectionData.years)
     ) {
       return sectionData.years.map((year: { slug: string }) =>
-        this.idGenerator.createYearButtonId(year.slug),
+        this.idGenerator.createId("year-button", year.slug),
       );
     }
 

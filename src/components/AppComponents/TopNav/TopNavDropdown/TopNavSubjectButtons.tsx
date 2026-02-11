@@ -74,9 +74,10 @@ const TopNavSubjectButtons = ({
         subjects.length > 0 &&
         subjects.map((subject) => {
           const { programmeCount, subjectSlug, programmeSlug } = subject;
-          const buttonId = focusManager?.createSubjectButtonId(
-            keyStageSlug,
+          const buttonId = focusManager?.createId(
+            "subject-button",
             subjectSlug,
+            keyStageSlug,
           );
 
           return (
@@ -110,9 +111,10 @@ const TopNavSubjectButtons = ({
         nonCurriculumSubjects.length > 0 &&
         nonCurriculumSubjects.map((subject) => {
           const { programmeCount, subjectSlug, programmeSlug } = subject;
-          const buttonId = focusManager?.createSubjectButtonId(
-            keyStageSlug,
+          const buttonId = focusManager?.createId(
+            "subject-button",
             subjectSlug,
+            keyStageSlug,
           );
 
           return (
@@ -144,7 +146,7 @@ const TopNavSubjectButtons = ({
         })}
       <OakLI>
         <OakPrimaryInvertedButton
-          id={focusManager?.createAllKeystagesButtonId(keyStageSlug)}
+          id={focusManager?.createId("all-keystages-button", keyStageSlug)}
           element={Link}
           iconName="arrow-right"
           isTrailingIcon
@@ -152,7 +154,7 @@ const TopNavSubjectButtons = ({
           onKeyDown={(e) =>
             focusManager?.handleKeyDown(
               e,
-              focusManager.createAllKeystagesButtonId(keyStageSlug),
+              focusManager.createId("all-keystages-button", keyStageSlug),
             )
           }
           href={resolveOakHref({ page: "subject-index", keyStageSlug })}

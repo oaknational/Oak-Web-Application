@@ -84,6 +84,11 @@ exports[`core layout renders correctly 1`] = `
             "slug": "blog-index",
             "title": "Blogs",
           },
+          {
+            "external": true,
+            "slug": "help",
+            "title": "Help",
+          },
         ],
         "primary": {
           "keystages": [

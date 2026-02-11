@@ -76,7 +76,7 @@ const TeachersPhaseSection = ({
     event: React.KeyboardEvent<HTMLUListElement>,
   ) => {
     const focusableElements = menuData.keystages.map((keystage) =>
-      focusManager.createDropdownButtonId(keystage.slug),
+      focusManager.createId("dropdown-button", keystage.slug),
     );
     const activeElementId = document.activeElement?.id;
     if (!activeElementId) return;
@@ -116,7 +116,10 @@ const TeachersPhaseSection = ({
         onKeyDown={handleKeystageArrowKeys}
       >
         {menuData.keystages.map((keystage) => {
-          const buttonId = focusManager.createDropdownButtonId(keystage.slug);
+          const buttonId = focusManager.createId(
+            "dropdown-button",
+            keystage.slug,
+          );
           return (
             <OakLI key={keystage.slug}>
               <OakLeftAlignedButton
@@ -203,7 +206,7 @@ const TeachersLinksSection = ({
         id={`topnav-teachers-${selectedMenu}`}
       >
         {menuData.map((link) => {
-          const buttonId = focusManager.createDropdownButtonId(link.slug);
+          const buttonId = focusManager.createId("dropdown-button", link.slug);
           return (
             <OakLI key={link.slug}>
               <OakLeftAlignedButton
@@ -256,7 +259,7 @@ const PupilsSection = ({
       id={`topnav-pupils-${selectedMenu}`}
     >
       {menuYears.map((year) => {
-        const buttonId = focusManager?.createYearButtonId(year.slug);
+        const buttonId = focusManager?.createId("year-button", year.slug);
         return (
           <OakLI key={year.slug}>
             <OakPupilJourneyYearButton

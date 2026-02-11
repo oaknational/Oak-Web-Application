@@ -35,12 +35,14 @@ const PupilsSubNav = ({
             onKeyDown={(e) =>
               focusManager.handleKeyDown(
                 e,
-                focusManager.createSubnavButtonId(
+                focusManager.createId(
+                  "subnav-button",
                   button.slug as keyof PupilsSubNavData,
                 ),
               )
             }
-            id={focusManager.createSubnavButtonId(
+            id={focusManager.createId(
+              "subnav-button",
               button.slug as keyof PupilsSubNavData,
             )}
             onClick={() => onClick(button.slug as keyof PupilsSubNavData)}

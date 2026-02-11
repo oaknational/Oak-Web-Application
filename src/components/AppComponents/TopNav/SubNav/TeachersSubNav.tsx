@@ -73,7 +73,7 @@ const TeachersSubNav = ({
     slug: OakLinkPropsRequiringPageOnly["page"],
     external?: boolean,
   ) => {
-    const buttonId = focusManager.createSubnavButtonId(slug);
+    const buttonId = focusManager.createId("subnav-button", slug);
     return {
       target: external ? "_blank" : undefined,
       iconName: external ? ("external" as const) : undefined,
@@ -87,7 +87,7 @@ const TeachersSubNav = ({
   };
 
   const getButtonProps = (slug: string) => {
-    const buttonId = focusManager.createSubnavButtonId(slug);
+    const buttonId = focusManager.createId("subnav-button", slug);
     return {
       onKeyDown: (event: React.KeyboardEvent) =>
         focusManager.handleKeyDown(event, buttonId),
@@ -104,7 +104,7 @@ const TeachersSubNav = ({
     const activeElementId = document.activeElement?.id;
     if (!activeElementId) return;
     const focusableElements = subNavButtons.map((btn) =>
-      focusManager.createSubnavButtonId(btn.slug),
+      focusManager.createId("subnav-button", btn.slug),
     );
 
     const currentIndex = focusableElements.indexOf(activeElementId);
@@ -160,7 +160,10 @@ const TeachersSubNav = ({
                 ) : (
                   <OakSmallPrimaryInvertedButton
                     {...getButtonProps(btn.slug)}
-                    data-testid={focusManager.createSubnavButtonId(btn.slug)}
+                    data-testid={focusManager.createId(
+                      "subnav-button",
+                      btn.slug,
+                    )}
                   >
                     {btn.label}
                   </OakSmallPrimaryInvertedButton>

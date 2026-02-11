@@ -3,10 +3,16 @@ import { FocusNode, SubNavButton } from "./types";
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 interface IdGenerator {
-  createSubnavButtonId(slug: string): string;
-  createDropdownButtonId(slug: string): string;
-  createSubjectButtonId(keystageSlug: string, subjectSlug: string): string;
-  createAllKeystagesButtonId(keystageSlug: string): string;
+  createId(
+    type:
+      | "subnav-button"
+      | "dropdown-button"
+      | "subject-button"
+      | "all-keystages-button"
+      | "year-button",
+    slug: string,
+    keystageSlug?: string,
+  ): string;
 }
 
 export class TeachersNavigationTreeBuilder {
@@ -22,7 +28,7 @@ export class TeachersNavigationTreeBuilder {
     subNavButtons.forEach((section) => {
       const sectionData = navData[section.slug as keyof TeachersSubNavData];
       const hasChildren = this.getChildrenIds(navData, sectionData).length > 0;
-      const id = this.idGenerator.createSubnavButtonId(section.slug);
+      const id = this.idGenerator.createId("subnav-button", section.slug);
 
       focusMap.set(id, {
         id,
@@ -43,7 +49,7 @@ export class TeachersNavigationTreeBuilder {
     subNavButtons: SubNavButton[],
   ) {
     const parentSiblings = subNavButtons.map((section) =>
-      this.idGenerator.createSubnavButtonId(section.slug),
+      this.idGenerator.createId("subnav-button", section.slug),
     );
 
     subNavButtons.forEach((section) => {
@@ -53,11 +59,14 @@ export class TeachersNavigationTreeBuilder {
       if (Array.isArray(sectionData)) {
         // Handle guidance/aboutUs sections
         sectionData.forEach((link, index) => {
-          const id = this.idGenerator.createDropdownButtonId(link.slug);
+          const id = this.idGenerator.createId("dropdown-button", link.slug);
           focusMap.set(id, {
             id,
             parent: {
-              parentId: this.idGenerator.createSubnavButtonId(section.slug),
+              parentId: this.idGenerator.createId(
+                "subnav-button",
+                section.slug,
+              ),
               parentSiblings,
             },
             isFirstChild: index === 0,
@@ -72,26 +81,31 @@ export class TeachersNavigationTreeBuilder {
       ) {
         // Handle primary/secondary browse sections
         sectionData.keystages.forEach((keystage, index) => {
-          const keystageId = this.idGenerator.createDropdownButtonId(
+          const keystageId = this.idGenerator.createId(
+            "dropdown-button",
             keystage.slug,
           );
 
           focusMap.set(keystageId, {
             id: keystageId,
             parent: {
-              parentId: this.idGenerator.createSubnavButtonId(section.slug),
+              parentId: this.idGenerator.createId(
+                "subnav-button",
+                section.slug,
+              ),
               parentSiblings,
             },
             isFirstChild: index === 0,
             isLastChild: index === sectionData.keystages.length - 1,
             children: [
               ...keystage.subjects.map((subject) =>
-                this.idGenerator.createSubjectButtonId(
-                  keystage.slug,
+                this.idGenerator.createId(
+                  "subject-button",
                   subject.subjectSlug,
+                  keystage.slug,
                 ),
               ),
-              this.idGenerator.createAllKeystagesButtonId(keystage.slug),
+              this.idGenerator.createId("all-keystages-button", keystage.slug),
             ],
           });
 
@@ -100,7 +114,7 @@ export class TeachersNavigationTreeBuilder {
             keystage,
             parentId: keystageId,
             parentSiblings: sectionData.keystages.map((ks) =>
-              this.idGenerator.createDropdownButtonId(ks.slug),
+              this.idGenerator.createId("dropdown-button", ks.slug),
             ),
           });
         });
@@ -120,9 +134,10 @@ export class TeachersNavigationTreeBuilder {
     parentSiblings: string[];
   }) {
     keystage.subjects.forEach((subject, index) => {
-      const subjectId = this.idGenerator.createSubjectButtonId(
-        keystage.slug,
+      const subjectId = this.idGenerator.createId(
+        "subject-button",
         subject.subjectSlug,
+        keystage.slug,
       );
       focusMap.set(subjectId, {
         id: subjectId,
@@ -133,7 +148,8 @@ export class TeachersNavigationTreeBuilder {
     });
 
     // The all keystages button is the last child of the subject list
-    const allKeystagesId = this.idGenerator.createAllKeystagesButtonId(
+    const allKeystagesId = this.idGenerator.createId(
+      "all-keystages-button",
       keystage.slug,
     );
     focusMap.set(allKeystagesId, {
@@ -152,7 +168,7 @@ export class TeachersNavigationTreeBuilder {
 
     if (Array.isArray(sectionData)) {
       return sectionData.map((link) =>
-        this.idGenerator.createDropdownButtonId(link.slug),
+        this.idGenerator.createId("dropdown-button", link.slug),
       );
     }
 
@@ -163,7 +179,7 @@ export class TeachersNavigationTreeBuilder {
       Array.isArray(sectionData.keystages)
     ) {
       return sectionData.keystages.map((keystage: { slug: string }) =>
-        this.idGenerator.createDropdownButtonId(keystage.slug),
+        this.idGenerator.createId("dropdown-button", keystage.slug),
       );
     }
 
