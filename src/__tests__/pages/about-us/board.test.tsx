@@ -16,9 +16,6 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => ({ enabled: {} }),
 }));
 jest.mock("../../../node-lib/cms");
-globalThis.matchMedia = jest.fn().mockReturnValue({
-  matches: true,
-});
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
