@@ -115,7 +115,7 @@
     "core-js": "^3.46.0",
     "crypto-browserify": "^3.12.1",
     "date-fns": "^4.1.0",
-    "dompurify": "^3.2.5",
+    "dompurify": "^3.3.1",
     "favicons": "^7.1.5",
     "gleap": "^14.0.8",
     "google-auth-library": "9.15.1",
