@@ -4,7 +4,7 @@ exports[`MeetTheTeamContainer renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg llJJmf"
+      class="sc-aXZVg eLhvoR"
     >
       <div
         class="sc-aXZVg sc-gEvEer hdseiA iwFTtF"
@@ -23,11 +23,11 @@ exports[`MeetTheTeamContainer renders correctly 1`] = `
             TEST_TEXT
           </p>
         </div>
-        <div
-          class="sc-aXZVg sc-tagGq hdseiA czWmNT"
+        <ul
+          class="sc-aXZVg sc-tagGq NyjaL fugleq"
         >
           TEST_CONTENT
-        </div>
+        </ul>
       </div>
     </div>
   </div>

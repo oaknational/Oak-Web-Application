@@ -87,8 +87,7 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                     $height={"spacing-240"}
                     $background={background}
                     $borderRadius={"border-radius-m2"}
-                    $pv={"spacing-24"}
-                    $ph={"spacing-64"}
+                    $pa={"spacing-24"}
                   >
                     {image.asset?.url && (
                       <CMSImage
