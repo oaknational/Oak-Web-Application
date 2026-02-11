@@ -32,18 +32,13 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
     },
     {
       iconName: "homepage-teacher-map" as const,
-      title: "About Oak's curriculum",
-      href: "#",
-    },
-    {
-      iconName: "data" as const,
-      title: "Oak's impact",
-      href: "#",
+      title: "Oak's curricula",
+      href: "/about-us/oaks-curricula",
     },
     {
       iconName: "snack-break" as const,
       title: "Meet the team",
-      href: "#",
+      href: "/about-us/meet-the-team",
     },
     {
       iconName: "chatting" as const,

@@ -1,5 +1,7 @@
 import { GetServerSidePropsContext } from "next";
 import "jest-styled-components";
+import { fireEvent } from "@testing-library/react";
+import mockRouter from "next-router-mock";
 
 import renderWithProviders from "../../../__helpers__/renderWithProviders";
 
@@ -190,6 +192,104 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     );
 
     expect(getByText("Our board")).toBeInTheDocument();
+  });
+
+  describe("breadcrumb", () => {
+    it("renders breadcrumb with Home, Meet the team, and member name", () => {
+      const { getByLabelText } = renderWithProviders()(
+        <AboutUsMeetTheTeamPerson
+          pageData={mockTeamMember}
+          topNav={topNavFixture}
+          navigation={mockNavigation}
+          category="Our leadership"
+        />,
+      );
+
+      const breadcrumbNav = getByLabelText("Breadcrumb");
+      expect(breadcrumbNav).toBeInTheDocument();
+      expect(breadcrumbNav).toHaveTextContent("Home");
+      expect(breadcrumbNav).toHaveTextContent("Meet the team");
+      expect(breadcrumbNav).toHaveTextContent("Ed Southall");
+    });
+
+    it("renders Meet the team as a link to /about-us/meet-the-team", () => {
+      const { getByLabelText } = renderWithProviders()(
+        <AboutUsMeetTheTeamPerson
+          pageData={mockTeamMember}
+          topNav={topNavFixture}
+          navigation={mockNavigation}
+          category="Our leadership"
+        />,
+      );
+
+      const breadcrumbNav = getByLabelText("Breadcrumb");
+      const meetTheTeamLink = breadcrumbNav.querySelector(
+        'a[href="/about-us/meet-the-team"]',
+      );
+      expect(meetTheTeamLink).toBeInTheDocument();
+    });
+
+    it("renders the current member name as non-linked text", () => {
+      const { getByLabelText } = renderWithProviders()(
+        <AboutUsMeetTheTeamPerson
+          pageData={mockTeamMember}
+          topNav={topNavFixture}
+          navigation={mockNavigation}
+          category="Our leadership"
+        />,
+      );
+
+      const breadcrumbNav = getByLabelText("Breadcrumb");
+      // The member name should be in the breadcrumb but not as a link
+      const items = breadcrumbNav.querySelectorAll("li");
+      const lastItem = items[items.length - 1];
+      expect(lastItem).toHaveTextContent("Ed Southall");
+      expect(lastItem?.querySelector("a")).toBeNull();
+    });
+  });
+
+  describe("prev/next profile navigation uses router.replace", () => {
+    let replaceSpy: jest.SpyInstance;
+
+    beforeEach(() => {
+      replaceSpy = jest.spyOn(mockRouter, "replace");
+    });
+
+    afterEach(() => {
+      replaceSpy.mockRestore();
+    });
+
+    it("calls router.replace when clicking next profile", () => {
+      const { getByText } = renderWithProviders()(
+        <AboutUsMeetTheTeamPerson
+          pageData={mockTeamMember}
+          topNav={topNavFixture}
+          navigation={mockNavigation}
+          category="Our leadership"
+        />,
+      );
+
+      const nextButton = getByText("Next profile").closest("a")!;
+      fireEvent.click(nextButton);
+
+      expect(replaceSpy).toHaveBeenCalledWith(mockNavigation.nextHref);
+    });
+
+    it("calls router.replace when clicking previous profile", () => {
+      const { getByText } = renderWithProviders()(
+        <AboutUsMeetTheTeamPerson
+          pageData={mockTeamMember}
+          topNav={topNavFixture}
+          navigation={mockNavigation}
+          category="Our leadership"
+        />,
+      );
+
+      const prevButton = getByText("Previous profile").closest("a")!;
+      fireEvent.click(prevButton);
+
+      expect(replaceSpy).toHaveBeenCalledWith(mockNavigation.prevHref);
+    });
   });
 
   describe("getServerSideProps", () => {

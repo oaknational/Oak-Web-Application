@@ -90,21 +90,6 @@ const defaultProps: ProgrammePageMobileFiltersProps = {
   onChangeFilters: jest.fn(),
 };
 
-// Mock window.matchMedia
-Object.defineProperty(globalThis, "matchMedia", {
-  writable: true,
-  value: jest.fn().mockImplementation((query) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
-});
-
 const mockOpen = jest.fn();
 const mockClose = jest.fn();
 // Mock HTMLDialogElement methods that jsdom doesn't support
