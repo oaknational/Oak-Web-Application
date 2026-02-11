@@ -261,9 +261,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 .c113 {
-  overflow: hidden;
   font-family: --var(google-font),Lexend,sans-serif;
-  overflow: hidden;
   z-index: 0;
 }
 
@@ -331,7 +329,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c151 {
+.c150 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -342,10 +340,17 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c156 {
+.c155 {
   width: 100%;
   aspect-ratio: 16/9;
   font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c159 {
+  overflow: hidden;
+  padding-top: 4.5rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+  overflow: hidden;
 }
 
 .c160 {
@@ -1001,7 +1006,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c147 {
+.c146 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1012,7 +1017,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 0.75rem;
 }
 
-.c149 {
+.c148 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1023,7 +1028,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   justify-content: flex-start;
 }
 
-.c152 {
+.c151 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1034,7 +1039,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1.25rem;
 }
 
-.c153 {
+.c152 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1048,7 +1053,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c155 {
+.c154 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1059,7 +1064,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c158 {
+.c157 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1556,7 +1561,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c157 {
+.c156 {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHBhdGggZmlsbD0iIzIyMiIgZD0iTTI4Ljc3OSAxOS4xNzZhMjcuMTkxIDI3LjE5MSAwIDAgMC0zLjggMS42IDE2LjcgMTYuNyAwIDAgMC03LjEgOC40YzAgLjEtLjEuMi0uMS4zLS43IDIuNC0uNiAyIDEuMyAyLjMgMS45LjMgMSAuNSAxIDEuMy0uMSA4LjggNC4xIDE1LjEgMTEuNCAxOS42YTEuNSAxLjUgMCAwIDAgMS43LjJjNS43LTIuNiA5LjMtNyAxMC4zLTEzLjJhMSAxIDAgMCAxIDEtMWwzLS4yYy44IDAgMS4zLjIgMS4yIDEuMmExNy45IDE3LjkgMCAwIDEtMy4yIDkuMiAyMy43IDIzLjcgMCAwIDEtMTAuOSA5LjEgNS40MDEgNS40MDEgMCAwIDEtNC41LS4yIDI2LjI5OCAyNi4yOTggMCAwIDEtOC41LTYuNiAyNS45IDI1LjkgMCAwIDEtNi40LTE0LjRjMC0uNi0uMi0uNy0uOC0uOC0yLjUtLjQtMi41LS4xLTIuMy0yLjlhMTkuMyAxOS4zIDAgMCAxIDEwLjgtMTYuNiAzOC45OTkgMzguOTk5IDAgMCAxIDUuNy0yLjEgMi4xIDIuMSAwIDAgMCAuOS0xLjMgMTQuMSAxNC4xIDAgMCAxIDMuNS02LjNsLjMtLjNjMS45LTIgMi42LTIgNC4zLjJsLjQuNWMxLjEgMS4xIDEgMS41LS4xIDIuNmExMS45IDExLjkgMCAwIDAtMy4yIDQuNCAxNi45IDE2LjkgMCAwIDEgNy41IDIuM2M1LjcgMy41IDkuMiA4LjMgOS45IDE1IC4wMTYuOTAxLS4wMTcgMS44MDItLjEgMi43IDAgLjgtLjYgMS0xLjIgMS4yYTE2LjEgMTYuMSAwIDAgMS0xMS0uNyAxNy45MDEgMTcuOTAxIDAgMCAxLTEwLjktMTMuNiA5Ljc5NiA5Ljc5NiAwIDAgMS0uMS0xLjlabTE4LjEgMTIuMmMuNC01LjUtNi45LTEyLjYtMTMtMTIuMS41IDYuNSA3LjYgMTIuOCAxMyAxMi4xWiIgb3BhY2l0eT0iLjEiLz48L3N2Zz4=);
   background-color: #e7f6f5;
   background-size: 4rem;
@@ -1861,7 +1866,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   -moz-letter-spacing: -0.005rem;
   -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
-  margin-top: 1rem;
 }
 
 .c188 {
@@ -2027,23 +2031,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-template-columns: repeat(4,1fr);
 }
 
-.c148 {
+.c147 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
   row-gap: 2.5rem;
   -webkit-column-gap: 0rem;
   column-gap: 0rem;
-}
-
-.c166 {
-  display: grid;
-  grid-template-columns: repeat(12,1fr);
-  width: 100%;
-  row-gap: 1rem;
-  -webkit-column-gap: 1rem;
-  column-gap: 1rem;
-  grid-auto-rows: 1fr;
 }
 
 .c182 {
@@ -2104,7 +2098,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-row-start: 2;
 }
 
-.c150 {
+.c149 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2114,7 +2108,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-column-start: 1;
 }
 
-.c154 {
+.c153 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2122,15 +2116,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   grid-row: span undefined;
   grid-row: span 1;
   grid-column-start: 1;
-}
-
-.c167 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  grid-column: span 12;
-  grid-row: span undefined;
-  grid-row: span 1;
 }
 
 .c183 {
@@ -2155,23 +2140,21 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   box-shadow: none;
 }
 
-.c169:has( a, button ) {
-  border-radius: 0.5rem;
-  z-index: 2;
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c169:has(a:hover,button:hover),
-.c169:has(button:hover:not(:active)) {
-  z-index: 1;
-}
-
 .c169:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
+.c169:has( a, button) {
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c169:has( a, button)  a,
+.c169:has( a, button) button {
+  outline: none;
+}
+
 .c169:has(a:active,button:active) {
-  z-index: 2;
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
@@ -2954,6 +2937,23 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   box-shadow: 2px 2px 0 0 #ffe555;
 }
 
+.c167 {
+  padding: 0;
+  margin: 0;
+}
+
+.c166 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  row-gap: 1rem;
+  -webkit-column-gap: 1rem;
+  column-gap: 1rem;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(3,1fr);
+}
+
 .c196 {
   position: absolute;
   top: 0rem;
@@ -3183,10 +3183,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   max-width: 100%;
 }
 
-.c146:first-child {
-  margin-top: 0;
-}
-
 .c120 {
   grid-column: span 6;
 }
@@ -3208,7 +3204,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   height: 260px;
 }
 
-.c159 {
+.c158 {
   max-height: 40px;
   height: auto;
   width: auto;
@@ -3347,43 +3343,43 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c151 {
+  .c150 {
     font-weight: 300;
   }
 }
 
 @media (min-width:1280px) {
-  .c151 {
+  .c150 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c151 {
+  .c150 {
     font-size: 1.125rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c151 {
+  .c150 {
     font-size: 1.125rem;
   }
 }
 
 @media (min-width:750px) {
-  .c151 {
+  .c150 {
     line-height: 1.75rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c151 {
+  .c150 {
     line-height: 1.75rem;
   }
 }
 
 @media (min-width:750px) {
-  .c151 {
+  .c150 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3392,7 +3388,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c151 {
+  .c150 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3685,7 +3681,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c149 {
+  .c148 {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
@@ -3694,7 +3690,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c149 {
+  .c148 {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
@@ -3703,25 +3699,25 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c152 {
+  .c151 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c155 {
+  .c154 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c155 {
+  .c154 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c158 {
+  .c157 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -3729,7 +3725,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c158 {
+  .c157 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -4199,12 +4195,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c145 {
-    margin-top: 1.5rem;
-  }
-}
-
-@media (min-width:750px) {
   .c188 {
     margin-right: 1.5rem;
   }
@@ -4253,26 +4243,26 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c148 {
+  .c147 {
     row-gap: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c148 {
+  .c147 {
     row-gap: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c148 {
+  .c147 {
     -webkit-column-gap: 2.5rem;
     column-gap: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c148 {
+  .c147 {
     -webkit-column-gap: 1rem;
     column-gap: 1rem;
   }
@@ -4399,62 +4389,50 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c150 {
+  .c149 {
     grid-column: 1 / span 6;
   }
 }
 
 @media (min-width:1280px) {
-  .c150 {
+  .c149 {
     grid-column: 1 / span 4;
   }
 }
 
 @media (min-width:750px) {
-  .c150 {
+  .c149 {
     grid-column-start: 1;
   }
 }
 
 @media (min-width:1280px) {
-  .c150 {
+  .c149 {
     grid-column-start: 1;
   }
 }
 
 @media (min-width:750px) {
-  .c154 {
+  .c153 {
     grid-column: 7 / span 6;
   }
 }
 
 @media (min-width:1280px) {
-  .c154 {
+  .c153 {
     grid-column: 6 / span 7;
   }
 }
 
 @media (min-width:750px) {
-  .c154 {
+  .c153 {
     grid-column-start: 7;
   }
 }
 
 @media (min-width:1280px) {
-  .c154 {
+  .c153 {
     grid-column-start: 6;
-  }
-}
-
-@media (min-width:750px) {
-  .c167 {
-    grid-column: span 6;
-  }
-}
-
-@media (min-width:1280px) {
-  .c167 {
-    grid-column: span 6;
   }
 }
 
@@ -4509,6 +4487,12 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 @media (min-width:750px) {
   .c69 {
     padding-bottom: 4.5rem;
+  }
+}
+
+@media (max-width:800px) {
+  .c166 {
+    grid-template-columns: repeat(1,1fr);
   }
 }
 
@@ -4596,13 +4580,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c159 {
+  .c158 {
     max-height: 56px;
   }
 }
 
 @media (min-width:1280px) {
-  .c159 {
+  .c158 {
     max-height: 64px;
   }
 }
@@ -6334,13 +6318,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               Join our teacher research panel
                             </h3>
                             <p
-                              class="c145 c146"
+                              class="c145"
                             >
                               Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
                             </p>
                           </div>
                           <div
-                            class="c11 c147"
+                            class="c11 c146"
                           >
                             <div
                               class="c6 c7"
@@ -6423,13 +6407,13 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               Give your feedback
                             </h3>
                             <p
-                              class="c145 c146"
+                              class="c145"
                             >
                               Teachers are at the heart of everything we build. Have your say by taking part in research or road-testing new resources in your school. 
                             </p>
                           </div>
                           <div
-                            class="c11 c147"
+                            class="c11 c146"
                           >
                             <div
                               class="c6 c7"
@@ -6483,10 +6467,10 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             class="c114"
           >
             <div
-              class="c130 c148"
+              class="c130 c147"
             >
               <div
-                class="c11 c149 c150"
+                class="c11 c148 c149"
               >
                 <div
                   class="c11 c72"
@@ -6500,17 +6484,17 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       Work with us
                     </h2>
                     <div
-                      class="c151 c152"
+                      class="c150 c151"
                     >
                       <p
-                        class="c145 c146"
+                        class="c145"
                       >
                         We're a fast-paced and innovative team, working to support and inspire teachers to deliver great teaching, so every pupil benefits. All our roles are remote-first. If you want to be part of something unique that's making a difference to millions of children's lives, we'd love to hear from you.
                       </p>
                     </div>
                   </div>
                   <div
-                    class="c11 c153"
+                    class="c11 c152"
                   >
                     <div
                       class="c6 c7"
@@ -6594,20 +6578,20 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c11 c118 c154"
+                class="c11 c118 c153"
               >
                 <div
-                  class="c11 c155"
+                  class="c11 c154"
                 >
                   <div
-                    class="c156 c98"
+                    class="c155 c98"
                   >
                     <div
                       class="c137"
                     >
                       <img
                         alt=""
-                        class="c157"
+                        class="c156"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
@@ -6619,21 +6603,21 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     </div>
                   </div>
                   <div
-                    class="c11 c158"
+                    class="c11 c157"
                   >
                     <img
                       alt="'In Escape the City's top 1% of employers'"
-                      class="c159"
+                      class="c158"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
                     />
                     <img
                       alt="Awarded Gold in Investors In People"
-                      class="c159"
+                      class="c158"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
                     />
                     <img
                       alt="Certified as Disability Confident Committed"
-                      class="c159"
+                      class="c158"
                       src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
                     />
                   </div>
@@ -6642,327 +6626,281 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c160"
+            class="c159"
+            style="margin-top: -72px;"
           >
             <div
-              class="c161"
-              style="pointer-events: none;"
-            >
-              <img
-                alt=""
-                class="c34"
-                data-nimg="fill"
-                decoding="async"
-                loading="lazy"
-                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
-                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-              />
-            </div>
-            <div
-              class="c162"
+              class="c160"
             >
               <div
-                class="c163 c164"
+                class="c161"
+                style="pointer-events: none;"
               >
-                <h2
-                  class="c165"
-                >
-                  Explore more about Oak
-                </h2>
+                <img
+                  alt=""
+                  class="c34"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </div>
+              <div
+                class="c162"
+              >
                 <div
-                  class="c11 c166"
+                  class="c163 c164"
                 >
-                  <div
-                    class="c11 c98 c167"
+                  <h2
+                    class="c165"
+                    id="react-use-id-test-result"
                   >
-                    <div
-                      class="c168 c169"
+                    Explore more about Oak
+                  </h2>
+                  <nav
+                    aria-labelledby="react-use-id-test-result"
+                  >
+                    <ul
+                      class="c166"
                     >
-                      <a
-                        href="/about-us/who-we-are"
-                        style="outline: none;"
+                      <li
+                        class="c167"
                       >
                         <div
-                          class="c170 c171 c172"
-                          data-testid="who-we-are-explore-item"
+                          class="c168 c169"
                         >
-                          <div
-                            class="c11 c98"
+                          <a
+                            href="/about-us/who-we-are"
+                            style="outline: none;"
                           >
                             <div
-                              class="c173"
+                              class="c170 c171 c172"
+                              data-testid="who-we-are-explore-item"
                             >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              <div
+                                class="c11 c98"
+                              >
+                                <div
+                                  class="c173"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
+                              </div>
+                              <div
+                                class="c174 c175"
+                              >
+                                About Oak
+                              </div>
+                              <div
+                                class="c11 c98"
+                              >
+                                <div
+                                  class="c127"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div
-                            class="c174 c175"
-                          >
-                            About Oak
-                          </div>
-                          <div
-                            class="c11 c98"
-                          >
-                            <div
-                              class="c127"
-                            >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
+                          </a>
                         </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    class="c11 c98 c167"
-                  >
-                    <div
-                      class="c168 c169"
-                    >
-                      <a
-                        href="/#"
-                        style="outline: none;"
+                      </li>
+                      <li
+                        class="c167"
                       >
                         <div
-                          class="c170 c171 c172"
-                          data-testid="who-we-are-explore-item"
+                          class="c168 c169"
                         >
-                          <div
-                            class="c11 c98"
+                          <a
+                            href="/about-us/oaks-curricula"
+                            style="outline: none;"
                           >
                             <div
-                              class="c173"
+                              class="c170 c171 c172"
+                              data-testid="who-we-are-explore-item"
                             >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              <div
+                                class="c11 c98"
+                              >
+                                <div
+                                  class="c173"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
+                              </div>
+                              <div
+                                class="c174 c175"
+                              >
+                                Oak's curricula
+                              </div>
+                              <div
+                                class="c11 c98"
+                              >
+                                <div
+                                  class="c127"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div
-                            class="c174 c175"
-                          >
-                            About Oak's curriculum
-                          </div>
-                          <div
-                            class="c11 c98"
-                          >
-                            <div
-                              class="c127"
-                            >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
+                          </a>
                         </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    class="c11 c98 c167"
-                  >
-                    <div
-                      class="c168 c169"
-                    >
-                      <a
-                        href="/#"
-                        style="outline: none;"
+                      </li>
+                      <li
+                        class="c167"
                       >
                         <div
-                          class="c170 c171 c172"
-                          data-testid="who-we-are-explore-item"
+                          class="c168 c169"
                         >
-                          <div
-                            class="c11 c98"
+                          <a
+                            href="/about-us/meet-the-team"
+                            style="outline: none;"
                           >
                             <div
-                              class="c173"
+                              class="c170 c171 c172"
+                              data-testid="who-we-are-explore-item"
                             >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393164/icons/data-illustration_ukwdxg.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              <div
+                                class="c11 c98"
+                              >
+                                <div
+                                  class="c173"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
+                              </div>
+                              <div
+                                class="c174 c175"
+                              >
+                                Meet the team
+                              </div>
+                              <div
+                                class="c11 c98"
+                              >
+                                <div
+                                  class="c127"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div
-                            class="c174 c175"
-                          >
-                            Oak's impact
-                          </div>
-                          <div
-                            class="c11 c98"
-                          >
-                            <div
-                              class="c127"
-                            >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
+                          </a>
                         </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    class="c11 c98 c167"
-                  >
-                    <div
-                      class="c168 c169"
-                    >
-                      <a
-                        href="/#"
-                        style="outline: none;"
+                      </li>
+                      <li
+                        class="c167"
                       >
                         <div
-                          class="c170 c171 c172"
-                          data-testid="who-we-are-explore-item"
+                          class="c168 c169"
                         >
-                          <div
-                            class="c11 c98"
+                          <a
+                            href="/about-us/get-involved"
+                            style="outline: none;"
                           >
                             <div
-                              class="c173"
+                              class="c170 c171 c172"
+                              data-testid="who-we-are-explore-item"
                             >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
+                              <div
+                                class="c11 c98"
+                              >
+                                <div
+                                  class="c173"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
+                              </div>
+                              <div
+                                class="c174 c175"
+                              >
+                                Get involved
+                              </div>
+                              <div
+                                class="c11 c98"
+                              >
+                                <div
+                                  class="c127"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div
-                            class="c174 c175"
-                          >
-                            Meet the team
-                          </div>
-                          <div
-                            class="c11 c98"
-                          >
-                            <div
-                              class="c127"
-                            >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
+                          </a>
                         </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    class="c11 c98 c167"
-                  >
-                    <div
-                      class="c168 c169"
-                    >
-                      <a
-                        href="/about-us/get-involved"
-                        style="outline: none;"
-                      >
-                        <div
-                          class="c170 c171 c172"
-                          data-testid="who-we-are-explore-item"
-                        >
-                          <div
-                            class="c11 c98"
-                          >
-                            <div
-                              class="c173"
-                            >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
-                          <div
-                            class="c174 c175"
-                          >
-                            Get involved
-                          </div>
-                          <div
-                            class="c11 c98"
-                          >
-                            <div
-                              class="c127"
-                            >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
               </div>
             </div>
           </div>
           <div
             class="c176"
+            id="newsletter-signup"
           >
             <div
               class="c177 c178"

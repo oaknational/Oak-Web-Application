@@ -1,3 +1,120 @@
+## [1.986.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.986.0...v1.986.1) (2026-02-11)
+
+
+### Bug Fixes
+
+* add border radius to meet the team container ([c0f10cf](https://github.com/oaknational/Oak-Web-Application/commit/c0f10cfe21a2a08d5e7a5f8bec8a359a3c7aae96))
+* add dangling comma ([f6622e0](https://github.com/oaknational/Oak-Web-Application/commit/f6622e0f94c14b044b2cf202591facb9bfdfe2bc))
+* add header snack break image ([7bf8a6d](https://github.com/oaknational/Oak-Web-Application/commit/7bf8a6d26dea3c259c5a709a14073bbe59aaac51))
+* add side nav heading back in ([acafed1](https://github.com/oaknational/Oak-Web-Application/commit/acafed1d9818a8bb5f3e2ed85c74e179fdd386b0))
+* add styled side menu wrapper ([f7d7da0](https://github.com/oaknational/Oak-Web-Application/commit/f7d7da0a7b1471fd7b668935af8e8d6a9e28303e))
+* adjust governance section font sizes ([5c5f628](https://github.com/oaknational/Oak-Web-Application/commit/5c5f6282081d2bdfb68ca309a6209abfc2bec476))
+* adjust new oak box with sidenav wrapper and snapshot ([c035e55](https://github.com/oaknational/Oak-Web-Application/commit/c035e5512ba66ca29114a0093e4c1542113fe0ff))
+* bump oak-components ([2780fd1](https://github.com/oaknational/Oak-Web-Application/commit/2780fd12ee807a3111e39cf5d944197a6eec3d23))
+* ensure meet the team container uses oak black ([7c6e468](https://github.com/oaknational/Oak-Web-Application/commit/7c6e4683cc882894e277a28453faa3a48acc9efb))
+* ensure oak cards are used in unordered list ([66925e9](https://github.com/oaknational/Oak-Web-Application/commit/66925e96a3c5fd532b55af0ece69755adef19735))
+* ensure whole div is ul and each card is wrapped in li ([3066a43](https://github.com/oaknational/Oak-Web-Application/commit/3066a43642b923df6e5f6df43276023324503dfa))
+* merge main ([c6405cd](https://github.com/oaknational/Oak-Web-Application/commit/c6405cdc71846965f2718dba8db81b99bad59800))
+* merge main ([6a4c61b](https://github.com/oaknational/Oak-Web-Application/commit/6a4c61b2725f91df2267413f9cdb75494d181f5e))
+* merge main ([b17f8a2](https://github.com/oaknational/Oak-Web-Application/commit/b17f8a24a1768f18c8b78d1cd458beb665dc793b))
+* move key to li and update snaps ([3502ba2](https://github.com/oaknational/Oak-Web-Application/commit/3502ba2d2cfe70b5d65ae3f6a6f9afb2e1c0ef38))
+* remove image alts to make them decorative only ([28948f5](https://github.com/oaknational/Oak-Web-Application/commit/28948f56c46ed3ae40474c879a0e279750c817c2))
+* remove nav override styles ([30da471](https://github.com/oaknational/Oak-Web-Application/commit/30da471510a09ee48266817f40408fcc905c31ea))
+* replace doc downloads with oakCard ([0e1d058](https://github.com/oaknational/Oak-Web-Application/commit/0e1d0583f8759bf1a8505565b1687f194367ebaa))
+* revert spacing-180 to 192px ([8104c41](https://github.com/oaknational/Oak-Web-Application/commit/8104c412111caa52754984d13ea2d2c8b17c31fb))
+* slightly increase oak grid minmax ([c144498](https://github.com/oaknational/Oak-Web-Application/commit/c144498ece94d197ea9bbc7b4b5d5a180b5f804f))
+* snapshots ([2509698](https://github.com/oaknational/Oak-Web-Application/commit/25096985e72941890f69107f6b3e9a579b4bbd29))
+* snapshots ([e19b65a](https://github.com/oaknational/Oak-Web-Application/commit/e19b65acdbf440178e2db93c7894b49e43f1a7e4))
+* update meet the team slug background to use new ui color tokens ([deeef3c](https://github.com/oaknational/Oak-Web-Application/commit/deeef3c844f7ce057d4d92c41e028687e94e75a1))
+* update snap ([4ab0408](https://github.com/oaknational/Oak-Web-Application/commit/4ab0408824a401154f41a70f24818621c3b29a09))
+* update snapshots ([3a94bf1](https://github.com/oaknational/Oak-Web-Application/commit/3a94bf183463448821c5fa90dd5376f9412929e4))
+* update snapshots ([b63179e](https://github.com/oaknational/Oak-Web-Application/commit/b63179e4d1b4f467c194326ce422b209e054d7e4))
+* update unstyled li ([aa0fcdb](https://github.com/oaknational/Oak-Web-Application/commit/aa0fcdb13b9680fa54aea647c05e70c797d647ba))
+* use unstyled component for ul ([2946a26](https://github.com/oaknational/Oak-Web-Application/commit/2946a2625186d19593c0117e0995149dae64dd64))
+
+# [1.986.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.985.0...v1.986.0) (2026-02-11)
+
+
+### Features
+
+* add breadcrumb navigation and replaceState for prev/next links ([1e33695](https://github.com/oaknational/Oak-Web-Application/commit/1e3369594426c55858e1a7338eb06f8c3627faaf))
+
+# [1.985.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.984.2...v1.985.0) (2026-02-11)
+
+
+### Bug Fixes
+
+* add citizenship to cycle 2 subjects ([0a5c9db](https://github.com/oaknational/Oak-Web-Application/commit/0a5c9dbda5fd12cc2b37f71f8b60a45b800e2992))
+* handle edge case where legacy units sit on a separate unit page ([12f9735](https://github.com/oaknational/Oak-Web-Application/commit/12f973574677ea08f7bfe94e955059636f7856d3))
+* invert conditional statement for subjects with new units ([bcb3fdf](https://github.com/oaknational/Oak-Web-Application/commit/bcb3fdf3b6c44d43e08a78b4d30402f0dfb16c2a))
+* pluralisation in pupil banner ([8e0344e](https://github.com/oaknational/Oak-Web-Application/commit/8e0344eb211b94df7a21164f49feaf43f1238bda))
+* update takedown banner button text for pupils ([c9ab51c](https://github.com/oaknational/Oak-Web-Application/commit/c9ab51c7bfb2b76bdbcfb2548bc39c6e2abcf4f1))
+
+
+### Features
+
+* add stories for banner cases ([eb3504b](https://github.com/oaknational/Oak-Web-Application/commit/eb3504b614f6f0eb1ec9acbf713ac98a6277048d))
+* add takedown banner to lesson listing and overview pages ([61f1abe](https://github.com/oaknational/Oak-Web-Application/commit/61f1abe1c919f1d1892adf88c24d11f13a71c291))
+* update button text on mobile ([27565b6](https://github.com/oaknational/Oak-Web-Application/commit/27565b694aa9ac5eb3dac810cbd4bf99fdfa160e))
+* update copy for cycle 1 banners ([453c722](https://github.com/oaknational/Oak-Web-Application/commit/453c7227ad4b61beedc1243fdd8bc77afa1863da))
+* update unit list legacy banner for cycle 2 take downs ([b807af2](https://github.com/oaknational/Oak-Web-Application/commit/b807af291bb4fdcb227ef836f5ffd47c166aa8c5))
+* use flex for cycle 2 takedown body ([482304f](https://github.com/oaknational/Oak-Web-Application/commit/482304fda7012bca80a5f7d12aa6c1471826030c))
+
+## [1.984.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.984.1...v1.984.2) (2026-02-10)
+
+
+### Bug Fixes
+
+* update paragraph spacing in /about-us/get-involved ([89f502a](https://github.com/oaknational/Oak-Web-Application/commit/89f502a2b24ed21143045f21d0fac3ab6a93c574))
+
+## [1.984.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.984.0...v1.984.1) (2026-02-10)
+
+
+### Bug Fixes
+
+* failing tests by adding in provider ([091544f](https://github.com/oaknational/Oak-Web-Application/commit/091544fab8deb6c9aa4e2514ddf8f9187189e1fa))
+* remove duplicate <OakThemeProvider/> all over the place ([03314ba](https://github.com/oaknational/Oak-Web-Application/commit/03314bae3209e04eb630d2a0626528c87fcda714))
+* replace <WithThemeProvider/> with renderWithTheme(...) ([abe0812](https://github.com/oaknational/Oak-Web-Application/commit/abe0812085a407a28073bfa37e50b9d2fbb44e0d))
+* revert removal of <OakThemeProvider/> from <CookieConsentProvider/> ([bcfb255](https://github.com/oaknational/Oak-Web-Application/commit/bcfb255063de9bec64dd9341a595efe9197ffcad))
+
+# [1.984.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.983.0...v1.984.0) (2026-02-10)
+
+
+### Bug Fixes
+
+* semantic list + labelled heading in <WhoAreWeExplore/> ([049b959](https://github.com/oaknational/Oak-Web-Application/commit/049b9594b76ee1e76b9a5355aeeae000ccdaf80b))
+
+
+### Features
+
+* change explore section of new about-us pages to 3 items ([9da8fbb](https://github.com/oaknational/Oak-Web-Application/commit/9da8fbb9b1defb5ce4303f2c6738b534a6fcdb17))
+
+# [1.983.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.982.0...v1.983.0) (2026-02-09)
+
+
+### Features
+
+* explicitly set branch tracking name to main ([5d06683](https://github.com/oaknational/Oak-Web-Application/commit/5d0668394457db5ca1c528729c77220c8f043fc1))
+
+# [1.982.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.981.0...v1.982.0) (2026-02-09)
+
+
+### Features
+
+* added missing <CurricInfoCard/> to /about-us/oaks-curricula ([41e4273](https://github.com/oaknational/Oak-Web-Application/commit/41e42738ab8763a5a5f4c2d07e9c14aa8979ae3c))
+
+# [1.981.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.980.1...v1.981.0) (2026-02-09)
+
+
+### Bug Fixes
+
+* move back to "flex" from "grid" to allow for fixed width ([5c981e7](https://github.com/oaknational/Oak-Web-Application/commit/5c981e788622d139ef77b909dde83a4e1c292c94))
+
+
+### Features
+
+* made sidenav in /about-us/meet-the-team sticky ([cfb2052](https://github.com/oaknational/Oak-Web-Application/commit/cfb20525955a21fb59a049b5f187167d156d3f82))
+
 ## [1.980.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.980.0...v1.980.1) (2026-02-09)
 
 # [1.980.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.979.1...v1.980.0) (2026-02-06)

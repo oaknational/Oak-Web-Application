@@ -32,10 +32,6 @@ jest.mock("next/navigation");
 HTMLDialogElement.prototype.showModal = jest.fn();
 HTMLDialogElement.prototype.close = jest.fn();
 
-globalThis.matchMedia = jest.fn().mockReturnValue({
-  matches: true,
-});
-
 const CurricVisualiserFixture: ComponentProps<typeof ProgrammeSequence> = {
   threadOptions: [],
   filters: {

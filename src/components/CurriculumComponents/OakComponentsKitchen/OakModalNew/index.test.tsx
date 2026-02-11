@@ -6,10 +6,6 @@ import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithPro
 
 const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
-window.matchMedia = jest.fn().mockReturnValue({
-  matches: true,
-});
-
 describe("OakModalNew", () => {
   it("should match snapshot", () => {
     HTMLDialogElement.prototype.close = () => {};

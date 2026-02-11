@@ -6,11 +6,7 @@ import {
 } from "next";
 import React, { useMemo } from "react";
 import { useRouter } from "next/router";
-import {
-  OakBox,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakBox } from "@oaknational/oak-components";
 import { uniq } from "lodash";
 import { usePathname } from "next/navigation";
 
@@ -192,47 +188,45 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   }, [tab]);
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <AppLayout
-        topNavProps={topNav}
-        seoProps={{
-          ...getSeoProps({
-            title: buildCurriculumMetadata({
-              metadataType: "title",
-              subjectSlug: subjectSlug,
-              subjectTitle: curriculumUnitsTrackingData.subjectTitle,
-              ks4OptionSlug: curriculumUnitsTrackingData.ks4OptionSlug,
-              ks4OptionTitle: curriculumUnitsTrackingData.ks4OptionTitle,
-              keyStages: keyStages,
-              tab: tab,
-            }),
-            description: buildCurriculumMetadata({
-              metadataType: "description",
-              subjectSlug: subjectSlug,
-              subjectTitle: curriculumUnitsTrackingData.subjectTitle,
-              ks4OptionSlug: curriculumUnitsTrackingData.ks4OptionSlug,
-              ks4OptionTitle: curriculumUnitsTrackingData.ks4OptionTitle,
-              keyStages: keyStages,
-              tab: tab,
-            }),
+    <AppLayout
+      topNavProps={topNav}
+      seoProps={{
+        ...getSeoProps({
+          title: buildCurriculumMetadata({
+            metadataType: "title",
+            subjectSlug: subjectSlug,
+            subjectTitle: curriculumUnitsTrackingData.subjectTitle,
+            ks4OptionSlug: curriculumUnitsTrackingData.ks4OptionSlug,
+            ks4OptionTitle: curriculumUnitsTrackingData.ks4OptionTitle,
+            keyStages: keyStages,
+            tab: tab,
           }),
-          ...additionalSeo,
-        }}
-        $background={"bg-primary"}
-        skipLinkHref={tabAnchor}
-      >
-        <CurriculumHeader
-          tab={tab}
-          curriculumPhaseOptions={curriculumPhaseOptions}
-          curriculumSelectionSlugs={curriculumSelectionSlugs}
-          keyStages={keyStages}
-          color1="bg-decorative1-main"
-          color2="bg-decorative1-main"
-        />
+          description: buildCurriculumMetadata({
+            metadataType: "description",
+            subjectSlug: subjectSlug,
+            subjectTitle: curriculumUnitsTrackingData.subjectTitle,
+            ks4OptionSlug: curriculumUnitsTrackingData.ks4OptionSlug,
+            ks4OptionTitle: curriculumUnitsTrackingData.ks4OptionTitle,
+            keyStages: keyStages,
+            tab: tab,
+          }),
+        }),
+        ...additionalSeo,
+      }}
+      $background={"bg-primary"}
+      skipLinkHref={tabAnchor}
+    >
+      <CurriculumHeader
+        tab={tab}
+        curriculumPhaseOptions={curriculumPhaseOptions}
+        curriculumSelectionSlugs={curriculumSelectionSlugs}
+        keyStages={keyStages}
+        color1="bg-decorative1-main"
+        color2="bg-decorative1-main"
+      />
 
-        <OakBox $background={"bg-primary"}>{tabContent}</OakBox>
-      </AppLayout>
-    </OakThemeProvider>
+      <OakBox $background={"bg-primary"}>{tabContent}</OakBox>
+    </AppLayout>
   );
 };
 
