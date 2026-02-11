@@ -48,12 +48,6 @@ const footerSections: FooterSections = {
         type: "link",
         href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks4" }),
       },
-
-      {
-        text: "Curriculum plans",
-        type: "link",
-        href: resolveOakHref({ page: "curriculum-landing-page" }),
-      },
       {
         text: "Plan a lesson",
         type: "link",
@@ -74,6 +68,21 @@ const footerSections: FooterSections = {
         text: "About us",
         type: "link",
         href: resolveOakHref({ page: "about-who-we-are" }),
+      },
+      {
+        text: "Oak's curricula",
+        type: "link",
+        href: resolveOakHref({ page: "about-oaks-curricula" }),
+      },
+      {
+        text: "Get involved",
+        type: "link",
+        href: resolveOakHref({ page: "about-get-involved" }),
+      },
+      {
+        text: "Meet the team",
+        type: "link",
+        href: resolveOakHref({ page: "about-meet-the-team" }),
       },
       {
         text: "Careers",
