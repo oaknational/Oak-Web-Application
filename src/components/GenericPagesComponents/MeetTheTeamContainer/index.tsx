@@ -4,7 +4,6 @@ import {
   OakGrid,
   OakHeading,
   OakP,
-  parseSpacing,
 } from "@oaknational/oak-components";
 
 export type MeetTheTeamContainerProps = {
@@ -21,9 +20,11 @@ export function MeetTheTeamContainer({
 }: Readonly<MeetTheTeamContainerProps>) {
   return (
     <OakBox
+      id={anchor}
       $background={"bg-decorative5-very-subdued"}
       $pa={["spacing-16", "spacing-24", "spacing-24"]}
-      id={anchor}
+      $borderRadius={"border-radius-m2"}
+      $color={"text-primary"}
     >
       <OakFlex $gap={["spacing-32"]} $flexDirection={"column"}>
         <OakFlex $gap={["spacing-16"]} $flexDirection={"column"}>
@@ -33,9 +34,12 @@ export function MeetTheTeamContainer({
           {text && <OakP $font={"body-1"}>{text}</OakP>}
         </OakFlex>
         <OakGrid
-          $gridTemplateColumns={`repeat(auto-fit, minmax(${parseSpacing("spacing-180")}, 1fr))`}
+          as="ul"
+          $gridTemplateColumns={`repeat(auto-fit, minmax(200px, 1fr))`}
           $cg={"spacing-16"}
           $rg={"spacing-16"}
+          $pa={"spacing-0"}
+          $ma={"spacing-0"}
         >
           {children}
         </OakGrid>
