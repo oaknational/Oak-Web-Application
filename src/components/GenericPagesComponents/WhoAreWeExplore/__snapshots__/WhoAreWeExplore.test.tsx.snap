@@ -42,7 +42,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 class="sc-a66d812a-1 dspHjE"
               >
                 <div
-                  class="sc-aXZVg sc-kMkxaj bpmavV jEjmXi"
+                  class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
                 >
                   <a
                     href="#item_one"
@@ -99,7 +99,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 class="sc-a66d812a-1 dspHjE"
               >
                 <div
-                  class="sc-aXZVg sc-kMkxaj bpmavV jEjmXi"
+                  class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
                 >
                   <a
                     href="#item_two"
@@ -156,7 +156,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 class="sc-a66d812a-1 dspHjE"
               >
                 <div
-                  class="sc-aXZVg sc-kMkxaj bpmavV jEjmXi"
+                  class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
                 >
                   <a
                     href="#item_three"
