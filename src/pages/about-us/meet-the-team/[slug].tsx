@@ -1,4 +1,5 @@
 import { NextPage, GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 import {
   OakFlex,
   OakGrid,
@@ -22,6 +23,9 @@ import CMSClient from "@/node-lib/cms";
 import { TeamMember } from "@/common-lib/cms-types/teamMember";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { SocialButton } from "@/components/GenericPagesComponents/SocialButton";
+import Breadcrumbs, {
+  Breadcrumb,
+} from "@/components/SharedComponents/Breadcrumbs";
 import {
   ProfileNavigation,
   MemberCategory,
@@ -41,6 +45,32 @@ export type AboutUsMeetTheTeamPersonPageProps = {
   category: MemberCategory;
 };
 
+const ProfileLinkButton: React.FC<{
+  href: string;
+  iconName: "arrow-left" | "arrow-right";
+  isTrailingIcon?: boolean;
+  children: React.ReactNode;
+}> = ({ href, iconName, isTrailingIcon, children }) => {
+  const router = useRouter();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    router.replace(href);
+  };
+
+  return (
+    <OakSmallSecondaryButton
+      element="a"
+      href={href}
+      iconName={iconName}
+      isTrailingIcon={isTrailingIcon}
+      onClick={handleClick}
+    >
+      {children}
+    </OakSmallSecondaryButton>
+  );
+};
+
 const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   pageData,
   topNav,
@@ -52,6 +82,19 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   const trimmedBio = trimTrailingEmptyBlocks(bioPortableText);
   const imageUrl = getProxiedSanityAssetUrl(image?.asset?.url);
 
+  const breadcrumbs: Breadcrumb[] = [
+    { label: "Home", oakLinkProps: { page: "home" } },
+    {
+      label: "Meet the team",
+      oakLinkProps: { page: null, href: "/about-us/meet-the-team" },
+    },
+    {
+      label: name,
+      oakLinkProps: { page: null, href: "#" },
+      disabled: true,
+    },
+  ];
+
   return (
     <Layout
       seoProps={getSeoProps({
@@ -61,16 +104,23 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
       $background={"bg-primary"}
       topNavProps={topNav}
     >
+      <OakMaxWidth $ph={["spacing-16", "spacing-32"]} $pt={"spacing-32"}>
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
+      </OakMaxWidth>
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
-        $mt={["spacing-56", "spacing-80"]}
+        $mt={["spacing-48", "spacing-56", "spacing-56"]}
         $ph={["spacing-16", "spacing-32"]}
       >
         <OakGrid $cg={["spacing-0", "spacing-16"]} $rg={"spacing-24"}>
           {/* Image - Desktop/Tablet only (left column) */}
-          <OakGridArea $colSpan={[12, 5, 4]} $order={1}>
+          <OakGridArea
+            $colSpan={[12, 5, 4]}
+            $order={1}
+            $display={["none", "block"]}
+          >
             {imageUrl && (
-              <OakBox $display={["none", "block"]}>
+              <OakBox>
                 <OakBox $borderRadius={"border-radius-l"} $overflow={"hidden"}>
                   <OakImage
                     src={imageUrl}
@@ -184,23 +234,18 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                   aria-label="Team member navigation"
                 >
                   {prevHref && (
-                    <OakSmallSecondaryButton
-                      element="a"
-                      href={prevHref}
-                      iconName="arrow-left"
-                    >
+                    <ProfileLinkButton href={prevHref} iconName="arrow-left">
                       Previous profile
-                    </OakSmallSecondaryButton>
+                    </ProfileLinkButton>
                   )}
                   {nextHref && (
-                    <OakSmallSecondaryButton
-                      element="a"
+                    <ProfileLinkButton
                       href={nextHref}
                       iconName="arrow-right"
                       isTrailingIcon
                     >
                       Next profile
-                    </OakSmallSecondaryButton>
+                    </ProfileLinkButton>
                   )}
                 </OakFlex>
               )}
