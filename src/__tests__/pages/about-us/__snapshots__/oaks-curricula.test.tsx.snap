@@ -2431,16 +2431,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   grid-template-columns: repeat(3,1fr);
 }
 
-.c202 {
-  display: grid;
-  grid-template-columns: repeat(12,1fr);
-  width: 100%;
-  row-gap: 1rem;
-  -webkit-column-gap: 1rem;
-  column-gap: 1rem;
-  grid-auto-rows: 1fr;
-}
-
 .c219 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
@@ -2466,15 +2456,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   grid-column-start: 9;
 }
 
-.c203 {
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  grid-column: span 12;
-  grid-row: span undefined;
-  grid-row: span 1;
-}
-
 .c220 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -2497,22 +2478,20 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c169:has( a, button ) {
-  z-index: 2;
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c169:has(a:hover,button:hover),
-.c169:has(button:hover:not(:active)) {
-  z-index: 1;
-}
-
 .c169:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
+.c169:has( a, button) {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c169:has( a, button)  a,
+.c169:has( a, button) button {
+  outline: none;
+}
+
 .c169:has(a:active,button:active) {
-  z-index: 2;
   box-shadow: none;
 }
 
@@ -2520,23 +2499,21 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   box-shadow: none;
 }
 
-.c205:has( a, button ) {
-  border-radius: 0.5rem;
-  z-index: 2;
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c205:has(a:hover,button:hover),
-.c205:has(button:hover:not(:active)) {
-  z-index: 1;
-}
-
 .c205:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
+.c205:has( a, button) {
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c205:has( a, button)  a,
+.c205:has( a, button) button {
+  outline: none;
+}
+
 .c205:has(a:active,button:active) {
-  z-index: 2;
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
@@ -3370,6 +3347,23 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 .c208:hover {
   box-shadow: 2px 2px 0 0 #ffe555;
+}
+
+.c203 {
+  padding: 0;
+  margin: 0;
+}
+
+.c202 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  row-gap: 1rem;
+  -webkit-column-gap: 1rem;
+  column-gap: 1rem;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(3,1fr);
 }
 
 .c176 {
@@ -4773,18 +4767,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c203 {
-    grid-column: span 6;
-  }
-}
-
-@media (min-width:1280px) {
-  .c203 {
-    grid-column: span 6;
-  }
-}
-
-@media (min-width:750px) {
   .c220 {
     grid-column: span 6;
   }
@@ -4859,6 +4841,12 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 @media (min-width:750px) {
   .c69 {
     padding-bottom: 4.5rem;
+  }
+}
+
+@media (max-width:800px) {
+  .c202 {
+    grid-template-columns: repeat(1,1fr);
   }
 }
 
@@ -7762,304 +7750,253 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 >
                   <h2
                     class="c201"
+                    id="react-use-id-test-result"
                   >
                     Explore more about Oak
                   </h2>
-                  <div
-                    class="c11 c202"
+                  <nav
+                    aria-labelledby="react-use-id-test-result"
                   >
-                    <div
-                      class="c11 c98 c203"
+                    <ul
+                      class="c202"
                     >
-                      <div
-                        class="c204 c205"
+                      <li
+                        class="c203"
                       >
-                        <a
-                          href="/about-us/who-we-are"
-                          style="outline: none;"
+                        <div
+                          class="c204 c205"
                         >
-                          <div
-                            class="c206 c207 c208"
-                            data-testid="who-we-are-explore-item"
+                          <a
+                            href="/about-us/who-we-are"
+                            style="outline: none;"
                           >
                             <div
-                              class="c11 c98"
+                              class="c206 c207 c208"
+                              data-testid="who-we-are-explore-item"
                             >
                               <div
-                                class="c209"
+                                class="c11 c98"
                               >
-                                <img
-                                  alt=""
-                                  class="c34"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
+                                <div
+                                  class="c209"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div
-                              class="c210 c211"
-                            >
-                              About Oak
-                            </div>
-                            <div
-                              class="c11 c98"
-                            >
                               <div
-                                class="c212"
+                                class="c210 c211"
                               >
-                                <img
-                                  alt=""
-                                  class="c34"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
+                                About Oak
+                              </div>
+                              <div
+                                class="c11 c98"
+                              >
+                                <div
+                                  class="c212"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                    <div
-                      class="c11 c98 c203"
-                    >
-                      <div
-                        class="c204 c205"
+                          </a>
+                        </div>
+                      </li>
+                      <li
+                        class="c203"
                       >
-                        <a
-                          href="/#"
-                          style="outline: none;"
+                        <div
+                          class="c204 c205"
                         >
-                          <div
-                            class="c206 c207 c208"
-                            data-testid="who-we-are-explore-item"
+                          <a
+                            href="/about-us/oaks-curricula"
+                            style="outline: none;"
                           >
                             <div
-                              class="c11 c98"
+                              class="c206 c207 c208"
+                              data-testid="who-we-are-explore-item"
                             >
                               <div
-                                class="c209"
+                                class="c11 c98"
                               >
-                                <img
-                                  alt=""
-                                  class="c34"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
+                                <div
+                                  class="c209"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div
-                              class="c210 c211"
-                            >
-                              About Oak's curriculum
-                            </div>
-                            <div
-                              class="c11 c98"
-                            >
                               <div
-                                class="c212"
+                                class="c210 c211"
                               >
-                                <img
-                                  alt=""
-                                  class="c34"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
+                                Oak's curricula
+                              </div>
+                              <div
+                                class="c11 c98"
+                              >
+                                <div
+                                  class="c212"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                    <div
-                      class="c11 c98 c203"
-                    >
-                      <div
-                        class="c204 c205"
+                          </a>
+                        </div>
+                      </li>
+                      <li
+                        class="c203"
                       >
-                        <a
-                          href="/#"
-                          style="outline: none;"
+                        <div
+                          class="c204 c205"
                         >
-                          <div
-                            class="c206 c207 c208"
-                            data-testid="who-we-are-explore-item"
+                          <a
+                            href="/about-us/meet-the-team"
+                            style="outline: none;"
                           >
                             <div
-                              class="c11 c98"
+                              class="c206 c207 c208"
+                              data-testid="who-we-are-explore-item"
                             >
                               <div
-                                class="c209"
+                                class="c11 c98"
                               >
-                                <img
-                                  alt=""
-                                  class="c34"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393164/icons/data-illustration_ukwdxg.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
+                                <div
+                                  class="c209"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div
-                              class="c210 c211"
-                            >
-                              Oak's impact
-                            </div>
-                            <div
-                              class="c11 c98"
-                            >
                               <div
-                                class="c212"
+                                class="c210 c211"
                               >
-                                <img
-                                  alt=""
-                                  class="c34"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
+                                Meet the team
+                              </div>
+                              <div
+                                class="c11 c98"
+                              >
+                                <div
+                                  class="c212"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                    <div
-                      class="c11 c98 c203"
-                    >
-                      <div
-                        class="c204 c205"
+                          </a>
+                        </div>
+                      </li>
+                      <li
+                        class="c203"
                       >
-                        <a
-                          href="/#"
-                          style="outline: none;"
+                        <div
+                          class="c204 c205"
                         >
-                          <div
-                            class="c206 c207 c208"
-                            data-testid="who-we-are-explore-item"
+                          <a
+                            href="/about-us/get-involved"
+                            style="outline: none;"
                           >
                             <div
-                              class="c11 c98"
+                              class="c206 c207 c208"
+                              data-testid="who-we-are-explore-item"
                             >
                               <div
-                                class="c209"
+                                class="c11 c98"
                               >
-                                <img
-                                  alt=""
-                                  class="c34"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
+                                <div
+                                  class="c209"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <div
-                              class="c210 c211"
-                            >
-                              Meet the team
-                            </div>
-                            <div
-                              class="c11 c98"
-                            >
                               <div
-                                class="c212"
+                                class="c210 c211"
                               >
-                                <img
-                                  alt=""
-                                  class="c34"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
+                                Get involved
                               </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                    <div
-                      class="c11 c98 c203"
-                    >
-                      <div
-                        class="c204 c205"
-                      >
-                        <a
-                          href="/about-us/get-involved"
-                          style="outline: none;"
-                        >
-                          <div
-                            class="c206 c207 c208"
-                            data-testid="who-we-are-explore-item"
-                          >
-                            <div
-                              class="c11 c98"
-                            >
                               <div
-                                class="c209"
+                                class="c11 c98"
                               >
-                                <img
-                                  alt=""
-                                  class="c34"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
+                                <div
+                                  class="c212"
+                                >
+                                  <img
+                                    alt=""
+                                    class="c34"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
                               </div>
                             </div>
-                            <div
-                              class="c210 c211"
-                            >
-                              Get involved
-                            </div>
-                            <div
-                              class="c11 c98"
-                            >
-                              <div
-                                class="c212"
-                              >
-                                <img
-                                  alt=""
-                                  class="c34"
-                                  data-nimg="fill"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
               </div>
             </div>
           </div>
           <div
             class="c213"
+            id="newsletter-signup"
           >
             <div
               class="c214 c215"

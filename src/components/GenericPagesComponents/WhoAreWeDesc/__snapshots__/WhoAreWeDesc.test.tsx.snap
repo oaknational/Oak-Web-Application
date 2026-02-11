@@ -18,14 +18,14 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
           class="sc-aXZVg sc-tagGq hdseiA dwIuIO"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-698d7605-0 hdseiA iDBIXi giQTDM btCibF"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-8c6e8d9-0 hdseiA iDBIXi giQTDM eEAIBn"
             data-testid="who-we-are-desc-item"
           >
             <div
               class="sc-aXZVg sc-gEvEer hdseiA daEtut"
             >
               <div
-                class="sc-aXZVg eFmHXn"
+                class="sc-aXZVg iTlOvk"
               >
                 <img
                   alt="ITEM_ALT_0"
@@ -57,14 +57,14 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-698d7605-0 hdseiA iDBIXi giQTDM btCibF"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-8c6e8d9-0 hdseiA iDBIXi giQTDM eEAIBn"
             data-testid="who-we-are-desc-item"
           >
             <div
               class="sc-aXZVg sc-gEvEer hdseiA daEtut"
             >
               <div
-                class="sc-aXZVg emVaWL"
+                class="sc-aXZVg fMYJdU"
               >
                 <img
                   alt="ITEM_ALT_1"
@@ -96,14 +96,14 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-698d7605-0 hdseiA iDBIXi giQTDM btCibF"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-8c6e8d9-0 hdseiA iDBIXi giQTDM eEAIBn"
             data-testid="who-we-are-desc-item"
           >
             <div
               class="sc-aXZVg sc-gEvEer hdseiA daEtut"
             >
               <div
-                class="sc-aXZVg hTwFfq"
+                class="sc-aXZVg icEKlF"
               >
                 <img
                   alt="ITEM_ALT_2"
@@ -135,14 +135,14 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-698d7605-0 hdseiA iDBIXi giQTDM btCibF"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-8c6e8d9-0 hdseiA iDBIXi giQTDM eEAIBn"
             data-testid="who-we-are-desc-item"
           >
             <div
               class="sc-aXZVg sc-gEvEer hdseiA daEtut"
             >
               <div
-                class="sc-aXZVg cbfjrS"
+                class="sc-aXZVg hyjivR"
               >
                 <img
                   alt="ITEM_ALT_3"

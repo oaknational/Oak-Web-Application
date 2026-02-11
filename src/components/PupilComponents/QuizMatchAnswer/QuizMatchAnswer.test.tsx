@@ -21,8 +21,6 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
-window.matchMedia = () => ({ matches: true }) as unknown as MediaQueryList;
-
 describe(QuizMatchAnswer, () => {
   const mouse: MatchAnswer = {
     correctChoice: [

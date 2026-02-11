@@ -22,10 +22,6 @@ jest.mock("@/node-lib/posthog/getPosthogId", () => ({
   getPosthogIdFromCookie: jest.fn().mockReturnValue("test-posthog-id"),
 }));
 
-globalThis.matchMedia = jest.fn().mockReturnValue({
-  matches: true,
-});
-
 const mockTeamMember = {
   id: "test-id",
   name: "Ed Southall",

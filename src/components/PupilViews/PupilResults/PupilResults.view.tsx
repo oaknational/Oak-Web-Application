@@ -1,6 +1,5 @@
 import {
   isValidIconName,
-  oakDefaultTheme,
   OakFlex,
   OakHandDrawnHR,
   OakHeading,
@@ -8,7 +7,6 @@ import {
   OakMaxWidth,
   OakQuizPrintableHeader,
   OakQuizPrintableSubHeader,
-  OakThemeProvider,
 } from "@oaknational/oak-components";
 
 import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
@@ -107,87 +105,85 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
   let questionIndex = 1;
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <MathJaxWrap>
-        <OakMaxWidth
-          $gap={"spacing-24"}
-          $flexDirection={"column"}
-          $mt={"spacing-48"}
-          $ph={"spacing-12"}
-        >
-          <OakQuizPrintableHeader
-            alt="icon"
-            breadcrumbs={[yearDescription, subject]}
-            iconName={isValidIconName(iconSlug) ? iconSlug : "question-mark"}
-            title={title}
-            videoPercentage={percentageVideoWatched}
-            worksheetDownloaded={worksheetDownloaded}
-            workSheetAvailable={worksheetAvailable}
-          />
-          <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-            <OakHeading tag="h2" $font={"heading-5"}>
-              Results
-            </OakHeading>
+    <MathJaxWrap>
+      <OakMaxWidth
+        $gap={"spacing-24"}
+        $flexDirection={"column"}
+        $mt={"spacing-48"}
+        $ph={"spacing-12"}
+      >
+        <OakQuizPrintableHeader
+          alt="icon"
+          breadcrumbs={[yearDescription, subject]}
+          iconName={isValidIconName(iconSlug) ? iconSlug : "question-mark"}
+          title={title}
+          videoPercentage={percentageVideoWatched}
+          worksheetDownloaded={worksheetDownloaded}
+          workSheetAvailable={worksheetAvailable}
+        />
+        <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+          <OakHeading tag="h2" $font={"heading-5"}>
+            Results
+          </OakHeading>
 
-            {starterQuiz?.questionResults && (
-              <>
-                <OakHandDrawnHR $height={"spacing-4"} />
-                <OakQuizPrintableSubHeader
-                  title={"Starter quiz"}
-                  grade={starterQuiz.grade ?? 0}
-                  numQuestions={starterQuiz.numQuestions ?? 0}
-                  attempts={1}
+          {starterQuiz?.questionResults && (
+            <>
+              <OakHandDrawnHR $height={"spacing-4"} />
+              <OakQuizPrintableSubHeader
+                title={"Starter quiz"}
+                grade={starterQuiz.grade ?? 0}
+                numQuestions={starterQuiz.numQuestions ?? 0}
+                attempts={1}
+              />
+            </>
+          )}
+          {starterQuiz?.questionResults &&
+            starterQuiz.questionResults.map((questionResult, index) => {
+              const displayIndex =
+                questionResult.mode === "init" ? 999 : questionIndex++;
+
+              return (
+                <QuizSectionRender
+                  key={`section-render'${index}`}
+                  index={index}
+                  displayIndex={displayIndex}
+                  questionResult={questionResult}
+                  quizQuestionArray={starterQuizQuestionsArray}
+                  lessonSection={"starter-quiz"}
                 />
-              </>
-            )}
-            {starterQuiz?.questionResults &&
-              starterQuiz.questionResults.map((questionResult, index) => {
-                const displayIndex =
-                  questionResult.mode === "init" ? 999 : questionIndex++;
+              );
+            })}
 
-                return (
-                  <QuizSectionRender
-                    key={`section-render'${index}`}
-                    index={index}
-                    displayIndex={displayIndex}
-                    questionResult={questionResult}
-                    quizQuestionArray={starterQuizQuestionsArray}
-                    lessonSection={"starter-quiz"}
-                  />
-                );
-              })}
+          {exitQuiz?.questionResults && (
+            <>
+              <OakHandDrawnHR $height={"spacing-4"} />
+              <OakQuizPrintableSubHeader
+                title={"Exit quiz"}
+                grade={exitQuiz.grade ?? 0}
+                numQuestions={exitQuiz.numQuestions ?? 0}
+                attempts={1}
+              />
+            </>
+          )}
+          {exitQuiz?.questionResults &&
+            exitQuiz.questionResults.map((questionResult, index) => {
+              const displayIndex =
+                questionResult.mode === "init" ? 999 : questionIndex++;
 
-            {exitQuiz?.questionResults && (
-              <>
-                <OakHandDrawnHR $height={"spacing-4"} />
-                <OakQuizPrintableSubHeader
-                  title={"Exit quiz"}
-                  grade={exitQuiz.grade ?? 0}
-                  numQuestions={exitQuiz.numQuestions ?? 0}
-                  attempts={1}
+              return (
+                <QuizSectionRender
+                  key={`section-${index}`}
+                  index={index}
+                  displayIndex={displayIndex}
+                  questionResult={questionResult}
+                  quizQuestionArray={exitQuizQuestionsArray}
+                  lessonSection={"exit-quiz"}
                 />
-              </>
-            )}
-            {exitQuiz?.questionResults &&
-              exitQuiz.questionResults.map((questionResult, index) => {
-                const displayIndex =
-                  questionResult.mode === "init" ? 999 : questionIndex++;
-
-                return (
-                  <QuizSectionRender
-                    key={`section-${index}`}
-                    index={index}
-                    displayIndex={displayIndex}
-                    questionResult={questionResult}
-                    quizQuestionArray={exitQuizQuestionsArray}
-                    lessonSection={"exit-quiz"}
-                  />
-                );
-              })}
-            <CopyrightNotice isLegacyLicense={isLegacy} />
-          </OakFlex>
-        </OakMaxWidth>
-      </MathJaxWrap>
-    </OakThemeProvider>
+              );
+            })}
+          <CopyrightNotice isLegacyLicense={isLegacy} />
+        </OakFlex>
+      </OakMaxWidth>
+    </MathJaxWrap>
   );
 };

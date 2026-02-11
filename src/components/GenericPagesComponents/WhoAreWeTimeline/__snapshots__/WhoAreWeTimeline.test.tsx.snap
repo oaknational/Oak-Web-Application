@@ -170,6 +170,26 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                         class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
                       >
                         ITEM_TEXT_3
+                        <a
+                          class="sc-hzhJZQ fCGScF"
+                          href="#newsletter-signup"
+                        >
+                          <span
+                            class="sc-eqUAAy dtaNGQ"
+                          >
+                            TEST_LINK_1
+                          </span>
+                        </a>
+                        <a
+                          class="sc-hzhJZQ fCGScF"
+                          href="#"
+                        >
+                          <span
+                            class="sc-eqUAAy dtaNGQ"
+                          >
+                            TEST_LINK_2
+                          </span>
+                        </a>
                       </p>
                     </div>
                   </div>
