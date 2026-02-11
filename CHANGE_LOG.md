@@ -1,3 +1,10 @@
+## [1.984.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.984.1...v1.984.2) (2026-02-10)
+
+
+### Bug Fixes
+
+* update paragraph spacing in /about-us/get-involved ([89f502a](https://github.com/oaknational/Oak-Web-Application/commit/89f502a2b24ed21143045f21d0fac3ab6a93c574))
+
 ## [1.984.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.984.0...v1.984.1) (2026-02-10)
 
 
