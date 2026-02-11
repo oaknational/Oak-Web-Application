@@ -109,7 +109,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
       </OakMaxWidth>
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
-        $mt={["spacing-40", "spacing-56", "spacing-56"]}
+        $mt={["spacing-48", "spacing-56", "spacing-56"]}
         $ph={["spacing-16", "spacing-32"]}
       >
         <OakGrid $cg={["spacing-0", "spacing-16"]} $rg={"spacing-24"}>

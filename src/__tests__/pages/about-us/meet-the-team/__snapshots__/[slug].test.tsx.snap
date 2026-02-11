@@ -288,7 +288,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   padding-right: 1rem;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2.5rem;
+  margin-top: 3rem;
   margin-bottom: 3.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
