@@ -527,8 +527,8 @@ _avo_invoke = function _avo_invoke(
 ) {
   try {
     _avo_invoke_payload({
-      ac: "HtT5VHR7ZDayZCKfxmhc",
-      br: "D7TfTrT978xmAkgHXFbGp",
+      ac: "8nri7ZVdvSiGMiNWQTa8",
+      br: "master",
       en: env,
       ev: eventId,
       ha: hash,
@@ -556,8 +556,8 @@ _avo_invoke_meta = function _avo_invoke_meta(
 ) {
   try {
     _avo_invoke_payload({
-      ac: "HtT5VHR7ZDayZCKfxmhc",
-      br: "D7TfTrT978xmAkgHXFbGp",
+      ac: "8nri7ZVdvSiGMiNWQTa8",
+      br: "master",
       en: env,
       ty: type,
       sc: "5PhajbVijwhXVKIJtGMT",
@@ -675,6 +675,7 @@ export const ComponentType = {
   SUGGESTED_FILTER: "suggested_filter",
   CREATE_MORE_WITH_AI_BUTTON: "create_more_with_ai_button",
   CREATE_MORE_WITH_AI_DROPDOWN: "create_more_with_ai_dropdown",
+  CHILD_SUBJECT_BUTTON: "child_subject_button",
 } as const;
 export type ComponentTypeType = typeof ComponentType;
 export type ComponentTypeValueType = ComponentTypeType[keyof ComponentTypeType];
@@ -837,7 +838,7 @@ export interface UserSignMinusUpCompletedProperties {
  *
  * When to trigger this event:
  * 1. A user uses SSO or email/password combination to create an account in Clerk.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/D7TfTrT978xmAkgHXFbGp/events/fOlHJypRwg/trigger/aV1XekNBLU
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/fOlHJypRwg/trigger/aV1XekNBLU
  *
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA and Aila. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -851,7 +852,7 @@ export interface UserSignMinusUpCompletedProperties {
  * @param properties.userId_: User Id is required for server sources.
  * @param properties.singleSignOnService: The Single Sign-On (SSO) Service used at a given stage of sign-up / sign-on.
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/D7TfTrT978xmAkgHXFbGp/events/fOlHJypRwg}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/fOlHJypRwg}
  */
 export function userSignUpCompleted(
   properties: UserSignMinusUpCompletedProperties,
@@ -912,7 +913,7 @@ export function userSignUpCompleted(
       _avo_invoke(
         __AVO_ENV__,
         "fOlHJypRwg",
-        "969c110c1cfbef8d231faffbc920670b55c67293f8462ee2bf0e2f4568cc82cd",
+        "9cef05e0e766446d9e5dc121dc781e5a22a52b53d859573c35ff071fcd770ebf",
         messages.map((m) =>
           Object.assign(
             {},
@@ -942,7 +943,7 @@ export function userSignUpCompleted(
             "User Sign-Up Completed",
             eventProperties,
             "fOlHJypRwg",
-            "969c110c1cfbef8d231faffbc920670b55c67293f8462ee2bf0e2f4568cc82cd",
+            "9cef05e0e766446d9e5dc121dc781e5a22a52b53d859573c35ff071fcd770ebf",
           )
         : Promise.resolve(),
       // destination PostHogEU
@@ -969,7 +970,7 @@ export interface UserSignMinusInProperties {
  * @param properties the properties associated with this event
  * @param properties.userId_: User Id is required for server sources.
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/D7TfTrT978xmAkgHXFbGp/events/KiDGLM5Isg}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/KiDGLM5Isg}
  */
 export function userSignIn(properties: UserSignMinusInProperties) {
   // @ts-ignore
@@ -1043,7 +1044,7 @@ export interface UserSignMinusOutProperties {
  * @param properties the properties associated with this event
  * @param properties.userId_: User Id is required for server sources.
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/D7TfTrT978xmAkgHXFbGp/events/j0lSWreaah}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/j0lSWreaah}
  */
 export function userSignOut(properties: UserSignMinusOutProperties) {
   // @ts-ignore
