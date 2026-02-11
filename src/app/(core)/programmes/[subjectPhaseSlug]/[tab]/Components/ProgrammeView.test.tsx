@@ -32,10 +32,11 @@ beforeEach(() => {
 });
 
 const defaultProps = {
+  subjectPhaseSlug: "science-secondary-aqa",
   subjectTitle: "Science",
   curriculumSelectionSlugs: {
     phaseSlug: "secondary",
-    subjectSlug: "maths",
+    subjectSlug: "science",
     ks4OptionSlug: "aqa",
   },
   curriculumPhaseOptions: curriculumPhaseOptions,
@@ -61,10 +62,10 @@ describe("ProgrammeView", () => {
   });
   it("highlights the correct tab", () => {
     render(<ProgrammeView {...defaultProps} />);
-    const unitsTab = screen.getByRole("button", { name: "Unit sequence" });
+    const unitsTab = screen.getByRole("link", { name: "Unit sequence" });
     expect(unitsTab).toHaveStyle("background: #bef2bd");
 
-    const overviewTab = screen.getByRole("button", { name: "Explainer" });
+    const overviewTab = screen.getByRole("link", { name: "Explainer" });
     expect(overviewTab).toHaveStyle("background: #222222");
   });
   it("renders the correct tab content for units", () => {
@@ -90,7 +91,7 @@ describe("ProgrammeView", () => {
   });
   it("navigates on tab click", async () => {
     render(<ProgrammeView {...defaultProps} />);
-    const overviewTabButton = screen.getByRole("button", { name: "Explainer" });
+    const overviewTabButton = screen.getByRole("link", { name: "Explainer" });
     const user = userEvent.setup();
     await user.click(overviewTabButton);
     expect(pushSpy).toHaveBeenCalledWith(null, "", "overview");
