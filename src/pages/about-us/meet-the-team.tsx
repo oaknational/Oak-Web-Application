@@ -126,9 +126,8 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     getProxiedSanityAssetUrl(member.image?.asset?.url) ??
                     undefined;
                   return (
-                    <UnstyledLi>
+                    <UnstyledLi key={member.id}>
                       <OakCard
-                        key={member.id}
                         heading={member.name}
                         href={`/about-us/meet-the-team/${slug}?section=leadership`}
                         cardWidth={"100%"}
@@ -153,9 +152,8 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     getProxiedSanityAssetUrl(member.image?.asset?.url) ??
                     undefined;
                   return (
-                    <UnstyledLi>
+                    <UnstyledLi key={member.id}>
                       <OakCard
-                        key={member.id}
                         heading={member.name}
                         href={`/about-us/meet-the-team/${slug}?section=board`}
                         cardWidth={"100%"}
@@ -180,9 +178,8 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                       doc.file.asset.size,
                     );
                     return (
-                      <UnstyledLi>
+                      <UnstyledLi key={doc.title}>
                         <OakCard
-                          key={doc.title}
                           heading={doc.title}
                           href={`${doc.file.asset.url}?dl`}
                           cardWidth={"100%"}
