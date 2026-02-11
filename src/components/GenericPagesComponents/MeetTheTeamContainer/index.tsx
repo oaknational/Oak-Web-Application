@@ -20,9 +20,10 @@ export function MeetTheTeamContainer({
 }: Readonly<MeetTheTeamContainerProps>) {
   return (
     <OakBox
+      id={anchor}
       $background={"bg-decorative5-very-subdued"}
       $pa={["spacing-16", "spacing-24", "spacing-24"]}
-      id={anchor}
+      $color={"text-primary"}
     >
       <OakFlex $gap={["spacing-32"]} $flexDirection={"column"}>
         <OakFlex $gap={["spacing-16"]} $flexDirection={"column"}>
