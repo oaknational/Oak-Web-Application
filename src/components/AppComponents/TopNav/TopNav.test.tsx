@@ -11,10 +11,6 @@ jest.mock("@/hooks/useSelectedArea", () => ({
   default: () => mockSelectedArea(),
 }));
 
-globalThis.matchMedia = jest.fn().mockReturnValue({
-  matches: true,
-});
-
 const mockProps: TopNavProps = {
   teachers: {
     primary: { phaseSlug: "primary", phaseTitle: "Primary", keystages: [] },

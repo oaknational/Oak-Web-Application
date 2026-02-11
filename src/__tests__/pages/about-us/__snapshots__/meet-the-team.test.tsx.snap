@@ -2250,16 +2250,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
 }
 
-.c126 {
-  display: grid;
-  grid-template-columns: repeat(12,1fr);
-  width: 100%;
-  row-gap: 1rem;
-  -webkit-column-gap: 1rem;
-  column-gap: 1rem;
-  grid-auto-rows: 1fr;
-}
-
 .c143 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
@@ -2285,7 +2275,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   grid-column-start: 9;
 }
 
-.c127 {
+.c126 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2631,6 +2621,23 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c132:hover {
   box-shadow: 2px 2px 0 0 #ffe555;
+}
+
+.c126 {
+  padding: 0;
+  margin: 0;
+}
+
+.c125 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  row-gap: 1rem;
+  -webkit-column-gap: 1rem;
+  column-gap: 1rem;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(3,1fr);
 }
 
 .c157 {
@@ -4008,13 +4015,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c127 {
+  .c126 {
     grid-column: span 6;
   }
 }
 
 @media (min-width:1280px) {
-  .c127 {
+  .c126 {
     grid-column: span 6;
   }
 }
@@ -4081,6 +4088,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 @media (min-width:750px) {
   .c141 {
     padding-bottom: 2.5rem;
+  }
+}
+
+@media (max-width:800px) {
+  .c125 {
+    grid-template-columns: repeat(1,1fr);
   }
 }
 
@@ -5079,32 +5092,32 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   class="c123 c124"
                 >
                   <h2
-                    class="c125"
+                    class="c124"
                   >
                     Explore more about Oak
                   </h2>
                   <div
-                    class="c11 c126"
+                    class="c11 c125"
                   >
                     <div
-                      class="c11 c48 c127"
+                      class="c11 c48 c126"
                     >
                       <div
-                        class="c128 c129"
+                        class="c127 c128"
                       >
                         <a
                           href="/about-us/who-we-are"
                           style="outline: none;"
                         >
                           <div
-                            class="c130 c131 c132"
+                            class="c129 c130 c131"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
                               class="c11 c48"
                             >
                               <div
-                                class="c133"
+                                class="c132"
                               >
                                 <img
                                   alt=""
@@ -5118,7 +5131,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </div>
                             </div>
                             <div
-                              class="c134 c135"
+                              class="c133 c134"
                             >
                               About Oak
                             </div>
@@ -5126,7 +5139,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               class="c11 c48"
                             >
                               <div
-                                class="c136"
+                                class="c135"
                               >
                                 <img
                                   alt=""
@@ -5144,24 +5157,24 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="c11 c48 c127"
+                      class="c11 c48 c126"
                     >
                       <div
-                        class="c128 c129"
+                        class="c127 c128"
                       >
                         <a
                           href="/#"
                           style="outline: none;"
                         >
                           <div
-                            class="c130 c131 c132"
+                            class="c129 c130 c131"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
                               class="c11 c48"
                             >
                               <div
-                                class="c133"
+                                class="c132"
                               >
                                 <img
                                   alt=""
@@ -5175,7 +5188,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </div>
                             </div>
                             <div
-                              class="c134 c135"
+                              class="c133 c134"
                             >
                               About Oak's curriculum
                             </div>
@@ -5183,7 +5196,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               class="c11 c48"
                             >
                               <div
-                                class="c136"
+                                class="c135"
                               >
                                 <img
                                   alt=""
@@ -5201,24 +5214,24 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="c11 c48 c127"
+                      class="c11 c48 c126"
                     >
                       <div
-                        class="c128 c129"
+                        class="c127 c128"
                       >
                         <a
                           href="/#"
                           style="outline: none;"
                         >
                           <div
-                            class="c130 c131 c132"
+                            class="c129 c130 c131"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
                               class="c11 c48"
                             >
                               <div
-                                class="c133"
+                                class="c132"
                               >
                                 <img
                                   alt=""
@@ -5232,7 +5245,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </div>
                             </div>
                             <div
-                              class="c134 c135"
+                              class="c133 c134"
                             >
                               Oak's impact
                             </div>
@@ -5240,7 +5253,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               class="c11 c48"
                             >
                               <div
-                                class="c136"
+                                class="c135"
                               >
                                 <img
                                   alt=""
@@ -5258,24 +5271,24 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="c11 c48 c127"
+                      class="c11 c48 c126"
                     >
                       <div
-                        class="c128 c129"
+                        class="c127 c128"
                       >
                         <a
                           href="/#"
                           style="outline: none;"
                         >
                           <div
-                            class="c130 c131 c132"
+                            class="c129 c130 c131"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
                               class="c11 c48"
                             >
                               <div
-                                class="c133"
+                                class="c132"
                               >
                                 <img
                                   alt=""
@@ -5289,7 +5302,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </div>
                             </div>
                             <div
-                              class="c134 c135"
+                              class="c133 c134"
                             >
                               Meet the team
                             </div>
@@ -5297,7 +5310,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               class="c11 c48"
                             >
                               <div
-                                class="c136"
+                                class="c135"
                               >
                                 <img
                                   alt=""
@@ -5315,24 +5328,24 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="c11 c48 c127"
+                      class="c11 c48 c126"
                     >
                       <div
-                        class="c128 c129"
+                        class="c127 c128"
                       >
                         <a
                           href="/about-us/get-involved"
                           style="outline: none;"
                         >
                           <div
-                            class="c130 c131 c132"
+                            class="c129 c130 c131"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
                               class="c11 c48"
                             >
                               <div
-                                class="c133"
+                                class="c132"
                               >
                                 <img
                                   alt=""
@@ -5346,7 +5359,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </div>
                             </div>
                             <div
-                              class="c134 c135"
+                              class="c133 c134"
                             >
                               Get involved
                             </div>
@@ -5354,7 +5367,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               class="c11 c48"
                             >
                               <div
-                                class="c136"
+                                class="c135"
                               >
                                 <img
                                   alt=""

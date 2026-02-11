@@ -12,7 +12,6 @@ import {
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
 import { getPageItems, getProgrammeFactors } from "./helpers";
-import { UnitListLegacyBanner } from "./UnitListLegacyBanner";
 import { areNewAndLegacyUnitsOnPage, getUnitCards } from "./getUnitCards";
 
 import {
@@ -30,6 +29,10 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
+import {
+  getIsUnitExpiring,
+  TakedownBanner,
+} from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 
 export type Tier = {
   title: string;
@@ -137,8 +140,17 @@ const UnitList: FC<UnitListProps> = (props) => {
       savedFrom: "unit_listing_save_button",
     });
 
-  const hasNewAndLegacyUnits: boolean =
+  const hasNewAndLegacyUnitsOnPage: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
+
+  // Used to show the appropriate takedown banner for cycle 1 and 2 programmes
+  const hasLegacyUnits = units.some((unit) =>
+    unit.some((u) => isSlugLegacy(u.programmeSlug)),
+  );
+  const hasNewUnits = units.some((unit) =>
+    unit.some((u) => !isSlugLegacy(u.programmeSlug)),
+  );
+  const hasNewAndLegacyUnitsInProgramme = hasLegacyUnits && hasNewUnits;
 
   //TODO: Temporary measure until curriculum downloads are ready for RSHE
   const hideNewCurriculumDownloadButton =
@@ -246,10 +258,12 @@ const UnitList: FC<UnitListProps> = (props) => {
               <OakUnitsContainer
                 isLegacy={true}
                 banner={
-                  <UnitListLegacyBanner
+                  <TakedownBanner
                     userType={"teacher"}
-                    hasNewUnits={hasNewAndLegacyUnits}
-                    allLegacyUnits={legacyPageItems}
+                    subjectSlug={subjectSlug}
+                    hasNewUnits={hasNewAndLegacyUnitsInProgramme}
+                    isLegacy={true}
+                    isExpiring={getIsUnitExpiring(legacyPageItems)}
                     onButtonClick={() => onPageChange(1)}
                   />
                 }
@@ -279,10 +293,12 @@ const UnitList: FC<UnitListProps> = (props) => {
           <OakUnitsContainer
             isLegacy={true}
             banner={
-              <UnitListLegacyBanner
+              <TakedownBanner
                 userType={"teacher"}
-                hasNewUnits={hasNewAndLegacyUnits}
-                allLegacyUnits={legacyPageItems}
+                subjectSlug={subjectSlug}
+                hasNewUnits={hasNewAndLegacyUnitsOnPage}
+                isLegacy={true}
+                isExpiring={getIsUnitExpiring(legacyPageItems)}
                 onButtonClick={() => onPageChange(1)}
               />
             }
