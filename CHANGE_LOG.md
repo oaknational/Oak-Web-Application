@@ -1,3 +1,10 @@
+# [1.986.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.985.0...v1.986.0) (2026-02-11)
+
+
+### Features
+
+* add breadcrumb navigation and replaceState for prev/next links ([1e33695](https://github.com/oaknational/Oak-Web-Application/commit/1e3369594426c55858e1a7338eb06f8c3627faaf))
+
 # [1.985.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.984.2...v1.985.0) (2026-02-11)
 
 
