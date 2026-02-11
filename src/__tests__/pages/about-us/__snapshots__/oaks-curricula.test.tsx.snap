@@ -7996,6 +7996,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
           </div>
           <div
             class="c213"
+            id="newsletter-signup"
           >
             <div
               class="c214 c215"
