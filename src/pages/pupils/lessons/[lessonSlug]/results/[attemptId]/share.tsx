@@ -1,5 +1,4 @@
 import { GetServerSideProps, GetServerSidePropsResult } from "next";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { PupilViewsResults } from "@/components/PupilViews/PupilResults";
@@ -26,17 +25,15 @@ export type CanonicalResultsSharePageProps = {
 const CanonicalResultsSharePage = (props: CanonicalResultsSharePageProps) => {
   const { browseData, content, attemptData } = props;
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <MathJaxProvider>
-        {" "}
-        <PupilViewsResults
-          browseData={browseData}
-          attemptData={attemptData}
-          starterQuizQuestionsArray={content.starterQuiz}
-          exitQuizQuestionsArray={content.exitQuiz}
-        />
-      </MathJaxProvider>
-    </OakThemeProvider>
+    <MathJaxProvider>
+      {" "}
+      <PupilViewsResults
+        browseData={browseData}
+        attemptData={attemptData}
+        starterQuizQuestionsArray={content.starterQuiz}
+        exitQuizQuestionsArray={content.exitQuiz}
+      />
+    </MathJaxProvider>
   );
 };
 
