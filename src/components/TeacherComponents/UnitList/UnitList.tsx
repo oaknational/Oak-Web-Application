@@ -140,8 +140,17 @@ const UnitList: FC<UnitListProps> = (props) => {
       savedFrom: "unit_listing_save_button",
     });
 
-  const hasNewAndLegacyUnits: boolean =
+  const hasNewAndLegacyUnitsOnPage: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
+
+  // Used to show the appropriate takedown banner for cycle 1 and 2 programmes
+  const hasLegacyUnits = units.some((unit) =>
+    unit.some((u) => isSlugLegacy(u.programmeSlug)),
+  );
+  const hasNewUnits = units.some((unit) =>
+    unit.some((u) => !isSlugLegacy(u.programmeSlug)),
+  );
+  const hasNewAndLegacyUnitsInProgramme = hasLegacyUnits && hasNewUnits;
 
   //TODO: Temporary measure until curriculum downloads are ready for RSHE
   const hideNewCurriculumDownloadButton =
@@ -252,7 +261,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                   <TakedownBanner
                     userType={"teacher"}
                     subjectSlug={subjectSlug}
-                    hasNewUnits={hasNewAndLegacyUnits}
+                    hasNewUnits={hasNewAndLegacyUnitsInProgramme}
                     isLegacy={true}
                     isExpiring={getIsUnitExpiring(legacyPageItems)}
                     onButtonClick={() => onPageChange(1)}
@@ -287,7 +296,7 @@ const UnitList: FC<UnitListProps> = (props) => {
               <TakedownBanner
                 userType={"teacher"}
                 subjectSlug={subjectSlug}
-                hasNewUnits={hasNewAndLegacyUnits}
+                hasNewUnits={hasNewAndLegacyUnitsOnPage}
                 isLegacy={true}
                 isExpiring={getIsUnitExpiring(legacyPageItems)}
                 onButtonClick={() => onPageChange(1)}
