@@ -1,3 +1,24 @@
+# [1.985.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.984.2...v1.985.0) (2026-02-11)
+
+
+### Bug Fixes
+
+* add citizenship to cycle 2 subjects ([0a5c9db](https://github.com/oaknational/Oak-Web-Application/commit/0a5c9dbda5fd12cc2b37f71f8b60a45b800e2992))
+* handle edge case where legacy units sit on a separate unit page ([12f9735](https://github.com/oaknational/Oak-Web-Application/commit/12f973574677ea08f7bfe94e955059636f7856d3))
+* invert conditional statement for subjects with new units ([bcb3fdf](https://github.com/oaknational/Oak-Web-Application/commit/bcb3fdf3b6c44d43e08a78b4d30402f0dfb16c2a))
+* pluralisation in pupil banner ([8e0344e](https://github.com/oaknational/Oak-Web-Application/commit/8e0344eb211b94df7a21164f49feaf43f1238bda))
+* update takedown banner button text for pupils ([c9ab51c](https://github.com/oaknational/Oak-Web-Application/commit/c9ab51c7bfb2b76bdbcfb2548bc39c6e2abcf4f1))
+
+
+### Features
+
+* add stories for banner cases ([eb3504b](https://github.com/oaknational/Oak-Web-Application/commit/eb3504b614f6f0eb1ec9acbf713ac98a6277048d))
+* add takedown banner to lesson listing and overview pages ([61f1abe](https://github.com/oaknational/Oak-Web-Application/commit/61f1abe1c919f1d1892adf88c24d11f13a71c291))
+* update button text on mobile ([27565b6](https://github.com/oaknational/Oak-Web-Application/commit/27565b694aa9ac5eb3dac810cbd4bf99fdfa160e))
+* update copy for cycle 1 banners ([453c722](https://github.com/oaknational/Oak-Web-Application/commit/453c7227ad4b61beedc1243fdd8bc77afa1863da))
+* update unit list legacy banner for cycle 2 take downs ([b807af2](https://github.com/oaknational/Oak-Web-Application/commit/b807af291bb4fdcb227ef836f5ffd47c166aa8c5))
+* use flex for cycle 2 takedown body ([482304f](https://github.com/oaknational/Oak-Web-Application/commit/482304fda7012bca80a5f7d12aa6c1471826030c))
+
 ## [1.984.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.984.1...v1.984.2) (2026-02-10)
 
 
