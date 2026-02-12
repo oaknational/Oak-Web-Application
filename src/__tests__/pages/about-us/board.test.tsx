@@ -17,6 +17,16 @@ jest.mock("posthog-js/react", () => ({
 }));
 jest.mock("../../../node-lib/cms");
 
+const ENABLE_NEW_ABOUT_US_MOCK = jest.fn(() => false);
+jest.mock("@/config/flags", () => {
+  return {
+    __esModule: true,
+    get ENABLE_NEW_ABOUT_US() {
+      return ENABLE_NEW_ABOUT_US_MOCK();
+    },
+  };
+});
+
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
@@ -130,6 +140,19 @@ describe("pages/about-us/board.tsx", () => {
 
       expect(propsResult).toMatchObject({
         notFound: true,
+      });
+    });
+
+    it("should redirect is ENABLE_NEW_ABOUT_US=true", async () => {
+      ENABLE_NEW_ABOUT_US_MOCK.mockReturnValue(true);
+      const propsResult = await getStaticProps({
+        params: {},
+      });
+      expect(propsResult).toEqual({
+        redirect: {
+          destination: "/about-us/meet-the-team",
+          permanent: false,
+        },
       });
     });
   });

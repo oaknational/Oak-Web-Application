@@ -12,6 +12,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import Layout from "@/components/AppComponents/Layout";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import { ENABLE_NEW_ABOUT_US } from "@/config/flags";
 
 export type AboutPageProps = {
   pageData: AboutLeadershipPage;
@@ -69,33 +70,42 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   context,
 ) => {
-  return getPageProps({
-    page: "leadership::getStaticProps",
-    context,
-    getProps: async () => {
-      const isPreviewMode = context.preview === true;
+  if (ENABLE_NEW_ABOUT_US) {
+    return {
+      redirect: {
+        destination: "/about-us/meet-the-team",
+        permanent: false,
+      },
+    };
+  } else {
+    return getPageProps({
+      page: "leadership::getStaticProps",
+      context,
+      getProps: async () => {
+        const isPreviewMode = context.preview === true;
 
-      const aboutLeadershipPage = await CMSClient.aboutLeadershipPage({
-        previewMode: isPreviewMode,
-      });
+        const aboutLeadershipPage = await CMSClient.aboutLeadershipPage({
+          previewMode: isPreviewMode,
+        });
 
-      const topNav = await curriculumApi2023.topNav();
+        const topNav = await curriculumApi2023.topNav();
 
-      if (!aboutLeadershipPage) {
-        return {
-          notFound: true,
+        if (!aboutLeadershipPage) {
+          return {
+            notFound: true,
+          };
+        }
+
+        const results: GetStaticPropsResult<AboutPageProps> = {
+          props: {
+            pageData: aboutLeadershipPage,
+            topNav,
+          },
         };
-      }
-
-      const results: GetStaticPropsResult<AboutPageProps> = {
-        props: {
-          pageData: aboutLeadershipPage,
-          topNav,
-        },
-      };
-      return results;
-    },
-  });
+        return results;
+      },
+    });
+  }
 };
 
 export default AboutUsLeadership;
