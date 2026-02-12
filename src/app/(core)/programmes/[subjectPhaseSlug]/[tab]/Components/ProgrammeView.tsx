@@ -72,18 +72,13 @@ export const ProgrammeView = ({
 
   const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
 
-  const ks4Options =
-    curriculumPhaseOptions.subjects.find((s) => s.slug === subjectSlug)!
-      .ks4_options ?? [];
-  const ks4Option = ks4Options.find((ks4opt) => ks4opt.slug === ks4OptionSlug);
-
   // TD: [integrated journey] tracking
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
     subjectSlug,
     phaseSlug,
     subjectTitle,
-    ks4OptionSlug: ks4Option?.slug,
-    ks4OptionTitle: ks4Option?.title,
+    ks4OptionSlug,
+    ks4OptionTitle: examboardTitle,
   };
 
   const defaultFilter = useMemo(() => {
