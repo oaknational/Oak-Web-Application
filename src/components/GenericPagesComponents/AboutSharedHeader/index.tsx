@@ -1,7 +1,5 @@
 import {
   OakFlex,
-  OakGrid,
-  OakGridArea,
   OakHeading,
   OakBox,
   OakP,
@@ -19,25 +17,17 @@ import { InnerMaxWidth } from "../InnerMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 
-const CustomHeaderTextOakGridArea = styled(OakGridArea)`
-  grid-column: span 6;
-  @media (max-width: 920px) {
-    grid-column: span 12;
-  }
-`;
+const CustomOakBox = styled(OakBox)`
+  height: 410px;
+  width: auto;
 
-const CustomHeaderImageOakGridArea = styled(OakGridArea)`
-  display: block;
   @media (max-width: 920px) {
     display: none;
   }
 `;
 
 const StyledBackgroundLoop = styled(OakIcon)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
+  height: 125%;
   filter: invert(70%) sepia(24%) saturate(580%) hue-rotate(188deg)
     brightness(100%) contrast(94%);
 
@@ -84,14 +74,13 @@ export function AboutSharedHeaderImage({
   imageUrl: string;
 }>) {
   return (
-    <OakBox $width={"spacing-360"} $height={"spacing-360"}>
-      <OakImage
-        alt={imageAlt}
-        src={imageUrl}
-        $objectFit={"contain"}
-        $height={"100%"}
-      />
-    </OakBox>
+    <OakImage
+      alt={imageAlt}
+      src={imageUrl}
+      $objectFit={"contain"}
+      $height={"100%"}
+      $width={"spacing-360"}
+    />
   );
 }
 
@@ -125,45 +114,47 @@ export function AboutSharedHeader({
   return (
     <InnerMaxWidth>
       <OakBox $position={"relative"} $overflow={"hidden"}>
-        <OakGrid $cg="spacing-16" $rg="spacing-16" $pv={"spacing-72"}>
-          <CustomHeaderTextOakGridArea $colSpan={12} $justifyContent={"center"}>
-            <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-              <OakHeading
-                tag="h1"
-                $font={["heading-4", "heading-2", "heading-2"]}
+        <OakFlex
+          $alignItems="center"
+          $justifyContent="space-between"
+          $pt={["spacing-56", "spacing-72"]}
+          $pb={["spacing-56", "spacing-72"]}
+          $gap={["spacing-0", "spacing-48", "spacing-240"]}
+        >
+          <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+            <OakHeading
+              tag="h1"
+              $font={["heading-4", "heading-2", "heading-2"]}
+            >
+              <OakSpan
+                $background={titleHighlight ?? "bg-decorative1-main"}
+                $ph={"spacing-4"}
+                $color="text-primary"
               >
-                <OakSpan
-                  $background={titleHighlight ?? "bg-decorative1-main"}
-                  $ph={"spacing-4"}
-                  $color="text-primary"
-                >
-                  {title}
-                </OakSpan>
-              </OakHeading>
-              {typeof content === "string" ? (
-                <OakP
-                  $font={[
-                    "heading-light-5",
-                    "heading-light-3",
-                    "heading-light-3",
-                  ]}
-                  $color={"text-primary"}
-                >
-                  {content}
-                </OakP>
-              ) : (
-                <PortableTextWithDefaults
-                  value={content}
-                  withoutDefaultComponents={true}
-                  components={portableTextComponents}
-                />
-              )}
-            </OakFlex>
-          </CustomHeaderTextOakGridArea>
-          <CustomHeaderImageOakGridArea $colSpan={4} $colStart={9}>
-            {children}
-          </CustomHeaderImageOakGridArea>
-        </OakGrid>
+                {title}
+              </OakSpan>
+            </OakHeading>
+            {typeof content === "string" ? (
+              <OakP
+                $font={[
+                  "heading-light-5",
+                  "heading-light-3",
+                  "heading-light-3",
+                ]}
+                $color={"text-primary"}
+              >
+                {content}
+              </OakP>
+            ) : (
+              <PortableTextWithDefaults
+                value={content}
+                withoutDefaultComponents={true}
+                components={portableTextComponents}
+              />
+            )}
+          </OakFlex>
+          <CustomOakBox>{children}</CustomOakBox>
+        </OakFlex>
       </OakBox>
     </InnerMaxWidth>
   );
