@@ -13,8 +13,6 @@ import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
@@ -25,6 +23,7 @@ import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/do
 import { CurriculumPartners } from "@/components/GenericPagesComponents/CurriculumPartners";
 import { GuidingPrinciples } from "@/components/GenericPagesComponents/GuidingPrinciples";
 import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -201,25 +200,15 @@ const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   };
 
 export const getServerSideProps = (async (context) => {
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
-    posthogApiKey,
-  );
-
   const pageData = {
     ...mockData,
     curriculumPhaseOptions: await fetchSubjectPhasePickerData(),
   };
 
-  let enableV2: boolean = false;
-  if (posthogUserId) {
-    // get the variant key for the user
-    enableV2 =
-      (await getFeatureFlag({
-        featureFlagKey: "about-us--who-we-are--v2",
-        posthogUserId,
-      })) === true;
-  }
+  const enableV2 = await isNewAboutUsPagesEnabled(
+    posthogApiKey,
+    context.req.cookies,
+  );
   const topNav = await curriculumApi2023.topNav();
 
   if (!enableV2 || !pageData) {
