@@ -1,12 +1,12 @@
 import React from "react";
 
-import { FocusNode, SubNavButton } from "./types";
-import { TeachersNavigationTreeBuilder } from "./TeachersNavigationTreeBuilder";
-import { PupilsNavigationTreeBuilder } from "./PupilsNavigationTreeBuilder";
+import { FocusNode } from "./types";
 
 import {
   TeachersSubNavData,
   PupilsSubNavData,
+  NavSection,
+  TeachersBrowse,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 type NavAreaType = "teachers" | "pupils";
@@ -20,37 +20,74 @@ export class DropdownFocusManager<
 > {
   private readonly focusMap: Map<string, FocusNode>;
   private readonly closeMenu: () => void;
-  private readonly lastSubnavButton: SubNavButton;
+  private readonly lastSubnavButton: NavSection | TeachersBrowse;
   private readonly areaType: NavAreaType;
 
   constructor(
     navData: T,
     areaType: NavAreaType,
-    subNavButtons: SubNavButton[],
     setSelectedMenu: (a: undefined) => void,
   ) {
     this.areaType = areaType;
-    this.focusMap = this.buildFocusTree(navData, subNavButtons);
+    this.lastSubnavButton = Object.values(navData).at(-1) ?? null;
+    this.focusMap = this.getFocusTree(navData);
     this.closeMenu = () => setSelectedMenu(undefined);
-    this.lastSubnavButton = subNavButtons.at(-1)!;
   }
 
   public getFocusMap() {
     return this.focusMap;
   }
+  private getFocusTree(navData: T): Map<string, FocusNode> {
+    const arrayOfSubNavButtons = Object.values(navData);
+    const focusMap = new Map<string, FocusNode>();
+    // build the tree recursively
+    this.buildFocusMap({ items: arrayOfSubNavButtons, focusMap, parent: null });
+    console.log("Focus map built:", focusMap);
+    return focusMap;
+  }
 
-  private buildFocusTree(
-    navData: T,
-    subNavButtons: SubNavButton[],
-  ): Map<string, FocusNode> {
-    // Use appropriate builder based on area type
-    if (this.areaType === "teachers") {
-      const builder = new TeachersNavigationTreeBuilder(this);
-      return builder.build(navData as TeachersSubNavData, subNavButtons);
-    } else {
-      const builder = new PupilsNavigationTreeBuilder(this);
-      return builder.build(navData as PupilsSubNavData, subNavButtons);
-    }
+  private buildFocusMap({
+    items,
+    focusMap,
+    parent,
+  }: {
+    items: Array<NavSection | TeachersBrowse>;
+    focusMap: Map<string, FocusNode>;
+    parent: FocusNode["parent"];
+  }) {
+    items.forEach((item, index, array) => {
+      const isLastChild = index === array.length - 1;
+      const isFirstChild = index === 0;
+      const id = this.createId(parent?.parentId || "", item.slug);
+      focusMap.set(id, {
+        id,
+        isLastChild,
+        isFirstChild,
+        parent,
+        children: this.getChildrenIds(item, id),
+      });
+
+      if (item.children && item.children.length > 0) {
+        this.buildFocusMap({
+          items: item.children,
+          focusMap,
+          parent: {
+            parentId: id,
+            parentSiblings: items.map((sibling) =>
+              this.createId(parent?.parentId || "", sibling.slug),
+            ),
+          },
+        });
+      }
+    });
+  }
+
+  private getChildrenIds(
+    item: NavSection | TeachersBrowse,
+    parentId: string,
+  ): string[] {
+    const items = item.children ?? [];
+    return items.map((item) => this.createId(parentId, item.slug));
   }
 
   private focusElementById(
@@ -68,31 +105,11 @@ export class DropdownFocusManager<
   }
 
   // ID creation method
-  public createId(
-    type:
-      | "subnav-button"
-      | "dropdown-button"
-      | "subject-button"
-      | "all-keystages-button"
-      | "year-button",
-    slug: string,
-    keystageSlug?: string,
-  ): string {
-    switch (type) {
-      case "subnav-button":
-        return `${slug}-subnav-button`;
-      case "dropdown-button":
-        return `${slug}-dropdown-button`;
-      case "subject-button":
-        if (!keystageSlug) {
-          throw new Error("keystageSlug is required for subject-button");
-        }
-        return `${keystageSlug}-${slug}-subject-button`;
-      case "all-keystages-button":
-        return `${slug}-all-keystages-button`;
-      case "year-button":
-        return `${slug}-year-button`;
+  public createId(parentId: string, slug: string): string {
+    if (parentId === "") {
+      return `${this.areaType}-${slug}`;
     }
+    return `${parentId}-${slug}`;
   }
 
   private getNode(elementId: string): FocusNode {
@@ -170,9 +187,8 @@ export class DropdownFocusManager<
     const ancestorNode = this.getAncestorNode(currentNode);
     const isFinalElement =
       this.lastSubnavButton &&
-      ancestorNode.id ===
-        this.createId("subnav-button", this.lastSubnavButton.slug);
-    return isFinalElement;
+      ancestorNode.id === this.createId("", this.lastSubnavButton.slug);
+    return Boolean(isFinalElement);
   }
 
   private tryFocusFirstChild(
@@ -188,8 +204,7 @@ export class DropdownFocusManager<
   private isLastSubnavButton(currentNode: FocusNode): boolean {
     return (
       !!this.lastSubnavButton &&
-      currentNode.id ===
-        this.createId("subnav-button", this.lastSubnavButton.slug)
+      currentNode.id === this.createId("", this.lastSubnavButton.slug)
     );
   }
 
@@ -209,7 +224,7 @@ export class DropdownFocusManager<
     if (this.tryFocusFirstChild(currentNode, event)) {
       return;
     }
-
+    console.log("No children, trying to focus sibling or close menu");
     // Special case: close menu if we're on the last subnav button with no children
     if (this.isLastSubnavButton(currentNode)) {
       this.closeMenu();
@@ -218,6 +233,7 @@ export class DropdownFocusManager<
 
     // Handle navigation when we're on the last child
     if (currentNode.isLastChild) {
+      console.log("Handling last child tab");
       this.handleLastChildTab(currentNode, event);
     }
   }

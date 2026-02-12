@@ -95,7 +95,7 @@ export const topNavFixture: TopNavProps = {
       title: "Curriculum",
     },
     aboutUs: {
-      slug: "about-us",
+      slug: "aboutUs",
       title: "About us",
       children: [
         {

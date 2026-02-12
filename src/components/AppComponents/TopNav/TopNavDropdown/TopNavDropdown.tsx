@@ -45,11 +45,11 @@ const TeachersPhaseSection = ({
   onClose: () => void;
 }) => {
   const defaultKeystage =
-    menuData.keystages[0]?.slug || (selectedMenu === "primary" ? "ks1" : "ks3");
+    menuData.children[0]?.slug || (selectedMenu === "primary" ? "ks1" : "ks3");
 
   const [selectedKeystage, setSelectedKeystage] =
     useState<
-      TeachersSubNavData["primary" | "secondary"]["keystages"][number]["slug"]
+      TeachersSubNavData["primary" | "secondary"]["children"][number]["slug"]
     >(defaultKeystage);
 
   useEffect(() => {
@@ -59,14 +59,13 @@ const TeachersPhaseSection = ({
   const keystagesRef = useRef<HTMLUListElement>(null);
 
   const subjects =
-    menuData.keystages
+    menuData.children
       .find((k) => k.slug === selectedKeystage)
-      ?.subjects.filter((subject) => !subject.nonCurriculum) ?? undefined;
+      ?.children.filter((subject) => !subject.nonCurriculum) ?? undefined;
   const nonCurriculumSubjects =
-    menuData.keystages
+    menuData.children
       .find((k) => k.slug === selectedKeystage)
-      ?.subjects.filter((subject) => subject.nonCurriculum) ?? undefined;
-
+      ?.children.filter((subject) => subject.nonCurriculum) ?? undefined;
   const onKeystageClick = (keystageSlug: string) => {
     setSelectedKeystage(keystageSlug);
   };
@@ -75,8 +74,8 @@ const TeachersPhaseSection = ({
   const handleKeystageArrowKeys = (
     event: React.KeyboardEvent<HTMLUListElement>,
   ) => {
-    const focusableElements = menuData.keystages.map((keystage) =>
-      focusManager.createId("dropdown-button", keystage.slug),
+    const focusableElements = menuData.children.map((keystage) =>
+      focusManager.createId(`teachers-${menuData.slug}`, keystage.slug),
     );
     const activeElementId = document.activeElement?.id;
     if (!activeElementId) return;
@@ -115,9 +114,9 @@ const TeachersPhaseSection = ({
         ref={keystagesRef}
         onKeyDown={handleKeystageArrowKeys}
       >
-        {menuData.keystages.map((keystage) => {
+        {menuData.children.map((keystage) => {
           const buttonId = focusManager.createId(
-            "dropdown-button",
+            `teachers-${menuData.slug}`,
             keystage.slug,
           );
           return (
@@ -159,8 +158,8 @@ const TeachersPhaseSection = ({
           nonCurriculumSubjects={nonCurriculumSubjects}
           keyStageSlug={selectedKeystage}
           keyStageTitle={
-            menuData.keystages.find((k) => k.slug === selectedKeystage)
-              ?.title || ""
+            menuData.children.find((k) => k.slug === selectedKeystage)?.title ||
+            ""
           }
         />
       )}
@@ -183,7 +182,7 @@ const TeachersLinksSection = ({
     guidance: "Guidance",
     aboutUs: "About us",
   };
-
+  if (!menuData.children || menuData.children.length === 0) return null;
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-40"}>
       <OakBox $width={"fit-content"} $position={"relative"}>
@@ -205,8 +204,11 @@ const TeachersLinksSection = ({
         style={{ listStyleType: "none" }}
         id={`topnav-teachers-${selectedMenu}`}
       >
-        {menuData.map((link) => {
-          const buttonId = focusManager.createId("dropdown-button", link.slug);
+        {menuData.children.map((link) => {
+          const buttonId = focusManager.createId(
+            `teachers-${selectedMenu}`,
+            link.slug,
+          );
           return (
             <OakLI key={link.slug}>
               <OakLeftAlignedButton
@@ -249,7 +251,7 @@ const PupilsSection = ({
   focusManager: DropdownFocusManager<PupilsSubNavData>;
   onClose: () => void;
 }) => {
-  const menuYears = pupils[selectedMenu].years;
+  const menuYears = pupils[selectedMenu].children;
 
   return (
     <OakUL
@@ -259,7 +261,10 @@ const PupilsSection = ({
       id={`topnav-pupils-${selectedMenu}`}
     >
       {menuYears.map((year) => {
-        const buttonId = focusManager?.createId("year-button", year.slug);
+        const buttonId = focusManager?.createId(
+          `pupils-${selectedMenu}`,
+          year.slug,
+        );
         return (
           <OakLI key={year.slug}>
             <OakPupilJourneyYearButton

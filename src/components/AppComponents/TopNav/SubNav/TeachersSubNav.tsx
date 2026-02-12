@@ -19,45 +19,11 @@ import SearchBar from "@/components/AppComponents/SearchBar";
 import { SaveCount } from "@/components/TeacherComponents/SaveCount/SaveCount";
 import TeacherAccountButton from "@/components/TeacherComponents/TeacherAccountButton/TeacherAccountButton";
 
-type TeachersSubNavProps = {
+type TeachersSubNavProps = TeachersSubNavData & {
   onClick: (menu: keyof TeachersSubNavData) => void;
   isMenuSelected: (menu: keyof TeachersSubNavData) => boolean;
   focusManager: DropdownFocusManager<TeachersSubNavData>;
 };
-
-type SubNavLink = {
-  slug: OakLinkPropsRequiringPageOnly["page"];
-  label: string;
-  element: "link";
-  external?: boolean;
-};
-
-type SubNavButton = {
-  slug: string;
-  label: string;
-  element: "button";
-};
-
-type SubNavButtons = Array<SubNavButton | SubNavLink>;
-
-// The order of these buttons is determined here and used in the keyboard navigation logic in DropdownFocusManager
-export const subNavButtons: SubNavButtons = [
-  { label: "Primary", slug: "primary", element: "button" as const },
-  { label: "Secondary", slug: "secondary", element: "button" as const },
-  {
-    label: "Curriculum",
-    slug: "curriculum-landing-page" as const,
-    element: "link" as const,
-  },
-  { label: "Guidance", slug: "guidance", element: "button" as const },
-  { label: "About us", slug: "aboutUs", element: "button" as const },
-  {
-    label: "Ai experiements",
-    slug: "labs" as const,
-    element: "link" as const,
-    external: true,
-  },
-];
 
 // TD: [integrated journey] do we want to derive menu items from available data
 // so the nav bar can be used on error pages / when data is missing or invalid
@@ -66,14 +32,15 @@ const TeachersSubNav = ({
   onClick,
   isMenuSelected,
   focusManager,
+  ...teachers
 }: TeachersSubNavProps) => {
   const pathname = usePathname();
-
+  const subNavButtons = Object.values(teachers);
   const getLinkProps = (
     slug: OakLinkPropsRequiringPageOnly["page"],
     external?: boolean,
   ) => {
-    const buttonId = focusManager.createId("subnav-button", slug);
+    const buttonId = focusManager.createId("teachers", slug);
     return {
       target: external ? "_blank" : undefined,
       iconName: external ? ("external" as const) : undefined,
@@ -87,7 +54,7 @@ const TeachersSubNav = ({
   };
 
   const getButtonProps = (slug: string) => {
-    const buttonId = focusManager.createId("subnav-button", slug);
+    const buttonId = focusManager.createId("teachers", slug);
     return {
       onKeyDown: (event: React.KeyboardEvent) =>
         focusManager.handleKeyDown(event, buttonId),
@@ -102,9 +69,10 @@ const TeachersSubNav = ({
 
   const handleArrowKeys = (event: React.KeyboardEvent<HTMLUListElement>) => {
     const activeElementId = document.activeElement?.id;
+
     if (!activeElementId) return;
     const focusableElements = subNavButtons.map((btn) =>
-      focusManager.createId("subnav-button", btn.slug),
+      focusManager.createId("teachers", btn.slug),
     );
 
     const currentIndex = focusableElements.indexOf(activeElementId);
@@ -151,21 +119,18 @@ const TeachersSubNav = ({
           {subNavButtons.map((btn) => {
             return (
               <OakLI key={btn.slug}>
-                {btn.element === "link" ? (
+                {btn.children ? (
                   <OakSmallPrimaryInvertedButton
-                    {...getLinkProps(btn.slug, btn.external)}
+                    {...getButtonProps(btn.slug)}
+                    data-testid={focusManager.createId("teachers", btn.slug)}
                   >
-                    {btn.label}
+                    {btn.title}
                   </OakSmallPrimaryInvertedButton>
                 ) : (
                   <OakSmallPrimaryInvertedButton
-                    {...getButtonProps(btn.slug)}
-                    data-testid={focusManager.createId(
-                      "subnav-button",
-                      btn.slug,
-                    )}
+                    {...getLinkProps(btn.slug, btn.external)}
                   >
-                    {btn.label}
+                    {btn.title}
                   </OakSmallPrimaryInvertedButton>
                 )}
               </OakLI>

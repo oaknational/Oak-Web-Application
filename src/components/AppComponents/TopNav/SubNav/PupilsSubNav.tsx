@@ -8,20 +8,19 @@ import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManag
 
 import { PupilsSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
-export const pupilsSubNavButtons = [
-  { slug: "primary", label: "Primary" },
-  { slug: "secondary", label: "Secondary" },
-];
+interface PupilsSubNavProps extends PupilsSubNavData {
+  onClick: (menu: keyof PupilsSubNavData) => void;
+  isMenuSelected: (menu: keyof PupilsSubNavData) => boolean;
+  focusManager: DropdownFocusManager<PupilsSubNavData>;
+}
 
 const PupilsSubNav = ({
   onClick,
   isMenuSelected,
   focusManager,
-}: {
-  onClick: (menu: keyof PupilsSubNavData) => void;
-  isMenuSelected: (menu: keyof PupilsSubNavData) => boolean;
-  focusManager: DropdownFocusManager<PupilsSubNavData>;
-}) => {
+  ...pupils
+}: PupilsSubNavProps) => {
+  const pupilsSubNavButtons = Object.values(pupils);
   return (
     <OakUL
       data-testid="pupils-subnav"
@@ -35,25 +34,17 @@ const PupilsSubNav = ({
             onKeyDown={(e) =>
               focusManager.handleKeyDown(
                 e,
-                focusManager.createId(
-                  "subnav-button",
-                  button.slug as keyof PupilsSubNavData,
-                ),
+                focusManager.createId("pupils", button.slug),
               )
             }
-            id={focusManager.createId(
-              "subnav-button",
-              button.slug as keyof PupilsSubNavData,
-            )}
-            onClick={() => onClick(button.slug as keyof PupilsSubNavData)}
-            selected={isMenuSelected(button.slug as keyof PupilsSubNavData)}
-            aria-expanded={isMenuSelected(
-              button.slug as keyof PupilsSubNavData,
-            )}
+            id={focusManager.createId("pupils", button.slug)}
+            onClick={() => onClick(button.slug)}
+            selected={isMenuSelected(button.slug)}
+            aria-expanded={isMenuSelected(button.slug)}
             aria-controls={`topnav-pupils-${button.slug}`}
             aria-haspopup
           >
-            {button.label}
+            {button.title}
           </OakSmallPrimaryInvertedButton>
         </OakLI>
       ))}

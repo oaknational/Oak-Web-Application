@@ -36,7 +36,7 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
     },
     aboutUs: {
       title: "About us",
-      slug: "about-us" as const,
+      slug: "aboutUs" as const,
       children: [
         { title: "Who we are", slug: "about-who-we-are" as const },
         { title: "Leadership", slug: "about-leadership" as const },
