@@ -113,10 +113,7 @@ export function AboutSharedHeader({
 }: Readonly<AboutSharedHeaderProps>) {
   return (
     <InnerMaxWidth>
-      <OakBox
-        $position={"relative"}
-        $overflow={"hidden"}
-      >
+      <OakBox $position={"relative"} $overflow={"hidden"}>
         <OakFlex
           $alignItems="center"
           $justifyContent="space-between"
@@ -124,10 +121,7 @@ export function AboutSharedHeader({
           $pb={["spacing-56", "spacing-72"]}
           $gap={["spacing-0", "spacing-48", "spacing-240"]}
         >
-          <OakFlex
-            $flexDirection={"column"}
-            $gap={"spacing-24"}
-          >
+          <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
             <OakHeading
               tag="h1"
               $font={["heading-4", "heading-2", "heading-2"]}
@@ -159,9 +153,7 @@ export function AboutSharedHeader({
               />
             )}
           </OakFlex>
-          <CustomOakBox>
-            {children}
-          </CustomOakBox>
+          <CustomOakBox>{children}</CustomOakBox>
         </OakFlex>
       </OakBox>
     </InnerMaxWidth>
