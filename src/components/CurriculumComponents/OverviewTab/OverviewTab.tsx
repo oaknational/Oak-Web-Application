@@ -33,6 +33,12 @@ import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 
+export type CurriculumOverviewTabData = {
+  subjectTitle: string;
+  curriculumCMSInfo: CurriculumOverviewSanityData;
+  curriculumSelectionSlugs: CurriculumSelectionSlugs;
+};
+
 export type OverviewTabProps = {
   /**
    * Handler allowing the parent to control the navigation behaviour.
@@ -59,11 +65,7 @@ export type OverviewTabProps = {
    * Can be removed once the integrated programme page is launched and components are reorganised.
    */
   outerPh?: OakBoxProps["$ph"];
-  data: {
-    subjectTitle: string;
-    curriculumCMSInfo: CurriculumOverviewSanityData;
-    curriculumSelectionSlugs: CurriculumSelectionSlugs;
-  };
+  data: CurriculumOverviewTabData;
 };
 
 const ExplainerStyles = styled("div")`
