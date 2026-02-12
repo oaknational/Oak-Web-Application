@@ -24,7 +24,6 @@ import {
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { CurriculumPhaseOption } from "@/node-lib/curriculum-api-2023";
 
 export type UnitSequenceViewProps = {
   filters: CurriculumFilters;
@@ -33,7 +32,6 @@ export type UnitSequenceViewProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
   subjectTitle: string;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
-  subjectForLayout: CurriculumPhaseOption;
 };
 
 export const UnitSequenceView = ({
@@ -43,7 +41,6 @@ export const UnitSequenceView = ({
   curriculumPhaseOptions,
   subjectTitle,
   curriculumUnitsFormattedData,
-  subjectForLayout,
 }: UnitSequenceViewProps) => {
   const isMobile = useMediaQuery("mobile");
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
@@ -148,7 +145,7 @@ export const UnitSequenceView = ({
           />
         }
         curriculumSeoText={undefined} // TD: [integrated journey] seo text
-        subject={subjectForLayout}
+        subjectTitle={subjectTitle}
       />
       <ScreenReaderOnly aria-live="polite" aria-atomic="true">
         <p>

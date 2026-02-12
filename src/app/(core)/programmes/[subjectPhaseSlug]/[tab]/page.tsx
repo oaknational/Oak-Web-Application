@@ -200,16 +200,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     .flatMap((subject) => subject.ks4_options)
     .find((ks4opt) => ks4opt?.slug === subjectPhaseKeystageSlugs.ks4OptionSlug);
 
-  const subjectForLayout = curriculumPhaseOptions.subjects.find(
-    (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
-  );
-
-  if (!subjectForLayout) {
-    throw new Error(
-      "Selected subject not found in curriculumPhaseOptions for programme page",
-    );
-  }
-
   const results = {
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
     curriculumPhaseOptions,

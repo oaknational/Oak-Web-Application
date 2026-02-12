@@ -92,16 +92,6 @@ export const ProgrammeView = ({
 
   const [filters, setFilters] = useFilters(defaultFilter);
 
-  const subjectForLayout = curriculumPhaseOptions.subjects.find(
-    (s) => s.slug === curriculumSelectionSlugs.subjectSlug,
-  );
-
-  if (!subjectForLayout) {
-    throw new Error(
-      "Selected subject not found in curriculumPhaseOptions for programme page",
-    );
-  }
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
@@ -135,7 +125,7 @@ export const ProgrammeView = ({
   return (
     <>
       <ProgrammeHeader
-        subject={subjectForLayout.slug as SubjectHeroImageName}
+        subject={subjectSlug as SubjectHeroImageName}
         subjectTitle={
           pickSubjectTitleFromFilters(curriculumUnitsFormattedData, filters) ??
           subjectTitle
@@ -166,7 +156,6 @@ export const ProgrammeView = ({
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         curriculumInfo={curriculumInfo}
         curriculumCMSInfo={curriculumCMSInfo}
-        subjectForLayout={subjectForLayout}
         subjectTitle={subjectTitle}
         filters={filters}
         setFilters={onChangeFilters}
@@ -182,7 +171,6 @@ const TabContent = ({
   curriculumInfo,
   curriculumUnitsFormattedData,
   curriculumCMSInfo,
-  subjectForLayout,
   subjectTitle,
   filters,
   setFilters,
@@ -194,7 +182,6 @@ const TabContent = ({
           curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          subjectForLayout={subjectForLayout}
           subjectTitle={subjectTitle}
           filters={filters}
           setFilters={setFilters}
