@@ -63,11 +63,11 @@ describe("GET /api/classroom/auth/sign-in", () => {
     await GET(mockRequest);
 
     // Assert
-    expect(mockSearchParamsGet).toHaveBeenCalledTimes(1);
     expect(mockSearchParamsGet).toHaveBeenCalledWith("login_hint");
+    expect(mockSearchParamsGet).toHaveBeenCalledWith("subscribeToNewsletter");
 
     expect(mockGetGoogleSignInUrl).toHaveBeenCalledTimes(1);
-    expect(mockGetGoogleSignInUrl).toHaveBeenCalledWith(mockLoginHint);
+    expect(mockGetGoogleSignInUrl).toHaveBeenCalledWith(mockLoginHint, false);
 
     expect(mockNextResponseJson).toHaveBeenCalledTimes(1);
     expect(mockNextResponseJson).toHaveBeenCalledWith(
@@ -85,9 +85,10 @@ describe("GET /api/classroom/auth/sign-in", () => {
 
     // Assert
     expect(mockSearchParamsGet).toHaveBeenCalledWith("login_hint");
+    expect(mockSearchParamsGet).toHaveBeenCalledWith("subscribeToNewsletter");
 
     expect(mockGetGoogleSignInUrl).toHaveBeenCalledTimes(1);
-    expect(mockGetGoogleSignInUrl).toHaveBeenCalledWith(undefined);
+    expect(mockGetGoogleSignInUrl).toHaveBeenCalledWith(undefined, false);
 
     expect(mockNextResponseJson).toHaveBeenCalledTimes(1);
     expect(mockNextResponseJson).toHaveBeenCalledWith(

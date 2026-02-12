@@ -59,10 +59,15 @@ const sendRequest = async <returnType, payload = undefined>(
 
 const getGoogleSignInUrl = async (
   loginHint: string | null,
+  subscribeToNewsletter?: boolean,
 ): Promise<string | null> => {
   try {
-    const url = loginHint
-      ? `/api/classroom/auth/sign-in?login_hint=${loginHint}`
+    const params = new URLSearchParams();
+    if (loginHint) params.set("login_hint", loginHint);
+    if (subscribeToNewsletter) params.set("subscribeToNewsletter", "true");
+    const query = params.toString();
+    const url = query
+      ? `/api/classroom/auth/sign-in?${query}`
       : `/api/classroom/auth/sign-in`;
     const data = await sendRequest<{ signInUrl: string }>(url);
     return data.signInUrl ?? null;

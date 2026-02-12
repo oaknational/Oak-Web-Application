@@ -199,6 +199,22 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
+  hubspotStagingPortalId: {
+    // new staging portal id - gclassroom
+    value: process.env.NEXT_PUBLIC_HUBSPOT_STAGING_PORTAL_ID,
+    envName: "NEXT_PUBLIC_HUBSPOT_STAGING_PORTAL_ID",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  hubspotGoogleClassroomFormId: {
+    value: process.env.NEXT_PUBLIC_HUBSPOT_GOOGLE_CLASSROOM_FORM_ID,
+    envName: "NEXT_PUBLIC_HUBSPOT_GOOGLE_CLASSROOM_FORM_ID",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+
   posthogApiKey: {
     value: process.env.NEXT_PUBLIC_POSTHOG_API_KEY,
     envName: "NEXT_PUBLIC_POSTHOG_API_KEY",

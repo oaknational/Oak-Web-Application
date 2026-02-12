@@ -10,9 +10,10 @@ function SignInContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const getGoogleSignInLink = () => {
+  const getGoogleSignInLink = (subscribeToNewsletter?: boolean) => {
     return googleClassroomApi.getGoogleSignInUrl(
       searchParams?.get("login_hint") ?? null,
+      subscribeToNewsletter,
     );
   };
 
