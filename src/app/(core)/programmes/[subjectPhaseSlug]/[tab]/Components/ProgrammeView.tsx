@@ -42,7 +42,6 @@ import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics"
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 type ProgrammePageProps = {
@@ -51,9 +50,9 @@ type ProgrammePageProps = {
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   subjectPhaseSanityData: ProgrammePageHeaderCMS | null;
   curriculumCMSInfo: CurriculumOverviewSanityData;
-  curriculumInfo: CurriculumOverviewMVData;
   tabSlug: TabSlug;
   ks4Options: Ks4Option[];
+  trackingData: CurriculumUnitsTrackingData;
 };
 
 export const ProgrammeView = ({
@@ -62,25 +61,16 @@ export const ProgrammeView = ({
   curriculumUnitsFormattedData,
   subjectPhaseSanityData,
   curriculumCMSInfo,
-  curriculumInfo,
   tabSlug,
   ks4Options,
+  trackingData,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
 
-  const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
+  const { subjectSlug } = curriculumSelectionSlugs;
   const { subjectTitle, phaseTitle, examboardTitle } =
     curriculumSelectionTitles;
-
-  // TD: [integrated journey] tracking
-  const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
-    subjectSlug,
-    phaseSlug,
-    subjectTitle,
-    ks4OptionSlug,
-    ks4OptionTitle: examboardTitle,
-  };
 
   const defaultFilter = useMemo(() => {
     return getDefaultFilter(curriculumUnitsFormattedData);
@@ -96,7 +86,7 @@ export const ProgrammeView = ({
 
     const analyticsData = buildUnitSequenceRefinedAnalytics(
       analyticsUseCase,
-      curriculumUnitsTrackingData,
+      trackingData,
       newFilters,
     );
 
@@ -150,11 +140,11 @@ export const ProgrammeView = ({
         curriculumSelectionSlugs={curriculumSelectionSlugs}
         curriculumSelectionTitles={curriculumSelectionTitles}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-        curriculumInfo={curriculumInfo}
         curriculumCMSInfo={curriculumCMSInfo}
         filters={filters}
         setFilters={onChangeFilters}
         ks4Options={ks4Options}
+        trackingData={trackingData}
       />
     </>
   );
@@ -164,13 +154,14 @@ const TabContent = ({
   tabSlug,
   curriculumSelectionSlugs,
   curriculumSelectionTitles,
-  curriculumInfo,
   curriculumUnitsFormattedData,
   curriculumCMSInfo,
   filters,
   setFilters,
   ks4Options,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps & ProgrammeOverviewProps) => {
+  trackingData,
+}: { tabSlug: TabSlug } & UnitSequenceViewProps &
+  Omit<ProgrammeOverviewProps, "subjectTitle">) => {
   if (tabSlug === "units") {
     return (
       <OakMaxWidth>
@@ -181,13 +172,14 @@ const TabContent = ({
           filters={filters}
           setFilters={setFilters}
           ks4Options={ks4Options}
+          trackingData={trackingData}
         />
       </OakMaxWidth>
     );
   } else if (tabSlug === "overview") {
     return (
       <ProgrammeOverview
-        curriculumInfo={curriculumInfo}
+        subjectTitle={curriculumSelectionTitles.subjectTitle}
         curriculumCMSInfo={curriculumCMSInfo}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
       />

@@ -49,6 +49,13 @@ const defaultProps = {
   curriculumCMSInfo: curriculumOverviewCMSFixture(),
   subjectPhaseSanityData: null,
   tabSlug: "units" as const,
+  trackingData: {
+    phaseSlug: "secondary",
+    subjectSlug: "maths",
+    ks4OptionSlug: "aqa",
+    subjectTitle: "Science",
+    ks4OptionTitle: "AQA",
+  },
 };
 
 const render = renderWithProviders();

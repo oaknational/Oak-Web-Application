@@ -24,7 +24,6 @@ import slugify from "slugify";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
-import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
@@ -61,7 +60,7 @@ export type OverviewTabProps = {
    */
   outerPh?: OakBoxProps["$ph"];
   data: {
-    curriculumInfo: CurriculumOverviewMVData;
+    subjectTitle: string;
     curriculumCMSInfo: CurriculumOverviewSanityData;
     curriculumSelectionSlugs: CurriculumSelectionSlugs;
   };
@@ -159,8 +158,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
 }: OverviewTabProps) => {
   const { track } = useAnalytics();
 
-  const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } = data;
-  const { subjectTitle } = curriculumInfo;
+  const { curriculumCMSInfo, curriculumSelectionSlugs, subjectTitle } = data;
   const { subjectSlug, phaseSlug } = curriculumSelectionSlugs;
   const {
     curriculumExplainer,

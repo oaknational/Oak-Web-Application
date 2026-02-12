@@ -7,7 +7,10 @@ import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
 import { getProgrammeData } from "./getProgrammeData";
 
-import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import {
+  CurriculumUnitsTrackingData,
+  formatCurriculumUnitsData,
+} from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
@@ -173,7 +176,6 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
   });
 
-  // TD: [integrated-journey] This data is not used in `ProgrammeView`, maybe we can remove it?
   if (!curriculumCMSInfo) {
     return notFound();
   }
@@ -211,6 +213,13 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     examboardTitle: ks4Option?.title,
   };
 
+  // TD: [integrated journey] tracking
+  const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
+    ...subjectPhaseKeystageSlugs,
+    subjectTitle: curriculumSelectionTitles.subjectTitle,
+    ks4OptionTitle: curriculumSelectionTitles.examboardTitle,
+  };
+
   const results = {
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
     curriculumSelectionTitles,
@@ -218,8 +227,8 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     subjectPhaseSanityData,
     tabSlug: tab,
     curriculumCMSInfo,
-    curriculumInfo: cachedData.programmeUnitsData,
     ks4Options,
+    trackingData: curriculumUnitsTrackingData,
   };
 
   return <ProgrammeView {...results} />;

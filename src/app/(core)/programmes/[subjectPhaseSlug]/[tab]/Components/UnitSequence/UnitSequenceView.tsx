@@ -35,6 +35,7 @@ export type UnitSequenceViewProps = {
   curriculumSelectionTitles: CurriculumSelectionTitles;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   ks4Options: Ks4Option[];
+  trackingData: CurriculumUnitsTrackingData;
 };
 
 export const UnitSequenceView = ({
@@ -44,20 +45,12 @@ export const UnitSequenceView = ({
   curriculumSelectionTitles,
   curriculumUnitsFormattedData,
   ks4Options,
+  trackingData,
 }: UnitSequenceViewProps) => {
   const isMobile = useMediaQuery("mobile");
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
-  const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
-  const { subjectTitle, examboardTitle } = curriculumSelectionTitles;
-
-  // TD: [integrated journey] tracking
-  const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
-    subjectSlug,
-    phaseSlug,
-    subjectTitle,
-    ks4OptionSlug: ks4OptionSlug,
-    ks4OptionTitle: examboardTitle,
-  };
+  const { ks4OptionSlug } = curriculumSelectionSlugs;
+  const { subjectTitle } = curriculumSelectionTitles;
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
 
@@ -81,7 +74,7 @@ export const UnitSequenceView = ({
 
     const analyticsData = buildUnitSequenceRefinedAnalytics(
       analyticsUseCase,
-      curriculumUnitsTrackingData,
+      trackingData,
       newFilters,
     );
 
@@ -117,7 +110,7 @@ export const UnitSequenceView = ({
           onChangeFilters={onChangeFilters}
           data={curriculumUnitsFormattedData}
           slugs={curriculumSelectionSlugs}
-          trackingData={curriculumUnitsTrackingData}
+          trackingData={trackingData}
           ks4Options={ks4Options}
         />
       )}
