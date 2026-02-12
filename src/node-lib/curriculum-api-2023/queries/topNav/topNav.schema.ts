@@ -26,30 +26,53 @@ export type TopNavResponse = z.infer<typeof topNavResponseSchema>;
 export type TeachersSubNavData = {
   primary: TeachersBrowse;
   secondary: TeachersBrowse;
-  guidance: SubNavLinks;
-  aboutUs: SubNavLinks;
+  curriculum: NavSection;
+  guidance: NavSection;
+  aboutUs: NavSection;
+  aiExperiments: NavSection;
 };
 
-export type SubNavLinks = Array<{
-  slug: OakLinkPropsRequiringPageOnly["page"];
+export type NavSection = {
   title: string;
+  slug: string;
   external?: boolean;
-}>;
+  children?: NavSection[];
+};
+
+type SubNavButton = {
+  title: string;
+  slug: string;
+  element: "button";
+  children?: Array<NavSection | TeachersBrowse>;
+};
+
+type SubNavLink = {
+  title: string;
+  slug: OakLinkPropsRequiringPageOnly["page"];
+  element: "link";
+  external?: boolean;
+};
+
+type SubNavItem = SubNavButton | SubNavLink;
+
+export type SubnavButtons = Array<SubNavItem>;
+
+type SubjectsNavItem = {
+  title: string;
+  slug: string;
+  nonCurriculum: boolean; // enables highlighting subjects that are non curriculum
+  programmeSlug: string | null; // will be null when multiple programmes exist
+  programmeCount: number; // used to determine whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page (only 1 programme)
+};
 
 export type TeachersBrowse = {
-  phaseTitle: "Primary" | "Secondary";
-  phaseSlug: "primary" | "secondary";
-  keystages: Array<{
+  title: "Primary" | "Secondary";
+  slug: "primary" | "secondary";
+  children: Array<{
     title: string;
     slug: string;
     description: string;
-    subjects: Array<{
-      title: string;
-      subjectSlug: string;
-      nonCurriculum: boolean; // enables highlighting subjects that are non curriculum
-      programmeSlug: string | null; // will be null when multiple programmes exist
-      programmeCount: number; // used to determine whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page (only 1 programme)
-    }>;
+    children: Array<SubjectsNavItem>;
   }>;
 };
 
@@ -59,7 +82,7 @@ export type PupilsSubNavData = {
 };
 
 type PupilsBrowse = {
-  phaseTitle: "Primary" | "Secondary";
-  phaseSlug: "primary" | "secondary";
-  years: Array<{ title: string; slug: string }>;
+  title: "Primary" | "Secondary";
+  slug: "primary" | "secondary";
+  children: Array<{ title: string; slug: string }>;
 };
