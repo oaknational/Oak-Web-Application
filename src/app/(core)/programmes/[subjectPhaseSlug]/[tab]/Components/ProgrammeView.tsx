@@ -33,7 +33,10 @@ import {
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getDefaultFilter, useFilters } from "@/utils/curriculum/filteringApp";
-import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import {
+  CurriculumSelectionSlugs,
+  CurriculumSelectionTitles,
+} from "@/utils/curriculum/slugs";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
@@ -44,11 +47,7 @@ import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 
 type ProgrammePageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
-  curriculumSelectionTitles: {
-    phaseTitle: string;
-    subjectTitle: string;
-    examboardTitle: string | undefined;
-  };
+  curriculumSelectionTitles: CurriculumSelectionTitles;
   curriculumPhaseOptions: SubjectPhasePickerData;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   subjectPhaseSanityData: ProgrammePageHeaderCMS | null;
@@ -150,10 +149,10 @@ export const ProgrammeView = ({
         tabSlug={activeTab}
         curriculumPhaseOptions={curriculumPhaseOptions}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
+        curriculumSelectionTitles={curriculumSelectionTitles}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         curriculumInfo={curriculumInfo}
         curriculumCMSInfo={curriculumCMSInfo}
-        subjectTitle={subjectTitle}
         filters={filters}
         setFilters={onChangeFilters}
       />
@@ -165,10 +164,10 @@ const TabContent = ({
   tabSlug,
   curriculumPhaseOptions,
   curriculumSelectionSlugs,
+  curriculumSelectionTitles,
   curriculumInfo,
   curriculumUnitsFormattedData,
   curriculumCMSInfo,
-  subjectTitle,
   filters,
   setFilters,
 }: { tabSlug: TabSlug } & UnitSequenceViewProps & ProgrammeOverviewProps) => {
@@ -179,7 +178,7 @@ const TabContent = ({
           curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          subjectTitle={subjectTitle}
+          curriculumSelectionTitles={curriculumSelectionTitles}
           filters={filters}
           setFilters={setFilters}
         />
