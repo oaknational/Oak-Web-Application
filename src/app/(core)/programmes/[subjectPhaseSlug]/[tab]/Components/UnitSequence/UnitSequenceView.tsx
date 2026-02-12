@@ -22,46 +22,35 @@ import {
   highlightedUnitCount,
 } from "@/utils/curriculum/filteringApp";
 import { CurriculumFilters } from "@/utils/curriculum/types";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
-import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { CurriculumPhaseOption } from "@/node-lib/curriculum-api-2023";
+import {
+  CurriculumSelectionSlugs,
+  CurriculumSelectionTitles,
+} from "@/utils/curriculum/slugs";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 export type UnitSequenceViewProps = {
   filters: CurriculumFilters;
   setFilters: (newFilters: CurriculumFilters) => void;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
-  curriculumPhaseOptions: SubjectPhasePickerData;
-  subjectTitle: string;
+  curriculumSelectionTitles: CurriculumSelectionTitles;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
-  subjectForLayout: CurriculumPhaseOption;
+  ks4Options: Ks4Option[];
+  trackingData: CurriculumUnitsTrackingData;
 };
 
 export const UnitSequenceView = ({
   filters,
   setFilters,
   curriculumSelectionSlugs,
-  curriculumPhaseOptions,
-  subjectTitle,
+  curriculumSelectionTitles,
   curriculumUnitsFormattedData,
-  subjectForLayout,
+  ks4Options,
+  trackingData,
 }: UnitSequenceViewProps) => {
   const isMobile = useMediaQuery("mobile");
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
-  const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
-
-  const ks4Options =
-    curriculumPhaseOptions.subjects.find((s) => s.slug === subjectSlug)!
-      .ks4_options ?? [];
-  const ks4Option = ks4Options.find((ks4opt) => ks4opt.slug === ks4OptionSlug);
-
-  // TD: [integrated journey] tracking
-  const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
-    subjectSlug,
-    phaseSlug,
-    subjectTitle,
-    ks4OptionSlug: ks4Option?.slug,
-    ks4OptionTitle: ks4Option?.title,
-  };
+  const { ks4OptionSlug } = curriculumSelectionSlugs;
+  const { subjectTitle } = curriculumSelectionTitles;
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
 
@@ -85,7 +74,7 @@ export const UnitSequenceView = ({
 
     const analyticsData = buildUnitSequenceRefinedAnalytics(
       analyticsUseCase,
-      curriculumUnitsTrackingData,
+      trackingData,
       newFilters,
     );
 
@@ -121,7 +110,7 @@ export const UnitSequenceView = ({
           onChangeFilters={onChangeFilters}
           data={curriculumUnitsFormattedData}
           slugs={curriculumSelectionSlugs}
-          trackingData={curriculumUnitsTrackingData}
+          trackingData={trackingData}
           ks4Options={ks4Options}
         />
       )}
@@ -148,7 +137,7 @@ export const UnitSequenceView = ({
           />
         }
         curriculumSeoText={undefined} // TD: [integrated journey] seo text
-        subject={subjectForLayout}
+        subjectTitle={subjectTitle}
       />
       <ScreenReaderOnly aria-live="polite" aria-atomic="true">
         <p>

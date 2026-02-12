@@ -24,6 +24,7 @@ const mockMathsSubject = {
 
 const mockProps = {
   subject: mockMathsSubject,
+  subjectTitle: mockMathsSubject.title,
   curriculumSeoText: mockPortableTextBlocks,
 };
 
