@@ -50,6 +50,7 @@ export default function ProgrammePageFiltersDesktop({
             data={data}
             ks4Options={ks4Options}
             slugs={slugs}
+            context={"integrated-journey"}
           />
           <OakHandDrawnHR
             hrColor={"bg-interactive-element2"}

@@ -28,9 +28,27 @@ export type CurricFiltersYearsProps = {
   data: CurriculumUnitsFormattedData;
   ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
   slugs: CurriculumSelectionSlugs;
+  context: "curriculum-visualiser" | "integrated-journey";
 };
 
 type YearOption = { year: string; pathway?: string; queryString?: string };
+
+const getColorSchemeByYear = (year: string) => {
+  if (year === "1" || year === "7") {
+    return "decorative3";
+  } else if (year === "2" || year === "8") {
+    return "decorative1";
+  } else if (year === "3" || year === "9") {
+    return "decorative2";
+  } else if (year === "4" || year === "10") {
+    return "decorative4";
+  } else if (year === "5" || year === "11") {
+    return "decorative5";
+  } else if (year === "6") {
+    return "decorative6";
+  }
+  return "primary";
+};
 
 const filterToIndex = (
   filters: CurriculumFilters,
@@ -66,6 +84,7 @@ export function CurricFiltersYears({
   data,
   ks4Options,
   slugs,
+  context,
 }: Readonly<CurricFiltersYearsProps>) {
   const id = useId();
   const { yearData } = data;
@@ -174,6 +193,11 @@ export function CurricFiltersYears({
                 pathwaySuffixStr,
               )}
               data-testid={"year-radio"}
+              colorScheme={
+                context === "integrated-journey"
+                  ? getColorSchemeByYear(yearOption.year)
+                  : undefined
+              }
             />
           );
         })}

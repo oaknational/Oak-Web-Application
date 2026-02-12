@@ -53,6 +53,7 @@ export default function CurricVisualiserFiltersDesktop({
             data={data}
             ks4Options={ks4Options}
             slugs={slugs}
+            context="curriculum-visualiser"
           />
           <OakHandDrawnHR
             hrColor={"bg-interactive-element2"}
