@@ -10,32 +10,28 @@ exports[`AboutSharedHeader renders correctly 1`] = `
         class="sc-aXZVg jDeUDY"
       >
         <div
-          class="sc-aXZVg sc-tagGq jvobjA jFIZYB"
+          class="sc-aXZVg sc-gEvEer eOPGIs hPyKbx"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-c16b5694-0 hdseiA ccwEJG giQTDM enLybh"
+            class="sc-aXZVg sc-gEvEer hdseiA daEtut"
           >
-            <div
-              class="sc-aXZVg sc-gEvEer hdseiA daEtut"
+            <h1
+              class="sc-eldPxv flskuf"
             >
-              <h1
-                class="sc-eldPxv flskuf"
+              <span
+                class="sc-eqUAAy itItFl"
               >
-                <span
-                  class="sc-eqUAAy itItFl"
-                >
-                  TESTING_TITLE
-                </span>
-              </h1>
-              <p
-                class="sc-ikkxIA kMZRfZ"
-              >
-                TESTING_CONTENT
-              </p>
-            </div>
+                TESTING_TITLE
+              </span>
+            </h1>
+            <p
+              class="sc-ikkxIA kMZRfZ"
+            >
+              TESTING_CONTENT
+            </p>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-c16b5694-1 hdseiA iDBIXi doygtr fkTCLi"
+            class="sc-aXZVg sc-e7603a81-0 hdseiA bikUTp"
           >
             <div
               class="sc-aXZVg iGlCVz"
@@ -68,35 +64,31 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
         class="sc-aXZVg jDeUDY"
       >
         <div
-          class="sc-aXZVg sc-tagGq jvobjA jFIZYB"
+          class="sc-aXZVg sc-gEvEer eOPGIs hPyKbx"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-c16b5694-0 hdseiA ccwEJG giQTDM enLybh"
+            class="sc-aXZVg sc-gEvEer hdseiA daEtut"
           >
-            <div
-              class="sc-aXZVg sc-gEvEer hdseiA daEtut"
+            <h1
+              class="sc-eldPxv flskuf"
             >
-              <h1
-                class="sc-eldPxv flskuf"
+              <span
+                class="sc-eqUAAy itItFl"
               >
-                <span
-                  class="sc-eqUAAy itItFl"
-                >
-                  TESTING_TITLE
-                </span>
-              </h1>
-              <p
-                class="sc-ikkxIA kMZRfZ"
-              >
-                TESTING_CONTENT
-              </p>
-            </div>
+                TESTING_TITLE
+              </span>
+            </h1>
+            <p
+              class="sc-ikkxIA kMZRfZ"
+            >
+              TESTING_CONTENT
+            </p>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-c16b5694-1 hdseiA iDBIXi doygtr fkTCLi"
+            class="sc-aXZVg sc-e7603a81-0 hdseiA bikUTp"
           >
             <div
-              class="sc-aXZVg dhXyYU sc-c16b5694-2 fyxfMY"
+              class="sc-aXZVg dhXyYU sc-e7603a81-1 gOwrfP"
               data-testid="about-shared-loop"
             >
               <img
