@@ -39,11 +39,37 @@ export class DropdownFocusManager<
   }
   private getFocusTree(navData: T): Map<string, FocusNode> {
     const arrayOfSubNavButtons = Object.values(navData);
+    const withAllKeystageButtons =
+      this.addAllKeystagesButtonsToNavData(arrayOfSubNavButtons);
     const focusMap = new Map<string, FocusNode>();
     // build the tree recursively
-    this.buildFocusMap({ items: arrayOfSubNavButtons, focusMap, parent: null });
-    console.log("Focus map built:", focusMap);
+    this.buildFocusMap({
+      items: withAllKeystageButtons,
+      focusMap,
+      parent: null,
+    });
+
     return focusMap;
+  }
+
+  private addAllKeystagesButtonsToNavData(data: NavSection[]): NavSection[] {
+    if (this.areaType !== "teachers") return data;
+    // get to the subjects level and add an "All keystages" button to each subject list
+    const updatedData = data.map((phase) => ({
+      ...phase,
+      children: phase.children?.map((keystage) => {
+        const allKeystagesButton: NavSection = {
+          title: "All keystages",
+          slug: `all-keystages-button`,
+        };
+        return {
+          ...keystage,
+          children: [...(keystage.children ?? []), allKeystagesButton],
+        };
+      }),
+    }));
+    console.log(updatedData);
+    return updatedData;
   }
 
   private buildFocusMap({

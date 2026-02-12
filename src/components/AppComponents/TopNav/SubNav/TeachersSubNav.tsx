@@ -36,10 +36,7 @@ const TeachersSubNav = ({
 }: TeachersSubNavProps) => {
   const pathname = usePathname();
   const subNavButtons = Object.values(teachers);
-  const getLinkProps = (
-    slug: OakLinkPropsRequiringPageOnly["page"],
-    external?: boolean,
-  ) => {
+  const getLinkProps = (slug: string, external?: boolean) => {
     const buttonId = focusManager.createId("teachers", slug);
     return {
       target: external ? "_blank" : undefined,
@@ -117,6 +114,7 @@ const TeachersSubNav = ({
           onKeyDown={handleArrowKeys}
         >
           {subNavButtons.map((btn) => {
+            const external = "external" in btn ? btn.external : undefined;
             return (
               <OakLI key={btn.slug}>
                 {btn.children ? (
@@ -128,7 +126,7 @@ const TeachersSubNav = ({
                   </OakSmallPrimaryInvertedButton>
                 ) : (
                   <OakSmallPrimaryInvertedButton
-                    {...getLinkProps(btn.slug, btn.external)}
+                    {...getLinkProps(btn.slug, external)}
                   >
                     {btn.title}
                   </OakSmallPrimaryInvertedButton>
