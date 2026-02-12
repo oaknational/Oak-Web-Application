@@ -4,7 +4,6 @@ import userEvent from "@testing-library/user-event";
 import { ProgrammeView } from "./ProgrammeView";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import {
@@ -42,7 +41,7 @@ const defaultProps = {
     phaseTitle: "Secondary",
     examboardTitle: "AQA",
   },
-  curriculumPhaseOptions: curriculumPhaseOptions,
+  ks4Options: [],
   curriculumUnitsFormattedData: formatCurriculumUnitsData(
     curriculumUnitsTabFixture(),
   ),

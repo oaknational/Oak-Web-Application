@@ -22,19 +22,19 @@ import {
   highlightedUnitCount,
 } from "@/utils/curriculum/filteringApp";
 import { CurriculumFilters } from "@/utils/curriculum/types";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import {
   CurriculumSelectionSlugs,
   CurriculumSelectionTitles,
 } from "@/utils/curriculum/slugs";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 export type UnitSequenceViewProps = {
   filters: CurriculumFilters;
   setFilters: (newFilters: CurriculumFilters) => void;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumSelectionTitles: CurriculumSelectionTitles;
-  curriculumPhaseOptions: SubjectPhasePickerData;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
+  ks4Options: Ks4Option[];
 };
 
 export const UnitSequenceView = ({
@@ -42,17 +42,13 @@ export const UnitSequenceView = ({
   setFilters,
   curriculumSelectionSlugs,
   curriculumSelectionTitles,
-  curriculumPhaseOptions,
   curriculumUnitsFormattedData,
+  ks4Options,
 }: UnitSequenceViewProps) => {
   const isMobile = useMediaQuery("mobile");
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
   const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
   const { subjectTitle, examboardTitle } = curriculumSelectionTitles;
-
-  const ks4Options =
-    curriculumPhaseOptions.subjects.find((s) => s.slug === subjectSlug)!
-      .ks4_options ?? [];
 
   // TD: [integrated journey] tracking
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {

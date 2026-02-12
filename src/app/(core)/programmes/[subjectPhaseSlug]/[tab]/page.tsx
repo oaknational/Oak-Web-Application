@@ -144,14 +144,13 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     subjectPhaseKeystageSlugs,
   } = cachedData;
 
-  const validSubjectPhases = await curriculumApi2023.curriculumPhaseOptions();
   const isValid = isValidSubjectPhaseSlug(
-    validSubjectPhases,
+    curriculumPhaseOptions.subjects,
     subjectPhaseKeystageSlugs,
   );
   if (!isValid) {
     const redirectParams = getKs4RedirectSlug(
-      validSubjectPhases,
+      curriculumPhaseOptions.subjects,
       subjectPhaseKeystageSlugs,
     );
     if (redirectParams) {
@@ -195,8 +194,14 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   const curriculumUnitsFormattedData =
     formatCurriculumUnitsData(curriculumUnitsData);
 
+  // All KS4 options for subject phase
+  const ks4Options =
+    curriculumPhaseOptions.subjects.find(
+      (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
+    )!.ks4_options ?? [];
+
   // Find examboard title from subject phases
-  const ks4Option = validSubjectPhases
+  const ks4Option = curriculumPhaseOptions.subjects
     .flatMap((subject) => subject.ks4_options)
     .find((ks4opt) => ks4opt?.slug === subjectPhaseKeystageSlugs.ks4OptionSlug);
 
@@ -208,13 +213,13 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
 
   const results = {
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
-    curriculumPhaseOptions,
     curriculumSelectionTitles,
     curriculumUnitsFormattedData,
     subjectPhaseSanityData,
     tabSlug: tab,
     curriculumCMSInfo,
     curriculumInfo: cachedData.programmeUnitsData,
+    ks4Options,
   };
 
   return <ProgrammeView {...results} />;
