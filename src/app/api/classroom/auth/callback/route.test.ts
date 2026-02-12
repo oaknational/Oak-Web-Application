@@ -78,7 +78,8 @@ describe("GET /api/classroom/auth/callback", () => {
     // Arrange
     mockSearchParamsGet.mockImplementation((key: string) => {
       if (key === "code") return mockCode;
-      if (key === "subscribeToNewsletter") return "true";
+      if (key === "state")
+        return JSON.stringify({ subscribeToNewsletter: true });
       return null;
     });
 
@@ -87,7 +88,7 @@ describe("GET /api/classroom/auth/callback", () => {
 
     // Assert
     expect(mockSearchParamsGet).toHaveBeenCalledWith("code");
-    expect(mockSearchParamsGet).toHaveBeenCalledWith("subscribeToNewsletter");
+    expect(mockSearchParamsGet).toHaveBeenCalledWith("state");
 
     expect(mockHandleGoogleSignInCallback).toHaveBeenCalledTimes(1);
     expect(mockHandleGoogleSignInCallback).toHaveBeenCalledWith(
@@ -107,7 +108,8 @@ describe("GET /api/classroom/auth/callback", () => {
     // Arrange
     mockSearchParamsGet.mockImplementation((key: string) => {
       if (key === "code") return mockCode;
-      if (key === "subscribeToNewsletter") return "false"; // or null
+      if (key === "state")
+        return JSON.stringify({ subscribeToNewsletter: false });
       return null;
     });
 
