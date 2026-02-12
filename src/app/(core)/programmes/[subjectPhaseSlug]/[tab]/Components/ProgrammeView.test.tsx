@@ -32,14 +32,17 @@ beforeEach(() => {
 });
 
 const defaultProps = {
-  subjectTitle: "Science",
   curriculumSelectionSlugs: {
     phaseSlug: "secondary",
     subjectSlug: "maths",
     ks4OptionSlug: "aqa",
   },
+  curriculumSelectionTitles: {
+    subjectTitle: "Science",
+    phaseTitle: "Secondary",
+    examboardTitle: "AQA",
+  },
   curriculumPhaseOptions: curriculumPhaseOptions,
-  phaseTitle: "Secondary",
   curriculumUnitsFormattedData: formatCurriculumUnitsData(
     curriculumUnitsTabFixture(),
   ),
@@ -47,7 +50,6 @@ const defaultProps = {
   curriculumCMSInfo: curriculumOverviewCMSFixture(),
   subjectPhaseSanityData: null,
   tabSlug: "units" as const,
-  examboardTitle: "AQA",
 };
 
 const render = renderWithProviders();

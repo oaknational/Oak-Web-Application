@@ -44,10 +44,12 @@ import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 
 type ProgrammePageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
+  curriculumSelectionTitles: {
+    phaseTitle: string;
+    subjectTitle: string;
+    examboardTitle: string | undefined;
+  };
   curriculumPhaseOptions: SubjectPhasePickerData;
-  subjectTitle: string;
-  phaseTitle: string;
-  examboardTitle: string | undefined;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   subjectPhaseSanityData: ProgrammePageHeaderCMS | null;
   curriculumCMSInfo: CurriculumOverviewSanityData;
@@ -57,10 +59,8 @@ type ProgrammePageProps = {
 
 export const ProgrammeView = ({
   curriculumSelectionSlugs,
+  curriculumSelectionTitles,
   curriculumPhaseOptions,
-  subjectTitle,
-  phaseTitle,
-  examboardTitle,
   curriculumUnitsFormattedData,
   subjectPhaseSanityData,
   curriculumCMSInfo,
@@ -71,6 +71,8 @@ export const ProgrammeView = ({
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
 
   const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
+  const { subjectTitle, phaseTitle, examboardTitle } =
+    curriculumSelectionTitles;
 
   // TD: [integrated journey] tracking
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {

@@ -200,12 +200,16 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     .flatMap((subject) => subject.ks4_options)
     .find((ks4opt) => ks4opt?.slug === subjectPhaseKeystageSlugs.ks4OptionSlug);
 
-  const results = {
-    curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
-    curriculumPhaseOptions,
+  const curriculumSelectionTitles = {
     subjectTitle: programmeUnitsData.subjectTitle,
     phaseTitle: programmeUnitsData.phaseTitle,
     examboardTitle: ks4Option?.title,
+  };
+
+  const results = {
+    curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
+    curriculumPhaseOptions,
+    curriculumSelectionTitles,
     curriculumUnitsFormattedData,
     subjectPhaseSanityData,
     tabSlug: tab,
