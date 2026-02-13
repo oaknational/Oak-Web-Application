@@ -1,6 +1,6 @@
 import { act, screen } from "@testing-library/react";
 
-import { ProgrammeUnitList } from "./UnitList";
+import { ProgrammeUnitList, getKeyStageTitle } from "./UnitList";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { createFilter } from "@/fixtures/curriculum/filters";
@@ -94,5 +94,26 @@ describe("ProgrammeUnitList", () => {
         componentType: "unit_info_button",
       }),
     );
+  });
+});
+
+describe("getKeyStageTitle", () => {
+  it.each([
+    ["ks1", "Key stage 1"],
+    ["ks2", "Key stage 2"],
+    ["ks3", "Key stage 3"],
+    ["ks4", "Key stage 4"],
+  ] as const)("maps '%s' to '%s'", (slug, expected) => {
+    expect(getKeyStageTitle(slug)).toBe(expected);
+  });
+
+  it('returns "Early Years Foundation stage" for early-years-foundation-stage', () => {
+    expect(getKeyStageTitle("early-years-foundation-stage")).toBe(
+      "Early Years Foundation stage",
+    );
+  });
+
+  it("returns undefined for unknown slugs", () => {
+    expect(getKeyStageTitle("unknown")).toBeUndefined();
   });
 });

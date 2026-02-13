@@ -115,7 +115,9 @@ export function ProgrammeUnitList({
 
 // Types are loose coming out of the API so we cast to `KeystageSlug` to
 // do our best to map it to the correct title. Fallback to undefined if we can't map it.
-function getKeyStageTitle(ksSlug: string): KeyStageTitleValueType | undefined {
+export function getKeyStageTitle(
+  ksSlug: string,
+): KeyStageTitleValueType | undefined {
   switch (ksSlug as KeystageSlug) {
     case "ks1":
       return "Key stage 1";
