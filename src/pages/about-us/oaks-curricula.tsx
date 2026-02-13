@@ -5,6 +5,7 @@ import {
   OakHeading,
   OakMaxWidth,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import Layout from "@/components/AppComponents/Layout";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
@@ -41,6 +42,12 @@ export type OaksCurriculaPage = {
   topNav: TopNavProps;
 };
 
+const UnstyledLi = styled.li`
+  display: flex;
+  flex: 1 1 0;
+  list-style: none;
+`;
+
 export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
   pageData,
   topNav,
@@ -63,50 +70,60 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
           />
         </AboutSharedHeader>
         <OakBox $background={"bg-decorative4-very-subdued"}>
-          <OakMaxWidth $pv={"spacing-80"} $ph={["spacing-16"]}>
+          <OakMaxWidth $pv={"spacing-80"} $ph={["spacing-16", "spacing-40"]}>
             <OakFlex $flexDirection={"column"} $gap={"spacing-56"}>
               <OakFlex
+                as="ul"
                 $flexDirection={["column", "row"]}
-                $flexWrap="wrap"
+                $pa="spacing-0"
+                $ma="spacing-0"
                 $gap="spacing-16"
                 $alignItems="stretch"
               >
-                <CurricInfoCard
-                  iconName="clipboard"
-                  background="bg-primary"
-                  iconHeight={"spacing-92"}
-                  iconWidth={"spacing-48"}
-                  borderColor="border-decorative4"
-                >
-                  National curriculum and exam board aligned
-                </CurricInfoCard>
-                <CurricInfoCard
-                  iconName="free-tag"
-                  background="bg-primary"
-                  iconHeight="spacing-92"
-                  iconWidth="spacing-80"
-                  borderColor="border-decorative4"
-                >
-                  Free and always will be
-                </CurricInfoCard>
-                <CurricInfoCard
-                  iconName="book-steps"
-                  background="bg-primary"
-                  iconHeight="spacing-92"
-                  iconWidth="spacing-72"
-                  borderColor="border-decorative4"
-                >
-                  Covers key stages 1-4 across 20 subjects
-                </CurricInfoCard>
-                <CurricInfoCard
-                  iconName="threads"
-                  background="bg-primary"
-                  iconHeight="spacing-92"
-                  iconWidth="spacing-64"
-                  borderColor="border-decorative4"
-                >
-                  Fully sequenced and ready to adapt
-                </CurricInfoCard>
+                <UnstyledLi>
+                  <CurricInfoCard
+                    iconName="clipboard"
+                    background="bg-primary"
+                    iconHeight={"spacing-92"}
+                    iconWidth={"spacing-48"}
+                    borderColor="border-decorative4"
+                  >
+                    National curriculum and exam board aligned
+                  </CurricInfoCard>
+                </UnstyledLi>
+                <UnstyledLi>
+                  <CurricInfoCard
+                    iconName="free-tag"
+                    background="bg-primary"
+                    iconHeight="spacing-92"
+                    iconWidth="spacing-80"
+                    borderColor="border-decorative4"
+                  >
+                    Free and always will be
+                  </CurricInfoCard>
+                </UnstyledLi>
+                <UnstyledLi>
+                  <CurricInfoCard
+                    iconName="book-steps"
+                    background="bg-primary"
+                    iconHeight="spacing-92"
+                    iconWidth="spacing-72"
+                    borderColor="border-decorative4"
+                  >
+                    Covers key stages 1-4 across 20 subjects
+                  </CurricInfoCard>
+                </UnstyledLi>
+                <UnstyledLi>
+                  <CurricInfoCard
+                    iconName="threads"
+                    background="bg-primary"
+                    iconHeight="spacing-92"
+                    iconWidth="spacing-64"
+                    borderColor="border-decorative4"
+                  >
+                    Fully sequenced and ready to adapt
+                  </CurricInfoCard>
+                </UnstyledLi>
               </OakFlex>
               <GuidingPrinciples
                 $background="bg-primary"
@@ -128,7 +145,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
             </OakFlex>
           </OakMaxWidth>
         </OakBox>
-        <OakMaxWidth>
+        <OakMaxWidth $ph={["spacing-16", "spacing-40"]}>
           <OakFlex
             $gap={"spacing-56"}
             $pv={"spacing-80"}
