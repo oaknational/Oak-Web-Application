@@ -152,9 +152,6 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
             />
           </OakFlex>
         </OakMaxWidth>
-        <OakBox $pa={"spacing-16"} $borderStyle={"solid"}>
-          TODO: Can oak support you
-        </OakBox>
       </AboutUsLayout>
     </Layout>
   );
