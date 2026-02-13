@@ -37,7 +37,7 @@ export type MobileFilterHeaderProps = ProgrammePageMobileFiltersProps & {
 function scrollToYearSection(yearOption: string) {
   const targetElement = document.getElementById(`year-${yearOption}`);
   if (targetElement) {
-    const headerOffset = 140;
+    const headerOffset = 280;
     const elementPosition = targetElement.getBoundingClientRect().top;
     const { pageYOffset } = globalThis;
     const offsetPosition = elementPosition + pageYOffset - headerOffset;
