@@ -1,8 +1,4 @@
-import {
-  OakBox,
-  OakHeading,
-  OakHandDrawnHR,
-} from "@oaknational/oak-components";
+import { OakBox, OakHandDrawnHR } from "@oaknational/oak-components";
 import React from "react";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
@@ -39,9 +35,6 @@ export default function ProgrammePageFiltersDesktop({
   return (
     <OakBox $mr={"spacing-16"}>
       <SkipLink href="#content">Skip to units</SkipLink>
-      <OakHeading tag="h3" $font={"heading-5"} $mb="spacing-24">
-        Filter and highlight
-      </OakHeading>
       {shouldDisplayFilter(data, filters, "years") && (
         <>
           <CurricFiltersYears
