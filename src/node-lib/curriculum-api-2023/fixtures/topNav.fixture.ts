@@ -126,7 +126,7 @@ export const topNavFixture: TopNavProps = {
     },
     aiExperiments: {
       slug: "labs",
-      title: "AI experiments",
+      title: "Ai experiments",
       external: true,
     },
   },

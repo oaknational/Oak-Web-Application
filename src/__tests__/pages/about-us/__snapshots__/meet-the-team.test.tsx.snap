@@ -4285,8 +4285,8 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       aria-expanded="false"
                       aria-haspopup="true"
                       class="c35 c36 internal-button"
-                      data-testid="primary-subnav-button"
-                      id="primary-subnav-button"
+                      data-testid="teachers-primary"
+                      id="teachers-primary"
                     >
                       <div
                         class="c11 c37"
@@ -4317,8 +4317,8 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       aria-expanded="false"
                       aria-haspopup="true"
                       class="c35 c36 internal-button"
-                      data-testid="secondary-subnav-button"
-                      id="secondary-subnav-button"
+                      data-testid="teachers-secondary"
+                      id="teachers-secondary"
                     >
                       <div
                         class="c11 c37"
@@ -4347,7 +4347,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                     <a
                       class="c35 c36 internal-button"
                       href="/teachers/curriculum"
-                      id="curriculum-landing-page-subnav-button"
+                      id="teachers-curriculum-landing-page"
                     >
                       <div
                         class="c11 c37"
@@ -4374,44 +4374,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <button
-                      aria-controls="topnav-teachers-guidance"
-                      aria-expanded="false"
-                      aria-haspopup="true"
-                      class="c35 c36 internal-button"
-                      data-testid="guidance-subnav-button"
-                      id="guidance-subnav-button"
-                    >
-                      <div
-                        class="c11 c37"
-                      >
-                        <span
-                          class="c38"
-                        >
-                          Guidance
-                        </span>
-                      </div>
-                    </button>
-                  </div>
-                </li>
-                <li
-                  class="c34"
-                >
-                  <div
-                    class="c6 c19"
-                  >
-                    <div
-                      class="c8 grey-shadow"
-                    />
-                    <div
-                      class="c8 yellow-shadow"
-                    />
-                    <button
                       aria-controls="topnav-teachers-aboutUs"
                       aria-expanded="false"
                       aria-haspopup="true"
                       class="c35 c36 internal-button"
-                      data-testid="aboutUs-subnav-button"
-                      id="aboutUs-subnav-button"
+                      data-testid="teachers-aboutUs"
+                      id="teachers-aboutUs"
                     >
                       <div
                         class="c11 c37"
@@ -4437,10 +4405,42 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                     <div
                       class="c8 yellow-shadow"
                     />
+                    <button
+                      aria-controls="topnav-teachers-guidance"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="c35 c36 internal-button"
+                      data-testid="teachers-guidance"
+                      id="teachers-guidance"
+                    >
+                      <div
+                        class="c11 c37"
+                      >
+                        <span
+                          class="c38"
+                        >
+                          Guidance
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                </li>
+                <li
+                  class="c34"
+                >
+                  <div
+                    class="c6 c19"
+                  >
+                    <div
+                      class="c8 grey-shadow"
+                    />
+                    <div
+                      class="c8 yellow-shadow"
+                    />
                     <a
                       class="c35 c36 internal-button"
                       href="https://labs.thenational.academy"
-                      id="labs-subnav-button"
+                      id="teachers-labs"
                       target="_blank"
                     >
                       <div
@@ -4449,7 +4449,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         <span
                           class="c38"
                         >
-                          Ai experiements
+                          Ai experiments
                         </span>
                         <div
                           class="c24"

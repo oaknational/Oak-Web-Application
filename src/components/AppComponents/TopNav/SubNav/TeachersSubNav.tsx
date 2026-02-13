@@ -19,7 +19,7 @@ import SearchBar from "@/components/AppComponents/SearchBar";
 import { SaveCount } from "@/components/TeacherComponents/SaveCount/SaveCount";
 import TeacherAccountButton from "@/components/TeacherComponents/TeacherAccountButton/TeacherAccountButton";
 
-type TeachersSubNavProps = TeachersSubNavData & {
+export type TeachersSubNavProps = TeachersSubNavData & {
   onClick: (menu: keyof TeachersSubNavData) => void;
   isMenuSelected: (menu: keyof TeachersSubNavData) => boolean;
   focusManager: DropdownFocusManager<TeachersSubNavData>;

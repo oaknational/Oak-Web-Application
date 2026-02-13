@@ -6,9 +6,7 @@ exports[`core layout renders correctly 1`] = `
     pupils={
       {
         "primary": {
-          "phaseSlug": "primary",
-          "phaseTitle": "Primary",
-          "years": [
+          "children": [
             {
               "slug": "year-1",
               "title": "Year 1",
@@ -34,11 +32,11 @@ exports[`core layout renders correctly 1`] = `
               "title": "Year 6",
             },
           ],
+          "slug": "primary",
+          "title": "Primary",
         },
         "secondary": {
-          "phaseSlug": "secondary",
-          "phaseTitle": "Secondary",
-          "years": [
+          "children": [
             {
               "slug": "year-7",
               "title": "Year 7",
@@ -60,123 +58,142 @@ exports[`core layout renders correctly 1`] = `
               "title": "Year 11",
             },
           ],
+          "slug": "secondary",
+          "title": "Secondary",
         },
       }
     }
     teachers={
       {
-        "aboutUs": [
-          {
-            "slug": "about-who-we-are",
-            "title": "Who we are",
-          },
-          {
-            "slug": "about-board",
-            "title": "Board",
-          },
-        ],
-        "guidance": [
-          {
-            "slug": "lesson-planning",
-            "title": "Plan a lesson",
-          },
-          {
-            "slug": "blog-index",
-            "title": "Blogs",
-          },
-          {
-            "external": true,
-            "slug": "help",
-            "title": "Help",
-          },
-        ],
-        "primary": {
-          "keystages": [
+        "aboutUs": {
+          "children": [
             {
-              "description": "Key stage 1",
-              "slug": "ks1",
-              "subjects": [
+              "slug": "about-who-we-are",
+              "title": "Who we are",
+            },
+            {
+              "slug": "about-board",
+              "title": "Board",
+            },
+          ],
+          "slug": "aboutUs",
+          "title": "About us",
+        },
+        "aiExperiments": {
+          "external": true,
+          "slug": "labs",
+          "title": "Ai experiments",
+        },
+        "curriculum": {
+          "slug": "curriculum-landing-page",
+          "title": "Curriculum",
+        },
+        "guidance": {
+          "children": [
+            {
+              "slug": "lesson-planning",
+              "title": "Plan a lesson",
+            },
+            {
+              "slug": "blog-index",
+              "title": "Blogs",
+            },
+            {
+              "external": true,
+              "slug": "help",
+              "title": "Help",
+            },
+          ],
+          "slug": "guidance",
+          "title": "Guidance",
+        },
+        "primary": {
+          "children": [
+            {
+              "children": [
                 {
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "english-primary-ks1",
-                  "subjectSlug": "english",
+                  "slug": "english",
                   "title": "English",
                 },
                 {
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "maths-primary-ks1",
-                  "subjectSlug": "maths",
+                  "slug": "maths",
                   "title": "Maths",
                 },
                 {
                   "nonCurriculum": true,
                   "programmeCount": 0,
                   "programmeSlug": "financial-education-primary-ks1",
-                  "subjectSlug": "financial-education",
+                  "slug": "financial-education",
                   "title": "Financial education",
                 },
               ],
+              "description": "Key stage 1",
+              "slug": "ks1",
               "title": "KS1",
             },
             {
-              "description": "Key stage 2",
-              "slug": "ks2",
-              "subjects": [
+              "children": [
                 {
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "science-primary-ks2",
-                  "subjectSlug": "science",
+                  "slug": "science",
                   "title": "Science",
                 },
               ],
+              "description": "Key stage 2",
+              "slug": "ks2",
               "title": "KS2",
             },
             {
+              "children": [],
               "description": "Early years foundation stage",
               "slug": "eyfs",
-              "subjects": [],
               "title": "EYFS",
             },
           ],
-          "phaseSlug": "primary",
-          "phaseTitle": "Primary",
+          "slug": "primary",
+          "title": "Primary",
         },
         "secondary": {
-          "keystages": [
+          "children": [
             {
-              "description": "Key stage 3",
-              "slug": "ks3",
-              "subjects": [
+              "children": [
                 {
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "history-secondary-ks3",
-                  "subjectSlug": "history",
+                  "slug": "history",
                   "title": "History",
                 },
               ],
+              "description": "Key stage 3",
+              "slug": "ks3",
               "title": "KS3",
             },
             {
-              "description": "Key stage 4",
-              "slug": "ks4",
-              "subjects": [
+              "children": [
                 {
                   "nonCurriculum": false,
                   "programmeCount": 0,
                   "programmeSlug": "geography-secondary-ks4",
-                  "subjectSlug": "geography",
+                  "slug": "geography",
                   "title": "Geography",
                 },
               ],
+              "description": "Key stage 4",
+              "slug": "ks4",
               "title": "KS4",
             },
           ],
-          "phaseSlug": "secondary",
-          "phaseTitle": "Secondary",
+          "slug": "secondary",
+          "title": "Secondary",
         },
       }
     }

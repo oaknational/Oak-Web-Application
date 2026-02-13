@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
-import TeachersSubNav, { subNavButtons } from "./TeachersSubNav";
+import TeachersSubNav, { TeachersSubNavProps } from "./TeachersSubNav";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
@@ -13,13 +13,13 @@ describe("TeachersSubNav", () => {
   const mockFocusManager = new DropdownFocusManager(
     topNavFixture.teachers!,
     "teachers",
-    subNavButtons,
     () => undefined,
   );
   const mockOnClick = jest.fn();
   const mockIsMenuSelected = jest.fn().mockReturnValue(false);
 
-  const defaultProps = {
+  const defaultProps: TeachersSubNavProps = {
+    ...topNavFixture.teachers!,
     onClick: mockOnClick,
     isMenuSelected: mockIsMenuSelected,
     focusManager: mockFocusManager,

@@ -10,34 +10,34 @@ import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNa
 
 const mockTopNavProps: TeachersSubNavData = {
   primary: {
-    phaseTitle: "Primary",
-    phaseSlug: "primary",
-    keystages: [
+    title: "Primary",
+    slug: "primary",
+    children: [
       {
         title: "KS1",
         slug: "ks1",
         description: "Key Stage 1",
-        subjects: [
+        children: [
           {
             title: "test-subject-1",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-1",
-            subjectSlug: "test-subject-slug-1",
+            slug: "test-subject-slug-1",
           },
           {
             title: "test-subject-2",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-2",
-            subjectSlug: "test-subject-slug-2",
+            slug: "test-subject-slug-2",
           },
           {
             title: "test-subject-3",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-3",
-            subjectSlug: "test-subject-slug-3",
+            slug: "test-subject-slug-3",
           },
         ],
       },
@@ -45,27 +45,27 @@ const mockTopNavProps: TeachersSubNavData = {
         title: "KS2",
         slug: "ks2",
         description: "Key Stage 2",
-        subjects: [
+        children: [
           {
             title: "test-subject-1",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-1",
-            subjectSlug: "test-subject-slug-1",
+            slug: "test-subject-slug-1",
           },
           {
             title: "test-subject-2",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-2",
-            subjectSlug: "test-subject-slug-2",
+            slug: "test-subject-slug-2",
           },
           {
             title: "test-subject-3",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-3",
-            subjectSlug: "test-subject-slug-3",
+            slug: "test-subject-slug-3",
           },
         ],
       },
@@ -73,61 +73,61 @@ const mockTopNavProps: TeachersSubNavData = {
         title: "EYFS",
         slug: "eyfs",
         description: "Early Years Foundation Stage",
-        subjects: [
+        children: [
           {
             title: "test-subject-1",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-1",
-            subjectSlug: "test-subject-slug-1",
+            slug: "test-subject-slug-1",
           },
           {
             title: "test-subject-2",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-2",
-            subjectSlug: "test-subject-slug-2",
+            slug: "test-subject-slug-2",
           },
           {
             title: "test-subject-3",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-3",
-            subjectSlug: "test-subject-slug-3",
+            slug: "test-subject-slug-3",
           },
         ],
       },
     ],
   },
   secondary: {
-    phaseTitle: "Secondary",
-    phaseSlug: "secondary",
-    keystages: [
+    title: "Secondary",
+    slug: "secondary",
+    children: [
       {
         title: "KS3",
         slug: "ks3",
         description: "Key Stage 3",
-        subjects: [
+        children: [
           {
             title: "test-subject-1",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-1",
-            subjectSlug: "test-subject-slug-1",
+            slug: "test-subject-slug-1",
           },
           {
             title: "test-subject-2",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-2",
-            subjectSlug: "test-subject-slug-2",
+            slug: "test-subject-slug-2",
           },
           {
             title: "test-subject-3",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-3",
-            subjectSlug: "test-subject-slug-3",
+            slug: "test-subject-slug-3",
           },
         ],
       },
@@ -135,42 +135,58 @@ const mockTopNavProps: TeachersSubNavData = {
         title: "KS4",
         slug: "ks4",
         description: "Key Stage 4",
-        subjects: [
+        children: [
           {
             title: "test-subject-1",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-1",
-            subjectSlug: "test-subject-slug-1",
+            slug: "test-subject-slug-1",
           },
           {
             title: "test-subject-2",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-2",
-            subjectSlug: "test-subject-slug-2",
+            slug: "test-subject-slug-2",
           },
           {
             title: "test-subject-3",
             nonCurriculum: false,
             programmeCount: 0,
             programmeSlug: "test-programme-slug-3",
-            subjectSlug: "test-subject-slug-3",
+            slug: "test-subject-slug-3",
           },
         ],
       },
     ],
   },
-  aboutUs: [
-    { title: "test-link-1", slug: "home" },
-    { title: "test-link-2", slug: "home" },
-    { title: "test-link-3", slug: "home" },
-  ],
-  guidance: [
-    { title: "test-link-1", slug: "home" },
-    { title: "test-link-2", slug: "home" },
-    { title: "test-link-3", slug: "home" },
-  ],
+  curriculum: {
+    title: "Curriculum",
+    slug: "curriculum-landing-page",
+  },
+  aboutUs: {
+    title: "About us",
+    slug: "about-us",
+    children: [
+      { title: "test-link-1", slug: "home" },
+      { title: "test-link-2", slug: "home" },
+      { title: "test-link-3", slug: "home" },
+    ],
+  },
+  guidance: {
+    title: "Guidance",
+    slug: "guidance",
+    children: [
+      { title: "test-link-1", slug: "home" },
+      { title: "test-link-2", slug: "home" },
+      { title: "test-link-3", slug: "home" },
+    ],
+  },
+  aiExperiments: {
+    title: "AI experiments",
+    slug: "labs",
+  },
 };
 
 const render = renderWithProviders();

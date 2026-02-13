@@ -68,7 +68,6 @@ export class DropdownFocusManager<
         };
       }),
     }));
-    console.log(updatedData);
     return updatedData;
   }
 
@@ -250,7 +249,6 @@ export class DropdownFocusManager<
     if (this.tryFocusFirstChild(currentNode, event)) {
       return;
     }
-    console.log("No children, trying to focus sibling or close menu");
     // Special case: close menu if we're on the last subnav button with no children
     if (this.isLastSubnavButton(currentNode)) {
       this.closeMenu();
@@ -259,7 +257,6 @@ export class DropdownFocusManager<
 
     // Handle navigation when we're on the last child
     if (currentNode.isLastChild) {
-      console.log("Handling last child tab");
       this.handleLastChildTab(currentNode, event);
     }
   }

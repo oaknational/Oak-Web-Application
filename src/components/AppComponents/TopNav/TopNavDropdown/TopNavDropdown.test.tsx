@@ -7,7 +7,6 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { DropdownFocusManager } from "@/components/AppComponents/TopNav/DropdownFocusManager/DropdownFocusManager";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import { subNavButtons } from "@/components/AppComponents/TopNav/SubNav/TeachersSubNav";
 
 describe("TopNavDropdown", () => {
   let focusManager: DropdownFocusManager<TeachersSubNavData>;
@@ -18,7 +17,6 @@ describe("TopNavDropdown", () => {
     focusManager = new DropdownFocusManager(
       topNavFixture.teachers!,
       "teachers",
-      subNavButtons,
       () => undefined,
     );
   });

@@ -137,9 +137,9 @@ const subnavLabels = [
   { label: "Primary", element: "button" },
   { label: "Secondary", element: "button" },
   { label: "Curriculum", element: "link" },
-  { label: "Guidance", element: "button" },
   { label: "About us", element: "button" },
-  { label: "Ai experiements", element: "link" },
+  { label: "Guidance", element: "button" },
+  { label: "Ai experiments", element: "link" },
 ];
 
 describe("TopNav accessibility", () => {
