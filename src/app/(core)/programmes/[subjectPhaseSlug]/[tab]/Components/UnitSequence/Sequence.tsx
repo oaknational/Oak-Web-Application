@@ -44,10 +44,10 @@ export default function ProgrammeSequence({
   ks4OptionSlug,
   ks4Options,
 }: Readonly<ProgrammeSequenceProps>) {
-  const isMobile = useMediaQuery("mobile");
+  const isDesktop = useMediaQuery("desktop");
 
   const visualiserFilters = useMemo(() => {
-    if (isMobile) {
+    if (!isDesktop) {
       return {
         ...filters,
         years: Object.keys(yearData),
@@ -55,9 +55,9 @@ export default function ProgrammeSequence({
       };
     }
     return filters;
-  }, [isMobile, filters, yearData]);
+  }, [isDesktop, filters, yearData]);
 
-  const shouldIncludeCore = isMobile || ks4OptionSlug !== "core";
+  const shouldIncludeCore = !isDesktop || ks4OptionSlug !== "core";
   const unitsByYearSelector = applyFiltering(
     visualiserFilters,
     groupUnitsByPathway({

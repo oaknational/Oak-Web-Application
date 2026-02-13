@@ -47,7 +47,7 @@ export const UnitSequenceView = ({
   ks4Options,
   trackingData,
 }: UnitSequenceViewProps) => {
-  const isMobile = useMediaQuery("mobile");
+  const isDesktop = useMediaQuery("desktop");
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
   const { ks4OptionSlug } = curriculumSelectionSlugs;
   const { subjectTitle } = curriculumSelectionTitles;
@@ -102,7 +102,7 @@ export const UnitSequenceView = ({
           Unit sequence
         </OakHeading>
       </ScreenReaderOnly>
-      {isMobile && (
+      {!isDesktop && (
         <ProgrammePageFiltersMobile
           selectedYear={mobileSelectedYear}
           onSelectYear={setMobileSelectedYear}
@@ -116,7 +116,7 @@ export const UnitSequenceView = ({
       )}
       <CurricVisualiserLayout
         filters={
-          isMobile ? null : (
+          isDesktop ? (
             <ProgrammePageFiltersDesktop
               filters={filters}
               onChangeFilters={onChangeFilters}
@@ -124,7 +124,7 @@ export const UnitSequenceView = ({
               slugs={curriculumSelectionSlugs}
               ks4Options={ks4Options}
             />
-          )
+          ) : null
         }
         units={
           <ProgrammeSequence
