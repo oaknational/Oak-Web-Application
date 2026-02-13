@@ -116,6 +116,15 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
+  const isEnabled = await getFeatureFlagValue(
+    "teachers-integrated-journey",
+    "boolean",
+  );
+
+  if (!isEnabled) {
+    return notFound();
+  }
+
   const { subjectPhaseSlug, tab } = await props.params;
 
   if (!isTabSlug(tab)) {
