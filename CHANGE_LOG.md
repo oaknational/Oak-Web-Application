@@ -1,3 +1,18 @@
+## [1.987.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.987.0...v1.987.1) (2026-02-12)
+
+# [1.987.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.986.1...v1.987.0) (2026-02-11)
+
+
+### Bug Fixes
+
+* added missing test for links in content ([c496316](https://github.com/oaknational/Oak-Web-Application/commit/c496316ddaf7e1236a889a99bf222c76f60737d6))
+* spacing in "We are..." icon images in /about-us/who-we-are ([d67371a](https://github.com/oaknational/Oak-Web-Application/commit/d67371a9770f1bebcc3c2c200808c6e7e38feefb))
+
+
+### Features
+
+* added styles and anchor for newsletter signup link in /about-us/who-we-are ([c73d209](https://github.com/oaknational/Oak-Web-Application/commit/c73d209ae04a58a72458d25e43f21db4d8fa3aa0))
+
 ## [1.986.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.986.0...v1.986.1) (2026-02-11)
 
 
