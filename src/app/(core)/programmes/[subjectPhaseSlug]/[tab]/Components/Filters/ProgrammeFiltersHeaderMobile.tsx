@@ -37,7 +37,7 @@ export type MobileFilterHeaderProps = ProgrammePageMobileFiltersProps & {
 function scrollToYearSection(yearOption: string) {
   const targetElement = document.getElementById(`year-${yearOption}`);
   if (targetElement) {
-    const headerOffset = 280;
+    const headerOffset = 270;
     const elementPosition = targetElement.getBoundingClientRect().top;
     const { pageYOffset } = globalThis;
     const offsetPosition = elementPosition + pageYOffset - headerOffset;
@@ -121,6 +121,12 @@ export default function ProgrammeFiltersHeaderMobile({
     }),
   );
 
+  const getSelectedYear = (selectedYear: string) => {
+    // selected year container ids are in the format year-all-{yearValue} eg. "year-all-6"
+    // to get the yearOption we need to strip the first "year-" from the string
+    return selectedYear.slice(5);
+  };
+
   return (
     <OakBox
       $position={["sticky", "static"]}
@@ -135,6 +141,7 @@ export default function ProgrammeFiltersHeaderMobile({
         $background={"bg-primary"}
         data-test-id="filter-mobiles"
         $pv="spacing-32"
+        $ph={"spacing-32"}
       >
         <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
           <OakHeading tag="h2" $font={"heading-7"}>
@@ -191,7 +198,7 @@ export default function ProgrammeFiltersHeaderMobile({
           $flexDirection={"row"}
           $flexWrap={"wrap"}
           aria-label="Select a year group"
-          defaultValue={selectedYear}
+          value={getSelectedYear(selectedYear)}
         >
           {unitsByYearSelector.map(({ type, year }) => {
             const yearOption = `${type}-${year}`;

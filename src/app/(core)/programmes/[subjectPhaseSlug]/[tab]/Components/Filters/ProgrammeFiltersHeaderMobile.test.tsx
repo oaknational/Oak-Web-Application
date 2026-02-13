@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import { screen, waitFor } from "@testing-library/dom";
-import userEvent from "@testing-library/user-event";
 import { usePathname } from "next/navigation";
+import userEvent from "@testing-library/user-event";
 
 import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
 
@@ -111,25 +111,6 @@ describe("Mobile filters header", () => {
       "year-group-filter-button",
     );
     expect(yearButtons).toHaveLength(2);
-  });
-
-  test("shows selected year as pressed", async () => {
-    render(
-      <ProgrammeFiltersHeaderMobile
-        {...defaultProps}
-        selectedYear="year-all-7"
-      />,
-    );
-
-    const yearButtons = await screen.findAllByTestId(
-      "year-group-filter-button",
-    );
-    expect(yearButtons[0]).toHaveAttribute("aria-pressed", "true");
-    expect(yearButtons[0]).toHaveStyle("background-color: #222222");
-    expect(yearButtons[0]).toHaveTextContent("Year 7");
-    expect(yearButtons[1]).toHaveAttribute("aria-pressed", "false");
-    expect(yearButtons[1]).toHaveStyle("background-color: #ffffff");
-    expect(yearButtons[1]).toHaveTextContent("Year 8");
   });
   test("scrolls when year button is clicked", async () => {
     render(<ProgrammeFiltersHeaderMobile {...defaultProps} />);

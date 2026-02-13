@@ -84,7 +84,6 @@ export default function ProgrammeSequence({
     const yearsLoaded = Object.keys(yearData).length;
     // All refs have been created for year groups & data is loaded
     if (yearsLoaded > 0) {
-      // const io = new IntersectionObserver(, options);
       const io = new IntersectionObserver(
         anchorIntersectionObserver(setVisibleMobileYearRefID),
         options,
