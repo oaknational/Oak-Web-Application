@@ -103,12 +103,12 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
       $background={"bg-primary"}
       topNavProps={topNav}
     >
-      <OakMaxWidth $ph={["spacing-16", "spacing-40"]} $pt={"spacing-24"}>
+      <OakMaxWidth $ph={["spacing-16", "spacing-40"]} $pt={"spacing-24"} $color={"text-primary"}>
         <Breadcrumbs breadcrumbs={breadcrumbs} />
       </OakMaxWidth>
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
-        $mt={["spacing-48", "spacing-80"]}
+        $mt={["spacing-48", "spacing-56"]}
         $ph={["spacing-16", "spacing-40"]}
       >
         <OakGrid $cg={["spacing-0", "spacing-16"]} $rg={"spacing-24"}>
