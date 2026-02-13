@@ -92,6 +92,7 @@ export default function ProgrammePageFiltersMobile({
           filters={filters}
           onChangeFilters={onChangeFilters}
           slugs={slugs}
+          ks4Options={ks4Options}
         />
       </OakInformativeModal>
 
@@ -115,9 +116,10 @@ const ModalContent = ({
   onChangeFilters,
   data,
   slugs,
+  ks4Options,
 }: Pick<
   ProgrammePageMobileFiltersProps,
-  "data" | "filters" | "onChangeFilters" | "slugs"
+  "data" | "filters" | "onChangeFilters" | "slugs" | "ks4Options"
 >) => {
   return (
     <OakFlex
@@ -140,7 +142,7 @@ const ModalContent = ({
           onChangeFilters={onChangeFilters}
           data={data}
           slugs={slugs}
-          ks4Options={[]}
+          ks4Options={ks4Options}
           context="integrated-journey"
         />
         {shouldDisplayFilter(data, filters, "subjectCategories") && (

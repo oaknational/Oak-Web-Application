@@ -79,7 +79,6 @@ export default function ProgrammeFiltersHeaderMobile({
     }
   }
 
-  const shouldIncludeCore = slugs.ks4OptionSlug !== "core";
   const mobileFilters = {
     ...filters,
     years: Object.keys(data.yearData),
@@ -90,7 +89,7 @@ export default function ProgrammeFiltersHeaderMobile({
     mobileFilters,
     groupUnitsByPathway({
       modes: getModes(
-        shouldIncludeCore,
+        shouldDisplayCorePathway,
         ks4Options ?? [],
         mobileFilters.pathways[0],
       ),
