@@ -52,6 +52,7 @@ export function CurriculumPartners({
                 $borderRadius={"border-radius-m"}
                 $borderColor={"border-neutral-lighter"}
                 $borderStyle={"solid"}
+                $overflow={"hidden"}
                 $listStyle={"none"}
               >
                 <OakImage
