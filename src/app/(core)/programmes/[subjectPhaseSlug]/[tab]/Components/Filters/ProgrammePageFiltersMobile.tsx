@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { OakBox, OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakInformativeModal,
+  OakInformativeModalBody,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
 
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
 
 import { usePrevious } from "@/hooks/usePrevious";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { OakModalNew } from "@/components/CurriculumComponents/OakComponentsKitchen/OakModalNew";
 import { CloseAction } from "@/components/CurriculumComponents/OakComponentsKitchen/OakModalNew/Content";
 import {
   CurricFiltersSubjectCategories,
@@ -59,31 +64,34 @@ export default function ProgrammePageFiltersMobile({
 
   return (
     <>
-      {/* only add the modal to the dom when it's open to prevent focus getting caught */}
-      {mobileThreadModalOpen && (
-        <OakModalNew
-          open
-          onClose={onClose}
-          title={<OakBox $font={"heading-6"}>Filter and highlight</OakBox>}
-          content={
-            <ModalContent
-              data={data}
-              filters={filters}
-              onChangeFilters={onChangeFilters}
-              slugs={slugs}
-            />
-          }
-          footer={
-            <OakPrimaryButton
-              data-testid="mobile-done-thread-modal-button"
-              onClick={() => setMobileThreadModalOpen(false)}
-              width={"100%"}
-            >
-              Apply
-            </OakPrimaryButton>
-          }
-        />
-      )}
+      <OakInformativeModal
+        onClose={onClose}
+        isOpen={mobileThreadModalOpen}
+        largeScreenMaxWidth={600}
+        domContainer={
+          document.getElementById("all-filters-button-container") ?? undefined
+        }
+        footerSlot={
+          <OakPrimaryButton
+            data-testid="mobile-done-thread-modal-button"
+            onClick={() => setMobileThreadModalOpen(false)}
+            width={"100%"}
+          >
+            Show results
+          </OakPrimaryButton>
+        }
+      >
+        <OakInformativeModalBody>
+          <OakBox $font={"heading-6"}>Filter and highlight</OakBox>
+          <ModalContent
+            data={data}
+            filters={filters}
+            onChangeFilters={onChangeFilters}
+            slugs={slugs}
+          />
+        </OakInformativeModalBody>
+      </OakInformativeModal>
+
       <ProgrammeFiltersHeaderMobile
         onOpenModal={handleMobileThreadModal}
         filters={filters}

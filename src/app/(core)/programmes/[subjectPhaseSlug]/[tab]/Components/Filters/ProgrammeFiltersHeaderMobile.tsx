@@ -213,14 +213,17 @@ export default function ProgrammeFiltersHeaderMobile({
             );
           })}
         </OakRadioGroup>
-        <OakTertiaryButton
-          isTrailingIcon
-          iconName="filter"
-          onClick={onOpenModal}
-          data-testid="mobile-all-filters"
-        >
-          All filters
-        </OakTertiaryButton>
+        {/* Container to return focus to on filter modal close */}
+        <OakBox id="all-filters-button-container">
+          <OakTertiaryButton
+            isTrailingIcon
+            iconName="filter"
+            onClick={onOpenModal}
+            data-testid="mobile-all-filters"
+          >
+            All filters
+          </OakTertiaryButton>
+        </OakBox>
       </OakFlex>
     </OakBox>
   );
