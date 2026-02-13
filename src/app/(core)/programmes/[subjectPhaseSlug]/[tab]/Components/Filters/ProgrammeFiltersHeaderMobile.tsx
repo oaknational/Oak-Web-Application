@@ -1,6 +1,5 @@
-import React, { Fragment, useId } from "react";
+import React, { useId } from "react";
 import {
-  OakSpan,
   OakBox,
   OakFlex,
   OakRadioAsButton,
@@ -15,10 +14,6 @@ import {
   getYearGroupTitle,
   getPathwaySuffix,
 } from "@/utils/curriculum/formatting";
-import {
-  buildTextDescribingFilter,
-  highlightedUnitCount,
-} from "@/utils/curriculum/filteringApp";
 import {
   applyFiltering,
   getModes,
@@ -67,12 +62,6 @@ export default function ProgrammeFiltersHeaderMobile({
 
   const { yearData } = data;
 
-  const highlightedUnits = highlightedUnitCount(
-    yearData,
-    filters,
-    filters.threads,
-  );
-
   const shouldDisplayCorePathway =
     slugs.ks4OptionSlug !== "core" && getShouldDisplayCorePathway(ks4Options);
 
@@ -89,8 +78,6 @@ export default function ProgrammeFiltersHeaderMobile({
       track.unitSequenceRefined(analyticsData);
     }
   }
-
-  const textItemsDescribingFilter = buildTextDescribingFilter(data, filters);
 
   const shouldIncludeCore = slugs.ks4OptionSlug !== "core";
   const mobileFilters = {
@@ -133,48 +120,9 @@ export default function ProgrammeFiltersHeaderMobile({
         $pv="spacing-32"
         $ph={"spacing-32"}
       >
-        <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
-          <OakHeading tag="h2" $font={"heading-7"}>
-            Filters
-          </OakHeading>
-          {textItemsDescribingFilter.length > 0 && (
-            <OakBox
-              $textOverflow={"ellipsis"}
-              $whiteSpace={"nowrap"}
-              $maxWidth={"100%"}
-              $overflow={"hidden"}
-            >
-              {textItemsDescribingFilter.map(
-                (textItemDescribingFilter, index) => {
-                  return (
-                    <Fragment key={textItemDescribingFilter}>
-                      {index > 0 && <OakBox $display={"inline"}> • </OakBox>}
-                      <OakBox
-                        $display={"inline"}
-                        data-testid="highlighted-threads-mobile"
-                      >
-                        {textItemDescribingFilter}
-                      </OakBox>
-                    </Fragment>
-                  );
-                },
-              )}
-              {filters.threads.length > 0 && (
-                <>
-                  <OakBox $display={"inline"}> • </OakBox>
-                  <OakBox
-                    $display={"inline"}
-                    data-testid="highlighted-units-box-mobile"
-                  >
-                    <OakSpan aria-live="polite" aria-atomic="true">
-                      {highlightedUnits} units highlighted
-                    </OakSpan>
-                  </OakBox>
-                </>
-              )}
-            </OakBox>
-          )}
-        </OakFlex>
+        <OakHeading tag="h2" $font={"heading-7"} $mb={"spacing-8"}>
+          Filters
+        </OakHeading>
 
         <OakRadioGroup
           data-testid={"year-selection-mobile"}
