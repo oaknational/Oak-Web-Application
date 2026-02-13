@@ -103,18 +103,18 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
       $background={"bg-primary"}
       topNavProps={topNav}
     >
-      <OakMaxWidth $ph={["spacing-16", "spacing-32"]} $pt={"spacing-32"}>
+      <OakMaxWidth $ph={["spacing-16", "spacing-40"]} $pt={"spacing-24"}>
         <Breadcrumbs breadcrumbs={breadcrumbs} />
       </OakMaxWidth>
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
-        $mt={["spacing-48", "spacing-56", "spacing-56"]}
-        $ph={["spacing-16", "spacing-32"]}
+        $mt={["spacing-48", "spacing-80"]}
+        $ph={["spacing-16", "spacing-40"]}
       >
         <OakGrid $cg={["spacing-0", "spacing-16"]} $rg={"spacing-24"}>
           {/* Image - Desktop/Tablet only (left column) */}
           <OakGridArea
-            $colSpan={[12, 5, 4]}
+            $colSpan={[12, 4]}
             $order={1}
             $display={["none", "block"]}
           >
@@ -135,7 +135,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
           </OakGridArea>
 
           {/* All text content (right column on desktop, full width on mobile) */}
-          <OakGridArea $colSpan={[12, 7, 8]} $order={2}>
+          <OakGridArea $colSpan={[12, 8]} $order={2}>
             <OakFlex
               $flexDirection={"column"}
               $ph={["spacing-0", "spacing-40"]}
