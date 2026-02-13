@@ -72,13 +72,18 @@ export default function ProgrammePageFiltersMobile({
           document.getElementById("all-filters-button-container") ?? undefined
         }
         footerSlot={
-          <OakPrimaryButton
-            data-testid="mobile-done-thread-modal-button"
-            onClick={() => setMobileThreadModalOpen(false)}
-            width={"100%"}
+          <OakBox
+            $pa={"spacing-12"}
+            $bt={"border-solid-s"}
+            $borderColor={"border-neutral-lighter"}
           >
-            Show results
-          </OakPrimaryButton>
+            <OakPrimaryButton
+              data-testid="mobile-done-thread-modal-button"
+              onClick={() => setMobileThreadModalOpen(false)}
+            >
+              Show results
+            </OakPrimaryButton>
+          </OakBox>
         }
       >
         <OakInformativeModalBody>
@@ -122,7 +127,7 @@ const ModalContent = ({
         $flexShrink={1}
         $overflowY={"auto"}
         $position={"relative"}
-        $pa={"spacing-20"}
+        $pv={"spacing-20"}
       >
         <OakFlex $flexDirection={"column"} $gap={"spacing-32"} $width={"100vw"}>
           {shouldDisplayFilter(data, filters, "subjectCategories") && (

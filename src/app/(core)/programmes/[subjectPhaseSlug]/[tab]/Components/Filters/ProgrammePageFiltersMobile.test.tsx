@@ -90,26 +90,26 @@ const defaultProps: ProgrammePageMobileFiltersProps = {
   onChangeFilters: jest.fn(),
 };
 
-const mockOpen = jest.fn();
-const mockClose = jest.fn();
-// Mock HTMLDialogElement methods that jsdom doesn't support
-HTMLDialogElement.prototype.showModal = mockOpen;
-HTMLDialogElement.prototype.close = mockClose;
-
 const render = renderWithProviders();
 
 describe("ProgrammePageFiltersMobile", () => {
   it("opens modal on click", async () => {
     render(<ProgrammePageFiltersMobile {...defaultProps} />);
 
-    const modalLink = screen.getByTestId("mobile-all-filters");
-    const user = userEvent.setup();
-    await user.click(modalLink);
+    expect(screen.queryByText("Filter and highlight")).not.toBeInTheDocument();
 
-    expect(mockOpen).toHaveBeenCalled();
+    const openButton = screen.getByRole("button", { name: "All filters" });
+    const user = userEvent.setup();
+    await user.click(openButton);
+
+    expect(screen.getByText("Filter and highlight")).toBeInTheDocument();
   });
-  it("renders correct filters", () => {
+  it("renders correct filters", async () => {
     render(<ProgrammePageFiltersMobile {...defaultProps} />);
+
+    const openButton = screen.getByRole("button", { name: "All filters" });
+    const user = userEvent.setup();
+    await user.click(openButton);
 
     const categoryFilter1 = screen.getByTestId(
       "subject-category-radio-category-1",

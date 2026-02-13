@@ -125,7 +125,7 @@ export default function ProgrammeFiltersHeaderMobile({
       $zIndex={"fixed-header"}
     >
       <OakFlex
-        $gap={"spacing-16"}
+        $gap={"spacing-12"}
         $flexDirection={"column"}
         $width={"100%"}
         $background={"bg-primary"}
