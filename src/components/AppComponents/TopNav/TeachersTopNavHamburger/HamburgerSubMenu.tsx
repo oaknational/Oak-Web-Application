@@ -17,24 +17,11 @@ import {
   HamburgerMenuHook,
 } from "./TeachersTopNavHamburger";
 
-import {
-  NavSection,
-  TeachersBrowse,
-  TeachersSubNavData,
-} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import {
   OakLinkPropsRequiringPageOnly,
   resolveOakHref,
 } from "@/common-lib/urls";
-
-export type NavItemData =
-  | { type: "links"; links: NavSection }
-  | {
-      type: "subjects";
-      subjects: TeachersBrowse["children"][number]["children"];
-      keystage: string;
-      phase: "primary" | "secondary";
-    };
 
 export function SubmenuContainer({
   title,

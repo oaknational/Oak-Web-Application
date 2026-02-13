@@ -5,8 +5,9 @@ import { FocusNode } from "./types";
 import {
   TeachersSubNavData,
   PupilsSubNavData,
-  NavSection,
-  TeachersBrowse,
+  NavButton,
+  NavLink,
+  isDropdownMenuItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
 type NavAreaType = "teachers" | "pupils";
@@ -20,7 +21,7 @@ export class DropdownFocusManager<
 > {
   private readonly focusMap: Map<string, FocusNode>;
   private readonly closeMenu: () => void;
-  private readonly lastSubnavButton: NavSection | TeachersBrowse;
+  private readonly lastSubnavButton: NavButton;
   private readonly areaType: NavAreaType;
 
   constructor(
@@ -52,22 +53,26 @@ export class DropdownFocusManager<
     return focusMap;
   }
 
-  private addAllKeystagesButtonsToNavData(data: NavSection[]): NavSection[] {
+  private addAllKeystagesButtonsToNavData(data: NavButton[]): NavButton[] {
     if (this.areaType !== "teachers") return data;
     // get to the subjects level and add an "All keystages" button to each subject list
-    const updatedData = data.map((phase) => ({
-      ...phase,
-      children: phase.children?.map((keystage) => {
-        const allKeystagesButton: NavSection = {
-          title: "All keystages",
-          slug: `all-keystages-button`,
-        };
-        return {
-          ...keystage,
-          children: [...(keystage.children ?? []), allKeystagesButton],
-        };
-      }),
-    }));
+    const updatedData = data.map((phase) => {
+      if (!isDropdownMenuItem(phase)) return phase;
+      return {
+        ...phase,
+        children: phase.children?.map((keystage) => {
+          const allKeystagesButton: NavLink = {
+            title: "All keystages",
+            slug: `all-keystages-button`,
+          };
+          if (!isDropdownMenuItem(keystage)) return keystage;
+          return {
+            ...keystage,
+            children: [...keystage.children, allKeystagesButton],
+          };
+        }),
+      };
+    });
     return updatedData;
   }
 
@@ -76,7 +81,7 @@ export class DropdownFocusManager<
     focusMap,
     parent,
   }: {
-    items: Array<NavSection | TeachersBrowse>;
+    items: NavButton[];
     focusMap: Map<string, FocusNode>;
     parent: FocusNode["parent"];
   }) {
@@ -92,7 +97,7 @@ export class DropdownFocusManager<
         children: this.getChildrenIds(item, id),
       });
 
-      if (item.children && item.children.length > 0) {
+      if (isDropdownMenuItem(item) && item.children.length > 0) {
         this.buildFocusMap({
           items: item.children,
           focusMap,
@@ -107,12 +112,9 @@ export class DropdownFocusManager<
     });
   }
 
-  private getChildrenIds(
-    item: NavSection | TeachersBrowse,
-    parentId: string,
-  ): string[] {
-    const items = item.children ?? [];
-    return items.map((item) => this.createId(parentId, item.slug));
+  private getChildrenIds(item: NavButton, parentId: string): string[] {
+    if (!isDropdownMenuItem(item)) return [];
+    return item.children.map((child) => this.createId(parentId, child.slug));
   }
 
   private focusElementById(

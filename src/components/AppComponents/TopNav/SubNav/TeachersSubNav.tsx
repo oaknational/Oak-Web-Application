@@ -7,7 +7,10 @@ import {
   OakLinkPropsRequiringPageOnly,
   resolveOakHref,
 } from "@/common-lib/urls";
-import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import {
+  TeachersSubNavData,
+  isDropdownMenuItem,
+} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import {
   OakBox,
   OakFlex,
@@ -117,7 +120,7 @@ const TeachersSubNav = ({
             const external = "external" in btn ? btn.external : undefined;
             return (
               <OakLI key={btn.slug}>
-                {btn.children ? (
+                {isDropdownMenuItem(btn) ? (
                   <OakSmallPrimaryInvertedButton
                     {...getButtonProps(btn.slug)}
                     data-testid={focusManager.createId("teachers", btn.slug)}

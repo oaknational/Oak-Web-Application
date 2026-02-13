@@ -1,7 +1,7 @@
 import z from "zod";
 import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 
-import { OakLinkPropsRequiringPageOnly } from "@/common-lib/urls";
+import { NavLink } from "@/components/GenericPagesComponents/GenericSummaryCardNavButton/GenericSummaryCardNavButton";
 
 export const topNavResponseSchema = z.object({
   programmes: z.array(
@@ -23,39 +23,29 @@ export const topNavResponseSchema = z.object({
 });
 export type TopNavResponse = z.infer<typeof topNavResponseSchema>;
 
+export type NavLink = {
+  title: string;
+  slug: string;
+  external?: boolean;
+};
+
+export type NavDropDownButton = {
+  title: string;
+  slug: string;
+  external?: boolean;
+  children: NavLink[];
+};
+
 export type TeachersSubNavData = {
   primary: TeachersBrowse;
   secondary: TeachersBrowse;
-  curriculum: NavSection;
-  guidance: NavSection;
-  aboutUs: NavSection;
-  aiExperiments: NavSection;
+  curriculum: NavLink;
+  guidance: NavDropDownButton;
+  aboutUs: NavDropDownButton;
+  aiExperiments: NavLink;
 };
 
-export type NavSection = {
-  title: string;
-  slug: string;
-  external?: boolean;
-  children?: NavSection[];
-};
-
-type SubNavButton = {
-  title: string;
-  slug: string;
-  element: "button";
-  children?: Array<NavSection | TeachersBrowse>;
-};
-
-type SubNavLink = {
-  title: string;
-  slug: OakLinkPropsRequiringPageOnly["page"];
-  element: "link";
-  external?: boolean;
-};
-
-type SubNavItem = SubNavButton | SubNavLink;
-
-export type SubnavButtons = Array<SubNavItem>;
+export type NavButton = NavLink | NavDropDownButton | TeachersBrowse;
 
 type SubjectsNavItem = {
   title: string;
@@ -86,3 +76,10 @@ type PupilsBrowse = {
   slug: "primary" | "secondary";
   children: Array<{ title: string; slug: string }>;
 };
+
+// Type guard to check if a nav item opens a dropdown menu (vs being a direct link)
+export function isDropdownMenuItem(
+  section: NavLink | NavDropDownButton | TeachersBrowse,
+): section is NavDropDownButton | TeachersBrowse {
+  return "children" in section;
+}
