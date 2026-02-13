@@ -221,7 +221,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 
               {/* Bio */}
               {trimmedBio && (
-                <OakBox $font={["body-2", "body-1"]} $color={"text-primary"}>
+                <OakBox $font={["body-2", "body-1"]} $color={"text-primary"} $pb={"spacing-16"}>
                   <PortableTextWithDefaults value={trimmedBio} />
                 </OakBox>
               )}
