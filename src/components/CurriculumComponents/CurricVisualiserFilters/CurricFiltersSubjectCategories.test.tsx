@@ -21,6 +21,7 @@ describe("CurricFiltersSubjectCategories", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         slugs={{
           subjectSlug: "english",
@@ -50,6 +51,7 @@ describe("CurricFiltersSubjectCategories", () => {
           years: ["7", "8", "9", "10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         slugs={{
           subjectSlug: "english",
@@ -80,6 +82,7 @@ describe("CurricFiltersSubjectCategories", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         slugs={{
           subjectSlug: "english",
@@ -103,6 +106,7 @@ describe("CurricFiltersSubjectCategories", () => {
         tiers: [],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "subject_category_button",
     );
@@ -115,6 +119,7 @@ describe("CurricFiltersSubjectCategories", () => {
         tiers: [],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "subject_category_button",
     );
@@ -127,6 +132,7 @@ describe("CurricFiltersSubjectCategories", () => {
         tiers: [],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "subject_category_button",
     );

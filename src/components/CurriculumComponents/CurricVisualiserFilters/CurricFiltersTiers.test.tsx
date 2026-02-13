@@ -18,6 +18,7 @@ describe("CurricFiltersTiers", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={() => {}}
         data={ks4Setup}
@@ -41,6 +42,7 @@ describe("CurricFiltersTiers", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={() => {}}
         data={ks3and4Setup}
@@ -64,6 +66,7 @@ describe("CurricFiltersTiers", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={() => {}}
         data={ks4Setup}
@@ -87,6 +90,7 @@ describe("CurricFiltersTiers", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={onChangeFilters}
         data={ks4Setup}
@@ -105,6 +109,7 @@ describe("CurricFiltersTiers", () => {
         tiers: ["foundation"],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "learning_tier_button",
     );
@@ -117,6 +122,7 @@ describe("CurricFiltersTiers", () => {
         tiers: ["higher"],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "learning_tier_button",
     );

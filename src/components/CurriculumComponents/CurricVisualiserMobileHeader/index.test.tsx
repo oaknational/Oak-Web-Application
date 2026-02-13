@@ -98,6 +98,7 @@ const defaultProps: ComponentProps<typeof CurricVisualiserMobileHeader> = {
     pathways: [],
     subjectCategories: [],
     threads: [],
+    keystages: [],
   },
   data: {
     yearData: mockYearData,

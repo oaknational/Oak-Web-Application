@@ -61,6 +61,7 @@ const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
     pathways: [],
     subjectCategories: [],
     threads: [],
+    keystages: [],
   },
   ks4Options: [],
   ks4OptionSlug: "edexcel",
@@ -228,6 +229,7 @@ describe("Curriculum visualiser filter states", () => {
       const filterFixture = {
         childSubjects: [],
         pathways: [],
+        keystages: [],
         subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -258,6 +260,7 @@ describe("Curriculum visualiser filter states", () => {
         tiers: [],
         years: ["7"],
         threads: [],
+        keystages: [],
       };
 
       const { findAllByText } = render(
@@ -283,6 +286,7 @@ describe("Curriculum visualiser filter states", () => {
         subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["8"],
+        keystages: [],
         threads: [],
       };
 
@@ -310,6 +314,7 @@ describe("Curriculum visualiser filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       const { findAllByTestId, findAllByText } = render(
@@ -343,6 +348,7 @@ describe("Curriculum visualiser filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       const { findAllByText, findAllByTestId } = render(
@@ -372,6 +378,7 @@ describe("Curriculum visualiser filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       const { findAllByText, findAllByTestId } = render(
@@ -401,6 +408,7 @@ describe("Curriculum visualiser filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       const { findByText, findAllByTestId } = render(
@@ -436,6 +444,7 @@ describe("Curriculum visualiser filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       const { findByText } = render(
@@ -464,6 +473,7 @@ describe("Curriculum visualiser filter states", () => {
         tiers: [],
         years: ["1", "2", "3", "4", "5", "6"],
         threads: [],
+        keystages: [],
       };
 
       const { findAllByText, findAllByTestId } = render(
@@ -492,6 +502,7 @@ describe("Curriculum visualiser filter states", () => {
         tiers: [],
         years: ["1", "2", "3", "4", "5", "6"],
         threads: [],
+        keystages: [],
       };
 
       const { findAllByText, findAllByTestId } = render(
@@ -538,6 +549,7 @@ describe("Year group filter headings display correctly", () => {
           years: ["7", "8", "9", "10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -579,6 +591,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["7"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -608,6 +621,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["7"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -634,6 +648,7 @@ describe("Year group filter headings display correctly", () => {
           subjectCategories: ["chemistry"],
           childSubjects: [],
           pathways: [],
+          keystages: [],
           tiers: [],
           years: ["7"],
           threads: [],
@@ -663,6 +678,7 @@ describe("Year group filter headings display correctly", () => {
           subjectCategories: ["physics"],
           childSubjects: [],
           pathways: [],
+          keystages: [],
           tiers: [],
           years: ["7"],
           threads: [],
@@ -695,6 +711,7 @@ describe("Year group filter headings display correctly", () => {
           years: ["10"],
           threads: [],
           pathways: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -723,6 +740,7 @@ describe("Year group filter headings display correctly", () => {
           years: ["11"],
           threads: [],
           pathways: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -751,6 +769,7 @@ describe("Year group filter headings display correctly", () => {
           years: ["10"],
           threads: [],
           pathways: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -782,6 +801,7 @@ describe("Year group filter headings display correctly", () => {
         const filterFixture = {
           childSubjects: [],
           pathways: [],
+          keystages: [],
           subjectCategories: [],
           tiers: ["higher"],
           years: ["10"],
@@ -810,6 +830,7 @@ describe("Year group filter headings display correctly", () => {
         const filterFixture = {
           childSubjects: [],
           pathways: [],
+          keystages: [],
           subjectCategories: [],
           tiers: ["foundation"],
           years: ["11"],
@@ -845,6 +866,7 @@ describe("Year group filter headings display correctly", () => {
         const filterFixture = {
           childSubjects: [],
           pathways: [],
+          keystages: [],
           subjectCategories: ["reading-writing-and-oracy"],
           tiers: [],
           years: ["1"],
@@ -880,6 +902,7 @@ describe("Year group filter headings display correctly", () => {
         const filterFixture = {
           childSubjects: [],
           pathways: [],
+          keystages: [],
           subjectCategories: ["biology"],
           tiers: [],
           years: ["1"],
@@ -908,6 +931,7 @@ describe("Year group filter headings display correctly", () => {
         const filterFixture = {
           childSubjects: [],
           pathways: [],
+          keystages: [],
           subjectCategories: ["chemistry"],
           tiers: [],
           years: ["2"],
@@ -936,6 +960,7 @@ describe("Year group filter headings display correctly", () => {
         const filterFixture = {
           childSubjects: [],
           pathways: [],
+          keystages: [],
           subjectCategories: ["physics"],
           tiers: [],
           years: ["3"],
@@ -964,6 +989,7 @@ describe("Year group filter headings display correctly", () => {
         const filterFixture = {
           childSubjects: [],
           pathways: [],
+          keystages: [],
           subjectCategories: ["all"],
           tiers: [],
           years: ["4"],

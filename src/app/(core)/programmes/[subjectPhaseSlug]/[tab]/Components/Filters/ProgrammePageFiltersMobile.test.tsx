@@ -68,6 +68,7 @@ const defaultProps: ProgrammePageMobileFiltersProps = {
     pathways: [],
     subjectCategories: ["category-1", "category-2"],
     threads: [],
+    keystages: [],
   },
   data: {
     yearData: mockYearData,

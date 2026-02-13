@@ -68,6 +68,7 @@ export type CurriculumFilters = {
   years: string[];
   threads: Thread["slug"][];
   pathways: Pathway["pathway_slug"][];
+  keystages: string[];
 };
 
 export type Lesson = {

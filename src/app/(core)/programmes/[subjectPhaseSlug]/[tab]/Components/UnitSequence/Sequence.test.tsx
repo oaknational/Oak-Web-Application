@@ -41,6 +41,7 @@ const CurricVisualiserFixture: ComponentProps<typeof ProgrammeSequence> = {
     pathways: [],
     subjectCategories: [],
     threads: [],
+    keystages: [],
   },
   ks4Options: [],
   ks4OptionSlug: "edexcel",
@@ -162,6 +163,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -188,6 +190,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -214,6 +217,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["8"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -240,6 +244,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -273,6 +278,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -302,6 +308,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -331,6 +338,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -366,6 +374,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -394,6 +403,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["1", "2", "3", "4", "5", "6"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -422,6 +432,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["1", "2", "3", "4", "5", "6"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -467,6 +478,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["7", "8", "9", "10", "11"],
           threads: [],
+          keystages: [],
           pathways: [],
         };
 
@@ -509,6 +521,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["7"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -538,6 +551,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["7"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -567,6 +581,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["7"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -596,6 +611,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["7"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -624,6 +640,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["foundation"],
           years: ["10"],
           threads: [],
+          keystages: [],
           pathways: [],
         };
 
@@ -652,6 +669,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["11"],
           threads: [],
+          keystages: [],
           pathways: [],
         };
 
@@ -680,6 +698,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["10"],
           threads: [],
+          keystages: [],
           pathways: [],
         };
 
@@ -716,6 +735,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["10"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -744,6 +764,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["foundation"],
           years: ["11"],
           threads: [],
+          keystages: [],
         };
 
         render(
@@ -779,6 +800,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["1"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -814,6 +836,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["1"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -842,6 +865,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["2"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -870,6 +894,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["3"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -898,6 +923,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["4"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(

@@ -22,6 +22,7 @@ const curriculumVisualiserFixture: ComponentProps<typeof Component> = {
     subjectCategories: [],
     threads: [],
     pathways: [],
+    keystages: [],
   },
   ks4Options: [{ slug: "edexcel", title: "edexcel" }],
   ks4OptionSlug: "edexcel",

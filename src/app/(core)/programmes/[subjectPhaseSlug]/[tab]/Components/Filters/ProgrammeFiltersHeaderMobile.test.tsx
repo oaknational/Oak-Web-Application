@@ -79,6 +79,7 @@ const defaultProps: ComponentProps<typeof ProgrammeFiltersHeaderMobile> = {
     pathways: [],
     subjectCategories: [],
     threads: [],
+    keystages: [],
   },
   data: {
     yearData: mockYearData,

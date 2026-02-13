@@ -288,6 +288,7 @@ describe("filtering", () => {
         tiers: ["foundation"],
         years: ["7", "8"],
         pathways: [],
+        keystages: [],
       });
     });
 
@@ -402,6 +403,7 @@ describe("diffFilters", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
     expect(diffFilters(dfltFilter, dfltFilter)).toEqual({
       childSubjects: [],
@@ -410,6 +412,7 @@ describe("diffFilters", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     });
   });
 
@@ -424,6 +427,7 @@ describe("diffFilters", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
     const filter: CurriculumFilters = {
       childSubjects: [],
@@ -432,6 +436,7 @@ describe("diffFilters", () => {
       years: [],
       threads: [thread.slug],
       pathways: [],
+      keystages: [],
     };
     expect(diffFilters(dfltFilter, filter)).toEqual({
       childSubjects: [],
@@ -440,6 +445,7 @@ describe("diffFilters", () => {
       years: [],
       threads: [thread.slug],
       pathways: [],
+      keystages: [],
     });
   });
 });
@@ -682,6 +688,7 @@ describe("getNumberOfFiltersApplied", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
     expect(getNumberOfFiltersApplied(dfltFilter, dfltFilter)).toEqual(0);
   });
@@ -697,6 +704,7 @@ describe("getNumberOfFiltersApplied", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
     const filter: CurriculumFilters = {
       childSubjects: [],
@@ -705,6 +713,7 @@ describe("getNumberOfFiltersApplied", () => {
       years: [],
       threads: [thread.slug],
       pathways: [],
+      keystages: [],
     };
     expect(getNumberOfFiltersApplied(dfltFilter, filter)).toEqual(3);
   });
@@ -719,6 +728,7 @@ describe("filtersToQuery", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     });
     expect(result).toEqual({});
   });
@@ -752,6 +762,7 @@ describe("filtersToQuery", () => {
         years: [],
         threads: [],
         pathways: [],
+        keystages: [],
       },
     );
 
@@ -774,6 +785,7 @@ describe("mergeInFilterParams", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
 
     const result = mergeInFilterParams(
@@ -789,6 +801,7 @@ describe("mergeInFilterParams", () => {
       years: ["1"],
       threads: ["thread1"],
       pathways: [],
+      keystages: [],
     });
   });
 
@@ -800,6 +813,7 @@ describe("mergeInFilterParams", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
 
     const result = mergeInFilterParams(
@@ -815,6 +829,7 @@ describe("mergeInFilterParams", () => {
       years: ["1", "2"],
       threads: ["thread1", "thread2"],
       pathways: [],
+      keystages: [],
     });
   });
 });
@@ -942,6 +957,7 @@ describe("filteringFromYears", () => {
       tiers: [],
       years: [],
       pathways: [],
+      keystages: [],
     });
   });
 
