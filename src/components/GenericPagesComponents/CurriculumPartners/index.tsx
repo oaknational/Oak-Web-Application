@@ -4,6 +4,7 @@ import {
   OakGrid,
   OakHeading,
   OakImage,
+  OakLI,
   OakP,
 } from "@oaknational/oak-components";
 
@@ -32,6 +33,7 @@ export function CurriculumPartners({
       </OakFlex>
       <OakBox>
         <OakGrid
+          as="ul"
           $gridTemplateColumns={[
             "repeat(3, 1fr)",
             "repeat(5, 1fr)",
@@ -39,16 +41,18 @@ export function CurriculumPartners({
           ]}
           $cg={"spacing-16"}
           $rg={"spacing-16"}
+          $pa={"spacing-0"}
+          $ma={"spacing-0"}
         >
           {items.map((item) => {
             return (
-              <OakBox
+              <OakLI
                 key={item.imageUrl}
                 $aspectRatio={"1/1"}
                 $borderRadius={"border-radius-m"}
                 $borderColor={"border-neutral-lighter"}
                 $borderStyle={"solid"}
-                $position={"relative"}
+                $listStyle={"none"}
               >
                 <OakImage
                   src={item.imageUrl}
@@ -56,7 +60,7 @@ export function CurriculumPartners({
                   $height="100%"
                   alt={item.alt}
                 />
-              </OakBox>
+              </OakLI>
             );
           })}
         </OakGrid>
