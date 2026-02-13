@@ -96,13 +96,17 @@ describe("ProgrammePageFiltersMobile", () => {
   it("opens modal on click", async () => {
     render(<ProgrammePageFiltersMobile {...defaultProps} />);
 
-    expect(screen.queryByText("Filter and highlight")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Filters", level: 1 }),
+    ).not.toBeInTheDocument();
 
     const openButton = screen.getByRole("button", { name: "All filters" });
     const user = userEvent.setup();
     await user.click(openButton);
 
-    expect(screen.getByText("Filter and highlight")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Filters", level: 1 }),
+    ).toBeInTheDocument();
   });
   it("renders correct filters", async () => {
     render(<ProgrammePageFiltersMobile {...defaultProps} />);
