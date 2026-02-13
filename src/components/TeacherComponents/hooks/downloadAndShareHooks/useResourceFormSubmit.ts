@@ -1,5 +1,3 @@
-import { useAuth } from "@clerk/nextjs";
-
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
 import type {
@@ -18,8 +16,6 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
     setEmailInLocalStorage,
     setTermsInLocalStorage,
   } = useLocalStorageForDownloads();
-
-  const auth = useAuth();
 
   const onSubmit = async (data: ResourceFormProps, slug: string) => {
     if (props.onSubmit) {
@@ -52,8 +48,6 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
       setTermsInLocalStorage(terms);
     }
     if (props.type === "download") {
-      const accessToken = await auth.getToken();
-
       const additionalFilesRegex = /additional-files-*/;
       const hasAdditionalFiles = downloads.some((d) =>
         additionalFilesRegex.test(d),
@@ -77,7 +71,6 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
         selectedResourceTypes: selectedResourceTypes as DownloadResourceType[],
         selectedAdditionalFilesIds,
         isLegacyDownload: props.isLegacyDownload,
-        authToken: accessToken,
       });
     }
   };

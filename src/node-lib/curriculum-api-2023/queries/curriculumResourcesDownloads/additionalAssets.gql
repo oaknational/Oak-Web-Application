@@ -1,0 +1,11 @@
+query additionalAssets($assetIds: [Int!]) {
+  assets(where: { asset_id: { _in: $assetIds } }) {
+    asset_id
+    asset_type
+    asset_uid
+    created_at
+    updated_at
+    asset_object
+    title
+  }
+}
