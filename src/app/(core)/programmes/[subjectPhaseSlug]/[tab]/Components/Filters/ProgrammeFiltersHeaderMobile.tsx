@@ -1,15 +1,13 @@
-import React, { useState, Fragment, ReactNode } from "react";
+import React, { Fragment, useId } from "react";
 import {
   OakSpan,
   OakBox,
-  OakSecondaryLink,
   OakFlex,
-  OakSmallPrimaryButton,
-  OakSmallSecondaryButton,
-  OakPrimaryButtonProps,
-  OakFocusIndicator,
+  OakRadioAsButton,
+  OakRadioGroup,
+  OakHeading,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import { ProgrammePageMobileFiltersProps } from "./ProgrammePageFiltersMobile";
 
@@ -30,88 +28,52 @@ import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
+import { getColorSchemeByYear } from "@/components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersYears";
 
 export type MobileFilterHeaderProps = ProgrammePageMobileFiltersProps & {
   onOpenModal: () => void;
 };
 
-const StyledButton = (
-  props: OakPrimaryButtonProps & {
-    children: ReactNode;
-    onClick: () => void;
-    "aria-pressed": boolean;
-  },
-) =>
-  props["aria-pressed"] ? (
-    <OakSmallPrimaryButton {...props} />
-  ) : (
-    <OakSmallSecondaryButton {...props} />
-  );
+function scrollToYearSection(yearOption: string) {
+  const targetElement = document.getElementById(`year-${yearOption}`);
+  if (targetElement) {
+    const headerOffset = 140;
+    const elementPosition = targetElement.getBoundingClientRect().top;
+    const { pageYOffset } = globalThis;
+    const offsetPosition = elementPosition + pageYOffset - headerOffset;
+    globalThis.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
 
-const ScrollableWrapper = styled.div`
-  position: relative;
-  width: 100%;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 20px;
-    background: linear-gradient(
-      to left,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1)
+    globalThis.addEventListener(
+      "scrollend",
+      () => {
+        const yearHeading = document.getElementById(`year-${yearOption} h3`);
+        if (yearHeading instanceof HTMLElement) {
+          yearHeading.setAttribute("tabindex", "-1");
+          yearHeading.focus();
+        }
+      },
+      { once: true },
     );
-    pointer-events: none;
-    z-index: 1;
   }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 25px;
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1)
-    );
-    pointer-events: none;
-    z-index: 1;
-  }
-`;
-
-const StyledButtonGroup = styled(OakFlex)`
-  overflow-x: auto;
-  overflow-y: hidden;
-  position: relative;
-
-  & > *:first-child {
-    margin-left: 16px;
-  }
-
-  & > *:not(:last-child) {
-    margin-right: -5px;
-  }
-`;
+}
 
 export default function ProgrammeFiltersHeaderMobile({
   onOpenModal,
   filters,
   data,
-  selectedYear,
   onSelectYear,
+  selectedYear,
   slugs,
   ks4Options,
   trackingData,
 }: MobileFilterHeaderProps) {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-  const [lockYear, setLockYear] = useState<string | null>(null);
+
+  const id = useId();
 
   const { yearData } = data;
 
@@ -135,38 +97,6 @@ export default function ProgrammeFiltersHeaderMobile({
         },
       );
       track.unitSequenceRefined(analyticsData);
-    }
-  }
-
-  function isSelectedYear(yearOption: string) {
-    return selectedYear === `year-${yearOption}`;
-  }
-
-  function scrollToYearSection(yearOption: string) {
-    const targetElement = document.getElementById(`year-${yearOption}`);
-    if (targetElement) {
-      const headerOffset = 140;
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const { pageYOffset } = globalThis;
-      const offsetPosition = elementPosition + pageYOffset - headerOffset;
-      setLockYear(yearOption);
-      globalThis.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-
-      globalThis.addEventListener(
-        "scrollend",
-        () => {
-          setLockYear(null);
-          const yearHeading = document.getElementById(`year-${yearOption} h3`);
-          if (yearHeading instanceof HTMLElement) {
-            yearHeading.setAttribute("tabindex", "-1");
-            yearHeading.focus();
-          }
-        },
-        { once: true },
-      );
     }
   }
 
@@ -198,128 +128,103 @@ export default function ProgrammeFiltersHeaderMobile({
       $top="spacing-0"
       $zIndex={"fixed-header"}
     >
-      <OakBox
+      <OakFlex
+        $gap={"spacing-16"}
+        $flexDirection={"column"}
         $width={"100%"}
         $background={"bg-primary"}
-        $mb="spacing-8"
         data-test-id="filter-mobiles"
+        $pv="spacing-32"
       >
-        <OakBox>
-          <OakBox $ph={"spacing-16"} $pv={"spacing-16"} $mv="spacing-16">
-            <OakSpan $font={"body-1-bold"}>
-              <OakSecondaryLink
-                element="button"
-                iconName="chevron-right"
-                isTrailingIcon
-                onClick={onOpenModal}
-                data-testid="mobile-highlight-thread"
-              >
-                Filter and highlight
-              </OakSecondaryLink>
-            </OakSpan>
-            {textItemsDescribingFilter.length > 0 && (
-              <OakBox
-                $textOverflow={"ellipsis"}
-                $whiteSpace={"nowrap"}
-                $maxWidth={"100%"}
-                $overflow={"hidden"}
-              >
-                {textItemsDescribingFilter.map(
-                  (textItemDescribingFilter, index) => {
-                    return (
-                      <Fragment key={textItemDescribingFilter}>
-                        {index > 0 && <OakBox $display={"inline"}> • </OakBox>}
-                        <OakBox
-                          $display={"inline"}
-                          data-testid="highlighted-threads-mobile"
-                        >
-                          {textItemDescribingFilter}
-                        </OakBox>
-                      </Fragment>
-                    );
-                  },
-                )}
-                {filters.threads.length > 0 && (
-                  <>
-                    <OakBox $display={"inline"}> • </OakBox>
-                    <OakBox
-                      $display={"inline"}
-                      data-testid="highlighted-units-box-mobile"
-                    >
-                      <OakSpan aria-live="polite" aria-atomic="true">
-                        {highlightedUnits} units highlighted
-                      </OakSpan>
-                    </OakBox>
-                  </>
-                )}
-              </OakBox>
-            )}
-          </OakBox>
-          <OakBox
-            $bt={"border-solid-s"}
-            $bb={"border-solid-s"}
-            $borderColor={"bg-btn-secondary-disabled"}
-            $width={"100%"}
-            data-testid={"year-selection-mobile"}
-          >
-            <ScrollableWrapper>
-              <StyledButtonGroup aria-label="Select a year group">
-                {unitsByYearSelector.map(({ type, year }) => {
-                  const yearOption = `${type}-${year}`;
-                  const isYearSelected = lockYear
-                    ? lockYear === yearOption
-                    : isSelectedYear(yearOption);
+        <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
+          <OakHeading tag="h2" $font={"heading-7"}>
+            Filters
+          </OakHeading>
+          {textItemsDescribingFilter.length > 0 && (
+            <OakBox
+              $textOverflow={"ellipsis"}
+              $whiteSpace={"nowrap"}
+              $maxWidth={"100%"}
+              $overflow={"hidden"}
+            >
+              {textItemsDescribingFilter.map(
+                (textItemDescribingFilter, index) => {
                   return (
-                    <OakBox key={yearOption} $pt="spacing-8" $ml="spacing-4">
-                      <OakFocusIndicator
-                        data-testid="year-group-focus-indicator"
-                        $display={"inline-block"}
-                        $mb="spacing-8"
-                        $mr="spacing-8"
-                        $background={
-                          isYearSelected ? "bg-inverted" : "bg-primary"
-                        }
-                        $color={
-                          isYearSelected ? "text-inverted" : "text-primary"
-                        }
-                        $borderRadius={"border-radius-s"}
-                        $font="heading-7"
-                        hoverBackground={
-                          isSelectedYear(yearOption)
-                            ? "bg-neutral"
-                            : "bg-decorative6-main"
-                        }
+                    <Fragment key={textItemDescribingFilter}>
+                      {index > 0 && <OakBox $display={"inline"}> • </OakBox>}
+                      <OakBox
+                        $display={"inline"}
+                        data-testid="highlighted-threads-mobile"
                       >
-                        {/* TD: [integrated journey] update to use new button with selected state? */}
-                        <StyledButton
-                          data-testid="year-group-filter-button"
-                          aria-pressed={isSelectedYear(yearOption)}
-                          onClick={() => {
-                            onSelectYear(yearOption);
-                            trackSelectYear(yearOption);
-                            scrollToYearSection(yearOption);
-                          }}
-                        >
-                          {getYearGroupTitle(
-                            yearData,
-                            year,
-                            (() => {
-                              const suffix = shouldDisplayCorePathway
-                                ? getPathwaySuffix(year, type)
-                                : undefined;
-                              return suffix ? `(${suffix})` : undefined;
-                            })(),
-                          )}
-                        </StyledButton>
-                      </OakFocusIndicator>
-                    </OakBox>
+                        {textItemDescribingFilter}
+                      </OakBox>
+                    </Fragment>
                   );
-                })}
-              </StyledButtonGroup>
-            </ScrollableWrapper>
-          </OakBox>
-        </OakBox>
-      </OakBox>
+                },
+              )}
+              {filters.threads.length > 0 && (
+                <>
+                  <OakBox $display={"inline"}> • </OakBox>
+                  <OakBox
+                    $display={"inline"}
+                    data-testid="highlighted-units-box-mobile"
+                  >
+                    <OakSpan aria-live="polite" aria-atomic="true">
+                      {highlightedUnits} units highlighted
+                    </OakSpan>
+                  </OakBox>
+                </>
+              )}
+            </OakBox>
+          )}
+        </OakFlex>
+
+        <OakRadioGroup
+          data-testid={"year-selection-mobile"}
+          name={"year" + id}
+          onChange={(event) => {
+            const yearOption = event.target.value;
+            onSelectYear(yearOption);
+            trackSelectYear(yearOption);
+            scrollToYearSection(yearOption);
+          }}
+          $flexDirection={"row"}
+          $flexWrap={"wrap"}
+          aria-label="Select a year group"
+          defaultValue={selectedYear}
+        >
+          {unitsByYearSelector.map(({ type, year }) => {
+            const yearOption = `${type}-${year}`;
+            return (
+              <OakRadioAsButton
+                key={yearOption}
+                value={yearOption}
+                width="max-content"
+                data-testid="year-group-filter-button"
+                displayValue={getYearGroupTitle(
+                  yearData,
+                  year,
+                  (() => {
+                    const suffix = shouldDisplayCorePathway
+                      ? getPathwaySuffix(year, type)
+                      : undefined;
+                    return suffix ? `(${suffix})` : undefined;
+                  })(),
+                )}
+                colorScheme={getColorSchemeByYear(year)}
+              />
+            );
+          })}
+        </OakRadioGroup>
+        <OakTertiaryButton
+          isTrailingIcon
+          iconName="filter"
+          onClick={onOpenModal}
+          data-testid="mobile-all-filters"
+        >
+          All filters
+        </OakTertiaryButton>
+      </OakFlex>
     </OakBox>
   );
 }

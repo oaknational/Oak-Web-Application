@@ -33,7 +33,7 @@ export type CurricFiltersYearsProps = {
 
 type YearOption = { year: string; pathway?: string; queryString?: string };
 
-const getColorSchemeByYear = (year: string) => {
+export const getColorSchemeByYear = (year: string) => {
   if (year === "1" || year === "7") {
     return "decorative3";
   } else if (year === "2" || year === "8") {

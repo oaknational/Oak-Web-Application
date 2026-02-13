@@ -102,7 +102,7 @@ describe("ProgrammePageFiltersMobile", () => {
   it("opens modal on click", async () => {
     render(<ProgrammePageFiltersMobile {...defaultProps} />);
 
-    const modalLink = screen.getByTestId("mobile-highlight-thread");
+    const modalLink = screen.getByTestId("mobile-all-filters");
     const user = userEvent.setup();
     await user.click(modalLink);
 
