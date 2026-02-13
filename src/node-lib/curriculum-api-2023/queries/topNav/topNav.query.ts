@@ -34,6 +34,18 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
       title: "Curriculum",
       slug: "curriculum-landing-page" as const,
     },
+
+    guidance: {
+      title: "Guidance",
+      slug: "guidance" as const,
+      children: [
+        { title: "Plan a lesson", slug: "lesson-planning" as const },
+        { title: "Support your team", slug: "support-your-team" as const },
+        { title: "Blogs", slug: "blog-index" as const },
+        { title: "Webinars", slug: "webinar-index" as const },
+        { title: "Help", slug: "help" as const, external: true },
+      ],
+    },
     aboutUs: {
       title: "About us",
       slug: "aboutUs" as const,
@@ -44,17 +56,6 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
         { title: "Partners", slug: "about-partners" as const },
         { title: "Work with us", slug: "about-work-with-us" as const },
         { title: "Contact us", slug: "contact" as const },
-      ],
-    },
-    guidance: {
-      title: "Guidance",
-      slug: "guidance" as const,
-      children: [
-        { title: "Plan a lesson", slug: "lesson-planning" as const },
-        { title: "Support your team", slug: "support-your-team" as const },
-        { title: "Blogs", slug: "blog-index" as const },
-        { title: "Webinars", slug: "webinar-index" as const },
-        { title: "Help", slug: "help" as const, external: true },
       ],
     },
     aiExperiments: {
