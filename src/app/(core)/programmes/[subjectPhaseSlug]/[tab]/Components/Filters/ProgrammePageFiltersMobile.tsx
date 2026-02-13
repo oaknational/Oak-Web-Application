@@ -59,28 +59,31 @@ export default function ProgrammePageFiltersMobile({
 
   return (
     <>
-      <OakModalNew
-        open={mobileThreadModalOpen}
-        onClose={onClose}
-        title={<OakBox $font={"heading-6"}>Filter and highlight</OakBox>}
-        content={
-          <ModalContent
-            data={data}
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            slugs={slugs}
-          />
-        }
-        footer={
-          <OakPrimaryButton
-            data-testid="mobile-done-thread-modal-button"
-            onClick={() => setMobileThreadModalOpen(false)}
-            width={"100%"}
-          >
-            Apply
-          </OakPrimaryButton>
-        }
-      />
+      {/* only add the modal to the dom when it's open to prevent focus getting caught */}
+      {mobileThreadModalOpen && (
+        <OakModalNew
+          open
+          onClose={onClose}
+          title={<OakBox $font={"heading-6"}>Filter and highlight</OakBox>}
+          content={
+            <ModalContent
+              data={data}
+              filters={filters}
+              onChangeFilters={onChangeFilters}
+              slugs={slugs}
+            />
+          }
+          footer={
+            <OakPrimaryButton
+              data-testid="mobile-done-thread-modal-button"
+              onClick={() => setMobileThreadModalOpen(false)}
+              width={"100%"}
+            >
+              Apply
+            </OakPrimaryButton>
+          }
+        />
+      )}
       <ProgrammeFiltersHeaderMobile
         onOpenModal={handleMobileThreadModal}
         filters={filters}

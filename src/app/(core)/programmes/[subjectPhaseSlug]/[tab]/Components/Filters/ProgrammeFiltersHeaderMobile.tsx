@@ -35,7 +35,9 @@ export type MobileFilterHeaderProps = ProgrammePageMobileFiltersProps & {
 };
 
 function scrollToYearSection(yearOption: string) {
-  const targetElement = document.getElementById(`year-${yearOption}`);
+  const yearSectionId = `year-${yearOption}`;
+  const targetElement = document.getElementById(yearSectionId);
+
   if (targetElement) {
     const headerOffset = 270;
     const elementPosition = targetElement.getBoundingClientRect().top;
@@ -45,18 +47,6 @@ function scrollToYearSection(yearOption: string) {
       top: offsetPosition,
       behavior: "smooth",
     });
-
-    globalThis.addEventListener(
-      "scrollend",
-      () => {
-        const yearHeading = document.getElementById(`year-${yearOption} h3`);
-        if (yearHeading instanceof HTMLElement) {
-          yearHeading.setAttribute("tabindex", "-1");
-          yearHeading.focus();
-        }
-      },
-      { once: true },
-    );
   }
 }
 
