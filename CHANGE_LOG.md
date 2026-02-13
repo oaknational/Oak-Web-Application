@@ -1,3 +1,11 @@
+# [1.988.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.987.1...v1.988.0) (2026-02-13)
+
+
+### Features
+
+* add programme page to urls ([a1d0e73](https://github.com/oaknational/Oak-Web-Application/commit/a1d0e73be870514ccb10aedf66774bf639af2d5f))
+* update oak tabs component to use links for buttons ([996b523](https://github.com/oaknational/Oak-Web-Application/commit/996b5233ffeee11a9760ff17a51c5e613e7086d2))
+
 ## [1.987.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.987.0...v1.987.1) (2026-02-12)
 
 # [1.987.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.986.1...v1.987.0) (2026-02-11)
