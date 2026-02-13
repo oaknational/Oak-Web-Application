@@ -121,7 +121,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
                   tag="h2"
                   $font={["heading-5", "heading-4", "heading-4"]}
                 >
-                  See Oak’s curriculum in practice
+                  See Oak’s curricula in practice
                 </OakHeading>
                 <SubjectPhasePicker {...pageData.curriculumPhaseOptions} />
               </OakFlex>
