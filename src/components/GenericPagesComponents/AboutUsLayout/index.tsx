@@ -65,6 +65,7 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
         />
       </OakBox>
       <OakBox
+        id="newsletter-signup"
         $background={"bg-decorative1-subdued"}
         $pv={["spacing-56", "spacing-56"]}
       >
