@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import {
   OakBox,
   OakFlex,
+  OakHeading,
   OakInformativeModal,
-  OakInformativeModalBody,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
 
@@ -17,6 +17,7 @@ import {
   CurricFiltersSubjectCategories,
   CurricFiltersChildSubjects,
   CurricFiltersTiers,
+  CurricFiltersYears,
 } from "@/components/CurriculumComponents/CurricVisualiserFilters";
 import { shouldDisplayFilter } from "@/utils/curriculum/filteringApp";
 
@@ -86,15 +87,12 @@ export default function ProgrammePageFiltersMobile({
           </OakBox>
         }
       >
-        <OakInformativeModalBody>
-          <OakBox $font={"heading-6"}>Filter and highlight</OakBox>
-          <ModalContent
-            data={data}
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            slugs={slugs}
-          />
-        </OakInformativeModalBody>
+        <ModalContent
+          data={data}
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          slugs={slugs}
+        />
       </OakInformativeModal>
 
       <ProgrammeFiltersHeaderMobile
@@ -122,38 +120,52 @@ const ModalContent = ({
   "data" | "filters" | "onChangeFilters" | "slugs"
 >) => {
   return (
-    <OakFlex $flexDirection={"column"} $height={"100%"}>
+    <OakFlex
+      $flexDirection={"column"}
+      $height={"100%"}
+      $ph={"spacing-24"}
+      $gap={"spacing-20"}
+      $overflowX={"visible"}
+    >
+      <OakHeading $font={"heading-6"} tag="h1">
+        Filters
+      </OakHeading>
       <OakFlex
-        $flexShrink={1}
-        $overflowY={"auto"}
-        $position={"relative"}
-        $pv={"spacing-20"}
+        $flexDirection={"column"}
+        $gap={"spacing-32"}
+        $overflowX={"visible"}
       >
-        <OakFlex $flexDirection={"column"} $gap={"spacing-32"} $width={"100vw"}>
-          {shouldDisplayFilter(data, filters, "subjectCategories") && (
-            <CurricFiltersSubjectCategories
-              filters={filters}
-              onChangeFilters={onChangeFilters}
-              data={data}
-              slugs={slugs}
-            />
-          )}
+        <CurricFiltersYears
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          data={data}
+          slugs={slugs}
+          ks4Options={[]}
+          context="integrated-journey"
+        />
+        {shouldDisplayFilter(data, filters, "subjectCategories") && (
+          <CurricFiltersSubjectCategories
+            filters={filters}
+            onChangeFilters={onChangeFilters}
+            data={data}
+            slugs={slugs}
+          />
+        )}
 
-          {shouldDisplayFilter(data, filters, "childSubjects") && (
-            <CurricFiltersChildSubjects
-              filters={filters}
-              onChangeFilters={onChangeFilters}
-              data={data}
-            />
-          )}
-          {shouldDisplayFilter(data, filters, "tiers") && (
-            <CurricFiltersTiers
-              filters={filters}
-              onChangeFilters={onChangeFilters}
-              data={data}
-            />
-          )}
-        </OakFlex>
+        {shouldDisplayFilter(data, filters, "childSubjects") && (
+          <CurricFiltersChildSubjects
+            filters={filters}
+            onChangeFilters={onChangeFilters}
+            data={data}
+          />
+        )}
+        {shouldDisplayFilter(data, filters, "tiers") && (
+          <CurricFiltersTiers
+            filters={filters}
+            onChangeFilters={onChangeFilters}
+            data={data}
+          />
+        )}
       </OakFlex>
     </OakFlex>
   );
