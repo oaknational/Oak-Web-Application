@@ -1,9 +1,10 @@
 import {
   OakBox,
-  OakFlex,
   OakPrimaryButton,
   OakFieldError,
   OakP,
+  OakGrid,
+  OakGridArea,
 } from "@oaknational/oak-components";
 import { useId, useState } from "react";
 import { useUser } from "@clerk/nextjs";
@@ -76,39 +77,41 @@ export default function SignedInFlow({
   };
 
   return (
-    <OakFlex
-      $gap={["spacing-32", "spacing-48"]}
-      $flexDirection="column"
-      $alignItems={"flex-start"}
-    >
-      <OakBox $width={["100%", "spacing-360"]} $textAlign={"left"}>
-        <CurriculumDownloadSelection
-          downloadTypes={downloadTypes}
-          onChange={onChangeDownloadTypes}
-          availableDownloadTypes={availableDownloadTypes}
-        />
-        <OakBox $mt="spacing-24">
-          <Terms />
-        </OakBox>
-      </OakBox>
-      {submitError && (
-        <OakBox id={submitErrorId} $width={"spacing-360"}>
-          <OakFieldError>
-            <OakP>{submitError}</OakP>
-          </OakFieldError>
-        </OakBox>
-      )}
-      <OakPrimaryButton
-        data-testid="download"
-        isLoading={isSubmitting}
-        disabled={downloadTypes.length < 1}
-        aria-describedby={submitError ? submitErrorId : undefined}
-        onClick={onDownload}
-        iconName="download"
-        isTrailingIcon={true}
+    <OakGrid $cg="spacing-16">
+      <OakGridArea
+        $colSpan={[12, 8, 3]}
+        $colStart={[1, 3, 1]}
+        $gap={"spacing-32"}
       >
-        Download
-      </OakPrimaryButton>
-    </OakFlex>
+        <OakBox>
+          <CurriculumDownloadSelection
+            downloadTypes={downloadTypes}
+            onChange={onChangeDownloadTypes}
+            availableDownloadTypes={availableDownloadTypes}
+          />
+          <OakBox $mt="spacing-24">
+            <Terms />
+          </OakBox>
+        </OakBox>
+        {submitError && (
+          <OakBox id={submitErrorId}>
+            <OakFieldError>
+              <OakP>{submitError}</OakP>
+            </OakFieldError>
+          </OakBox>
+        )}
+        <OakPrimaryButton
+          data-testid="download"
+          isLoading={isSubmitting}
+          disabled={downloadTypes.length < 1}
+          aria-describedby={submitError ? submitErrorId : undefined}
+          onClick={onDownload}
+          iconName="download"
+          isTrailingIcon={true}
+        >
+          Download
+        </OakPrimaryButton>
+      </OakGridArea>
+    </OakGrid>
   );
 }

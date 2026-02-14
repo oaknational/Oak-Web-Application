@@ -15,15 +15,15 @@ export const getFormLabelBackground = (
   backgroundColor: OakUiRoleToken | undefined,
 ) => {
   if (error) {
-    return "red";
+    return "bg-error";
   }
   if (focusState) {
-    return "blue";
+    return "bg-inverted";
   }
   if (backgroundColor) {
     return backgroundColor;
   }
-  return "lemon";
+  return "bg-decorative5-main";
 };
 
 export const OakInputWithLabel = ({

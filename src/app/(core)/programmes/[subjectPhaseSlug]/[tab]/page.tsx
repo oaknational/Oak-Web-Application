@@ -7,7 +7,10 @@ import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
 import { getProgrammeData } from "./getProgrammeData";
 
-import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import {
+  createDownloadsData,
+  formatCurriculumUnitsData,
+} from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
@@ -23,6 +26,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import { useFeatureFlag } from "@/utils/featureFlags";
 import CMSClient from "@/node-lib/cms";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -168,20 +172,23 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     }
   }
 
-  const curriculumCMSInfo = await CMSClient.curriculumOverviewPage({
-    previewMode: false, // TD: [integrated-journey] preview mode
-    subjectTitle: programmeUnitsData.subjectTitle,
-    phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-  });
+  const [curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime] =
+    await Promise.all([
+      CMSClient.curriculumOverviewPage({
+        previewMode: false, // TD: [integrated-journey] preview mode
+        subjectTitle: programmeUnitsData.subjectTitle,
+        phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+      }),
+      CMSClient.programmePageBySlug(
+        `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
+      ),
+      getMvRefreshTime(),
+    ]);
 
   // TD: [integrated-journey] This data is not used in `ProgrammeView`, maybe we can remove it?
   if (!curriculumCMSInfo) {
     return notFound();
   }
-
-  const subjectPhaseSanityData = await CMSClient.programmePageBySlug(
-    `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
-  );
 
   if (!subjectPhaseSanityData) {
     reportError(
@@ -210,6 +217,10 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     );
   }
 
+  const curriculumDownloadsTabData = createDownloadsData(
+    curriculumUnitsData.units,
+  );
+
   const results = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
@@ -222,6 +233,8 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     tabSlug: tab,
     curriculumCMSInfo,
     curriculumInfo: cachedData.programmeUnitsData,
+    curriculumDownloadsTabData,
+    mvRefreshTime,
   };
 
   return <ProgrammeView {...results} />;

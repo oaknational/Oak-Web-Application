@@ -5,12 +5,17 @@ import {
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 type RegistrationLayoutProps = PropsWithChildren<{
   asideSlot: ReactNode;
   termsSlot?: ReactNode;
   bannerSlot?: ReactNode;
 }>;
+
+const StyledOakGrid = styled(OakGrid)`
+  flex: 1;
+`;
 
 const RegistrationLayout = ({
   children,
@@ -19,7 +24,7 @@ const RegistrationLayout = ({
   bannerSlot,
 }: RegistrationLayoutProps) => {
   return (
-    <OakGrid $width="100%" $height="100%">
+    <StyledOakGrid>
       <OakGridArea
         $colSpan={[0, 0, 6]}
         $display={["none", "none", "flex"]}
@@ -60,7 +65,7 @@ const RegistrationLayout = ({
           {termsSlot}
         </OakFlex>
       </OakGridArea>
-    </OakGrid>
+    </StyledOakGrid>
   );
 };
 
