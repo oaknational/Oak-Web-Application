@@ -21,7 +21,6 @@ import errorReporter from "@/common-lib/error-reporter";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import { useFeatureFlag } from "@/utils/featureFlags";
 import CMSClient from "@/node-lib/cms";
 
 const reportError = errorReporter("programme-page::app");
@@ -117,8 +116,7 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
-  // `useFeatureFlag` is not a hook
-  const isEnabled = await useFeatureFlag(
+  const isEnabled = await getFeatureFlagValue(
     "teachers-integrated-journey",
     "boolean",
   );
@@ -126,6 +124,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   if (!isEnabled) {
     return notFound();
   }
+
   const { subjectPhaseSlug, tab } = await props.params;
 
   if (!isTabSlug(tab)) {

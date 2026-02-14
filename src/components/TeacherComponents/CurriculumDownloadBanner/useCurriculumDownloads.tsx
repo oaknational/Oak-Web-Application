@@ -91,7 +91,7 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
 
     try {
       await downloadFileFromUrl(downloadPath);
-    } catch (error) {
+    } catch (_error) {
       setIsSubmitting(false);
       setCurrentToastProps({
         message: "Something went wrong with your download",

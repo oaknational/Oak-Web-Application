@@ -1,6 +1,4 @@
-import { renderHook } from "@testing-library/react";
-
-import { useFeatureFlag } from "./featureFlags";
+import { getFeatureFlagValue } from "./featureFlags";
 
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 
@@ -13,7 +11,7 @@ jest.mock("next/headers", () => ({
   })),
 }));
 
-describe("useFeatureFlag", () => {
+describe("getFeatureFlagValue", () => {
   test("string assertion with valid type", async () => {
     console.log = jest.fn();
     getAllCookiesMock.mockReturnValue([
@@ -23,8 +21,8 @@ describe("useFeatureFlag", () => {
       },
     ]);
     (getFeatureFlag as jest.Mock).mockResolvedValue("testing");
-    const { result } = renderHook(() => useFeatureFlag("foo", "string"));
-    expect(await result.current).toEqual("testing");
+    const result = await getFeatureFlagValue("foo", "string");
+    expect(result).toEqual("testing");
     expect(console.log).toHaveBeenCalledWith(
       "[%cfeature-flag%c] %s=%o",
       "color: green",
@@ -42,8 +40,8 @@ describe("useFeatureFlag", () => {
       },
     ]);
     (getFeatureFlag as jest.Mock).mockResolvedValue(true);
-    const { result } = renderHook(() => useFeatureFlag("foo", "string"));
-    expect(await result.current).toEqual(undefined);
+    const result = await getFeatureFlagValue("foo", "string");
+    expect(result).toEqual(undefined);
   });
 
   test("boolean assertion with valid type", async () => {
@@ -55,8 +53,8 @@ describe("useFeatureFlag", () => {
       },
     ]);
     (getFeatureFlag as jest.Mock).mockResolvedValue(true);
-    const { result } = renderHook(() => useFeatureFlag("foo", "boolean"));
-    expect(await result.current).toEqual(true);
+    const result = await getFeatureFlagValue("foo", "boolean");
+    expect(result).toEqual(true);
     expect(console.log).toHaveBeenCalledWith(
       "[%cfeature-flag%c] %s=%o",
       "color: green",
@@ -74,7 +72,7 @@ describe("useFeatureFlag", () => {
       },
     ]);
     (getFeatureFlag as jest.Mock).mockResolvedValue("test");
-    const { result } = renderHook(() => useFeatureFlag("foo", "boolean"));
-    expect(await result.current).toEqual(undefined);
+    const result = await getFeatureFlagValue("foo", "boolean");
+    expect(result).toEqual(undefined);
   });
 });

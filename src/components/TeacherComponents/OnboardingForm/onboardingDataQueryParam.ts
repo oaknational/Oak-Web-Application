@@ -16,7 +16,7 @@ export function decodeOnboardingDataQueryParam(
     }
 
     return JSON.parse(fromBase64(formData));
-  } catch (error) {
+  } catch (_error) {
     return null;
   }
 }
