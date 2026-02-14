@@ -194,7 +194,6 @@ export default function ProgrammeFiltersHeaderMobile({
   return (
     <OakBox
       $position={["sticky", "static"]}
-      $display={["block", "none"]}
       $top="spacing-0"
       $zIndex={"fixed-header"}
     >

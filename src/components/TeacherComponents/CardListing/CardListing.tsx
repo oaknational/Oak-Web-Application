@@ -74,6 +74,7 @@ const CardListing = (props: CardListingProps) => {
       $gap={"spacing-20"}
       $flexDirection={layoutVariant === "horizontal" ? "row" : "column"}
       $width={"100%"}
+      $flexGrow={1}
       data-testid="card-listing-container"
     >
       {layoutVariant === "horizontal" ? (
