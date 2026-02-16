@@ -41,6 +41,7 @@ const defaultProps = {
     phaseTitle: "Secondary",
     examboardTitle: "AQA",
   },
+  subjectPhaseSlug: "science-secondary-aqa",
   ks4Options: [],
   curriculumUnitsFormattedData: formatCurriculumUnitsData(
     curriculumUnitsTabFixture(),
