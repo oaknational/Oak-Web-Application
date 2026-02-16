@@ -42,8 +42,8 @@ import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics"
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { resolveOakHref } from "@/common-lib/urls";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type ProgrammePageProps = {
   subjectPhaseSlug: string;
@@ -150,7 +150,7 @@ export const ProgrammeView = ({
       <TabContent
         tabSlug={activeTab}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
-        curriculumSelectionTitles={curriculumSelectionTitles}
+        subjectTitle={curriculumSelectionTitles.subjectTitle}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         curriculumCMSInfo={curriculumCMSInfo}
         filters={filters}
@@ -165,33 +165,29 @@ export const ProgrammeView = ({
 const TabContent = ({
   tabSlug,
   curriculumSelectionSlugs,
-  curriculumSelectionTitles,
+  subjectTitle,
   curriculumUnitsFormattedData,
   curriculumCMSInfo,
   filters,
   setFilters,
   ks4Options,
   trackingData,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps &
-  Omit<ProgrammeOverviewProps, "subjectTitle">) => {
+}: { tabSlug: TabSlug } & UnitSequenceViewProps & ProgrammeOverviewProps) => {
   if (tabSlug === "units") {
     return (
-      <OakMaxWidth>
-        <UnitSequenceView
-          curriculumSelectionSlugs={curriculumSelectionSlugs}
-          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          curriculumSelectionTitles={curriculumSelectionTitles}
-          filters={filters}
-          setFilters={setFilters}
-          ks4Options={ks4Options}
-          trackingData={trackingData}
-        />
-      </OakMaxWidth>
+      <UnitSequenceView
+        curriculumSelectionSlugs={curriculumSelectionSlugs}
+        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+        filters={filters}
+        setFilters={setFilters}
+        ks4Options={ks4Options}
+        trackingData={trackingData}
+      />
     );
   } else if (tabSlug === "overview") {
     return (
       <ProgrammeOverview
-        subjectTitle={curriculumSelectionTitles.subjectTitle}
+        subjectTitle={subjectTitle}
         curriculumCMSInfo={curriculumCMSInfo}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
       />
