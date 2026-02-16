@@ -29,11 +29,7 @@ describe("handleNewsletterSignup", () => {
       ...overrides,
     };
     mockedGetBrowserConfig.mockImplementation(((key: string) => {
-      const value = defaults[key];
-      if (value === null) {
-        throw new Error(`Missing config: ${key}`);
-      }
-      return value;
+      return defaults[key] ?? "";
     }) as typeof getBrowserConfig);
   };
 
