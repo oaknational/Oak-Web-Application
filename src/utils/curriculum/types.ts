@@ -52,6 +52,7 @@ export type YearData = {
     groupAs: string | null;
     pathways: Pathway[];
     nationalCurriculum: NationalCurriculumCriteria[];
+    keystage: string;
   };
 };
 
