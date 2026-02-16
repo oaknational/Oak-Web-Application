@@ -83,13 +83,15 @@ export default function ProgrammePageFiltersDesktop({
           value={selectedKeystage ?? "all-ks"}
         >
           <OakRadioAsButton key="all-ks" value="all-ks" displayValue="All" />
-          {data.keystages.toSorted().map((ksSlug: KeystageSlug) => (
-            <OakRadioAsButton
-              key={ksSlug}
-              value={ksSlug}
-              displayValue={ksSlug.toUpperCase()}
-            />
-          ))}
+          {data.keystages
+            .toSorted((a, b) => a.localeCompare(b))
+            .map((ksSlug: KeystageSlug) => (
+              <OakRadioAsButton
+                key={ksSlug}
+                value={ksSlug}
+                displayValue={ksSlug.toUpperCase()}
+              />
+            ))}
         </OakRadioGroup>
       </OakFlex>
       {shouldDisplayFilter(data, filters, "childSubjects") && (
