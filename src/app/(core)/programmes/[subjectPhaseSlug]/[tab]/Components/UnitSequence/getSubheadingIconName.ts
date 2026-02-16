@@ -1,7 +1,9 @@
-import { isValidIconName, OakIconName } from "@oaknational/oak-components";
+import { OakIconName } from "@oaknational/oak-components";
 
 import { CurriculumFilters, YearData, Unit } from "@/utils/curriculum/types";
 import { keystageFromYear } from "@/utils/curriculum/keystage";
+import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 /**
  * Returns the icon name for the subject category or child subject for the
@@ -14,6 +16,12 @@ export function getSubheadingIconName(
   filters: CurriculumFilters,
 ): OakIconName | null {
   const isKs4Year = keystageFromYear(year) === "ks4";
+
+  const subjectSlug = units.at(0)?.subject_slug;
+
+  if (!subjectSlug) {
+    return null;
+  }
 
   // Handle subject categories (KS1-KS3)
   if (
@@ -32,10 +40,8 @@ export function getSubheadingIconName(
       .filter(Boolean);
 
     if (subjectCategorySlugs.length === 1) {
-      const iconName = `subject-${subjectCategorySlugs.at(0)}`;
-      if (isValidIconName(iconName)) {
-        return iconName;
-      }
+      const subjectCategorySlug = subjectCategorySlugs.at(0)!;
+      return getValidSubjectCategoryIconById(subjectSlug, subjectCategorySlug);
     }
   }
 
@@ -46,18 +52,9 @@ export function getSubheadingIconName(
     });
 
     if (childSubjects.length === 1) {
-      const iconName = `subject-${childSubjects.at(0)}`;
-      if (isValidIconName(iconName)) {
-        return iconName;
-      }
+      return getValidSubjectCategoryIconById(subjectSlug, childSubjects.at(0)!);
     }
   }
 
-  // Finally, return the icon name for the first unit's subject_slug
-  const iconName = `subject-${units.at(0)?.subject_slug}`;
-  if (isValidIconName(iconName)) {
-    return iconName;
-  }
-
-  return null;
+  return getValidSubjectIconName(subjectSlug);
 }

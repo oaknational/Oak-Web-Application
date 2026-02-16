@@ -202,14 +202,14 @@ describe("getSubheadingIconName", () => {
       expect(result).toBe(null);
     });
 
-    it("returns null when fallback icon is not a valid Oak icon name", () => {
+    it("returns `books` when subject does not have an icon", () => {
       const result = getSubheadingIconName(
         "7",
         [unitWithSubject(INVALID_SUBJECT_SLUG)],
         undefined,
         defaultFilters,
       );
-      expect(result).toBe(null);
+      expect(result).toBe("books");
     });
   });
 
