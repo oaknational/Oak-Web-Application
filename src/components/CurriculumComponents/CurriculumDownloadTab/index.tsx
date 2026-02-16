@@ -9,8 +9,6 @@ import {
 import {
   OakHeading,
   OakDownloadsJourneyChildSubjectTierSelector,
-  OakThemeProvider,
-  oakDefaultTheme,
   Tier,
   Subject,
   OakBox,
@@ -331,47 +329,45 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   }
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakBox
-        id="curriculum-downloads"
-        aria-labelledby="curriculum-downloads-heading"
-        tabIndex={-1}
-        $maxWidth={"spacing-1280"}
-        $mh={"auto"}
-        $ph={"spacing-16"}
-        $pt={["spacing-48", "spacing-0"]}
-        $pb={["spacing-48"]}
-        $mt={["spacing-0", "spacing-48", "spacing-48"]}
-        $borderColor="border-error"
-        $width={"100%"}
-        role="region"
-      >
-        <ScreenReaderOnly>
-          <OakHeading id="curriculum-downloads-heading" tag="h2">
-            Download
-          </OakHeading>
-        </ScreenReaderOnly>
-        {subjectTierSelectionVisible === true && (
-          <OakDownloadsJourneyChildSubjectTierSelector
-            tiers={tiers}
-            childSubjects={childSubjects}
-            getTierSubjectValues={handleTierSubjectSelection}
-          />
-        )}
-        {!isLoading && subjectTierSelectionVisible === false && (
-          <CurriculumDownloadView
-            onBackToKs4Options={onBackToKs4Options}
-            isSubmitting={isSubmitting}
-            onSubmit={onSubmit}
-            onChange={setData}
-            schools={schoolList ?? []}
-            data={data}
-            availableDownloadTypes={availableDownloadTypes}
-            submitError={submitError}
-          />
-        )}
-      </OakBox>
-    </OakThemeProvider>
+    <OakBox
+      id="curriculum-downloads"
+      aria-labelledby="curriculum-downloads-heading"
+      tabIndex={-1}
+      $maxWidth={"spacing-1280"}
+      $mh={"auto"}
+      $ph={"spacing-16"}
+      $pt={["spacing-48", "spacing-0"]}
+      $pb={["spacing-48"]}
+      $mt={["spacing-0", "spacing-48", "spacing-48"]}
+      $borderColor="border-error"
+      $width={"100%"}
+      role="region"
+    >
+      <ScreenReaderOnly>
+        <OakHeading id="curriculum-downloads-heading" tag="h2">
+          Download
+        </OakHeading>
+      </ScreenReaderOnly>
+      {subjectTierSelectionVisible === true && (
+        <OakDownloadsJourneyChildSubjectTierSelector
+          tiers={tiers}
+          childSubjects={childSubjects}
+          getTierSubjectValues={handleTierSubjectSelection}
+        />
+      )}
+      {!isLoading && subjectTierSelectionVisible === false && (
+        <CurriculumDownloadView
+          onBackToKs4Options={onBackToKs4Options}
+          isSubmitting={isSubmitting}
+          onSubmit={onSubmit}
+          onChange={setData}
+          schools={schoolList ?? []}
+          data={data}
+          availableDownloadTypes={availableDownloadTypes}
+          submitError={submitError}
+        />
+      )}
+    </OakBox>
   );
 };
 
