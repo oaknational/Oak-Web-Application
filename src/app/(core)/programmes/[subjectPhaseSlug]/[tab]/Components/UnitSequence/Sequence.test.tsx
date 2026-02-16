@@ -162,6 +162,7 @@ describe("ProgrammeSequence", () => {
       tiers: [],
       years: ["7"],
       threads: [],
+      keystages: [],
     };
 
     const { container } = render(
