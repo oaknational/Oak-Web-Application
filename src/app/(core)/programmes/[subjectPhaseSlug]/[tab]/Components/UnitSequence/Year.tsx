@@ -13,7 +13,6 @@ type ProgrammeYearProps = {
   yearTitle: string;
   yearSubheading?: string | null;
   yearSubheadingIconName?: OakIconName | null;
-  additional?: React.ReactNode;
   children: React.ReactNode;
 };
 
@@ -36,7 +35,6 @@ export function ProgrammeYear({
   yearTitle,
   yearSubheading,
   yearSubheadingIconName,
-  additional,
   children,
 }: Readonly<ProgrammeYearProps>) {
   return (
@@ -94,7 +92,6 @@ export function ProgrammeYear({
             {yearSubheading}
           </OakFlex>
         )}
-        <OakBox>{additional}</OakBox>
         <OakBox>{children}</OakBox>
       </OakBox>
     </>

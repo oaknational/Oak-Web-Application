@@ -127,13 +127,13 @@ describe("ProgrammeSequence", () => {
     resizeWindow(390, 844);
 
     render(<ProgrammeSequence {...CurricVisualiserFixture} />);
-    const yearSection = screen.getByRole("heading", { name: "Year 7" });
+    const yearSection = screen.getByRole("heading", { name: "Year 7 units" });
     expect(yearSection).toBeInTheDocument();
   });
 
   test("visualiser is visible on desktop", () => {
     render(<ProgrammeSequence {...CurricVisualiserFixture} />);
-    const yearSection = screen.getByRole("heading", { name: "Year 7" });
+    const yearSection = screen.getByRole("heading", { name: "Year 7 units" });
     expect(yearSection).toBeInTheDocument();
   });
 
@@ -144,6 +144,42 @@ describe("ProgrammeSequence", () => {
     const unitCards = screen.getAllByTestId("card-listing-container");
 
     expect(unitCards).toHaveLength(1);
+  });
+
+  test("displays swimming subheading and icon when isSwimming is true", () => {
+    const swimmingYearData: YearData = {
+      "7": {
+        ...CurricVisualiserFixture.yearData["7"]!,
+        isSwimming: true,
+      },
+    };
+
+    const filterFixture = {
+      childSubjects: [],
+      pathways: ["core"],
+      subjectCategories: [],
+      tiers: [],
+      years: ["7"],
+      threads: [],
+    };
+
+    const { container } = render(
+      <ProgrammeSequence
+        {...CurricVisualiserFixture}
+        yearData={swimmingYearData}
+        filters={filterFixture}
+      />,
+    );
+
+    const yearBlock = container.querySelector(
+      '[data-testid="year-all-7"]',
+    ) as HTMLElement;
+    expect(yearBlock).not.toBeNull();
+
+    const subheading = within(yearBlock).getByTestId("year-subheading");
+    expect(subheading).toHaveTextContent(
+      "Swimming and water safety units should be selected based on the ability and experience of your pupils.",
+    );
   });
 });
 
