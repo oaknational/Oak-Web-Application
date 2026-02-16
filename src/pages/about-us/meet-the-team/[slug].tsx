@@ -1,4 +1,5 @@
 import { NextPage, GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 import {
   OakFlex,
   OakGrid,
@@ -15,13 +16,14 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import CMSClient from "@/node-lib/cms";
 import { TeamMember } from "@/common-lib/cms-types/teamMember";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { SocialButton } from "@/components/GenericPagesComponents/SocialButton";
+import Breadcrumbs, {
+  Breadcrumb,
+} from "@/components/SharedComponents/Breadcrumbs";
 import {
   ProfileNavigation,
   MemberCategory,
@@ -31,6 +33,7 @@ import {
 } from "@/pages-helpers/shared/about-us-pages/profileNavigation";
 import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -39,6 +42,32 @@ export type AboutUsMeetTheTeamPersonPageProps = {
   topNav: TopNavProps;
   navigation: ProfileNavigation;
   category: MemberCategory;
+};
+
+const ProfileLinkButton: React.FC<{
+  href: string;
+  iconName: "arrow-left" | "arrow-right";
+  isTrailingIcon?: boolean;
+  children: React.ReactNode;
+}> = ({ href, iconName, isTrailingIcon, children }) => {
+  const router = useRouter();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    router.replace(href);
+  };
+
+  return (
+    <OakSmallSecondaryButton
+      element="a"
+      href={href}
+      iconName={iconName}
+      isTrailingIcon={isTrailingIcon}
+      onClick={handleClick}
+    >
+      {children}
+    </OakSmallSecondaryButton>
+  );
 };
 
 const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
@@ -52,6 +81,19 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   const trimmedBio = trimTrailingEmptyBlocks(bioPortableText);
   const imageUrl = getProxiedSanityAssetUrl(image?.asset?.url);
 
+  const breadcrumbs: Breadcrumb[] = [
+    { label: "Home", oakLinkProps: { page: "home" } },
+    {
+      label: "Meet the team",
+      oakLinkProps: { page: null, href: "/about-us/meet-the-team" },
+    },
+    {
+      label: name,
+      oakLinkProps: { page: null, href: "#" },
+      disabled: true,
+    },
+  ];
+
   return (
     <Layout
       seoProps={getSeoProps({
@@ -61,16 +103,23 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
       $background={"bg-primary"}
       topNavProps={topNav}
     >
+      <OakMaxWidth $ph={["spacing-16", "spacing-32"]} $pt={"spacing-32"}>
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
+      </OakMaxWidth>
       <OakMaxWidth
         $mb={["spacing-56", "spacing-80"]}
-        $mt={["spacing-56", "spacing-80"]}
+        $mt={["spacing-48", "spacing-56", "spacing-56"]}
         $ph={["spacing-16", "spacing-32"]}
       >
         <OakGrid $cg={["spacing-0", "spacing-16"]} $rg={"spacing-24"}>
           {/* Image - Desktop/Tablet only (left column) */}
-          <OakGridArea $colSpan={[12, 5, 4]} $order={1}>
+          <OakGridArea
+            $colSpan={[12, 5, 4]}
+            $order={1}
+            $display={["none", "block"]}
+          >
             {imageUrl && (
-              <OakBox $display={["none", "block"]}>
+              <OakBox>
                 <OakBox $borderRadius={"border-radius-l"} $overflow={"hidden"}>
                   <OakImage
                     src={imageUrl}
@@ -114,7 +163,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                 {/* Job title */}
                 {role && (
                   <OakBox
-                    $background={"lemon"}
+                    $background={"bg-decorative5-main"}
                     $ph={"spacing-4"}
                     style={{ width: "fit-content" }}
                   >
@@ -184,23 +233,18 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                   aria-label="Team member navigation"
                 >
                   {prevHref && (
-                    <OakSmallSecondaryButton
-                      element="a"
-                      href={prevHref}
-                      iconName="arrow-left"
-                    >
+                    <ProfileLinkButton href={prevHref} iconName="arrow-left">
                       Previous profile
-                    </OakSmallSecondaryButton>
+                    </ProfileLinkButton>
                   )}
                   {nextHref && (
-                    <OakSmallSecondaryButton
-                      element="a"
+                    <ProfileLinkButton
                       href={nextHref}
                       iconName="arrow-right"
                       isTrailingIcon
                     >
                       Next profile
-                    </OakSmallSecondaryButton>
+                    </ProfileLinkButton>
                   )}
                 </OakFlex>
               )}
@@ -220,18 +264,10 @@ export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPersonPageProps,
   URLParams
 > = async (context) => {
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
+  const enableV2 = await isNewAboutUsPagesEnabled(
     posthogApiKey,
+    context.req.cookies,
   );
-  let enableV2: boolean = false;
-  if (posthogUserId) {
-    enableV2 =
-      (await getFeatureFlag({
-        featureFlagKey: "about-us--who-we-are--v2",
-        posthogUserId,
-      })) === true;
-  }
 
   if (!enableV2) {
     return { notFound: true };
