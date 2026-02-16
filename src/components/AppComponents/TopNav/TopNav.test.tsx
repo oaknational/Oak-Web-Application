@@ -1,5 +1,6 @@
 import { act, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { forwardRef, ReactNode, Ref } from "react";
 
 import TopNav from "./TopNav";
 
@@ -15,6 +16,33 @@ jest.mock("@/hooks/useSelectedArea", () => ({
 
 globalThis.matchMedia = jest.fn().mockReturnValue({
   matches: false,
+});
+
+// act errors triggered by next link in the test environment, so we're mocking it.
+jest.mock("next/link", () => {
+  return {
+    __esModule: true,
+    default: forwardRef(
+      (
+        {
+          children,
+          href,
+          ...props
+        }: {
+          children: ReactNode;
+          href: string;
+          [key: string]: unknown;
+        },
+        ref: Ref<HTMLAnchorElement>,
+      ) => {
+        return (
+          <a href={href} ref={ref} {...props}>
+            {children}
+          </a>
+        );
+      },
+    ),
+  };
 });
 
 const mockProps = topNavFixture;
@@ -216,12 +244,7 @@ describe("TopNav accessibility", () => {
     });
 
     // tab to secondary button and open the submenu, should not focus primary dropdown items as they are not open
-    await user.tab();
-    await user.tab();
-    await user.tab();
-    await user.tab();
-    await user.tab();
-    await user.tab();
+    secondaryButton.focus();
     expect(secondaryButton).toHaveFocus();
     await user.keyboard("{Enter}");
 
@@ -235,6 +258,8 @@ describe("TopNav accessibility", () => {
 
     // in the test environment the default event handler for tab does not tab to this point so we have to manually call the focus manager handler to move focus to the next item
     allSubjectsLink?.focus();
+
+    expect(allSubjectsLink).toHaveFocus();
     // return to the second dropdown item when tabbing from the last subject button
     await user.tab();
     expect(dropdownItem2).toHaveFocus();

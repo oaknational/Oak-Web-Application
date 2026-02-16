@@ -5,6 +5,11 @@ exports[`core layout renders correctly 1`] = `
   <TopNav
     pupils={
       {
+        "help": {
+          "external": true,
+          "slug": "help",
+          "title": "Help",
+        },
         "primary": {
           "children": [
             {
