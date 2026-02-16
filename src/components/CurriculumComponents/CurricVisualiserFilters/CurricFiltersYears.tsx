@@ -37,8 +37,6 @@ type YearOption = { year: string; pathway?: string; queryString?: string };
 export const getColorSchemeByYear = (year: string) => {
   if (year === "1" || year === "7") {
     return "decorative3";
-  } else if (year === "2" || year === "8") {
-    return "decorative1";
   } else if (year === "3" || year === "9") {
     return "decorative2";
   } else if (year === "4" || year === "10") {
@@ -48,7 +46,8 @@ export const getColorSchemeByYear = (year: string) => {
   } else if (year === "6") {
     return "decorative6";
   }
-  return "primary";
+  // year 2, 8 and 'all years'
+  return "decorative1";
 };
 
 const filterToIndex = (
