@@ -11,7 +11,6 @@ import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
 
 import { usePrevious } from "@/hooks/usePrevious";
-import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CloseAction } from "@/components/CurriculumComponents/OakComponentsKitchen/OakModalNew/Content";
 import {
   CurricFiltersSubjectCategories,
@@ -21,22 +20,13 @@ import {
 } from "@/components/CurriculumComponents/CurricVisualiserFilters";
 import { shouldDisplayFilter } from "@/utils/curriculum/filteringApp";
 
-export type ProgrammePageMobileFiltersProps = ProgrammePageFiltersProps & {
-  selectedYear: string;
-  onSelectYear: (newYear: string) => void;
-  trackingData: CurriculumUnitsTrackingData;
-};
-
 export default function ProgrammePageFiltersMobile({
   filters,
   onChangeFilters,
   data,
-  selectedYear,
-  onSelectYear,
   slugs,
-  trackingData,
   ks4Options,
-}: ProgrammePageMobileFiltersProps) {
+}: ProgrammePageFiltersProps) {
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
 
@@ -99,12 +89,9 @@ export default function ProgrammePageFiltersMobile({
       <ProgrammeFiltersHeaderMobile
         onOpenModal={handleMobileThreadModal}
         filters={filters}
-        selectedYear={selectedYear}
-        onSelectYear={onSelectYear}
         onChangeFilters={onChangeFilters}
         data={data}
         slugs={slugs}
-        trackingData={trackingData}
         ks4Options={ks4Options}
       />
     </>
@@ -118,7 +105,7 @@ const ModalContent = ({
   slugs,
   ks4Options,
 }: Pick<
-  ProgrammePageMobileFiltersProps,
+  ProgrammePageFiltersProps,
   "data" | "filters" | "onChangeFilters" | "slugs" | "ks4Options"
 >) => {
   return (

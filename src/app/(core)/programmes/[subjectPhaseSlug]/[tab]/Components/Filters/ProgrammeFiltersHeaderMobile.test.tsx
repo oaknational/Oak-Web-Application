@@ -1,7 +1,6 @@
 import { ComponentProps } from "react";
-import { screen, waitFor } from "@testing-library/dom";
+import { screen } from "@testing-library/dom";
 import { usePathname } from "next/navigation";
-import userEvent from "@testing-library/user-event";
 
 import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
 
@@ -44,6 +43,7 @@ const mockYearData: YearData = {
     isSwimming: false,
     groupAs: null,
     nationalCurriculum: [],
+    keystage: "ks3",
   },
   "8": {
     units: [
@@ -64,6 +64,7 @@ const mockYearData: YearData = {
     isSwimming: false,
     groupAs: null,
     nationalCurriculum: [],
+    keystage: "ks3",
   },
 };
 
@@ -85,14 +86,8 @@ const defaultProps: ComponentProps<typeof ProgrammeFiltersHeaderMobile> = {
     yearData: mockYearData,
     threadOptions: [],
     yearOptions: ["7", "8"],
+    keystages: ["ks3"],
   },
-  trackingData: {
-    subjectSlug: "english",
-    subjectTitle: "English",
-    phaseSlug: "secondary",
-  },
-  selectedYear: "year-all-7",
-  onSelectYear: jest.fn(),
   slugs: {
     subjectSlug: "english",
     phaseSlug: "secondary",
@@ -108,20 +103,7 @@ describe("Mobile filters header", () => {
   test("displays year group buttons", async () => {
     render(<ProgrammeFiltersHeaderMobile {...defaultProps} />);
 
-    const yearButtons = await screen.findAllByTestId(
-      "year-group-filter-button",
-    );
+    const yearButtons = await screen.findAllByTestId("year-radio");
     expect(yearButtons).toHaveLength(2);
-  });
-  test("scrolls when year button is clicked", async () => {
-    render(<ProgrammeFiltersHeaderMobile {...defaultProps} />);
-
-    const yearButtons = await screen.findAllByTestId(
-      "year-group-filter-button",
-    );
-    const user = userEvent.setup();
-    await user.click(yearButtons[1]!);
-
-    await waitFor(() => expect(mockScrollTo).toHaveBeenCalled());
   });
 });

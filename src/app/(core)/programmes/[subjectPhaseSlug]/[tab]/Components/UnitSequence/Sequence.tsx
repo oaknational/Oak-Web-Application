@@ -1,17 +1,15 @@
 "use client";
 
-import { useRef, useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { OakBox } from "@oaknational/oak-components";
 
 import { ProgrammeUnitList } from "./UnitList";
 
-import useMediaQuery from "@/hooks/useMediaQuery";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import {
   getYearGroupTitle,
   getYearSubheadingText,
 } from "@/utils/curriculum/formatting";
-import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { CurriculumFilters, YearData, Thread } from "@/utils/curriculum/types";
 import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 import {
@@ -28,7 +26,6 @@ type ProgrammeSequenceProps = {
   yearData: YearData;
   filters: CurriculumFilters;
   mobileHeaderScrollOffset?: number;
-  setVisibleMobileYearRefID: (refID: string) => void;
   threadOptions: Thread[];
   ks4Options: Ks4Option[];
 };
@@ -39,77 +36,30 @@ export default function ProgrammeSequence({
   yearData,
   mobileHeaderScrollOffset,
   filters,
-  setVisibleMobileYearRefID,
   threadOptions,
   ks4OptionSlug,
   ks4Options,
 }: Readonly<ProgrammeSequenceProps>) {
-  const isDesktop = useMediaQuery("desktop");
+  const shouldIncludeCore = ks4OptionSlug !== "core";
 
-  const visualiserFilters = useMemo(() => {
-    if (!isDesktop) {
-      return {
-        ...filters,
-        years: Object.keys(yearData),
-        pathways: [],
-      };
-    }
-    return filters;
-  }, [isDesktop, filters, yearData]);
-
-  const shouldIncludeCore = !isDesktop || ks4OptionSlug !== "core";
   const unitsByYearSelector = applyFiltering(
-    visualiserFilters,
+    filters,
     groupUnitsByPathway({
-      modes: getModes(
-        shouldIncludeCore,
-        ks4Options,
-        visualiserFilters.pathways[0],
-      ),
+      modes: getModes(shouldIncludeCore, ks4Options, filters.pathways[0]),
       yearData,
     }),
   );
 
   const selectedThread = useMemo(() => {
-    return threadOptions.find(
-      (thread) => thread.slug === visualiserFilters.threads[0],
-    );
-  }, [threadOptions, visualiserFilters]);
-
-  const itemEls = useRef<(HTMLDivElement | null)[]>([]);
-  /* Intersection observer to update year filter selection when
-  scrolling through the visualiser on mobile */
-  useEffect(() => {
-    const options = { rootMargin: "-50% 0px 0px 0px" };
-    const yearsLoaded = Object.keys(yearData).length;
-    // All refs have been created for year groups & data is loaded
-    if (yearsLoaded > 0) {
-      const io = new IntersectionObserver(
-        anchorIntersectionObserver(setVisibleMobileYearRefID),
-        options,
-      );
-
-      for (const el of itemEls.current) {
-        if (el) {
-          io.observe(el);
-        }
-      }
-
-      return () => {
-        io.disconnect();
-      };
-    }
-  }, [setVisibleMobileYearRefID, yearData]);
+    return threadOptions.find((thread) => thread.slug === filters.threads[0]);
+  }, [threadOptions, filters]);
 
   const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
 
   return (
     <OakBox id="content">
-      {Object.entries(unitsByYearSelector).flatMap(([, data], index) => {
+      {Object.entries(unitsByYearSelector).flatMap(([, data]) => {
         const { year, type, isSwimming, units } = data;
-        const ref = (element: HTMLDivElement) => {
-          itemEls.current[index] = element;
-        };
 
         const actions = units[0]?.actions;
 
@@ -118,7 +68,7 @@ export default function ProgrammeSequence({
         const yearSubheadingText = getYearSubheadingText(
           yearData,
           year,
-          visualiserFilters,
+          filters,
           shouldDisplayCorePathway ? type : null,
           actions,
         );
@@ -126,7 +76,6 @@ export default function ProgrammeSequence({
         return (
           <OakBox
             data-testid={`year-${type}-${year}`}
-            ref={ref}
             key={`${year}-${type}`}
             $position={"relative"}
             id={`year-${type}-${year}`}
@@ -152,7 +101,7 @@ export default function ProgrammeSequence({
             >
               <ProgrammeUnitList
                 units={units}
-                filters={visualiserFilters}
+                filters={filters}
                 year={year}
                 yearData={yearData}
                 selectedThread={selectedThread}

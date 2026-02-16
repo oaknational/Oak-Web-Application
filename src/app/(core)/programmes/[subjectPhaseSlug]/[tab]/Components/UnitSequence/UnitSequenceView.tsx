@@ -1,6 +1,5 @@
 "use client";
 import { OakBox, OakHeading } from "@oaknational/oak-components";
-import { useState } from "react";
 
 import ProgrammePageFiltersDesktop from "../Filters/ProgrammePageFiltersDesktop";
 import ProgrammePageFiltersMobile from "../Filters/ProgrammePageFiltersMobile";
@@ -52,8 +51,6 @@ export const UnitSequenceView = ({
   const { ks4OptionSlug } = curriculumSelectionSlugs;
   const { subjectTitle } = curriculumSelectionTitles;
 
-  const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
-
   const unitCount = getNumberOfSelectedUnits(yearData, filters);
 
   const highlightedUnits = highlightedUnitCount(
@@ -61,10 +58,6 @@ export const UnitSequenceView = ({
     filters,
     filters.threads,
   );
-
-  const setVisibleMobileYearRefID = (refId: string) => {
-    setMobileSelectedYear(refId);
-  };
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -104,13 +97,10 @@ export const UnitSequenceView = ({
       </ScreenReaderOnly>
       {!isDesktop && (
         <ProgrammePageFiltersMobile
-          selectedYear={mobileSelectedYear}
-          onSelectYear={setMobileSelectedYear}
           filters={filters}
           onChangeFilters={onChangeFilters}
           data={curriculumUnitsFormattedData}
           slugs={curriculumSelectionSlugs}
-          trackingData={trackingData}
           ks4Options={ks4Options}
         />
       )}
@@ -132,7 +122,6 @@ export const UnitSequenceView = ({
             ks4OptionSlug={ks4OptionSlug}
             ks4Options={ks4Options}
             yearData={yearData}
-            setVisibleMobileYearRefID={setVisibleMobileYearRefID}
             threadOptions={threadOptions}
           />
         }
