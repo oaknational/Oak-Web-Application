@@ -2,7 +2,6 @@ import z from "zod";
 import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 
 import { NavLink } from "@/components/GenericPagesComponents/GenericSummaryCardNavButton/GenericSummaryCardNavButton";
-import { OakLinkPropsRequiringPageOnly } from "@/common-lib/urls";
 
 export const topNavResponseSchema = z.object({
   programmes: z.array(
@@ -26,7 +25,8 @@ export type TopNavResponse = z.infer<typeof topNavResponseSchema>;
 
 export type NavLink = {
   title: string;
-  slug: OakLinkPropsRequiringPageOnly["page"];
+  slug: string;
+  href: string;
   external?: boolean;
 };
 

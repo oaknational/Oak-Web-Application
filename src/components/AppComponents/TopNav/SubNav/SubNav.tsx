@@ -3,10 +3,7 @@ import { usePathname } from "next/navigation";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
-import {
-  OakLinkPropsRequiringPageOnly,
-  resolveOakHref,
-} from "@/common-lib/urls";
+import { resolveOakHref } from "@/common-lib/urls";
 import {
   TeachersSubNavData,
   PupilsSubNavData,
@@ -42,7 +39,7 @@ const SubNav = <T extends SubNavData>({
   const pathname = usePathname();
   const subNavButtons = Object.values(data);
 
-  const getLinkProps = (slug: string, external?: boolean) => {
+  const getLinkProps = (slug: string, href: string, external?: boolean) => {
     const buttonId = focusManager.createId(area, slug);
     return {
       target: external ? "_blank" : undefined,
@@ -52,7 +49,7 @@ const SubNav = <T extends SubNavData>({
       element: Link,
       onKeyDown: (event: React.KeyboardEvent) =>
         focusManager.handleKeyDown(event, buttonId),
-      href: resolveOakHref({ page: slug } as OakLinkPropsRequiringPageOnly),
+      href,
     };
   };
 
@@ -134,7 +131,7 @@ const SubNav = <T extends SubNavData>({
                   </OakSmallPrimaryInvertedButton>
                 ) : (
                   <OakSmallPrimaryInvertedButton
-                    {...getLinkProps(btn.slug, external)}
+                    {...getLinkProps(btn.slug, btn.href, external)}
                   >
                     {btn.title}
                   </OakSmallPrimaryInvertedButton>

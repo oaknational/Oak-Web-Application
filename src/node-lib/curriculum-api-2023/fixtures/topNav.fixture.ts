@@ -93,6 +93,7 @@ export const topNavFixture: TopNavProps = {
     curriculum: {
       slug: "curriculum-landing-page",
       title: "Curriculum",
+      href: "/teachers/curriculum",
     },
     aboutUs: {
       slug: "aboutUs",
@@ -101,8 +102,13 @@ export const topNavFixture: TopNavProps = {
         {
           slug: "about-who-we-are",
           title: "Who we are",
+          href: "/about-us/who-we-are",
         },
-        { slug: "about-board", title: "Board" },
+        {
+          slug: "about-board",
+          title: "Board",
+          href: "/about-us/board",
+        },
       ],
     },
     guidance: {
@@ -112,14 +118,17 @@ export const topNavFixture: TopNavProps = {
         {
           slug: "lesson-planning",
           title: "Plan a lesson",
+          href: "/teachers/lesson-planning",
         },
         {
           slug: "blog-index",
           title: "Blogs",
+          href: "/blog",
         },
         {
           slug: "help",
           title: "Help",
+          href: "https://support.thenational.academy",
           external: true,
         },
       ],
@@ -127,6 +136,7 @@ export const topNavFixture: TopNavProps = {
     aiExperiments: {
       slug: "labs",
       title: "Ai experiments",
+      href: "https://labs.thenational.academy",
       external: true,
     },
   },
@@ -157,6 +167,7 @@ export const topNavFixture: TopNavProps = {
     help: {
       slug: "help",
       title: "Help",
+      href: "https://support.thenational.academy",
       external: true,
     },
   },

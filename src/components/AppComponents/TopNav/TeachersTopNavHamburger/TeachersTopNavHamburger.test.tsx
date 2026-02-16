@@ -6,188 +6,9 @@ import {
 } from "./TeachersTopNavHamburger";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
-const mockTopNavProps: TeachersSubNavData = {
-  primary: {
-    title: "Primary",
-    slug: "primary",
-    children: [
-      {
-        title: "KS1",
-        slug: "ks1",
-        description: "Key Stage 1",
-        children: [
-          {
-            title: "test-subject-1",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-1",
-            slug: "test-subject-slug-1",
-          },
-          {
-            title: "test-subject-2",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-2",
-            slug: "test-subject-slug-2",
-          },
-          {
-            title: "test-subject-3",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-3",
-            slug: "test-subject-slug-3",
-          },
-        ],
-      },
-      {
-        title: "KS2",
-        slug: "ks2",
-        description: "Key Stage 2",
-        children: [
-          {
-            title: "test-subject-1",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-1",
-            slug: "test-subject-slug-1",
-          },
-          {
-            title: "test-subject-2",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-2",
-            slug: "test-subject-slug-2",
-          },
-          {
-            title: "test-subject-3",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-3",
-            slug: "test-subject-slug-3",
-          },
-        ],
-      },
-      {
-        title: "EYFS",
-        slug: "eyfs",
-        description: "Early Years Foundation Stage",
-        children: [
-          {
-            title: "test-subject-1",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-1",
-            slug: "test-subject-slug-1",
-          },
-          {
-            title: "test-subject-2",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-2",
-            slug: "test-subject-slug-2",
-          },
-          {
-            title: "test-subject-3",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-3",
-            slug: "test-subject-slug-3",
-          },
-        ],
-      },
-    ],
-  },
-  secondary: {
-    title: "Secondary",
-    slug: "secondary",
-    children: [
-      {
-        title: "KS3",
-        slug: "ks3",
-        description: "Key Stage 3",
-        children: [
-          {
-            title: "test-subject-1",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-1",
-            slug: "test-subject-slug-1",
-          },
-          {
-            title: "test-subject-2",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-2",
-            slug: "test-subject-slug-2",
-          },
-          {
-            title: "test-subject-3",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-3",
-            slug: "test-subject-slug-3",
-          },
-        ],
-      },
-      {
-        title: "KS4",
-        slug: "ks4",
-        description: "Key Stage 4",
-        children: [
-          {
-            title: "test-subject-1",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-1",
-            slug: "test-subject-slug-1",
-          },
-          {
-            title: "test-subject-2",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-2",
-            slug: "test-subject-slug-2",
-          },
-          {
-            title: "test-subject-3",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-3",
-            slug: "test-subject-slug-3",
-          },
-        ],
-      },
-    ],
-  },
-  curriculum: {
-    title: "Curriculum",
-    slug: "curriculum-landing-page",
-  },
-  aboutUs: {
-    title: "About us",
-    slug: "about-us",
-    children: [
-      { title: "test-link-1", slug: "home" },
-      { title: "test-link-2", slug: "home" },
-      { title: "test-link-3", slug: "home" },
-    ],
-  },
-  guidance: {
-    title: "Guidance",
-    slug: "guidance",
-    children: [
-      { title: "test-link-1", slug: "home" },
-      { title: "test-link-2", slug: "home" },
-      { title: "test-link-3", slug: "home" },
-    ],
-  },
-  aiExperiments: {
-    title: "AI experiments",
-    slug: "labs",
-  },
-};
+const mockTopNavProps = topNavFixture.teachers!;
 
 const render = renderWithProviders();
 
@@ -222,11 +43,11 @@ describe("TeachersTopNavHamburger", () => {
     act(() => {
       button.click();
     });
-    const keyStageItem = getByText("Key Stage 1");
+    const keyStageItem = getByText("Key stage 1");
     act(() => {
       keyStageItem.click();
     });
-    expect(getByText("test-subject-1")).toBeInTheDocument();
+    expect(getByText("English")).toBeInTheDocument();
   });
 
   it("should focus the first list item when submenu is opened", () => {
@@ -237,11 +58,11 @@ describe("TeachersTopNavHamburger", () => {
     act(() => {
       button.click();
     });
-    const keyStageItem = getByText("Key Stage 1");
+    const keyStageItem = getByText("Key stage 1");
     act(() => {
       keyStageItem.click();
     });
-    const firstListItem = getByText("test-subject-1");
+    const firstListItem = getByText("English");
     expect(document?.activeElement?.textContent).toBe(
       firstListItem.textContent,
     );
@@ -255,15 +76,15 @@ describe("TeachersTopNavHamburger", () => {
     act(() => {
       button.click();
     });
-    const keyStageItem = getByText("Key Stage 1");
+    const keyStageItem = getByText("Key stage 1");
     act(() => {
       keyStageItem.click();
     });
-    const backButton = getByText("Key Stage 1");
+    const backButton = getByText("Key stage 1");
     act(() => {
       backButton.click();
     });
-    expect(queryByText("test-subject-1")).not.toBeInTheDocument();
+    expect(queryByText("English")).not.toBeInTheDocument();
     expect(getByText("Primary")).toBeInTheDocument();
   });
 
@@ -275,11 +96,11 @@ describe("TeachersTopNavHamburger", () => {
     act(() => {
       button.click();
     });
-    const keyStageItem = getByText("Key Stage 3");
+    const keyStageItem = getByText("Key stage 3");
     act(() => {
       keyStageItem.click();
     });
-    const backButton = getByText("Key Stage 3");
+    const backButton = getByText("Key stage 3");
     act(() => {
       backButton.click();
     });
@@ -294,7 +115,7 @@ describe("TeachersTopNavHamburger", () => {
     act(() => {
       button.click();
     });
-    const keyStageItem = getByText("Key Stage 2");
+    const keyStageItem = getByText("Key stage 2");
     act(() => {
       keyStageItem.click();
     });
@@ -305,7 +126,7 @@ describe("TeachersTopNavHamburger", () => {
     act(() => {
       button.click();
     });
-    expect(queryByText("test-subject-1")).not.toBeInTheDocument();
+    expect(queryByText("Science")).not.toBeInTheDocument();
     expect(getByText("Primary")).toBeInTheDocument();
   });
 

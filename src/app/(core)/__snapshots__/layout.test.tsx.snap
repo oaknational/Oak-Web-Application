@@ -7,6 +7,7 @@ exports[`core layout renders correctly 1`] = `
       {
         "help": {
           "external": true,
+          "href": "https://support.thenational.academy",
           "slug": "help",
           "title": "Help",
         },
@@ -73,10 +74,12 @@ exports[`core layout renders correctly 1`] = `
         "aboutUs": {
           "children": [
             {
+              "href": "/about-us/who-we-are",
               "slug": "about-who-we-are",
               "title": "Who we are",
             },
             {
+              "href": "/about-us/board",
               "slug": "about-board",
               "title": "Board",
             },
@@ -86,25 +89,30 @@ exports[`core layout renders correctly 1`] = `
         },
         "aiExperiments": {
           "external": true,
+          "href": "https://labs.thenational.academy",
           "slug": "labs",
           "title": "Ai experiments",
         },
         "curriculum": {
+          "href": "/teachers/curriculum",
           "slug": "curriculum-landing-page",
           "title": "Curriculum",
         },
         "guidance": {
           "children": [
             {
+              "href": "/teachers/lesson-planning",
               "slug": "lesson-planning",
               "title": "Plan a lesson",
             },
             {
+              "href": "/blog",
               "slug": "blog-index",
               "title": "Blogs",
             },
             {
               "external": true,
+              "href": "https://support.thenational.academy",
               "slug": "help",
               "title": "Help",
             },
