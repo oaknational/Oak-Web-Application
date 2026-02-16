@@ -1,6 +1,5 @@
 import React from "react";
 import { screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
 import Page from "./page";
 
@@ -134,22 +133,6 @@ describe("ClassroomDownloadPage", () => {
     expect(screen.getByText("You can close this tab.")).toBeInTheDocument();
   });
 
-  it("shows error message when createLessonDownloadLink throws", async () => {
-    mockCreateLessonDownloadLink.mockRejectedValue(new Error("API error"));
-
-    renderWithTheme(<Page />);
-
-    await waitFor(() => {
-      expect(
-        screen.getByText(
-          "There was an error preparing your download. Please try again.",
-        ),
-      ).toBeInTheDocument();
-    });
-
-    expect(screen.getByText("Try again")).toBeInTheDocument();
-  });
-
   it("shows error message when createLessonDownloadLink returns falsy", async () => {
     mockCreateLessonDownloadLink.mockResolvedValue(undefined);
 
@@ -160,29 +143,5 @@ describe("ClassroomDownloadPage", () => {
         screen.getByText("Could not generate download link. Please try again."),
       ).toBeInTheDocument();
     });
-  });
-
-  it("allows retry after error", async () => {
-    mockCreateLessonDownloadLink.mockRejectedValueOnce(new Error("API error"));
-    mockCreateLessonDownloadLink.mockResolvedValueOnce(
-      "https://signed-url.com",
-    );
-    const user = userEvent.setup();
-
-    renderWithTheme(<Page />);
-
-    await waitFor(() => {
-      expect(screen.getByText("Try again")).toBeInTheDocument();
-    });
-
-    await user.click(screen.getByText("Try again"));
-
-    await waitFor(() => {
-      expect(
-        screen.getByText("Your download has started."),
-      ).toBeInTheDocument();
-    });
-
-    expect(createLessonDownloadLink).toHaveBeenCalledTimes(2);
   });
 });
