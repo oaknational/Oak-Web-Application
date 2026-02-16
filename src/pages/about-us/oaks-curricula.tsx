@@ -13,8 +13,6 @@ import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
@@ -24,6 +22,8 @@ import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPha
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumPartners } from "@/components/GenericPagesComponents/CurriculumPartners";
 import { GuidingPrinciples } from "@/components/GenericPagesComponents/GuidingPrinciples";
+import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -65,6 +65,49 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
         <OakBox $background={"bg-decorative4-very-subdued"}>
           <OakMaxWidth $pv={"spacing-80"} $ph={["spacing-16"]}>
             <OakFlex $flexDirection={"column"} $gap={"spacing-56"}>
+              <OakFlex
+                $flexDirection={["column", "row"]}
+                $flexWrap="wrap"
+                $gap="spacing-16"
+                $alignItems="stretch"
+              >
+                <CurricInfoCard
+                  iconName="clipboard"
+                  background="bg-primary"
+                  iconHeight={"spacing-92"}
+                  iconWidth={"spacing-48"}
+                  borderColor="border-decorative4"
+                >
+                  National curriculum and exam board aligned
+                </CurricInfoCard>
+                <CurricInfoCard
+                  iconName="free-tag"
+                  background="bg-primary"
+                  iconHeight="spacing-92"
+                  iconWidth="spacing-80"
+                  borderColor="border-decorative4"
+                >
+                  Free and always will be
+                </CurricInfoCard>
+                <CurricInfoCard
+                  iconName="book-steps"
+                  background="bg-primary"
+                  iconHeight="spacing-92"
+                  iconWidth="spacing-72"
+                  borderColor="border-decorative4"
+                >
+                  Covers key stages 1-4 across 20 subjects
+                </CurricInfoCard>
+                <CurricInfoCard
+                  iconName="threads"
+                  background="bg-primary"
+                  iconHeight="spacing-92"
+                  iconWidth="spacing-64"
+                  borderColor="border-decorative4"
+                >
+                  Fully sequenced and ready to adapt
+                </CurricInfoCard>
+              </OakFlex>
               <GuidingPrinciples
                 $background="bg-primary"
                 accentColor="border-decorative4"
@@ -157,25 +200,15 @@ const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   };
 
 export const getServerSideProps = (async (context) => {
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
-    posthogApiKey,
-  );
-
   const pageData = {
     ...mockData,
     curriculumPhaseOptions: await fetchSubjectPhasePickerData(),
   };
 
-  let enableV2: boolean = false;
-  if (posthogUserId) {
-    // get the variant key for the user
-    enableV2 =
-      (await getFeatureFlag({
-        featureFlagKey: "about-us--who-we-are--v2",
-        posthogUserId,
-      })) === true;
-  }
+  const enableV2 = await isNewAboutUsPagesEnabled(
+    posthogApiKey,
+    context.req.cookies,
+  );
   const topNav = await curriculumApi2023.topNav();
 
   if (!enableV2 || !pageData) {

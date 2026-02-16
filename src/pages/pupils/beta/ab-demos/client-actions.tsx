@@ -1,12 +1,10 @@
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 import { useState } from "react";
 import {
-  oakDefaultTheme,
   OakFlex,
   OakHeading,
   OakPrimaryButton,
   OakSpan,
-  OakThemeProvider,
 } from "@oaknational/oak-components";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -78,34 +76,32 @@ const Page = () => {
 
   // Do something differently for this user
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex
-        $background={"bg-decorative5-main"}
-        $width={"100vw"}
-        $height={"100vh"}
-        $flexDirection={"column"}
-        $alignItems={"center"}
-        $justifyContent={"center"}
-        $gap={"spacing-12"}
-      >
-        <OakHeading tag="h1">Pupil AB Demo</OakHeading>
-        <OakHeading tag="h2">
-          Client: Action changes according to variant
-        </OakHeading>
-        <OakSpan>Design variant - {variantKey}</OakSpan>
-        {isConcluded && <OakSpan>Concluded</OakSpan>}
-        {!isConcluded && (
-          <OakPrimaryButton
-            onClick={() => {
-              handleClick();
-              setIsConcluded(true);
-            }}
-          >
-            Click me
-          </OakPrimaryButton>
-        )}
-      </OakFlex>
-    </OakThemeProvider>
+    <OakFlex
+      $background={"bg-decorative5-main"}
+      $width={"100vw"}
+      $height={"100vh"}
+      $flexDirection={"column"}
+      $alignItems={"center"}
+      $justifyContent={"center"}
+      $gap={"spacing-12"}
+    >
+      <OakHeading tag="h1">Pupil AB Demo</OakHeading>
+      <OakHeading tag="h2">
+        Client: Action changes according to variant
+      </OakHeading>
+      <OakSpan>Design variant - {variantKey}</OakSpan>
+      {isConcluded && <OakSpan>Concluded</OakSpan>}
+      {!isConcluded && (
+        <OakPrimaryButton
+          onClick={() => {
+            handleClick();
+            setIsConcluded(true);
+          }}
+        >
+          Click me
+        </OakPrimaryButton>
+      )}
+    </OakFlex>
   );
 };
 

@@ -1,11 +1,6 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import { groupBy, uniq } from "lodash";
-import {
-  OakIconProps,
-  OakThemeProvider,
-  isValidIconName,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakIconProps, isValidIconName } from "@oaknational/oak-components";
 import { subjectSlugs } from "@oaknational/oak-curriculum-schema";
 
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
@@ -64,28 +59,26 @@ const PupilUnitListingPage = ({
   topNav,
 }: UnitListingPageProps) => {
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <AppLayout
-        seoProps={{
-          ...getSeoProps({
-            title: `${subject}, ${phase}, ${yearDescription} - Unit listing`,
-            description: `Unit listing for ${subject}, ${phase}, ${yearDescription}`,
-          }),
-          noIndex: true,
-          noFollow: false,
-        }}
-        topNavProps={topNav}
-      >
-        <PupilViewsUnitListing
-          unitSections={unitSections}
-          phase={phase}
-          backHrefSlugs={backHrefSlugs}
-          subjectCategories={subjectCategories}
-          programmeFields={programmeFields}
-          relatedSubjects={relatedSubjects}
-        />
-      </AppLayout>
-    </OakThemeProvider>
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: `${subject}, ${phase}, ${yearDescription} - Unit listing`,
+          description: `Unit listing for ${subject}, ${phase}, ${yearDescription}`,
+        }),
+        noIndex: true,
+        noFollow: false,
+      }}
+      topNavProps={topNav}
+    >
+      <PupilViewsUnitListing
+        unitSections={unitSections}
+        phase={phase}
+        backHrefSlugs={backHrefSlugs}
+        subjectCategories={subjectCategories}
+        programmeFields={programmeFields}
+        relatedSubjects={relatedSubjects}
+      />
+    </AppLayout>
   );
 };
 
