@@ -12,6 +12,9 @@ import {
 import { GET } from "./route";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
+jest.mock("@/node-lib/google-classroom/handleNewsletterSignup", () => ({
+  handleNewsletterSignup: jest.fn(),
+}));
 
 const mockSession = "encrypted_session_data";
 const mockAccessToken = "google_access_token";

@@ -7,7 +7,7 @@ import {
   isOakGoogleClassroomException,
   createClassroomErrorReporter,
 } from "@/node-lib/google-classroom";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { handleNewsletterSignup } from "@/node-lib/google-classroom/handleNewsletterSignup";
 
 const reportError = createClassroomErrorReporter("callback");
 
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     const parsedCode = codeSchema.safeParse(code);
 
     // Check for OAuth errors from Google -
-    //Redirect to 404 Error Page
+    // Redirect to 404 Error Page
     if (error) {
       reportError(new Error(`OAuth error: ${error}`), {
         severity: "warning",
@@ -62,57 +62,16 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const handleNewsletterSignup = async (email: string) => {
-      const submissionUrl = getBrowserConfig("hubspotFormSubmissionUrl");
-      const portalId = getBrowserConfig("hubspotStagingPortalId");
-      const formId = getBrowserConfig("hubspotGoogleClassroomFormId");
+    const baseUrl = `${request.nextUrl.protocol}//${request.nextUrl.host}`;
+    const onNewsletterSignup = subscribeToNewsletter
+      ? (email: string) => handleNewsletterSignup(email, baseUrl, reportError)
+      : undefined;
 
-      if (!submissionUrl || !portalId || !formId) {
-        reportError(
-          new Error("Missing HubSpot configuration for newsletter signup"),
-          { severity: "warning" },
-        );
-        return;
-      }
-
-      const url = `${submissionUrl}/${portalId}/${formId}`;
-      const baseUrl = `${request.nextUrl.protocol}//${request.nextUrl.host}`;
-      const payload = {
-        fields: [
-          { name: "email", value: email },
-          { name: "user_type", value: "Teacher" },
-          { name: "email_consent_on_gc_addon_account_creation", value: "true" },
-        ],
-        context: {
-          pageUri: `${baseUrl}/classroom/auth/callback`,
-          pageName: "Google Classroom Sign In",
-        },
-      };
-      try {
-        const res = await fetch(url, {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-
-        if (!res.ok) {
-          const responseBody = await res.json().catch(() => ({}));
-          reportError(
-            new Error(
-              `HubSpot newsletter form submission failed: ${res.status}`,
-            ),
-            { severity: "warning", responseBody },
-          );
-        }
-      } catch (error) {
-        reportError(error, { severity: "warning" });
-      }
-    };
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
     const { encryptedSession, accessToken } =
       await oakClassroomClient.handleGoogleSignInCallback(
         parsedCode.data,
-        subscribeToNewsletter ? handleNewsletterSignup : undefined,
+        onNewsletterSignup,
       );
 
     return redirect(
