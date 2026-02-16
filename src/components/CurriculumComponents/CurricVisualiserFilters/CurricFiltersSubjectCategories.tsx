@@ -25,6 +25,7 @@ export type CurricFiltersSubjectCategoriesProps = {
   ) => void;
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
+  context: "curriculum-visualiser" | "integrated-journey";
 };
 
 export function CurricFiltersSubjectCategories({
@@ -32,6 +33,7 @@ export function CurricFiltersSubjectCategories({
   onChangeFilters,
   data,
   slugs,
+  context,
 }: Readonly<CurricFiltersSubjectCategoriesProps>) {
   const id = useId();
   const { yearData } = data;
@@ -68,12 +70,17 @@ export function CurricFiltersSubjectCategories({
           <OakHeading
             id="subject-categories-label"
             tag="h4"
-            $font={["heading-7", "heading-6"]}
+            $font={
+              context === "integrated-journey"
+                ? "heading-7"
+                : ["heading-7", "heading-6"]
+            }
             $mt="spacing-0"
             $mb={["spacing-24", "spacing-16"]}
           >
             Category
-            {subjectCategoriesAt.length === 1
+            {subjectCategoriesAt.length === 1 &&
+            context === "curriculum-visualiser"
               ? ` (${subjectCategoriesAt[0]?.toUpperCase()})`
               : ""}
           </OakHeading>

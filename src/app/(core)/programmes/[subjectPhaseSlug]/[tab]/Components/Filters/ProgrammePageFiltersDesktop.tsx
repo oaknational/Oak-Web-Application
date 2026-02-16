@@ -1,7 +1,5 @@
 import {
-  OakBox,
   OakFlex,
-  OakHandDrawnHR,
   OakHeading,
   OakRadioAsButton,
   OakRadioGroup,
@@ -42,41 +40,30 @@ export default function ProgrammePageFiltersDesktop({
 }: Readonly<ProgrammePageFiltersProps>) {
   const selectedKeystage = filters.keystages[0];
   return (
-    <OakBox $mr={"spacing-16"}>
+    <OakFlex $mr={"spacing-16"} $gap={"spacing-32"} $flexDirection={"column"}>
       <SkipLink href="#content">Skip to units</SkipLink>
       {shouldDisplayFilter(data, filters, "years") && (
-        <>
-          <CurricFiltersYears
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-            ks4Options={ks4Options}
-            slugs={slugs}
-            context={"integrated-journey"}
-          />
-          <OakHandDrawnHR
-            hrColor={"bg-interactive-element2"}
-            $mv={"spacing-32"}
-          />
-        </>
+        <CurricFiltersYears
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          data={data}
+          ks4Options={ks4Options}
+          slugs={slugs}
+          context={"integrated-journey"}
+        />
       )}
       {shouldDisplayFilter(data, filters, "subjectCategories") && (
-        <>
-          <CurricFiltersSubjectCategories
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-            slugs={slugs}
-          />
-          <OakHandDrawnHR
-            hrColor={"bg-interactive-element2"}
-            $mv={"spacing-32"}
-          />
-        </>
+        <CurricFiltersSubjectCategories
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          data={data}
+          slugs={slugs}
+          context="integrated-journey"
+        />
       )}
       {/* TD: [integrated-journey] we may remove this filter from the main page */}
       <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-        <OakHeading tag="h4" $font="heading-6">
+        <OakHeading tag="h4" $font="heading-7">
           Key stage
         </OakHeading>
         <OakRadioGroup
@@ -101,32 +88,20 @@ export default function ProgrammePageFiltersDesktop({
         </OakRadioGroup>
       </OakFlex>
       {shouldDisplayFilter(data, filters, "childSubjects") && (
-        <>
-          <CurricFiltersChildSubjects
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-          />
-          <OakHandDrawnHR
-            hrColor={"bg-interactive-element2"}
-            $mv={"spacing-32"}
-          />
-        </>
+        <CurricFiltersChildSubjects
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          data={data}
+        />
       )}
       {shouldDisplayFilter(data, filters, "tiers") && (
-        <>
-          <CurricFiltersTiers
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-          />
-          <OakHandDrawnHR
-            hrColor={"bg-interactive-element2"}
-            $mv={"spacing-32"}
-          />
-        </>
+        <CurricFiltersTiers
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          data={data}
+        />
       )}
       {/* TD: [integrated journey] add thread filters */}
-    </OakBox>
+    </OakFlex>
   );
 }

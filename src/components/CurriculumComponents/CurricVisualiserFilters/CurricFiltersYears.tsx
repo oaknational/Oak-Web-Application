@@ -162,7 +162,7 @@ export function CurricFiltersYears({
       <OakHeading
         tag="h4"
         id="year-group-label"
-        $font={"heading-6"}
+        $font={context === "curriculum-visualiser" ? "heading-6" : "heading-7"}
         $mb="spacing-16"
       >
         Year group

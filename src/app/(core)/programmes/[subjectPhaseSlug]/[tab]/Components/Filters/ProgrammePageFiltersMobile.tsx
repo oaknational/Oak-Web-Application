@@ -138,6 +138,7 @@ const ModalContent = ({
             onChangeFilters={onChangeFilters}
             data={data}
             slugs={slugs}
+            context="integrated-journey"
           />
         )}
 
