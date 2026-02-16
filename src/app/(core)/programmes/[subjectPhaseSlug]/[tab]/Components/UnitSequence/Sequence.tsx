@@ -115,14 +115,14 @@ export default function ProgrammeSequence({
         const actions = units[0]?.actions;
 
         const yearTitle = getYearGroupTitle(yearData, year);
-
+        const pathway = shouldDisplayCorePathway ? type : null;
         const yearSubheadingText = isSwimming
           ? "Swimming and water safety units should be selected based on the ability and experience of your pupils."
           : getYearSubheadingText(
               yearData,
               year,
               visualiserFilters,
-              shouldDisplayCorePathway ? type : null,
+              pathway,
               actions,
             );
         const yearSubheadingIconName = isSwimming
