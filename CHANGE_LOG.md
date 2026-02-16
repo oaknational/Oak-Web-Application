@@ -1,3 +1,21 @@
+## [1.988.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.988.0...v1.988.1) (2026-02-16)
+
+
+### Bug Fixes
+
+* prettier ([403219e](https://github.com/oaknational/Oak-Web-Application/commit/403219ed4f1d8154e56e8dd69ae2b8fedd363412))
+* snapshots ([67181d6](https://github.com/oaknational/Oak-Web-Application/commit/67181d6f85adcd8eadb82992ca65a01350af6161))
+* snapshots ([78d7417](https://github.com/oaknational/Oak-Web-Application/commit/78d7417bfbf1c8a61d43d2a3a20e6c15ba10a414))
+* use flex instead of grid for about us header ([ccb7e45](https://github.com/oaknational/Oak-Web-Application/commit/ccb7e450adbea3a88f3abafbe25939273c1cd860))
+
+# [1.988.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.987.1...v1.988.0) (2026-02-13)
+
+
+### Features
+
+* add programme page to urls ([a1d0e73](https://github.com/oaknational/Oak-Web-Application/commit/a1d0e73be870514ccb10aedf66774bf639af2d5f))
+* update oak tabs component to use links for buttons ([996b523](https://github.com/oaknational/Oak-Web-Application/commit/996b5233ffeee11a9760ff17a51c5e613e7086d2))
+
 ## [1.987.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.987.0...v1.987.1) (2026-02-12)
 
 # [1.987.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.986.1...v1.987.0) (2026-02-11)
