@@ -18,6 +18,7 @@ import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { keystageFromYear } from "@/utils/curriculum/keystage";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { getKeystageSlug } from "@/fixtures/curriculum/unit";
 
 export type CurricFiltersYearsProps = {
   filters: CurriculumFilters;
@@ -91,17 +92,30 @@ export function CurricFiltersYears({
 
   const shouldDisplayCorePathway =
     slugs.ks4OptionSlug !== "core" && getShouldDisplayCorePathway(ks4Options);
-  const yearOptions = data.yearOptions.map<YearOption>((year) => {
-    if (shouldDisplayCorePathway) {
-      return {
-        year,
-        pathway: keystageFromYear(year) === "ks4" ? "core" : undefined,
-        queryString: "core",
-      };
-    } else {
-      return { year };
-    }
-  });
+
+  const ksFilter = filters.keystages[0];
+  const yearOptions = data.yearOptions
+    .filter((year) => {
+      const ksForYear = getKeystageSlug(year);
+
+      if (ksFilter) {
+        return ksForYear === ksFilter;
+      } else {
+        return true;
+      }
+    })
+    .map<YearOption>((year) => {
+      if (shouldDisplayCorePathway) {
+        return {
+          year,
+          pathway: keystageFromYear(year) === "ks4" ? "core" : undefined,
+          queryString: "core",
+        };
+      } else {
+        return { year };
+      }
+    });
+
   function addAllToFilter(target: YearOption) {
     if (target.year === "all") {
       onChangeFilters(
