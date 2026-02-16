@@ -24,42 +24,28 @@ import {
   highlightedUnitCount,
 } from "@/utils/curriculum/filteringApp";
 import { CurriculumFilters } from "@/utils/curriculum/types";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 export type UnitSequenceViewProps = {
   filters: CurriculumFilters;
   setFilters: (newFilters: CurriculumFilters) => void;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
-  curriculumPhaseOptions: SubjectPhasePickerData;
-  subjectTitle: string;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
+  ks4Options: Ks4Option[];
+  trackingData: CurriculumUnitsTrackingData;
 };
 
 export const UnitSequenceView = ({
   filters,
   setFilters,
   curriculumSelectionSlugs,
-  curriculumPhaseOptions,
-  subjectTitle,
   curriculumUnitsFormattedData,
+  ks4Options,
+  trackingData,
 }: UnitSequenceViewProps) => {
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
-  const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
-
-  const ks4Options =
-    curriculumPhaseOptions.subjects.find((s) => s.slug === subjectSlug)!
-      .ks4_options ?? [];
-  const ks4Option = ks4Options.find((ks4opt) => ks4opt.slug === ks4OptionSlug);
-
-  // TD: [integrated journey] tracking
-  const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
-    subjectSlug,
-    phaseSlug,
-    subjectTitle,
-    ks4OptionSlug: ks4Option?.slug,
-    ks4OptionTitle: ks4Option?.title,
-  };
+  const { ks4OptionSlug } = curriculumSelectionSlugs;
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
 
@@ -83,7 +69,7 @@ export const UnitSequenceView = ({
 
     const analyticsData = buildUnitSequenceRefinedAnalytics(
       analyticsUseCase,
-      curriculumUnitsTrackingData,
+      trackingData,
       newFilters,
     );
 
@@ -122,7 +108,7 @@ export const UnitSequenceView = ({
             onChangeFilters={onChangeFilters}
             data={curriculumUnitsFormattedData}
             slugs={curriculumSelectionSlugs}
-            trackingData={curriculumUnitsTrackingData}
+            trackingData={trackingData}
             ks4Options={ks4Options}
           />
         </OakBox>
