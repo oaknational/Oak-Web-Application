@@ -7,11 +7,11 @@ export const getTeachersNavData = (
   const keystagesForPhase = getKeystages(teachersData, phaseSlug);
 
   return {
-    phaseSlug: phaseSlug,
-    phaseTitle: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as
+    slug: phaseSlug,
+    title: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as
       | "Primary"
       | "Secondary",
-    keystages:
+    children:
       phaseSlug === "primary"
         ? keystagesForPhase.concat(getKeystages(teachersData, "foundation"))
         : keystagesForPhase,
@@ -40,7 +40,7 @@ const getKeystages = (
   const withSubjects = byKeystage.map((ks) => {
     return {
       ...ks,
-      subjects: byPhase
+      children: byPhase
         .filter((p) => p.programme_fields.keystage_slug === ks.slug)
         .filter(
           (p, i, a) =>
@@ -87,7 +87,7 @@ const getKeystages = (
             subjectDisplayName + (pathwayTitle ? ` (${pathwayTitle})` : "");
 
           return {
-            subjectSlug: p.programme_fields.subject_slug,
+            slug: p.programme_fields.subject_slug,
             title,
             nonCurriculum: Boolean(p.features.non_curriculum),
             programmeSlug: programmeCount > 1 ? null : p.programme_slug,
