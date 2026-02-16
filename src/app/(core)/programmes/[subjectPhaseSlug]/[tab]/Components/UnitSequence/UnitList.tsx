@@ -60,7 +60,6 @@ export function ProgrammeUnitList({
         $minHeight="spacing-180"
         key={`${unit.slug}-${index}`}
         as="li"
-        onClick={() => onClick(unit, isHighlighted)}
       >
         <CardListing
           layoutVariant="vertical"
@@ -72,6 +71,7 @@ export function ProgrammeUnitList({
             unitSlug: unit.slug,
             programmeSlug: createTeacherProgrammeSlug(unit),
           })}
+          onClickLink={() => onClick(unit, isHighlighted)}
           lessonCount={unit.lessons?.length}
           saveProps={
             isSignedIn

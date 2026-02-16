@@ -28,6 +28,7 @@ type CardListingProps = {
     trackingProps: TrackingProgrammeData;
   };
   disabled?: boolean;
+  onClickLink?: () => void;
 };
 
 export const getDefaultTextColour = ({
@@ -55,6 +56,7 @@ const CardListing = (props: CardListingProps) => {
     saveProps,
     href,
     disabled,
+    onClickLink,
   } = props;
 
   const showSave = saveProps !== undefined;
@@ -64,7 +66,7 @@ const CardListing = (props: CardListingProps) => {
   // If the card is disabled use a div for the container, otherwise use a link element
   const cardLinkProps = disabled
     ? { "data-disabled": true, as: "div" as const }
-    : { href };
+    : { href, onClick: onClickLink };
 
   return (
     <OakFlex
