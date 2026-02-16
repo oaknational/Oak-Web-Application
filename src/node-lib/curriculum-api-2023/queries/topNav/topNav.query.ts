@@ -2,7 +2,11 @@ import { Sdk } from "../../sdk";
 
 import { getPupilsNavData } from "./getPupilsNavData";
 import { getTeachersNavData } from "./getTeachersNavData";
-import { topNavResponseSchema } from "./topNav.schema";
+import {
+  topNavResponseSchema,
+  TeachersSubNavData,
+  PupilsSubNavData,
+} from "./topNav.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
@@ -27,50 +31,50 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
     };
   }
 
-  const teachersNavData = {
+  const teachersNavData: TeachersSubNavData = {
     primary: getTeachersNavData(parsed.data, "primary"),
     secondary: getTeachersNavData(parsed.data, "secondary"),
     curriculum: {
       title: "Curriculum",
-      slug: "curriculum-landing-page" as const,
+      slug: "curriculum-landing-page",
     },
 
     guidance: {
       title: "Guidance",
-      slug: "guidance" as const,
+      slug: "guidance",
       children: [
-        { title: "Plan a lesson", slug: "lesson-planning" as const },
-        { title: "Support your team", slug: "support-your-team" as const },
-        { title: "Blogs", slug: "blog-index" as const },
-        { title: "Webinars", slug: "webinar-index" as const },
-        { title: "Help", slug: "help" as const, external: true },
+        { title: "Plan a lesson", slug: "lesson-planning" },
+        { title: "Support your team", slug: "support-your-team" },
+        { title: "Blogs", slug: "blog-index" },
+        { title: "Webinars", slug: "webinar-index" },
+        { title: "Help", slug: "help", external: true },
       ],
     },
     aboutUs: {
       title: "About us",
-      slug: "aboutUs" as const,
+      slug: "aboutUs",
       children: [
-        { title: "Who we are", slug: "about-who-we-are" as const },
-        { title: "Leadership", slug: "about-leadership" as const },
-        { title: "Board", slug: "about-board" as const },
-        { title: "Partners", slug: "about-partners" as const },
-        { title: "Work with us", slug: "about-work-with-us" as const },
-        { title: "Contact us", slug: "contact" as const },
+        { title: "Who we are", slug: "about-who-we-are" },
+        { title: "Leadership", slug: "about-leadership" },
+        { title: "Board", slug: "about-board" },
+        { title: "Partners", slug: "about-partners" },
+        { title: "Work with us", slug: "about-work-with-us" },
+        { title: "Contact us", slug: "contact" },
       ],
     },
     aiExperiments: {
       title: "AI experiments",
-      slug: "labs" as const,
+      slug: "labs",
       external: true,
     },
   };
 
-  const pupilsNavData = {
+  const pupilsNavData: PupilsSubNavData = {
     primary: getPupilsNavData(parsed.data, "primary"),
     secondary: getPupilsNavData(parsed.data, "secondary"),
     help: {
       title: "Help using Oak",
-      slug: "help" as const,
+      slug: "help",
       external: true,
     },
   };
