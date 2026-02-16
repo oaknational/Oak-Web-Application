@@ -40,7 +40,12 @@ export default function ProgrammePageFiltersDesktop({
 }: Readonly<ProgrammePageFiltersProps>) {
   const selectedKeystage = filters.keystages[0];
   return (
-    <OakFlex $mr={"spacing-16"} $gap={"spacing-32"} $flexDirection={"column"}>
+    <OakFlex
+      $mr={"spacing-16"}
+      $gap={"spacing-32"}
+      $flexDirection={"column"}
+      $mb={"spacing-32"}
+    >
       <SkipLink href="#content">Skip to units</SkipLink>
       {shouldDisplayFilter(data, filters, "years") && (
         <CurricFiltersYears
@@ -78,7 +83,7 @@ export default function ProgrammePageFiltersDesktop({
           value={selectedKeystage ?? "all-ks"}
         >
           <OakRadioAsButton key="all-ks" value="all-ks" displayValue="All" />
-          {data.keystages.map((ksSlug: KeystageSlug) => (
+          {data.keystages.toSorted().map((ksSlug: KeystageSlug) => (
             <OakRadioAsButton
               key={ksSlug}
               value={ksSlug}
