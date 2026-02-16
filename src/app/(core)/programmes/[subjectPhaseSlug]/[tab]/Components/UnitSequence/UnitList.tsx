@@ -95,6 +95,14 @@ export function ProgrammeUnitList({
     );
   }
 
+  if (units.length < 1) {
+    return (
+      <OakP>
+        {getSubjectCategoryMessage(yearData, year, filters.subjectCategories)}
+      </OakP>
+    );
+  }
+
   return (
     <OakGrid
       as="ol"
@@ -103,11 +111,6 @@ export function ProgrammeUnitList({
       $pa={"spacing-0"}
       $mv={"spacing-0"}
     >
-      {units.length < 1 && (
-        <OakP>
-          {getSubjectCategoryMessage(yearData, year, filters.subjectCategories)}
-        </OakP>
-      )}
       {units.map((unit, index) => getItems(unit, index))}
     </OakGrid>
   );
