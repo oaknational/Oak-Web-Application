@@ -68,6 +68,11 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
   const pupilsNavData = {
     primary: getPupilsNavData(parsed.data, "primary"),
     secondary: getPupilsNavData(parsed.data, "secondary"),
+    help: {
+      title: "Help using Oak",
+      slug: "help" as const,
+      external: true,
+    },
   };
 
   return {

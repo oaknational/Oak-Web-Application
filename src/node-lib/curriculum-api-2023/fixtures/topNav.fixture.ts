@@ -154,5 +154,10 @@ export const topNavFixture: TopNavProps = {
         { slug: "year-11", title: "Year 11" },
       ],
     },
+    help: {
+      slug: "help",
+      title: "Help",
+      external: true,
+    },
   },
 };

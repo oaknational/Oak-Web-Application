@@ -9,6 +9,7 @@ import {
 } from "@/common-lib/urls";
 import {
   TeachersSubNavData,
+  PupilsSubNavData,
   isDropdownMenuItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import {
@@ -22,25 +23,27 @@ import SearchBar from "@/components/AppComponents/SearchBar";
 import { SaveCount } from "@/components/TeacherComponents/SaveCount/SaveCount";
 import TeacherAccountButton from "@/components/TeacherComponents/TeacherAccountButton/TeacherAccountButton";
 
-export type TeachersSubNavProps = TeachersSubNavData & {
-  onClick: (menu: keyof TeachersSubNavData) => void;
-  isMenuSelected: (menu: keyof TeachersSubNavData) => boolean;
-  focusManager: DropdownFocusManager<TeachersSubNavData>;
+type SubNavData = TeachersSubNavData | PupilsSubNavData;
+
+export type SubNavProps<T extends SubNavData> = T & {
+  onClick: (menu: keyof T) => void;
+  isMenuSelected: (menu: keyof T) => boolean;
+  focusManager: DropdownFocusManager<T>;
+  area: "teachers" | "pupils";
 };
 
-// TD: [integrated journey] do we want to derive menu items from available data
-// so the nav bar can be used on error pages / when data is missing or invalid
-
-const TeachersSubNav = ({
+const SubNav = <T extends SubNavData>({
   onClick,
   isMenuSelected,
   focusManager,
-  ...teachers
-}: TeachersSubNavProps) => {
+  area,
+  ...data
+}: SubNavProps<T>) => {
   const pathname = usePathname();
-  const subNavButtons = Object.values(teachers);
+  const subNavButtons = Object.values(data);
+
   const getLinkProps = (slug: string, external?: boolean) => {
-    const buttonId = focusManager.createId("teachers", slug);
+    const buttonId = focusManager.createId(area, slug);
     return {
       target: external ? "_blank" : undefined,
       iconName: external ? ("external" as const) : undefined,
@@ -54,15 +57,15 @@ const TeachersSubNav = ({
   };
 
   const getButtonProps = (slug: string) => {
-    const buttonId = focusManager.createId("teachers", slug);
+    const buttonId = focusManager.createId(area, slug);
     return {
       onKeyDown: (event: React.KeyboardEvent) =>
         focusManager.handleKeyDown(event, buttonId),
       id: buttonId,
-      onClick: () => onClick(slug as keyof TeachersSubNavData),
-      selected: isMenuSelected(slug as keyof TeachersSubNavData),
-      "aria-expanded": isMenuSelected(slug as keyof TeachersSubNavData),
-      "aria-controls": `topnav-teachers-${slug}`,
+      onClick: () => onClick(slug as keyof T),
+      selected: isMenuSelected(slug as keyof T),
+      "aria-expanded": isMenuSelected(slug as keyof T),
+      "aria-controls": `topnav-${area}-${slug}`,
       "aria-haspopup": true,
     };
   };
@@ -72,7 +75,7 @@ const TeachersSubNav = ({
 
     if (!activeElementId) return;
     const focusableElements = subNavButtons.map((btn) =>
-      focusManager.createId("teachers", btn.slug),
+      focusManager.createId(area, btn.slug),
     );
 
     const currentIndex = focusableElements.indexOf(activeElementId);
@@ -98,12 +101,14 @@ const TeachersSubNav = ({
       }
     }
   };
+
   const alwaysDisplayInTestingEnv = (displayValues: string | string[]) =>
     process.env.NODE_ENV === "test" ? "flex" : displayValues;
+
   return (
     <OakFlex
-      id="teachers-subnav"
-      data-testid="teachers-subnav"
+      id={`${area}-subnav`}
+      data-testid={`${area}-subnav`}
       $justifyContent="space-between"
       $flexGrow={1}
       $alignItems="center"
@@ -123,7 +128,7 @@ const TeachersSubNav = ({
                 {isDropdownMenuItem(btn) ? (
                   <OakSmallPrimaryInvertedButton
                     {...getButtonProps(btn.slug)}
-                    data-testid={focusManager.createId("teachers", btn.slug)}
+                    data-testid={focusManager.createId(area, btn.slug)}
                   >
                     {btn.title}
                   </OakSmallPrimaryInvertedButton>
@@ -139,23 +144,25 @@ const TeachersSubNav = ({
           })}
         </OakUL>
       </OakBox>
-      <OakFlex
-        $alignItems={"center"}
-        $gap={["spacing-24", "spacing-16", "spacing-16"]}
-      >
-        <SearchBar />
-        <SaveCount />
-        <TeacherAccountButton
-          selectedArea="TEACHERS"
-          onboardingRedirectUrl={resolveOakHref({
-            page: "onboarding",
-            query: { returnTo: pathname ?? "/" },
-          })}
-          buttonVariant="primary"
-        />
-      </OakFlex>
+      {area === "teachers" && (
+        <OakFlex
+          $alignItems={"center"}
+          $gap={["spacing-24", "spacing-16", "spacing-16"]}
+        >
+          <SearchBar />
+          <SaveCount />
+          <TeacherAccountButton
+            selectedArea="TEACHERS"
+            onboardingRedirectUrl={resolveOakHref({
+              page: "onboarding",
+              query: { returnTo: pathname ?? "/" },
+            })}
+            buttonVariant="primary"
+          />
+        </OakFlex>
+      )}
     </OakFlex>
   );
 };
 
-export default TeachersSubNav;
+export default SubNav;

@@ -69,6 +69,7 @@ export type TeachersBrowse = {
 export type PupilsSubNavData = {
   primary: PupilsBrowse;
   secondary: PupilsBrowse;
+  help: NavLink;
 };
 
 type PupilsBrowse = {

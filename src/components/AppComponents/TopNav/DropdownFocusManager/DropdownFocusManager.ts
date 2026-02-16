@@ -21,7 +21,7 @@ export class DropdownFocusManager<
 > {
   private readonly focusMap: Map<string, FocusNode>;
   private readonly closeMenu: () => void;
-  private readonly lastSubnavButton: NavButton;
+  private readonly lastSubnavButton: NavButton | undefined;
   private readonly areaType: NavAreaType;
 
   constructor(
@@ -30,7 +30,7 @@ export class DropdownFocusManager<
     setSelectedMenu: (a: undefined) => void,
   ) {
     this.areaType = areaType;
-    this.lastSubnavButton = Object.values(navData).at(-1) ?? null;
+    this.lastSubnavButton = Object.values(navData).at(-1);
     this.focusMap = this.getFocusTree(navData);
     this.closeMenu = () => setSelectedMenu(undefined);
   }

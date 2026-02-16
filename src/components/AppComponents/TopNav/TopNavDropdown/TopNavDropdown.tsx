@@ -246,7 +246,7 @@ const PupilsSection = ({
   focusManager,
   onClose,
 }: {
-  selectedMenu: keyof PupilsSubNavData;
+  selectedMenu: "primary" | "secondary";
   pupils: PupilsSubNavData;
   focusManager: DropdownFocusManager<PupilsSubNavData>;
   onClose: () => void;

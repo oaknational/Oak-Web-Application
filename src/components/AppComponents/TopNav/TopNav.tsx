@@ -2,8 +2,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import TabLink from "./TabLink/TabLink";
-import TeachersSubNav from "./SubNav/TeachersSubNav";
-import PupilsSubNav from "./SubNav/PupilsSubNav";
+import SubNav from "./SubNav/SubNav";
 import TopNavDropdown from "./TopNavDropdown/TopNavDropdown";
 import { TeachersTopNavHamburger } from "./TeachersTopNavHamburger/TeachersTopNavHamburger";
 import { PupilsTopNavHamburger } from "./PupilsTopNavHamburger/PupilsTopNavHamburger";
@@ -171,9 +170,12 @@ const TopNav = (props: TopNavProps) => {
         </OakLink>
         {activeArea === "TEACHERS" && teachers && (
           <>
-            <TeachersSubNav
+            <SubNav
               {...teachers}
-              focusManager={focusManager!}
+              area="teachers"
+              focusManager={
+                focusManager as DropdownFocusManager<TeachersSubNavData>
+              }
               isMenuSelected={isMenuSelected}
               onClick={(menu) => {
                 setSelectedMenu(selectedMenu === menu ? undefined : menu);
@@ -184,9 +186,12 @@ const TopNav = (props: TopNavProps) => {
         )}
         {activeArea === "PUPILS" && pupils && (
           <>
-            <PupilsSubNav
+            <SubNav
               {...pupils}
-              focusManager={focusManager!}
+              area="pupils"
+              focusManager={
+                focusManager as DropdownFocusManager<PupilsSubNavData>
+              }
               isMenuSelected={isMenuSelected}
               onClick={(menu) => {
                 setSelectedMenu(selectedMenu === menu ? undefined : menu);
