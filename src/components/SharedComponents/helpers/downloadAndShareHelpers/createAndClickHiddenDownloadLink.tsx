@@ -11,7 +11,7 @@ export const hideAndClickDownloadLink = (url: string, a: HTMLAnchorElement) => {
   a.click();
 };
 
-const isInIframe = () => {
+export const isInIframe = () => {
   try {
     return globalThis.self !== globalThis.top;
   } catch {
