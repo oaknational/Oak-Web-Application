@@ -7,7 +7,7 @@ import MuxPlayerElement from "@mux/mux-player";
  */
 const getTimeElapsed = (ref: RefObject<MuxPlayerElement>) => {
   const currentTime = ref.current?.currentTime;
-  if (typeof currentTime === "number" && !isNaN(currentTime)) {
+  if (typeof currentTime === "number" && !Number.isNaN(currentTime)) {
     return Math.floor(currentTime);
   }
 

@@ -38,7 +38,7 @@ const usePagination = <T>(
     Math.min(Number.parseInt(pageString), totalPages),
     1,
   );
-  const currentPage = isNaN(pageNumber) ? 1 : pageNumber;
+  const currentPage = Number.isNaN(pageNumber) ? 1 : pageNumber;
 
   const nextPageParams = new URLSearchParams(encode(router.query));
   nextPageParams.set("page", (currentPage + 1).toString());
