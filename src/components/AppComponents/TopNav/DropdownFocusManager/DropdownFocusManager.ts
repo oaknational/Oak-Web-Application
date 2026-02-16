@@ -6,7 +6,6 @@ import {
   TeachersSubNavData,
   PupilsSubNavData,
   NavButton,
-  NavLink,
   isDropdownMenuItem,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
@@ -53,25 +52,25 @@ export class DropdownFocusManager<
     return focusMap;
   }
 
-  private addAllKeystagesButtonsToNavData(data: NavButton[]): NavButton[] {
+  private addAllKeystagesButtonsToNavData(data: NavButton[]) {
     if (this.areaType !== "teachers") return data;
     // get to the subjects level and add an "All keystages" button to each subject list
     const updatedData = data.map((phase) => {
       if (!isDropdownMenuItem(phase)) return phase;
       return {
         ...phase,
-        children: phase.children?.map((keystage) => {
-          const allKeystagesButton: NavLink = {
+        children: phase.children?.map((keystage: Record<string, unknown>) => {
+          const allKeystagesButton = {
             title: "All keystages",
-            slug: `all-keystages-button`,
+            slug: "all-keystages-button",
           };
-          if (!isDropdownMenuItem(keystage)) return keystage;
+          if (!keystage.children) return keystage;
           return {
             ...keystage,
-            children: [...keystage.children, allKeystagesButton],
+            children: [...(keystage.children as unknown[]), allKeystagesButton],
           };
         }),
-      };
+      } as NavButton;
     });
     return updatedData;
   }
@@ -81,14 +80,14 @@ export class DropdownFocusManager<
     focusMap,
     parent,
   }: {
-    items: NavButton[];
+    items: Record<string, unknown>[];
     focusMap: Map<string, FocusNode>;
     parent: FocusNode["parent"];
   }) {
     items.forEach((item, index, array) => {
       const isLastChild = index === array.length - 1;
       const isFirstChild = index === 0;
-      const id = this.createId(parent?.parentId || "", item.slug);
+      const id = this.createId(parent?.parentId || "", item.slug as string);
       focusMap.set(id, {
         id,
         isLastChild,
@@ -97,14 +96,14 @@ export class DropdownFocusManager<
         children: this.getChildrenIds(item, id),
       });
 
-      if (isDropdownMenuItem(item) && item.children.length > 0) {
+      if (this.hasChildren(item)) {
         this.buildFocusMap({
-          items: item.children,
+          items: item.children as Record<string, unknown>[],
           focusMap,
           parent: {
             parentId: id,
             parentSiblings: items.map((sibling) =>
-              this.createId(parent?.parentId || "", sibling.slug),
+              this.createId(parent?.parentId || "", sibling.slug as string),
             ),
           },
         });
@@ -112,9 +111,20 @@ export class DropdownFocusManager<
     });
   }
 
-  private getChildrenIds(item: NavButton, parentId: string): string[] {
-    if (!isDropdownMenuItem(item)) return [];
-    return item.children.map((child) => this.createId(parentId, child.slug));
+  private hasChildren(item: Record<string, unknown>): boolean {
+    return Boolean(
+      item.children && Array.isArray(item.children) && item.children.length > 0,
+    );
+  }
+
+  private getChildrenIds(
+    item: Record<string, unknown>,
+    parentId: string,
+  ): string[] {
+    if (!this.hasChildren(item)) return [];
+    return (item.children as Record<string, unknown>[]).map((child) =>
+      this.createId(parentId, child.slug as string),
+    );
   }
 
   private focusElementById(

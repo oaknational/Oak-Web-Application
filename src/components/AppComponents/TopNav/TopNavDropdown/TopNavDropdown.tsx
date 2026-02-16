@@ -189,7 +189,7 @@ const TeachersLinksSection = ({
         <OakHeading tag="h2">{sectionTitles[selectedMenu]}</OakHeading>
         <OakSvg
           $position={"absolute"}
-          $color={"mint"}
+          $color={"bg-decorative1-main"}
           $height={"spacing-8"}
           name={"underline"}
         />
