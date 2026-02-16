@@ -369,6 +369,12 @@ type MyLibraryProps = {
   page: "my-library";
 };
 
+type ProgrammePageProps = {
+  page: "teacher-programme";
+  subjectPhaseSlug: string;
+  tab: string;
+};
+
 type OnlyPageRequired<T> = T extends { page: string }
   ? { page: T["page"] } extends T
     ? T
@@ -445,7 +451,8 @@ export type OakLinkProps =
   | OnboardingRoleSelectionLinkProps
   | OnboardingUseOfOak
   | PupilLessonCanonical
-  | MyLibraryProps;
+  | MyLibraryProps
+  | ProgrammePageProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -997,6 +1004,12 @@ export const OAK_PAGES: {
     analyticsPageName: "My library",
     configType: "internal",
     pageType: "my-library",
+  }),
+  "teacher-programme": createOakPageConfig({
+    pathPattern: "/programmes/:subjectPhaseSlug/:tab",
+    analyticsPageName: "Curriculum Unit Sequence",
+    configType: "internal",
+    pageType: "teacher-programme",
   }),
 };
 
