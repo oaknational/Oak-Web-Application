@@ -1,3 +1,36 @@
+# [1.991.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.990.1...v1.991.0) (2026-02-16)
+
+
+### Bug Fixes
+
+* arrow key bug ([0656b65](https://github.com/oaknational/Oak-Web-Application/commit/0656b6579629b096cd4ed79aec3aed2729b3ecb7))
+* dropdown background colour ([1ce97ac](https://github.com/oaknational/Oak-Web-Application/commit/1ce97acda6bb8335140a32709ce4ad1f64828f02))
+* fix broken all keystages button ([c3c7fd4](https://github.com/oaknational/Oak-Web-Application/commit/c3c7fd4883399b2931b4820f3bdf303983175a67))
+* fix links ([e676564](https://github.com/oaknational/Oak-Web-Application/commit/e676564ea47abf655ecca389e5d58172d90e63f1))
+* order of buttons ([f8e2aca](https://github.com/oaknational/Oak-Web-Application/commit/f8e2aca00c4aca1a89e62ebc21f13f861c26821d))
+
+
+### Features
+
+* add aria-label for EYFS ([2489ed1](https://github.com/oaknational/Oak-Web-Application/commit/2489ed178585ffc7de155713322a9ee6b59fc56b))
+* add pupils and teachers links dropdown ([337eff9](https://github.com/oaknational/Oak-Web-Application/commit/337eff90142b2349933e80161e62e98cf094b9a6))
+* add teachers phase section ([7b3ff3e](https://github.com/oaknational/Oak-Web-Application/commit/7b3ff3e13b048b6d3dcf80773233efad7f23571f))
+* change data structure for Nav ([4709cbf](https://github.com/oaknational/Oak-Web-Application/commit/4709cbfc87affa9a8f7dec1036112e217b9fef33))
+* close dropdown on escape ([f9811f3](https://github.com/oaknational/Oak-Web-Application/commit/f9811f3e076199397336e000d313151ba6037173))
+* close dropdown on following link ([9daaae0](https://github.com/oaknational/Oak-Web-Application/commit/9daaae02860a12672bf62f896952715126f23005))
+* extend functionality to pupils menu ([dc20589](https://github.com/oaknational/Oak-Web-Application/commit/dc2058948c1bf0f68e3240bd14e136986697494a))
+* focus correct element when exiting submenu ([8b0a4bd](https://github.com/oaknational/Oak-Web-Application/commit/8b0a4bd768a74e0f5c515fca2678ce0b35a064e3))
+* focus on first item inside dropdown menu ([14c0e17](https://github.com/oaknational/Oak-Web-Application/commit/14c0e17a33df2ae37ecc6b1234518f3f33ffd1e5))
+* focus on subject item in active keystage list ([492ca4e](https://github.com/oaknational/Oak-Web-Application/commit/492ca4e917b95035eee118b8e3f5c9ecfde82bf9))
+* focus parents when tabbing and shift-tabbing ([ce3b1b2](https://github.com/oaknational/Oak-Web-Application/commit/ce3b1b2127d8dc7cdd76849cc5b265f69c14c3b5))
+* handle escape key ([753d318](https://github.com/oaknational/Oak-Web-Application/commit/753d318c647c045a096620a9baeaefe4bae99d43))
+* handle tabbing out of the menu ([fd4dd02](https://github.com/oaknational/Oak-Web-Application/commit/fd4dd0257177fe4dad69a97643d068f2e841ef40))
+* implement focus manager class, focus first child behaviour ([b9a27f9](https://github.com/oaknational/Oak-Web-Application/commit/b9a27f9aa45df34541fea049be05728597c6529d))
+* return arrow key and escape behaviour ([59e784c](https://github.com/oaknational/Oak-Web-Application/commit/59e784cd1c3f851084732e7a63bb488c3810c4c9))
+* topnavdropdown component ([c048916](https://github.com/oaknational/Oak-Web-Application/commit/c048916cdb50bd047e7c8dfc98c4da809b7b784f))
+* update display dropdown on desktop ([85259f1](https://github.com/oaknational/Oak-Web-Application/commit/85259f1a5c95fdeafb7837519728eaf2e3b0c140))
+* update keystage list to tabs and add arrow key navigation ([802ba4b](https://github.com/oaknational/Oak-Web-Application/commit/802ba4b55ac61aacfcdfc72dad5c5feaec5533c9))
+
 ## [1.990.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.990.0...v1.990.1) (2026-02-16)
 
 
