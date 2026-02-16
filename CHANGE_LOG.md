@@ -1,3 +1,14 @@
+# [1.990.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.989.0...v1.990.0) (2026-02-16)
+
+
+### Features
+
+* add quiz count to pupil browse data ([e2ef39c](https://github.com/oaknational/Oak-Web-Application/commit/e2ef39c6589b631f71076aff144aaa9a8746c01a))
+* fix edge case ([6800d20](https://github.com/oaknational/Oak-Web-Application/commit/6800d201f2e5072e852c3742bc2c5f8ecc0ccb3b))
+* fix edge case ([59fbb70](https://github.com/oaknational/Oak-Web-Application/commit/59fbb702080ece398bdfca014e06938ec5308383))
+* fix test ([f67890b](https://github.com/oaknational/Oak-Web-Application/commit/f67890baa2070f239a70b7d0eb664aabb419807d))
+* fix test ([77f3ffd](https://github.com/oaknational/Oak-Web-Application/commit/77f3ffd0d1136487a4d0a103fc48e605fe0d1f6d))
+
 # [1.989.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.988.1...v1.989.0) (2026-02-16)
 
 
