@@ -22,7 +22,7 @@ import {
   getModes,
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import Alert from "@/components/CurriculumComponents/OakComponentsKitchen/Alert";
+
 type ProgrammeSequenceProps = {
   ks4OptionSlug?: string | null;
   yearData: YearData;
@@ -116,19 +116,23 @@ export default function ProgrammeSequence({
 
         const yearTitle = getYearGroupTitle(yearData, year);
 
-        const yearSubheadingText = getYearSubheadingText(
-          yearData,
-          year,
-          visualiserFilters,
-          shouldDisplayCorePathway ? type : null,
-          actions,
-        );
-        const yearSubheadingIconName = getSubheadingIconName(
-          year,
-          units,
-          yearData[year],
-          visualiserFilters,
-        );
+        const yearSubheadingText = isSwimming
+          ? "Swimming and water safety units should be selected based on the ability and experience of your pupils."
+          : getYearSubheadingText(
+              yearData,
+              year,
+              visualiserFilters,
+              shouldDisplayCorePathway ? type : null,
+              actions,
+            );
+        const yearSubheadingIconName = isSwimming
+          ? "swimming"
+          : getSubheadingIconName(
+              year,
+              units,
+              yearData[year],
+              visualiserFilters,
+            );
 
         return (
           <OakBox
@@ -144,18 +148,11 @@ export default function ProgrammeSequence({
             />
             <ProgrammeYear
               year={year}
-              yearTitle={yearTitle}
+              yearTitle={
+                yearTitle.match(/Year \d+/) ? `${yearTitle} units` : yearTitle
+              }
               yearSubheading={yearSubheadingText}
               yearSubheadingIconName={yearSubheadingIconName}
-              additional={
-                isSwimming && (
-                  <Alert
-                    $mb="spacing-16"
-                    type="info"
-                    message="Swimming and water safety units should be selected based on the ability and experience of your pupils."
-                  />
-                )
-              }
             >
               <ProgrammeUnitList
                 units={units}

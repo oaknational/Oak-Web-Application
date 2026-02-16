@@ -486,7 +486,7 @@ describe("Year group filter headings display correctly", () => {
           expect(yearBlock).not.toBeNull();
 
           const yearHeading = within(yearBlock).getByTestId("year-heading");
-          expect(yearHeading).toHaveTextContent(`Year ${year}`);
+          expect(yearHeading).toHaveTextContent(`Year ${year} units`);
 
           if (["7", "8", "9"].includes(year)) {
             // Years 7-9 should not have subheadings

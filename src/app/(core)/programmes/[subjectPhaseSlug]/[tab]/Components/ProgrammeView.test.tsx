@@ -70,7 +70,7 @@ describe("ProgrammeView", () => {
   });
   it("renders the correct tab content for units", () => {
     render(<ProgrammeView {...defaultProps} />);
-    const heading = screen.getByRole("heading", { name: "Year 7" });
+    const heading = screen.getByRole("heading", { name: "Year 7 units" });
     expect(heading).toBeInTheDocument();
   });
   it("renders the correct tab content for overview", () => {
