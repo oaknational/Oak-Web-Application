@@ -23,7 +23,7 @@ const yearToBackgroundColor: Record<string, OakUiRoleToken> = {
   "3": "bg-decorative2-subdued",
   "4": "bg-decorative4-subdued",
   "5": "bg-decorative5-very-subdued",
-  "6": "bg-decorative4-very-subdued",
+  "6": "bg-decorative6-very-subdued",
   "7": "bg-decorative3-very-subdued",
   "8": "bg-decorative1-subdued",
   "9": "bg-decorative2-subdued",
