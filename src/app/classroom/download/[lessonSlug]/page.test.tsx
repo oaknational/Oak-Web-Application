@@ -82,12 +82,16 @@ describe("ClassroomDownloadPage", () => {
     renderWithTheme(<Page />);
 
     await waitFor(() => {
-      expect(createLessonDownloadLink).toHaveBeenCalledWith({
-        lessonSlug: "test-lesson-slug",
-        selection: "presentation,worksheet-pdf",
-        additionalFilesIdsSelection: undefined,
-        isLegacyDownload: false,
-      });
+      expect(
+        screen.getByText("Your download has started."),
+      ).toBeInTheDocument();
+    });
+
+    expect(createLessonDownloadLink).toHaveBeenCalledWith({
+      lessonSlug: "test-lesson-slug",
+      selection: "presentation,worksheet-pdf",
+      additionalFilesIdsSelection: undefined,
+      isLegacyDownload: false,
     });
   });
 
@@ -100,12 +104,16 @@ describe("ClassroomDownloadPage", () => {
     renderWithTheme(<Page />);
 
     await waitFor(() => {
-      expect(createLessonDownloadLink).toHaveBeenCalledWith({
-        lessonSlug: "test-lesson-slug",
-        selection: "presentation",
-        additionalFilesIdsSelection: "1,2,3",
-        isLegacyDownload: false,
-      });
+      expect(
+        screen.getByText("Your download has started."),
+      ).toBeInTheDocument();
+    });
+
+    expect(createLessonDownloadLink).toHaveBeenCalledWith({
+      lessonSlug: "test-lesson-slug",
+      selection: "presentation",
+      additionalFilesIdsSelection: "1,2,3",
+      isLegacyDownload: false,
     });
   });
 
