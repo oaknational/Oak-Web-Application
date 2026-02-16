@@ -53,11 +53,11 @@ describe("ClassroomDownloadPage", () => {
     );
   });
 
-  it("renders download button when lessonSlug and selection are present", () => {
+  it("renders heading and loading state when lessonSlug and selection are present", () => {
     renderWithTheme(<Page />);
 
     expect(screen.getByText("Download lesson resources")).toBeInTheDocument();
-    expect(screen.getByText("Download")).toBeInTheDocument();
+    expect(screen.getByText("Preparing your download...")).toBeInTheDocument();
   });
 
   it("shows invalid link message when lessonSlug is missing", () => {
@@ -76,18 +76,18 @@ describe("ClassroomDownloadPage", () => {
     expect(screen.getByText("Invalid download link")).toBeInTheDocument();
   });
 
-  it("calls createLessonDownloadLink with correct params on button click", async () => {
+  it("calls createLessonDownloadLink with correct params automatically on mount", async () => {
     mockCreateLessonDownloadLink.mockResolvedValue("https://signed-url.com");
-    const user = userEvent.setup();
 
     renderWithTheme(<Page />);
-    await user.click(screen.getByText("Download"));
 
-    expect(createLessonDownloadLink).toHaveBeenCalledWith({
-      lessonSlug: "test-lesson-slug",
-      selection: "presentation,worksheet-pdf",
-      additionalFilesIdsSelection: undefined,
-      isLegacyDownload: false,
+    await waitFor(() => {
+      expect(createLessonDownloadLink).toHaveBeenCalledWith({
+        lessonSlug: "test-lesson-slug",
+        selection: "presentation,worksheet-pdf",
+        additionalFilesIdsSelection: undefined,
+        isLegacyDownload: false,
+      });
     });
   });
 
@@ -96,25 +96,23 @@ describe("ClassroomDownloadPage", () => {
       new URLSearchParams("selection=presentation&additionalFiles=1,2,3"),
     );
     mockCreateLessonDownloadLink.mockResolvedValue("https://signed-url.com");
-    const user = userEvent.setup();
 
     renderWithTheme(<Page />);
-    await user.click(screen.getByText("Download"));
 
-    expect(createLessonDownloadLink).toHaveBeenCalledWith({
-      lessonSlug: "test-lesson-slug",
-      selection: "presentation",
-      additionalFilesIdsSelection: "1,2,3",
-      isLegacyDownload: false,
+    await waitFor(() => {
+      expect(createLessonDownloadLink).toHaveBeenCalledWith({
+        lessonSlug: "test-lesson-slug",
+        selection: "presentation",
+        additionalFilesIdsSelection: "1,2,3",
+        isLegacyDownload: false,
+      });
     });
   });
 
   it("triggers download and shows success message after download completes", async () => {
     mockCreateLessonDownloadLink.mockResolvedValue("https://signed-url.com");
-    const user = userEvent.setup();
 
     renderWithTheme(<Page />);
-    await user.click(screen.getByText("Download"));
 
     await waitFor(() => {
       expect(createLink).toHaveBeenCalled();
@@ -130,10 +128,8 @@ describe("ClassroomDownloadPage", () => {
 
   it("shows error message when createLessonDownloadLink throws", async () => {
     mockCreateLessonDownloadLink.mockRejectedValue(new Error("API error"));
-    const user = userEvent.setup();
 
     renderWithTheme(<Page />);
-    await user.click(screen.getByText("Download"));
 
     await waitFor(() => {
       expect(
@@ -148,10 +144,8 @@ describe("ClassroomDownloadPage", () => {
 
   it("shows error message when createLessonDownloadLink returns falsy", async () => {
     mockCreateLessonDownloadLink.mockResolvedValue(undefined);
-    const user = userEvent.setup();
 
     renderWithTheme(<Page />);
-    await user.click(screen.getByText("Download"));
 
     await waitFor(() => {
       expect(
@@ -168,7 +162,6 @@ describe("ClassroomDownloadPage", () => {
     const user = userEvent.setup();
 
     renderWithTheme(<Page />);
-    await user.click(screen.getByText("Download"));
 
     await waitFor(() => {
       expect(screen.getByText("Try again")).toBeInTheDocument();
