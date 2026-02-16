@@ -115,7 +115,9 @@ function DownloadContent() {
         {downloadState === "success" && (
           <>
             <OakP $textAlign="center">Your download has started.</OakP>
-            <OakP $textAlign="center">You can close this tab.</OakP>
+            <OakP $textAlign="center">
+              This tab will close automatically once download is complete.
+            </OakP>
           </>
         )}
 
