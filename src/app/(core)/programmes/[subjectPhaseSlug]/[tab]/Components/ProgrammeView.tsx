@@ -42,9 +42,11 @@ import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics"
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import { resolveOakHref } from "@/common-lib/urls";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 type ProgrammePageProps = {
+  subjectPhaseSlug: string;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumSelectionTitles: CurriculumSelectionTitles;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
@@ -62,6 +64,7 @@ export const ProgrammeView = ({
   subjectPhaseSanityData,
   curriculumCMSInfo,
   tabSlug,
+  subjectPhaseSlug,
   ks4Options,
   trackingData,
 }: ProgrammePageProps) => {
@@ -127,12 +130,21 @@ export const ProgrammeView = ({
           sizeVariant={["compact", "default"]}
           colorVariant="black"
           activeTab={tabSlugToName[activeTab]}
-          onTabClick={(tabName) => {
+          onTabClick={(tabName, event) => {
             const tabSlug = tabNameToSlug[tabName];
             // Prevents a full page reload using client side nav
+            event.preventDefault();
             globalThis.history.pushState(null, "", tabSlug);
           }}
-          tabs={[...TAB_NAMES]}
+          tabs={TAB_NAMES.map((tab) => ({
+            label: tab,
+            type: "link",
+            href: resolveOakHref({
+              page: "teacher-programme",
+              subjectPhaseSlug,
+              tab: tabNameToSlug[tab],
+            }),
+          }))}
         />
       </OakMaxWidth>
       <TabContent
