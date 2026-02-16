@@ -2,7 +2,6 @@ import { OakFlex } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { PortableTextBlock } from "@portabletext/types";
 
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import CurricSEOAccordion from "@/components/CurriculumComponents/CurricSEOAccordion";
 
 const CurriculumVisualiserLayoutLeft = styled(OakFlex)`
@@ -14,14 +13,14 @@ type CurriculumVisualiserLayoutProps = {
   filters: React.ReactNode;
   units: React.ReactNode;
   curriculumSeoText?: PortableTextBlock[];
-  subject: SubjectPhasePickerData["subjects"][number];
+  subjectTitle: string;
 };
 
 export function CurricVisualiserLayout({
   filters,
   units,
   curriculumSeoText,
-  subject,
+  subjectTitle,
 }: Readonly<CurriculumVisualiserLayoutProps>) {
   return (
     <OakFlex>
@@ -37,7 +36,7 @@ export function CurricVisualiserLayout({
         {curriculumSeoText && (
           <CurricSEOAccordion
             curriculumSeoText={curriculumSeoText}
-            subject={subject}
+            subjectTitle={subjectTitle}
           />
         )}
       </OakFlex>

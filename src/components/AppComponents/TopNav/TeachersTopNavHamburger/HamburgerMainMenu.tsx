@@ -83,7 +83,7 @@ function SubjectsSection(
       >
         <OakBox $position={"relative"}>
           <OakHeading tag="h2" $font={"heading-6"}>
-            {browseData.phaseTitle}
+            {browseData.title}
           </OakHeading>
           <OakSvg
             $position={"absolute"}
@@ -95,9 +95,9 @@ function SubjectsSection(
         </OakBox>
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        {browseData.keystages.map((keystage) => (
+        {browseData.children.map((keystage) => (
           <MainMenuButton
-            key={keystage.slug + browseData.phaseSlug}
+            key={keystage.slug + browseData.slug}
             title={keystage.title as SubmenuState}
             description={keystage.description}
             hamburgerMenu={hamburgerMenu}
