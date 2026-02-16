@@ -1,3 +1,95 @@
+# [1.991.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.990.1...v1.991.0) (2026-02-16)
+
+
+### Bug Fixes
+
+* arrow key bug ([0656b65](https://github.com/oaknational/Oak-Web-Application/commit/0656b6579629b096cd4ed79aec3aed2729b3ecb7))
+* dropdown background colour ([1ce97ac](https://github.com/oaknational/Oak-Web-Application/commit/1ce97acda6bb8335140a32709ce4ad1f64828f02))
+* fix broken all keystages button ([c3c7fd4](https://github.com/oaknational/Oak-Web-Application/commit/c3c7fd4883399b2931b4820f3bdf303983175a67))
+* fix links ([e676564](https://github.com/oaknational/Oak-Web-Application/commit/e676564ea47abf655ecca389e5d58172d90e63f1))
+* order of buttons ([f8e2aca](https://github.com/oaknational/Oak-Web-Application/commit/f8e2aca00c4aca1a89e62ebc21f13f861c26821d))
+
+
+### Features
+
+* add aria-label for EYFS ([2489ed1](https://github.com/oaknational/Oak-Web-Application/commit/2489ed178585ffc7de155713322a9ee6b59fc56b))
+* add pupils and teachers links dropdown ([337eff9](https://github.com/oaknational/Oak-Web-Application/commit/337eff90142b2349933e80161e62e98cf094b9a6))
+* add teachers phase section ([7b3ff3e](https://github.com/oaknational/Oak-Web-Application/commit/7b3ff3e13b048b6d3dcf80773233efad7f23571f))
+* change data structure for Nav ([4709cbf](https://github.com/oaknational/Oak-Web-Application/commit/4709cbfc87affa9a8f7dec1036112e217b9fef33))
+* close dropdown on escape ([f9811f3](https://github.com/oaknational/Oak-Web-Application/commit/f9811f3e076199397336e000d313151ba6037173))
+* close dropdown on following link ([9daaae0](https://github.com/oaknational/Oak-Web-Application/commit/9daaae02860a12672bf62f896952715126f23005))
+* extend functionality to pupils menu ([dc20589](https://github.com/oaknational/Oak-Web-Application/commit/dc2058948c1bf0f68e3240bd14e136986697494a))
+* focus correct element when exiting submenu ([8b0a4bd](https://github.com/oaknational/Oak-Web-Application/commit/8b0a4bd768a74e0f5c515fca2678ce0b35a064e3))
+* focus on first item inside dropdown menu ([14c0e17](https://github.com/oaknational/Oak-Web-Application/commit/14c0e17a33df2ae37ecc6b1234518f3f33ffd1e5))
+* focus on subject item in active keystage list ([492ca4e](https://github.com/oaknational/Oak-Web-Application/commit/492ca4e917b95035eee118b8e3f5c9ecfde82bf9))
+* focus parents when tabbing and shift-tabbing ([ce3b1b2](https://github.com/oaknational/Oak-Web-Application/commit/ce3b1b2127d8dc7cdd76849cc5b265f69c14c3b5))
+* handle escape key ([753d318](https://github.com/oaknational/Oak-Web-Application/commit/753d318c647c045a096620a9baeaefe4bae99d43))
+* handle tabbing out of the menu ([fd4dd02](https://github.com/oaknational/Oak-Web-Application/commit/fd4dd0257177fe4dad69a97643d068f2e841ef40))
+* implement focus manager class, focus first child behaviour ([b9a27f9](https://github.com/oaknational/Oak-Web-Application/commit/b9a27f9aa45df34541fea049be05728597c6529d))
+* return arrow key and escape behaviour ([59e784c](https://github.com/oaknational/Oak-Web-Application/commit/59e784cd1c3f851084732e7a63bb488c3810c4c9))
+* topnavdropdown component ([c048916](https://github.com/oaknational/Oak-Web-Application/commit/c048916cdb50bd047e7c8dfc98c4da809b7b784f))
+* update display dropdown on desktop ([85259f1](https://github.com/oaknational/Oak-Web-Application/commit/85259f1a5c95fdeafb7837519728eaf2e3b0c140))
+* update keystage list to tabs and add arrow key navigation ([802ba4b](https://github.com/oaknational/Oak-Web-Application/commit/802ba4b55ac61aacfcdfc72dad5c5feaec5533c9))
+
+## [1.990.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.990.0...v1.990.1) (2026-02-16)
+
+
+### Bug Fixes
+
+* missing data in test props ([78ea66e](https://github.com/oaknational/Oak-Web-Application/commit/78ea66e143b890093d4a9edba9909ffeb2bd6b7e))
+
+# [1.990.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.989.0...v1.990.0) (2026-02-16)
+
+
+### Features
+
+* add quiz count to pupil browse data ([e2ef39c](https://github.com/oaknational/Oak-Web-Application/commit/e2ef39c6589b631f71076aff144aaa9a8746c01a))
+* fix edge case ([6800d20](https://github.com/oaknational/Oak-Web-Application/commit/6800d201f2e5072e852c3742bc2c5f8ecc0ccb3b))
+* fix edge case ([59fbb70](https://github.com/oaknational/Oak-Web-Application/commit/59fbb702080ece398bdfca014e06938ec5308383))
+* fix test ([f67890b](https://github.com/oaknational/Oak-Web-Application/commit/f67890baa2070f239a70b7d0eb664aabb419807d))
+* fix test ([77f3ffd](https://github.com/oaknational/Oak-Web-Application/commit/77f3ffd0d1136487a4d0a103fc48e605fe0d1f6d))
+
+# [1.989.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.988.1...v1.989.0) (2026-02-16)
+
+
+### Bug Fixes
+
+* clicking save button triggering tracking ([22bf1fb](https://github.com/oaknational/Oak-Web-Application/commit/22bf1fb13eb0bd0bf189c176a91f4d8f3ef975ab))
+* correct background colour for year 6 units ([93bfba5](https://github.com/oaknational/Oak-Web-Application/commit/93bfba5dcc4b552e389f34e7b8ec2a716ed30269))
+* dont show the save button when the user is not signed in ([d8fa6b9](https://github.com/oaknational/Oak-Web-Application/commit/d8fa6b9f1d1c728be7550eef268e734af096f78a))
+* empty unit list message incorrectly nested ([cd1a32f](https://github.com/oaknational/Oak-Web-Application/commit/cd1a32f9497f7741e979060e9105501d6a0c373f))
+* subject category icons not mapping to icon names 1:1 ([5381b3f](https://github.com/oaknational/Oak-Web-Application/commit/5381b3f9d1858393f546a6b2d6591d42bf0a0555))
+
+
+### Features
+
+* add units to year titles in programme listing ([84a1306](https://github.com/oaknational/Oak-Web-Application/commit/84a130686609944210e51b33215baf5d05b3276b))
+* add Year component for unit sequence ([81b8196](https://github.com/oaknational/Oak-Web-Application/commit/81b8196bf6fce060f8d6daae66c3517c8689af1a))
+* align unit sequence with grid ([9d7205c](https://github.com/oaknational/Oak-Web-Application/commit/9d7205c006355436cf7868be5ca4309a078e59c7))
+* apply subject icon to programme units listing ([06880b1](https://github.com/oaknational/Oak-Web-Application/commit/06880b1cfeba73496d3ba713281c92206b4b2278))
+* give CardListing flex so it can fit its parent ([6c0f0ad](https://github.com/oaknational/Oak-Web-Application/commit/6c0f0ad11c1891fa23a44683121d35cc617565e7))
+* hook the new CardListing component up to the unit list ([8f518e4](https://github.com/oaknational/Oak-Web-Application/commit/8f518e421a030686b9a8e24bd68fde8594151313))
+* style swimming notice as subheading ([6b56875](https://github.com/oaknational/Oak-Web-Application/commit/6b56875b066cbee171ebd15305fc6a9b5d71aa73))
+* try to be more type safe when mapping keystage title from slug ([1bf2bee](https://github.com/oaknational/Oak-Web-Application/commit/1bf2bee17a43300e14913bb3b9a08540affc0add))
+
+## [1.988.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.988.0...v1.988.1) (2026-02-16)
+
+
+### Bug Fixes
+
+* prettier ([403219e](https://github.com/oaknational/Oak-Web-Application/commit/403219ed4f1d8154e56e8dd69ae2b8fedd363412))
+* snapshots ([67181d6](https://github.com/oaknational/Oak-Web-Application/commit/67181d6f85adcd8eadb82992ca65a01350af6161))
+* snapshots ([78d7417](https://github.com/oaknational/Oak-Web-Application/commit/78d7417bfbf1c8a61d43d2a3a20e6c15ba10a414))
+* use flex instead of grid for about us header ([ccb7e45](https://github.com/oaknational/Oak-Web-Application/commit/ccb7e450adbea3a88f3abafbe25939273c1cd860))
+
+# [1.988.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.987.1...v1.988.0) (2026-02-13)
+
+
+### Features
+
+* add programme page to urls ([a1d0e73](https://github.com/oaknational/Oak-Web-Application/commit/a1d0e73be870514ccb10aedf66774bf639af2d5f))
+* update oak tabs component to use links for buttons ([996b523](https://github.com/oaknational/Oak-Web-Application/commit/996b5233ffeee11a9760ff17a51c5e613e7086d2))
+
 ## [1.987.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.987.0...v1.987.1) (2026-02-12)
 
 # [1.987.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.986.1...v1.987.0) (2026-02-11)

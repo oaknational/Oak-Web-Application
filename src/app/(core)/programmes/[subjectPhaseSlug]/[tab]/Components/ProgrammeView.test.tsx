@@ -4,7 +4,6 @@ import userEvent from "@testing-library/user-event";
 import { ProgrammeView } from "./ProgrammeView";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import {
@@ -32,14 +31,18 @@ beforeEach(() => {
 });
 
 const defaultProps = {
-  subjectTitle: "Science",
   curriculumSelectionSlugs: {
     phaseSlug: "secondary",
-    subjectSlug: "maths",
+    subjectSlug: "science",
     ks4OptionSlug: "aqa",
   },
-  curriculumPhaseOptions: curriculumPhaseOptions,
-  phaseTitle: "Secondary",
+  curriculumSelectionTitles: {
+    subjectTitle: "Science",
+    phaseTitle: "Secondary",
+    examboardTitle: "AQA",
+  },
+  subjectPhaseSlug: "science-secondary-aqa",
+  ks4Options: [],
   curriculumUnitsFormattedData: formatCurriculumUnitsData(
     curriculumUnitsTabFixture(),
   ),
@@ -47,7 +50,13 @@ const defaultProps = {
   curriculumCMSInfo: curriculumOverviewCMSFixture(),
   subjectPhaseSanityData: null,
   tabSlug: "units" as const,
-  examboardTitle: "AQA",
+  trackingData: {
+    phaseSlug: "secondary",
+    subjectSlug: "maths",
+    ks4OptionSlug: "aqa",
+    subjectTitle: "Science",
+    ks4OptionTitle: "AQA",
+  },
 };
 
 const render = renderWithProviders();
@@ -61,15 +70,15 @@ describe("ProgrammeView", () => {
   });
   it("highlights the correct tab", () => {
     render(<ProgrammeView {...defaultProps} />);
-    const unitsTab = screen.getByRole("button", { name: "Unit sequence" });
+    const unitsTab = screen.getByRole("link", { name: "Unit sequence" });
     expect(unitsTab).toHaveStyle("background: #bef2bd");
 
-    const overviewTab = screen.getByRole("button", { name: "Explainer" });
+    const overviewTab = screen.getByRole("link", { name: "Explainer" });
     expect(overviewTab).toHaveStyle("background: #222222");
   });
   it("renders the correct tab content for units", () => {
     render(<ProgrammeView {...defaultProps} />);
-    const heading = screen.getByRole("heading", { name: "Year 7" });
+    const heading = screen.getByRole("heading", { name: "Year 7 units" });
     expect(heading).toBeInTheDocument();
   });
   it("renders the correct tab content for overview", () => {
@@ -90,7 +99,7 @@ describe("ProgrammeView", () => {
   });
   it("navigates on tab click", async () => {
     render(<ProgrammeView {...defaultProps} />);
-    const overviewTabButton = screen.getByRole("button", { name: "Explainer" });
+    const overviewTabButton = screen.getByRole("link", { name: "Explainer" });
     const user = userEvent.setup();
     await user.click(overviewTabButton);
     expect(pushSpy).toHaveBeenCalledWith(null, "", "overview");
