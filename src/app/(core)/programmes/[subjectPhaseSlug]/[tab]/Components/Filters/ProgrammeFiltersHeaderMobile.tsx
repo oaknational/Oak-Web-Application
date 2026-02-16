@@ -35,7 +35,6 @@ export default function ProgrammeFiltersHeaderMobile({
         $background={"bg-primary"}
         data-test-id="filter-mobiles"
         $pv="spacing-32"
-        $ph={"spacing-32"}
       >
         <OakHeading tag="h2" $font={"heading-7"} $mb={"spacing-8"}>
           Filters
