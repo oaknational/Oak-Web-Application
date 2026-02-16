@@ -24,7 +24,6 @@ import slugify from "slugify";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
-import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
@@ -33,6 +32,12 @@ import { findContainingAnchor } from "@/utils/curriculum/dom";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
+
+export type CurriculumOverviewTabData = {
+  subjectTitle: string;
+  curriculumCMSInfo: CurriculumOverviewSanityData;
+  curriculumSelectionSlugs: CurriculumSelectionSlugs;
+};
 
 export type OverviewTabProps = {
   /**
@@ -60,11 +65,7 @@ export type OverviewTabProps = {
    * Can be removed once the integrated programme page is launched and components are reorganised.
    */
   outerPh?: OakBoxProps["$ph"];
-  data: {
-    curriculumInfo: CurriculumOverviewMVData;
-    curriculumCMSInfo: CurriculumOverviewSanityData;
-    curriculumSelectionSlugs: CurriculumSelectionSlugs;
-  };
+  data: CurriculumOverviewTabData;
 };
 
 const ExplainerStyles = styled("div")`
@@ -159,8 +160,7 @@ const OverviewTab: FC<OverviewTabProps> = ({
 }: OverviewTabProps) => {
   const { track } = useAnalytics();
 
-  const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } = data;
-  const { subjectTitle } = curriculumInfo;
+  const { curriculumCMSInfo, curriculumSelectionSlugs, subjectTitle } = data;
   const { subjectSlug, phaseSlug } = curriculumSelectionSlugs;
   const {
     curriculumExplainer,

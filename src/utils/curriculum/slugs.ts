@@ -7,6 +7,12 @@ export type CurriculumSelectionSlugs = {
   ks4OptionSlug: string | null;
 };
 
+export type CurriculumSelectionTitles = {
+  phaseTitle: string;
+  subjectTitle: string;
+  examboardTitle: string | undefined;
+};
+
 export const parseSubjectPhaseSlug = (
   slug: string,
 ): CurriculumSelectionSlugs | undefined => {
