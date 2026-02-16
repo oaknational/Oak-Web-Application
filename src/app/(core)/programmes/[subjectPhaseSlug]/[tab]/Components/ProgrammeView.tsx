@@ -100,6 +100,10 @@ export const ProgrammeView = ({
     (year) => searchParams?.get("years") === year,
   );
 
+  const selectedKeystageSlug = filters.keystages.find(
+    (ks) => searchParams?.get("keystages") === ks,
+  );
+
   // Ensure the active tab matches the one in the latest pathname
   const pathname = usePathname();
   useEffect(() => {
@@ -121,6 +125,7 @@ export const ProgrammeView = ({
         }
         phaseTitle={phaseTitle}
         examboardTitle={examboardTitle}
+        keyStage={selectedKeystageSlug}
         schoolYear={schoolYear}
         summary={subjectPhaseSanityData?.bodyCopy}
         bullets={subjectPhaseSanityData?.bullets}
