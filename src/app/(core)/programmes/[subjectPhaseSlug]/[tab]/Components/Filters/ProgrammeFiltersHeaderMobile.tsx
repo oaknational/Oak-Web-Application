@@ -20,7 +20,7 @@ export default function ProgrammeFiltersHeaderMobile({
   slugs,
   ks4Options,
   onChangeFilters,
-}: MobileFilterHeaderProps) {
+}: Readonly<MobileFilterHeaderProps>) {
   return (
     <OakBox
       $position="sticky"

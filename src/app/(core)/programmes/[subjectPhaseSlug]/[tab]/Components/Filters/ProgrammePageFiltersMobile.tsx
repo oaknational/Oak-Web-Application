@@ -26,7 +26,7 @@ export default function ProgrammePageFiltersMobile({
   data,
   slugs,
   ks4Options,
-}: ProgrammePageFiltersProps) {
+}: Readonly<ProgrammePageFiltersProps>) {
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
 
