@@ -221,6 +221,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   };
 
   const results = {
+    subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
     curriculumSelectionTitles,
     curriculumUnitsFormattedData,

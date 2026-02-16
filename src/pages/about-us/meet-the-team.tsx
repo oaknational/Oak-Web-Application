@@ -19,8 +19,6 @@ import {
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
 import CMSClient from "@/node-lib/cms";
@@ -28,6 +26,7 @@ import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -218,19 +217,10 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
 export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPageProps
 > = async (context) => {
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
+  const enableV2 = await isNewAboutUsPagesEnabled(
     posthogApiKey,
+    context.req.cookies,
   );
-  let enableV2: boolean = false;
-  if (posthogUserId) {
-    // get the variant key for the user
-    enableV2 =
-      (await getFeatureFlag({
-        featureFlagKey: "about-us--who-we-are--v2",
-        posthogUserId,
-      })) === true;
-  }
 
   if (!enableV2) {
     return {

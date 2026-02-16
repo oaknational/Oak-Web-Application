@@ -16,8 +16,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import CMSClient from "@/node-lib/cms";
 import { TeamMember } from "@/common-lib/cms-types/teamMember";
@@ -35,6 +33,7 @@ import {
 } from "@/pages-helpers/shared/about-us-pages/profileNavigation";
 import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -265,18 +264,10 @@ export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPersonPageProps,
   URLParams
 > = async (context) => {
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
+  const enableV2 = await isNewAboutUsPagesEnabled(
     posthogApiKey,
+    context.req.cookies,
   );
-  let enableV2: boolean = false;
-  if (posthogUserId) {
-    enableV2 =
-      (await getFeatureFlag({
-        featureFlagKey: "about-us--who-we-are--v2",
-        posthogUserId,
-      })) === true;
-  }
 
   if (!enableV2) {
     return { notFound: true };

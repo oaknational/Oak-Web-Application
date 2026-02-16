@@ -1,5 +1,9 @@
-"use client";
-import { OakBox, OakHeading } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+} from "@oaknational/oak-components";
 import { useState } from "react";
 
 import ProgrammePageFiltersDesktop from "../Filters/ProgrammePageFiltersDesktop";
@@ -7,9 +11,7 @@ import ProgrammePageFiltersMobile from "../Filters/ProgrammePageFiltersMobile";
 
 import ProgrammeSequence from "./Sequence";
 
-import { CurricVisualiserLayout } from "@/components/CurriculumComponents/CurricVisualiserLayout";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
-import useMediaQuery from "@/hooks/useMediaQuery";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import {
@@ -22,17 +24,13 @@ import {
   highlightedUnitCount,
 } from "@/utils/curriculum/filteringApp";
 import { CurriculumFilters } from "@/utils/curriculum/types";
-import {
-  CurriculumSelectionSlugs,
-  CurriculumSelectionTitles,
-} from "@/utils/curriculum/slugs";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 export type UnitSequenceViewProps = {
   filters: CurriculumFilters;
   setFilters: (newFilters: CurriculumFilters) => void;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
-  curriculumSelectionTitles: CurriculumSelectionTitles;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   ks4Options: Ks4Option[];
   trackingData: CurriculumUnitsTrackingData;
@@ -42,15 +40,12 @@ export const UnitSequenceView = ({
   filters,
   setFilters,
   curriculumSelectionSlugs,
-  curriculumSelectionTitles,
   curriculumUnitsFormattedData,
   ks4Options,
   trackingData,
 }: UnitSequenceViewProps) => {
-  const isMobile = useMediaQuery("mobile");
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
   const { ks4OptionSlug } = curriculumSelectionSlugs;
-  const { subjectTitle } = curriculumSelectionTitles;
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
 
@@ -82,41 +77,46 @@ export const UnitSequenceView = ({
   };
 
   return (
-    <OakBox
-      id="programme-units"
-      aria-labelledby="programme-unit-sequence-heading"
-      tabIndex={-1}
-      $mh={"auto"}
-      $mt={["spacing-0", "spacing-48", "spacing-48"]}
-      $width={"100%"}
-      as="section"
-    >
-      <ScreenReaderOnly>
-        <OakHeading
-          id="programme-unit-sequence-heading"
-          tag="h2"
-          $mb="spacing-24"
-          $ml={["spacing-16", "spacing-0"]}
-          $font={["heading-5", "heading-4"]}
-        >
-          Unit sequence
-        </OakHeading>
-      </ScreenReaderOnly>
-      {isMobile && (
-        <ProgrammePageFiltersMobile
-          selectedYear={mobileSelectedYear}
-          onSelectYear={setMobileSelectedYear}
-          filters={filters}
-          onChangeFilters={onChangeFilters}
-          data={curriculumUnitsFormattedData}
-          slugs={curriculumSelectionSlugs}
-          trackingData={trackingData}
-          ks4Options={ks4Options}
-        />
-      )}
-      <CurricVisualiserLayout
-        filters={
-          isMobile ? null : (
+    <OakBox $ph={["spacing-20", "spacing-40"]}>
+      <OakBox
+        id="programme-units"
+        aria-labelledby="programme-unit-sequence-heading"
+        tabIndex={-1}
+        $mh={"auto"}
+        $mt={["spacing-0", "spacing-48", "spacing-48"]}
+        $width={"100%"}
+        $maxWidth={"spacing-1280"}
+        $color="text-primary"
+        as="section"
+      >
+        <ScreenReaderOnly>
+          <OakHeading
+            id="programme-unit-sequence-heading"
+            tag="h2"
+            $mb="spacing-24"
+            $ml={["spacing-16", "spacing-0"]}
+            $font={["heading-5", "heading-4"]}
+          >
+            Unit sequence
+          </OakHeading>
+        </ScreenReaderOnly>
+        <OakBox $display={["block", "block", "none"]}>
+          <ProgrammePageFiltersMobile
+            selectedYear={mobileSelectedYear}
+            onSelectYear={setMobileSelectedYear}
+            filters={filters}
+            onChangeFilters={onChangeFilters}
+            data={curriculumUnitsFormattedData}
+            slugs={curriculumSelectionSlugs}
+            trackingData={trackingData}
+            ks4Options={ks4Options}
+          />
+        </OakBox>
+        <OakGrid $cg={"spacing-16"}>
+          <OakGridArea
+            $colSpan={[12, 12, 3]}
+            $display={["none", "none", "block"]}
+          >
             <ProgrammePageFiltersDesktop
               filters={filters}
               onChangeFilters={onChangeFilters}
@@ -124,33 +124,31 @@ export const UnitSequenceView = ({
               slugs={curriculumSelectionSlugs}
               ks4Options={ks4Options}
             />
-          )
-        }
-        units={
-          <ProgrammeSequence
-            filters={filters}
-            ks4OptionSlug={ks4OptionSlug}
-            ks4Options={ks4Options}
-            yearData={yearData}
-            setVisibleMobileYearRefID={setVisibleMobileYearRefID}
-            threadOptions={threadOptions}
-          />
-        }
-        curriculumSeoText={undefined} // TD: [integrated journey] seo text
-        subjectTitle={subjectTitle}
-      />
-      <ScreenReaderOnly aria-live="polite" aria-atomic="true">
-        <p>
-          {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
-        </p>
-        {filters.threads[0] && (
+          </OakGridArea>
+          <OakGridArea $colSpan={[12, 12, 9]}>
+            <ProgrammeSequence
+              filters={filters}
+              ks4OptionSlug={ks4OptionSlug}
+              ks4Options={ks4Options}
+              yearData={yearData}
+              setVisibleMobileYearRefID={setVisibleMobileYearRefID}
+              threadOptions={threadOptions}
+            />
+          </OakGridArea>
+        </OakGrid>
+        <ScreenReaderOnly aria-live="polite" aria-atomic="true">
           <p>
-            {highlightedUnits}
-            {highlightedUnits === 1 ? "unit" : "units"}
-            highlighted
+            {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
           </p>
-        )}
-      </ScreenReaderOnly>
+          {filters.threads[0] && (
+            <p>
+              {highlightedUnits}
+              {highlightedUnits === 1 ? "unit" : "units"}
+              highlighted
+            </p>
+          )}
+        </ScreenReaderOnly>
+      </OakBox>
     </OakBox>
   );
 };

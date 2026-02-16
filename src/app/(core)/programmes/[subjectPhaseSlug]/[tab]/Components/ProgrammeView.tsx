@@ -43,8 +43,10 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type ProgrammePageProps = {
+  subjectPhaseSlug: string;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumSelectionTitles: CurriculumSelectionTitles;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
@@ -64,6 +66,7 @@ export const ProgrammeView = ({
   tabSlug,
   ks4Options,
   trackingData,
+  subjectPhaseSlug,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
@@ -127,18 +130,27 @@ export const ProgrammeView = ({
           sizeVariant={["compact", "default"]}
           colorVariant="black"
           activeTab={tabSlugToName[activeTab]}
-          onTabClick={(tabName) => {
+          onTabClick={(tabName, event) => {
             const tabSlug = tabNameToSlug[tabName];
             // Prevents a full page reload using client side nav
+            event.preventDefault();
             globalThis.history.pushState(null, "", tabSlug);
           }}
-          tabs={[...TAB_NAMES]}
+          tabs={TAB_NAMES.map((tab) => ({
+            label: tab,
+            type: "link",
+            href: resolveOakHref({
+              page: "teacher-programme",
+              subjectPhaseSlug,
+              tab: tabNameToSlug[tab],
+            }),
+          }))}
         />
       </OakMaxWidth>
       <TabContent
         tabSlug={activeTab}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
-        curriculumSelectionTitles={curriculumSelectionTitles}
+        subjectTitle={curriculumSelectionTitles.subjectTitle}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         curriculumCMSInfo={curriculumCMSInfo}
         filters={filters}
@@ -153,33 +165,29 @@ export const ProgrammeView = ({
 const TabContent = ({
   tabSlug,
   curriculumSelectionSlugs,
-  curriculumSelectionTitles,
+  subjectTitle,
   curriculumUnitsFormattedData,
   curriculumCMSInfo,
   filters,
   setFilters,
   ks4Options,
   trackingData,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps &
-  Omit<ProgrammeOverviewProps, "subjectTitle">) => {
+}: { tabSlug: TabSlug } & UnitSequenceViewProps & ProgrammeOverviewProps) => {
   if (tabSlug === "units") {
     return (
-      <OakMaxWidth>
-        <UnitSequenceView
-          curriculumSelectionSlugs={curriculumSelectionSlugs}
-          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          curriculumSelectionTitles={curriculumSelectionTitles}
-          filters={filters}
-          setFilters={setFilters}
-          ks4Options={ks4Options}
-          trackingData={trackingData}
-        />
-      </OakMaxWidth>
+      <UnitSequenceView
+        curriculumSelectionSlugs={curriculumSelectionSlugs}
+        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+        filters={filters}
+        setFilters={setFilters}
+        ks4Options={ks4Options}
+        trackingData={trackingData}
+      />
     );
   } else if (tabSlug === "overview") {
     return (
       <ProgrammeOverview
-        subjectTitle={curriculumSelectionTitles.subjectTitle}
+        subjectTitle={subjectTitle}
         curriculumCMSInfo={curriculumCMSInfo}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
       />
