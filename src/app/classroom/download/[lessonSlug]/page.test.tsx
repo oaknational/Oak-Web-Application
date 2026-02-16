@@ -132,7 +132,11 @@ describe("ClassroomDownloadPage", () => {
     });
 
     expect(screen.getByText("Your download has started.")).toBeInTheDocument();
-    expect(screen.getByText("You can close this tab.")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "This tab will close automatically once download is complete.",
+      ),
+    ).toBeInTheDocument();
   });
 
   it("shows error message when createLessonDownloadLink returns falsy", async () => {
