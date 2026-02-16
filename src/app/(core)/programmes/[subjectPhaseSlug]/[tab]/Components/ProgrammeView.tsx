@@ -178,7 +178,6 @@ export const ProgrammeView = ({
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
         curriculumInfo={curriculumInfo}
         curriculumCMSInfo={curriculumCMSInfo}
-        subjectForLayout={subjectForLayout}
         subjectTitle={subjectTitle}
         filters={filters}
         setFilters={onChangeFilters}
@@ -194,24 +193,20 @@ const TabContent = ({
   curriculumInfo,
   curriculumUnitsFormattedData,
   curriculumCMSInfo,
-  subjectForLayout,
   subjectTitle,
   filters,
   setFilters,
 }: { tabSlug: TabSlug } & UnitSequenceViewProps & ProgrammeOverviewProps) => {
   if (tabSlug === "units") {
     return (
-      <OakMaxWidth>
-        <UnitSequenceView
-          curriculumPhaseOptions={curriculumPhaseOptions}
-          curriculumSelectionSlugs={curriculumSelectionSlugs}
-          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          subjectForLayout={subjectForLayout}
-          subjectTitle={subjectTitle}
-          filters={filters}
-          setFilters={setFilters}
-        />
-      </OakMaxWidth>
+      <UnitSequenceView
+        curriculumPhaseOptions={curriculumPhaseOptions}
+        curriculumSelectionSlugs={curriculumSelectionSlugs}
+        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+        subjectTitle={subjectTitle}
+        filters={filters}
+        setFilters={setFilters}
+      />
     );
   } else if (tabSlug === "overview") {
     return (

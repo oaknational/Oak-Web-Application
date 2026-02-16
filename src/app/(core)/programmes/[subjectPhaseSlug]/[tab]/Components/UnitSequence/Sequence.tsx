@@ -4,6 +4,8 @@ import { useRef, useEffect, useMemo } from "react";
 import { OakBox } from "@oaknational/oak-components";
 
 import { ProgrammeUnitList } from "./UnitList";
+import { ProgrammeYear } from "./Year";
+import { getSubheadingIconName } from "./getSubheadingIconName";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
@@ -20,8 +22,6 @@ import {
   getModes,
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import { CurricYearCard } from "@/components/CurriculumComponents/CurricYearCard";
-import Alert from "@/components/CurriculumComponents/OakComponentsKitchen/Alert";
 
 type ProgrammeSequenceProps = {
   ks4OptionSlug?: string | null;
@@ -115,14 +115,24 @@ export default function ProgrammeSequence({
         const actions = units[0]?.actions;
 
         const yearTitle = getYearGroupTitle(yearData, year);
-
-        const yearSubheadingText = getYearSubheadingText(
-          yearData,
-          year,
-          visualiserFilters,
-          shouldDisplayCorePathway ? type : null,
-          actions,
-        );
+        const pathway = shouldDisplayCorePathway ? type : null;
+        const yearSubheadingText = isSwimming
+          ? "Swimming and water safety units should be selected based on the ability and experience of your pupils."
+          : getYearSubheadingText(
+              yearData,
+              year,
+              visualiserFilters,
+              pathway,
+              actions,
+            );
+        const yearSubheadingIconName = isSwimming
+          ? "swimming"
+          : getSubheadingIconName(
+              year,
+              units,
+              yearData[year],
+              visualiserFilters,
+            );
 
         return (
           <OakBox
@@ -136,20 +146,13 @@ export default function ProgrammeSequence({
               $paddingTop={mobileHeaderScrollOffset}
               id={`year-${type}-${year}`}
             />
-            <CurricYearCard
-              timetablingUrl={undefined}
-              isExamboard={type === "non_core"}
-              yearTitle={yearTitle}
-              yearSubheading={yearSubheadingText}
-              additional={
-                isSwimming && (
-                  <Alert
-                    $mb="spacing-16"
-                    type="info"
-                    message="Swimming and water safety units should be selected based on the ability and experience of your pupils."
-                  />
-                )
+            <ProgrammeYear
+              year={year}
+              yearTitle={
+                yearTitle.match(/Year \d+/) ? `${yearTitle} units` : yearTitle
               }
+              yearSubheading={yearSubheadingText}
+              yearSubheadingIconName={yearSubheadingIconName}
             >
               <ProgrammeUnitList
                 units={units}
@@ -158,7 +161,7 @@ export default function ProgrammeSequence({
                 yearData={yearData}
                 selectedThread={selectedThread}
               />
-            </CurricYearCard>
+            </ProgrammeYear>
           </OakBox>
         );
       })}
