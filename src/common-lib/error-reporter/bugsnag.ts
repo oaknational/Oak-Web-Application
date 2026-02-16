@@ -14,9 +14,9 @@ import {
 
 type Logger = Pick<typeof console, "log" | "warn" | "error">;
 
-export function getBugsnagOnError(
-  { logger }: { logger: Logger } = { logger: console },
-) {
+export function getBugsnagOnError({
+  logger = console,
+}: { logger?: Logger } = {}) {
   return function bugsnagOnError(event: Event) {
     const { userAgent } = event.device;
     // Ignore errors for some user agents.
