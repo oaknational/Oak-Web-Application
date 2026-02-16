@@ -25,6 +25,7 @@ describe("CurricVisualiserFiltersModal", () => {
         },
         threadOptions: [],
         yearOptions: ["7"],
+        keystages: [],
       };
       const slugs: CurriculumSelectionSlugs = {
         subjectSlug: "english",
@@ -62,6 +63,7 @@ describe("CurricVisualiserFiltersModal", () => {
         },
         threadOptions: [],
         yearOptions: ["7"],
+        keystages: [],
       };
       const slugs: CurriculumSelectionSlugs = {
         subjectSlug: "english",
@@ -96,6 +98,7 @@ describe("CurricVisualiserFiltersModal", () => {
         },
         threadOptions: [thread1, thread2],
         yearOptions: ["7"],
+        keystages: [],
       };
       const slugs: CurriculumSelectionSlugs = {
         subjectSlug: "english",
@@ -139,6 +142,7 @@ describe("CurricVisualiserFiltersModal", () => {
         },
         threadOptions: [thread1, thread2],
         yearOptions: ["7"],
+        keystages: [],
       };
       const slugs: CurriculumSelectionSlugs = {
         subjectSlug: "english",
@@ -184,6 +188,7 @@ describe("CurricVisualiserFiltersModal", () => {
         },
         threadOptions: [thread1, thread2],
         yearOptions: ["7"],
+        keystages: [],
       };
       const slugs: CurriculumSelectionSlugs = {
         subjectSlug: "english",

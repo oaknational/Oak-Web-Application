@@ -15,6 +15,7 @@ export const ks4Setup = {
       ],
       pathways: [],
       tiers: [],
+      keystages: [],
       groupAs: null,
       isSwimming: false,
       subjectCategories: [],
@@ -36,20 +37,24 @@ export const ks4Setup = {
           subject_slug: childSubjectPhysics.subject_slug,
         }),
       ],
+      keystage: "ks4",
     },
     "11": {
       childSubjects: [],
       pathways: [],
       tiers: [],
       groupAs: null,
+      keystages: [],
       isSwimming: false,
       subjectCategories: [],
       nationalCurriculum: [],
       units: [createUnit({ year: "2", subjectcategories: [] })],
+      keystage: "ks4",
     },
   },
   threadOptions: [],
   yearOptions: [],
+  keystages: [],
 };
 
 export const ks3and4Setup = {
@@ -69,6 +74,7 @@ export const ks3and4Setup = {
           subject_slug: childSubjectBiology.subject_slug,
         }),
       ],
+      keystage: "ks3",
     },
     "8": {
       childSubjects: [childSubjectPhysics],
@@ -85,6 +91,7 @@ export const ks3and4Setup = {
           subject_slug: childSubjectPhysics.subject_slug,
         }),
       ],
+      keystage: "ks3",
     },
     "9": {
       childSubjects: [childSubjectBiology],
@@ -101,6 +108,7 @@ export const ks3and4Setup = {
           subject_slug: childSubjectBiology.subject_slug,
         }),
       ],
+      keystage: "ks3",
     },
     "10": {
       childSubjects: [
@@ -131,6 +139,7 @@ export const ks3and4Setup = {
           subject_slug: childSubjectPhysics.subject_slug,
         }),
       ],
+      keystage: "ks4",
     },
     "11": {
       childSubjects: [],
@@ -141,8 +150,10 @@ export const ks3and4Setup = {
       subjectCategories: [],
       nationalCurriculum: [],
       units: [createUnit({ year: "2", subjectcategories: [] })],
+      keystage: "ks4",
     },
   },
   threadOptions: [],
   yearOptions: [],
+  keystages: [],
 };

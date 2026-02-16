@@ -93,6 +93,7 @@ const curriculumVisualiserFixture: ComponentProps<typeof Component> = {
       groupAs: null,
       pathways: [],
       nationalCurriculum: [],
+      keystage: "ks3",
     },
   },
   setVisibleMobileYearRefID: () => {},

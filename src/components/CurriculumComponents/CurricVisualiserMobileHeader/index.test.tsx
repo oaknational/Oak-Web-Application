@@ -58,6 +58,7 @@ const mockYearData: YearData = {
     isSwimming: false,
     groupAs: null,
     nationalCurriculum: [],
+    keystage: "ks3",
   },
   "8": {
     units: [
@@ -78,6 +79,7 @@ const mockYearData: YearData = {
     isSwimming: false,
     groupAs: null,
     nationalCurriculum: [],
+    keystage: "ks3",
   },
 };
 
@@ -104,6 +106,7 @@ const defaultProps: ComponentProps<typeof CurricVisualiserMobileHeader> = {
     yearData: mockYearData,
     threadOptions: [],
     yearOptions: ["7", "8"],
+    keystages: [],
   },
   trackingData: mockTrackingData,
   selectedYear: "year-all-7",

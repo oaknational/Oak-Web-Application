@@ -17,6 +17,7 @@ export const CurricVisualiserMobileHeader: Story = {
       yearData: {},
       threadOptions: [],
       yearOptions: [],
+      keystages: [],
     },
     filters: {
       childSubjects: [],

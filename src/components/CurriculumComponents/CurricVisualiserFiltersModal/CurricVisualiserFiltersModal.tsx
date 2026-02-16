@@ -36,6 +36,7 @@ export function CurricMobileFilterModal({
               onChangeFilters={onChangeFilters}
               data={data}
               slugs={slugs}
+              context="curriculum-visualiser"
             />
           )}
 

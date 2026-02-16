@@ -2,9 +2,8 @@ import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import { usePathname } from "next/navigation";
 
-import ProgrammePageFiltersMobile, {
-  ProgrammePageMobileFiltersProps,
-} from "./ProgrammePageFiltersMobile";
+import ProgrammePageFiltersMobile from "./ProgrammePageFiltersMobile";
+import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { YearData } from "@/utils/curriculum/types";
@@ -37,6 +36,7 @@ const mockYearData: YearData = {
     isSwimming: false,
     groupAs: null,
     nationalCurriculum: [],
+    keystage: "ks3",
   },
   "8": {
     units: [
@@ -57,10 +57,11 @@ const mockYearData: YearData = {
     isSwimming: false,
     groupAs: null,
     nationalCurriculum: [],
+    keystage: "ks3",
   },
 };
 
-const defaultProps: ProgrammePageMobileFiltersProps = {
+const defaultProps: ProgrammePageFiltersProps = {
   filters: {
     years: ["7", "8"],
     tiers: [],
@@ -74,14 +75,8 @@ const defaultProps: ProgrammePageMobileFiltersProps = {
     yearData: mockYearData,
     threadOptions: [],
     yearOptions: ["7", "8"],
+    keystages: ["ks3"],
   },
-  trackingData: {
-    subjectSlug: "english",
-    subjectTitle: "English",
-    phaseSlug: "secondary",
-  },
-  selectedYear: "year-all-7",
-  onSelectYear: jest.fn(),
   slugs: {
     subjectSlug: "english",
     phaseSlug: "secondary",

@@ -112,9 +112,9 @@ const CurricVisualiserFixture: ComponentProps<typeof ProgrammeSequence> = {
       isSwimming: false,
       groupAs: null,
       nationalCurriculum: [],
+      keystage: "ks3",
     },
   },
-  setVisibleMobileYearRefID: jest.fn(() => {}),
 };
 
 describe("ProgrammeSequence", () => {

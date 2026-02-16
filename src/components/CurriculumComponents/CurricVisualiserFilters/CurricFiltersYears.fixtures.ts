@@ -15,6 +15,7 @@ export const basicSetup = {
       nationalCurriculum: [],
       subjectCategories: [],
       units: [createUnit({ year: "10" }), createUnit({ year: "10" })],
+      keystage: "ks4",
     },
     "11": {
       childSubjects: [],
@@ -25,8 +26,10 @@ export const basicSetup = {
       nationalCurriculum: [],
       subjectCategories: [],
       units: [createUnit({ year: "11" })],
+      keystage: "ks4",
     },
   },
   threadOptions: [],
   yearOptions: ["10", "11"],
+  keystages: [],
 };
