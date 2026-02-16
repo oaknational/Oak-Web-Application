@@ -53,6 +53,8 @@ describe("ClassroomDownloadPage", () => {
   });
 
   it("renders heading and loading state when lessonSlug and selection are present", () => {
+    mockCreateLessonDownloadLink.mockReturnValue(new Promise(() => {}));
+
     renderWithTheme(<Page />);
 
     expect(screen.getByText("Download lesson resources")).toBeInTheDocument();
