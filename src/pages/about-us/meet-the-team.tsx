@@ -21,8 +21,7 @@ import {
 import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
-import CMSClient from "@/node-lib/cms";
-import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
@@ -78,7 +77,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
             imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
           />
         </AboutSharedHeader>
-        <InnerMaxWidth>
+        <NewGutterMaxWidth>
           <OakFlex $gap={["spacing-0", "spacing-16", "spacing-16"]}>
             <OakBox $pb={"spacing-80"}>
               <OakBox
@@ -208,7 +207,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               </OakFlex>
             </OakFlex>
           </OakFlex>
-        </InnerMaxWidth>
+        </NewGutterMaxWidth>
       </AboutUsLayout>
     </Layout>
   );

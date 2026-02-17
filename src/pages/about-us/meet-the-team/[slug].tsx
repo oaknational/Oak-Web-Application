@@ -6,7 +6,6 @@ import {
   OakGridArea,
   OakHeading,
   OakImage,
-  OakMaxWidth,
   OakTypography,
   OakBox,
   OakSmallSecondaryButton,
@@ -21,6 +20,7 @@ import CMSClient from "@/node-lib/cms";
 import { TeamMember } from "@/common-lib/cms-types/teamMember";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { SocialButton } from "@/components/GenericPagesComponents/SocialButton";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs";
@@ -103,15 +103,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
       $background={"bg-primary"}
       topNavProps={topNav}
     >
-      <OakMaxWidth $ph={["spacing-16", "spacing-32"]} $pt={"spacing-32"}>
-        <Breadcrumbs breadcrumbs={breadcrumbs} />
-      </OakMaxWidth>
-      <OakMaxWidth
-        $mb={["spacing-56", "spacing-80"]}
-        $mt={["spacing-48", "spacing-56", "spacing-56"]}
-        $ph={["spacing-16", "spacing-32"]}
-      >
-        <OakGrid $cg={["spacing-0", "spacing-16"]} $rg={"spacing-24"}>
+      <NewGutterMaxWidth>
           {/* Image - Desktop/Tablet only (left column) */}
           <OakGridArea
             $colSpan={[12, 5, 4]}
@@ -251,7 +243,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
             </OakFlex>
           </OakGridArea>
         </OakGrid>
-      </OakMaxWidth>
+      </NewGutterMaxWidth>
     </Layout>
   );
 };

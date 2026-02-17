@@ -11,7 +11,7 @@ import styled from "styled-components";
 import { PortableTextBlockComponent } from "@portabletext/react";
 
 import { GetInvolvedLinkCard } from "@/components/GenericPagesComponents/GetInvolvedLinkCard";
-import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
@@ -55,7 +55,7 @@ export function GetInvolvedCollaborateWithUs({
 }: Readonly<GetInvolvedCollaborateWithUsProps>) {
   return (
     <OakBox $background={"bg-decorative3-very-subdued"}>
-      <InnerMaxWidth>
+      <NewGutterMaxWidth>
         <OakFlex $flexDirection="column" $pv={["spacing-56", "spacing-80"]}>
           <OakGrid
             $gridTemplateColumns={[
@@ -124,7 +124,7 @@ export function GetInvolvedCollaborateWithUs({
             </OakGridArea>
           </OakGrid>
         </OakFlex>
-      </InnerMaxWidth>
+      </NewGutterMaxWidth>
     </OakBox>
   );
 }

@@ -14,6 +14,7 @@ import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
@@ -70,7 +71,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
           />
         </AboutSharedHeader>
         <OakBox $background={"bg-decorative4-very-subdued"}>
-          <OakMaxWidth $pv={"spacing-80"} $ph={["spacing-16", "spacing-40"]}>
+          <NewGutterMaxWidth>
             <OakFlex $flexDirection={"column"} $gap={"spacing-56"}>
               <OakFlex
                 as="ul"
@@ -143,9 +144,9 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
                 <SubjectPhasePicker {...pageData.curriculumPhaseOptions} />
               </OakFlex>
             </OakFlex>
-          </OakMaxWidth>
+          </NewGutterMaxWidth>
         </OakBox>
-        <OakMaxWidth $ph={["spacing-16", "spacing-40"]}>
+        <NewGutterMaxWidth>
           <OakFlex
             $gap={"spacing-56"}
             $pv={"spacing-80"}
@@ -168,7 +169,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
               items={pageData.partners.legacy}
             />
           </OakFlex>
-        </OakMaxWidth>
+        </NewGutterMaxWidth>
       </AboutUsLayout>
     </Layout>
   );

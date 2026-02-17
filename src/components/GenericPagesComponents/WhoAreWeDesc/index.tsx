@@ -7,19 +7,12 @@ import {
   OakP,
   OakBoxProps,
 } from "@oaknational/oak-components";
-import { ReactNode, useMemo } from "react";
+import { useMemo } from "react";
 import styled from "styled-components";
 
 import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-
-function InnerMaxWidth({ children }: { children: ReactNode }) {
-  return (
-    <OakBox $maxWidth={"spacing-1280"} $mh={"auto"}>
-      {children}
-    </OakBox>
-  );
-}
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
 const CustomWeAreItemOakGridArea = styled(OakGridArea)`
   grid-column: span 3;
@@ -59,11 +52,10 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
   }, [items]);
 
   return (
-    <InnerMaxWidth>
+    <NewGutterMaxWidth>
       <OakFlex
         $flexDirection={"column"}
         $pv={["spacing-56", "spacing-80", "spacing-80"]}
-        $ph={["spacing-16", "spacing-16", "spacing-0"]}
         $gap={["spacing-32", "spacing-56", "spacing-56"]}
       >
         <OakHeading
@@ -118,6 +110,6 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
           })}
         </OakGrid>
       </OakFlex>
-    </InnerMaxWidth>
+    </NewGutterMaxWidth>
   );
 }

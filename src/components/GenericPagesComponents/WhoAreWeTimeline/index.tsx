@@ -7,11 +7,11 @@ import {
   OakHeading,
   OakLink,
 } from "@oaknational/oak-components";
-import { ReactNode, useMemo } from "react";
 import { PortableTextMarkComponent } from "@portabletext/react";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
 export const SecondaryAnchorLink: PortableTextMarkComponent<{
   _type: "anchor";
@@ -21,19 +21,6 @@ export const SecondaryAnchorLink: PortableTextMarkComponent<{
     <OakLink href={`#${props.value?.anchor ?? ""}`}>{props.children}</OakLink>
   );
 };
-
-function InnerMaxWidth({ children }: { children: ReactNode }) {
-  const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
-  return (
-    <OakBox
-      style={styleAttrs}
-      $mh={"auto"}
-      $ph={["spacing-16", "spacing-16", "spacing-40"]}
-    >
-      {children}
-    </OakBox>
-  );
-}
 
 export type WhoAreWeTimelineProps = {
   title: string;
@@ -51,7 +38,7 @@ export default function WhoAreWeTimeline({
 }: Readonly<WhoAreWeTimelineProps>) {
   return (
     <OakBox $background={"bg-decorative1-very-subdued"}>
-      <InnerMaxWidth>
+      <NewGutterMaxWidth>
         <OakFlex
           $flexDirection={"column"}
           $gap={["spacing-40", "spacing-56"]}
@@ -158,7 +145,7 @@ export default function WhoAreWeTimeline({
             </OakGridArea>
           </OakGrid>
         </OakFlex>
-      </InnerMaxWidth>
+      </NewGutterMaxWidth>
     </OakBox>
   );
 }

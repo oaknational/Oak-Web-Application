@@ -8,8 +8,10 @@ import {
   parseSpacing,
 } from "@oaknational/oak-components";
 import Link from "next/link";
-import { ReactNode, useId } from "react";
+import { useId } from "react";
 import styled from "styled-components";
+
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
 const HoverableCard = styled(OakFlex)`
   &:hover {
@@ -36,19 +38,6 @@ const CustomUlAsGrid = styled.ul`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
-
-function InnerMaxWidth({ children }: { children: ReactNode }) {
-  return (
-    <OakBox
-      $maxWidth={"spacing-1280"}
-      $mh={"auto"}
-      $ph={["spacing-16", "spacing-16", "spacing-40"]}
-      $position={"relative"}
-    >
-      {children}
-    </OakBox>
-  );
-}
 
 export type WhoAreWeExploreProps = {
   title: string;
@@ -81,8 +70,9 @@ export function WhoAreWeExplore({
         ]}
         style={{ pointerEvents: "none" }}
       />
-      <InnerMaxWidth data-testid="test">
+      <NewGutterMaxWidth>
         <OakFlex
+          $position={"relative"}
           $flexDirection={"column"}
           $pv={["spacing-56", "spacing-80", "spacing-80"]}
           $gap={["spacing-32", "spacing-56", "spacing-56"]}
@@ -138,7 +128,7 @@ export function WhoAreWeExplore({
             </CustomUlAsGrid>
           </nav>
         </OakFlex>
-      </InnerMaxWidth>
+      </NewGutterMaxWidth>
     </OakBox>
   );
 }

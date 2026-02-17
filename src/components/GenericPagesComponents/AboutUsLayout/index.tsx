@@ -1,11 +1,12 @@
 import { ReactNode } from "react";
-import { OakBox, OakMaxWidth } from "@oaknational/oak-components";
+import { OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
 const NewsletterWrapper = styled(OakBox)`
   max-width: 100%;
@@ -69,11 +70,11 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
         $background={"bg-decorative1-subdued"}
         $pv={["spacing-56", "spacing-56"]}
       >
-        <OakMaxWidth $ph={"spacing-16"} $alignItems={"center"}>
+        <NewGutterMaxWidth>
           <NewsletterWrapper>
             <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
           </NewsletterWrapper>
-        </OakMaxWidth>
+        </NewGutterMaxWidth>
       </OakBox>
     </OakBox>
   );

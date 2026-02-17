@@ -12,8 +12,7 @@ import styled from "styled-components";
 import { ReactNode } from "react";
 import { PortableTextReactComponents } from "@portabletext/react";
 
-import { InnerMaxWidth } from "../InnerMaxWidth";
-
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 
@@ -112,8 +111,7 @@ export function AboutSharedHeader({
   titleHighlight,
 }: Readonly<AboutSharedHeaderProps>) {
   return (
-    <InnerMaxWidth>
-      <OakBox $position={"relative"} $overflow={"hidden"}>
+    <NewGutterMaxWidth>
         <OakFlex
           $alignItems="center"
           $justifyContent="space-between"
@@ -155,7 +153,6 @@ export function AboutSharedHeader({
           </OakFlex>
           <CustomOakBox>{children}</CustomOakBox>
         </OakFlex>
-      </OakBox>
-    </InnerMaxWidth>
+    </NewGutterMaxWidth>
   );
 }
