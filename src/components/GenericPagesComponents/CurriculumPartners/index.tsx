@@ -23,13 +23,11 @@ export function CurriculumPartners({
 }: Readonly<CurriculumPartnersProps>) {
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-      <OakFlex $gap={"spacing-24"} $flexDirection={"column"}>
-        <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
-          <OakHeading tag="h3" $font={["heading-5", "heading-4", "heading-4"]}>
-            {title}
-          </OakHeading>
-          <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
-        </OakFlex>
+      <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
+        <OakHeading tag="h3" $font={["heading-5", "heading-4", "heading-4"]}>
+          {title}
+        </OakHeading>
+        <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
       </OakFlex>
       <OakBox>
         <OakGrid
