@@ -27,6 +27,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
+import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 const reportError = errorReporter("programme-page::app");
 
