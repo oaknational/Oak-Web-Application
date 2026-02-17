@@ -3,10 +3,7 @@ import { z } from "zod";
 import { getParsedData } from "./getParsedData";
 
 import OakError from "@/errors/OakError";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { GetToken } from "clerk";
-
-const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 
 /**
  * Expected response schema
@@ -28,7 +25,6 @@ export type DownloadsApiDownloadResponseSchema = z.infer<typeof schema>;
 const getDownloadLink = async ({
   downloadEndpoint,
   meta,
-  authToken,
 }: {
   downloadEndpoint: string;
   meta: {
@@ -36,17 +32,10 @@ const getDownloadLink = async ({
     selection?: string;
     isLegacyDownload?: boolean;
   };
-  authToken?: string | null;
 }) => {
-  const authHeader = authToken
-    ? { Authorization: `Bearer ${authToken}` }
-    : undefined;
+  console.log(downloadEndpoint, "DOWNLOAD ENDPOINT LINK");
 
-  const res = await fetch(downloadEndpoint, {
-    headers: {
-      ...authHeader,
-    },
-  });
+  const res = await fetch(downloadEndpoint);
 
   if (!res.ok) {
     throw new OakError({
@@ -66,19 +55,18 @@ export const createLessonDownloadLink = async ({
   isLegacyDownload,
   selection,
   additionalFilesIdsSelection,
-  authToken,
 }: {
   lessonSlug: string;
   isLegacyDownload: boolean;
   selection?: string;
   additionalFilesIdsSelection?: string;
-  authToken?: string | null;
 }) => {
   const selectionString = selection ? `?selection=${selection}` : "";
   const additionalFilesIdsSelectionString = additionalFilesIdsSelection
     ? `&additionalFiles=${additionalFilesIdsSelection}`
     : "";
-  const downloadEndpoint = `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/download${selectionString}${additionalFilesIdsSelectionString}`;
+  const downloadEndpoint = `/api/lesson/${lessonSlug}/download${selectionString}${additionalFilesIdsSelectionString}`;
+  console.log("DOWNLOAD ENDPOINT ACA", downloadEndpoint);
   const meta = {
     downloadSlug: lessonSlug,
     selection,
@@ -87,20 +75,19 @@ export const createLessonDownloadLink = async ({
   const url = await getDownloadLink({
     downloadEndpoint,
     meta,
-    authToken,
   });
   return url;
 };
 
 export const createUnitDownloadLink = async ({
   unitFileId,
-  getToken,
 }: {
   unitFileId: string;
   getToken: GetToken;
 }) => {
-  const downloadEndpoint = `${DOWNLOADS_API_URL}/api/unit/${unitFileId}/download`;
-  const authToken = await getToken();
+  const downloadEndpoint = `/api/unit/${unitFileId}/download`;
+  console.log("DOWNLOAD ENDPOINT", downloadEndpoint);
+
   const meta = {
     downloadSlug: unitFileId,
   };
@@ -108,7 +95,6 @@ export const createUnitDownloadLink = async ({
   const url = await getDownloadLink({
     downloadEndpoint,
     meta,
-    authToken,
   });
   return url;
 };

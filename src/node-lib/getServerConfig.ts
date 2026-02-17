@@ -330,6 +330,50 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  googleServiceAccountEmail: {
+    description:
+      "GCS service account email for signing download URLs. Required for lesson asset downloads.",
+    value: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    envName: "GOOGLE_SERVICE_ACCOUNT_EMAIL",
+    required: false,
+    availableInBrowser: false,
+    default: null,
+  },
+  googleServiceAccountPrivateKey: {
+    description:
+      "GCS service account private key for signing download URLs. Required for lesson asset downloads.",
+    value: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.trim()
+      .replace(/\\n/gm, "\n")
+      .replace(/"/gm, ""),
+    envName: "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY",
+    required: false,
+    availableInBrowser: false,
+    default: null,
+  },
+  gcsBucketNameForZips: {
+    description: "GCS bucket name for storing generated lesson/unit ZIP files.",
+    value: process.env.GCS_BUCKET_NAME_FOR_ZIPS,
+    envName: "GCS_BUCKET_NAME_FOR_ZIPS",
+    required: false,
+    availableInBrowser: false,
+    default: null,
+  },
+  gcsDirForLessonZips: {
+    description: "Directory path in GCS bucket for lesson ZIP files.",
+    value: process.env.GCS_DIR_FOR_LESSON_ZIPS,
+    envName: "GCS_DIR_FOR_LESSON_ZIPS",
+    required: false,
+    availableInBrowser: false,
+    default: null,
+  },
+  gcsDirForUnitZips: {
+    description: "Directory path in GCS bucket for pre-built unit ZIP files.",
+    value: process.env.GCS_DIR_FOR_UNIT_ZIPS,
+    envName: "GCS_DIR_FOR_UNIT_ZIPS",
+    required: false,
+    availableInBrowser: false,
+    default: null,
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {

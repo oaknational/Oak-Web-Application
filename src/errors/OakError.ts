@@ -33,7 +33,14 @@ const ERROR_CODES = [
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
   "downloads/check-files-failed",
+  "downloads/lesson-not-found",
   "downloads/missing-auth-token",
+  "downloads/resource-not-found",
+  "downloads/no-valid-resources",
+  "downloads/missing-timestamp",
+  "downloads/file-not-found",
+  "downloads/additional-file-not-found",
+  "downloads/additional-file-invalid",
   "onboarding/request-error",
   "oak-components/invalid-icon-name",
   "educator-api/failed-to-save-unit",
@@ -185,6 +192,41 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "downloads/missing-auth-token": {
     message: "Missing auth token for download",
     shouldNotify: true,
+  },
+  "downloads/resource-not-found": {
+    message: "Requested download resources not found",
+    shouldNotify: false,
+    responseStatusCode: 404,
+  },
+  "downloads/lesson-not-found": {
+    message: "Requested lesson not found",
+    shouldNotify: false,
+    responseStatusCode: 404,
+  },
+  "downloads/no-valid-resources": {
+    message: "No valid resources found for the requested selection",
+    shouldNotify: false,
+    responseStatusCode: 404,
+  },
+  "downloads/missing-timestamp": {
+    message: "Could not determine assets updated timestamp",
+    shouldNotify: true,
+    responseStatusCode: 500,
+  },
+  "downloads/file-not-found": {
+    message: "Requested file not found",
+    shouldNotify: false,
+    responseStatusCode: 404,
+  },
+  "downloads/additional-file-not-found": {
+    message: "Additional file not found",
+    shouldNotify: false,
+    responseStatusCode: 404,
+  },
+  "downloads/additional-file-invalid": {
+    message: "Additional file is invalid or missing required data",
+    shouldNotify: true,
+    responseStatusCode: 404,
   },
   "onboarding/request-error": {
     message: "Onboarding request failed",

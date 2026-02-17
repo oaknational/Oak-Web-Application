@@ -111,8 +111,7 @@ describe("createLessonDownloadLink()", () => {
     });
 
     expect(global.fetch).toBeCalledWith(
-      "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
-      { headers: {} },
+      "/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
   it("should fetch from download api if isLegacyDownloads = false", async () => {
@@ -123,8 +122,7 @@ describe("createLessonDownloadLink()", () => {
     });
 
     expect(global.fetch).toBeCalledWith(
-      "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
-      { headers: {} },
+      "/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
   it("should throw an error when NEXT_PUBLIC_DOWNLOAD_API_URL is not defined", async () => {
@@ -147,24 +145,6 @@ describe("createLessonDownloadLink()", () => {
       process.env = originalEnv;
     }
   });
-  it("should fetch with correct headers including Authorization when authToken is provided", async () => {
-    const authToken = "testToken";
-    await createLessonDownloadLink({
-      lessonSlug: "lesson-slug",
-      selection: "exit-quiz-answers,worksheet-pdf",
-      isLegacyDownload: true,
-      authToken,
-    });
-
-    expect(global.fetch).toBeCalledWith(
-      expect.any(String),
-      expect.objectContaining({
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      }),
-    );
-  });
 
   it("should not throw an error if no auth token provided", async () => {
     expect(async () => {
@@ -172,7 +152,6 @@ describe("createLessonDownloadLink()", () => {
         lessonSlug: "lesson-slug",
         selection: "exit-quiz-answers,worksheet-pdf",
         isLegacyDownload: true,
-        authToken: null,
       });
     }).not.toThrow();
   });

@@ -1,0 +1,7 @@
+query unitvariantLessonsById($unitvariantId: Int!) {
+  unitvariant_lessons(where: { unitvariant_id: { _eq: $unitvariantId } }) {
+    lesson {
+      features
+    }
+  }
+}

@@ -307,6 +307,16 @@ async function main() {
     GOOGLE_CLASSROOM_SESSION_SECRET:
       process.env.GOOGLE_CLASSROOM_SESSION_SECRET ||
       secretsFromNetwork.GOOGLE_CLASSROOM_SESSION_SECRET,
+
+    // Internal Downloads API
+    GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY:
+      process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
+    GOOGLE_SERVICE_ACCOUNT_EMAIL: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    GCS_DIR_FOR_LESSON_ZIPS: process.env.GCS_DIR_FOR_LESSON_ZIPS,
+    GCS_DIR_FOR_UNIT_ZIPS: process.env.GCS_DIR_FOR_UNIT_ZIPS,
+    GCS_BUCKET_NAME_FOR_ZIPS: process.env.GCS_BUCKET_NAME_FOR_ZIPS,
+    NEXT_PUBLIC_USE_INTERNAL_DOWNLOADS_API:
+      process.env.NEXT_PUBLIC_USE_INTERNAL_DOWNLOADS_API,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {

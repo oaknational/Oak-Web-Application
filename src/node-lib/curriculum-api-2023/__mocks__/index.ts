@@ -4,6 +4,7 @@ import { subjectBrowseDataFixture } from "../fixtures/subjectBrowseData.fixture"
 import { LessonShareQuery } from "../queries/lessonShare/lessonShare.query";
 import { UnitListingQueryReturn } from "../queries/unitListing/unitListing.query";
 import { topNavFixture } from "../fixtures/topNav.fixture";
+import lessonAssetsFixture from "../fixtures/curriculumResourceLessonDownloads.fixture";
 
 import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/specialistSubjectListing.fixture";
 import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
@@ -64,6 +65,9 @@ const curriculumApi: Pick<
   | "pupilBrowseLessonRedirectQuery"
   | "pupilUnitRedirectQuery"
   | "topNav"
+  | "additionalAssets"
+  | "lessonAssets"
+  | "getIsUnitvariantGeorestrictedQuery"
 > = {
   curriculumPhaseOptions: jest.fn(async () => {
     return curriculumPhaseOptionsFixture();
@@ -216,6 +220,19 @@ const curriculumApi: Pick<
     };
   }),
   topNav: jest.fn().mockResolvedValue(topNavFixture),
+  additionalAssets: jest.fn(async () => {
+    return [];
+  }),
+  lessonAssets: jest.fn(async () => {
+    return {
+      lesson: lessonAssetsFixture(),
+      isGeoRestricted: false,
+      isLoginRequired: false,
+    };
+  }),
+  getIsUnitvariantGeorestrictedQuery: jest.fn(async () => {
+    return false;
+  }),
 };
 
 export default curriculumApi;
