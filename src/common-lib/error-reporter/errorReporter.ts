@@ -24,7 +24,7 @@ const errorify = (maybeError: unknown): Error => {
   try {
     const message = JSON.stringify(maybeError);
     return new Error(message);
-  } catch (jsonStringifyError) {
+  } catch (_error) {
     return new Error(
       `Failed to stringify maybeError, type: ${typeof maybeError}`,
     );

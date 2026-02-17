@@ -3,6 +3,8 @@ import {
   OakFieldError,
   OakFlex,
   OakFlexProps,
+  OakGrid,
+  OakGridArea,
   OakHeading,
   OakLI,
   OakP,
@@ -103,18 +105,15 @@ export default function SignedOutFlow({
   });
 
   return (
-    <OakFlex
-      $gap={["spacing-32", "spacing-48"]}
-      $flexDirection={["column", "row"]}
-    >
-      <OakBox $width={["100%", "spacing-360"]} $textAlign={"left"}>
+    <OakGrid $cg="spacing-16" $rg="spacing-32">
+      <OakGridArea $colSpan={[12, 8, 3]} $colStart={[1, 3, 1]}>
         <CurriculumDownloadSelection
           downloadTypes={downloadTypes}
           onChange={onChangeDownloadTypes}
           availableDownloadTypes={availableDownloadTypes}
         />
-      </OakBox>
-      <OakBox $maxWidth={["100%", "spacing-360"]} $textAlign={"left"}>
+      </OakGridArea>
+      <OakGridArea $colStart={[1, 3, 5]} $colSpan={[12, 8, 4]}>
         <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
           <OakHeading tag="h3" $font={["heading-5"]}>
             Your details
@@ -206,7 +205,7 @@ export default function SignedOutFlow({
             </OakFlex>
           </StyledForm>
         </OakFlex>
-      </OakBox>
-    </OakFlex>
+      </OakGridArea>
+    </OakGrid>
   );
 }

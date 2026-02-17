@@ -8,6 +8,7 @@ import { isTabSlug } from "./tabSchema";
 import { getProgrammeData } from "./getProgrammeData";
 
 import {
+  createDownloadsData,
   CurriculumUnitsTrackingData,
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
@@ -24,8 +25,9 @@ import errorReporter from "@/common-lib/error-reporter";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import { useFeatureFlag } from "@/utils/featureFlags";
 import CMSClient from "@/node-lib/cms";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
+import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -120,8 +122,7 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
-  // `useFeatureFlag` is not a hook
-  const isEnabled = await useFeatureFlag(
+  const isEnabled = await getFeatureFlagValue(
     "teachers-integrated-journey",
     "boolean",
   );
@@ -129,6 +130,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   if (!isEnabled) {
     return notFound();
   }
+
   const { subjectPhaseSlug, tab } = await props.params;
 
   if (!isTabSlug(tab)) {
@@ -170,19 +172,22 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     }
   }
 
-  const curriculumCMSInfo = await CMSClient.curriculumOverviewPage({
-    previewMode: false, // TD: [integrated-journey] preview mode
-    subjectTitle: programmeUnitsData.subjectTitle,
-    phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-  });
+  const [curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime] =
+    await Promise.all([
+      CMSClient.curriculumOverviewPage({
+        previewMode: false, // TD: [integrated-journey] preview mode
+        subjectTitle: programmeUnitsData.subjectTitle,
+        phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+      }),
+      CMSClient.programmePageBySlug(
+        `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
+      ),
+      getMvRefreshTime(),
+    ]);
 
   if (!curriculumCMSInfo) {
     return notFound();
   }
-
-  const subjectPhaseSanityData = await CMSClient.programmePageBySlug(
-    `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
-  );
 
   if (!subjectPhaseSanityData) {
     reportError(
@@ -207,6 +212,10 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     .flatMap((subject) => subject.ks4_options)
     .find((ks4opt) => ks4opt?.slug === subjectPhaseKeystageSlugs.ks4OptionSlug);
 
+  const curriculumDownloadsTabData = createDownloadsData(
+    curriculumUnitsData.units,
+  );
+
   const curriculumSelectionTitles = {
     subjectTitle: programmeUnitsData.subjectTitle,
     phaseTitle: programmeUnitsData.phaseTitle,
@@ -230,6 +239,9 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumCMSInfo,
     ks4Options,
     trackingData: curriculumUnitsTrackingData,
+    curriculumInfo: cachedData.programmeUnitsData,
+    curriculumDownloadsTabData,
+    mvRefreshTime,
   };
 
   return <ProgrammeView {...results} />;

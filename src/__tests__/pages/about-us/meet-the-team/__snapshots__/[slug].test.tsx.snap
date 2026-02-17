@@ -263,11 +263,12 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 .c113 {
   width: 100%;
   max-width: 30rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 2rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 1.5rem;
   margin-left: auto;
   margin-right: auto;
+  color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -284,12 +285,12 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 .c122 {
   width: 100%;
   max-width: 30rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 2.5rem;
+  padding-bottom: 3.5rem;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 3rem;
-  margin-bottom: 3.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -314,6 +315,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 .c133 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
+  color: #222222;
   background: #ffe555;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -330,6 +332,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c136 {
+  padding-bottom: 1rem;
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
@@ -2486,13 +2489,13 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c113 {
-    padding-left: 2rem;
+    padding-left: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
   .c113 {
-    padding-right: 2rem;
+    padding-right: 2.5rem;
   }
 }
 
@@ -2504,31 +2507,25 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c122 {
-    padding-left: 2rem;
+    padding-left: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
   .c122 {
-    padding-right: 2rem;
+    padding-right: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
   .c122 {
-    margin-top: 3.5rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c122 {
-    margin-top: 3.5rem;
+    padding-top: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
   .c122 {
-    margin-bottom: 5rem;
+    padding-bottom: 5rem;
   }
 }
 
@@ -3109,23 +3106,11 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 @media (min-width:750px) {
   .c125 {
-    grid-column: span 5;
-  }
-}
-
-@media (min-width:1280px) {
-  .c125 {
     grid-column: span 4;
   }
 }
 
 @media (min-width:750px) {
-  .c127 {
-    grid-column: span 7;
-  }
-}
-
-@media (min-width:1280px) {
   .c127 {
     grid-column: span 8;
   }

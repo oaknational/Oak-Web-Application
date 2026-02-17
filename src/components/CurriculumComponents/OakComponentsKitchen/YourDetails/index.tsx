@@ -3,9 +3,9 @@ import {
   OakUiRoleToken,
   OakFlex,
   OakLink,
-  OakP,
+  OakBox,
 } from "@oaknational/oak-components";
-import { ComponentProps, useMemo } from "react";
+import { useMemo } from "react";
 
 import Autocomplete, { AutocompleteItem } from "../Autocomplete";
 
@@ -25,20 +25,6 @@ export type School = {
   urn: string;
   la: string;
   postcode: string;
-};
-
-const Link = (props: ComponentProps<typeof OakLink>) => {
-  const isExternal = props.rel === "external";
-  const additionalProps = isExternal
-    ? ({
-        target: "_blank",
-      } as const)
-    : {};
-  return (
-    <OakLink {...props} {...additionalProps} style={{ display: "inline" }}>
-      {props.children}
-    </OakLink>
-  );
 };
 
 export function parseSchoolToListItems(schools: School[]) {
@@ -208,19 +194,25 @@ export default function YourDetails({
         />
 
         {!hidePrivacyPolicy && (
-          <OakP $font={["body-3"]}>
+          <OakBox $font={["body-3"]} $textWrap="balance">
             Join over 100k teachers and get free resources and other helpful
             content by email. Unsubscribe at any time. Read our{" "}
-            <Link
+            <OakLink
+              aria-label="Privacy policy (opens in a new tab)"
               href={resolveOakHref({
                 page: "legal",
-                legalSlug: "privacy",
+                legalSlug: "privacy-policy",
               })}
+              target="_blank"
+              iconName="external"
+              isTrailingIcon
+              iconHeight="spacing-20"
+              iconWidth="spacing-20"
             >
               privacy policy
-            </Link>
+            </OakLink>
             .
-          </OakP>
+          </OakBox>
         )}
       </OakFlex>
     </>
