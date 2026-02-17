@@ -1,3 +1,24 @@
+# [1.992.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.991.1...v1.992.0) (2026-02-17)
+
+
+### Bug Fixes
+
+* cookie banner being stuck to the bottom of the body ([faccae8](https://github.com/oaknational/Oak-Web-Application/commit/faccae82934033947827b71fd492ae76cdd069e3))
+* privacy policy link 404 ([f82961a](https://github.com/oaknational/Oak-Web-Application/commit/f82961ac010646303be42fe8bc0ac09c2ec98860))
+
+
+### Features
+
+* add ph to CurriculumDownloadTab ([ede67cf](https://github.com/oaknational/Oak-Web-Application/commit/ede67cf0d849da206fe11d412e61c0de8635d825))
+* align CurriculumDownloads to grid ([fe06f53](https://github.com/oaknational/Oak-Web-Application/commit/fe06f53987c365523c2827a1e9aacec3dfe4b8fc))
+* change edit button to secondary small ([64ffbbf](https://github.com/oaknational/Oak-Web-Application/commit/64ffbbf07ebaee2bd142b32b7f902cee8a6c0fda))
+* **LESQ-1758:** add the downloads tab to the new integrated journey ([ca03261](https://github.com/oaknational/Oak-Web-Application/commit/ca03261c422ad8495d0d2fb9b12640a5747cd13b))
+* remove brushed border from terms page ([655ace2](https://github.com/oaknational/Oak-Web-Application/commit/655ace2baa60681b17c70e8b1971efabb8127444))
+* replace secondary with tertiary link in back to ks4 options ([3aa5720](https://github.com/oaknational/Oak-Web-Application/commit/3aa5720f1e4b9577a065f9ce71fc37cb3d3a3420))
+* update colours for OakInputWithLabel ([4a31ccd](https://github.com/oaknational/Oak-Web-Application/commit/4a31ccda670eeaadf6910ce5014c2e69b930cb88))
+* use OakButton and remove brushed borders ([8ce09ff](https://github.com/oaknational/Oak-Web-Application/commit/8ce09ffd357448321ee40bbc11ad96c8b2734db1))
+* use OakSecondaryLink instead of Button for back link ([f34d0a6](https://github.com/oaknational/Oak-Web-Application/commit/f34d0a6d413c8cf2e048e5a26f1db9aa3b499b4d))
+
 ## [1.991.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.991.0...v1.991.1) (2026-02-17)
 
 # [1.991.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.990.1...v1.991.0) (2026-02-16)
