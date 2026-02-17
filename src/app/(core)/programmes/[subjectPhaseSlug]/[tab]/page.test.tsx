@@ -75,6 +75,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
       ks4_options: [],
     },
   ]),
+  refreshedMVTime: jest.fn().mockResolvedValue(0),
 }));
 
 jest.mock("@/browser-lib/getBrowserConfig", () => ({

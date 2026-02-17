@@ -4,7 +4,6 @@ import userEvent from "@testing-library/user-event";
 import { ProgrammeView } from "./ProgrammeView";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import {
@@ -32,23 +31,37 @@ beforeEach(() => {
 });
 
 const defaultProps = {
-  subjectPhaseSlug: "science-secondary-aqa",
-  subjectTitle: "Science",
   curriculumSelectionSlugs: {
     phaseSlug: "secondary",
     subjectSlug: "science",
     ks4OptionSlug: "aqa",
   },
-  curriculumPhaseOptions: curriculumPhaseOptions,
-  phaseTitle: "Secondary",
+  curriculumSelectionTitles: {
+    subjectTitle: "Science",
+    phaseTitle: "Secondary",
+    examboardTitle: "AQA",
+  },
+  subjectPhaseSlug: "science-secondary-aqa",
+  ks4Options: [],
   curriculumUnitsFormattedData: formatCurriculumUnitsData(
     curriculumUnitsTabFixture(),
   ),
+  curriculumDownloadsTabData: {
+    tiers: [],
+    child_subjects: [],
+  },
+  mvRefreshTime: 0,
   curriculumInfo: curriculumOverviewMVFixture(),
   curriculumCMSInfo: curriculumOverviewCMSFixture(),
   subjectPhaseSanityData: null,
   tabSlug: "units" as const,
-  examboardTitle: "AQA",
+  trackingData: {
+    phaseSlug: "secondary",
+    subjectSlug: "maths",
+    ks4OptionSlug: "aqa",
+    subjectTitle: "Science",
+    ks4OptionTitle: "AQA",
+  },
 };
 
 const render = renderWithProviders();
@@ -70,7 +83,7 @@ describe("ProgrammeView", () => {
   });
   it("renders the correct tab content for units", () => {
     render(<ProgrammeView {...defaultProps} />);
-    const heading = screen.getByRole("heading", { name: "Year 7" });
+    const heading = screen.getByRole("heading", { name: "Year 7 units" });
     expect(heading).toBeInTheDocument();
   });
   it("renders the correct tab content for overview", () => {
@@ -86,8 +99,8 @@ describe("ProgrammeView", () => {
       "/programmes/science-secondary-aqa/download",
     );
     render(<ProgrammeView {...defaultProps} tabSlug="download" />);
-    const heading = screen.getByText("Download tab");
-    expect(heading).toBeInTheDocument();
+    const content = screen.getByTestId("download-heading");
+    expect(content).toBeInTheDocument();
   });
   it("navigates on tab click", async () => {
     render(<ProgrammeView {...defaultProps} />);
