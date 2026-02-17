@@ -2,7 +2,6 @@ import React, { FC, useState } from "react";
 import { useRouter } from "next/router";
 import {
   OakFlex,
-  OakUnitsContainer,
   OakPagination,
   OakAnchorTarget,
   OakBox,
@@ -10,6 +9,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
+import { UnitsContainer } from "../UnitsContainer";
 
 import { getPageItems, getProgrammeFactors } from "./helpers";
 import { areNewAndLegacyUnitsOnPage, getUnitCards } from "./getUnitCards";
@@ -191,7 +191,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           <OakFlex $flexDirection="column" $gap="spacing-72">
             {/* Swimming units */}
             {swimmingPageItems.length > 0 && keyStageSlug && phaseSlug && (
-              <OakUnitsContainer
+              <UnitsContainer
                 isLegacy={false}
                 subject={""}
                 phase={phaseSlug}
@@ -229,7 +229,7 @@ const UnitList: FC<UnitListProps> = (props) => {
 
             {/* New units */}
             {newPageItems.length > 0 && phaseSlug && (
-              <OakUnitsContainer
+              <UnitsContainer
                 isLegacy={false}
                 subject={modifiedCategory ?? subjectTitle}
                 phase={phaseSlug}
@@ -255,7 +255,7 @@ const UnitList: FC<UnitListProps> = (props) => {
 
             {/* Legacy units */}
             {legacyPageItems.length > 0 && keyStageSlug && phaseSlug && (
-              <OakUnitsContainer
+              <UnitsContainer
                 isLegacy={true}
                 banner={
                   <TakedownBanner
@@ -290,7 +290,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           </OakFlex>
         ) : (
           // Specialist units
-          <OakUnitsContainer
+          <UnitsContainer
             isLegacy={true}
             banner={
               <TakedownBanner
