@@ -17,8 +17,8 @@ import {
   CurricFiltersTiers,
 } from "@/components/CurriculumComponents/CurricVisualiserFilters";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
-import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
+import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import type { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 // TD: [integrated journey] this component duplicated CurricVisualiserFiltersDesktop
 // once the integrated journey is launched we can remove that component

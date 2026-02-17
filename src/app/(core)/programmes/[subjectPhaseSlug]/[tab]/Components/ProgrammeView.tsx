@@ -47,7 +47,7 @@ import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics"
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 

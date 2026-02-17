@@ -24,7 +24,7 @@ import {
 } from "@/utils/curriculum/filteringApp";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 export type UnitSequenceViewProps = {
   filters: CurriculumFilters;

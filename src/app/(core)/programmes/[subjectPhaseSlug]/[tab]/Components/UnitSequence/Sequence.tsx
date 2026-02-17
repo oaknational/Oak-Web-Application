@@ -19,7 +19,7 @@ import {
   applyFiltering,
   getModes,
 } from "@/utils/curriculum/by-pathway";
-import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 type ProgrammeSequenceProps = {
   ks4OptionSlug?: string | null;
