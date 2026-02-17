@@ -44,15 +44,18 @@ const TopNav = (props: TopNavProps) => {
     keyof TeachersSubNavData | keyof PupilsSubNavData | undefined
   >(undefined);
 
-  const trackBrowseAccessed = () => {
-    track.browseAccessed({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "explore",
-      componentType: "all_filters", // TODO: component type
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-    });
+  const trackBrowseAccessed = (menu: string) => {
+    const menuIsOpening = selectedMenu === undefined || selectedMenu !== menu;
+    if (menuIsOpening) {
+      track.browseAccessed({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "explore",
+        componentType: "all_filters", // TODO: component type
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+      });
+    }
   };
 
   const focusManager = useMemo(() => {
@@ -191,7 +194,7 @@ const TopNav = (props: TopNavProps) => {
               }
               isMenuSelected={isMenuSelected}
               onClick={(menu) => {
-                trackBrowseAccessed();
+                trackBrowseAccessed(menu);
                 setSelectedMenu(selectedMenu === menu ? undefined : menu);
               }}
             />

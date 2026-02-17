@@ -180,6 +180,14 @@ describe("TopNav", () => {
     await user.click(primaryButton);
     expect(mockBrowseAccessed).toHaveBeenCalled();
   });
+  it("does not track browse accessed when a subnav button is closing a menu", async () => {
+    render(<TopNav {...mockProps} />);
+    const primaryButton = await screen.findByText("Primary");
+    const user = userEvent.setup();
+    await user.click(primaryButton);
+    await user.click(primaryButton);
+    expect(mockBrowseAccessed).toHaveBeenCalledTimes(1);
+  });
   it("does not track when a subnav button is clicked in the pupils area", async () => {
     mockSelectedArea.mockReturnValueOnce("PUPILS");
     render(<TopNav {...mockProps} />);
