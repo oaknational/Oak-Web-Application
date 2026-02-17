@@ -45,6 +45,7 @@ const TeachersPhaseSection = ({
   focusManager: DropdownFocusManager<TeachersSubNavData>;
   onClick: (subject: string, keystage: string) => void;
 }) => {
+  const { track } = useAnalytics();
   const defaultKeystage =
     menuData.children[0]?.slug || (selectedMenu === "primary" ? "ks1" : "ks3");
 
@@ -69,6 +70,17 @@ const TeachersPhaseSection = ({
       ?.children.filter((subject) => subject.nonCurriculum) ?? undefined;
 
   const onKeystageClick = (keystageSlug: string) => {
+    track.browseRefined({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "refine",
+      componentType: "topnav-browse-button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      filterType: "Key stage filter",
+      filterValue: keystageSlug,
+      activeFilters: {},
+    });
     setSelectedKeystage(keystageSlug);
   };
 
@@ -298,20 +310,6 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
   const { activeArea, selectedMenu, teachers, pupils, focusManager } = props;
   const { track } = useAnalytics();
 
-  const trackBrowseRefined = (subject: string, keystage: string) => {
-    track.browseRefined({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "topnav-browse-button",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterType: "Subject filter",
-      filterValue: subject,
-      activeFilters: { keystage: [keystage] },
-    });
-  };
-
   return (
     <OakFlex $pa={"spacing-40"}>
       {activeArea === "TEACHERS" &&
@@ -323,7 +321,17 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
             selectedMenu={selectedMenu}
             menuData={teachers[selectedMenu]}
             onClick={(subject, keystage) => {
-              trackBrowseRefined(subject, keystage);
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Subject filter",
+                filterValue: subject,
+                activeFilters: { keystage: [keystage] },
+              });
               props.onClose();
             }}
           />

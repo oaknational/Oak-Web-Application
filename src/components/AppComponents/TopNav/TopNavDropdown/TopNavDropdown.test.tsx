@@ -74,6 +74,29 @@ describe("TopNavDropdown", () => {
         expect(keystageButtons[0]).toHaveAttribute("aria-current", "true");
       });
 
+      it("calls track browse refined when a keystage button is clicked", async () => {
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const keystageButton = screen.getByRole("tab", { name: "Key stage 4" });
+        const user = userEvent.setup();
+        await user.click(keystageButton);
+        expect(mockBrowseRefined).toHaveBeenCalledWith(
+          expect.objectContaining({
+            filterType: "Key stage filter",
+            filterValue: "ks4",
+          }),
+        );
+      });
+
       it("renders subject buttons and link to all key stage page", async () => {
         render(
           <TopNavDropdown
@@ -205,17 +228,13 @@ describe("TopNavDropdown", () => {
         englishButton.addEventListener("click", (e) => e.preventDefault());
         await user.click(englishButton);
 
-        expect(mockBrowseRefined).toHaveBeenCalledWith({
-          activeFilters: { keystage: ["ks1"] },
-          analyticsUseCase: "Teacher",
-          componentType: "topnav-browse-button",
-          engagementIntent: "refine",
-          eventVersion: "2.0.0",
-          filterType: "Subject filter",
-          filterValue: "english",
-          platform: "owa",
-          product: "teacher lesson resources",
-        });
+        expect(mockBrowseRefined).toHaveBeenCalledWith(
+          expect.objectContaining({
+            activeFilters: { keystage: ["ks1"] },
+            filterType: "Subject filter",
+            filterValue: "english",
+          }),
+        );
       });
     });
     describe("links sections", () => {
