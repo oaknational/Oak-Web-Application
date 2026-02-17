@@ -56,6 +56,7 @@ export const TakedownBanner = ({
     user: userType,
     isSingle,
   });
+  const shouldHideButton = isCycle2 && !hasNewUnits;
 
   if (!bannerContent) {
     return null;
@@ -85,7 +86,8 @@ export const TakedownBanner = ({
       type={"warning"}
       variant={"large"}
       cta={
-        (onwardHref || onButtonClick) && (
+        (onwardHref || onButtonClick) &&
+        !shouldHideButton && (
           <OakFlex>
             <OakPrimaryButton
               element="a"

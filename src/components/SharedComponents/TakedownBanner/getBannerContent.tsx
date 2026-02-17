@@ -1,4 +1,4 @@
-import { OakFlex, OakP } from "@oaknational/oak-components";
+import { OakFlex, OakLink, OakP } from "@oaknational/oak-components";
 
 export const CYCLE_2_SUBJECTS = new Set([
   "art",
@@ -13,6 +13,8 @@ export const CYCLE_2_SUBJECTS = new Set([
   "physical-education",
   "religious-education",
   "rshe-pshe",
+  "drama",
+  "latin",
 ]);
 
 const getCycle2WithNewUnitsContent = (
@@ -41,11 +43,53 @@ const getCycle2WithNewUnitsContent = (
   };
 };
 
-const getCycle2WithoutNewUnitsContent = () => ({
-  header:
-    "These resources were made for remote use during the pandemic, not classroom teaching.",
-  body: "Switch to our brand new teaching resources now. Designed by teachers and subject experts, with real classrooms in mind.",
-});
+const getCycle2WithoutNewUnitsContent = (
+  user: "teacher" | "pupil",
+  isSingle?: boolean,
+) => {
+  const helpArticleHref =
+    "https://support.thenational.academy/lesson-unavailable";
+  const pupilHeader = `${isSingle ? "This lesson" : "These lessons"} will be removed by the end of the Spring Term 2026.`;
+  const teacherHeader = `These resources will be removed by the end of the Spring Term 2026.`;
+
+  return {
+    header: user === "pupil" ? pupilHeader : teacherHeader,
+    body:
+      user === "pupil" ? (
+        <OakP $textWrap="balance">
+          These resources below were created for lockdown learning during the
+          pandemic and will be removed soon. See our{" "}
+          <OakLink
+            href={helpArticleHref}
+            target="_blank"
+            rel="external"
+            isTrailingIcon
+            iconName="external"
+          >
+            help article
+          </OakLink>{" "}
+          for more information.
+        </OakP>
+      ) : (
+        <OakP $textWrap="balance">
+          These resources below were created for lockdown learning during the
+          pandemic and are not designed for classroom teaching. You may want to
+          download these resources to save them and check any links you've saved
+          or shared. See our{" "}
+          <OakLink
+            href={helpArticleHref}
+            target="_blank"
+            rel="external"
+            isTrailingIcon
+            iconName="external"
+          >
+            help article
+          </OakLink>{" "}
+          for more information.
+        </OakP>
+      ),
+  };
+};
 
 const getExpiringWithNewUnitsContent = (
   user: "teacher" | "pupil",
@@ -79,12 +123,12 @@ export const getBannerContent = ({
 }) => {
   if (isCycle2 && hasNewUnits) {
     // cycle 2 take down where new content exists
-    return getCycle2WithNewUnitsContent(user);
+    return getCycle2WithNewUnitsContent(user, isSingle);
   }
 
   if (isCycle2 && !hasNewUnits) {
     // cycle 2 takedown where no new content exists, ie. drama and latin
-    return getCycle2WithoutNewUnitsContent();
+    return getCycle2WithoutNewUnitsContent(user, isSingle);
   }
 
   if (isExpiring && hasNewUnits) {
