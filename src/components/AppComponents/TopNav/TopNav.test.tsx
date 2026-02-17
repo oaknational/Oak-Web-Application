@@ -196,6 +196,13 @@ describe("TopNav", () => {
     await user.click(primaryButton);
     expect(mockBrowseAccessed).not.toHaveBeenCalled();
   });
+  it("does not track browse accessed for non-browse menu buttons", async () => {
+    render(<TopNav {...mockProps} />);
+    const guidanceButton = await screen.findByText("Guidance");
+    const user = userEvent.setup();
+    await user.click(guidanceButton);
+    expect(mockBrowseAccessed).not.toHaveBeenCalled();
+  });
 });
 const subnavLabels = [
   { label: "Primary", element: "button" },

@@ -46,7 +46,9 @@ const TopNav = (props: TopNavProps) => {
 
   const trackBrowseAccessed = (menu: string) => {
     const menuIsOpening = selectedMenu === undefined || selectedMenu !== menu;
-    if (menuIsOpening) {
+    const menuIsBrowseJourney = menu === "primary" || menu == "secondary";
+
+    if (menuIsOpening && menuIsBrowseJourney) {
       track.browseAccessed({
         platform: "owa",
         product: "teacher lesson resources",
