@@ -124,7 +124,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     if (userEmail && isSignedIn) {
       updateUserDetailsFromHubspot(userEmail);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     isSignedIn,
     setEmailInLocalStorage,

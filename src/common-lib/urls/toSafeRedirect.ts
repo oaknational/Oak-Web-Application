@@ -11,7 +11,7 @@ export default function toSafeRedirect(
   let url: URL;
   try {
     url = new URL(untrustedUrl, safeBaseUrl);
-  } catch (e) {
+  } catch (_error) {
     return undefined;
   }
   if (url.origin === safeBaseUrl.origin) {
