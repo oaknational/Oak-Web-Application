@@ -12,6 +12,16 @@ const mockTopNavProps = topNavFixture.teachers!;
 
 const render = renderWithProviders();
 
+const mockBrowseRefined = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefined: (...args: []) => mockBrowseRefined(...args),
+    },
+  }),
+}));
+
 describe("TeachersTopNavHamburger", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -135,5 +145,25 @@ describe("TeachersTopNavHamburger", () => {
     const Ks1 = getEYFSAriaLabel("KS1");
     expect(EYFS).toBe("Early years foundation stage");
     expect(Ks1).toBeUndefined();
+  });
+
+  it("should track browse refined when a keystage is selected", () => {
+    const { getByTestId, getByText } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const button = getByTestId("top-nav-hamburger-button");
+    act(() => {
+      button.click();
+    });
+    const keyStageItem = getByText("Key stage 1");
+    act(() => {
+      keyStageItem.click();
+    });
+    expect(mockBrowseRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Key stage filter",
+        filterValue: "ks1",
+      }),
+    );
   });
 });
