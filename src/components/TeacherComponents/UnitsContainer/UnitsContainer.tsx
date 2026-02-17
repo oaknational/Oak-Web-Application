@@ -18,7 +18,7 @@ const OakULFlex = styled(OakUL)`
 
 export type UnitsContainerProps = UnitsHeaderProps & {
   showHeader: boolean;
-  unitCards: Array<React.ReactNode>;
+  unitCards: Array<React.ReactElement>;
   backgroundColour?: OakUiRoleToken;
 } & Omit<
     OakFlexProps,
@@ -62,9 +62,7 @@ export const UnitsContainer = (props: UnitsContainerProps) => {
         />
       )}
       <OakULFlex aria-label="A list of units" $reset $width="100%">
-        {unitCards.map((unitCard, index) => (
-          <React.Fragment key={index}>{unitCard}</React.Fragment>
-        ))}
+        {unitCards}
       </OakULFlex>
     </OakFlex>
   );
