@@ -72,13 +72,13 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
         </AboutSharedHeader>
         <OakBox $background={"bg-decorative4-very-subdued"}>
           <NewGutterMaxWidth>
-            <OakFlex $flexDirection={"column"} $gap={"spacing-56"}>
+            <OakFlex $flexDirection={"column"} $gap={"spacing-56"} $pv={["spacing-56", "spacing-80"]}>
               <OakFlex
                 as="ul"
                 $flexDirection={["column", "row"]}
-                $pa="spacing-0"
-                $ma="spacing-0"
-                $gap="spacing-16"
+                $pa={"spacing-0"}
+                $ma={"spacing-0"}
+                $gap={"spacing-16"}
                 $alignItems="stretch"
               >
                 <UnstyledLi>
@@ -148,9 +148,9 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
         </OakBox>
         <NewGutterMaxWidth>
           <OakFlex
-            $gap={"spacing-56"}
-            $pv={"spacing-80"}
             $flexDirection={"column"}
+            $pv={"spacing-80"}
+            $gap={"spacing-56"}
           >
             <OakHeading
               tag="h2"

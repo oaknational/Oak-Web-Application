@@ -104,6 +104,17 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
       topNavProps={topNav}
     >
       <NewGutterMaxWidth>
+        <OakFlex
+          $pt={"spacing-24"}
+          $color={"text-primary"}
+        >
+          <Breadcrumbs breadcrumbs={breadcrumbs}/>
+        </OakFlex>
+        <OakGrid
+          $pt={["spacing-40", "spacing-56"]}
+          $pb={["spacing-56", "spacing-80"]}
+          $cg={["spacing-0", "spacing-16"]}
+          $rg={"spacing-24"}>
           {/* Image - Desktop/Tablet only (left column) */}
           <OakGridArea
             $colSpan={[12, 5, 4]}
@@ -127,7 +138,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
           </OakGridArea>
 
           {/* All text content (right column on desktop, full width on mobile) */}
-          <OakGridArea $colSpan={[12, 7, 8]} $order={2}>
+          <OakGridArea $colSpan={[12, 8]} $order={2}>
             <OakFlex
               $flexDirection={"column"}
               $ph={["spacing-0", "spacing-40"]}
@@ -212,7 +223,11 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 
               {/* Bio */}
               {trimmedBio && (
-                <OakBox $font={["body-2", "body-1"]} $color={"text-primary"}>
+                <OakBox
+                  $font={["body-2", "body-1"]}
+                  $color={"text-primary"}
+                  $pb={"spacing-16"}
+                >
                   <PortableTextWithDefaults value={trimmedBio} />
                 </OakBox>
               )}

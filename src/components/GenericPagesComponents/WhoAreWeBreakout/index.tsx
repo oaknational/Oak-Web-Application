@@ -32,7 +32,7 @@ export function WhoAreWeBreakout({
       </OakFlex>
       <OakFlex
         $flexShrink={1}
-        $ph={["spacing-16", "spacing-16", "spacing-80"]}
+        $ph={["spacing-20", "spacing-40", "spacing-80"]}
         $pv={["spacing-56", "spacing-40", "spacing-40"]}
         $alignItems={"center"}
       >

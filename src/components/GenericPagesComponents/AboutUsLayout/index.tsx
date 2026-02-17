@@ -10,6 +10,7 @@ import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutter
 
 const NewsletterWrapper = styled(OakBox)`
   max-width: 100%;
+  justify-self: center;
 
   @media (min-width: 750px) {
     max-width: 870px;
@@ -68,7 +69,7 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
       <OakBox
         id="newsletter-signup"
         $background={"bg-decorative1-subdued"}
-        $pv={["spacing-56", "spacing-56"]}
+        $pv={"spacing-56"}
       >
         <NewGutterMaxWidth>
           <NewsletterWrapper>

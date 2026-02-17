@@ -78,14 +78,13 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
           />
         </AboutSharedHeader>
         <NewGutterMaxWidth>
-          <OakFlex $gap={["spacing-0", "spacing-16", "spacing-16"]}>
+          <OakFlex $gap={["spacing-0", "spacing-16", "spacing-16"]} $pb={"spacing-80"}>
             <OakBox $pb={"spacing-80"}>
               <OakBox
-                $minWidth={"spacing-180"}
-                $display={["none", "block", "block"]}
                 $position={"sticky"}
-                $top="spacing-20"
-                $pb={"spacing-80"}
+                $top={"spacing-20"}
+                $display={["none", "block", "block"]}
+                $minWidth={"spacing-180"}
               >
                 <OakSideMenuNav
                   heading="Page sections"
