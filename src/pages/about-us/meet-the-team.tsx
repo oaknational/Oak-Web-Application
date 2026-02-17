@@ -9,21 +9,19 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import Layout from "@/components/AppComponents/Layout";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
-import {
-  AboutSharedHeader,
-  AboutSharedHeaderImage,
-} from "@/components/GenericPagesComponents/AboutSharedHeader";
-import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import CMSClient from "@/node-lib/cms";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import Layout from "@/components/AppComponents/Layout";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import { AboutSharedHeader, AboutSharedHeaderImage } from "@/components/GenericPagesComponents/AboutSharedHeader";
+import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
@@ -110,7 +108,6 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               $flexGrow={1}
               $flexDirection={"column"}
               $gap={["spacing-32", "spacing-56", "spacing-56"]}
-              $pb={"spacing-80"}
             >
               <MeetTheTeamContainer
                 title={SECTION_TITLES.leadership}
@@ -137,7 +134,6 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                   );
                 })}
               </MeetTheTeamContainer>
-
               <MeetTheTeamContainer
                 title={SECTION_TITLES.board}
                 text={boardText}
@@ -163,7 +159,6 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                   );
                 })}
               </MeetTheTeamContainer>
-
               {documents && documents.length > 0 && (
                 <MeetTheTeamContainer
                   title={SECTION_TITLES.documents}
@@ -189,7 +184,6 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                   })}
                 </MeetTheTeamContainer>
               )}
-
               <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
                 <OakHeading
                   tag="h2"
