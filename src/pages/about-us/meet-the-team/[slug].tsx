@@ -118,6 +118,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
           {/* Image - Desktop/Tablet only (left column) */}
           <OakGridArea
             $colSpan={[12, 4]}
+            $colSpan={[12, 4]}
             $order={1}
             $display={["none", "block"]}
           >
@@ -138,6 +139,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
           </OakGridArea>
 
           {/* All text content (right column on desktop, full width on mobile) */}
+          <OakGridArea $colSpan={[12, 8]} $order={2}>
           <OakGridArea $colSpan={[12, 8]} $order={2}>
             <OakFlex
               $flexDirection={"column"}
@@ -167,6 +169,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                 {role && (
                   <OakBox
                     $background={"bg-decorative5-main"}
+                    $color={"text-primary"}
                     $color={"text-primary"}
                     $ph={"spacing-4"}
                     style={{ width: "fit-content" }}
@@ -224,6 +227,11 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 
               {/* Bio */}
               {trimmedBio && (
+                <OakBox
+                  $font={["body-2", "body-1"]}
+                  $color={"text-primary"}
+                  $pb={"spacing-16"}
+                >
                 <OakBox
                   $font={["body-2", "body-1"]}
                   $color={"text-primary"}
