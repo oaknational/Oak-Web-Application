@@ -1,3 +1,16 @@
+## [1.993.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.993.0...v1.993.1) (2026-02-17)
+
+
+### Bug Fixes
+
+* add bottom padding to bio to bump buttons ([be2f1ac](https://github.com/oaknational/Oak-Web-Application/commit/be2f1acb02fdad0cb83decba447828acbb46aa62))
+* adjust padding across screensizes ([bb0e13b](https://github.com/oaknational/Oak-Web-Application/commit/bb0e13b837e7354332553dc2a8bf19896ec6807a))
+* adjust tablet margins ([931b1a6](https://github.com/oaknational/Oak-Web-Application/commit/931b1a61a6329b25dbf0d5e851195f5f7e4e0240))
+* breadcrumbs 22222 ([a5cd14e](https://github.com/oaknational/Oak-Web-Application/commit/a5cd14e28fd850b1b34680acbe2ad23c4539bc52))
+* make job title text primary colour ([07e53b8](https://github.com/oaknational/Oak-Web-Application/commit/07e53b8ebdafedef7aa5d797acd3ed2359abb31e))
+* prettier ([d21721d](https://github.com/oaknational/Oak-Web-Application/commit/d21721d7f15ed7ecc5facc7ea34d276d469bd73e))
+* snapshots ([1caa248](https://github.com/oaknational/Oak-Web-Application/commit/1caa2481e04b559e257516a6d34368de09374ae4))
+
 # [1.993.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.992.0...v1.993.0) (2026-02-17)
 
 
