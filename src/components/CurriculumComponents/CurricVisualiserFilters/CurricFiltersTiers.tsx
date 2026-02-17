@@ -1,8 +1,8 @@
 import {
-  OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
   OakBox,
+  OakP,
 } from "@oaknational/oak-components";
 import { useId } from "react";
 
@@ -45,16 +45,16 @@ export function CurricFiltersTiers({
     <>
       {tiers.length > 0 && (
         <OakBox>
-          <OakHeading
+          <OakP
+            as="legend"
             id={"tiers-label"}
-            tag="h4"
             $font={["heading-7", "heading-6"]}
             $mt="spacing-0"
             $mb={["spacing-24", "spacing-16"]}
           >
             Learning tier{" "}
             {tiersAt.length === 1 ? `(${tiersAt[0]?.toUpperCase()})` : ""}
-          </OakHeading>
+          </OakP>
           <OakRadioGroup
             name={"tiers" + id}
             onChange={(e) => setSingleInFilter("tiers", e.target.value)}
