@@ -1,3 +1,53 @@
+# [1.993.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.992.0...v1.993.0) (2026-02-17)
+
+
+### Bug Fixes
+
+* ignore no-empty-object-type ([3d9e6bf](https://github.com/oaknational/Oak-Web-Application/commit/3d9e6bf15e81c4f3b8860ee460dd88aec2e9c510))
+* no-named-as-default-member error ([4acae3e](https://github.com/oaknational/Oak-Web-Application/commit/4acae3e4d44b51acbbb7970d9822c23ef96a3973))
+* remore exports ([b9fdc31](https://github.com/oaknational/Oak-Web-Application/commit/b9fdc315774e9324a67b3a5f4b4366f76effd4e5))
+* remove no-unused-expressions errors ([f26348d](https://github.com/oaknational/Oak-Web-Application/commit/f26348d6bb3902376077d40aa659d82e773cb3f2))
+* remove no-unused-expressions errors ([170ac88](https://github.com/oaknational/Oak-Web-Application/commit/170ac8817d9c4537802d3b0689375d27fd2292f2))
+* remove no-unused-expressions errors ([4ef97a6](https://github.com/oaknational/Oak-Web-Application/commit/4ef97a697ede300d124d385171e3f79464e1dfd8))
+* remove no-unused-expressions errors ([30204e7](https://github.com/oaknational/Oak-Web-Application/commit/30204e7f641d64eca8c0d450f3fadd68f51b4cfa))
+* remove no-unused-vars ([b7a012a](https://github.com/oaknational/Oak-Web-Application/commit/b7a012a624fe7ff1cc51a2e9eef3bf7a98a416b8))
+* remove no-unused-vars and misc ([112b7ea](https://github.com/oaknational/Oak-Web-Application/commit/112b7ea3bb315750f1db753e840a42ea9aa79518))
+* remove no-unused-vars and misc ([33c0f72](https://github.com/oaknational/Oak-Web-Application/commit/33c0f72c92ead656e666506bdddebc1371ea46c0))
+* rm async declaration from useCheckuserMetadata ([42a42d3](https://github.com/oaknational/Oak-Web-Application/commit/42a42d3bfa2bf214f2c37997fed5dfbb9b2c1812))
+* sonar lint rules ([57105a9](https://github.com/oaknational/Oak-Web-Application/commit/57105a91029b370a914c6ea2b9f9b2efd1fe8123))
+
+
+### Features
+
+* merge main ([6968bd5](https://github.com/oaknational/Oak-Web-Application/commit/6968bd518f4dad3866f4a7ae6c35398f627ec48a))
+* merge main ([7b8c176](https://github.com/oaknational/Oak-Web-Application/commit/7b8c176b7d448dfd1120b54a5241d2fec719a370))
+* merge main ([1290c92](https://github.com/oaknational/Oak-Web-Application/commit/1290c9237196b5d7d85fa3dad1eb55448fc4538e))
+* merge main ([2bcd517](https://github.com/oaknational/Oak-Web-Application/commit/2bcd517b91e01deb50f4f7d544f00587e530ce75))
+* merge main ([31ce1ae](https://github.com/oaknational/Oak-Web-Application/commit/31ce1ae2cd3fbda7b431d6ab0d61832519429fd6))
+* put back eslint-config-next ([c99cde9](https://github.com/oaknational/Oak-Web-Application/commit/c99cde953199514d7ae3d030f2abc2dc14a144c2))
+* update eslint packages ([f578182](https://github.com/oaknational/Oak-Web-Application/commit/f578182e3916e2b63119ff1b83e796a3022741ed))
+
+# [1.992.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.991.1...v1.992.0) (2026-02-17)
+
+
+### Bug Fixes
+
+* cookie banner being stuck to the bottom of the body ([faccae8](https://github.com/oaknational/Oak-Web-Application/commit/faccae82934033947827b71fd492ae76cdd069e3))
+* privacy policy link 404 ([f82961a](https://github.com/oaknational/Oak-Web-Application/commit/f82961ac010646303be42fe8bc0ac09c2ec98860))
+
+
+### Features
+
+* add ph to CurriculumDownloadTab ([ede67cf](https://github.com/oaknational/Oak-Web-Application/commit/ede67cf0d849da206fe11d412e61c0de8635d825))
+* align CurriculumDownloads to grid ([fe06f53](https://github.com/oaknational/Oak-Web-Application/commit/fe06f53987c365523c2827a1e9aacec3dfe4b8fc))
+* change edit button to secondary small ([64ffbbf](https://github.com/oaknational/Oak-Web-Application/commit/64ffbbf07ebaee2bd142b32b7f902cee8a6c0fda))
+* **LESQ-1758:** add the downloads tab to the new integrated journey ([ca03261](https://github.com/oaknational/Oak-Web-Application/commit/ca03261c422ad8495d0d2fb9b12640a5747cd13b))
+* remove brushed border from terms page ([655ace2](https://github.com/oaknational/Oak-Web-Application/commit/655ace2baa60681b17c70e8b1971efabb8127444))
+* replace secondary with tertiary link in back to ks4 options ([3aa5720](https://github.com/oaknational/Oak-Web-Application/commit/3aa5720f1e4b9577a065f9ce71fc37cb3d3a3420))
+* update colours for OakInputWithLabel ([4a31ccd](https://github.com/oaknational/Oak-Web-Application/commit/4a31ccda670eeaadf6910ce5014c2e69b930cb88))
+* use OakButton and remove brushed borders ([8ce09ff](https://github.com/oaknational/Oak-Web-Application/commit/8ce09ffd357448321ee40bbc11ad96c8b2734db1))
+* use OakSecondaryLink instead of Button for back link ([f34d0a6](https://github.com/oaknational/Oak-Web-Application/commit/f34d0a6d413c8cf2e048e5a26f1db9aa3b499b4d))
+
 ## [1.991.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.991.0...v1.991.1) (2026-02-17)
 
 # [1.991.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.990.1...v1.991.0) (2026-02-16)
