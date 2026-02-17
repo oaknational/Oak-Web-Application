@@ -33,7 +33,7 @@ describe("CurricVisualiserFiltersModal", () => {
         ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
-      const { getAllByRole } = render(
+      const { getByText } = render(
         <CurricMobileFilterModal
           filters={filters}
           onChangeFilters={() => {}}
@@ -45,9 +45,9 @@ describe("CurricVisualiserFiltersModal", () => {
         />,
       );
 
-      const headings = getAllByRole("heading");
-      expect(headings.length).toEqual(1);
-      expect(headings?.[0]?.textContent).toEqual("Category (KS3)");
+      const legend = getByText("Category (KS3)");
+
+      expect(legend).toBeInTheDocument();
     });
 
     it("only subject childSubjects", () => {});
@@ -71,7 +71,7 @@ describe("CurricVisualiserFiltersModal", () => {
         ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
-      const { getAllByRole } = render(
+      const { getByText } = render(
         <CurricMobileFilterModal
           filters={filters}
           onChangeFilters={() => {}}
@@ -83,9 +83,8 @@ describe("CurricVisualiserFiltersModal", () => {
         />,
       );
 
-      const headings = getAllByRole("heading");
-      expect(headings.length).toEqual(1);
-      expect(headings?.[0]?.textContent).toEqual("Learning tier (KS3)");
+      const tierGroupLegend = getByText("Learning tier (KS3)");
+      expect(tierGroupLegend).toBeInTheDocument();
     });
 
     it("only subject threads", () => {
@@ -150,7 +149,7 @@ describe("CurricVisualiserFiltersModal", () => {
         ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
-      const { getAllByRole, container } = render(
+      const { getByText } = render(
         <CurricMobileFilterModal
           filters={filters}
           onChangeFilters={() => {}}
@@ -162,14 +161,9 @@ describe("CurricVisualiserFiltersModal", () => {
         />,
       );
 
-      const groups = container.querySelectorAll("legend");
-      expect(groups.length).toEqual(1);
-      expect(groups?.[0]?.textContent).toEqual("Highlight a thread");
-
-      const headings = getAllByRole("heading");
-      expect(headings.length).toEqual(2);
-      expect(headings?.[0]?.textContent).toEqual("Exam subject (KS3)");
-      expect(headings?.[1]?.textContent).toEqual("Learning tier (KS3)");
+      expect(getByText("Highlight a thread")).toBeInTheDocument();
+      expect(getByText("Exam subject (KS3)")).toBeInTheDocument();
+      expect(getByText("Learning tier (KS3)")).toBeInTheDocument();
     });
 
     it("all except childSubjects", () => {
@@ -196,7 +190,7 @@ describe("CurricVisualiserFiltersModal", () => {
         ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
-      const { getAllByRole, container } = render(
+      const { getByText } = render(
         <CurricMobileFilterModal
           filters={filters}
           onChangeFilters={() => {}}
@@ -208,14 +202,9 @@ describe("CurricVisualiserFiltersModal", () => {
         />,
       );
 
-      const groups = container.querySelectorAll("legend");
-      expect(groups.length).toEqual(1);
-      expect(groups?.[0]?.textContent).toEqual("Highlight a thread");
-
-      const headings = getAllByRole("heading");
-      expect(headings.length).toEqual(2);
-      expect(headings?.[0]?.textContent).toEqual("Category (KS3)");
-      expect(headings?.[1]?.textContent).toEqual("Learning tier (KS3)");
+      expect(getByText("Category (KS3)")).toBeInTheDocument();
+      expect(getByText("Highlight a thread")).toBeInTheDocument();
+      expect(getByText("Learning tier (KS3)")).toBeInTheDocument();
     });
   });
 

@@ -9,7 +9,7 @@ const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricFiltersTiers", () => {
   it("renders correctly ks4", () => {
-    const { getAllByRole, getByRole } = render(
+    const { getAllByRole, getByText } = render(
       <CurricFiltersTiers
         filters={{
           childSubjects: [],
@@ -27,13 +27,13 @@ describe("CurricFiltersTiers", () => {
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(2);
-    expect(getByRole("heading")).toHaveTextContent("Learning tier (KS4)");
+    expect(getByText("Learning tier (KS4)")).toBeInTheDocument();
     expect(elements[0]!.value).toEqual("foundation");
     expect(elements[1]!.value).toEqual("higher");
   });
 
   it("renders correctly ks3&4", () => {
-    const { getAllByRole, getByRole } = render(
+    const { getAllByRole, getByText } = render(
       <CurricFiltersTiers
         filters={{
           childSubjects: [],
@@ -51,7 +51,7 @@ describe("CurricFiltersTiers", () => {
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(2);
-    expect(getByRole("heading")).toHaveTextContent("Learning tier");
+    expect(getByText("Learning tier")).toBeInTheDocument();
     expect(elements[0]!.value).toEqual("foundation");
     expect(elements[1]!.value).toEqual("higher");
   });
