@@ -10,11 +10,7 @@ import AnalyticsWrapper from "./components/AnalyticsWrapper";
 import { getTwitterMetadata, getOpenGraphMetadata } from "./metadata";
 
 import "@/styles/app-global.css";
-import {
-  OakBox,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@/styles/oakThemeApp";
+import { OakThemeProvider, oakDefaultTheme } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "@/image-data";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
@@ -89,11 +85,7 @@ export default function RootLayout({
                     }}
                   >
                     <AnalyticsWrapper>
-                      <SaveCountProvider>
-                        <OakBox $width="100vw" $height="100vh">
-                          {children}
-                        </OakBox>
-                      </SaveCountProvider>
+                      <SaveCountProvider>{children}</SaveCountProvider>
                     </AnalyticsWrapper>
                   </ClerkProvider>
                 </OakNotificationsProvider>

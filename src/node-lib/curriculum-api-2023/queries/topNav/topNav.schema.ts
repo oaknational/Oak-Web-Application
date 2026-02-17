@@ -1,7 +1,7 @@
 import z from "zod";
 import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 
-import { OakLinkPropsRequiringPageOnly } from "@/common-lib/urls";
+import { NavLink } from "@/components/GenericPagesComponents/GenericSummaryCardNavButton/GenericSummaryCardNavButton";
 
 export const topNavResponseSchema = z.object({
   programmes: z.array(
@@ -23,43 +23,65 @@ export const topNavResponseSchema = z.object({
 });
 export type TopNavResponse = z.infer<typeof topNavResponseSchema>;
 
+export type NavLink = {
+  title: string;
+  slug: string;
+  href: string;
+  external?: boolean;
+};
+
+export type NavDropDownButton = {
+  title: string;
+  slug: string;
+  external?: boolean;
+  children: NavLink[];
+};
+
 export type TeachersSubNavData = {
   primary: TeachersBrowse;
   secondary: TeachersBrowse;
-  guidance: SubNavLinks;
-  aboutUs: SubNavLinks;
+  curriculum: NavLink;
+  guidance: NavDropDownButton;
+  aboutUs: NavDropDownButton;
+  aiExperiments: NavLink;
 };
 
-export type SubNavLinks = Array<{
-  slug: OakLinkPropsRequiringPageOnly["page"];
+export type NavButton = NavLink | NavDropDownButton | TeachersBrowse;
+
+type SubjectsNavItem = {
   title: string;
-  external?: boolean;
-}>;
+  slug: string;
+  nonCurriculum: boolean; // enables highlighting subjects that are non curriculum
+  programmeSlug: string | null; // will be null when multiple programmes exist
+  programmeCount: number; // used to determine whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page (only 1 programme)
+};
 
 export type TeachersBrowse = {
-  phaseTitle: "Primary" | "Secondary";
-  phaseSlug: "primary" | "secondary";
-  keystages: Array<{
+  title: "Primary" | "Secondary";
+  slug: "primary" | "secondary";
+  children: Array<{
     title: string;
     slug: string;
     description: string;
-    subjects: Array<{
-      title: string;
-      subjectSlug: string;
-      nonCurriculum: boolean; // enables highlighting subjects that are non curriculum
-      programmeSlug: string | null; // will be null when multiple programmes exist
-      programmeCount: number; // used to determine whether we should go to the programmes page (more than 1 programme) or directly to the unit listing page (only 1 programme)
-    }>;
+    children: Array<SubjectsNavItem>;
   }>;
 };
 
 export type PupilsSubNavData = {
   primary: PupilsBrowse;
   secondary: PupilsBrowse;
+  help: NavLink;
 };
 
 type PupilsBrowse = {
-  phaseTitle: "Primary" | "Secondary";
-  phaseSlug: "primary" | "secondary";
-  years: Array<{ title: string; slug: string }>;
+  title: "Primary" | "Secondary";
+  slug: "primary" | "secondary";
+  children: Array<{ title: string; slug: string }>;
 };
+
+// Type guard to check if a nav item opens a dropdown menu (vs being a direct link)
+export function isDropdownMenuItem(
+  section: NavLink | NavDropDownButton | TeachersBrowse,
+): section is NavDropDownButton | TeachersBrowse {
+  return "children" in section;
+}

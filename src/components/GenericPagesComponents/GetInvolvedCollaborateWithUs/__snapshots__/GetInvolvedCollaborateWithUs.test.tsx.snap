@@ -29,8 +29,8 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
             <div
               class="sc-aXZVg sc-gEvEer gpQQnm wjdwM"
             >
-              <div
-                class="sc-aXZVg iGlCVz sc-763681b5-0 gHQWBI"
+              <span
+                class="sc-aXZVg ccpVbZ sc-d1686a12-0 lmLMjx"
               >
                 <img
                   alt=""
@@ -41,7 +41,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                   src="http://example.com/chatting.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
+              </span>
             </div>
           </div>
           <div
@@ -65,7 +65,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                       Give your feedback
                     </h3>
                     <p
-                      class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
+                      class="sc-ikkxIA esDZwj"
                     >
                       Share your story and we'll send you a gift voucher as a thanks for your time.
                     </p>
@@ -96,8 +96,8 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                           >
                             Get in touch
                           </span>
-                          <div
-                            class="sc-aXZVg anoZA"
+                          <span
+                            class="sc-aXZVg iUEruK"
                           >
                             <img
                               alt="external"
@@ -108,7 +108,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </div>
+                          </span>
                         </div>
                       </a>
                     </div>
@@ -130,7 +130,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                       Help us improve
                     </h3>
                     <p
-                      class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
+                      class="sc-ikkxIA esDZwj"
                     >
                       Teachers are at the heart of everything we build. Have your say by taking part in research.
                     </p>
@@ -161,8 +161,8 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                           >
                             Take part in research
                           </span>
-                          <div
-                            class="sc-aXZVg anoZA"
+                          <span
+                            class="sc-aXZVg iUEruK"
                           >
                             <img
                               alt="external"
@@ -173,7 +173,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </div>
+                          </span>
                         </div>
                       </a>
                     </div>

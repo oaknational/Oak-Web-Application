@@ -1,8 +1,11 @@
-import { act, screen } from "@testing-library/react";
+import { act, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { forwardRef, ReactNode, Ref } from "react";
 
-import TopNav, { TopNavProps } from "./TopNav";
+import TopNav from "./TopNav";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 const mockSelectedArea = jest.fn().mockReturnValue("TEACHERS");
@@ -12,25 +15,37 @@ jest.mock("@/hooks/useSelectedArea", () => ({
 }));
 
 globalThis.matchMedia = jest.fn().mockReturnValue({
-  matches: true,
+  matches: false,
 });
 
-const mockProps: TopNavProps = {
-  teachers: {
-    primary: { phaseSlug: "primary", phaseTitle: "Primary", keystages: [] },
-    secondary: {
-      phaseSlug: "secondary",
-      phaseTitle: "Secondary",
-      keystages: [],
-    },
-    aboutUs: [],
-    guidance: [],
-  },
-  pupils: {
-    primary: { phaseSlug: "primary", phaseTitle: "Primary", years: [] },
-    secondary: { phaseSlug: "secondary", phaseTitle: "Secondary", years: [] },
-  },
-};
+// act errors triggered by next link in the test environment, so we're mocking it.
+jest.mock("next/link", () => {
+  return {
+    __esModule: true,
+    default: forwardRef(
+      (
+        {
+          children,
+          href,
+          ...props
+        }: {
+          children: ReactNode;
+          href: string;
+          [key: string]: unknown;
+        },
+        ref: Ref<HTMLAnchorElement>,
+      ) => {
+        return (
+          <a href={href} ref={ref} {...props}>
+            {children}
+          </a>
+        );
+      },
+    ),
+  };
+});
+
+const mockProps = topNavFixture;
 
 describe("TopNav", () => {
   it("renders links for pupils and teachers", async () => {
@@ -101,5 +116,258 @@ describe("TopNav", () => {
 
     const secondaryButton = screen.queryByRole("button", { name: "Secondary" });
     expect(secondaryButton).not.toBeInTheDocument();
+  });
+  it("renders dropdown when a subnav button is clicked", async () => {
+    render(<TopNav {...mockProps} />);
+    const primaryButton = await screen.findByText("Primary");
+    act(() => {
+      primaryButton.click();
+    });
+
+    const dropdown = await screen.findByTestId("topnav-dropdown-container");
+    expect(dropdown).toBeInTheDocument();
+  });
+  it("closes dropdown when dropdown is open and active subnav button is clicked", async () => {
+    render(<TopNav {...mockProps} />);
+    const primaryButton = await screen.findByText("Primary");
+    act(() => {
+      primaryButton.click();
+    });
+
+    const dropdown = await screen.findByTestId("topnav-dropdown-container");
+    expect(dropdown).toBeInTheDocument();
+
+    act(() => {
+      primaryButton.click();
+    });
+
+    waitFor(() => expect(dropdown).not.toBeInTheDocument());
+  });
+  it("closes dropdown when escape key is pressed", async () => {
+    const user = userEvent.setup();
+    render(<TopNav {...mockProps} />);
+    const primaryButton = await screen.findByText("Primary");
+    act(() => {
+      primaryButton.click();
+    });
+
+    const dropdown = await screen.findByTestId("topnav-dropdown-container");
+    expect(dropdown).toBeInTheDocument();
+
+    act(() => {
+      user.keyboard("{Escape}");
+    });
+
+    expect(dropdown).not.toBeVisible();
+  });
+});
+const subnavLabels = [
+  { label: "Primary", element: "button" },
+  { label: "Secondary", element: "button" },
+  { label: "Curriculum", element: "link" },
+  { label: "About us", element: "button" },
+  { label: "Guidance", element: "button" },
+  { label: "Ai experiments", element: "link" },
+];
+
+describe("TopNav accessibility", () => {
+  beforeEach(() => {
+    mockSelectedArea.mockReturnValue("TEACHERS");
+  });
+  it("Tabs through navbar in correct order", async () => {
+    const user = userEvent.setup();
+    render(<TopNav {...mockProps} />);
+
+    await user.tab();
+    const skipLink = screen.getByText("Skip to content").closest("a");
+    expect(skipLink).toHaveFocus();
+
+    await user.tab();
+    const teachersTab = screen.getByRole("link", {
+      name: /Teachers/,
+    });
+    teachersTab.click();
+    expect(teachersTab).toHaveFocus();
+
+    await user.tab();
+    const pupilsTab = screen.getByRole("link", { name: /Go to pupils/ });
+    expect(pupilsTab).toHaveFocus();
+
+    await user.tab();
+    const homeLink = screen.getByLabelText("Home");
+    expect(homeLink).toHaveFocus();
+
+    for (const label of subnavLabels) {
+      await user.tab();
+
+      const subnavButton =
+        label.element === "link"
+          ? screen.getByRole("link", { name: label.label })
+          : screen.getByRole("button", { name: label.label });
+      expect(subnavButton).toHaveFocus();
+    }
+  });
+  it("Tabs through dropdown items when open", async () => {
+    const user = userEvent.setup();
+    render(<TopNav {...mockProps} />);
+
+    const secondaryButton = await screen.findByRole("button", {
+      name: "Secondary",
+    });
+
+    // tab to secondary button and open the submenu, should not focus primary dropdown items as they are not open
+    await user.tab();
+    await user.tab();
+    await user.tab();
+    await user.tab();
+    await user.tab();
+    await user.tab();
+    expect(secondaryButton).toHaveFocus();
+    await user.keyboard("{Enter}");
+
+    const dropdownItem1 = screen.getByText("Key stage 3").closest("button");
+
+    expect(dropdownItem1).toBeInTheDocument();
+
+    await user.tab();
+    expect(dropdownItem1).toHaveFocus();
+  });
+  it("Tabs through subject buttons when open and returns to keystage buttons and nav buttons", async () => {
+    const user = userEvent.setup();
+    render(<TopNav {...mockProps} />);
+
+    const secondaryButton = await screen.findByRole("button", {
+      name: "Secondary",
+    });
+    const curriculumButton = await screen.findByRole("link", {
+      name: "Curriculum",
+    });
+
+    // tab to secondary button and open the submenu, should not focus primary dropdown items as they are not open
+    secondaryButton.focus();
+    expect(secondaryButton).toHaveFocus();
+    await user.keyboard("{Enter}");
+
+    const dropdownItem2 = screen.getByText("Key stage 4").closest("button");
+    const allSubjectsLink = screen.getByText(/All KS3 subjects/).closest("a");
+
+    const subjectButton1 = screen.getByText("History").closest("a");
+
+    expect(subjectButton1).toBeInTheDocument();
+    expect(allSubjectsLink).toBeInTheDocument();
+
+    // in the test environment the default event handler for tab does not tab to this point so we have to manually call the focus manager handler to move focus to the next item
+    allSubjectsLink?.focus();
+
+    expect(allSubjectsLink).toHaveFocus();
+    // return to the second dropdown item when tabbing from the last subject button
+    await user.tab();
+    expect(dropdownItem2).toHaveFocus();
+
+    // return to the next nav item after tabbing from the last dropdown item
+    await user.tab();
+    expect(curriculumButton).toHaveFocus();
+  });
+
+  it("ArrowRight and ArrowLeft navigate Teachers subnav buttons", async () => {
+    const user = userEvent.setup();
+    render(<TopNav {...mockProps} />);
+
+    const buttons: (HTMLElement | null)[] = subnavLabels.map((label) =>
+      label.element === "link"
+        ? screen.getByRole("link", { name: label.label })
+        : screen.getByRole("button", { name: label.label }),
+    );
+    const [
+      primaryButton,
+      secondaryButton,
+      curriculumButton,
+      guidanceButton,
+      aboutUsButton,
+      aiExperimentsButton,
+    ] = buttons;
+
+    primaryButton?.focus();
+
+    expect(primaryButton).toHaveFocus();
+
+    await user.keyboard("{ArrowRight}");
+    expect(secondaryButton).toHaveFocus();
+    await user.keyboard("{ArrowRight}");
+    expect(curriculumButton).toHaveFocus();
+    await user.keyboard("{ArrowRight}");
+    expect(guidanceButton).toHaveFocus();
+    await user.keyboard("{ArrowRight}");
+    expect(aboutUsButton).toHaveFocus();
+    await user.keyboard("{ArrowRight}");
+    expect(aiExperimentsButton).toHaveFocus();
+    // should wrap around to the first button
+    await user.keyboard("{ArrowRight}");
+    expect(primaryButton).toHaveFocus();
+    //   left arrow should also wrap
+    await user.keyboard("{ArrowLeft}");
+    expect(aiExperimentsButton).toHaveFocus();
+  });
+  it("ArrowDown and ArrowUp navigate keystage buttons in dropdown", async () => {
+    const user = userEvent.setup();
+    render(<TopNav {...mockProps} />);
+
+    const secondaryButton = await screen.findByRole("button", {
+      name: "Secondary",
+    });
+    await user.tab();
+    await user.tab();
+    await user.tab();
+    await user.tab();
+    await user.tab();
+    await user.tab();
+    expect(secondaryButton).toHaveFocus();
+    await user.keyboard("{Enter}");
+    const dropdownItem1 = screen.getByText("Key stage 3").closest("button");
+    const dropdownItem2 = screen.getByText("Key stage 4").closest("button");
+
+    expect(dropdownItem1).toBeInTheDocument();
+    expect(dropdownItem2).toBeInTheDocument();
+
+    await user.tab();
+    expect(dropdownItem1).toHaveFocus();
+
+    await user.keyboard("{ArrowDown}");
+    expect(dropdownItem2).toHaveFocus();
+    // should wrap around to the first item
+    await user.keyboard("{ArrowDown}");
+    expect(dropdownItem1).toHaveFocus();
+    // should wrap around to the last item
+    await user.keyboard("{ArrowUp}");
+    expect(dropdownItem2).toHaveFocus();
+  });
+
+  it("Focus returns to navbar after closing dropdown with Escape", async () => {
+    const user = userEvent.setup();
+    render(<TopNav {...mockProps} />);
+
+    const secondaryButton = await screen.findByRole("button", {
+      name: "Secondary",
+    });
+
+    // tab to secondary button and open the submenu, should not focus primary dropdown items as they are not open
+    secondaryButton.focus();
+    expect(secondaryButton).toHaveFocus();
+    await user.keyboard("{Enter}");
+
+    const dropdownItem1 = screen.getByText("Key stage 3").closest("button");
+    const subjectButton1 = screen.getByText("History").closest("a");
+
+    expect(dropdownItem1).toBeInTheDocument();
+    expect(subjectButton1).toBeInTheDocument();
+
+    await user.tab();
+    expect(dropdownItem1).toHaveFocus();
+
+    await user.tab();
+    expect(subjectButton1).toHaveFocus();
+
+    await user.keyboard("{Escape}");
+    expect(secondaryButton).toHaveFocus();
   });
 });

@@ -1,12 +1,10 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import { useEffect, useState } from "react";
 import {
-  oakDefaultTheme,
   OakFlex,
   OakInlineBanner,
   OakLoadingSpinner,
   OakMaxWidth,
-  OakThemeProvider,
   OakTypography,
 } from "@oaknational/oak-components";
 
@@ -31,11 +29,7 @@ export type CanonicalResultsPrintablePageProps = {
 const CanonicalPrintableResultsPage = (
   props: CanonicalResultsPrintablePageProps,
 ) => {
-  return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <InnerRender {...props} />
-    </OakThemeProvider>
-  );
+  return <InnerRender {...props} />;
 };
 
 export const InnerRender = (props: CanonicalResultsPrintablePageProps) => {

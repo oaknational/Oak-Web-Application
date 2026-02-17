@@ -17,8 +17,8 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
           <div
             class="sc-aXZVg sc-gEvEer Dxwds kjWHLN"
           >
-            <div
-              class="sc-aXZVg iGlCVz"
+            <span
+              class="sc-aXZVg ccpVbZ"
               style="height: 52px; width: 114px;"
             >
               <img
@@ -30,7 +30,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 src="https://cdn.sanity.io/images/cuvjke51/production/e9cc7ae43ca35576d95d0c3ef22f76e0aee14eac-1920x880.svg"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
+            </span>
           </div>
           <div
             class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
@@ -71,8 +71,8 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                         >
                           Edit details
                         </span>
-                        <div
-                          class="sc-aXZVg anoZA"
+                        <span
+                          class="sc-aXZVg iUEruK"
                         >
                           <img
                             alt=""
@@ -83,7 +83,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1727861316/icons/Icon_Copy_qxgynv.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                     </button>
                   </div>
@@ -107,8 +107,8 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                         >
                           Copy link
                         </span>
-                        <div
-                          class="sc-aXZVg anoZA"
+                        <span
+                          class="sc-aXZVg iUEruK"
                         >
                           <img
                             alt=""
@@ -119,7 +119,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699894149/icons/qxlunbg5tfrdherzsvlt.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                     </button>
                   </div>
@@ -444,8 +444,8 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       <div
                         class="sc-aXZVg jUsDlH shadow"
                       />
-                      <div
-                        class="sc-aXZVg anoZA"
+                      <span
+                        class="sc-aXZVg iUEruK"
                         data-icon-for="button"
                       >
                         <img
@@ -457,7 +457,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                           src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895179/icons/xigimrbivcaxt4omxamp.svg"
                           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                         />
-                      </div>
+                      </span>
                     </div>
                     <span
                       class="sc-eqUAAy WYobB"
@@ -526,8 +526,8 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       See lessons in unit
                     </div>
                   </span>
-                  <div
-                    class="sc-aXZVg anoZA"
+                  <span
+                    class="sc-aXZVg iUEruK"
                   >
                     <img
                       alt=""
@@ -538,7 +538,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                     />
-                  </div>
+                  </span>
                 </div>
               </button>
             </div>
@@ -567,8 +567,8 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
           <div
             class="sc-aXZVg sc-gEvEer Dxwds kjWHLN"
           >
-            <div
-              class="sc-aXZVg iGlCVz"
+            <span
+              class="sc-aXZVg ccpVbZ"
               style="height: 52px; width: 114px;"
             >
               <img
@@ -580,7 +580,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 src="https://cdn.sanity.io/images/cuvjke51/production/e9cc7ae43ca35576d95d0c3ef22f76e0aee14eac-1920x880.svg"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
+            </span>
           </div>
           <div
             class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
@@ -621,8 +621,8 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                         >
                           Edit details
                         </span>
-                        <div
-                          class="sc-aXZVg anoZA"
+                        <span
+                          class="sc-aXZVg iUEruK"
                         >
                           <img
                             alt=""
@@ -633,7 +633,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1727861316/icons/Icon_Copy_qxgynv.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                     </button>
                   </div>
@@ -657,8 +657,8 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                         >
                           Copy link
                         </span>
-                        <div
-                          class="sc-aXZVg anoZA"
+                        <span
+                          class="sc-aXZVg iUEruK"
                         >
                           <img
                             alt=""
@@ -669,7 +669,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699894149/icons/qxlunbg5tfrdherzsvlt.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                     </button>
                   </div>
@@ -958,8 +958,8 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                     <div
                       class="sc-aXZVg hdseiA"
                     >
-                      <div
-                        class="sc-aXZVg dhXyYU"
+                      <span
+                        class="sc-aXZVg gRUGli"
                         data-testid="inline-banner-icon"
                       >
                         <img
@@ -971,7 +971,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                           src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1709052869/icons/Icon_Info_vsx3xi.svg"
                           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                         />
-                      </div>
+                      </span>
                     </div>
                     <div
                       class="sc-aXZVg sc-gEvEer cXVDob gsZhDY"
@@ -1014,8 +1014,8 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                         0
                          lessons scheduled
                       </span>
-                      <div
-                        class="sc-aXZVg dhXyYU"
+                      <span
+                        class="sc-aXZVg gRUGli"
                       >
                         <img
                           alt=""
@@ -1026,7 +1026,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                           src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1709052869/icons/Icon_Info_vsx3xi.svg"
                           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                         />
-                      </div>
+                      </span>
                     </div>
                   </div>
                   <ol
@@ -1037,7 +1037,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-ca470ce2-1 bfghyO"
                     >
                       <div
-                        class="sc-aXZVg sc-kMkxaj ioKvvK hImOLL"
+                        class="sc-aXZVg sc-kMkxaj ioKvvK gTHfrn"
                       >
                         <a
                           class="sc-a6022ff2-0 ejmuOd"
@@ -1077,8 +1077,8 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                                 >
                                   Unit info
                                 </div>
-                                <div
-                                  class="sc-aXZVg anoZA"
+                                <span
+                                  class="sc-aXZVg iUEruK"
                                 >
                                   <img
                                     alt=""
@@ -1089,7 +1089,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                   />
-                                </div>
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -1100,7 +1100,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-ca470ce2-1 bfghyO"
                     >
                       <div
-                        class="sc-aXZVg sc-kMkxaj ioKvvK hImOLL"
+                        class="sc-aXZVg sc-kMkxaj ioKvvK gTHfrn"
                       >
                         <a
                           class="sc-a6022ff2-0 ejmuOd"
@@ -1140,8 +1140,8 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                                 >
                                   Unit info
                                 </div>
-                                <div
-                                  class="sc-aXZVg anoZA"
+                                <span
+                                  class="sc-aXZVg iUEruK"
                                 >
                                   <img
                                     alt=""
@@ -1152,7 +1152,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                   />
-                                </div>
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -1219,8 +1219,8 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       <div
                         class="sc-aXZVg jUsDlH shadow"
                       />
-                      <div
-                        class="sc-aXZVg anoZA"
+                      <span
+                        class="sc-aXZVg iUEruK"
                         data-icon-for="button"
                       >
                         <img
@@ -1232,7 +1232,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                           src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895179/icons/xigimrbivcaxt4omxamp.svg"
                           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                         />
-                      </div>
+                      </span>
                     </div>
                     <span
                       class="sc-eqUAAy WYobB"
@@ -1301,8 +1301,8 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       See lessons in unit
                     </div>
                   </span>
-                  <div
-                    class="sc-aXZVg anoZA"
+                  <span
+                    class="sc-aXZVg iUEruK"
                   >
                     <img
                       alt=""
@@ -1313,7 +1313,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                     />
-                  </div>
+                  </span>
                 </div>
               </button>
             </div>

@@ -10,35 +10,31 @@ exports[`AboutSharedHeader renders correctly 1`] = `
         class="sc-aXZVg jDeUDY"
       >
         <div
-          class="sc-aXZVg sc-tagGq jvobjA jFIZYB"
+          class="sc-aXZVg sc-gEvEer eOPGIs hPyKbx"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-c16b5694-0 hdseiA ccwEJG giQTDM enLybh"
+            class="sc-aXZVg sc-gEvEer hdseiA daEtut"
           >
-            <div
-              class="sc-aXZVg sc-gEvEer hdseiA daEtut"
+            <h1
+              class="sc-eldPxv flskuf"
             >
-              <h1
-                class="sc-eldPxv flskuf"
+              <span
+                class="sc-eqUAAy itItFl"
               >
-                <span
-                  class="sc-eqUAAy itItFl"
-                >
-                  TESTING_TITLE
-                </span>
-              </h1>
-              <p
-                class="sc-ikkxIA kMZRfZ"
-              >
-                TESTING_CONTENT
-              </p>
-            </div>
+                TESTING_TITLE
+              </span>
+            </h1>
+            <p
+              class="sc-ikkxIA kMZRfZ"
+            >
+              TESTING_CONTENT
+            </p>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-c16b5694-1 hdseiA iDBIXi doygtr fkTCLi"
+            class="sc-aXZVg sc-bedf5c8b-0 hdseiA cFVbBP"
           >
-            <div
-              class="sc-aXZVg iGlCVz"
+            <span
+              class="sc-aXZVg ccpVbZ"
             >
               <img
                 alt="Oak logo"
@@ -49,7 +45,7 @@ exports[`AboutSharedHeader renders correctly 1`] = `
                 src="http://example.com/image.svg"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
+            </span>
           </div>
         </div>
       </div>
@@ -68,35 +64,31 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
         class="sc-aXZVg jDeUDY"
       >
         <div
-          class="sc-aXZVg sc-tagGq jvobjA jFIZYB"
+          class="sc-aXZVg sc-gEvEer eOPGIs hPyKbx"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-c16b5694-0 hdseiA ccwEJG giQTDM enLybh"
+            class="sc-aXZVg sc-gEvEer hdseiA daEtut"
           >
-            <div
-              class="sc-aXZVg sc-gEvEer hdseiA daEtut"
+            <h1
+              class="sc-eldPxv flskuf"
             >
-              <h1
-                class="sc-eldPxv flskuf"
+              <span
+                class="sc-eqUAAy itItFl"
               >
-                <span
-                  class="sc-eqUAAy itItFl"
-                >
-                  TESTING_TITLE
-                </span>
-              </h1>
-              <p
-                class="sc-ikkxIA kMZRfZ"
-              >
-                TESTING_CONTENT
-              </p>
-            </div>
+                TESTING_TITLE
+              </span>
+            </h1>
+            <p
+              class="sc-ikkxIA kMZRfZ"
+            >
+              TESTING_CONTENT
+            </p>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-c16b5694-1 hdseiA iDBIXi doygtr fkTCLi"
+            class="sc-aXZVg sc-bedf5c8b-0 hdseiA cFVbBP"
           >
-            <div
-              class="sc-aXZVg dhXyYU sc-c16b5694-2 fyxfMY"
+            <span
+              class="sc-aXZVg gRUGli sc-bedf5c8b-1 lagJBV"
               data-testid="about-shared-loop"
             >
               <img
@@ -108,7 +100,7 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
+            </span>
           </div>
         </div>
       </div>
