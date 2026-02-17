@@ -36,19 +36,25 @@ export type CurricFiltersYearsProps = {
 type YearOption = { year: string; pathway?: string; queryString?: string };
 
 export const getColorSchemeByYear = (year: string) => {
-  if (year === "1" || year === "7") {
-    return "decorative3";
-  } else if (year === "3" || year === "9") {
-    return "decorative2";
-  } else if (year === "4" || year === "10") {
-    return "decorative4";
-  } else if (year === "5" || year === "11") {
-    return "decorative5";
-  } else if (year === "6") {
-    return "decorative6";
+  switch (year) {
+    case "1":
+    case "7":
+      return "decorative3";
+    case "3":
+    case "9":
+      return "decorative2";
+    case "4":
+    case "10":
+      return "decorative4";
+    case "5":
+    case "11":
+      return "decorative5";
+    case "6":
+      return "decorative6";
+    default:
+      // year 2, 8 and 'all years'
+      return "decorative1";
   }
-  // year 2, 8 and 'all years'
-  return "decorative1";
 };
 
 const filterToIndex = (
