@@ -25,6 +25,7 @@ import {
   PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export type TopNavProps = {
   teachers: TeachersSubNavData | null;
@@ -33,6 +34,7 @@ export type TopNavProps = {
 
 const TopNav = (props: TopNavProps) => {
   const { teachers, pupils } = props;
+  const { track } = useAnalytics();
 
   const activeArea = useSelectedArea();
   const isMobile = useMediaQuery("mobile");
@@ -41,6 +43,17 @@ const TopNav = (props: TopNavProps) => {
   const [selectedMenu, setSelectedMenu] = useState<
     keyof TeachersSubNavData | keyof PupilsSubNavData | undefined
   >(undefined);
+
+  const trackBrowseAccessed = () => {
+    track.browseAccessed({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "explore",
+      componentType: "all_filters", // TODO: component type
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+    });
+  };
 
   const focusManager = useMemo(() => {
     if (activeArea === "TEACHERS" && teachers) {
@@ -178,6 +191,7 @@ const TopNav = (props: TopNavProps) => {
               }
               isMenuSelected={isMenuSelected}
               onClick={(menu) => {
+                trackBrowseAccessed();
                 setSelectedMenu(selectedMenu === menu ? undefined : menu);
               }}
             />
