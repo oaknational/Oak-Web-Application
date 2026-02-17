@@ -199,35 +199,6 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  hubspotSandbox2PortalId: {
-    value: process.env.NEXT_PUBLIC_HUBSPOT_SANDBOX2_PORTAL_ID,
-    envName: "NEXT_PUBLIC_HUBSPOT_SANDBOX2_PORTAL_ID",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  hubspotGoogleClassroomSandbox2FormId: {
-    value: process.env.NEXT_PUBLIC_HUBSPOT_GOOGLE_CLASSROOM_SANDBOX2_FORM_ID,
-    envName: "NEXT_PUBLIC_HUBSPOT_GOOGLE_CLASSROOM_SANDBOX2_FORM_ID",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  hubspotGoogleClassroomFormId: {
-    value: process.env.NEXT_PUBLIC_HUBSPOT_GOOGLE_CLASSROOM_FORM_ID,
-    envName: "NEXT_PUBLIC_HUBSPOT_GOOGLE_CLASSROOM_FORM_ID",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
-  hubspotProductionGoogleClassroomPortalId: {
-    value:
-      process.env.NEXT_PUBLIC_HUBSPOT_PRODUCTION_GOOGLE_CLASSROOM_PORTAL_ID,
-    envName: "NEXT_PUBLIC_HUBSPOT_PRODUCTION_GOOGLE_CLASSROOM_PORTAL_ID",
-    required: true,
-    availableInBrowser: true,
-    default: null,
-  },
   posthogApiKey: {
     value: process.env.NEXT_PUBLIC_POSTHOG_API_KEY,
     envName: "NEXT_PUBLIC_POSTHOG_API_KEY",

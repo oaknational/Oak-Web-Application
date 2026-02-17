@@ -1,5 +1,4 @@
 import type { ErrorData } from "@/common-lib/error-reporter/errorReporter";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 type ErrorReporter = (
   maybeError: unknown,
@@ -11,17 +10,9 @@ export async function handleNewsletterSignup(
   baseUrl: string,
   reportError: ErrorReporter,
 ) {
-  const isDevelopmentBuild = getBrowserConfig("releaseStage") === "development";
-
-  const submissionUrl = getBrowserConfig("hubspotFormSubmissionUrl");
-
-  const portalId = isDevelopmentBuild
-    ? getBrowserConfig("hubspotSandbox2PortalId")
-    : getBrowserConfig("hubspotProductionGoogleClassroomPortalId");
-
-  const formId = isDevelopmentBuild
-    ? getBrowserConfig("hubspotGoogleClassroomSandbox2FormId")
-    : getBrowserConfig("hubspotGoogleClassroomFormId");
+  const submissionUrl = process.env.NEXT_PUBLIC_HUBSPOT_FORM_SUBMISSION_URL;
+  const portalId = process.env.HUBSPOT_GOOGLE_CLASSROOM_PORTAL_ID;
+  const formId = process.env.HUBSPOT_GOOGLE_CLASSROOM_FORM_ID;
 
   if (!submissionUrl || !portalId || !formId) {
     reportError(
