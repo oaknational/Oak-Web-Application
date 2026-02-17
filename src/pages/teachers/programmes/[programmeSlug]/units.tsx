@@ -483,7 +483,7 @@ export const getStaticProps: GetStaticProps<
         };
 
         return results;
-      } catch (error) {
+      } catch (_error) {
         return {
           notFound: true,
         };
