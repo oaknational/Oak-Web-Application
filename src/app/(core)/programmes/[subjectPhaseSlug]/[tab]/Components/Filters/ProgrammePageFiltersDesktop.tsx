@@ -1,9 +1,4 @@
-import {
-  OakFlex,
-  OakHeading,
-  OakRadioAsButton,
-  OakRadioGroup,
-} from "@oaknational/oak-components";
+import { OakFlex } from "@oaknational/oak-components";
 import React from "react";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
@@ -18,7 +13,6 @@ import {
 } from "@/components/CurriculumComponents/CurricVisualiserFilters";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import type { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 // TD: [integrated journey] this component duplicated CurricVisualiserFiltersDesktop
 // once the integrated journey is launched we can remove that component
@@ -38,7 +32,6 @@ export default function ProgrammePageFiltersDesktop({
   slugs,
   ks4Options,
 }: Readonly<ProgrammePageFiltersProps>) {
-  const selectedKeystage = filters.keystages[0];
   return (
     <OakFlex
       $mr={"spacing-16"}
@@ -66,34 +59,6 @@ export default function ProgrammePageFiltersDesktop({
           context="integrated-journey"
         />
       )}
-      {/* TD: [integrated-journey] we may remove this filter from the main page */}
-      <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-        <OakHeading tag="h4" $font="heading-7">
-          Key stage
-        </OakHeading>
-        <OakRadioGroup
-          name="keystage-filters"
-          onChange={(e) => {
-            const ksOption = e.target.value;
-            const keystages = ksOption === "all-ks" ? [] : [ksOption];
-            onChangeFilters({ ...filters, keystages });
-          }}
-          $flexDirection={"row"}
-          $flexWrap={"wrap"}
-          value={selectedKeystage ?? "all-ks"}
-        >
-          <OakRadioAsButton key="all-ks" value="all-ks" displayValue="All" />
-          {data.keystages
-            .toSorted((a, b) => a.localeCompare(b))
-            .map((ksSlug: KeystageSlug) => (
-              <OakRadioAsButton
-                key={ksSlug}
-                value={ksSlug}
-                displayValue={ksSlug.toUpperCase()}
-              />
-            ))}
-        </OakRadioGroup>
-      </OakFlex>
       {shouldDisplayFilter(data, filters, "childSubjects") && (
         <CurricFiltersChildSubjects
           filters={filters}
