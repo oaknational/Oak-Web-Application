@@ -94,7 +94,9 @@ export function CurricFiltersSubjectCategories({
             value={subjectCategoryIdAsString}
             $flexDirection="row"
             $flexWrap="wrap"
-            $gap="spacing-8"
+            $gap={
+              context === "curriculum-visualiser" ? "spacing-8" : "spacing-12"
+            }
             aria-labelledby="subject-categories-label"
           >
             {subjectCategories.map((subjectCategory) => {
