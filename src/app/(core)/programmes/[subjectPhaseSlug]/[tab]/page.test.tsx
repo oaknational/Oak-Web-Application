@@ -28,7 +28,7 @@ jest.mock("next/navigation", () => {
 
 const featureFlagMock = jest.fn().mockResolvedValue(false);
 jest.mock("@/utils/featureFlags", () => ({
-  useFeatureFlag: () => featureFlagMock(),
+  getFeatureFlagValue: () => featureFlagMock(),
 }));
 
 // Jest is not setup to test RSCs, so it does not load the server build
