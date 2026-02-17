@@ -60,7 +60,8 @@ export default function ProgrammePageFiltersMobile({
         isOpen={mobileThreadModalOpen}
         largeScreenMaxWidth={600}
         domContainer={
-          document.getElementById("all-filters-button-container") ?? undefined
+          document?.getElementById("mobile-filters-header-container") ??
+          undefined
         }
         footerSlot={
           <OakBox

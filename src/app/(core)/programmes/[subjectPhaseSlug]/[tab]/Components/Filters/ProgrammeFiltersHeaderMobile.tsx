@@ -35,6 +35,8 @@ export default function ProgrammeFiltersHeaderMobile({
         $background={"bg-primary"}
         data-test-id="filter-mobiles"
         $pv="spacing-32"
+        // Container to return focus to on filter modal close
+        id="mobile-filters-header-container"
       >
         <OakHeading tag="h2" $font={"heading-7"} $mb={"spacing-8"}>
           Filters
@@ -47,9 +49,9 @@ export default function ProgrammeFiltersHeaderMobile({
           ks4Options={ks4Options}
           slugs={slugs}
           context={"integrated-journey"}
+          onModalOpen={onOpenModal}
         />
-        {/* Container to return focus to on filter modal close */}
-        <OakBox id="all-filters-button-container">
+        <OakBox $display={["block", "none", "none"]}>
           <OakTertiaryButton
             isTrailingIcon
             iconName="filter"

@@ -54,7 +54,7 @@ export default function ProgrammePageFiltersDesktop({
           data={data}
           ks4Options={ks4Options}
           slugs={slugs}
-          context={"integrated-journey"}
+          context="integrated-journey"
         />
       )}
       {shouldDisplayFilter(data, filters, "subjectCategories") && (

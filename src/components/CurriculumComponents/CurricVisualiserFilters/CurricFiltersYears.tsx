@@ -3,6 +3,7 @@ import {
   OakRadioGroup,
   OakRadioAsButton,
   OakBox,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 import { isEqual } from "lodash";
 import { useId } from "react";
@@ -29,9 +30,14 @@ export type CurricFiltersYearsProps = {
   data: CurriculumUnitsFormattedData;
   ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
   slugs: CurriculumSelectionSlugs;
-  // The context prop can be removed once the integrated journey is fully launched
-  context: "curriculum-visualiser" | "integrated-journey";
-};
+} & (
+  | {
+      // The context prop can be removed once the integrated journey is fully launched
+      context: "integrated-journey";
+      onModalOpen?: () => void;
+    }
+  | { context: "curriculum-visualiser" }
+);
 
 type YearOption = { year: string; pathway?: string; queryString?: string };
 
@@ -85,14 +91,8 @@ const filterToIndex = (
   return index;
 };
 
-export function CurricFiltersYears({
-  filters,
-  onChangeFilters,
-  data,
-  ks4Options,
-  slugs,
-  context,
-}: Readonly<CurricFiltersYearsProps>) {
+export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
+  const { filters, onChangeFilters, data, ks4Options, slugs, context } = props;
   const id = useId();
   const { yearData } = data;
 
@@ -184,11 +184,12 @@ export function CurricFiltersYears({
           )
         }
         value={String(index)}
-        $gap="spacing-8"
+        $gap={context === "curriculum-visualiser" ? "spacing-8" : "spacing-12"}
         $flexDirection="row"
         $flexWrap="wrap"
         aria-labelledby="year-group-label"
         data-testid="year-group-filter-desktop"
+        $alignItems="center"
       >
         <OakRadioAsButton
           value={"0"}
@@ -221,6 +222,19 @@ export function CurricFiltersYears({
             />
           );
         })}
+        {/* Tablet view, integrated journey only */}
+        {context === "integrated-journey" && props.onModalOpen && (
+          <OakBox $display={["none", "block", "none"]}>
+            <OakTertiaryButton
+              isTrailingIcon
+              iconName="filter"
+              onClick={props.onModalOpen}
+              data-testid="tablet-all-filters"
+            >
+              All filters
+            </OakTertiaryButton>
+          </OakBox>
+        )}
       </OakRadioGroup>
     </OakBox>
   );
