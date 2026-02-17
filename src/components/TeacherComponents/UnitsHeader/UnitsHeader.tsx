@@ -47,7 +47,7 @@ export const UnitsHeader = (props: UnitsHeaderProps) => {
   } = props;
 
   const subheading = isLegacy
-    ? "Resources made during the pandemic to support remote teaching."
+    ? "Resources made during the pandemic to support lockdown learning."
     : "Brand-new teaching resources, thoughtfully crafted by teachers for classroom needs.";
 
   const standardHeadingText = isLegacy

@@ -39,7 +39,7 @@ describe("UnitsHeader", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "Resources made during the pandemic to support remote teaching.",
+        "Resources made during the pandemic to support lockdown learning.",
       ),
     ).toBeInTheDocument();
     expect(
