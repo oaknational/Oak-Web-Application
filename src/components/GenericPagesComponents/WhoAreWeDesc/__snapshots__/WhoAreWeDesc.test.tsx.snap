@@ -4,10 +4,10 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg kFLunP"
+      class="sc-aXZVg cryvKT"
     >
       <div
-        class="sc-aXZVg sc-gEvEer dsYpqv cLpNFw"
+        class="sc-aXZVg sc-gEvEer kQLqxs cLpNFw"
       >
         <h2
           class="sc-eldPxv jXNysp"
@@ -18,7 +18,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
           class="sc-aXZVg sc-tagGq hdseiA dwIuIO"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-8c6e8d9-0 hdseiA iDBIXi giQTDM eEAIBn"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-ca53b668-0 hdseiA iDBIXi giQTDM jLDveA"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -57,7 +57,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-8c6e8d9-0 hdseiA iDBIXi giQTDM eEAIBn"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-ca53b668-0 hdseiA iDBIXi giQTDM jLDveA"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -96,7 +96,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-8c6e8d9-0 hdseiA iDBIXi giQTDM eEAIBn"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-ca53b668-0 hdseiA iDBIXi giQTDM jLDveA"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -135,7 +135,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-8c6e8d9-0 hdseiA iDBIXi giQTDM eEAIBn"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-ca53b668-0 hdseiA iDBIXi giQTDM jLDveA"
             data-testid="who-we-are-desc-item"
           >
             <div
