@@ -1,9 +1,10 @@
 import { GetServerSideProps, NextPage } from "next";
 import {
+  OakAllSpacingToken,
   OakBox,
   OakFlex,
   OakHeading,
-  OakMaxWidth,
+  OakIconName,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -49,6 +50,25 @@ const UnstyledLi = styled.li`
   list-style: none;
 `;
 
+
+const curriculaCardsInfo: Array<{ iconName: OakIconName; iconWidth: OakAllSpacingToken; text: string }> = [{
+  iconName: "clipboard",
+  iconWidth: "spacing-48",
+  text: "National curriculum and exam board aligned",
+}, {
+  iconName: "free-tag",
+  iconWidth: "spacing-80",
+  text: "Free and always will be",
+}, {
+  iconName: "book-steps",
+  iconWidth: "spacing-72",
+  text: "Covers key stages 1-4 across 20 subjects",
+}, {
+  iconName: "threads",
+  iconWidth: "spacing-64",
+  text: "Fully sequenced and ready to adapt",
+}];
+
 export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
   pageData,
   topNav,
@@ -81,50 +101,19 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
                 $gap={"spacing-16"}
                 $alignItems="stretch"
               >
-                <UnstyledLi>
-                  <CurricInfoCard
-                    iconName="clipboard"
-                    background="bg-primary"
-                    iconHeight={"spacing-92"}
-                    iconWidth={"spacing-48"}
-                    borderColor="border-decorative4"
-                  >
-                    National curriculum and exam board aligned
-                  </CurricInfoCard>
-                </UnstyledLi>
-                <UnstyledLi>
-                  <CurricInfoCard
-                    iconName="free-tag"
-                    background="bg-primary"
-                    iconHeight="spacing-92"
-                    iconWidth="spacing-80"
-                    borderColor="border-decorative4"
-                  >
-                    Free and always will be
-                  </CurricInfoCard>
-                </UnstyledLi>
-                <UnstyledLi>
-                  <CurricInfoCard
-                    iconName="book-steps"
-                    background="bg-primary"
-                    iconHeight="spacing-92"
-                    iconWidth="spacing-72"
-                    borderColor="border-decorative4"
-                  >
-                    Covers key stages 1-4 across 20 subjects
-                  </CurricInfoCard>
-                </UnstyledLi>
-                <UnstyledLi>
-                  <CurricInfoCard
-                    iconName="threads"
-                    background="bg-primary"
-                    iconHeight="spacing-92"
-                    iconWidth="spacing-64"
-                    borderColor="border-decorative4"
-                  >
-                    Fully sequenced and ready to adapt
-                  </CurricInfoCard>
-                </UnstyledLi>
+                {curriculaCardsInfo.map((cardInfo) => (
+                  <UnstyledLi key={cardInfo.iconName}>
+                    <CurricInfoCard
+                      iconName={cardInfo.iconName}
+                      background="bg-primary"
+                      iconHeight={"spacing-92"}
+                      iconWidth={cardInfo.iconWidth}
+                      borderColor="border-decorative4"
+                    >
+                      {cardInfo.text}
+                    </CurricInfoCard>
+                  </UnstyledLi>
+                ))}
               </OakFlex>
               <GuidingPrinciples
                 $background="bg-primary"
