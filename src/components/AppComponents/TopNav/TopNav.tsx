@@ -51,7 +51,7 @@ const TopNav = (props: TopNavProps) => {
         platform: "owa",
         product: "teacher lesson resources",
         engagementIntent: "explore",
-        componentType: "all_filters", // TODO: component type
+        componentType: "topnav-browse-button",
         eventVersion: "2.0.0",
         analyticsUseCase: "Teacher",
       });
