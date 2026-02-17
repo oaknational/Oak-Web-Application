@@ -7,63 +7,92 @@ import {
   isOakGoogleClassroomException,
   createClassroomErrorReporter,
 } from "@/node-lib/google-classroom";
+import { handleNewsletterSignup } from "@/node-lib/google-classroom/handleNewsletterSignup";
 
 const reportError = createClassroomErrorReporter("callback");
+
+type OAuthError = {
+  error: string;
+  errorDescription?: string | null;
+};
+
+function getOAuthError(searchParams: URLSearchParams): OAuthError | null {
+  const error = searchParams.get("error");
+  if (!error) return null;
+  return { error, errorDescription: searchParams.get("error_description") };
+}
+
+function getNewsletterPreference(searchParams: URLSearchParams): boolean {
+  const stateParam = searchParams.get("state");
+  if (!stateParam) return false;
+
+  try {
+    const parsed = JSON.parse(stateParam);
+    return parsed.subscribeToNewsletter === true;
+  } catch {
+    return false;
+  }
+}
+
+function oauthErrorResponse(oauthError: OAuthError) {
+  return NextResponse.json(
+    {
+      error: "OAuth error",
+      details: oauthError.error,
+      description: oauthError.errorDescription,
+    },
+    { status: 400 },
+  );
+}
+
+function missingCodeResponse(searchParams: URLSearchParams) {
+  reportError(new Error("OAuth callback missing authorization code"), {
+    severity: "error",
+    searchParams: Object.fromEntries(searchParams.entries()),
+  });
+
+  return NextResponse.json(
+    {
+      error: "Authentication failed",
+      details:
+        "Missing authorization code from Google. Please try signing in again.",
+    },
+    { status: 400 },
+  );
+}
 
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const code = searchParams.get("code");
-    const error = searchParams.get("error");
-    const errorDescription = searchParams.get("error_description");
-    const subscribeToNewsletter = searchParams.get("subscribeToNewsletter");
+    const oauthError = getOAuthError(searchParams);
+    const subscribeToNewsletter = getNewsletterPreference(searchParams);
     const parsedCode = codeSchema.safeParse(code);
 
     // Check for OAuth errors from Google -
-    //Redirect to 404 Error Page
-    if (error) {
-      reportError(new Error(`OAuth error: ${error}`), {
+    // Redirect to 404 Error Page
+    if (oauthError) {
+      reportError(new Error(`OAuth error: ${oauthError.error}`), {
         severity: "warning",
-        errorDescription,
+        errorDescription: oauthError.errorDescription,
       });
-
-      return NextResponse.json(
-        {
-          error: "OAuth error",
-          details: error,
-          description: errorDescription,
-        },
-        { status: 400 },
-      );
+      return oauthErrorResponse(oauthError);
     }
 
     if (!parsedCode.success) {
-      reportError(new Error("OAuth callback missing authorization code"), {
-        severity: "error",
-        searchParams: Object.fromEntries(searchParams.entries()),
-      });
-
-      return NextResponse.json(
-        {
-          error: "Authentication failed",
-          details:
-            "Missing authorization code from Google. Please try signing in again.",
-        },
-        { status: 400 },
-      );
+      return missingCodeResponse(searchParams);
     }
 
-    const tempSignUpToNewsletter = async (email: string) => {
-      // This is temp until we have actual mailing list to subscribe to
-      // NOTE: This will fire on re-sign ins, so perform existence checks first
-      console.log("should subscribe to newsletter", email);
-    };
+    const baseUrl = `${request.nextUrl.protocol}//${request.nextUrl.host}`;
+    const onNewsletterSignup = subscribeToNewsletter
+      ? (email: string) => handleNewsletterSignup(email, baseUrl, reportError)
+      : undefined;
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
     const { encryptedSession, accessToken } =
       await oakClassroomClient.handleGoogleSignInCallback(
         parsedCode.data,
-        subscribeToNewsletter === "true" ? tempSignUpToNewsletter : undefined,
+        onNewsletterSignup,
       );
 
     return redirect(
