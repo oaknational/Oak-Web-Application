@@ -29,6 +29,7 @@ export type CurricFiltersYearsProps = {
   data: CurriculumUnitsFormattedData;
   ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
   slugs: CurriculumSelectionSlugs;
+  // The context prop can be removed once the integrated journey is fully launched
   context: "curriculum-visualiser" | "integrated-journey";
 };
 
