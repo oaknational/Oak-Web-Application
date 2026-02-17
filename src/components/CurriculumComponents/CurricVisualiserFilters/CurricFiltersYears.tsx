@@ -1,9 +1,9 @@
 import {
-  OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
   OakBox,
   OakTertiaryButton,
+  OakP,
 } from "@oaknational/oak-components";
 import { isEqual } from "lodash";
 import { useId } from "react";
@@ -166,14 +166,14 @@ export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
 
   return (
     <OakBox>
-      <OakHeading
-        tag="h4"
+      <OakP
         id="year-group-label"
         $font={context === "curriculum-visualiser" ? "heading-6" : "heading-7"}
         $mb="spacing-16"
+        as="legend"
       >
         Year group
-      </OakHeading>
+      </OakP>
       <OakRadioGroup
         name={"year" + id}
         onChange={(e) =>

@@ -1,8 +1,8 @@
 import {
-  OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
   OakBox,
+  OakP,
 } from "@oaknational/oak-components";
 import { useMemo, useId } from "react";
 
@@ -68,9 +68,9 @@ export function CurricFiltersSubjectCategories({
     <>
       {subjectCategoriesAt.length > 0 && (
         <OakBox>
-          <OakHeading
+          <OakP
+            as="legend"
             id="subject-categories-label"
-            tag="h4"
             $font={
               context === "integrated-journey"
                 ? "heading-7"
@@ -84,7 +84,7 @@ export function CurricFiltersSubjectCategories({
             context === "curriculum-visualiser"
               ? ` (${subjectCategoriesAt[0]?.toUpperCase()})`
               : ""}
-          </OakHeading>
+          </OakP>
 
           <OakRadioGroup
             name={"subject-categories_" + id}
