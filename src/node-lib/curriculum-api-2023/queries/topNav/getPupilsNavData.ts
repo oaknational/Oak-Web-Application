@@ -19,10 +19,10 @@ export const getPupilsNavData = (
     );
 
   return {
-    phaseSlug,
-    phaseTitle: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as
+    slug: phaseSlug,
+    title: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as
       | "Primary"
       | "Secondary",
-    years: yearsByPhase,
+    children: yearsByPhase,
   };
 };
