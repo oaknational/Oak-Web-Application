@@ -9,7 +9,7 @@ const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricFiltersChildSubjects", () => {
   it("renders correctly ks4 only", () => {
-    const { getAllByRole, getByRole } = render(
+    const { getAllByRole, getByText } = render(
       <CurricFiltersChildSubjects
         filters={{
           childSubjects: [],
@@ -27,14 +27,14 @@ describe("CurricFiltersChildSubjects", () => {
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
-    expect(getByRole("heading").textContent).toEqual("Exam subject (KS4)");
+    expect(getByText("Exam subject (KS4)")).toBeInTheDocument();
     expect(elements[0]!.value).toEqual("biology");
     expect(elements[1]!.value).toEqual("chemistry");
     expect(elements[2]!.value).toEqual("physics");
   });
 
   it("renders correctly ks3 & ks4", () => {
-    const { getAllByRole, getByRole } = render(
+    const { getAllByRole, getByText } = render(
       <CurricFiltersChildSubjects
         filters={{
           childSubjects: [],
@@ -52,7 +52,7 @@ describe("CurricFiltersChildSubjects", () => {
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
-    expect(getByRole("heading").textContent).toEqual("Exam subject");
+    expect(getByText("Exam subject")).toBeInTheDocument();
     expect(elements[0]!.value).toEqual("biology");
     expect(elements[1]!.value).toEqual("chemistry");
     expect(elements[2]!.value).toEqual("physics");
