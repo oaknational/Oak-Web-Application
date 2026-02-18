@@ -45,16 +45,6 @@ export function CurricFiltersTiers({
     <>
       {tiers.length > 0 && (
         <OakBox>
-          <OakP
-            as="legend"
-            id={"tiers-label"}
-            $font={["heading-7", "heading-6"]}
-            $mt="spacing-0"
-            $mb={["spacing-24", "spacing-16"]}
-          >
-            Learning tier{" "}
-            {tiersAt.length === 1 ? `(${tiersAt[0]?.toUpperCase()})` : ""}
-          </OakP>
           <OakRadioGroup
             name={"tiers" + id}
             onChange={(e) => setSingleInFilter("tiers", e.target.value)}
@@ -62,8 +52,16 @@ export function CurricFiltersTiers({
             $flexDirection="row"
             $flexWrap="wrap"
             $gap="spacing-8"
-            aria-labelledby="tiers-label"
           >
+            <OakP
+              as="legend"
+              $font={["heading-7", "heading-6"]}
+              $mt="spacing-0"
+              $mb={["spacing-24", "spacing-16"]}
+            >
+              Learning tier{" "}
+              {tiersAt.length === 1 ? `(${tiersAt[0]?.toUpperCase()})` : ""}
+            </OakP>
             {tiers.map((tier) => (
               <OakRadioAsButton
                 key={tier.tier_slug}

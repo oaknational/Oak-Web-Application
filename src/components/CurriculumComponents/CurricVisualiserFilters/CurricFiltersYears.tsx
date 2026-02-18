@@ -166,14 +166,6 @@ export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
 
   return (
     <OakBox>
-      <OakP
-        id="year-group-label"
-        $font={context === "curriculum-visualiser" ? "heading-6" : "heading-7"}
-        $mb="spacing-16"
-        as="legend"
-      >
-        Year group
-      </OakP>
       <OakRadioGroup
         name={"year" + id}
         onChange={(e) =>
@@ -187,10 +179,18 @@ export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
         $gap={context === "curriculum-visualiser" ? "spacing-8" : "spacing-12"}
         $flexDirection="row"
         $flexWrap="wrap"
-        aria-labelledby="year-group-label"
         data-testid="year-group-filter-desktop"
         $alignItems="center"
       >
+        <OakP
+          $font={
+            context === "curriculum-visualiser" ? "heading-6" : "heading-7"
+          }
+          $mb="spacing-16"
+          as="legend"
+        >
+          Year group
+        </OakP>
         <OakRadioAsButton
           value={"0"}
           displayValue="All"

@@ -68,24 +68,6 @@ export function CurricFiltersSubjectCategories({
     <>
       {subjectCategoriesAt.length > 0 && (
         <OakBox>
-          <OakP
-            as="legend"
-            id="subject-categories-label"
-            $font={
-              context === "integrated-journey"
-                ? "heading-7"
-                : ["heading-7", "heading-6"]
-            }
-            $mt="spacing-0"
-            $mb={["spacing-24", "spacing-16"]}
-          >
-            Category
-            {subjectCategoriesAt.length === 1 &&
-            context === "curriculum-visualiser"
-              ? ` (${subjectCategoriesAt[0]?.toUpperCase()})`
-              : ""}
-          </OakP>
-
           <OakRadioGroup
             name={"subject-categories_" + id}
             onChange={(e) =>
@@ -97,8 +79,23 @@ export function CurricFiltersSubjectCategories({
             $gap={
               context === "curriculum-visualiser" ? "spacing-8" : "spacing-12"
             }
-            aria-labelledby="subject-categories-label"
           >
+            <OakP
+              as="legend"
+              $font={
+                context === "integrated-journey"
+                  ? "heading-7"
+                  : ["heading-7", "heading-6"]
+              }
+              $mt="spacing-0"
+              $mb={["spacing-24", "spacing-16"]}
+            >
+              Category
+              {subjectCategoriesAt.length === 1 &&
+              context === "curriculum-visualiser"
+                ? ` (${subjectCategoriesAt[0]?.toUpperCase()})`
+                : ""}
+            </OakP>
             {subjectCategories.map((subjectCategory) => {
               return (
                 <OakRadioAsButton
