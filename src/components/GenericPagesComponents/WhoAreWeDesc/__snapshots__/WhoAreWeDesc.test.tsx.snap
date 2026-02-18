@@ -18,7 +18,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
           class="sc-aXZVg sc-tagGq hdseiA dwIuIO"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-6f17d96c-0 hdseiA iDBIXi giQTDM oiZgY"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfda912c-0 hdseiA iDBIXi giQTDM fWbKoL"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -57,7 +57,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-6f17d96c-0 hdseiA iDBIXi giQTDM oiZgY"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfda912c-0 hdseiA iDBIXi giQTDM fWbKoL"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -96,7 +96,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-6f17d96c-0 hdseiA iDBIXi giQTDM oiZgY"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfda912c-0 hdseiA iDBIXi giQTDM fWbKoL"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -135,7 +135,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-6f17d96c-0 hdseiA iDBIXi giQTDM oiZgY"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfda912c-0 hdseiA iDBIXi giQTDM fWbKoL"
             data-testid="who-we-are-desc-item"
           >
             <div
