@@ -54,6 +54,7 @@ export function ProgrammeUnitList({
 
   function getItems(unit: Unit, index: number) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
+    const isOptionalityUnitCard = unit.unit_options.length;
 
     return (
       <OakGridArea
@@ -68,13 +69,17 @@ export function ProgrammeUnitList({
           isHighlighted={isHighlighted}
           tags={getTagsForUnitCard(unit)}
           // TD: [integrated journey] optionality units
-          href={resolveOakHref({
-            page: "lesson-index",
-            unitSlug: unit.slug,
-            programmeSlug: createTeacherProgrammeSlug(unit),
-          })}
+          href={
+            isOptionalityUnitCard
+              ? ""
+              : resolveOakHref({
+                  page: "lesson-index",
+                  unitSlug: unit.slug,
+                  programmeSlug: createTeacherProgrammeSlug(unit),
+                })
+          }
           onClickLink={() => onClick(unit, isHighlighted)}
-          lessonCount={unit.lessons?.length}
+          lessonCount={isOptionalityUnitCard ? undefined : unit.lessons?.length}
           saveProps={getSavePropsForUnitCard(unit)}
           index={index + 1}
         />
