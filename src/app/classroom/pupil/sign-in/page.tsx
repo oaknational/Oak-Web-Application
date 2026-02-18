@@ -29,7 +29,6 @@ function SignInContent() {
       router.push(
         `/pupils/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}?${currentParams}`,
       );
-      return;
     }
     // when we have classroom 404/500 pages, we should redirect to those
   };
