@@ -75,7 +75,12 @@ export function ProgrammeUnitList({
               : resolveOakHref({
                   page: "lesson-index",
                   unitSlug: unit.slug,
-                  programmeSlug: createTeacherProgrammeSlug(unit),
+                  programmeSlug: createTeacherProgrammeSlug(
+                    unit,
+                    unit.examboard_slug,
+                    unit.tier_slug,
+                    unit.pathway_slug,
+                  ),
                 })
           }
           onClickLink={() => onClick(unit, isHighlighted)}

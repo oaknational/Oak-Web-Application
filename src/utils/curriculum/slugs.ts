@@ -104,14 +104,17 @@ export function getKs4RedirectSlug(
 export function createTeacherProgrammeSlug(
   unitData?: CurriculumUnitsTabData["units"][number] | null,
   examboardSlug?: string | null,
-  tierSlug?: string,
-  pathwaySlug?: string,
+  tierSlug?: string | null,
+  pathwaySlug?: string | null,
 ) {
   if (unitData?.keystage_slug === "ks4") {
     const parts: string[] = [];
-    parts.push(unitData.subject_slug);
-    parts.push(unitData.phase_slug);
-    parts.push(unitData.keystage_slug);
+    parts.push(
+      unitData.subject_slug,
+      unitData.phase_slug,
+      unitData.keystage_slug,
+    );
+
     if (tierSlug) parts.push(tierSlug);
     if (pathwaySlug) parts.push(pathwaySlug);
 
