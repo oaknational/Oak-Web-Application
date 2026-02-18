@@ -53,6 +53,9 @@ export function ProgrammeUnitList({
 
   function getItems(unit: Unit, index: number) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
+    const subjectCategoryTags = unit.subjectcategories?.map((category) => ({
+      label: category.title,
+    }));
 
     return (
       <OakGridArea
@@ -65,6 +68,7 @@ export function ProgrammeUnitList({
           layoutVariant="vertical"
           title={unit.title}
           isHighlighted={isHighlighted}
+          tags={subjectCategoryTags}
           // TD: [integrated journey] optionality units
           href={resolveOakHref({
             page: "lesson-index",
