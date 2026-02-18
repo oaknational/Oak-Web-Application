@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import {
   OakBox,
@@ -60,7 +61,7 @@ export default function ProgrammePageFiltersMobile({
         isOpen={mobileThreadModalOpen}
         largeScreenMaxWidth={600}
         domContainer={
-          document?.getElementById("mobile-filters-header-container") ??
+          document.getElementById("mobile-filters-header-container") ??
           undefined
         }
         footerSlot={
