@@ -9,7 +9,7 @@ const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricFiltersChildSubjects", () => {
   it("renders correctly ks4 only", () => {
-    const { getAllByRole, getByRole } = render(
+    const { getAllByRole, getByText } = render(
       <CurricFiltersChildSubjects
         filters={{
           childSubjects: [],
@@ -18,6 +18,7 @@ describe("CurricFiltersChildSubjects", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={() => {}}
         data={ks4Setup}
@@ -26,14 +27,14 @@ describe("CurricFiltersChildSubjects", () => {
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
-    expect(getByRole("heading").textContent).toEqual("Exam subject (KS4)");
+    expect(getByText("Exam subject (KS4)")).toBeInTheDocument();
     expect(elements[0]!.value).toEqual("biology");
     expect(elements[1]!.value).toEqual("chemistry");
     expect(elements[2]!.value).toEqual("physics");
   });
 
   it("renders correctly ks3 & ks4", () => {
-    const { getAllByRole, getByRole } = render(
+    const { getAllByRole, getByText } = render(
       <CurricFiltersChildSubjects
         filters={{
           childSubjects: [],
@@ -41,6 +42,7 @@ describe("CurricFiltersChildSubjects", () => {
           tiers: [],
           years: ["7", "8", "9", "10", "11"],
           threads: [],
+          keystages: [],
           pathways: [],
         }}
         onChangeFilters={() => {}}
@@ -50,7 +52,7 @@ describe("CurricFiltersChildSubjects", () => {
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
-    expect(getByRole("heading").textContent).toEqual("Exam subject");
+    expect(getByText("Exam subject")).toBeInTheDocument();
     expect(elements[0]!.value).toEqual("biology");
     expect(elements[1]!.value).toEqual("chemistry");
     expect(elements[2]!.value).toEqual("physics");
@@ -67,6 +69,7 @@ describe("CurricFiltersChildSubjects", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={onChangeFilters}
         data={ks4Setup}
@@ -85,6 +88,7 @@ describe("CurricFiltersChildSubjects", () => {
         tiers: [],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "child_subject_button",
     );
@@ -97,6 +101,7 @@ describe("CurricFiltersChildSubjects", () => {
         tiers: [],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "child_subject_button",
     );
@@ -109,6 +114,7 @@ describe("CurricFiltersChildSubjects", () => {
         tiers: [],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "child_subject_button",
     );

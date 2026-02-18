@@ -1,5 +1,4 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
-import { uniq } from "lodash";
 import { Metadata } from "next";
 import { cache } from "react";
 
@@ -62,12 +61,6 @@ export async function generateMetadata({
     const curriculumUnitsFormattedData =
       formatCurriculumUnitsData(curriculumUnitsData);
 
-    // Extract keyStages from yearData
-    const keyStages = uniq(
-      Object.values(curriculumUnitsFormattedData.yearData).flatMap(
-        ({ units }) => units.map((unit) => unit.keystage_slug),
-      ),
-    );
     const ks4Options =
       curriculumPhaseOptions.subjects.find(
         (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
@@ -82,7 +75,7 @@ export async function generateMetadata({
       subjectTitle: programmeUnitsData.subjectTitle,
       ks4OptionSlug: ks4Option?.slug ?? null,
       ks4OptionTitle: ks4Option?.title ?? null,
-      keyStages: keyStages,
+      keyStages: curriculumUnitsFormattedData.keystages,
       tab: "units",
     });
     const description = buildCurriculumMetadata({
@@ -91,7 +84,7 @@ export async function generateMetadata({
       subjectTitle: programmeUnitsData.subjectTitle,
       ks4OptionSlug: ks4Option?.slug ?? null,
       ks4OptionTitle: ks4Option?.title ?? null,
-      keyStages: keyStages,
+      keyStages: curriculumUnitsFormattedData.keystages,
       tab: "units",
     });
     const canonicalURL = new URL(

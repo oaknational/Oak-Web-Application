@@ -39,6 +39,7 @@ export const basicSetup: CurricVisualiserFiltersProps["data"] = {
           subjectcategories: [subjectCat1, subjectCat2, subjectCat3],
         }),
       ],
+      keystage: "ks3",
     },
     "8": {
       childSubjects: [],
@@ -59,6 +60,7 @@ export const basicSetup: CurricVisualiserFiltersProps["data"] = {
           year: "8",
         }),
       ],
+      keystage: "ks3",
     },
     "9": {
       childSubjects: [],
@@ -79,6 +81,7 @@ export const basicSetup: CurricVisualiserFiltersProps["data"] = {
           year: "9",
         }),
       ],
+      keystage: "ks3",
     },
     "10": {
       childSubjects: [
@@ -109,6 +112,7 @@ export const basicSetup: CurricVisualiserFiltersProps["data"] = {
           tier: tierHigher.tier_slug,
         }),
       ],
+      keystage: "ks4",
     },
     "11": {
       childSubjects: [],
@@ -123,6 +127,7 @@ export const basicSetup: CurricVisualiserFiltersProps["data"] = {
           year: "11",
         }),
       ],
+      keystage: "ks4",
     },
   },
   threadOptions: [
@@ -131,4 +136,5 @@ export const basicSetup: CurricVisualiserFiltersProps["data"] = {
     createThread({ slug: "test3" }),
   ],
   yearOptions: ["7", "8", "9", "10", "11"],
+  keystages: [],
 };
