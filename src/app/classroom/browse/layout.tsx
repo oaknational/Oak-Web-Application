@@ -14,7 +14,7 @@ export default function BrowseGoogleClassroomLayout({
 }: Readonly<Props>) {
   return (
     <WithGoogleClassroomAuth
-      verifySessionAction={googleClassroomApi.verifySession}
+      verifySessionAction={googleClassroomApi.verifySession()}
       signInUrl={"/classroom/sign-in"}
     >
       <BrowseLayout
