@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { OakBox } from "@oaknational/oak-components";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
@@ -8,7 +8,7 @@ import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFo
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
-const NewsletterWrapper = styled(OakBox)`
+const NewsletterWrapper = styled(OakFlex)`
   max-width: 100%;
   justify-self: center;
 
