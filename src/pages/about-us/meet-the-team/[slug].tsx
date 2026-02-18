@@ -112,6 +112,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
           $pb={["spacing-56", "spacing-80"]}
           $cg={["spacing-0", "spacing-16"]}
           $rg={"spacing-24"}
+          $color={"text-primary"}
         >
           {/* Image - Desktop/Tablet only (left column) */}
           <OakGridArea
@@ -146,16 +147,12 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
               <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
                 {/* Category + Name */}
                 <OakFlex $flexDirection={"column"} $gap={"spacing-4"}>
-                  <OakTypography
-                    $font={["heading-light-7", "heading-light-6"]}
-                    $color={"text-primary"}
-                  >
+                  <OakTypography $font={["heading-light-7", "heading-light-6"]}>
                     {category}
                   </OakTypography>
                   <OakHeading
                     tag="h1"
                     $font={["heading-3", "heading-2"]}
-                    $color={"text-primary"}
                   >
                     {name}
                   </OakHeading>
@@ -165,7 +162,6 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                 {role && (
                   <OakBox
                     $background={"bg-decorative5-main"}
-                    $color={"text-primary"}
                     $ph={"spacing-4"}
                     style={{ width: "fit-content" }}
                   >
@@ -224,7 +220,6 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
               {trimmedBio && (
                 <OakBox
                   $font={["body-2", "body-1"]}
-                  $color={"text-primary"}
                   $pb={"spacing-16"}
                 >
                   <PortableTextWithDefaults value={trimmedBio} />

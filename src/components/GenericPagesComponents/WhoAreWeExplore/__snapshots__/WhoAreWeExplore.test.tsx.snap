@@ -27,7 +27,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
           class="sc-aXZVg sc-gEvEer gZGeqY cLpNFw"
         >
           <h2
-            class="sc-eldPxv iGDTao"
+            class="sc-eldPxv fFnkKX"
             id="react-use-id-test-result"
           >
             TEST_TITLE
@@ -36,10 +36,10 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
             aria-labelledby="react-use-id-test-result"
           >
             <ul
-              class="sc-5dd00e47-2 fQBJil"
+              class="sc-eccc007c-2 iYfhCA"
             >
               <li
-                class="sc-5dd00e47-1 bZDirA"
+                class="sc-eccc007c-1 cIpEIh"
               >
                 <div
                   class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
@@ -49,7 +49,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                     style="outline: none;"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-5dd00e47-0 krhsqK egjftS kWjHOa"
+                      class="sc-aXZVg sc-gEvEer sc-eccc007c-0 krhsqK egjftS ccrlmX"
                       data-testid="who-we-are-explore-item"
                     >
                       <div
@@ -70,7 +70,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer jfQrXn fXHtRp"
+                        class="sc-aXZVg sc-gEvEer iUcqpI fXHtRp"
                       >
                         ITEM_ONE
                       </div>
@@ -96,7 +96,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 </div>
               </li>
               <li
-                class="sc-5dd00e47-1 bZDirA"
+                class="sc-eccc007c-1 cIpEIh"
               >
                 <div
                   class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
@@ -106,7 +106,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                     style="outline: none;"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-5dd00e47-0 krhsqK egjftS kWjHOa"
+                      class="sc-aXZVg sc-gEvEer sc-eccc007c-0 krhsqK egjftS ccrlmX"
                       data-testid="who-we-are-explore-item"
                     >
                       <div
@@ -127,7 +127,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer jfQrXn fXHtRp"
+                        class="sc-aXZVg sc-gEvEer iUcqpI fXHtRp"
                       >
                         ITEM_TWO
                       </div>
@@ -153,7 +153,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 </div>
               </li>
               <li
-                class="sc-5dd00e47-1 bZDirA"
+                class="sc-eccc007c-1 cIpEIh"
               >
                 <div
                   class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
@@ -163,7 +163,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                     style="outline: none;"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-5dd00e47-0 krhsqK egjftS kWjHOa"
+                      class="sc-aXZVg sc-gEvEer sc-eccc007c-0 krhsqK egjftS ccrlmX"
                       data-testid="who-we-are-explore-item"
                     >
                       <div
@@ -184,7 +184,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer jfQrXn fXHtRp"
+                        class="sc-aXZVg sc-gEvEer iUcqpI fXHtRp"
                       >
                         ITEM_THREE
                       </div>

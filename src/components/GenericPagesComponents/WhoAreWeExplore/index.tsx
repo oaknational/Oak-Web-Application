@@ -82,7 +82,6 @@ export function WhoAreWeExplore({
             tag="h2"
             $textAlign={"center"}
             $font={["heading-5", "heading-4", "heading-4"]}
-            $color="text-primary"
           >
             {title}
           </OakHeading>
@@ -112,7 +111,6 @@ export function WhoAreWeExplore({
                           <OakFlex
                             $flexGrow={1}
                             $font={"body-1-bold"}
-                            $color="text-primary"
                           >
                             {title}
                           </OakFlex>

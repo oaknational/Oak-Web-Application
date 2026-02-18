@@ -25,13 +25,13 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                   class="sc-aXZVg jPuUIi"
                 >
                   <span
-                    class="sc-eqUAAy itItFl"
+                    class="sc-eqUAAy eWVUVS"
                   >
                     TEST_SUBTITLE
                   </span>
                 </div>
                 <h2
-                  class="sc-eldPxv lhWwtt"
+                  class="sc-eldPxv byLqOW"
                 >
                   TEST_TITLE
                 </h2>
@@ -68,13 +68,13 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       class="sc-aXZVg ifqfxt"
                     >
                       <span
-                        class="sc-eqUAAy itItFl"
+                        class="sc-eqUAAy eWVUVS"
                       >
                         ITEM_SUBTITLE_1
                       </span>
                     </div>
                     <h3
-                      class="sc-eldPxv iiMZRB"
+                      class="sc-eldPxv fprBZm"
                     >
                       ITEM_TITLE_1
                     </h3>
@@ -110,13 +110,13 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       class="sc-aXZVg ifqfxt"
                     >
                       <span
-                        class="sc-eqUAAy itItFl"
+                        class="sc-eqUAAy eWVUVS"
                       >
                         ITEM_SUBTITLE_2
                       </span>
                     </div>
                     <h3
-                      class="sc-eldPxv iiMZRB"
+                      class="sc-eldPxv fprBZm"
                     >
                       ITEM_TITLE_2
                     </h3>
@@ -152,13 +152,13 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       class="sc-aXZVg ifqfxt"
                     >
                       <span
-                        class="sc-eqUAAy itItFl"
+                        class="sc-eqUAAy eWVUVS"
                       >
                         ITEM_SUBTITLE_3
                       </span>
                     </div>
                     <h3
-                      class="sc-eldPxv iiMZRB"
+                      class="sc-eldPxv fprBZm"
                     >
                       ITEM_TITLE_3
                     </h3>

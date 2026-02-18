@@ -54,7 +54,7 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
   );
 
   return (
-    <OakBox $zIndex={"neutral"}>
+    <OakBox $zIndex={"neutral"} $color={"text-primary"}>
       {children}
       <OakBox
         $overflow={"hidden"}

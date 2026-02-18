@@ -87,10 +87,7 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
   block: {
     normal: (props) => {
       return (
-        <OakP
-          $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
-          $color={"text-primary"}
-        >
+        <OakP $font={["heading-light-5", "heading-light-3", "heading-light-3"]}>
           {props.children}
         </OakP>
       );
@@ -125,7 +122,6 @@ export function AboutSharedHeader({
             <OakSpan
               $background={titleHighlight ?? "bg-decorative1-main"}
               $ph={"spacing-4"}
-              $color="text-primary"
             >
               {title}
             </OakSpan>
@@ -133,7 +129,6 @@ export function AboutSharedHeader({
           {typeof content === "string" ? (
             <OakP
               $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
-              $color={"text-primary"}
             >
               {content}
             </OakP>

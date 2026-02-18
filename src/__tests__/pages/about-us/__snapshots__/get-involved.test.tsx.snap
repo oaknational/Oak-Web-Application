@@ -261,6 +261,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 .c113 {
+  color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   z-index: 0;
 }
@@ -398,7 +399,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 .c169 {
-  color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 700;
   font-size: 1.125rem;
@@ -1290,7 +1290,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 }
 
 .c119 {
-  color: #222222;
   background: #a0b6f2;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -1760,7 +1759,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   -moz-letter-spacing: 0.0115rem;
   -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
-  color: #222222;
 }
 
 .c139 {
@@ -1772,7 +1770,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   -moz-letter-spacing: 0.0115rem;
   -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
-  color: #222222;
 }
 
 .c160 {
@@ -1785,7 +1782,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   text-align: center;
-  color: #222222;
 }
 
 .c220 {
@@ -1828,7 +1824,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   -moz-letter-spacing: 0.0115rem;
   -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
-  color: #222222;
 }
 
 .c140 {

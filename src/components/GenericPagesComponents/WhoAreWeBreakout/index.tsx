@@ -38,7 +38,6 @@ export function WhoAreWeBreakout({
       >
         <OakP
           $font={["heading-light-7", "heading-light-5"]}
-          $color="text-primary"
         >
           {content}
         </OakP>

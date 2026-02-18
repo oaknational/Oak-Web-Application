@@ -288,6 +288,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 .c123 {
   padding-top: 2.5rem;
   padding-bottom: 3.5rem;
+  color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -298,7 +299,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 }
 
 .c131 {
-  color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
   font-size: 1rem;
@@ -312,7 +312,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 .c134 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
-  color: #222222;
   background: #ffe555;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -330,7 +329,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 
 .c137 {
   padding-bottom: 1rem;
-  color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -1447,7 +1445,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   -moz-letter-spacing: 0.0115rem;
   -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
-  color: #222222;
 }
 
 .c149 {

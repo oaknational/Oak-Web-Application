@@ -62,7 +62,6 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
           tag="h2"
           $textAlign={["left", "center", "center"]}
           $font={["heading-5", "heading-3", "heading-3"]}
-          $color="text-primary"
         >
           {title}
         </OakHeading>
@@ -93,13 +92,11 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                     <OakHeading
                       tag="h3"
                       $font={["heading-6", "heading-5", "heading-5"]}
-                      $color="text-primary"
                     >
                       {title}
                     </OakHeading>
                     <OakP
                       $font={["body-2", "body-1", "body-1"]}
-                      $color="text-primary"
                     >
                       {text}
                     </OakP>

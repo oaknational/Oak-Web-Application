@@ -72,7 +72,6 @@ export function GetInvolvedWorkWithUs({
             <OakFlex $flexDirection="column" $gap="spacing-24">
               <OakHeading
                 $font={["heading-5", "heading-3", "heading-3"]}
-                $color="text-primary"
                 tag="h2"
               >
                 {heading}

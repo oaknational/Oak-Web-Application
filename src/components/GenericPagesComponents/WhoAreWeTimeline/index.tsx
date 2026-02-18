@@ -51,7 +51,6 @@ export default function WhoAreWeTimeline({
                   <OakSpan
                     $background={"bg-decorative1-main"}
                     $ph={"spacing-4"}
-                    $color="text-primary"
                   >
                     {subTitle}
                   </OakSpan>
@@ -59,7 +58,6 @@ export default function WhoAreWeTimeline({
                 <OakHeading
                   tag="h2"
                   $font={["heading-5", "heading-3"]}
-                  $color="text-primary"
                 >
                   {title}
                 </OakHeading>
@@ -111,7 +109,6 @@ export default function WhoAreWeTimeline({
                           <OakSpan
                             $ph={"spacing-4"}
                             $background={"bg-decorative1-main"}
-                            $color="text-primary"
                           >
                             {item.subTitle}
                           </OakSpan>
@@ -119,7 +116,6 @@ export default function WhoAreWeTimeline({
                         <OakHeading
                           tag="h3"
                           $font={["heading-6", "heading-5"]}
-                          $color="text-primary"
                         >
                           {item.title}
                         </OakHeading>
