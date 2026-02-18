@@ -17,6 +17,10 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   },
 }));
 
+jest.mock("next/navigation", () => ({
+  ...jest.requireActual("next/navigation"),
+}));
+
 const render = renderWithProviders();
 
 describe("core layout", () => {

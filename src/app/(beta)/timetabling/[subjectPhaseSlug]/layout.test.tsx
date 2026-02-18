@@ -5,6 +5,10 @@ import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 jest.mock("@/utils/featureFlags");
 
+jest.mock("next/navigation", () => ({
+  ...jest.requireActual("next/navigation"),
+}));
+
 describe("/timetabling/layout.tsx", () => {
   test("basic", async () => {
     (getFeatureFlagValue as jest.Mock).mockResolvedValue(true);
