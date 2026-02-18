@@ -58,7 +58,7 @@ const TopNavSubjectButtons = ({
     | "secondary"]["children"][number]["children"];
   keyStageSlug: string;
   keyStageTitle: string;
-  handleClick?: () => void;
+  handleClick: (subject: string, keystage: string) => void;
   focusManager?: DropdownFocusManager<TeachersData>;
 }) => {
   return (
@@ -93,7 +93,7 @@ const TopNavSubjectButtons = ({
                     keyStageSlug,
                   }),
                 )}
-                onClick={handleClick}
+                onClick={() => handleClick(slug, keyStageSlug)}
                 onKeyDown={(e) =>
                   buttonId && focusManager?.handleKeyDown(e, buttonId)
                 }
@@ -130,7 +130,7 @@ const TopNavSubjectButtons = ({
                     keyStageSlug,
                   }),
                 )}
-                onClick={handleClick}
+                onClick={() => handleClick(subject.slug, keyStageSlug)}
                 onKeyDown={(e) =>
                   buttonId && focusManager?.handleKeyDown(e, buttonId)
                 }
@@ -151,7 +151,7 @@ const TopNavSubjectButtons = ({
           element={Link}
           iconName="arrow-right"
           isTrailingIcon
-          onClick={handleClick}
+          onClick={() => handleClick("all", keyStageSlug)}
           onKeyDown={(e) =>
             focusManager?.handleKeyDown(
               e,
