@@ -55,10 +55,7 @@ export default function WhoAreWeTimeline({
                     {subTitle}
                   </OakSpan>
                 </OakBox>
-                <OakHeading
-                  tag="h2"
-                  $font={["heading-5", "heading-3"]}
-                >
+                <OakHeading tag="h2" $font={["heading-5", "heading-3"]}>
                   {title}
                 </OakHeading>
               </OakFlex>
@@ -113,10 +110,7 @@ export default function WhoAreWeTimeline({
                             {item.subTitle}
                           </OakSpan>
                         </OakBox>
-                        <OakHeading
-                          tag="h3"
-                          $font={["heading-6", "heading-5"]}
-                        >
+                        <OakHeading tag="h3" $font={["heading-6", "heading-5"]}>
                           {item.title}
                         </OakHeading>
                         <OakFlex

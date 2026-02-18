@@ -150,10 +150,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                   <OakTypography $font={["heading-light-7", "heading-light-6"]}>
                     {category}
                   </OakTypography>
-                  <OakHeading
-                    tag="h1"
-                    $font={["heading-3", "heading-2"]}
-                  >
+                  <OakHeading tag="h1" $font={["heading-3", "heading-2"]}>
                     {name}
                   </OakHeading>
                 </OakFlex>
@@ -218,10 +215,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 
               {/* Bio */}
               {trimmedBio && (
-                <OakBox
-                  $font={["body-2", "body-1"]}
-                  $pb={"spacing-16"}
-                >
+                <OakBox $font={["body-2", "body-1"]} $pb={"spacing-16"}>
                   <PortableTextWithDefaults value={trimmedBio} />
                 </OakBox>
               )}

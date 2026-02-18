@@ -95,11 +95,7 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                     >
                       {title}
                     </OakHeading>
-                    <OakP
-                      $font={["body-2", "body-1", "body-1"]}
-                    >
-                      {text}
-                    </OakP>
+                    <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
                   </OakFlex>
                 </OakFlex>
               </CustomWeAreItemOakGridArea>

@@ -36,11 +36,7 @@ export function WhoAreWeBreakout({
         $pv={["spacing-56", "spacing-40", "spacing-40"]}
         $alignItems={"center"}
       >
-        <OakP
-          $font={["heading-light-7", "heading-light-5"]}
-        >
-          {content}
-        </OakP>
+        <OakP $font={["heading-light-7", "heading-light-5"]}>{content}</OakP>
       </OakFlex>
     </CustomFlex>
   );
