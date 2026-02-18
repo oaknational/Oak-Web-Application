@@ -89,6 +89,7 @@ export const CurricTimetablingUnits = ({
       tiers: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
   });
 

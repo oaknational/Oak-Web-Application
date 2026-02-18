@@ -1,8 +1,8 @@
 import {
-  OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
   OakBox,
+  OakP,
 } from "@oaknational/oak-components";
 import { useId } from "react";
 
@@ -49,10 +49,16 @@ export function CurricFiltersChildSubjects({
   return (
     <OakBox>
       {childSubjects.length > 0 && (
-        <>
-          <OakHeading
-            id="child-subjects-label"
-            tag="h4"
+        <OakRadioGroup
+          name={"childSubjects_" + id}
+          onChange={(e) => setSingleInFilter("childSubjects", e.target.value)}
+          value={String(filters.childSubjects[0]!)}
+          $flexDirection="row"
+          $flexWrap="wrap"
+          $gap="spacing-8"
+        >
+          <OakP
+            as="legend"
             $font={["heading-7", "heading-6"]}
             $mt="spacing-0"
             $mb={["spacing-24", "spacing-16"]}
@@ -61,27 +67,17 @@ export function CurricFiltersChildSubjects({
             {childSubjectsAt.length === 1
               ? ` (${childSubjectsAt[0]?.toUpperCase()})`
               : ""}
-          </OakHeading>
-          <OakRadioGroup
-            name={"childSubjects_" + id}
-            onChange={(e) => setSingleInFilter("childSubjects", e.target.value)}
-            value={String(filters.childSubjects[0]!)}
-            $flexDirection="row"
-            $flexWrap="wrap"
-            $gap="spacing-8"
-            aria-labelledby="child-subjects-label"
-          >
-            {childSubjects.map((childSubject) => (
-              <OakRadioAsButton
-                variant="with-icon"
-                key={childSubject.subject_slug}
-                value={childSubject.subject_slug}
-                displayValue={childSubject.subject}
-                icon={getValidSubjectIconName(childSubject.subject_slug)}
-              />
-            ))}
-          </OakRadioGroup>
-        </>
+          </OakP>
+          {childSubjects.map((childSubject) => (
+            <OakRadioAsButton
+              variant="with-icon"
+              key={childSubject.subject_slug}
+              value={childSubject.subject_slug}
+              displayValue={childSubject.subject}
+              icon={getValidSubjectIconName(childSubject.subject_slug)}
+            />
+          ))}
+        </OakRadioGroup>
       )}
     </OakBox>
   );

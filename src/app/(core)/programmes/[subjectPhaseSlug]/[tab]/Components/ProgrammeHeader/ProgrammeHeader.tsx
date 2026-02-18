@@ -44,7 +44,7 @@ export type ProgrammeHeaderProps = {
   /**
    * Key stage
    */
-  keyStage?: "ks1" | "ks2" | "ks3" | "ks4";
+  keyStage?: string;
   /**
    * School year
    *
@@ -313,7 +313,7 @@ function getProgrammeTitle(
   subjectTitle: string,
   phaseTitle: string,
   schoolYear?: string | null,
-  keyStage?: "ks1" | "ks2" | "ks3" | "ks4",
+  keyStage?: string,
   examboardTitle?: string,
 ) {
   const parts: Array<string | undefined> = [capitalize(subjectTitle)];
