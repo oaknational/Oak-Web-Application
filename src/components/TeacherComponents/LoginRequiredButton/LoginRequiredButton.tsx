@@ -13,8 +13,8 @@ import {
   OakTagFunctional,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 import { useMemo } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
@@ -98,6 +98,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     ...overrideProps
   } = props;
   const router = useRouter();
+  const path = usePathname();
   const {
     showSignedInNotOnboarded,
     showSignedOutGeoRestricted,
@@ -144,12 +145,12 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     case "onboarding":
       return (
         <ButtonComponent
-          onClick={() =>
-            router.push({
-              pathname: resolveOakHref({ page: "onboarding" }),
-              query: { returnTo: router.asPath },
-            })
-          }
+          onClick={() => {
+            const pathname =
+              resolveOakHref({ page: "onboarding" }) + `?returnTo=${path}`;
+
+            router.push(pathname);
+          }}
           {...overrideProps}
         >
           {onboardingProps?.name ?? "Complete sign up to continue"}
@@ -157,9 +158,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
       );
     case "signup":
       return (
-        <SignUpButton
-          forceRedirectUrl={`/onboarding?returnTo=${router.asPath}`}
-        >
+        <SignUpButton forceRedirectUrl={`/onboarding?returnTo=${path}`}>
           <ButtonComponent
             iconName={signUpProps?.iconName}
             isTrailingIcon={signUpProps?.isTrailingIcon}
