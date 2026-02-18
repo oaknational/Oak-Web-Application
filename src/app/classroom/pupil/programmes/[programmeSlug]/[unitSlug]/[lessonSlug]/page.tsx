@@ -29,14 +29,7 @@ function GoogleClassroomRedirectToPupilLessonPage() {
   return (
     <WithGoogleClassroomAuth
       verifySessionAction={googleClassroomApi.verifySession(true)}
-      signInUrl={
-        "/classroom/pupil/sign-in?programmeSlug=" +
-        programmeSlug +
-        "&unitSlug=" +
-        unitSlug +
-        "&lessonSlug=" +
-        lessonSlug
-      }
+      signInUrl={`/classroom/pupil/sign-in?programmeSlug=${programmeSlug}&unitSlug=${unitSlug}&lessonSlug=${lessonSlug}`}
       cookieKeys={[
         AuthCookieKeys.PupilAccessToken,
         AuthCookieKeys.PupilSession,
