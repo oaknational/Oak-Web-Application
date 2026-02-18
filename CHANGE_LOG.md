@@ -1,3 +1,40 @@
+# [1.994.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.993.1...v1.994.0) (2026-02-18)
+
+
+### Bug Fixes
+
+* auto scrolling to selected year ([4fc4aca](https://github.com/oaknational/Oak-Web-Application/commit/4fc4aca0af7829898f50ff2427312650a2c0dd9f))
+* default to decorative1 for year filter button colour ([72ef021](https://github.com/oaknational/Oak-Web-Application/commit/72ef021c0d1f511efbde17f3ca3e8e5d2cf6cf96))
+* expect data in test ([8fdc4fe](https://github.com/oaknational/Oak-Web-Application/commit/8fdc4fe4ad1ecbb0d914ea31c77fbd959fa97e7f))
+* header offset for scrolling ([36bf6ed](https://github.com/oaknational/Oak-Web-Application/commit/36bf6ed7e2fbe7d3ffee67a0ac4619cb314a2f39))
+* make spacing consistent  between filter groups ([2658820](https://github.com/oaknational/Oak-Web-Application/commit/265882006f78d97a7e615ffe7c59823dd2f8fd25))
+* mark props readonly ([d3d966d](https://github.com/oaknational/Oak-Web-Application/commit/d3d966da4634602d1436c246f596c8d76e9d7008))
+* mock data in tests include keystage ([fe97994](https://github.com/oaknational/Oak-Web-Application/commit/fe97994109186fbbee5279b3267e174293393eac))
+* nest legends correctly inside fieldsets and remove aria-labelledby ([37a052e](https://github.com/oaknational/Oak-Web-Application/commit/37a052e42766919dcf65ffb49fde93be3350535d))
+* pathways in buttons ([10100c5](https://github.com/oaknational/Oak-Web-Application/commit/10100c5de6ef5cbfa39f823ed6d7057a96fa158d))
+* sonar cloud wants a compare function ([b767e02](https://github.com/oaknational/Oak-Web-Application/commit/b767e022427df0984b095f1e2c25ffa51aa475c5))
+* update props with keystages data in tests and helpers ([59c4dcd](https://github.com/oaknational/Oak-Web-Application/commit/59c4dcd9b48b03b1677f013b7327f54408c1b90c))
+
+
+### Features
+
+* add colorScheme to year buttons on desktop view ([dcef16f](https://github.com/oaknational/Oak-Web-Application/commit/dcef16fd845069006d47be76c9ad44cbd5503c92))
+* add keystage filter to programme page desktop ([3fb195c](https://github.com/oaknational/Oak-Web-Application/commit/3fb195ccff5919adf3d07fb28f87dafb6405adfd))
+* add keystages to filters ([c1a0027](https://github.com/oaknational/Oak-Web-Application/commit/c1a0027d6b12ffe8dd2eaecb7959736c11501fcc))
+* add modal button inline with year filter buttons on tablet ([ba4b9cb](https://github.com/oaknational/Oak-Web-Application/commit/ba4b9cb5050f115a3a6e89e2b7ddda54ddcee6aa))
+* add selected keystage to programme header ([578a6a0](https://github.com/oaknational/Oak-Web-Application/commit/578a6a0f4f313dfe7497d8151f7658524ad3f8cd))
+* disable auto focus on year sections on tab ([0732a5f](https://github.com/oaknational/Oak-Web-Application/commit/0732a5fec5443126cd8634e7033b9c46a0cc593d))
+* only show years applicable to selected keystage filter ([568a26c](https://github.com/oaknational/Oak-Web-Application/commit/568a26c103f42a371051bced1c1e3d1ba7c20cc3))
+* remove filters heading on desktop ([cea2342](https://github.com/oaknational/Oak-Web-Application/commit/cea2342696f8dbea2248d5eaaed1b7913ac93d08))
+* remove subject category text ([6201d40](https://github.com/oaknational/Oak-Web-Application/commit/6201d407644a5785d7a9938904931401a62659f1))
+* sort keystage filters alphabetically ([f457b7b](https://github.com/oaknational/Oak-Web-Application/commit/f457b7b3188758236150220f58a8315b0351e159))
+* style desktop filters to match designs ([f641f53](https://github.com/oaknational/Oak-Web-Application/commit/f641f53f7868901a0839ea6130c08612d32ff631))
+* turn filter group headings into legends ([3ae1843](https://github.com/oaknational/Oak-Web-Application/commit/3ae1843fce9b5bbb751e7f654c1cff2d14239e47))
+* update mobile filter drawer to filter on click instead of scroll ([1fe79d8](https://github.com/oaknational/Oak-Web-Application/commit/1fe79d809be52c6363738a420b7df644028710f2))
+* update styling for mobile filters view in programme page ([1c44cf5](https://github.com/oaknational/Oak-Web-Application/commit/1c44cf56c9a0c90eb7f20ea2f339572be172a61a))
+* update tier filter heading to legend ([b59bbad](https://github.com/oaknational/Oak-Web-Application/commit/b59bbad8fdee6eb332f5c693579fc4c6512104b4))
+* use filter drawer for tablet view ([e537a83](https://github.com/oaknational/Oak-Web-Application/commit/e537a83334941ebccfdd995542d8efe1b45543c9))
+
 ## [1.993.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.993.0...v1.993.1) (2026-02-17)
 
 
