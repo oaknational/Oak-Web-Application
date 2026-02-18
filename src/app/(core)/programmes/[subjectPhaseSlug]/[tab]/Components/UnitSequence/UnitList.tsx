@@ -1,7 +1,6 @@
 import { OakGrid, OakGridArea, OakP } from "@oaknational/oak-components";
 import { keystageSlugs } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
-import { useUser } from "@clerk/nextjs";
 
 import { getTagsForUnitCard } from "./getTagsForUnitCard";
 import { getSavePropsForUnitCard } from "./getSavePropsForUnitCard";
@@ -39,7 +38,6 @@ export function ProgrammeUnitList({
   selectedThread,
 }: Readonly<ProgrammeUnitListProps>) {
   const { track } = useAnalytics();
-  const { isSignedIn } = useUser();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const onClick = (unit: Unit, isHighlighted: boolean) => {
@@ -77,7 +75,7 @@ export function ProgrammeUnitList({
           })}
           onClickLink={() => onClick(unit, isHighlighted)}
           lessonCount={unit.lessons?.length}
-          saveProps={getSavePropsForUnitCard(unit, isSignedIn)}
+          saveProps={getSavePropsForUnitCard(unit)}
           index={index + 1}
         />
       </OakGridArea>

@@ -3,13 +3,12 @@ import { getKeyStageTitle } from "./UnitList";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import { Unit } from "@/utils/curriculum/types";
 
-export const getSavePropsForUnitCard = (unit: Unit, isSignedIn?: boolean) => {
+export const getSavePropsForUnitCard = (unit: Unit) => {
   const isOptionalityUnit = unit.unit_options.length > 0;
 
-  const showSave = isSignedIn && !isOptionalityUnit;
-
-  return showSave
-    ? {
+  return isOptionalityUnit
+    ? undefined
+    : {
         unitSlug: unit.slug,
         unitTitle: unit.title,
         programmeSlug: createTeacherProgrammeSlug(
@@ -25,6 +24,5 @@ export const getSavePropsForUnitCard = (unit: Unit, isSignedIn?: boolean) => {
           subjectTitle: unit.subject,
           subjectSlug: unit.subject_slug,
         },
-      }
-    : undefined;
+      };
 };
