@@ -4,6 +4,7 @@ import z from "zod";
 import { useUser } from "@clerk/nextjs";
 
 import { getTagsForUnitCard } from "./getTagsForUnitCard";
+import { getSavePropsForUnitCard } from "./getSavePropsForUnitCard";
 
 import { isHighlightedUnit } from "@/utils/curriculum/filteringApp";
 import {
@@ -76,22 +77,7 @@ export function ProgrammeUnitList({
           })}
           onClickLink={() => onClick(unit, isHighlighted)}
           lessonCount={unit.lessons?.length}
-          saveProps={
-            isSignedIn
-              ? {
-                  unitSlug: unit.slug,
-                  unitTitle: unit.title,
-                  programmeSlug: createTeacherProgrammeSlug(unit),
-                  trackingProps: {
-                    savedFrom: "unit_listing_save_button",
-                    keyStageSlug: unit.keystage_slug,
-                    keyStageTitle: getKeyStageTitle(unit.keystage_slug),
-                    subjectTitle: unit.subject,
-                    subjectSlug: unit.subject_slug,
-                  },
-                }
-              : undefined
-          }
+          saveProps={getSavePropsForUnitCard(unit, isSignedIn)}
           index={index + 1}
         />
       </OakGridArea>
