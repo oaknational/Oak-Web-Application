@@ -3,6 +3,8 @@ import { keystageSlugs } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
 import { useUser } from "@clerk/nextjs";
 
+import { getTagsForUnitCard } from "./getTagsForUnitCard";
+
 import { isHighlightedUnit } from "@/utils/curriculum/filteringApp";
 import {
   CurriculumFilters,
@@ -53,9 +55,6 @@ export function ProgrammeUnitList({
 
   function getItems(unit: Unit, index: number) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
-    const subjectCategoryTags = unit.subjectcategories?.map((category) => ({
-      label: category.title,
-    }));
 
     return (
       <OakGridArea
@@ -68,7 +67,7 @@ export function ProgrammeUnitList({
           layoutVariant="vertical"
           title={unit.title}
           isHighlighted={isHighlighted}
-          tags={subjectCategoryTags}
+          tags={getTagsForUnitCard(unit)}
           // TD: [integrated journey] optionality units
           href={resolveOakHref({
             page: "lesson-index",
