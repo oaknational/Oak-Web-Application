@@ -14,7 +14,6 @@ import {
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { PortableTextJSON } from "@/common-lib/cms-types";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
@@ -24,43 +23,71 @@ import { CurriculumPartners } from "@/components/GenericPagesComponents/Curricul
 import { GuidingPrinciples } from "@/components/GenericPagesComponents/GuidingPrinciples";
 import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
 import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
+import CMSClient from "@/node-lib/cms";
+import { OaksCurriculaPage as OaksCurriculaPageData } from "@/common-lib/cms-types/aboutPages";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-export type OaksCurriculaPage = {
-  pageData: {
-    header: {
-      textRaw: PortableTextJSON;
-    };
-    partners: {
-      current: { imageUrl: string; alt: string }[];
-      legacy: { imageUrl: string; alt: string }[];
-    };
-    curriculumPhaseOptions: SubjectPhasePickerData;
-  };
+export type OaksCurriculaPageProps = {
+  pageData: OaksCurriculaPageData;
+  curriculumPhaseOptions: SubjectPhasePickerData;
   topNav: TopNavProps;
 };
 
-export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
+export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
   pageData,
+  curriculumPhaseOptions,
   topNav,
 }) => {
+  const trimmedSubtitle = trimTrailingEmptyBlocks(
+    pageData.header.subtitlePortableText,
+  );
+
+  const headerImageUrl = getProxiedSanityAssetUrl(
+    pageData.header.image?.asset?.url,
+  );
+  const headerImageAlt = pageData.header.image?.altText ?? "";
+
+  const guidingPrinciplesImageUrl =
+    getProxiedSanityAssetUrl(pageData.guidingPrinciples.image?.asset?.url) ??
+    undefined;
+  const guidingPrinciplesImageAlt =
+    pageData.guidingPrinciples.image?.altText ?? "";
+
+  const currentPartnerItems = (pageData.currentPartners.partners ?? []).map(
+    (partner) => ({
+      imageUrl: getProxiedSanityAssetUrl(partner.logo?.asset?.url) ?? "",
+      alt: partner.logo?.altText ?? "",
+    }),
+  );
+
+  const legacyPartnerItems = (pageData.legacyPartners.partners ?? []).map(
+    (partner) => ({
+      imageUrl: getProxiedSanityAssetUrl(partner.logo?.asset?.url) ?? "",
+      alt: partner.logo?.altText ?? "",
+    }),
+  );
+
   return (
     <Layout
-      seoProps={getSeoProps(null)}
+      seoProps={getSeoProps(pageData.seo ?? null)}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
       <AboutUsLayout>
         <AboutSharedHeader
-          title={"Oak’s curricula"}
-          content={pageData.header.textRaw}
+          title={"Oak's curricula"}
+          content={trimmedSubtitle ?? ""}
           titleHighlight="bg-decorative4-main"
         >
-          <AboutSharedHeaderImage
-            imageAlt=""
-            imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/planning-curriculum_xhs7ev.svg"
-          />
+          {headerImageUrl && (
+            <AboutSharedHeaderImage
+              imageAlt={headerImageAlt}
+              imageUrl={headerImageUrl}
+            />
+          )}
         </AboutSharedHeader>
         <OakBox $background={"bg-decorative4-very-subdued"}>
           <OakMaxWidth $pv={"spacing-80"} $ph={["spacing-16"]}>
@@ -111,6 +138,9 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
               <GuidingPrinciples
                 $background="bg-primary"
                 accentColor="border-decorative4"
+                imageUrl={guidingPrinciplesImageUrl}
+                imageAlt={guidingPrinciplesImageAlt}
+                principles={pageData.guidingPrinciples.principles}
               />
               <OakFlex
                 $flexDirection="column"
@@ -121,74 +151,47 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
                   tag="h2"
                   $font={["heading-5", "heading-4", "heading-4"]}
                 >
-                  See Oak’s curriculum in practice
+                  See Oak&apos;s curriculum in practice
                 </OakHeading>
-                <SubjectPhasePicker {...pageData.curriculumPhaseOptions} />
+                <SubjectPhasePicker {...curriculumPhaseOptions} />
               </OakFlex>
             </OakFlex>
           </OakMaxWidth>
         </OakBox>
-        <OakMaxWidth>
-          <OakFlex
-            $gap={"spacing-56"}
-            $pt={"spacing-80"}
-            $flexDirection={"column"}
-          >
-            <OakHeading
-              tag="h2"
-              $font={["heading-4", "heading-3", "heading-3"]}
+        {(currentPartnerItems.length > 0 || legacyPartnerItems.length > 0) && (
+          <OakMaxWidth>
+            <OakFlex
+              $gap={"spacing-56"}
+              $pt={"spacing-80"}
+              $flexDirection={"column"}
             >
-              Curriculum partners
-            </OakHeading>
-            <CurriculumPartners
-              title="Current"
-              text="Partners involved in the creation of our new curricula (published after September 2022)."
-              items={pageData.partners.current}
-            />
-            <CurriculumPartners
-              title="Legacy"
-              text="Partners involved in the creation of our previous curricula (published before September 2022)."
-              items={pageData.partners.legacy}
-            />
-          </OakFlex>
-        </OakMaxWidth>
-        <OakBox $pa={"spacing-16"} $borderStyle={"solid"}>
-          TODO: Can oak support you
-        </OakBox>
+              <OakHeading
+                tag="h2"
+                $font={["heading-4", "heading-3", "heading-3"]}
+              >
+                Curriculum partners
+              </OakHeading>
+              {currentPartnerItems.length > 0 && (
+                <CurriculumPartners
+                  title="Current"
+                  text="Partners involved in the creation of our new curricula (published after September 2022)."
+                  items={currentPartnerItems}
+                />
+              )}
+              {legacyPartnerItems.length > 0 && (
+                <CurriculumPartners
+                  title="Legacy"
+                  text="Partners involved in the creation of our previous curricula (published before September 2022)."
+                  items={legacyPartnerItems}
+                />
+              )}
+            </OakFlex>
+          </OakMaxWidth>
+        )}
       </AboutUsLayout>
     </Layout>
   );
 };
-
-const mockPartnerImages = new Array(16).fill(true).map((_, index) => {
-  return {
-    imageUrl: `/images/oak-national-academy-logo-512.png#${index}`,
-    alt: "",
-  };
-});
-
-const mockData: Omit<OaksCurriculaPage["pageData"], "curriculumPhaseOptions"> =
-  {
-    header: {
-      textRaw: [
-        {
-          style: "normal",
-          _type: "block",
-          children: [
-            {
-              _type: "span",
-              marks: [],
-              text: "Oak offers complete curriculum support for clarity and coherence in every national curriculum subject - designed by experts, for every classroom.",
-            },
-          ],
-        },
-      ],
-    },
-    partners: {
-      current: mockPartnerImages,
-      legacy: mockPartnerImages,
-    },
-  };
 
 const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
@@ -200,29 +203,41 @@ const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   };
 
 export const getServerSideProps = (async (context) => {
-  const pageData = {
-    ...mockData,
-    curriculumPhaseOptions: await fetchSubjectPhasePickerData(),
-  };
+  const isPreviewMode = context.preview === true;
 
   const enableV2 = await isNewAboutUsPagesEnabled(
     posthogApiKey,
     context.req.cookies,
   );
-  const topNav = await curriculumApi2023.topNav();
 
-  if (!enableV2 || !pageData) {
+  if (!enableV2) {
     return {
       notFound: true,
     };
   }
 
+  const pageData = await CMSClient.oaksCurriculaPage({
+    previewMode: isPreviewMode,
+  });
+
+  if (!pageData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const [curriculumPhaseOptions, topNav] = await Promise.all([
+    fetchSubjectPhasePickerData(),
+    curriculumApi2023.topNav(),
+  ]);
+
   return {
     props: {
       pageData,
+      curriculumPhaseOptions,
       topNav,
     },
   };
-}) satisfies GetServerSideProps<OaksCurriculaPage>;
+}) satisfies GetServerSideProps<OaksCurriculaPageProps>;
 
 export default OaksCurricula;
