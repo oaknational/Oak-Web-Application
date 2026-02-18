@@ -1,7 +1,9 @@
 import { OakBox } from "@oaknational/oak-components";
 import { ReactNode } from "react";
 
-export function NewGutterMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
+export function NewGutterMaxWidth({
+  children,
+}: Readonly<{ children: ReactNode }>) {
   return (
     <OakBox
       $maxWidth={"spacing-1280"}

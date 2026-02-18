@@ -17,7 +17,10 @@ import CMSClient from "@/node-lib/cms";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import Layout from "@/components/AppComponents/Layout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { AboutSharedHeader, AboutSharedHeaderImage } from "@/components/GenericPagesComponents/AboutSharedHeader";
+import {
+  AboutSharedHeader,
+  AboutSharedHeaderImage,
+} from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
@@ -76,7 +79,10 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
           />
         </AboutSharedHeader>
         <NewGutterMaxWidth>
-          <OakFlex $gap={["spacing-0", "spacing-16", "spacing-16"]} $pb={"spacing-80"}>
+          <OakFlex
+            $gap={["spacing-0", "spacing-16", "spacing-16"]}
+            $pb={"spacing-80"}
+          >
             <OakBox $pb={"spacing-80"}>
               <OakBox
                 $position={"sticky"}

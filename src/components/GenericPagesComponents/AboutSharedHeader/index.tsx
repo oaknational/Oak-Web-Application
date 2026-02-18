@@ -121,10 +121,7 @@ export function AboutSharedHeader({
         $overflow={"hidden"}
       >
         <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-          <OakHeading
-            tag="h1"
-            $font={["heading-4", "heading-2", "heading-2"]}
-          >
+          <OakHeading tag="h1" $font={["heading-4", "heading-2", "heading-2"]}>
             <OakSpan
               $background={titleHighlight ?? "bg-decorative1-main"}
               $ph={"spacing-4"}
@@ -135,11 +132,7 @@ export function AboutSharedHeader({
           </OakHeading>
           {typeof content === "string" ? (
             <OakP
-              $font={[
-                "heading-light-5",
-                "heading-light-3",
-                "heading-light-3",
-              ]}
+              $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
               $color={"text-primary"}
             >
               {content}

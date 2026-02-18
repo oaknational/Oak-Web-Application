@@ -50,24 +50,32 @@ const UnstyledLi = styled.li`
   list-style: none;
 `;
 
-
-const curriculaCardsInfo: Array<{ iconName: OakIconName; iconWidth: OakAllSpacingToken; text: string }> = [{
-  iconName: "clipboard",
-  iconWidth: "spacing-48",
-  text: "National curriculum and exam board aligned",
-}, {
-  iconName: "free-tag",
-  iconWidth: "spacing-80",
-  text: "Free and always will be",
-}, {
-  iconName: "book-steps",
-  iconWidth: "spacing-72",
-  text: "Covers key stages 1-4 across 20 subjects",
-}, {
-  iconName: "threads",
-  iconWidth: "spacing-64",
-  text: "Fully sequenced and ready to adapt",
-}];
+const curriculaCardsInfo: Array<{
+  iconName: OakIconName;
+  iconWidth: OakAllSpacingToken;
+  text: string;
+}> = [
+  {
+    iconName: "clipboard",
+    iconWidth: "spacing-48",
+    text: "National curriculum and exam board aligned",
+  },
+  {
+    iconName: "free-tag",
+    iconWidth: "spacing-80",
+    text: "Free and always will be",
+  },
+  {
+    iconName: "book-steps",
+    iconWidth: "spacing-72",
+    text: "Covers key stages 1-4 across 20 subjects",
+  },
+  {
+    iconName: "threads",
+    iconWidth: "spacing-64",
+    text: "Fully sequenced and ready to adapt",
+  },
+];
 
 export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
   pageData,
@@ -92,7 +100,11 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
         </AboutSharedHeader>
         <OakBox $background={"bg-decorative4-very-subdued"}>
           <NewGutterMaxWidth>
-            <OakFlex $flexDirection={"column"} $gap={"spacing-56"} $pv={["spacing-56", "spacing-80"]}>
+            <OakFlex
+              $flexDirection={"column"}
+              $gap={"spacing-56"}
+              $pv={["spacing-56", "spacing-80"]}
+            >
               <OakFlex
                 as="ul"
                 $flexDirection={["column", "row"]}

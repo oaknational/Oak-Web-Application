@@ -104,17 +104,15 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
       topNavProps={topNav}
     >
       <NewGutterMaxWidth>
-        <OakFlex
-          $pt={"spacing-24"}
-          $color={"text-primary"}
-        >
-          <Breadcrumbs breadcrumbs={breadcrumbs}/>
+        <OakFlex $pt={"spacing-24"} $color={"text-primary"}>
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
         </OakFlex>
         <OakGrid
           $pt={["spacing-40", "spacing-56"]}
           $pb={["spacing-56", "spacing-80"]}
           $cg={["spacing-0", "spacing-16"]}
-          $rg={"spacing-24"}>
+          $rg={"spacing-24"}
+        >
           {/* Image - Desktop/Tablet only (left column) */}
           <OakGridArea
             $colSpan={[12, 4]}
@@ -139,118 +137,113 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 
           {/* All text content (right column on desktop, full width on mobile) */}
           <OakGridArea $colSpan={[12, 8]} $order={2}>
-              {/* Header group - category, name, job title */}
-              <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-                {/* Category + Name */}
-                <OakFlex $flexDirection={"column"} $gap={"spacing-4"}>
-                  <OakTypography
-                    $font={["heading-light-7", "heading-light-6"]}
-                    $color={"text-primary"}
-                  >
-                    {category}
-                  </OakTypography>
-                  <OakHeading
-                    tag="h1"
-                    $font={["heading-3", "heading-2"]}
-                    $color={"text-primary"}
-                  >
-                    {name}
-                  </OakHeading>
-                </OakFlex>
-
-                {/* Job title */}
-                {role && (
-                  <OakBox
-                    $background={"bg-decorative5-main"}
-                    $color={"text-primary"}
-                    $ph={"spacing-4"}
-                    style={{ width: "fit-content" }}
-                  >
-                    <OakTypography
-                      $font={["heading-light-5", "heading-light-4"]}
-                    >
-                      {role}
-                    </OakTypography>
-                  </OakBox>
-                )}
+            {/* Header group - category, name, job title */}
+            <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+              {/* Category + Name */}
+              <OakFlex $flexDirection={"column"} $gap={"spacing-4"}>
+                <OakTypography
+                  $font={["heading-light-7", "heading-light-6"]}
+                  $color={"text-primary"}
+                >
+                  {category}
+                </OakTypography>
+                <OakHeading
+                  tag="h1"
+                  $font={["heading-3", "heading-2"]}
+                  $color={"text-primary"}
+                >
+                  {name}
+                </OakHeading>
               </OakFlex>
 
-              {/* Image - Mobile only (between header and socials) */}
-              {imageUrl && (
-                <OakBox $display={["block", "none"]} style={{ width: "75%" }}>
-                  <OakBox
-                    $borderRadius={"border-radius-l"}
-                    $overflow={"hidden"}
-                  >
-                    <OakImage
-                      src={imageUrl}
-                      alt={image?.altText ?? ""}
-                      $width={"100%"}
-                      $aspectRatio={"2/3"}
-                      $objectFit={"cover"}
-                      style={{ objectPosition: "center" }}
-                    />
-                  </OakBox>
-                </OakBox>
-              )}
-
-              {/* Socials */}
-              {socials && (socials.twitterUsername || socials.linkedinUrl) && (
-                <OakFlex
-                  $gap={"spacing-12"}
-                  style={{ width: "fit-content" }}
-                  aria-label={`${name}'s social media links`}
-                  role="group"
-                >
-                  {socials.linkedinUrl && (
-                    <SocialButton
-                      socialType="linkedin"
-                      profileHref={socials.linkedinUrl}
-                    />
-                  )}
-                  {socials.twitterUsername && (
-                    <SocialButton
-                      socialType="x"
-                      profileHref={`https://x.com/${socials.twitterUsername}`}
-                    />
-                  )}
-                </OakFlex>
-              )}
-
-              {/* Bio */}
-              {trimmedBio && (
+              {/* Job title */}
+              {role && (
                 <OakBox
-                  $font={["body-2", "body-1"]}
+                  $background={"bg-decorative5-main"}
                   $color={"text-primary"}
-                  $pb={"spacing-16"}
+                  $ph={"spacing-4"}
+                  style={{ width: "fit-content" }}
                 >
-                  <PortableTextWithDefaults value={trimmedBio} />
+                  <OakTypography $font={["heading-light-5", "heading-light-4"]}>
+                    {role}
+                  </OakTypography>
                 </OakBox>
               )}
+            </OakFlex>
 
-              {/* Navigation buttons */}
-              {(prevHref || nextHref) && (
-                <OakFlex
-                  as="nav"
-                  $gap={"spacing-16"}
-                  aria-label="Team member navigation"
-                >
-                  {prevHref && (
-                    <ProfileLinkButton href={prevHref} iconName="arrow-left">
-                      Previous profile
-                    </ProfileLinkButton>
-                  )}
-                  {nextHref && (
-                    <ProfileLinkButton
-                      href={nextHref}
-                      iconName="arrow-right"
-                      isTrailingIcon
-                    >
-                      Next profile
-                    </ProfileLinkButton>
-                  )}
-                </OakFlex>
-              )}
+            {/* Image - Mobile only (between header and socials) */}
+            {imageUrl && (
+              <OakBox $display={["block", "none"]} style={{ width: "75%" }}>
+                <OakBox $borderRadius={"border-radius-l"} $overflow={"hidden"}>
+                  <OakImage
+                    src={imageUrl}
+                    alt={image?.altText ?? ""}
+                    $width={"100%"}
+                    $aspectRatio={"2/3"}
+                    $objectFit={"cover"}
+                    style={{ objectPosition: "center" }}
+                  />
+                </OakBox>
+              </OakBox>
+            )}
+
+            {/* Socials */}
+            {socials && (socials.twitterUsername || socials.linkedinUrl) && (
+              <OakFlex
+                $gap={"spacing-12"}
+                style={{ width: "fit-content" }}
+                aria-label={`${name}'s social media links`}
+                role="group"
+              >
+                {socials.linkedinUrl && (
+                  <SocialButton
+                    socialType="linkedin"
+                    profileHref={socials.linkedinUrl}
+                  />
+                )}
+                {socials.twitterUsername && (
+                  <SocialButton
+                    socialType="x"
+                    profileHref={`https://x.com/${socials.twitterUsername}`}
+                  />
+                )}
+              </OakFlex>
+            )}
+
+            {/* Bio */}
+            {trimmedBio && (
+              <OakBox
+                $font={["body-2", "body-1"]}
+                $color={"text-primary"}
+                $pb={"spacing-16"}
+              >
+                <PortableTextWithDefaults value={trimmedBio} />
+              </OakBox>
+            )}
+
+            {/* Navigation buttons */}
+            {(prevHref || nextHref) && (
+              <OakFlex
+                as="nav"
+                $gap={"spacing-16"}
+                aria-label="Team member navigation"
+              >
+                {prevHref && (
+                  <ProfileLinkButton href={prevHref} iconName="arrow-left">
+                    Previous profile
+                  </ProfileLinkButton>
+                )}
+                {nextHref && (
+                  <ProfileLinkButton
+                    href={nextHref}
+                    iconName="arrow-right"
+                    isTrailingIcon
+                  >
+                    Next profile
+                  </ProfileLinkButton>
+                )}
+              </OakFlex>
+            )}
           </OakGridArea>
         </OakGrid>
       </NewGutterMaxWidth>
