@@ -148,6 +148,7 @@ const ModalContent = ({
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={data}
+            context={"integrated-journey"}
           />
         )}
         {shouldDisplayFilter(data, filters, "tiers") && (
@@ -155,6 +156,7 @@ const ModalContent = ({
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={data}
+            context={"integrated-journey"}
           />
         )}
       </OakFlex>
