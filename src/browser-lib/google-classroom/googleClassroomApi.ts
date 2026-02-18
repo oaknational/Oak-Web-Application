@@ -1,11 +1,21 @@
 "use client";
 
-const getOakGCAuthHeaders = async (): Promise<Headers | undefined> => {
+import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
+
+const getOakGCAuthHeaders = async (
+  isPupil?: boolean,
+): Promise<Headers | undefined> => {
   if (!globalThis?.cookieStore) return undefined;
-  const session = (await globalThis.cookieStore.get("oak-gclassroom-session"))
-    ?.value;
-  const token = (await globalThis.cookieStore.get("oak-gclassroom-token"))
-    ?.value;
+  const session = (
+    await globalThis.cookieStore.get(
+      isPupil ? AuthCookieKeys.PupilSession : AuthCookieKeys.Session,
+    )
+  )?.value;
+  const token = (
+    await globalThis.cookieStore.get(
+      isPupil ? AuthCookieKeys.PupilAccessToken : AuthCookieKeys.AccessToken,
+    )
+  )?.value;
   let headers: Headers | undefined;
   if (session && token) {
     headers = new Headers();
@@ -60,15 +70,20 @@ const sendRequest = async <returnType, payload = undefined>(
 const getGoogleSignInUrl = async (
   loginHint: string | null,
   subscribeToNewsletter?: boolean,
+  isPupil?: boolean,
 ): Promise<string | null> => {
   try {
-    const params = new URLSearchParams();
-    if (loginHint) params.set("login_hint", loginHint);
-    if (subscribeToNewsletter) params.set("subscribeToNewsletter", "true");
-    const query = params.toString();
-    const url = query
-      ? `/api/classroom/auth/sign-in?${query}`
-      : `/api/classroom/auth/sign-in`;
+    const basePath = "/api/classroom/auth/sign-in";
+    const searchParams = new URLSearchParams();
+
+    if (loginHint) searchParams.append("login_hint", loginHint);
+    if (isPupil) searchParams.append("is_pupil", "true");
+    if (subscribeToNewsletter)
+      searchParams.set("subscribeToNewsletter", "true");
+
+    const paramsString = searchParams.toString();
+    const url = paramsString ? `${basePath}?${paramsString}` : basePath;
+
     const data = await sendRequest<{ signInUrl: string }>(url);
     return data.signInUrl ?? null;
   } catch (error) {
@@ -77,37 +92,40 @@ const getGoogleSignInUrl = async (
   }
 };
 
-const verifySession = async (): Promise<{
-  authenticated: boolean;
-  session: string | undefined;
-  token: string | undefined;
-  userProfilePicUrl?: string;
-}> => {
-  try {
-    const headers = await getOakGCAuthHeaders();
-    const data = await sendRequest<{
-      authenticated: boolean;
-      session: string | undefined;
-      token: string | undefined;
-      userProfilePicUrl?: string;
-    }>(`/api/classroom/auth/verify`, "GET", undefined, headers);
+const verifySession =
+  (isPupil?: boolean) =>
+  async (): Promise<{
+    authenticated: boolean;
+    session: string | undefined;
+    token: string | undefined;
+    userProfilePicUrl?: string;
+  }> => {
+    try {
+      const headers = await getOakGCAuthHeaders(isPupil);
 
-    return {
-      authenticated: data.authenticated ?? false,
-      session: data.session,
-      token: data.token,
-      userProfilePicUrl: data.userProfilePicUrl,
-    };
-  } catch (error) {
-    console.error("Session verification error:", error);
-    return {
-      authenticated: false,
-      session: undefined,
-      token: undefined,
-      userProfilePicUrl: undefined,
-    };
-  }
-};
+      const data = await sendRequest<{
+        authenticated: boolean;
+        session: string | undefined;
+        token: string | undefined;
+        userProfilePicUrl?: string;
+      }>("/api/classroom/auth/verify", "GET", undefined, headers);
+
+      return {
+        authenticated: data.authenticated ?? false,
+        session: data.session,
+        token: data.token,
+        userProfilePicUrl: data.userProfilePicUrl,
+      };
+    } catch (error) {
+      console.error("Session verification error:", error);
+      return {
+        authenticated: false,
+        session: undefined,
+        token: undefined,
+        userProfilePicUrl: undefined,
+      };
+    }
+  };
 
 const createAttachment = async (attachment: {
   courseId: string;

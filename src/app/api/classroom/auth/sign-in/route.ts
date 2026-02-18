@@ -15,12 +15,15 @@ export async function GET(request: NextRequest) {
     const loginHint = searchParams.get("login_hint") ?? undefined;
     const subscribeToNewsletter =
       searchParams.get("subscribeToNewsletter") === "true";
+    const isPupil = searchParams.get("is_pupil") === "true";
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
-    const response = await oakClassroomClient.getGoogleSignInUrl(
-      loginHint,
-      subscribeToNewsletter,
-    );
+    const response = isPupil
+      ? await oakClassroomClient.getPupilGoogleSignInUrl(loginHint)
+      : await oakClassroomClient.getGoogleSignInUrl(
+          loginHint,
+          subscribeToNewsletter,
+        );
 
     return NextResponse.json({ signInUrl: response }, { status: 200 });
   } catch (error) {

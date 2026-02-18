@@ -3,6 +3,7 @@ import {
   ErrorSeverity,
   ExceptionType,
 } from "@oaknational/google-classroom-addon/server";
+import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
 import GoogleClassroomApi from "./googleClassroomApi";
 
@@ -69,7 +70,7 @@ describe("Google Classroom API", () => {
       mockJsonResponse({ authenticated: false });
 
       // Act
-      await GoogleClassroomApi.verifySession();
+      await GoogleClassroomApi.verifySession()();
 
       // Assert
       const callArgs = mockFetch.mock.calls[0][1];
@@ -136,15 +137,57 @@ describe("Google Classroom API", () => {
       expect(mockFetch).toHaveBeenCalledTimes(1);
       expect(result).toBeNull();
     });
+
+    it("should include is_pupil param when isPupil is true", async () => {
+      // Arrange
+      const loginHint = "123456789";
+      const mockUrl = "https://google.com/signin";
+      mockJsonResponse({ signInUrl: mockUrl });
+
+      // Act
+      const result = await GoogleClassroomApi.getGoogleSignInUrl(
+        loginHint,
+        undefined,
+        true,
+      );
+
+      // Assert
+      expect(mockFetch).toHaveBeenCalledWith(
+        `/api/classroom/auth/sign-in?login_hint=${loginHint}&is_pupil=true`,
+        expect.objectContaining({
+          credentials: "include",
+          method: "GET",
+        }),
+      );
+      expect(result).toBe(mockUrl);
+    });
+
+    it("should not include is_pupil param when isPupil is false or undefined", async () => {
+      // Arrange
+      const mockUrl = "https://google.com/signin";
+      mockJsonResponse({ signInUrl: mockUrl });
+
+      // Act
+      await GoogleClassroomApi.getGoogleSignInUrl("hint", undefined, false);
+
+      // Assert
+      expect(mockFetch).toHaveBeenCalledWith(
+        `/api/classroom/auth/sign-in?login_hint=hint`,
+        expect.objectContaining({
+          credentials: "include",
+          method: "GET",
+        }),
+      );
+    });
   });
 
   describe("verifySession", () => {
     it("should include auth headers when cookies are present", async () => {
       // Arrange
       mockCookieStore.get.mockImplementation((name) => {
-        if (name === "oak-gclassroom-session")
+        if (name === AuthCookieKeys.Session)
           return Promise.resolve({ value: "test-session" });
-        if (name === "oak-gclassroom-token")
+        if (name === AuthCookieKeys.AccessToken)
           return Promise.resolve({ value: "test-token" });
         return Promise.resolve(null);
       });
@@ -152,7 +195,7 @@ describe("Google Classroom API", () => {
       mockJsonResponse({ authenticated: true });
 
       // Act
-      await GoogleClassroomApi.verifySession();
+      await GoogleClassroomApi.verifySession()();
 
       // Assert
       expect(mockFetch).toHaveBeenCalledWith(
@@ -173,7 +216,7 @@ describe("Google Classroom API", () => {
       mockJsonResponse({ authenticated: false });
 
       // Act
-      await GoogleClassroomApi.verifySession();
+      await GoogleClassroomApi.verifySession()();
 
       // Assert
       const callArgs = mockFetch.mock.calls[0][1];
@@ -183,9 +226,9 @@ describe("Google Classroom API", () => {
     it("should call the verify API and return authenticated: true", async () => {
       // Arrange
       mockCookieStore.get.mockImplementation((name) => {
-        if (name === "oak-gclassroom-session")
+        if (name === AuthCookieKeys.Session)
           return Promise.resolve({ value: "test-session" });
-        if (name === "oak-gclassroom-token")
+        if (name === AuthCookieKeys.AccessToken)
           return Promise.resolve({ value: "test-token" });
         return Promise.resolve(null);
       });
@@ -195,7 +238,7 @@ describe("Google Classroom API", () => {
       expectedHeaders.append("X-Oakgc-Session", "test-session");
 
       // Act
-      const result = await GoogleClassroomApi.verifySession();
+      const result = await GoogleClassroomApi.verifySession()();
 
       // Assert
       expect(mockFetch).toHaveBeenCalledTimes(1);
@@ -210,16 +253,16 @@ describe("Google Classroom API", () => {
     it("should return authenticated: false if API returns false", async () => {
       // Arrange
       mockCookieStore.get.mockImplementation((name) => {
-        if (name === "oak-gclassroom-session")
+        if (name === AuthCookieKeys.Session)
           return Promise.resolve({ value: "test-session" });
-        if (name === "oak-gclassroom-token")
+        if (name === AuthCookieKeys.AccessToken)
           return Promise.resolve({ value: "test-token" });
         return Promise.resolve(null);
       });
       mockJsonResponse({ authenticated: false });
 
       // Act
-      const result = await GoogleClassroomApi.verifySession();
+      const result = await GoogleClassroomApi.verifySession()();
 
       // Assert
       expect(mockFetch).toHaveBeenCalledTimes(1);
@@ -229,16 +272,16 @@ describe("Google Classroom API", () => {
     it("should return authenticated: false if API response is malformed", async () => {
       // Arrange
       mockCookieStore.get.mockImplementation((name) => {
-        if (name === "oak-gclassroom-session")
+        if (name === AuthCookieKeys.Session)
           return Promise.resolve({ value: "test-session" });
-        if (name === "oak-gclassroom-token")
+        if (name === AuthCookieKeys.AccessToken)
           return Promise.resolve({ value: "test-token" });
         return Promise.resolve(null);
       });
       mockJsonResponse({});
 
       // Act
-      const result = await GoogleClassroomApi.verifySession();
+      const result = await GoogleClassroomApi.verifySession()();
 
       // Assert
       expect(mockFetch).toHaveBeenCalledTimes(1);
@@ -248,9 +291,9 @@ describe("Google Classroom API", () => {
     it("should return session and token from API response", async () => {
       // Arrange
       mockCookieStore.get.mockImplementation((name) => {
-        if (name === "oak-gclassroom-session")
+        if (name === AuthCookieKeys.Session)
           return Promise.resolve({ value: "test-session" });
-        if (name === "oak-gclassroom-token")
+        if (name === AuthCookieKeys.AccessToken)
           return Promise.resolve({ value: "test-token" });
         return Promise.resolve(null);
       });
@@ -261,7 +304,7 @@ describe("Google Classroom API", () => {
       });
 
       // Act
-      const result = await GoogleClassroomApi.verifySession();
+      const result = await GoogleClassroomApi.verifySession()();
 
       // Assert
       expect(result).toEqual({
@@ -270,15 +313,55 @@ describe("Google Classroom API", () => {
         token: "new-token",
       });
     });
+
+    it("should use pupil cookie keys when isPupil is true", async () => {
+      // Arrange
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === AuthCookieKeys.PupilAccessToken)
+          return Promise.resolve({ value: "pupil-token-val" });
+        if (name === AuthCookieKeys.PupilSession)
+          return Promise.resolve({ value: "pupil-session-val" });
+        return Promise.resolve(null);
+      });
+      mockJsonResponse({ authenticated: true });
+
+      // Act
+      await GoogleClassroomApi.verifySession(true)();
+
+      // Assert
+      expect(mockFetch).toHaveBeenCalledWith(
+        `/api/classroom/auth/verify`,
+        expect.objectContaining({
+          method: "GET",
+          headers: expect.any(Headers),
+        }),
+      );
+      const callArgs = mockFetch.mock.calls[0][1];
+      expect(callArgs.headers.get("Authorization")).toBeTruthy();
+      expect(callArgs.headers.get("X-Oakgc-Session")).toBeTruthy();
+    });
+
+    it("should not include headers when pupil cookies are missing", async () => {
+      // Arrange
+      mockCookieStore.get.mockResolvedValue(null);
+      mockJsonResponse({ authenticated: false });
+
+      // Act
+      await GoogleClassroomApi.verifySession(true)();
+
+      // Assert
+      const callArgs = mockFetch.mock.calls[0][1];
+      expect(callArgs.headers).toBeUndefined();
+    });
   });
 
   describe("createAttachment", () => {
     it("should call the create attachment API with correct parameters", async () => {
       // Arrange
       mockCookieStore.get.mockImplementation((name) => {
-        if (name === "oak-gclassroom-session")
+        if (name === AuthCookieKeys.Session)
           return Promise.resolve({ value: "test-session" });
-        if (name === "oak-gclassroom-token")
+        if (name === AuthCookieKeys.AccessToken)
           return Promise.resolve({ value: "test-token" });
         return Promise.resolve(null);
       });
@@ -312,9 +395,9 @@ describe("Google Classroom API", () => {
     it("should include auth headers when creating attachment", async () => {
       // Arrange
       mockCookieStore.get.mockImplementation((name) => {
-        if (name === "oak-gclassroom-session")
+        if (name === AuthCookieKeys.Session)
           return Promise.resolve({ value: "test-session" });
-        if (name === "oak-gclassroom-token")
+        if (name === AuthCookieKeys.AccessToken)
           return Promise.resolve({ value: "test-token" });
         return Promise.resolve(null);
       });
@@ -343,9 +426,9 @@ describe("Google Classroom API", () => {
   describe("sendRequest error handling", () => {
     const mockAttachmentSetup = () => {
       mockCookieStore.get.mockImplementation((name) => {
-        if (name === "oak-gclassroom-session")
+        if (name === AuthCookieKeys.Session)
           return Promise.resolve({ value: "test-session" });
-        if (name === "oak-gclassroom-token")
+        if (name === AuthCookieKeys.AccessToken)
           return Promise.resolve({ value: "test-token" });
         return Promise.resolve(null);
       });
@@ -429,9 +512,9 @@ describe("Google Classroom API", () => {
     it("should propagate OakGoogleClassroomException from createAttachment", async () => {
       // Arrange
       mockCookieStore.get.mockImplementation((name) => {
-        if (name === "oak-gclassroom-session")
+        if (name === AuthCookieKeys.Session)
           return Promise.resolve({ value: "test-session" });
-        if (name === "oak-gclassroom-token")
+        if (name === AuthCookieKeys.AccessToken)
           return Promise.resolve({ value: "test-token" });
         return Promise.resolve(null);
       });
@@ -470,13 +553,14 @@ describe("Google Classroom API", () => {
       mockJsonResponse({ error: "Server error" }, 500);
 
       // Act
-      const result = await GoogleClassroomApi.verifySession();
+      const result = await GoogleClassroomApi.verifySession()();
 
       // Assert
       expect(result).toEqual({
         authenticated: false,
         session: undefined,
         token: undefined,
+        userProfilePicUrl: undefined,
       });
     });
 
