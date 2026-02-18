@@ -9,7 +9,6 @@ import {
 import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
 
 const render = renderWithProviders();
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mockPlayer = jest.fn((_props: never) => <div />);
 
 jest.mock("@/components/SharedComponents/VideoPlayer", () => ({

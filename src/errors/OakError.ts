@@ -3,44 +3,42 @@
  * @see https://github.com/firebase/firebase-admin-node/blob/7ce2345d716697d743e0234e7d45446ca11bc1da/src/utils/error.ts
  */
 
-const ERROR_CODES = [
-  "misc/unknown",
-  "misc/network-error",
-  "misc/unexpected-type",
-  "misc/import-count",
-  "search/failed-to-get-intent",
-  "search/unknown",
-  "hubspot/invalid-email",
-  "hubspot/unknown",
-  "video/unknown",
-  "video/persistent-unknown",
-  "video/fetch-signed-token",
-  "hubspot/not-loaded",
-  "hubspot/script-failed-to-load",
-  "hubspot/lost-information",
-  "hubspot/identify-no-email",
-  "preview/invalid-token",
-  "preview/zod-error",
-  "cms/invalid-reference-data",
-  "cms/invalid-hubspot-form",
-  "cms/missing-programme-page-data",
-  "getRefreshedMVTime/params-incorrect",
-  "curriculum-api/not-found",
-  "curriculum-api/uniqueness-assumption-violated",
-  "curriculum-api/internal-error",
-  "curriculum-api/params-incorrect",
-  "school-picker/fetch-suggestions",
-  "urls/failed-to-resolve",
-  "downloads/failed-to-fetch",
-  "downloads/check-files-failed",
-  "downloads/missing-auth-token",
-  "onboarding/request-error",
-  "oak-components/invalid-icon-name",
-  "educator-api/failed-to-save-unit",
-  "educator-api/failed-to-get-saved-units",
-  "educator-api/failed-to-unsave-unit",
-] as const;
-export type ErrorCode = (typeof ERROR_CODES)[number];
+export type ErrorCode =
+  | "misc/unknown"
+  | "misc/network-error"
+  | "misc/unexpected-type"
+  | "misc/import-count"
+  | "search/failed-to-get-intent"
+  | "search/unknown"
+  | "hubspot/invalid-email"
+  | "hubspot/unknown"
+  | "video/unknown"
+  | "video/persistent-unknown"
+  | "video/fetch-signed-token"
+  | "hubspot/not-loaded"
+  | "hubspot/script-failed-to-load"
+  | "hubspot/lost-information"
+  | "hubspot/identify-no-email"
+  | "preview/invalid-token"
+  | "preview/zod-error"
+  | "cms/invalid-reference-data"
+  | "cms/invalid-hubspot-form"
+  | "cms/missing-programme-page-data"
+  | "getRefreshedMVTime/params-incorrect"
+  | "curriculum-api/not-found"
+  | "curriculum-api/uniqueness-assumption-violated"
+  | "curriculum-api/internal-error"
+  | "curriculum-api/params-incorrect"
+  | "school-picker/fetch-suggestions"
+  | "urls/failed-to-resolve"
+  | "downloads/failed-to-fetch"
+  | "downloads/check-files-failed"
+  | "downloads/missing-auth-token"
+  | "onboarding/request-error"
+  | "oak-components/invalid-icon-name"
+  | "educator-api/failed-to-save-unit"
+  | "educator-api/failed-to-get-saved-units"
+  | "educator-api/failed-to-unsave-unit";
 
 type ErrorConfig = {
   // Message intended for developer's convenience. Human error messages should probably be handled in the view layer

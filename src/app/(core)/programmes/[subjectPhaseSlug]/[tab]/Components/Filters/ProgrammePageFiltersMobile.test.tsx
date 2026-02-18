@@ -2,9 +2,8 @@ import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import { usePathname } from "next/navigation";
 
-import ProgrammePageFiltersMobile, {
-  ProgrammePageMobileFiltersProps,
-} from "./ProgrammePageFiltersMobile";
+import ProgrammePageFiltersMobile from "./ProgrammePageFiltersMobile";
+import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { YearData } from "@/utils/curriculum/types";
@@ -37,6 +36,7 @@ const mockYearData: YearData = {
     isSwimming: false,
     groupAs: null,
     nationalCurriculum: [],
+    keystage: "ks3",
   },
   "8": {
     units: [
@@ -57,10 +57,11 @@ const mockYearData: YearData = {
     isSwimming: false,
     groupAs: null,
     nationalCurriculum: [],
+    keystage: "ks3",
   },
 };
 
-const defaultProps: ProgrammePageMobileFiltersProps = {
+const defaultProps: ProgrammePageFiltersProps = {
   filters: {
     years: ["7", "8"],
     tiers: [],
@@ -68,19 +69,14 @@ const defaultProps: ProgrammePageMobileFiltersProps = {
     pathways: [],
     subjectCategories: ["category-1", "category-2"],
     threads: [],
+    keystages: [],
   },
   data: {
     yearData: mockYearData,
     threadOptions: [],
     yearOptions: ["7", "8"],
+    keystages: ["ks3"],
   },
-  trackingData: {
-    subjectSlug: "english",
-    subjectTitle: "English",
-    phaseSlug: "secondary",
-  },
-  selectedYear: "year-all-7",
-  onSelectYear: jest.fn(),
   slugs: {
     subjectSlug: "english",
     phaseSlug: "secondary",
@@ -90,26 +86,30 @@ const defaultProps: ProgrammePageMobileFiltersProps = {
   onChangeFilters: jest.fn(),
 };
 
-const mockOpen = jest.fn();
-const mockClose = jest.fn();
-// Mock HTMLDialogElement methods that jsdom doesn't support
-HTMLDialogElement.prototype.showModal = mockOpen;
-HTMLDialogElement.prototype.close = mockClose;
-
 const render = renderWithProviders();
 
 describe("ProgrammePageFiltersMobile", () => {
   it("opens modal on click", async () => {
     render(<ProgrammePageFiltersMobile {...defaultProps} />);
 
-    const modalLink = screen.getByTestId("mobile-highlight-thread");
-    const user = userEvent.setup();
-    await user.click(modalLink);
+    expect(
+      screen.queryByRole("heading", { name: "Filters", level: 1 }),
+    ).not.toBeInTheDocument();
 
-    expect(mockOpen).toHaveBeenCalled();
+    const openButton = screen.getByRole("button", { name: "All filters" });
+    const user = userEvent.setup();
+    await user.click(openButton);
+
+    expect(
+      screen.getByRole("heading", { name: "Filters", level: 1 }),
+    ).toBeInTheDocument();
   });
-  it("renders correct filters", () => {
+  it("renders correct filters", async () => {
     render(<ProgrammePageFiltersMobile {...defaultProps} />);
+
+    const openButton = screen.getByRole("button", { name: "All filters" });
+    const user = userEvent.setup();
+    await user.click(openButton);
 
     const categoryFilter1 = screen.getByTestId(
       "subject-category-radio-category-1",

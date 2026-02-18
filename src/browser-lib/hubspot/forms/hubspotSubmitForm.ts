@@ -129,7 +129,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
         const hubspotSuccess = hubspotSuccessSchema.parse(responseBody);
 
         return hubspotSuccess.inlineMessage;
-      } catch (error) {
+      } catch (_error) {
         // Not an issue, form responded with 200 but optional inlineMessage was not present
       }
     }

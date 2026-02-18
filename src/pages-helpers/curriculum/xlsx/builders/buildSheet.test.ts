@@ -25,6 +25,7 @@ describe("buildSheet", () => {
       },
       threadOptions: [],
       yearOptions: ["7"],
+      keystages: [],
     };
     const year = "7";
     const slugs = {
