@@ -31,7 +31,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import TeacherSubjectDescription from "@/components/TeacherComponents/TeacherSubjectDescription/TeacherSubjectDescription";
 import { getPhaseSlugFromKeystage } from "@/fixtures/curriculum/unit";
-import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
+import type { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 /**
  * This is a header for the listing pages (lesson, unit and programme).
