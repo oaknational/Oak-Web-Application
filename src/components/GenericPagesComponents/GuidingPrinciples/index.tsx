@@ -15,7 +15,7 @@ import Illustration from "@/components/SharedComponents/Illustration";
 const StyledResponsiveFlex = styled(OakFlex)`
   flex-direction: column;
 
-  @media (min-width: 1000px) {
+  @media (min-width: 920px) {
     flex-direction: row;
   }
 `;

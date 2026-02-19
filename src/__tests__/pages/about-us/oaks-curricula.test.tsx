@@ -84,7 +84,7 @@ describe("pages/about/oaks-curricula.tsx", () => {
     expect(container).toMatchSnapshot();
     const headings = getAllByRole("heading", { level: 2 });
     expect(headings[0]).toHaveTextContent("Our guiding principles");
-    expect(headings[1]).toHaveTextContent("See Oak's curriculum in practice");
+    expect(headings[1]).toHaveTextContent("See Oak's curricula in practice");
     expect(headings[2]).toHaveTextContent("Curriculum partners");
   });
 

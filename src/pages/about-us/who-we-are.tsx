@@ -138,9 +138,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
                   <TranscriptToggle transcriptSentences={videoCaptions} />
                 </OakBox>
               )}
-              <OakBox
-              // $width={["100%", "100%", "50%"]}
-              >
+              <OakBox>
                 <OakTypography $mb={"spacing-32"} $font={["body-2", "body-1"]}>
                   <PortableTextWithDefaults
                     value={pageData.intro.bodyPortableText}
