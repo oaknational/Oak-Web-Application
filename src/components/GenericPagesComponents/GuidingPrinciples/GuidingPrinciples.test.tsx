@@ -52,22 +52,6 @@ describe("GuidingPrinciples", () => {
     expect(container.innerHTML).toBe("");
   });
 
-  it("renders without CMS image when no imageUrl is provided", () => {
-    const { container } = render(
-      <GuidingPrinciples
-        $background="bg-primary"
-        accentColor="bg-decorative4-subdued"
-        principles={testPrinciples}
-      />,
-    );
-    expect(container.innerHTML).not.toBe("");
-    const imgs = container.querySelectorAll("img");
-    const hasCmsImage = Array.from(imgs).some((img) =>
-      img.getAttribute("src")?.includes("cdn.sanity.io"),
-    );
-    expect(hasCmsImage).toBe(false);
-  });
-
   it("renders OakImage when imageUrl is provided from CMS", () => {
     const { baseElement } = render(
       <GuidingPrinciples

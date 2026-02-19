@@ -188,7 +188,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
             </OakFlex>
           </OakMaxWidth>
         )}
-        {/* TODO: Can oak support you */}
+        {/* @debt: Can oak support you section */}
       </AboutUsLayout>
     </Layout>
   );

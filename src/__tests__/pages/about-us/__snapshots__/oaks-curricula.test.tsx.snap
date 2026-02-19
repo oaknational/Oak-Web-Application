@@ -6637,6 +6637,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                     >
                       <div
                         class="c143"
+                        style="object-position: center;"
                       >
                         <img
                           alt="test image"
