@@ -1,3 +1,25 @@
+# [1.997.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.996.0...v1.997.0) (2026-02-19)
+
+
+### Bug Fixes
+
+* add missing page titles and remove duplicate suffixes on about-us pages ([d01d300](https://github.com/oaknational/Oak-Web-Application/commit/d01d300bb8f9498ef0444015778d1ba6417625dd))
+* align test description with assertion in GuidingPrinciples ([00271bb](https://github.com/oaknational/Oak-Web-Application/commit/00271bb3ea6425b0e7c6c26a5d3a3e8a69bae521))
+* clean up oaks-curricula page data handling ([2b7fbdc](https://github.com/oaknational/Oak-Web-Application/commit/2b7fbdc625514c4a6f3c90b597fcfd7d8abc27b6))
+* regenerate snapshots after npm install ([86652fc](https://github.com/oaknational/Oak-Web-Application/commit/86652fc852b9fe1dd7d165fd99759b397fb8c12f))
+* resolve remaining conflict marker in oaks-curricula snapshot ([f7cc586](https://github.com/oaknational/Oak-Web-Application/commit/f7cc5869f13be79e997008f7c0d01fedcc85276d))
+* resolve sonarqube warnings and update snapshots ([0449628](https://github.com/oaknational/Oak-Web-Application/commit/0449628f5c8e21821fb2cbb132c12ab8ad955434))
+* resolve type error for guidingPrinciplesImageUrl prop ([043b50e](https://github.com/oaknational/Oak-Web-Application/commit/043b50eacfe74bef1d043af31415b97ad061a1f7))
+* restore default principles and Illustration fallback in GuidingPrinciples ([4fb6ff5](https://github.com/oaknational/Oak-Web-Application/commit/4fb6ff5dc6be441f25ef07fce9e5f85b3a084d86))
+* update snapshots after merge from main ([652cc84](https://github.com/oaknational/Oak-Web-Application/commit/652cc84cee6b0146b0f3886d0cb01e32750399ca))
+* update stale snapshots after merge from main ([4bc9cf9](https://github.com/oaknational/Oak-Web-Application/commit/4bc9cf96e3f9d5488b2b003bfc78032a35aa4c7e))
+
+
+### Features
+
+* integrate Sanity CMS with Oak's curricula page ([2e95f25](https://github.com/oaknational/Oak-Web-Application/commit/2e95f25485b5de1c7f5b4057507070ed1574e163))
+* make GuidingPrinciples component accept optional CMS props ([8e6ae22](https://github.com/oaknational/Oak-Web-Application/commit/8e6ae22ffaf2affb2c512c832812fd7e45152d4e))
+
 # [1.996.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.995.1...v1.996.0) (2026-02-19)
 
 

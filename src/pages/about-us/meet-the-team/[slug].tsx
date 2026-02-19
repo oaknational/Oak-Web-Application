@@ -97,7 +97,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   return (
     <Layout
       seoProps={getSeoProps({
-        title: `${name} - Meet the Team | Oak National Academy`,
+        title: `${name} - Meet the Team`,
         description: role ?? undefined,
       })}
       $background={"bg-primary"}

@@ -3994,7 +3994,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
     />
     <fake-head>
       <title>
-        NEXT_PUBLIC_SEO_APP_NAME
+        Meet the Team | NEXT_PUBLIC_SEO_APP_NAME
       </title>
       <meta
         content="index,follow"
@@ -4017,7 +4017,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
         name="twitter:creator"
       />
       <meta
-        content="NEXT_PUBLIC_SEO_APP_NAME"
+        content="Meet the Team | NEXT_PUBLIC_SEO_APP_NAME"
         property="og:title"
       />
       <meta
