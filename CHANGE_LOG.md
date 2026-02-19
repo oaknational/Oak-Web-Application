@@ -1,3 +1,16 @@
+# [1.998.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.997.0...v1.998.0) (2026-02-19)
+
+
+### Bug Fixes
+
+* typo ([6aad068](https://github.com/oaknational/Oak-Web-Application/commit/6aad0684b17d3fa234efc5a47f06fabc73a2b976))
+
+
+### Features
+
+* change to enable isNewAboutUsPagesEnabled based on ENABLE_NEW_ABOUT_US constant ([d35020a](https://github.com/oaknational/Oak-Web-Application/commit/d35020a08a07a96ff548868434451a90bca538e7))
+* redirect from old about-us pages to new about-us pages ([f1d945f](https://github.com/oaknational/Oak-Web-Application/commit/f1d945fd535d2a17bf5db07641ffff23859d119d))
+
 # [1.997.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.996.0...v1.997.0) (2026-02-19)
 
 
