@@ -5,10 +5,8 @@ import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 jest.mock("@/utils/featureFlags");
 
-// Override the mock in jest setup to get access to the notFound function
-jest.mock("next/navigation", () => ({
-  ...jest.requireActual("next/navigation"),
-}));
+// Unmock the mock created in jest setup to get access to the notFound function
+jest.unmock("next/navigation");
 
 describe("/timetabling/layout.tsx", () => {
   test("basic", async () => {
