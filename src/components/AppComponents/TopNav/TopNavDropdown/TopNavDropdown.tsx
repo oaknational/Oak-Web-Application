@@ -21,6 +21,7 @@ import {
   TeachersSubNavData,
   PupilsSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export type TopNavDropdownProps = {
   focusManager:
@@ -37,13 +38,14 @@ const TeachersPhaseSection = ({
   selectedMenu,
   menuData,
   focusManager,
-  onClose,
+  onClick,
 }: {
   selectedMenu: keyof TeachersSubNavData;
   menuData: TeachersSubNavData["primary" | "secondary"];
   focusManager: DropdownFocusManager<TeachersSubNavData>;
-  onClose: () => void;
+  onClick: (subject: string, keystage: string) => void;
 }) => {
+  const { track } = useAnalytics();
   const defaultKeystage =
     menuData.children[0]?.slug || (selectedMenu === "primary" ? "ks1" : "ks3");
 
@@ -66,7 +68,19 @@ const TeachersPhaseSection = ({
     menuData.children
       .find((k) => k.slug === selectedKeystage)
       ?.children.filter((subject) => subject.nonCurriculum) ?? undefined;
+
   const onKeystageClick = (keystageSlug: string) => {
+    track.browseRefined({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "refine",
+      componentType: "topnav-browse-button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      filterType: "Key stage filter",
+      filterValue: keystageSlug,
+      activeFilters: {},
+    });
     setSelectedKeystage(keystageSlug);
   };
 
@@ -151,7 +165,7 @@ const TeachersPhaseSection = ({
       </OakUL>
       {subjects && (
         <TopNavSubjectButtons
-          handleClick={onClose}
+          handleClick={onClick}
           focusManager={focusManager}
           selectedMenu={selectedMenu}
           subjects={subjects}
@@ -294,6 +308,7 @@ const PupilsSection = ({
 
 const TopNavDropdown = (props: TopNavDropdownProps) => {
   const { activeArea, selectedMenu, teachers, pupils, focusManager } = props;
+  const { track } = useAnalytics();
 
   return (
     <OakFlex $pa={"spacing-40"}>
@@ -305,7 +320,20 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
             }
             selectedMenu={selectedMenu}
             menuData={teachers[selectedMenu]}
-            onClose={props.onClose}
+            onClick={(subject, keystage) => {
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Subject filter",
+                filterValue: subject,
+                activeFilters: { keystage: [keystage] },
+              });
+              props.onClose();
+            }}
           />
         )}
       {activeArea === "TEACHERS" &&

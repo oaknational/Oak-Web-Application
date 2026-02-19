@@ -45,9 +45,22 @@ jest.mock("next/link", () => {
   };
 });
 
+const mockBrowseAccessed = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseAccessed: (...args: []) => mockBrowseAccessed(...args),
+    },
+  }),
+}));
+
 const mockProps = topNavFixture;
 
 describe("TopNav", () => {
+  beforeEach(() => {
+    mockBrowseAccessed.mockReset();
+  });
   it("renders links for pupils and teachers", async () => {
     render(<TopNav {...mockProps} />);
     const teachersLink = await screen.findByRole("link", { name: "Teachers" });
@@ -74,7 +87,7 @@ describe("TopNav", () => {
     expect(teachersSubnav).toBeInTheDocument();
   });
   it("renders the correct subnav for pupils", async () => {
-    mockSelectedArea.mockReturnValue("PUPILS");
+    mockSelectedArea.mockReturnValueOnce("PUPILS");
     render(<TopNav {...mockProps} />);
 
     const teachersLink = await screen.findByRole("link", {
@@ -159,6 +172,36 @@ describe("TopNav", () => {
     });
 
     expect(dropdown).not.toBeVisible();
+  });
+  it("tracks browse accessed when a subnav button is clicked in the teachers area", async () => {
+    render(<TopNav {...mockProps} />);
+    const primaryButton = await screen.findByText("Primary");
+    const user = userEvent.setup();
+    await user.click(primaryButton);
+    expect(mockBrowseAccessed).toHaveBeenCalled();
+  });
+  it("does not track browse accessed when a subnav button is closing a menu", async () => {
+    render(<TopNav {...mockProps} />);
+    const primaryButton = await screen.findByText("Primary");
+    const user = userEvent.setup();
+    await user.click(primaryButton);
+    await user.click(primaryButton);
+    expect(mockBrowseAccessed).toHaveBeenCalledTimes(1);
+  });
+  it("does not track when a subnav button is clicked in the pupils area", async () => {
+    mockSelectedArea.mockReturnValueOnce("PUPILS");
+    render(<TopNav {...mockProps} />);
+    const primaryButton = await screen.findByText("Primary");
+    const user = userEvent.setup();
+    await user.click(primaryButton);
+    expect(mockBrowseAccessed).not.toHaveBeenCalled();
+  });
+  it("does not track browse accessed for non-browse menu buttons", async () => {
+    render(<TopNav {...mockProps} />);
+    const guidanceButton = await screen.findByText("Guidance");
+    const user = userEvent.setup();
+    await user.click(guidanceButton);
+    expect(mockBrowseAccessed).not.toHaveBeenCalled();
   });
 });
 const subnavLabels = [
