@@ -1,3 +1,17 @@
+# [1.995.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.994.0...v1.995.0) (2026-02-18)
+
+
+### Features
+
+* add browse accessed event to subnav buttons ([669c9d8](https://github.com/oaknational/Oak-Web-Application/commit/669c9d8266a5a5104bf682062fd64d5e6213b930))
+* add browse refined event to subject buttons in topnav dropdown ([4aa7364](https://github.com/oaknational/Oak-Web-Application/commit/4aa73641667e6510b624a382765ac9f22a0663d3))
+* add browse refined tracking on keystage buttons ([856d26b](https://github.com/oaknational/Oak-Web-Application/commit/856d26bd817462ebc9bda84210ac947b5c75797a))
+* add tracking to hamburger menu keystage buttons ([0b455b8](https://github.com/oaknational/Oak-Web-Application/commit/0b455b849bf2778250b1a94f50965b5cf1600491))
+* only track browse access on primary or secondary nav buttons ([d1b6686](https://github.com/oaknational/Oak-Web-Application/commit/d1b66866dc546451b50fed9a3efc047d6588a8dc))
+* only track browse accessed when a menu is opened ([c4041e8](https://github.com/oaknational/Oak-Web-Application/commit/c4041e80b5b3317f6a3d09f7693f0b400de7146e))
+* track browse refined in subject button clicks in hamburger menu ([e04a2f8](https://github.com/oaknational/Oak-Web-Application/commit/e04a2f81d78b2b0d43ca5a07d5741eb3b6cda228))
+* update avo branch with new component type ([c4dd46e](https://github.com/oaknational/Oak-Web-Application/commit/c4dd46e99a5ab9c2d46e6d92ef37773188976328))
+
 # [1.994.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.993.1...v1.994.0) (2026-02-18)
 
 
