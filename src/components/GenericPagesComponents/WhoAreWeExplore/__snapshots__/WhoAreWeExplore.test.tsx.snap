@@ -6,7 +6,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
     <div
       class="sc-aXZVg tbBTB"
     >
-      <div
+      <span
         class="sc-aXZVg fGFMqx"
         style="pointer-events: none;"
       >
@@ -19,7 +19,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
           src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
         />
-      </div>
+      </span>
       <div
         class="sc-aXZVg cryvKT"
       >
@@ -55,8 +55,8 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                       >
-                        <div
-                          class="sc-aXZVg cEXryM"
+                        <span
+                          class="sc-aXZVg gqKCsC"
                         >
                           <img
                             alt=""
@@ -67,7 +67,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                       <div
                         class="sc-aXZVg sc-gEvEer iUcqpI fXHtRp"
@@ -77,8 +77,8 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                       >
-                        <div
-                          class="sc-aXZVg dhXyYU"
+                        <span
+                          class="sc-aXZVg gRUGli"
                         >
                           <img
                             alt=""
@@ -89,7 +89,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                     </div>
                   </a>
@@ -112,8 +112,8 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                       >
-                        <div
-                          class="sc-aXZVg cEXryM"
+                        <span
+                          class="sc-aXZVg gqKCsC"
                         >
                           <img
                             alt=""
@@ -124,7 +124,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                       <div
                         class="sc-aXZVg sc-gEvEer iUcqpI fXHtRp"
@@ -134,8 +134,8 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                       >
-                        <div
-                          class="sc-aXZVg dhXyYU"
+                        <span
+                          class="sc-aXZVg gRUGli"
                         >
                           <img
                             alt=""
@@ -146,7 +146,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                     </div>
                   </a>
@@ -169,8 +169,8 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                       >
-                        <div
-                          class="sc-aXZVg cEXryM"
+                        <span
+                          class="sc-aXZVg gqKCsC"
                         >
                           <img
                             alt=""
@@ -181,7 +181,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                       <div
                         class="sc-aXZVg sc-gEvEer iUcqpI fXHtRp"
@@ -191,8 +191,8 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                       >
-                        <div
-                          class="sc-aXZVg dhXyYU"
+                        <span
+                          class="sc-aXZVg gRUGli"
                         >
                           <img
                             alt=""
@@ -203,7 +203,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                     </div>
                   </a>

@@ -50,8 +50,8 @@ exports[`OakModalNew should match snapshot 1`] = `
                       <div
                         class="sc-aXZVg jUsDlH shadow"
                       />
-                      <div
-                        class="sc-aXZVg anoZA"
+                      <span
+                        class="sc-aXZVg iUEruK"
                         data-icon-for="button"
                       >
                         <img
@@ -63,7 +63,7 @@ exports[`OakModalNew should match snapshot 1`] = `
                           src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895179/icons/xigimrbivcaxt4omxamp.svg"
                           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                         />
-                      </div>
+                      </span>
                     </div>
                     <span
                       class="sc-eqUAAy WYobB"
