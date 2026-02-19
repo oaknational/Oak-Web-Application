@@ -4,7 +4,7 @@ exports[`GuidingPrinciples renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer sc-7eb9832c-0 bZWVlX bsewjB fpTQhH"
+      class="sc-aXZVg sc-gEvEer sc-c95a0d7c-0 bZWVlX bsewjB fszShK"
     >
       <div
         class="sc-aXZVg sc-gEvEer hdseiA NeWQh"
@@ -26,17 +26,19 @@ exports[`GuidingPrinciples renders correctly 1`] = `
         <div
           class="sc-ad0ad6f5-0 sc-213e351e-0 hHxnYT cUwoYe"
         >
-          <img
-            alt=""
-            class="sc-6170517-0 iXcWYG"
-            data-nimg="fill"
-            decoding="async"
-            loading="lazy"
-            sizes="(min-width: 750px) 480px, 340px"
-            src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=3840&q=80&fit=clip&auto=format"
-            srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=16&q=80&fit=clip&auto=format 16w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=32&q=80&fit=clip&auto=format 32w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=48&q=80&fit=clip&auto=format 48w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=64&q=80&fit=clip&auto=format 64w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=96&q=80&fit=clip&auto=format 96w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=128&q=80&fit=clip&auto=format 128w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=256&q=80&fit=clip&auto=format 256w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=384&q=80&fit=clip&auto=format 384w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=640&q=80&fit=clip&auto=format 640w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=750&q=80&fit=clip&auto=format 750w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=828&q=80&fit=clip&auto=format 828w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=1080&q=80&fit=clip&auto=format 1080w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=1200&q=80&fit=clip&auto=format 1200w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=1920&q=80&fit=clip&auto=format 1920w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=2048&q=80&fit=clip&auto=format 2048w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/5accb6f87f16c9e0c691c075410c437a75f6fd08-447x412.svg?w=3840&q=80&fit=clip&auto=format 3840w"
-            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-          />
+          <div
+            class="sc-aXZVg cnjaQN"
+          >
+            <img
+              alt=""
+              class="sc-iGgWBj dZvqhO"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              src="http://localhost/images/illustrations/curriculum-approach.svg"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </div>
         </div>
       </div>
       <div
@@ -59,12 +61,12 @@ exports[`GuidingPrinciples renders correctly 1`] = `
               <h3
                 class="sc-eldPxv hkhVzB"
               >
-                Evidence-informed
+                Principle 1
               </h3>
               <p
                 class="sc-ikkxIA ixjXGH"
               >
-                Our approach enables the rigorous application of research outcomes, science of learning and impactful best practice.
+                Description 1
               </p>
             </div>
           </div>
@@ -86,12 +88,12 @@ exports[`GuidingPrinciples renders correctly 1`] = `
               <h3
                 class="sc-eldPxv hkhVzB"
               >
-                Knowledge and vocabulary rich
+                Principle 2
               </h3>
               <p
                 class="sc-ikkxIA ixjXGH"
               >
-                Our curriculum is knowledge and vocabulary rich so that pupils build on what they already know to develop deep knowledge and apply this through skills.
+                Description 2
               </p>
             </div>
           </div>
@@ -113,93 +115,12 @@ exports[`GuidingPrinciples renders correctly 1`] = `
               <h3
                 class="sc-eldPxv hkhVzB"
               >
-                Sequenced and coherent
+                Principle 3
               </h3>
               <p
                 class="sc-ikkxIA ixjXGH"
               >
-                We carefully and purposefully sequence our curriculum to ensure that pupils can build on and make links with existing knowledge. We pay attention to vertical coherence via threads, which map the developments of concepts over time.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="sc-aXZVg eyAKNh"
-          data-testid="curric-quote"
-        >
-          <div
-            class="sc-aXZVg sc-gEvEer lbgqUF fYZZye"
-          >
-            <div
-              class="sc-aXZVg sc-gEvEer cJZcoP fBjecQ"
-              data-testid="decorative-bar"
-            />
-            <div
-              class="sc-aXZVg sc-gEvEer hdseiA bktafW"
-            >
-              <h3
-                class="sc-eldPxv hkhVzB"
-              >
-                Flexible
-              </h3>
-              <p
-                class="sc-ikkxIA ixjXGH"
-              >
-                Our curriculum is flexible by design so that schools can use them in a way to fit their setting and meet the varying needs of teachers and their pupils - all aligned to the national curriculum.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="sc-aXZVg eyAKNh"
-          data-testid="curric-quote"
-        >
-          <div
-            class="sc-aXZVg sc-gEvEer lbgqUF fYZZye"
-          >
-            <div
-              class="sc-aXZVg sc-gEvEer cJZcoP fBjecQ"
-              data-testid="decorative-bar"
-            />
-            <div
-              class="sc-aXZVg sc-gEvEer hdseiA bktafW"
-            >
-              <h3
-                class="sc-eldPxv hkhVzB"
-              >
-                Accessible
-              </h3>
-              <p
-                class="sc-ikkxIA ixjXGH"
-              >
-                Our curriculum is designed to support all pupils to learn and follows accessibility guidelines. It uses insights from the science of learning to inform how content is designed and presented.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="sc-aXZVg eyAKNh"
-          data-testid="curric-quote"
-        >
-          <div
-            class="sc-aXZVg sc-gEvEer lbgqUF fYZZye"
-          >
-            <div
-              class="sc-aXZVg sc-gEvEer cJZcoP fBjecQ"
-              data-testid="decorative-bar"
-            />
-            <div
-              class="sc-aXZVg sc-gEvEer hdseiA bktafW"
-            >
-              <h3
-                class="sc-eldPxv hkhVzB"
-              >
-                Diverse
-              </h3>
-              <p
-                class="sc-ikkxIA ixjXGH"
-              >
-                Our commitment to breadth and diversity in content, language, texts and media can be seen throughout our curriculum, to help pupils feel positively represented.
+                Description 3
               </p>
             </div>
           </div>
