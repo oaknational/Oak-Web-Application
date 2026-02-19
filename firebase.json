@@ -1,4 +1,11 @@
 {
+  "firestore": {
+    "databases": [
+      {
+        "name": "ow-beta-ldn-pupil-store"
+      }
+    ]
+  },
   "emulators": {
     "firestore": {
       "port": 8089,
