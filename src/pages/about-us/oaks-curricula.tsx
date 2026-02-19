@@ -50,9 +50,9 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
   );
   const headerImageAlt = pageData.header.image?.altText ?? "";
 
-  const guidingPrinciplesImageUrl =
-    getProxiedSanityAssetUrl(pageData.guidingPrinciples.image?.asset?.url) ??
-    undefined;
+  const guidingPrinciplesImageUrl = getProxiedSanityAssetUrl(
+    pageData.guidingPrinciples.image?.asset?.url,
+  );
   const guidingPrinciplesImageAlt =
     pageData.guidingPrinciples.image?.altText ?? "";
 
@@ -79,7 +79,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
       <AboutUsLayout>
         <AboutSharedHeader
           title={"Oak's curricula"}
-          content={trimmedSubtitle ?? ""}
+          content={trimmedSubtitle ?? pageData.header.subtitlePortableText}
           titleHighlight="bg-decorative4-main"
         >
           {headerImageUrl && (
@@ -188,6 +188,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
             </OakFlex>
           </OakMaxWidth>
         )}
+        {/* TODO: Can oak support you */}
       </AboutUsLayout>
     </Layout>
   );
