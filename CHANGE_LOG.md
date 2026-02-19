@@ -1,3 +1,72 @@
+# [1.997.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.996.0...v1.997.0) (2026-02-19)
+
+
+### Bug Fixes
+
+* add missing page titles and remove duplicate suffixes on about-us pages ([d01d300](https://github.com/oaknational/Oak-Web-Application/commit/d01d300bb8f9498ef0444015778d1ba6417625dd))
+* align test description with assertion in GuidingPrinciples ([00271bb](https://github.com/oaknational/Oak-Web-Application/commit/00271bb3ea6425b0e7c6c26a5d3a3e8a69bae521))
+* clean up oaks-curricula page data handling ([2b7fbdc](https://github.com/oaknational/Oak-Web-Application/commit/2b7fbdc625514c4a6f3c90b597fcfd7d8abc27b6))
+* regenerate snapshots after npm install ([86652fc](https://github.com/oaknational/Oak-Web-Application/commit/86652fc852b9fe1dd7d165fd99759b397fb8c12f))
+* resolve remaining conflict marker in oaks-curricula snapshot ([f7cc586](https://github.com/oaknational/Oak-Web-Application/commit/f7cc5869f13be79e997008f7c0d01fedcc85276d))
+* resolve sonarqube warnings and update snapshots ([0449628](https://github.com/oaknational/Oak-Web-Application/commit/0449628f5c8e21821fb2cbb132c12ab8ad955434))
+* resolve type error for guidingPrinciplesImageUrl prop ([043b50e](https://github.com/oaknational/Oak-Web-Application/commit/043b50eacfe74bef1d043af31415b97ad061a1f7))
+* restore default principles and Illustration fallback in GuidingPrinciples ([4fb6ff5](https://github.com/oaknational/Oak-Web-Application/commit/4fb6ff5dc6be441f25ef07fce9e5f85b3a084d86))
+* update snapshots after merge from main ([652cc84](https://github.com/oaknational/Oak-Web-Application/commit/652cc84cee6b0146b0f3886d0cb01e32750399ca))
+* update stale snapshots after merge from main ([4bc9cf9](https://github.com/oaknational/Oak-Web-Application/commit/4bc9cf96e3f9d5488b2b003bfc78032a35aa4c7e))
+
+
+### Features
+
+* integrate Sanity CMS with Oak's curricula page ([2e95f25](https://github.com/oaknational/Oak-Web-Application/commit/2e95f25485b5de1c7f5b4057507070ed1574e163))
+* make GuidingPrinciples component accept optional CMS props ([8e6ae22](https://github.com/oaknational/Oak-Web-Application/commit/8e6ae22ffaf2affb2c512c832812fd7e45152d4e))
+
+# [1.996.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.995.1...v1.996.0) (2026-02-19)
+
+
+### Bug Fixes
+
+* keying by index in unit listing ([11881f0](https://github.com/oaknational/Oak-Web-Application/commit/11881f0331897f51dd03f650784aaf8ff6109079))
+
+
+### Features
+
+* add aria label for link opening in new tab ([bcf9987](https://github.com/oaknational/Oak-Web-Application/commit/bcf9987ea15c1d6229f9832d96316fa962df2155))
+* **LESQ-1806:** update takedown banner for cycle2 subjects with no new content ([a628630](https://github.com/oaknational/Oak-Web-Application/commit/a628630949a6fadadc6286968075929e3ab424dc))
+* update copy in UnitsHeader ([44fd152](https://github.com/oaknational/Oak-Web-Application/commit/44fd152abd2c02e0f80861ebb54363c699778983))
+
+## [1.995.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.995.0...v1.995.1) (2026-02-19)
+
+
+### Bug Fixes
+
+* add bottom padding to curric partners ([a361770](https://github.com/oaknational/Oak-Web-Application/commit/a3617709fb69248fcdd7e7f49fe2aa803fdbaa67))
+* add overflow hidden to stop image escaping border ([bd6ff0c](https://github.com/oaknational/Oak-Web-Application/commit/bd6ff0c5487b14bc9fec71e8b0cc40ee2259ceea))
+* align breakpoints ([5832260](https://github.com/oaknational/Oak-Web-Application/commit/5832260c8efdb7c4cf8801e26c6de1076a17abb0))
+* alphabetise imports ([1911b83](https://github.com/oaknational/Oak-Web-Application/commit/1911b83dd6686f374bf3e33d70e3bd459d7cd705))
+* bio page spacing tweaks ([3b342a6](https://github.com/oaknational/Oak-Web-Application/commit/3b342a64326a7f0ec10c11d27b5ba50b34212056))
+* combine padding values ([ebf39f4](https://github.com/oaknational/Oak-Web-Application/commit/ebf39f4bf9a5ef8a41e60554c6fd6088906cbb22))
+* lint ([d4b651d](https://github.com/oaknational/Oak-Web-Application/commit/d4b651df22baf3a118537040246571d78e807f11))
+* lint ([ac90781](https://github.com/oaknational/Oak-Web-Application/commit/ac907819929d6edd3fd45f4610bcadce5687dfe4))
+* make curric partners images a ul with lis ([4515a78](https://github.com/oaknational/Oak-Web-Application/commit/4515a7886c569c7965e3aa6eaef4141e818a90eb))
+* make key points a ul with lis ([6db4394](https://github.com/oaknational/Oak-Web-Application/commit/6db43942b96460fab277d743de5663782986e1ad))
+* map over curricula cards ([76fa6a8](https://github.com/oaknational/Oak-Web-Application/commit/76fa6a887cc0f0ea7752683c326338aaa7f7a18e))
+* merge main ([6f7353e](https://github.com/oaknational/Oak-Web-Application/commit/6f7353eb9672d3dd4a06a43c0945bc97867ef7d4))
+* more global about us text color ([86819ea](https://github.com/oaknational/Oak-Web-Application/commit/86819ea5693c7e76c9bed88c62a873b02b2116be))
+* oakbox to oakflex for semantics ([d2b581e](https://github.com/oaknational/Oak-Web-Application/commit/d2b581e02ecf4b15e1625f183371f2c550ffb465))
+* remove oak support to do section ([d5a21d9](https://github.com/oaknational/Oak-Web-Application/commit/d5a21d9d15fd3ff3c046e6c43562513c654e0d8e))
+* remove unnecessary oak flex ([11cc180](https://github.com/oaknational/Oak-Web-Application/commit/11cc1806b1a47e3257fe7c5ccbef561f516e5dc3))
+* rename customOakBox to be more descriptive ([524370e](https://github.com/oaknational/Oak-Web-Application/commit/524370e9c8c043127b3714c4bfea46a55cf228fd))
+* rename innerMaxWidth to newGutterMaxWidth ([61f85e9](https://github.com/oaknational/Oak-Web-Application/commit/61f85e92e98d12e43dccf341a12282558b7f9609))
+* small spacing adjustments ([8745cfd](https://github.com/oaknational/Oak-Web-Application/commit/8745cfd6d0339f0aec93da4d3fe21590c34e594c))
+* small style changes ([bf07843](https://github.com/oaknational/Oak-Web-Application/commit/bf078430de3730722b96400723c970ea2dba9b77))
+* snaps ([0e61216](https://github.com/oaknational/Oak-Web-Application/commit/0e61216543c73db7a519ec7b76a5bb74d8b6f18e))
+* snaps ([fc4c348](https://github.com/oaknational/Oak-Web-Application/commit/fc4c3488b1ba02926d24ea222239cab5b67d4bfd))
+* snapshots ([99bf608](https://github.com/oaknational/Oak-Web-Application/commit/99bf60853c86f828e26b7434e9d86394052e37c7))
+* update curriculum to curricula in phase picker ([bc52f3b](https://github.com/oaknational/Oak-Web-Application/commit/bc52f3b3c055594ac1b890e0464fdab8435dcdd4))
+* update slug page and snaps ([0e5236a](https://github.com/oaknational/Oak-Web-Application/commit/0e5236aa64254c5d3804a85aa61e157be9761612))
+* update test assertion for oaks curricula ([690d0d7](https://github.com/oaknational/Oak-Web-Application/commit/690d0d71ce5a587e87556b66e450daff6641ebdf))
+* use newGutterMaxWidth component and remove repeats of innerWidth ([34fbb00](https://github.com/oaknational/Oak-Web-Application/commit/34fbb00e2847fe8ee6206913dfd04624be17f921))
+
 # [1.995.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.994.0...v1.995.0) (2026-02-18)
 
 

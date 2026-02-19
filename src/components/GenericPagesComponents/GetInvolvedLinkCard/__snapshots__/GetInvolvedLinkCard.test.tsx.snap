@@ -9,7 +9,7 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
       class="sc-aXZVg sc-gEvEer hdseiA dfjiUz"
     >
       <h3
-        class="sc-eldPxv gEVowR"
+        class="sc-eldPxv pqCFq"
       >
         Help us improve
       </h3>
@@ -80,7 +80,7 @@ exports[`GetInvolvedLinkCard renders with single button 1`] = `
       class="sc-aXZVg sc-gEvEer hdseiA dfjiUz"
     >
       <h2
-        class="sc-eldPxv gEVowR"
+        class="sc-eldPxv pqCFq"
       >
         Give your feedback
       </h2>
@@ -127,7 +127,7 @@ exports[`GetInvolvedLinkCard renders without buttons 1`] = `
       class="sc-aXZVg sc-gEvEer hdseiA dfjiUz"
     >
       <h3
-        class="sc-eldPxv gEVowR"
+        class="sc-eldPxv pqCFq"
       >
         No Buttons
       </h3>

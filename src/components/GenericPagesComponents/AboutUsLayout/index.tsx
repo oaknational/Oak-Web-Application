@@ -1,14 +1,16 @@
 import { ReactNode } from "react";
-import { OakBox, OakMaxWidth } from "@oaknational/oak-components";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
-const NewsletterWrapper = styled(OakBox)`
+const NewsletterWrapper = styled(OakFlex)`
   max-width: 100%;
+  justify-self: center;
 
   @media (min-width: 750px) {
     max-width: 870px;
@@ -52,7 +54,7 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
   );
 
   return (
-    <OakBox $zIndex={"neutral"}>
+    <OakBox $zIndex={"neutral"} $color={"text-primary"}>
       {children}
       <OakBox
         $overflow={"hidden"}
@@ -67,13 +69,13 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
       <OakBox
         id="newsletter-signup"
         $background={"bg-decorative1-subdued"}
-        $pv={["spacing-56", "spacing-56"]}
+        $pv={"spacing-56"}
       >
-        <OakMaxWidth $ph={"spacing-16"} $alignItems={"center"}>
+        <NewGutterMaxWidth>
           <NewsletterWrapper>
             <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
           </NewsletterWrapper>
-        </OakMaxWidth>
+        </NewGutterMaxWidth>
       </OakBox>
     </OakBox>
   );
