@@ -1,3 +1,36 @@
+## [1.995.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.995.0...v1.995.1) (2026-02-19)
+
+
+### Bug Fixes
+
+* add bottom padding to curric partners ([a361770](https://github.com/oaknational/Oak-Web-Application/commit/a3617709fb69248fcdd7e7f49fe2aa803fdbaa67))
+* add overflow hidden to stop image escaping border ([bd6ff0c](https://github.com/oaknational/Oak-Web-Application/commit/bd6ff0c5487b14bc9fec71e8b0cc40ee2259ceea))
+* align breakpoints ([5832260](https://github.com/oaknational/Oak-Web-Application/commit/5832260c8efdb7c4cf8801e26c6de1076a17abb0))
+* alphabetise imports ([1911b83](https://github.com/oaknational/Oak-Web-Application/commit/1911b83dd6686f374bf3e33d70e3bd459d7cd705))
+* bio page spacing tweaks ([3b342a6](https://github.com/oaknational/Oak-Web-Application/commit/3b342a64326a7f0ec10c11d27b5ba50b34212056))
+* combine padding values ([ebf39f4](https://github.com/oaknational/Oak-Web-Application/commit/ebf39f4bf9a5ef8a41e60554c6fd6088906cbb22))
+* lint ([d4b651d](https://github.com/oaknational/Oak-Web-Application/commit/d4b651df22baf3a118537040246571d78e807f11))
+* lint ([ac90781](https://github.com/oaknational/Oak-Web-Application/commit/ac907819929d6edd3fd45f4610bcadce5687dfe4))
+* make curric partners images a ul with lis ([4515a78](https://github.com/oaknational/Oak-Web-Application/commit/4515a7886c569c7965e3aa6eaef4141e818a90eb))
+* make key points a ul with lis ([6db4394](https://github.com/oaknational/Oak-Web-Application/commit/6db43942b96460fab277d743de5663782986e1ad))
+* map over curricula cards ([76fa6a8](https://github.com/oaknational/Oak-Web-Application/commit/76fa6a887cc0f0ea7752683c326338aaa7f7a18e))
+* merge main ([6f7353e](https://github.com/oaknational/Oak-Web-Application/commit/6f7353eb9672d3dd4a06a43c0945bc97867ef7d4))
+* more global about us text color ([86819ea](https://github.com/oaknational/Oak-Web-Application/commit/86819ea5693c7e76c9bed88c62a873b02b2116be))
+* oakbox to oakflex for semantics ([d2b581e](https://github.com/oaknational/Oak-Web-Application/commit/d2b581e02ecf4b15e1625f183371f2c550ffb465))
+* remove oak support to do section ([d5a21d9](https://github.com/oaknational/Oak-Web-Application/commit/d5a21d9d15fd3ff3c046e6c43562513c654e0d8e))
+* remove unnecessary oak flex ([11cc180](https://github.com/oaknational/Oak-Web-Application/commit/11cc1806b1a47e3257fe7c5ccbef561f516e5dc3))
+* rename customOakBox to be more descriptive ([524370e](https://github.com/oaknational/Oak-Web-Application/commit/524370e9c8c043127b3714c4bfea46a55cf228fd))
+* rename innerMaxWidth to newGutterMaxWidth ([61f85e9](https://github.com/oaknational/Oak-Web-Application/commit/61f85e92e98d12e43dccf341a12282558b7f9609))
+* small spacing adjustments ([8745cfd](https://github.com/oaknational/Oak-Web-Application/commit/8745cfd6d0339f0aec93da4d3fe21590c34e594c))
+* small style changes ([bf07843](https://github.com/oaknational/Oak-Web-Application/commit/bf078430de3730722b96400723c970ea2dba9b77))
+* snaps ([0e61216](https://github.com/oaknational/Oak-Web-Application/commit/0e61216543c73db7a519ec7b76a5bb74d8b6f18e))
+* snaps ([fc4c348](https://github.com/oaknational/Oak-Web-Application/commit/fc4c3488b1ba02926d24ea222239cab5b67d4bfd))
+* snapshots ([99bf608](https://github.com/oaknational/Oak-Web-Application/commit/99bf60853c86f828e26b7434e9d86394052e37c7))
+* update curriculum to curricula in phase picker ([bc52f3b](https://github.com/oaknational/Oak-Web-Application/commit/bc52f3b3c055594ac1b890e0464fdab8435dcdd4))
+* update slug page and snaps ([0e5236a](https://github.com/oaknational/Oak-Web-Application/commit/0e5236aa64254c5d3804a85aa61e157be9761612))
+* update test assertion for oaks curricula ([690d0d7](https://github.com/oaknational/Oak-Web-Application/commit/690d0d71ce5a587e87556b66e450daff6641ebdf))
+* use newGutterMaxWidth component and remove repeats of innerWidth ([34fbb00](https://github.com/oaknational/Oak-Web-Application/commit/34fbb00e2847fe8ee6206913dfd04624be17f921))
+
 # [1.995.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.994.0...v1.995.0) (2026-02-18)
 
 
