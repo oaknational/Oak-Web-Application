@@ -12,12 +12,11 @@ import styled from "styled-components";
 import { ReactNode } from "react";
 import { PortableTextReactComponents } from "@portabletext/react";
 
-import { InnerMaxWidth } from "../InnerMaxWidth";
-
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 
-const CustomOakBox = styled(OakBox)`
+const IllustrationPanel = styled(OakBox)`
   height: 410px;
   width: auto;
 
@@ -88,10 +87,7 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
   block: {
     normal: (props) => {
       return (
-        <OakP
-          $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
-          $color={"text-primary"}
-        >
+        <OakP $font={["heading-light-5", "heading-light-3", "heading-light-3"]}>
           {props.children}
         </OakP>
       );
@@ -112,50 +108,40 @@ export function AboutSharedHeader({
   titleHighlight,
 }: Readonly<AboutSharedHeaderProps>) {
   return (
-    <InnerMaxWidth>
-      <OakBox $position={"relative"} $overflow={"hidden"}>
-        <OakFlex
-          $alignItems="center"
-          $justifyContent="space-between"
-          $pt={["spacing-56", "spacing-72"]}
-          $pb={["spacing-56", "spacing-72"]}
-          $gap={["spacing-0", "spacing-48", "spacing-240"]}
-        >
-          <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-            <OakHeading
-              tag="h1"
-              $font={["heading-4", "heading-2", "heading-2"]}
+    <NewGutterMaxWidth>
+      <OakFlex
+        $alignItems="center"
+        $justifyContent="space-between"
+        $pt={["spacing-56", "spacing-72"]}
+        $pb={["spacing-56", "spacing-72"]}
+        $gap={["spacing-0", "spacing-48", "spacing-240"]}
+        $overflow={"hidden"}
+      >
+        <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+          <OakHeading tag="h1" $font={["heading-4", "heading-2", "heading-2"]}>
+            <OakSpan
+              $background={titleHighlight ?? "bg-decorative1-main"}
+              $ph={"spacing-4"}
             >
-              <OakSpan
-                $background={titleHighlight ?? "bg-decorative1-main"}
-                $ph={"spacing-4"}
-                $color="text-primary"
-              >
-                {title}
-              </OakSpan>
-            </OakHeading>
-            {typeof content === "string" ? (
-              <OakP
-                $font={[
-                  "heading-light-5",
-                  "heading-light-3",
-                  "heading-light-3",
-                ]}
-                $color={"text-primary"}
-              >
-                {content}
-              </OakP>
-            ) : (
-              <PortableTextWithDefaults
-                value={content}
-                withoutDefaultComponents={true}
-                components={portableTextComponents}
-              />
-            )}
-          </OakFlex>
-          <CustomOakBox>{children}</CustomOakBox>
+              {title}
+            </OakSpan>
+          </OakHeading>
+          {typeof content === "string" ? (
+            <OakP
+              $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
+            >
+              {content}
+            </OakP>
+          ) : (
+            <PortableTextWithDefaults
+              value={content}
+              withoutDefaultComponents={true}
+              components={portableTextComponents}
+            />
+          )}
         </OakFlex>
-      </OakBox>
-    </InnerMaxWidth>
+        <IllustrationPanel>{children}</IllustrationPanel>
+      </OakFlex>
+    </NewGutterMaxWidth>
   );
 }

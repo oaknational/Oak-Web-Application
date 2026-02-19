@@ -7,31 +7,27 @@ exports[`CurriculumPartners renders correctly 1`] = `
       class="sc-aXZVg sc-gEvEer hdseiA daEtut"
     >
       <div
-        class="sc-aXZVg sc-gEvEer hdseiA daEtut"
+        class="sc-aXZVg sc-gEvEer hdseiA gWBhKY"
       >
-        <div
-          class="sc-aXZVg sc-gEvEer hdseiA gWBhKY"
+        <h3
+          class="sc-eldPxv dZzbTI"
         >
-          <h3
-            class="sc-eldPxv dZzbTI"
-          >
-            TEST_TITLE
-          </h3>
-          <p
-            class="sc-ikkxIA cXRvuH"
-          >
-            TEST_TEXT
-          </p>
-        </div>
+          TEST_TITLE
+        </h3>
+        <p
+          class="sc-ikkxIA cXRvuH"
+        >
+          TEST_TEXT
+        </p>
       </div>
       <div
         class="sc-aXZVg hdseiA"
       >
-        <div
-          class="sc-aXZVg sc-tagGq hdseiA hDvzcX"
+        <ul
+          class="sc-aXZVg sc-tagGq NyjaL hDvzcX"
         >
-          <div
-            class="sc-aXZVg fDMDJZ"
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
             <div
               class="sc-aXZVg cnjaQN"
@@ -48,9 +44,9 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
             </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
             <div
               class="sc-aXZVg cnjaQN"
@@ -67,9 +63,9 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
             </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
             <div
               class="sc-aXZVg cnjaQN"
@@ -86,9 +82,9 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
             </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
             <div
               class="sc-aXZVg cnjaQN"
@@ -105,9 +101,9 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
             </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
             <div
               class="sc-aXZVg cnjaQN"
@@ -124,9 +120,9 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
             </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
             <div
               class="sc-aXZVg cnjaQN"
@@ -143,9 +139,9 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
             </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
             <div
               class="sc-aXZVg cnjaQN"
@@ -162,9 +158,9 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
             </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
             <div
               class="sc-aXZVg cnjaQN"
@@ -181,9 +177,9 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
             </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
             <div
               class="sc-aXZVg cnjaQN"
@@ -200,9 +196,9 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
             </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
             <div
               class="sc-aXZVg cnjaQN"
@@ -219,8 +215,8 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
