@@ -45,6 +45,7 @@ export const ks4Setup = {
           subjectcategories: [subjectCategoryPhysics],
         }),
       ],
+      keystage: "ks4",
     },
     "11": {
       childSubjects: [],
@@ -55,10 +56,12 @@ export const ks4Setup = {
       nationalCurriculum: [],
       subjectCategories: [],
       units: [createUnit({ year: "2", subjectcategories: [] })],
+      keystage: "ks4",
     },
   },
   threadOptions: [],
   yearOptions: [],
+  keystages: [],
 };
 
 export const ks3and4Setup = {
@@ -77,6 +80,7 @@ export const ks3and4Setup = {
           subjectcategories: [subjectCategoryBiology],
         }),
       ],
+      keystage: "ks3",
     },
     "8": {
       childSubjects: [],
@@ -92,6 +96,7 @@ export const ks3and4Setup = {
           subjectcategories: [subjectCategoryBiology],
         }),
       ],
+      keystage: "ks3",
     },
     "9": {
       childSubjects: [],
@@ -107,6 +112,7 @@ export const ks3and4Setup = {
           subjectcategories: [subjectCategoryBiology],
         }),
       ],
+      keystage: "ks3",
     },
     "10": {
       childSubjects: [],
@@ -120,6 +126,7 @@ export const ks3and4Setup = {
         subjectCategoryChemistry,
         subjectCategoryPhysics,
       ],
+      keystage: "ks4",
       units: [
         createUnit({
           year: "10",
@@ -144,8 +151,10 @@ export const ks3and4Setup = {
       nationalCurriculum: [],
       subjectCategories: [],
       units: [createUnit({ year: "11", subjectcategories: [] })],
+      keystage: "ks4",
     },
   },
   threadOptions: [],
   yearOptions: [],
+  keystages: [],
 };

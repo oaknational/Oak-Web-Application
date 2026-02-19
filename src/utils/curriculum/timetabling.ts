@@ -8,7 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import z from "zod";
 
-const TIMETABLE_HEADER_PARAM_KEYS = [
+export const TIMETABLE_HEADER_PARAM_KEYS = [
   "subject",
   "year",
   "autumn",

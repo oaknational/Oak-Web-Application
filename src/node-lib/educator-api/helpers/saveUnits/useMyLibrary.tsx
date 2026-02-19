@@ -108,8 +108,6 @@ export const useMyLibrary = () => {
         reportError(parsedData.error, { savedProgrammeUnits });
       }
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [savedProgrammeUnits]);
 
   const isUnitSaved = useCallback(

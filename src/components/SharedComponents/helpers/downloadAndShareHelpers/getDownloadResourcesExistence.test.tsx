@@ -1,7 +1,6 @@
 import {
   getLessonDownloadResourcesExistence,
   DownloadsApiCheckFilesResponseSchema,
-  LegacyDownloadsApiCheckFilesResponseSchema,
 } from "./getDownloadResourcesExistence";
 
 import OakError from "@/errors/OakError";
@@ -13,7 +12,7 @@ const data: DownloadsApiCheckFilesResponseSchema["data"] = {
   ],
 };
 
-const legacyData: LegacyDownloadsApiCheckFilesResponseSchema["data"] = {
+const legacyData = {
   resources: { "exit-quiz-answers": true, "worksheet-pdf": true },
 };
 

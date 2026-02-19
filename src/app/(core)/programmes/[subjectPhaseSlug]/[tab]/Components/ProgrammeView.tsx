@@ -47,7 +47,7 @@ import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics"
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 
@@ -76,9 +76,9 @@ export const ProgrammeView = ({
   curriculumDownloadsTabData,
   mvRefreshTime,
   tabSlug,
+  subjectPhaseSlug,
   ks4Options,
   trackingData,
-  subjectPhaseSlug,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
@@ -112,6 +112,10 @@ export const ProgrammeView = ({
     (year) => searchParams?.get("years") === year,
   );
 
+  const selectedKeystageSlug = filters.keystages.find(
+    (ks) => searchParams?.get("keystages") === ks,
+  );
+
   // Ensure the active tab matches the one in the latest pathname
   const pathname = usePathname();
   useEffect(() => {
@@ -133,6 +137,7 @@ export const ProgrammeView = ({
         }
         phaseTitle={phaseTitle}
         examboardTitle={examboardTitle}
+        keyStage={selectedKeystageSlug}
         schoolYear={schoolYear}
         summary={subjectPhaseSanityData?.bodyCopy}
         bullets={subjectPhaseSanityData?.bullets}

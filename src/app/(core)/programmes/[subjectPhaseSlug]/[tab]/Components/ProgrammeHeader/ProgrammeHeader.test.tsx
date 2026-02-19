@@ -157,6 +157,7 @@ describe("pickSubjectTitleFromFilters", () => {
     },
     threadOptions: [],
     yearOptions: ["7"],
+    keystages: [],
   });
 
   const createDataWithSubjectCategories = (): CurriculumUnitsFormattedData => ({
@@ -170,6 +171,7 @@ describe("pickSubjectTitleFromFilters", () => {
     },
     threadOptions: [],
     yearOptions: ["7"],
+    keystages: [],
   });
 
   const createDataWithBothDisplayed = (): CurriculumUnitsFormattedData => ({
@@ -196,6 +198,7 @@ describe("pickSubjectTitleFromFilters", () => {
     },
     threadOptions: [],
     yearOptions: ["3", "7"],
+    keystages: [],
   });
 
   const createDataWithNeither = (): CurriculumUnitsFormattedData => ({
@@ -206,6 +209,7 @@ describe("pickSubjectTitleFromFilters", () => {
     },
     threadOptions: [],
     yearOptions: ["7"],
+    keystages: [],
   });
 
   describe("when subjectCategoriesDisplayed and subjectCategories === 'all'", () => {
@@ -362,6 +366,7 @@ describe("pickSubjectTitleFromFilters", () => {
         },
         threadOptions: [],
         yearOptions: ["3", "7"],
+        keystages: [],
       };
       const filters = createFilter({
         childSubjects: ["physics"],

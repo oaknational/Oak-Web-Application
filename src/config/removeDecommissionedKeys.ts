@@ -13,7 +13,7 @@ export default function removeDecommissionedKeys() {
   decommissionedKeys.forEach(({ key }) => {
     try {
       window.localStorage.removeItem(key);
-    } catch (error) {
+    } catch (_error) {
       // no problem
     }
   });

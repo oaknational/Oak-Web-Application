@@ -31,7 +31,7 @@ function assertType<T extends keyof TypeMap, F = unknown>(
   return value;
 }
 
-export async function useFeatureFlag<T extends keyof TypeMap>(
+export async function getFeatureFlagValue<T extends keyof TypeMap>(
   flagName: string,
   expectedFlagType: T,
 ): Promise<TypeMap[T] | undefined> {

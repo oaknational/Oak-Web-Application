@@ -24,6 +24,7 @@ export const ks4Setup = {
           tier: tierHigher.tier_slug,
         }),
       ],
+      keystage: "ks4",
     },
     "11": {
       childSubjects: [],
@@ -34,10 +35,12 @@ export const ks4Setup = {
       nationalCurriculum: [],
       subjectCategories: [],
       units: [createUnit({ year: "2", threads: [] })],
+      keystage: "ks4",
     },
   },
   threadOptions: [],
   yearOptions: [],
+  keystages: [],
 };
 
 export const ks3and4Setup = {
@@ -60,6 +63,7 @@ export const ks3and4Setup = {
           tier: tierHigher.tier_slug,
         }),
       ],
+      keystage: "ks3",
     },
     "8": {
       childSubjects: [],
@@ -79,6 +83,7 @@ export const ks3and4Setup = {
           tier: tierHigher.tier_slug,
         }),
       ],
+      keystage: "ks3",
     },
     "9": {
       childSubjects: [],
@@ -98,6 +103,7 @@ export const ks3and4Setup = {
           tier: tierHigher.tier_slug,
         }),
       ],
+      keystage: "ks3",
     },
     "10": {
       childSubjects: [],
@@ -117,6 +123,7 @@ export const ks3and4Setup = {
           tier: tierHigher.tier_slug,
         }),
       ],
+      keystage: "ks4",
     },
     "11": {
       childSubjects: [],
@@ -127,8 +134,10 @@ export const ks3and4Setup = {
       nationalCurriculum: [],
       subjectCategories: [],
       units: [createUnit({ year: "2", threads: [] })],
+      keystage: "ks4",
     },
   },
   threadOptions: [],
   yearOptions: [],
+  keystages: [],
 };
