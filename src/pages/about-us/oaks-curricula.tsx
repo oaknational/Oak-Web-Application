@@ -50,9 +50,9 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
   );
   const headerImageAlt = pageData.header.image?.altText ?? "";
 
-  const guidingPrinciplesImageUrl = getProxiedSanityAssetUrl(
-    pageData.guidingPrinciples.image?.asset?.url,
-  );
+  const guidingPrinciplesImageUrl =
+    getProxiedSanityAssetUrl(pageData.guidingPrinciples.image?.asset?.url) ??
+    undefined;
   const guidingPrinciplesImageAlt =
     pageData.guidingPrinciples.image?.altText ?? "";
 
