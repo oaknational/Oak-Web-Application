@@ -27,7 +27,7 @@ export function getLocalstorageWithSchema<Schema extends z.ZodTypeAny>(
 
   try {
     value = JSON.parse(valueRaw);
-  } catch (err) {
+  } catch (_error) {
     throw new ErrorInvalidJson(key);
   }
 
@@ -51,7 +51,7 @@ export function getNullableLocalstorageWithSchema<Schema extends z.ZodTypeAny>(
 
   try {
     value = JSON.parse(valueRaw);
-  } catch (err) {
+  } catch (_error) {
     throw new ErrorInvalidJson(key);
   }
 

@@ -11,6 +11,7 @@ jest.mock("posthog-js/react", () => ({
 }));
 
 jest.mock("next/navigation", () => ({
+  ...jest.requireActual("next/navigation"),
   usePathname: jest.fn(() => "/onboarding"),
 }));
 

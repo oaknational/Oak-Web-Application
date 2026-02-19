@@ -41,6 +41,7 @@ const CurricVisualiserFixture: ComponentProps<typeof ProgrammeSequence> = {
     pathways: [],
     subjectCategories: [],
     threads: [],
+    keystages: [],
   },
   ks4Options: [],
   ks4OptionSlug: "edexcel",
@@ -111,9 +112,9 @@ const CurricVisualiserFixture: ComponentProps<typeof ProgrammeSequence> = {
       isSwimming: false,
       groupAs: null,
       nationalCurriculum: [],
+      keystage: "ks3",
     },
   },
-  setVisibleMobileYearRefID: jest.fn(() => {}),
 };
 
 describe("ProgrammeSequence", () => {
@@ -127,13 +128,13 @@ describe("ProgrammeSequence", () => {
     resizeWindow(390, 844);
 
     render(<ProgrammeSequence {...CurricVisualiserFixture} />);
-    const yearSection = screen.getByRole("heading", { name: "Year 7" });
+    const yearSection = screen.getByRole("heading", { name: "Year 7 units" });
     expect(yearSection).toBeInTheDocument();
   });
 
   test("visualiser is visible on desktop", () => {
     render(<ProgrammeSequence {...CurricVisualiserFixture} />);
-    const yearSection = screen.getByRole("heading", { name: "Year 7" });
+    const yearSection = screen.getByRole("heading", { name: "Year 7 units" });
     expect(yearSection).toBeInTheDocument();
   });
 
@@ -141,9 +142,46 @@ describe("ProgrammeSequence", () => {
     resizeWindow(390, 844);
     render(<ProgrammeSequence {...CurricVisualiserFixture} />);
 
-    const unitCards = screen.getAllByTestId("unit-card");
+    const unitCards = screen.getAllByTestId("card-listing-container");
 
     expect(unitCards).toHaveLength(1);
+  });
+
+  test("displays swimming subheading and icon when isSwimming is true", () => {
+    const swimmingYearData: YearData = {
+      "7": {
+        ...CurricVisualiserFixture.yearData["7"]!,
+        isSwimming: true,
+      },
+    };
+
+    const filterFixture = {
+      childSubjects: [],
+      pathways: ["core"],
+      subjectCategories: [],
+      tiers: [],
+      years: ["7"],
+      threads: [],
+      keystages: [],
+    };
+
+    const { container } = render(
+      <ProgrammeSequence
+        {...CurricVisualiserFixture}
+        yearData={swimmingYearData}
+        filters={filterFixture}
+      />,
+    );
+
+    const yearBlock = container.querySelector(
+      '[data-testid="year-all-7"]',
+    ) as HTMLElement;
+    expect(yearBlock).not.toBeNull();
+
+    const subheading = within(yearBlock).getByTestId("year-subheading");
+    expect(subheading).toHaveTextContent(
+      "Swimming and water safety units should be selected based on the ability and experience of your pupils.",
+    );
   });
 });
 
@@ -162,6 +200,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -171,7 +210,7 @@ describe("Programme units sequence filter states", () => {
         />,
       );
 
-      const unitCards = screen.getAllByTestId("unit-card");
+      const unitCards = screen.getAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(5);
     });
 
@@ -188,6 +227,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -214,6 +254,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["8"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -240,6 +281,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -256,7 +298,7 @@ describe("Programme units sequence filter states", () => {
         await screen.findAllByText(/'sub-cat-1' units continue in Year 10/i),
       ).toHaveLength(2);
 
-      const unitCards = await screen.findAllByTestId("unit-card");
+      const unitCards = await screen.findAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(2);
     });
 
@@ -273,6 +315,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -285,7 +328,7 @@ describe("Programme units sequence filter states", () => {
       expect(
         await screen.findAllByText(/'sub-cat-1' units continue in Year 11/i),
       ).toHaveLength(3);
-      const unitCards = await screen.findAllByTestId("unit-card");
+      const unitCards = await screen.findAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(2);
     });
 
@@ -302,6 +345,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -310,7 +354,7 @@ describe("Programme units sequence filter states", () => {
           filters={filterFixture}
         />,
       );
-      const unitCards = await screen.findAllByTestId("unit-card");
+      const unitCards = await screen.findAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(2);
       const messages = await screen.findAllByText(
         /No 'sub-cat-1' units in this year group/i,
@@ -331,6 +375,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -340,7 +385,7 @@ describe("Programme units sequence filter states", () => {
         />,
       );
 
-      const unitCards = await screen.findAllByTestId("unit-card");
+      const unitCards = await screen.findAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(2);
       expect(
         await screen.findByText(/'sub-cat-1' units start in Year 8/i),
@@ -366,6 +411,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -394,6 +440,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["1", "2", "3", "4", "5", "6"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -405,7 +452,7 @@ describe("Programme units sequence filter states", () => {
       expect(
         await screen.findAllByText(/'sub-cat-1' units start in Year 2/i),
       ).toHaveLength(1);
-      const unitCards = await screen.findAllByTestId("unit-card");
+      const unitCards = await screen.findAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(5);
     });
 
@@ -422,6 +469,7 @@ describe("Programme units sequence filter states", () => {
         tiers: [],
         years: ["1", "2", "3", "4", "5", "6"],
         threads: [],
+        keystages: [],
       };
 
       render(
@@ -437,7 +485,7 @@ describe("Programme units sequence filter states", () => {
       expect(
         await screen.findAllByText(/'sub-cat-1' units continue in Year 4/i),
       ).toHaveLength(2);
-      const unitCards = await screen.findAllByTestId("unit-card");
+      const unitCards = await screen.findAllByTestId("card-listing-container");
       expect(unitCards).toHaveLength(3);
     });
   });
@@ -467,6 +515,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["7", "8", "9", "10", "11"],
           threads: [],
+          keystages: [],
           pathways: [],
         };
 
@@ -486,7 +535,7 @@ describe("Year group filter headings display correctly", () => {
           expect(yearBlock).not.toBeNull();
 
           const yearHeading = within(yearBlock).getByTestId("year-heading");
-          expect(yearHeading).toHaveTextContent(`Year ${year}`);
+          expect(yearHeading).toHaveTextContent(`Year ${year} units`);
 
           if (["7", "8", "9"].includes(year)) {
             // Years 7-9 should not have subheadings
@@ -509,6 +558,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["7"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -538,6 +588,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["7"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -567,6 +618,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["7"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -596,6 +648,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["7"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -624,6 +677,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["foundation"],
           years: ["10"],
           threads: [],
+          keystages: [],
           pathways: [],
         };
 
@@ -652,6 +706,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["11"],
           threads: [],
+          keystages: [],
           pathways: [],
         };
 
@@ -680,6 +735,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["10"],
           threads: [],
+          keystages: [],
           pathways: [],
         };
 
@@ -716,6 +772,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["10"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -744,6 +801,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["foundation"],
           years: ["11"],
           threads: [],
+          keystages: [],
         };
 
         render(
@@ -779,6 +837,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["1"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -814,6 +873,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["1"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -842,6 +902,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["2"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -870,6 +931,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["3"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(
@@ -898,6 +960,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: [],
           years: ["4"],
           threads: [],
+          keystages: [],
         };
 
         const { container } = render(

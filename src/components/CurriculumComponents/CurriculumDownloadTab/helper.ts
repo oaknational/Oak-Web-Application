@@ -70,7 +70,7 @@ export function defaultValueWhenThrown<T = undefined>(
 ) {
   try {
     return throwableFn();
-  } catch (err) {
+  } catch (_error) {
     return dflt;
   }
 }

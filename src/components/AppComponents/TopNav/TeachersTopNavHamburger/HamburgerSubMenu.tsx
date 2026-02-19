@@ -17,24 +17,12 @@ import {
   HamburgerMenuHook,
 } from "./TeachersTopNavHamburger";
 
-import {
-  SubNavLinks,
-  TeachersBrowse,
-  TeachersSubNavData,
-} from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import {
   OakLinkPropsRequiringPageOnly,
   resolveOakHref,
 } from "@/common-lib/urls";
-
-export type NavItemData =
-  | { type: "links"; links: SubNavLinks }
-  | {
-      type: "subjects";
-      subjects: TeachersBrowse["keystages"][number]["subjects"];
-      keystage: string;
-      phase: "primary" | "secondary";
-    };
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export function SubmenuContainer({
   title,
@@ -88,6 +76,7 @@ export function SubmenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...navData } = props;
+  const { track } = useAnalytics();
   const { submenuOpen, handleCloseHamburger } = hamburgerMenu;
 
   if (!submenuOpen) return null;
@@ -105,7 +94,7 @@ export function SubmenuContent(
             $pl="spacing-40"
             $gap={"spacing-16"}
           >
-            {links.map((link) => (
+            {links.children.map((link) => (
               <OakBox key={link.slug}>
                 <OakLeftAlignedButton
                   onClick={() => {
@@ -133,12 +122,12 @@ export function SubmenuContent(
         ? "primary"
         : "secondary";
       const phaseData = navData[phase];
-      const keystage = phaseData.keystages.find(
+      const keystage = phaseData.children.find(
         (ks) => ks.title === submenuOpen,
       );
       if (!keystage) return null;
-      const subjects = keystage.subjects.filter((s) => !s.nonCurriculum);
-      const nonCurriculumSubjects = keystage.subjects.filter(
+      const subjects = keystage.children.filter((s) => !s.nonCurriculum);
+      const nonCurriculumSubjects = keystage.children.filter(
         (s) => s.nonCurriculum,
       );
       return (
@@ -148,7 +137,20 @@ export function SubmenuContent(
           hamburgerMenu={hamburgerMenu}
         >
           <TopNavSubjectButtons
-            handleClick={handleCloseHamburger}
+            handleClick={(subjectSlug, keystageSlug) => {
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Subject filter",
+                filterValue: subjectSlug,
+                activeFilters: { keystages: [keystageSlug] },
+              });
+              handleCloseHamburger();
+            }}
             selectedMenu={phase}
             subjects={subjects}
             nonCurriculumSubjects={nonCurriculumSubjects}

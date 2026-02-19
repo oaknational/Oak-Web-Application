@@ -1,6 +1,6 @@
 "use client";
 
-import { OakBox, OakMaxWidth, OakTabs } from "@oaknational/oak-components";
+import { OakMaxWidth, OakTabs } from "@oaknational/oak-components";
 import { useEffect, useMemo, useState } from "react";
 import { notFound, usePathname, useSearchParams } from "next/navigation";
 
@@ -26,81 +26,72 @@ import {
   ProgrammeOverview,
   ProgrammeOverviewProps,
 } from "./ProgrammeOverview/ProgrammeOverview";
-
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import {
+  ProgrammeDownloads,
+  ProgrammeDownloadsProps,
+} from "./ProgrammeDownloads/ProgrammeDownloads";
+
+import {
+  CurriculumDownloadsTierSubjectProps,
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getDefaultFilter, useFilters } from "@/utils/curriculum/filteringApp";
-import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import {
+  CurriculumSelectionSlugs,
+  CurriculumSelectionTitles,
+} from "@/utils/curriculum/slugs";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammePageHeaderCMS } from "@/common-lib/cms-types/programmePage";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 
 type ProgrammePageProps = {
+  subjectPhaseSlug: string;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
-  curriculumPhaseOptions: SubjectPhasePickerData;
-  subjectTitle: string;
-  phaseTitle: string;
-  examboardTitle: string | undefined;
+  curriculumSelectionTitles: CurriculumSelectionTitles;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   subjectPhaseSanityData: ProgrammePageHeaderCMS | null;
   curriculumCMSInfo: CurriculumOverviewSanityData;
   curriculumInfo: CurriculumOverviewMVData;
+  curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
+  mvRefreshTime: number;
   tabSlug: TabSlug;
+  ks4Options: Ks4Option[];
+  trackingData: CurriculumUnitsTrackingData;
 };
 
 export const ProgrammeView = ({
   curriculumSelectionSlugs,
-  curriculumPhaseOptions,
-  subjectTitle,
-  phaseTitle,
-  examboardTitle,
+  curriculumSelectionTitles,
   curriculumUnitsFormattedData,
   subjectPhaseSanityData,
   curriculumCMSInfo,
   curriculumInfo,
+  curriculumDownloadsTabData,
+  mvRefreshTime,
   tabSlug,
+  subjectPhaseSlug,
+  ks4Options,
+  trackingData,
 }: ProgrammePageProps) => {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
 
-  const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
-
-  const ks4Options =
-    curriculumPhaseOptions.subjects.find((s) => s.slug === subjectSlug)!
-      .ks4_options ?? [];
-  const ks4Option = ks4Options.find((ks4opt) => ks4opt.slug === ks4OptionSlug);
-
-  // TD: [integrated journey] tracking
-  const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
-    subjectSlug,
-    phaseSlug,
-    subjectTitle,
-    ks4OptionSlug: ks4Option?.slug,
-    ks4OptionTitle: ks4Option?.title,
-  };
+  const { subjectSlug } = curriculumSelectionSlugs;
+  const { subjectTitle, phaseTitle, examboardTitle } =
+    curriculumSelectionTitles;
 
   const defaultFilter = useMemo(() => {
     return getDefaultFilter(curriculumUnitsFormattedData);
   }, [curriculumUnitsFormattedData]);
 
   const [filters, setFilters] = useFilters(defaultFilter);
-
-  const subjectForLayout = curriculumPhaseOptions.subjects.find(
-    (s) => s.slug === curriculumSelectionSlugs.subjectSlug,
-  );
-
-  if (!subjectForLayout) {
-    throw new Error(
-      "Selected subject not found in curriculumPhaseOptions for programme page",
-    );
-  }
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -110,7 +101,7 @@ export const ProgrammeView = ({
 
     const analyticsData = buildUnitSequenceRefinedAnalytics(
       analyticsUseCase,
-      curriculumUnitsTrackingData,
+      trackingData,
       newFilters,
     );
 
@@ -119,6 +110,10 @@ export const ProgrammeView = ({
 
   const schoolYear = filters.years.find(
     (year) => searchParams?.get("years") === year,
+  );
+
+  const selectedKeystageSlug = filters.keystages.find(
+    (ks) => searchParams?.get("keystages") === ks,
   );
 
   // Ensure the active tab matches the one in the latest pathname
@@ -135,13 +130,14 @@ export const ProgrammeView = ({
   return (
     <>
       <ProgrammeHeader
-        subject={subjectForLayout.slug as SubjectHeroImageName}
+        subject={subjectSlug as SubjectHeroImageName}
         subjectTitle={
           pickSubjectTitleFromFilters(curriculumUnitsFormattedData, filters) ??
           subjectTitle
         }
         phaseTitle={phaseTitle}
         examboardTitle={examboardTitle}
+        keyStage={selectedKeystageSlug}
         schoolYear={schoolYear}
         summary={subjectPhaseSanityData?.bodyCopy}
         bullets={subjectPhaseSanityData?.bullets}
@@ -151,25 +147,36 @@ export const ProgrammeView = ({
           sizeVariant={["compact", "default"]}
           colorVariant="black"
           activeTab={tabSlugToName[activeTab]}
-          onTabClick={(tabName) => {
+          onTabClick={(tabName, event) => {
             const tabSlug = tabNameToSlug[tabName];
             // Prevents a full page reload using client side nav
+            event.preventDefault();
             globalThis.history.pushState(null, "", tabSlug);
           }}
-          tabs={[...TAB_NAMES]}
+          tabs={TAB_NAMES.map((tab) => ({
+            label: tab,
+            type: "link",
+            href: resolveOakHref({
+              page: "teacher-programme",
+              subjectPhaseSlug,
+              tab: tabNameToSlug[tab],
+            }),
+          }))}
         />
       </OakMaxWidth>
       <TabContent
         tabSlug={activeTab}
-        curriculumPhaseOptions={curriculumPhaseOptions}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
+        subjectTitle={curriculumSelectionTitles.subjectTitle}
         curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-        curriculumInfo={curriculumInfo}
         curriculumCMSInfo={curriculumCMSInfo}
-        subjectForLayout={subjectForLayout}
-        subjectTitle={subjectTitle}
+        curriculumDownloadsTabData={curriculumDownloadsTabData}
+        curriculumInfo={curriculumInfo}
+        mvRefreshTime={mvRefreshTime}
         filters={filters}
         setFilters={onChangeFilters}
+        ks4Options={ks4Options}
+        trackingData={trackingData}
       />
     </>
   );
@@ -177,40 +184,49 @@ export const ProgrammeView = ({
 
 const TabContent = ({
   tabSlug,
-  curriculumPhaseOptions,
   curriculumSelectionSlugs,
-  curriculumInfo,
+  subjectTitle,
   curriculumUnitsFormattedData,
   curriculumCMSInfo,
-  subjectForLayout,
-  subjectTitle,
+  curriculumInfo,
+  curriculumDownloadsTabData,
+  mvRefreshTime,
   filters,
   setFilters,
-}: { tabSlug: TabSlug } & UnitSequenceViewProps & ProgrammeOverviewProps) => {
+  ks4Options,
+  trackingData,
+}: { tabSlug: TabSlug } & UnitSequenceViewProps &
+  ProgrammeOverviewProps &
+  ProgrammeDownloadsProps) => {
   if (tabSlug === "units") {
     return (
-      <OakMaxWidth>
-        <UnitSequenceView
-          curriculumPhaseOptions={curriculumPhaseOptions}
-          curriculumSelectionSlugs={curriculumSelectionSlugs}
-          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          subjectForLayout={subjectForLayout}
-          subjectTitle={subjectTitle}
-          filters={filters}
-          setFilters={setFilters}
-        />
-      </OakMaxWidth>
+      <UnitSequenceView
+        curriculumSelectionSlugs={curriculumSelectionSlugs}
+        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+        filters={filters}
+        setFilters={setFilters}
+        ks4Options={ks4Options}
+        trackingData={trackingData}
+      />
     );
   } else if (tabSlug === "overview") {
     return (
       <ProgrammeOverview
-        curriculumInfo={curriculumInfo}
+        subjectTitle={subjectTitle}
         curriculumCMSInfo={curriculumCMSInfo}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
       />
     );
   } else if (tabSlug === "download") {
-    return <OakBox>Download tab</OakBox>;
+    return (
+      <ProgrammeDownloads
+        mvRefreshTime={mvRefreshTime}
+        curriculumSelectionSlugs={curriculumSelectionSlugs}
+        curriculumDownloadsTabData={curriculumDownloadsTabData}
+        curriculumInfo={curriculumInfo}
+        curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+      />
+    );
   }
   return notFound();
 };

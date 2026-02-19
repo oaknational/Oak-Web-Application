@@ -1,10 +1,12 @@
 import { GetServerSideProps, NextPage } from "next";
 import {
+  OakAllSpacingToken,
   OakBox,
   OakFlex,
   OakHeading,
-  OakMaxWidth,
+  OakIconName,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import Layout from "@/components/AppComponents/Layout";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
@@ -13,6 +15,7 @@ import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
@@ -41,6 +44,39 @@ export type OaksCurriculaPage = {
   topNav: TopNavProps;
 };
 
+const UnstyledLi = styled.li`
+  display: flex;
+  flex: 1 1 0;
+  list-style: none;
+`;
+
+const curriculaCardsInfo: Array<{
+  iconName: OakIconName;
+  iconWidth: OakAllSpacingToken;
+  text: string;
+}> = [
+  {
+    iconName: "clipboard",
+    iconWidth: "spacing-48",
+    text: "National curriculum and exam board aligned",
+  },
+  {
+    iconName: "free-tag",
+    iconWidth: "spacing-80",
+    text: "Free and always will be",
+  },
+  {
+    iconName: "book-steps",
+    iconWidth: "spacing-72",
+    text: "Covers key stages 1-4 across 20 subjects",
+  },
+  {
+    iconName: "threads",
+    iconWidth: "spacing-64",
+    text: "Fully sequenced and ready to adapt",
+  },
+];
+
 export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
   pageData,
   topNav,
@@ -63,50 +99,33 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
           />
         </AboutSharedHeader>
         <OakBox $background={"bg-decorative4-very-subdued"}>
-          <OakMaxWidth $pv={"spacing-80"} $ph={["spacing-16"]}>
-            <OakFlex $flexDirection={"column"} $gap={"spacing-56"}>
+          <NewGutterMaxWidth>
+            <OakFlex
+              $flexDirection={"column"}
+              $gap={"spacing-56"}
+              $pv={["spacing-56", "spacing-80"]}
+            >
               <OakFlex
+                as="ul"
                 $flexDirection={["column", "row"]}
-                $flexWrap="wrap"
-                $gap="spacing-16"
+                $pa={"spacing-0"}
+                $ma={"spacing-0"}
+                $gap={"spacing-16"}
                 $alignItems="stretch"
               >
-                <CurricInfoCard
-                  iconName="clipboard"
-                  background="bg-primary"
-                  iconHeight={"spacing-92"}
-                  iconWidth={"spacing-48"}
-                  borderColor="border-decorative4"
-                >
-                  National curriculum and exam board aligned
-                </CurricInfoCard>
-                <CurricInfoCard
-                  iconName="free-tag"
-                  background="bg-primary"
-                  iconHeight="spacing-92"
-                  iconWidth="spacing-80"
-                  borderColor="border-decorative4"
-                >
-                  Free and always will be
-                </CurricInfoCard>
-                <CurricInfoCard
-                  iconName="book-steps"
-                  background="bg-primary"
-                  iconHeight="spacing-92"
-                  iconWidth="spacing-72"
-                  borderColor="border-decorative4"
-                >
-                  Covers key stages 1-4 across 20 subjects
-                </CurricInfoCard>
-                <CurricInfoCard
-                  iconName="threads"
-                  background="bg-primary"
-                  iconHeight="spacing-92"
-                  iconWidth="spacing-64"
-                  borderColor="border-decorative4"
-                >
-                  Fully sequenced and ready to adapt
-                </CurricInfoCard>
+                {curriculaCardsInfo.map((cardInfo) => (
+                  <UnstyledLi key={cardInfo.iconName}>
+                    <CurricInfoCard
+                      iconName={cardInfo.iconName}
+                      background="bg-primary"
+                      iconHeight={"spacing-92"}
+                      iconWidth={cardInfo.iconWidth}
+                      borderColor="border-decorative4"
+                    >
+                      {cardInfo.text}
+                    </CurricInfoCard>
+                  </UnstyledLi>
+                ))}
               </OakFlex>
               <GuidingPrinciples
                 $background="bg-primary"
@@ -121,18 +140,18 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
                   tag="h2"
                   $font={["heading-5", "heading-4", "heading-4"]}
                 >
-                  See Oak’s curriculum in practice
+                  See Oak’s curricula in practice
                 </OakHeading>
                 <SubjectPhasePicker {...pageData.curriculumPhaseOptions} />
               </OakFlex>
             </OakFlex>
-          </OakMaxWidth>
+          </NewGutterMaxWidth>
         </OakBox>
-        <OakMaxWidth>
+        <NewGutterMaxWidth>
           <OakFlex
-            $gap={"spacing-56"}
-            $pt={"spacing-80"}
             $flexDirection={"column"}
+            $pv={"spacing-80"}
+            $gap={"spacing-56"}
           >
             <OakHeading
               tag="h2"
@@ -151,10 +170,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPage> = ({
               items={pageData.partners.legacy}
             />
           </OakFlex>
-        </OakMaxWidth>
-        <OakBox $pa={"spacing-16"} $borderStyle={"solid"}>
-          TODO: Can oak support you
-        </OakBox>
+        </NewGutterMaxWidth>
       </AboutUsLayout>
     </Layout>
   );

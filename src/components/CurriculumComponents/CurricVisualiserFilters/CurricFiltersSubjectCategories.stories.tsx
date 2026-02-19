@@ -29,6 +29,7 @@ export const CurricFiltersSubjectCategories: Story = {
       years: ["10", "11"],
       threads: [],
       pathways: [],
+      keystages: [],
     },
     slugs: {
       phaseSlug: "primary",

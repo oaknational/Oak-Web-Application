@@ -12,7 +12,7 @@ const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricFiltersSubjectCategories", () => {
   it("renders correctly ks4 only", () => {
-    const { getAllByRole, getByRole } = render(
+    const { getAllByRole, getByText } = render(
       <CurricFiltersSubjectCategories
         filters={{
           childSubjects: [],
@@ -21,6 +21,7 @@ describe("CurricFiltersSubjectCategories", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         slugs={{
           subjectSlug: "english",
@@ -29,19 +30,21 @@ describe("CurricFiltersSubjectCategories", () => {
         }}
         onChangeFilters={() => {}}
         data={ks4Setup}
+        context="curriculum-visualiser"
       />,
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
-    expect(getByRole("heading").textContent).toEqual("Category (KS4)");
+    expect(getByText("Category (KS4)")).toBeInTheDocument();
+
     expect(elements[0]!.value).toEqual("biology");
     expect(elements[1]!.value).toEqual("chemistry");
     expect(elements[2]!.value).toEqual("physics");
   });
 
   it("renders correctly ks3 & ks4", () => {
-    const { getAllByRole, getByRole } = render(
+    const { getAllByRole, getByText } = render(
       <CurricFiltersSubjectCategories
         filters={{
           childSubjects: [],
@@ -50,6 +53,7 @@ describe("CurricFiltersSubjectCategories", () => {
           years: ["7", "8", "9", "10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         slugs={{
           subjectSlug: "english",
@@ -58,12 +62,13 @@ describe("CurricFiltersSubjectCategories", () => {
         }}
         onChangeFilters={() => {}}
         data={ks3and4Setup}
+        context="curriculum-visualiser"
       />,
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
-    expect(getByRole("heading").textContent).toEqual("Category");
+    expect(getByText("Category")).toBeInTheDocument();
     expect(elements[0]!.value).toEqual("biology");
     expect(elements[1]!.value).toEqual("chemistry");
     expect(elements[2]!.value).toEqual("physics");
@@ -80,6 +85,7 @@ describe("CurricFiltersSubjectCategories", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         slugs={{
           subjectSlug: "english",
@@ -88,6 +94,7 @@ describe("CurricFiltersSubjectCategories", () => {
         }}
         onChangeFilters={onChangeFilters}
         data={ks4Setup}
+        context="curriculum-visualiser"
       />,
     );
 
@@ -103,6 +110,7 @@ describe("CurricFiltersSubjectCategories", () => {
         tiers: [],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "subject_category_button",
     );
@@ -115,6 +123,7 @@ describe("CurricFiltersSubjectCategories", () => {
         tiers: [],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "subject_category_button",
     );
@@ -127,6 +136,7 @@ describe("CurricFiltersSubjectCategories", () => {
         tiers: [],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "subject_category_button",
     );

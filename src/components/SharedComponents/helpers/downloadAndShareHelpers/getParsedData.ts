@@ -18,7 +18,7 @@ export type Meta =
 export const getParsedData = (
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   json: any,
-  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+
   schema: z.AnyZodObject,
   oakErrorCode: ErrorInfo["code"],
   meta?: Meta,

@@ -6,7 +6,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
     <div
       class="sc-aXZVg tbBTB"
     >
-      <div
+      <span
         class="sc-aXZVg fGFMqx"
         style="pointer-events: none;"
       >
@@ -19,15 +19,15 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
           src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
         />
-      </div>
+      </span>
       <div
-        class="sc-aXZVg epoPXw"
+        class="sc-aXZVg cryvKT"
       >
         <div
-          class="sc-aXZVg sc-gEvEer kQLqxs cLpNFw"
+          class="sc-aXZVg sc-gEvEer gZGeqY cLpNFw"
         >
           <h2
-            class="sc-eldPxv iGDTao"
+            class="sc-eldPxv fFnkKX"
             id="react-use-id-test-result"
           >
             TEST_TITLE
@@ -36,10 +36,10 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
             aria-labelledby="react-use-id-test-result"
           >
             <ul
-              class="sc-a66d812a-2 cinksp"
+              class="sc-82c3982-2 ivkQVv"
             >
               <li
-                class="sc-a66d812a-1 dspHjE"
+                class="sc-82c3982-1 bXbjKu"
               >
                 <div
                   class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
@@ -49,14 +49,14 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                     style="outline: none;"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-a66d812a-0 krhsqK egjftS gkoiwe"
+                      class="sc-aXZVg sc-gEvEer sc-82c3982-0 krhsqK egjftS geOgkc"
                       data-testid="who-we-are-explore-item"
                     >
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                       >
-                        <div
-                          class="sc-aXZVg cEXryM"
+                        <span
+                          class="sc-aXZVg gqKCsC"
                         >
                           <img
                             alt=""
@@ -67,18 +67,18 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer jfQrXn fXHtRp"
+                        class="sc-aXZVg sc-gEvEer iUcqpI fXHtRp"
                       >
                         ITEM_ONE
                       </div>
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                       >
-                        <div
-                          class="sc-aXZVg dhXyYU"
+                        <span
+                          class="sc-aXZVg gRUGli"
                         >
                           <img
                             alt=""
@@ -89,14 +89,14 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                     </div>
                   </a>
                 </div>
               </li>
               <li
-                class="sc-a66d812a-1 dspHjE"
+                class="sc-82c3982-1 bXbjKu"
               >
                 <div
                   class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
@@ -106,14 +106,14 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                     style="outline: none;"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-a66d812a-0 krhsqK egjftS gkoiwe"
+                      class="sc-aXZVg sc-gEvEer sc-82c3982-0 krhsqK egjftS geOgkc"
                       data-testid="who-we-are-explore-item"
                     >
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                       >
-                        <div
-                          class="sc-aXZVg cEXryM"
+                        <span
+                          class="sc-aXZVg gqKCsC"
                         >
                           <img
                             alt=""
@@ -124,18 +124,18 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer jfQrXn fXHtRp"
+                        class="sc-aXZVg sc-gEvEer iUcqpI fXHtRp"
                       >
                         ITEM_TWO
                       </div>
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                       >
-                        <div
-                          class="sc-aXZVg dhXyYU"
+                        <span
+                          class="sc-aXZVg gRUGli"
                         >
                           <img
                             alt=""
@@ -146,14 +146,14 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                     </div>
                   </a>
                 </div>
               </li>
               <li
-                class="sc-a66d812a-1 dspHjE"
+                class="sc-82c3982-1 bXbjKu"
               >
                 <div
                   class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
@@ -163,14 +163,14 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                     style="outline: none;"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-a66d812a-0 krhsqK egjftS gkoiwe"
+                      class="sc-aXZVg sc-gEvEer sc-82c3982-0 krhsqK egjftS geOgkc"
                       data-testid="who-we-are-explore-item"
                     >
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                       >
-                        <div
-                          class="sc-aXZVg cEXryM"
+                        <span
+                          class="sc-aXZVg gqKCsC"
                         >
                           <img
                             alt=""
@@ -181,18 +181,18 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer jfQrXn fXHtRp"
+                        class="sc-aXZVg sc-gEvEer iUcqpI fXHtRp"
                       >
                         ITEM_THREE
                       </div>
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
                       >
-                        <div
-                          class="sc-aXZVg dhXyYU"
+                        <span
+                          class="sc-aXZVg gRUGli"
                         >
                           <img
                             alt=""
@@ -203,7 +203,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                     </div>
                   </a>

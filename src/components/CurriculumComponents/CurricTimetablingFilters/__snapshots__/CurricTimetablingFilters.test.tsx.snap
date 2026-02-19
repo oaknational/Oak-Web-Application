@@ -40,17 +40,15 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
       <div
         class="sc-aXZVg hdseiA"
       >
-        <h4
-          class="sc-eldPxv jGrdIY"
-          id="year-group-label"
-        >
-          Year group
-        </h4>
         <fieldset
-          aria-labelledby="year-group-label"
-          class="sc-aXZVg sc-gEvEer hUsuNC bvjSrb"
+          class="sc-aXZVg sc-gEvEer hUsuNC jLsiAX"
           data-testid="year-group-filter-desktop"
         >
+          <legend
+            class="sc-ikkxIA iQfZNk"
+          >
+            Year group
+          </legend>
           <div
             class="sc-aXZVg sc-gEvEer sc-fxwrCY iLxEEC doeAUE geVANU"
           >

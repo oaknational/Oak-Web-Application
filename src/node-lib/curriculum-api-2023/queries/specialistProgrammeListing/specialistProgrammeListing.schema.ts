@@ -26,27 +26,19 @@ export const specialistProgrammeListingCountSchema = z.object({
   }),
 });
 
-const SpecialistProgrammeSchema = z.object({
-  programmeSlug: z.string(),
-  developmentStageSlug: z.string(),
-  developmentStageTitle: z.string(),
-  unitCount: z.number(),
-  lessonCount: z.number(),
-});
-
-const SpecialistProgrammesListingSchema = z.object({
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  programmes: z.array(SpecialistProgrammeSchema),
-});
-
-const SpecialistProgrammesSchema = z.array(SpecialistProgrammeSchema);
-
 export type SpecialistProgrammeQueryResponseSchema = z.infer<
   typeof specialistProgrammeQueryResponseSchema
 >;
-export type SpecialistProgramme = z.infer<typeof SpecialistProgrammeSchema>;
-export type SpecialistProgrammes = z.infer<typeof SpecialistProgrammesSchema>;
-export type SpecialistProgrammeListingPageData = z.infer<
-  typeof SpecialistProgrammesListingSchema
->;
+export type SpecialistProgramme = {
+  programmeSlug: string;
+  developmentStageSlug: string;
+  developmentStageTitle: string;
+  unitCount: number;
+  lessonCount: number;
+};
+export type SpecialistProgrammes = SpecialistProgramme[];
+export type SpecialistProgrammeListingPageData = {
+  subjectSlug: string;
+  subjectTitle: string;
+  programmes: SpecialistProgrammes;
+};
