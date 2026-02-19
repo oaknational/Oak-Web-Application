@@ -61,7 +61,7 @@ export default function ProgrammePageFiltersMobile({
         isOpen={mobileThreadModalOpen}
         largeScreenMaxWidth={600}
         domContainer={
-          document.getElementById("mobile-filters-header-container") ??
+          document?.getElementById("mobile-filters-header-container") ??
           undefined
         }
         footerSlot={
