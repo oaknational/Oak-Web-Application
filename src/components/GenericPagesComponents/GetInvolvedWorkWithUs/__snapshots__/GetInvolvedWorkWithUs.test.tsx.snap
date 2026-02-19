@@ -59,8 +59,8 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                     >
                       Permanent roles
                     </span>
-                    <span
-                      class="sc-aXZVg iUEruK"
+                    <div
+                      class="sc-aXZVg anoZA"
                     >
                       <img
                         alt="external"
@@ -71,7 +71,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
-                    </span>
+                    </div>
                   </div>
                 </a>
               </div>
@@ -98,8 +98,8 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                     >
                       Freelance roles
                     </span>
-                    <span
-                      class="sc-aXZVg iUEruK"
+                    <div
+                      class="sc-aXZVg anoZA"
                     >
                       <img
                         alt="external"
@@ -110,7 +110,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
-                    </span>
+                    </div>
                   </div>
                 </a>
               </div>
@@ -126,8 +126,8 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
             <div
               class="sc-aXZVg sc-gEvEer bcjcnH iDBIXi"
             >
-              <span
-                class="sc-aXZVg ccpVbZ"
+              <div
+                class="sc-aXZVg iGlCVz"
               >
                 <img
                   alt="Team working together"
@@ -140,7 +140,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                   srcset="/_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=384&q=75 384w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=3840&q=75 3840w"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </span>
+              </div>
             </div>
             <div
               class="sc-aXZVg sc-gEvEer hdseiA enpIhj"
