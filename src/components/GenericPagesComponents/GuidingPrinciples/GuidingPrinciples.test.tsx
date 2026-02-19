@@ -41,7 +41,7 @@ describe("GuidingPrinciples", () => {
     expect(headingEls[0]).toHaveTextContent("Evidence-informed");
   });
 
-  it("returns null when principles is an empty array", () => {
+  it("renders nothing when principles is an empty array", () => {
     const { container } = render(
       <GuidingPrinciples
         $background="bg-primary"
