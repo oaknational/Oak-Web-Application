@@ -1,3 +1,17 @@
+# [1.996.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.995.1...v1.996.0) (2026-02-19)
+
+
+### Bug Fixes
+
+* keying by index in unit listing ([11881f0](https://github.com/oaknational/Oak-Web-Application/commit/11881f0331897f51dd03f650784aaf8ff6109079))
+
+
+### Features
+
+* add aria label for link opening in new tab ([bcf9987](https://github.com/oaknational/Oak-Web-Application/commit/bcf9987ea15c1d6229f9832d96316fa962df2155))
+* **LESQ-1806:** update takedown banner for cycle2 subjects with no new content ([a628630](https://github.com/oaknational/Oak-Web-Application/commit/a628630949a6fadadc6286968075929e3ab424dc))
+* update copy in UnitsHeader ([44fd152](https://github.com/oaknational/Oak-Web-Application/commit/44fd152abd2c02e0f80861ebb54363c699778983))
+
 ## [1.995.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.995.0...v1.995.1) (2026-02-19)
 
 
