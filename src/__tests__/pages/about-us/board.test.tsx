@@ -143,7 +143,7 @@ describe("pages/about-us/board.tsx", () => {
       });
     });
 
-    it("should redirect is ENABLE_NEW_ABOUT_US=true", async () => {
+    it("should redirect if ENABLE_NEW_ABOUT_US=true", async () => {
       ENABLE_NEW_ABOUT_US_MOCK.mockReturnValue(true);
       const propsResult = await getStaticProps({
         params: {},
