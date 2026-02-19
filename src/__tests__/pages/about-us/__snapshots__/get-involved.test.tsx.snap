@@ -4601,7 +4601,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
     />
     <fake-head>
       <title>
-        NEXT_PUBLIC_SEO_APP_NAME
+        Get Involved | NEXT_PUBLIC_SEO_APP_NAME
       </title>
       <meta
         content="index,follow"
@@ -4624,7 +4624,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
         name="twitter:creator"
       />
       <meta
-        content="NEXT_PUBLIC_SEO_APP_NAME"
+        content="Get Involved | NEXT_PUBLIC_SEO_APP_NAME"
         property="og:title"
       />
       <meta

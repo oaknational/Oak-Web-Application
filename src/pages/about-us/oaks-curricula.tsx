@@ -72,7 +72,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
 
   return (
     <Layout
-      seoProps={getSeoProps(pageData.seo ?? null)}
+      seoProps={getSeoProps(pageData.seo ?? { title: "Oak's Curricula" })}
       $background={"bg-primary"}
       topNavProps={topNav}
     >

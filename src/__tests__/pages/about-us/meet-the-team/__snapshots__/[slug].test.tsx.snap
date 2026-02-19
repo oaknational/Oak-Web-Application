@@ -3177,7 +3177,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
     />
     <fake-head>
       <title>
-        Ed Southall - Meet the Team | Oak National Academy | NEXT_PUBLIC_SEO_APP_NAME
+        Ed Southall - Meet the Team | NEXT_PUBLIC_SEO_APP_NAME
       </title>
       <meta
         content="index,follow"
@@ -3200,7 +3200,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
         name="twitter:creator"
       />
       <meta
-        content="Ed Southall - Meet the Team | Oak National Academy | NEXT_PUBLIC_SEO_APP_NAME"
+        content="Ed Southall - Meet the Team | NEXT_PUBLIC_SEO_APP_NAME"
         property="og:title"
       />
       <meta
