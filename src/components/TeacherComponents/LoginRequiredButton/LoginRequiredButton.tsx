@@ -146,10 +146,13 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
       return (
         <ButtonComponent
           onClick={() => {
-            const pathname =
-              resolveOakHref({ page: "onboarding" }) + `?returnTo=${path}`;
-
-            router.push(pathname);
+            const query = path ? { returnTo: path } : undefined;
+            router.push(
+              resolveOakHref({
+                page: "onboarding",
+                query,
+              }),
+            );
           }}
           {...overrideProps}
         >
