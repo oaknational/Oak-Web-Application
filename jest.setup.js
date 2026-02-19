@@ -140,3 +140,10 @@ Object.defineProperty(global, "matchMedia", {
     dispatchEvent: jest.fn(),
   })),
 });
+
+// App router
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(),
+  useRouter: jest.fn(),
+  useSearchParams: jest.fn(),
+}));

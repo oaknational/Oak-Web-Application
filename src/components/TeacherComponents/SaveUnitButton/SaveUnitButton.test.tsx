@@ -71,15 +71,6 @@ describe("SaveUnitButton", () => {
     expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent("Save");
   });
-  it("disables the button when isLoading is true", () => {
-    mockIsUnitSaving.mockReturnValue(true);
-    render(<SaveUnitButton {...defaultProps} />);
-    const button = screen.getByRole("button", {
-      name: "Save this unit: Test unit",
-    });
-    expect(button).toHaveAttribute("aria-disabled", "true");
-    expect(button).toBeDisabled();
-  });
   it("disables the button when disabled is true", () => {
     render(<SaveUnitButton {...defaultProps} disabled />);
     const button = screen.getByRole("button", {

@@ -45,6 +45,7 @@ export function CurricMobileFilterModal({
               filters={filters}
               onChangeFilters={onChangeFilters}
               data={data}
+              context={"curriculum-visualiser"}
             />
           )}
           {shouldDisplayFilter(data, filters, "tiers") && (
@@ -52,6 +53,7 @@ export function CurricMobileFilterModal({
               filters={filters}
               onChangeFilters={onChangeFilters}
               data={data}
+              context={"curriculum-visualiser"}
             />
           )}
 

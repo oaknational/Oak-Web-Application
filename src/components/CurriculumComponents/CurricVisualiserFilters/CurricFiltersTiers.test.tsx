@@ -22,6 +22,7 @@ describe("CurricFiltersTiers", () => {
         }}
         onChangeFilters={() => {}}
         data={ks4Setup}
+        context={"curriculum-visualiser"}
       />,
     );
 
@@ -46,6 +47,7 @@ describe("CurricFiltersTiers", () => {
         }}
         onChangeFilters={() => {}}
         data={ks3and4Setup}
+        context={"curriculum-visualiser"}
       />,
     );
 
@@ -70,6 +72,7 @@ describe("CurricFiltersTiers", () => {
         }}
         onChangeFilters={() => {}}
         data={ks4Setup}
+        context={"curriculum-visualiser"}
       />,
     );
 
@@ -94,6 +97,7 @@ describe("CurricFiltersTiers", () => {
         }}
         onChangeFilters={onChangeFilters}
         data={ks4Setup}
+        context={"curriculum-visualiser"}
       />,
     );
 

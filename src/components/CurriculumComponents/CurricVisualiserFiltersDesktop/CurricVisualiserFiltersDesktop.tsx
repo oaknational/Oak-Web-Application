@@ -82,6 +82,7 @@ export default function CurricVisualiserFiltersDesktop({
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={data}
+            context={"curriculum-visualiser"}
           />
           <OakHandDrawnHR
             hrColor={"bg-interactive-element2"}
@@ -95,6 +96,7 @@ export default function CurricVisualiserFiltersDesktop({
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={data}
+            context={"curriculum-visualiser"}
           />
           <OakHandDrawnHR
             hrColor={"bg-interactive-element2"}

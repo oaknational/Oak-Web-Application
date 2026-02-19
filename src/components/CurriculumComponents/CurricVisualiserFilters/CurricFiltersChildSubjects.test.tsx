@@ -22,6 +22,7 @@ describe("CurricFiltersChildSubjects", () => {
         }}
         onChangeFilters={() => {}}
         data={ks4Setup}
+        context={"curriculum-visualiser"}
       />,
     );
 
@@ -47,6 +48,7 @@ describe("CurricFiltersChildSubjects", () => {
         }}
         onChangeFilters={() => {}}
         data={ks3and4Setup}
+        context={"curriculum-visualiser"}
       />,
     );
 
@@ -73,6 +75,7 @@ describe("CurricFiltersChildSubjects", () => {
         }}
         onChangeFilters={onChangeFilters}
         data={ks4Setup}
+        context={"curriculum-visualiser"}
       />,
     );
 

@@ -23,12 +23,15 @@ export type CurricFiltersChildSubjectsProps = {
     source: ComponentTypeValueType,
   ) => void;
   data: CurriculumUnitsFormattedData<Unit>;
+  // The context prop can be removed once the integrated journey is fully launched
+  context: "curriculum-visualiser" | "integrated-journey";
 };
 
 export function CurricFiltersChildSubjects({
   filters,
   onChangeFilters,
   data,
+  context,
 }: Readonly<CurricFiltersChildSubjectsProps>) {
   const id = useId();
   const { yearData } = data;
@@ -59,7 +62,9 @@ export function CurricFiltersChildSubjects({
         >
           <OakP
             as="legend"
-            $font={["heading-7", "heading-6"]}
+            $font={
+              context === "curriculum-visualiser" ? "heading-6" : "heading-7"
+            }
             $mt="spacing-0"
             $mb={["spacing-24", "spacing-16"]}
           >

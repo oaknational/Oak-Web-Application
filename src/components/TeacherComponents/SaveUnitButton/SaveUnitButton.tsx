@@ -4,6 +4,8 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
+import SavingSignedOutModal from "../SavingSignedOutModal";
+
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 
@@ -38,15 +40,15 @@ export const SaveUnitButton = ({
   disabled,
   trackingProps,
 }: SaveButtonProps) => {
-  const { isUnitSaved, onSaveToggle, isUnitSaving } = useSaveUnits(
+  const { isUnitSaved, onSaveToggle, showSignIn, setShowSignIn } = useSaveUnits(
     programmeSlug,
     trackingProps,
   );
 
   const buttonProps = {
     isTrailingIcon: true,
-    "aria-disabled": disabled || isUnitSaving(unitSlug),
-    disabled: disabled || isUnitSaving(unitSlug),
+    "aria-disabled": disabled,
+    disabled,
     onClick: () => onSaveToggle(unitSlug),
     $justifyContent: "end",
     "aria-label": `${isUnitSaved(unitSlug) ? "Unsave" : "Save"} this unit: ${unitTitle} `,
@@ -55,6 +57,15 @@ export const SaveUnitButton = ({
   const iconName = isUnitSaved(unitSlug)
     ? "bookmark-filled"
     : "bookmark-outlined";
+
+  if (showSignIn) {
+    return (
+      <SavingSignedOutModal
+        isOpen={showSignIn}
+        onClose={() => setShowSignIn(false)}
+      />
+    );
+  }
 
   return buttonVariant === "inverted" ? (
     <StyledSmallPrimaryButton {...buttonProps} iconName={iconName}>

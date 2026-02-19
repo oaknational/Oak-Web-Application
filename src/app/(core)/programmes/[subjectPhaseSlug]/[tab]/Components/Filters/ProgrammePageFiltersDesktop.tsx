@@ -64,6 +64,7 @@ export default function ProgrammePageFiltersDesktop({
           filters={filters}
           onChangeFilters={onChangeFilters}
           data={data}
+          context={"integrated-journey"}
         />
       )}
       {shouldDisplayFilter(data, filters, "tiers") && (
@@ -71,6 +72,7 @@ export default function ProgrammePageFiltersDesktop({
           filters={filters}
           onChangeFilters={onChangeFilters}
           data={data}
+          context={"integrated-journey"}
         />
       )}
       {/* TD: [integrated journey] add thread filters */}
