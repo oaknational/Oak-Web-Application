@@ -4,7 +4,7 @@ exports[`GuidingPrinciples renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer sc-b0e6f64e-0 bZWVlX bsewjB cqBPwC"
+      class="sc-aXZVg sc-gEvEer sc-67762634-0 bZWVlX bsewjB dsUgjt"
     >
       <div
         class="sc-aXZVg sc-gEvEer hdseiA NeWQh"
@@ -59,12 +59,12 @@ exports[`GuidingPrinciples renders correctly 1`] = `
               <h3
                 class="sc-eldPxv hkhVzB"
               >
-                Evidence-informed
+                Principle 1
               </h3>
               <p
                 class="sc-ikkxIA ixjXGH"
               >
-                Our approach enables the rigorous application of research outcomes, science of learning and impactful best practice.
+                Description 1
               </p>
             </div>
           </div>
@@ -86,12 +86,12 @@ exports[`GuidingPrinciples renders correctly 1`] = `
               <h3
                 class="sc-eldPxv hkhVzB"
               >
-                Knowledge and vocabulary rich
+                Principle 2
               </h3>
               <p
                 class="sc-ikkxIA ixjXGH"
               >
-                Our curriculum is knowledge and vocabulary rich so that pupils build on what they already know to develop deep knowledge and apply this through skills.
+                Description 2
               </p>
             </div>
           </div>
@@ -113,93 +113,12 @@ exports[`GuidingPrinciples renders correctly 1`] = `
               <h3
                 class="sc-eldPxv hkhVzB"
               >
-                Sequenced and coherent
+                Principle 3
               </h3>
               <p
                 class="sc-ikkxIA ixjXGH"
               >
-                We carefully and purposefully sequence our curriculum to ensure that pupils can build on and make links with existing knowledge. We pay attention to vertical coherence via threads, which map the developments of concepts over time.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="sc-aXZVg eyAKNh"
-          data-testid="curric-quote"
-        >
-          <div
-            class="sc-aXZVg sc-gEvEer lbgqUF fYZZye"
-          >
-            <div
-              class="sc-aXZVg sc-gEvEer cJZcoP fBjecQ"
-              data-testid="decorative-bar"
-            />
-            <div
-              class="sc-aXZVg sc-gEvEer hdseiA bktafW"
-            >
-              <h3
-                class="sc-eldPxv hkhVzB"
-              >
-                Flexible
-              </h3>
-              <p
-                class="sc-ikkxIA ixjXGH"
-              >
-                Our curriculum is flexible by design so that schools can use them in a way to fit their setting and meet the varying needs of teachers and their pupils - all aligned to the national curriculum.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="sc-aXZVg eyAKNh"
-          data-testid="curric-quote"
-        >
-          <div
-            class="sc-aXZVg sc-gEvEer lbgqUF fYZZye"
-          >
-            <div
-              class="sc-aXZVg sc-gEvEer cJZcoP fBjecQ"
-              data-testid="decorative-bar"
-            />
-            <div
-              class="sc-aXZVg sc-gEvEer hdseiA bktafW"
-            >
-              <h3
-                class="sc-eldPxv hkhVzB"
-              >
-                Accessible
-              </h3>
-              <p
-                class="sc-ikkxIA ixjXGH"
-              >
-                Our curriculum is designed to support all pupils to learn and follows accessibility guidelines. It uses insights from the science of learning to inform how content is designed and presented.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="sc-aXZVg eyAKNh"
-          data-testid="curric-quote"
-        >
-          <div
-            class="sc-aXZVg sc-gEvEer lbgqUF fYZZye"
-          >
-            <div
-              class="sc-aXZVg sc-gEvEer cJZcoP fBjecQ"
-              data-testid="decorative-bar"
-            />
-            <div
-              class="sc-aXZVg sc-gEvEer hdseiA bktafW"
-            >
-              <h3
-                class="sc-eldPxv hkhVzB"
-              >
-                Diverse
-              </h3>
-              <p
-                class="sc-ikkxIA ixjXGH"
-              >
-                Our commitment to breadth and diversity in content, language, texts and media can be seen throughout our curriculum, to help pupils feel positively represented.
+                Description 3
               </p>
             </div>
           </div>

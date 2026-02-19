@@ -63,7 +63,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
 
   return (
     <Layout
-      seoProps={getSeoProps(seo)}
+      seoProps={getSeoProps(seo ?? { title: "Meet the Team" })}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
