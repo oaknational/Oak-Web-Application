@@ -40,13 +40,15 @@ export const SaveUnitButton = ({
   disabled,
   trackingProps,
 }: SaveButtonProps) => {
-  const { isUnitSaved, onSaveToggle, isUnitSaving, showSignIn, setShowSignIn } =
-    useSaveUnits(programmeSlug, trackingProps);
+  const { isUnitSaved, onSaveToggle, showSignIn, setShowSignIn } = useSaveUnits(
+    programmeSlug,
+    trackingProps,
+  );
 
   const buttonProps = {
     isTrailingIcon: true,
-    "aria-disabled": disabled || isUnitSaving(unitSlug),
-    disabled: disabled || isUnitSaving(unitSlug),
+    "aria-disabled": disabled,
+    disabled,
     onClick: () => onSaveToggle(unitSlug),
     $justifyContent: "end",
     "aria-label": `${isUnitSaved(unitSlug) ? "Unsave" : "Save"} this unit: ${unitTitle} `,
