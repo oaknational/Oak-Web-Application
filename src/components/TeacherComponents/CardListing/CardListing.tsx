@@ -128,13 +128,20 @@ const CardListing = (props: CardListingProps) => {
         >
           <StyledLink {...cardLinkProps}>
             <OakFlex
-              $gap={"spacing-20"}
               $flexDirection={"column"}
-              $color={defaultTextColour}
+              $justifyContent={"space-between"}
+              $height="100%"
+              $gap={"spacing-20"}
             >
-              <Index {...props} />
-              <Title {...props} />
-              <SubCopy {...props} />
+              <OakFlex
+                $gap={"spacing-20"}
+                $flexDirection={"column"}
+                $color={defaultTextColour}
+              >
+                <Index {...props} />
+                <Title {...props} />
+                <SubCopy {...props} />
+              </OakFlex>
               <CardTags {...props} />
             </OakFlex>
           </StyledLink>
