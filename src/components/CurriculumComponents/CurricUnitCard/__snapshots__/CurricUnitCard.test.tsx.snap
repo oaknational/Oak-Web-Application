@@ -55,8 +55,8 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
               >
                 Unit info
               </div>
-              <div
-                class="sc-aXZVg anoZA"
+              <span
+                class="sc-aXZVg iUEruK"
               >
                 <img
                   alt=""
@@ -67,7 +67,7 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
+              </span>
             </div>
           </div>
         </div>
@@ -132,8 +132,8 @@ exports[`CurricUnitCard highlighted state 1`] = `
               >
                 Unit info
               </div>
-              <div
-                class="sc-aXZVg anoZA"
+              <span
+                class="sc-aXZVg iUEruK"
               >
                 <img
                   alt=""
@@ -144,7 +144,7 @@ exports[`CurricUnitCard highlighted state 1`] = `
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
+              </span>
             </div>
           </div>
           <div
@@ -214,8 +214,8 @@ exports[`CurricUnitCard index is correct 1`] = `
               >
                 Unit info
               </div>
-              <div
-                class="sc-aXZVg anoZA"
+              <span
+                class="sc-aXZVg iUEruK"
               >
                 <img
                   alt=""
@@ -226,7 +226,7 @@ exports[`CurricUnitCard index is correct 1`] = `
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
+              </span>
             </div>
           </div>
         </div>
@@ -291,8 +291,8 @@ exports[`CurricUnitCard render 1`] = `
               >
                 Unit info
               </div>
-              <div
-                class="sc-aXZVg anoZA"
+              <span
+                class="sc-aXZVg iUEruK"
               >
                 <img
                   alt=""
@@ -303,7 +303,7 @@ exports[`CurricUnitCard render 1`] = `
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
+              </span>
             </div>
           </div>
         </div>
