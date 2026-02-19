@@ -202,6 +202,7 @@ const CardTags = ({ tags, disabled }: CardListingProps) => {
           isTrailingIcon
           iconName={tag.icon}
           $color={disabled ? "text-disabled" : "text-primary"}
+          useSpan
         />
       ))}
     </OakFlex>
