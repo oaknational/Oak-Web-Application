@@ -29,14 +29,16 @@ describe("GuidingPrinciples", () => {
     expect(headingEls.length).toEqual(3);
   });
 
-  it("returns null when no principles are provided", () => {
-    const { container } = render(
+  it("renders default principles when none are provided", () => {
+    const { getAllByRole } = render(
       <GuidingPrinciples
         $background="bg-primary"
         accentColor="bg-decorative4-subdued"
       />,
     );
-    expect(container.innerHTML).toBe("");
+    const headingEls = getAllByRole("heading", { level: 3 });
+    expect(headingEls.length).toEqual(6);
+    expect(headingEls[0]).toHaveTextContent("Evidence-informed");
   });
 
   it("returns null when principles is an empty array", () => {
@@ -48,5 +50,39 @@ describe("GuidingPrinciples", () => {
       />,
     );
     expect(container.innerHTML).toBe("");
+  });
+
+  it("renders without CMS image when no imageUrl is provided", () => {
+    const { container } = render(
+      <GuidingPrinciples
+        $background="bg-primary"
+        accentColor="bg-decorative4-subdued"
+        principles={testPrinciples}
+      />,
+    );
+    expect(container.innerHTML).not.toBe("");
+    const imgs = container.querySelectorAll("img");
+    const hasCmsImage = Array.from(imgs).some((img) =>
+      img.getAttribute("src")?.includes("cdn.sanity.io"),
+    );
+    expect(hasCmsImage).toBe(false);
+  });
+
+  it("renders OakImage when imageUrl is provided from CMS", () => {
+    const { baseElement } = render(
+      <GuidingPrinciples
+        $background="bg-primary"
+        accentColor="bg-decorative4-subdued"
+        principles={testPrinciples}
+        imageUrl="https://cdn.sanity.io/images/test.png"
+        imageAlt="CMS image"
+      />,
+    );
+    const img = baseElement.querySelector("img");
+    expect(img).toHaveAttribute(
+      "src",
+      expect.stringContaining("cdn.sanity.io"),
+    );
+    expect(img).toHaveAttribute("alt", "CMS image");
   });
 });
