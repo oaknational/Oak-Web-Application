@@ -61,10 +61,7 @@ export default function ProgrammePageFiltersMobile({
         onClose={onClose}
         isOpen={mobileThreadModalOpen}
         largeScreenMaxWidth={600}
-        domContainer={
-          document?.getElementById("mobile-filters-header-container") ??
-          undefined
-        }
+        domContainer={getDomContainer()}
         footerSlot={
           <OakBox
             $pa={"spacing-12"}
