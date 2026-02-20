@@ -3,17 +3,30 @@ import { userEvent } from "@testing-library/user-event";
 
 import TopNavDropdown from "./TopNavDropdown";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { DropdownFocusManager } from "@/components/AppComponents/TopNav/DropdownFocusManager/DropdownFocusManager";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProviders();
+
+const mockBrowseRefined = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefined: (...args: []) => mockBrowseRefined(...args),
+    },
+  }),
+}));
+
+let focusManager: DropdownFocusManager<TeachersSubNavData>;
+const onCloseMock = jest.fn();
 
 describe("TopNavDropdown", () => {
-  let focusManager: DropdownFocusManager<TeachersSubNavData>;
-  let onCloseMock: jest.Mock;
-
   beforeEach(() => {
-    onCloseMock = jest.fn();
+    onCloseMock.mockReset();
+    mockBrowseRefined.mockReset();
     focusManager = new DropdownFocusManager(
       topNavFixture.teachers!,
       "teachers",
@@ -24,7 +37,7 @@ describe("TopNavDropdown", () => {
   describe("Teachers area", () => {
     describe("phases sections", () => {
       it("renders keystage menu", async () => {
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -43,7 +56,7 @@ describe("TopNavDropdown", () => {
       });
 
       it("renders keystage menu", async () => {
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -61,8 +74,31 @@ describe("TopNavDropdown", () => {
         expect(keystageButtons[0]).toHaveAttribute("aria-current", "true");
       });
 
+      it("calls track browse refined when a keystage button is clicked", async () => {
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="secondary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const keystageButton = screen.getByRole("tab", { name: "Key stage 4" });
+        const user = userEvent.setup();
+        await user.click(keystageButton);
+        expect(mockBrowseRefined).toHaveBeenCalledWith(
+          expect.objectContaining({
+            filterType: "Key stage filter",
+            filterValue: "ks4",
+          }),
+        );
+      });
+
       it("renders subject buttons and link to all key stage page", async () => {
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -81,7 +117,7 @@ describe("TopNavDropdown", () => {
       });
 
       it("renders subject buttons with non-curriculum subjects last and with correct styling", async () => {
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -102,7 +138,7 @@ describe("TopNavDropdown", () => {
 
       it("calls onClose when clicking a subject button", async () => {
         const user = userEvent.setup();
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -126,7 +162,7 @@ describe("TopNavDropdown", () => {
 
       it("calls onClose when clicking 'All [keystage] subjects' button", async () => {
         const user = userEvent.setup();
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -150,7 +186,7 @@ describe("TopNavDropdown", () => {
 
       it("calls onClose when clicking a non-curriculum subject button", async () => {
         const user = userEvent.setup();
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -171,10 +207,39 @@ describe("TopNavDropdown", () => {
 
         expect(onCloseMock).toHaveBeenCalledTimes(1);
       });
+
+      it("calls track browse refined when clicking a subject button", async () => {
+        const user = userEvent.setup();
+        render(
+          <TopNavDropdown
+            teachers={topNavFixture.teachers!}
+            pupils={topNavFixture.pupils!}
+            activeArea="TEACHERS"
+            selectedMenu="primary"
+            focusManager={focusManager}
+            onClose={onCloseMock}
+          />,
+        );
+
+        const englishButton = await screen.findByRole("link", {
+          name: "English",
+        });
+        // Prevent navigation in test
+        englishButton.addEventListener("click", (e) => e.preventDefault());
+        await user.click(englishButton);
+
+        expect(mockBrowseRefined).toHaveBeenCalledWith(
+          expect.objectContaining({
+            activeFilters: { keystage: ["ks1"] },
+            filterType: "Subject filter",
+            filterValue: "english",
+          }),
+        );
+      });
     });
     describe("links sections", () => {
       it("renders heading and links", async () => {
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -195,7 +260,7 @@ describe("TopNavDropdown", () => {
       });
 
       it("renders internal links correctly", async () => {
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -213,7 +278,7 @@ describe("TopNavDropdown", () => {
 
       it("calls onClose when clicking a guidance link", async () => {
         const user = userEvent.setup();
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -237,7 +302,7 @@ describe("TopNavDropdown", () => {
 
       it("calls onClose when clicking an about us link", async () => {
         const user = userEvent.setup();
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -258,7 +323,7 @@ describe("TopNavDropdown", () => {
       });
 
       it("renders external links with correct target attribute", async () => {
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -279,7 +344,7 @@ describe("TopNavDropdown", () => {
   describe("Pupils area", () => {
     describe("links sections", () => {
       it("renders primary year buttons", async () => {
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -296,7 +361,7 @@ describe("TopNavDropdown", () => {
       });
 
       it("renders secondary year buttons", async () => {
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -314,7 +379,7 @@ describe("TopNavDropdown", () => {
 
       it("calls onClose when clicking a primary year button", async () => {
         const user = userEvent.setup();
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}
@@ -338,7 +403,7 @@ describe("TopNavDropdown", () => {
 
       it("calls onClose when clicking a secondary year button", async () => {
         const user = userEvent.setup();
-        renderWithTheme(
+        render(
           <TopNavDropdown
             teachers={topNavFixture.teachers!}
             pupils={topNavFixture.pupils!}

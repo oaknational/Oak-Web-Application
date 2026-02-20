@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InnerMaxWidth matches snapshot 1`] = `
+exports[`NewGutterMaxWidth matches snapshot 1`] = `
 <div>
   <div
-    class="sc-aXZVg flkhOM"
+    class="sc-aXZVg cryvKT"
   >
     <div>
       Test content

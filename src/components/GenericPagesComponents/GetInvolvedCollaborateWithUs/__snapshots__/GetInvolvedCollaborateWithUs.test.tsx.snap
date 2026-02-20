@@ -6,7 +6,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
     class="sc-aXZVg gkbMXK"
   >
     <div
-      class="sc-aXZVg flkhOM"
+      class="sc-aXZVg cryvKT"
     >
       <div
         class="sc-aXZVg sc-gEvEer zxVfg bktafW"
@@ -18,7 +18,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
             class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA iDBIXi bWIaAb"
           >
             <h2
-              class="sc-eldPxv bBWhuP"
+              class="sc-eldPxv iiNDPs"
             >
               Collaborate with us
             </h2>
@@ -30,7 +30,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
               class="sc-aXZVg sc-gEvEer gpQQnm wjdwM"
             >
               <span
-                class="sc-aXZVg ccpVbZ sc-d1686a12-0 lmLMjx"
+                class="sc-aXZVg ccpVbZ sc-a91d9083-0 eDyawt"
               >
                 <img
                   alt=""
@@ -60,7 +60,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                     class="sc-aXZVg sc-gEvEer hdseiA dfjiUz"
                   >
                     <h3
-                      class="sc-eldPxv gEVowR"
+                      class="sc-eldPxv pqCFq"
                     >
                       Give your feedback
                     </h3>
@@ -125,7 +125,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                     class="sc-aXZVg sc-gEvEer hdseiA dfjiUz"
                   >
                     <h3
-                      class="sc-eldPxv gEVowR"
+                      class="sc-eldPxv pqCFq"
                     >
                       Help us improve
                     </h3>

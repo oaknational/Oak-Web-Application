@@ -24,6 +24,7 @@ import {
   newAboutGetInvolvedPageSchema,
   newAboutWhoWeArePageSchema,
   meetTheTeamPageSchema,
+  oaksCurriculaPageSchema,
   teamMemberSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
@@ -234,6 +235,11 @@ const getSanityClient = () => ({
     sanityGraphqlApi.campaignBySlug,
     campaignPageSchema,
     (result) => result?.allCampaignPage?.[0],
+  ),
+  oaksCurriculaPage: getSingleton(
+    sanityGraphqlApi.oaksCurriculaPage,
+    oaksCurriculaPageSchema,
+    (result) => result?.allNewAboutCorePageOaksCurricula?.[0],
   ),
   meetTheTeamPage: getSingleton(
     sanityGraphqlApi.meetTheTeamPage,

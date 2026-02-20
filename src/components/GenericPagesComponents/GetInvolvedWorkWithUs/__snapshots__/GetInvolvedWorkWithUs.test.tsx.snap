@@ -4,7 +4,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg flkhOM"
+      class="sc-aXZVg cryvKT"
     >
       <div
         class="sc-aXZVg sc-tagGq zxVfg fmhoRo"
@@ -19,7 +19,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
               class="sc-aXZVg sc-gEvEer hdseiA daEtut"
             >
               <h2
-                class="sc-eldPxv bBWhuP"
+                class="sc-eldPxv iiNDPs"
               >
                 Work with us
               </h2>
@@ -147,17 +147,17 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
             >
               <img
                 alt="Badge 1"
-                class="sc-279c76fc-0 fSvnbS"
+                class="sc-6d58e7fe-0 jppgzX"
                 src="http://example.com/badge1.png"
               />
               <img
                 alt="Badge 2"
-                class="sc-279c76fc-0 fSvnbS"
+                class="sc-6d58e7fe-0 jppgzX"
                 src="http://example.com/badge2.png"
               />
               <img
                 alt="Badge 3"
-                class="sc-279c76fc-0 fSvnbS"
+                class="sc-6d58e7fe-0 jppgzX"
                 src="http://example.com/badge3.png"
               />
             </div>

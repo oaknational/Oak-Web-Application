@@ -22,6 +22,7 @@ import {
   OakLinkPropsRequiringPageOnly,
   resolveOakHref,
 } from "@/common-lib/urls";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export function SubmenuContainer({
   title,
@@ -75,6 +76,7 @@ export function SubmenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...navData } = props;
+  const { track } = useAnalytics();
   const { submenuOpen, handleCloseHamburger } = hamburgerMenu;
 
   if (!submenuOpen) return null;
@@ -135,7 +137,20 @@ export function SubmenuContent(
           hamburgerMenu={hamburgerMenu}
         >
           <TopNavSubjectButtons
-            handleClick={handleCloseHamburger}
+            handleClick={(subjectSlug, keystageSlug) => {
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Subject filter",
+                filterValue: subjectSlug,
+                activeFilters: { keystages: [keystageSlug] },
+              });
+              handleCloseHamburger();
+            }}
             selectedMenu={phase}
             subjects={subjects}
             nonCurriculumSubjects={nonCurriculumSubjects}

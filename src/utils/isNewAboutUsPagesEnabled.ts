@@ -1,3 +1,4 @@
+import { ENABLE_NEW_ABOUT_US } from "@/config/flags";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 
@@ -5,6 +6,9 @@ export default async function isNewAboutUsPagesEnabled(
   posthogApiKey: string,
   cookies: Partial<{ [key: string]: string }>,
 ) {
+  if (ENABLE_NEW_ABOUT_US === true) {
+    return true;
+  }
   const posthogUserId = getPosthogIdFromCookie(cookies, posthogApiKey);
 
   let enableV2: boolean = false;

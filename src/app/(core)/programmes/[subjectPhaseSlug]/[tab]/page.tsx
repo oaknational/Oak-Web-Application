@@ -1,5 +1,4 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
-import { uniq } from "lodash";
 import { Metadata } from "next";
 import { cache } from "react";
 
@@ -25,9 +24,9 @@ import errorReporter from "@/common-lib/error-reporter";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import { useFeatureFlag } from "@/utils/featureFlags";
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
+import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -62,12 +61,6 @@ export async function generateMetadata({
     const curriculumUnitsFormattedData =
       formatCurriculumUnitsData(curriculumUnitsData);
 
-    // Extract keyStages from yearData
-    const keyStages = uniq(
-      Object.values(curriculumUnitsFormattedData.yearData).flatMap(
-        ({ units }) => units.map((unit) => unit.keystage_slug),
-      ),
-    );
     const ks4Options =
       curriculumPhaseOptions.subjects.find(
         (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
@@ -82,7 +75,7 @@ export async function generateMetadata({
       subjectTitle: programmeUnitsData.subjectTitle,
       ks4OptionSlug: ks4Option?.slug ?? null,
       ks4OptionTitle: ks4Option?.title ?? null,
-      keyStages: keyStages,
+      keyStages: curriculumUnitsFormattedData.keystages,
       tab: "units",
     });
     const description = buildCurriculumMetadata({
@@ -91,7 +84,7 @@ export async function generateMetadata({
       subjectTitle: programmeUnitsData.subjectTitle,
       ks4OptionSlug: ks4Option?.slug ?? null,
       ks4OptionTitle: ks4Option?.title ?? null,
-      keyStages: keyStages,
+      keyStages: curriculumUnitsFormattedData.keystages,
       tab: "units",
     });
     const canonicalURL = new URL(
@@ -122,8 +115,7 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
-  // `useFeatureFlag` is not a hook
-  const isEnabled = await useFeatureFlag(
+  const isEnabled = await getFeatureFlagValue(
     "teachers-integrated-journey",
     "boolean",
   );
@@ -131,6 +123,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   if (!isEnabled) {
     return notFound();
   }
+
   const { subjectPhaseSlug, tab } = await props.params;
 
   if (!isTabSlug(tab)) {

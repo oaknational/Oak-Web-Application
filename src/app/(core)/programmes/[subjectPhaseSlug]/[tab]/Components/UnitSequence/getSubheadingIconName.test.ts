@@ -1,5 +1,6 @@
 import { getSubheadingIconName } from "./getSubheadingIconName";
 
+import { getKeystageSlug } from "@/fixtures/curriculum/unit";
 import { CurriculumFilters, YearData, Unit } from "@/utils/curriculum/types";
 
 /** Subject slugs that map to valid Oak icon names (e.g. subject-english, subject-maths). */
@@ -15,6 +16,7 @@ const defaultFilters: CurriculumFilters = {
   pathways: [],
   subjectCategories: [],
   threads: [],
+  keystages: [],
 };
 
 const yearDataWithSubjectCategory = (slug: string): YearData[string] => ({
@@ -26,6 +28,7 @@ const yearDataWithSubjectCategory = (slug: string): YearData[string] => ({
   isSwimming: false,
   groupAs: null,
   nationalCurriculum: [],
+  keystage: getKeystageSlug(slug),
 });
 
 const yearDataWithChildSubject = (subject_slug: string): YearData[string] => ({
@@ -37,6 +40,7 @@ const yearDataWithChildSubject = (subject_slug: string): YearData[string] => ({
   isSwimming: false,
   groupAs: null,
   nationalCurriculum: [],
+  keystage: "ks3",
 });
 
 const unitWithSubject = (subject_slug: string): Unit =>

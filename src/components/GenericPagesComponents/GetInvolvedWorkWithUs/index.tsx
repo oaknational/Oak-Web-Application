@@ -11,9 +11,8 @@ import {
 import styled from "styled-components";
 import { PortableTextBlockComponent } from "@portabletext/react";
 
-import { InnerMaxWidth } from "../InnerMaxWidth";
-
 import { PortableTextJSON } from "@/common-lib/cms-types";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const BadgeImage = styled.img`
@@ -58,7 +57,7 @@ export function GetInvolvedWorkWithUs({
   badges,
 }: Readonly<GetInvolvedWorkWithUsProps>) {
   return (
-    <InnerMaxWidth>
+    <NewGutterMaxWidth>
       <OakGrid
         $rg={["spacing-40", "spacing-40", "spacing-16"]}
         $cg={["spacing-0", "spacing-40", "spacing-16"]}
@@ -73,7 +72,6 @@ export function GetInvolvedWorkWithUs({
             <OakFlex $flexDirection="column" $gap="spacing-24">
               <OakHeading
                 $font={["heading-5", "heading-3", "heading-3"]}
-                $color="text-primary"
                 tag="h2"
               >
                 {heading}
@@ -163,6 +161,6 @@ export function GetInvolvedWorkWithUs({
           </OakFlex>
         </OakGridArea>
       </OakGrid>
-    </InnerMaxWidth>
+    </NewGutterMaxWidth>
   );
 }
