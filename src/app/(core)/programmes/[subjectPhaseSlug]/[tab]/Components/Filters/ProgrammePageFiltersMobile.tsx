@@ -9,6 +9,7 @@ import {
 
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
+import { ProgrammeFiltersThreads } from "./ProgrammeFiltersThreads";
 
 import { usePrevious } from "@/hooks/usePrevious";
 import { CloseAction } from "@/components/CurriculumComponents/OakComponentsKitchen/OakModalNew/Content";
@@ -99,6 +100,14 @@ export default function ProgrammePageFiltersMobile({
   );
 }
 
+function getDomContainer() {
+  if (typeof document !== "undefined") {
+    return (
+      document.getElementById("mobile-filters-header-container") ?? undefined
+    );
+  }
+}
+
 const ModalContent = ({
   filters,
   onChangeFilters,
@@ -152,6 +161,13 @@ const ModalContent = ({
         )}
         {shouldDisplayFilter(data, filters, "tiers") && (
           <CurricFiltersTiers
+            filters={filters}
+            onChangeFilters={onChangeFilters}
+            data={data}
+          />
+        )}
+        {shouldDisplayFilter(data, filters, "threads") && (
+          <ProgrammeFiltersThreads
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={data}
