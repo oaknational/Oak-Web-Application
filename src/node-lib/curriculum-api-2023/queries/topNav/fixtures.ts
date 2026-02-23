@@ -225,6 +225,75 @@ export const mockResponseData: TopNavResponse = {
       actions: {},
       programme_slug: "maths-secondary-ks4-foundation",
     },
+    {
+      programme_fields: programmeFieldsFixture({
+        overrides: {
+          keystage: "KS4",
+          keystage_slug: "ks4",
+          phase_slug: "secondary",
+          subject: "Religious education",
+          subject_slug: "religious-education",
+          pathway_slug: "gcse",
+          pathway: "GCSE",
+          examboard_slug: "aqa",
+          examboard: "AQA",
+        },
+      }),
+      features: {},
+      actions: {},
+      programme_slug: "religious-education-secondary-ks4-gcse-aqa",
+    },
+    {
+      programme_fields: programmeFieldsFixture({
+        overrides: {
+          keystage: "KS4",
+          keystage_slug: "ks4",
+          phase_slug: "secondary",
+          subject: "Religious education",
+          subject_slug: "religious-education",
+          pathway_slug: "gcse",
+          pathway: "GCSE",
+          examboard_slug: "edexcelb",
+          examboard: "Edexcel B",
+        },
+      }),
+      features: {},
+      actions: {},
+      programme_slug: "religious-education-secondary-ks4-gcse-edexcelb",
+    },
+    {
+      programme_fields: programmeFieldsFixture({
+        overrides: {
+          keystage: "KS4",
+          keystage_slug: "ks4",
+          phase_slug: "secondary",
+          subject: "Religious education",
+          subject_slug: "religious-education",
+          pathway_slug: "gcse",
+          pathway: "GCSE",
+          examboard_slug: "eduqas",
+          examboard: "Eduqas",
+        },
+      }),
+      features: {},
+      actions: {},
+      programme_slug: "religious-education-secondary-ks4-gcse-eduqas",
+    },
+    {
+      programme_fields: programmeFieldsFixture({
+        overrides: {
+          keystage: "KS4",
+          keystage_slug: "ks4",
+          phase_slug: "secondary",
+          subject: "Religious education",
+          subject_slug: "religious-education",
+          dataset: "legacy",
+        },
+      }),
+      features: {},
+      actions: {},
+      programme_slug: "religious-education-secondary-ks4-l",
+    },
   ],
 };
 
