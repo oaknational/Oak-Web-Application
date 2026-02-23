@@ -32,7 +32,7 @@ const eyfsPageQuery = (sdk: Sdk) => async (args: { subjectSlug: string }) => {
   const units = parsedResponse.lessons.reduce((acc, lesson) => {
     const unitSlug = lesson.unit_slug;
 
-    const video = parsedVideos.videos.find(
+    const videoForLesson = parsedVideos.videos.find(
       (v) => v.video_id === lesson.lesson_data.video_id,
     );
 
@@ -43,8 +43,8 @@ const eyfsPageQuery = (sdk: Sdk) => async (args: { subjectSlug: string }) => {
         lesson.lesson_data?.key_learning_points?.[0]?.key_learning_point,
       orderInUnit: lesson.order_in_unit,
       video: {
-        muxPlaybackId: video?.video_mux_playback_id ?? null,
-        title: video?.video_title ?? null,
+        muxPlaybackId: videoForLesson?.video_mux_playback_id ?? null,
+        title: videoForLesson?.video_title ?? null,
       },
     };
 

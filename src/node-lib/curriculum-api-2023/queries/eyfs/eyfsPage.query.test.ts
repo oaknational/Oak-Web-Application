@@ -44,4 +44,42 @@ describe("eyfs page query", () => {
       });
     }).rejects.toThrow("lesson_slug");
   });
+  it("populates lessons with video data", async () => {
+    const response = await eyfsPageQuery({
+      ...sdk,
+      eyfsPage: jest.fn(() =>
+        Promise.resolve({
+          lessons: [
+            {
+              programme_slug: "programme-slug",
+              lesson_slug: "lesson-slug",
+              lesson_data: lessonDataFixture({ overrides: { video_id: 123 } }),
+              programme_fields: programmeFieldsFixture(),
+              unit_data: unitDataFixture({ overrides: { slug: "unit-slug" } }),
+              unit_slug: "unit-slug",
+              features: {},
+              order_in_unit: 1,
+            },
+          ],
+          subjects: [],
+        }),
+      ),
+      eyfsVideos: jest.fn(() =>
+        Promise.resolve({
+          videos: [
+            {
+              video_mux_playback_id: "test-playback_id",
+              video_id: 123,
+              video_title: "video title",
+            },
+          ],
+        }),
+      ),
+    })({
+      subjectSlug: "maths",
+    });
+
+    const lesson = response.units["unit-slug"]?.lessons[0];
+    expect(lesson?.video.muxPlaybackId).toBe("test-playback_id");
+  });
 });

@@ -10,7 +10,7 @@ export const queryResponse = z.object({
     z.object({
       lesson_data: lessonDataSchema.extend({
         key_learning_points: z
-          .array(z.object({ key_learning_point: z.string() }))
+          .array(z.object({ key_learning_point: z.string().optional() }))
           .nullish(),
       }),
       lesson_slug: z.string(),
