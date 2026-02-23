@@ -96,6 +96,7 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
               onClick={() => {}}
               expiringBanner={
                 <TakedownBanner
+                  titleTag="h3"
                   hasNewUnits={false}
                   subjectSlug={subjectSlug}
                   userType="teacher"
