@@ -7,6 +7,7 @@ import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExp
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const NewsletterWrapper = styled(OakFlex)`
   max-width: 100%;
