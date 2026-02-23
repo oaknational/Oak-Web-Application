@@ -12,26 +12,25 @@ import {
 import styled from "styled-components";
 import { RefObject, useMemo, useRef } from "react";
 
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import Layout from "@/components/AppComponents/Layout";
+import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import CMSClient from "@/node-lib/cms";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import Layout from "@/components/AppComponents/Layout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
-import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
 import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
-import CMSClient from "@/node-lib/cms";
-import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { useCurrentSection } from "@/hooks/useCurrentSection";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -161,7 +160,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
 
   return (
     <Layout
-      seoProps={getSeoProps(seo)}
+      seoProps={getSeoProps(seo ?? { title: "Meet the Team" })}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
@@ -176,8 +175,11 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
             imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
           />
         </AboutSharedHeader>
-        <InnerMaxWidth>
-          <OakFlex $gap={["spacing-0", "spacing-16", "spacing-16"]}>
+        <NewGutterMaxWidth>
+          <OakFlex
+            $gap={["spacing-0", "spacing-16", "spacing-16"]}
+            $pb={"spacing-80"}
+          >
             <OakBox $pb={"spacing-80"}>
               <TmpNav sectionRefs={sectionRefs} />
             </OakBox>
@@ -185,7 +187,6 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               $flexGrow={1}
               $flexDirection={"column"}
               $gap={["spacing-32", "spacing-56", "spacing-56"]}
-              $pb={"spacing-80"}
             >
               <MeetTheTeamContainer
                 ref={leadershipRef}
@@ -210,7 +211,6 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                   );
                 })}
               </MeetTheTeamContainer>
-
               <MeetTheTeamContainer
                 ref={boardRef}
                 title={SECTION_TITLES.board}
@@ -234,7 +234,6 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                   );
                 })}
               </MeetTheTeamContainer>
-
               {documents && documents.length > 0 && (
                 <MeetTheTeamContainer
                   ref={documentsRef}
@@ -261,7 +260,6 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                   })}
                 </MeetTheTeamContainer>
               )}
-
               <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
                 <OakHeading
                   tag="h2"
@@ -278,7 +276,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               </OakFlex>
             </OakFlex>
           </OakFlex>
-        </InnerMaxWidth>
+        </NewGutterMaxWidth>
       </AboutUsLayout>
     </Layout>
   );
@@ -287,19 +285,10 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
 export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPageProps
 > = async (context) => {
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
+  const enableV2 = await isNewAboutUsPagesEnabled(
     posthogApiKey,
+    context.req.cookies,
   );
-  let enableV2: boolean = false;
-  if (posthogUserId) {
-    // get the variant key for the user
-    enableV2 =
-      (await getFeatureFlag({
-        featureFlagKey: "about-us--who-we-are--v2",
-        posthogUserId,
-      })) === true;
-  }
 
   if (!enableV2) {
     return {

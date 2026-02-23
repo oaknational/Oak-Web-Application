@@ -3,36 +3,12 @@ import userEvent from "@testing-library/user-event";
 
 import { PupilsTopNavHamburger } from "./PupilsTopNavHamburger";
 
-import { PupilsSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProvidersByName(["oakTheme", "router"]);
 
-const mockPupilsSubNavData: PupilsSubNavData = {
-  primary: {
-    phaseTitle: "Primary",
-    phaseSlug: "primary",
-    years: [
-      { title: "Year 1", slug: "year-1" },
-      { title: "Year 2", slug: "year-2" },
-      { title: "Year 3", slug: "year-3" },
-      { title: "Year 4", slug: "year-4" },
-      { title: "Year 5", slug: "year-5" },
-      { title: "Year 6", slug: "year-6" },
-    ],
-  },
-  secondary: {
-    phaseTitle: "Secondary",
-    phaseSlug: "secondary",
-    years: [
-      { title: "Year 7", slug: "year-7" },
-      { title: "Year 8", slug: "year-8" },
-      { title: "Year 9", slug: "year-9" },
-      { title: "Year 10", slug: "year-10" },
-      { title: "Year 11", slug: "year-11" },
-    ],
-  },
-};
+const mockPupilsSubNavData = topNavFixture.pupils!;
 
 describe("PupilsTopNavHamburger", () => {
   it("should render the hamburger button", () => {

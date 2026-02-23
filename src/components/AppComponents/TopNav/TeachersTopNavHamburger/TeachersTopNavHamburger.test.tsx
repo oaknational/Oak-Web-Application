@@ -1,4 +1,5 @@
-import { act } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import {
   getEYFSAriaLabel,
@@ -6,174 +7,21 @@ import {
 } from "./TeachersTopNavHamburger";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { TeachersSubNavData } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
-const mockTopNavProps: TeachersSubNavData = {
-  primary: {
-    phaseTitle: "Primary",
-    phaseSlug: "primary",
-    keystages: [
-      {
-        title: "KS1",
-        slug: "ks1",
-        description: "Key Stage 1",
-        subjects: [
-          {
-            title: "test-subject-1",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-1",
-            subjectSlug: "test-subject-slug-1",
-          },
-          {
-            title: "test-subject-2",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-2",
-            subjectSlug: "test-subject-slug-2",
-          },
-          {
-            title: "test-subject-3",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-3",
-            subjectSlug: "test-subject-slug-3",
-          },
-        ],
-      },
-      {
-        title: "KS2",
-        slug: "ks2",
-        description: "Key Stage 2",
-        subjects: [
-          {
-            title: "test-subject-1",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-1",
-            subjectSlug: "test-subject-slug-1",
-          },
-          {
-            title: "test-subject-2",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-2",
-            subjectSlug: "test-subject-slug-2",
-          },
-          {
-            title: "test-subject-3",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-3",
-            subjectSlug: "test-subject-slug-3",
-          },
-        ],
-      },
-      {
-        title: "EYFS",
-        slug: "eyfs",
-        description: "Early Years Foundation Stage",
-        subjects: [
-          {
-            title: "test-subject-1",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-1",
-            subjectSlug: "test-subject-slug-1",
-          },
-          {
-            title: "test-subject-2",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-2",
-            subjectSlug: "test-subject-slug-2",
-          },
-          {
-            title: "test-subject-3",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-3",
-            subjectSlug: "test-subject-slug-3",
-          },
-        ],
-      },
-    ],
-  },
-  secondary: {
-    phaseTitle: "Secondary",
-    phaseSlug: "secondary",
-    keystages: [
-      {
-        title: "KS3",
-        slug: "ks3",
-        description: "Key Stage 3",
-        subjects: [
-          {
-            title: "test-subject-1",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-1",
-            subjectSlug: "test-subject-slug-1",
-          },
-          {
-            title: "test-subject-2",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-2",
-            subjectSlug: "test-subject-slug-2",
-          },
-          {
-            title: "test-subject-3",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-3",
-            subjectSlug: "test-subject-slug-3",
-          },
-        ],
-      },
-      {
-        title: "KS4",
-        slug: "ks4",
-        description: "Key Stage 4",
-        subjects: [
-          {
-            title: "test-subject-1",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-1",
-            subjectSlug: "test-subject-slug-1",
-          },
-          {
-            title: "test-subject-2",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-2",
-            subjectSlug: "test-subject-slug-2",
-          },
-          {
-            title: "test-subject-3",
-            nonCurriculum: false,
-            programmeCount: 0,
-            programmeSlug: "test-programme-slug-3",
-            subjectSlug: "test-subject-slug-3",
-          },
-        ],
-      },
-    ],
-  },
-  aboutUs: [
-    { title: "test-link-1", slug: "home" },
-    { title: "test-link-2", slug: "home" },
-    { title: "test-link-3", slug: "home" },
-  ],
-  guidance: [
-    { title: "test-link-1", slug: "home" },
-    { title: "test-link-2", slug: "home" },
-    { title: "test-link-3", slug: "home" },
-  ],
-};
+const mockTopNavProps = topNavFixture.teachers!;
 
 const render = renderWithProviders();
+
+const mockBrowseRefined = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefined: (...args: []) => mockBrowseRefined(...args),
+    },
+  }),
+}));
 
 describe("TeachersTopNavHamburger", () => {
   beforeEach(() => {
@@ -187,109 +35,102 @@ describe("TeachersTopNavHamburger", () => {
     expect(getByTestId("top-nav-hamburger-button")).toBeInTheDocument();
   });
 
-  it("should display main menu content when no submenu is open", () => {
+  it("should display main menu content when no submenu is open", async () => {
     const { getByTestId, getByText } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
+    const user = userEvent.setup();
     const button = getByTestId("top-nav-hamburger-button");
-    act(() => {
-      button.click();
-    });
+    await user.click(button);
+
     expect(getByText("Primary")).toBeInTheDocument();
   });
 
-  it("should display submenu content when a submenu is opened", () => {
+  it("should display submenu content when a submenu is opened", async () => {
     const { getByTestId, getByText } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
+
+    const user = userEvent.setup();
     const button = getByTestId("top-nav-hamburger-button");
-    act(() => {
-      button.click();
-    });
-    const keyStageItem = getByText("Key Stage 1");
-    act(() => {
-      keyStageItem.click();
-    });
-    expect(getByText("test-subject-1")).toBeInTheDocument();
+    await user.click(button);
+
+    const keyStageItem = getByText("Key stage 1");
+    await user.click(keyStageItem);
+    expect(getByText("English")).toBeInTheDocument();
   });
 
-  it("should focus the first list item when submenu is opened", () => {
+  it("should focus the first list item when submenu is opened", async () => {
     const { getByTestId, getByText } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
+    const user = userEvent.setup();
     const button = getByTestId("top-nav-hamburger-button");
-    act(() => {
-      button.click();
-    });
-    const keyStageItem = getByText("Key Stage 1");
-    act(() => {
-      keyStageItem.click();
-    });
-    const firstListItem = getByText("test-subject-1");
+    await user.click(button);
+
+    const keyStageItem = getByText("Key stage 1");
+    await user.click(keyStageItem);
+    const firstListItem = getByText("English");
     expect(document?.activeElement?.textContent).toBe(
       firstListItem.textContent,
     );
   });
 
-  it("should close submenu and return to main menu when back button is triggered", () => {
+  it("should close submenu and return to main menu when back button is triggered", async () => {
     const { getByTestId, getByText, queryByText } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
+    const user = userEvent.setup();
     const button = getByTestId("top-nav-hamburger-button");
-    act(() => {
-      button.click();
-    });
-    const keyStageItem = getByText("Key Stage 1");
-    act(() => {
-      keyStageItem.click();
-    });
-    const backButton = getByText("Key Stage 1");
-    act(() => {
-      backButton.click();
-    });
-    expect(queryByText("test-subject-1")).not.toBeInTheDocument();
+    await user.click(button);
+
+    const keyStageItem = getByText("Key stage 1");
+    await user.click(keyStageItem);
+
+    const backButton = getByText("Key stage 1");
+    await user.click(backButton);
+
+    expect(queryByText("English")).not.toBeInTheDocument();
     expect(getByText("Primary")).toBeInTheDocument();
   });
 
-  it("should focus the triggering element when returning to main menu from submenu", () => {
+  it("should focus the triggering element when returning to main menu from submenu", async () => {
     const { getByTestId, getByText } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
+    const user = userEvent.setup();
+
     const button = getByTestId("top-nav-hamburger-button");
-    act(() => {
-      button.click();
-    });
-    const keyStageItem = getByText("Key Stage 3");
-    act(() => {
-      keyStageItem.click();
-    });
-    const backButton = getByText("Key Stage 3");
-    act(() => {
-      backButton.click();
-    });
+    await user.click(button);
+
+    const keyStageItem = getByText("Key stage 3");
+    await user.click(keyStageItem);
+
+    const backButton = getByText("Key stage 3");
+    await user.click(backButton);
+
     expect(document?.activeElement?.textContent).toBe(keyStageItem.textContent);
   });
 
-  it("should reset all states when modal closes", () => {
+  it("should reset all states when modal closes", async () => {
     const { getByTestId, getByText, queryByText, getByLabelText } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
+    const user = userEvent.setup();
     const button = getByTestId("top-nav-hamburger-button");
-    act(() => {
-      button.click();
-    });
-    const keyStageItem = getByText("Key Stage 2");
-    act(() => {
-      keyStageItem.click();
-    });
+    await user.click(button);
+
+    const keyStageItem = getByText("Key stage 2");
+    await user.click(keyStageItem);
+
     const closeButton = getByLabelText("Close");
-    act(() => {
-      closeButton.click();
-    });
-    act(() => {
-      button.click();
-    });
-    expect(queryByText("test-subject-1")).not.toBeInTheDocument();
+    await user.click(closeButton);
+
+    await waitFor(() => expect(closeButton).not.toBeInTheDocument());
+
+    await user.click(button);
+
+    expect(queryByText("Science")).not.toBeInTheDocument();
     expect(getByText("Primary")).toBeInTheDocument();
   });
 
@@ -298,5 +139,24 @@ describe("TeachersTopNavHamburger", () => {
     const Ks1 = getEYFSAriaLabel("KS1");
     expect(EYFS).toBe("Early years foundation stage");
     expect(Ks1).toBeUndefined();
+  });
+
+  it("should track browse refined when a keystage is selected", async () => {
+    const { getByTestId, getByText } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    const keyStageItem = getByText("Key stage 1");
+    await user.click(keyStageItem);
+
+    expect(mockBrowseRefined).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filterType: "Key stage filter",
+        filterValue: "ks1",
+      }),
+    );
   });
 });

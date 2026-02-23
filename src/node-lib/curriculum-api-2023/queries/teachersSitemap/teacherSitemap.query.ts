@@ -1,5 +1,3 @@
-import { z } from "zod";
-
 import {
   TeachersSitemapBrowseData,
   teachersSitemapDataSchema,
@@ -10,13 +8,9 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
-const teachersSitemapSchema = z.array(
-  z.object({
-    urls: z.string(),
-  }),
-);
-
-export type TeachersSitemap = z.infer<typeof teachersSitemapSchema>;
+export type TeachersSitemap = {
+  urls: string;
+}[];
 
 const teachersSitemap = (sdk: Sdk) => async () => {
   const res = await sdk.teachersSitemap();

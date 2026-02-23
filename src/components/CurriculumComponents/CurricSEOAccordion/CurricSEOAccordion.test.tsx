@@ -34,7 +34,7 @@ describe("CurricSEOAccordion", () => {
     render(
       <CurricSEOAccordion
         curriculumSeoText={curriculumSeoText}
-        subject={mockSubject}
+        subjectTitle={mockSubject.title}
       />,
     );
 
@@ -50,7 +50,7 @@ describe("CurricSEOAccordion", () => {
     render(
       <CurricSEOAccordion
         curriculumSeoText={curriculumSeoText}
-        subject={mockSubject}
+        subjectTitle={mockSubject.title}
       />,
     );
 
@@ -66,7 +66,7 @@ describe("CurricSEOAccordion", () => {
     render(
       <CurricSEOAccordion
         curriculumSeoText={curriculumSeoText}
-        subject={mockSubject}
+        subjectTitle={mockSubject.title}
       />,
     );
 
@@ -80,7 +80,7 @@ describe("CurricSEOAccordion", () => {
     render(
       <CurricSEOAccordion
         curriculumSeoText={curriculumSeoText}
-        subject={mockSubject}
+        subjectTitle={mockSubject.title}
       />,
     );
 

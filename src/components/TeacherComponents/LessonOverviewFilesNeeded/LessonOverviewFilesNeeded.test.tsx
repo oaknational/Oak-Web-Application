@@ -21,7 +21,6 @@ jest.mock("@/hooks/useComplexCopyright", () => ({
   useComplexCopyright: () => mockComplexCopyright,
 }));
 
-jest.mock("next/router", () => require("next-router-mock"));
 describe("LessonOverviewFilesNeeded", () => {
   const defaultProps: LessonOverviewFilesNeededProps = {
     loginRequired: false,

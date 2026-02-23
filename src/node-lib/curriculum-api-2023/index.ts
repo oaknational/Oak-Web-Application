@@ -77,30 +77,9 @@ export const searchPageSchema = z.object({
   yearGroups: z.array(genericFilteringGroup),
 });
 
-export const subjectPhaseOptionSchema = genericFilteringGroup.extend({
-  phases: z.array(genericFilteringGroup),
-  keystages: z.array(genericFilteringGroup).optional().nullable(),
-  cycle: z.string(),
-  ks4_options: z.array(genericFilteringGroup).optional().nullable(),
-});
-
-const curriculumHeaderData = z.object({
-  subject: z.string(),
-  subjectSlug: z.string(),
-  phase: z.string(),
-  phaseSlug: z.string(),
-  examboard: z.string().optional(),
-  examboardSlug: z.string().optional(),
-});
-
-const curriculumDownloadsTabData = z.object({
-  urls: z.array(z.string()),
-});
-
 export type Phase = z.infer<typeof genericFilteringGroup>;
 export type Subject = z.infer<typeof genericFilteringGroup>;
 export type KS4Option = z.infer<typeof genericFilteringGroup>;
-export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
 export type CurriculumPhaseOptions = z.infer<
   typeof curriculumPhaseOptionsSchema
 >;
@@ -109,10 +88,16 @@ export type KeyStagesData = z.infer<typeof keyStagesData>;
 export type CurriculumOverviewMVData = z.infer<typeof curriculumOverviewSchema>;
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 
-export type CurriculumDownloadsTabData = z.infer<
-  typeof curriculumDownloadsTabData
->;
-export type CurriculumHeaderData = z.infer<typeof curriculumHeaderData>;
+export type CurriculumDownloadsTabData = { urls: string[] };
+
+export type CurriculumHeaderData = {
+  subject: string;
+  subjectSlug: string;
+  phase: string;
+  phaseSlug: string;
+  examboard?: string;
+  examboardSlug?: string;
+};
 
 export type CurriculumUnitsTabData = z.infer<typeof curriculumSequenceSchema>;
 export type CurriculumUnit = z.infer<

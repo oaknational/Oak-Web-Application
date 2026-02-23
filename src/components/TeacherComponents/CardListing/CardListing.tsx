@@ -28,6 +28,7 @@ type CardListingProps = {
     trackingProps: TrackingProgrammeData;
   };
   disabled?: boolean;
+  onClickLink?: () => void;
 };
 
 export const getDefaultTextColour = ({
@@ -55,6 +56,7 @@ const CardListing = (props: CardListingProps) => {
     saveProps,
     href,
     disabled,
+    onClickLink,
   } = props;
 
   const showSave = saveProps !== undefined;
@@ -64,7 +66,7 @@ const CardListing = (props: CardListingProps) => {
   // If the card is disabled use a div for the container, otherwise use a link element
   const cardLinkProps = disabled
     ? { "data-disabled": true, as: "div" as const }
-    : { href };
+    : { href, onClick: onClickLink };
 
   return (
     <OakFlex
@@ -74,6 +76,7 @@ const CardListing = (props: CardListingProps) => {
       $gap={"spacing-20"}
       $flexDirection={layoutVariant === "horizontal" ? "row" : "column"}
       $width={"100%"}
+      $flexGrow={1}
       data-testid="card-listing-container"
     >
       {layoutVariant === "horizontal" ? (
@@ -125,13 +128,20 @@ const CardListing = (props: CardListingProps) => {
         >
           <StyledLink {...cardLinkProps}>
             <OakFlex
-              $gap={"spacing-20"}
               $flexDirection={"column"}
-              $color={defaultTextColour}
+              $justifyContent={"space-between"}
+              $height="100%"
+              $gap={"spacing-20"}
             >
-              <Index {...props} />
-              <Title {...props} />
-              <SubCopy {...props} />
+              <OakFlex
+                $gap={"spacing-20"}
+                $flexDirection={"column"}
+                $color={defaultTextColour}
+              >
+                <Index {...props} />
+                <Title {...props} />
+                <SubCopy {...props} />
+              </OakFlex>
               <CardTags {...props} />
             </OakFlex>
           </StyledLink>
@@ -199,6 +209,7 @@ const CardTags = ({ tags, disabled }: CardListingProps) => {
           isTrailingIcon
           iconName={tag.icon}
           $color={disabled ? "text-disabled" : "text-primary"}
+          useSpan
         />
       ))}
     </OakFlex>

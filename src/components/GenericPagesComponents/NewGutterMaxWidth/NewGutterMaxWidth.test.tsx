@@ -1,15 +1,15 @@
 import React from "react";
 
-import { InnerMaxWidth } from "./index";
+import { NewGutterMaxWidth } from "./index";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-describe("InnerMaxWidth", () => {
+describe("NewGutterMaxWidth", () => {
   it("renders children correctly", () => {
     const { getByText } = renderWithTheme(
-      <InnerMaxWidth>
+      <NewGutterMaxWidth>
         <div>Test content</div>
-      </InnerMaxWidth>,
+      </NewGutterMaxWidth>,
     );
 
     expect(getByText("Test content")).toBeInTheDocument();
@@ -17,9 +17,9 @@ describe("InnerMaxWidth", () => {
 
   it("matches snapshot", () => {
     const { container } = renderWithTheme(
-      <InnerMaxWidth>
+      <NewGutterMaxWidth>
         <div>Test content</div>
-      </InnerMaxWidth>,
+      </NewGutterMaxWidth>,
     );
 
     expect(container).toMatchSnapshot();
