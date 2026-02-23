@@ -50508,7 +50508,7 @@ export type EyfsPageQueryVariables = Exact<{
 }>;
 
 
-export type EyfsPageQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, programme_slug_by_year?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unitvariant_id?: number | null, unit_data?: any | null, programme_slug?: string | null, is_legacy?: boolean | null, actions?: any | null, features?: any | null, order_in_unit?: number | null, static_lesson_list?: any | null }> };
+export type EyfsPageQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, unit_slug?: string | null, unit_data?: any | null, programme_slug?: string | null, features?: any | null, order_in_unit?: number | null }>, subjects: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', subject_slug?: any | null, subject_title?: any | null }> };
 
 export type KeyStagesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -50921,17 +50921,18 @@ export const EyfsPageDocument = gql`
     lesson_data
     lesson_slug
     programme_fields
-    programme_slug_by_year
-    null_unitvariant_id
     unit_slug
-    unitvariant_id
     unit_data
     programme_slug
-    is_legacy
-    actions
     features
     order_in_unit
-    static_lesson_list
+  }
+  subjects: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
+    where: {programme_fields: {_contains: {keystage_slug: "early-years-foundation-stage"}}}
+    distinct_on: programme_slug
+  ) {
+    subject_slug: programme_fields(path: "subject_slug")
+    subject_title: programme_fields(path: "subject")
   }
 }
     `;

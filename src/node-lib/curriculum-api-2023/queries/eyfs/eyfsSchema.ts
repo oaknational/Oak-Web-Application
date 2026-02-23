@@ -22,6 +22,9 @@ export const queryResponse = z.object({
       order_in_unit: z.number().nullish(),
     }),
   ),
+  subjects: z.array(
+    z.object({ subject_slug: z.string(), subject_title: z.string() }),
+  ),
 });
 
 export type EyfsUnits = {
@@ -31,6 +34,7 @@ export type EyfsUnits = {
 export type EyfsPageData = {
   units: EyfsUnits;
   subjectTitle: string;
+  subjectTabs: Array<{ slug: string; title: string }>;
 };
 
 export type EYFSUnit = {

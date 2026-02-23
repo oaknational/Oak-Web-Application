@@ -4,7 +4,6 @@ import { queryResponse, EyfsUnits, EyfsPageData } from "./eyfsSchema";
 
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 
-
 const eyfsPageQuery = (sdk: Sdk) => async (args: { subjectSlug: string }) => {
   const res = await sdk.eyfsPage(args);
 
@@ -47,7 +46,12 @@ const eyfsPageQuery = (sdk: Sdk) => async (args: { subjectSlug: string }) => {
     return acc;
   }, {} as EyfsUnits);
 
-  return { subjectTitle, units } as EyfsPageData;
+  const subjectTabs = parsedResponse.subjects.map((s) => ({
+    slug: s.subject_slug,
+    title: s.subject_title,
+  }));
+
+  return { subjectTitle, units, subjectTabs } as EyfsPageData;
 };
 
 export default eyfsPageQuery;
