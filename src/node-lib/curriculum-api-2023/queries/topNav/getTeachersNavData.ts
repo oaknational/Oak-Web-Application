@@ -52,23 +52,6 @@ const getKeystages = (
                   p.programme_fields.pathway_slug,
             ) === i,
         )
-        // Filter out edge case where only one pathway and no PFs exist for a subject at ks4
-        .filter((p, _, a) => {
-          if (p.programme_fields.pathway_slug) {
-            const otherSlug =
-              p.programme_fields.pathway_slug === "core" ? "gcse" : "core";
-            const otherPathwayProgramme = a.find(
-              (k) =>
-                k.programme_fields.pathway_slug === otherSlug &&
-                p.programme_fields.subject_slug ===
-                  k.programme_fields.subject_slug,
-            );
-
-            return !!otherPathwayProgramme;
-          } else {
-            return true;
-          }
-        })
         .map((p) => {
           const programmeCount = getProgrammeCount({
             data,
