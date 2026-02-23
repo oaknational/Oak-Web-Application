@@ -10,12 +10,12 @@ import { useCurrentSection } from "@/hooks/useCurrentSection";
 
 export default function MeetTheTeamNav({
   sectionRefs,
-}: {
+}: Readonly<{
   sectionRefs: Record<
     "our-leadership" | "our-board" | "documents",
     RefObject<HTMLElement>
   >;
-}) {
+}>) {
   const { currentSectionId: currentSectionIdOrig } = useCurrentSection({
     sectionRefs,
   });
