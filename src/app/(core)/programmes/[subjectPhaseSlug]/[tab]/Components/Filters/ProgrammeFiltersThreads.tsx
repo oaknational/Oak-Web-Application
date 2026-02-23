@@ -10,6 +10,7 @@ import { Thread, CurriculumFilters } from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { pluralizeUnits } from "@/utils/curriculum/formatting";
 
 export type ProgrammeFiltersThreadsProps = {
   filters: CurriculumFilters;
@@ -32,9 +33,20 @@ export function ProgrammeFiltersThreads({
 
   function getDisplayValue(threadOption: Thread) {
     const isSelected = filters.threads.includes(threadOption.slug);
-
+    const highlightCount = highlightedUnitCount(
+      yearData,
+      filters,
+      filters.threads,
+    );
     if (isSelected) {
-      return `${threadOption.title} (${highlightedUnitCount(yearData, filters, filters.threads)} highlighted)`;
+      return (
+        <div>
+          <div>{threadOption.title}</div>
+          <OakBox $font="body-2">
+            {`${highlightCount} ${pluralizeUnits(highlightCount)} highlighted`}
+          </OakBox>
+        </div>
+      );
     }
 
     return threadOption.title;
