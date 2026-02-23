@@ -231,9 +231,7 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
       <AboutUsLayout>
         <AboutSharedHeader
           title={"About Oak"}
-          content={
-            "We're here to support and inspire teachers to deliver great teaching, so every pupil benefits"
-          }
+          content={newAboutWhoWeArePage.header.subTitle}
         >
           <AboutSharedHeaderImage
             imageAlt=""

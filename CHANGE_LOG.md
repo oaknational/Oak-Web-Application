@@ -1,3 +1,10 @@
+## [1.999.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.999.0...v1.999.1) (2026-02-23)
+
+
+### Bug Fixes
+
+* use sanity for subtitle ([1d3944a](https://github.com/oaknational/Oak-Web-Application/commit/1d3944a0101ec781b4510003cec789e5bf5fc452))
+
 # [1.999.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.998.0...v1.999.0) (2026-02-23)
 
 
