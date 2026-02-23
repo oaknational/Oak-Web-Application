@@ -1,3 +1,4 @@
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { OakHeading, OakMaxWidth } from "@/styles/oakThemeApp";
 
 export default async function EYFSLayout({
@@ -8,12 +9,15 @@ export default async function EYFSLayout({
   params: Promise<{ subjectSlug: string }>;
 }>) {
   const { subjectSlug } = await params;
+
+  const eyfsPageData = await curriculumApi2023.eyfsPage({ subjectSlug });
+
   return (
     <OakMaxWidth
       $gap={["spacing-40", "spacing-40", "spacing-64"]}
       $mv={["spacing-48", "spacing-48", "spacing-56"]}
     >
-      <OakHeading tag="h1">{subjectSlug}</OakHeading>
+      <OakHeading tag="h1">{eyfsPageData.subjectTitle}</OakHeading>
       {children}
     </OakMaxWidth>
   );
