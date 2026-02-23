@@ -12,7 +12,7 @@ function safeSetHash(hash: string): void {
     element.id = "";
   }
 
-  window.location.replace(`#${hash}`);
+  globalThis.location.replace(`#${hash}`);
 
   if (element) {
     element.id = hash;
@@ -36,7 +36,7 @@ function calculateCurrentSectionId<
         /**
          * Is this section above the middle of the screen?
          */
-        const isAboveThreshold = rect.top <= window.innerHeight * 0.5;
+        const isAboveThreshold = rect.top <= globalThis.innerHeight * 0.5;
         /**
          * Is this section below the previous section? We include this so that
          * the order of the sections in the sidebar doesn't have to match the
@@ -102,10 +102,10 @@ export function useCurrentSection<
       });
     };
 
-    window.addEventListener("scroll", onScroll);
+    globalThis.addEventListener("scroll", onScroll);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      globalThis.removeEventListener("scroll", onScroll);
     };
   }, [currentSectionId, lastScrollTop, sectionRefs]);
 
@@ -116,12 +116,12 @@ export function useCurrentSection<
      */
     const onScroll = () => {
       const currentScrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
+        globalThis.pageYOffset || document.documentElement.scrollTop;
 
-      if (currentScrollTop !== lastScrollTop) {
-        setIsScrolling(true);
-      } else {
+      if (currentScrollTop === lastScrollTop) {
         setIsScrolling(false);
+      } else {
+        setIsScrolling(true);
       }
 
       setLastScrollTop(currentScrollTop);
