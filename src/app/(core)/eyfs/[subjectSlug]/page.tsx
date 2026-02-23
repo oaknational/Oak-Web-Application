@@ -30,6 +30,6 @@ const InnerEyfsPage = async ({
   ));
 };
 
-const EyfsPage = withPageErrorHandling(InnerEyfsPage, "programme-page::app");
+const EyfsPage = withPageErrorHandling(InnerEyfsPage, "eyfs-page::app");
 
 export default EyfsPage;
