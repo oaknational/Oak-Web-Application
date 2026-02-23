@@ -159,7 +159,7 @@ describe("TeachersTopNavHamburger", () => {
       }),
     );
   });
-  it("should render an aria label for external links", async () => {
+  it("should render an aria label for external links in the main nav", async () => {
     const { getByTestId, getByRole } = render(
       <TeachersTopNavHamburger {...mockTopNavProps} />,
     );
@@ -171,5 +171,49 @@ describe("TeachersTopNavHamburger", () => {
       name: "AI Experiments (this will open in a new tab)",
     });
     expect(aiExperimentsLink).toHaveTextContent("AI Experiments");
+  });
+  it("renders the submenu correctly", async () => {
+    const { getByTestId, getByRole, queryByTestId } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    expect(queryByTestId("submenu-container")).not.toBeInTheDocument();
+
+    const menuButton = getByRole("button", { name: "Key stage 1" });
+    await user.click(menuButton);
+
+    expect(getByTestId("submenu-container")).toBeInTheDocument();
+
+    const backButton = getByRole("button", { name: "Key stage 1" });
+    await user.click(backButton);
+
+    expect(queryByTestId("submenu-container")).not.toBeInTheDocument();
+  });
+  it("should render an aria label for external links in the sub menu", async () => {
+    const { getByTestId, getByRole, getByText } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    const externalLink = topNavFixture.teachers?.guidance?.children.find(
+      (c) => c.external === true,
+    );
+    if (!externalLink) {
+      throw new Error("Could not find external link in submenu for testing");
+    }
+
+    const guidanceMenu = getByText("Guidance");
+    await user.click(guidanceMenu);
+
+    const link = getByRole("link", {
+      name: `${externalLink.title} (this will open in a new tab)`,
+    });
+    expect(link).toHaveTextContent(externalLink.title);
+    expect(link).toHaveProperty("target", "_blank");
   });
 });

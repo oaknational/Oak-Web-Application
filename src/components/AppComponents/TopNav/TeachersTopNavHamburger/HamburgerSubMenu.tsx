@@ -55,6 +55,7 @@ export function SubmenuContainer({
       $gap={"spacing-40"}
       $flexDirection={"column"}
       ref={containerRef}
+      data-testid="submenu-container"
     >
       <OakPrimaryInvertedButton
         iconName="chevron-left"
