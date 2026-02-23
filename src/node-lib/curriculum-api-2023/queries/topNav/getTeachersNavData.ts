@@ -1,5 +1,7 @@
 import { TopNavResponse, TeachersBrowse } from "./topNav.schema";
 
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+
 export const getTeachersNavData = (
   teachersData: TopNavResponse,
   phaseSlug: "primary" | "secondary",
@@ -52,6 +54,24 @@ const getKeystages = (
                   p.programme_fields.pathway_slug,
             ) === i,
         )
+        // remove legacy programmes where a non-legacy counterpart exists
+        .filter((p, _, a) => {
+          if (isSlugLegacy(p.programme_slug)) {
+            const legacySubject = p.programme_fields.subject_slug;
+            const legacyKeystage = p.programme_fields.keystage_slug;
+            const nonLegacyProgramme = a.find(
+              (p) =>
+                p.programme_fields.subject_slug === legacySubject &&
+                p.programme_fields.keystage_slug === legacyKeystage &&
+                !isSlugLegacy(p.programme_slug),
+            );
+
+            if (nonLegacyProgramme) {
+              return false;
+            }
+          }
+          return true;
+        })
         .map((p) => {
           const programmeCount = getProgrammeCount({
             data,

@@ -279,6 +279,21 @@ export const mockResponseData: TopNavResponse = {
       actions: {},
       programme_slug: "religious-education-secondary-ks4-gcse-eduqas",
     },
+    {
+      programme_fields: programmeFieldsFixture({
+        overrides: {
+          keystage: "KS4",
+          keystage_slug: "ks4",
+          phase_slug: "secondary",
+          subject: "Religious education",
+          subject_slug: "religious-education",
+          dataset: "legacy",
+        },
+      }),
+      features: {},
+      actions: {},
+      programme_slug: "religious-education-secondary-ks4-l",
+    },
   ],
 };
 
