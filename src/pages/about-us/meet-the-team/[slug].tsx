@@ -6,7 +6,6 @@ import {
   OakGridArea,
   OakHeading,
   OakImage,
-  OakMaxWidth,
   OakTypography,
   OakBox,
   OakSmallSecondaryButton,
@@ -16,13 +15,12 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import CMSClient from "@/node-lib/cms";
 import { TeamMember } from "@/common-lib/cms-types/teamMember";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { SocialButton } from "@/components/GenericPagesComponents/SocialButton";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs";
@@ -35,6 +33,7 @@ import {
 } from "@/pages-helpers/shared/about-us-pages/profileNavigation";
 import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -98,24 +97,26 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   return (
     <Layout
       seoProps={getSeoProps({
-        title: `${name} - Meet the Team | Oak National Academy`,
+        title: `${name} - Meet the Team`,
         description: role ?? undefined,
       })}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
-      <OakMaxWidth $ph={["spacing-16", "spacing-32"]} $pt={"spacing-32"}>
-        <Breadcrumbs breadcrumbs={breadcrumbs} />
-      </OakMaxWidth>
-      <OakMaxWidth
-        $mb={["spacing-56", "spacing-80"]}
-        $mt={["spacing-48", "spacing-56", "spacing-56"]}
-        $ph={["spacing-16", "spacing-32"]}
-      >
-        <OakGrid $cg={["spacing-0", "spacing-16"]} $rg={"spacing-24"}>
+      <NewGutterMaxWidth>
+        <OakFlex $pt={"spacing-24"} $color={"text-primary"}>
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
+        </OakFlex>
+        <OakGrid
+          $pt={["spacing-40", "spacing-56"]}
+          $pb={["spacing-56", "spacing-80"]}
+          $cg={["spacing-0", "spacing-16"]}
+          $rg={"spacing-24"}
+          $color={"text-primary"}
+        >
           {/* Image - Desktop/Tablet only (left column) */}
           <OakGridArea
-            $colSpan={[12, 5, 4]}
+            $colSpan={[12, 4]}
             $order={1}
             $display={["none", "block"]}
           >
@@ -136,27 +137,20 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
           </OakGridArea>
 
           {/* All text content (right column on desktop, full width on mobile) */}
-          <OakGridArea $colSpan={[12, 7, 8]} $order={2}>
+          <OakGridArea $colSpan={[12, 8]} $order={2}>
             <OakFlex
               $flexDirection={"column"}
-              $ph={["spacing-0", "spacing-40"]}
               $gap={"spacing-24"}
+              $ph={["spacing-0", "spacing-40"]}
             >
               {/* Header group - category, name, job title */}
               <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
                 {/* Category + Name */}
                 <OakFlex $flexDirection={"column"} $gap={"spacing-4"}>
-                  <OakTypography
-                    $font={["heading-light-7", "heading-light-6"]}
-                    $color={"text-primary"}
-                  >
+                  <OakTypography $font={["heading-light-7", "heading-light-6"]}>
                     {category}
                   </OakTypography>
-                  <OakHeading
-                    tag="h1"
-                    $font={["heading-3", "heading-2"]}
-                    $color={"text-primary"}
-                  >
+                  <OakHeading tag="h1" $font={["heading-3", "heading-2"]}>
                     {name}
                   </OakHeading>
                 </OakFlex>
@@ -221,7 +215,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 
               {/* Bio */}
               {trimmedBio && (
-                <OakBox $font={["body-2", "body-1"]} $color={"text-primary"}>
+                <OakBox $font={["body-2", "body-1"]} $pb={"spacing-16"}>
                   <PortableTextWithDefaults value={trimmedBio} />
                 </OakBox>
               )}
@@ -252,7 +246,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
             </OakFlex>
           </OakGridArea>
         </OakGrid>
-      </OakMaxWidth>
+      </NewGutterMaxWidth>
     </Layout>
   );
 };
@@ -265,18 +259,10 @@ export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPersonPageProps,
   URLParams
 > = async (context) => {
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
+  const enableV2 = await isNewAboutUsPagesEnabled(
     posthogApiKey,
+    context.req.cookies,
   );
-  let enableV2: boolean = false;
-  if (posthogUserId) {
-    enableV2 =
-      (await getFeatureFlag({
-        featureFlagKey: "about-us--who-we-are--v2",
-        posthogUserId,
-      })) === true;
-  }
 
   if (!enableV2) {
     return { notFound: true };

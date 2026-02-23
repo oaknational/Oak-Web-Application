@@ -19,15 +19,31 @@ export function applyFiltering(
   }
 
   // HACK: If we're filtering by more than one year assume "all"
-  const selectingAll = filters.years.length > 1;
+  const selectingAllYears = filters.years.length > 1;
 
-  const yearDataFilteredBySelectedYear = Object.values(
+  // If we're filtering by 0 keystages, assume all
+  const selectingAllKeystages = filters.keystages.length === 0;
+
+  const getFilterBy = (item: Out) => {
+    if (selectingAllYears) {
+      if (selectingAllKeystages) {
+        return true;
+      } else {
+        return filterIncludes("keystages", [item.keystage]);
+      }
+    } else {
+      // year filter takes precedence over keystage filter
+      return filterIncludes("years", [item.year]);
+    }
+  };
+
+  const yearDataFilteredBySelectedYearOrKeystage = Object.values(
     unitsByYearSelector,
   ).filter((item) => {
-    return selectingAll || filterIncludes("years", [item.year]);
+    return getFilterBy(item);
   });
 
-  return yearDataFilteredBySelectedYear.map((item) => {
+  return yearDataFilteredBySelectedYearOrKeystage.map((item) => {
     return {
       ...item,
       units: item.units.filter((unit) => {
@@ -102,9 +118,7 @@ export function groupUnitsByPathway({
   const unitsByYearSelector = yearSelectors
     .map(({ year, type }) => {
       const yearItem = yearData[year] as YearData[string];
-
       const isExamboard = type === "non_core";
-
       const filteredUnits = yearItem.units.filter((unit: Unit) => {
         if (isExamboard && unit.pathway_slug === "core") {
           return false;

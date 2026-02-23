@@ -9,13 +9,12 @@ import {
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { GetInvolvedCollaborateWithUs } from "@/components/GenericPagesComponents/GetInvolvedCollaborateWithUs";
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import CMSClient from "@/node-lib/cms";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -41,7 +40,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
 }) => {
   return (
     <Layout
-      seoProps={getSeoProps(null)}
+      seoProps={getSeoProps({ title: "Get Involved" })}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
@@ -117,24 +116,15 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
 
 export const getServerSideProps = (async (context) => {
   const isPreviewMode = context.preview === true;
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
-    posthogApiKey,
-  );
 
   const aboutWhoWeArePage = await CMSClient.newAboutGetInvolvedPage({
     previewMode: isPreviewMode,
   });
 
-  let enableV2: boolean = false;
-  if (posthogUserId) {
-    // get the variant key for the user
-    enableV2 =
-      (await getFeatureFlag({
-        featureFlagKey: "about-us--who-we-are--v2",
-        posthogUserId,
-      })) === true;
-  }
+  const enableV2 = await isNewAboutUsPagesEnabled(
+    posthogApiKey,
+    context.req.cookies,
+  );
   const topNav = await curriculumApi2023.topNav();
 
   if (!enableV2 || !aboutWhoWeArePage) {

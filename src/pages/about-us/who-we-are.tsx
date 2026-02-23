@@ -37,11 +37,10 @@ import { WhoAreWeBreakout } from "@/components/GenericPagesComponents/WhoAreWeBr
 import WhoAreWeTimeline from "@/components/GenericPagesComponents/WhoAreWeTimeline";
 import { WhoAreWeDesc } from "@/components/GenericPagesComponents/WhoAreWeDesc";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -139,9 +138,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
                   <TranscriptToggle transcriptSentences={videoCaptions} />
                 </OakBox>
               )}
-              <OakBox
-              // $width={["100%", "100%", "50%"]}
-              >
+              <OakBox>
                 <OakTypography $mb={"spacing-32"} $font={["body-2", "body-1"]}>
                   <PortableTextWithDefaults
                     value={pageData.intro.bodyPortableText}
@@ -282,21 +279,10 @@ export const getServerSideProps = (async (context) => {
     };
   }
 
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
+  const enableV2 = await isNewAboutUsPagesEnabled(
     posthogApiKey,
+    context.req.cookies,
   );
-
-  let enableV2: boolean = false;
-
-  if (posthogUserId) {
-    // get the variant key for the user
-    enableV2 =
-      (await getFeatureFlag({
-        featureFlagKey: "about-us--who-we-are--v2",
-        posthogUserId,
-      })) === true;
-  }
 
   const topNav = await curriculumApi2023.topNav();
 

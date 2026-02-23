@@ -1,5 +1,4 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
-import { uniq } from "lodash";
 import { Metadata } from "next";
 import { cache } from "react";
 
@@ -7,7 +6,11 @@ import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
 import { getProgrammeData } from "./getProgrammeData";
 
-import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import {
+  createDownloadsData,
+  CurriculumUnitsTrackingData,
+  formatCurriculumUnitsData,
+} from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
@@ -21,8 +24,9 @@ import errorReporter from "@/common-lib/error-reporter";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
-import { useFeatureFlag } from "@/utils/featureFlags";
 import CMSClient from "@/node-lib/cms";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
+import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -57,12 +61,6 @@ export async function generateMetadata({
     const curriculumUnitsFormattedData =
       formatCurriculumUnitsData(curriculumUnitsData);
 
-    // Extract keyStages from yearData
-    const keyStages = uniq(
-      Object.values(curriculumUnitsFormattedData.yearData).flatMap(
-        ({ units }) => units.map((unit) => unit.keystage_slug),
-      ),
-    );
     const ks4Options =
       curriculumPhaseOptions.subjects.find(
         (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
@@ -77,7 +75,7 @@ export async function generateMetadata({
       subjectTitle: programmeUnitsData.subjectTitle,
       ks4OptionSlug: ks4Option?.slug ?? null,
       ks4OptionTitle: ks4Option?.title ?? null,
-      keyStages: keyStages,
+      keyStages: curriculumUnitsFormattedData.keystages,
       tab: "units",
     });
     const description = buildCurriculumMetadata({
@@ -86,7 +84,7 @@ export async function generateMetadata({
       subjectTitle: programmeUnitsData.subjectTitle,
       ks4OptionSlug: ks4Option?.slug ?? null,
       ks4OptionTitle: ks4Option?.title ?? null,
-      keyStages: keyStages,
+      keyStages: curriculumUnitsFormattedData.keystages,
       tab: "units",
     });
     const canonicalURL = new URL(
@@ -117,8 +115,7 @@ export async function generateMetadata({
 }
 
 const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
-  // `useFeatureFlag` is not a hook
-  const isEnabled = await useFeatureFlag(
+  const isEnabled = await getFeatureFlagValue(
     "teachers-integrated-journey",
     "boolean",
   );
@@ -126,6 +123,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   if (!isEnabled) {
     return notFound();
   }
+
   const { subjectPhaseSlug, tab } = await props.params;
 
   if (!isTabSlug(tab)) {
@@ -144,14 +142,13 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     subjectPhaseKeystageSlugs,
   } = cachedData;
 
-  const validSubjectPhases = await curriculumApi2023.curriculumPhaseOptions();
   const isValid = isValidSubjectPhaseSlug(
-    validSubjectPhases,
+    curriculumPhaseOptions.subjects,
     subjectPhaseKeystageSlugs,
   );
   if (!isValid) {
     const redirectParams = getKs4RedirectSlug(
-      validSubjectPhases,
+      curriculumPhaseOptions.subjects,
       subjectPhaseKeystageSlugs,
     );
     if (redirectParams) {
@@ -168,20 +165,22 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     }
   }
 
-  const curriculumCMSInfo = await CMSClient.curriculumOverviewPage({
-    previewMode: false, // TD: [integrated-journey] preview mode
-    subjectTitle: programmeUnitsData.subjectTitle,
-    phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-  });
+  const [curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime] =
+    await Promise.all([
+      CMSClient.curriculumOverviewPage({
+        previewMode: false, // TD: [integrated-journey] preview mode
+        subjectTitle: programmeUnitsData.subjectTitle,
+        phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+      }),
+      CMSClient.programmePageBySlug(
+        `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
+      ),
+      getMvRefreshTime(),
+    ]);
 
-  // TD: [integrated-journey] This data is not used in `ProgrammeView`, maybe we can remove it?
   if (!curriculumCMSInfo) {
     return notFound();
   }
-
-  const subjectPhaseSanityData = await CMSClient.programmePageBySlug(
-    `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
-  );
 
   if (!subjectPhaseSanityData) {
     reportError(
@@ -195,32 +194,47 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   const curriculumUnitsFormattedData =
     formatCurriculumUnitsData(curriculumUnitsData);
 
+  // All KS4 options for subject phase
+  const ks4Options =
+    curriculumPhaseOptions.subjects.find(
+      (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
+    )!.ks4_options ?? [];
+
   // Find examboard title from subject phases
-  const ks4Option = validSubjectPhases
+  const ks4Option = curriculumPhaseOptions.subjects
     .flatMap((subject) => subject.ks4_options)
     .find((ks4opt) => ks4opt?.slug === subjectPhaseKeystageSlugs.ks4OptionSlug);
 
-  const subjectForLayout = curriculumPhaseOptions.subjects.find(
-    (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
+  const curriculumDownloadsTabData = createDownloadsData(
+    curriculumUnitsData.units,
   );
 
-  if (!subjectForLayout) {
-    throw new Error(
-      "Selected subject not found in curriculumPhaseOptions for programme page",
-    );
-  }
-
-  const results = {
-    curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
-    curriculumPhaseOptions,
+  const curriculumSelectionTitles = {
     subjectTitle: programmeUnitsData.subjectTitle,
     phaseTitle: programmeUnitsData.phaseTitle,
     examboardTitle: ks4Option?.title,
+  };
+
+  // TD: [integrated journey] tracking
+  const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
+    ...subjectPhaseKeystageSlugs,
+    subjectTitle: curriculumSelectionTitles.subjectTitle,
+    ks4OptionTitle: curriculumSelectionTitles.examboardTitle,
+  };
+
+  const results = {
+    subjectPhaseSlug,
+    curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
+    curriculumSelectionTitles,
     curriculumUnitsFormattedData,
     subjectPhaseSanityData,
     tabSlug: tab,
     curriculumCMSInfo,
+    ks4Options,
+    trackingData: curriculumUnitsTrackingData,
     curriculumInfo: cachedData.programmeUnitsData,
+    curriculumDownloadsTabData,
+    mvRefreshTime,
   };
 
   return <ProgrammeView {...results} />;

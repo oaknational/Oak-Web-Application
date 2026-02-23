@@ -6,7 +6,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
     class="sc-aXZVg gkbMXK"
   >
     <div
-      class="sc-aXZVg flkhOM"
+      class="sc-aXZVg cryvKT"
     >
       <div
         class="sc-aXZVg sc-gEvEer zxVfg bktafW"
@@ -18,7 +18,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
             class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA iDBIXi bWIaAb"
           >
             <h2
-              class="sc-eldPxv bBWhuP"
+              class="sc-eldPxv iiNDPs"
             >
               Collaborate with us
             </h2>
@@ -29,8 +29,8 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
             <div
               class="sc-aXZVg sc-gEvEer gpQQnm wjdwM"
             >
-              <div
-                class="sc-aXZVg iGlCVz sc-d1686a12-0 lmLMjx"
+              <span
+                class="sc-aXZVg ccpVbZ sc-a91d9083-0 eDyawt"
               >
                 <img
                   alt=""
@@ -41,7 +41,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                   src="http://example.com/chatting.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
+              </span>
             </div>
           </div>
           <div
@@ -60,7 +60,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                     class="sc-aXZVg sc-gEvEer hdseiA dfjiUz"
                   >
                     <h3
-                      class="sc-eldPxv gEVowR"
+                      class="sc-eldPxv pqCFq"
                     >
                       Give your feedback
                     </h3>
@@ -96,8 +96,8 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                           >
                             Get in touch
                           </span>
-                          <div
-                            class="sc-aXZVg anoZA"
+                          <span
+                            class="sc-aXZVg iUEruK"
                           >
                             <img
                               alt="external"
@@ -108,7 +108,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </div>
+                          </span>
                         </div>
                       </a>
                     </div>
@@ -125,7 +125,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                     class="sc-aXZVg sc-gEvEer hdseiA dfjiUz"
                   >
                     <h3
-                      class="sc-eldPxv gEVowR"
+                      class="sc-eldPxv pqCFq"
                     >
                       Help us improve
                     </h3>
@@ -161,8 +161,8 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                           >
                             Take part in research
                           </span>
-                          <div
-                            class="sc-aXZVg anoZA"
+                          <span
+                            class="sc-aXZVg iUEruK"
                           >
                             <img
                               alt="external"
@@ -173,7 +173,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </div>
+                          </span>
                         </div>
                       </a>
                     </div>

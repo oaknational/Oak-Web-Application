@@ -1,0 +1,8 @@
+query pupilLessonListingLessonContent($lessonSlugs: [String!]!) {
+  data: published_mv_lesson_content_published_9_0_0(
+    where: { lesson_slug: { _in: $lessonSlugs } }
+  ) {
+    lesson_slug
+    exit_quiz
+  }
+}

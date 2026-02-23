@@ -1,36 +1,33 @@
+"use client";
 import React, { useEffect, useState } from "react";
-import { OakBox, OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakHeading,
+  OakInformativeModal,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
 
 import { ProgrammePageFiltersProps } from "./ProgrammePageFiltersDesktop";
 import ProgrammeFiltersHeaderMobile from "./ProgrammeFiltersHeaderMobile";
 
 import { usePrevious } from "@/hooks/usePrevious";
-import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { OakModalNew } from "@/components/CurriculumComponents/OakComponentsKitchen/OakModalNew";
 import { CloseAction } from "@/components/CurriculumComponents/OakComponentsKitchen/OakModalNew/Content";
 import {
   CurricFiltersSubjectCategories,
   CurricFiltersChildSubjects,
   CurricFiltersTiers,
+  CurricFiltersYears,
 } from "@/components/CurriculumComponents/CurricVisualiserFilters";
 import { shouldDisplayFilter } from "@/utils/curriculum/filteringApp";
-
-export type ProgrammePageMobileFiltersProps = ProgrammePageFiltersProps & {
-  selectedYear: string;
-  onSelectYear: (newYear: string) => void;
-  trackingData: CurriculumUnitsTrackingData;
-};
 
 export default function ProgrammePageFiltersMobile({
   filters,
   onChangeFilters,
   data,
-  selectedYear,
-  onSelectYear,
   slugs,
-  trackingData,
   ks4Options,
-}: ProgrammePageMobileFiltersProps) {
+}: Readonly<ProgrammePageFiltersProps>) {
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
 
@@ -59,37 +56,44 @@ export default function ProgrammePageFiltersMobile({
 
   return (
     <>
-      <OakModalNew
-        open={mobileThreadModalOpen}
+      <OakInformativeModal
         onClose={onClose}
-        title={<OakBox $font={"heading-6"}>Filter and highlight</OakBox>}
-        content={
-          <ModalContent
-            data={data}
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            slugs={slugs}
-          />
+        isOpen={mobileThreadModalOpen}
+        largeScreenMaxWidth={600}
+        domContainer={
+          document?.getElementById("mobile-filters-header-container") ??
+          undefined
         }
-        footer={
-          <OakPrimaryButton
-            data-testid="mobile-done-thread-modal-button"
-            onClick={() => setMobileThreadModalOpen(false)}
-            width={"100%"}
+        footerSlot={
+          <OakBox
+            $pa={"spacing-12"}
+            $bt={"border-solid-s"}
+            $borderColor={"border-neutral-lighter"}
           >
-            Apply
-          </OakPrimaryButton>
+            <OakPrimaryButton
+              data-testid="mobile-done-thread-modal-button"
+              onClick={() => setMobileThreadModalOpen(false)}
+            >
+              Show results
+            </OakPrimaryButton>
+          </OakBox>
         }
-      />
+      >
+        <ModalContent
+          data={data}
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          slugs={slugs}
+          ks4Options={ks4Options}
+        />
+      </OakInformativeModal>
+
       <ProgrammeFiltersHeaderMobile
         onOpenModal={handleMobileThreadModal}
         filters={filters}
-        selectedYear={selectedYear}
-        onSelectYear={onSelectYear}
         onChangeFilters={onChangeFilters}
         data={data}
         slugs={slugs}
-        trackingData={trackingData}
         ks4Options={ks4Options}
       />
     </>
@@ -101,43 +105,61 @@ const ModalContent = ({
   onChangeFilters,
   data,
   slugs,
+  ks4Options,
 }: Pick<
-  ProgrammePageMobileFiltersProps,
-  "data" | "filters" | "onChangeFilters" | "slugs"
+  ProgrammePageFiltersProps,
+  "data" | "filters" | "onChangeFilters" | "slugs" | "ks4Options"
 >) => {
   return (
-    <OakFlex $flexDirection={"column"} $height={"100%"}>
+    <OakFlex
+      $flexDirection={"column"}
+      $height={"100%"}
+      $ph={"spacing-24"}
+      $gap={"spacing-20"}
+      $overflowX={"visible"}
+    >
+      <OakHeading $font={"heading-6"} tag="h1">
+        Filters
+      </OakHeading>
       <OakFlex
-        $flexShrink={1}
-        $overflowY={"auto"}
-        $position={"relative"}
-        $pa={"spacing-20"}
+        $flexDirection={"column"}
+        $gap={"spacing-32"}
+        $overflowX={"visible"}
       >
-        <OakFlex $flexDirection={"column"} $gap={"spacing-32"} $width={"100vw"}>
-          {shouldDisplayFilter(data, filters, "subjectCategories") && (
-            <CurricFiltersSubjectCategories
-              filters={filters}
-              onChangeFilters={onChangeFilters}
-              data={data}
-              slugs={slugs}
-            />
-          )}
+        <CurricFiltersYears
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          data={data}
+          slugs={slugs}
+          ks4Options={ks4Options}
+          context="integrated-journey"
+        />
+        {shouldDisplayFilter(data, filters, "subjectCategories") && (
+          <CurricFiltersSubjectCategories
+            filters={filters}
+            onChangeFilters={onChangeFilters}
+            data={data}
+            slugs={slugs}
+            context="integrated-journey"
+          />
+        )}
 
-          {shouldDisplayFilter(data, filters, "childSubjects") && (
-            <CurricFiltersChildSubjects
-              filters={filters}
-              onChangeFilters={onChangeFilters}
-              data={data}
-            />
-          )}
-          {shouldDisplayFilter(data, filters, "tiers") && (
-            <CurricFiltersTiers
-              filters={filters}
-              onChangeFilters={onChangeFilters}
-              data={data}
-            />
-          )}
-        </OakFlex>
+        {shouldDisplayFilter(data, filters, "childSubjects") && (
+          <CurricFiltersChildSubjects
+            filters={filters}
+            onChangeFilters={onChangeFilters}
+            data={data}
+            context={"integrated-journey"}
+          />
+        )}
+        {shouldDisplayFilter(data, filters, "tiers") && (
+          <CurricFiltersTiers
+            filters={filters}
+            onChangeFilters={onChangeFilters}
+            data={data}
+            context={"integrated-journey"}
+          />
+        )}
       </OakFlex>
     </OakFlex>
   );

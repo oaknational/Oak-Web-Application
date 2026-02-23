@@ -1,8 +1,8 @@
 import {
-  OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
   OakBox,
+  OakP,
 } from "@oaknational/oak-components";
 import { useMemo, useId } from "react";
 
@@ -25,6 +25,8 @@ export type CurricFiltersSubjectCategoriesProps = {
   ) => void;
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
+  // The context prop can be removed once the integrated journey is fully launched
+  context: "curriculum-visualiser" | "integrated-journey";
 };
 
 export function CurricFiltersSubjectCategories({
@@ -32,6 +34,7 @@ export function CurricFiltersSubjectCategories({
   onChangeFilters,
   data,
   slugs,
+  context,
 }: Readonly<CurricFiltersSubjectCategoriesProps>) {
   const id = useId();
   const { yearData } = data;
@@ -65,19 +68,6 @@ export function CurricFiltersSubjectCategories({
     <>
       {subjectCategoriesAt.length > 0 && (
         <OakBox>
-          <OakHeading
-            id="subject-categories-label"
-            tag="h4"
-            $font={["heading-7", "heading-6"]}
-            $mt="spacing-0"
-            $mb={["spacing-24", "spacing-16"]}
-          >
-            Category
-            {subjectCategoriesAt.length === 1
-              ? ` (${subjectCategoriesAt[0]?.toUpperCase()})`
-              : ""}
-          </OakHeading>
-
           <OakRadioGroup
             name={"subject-categories_" + id}
             onChange={(e) =>
@@ -86,9 +76,26 @@ export function CurricFiltersSubjectCategories({
             value={subjectCategoryIdAsString}
             $flexDirection="row"
             $flexWrap="wrap"
-            $gap="spacing-8"
-            aria-labelledby="subject-categories-label"
+            $gap={
+              context === "curriculum-visualiser" ? "spacing-8" : "spacing-12"
+            }
           >
+            <OakP
+              as="legend"
+              $font={
+                context === "integrated-journey"
+                  ? "heading-7"
+                  : ["heading-7", "heading-6"]
+              }
+              $mt="spacing-0"
+              $mb={["spacing-24", "spacing-16"]}
+            >
+              Category
+              {subjectCategoriesAt.length === 1 &&
+              context === "curriculum-visualiser"
+                ? ` (${subjectCategoriesAt[0]?.toUpperCase()})`
+                : ""}
+            </OakP>
             {subjectCategories.map((subjectCategory) => {
               return (
                 <OakRadioAsButton
