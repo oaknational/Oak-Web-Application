@@ -104,7 +104,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   min-width: 1.5rem;
   height: 2rem;
   min-height: 2rem;
-  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -247,7 +246,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   min-width: 1.5rem;
   height: 1.5rem;
   min-height: 1.5rem;
-  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -284,7 +282,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   height: 1.25rem;
   min-height: 1.25rem;
   margin-right: 0.75rem;
-  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -397,7 +394,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   width: 10rem;
   height: 4rem;
   padding: 0rem;
-  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -412,7 +408,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
 .c160 {
   position: relative;
   width: 100%;
-  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -3321,7 +3316,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                 <div
                   class="c31 c32 oak-save-count"
                 >
-                  <span
+                  <div
                     class="c33"
                     data-testid="bookmark-outlined"
                   >
@@ -3334,7 +3329,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                     />
-                  </span>
+                  </div>
                   <div
                     class="c35"
                   >
@@ -3537,7 +3532,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
               class="c62 c63 c64"
               data-testid="menu"
             >
-              <span
+              <div
                 class="c65"
               >
                 <img
@@ -3549,8 +3544,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734536929/OWA/ui-graphics/looping-line-1_krbrht.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </span>
-              <span
+              </div>
+              <div
                 class="c67"
               >
                 <img
@@ -3562,7 +3557,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734536933/OWA/ui-graphics/looping-line-2_sdinei.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </span>
+              </div>
               <div
                 class="c68"
               >
@@ -4598,7 +4593,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             <div
                               class="c106 shadow"
                             />
-                            <span
+                            <div
                               class="c107"
                               data-icon-for="button"
                             >
@@ -4611,7 +4606,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </span>
+                            </div>
                           </div>
                           <span
                             class="c82"
@@ -4636,7 +4631,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             <div
                               class="c106 shadow"
                             />
-                            <span
+                            <div
                               class="c107"
                               data-icon-for="button"
                             >
@@ -4649,7 +4644,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </span>
+                            </div>
                           </div>
                           <span
                             class="c82"
@@ -4674,7 +4669,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             <div
                               class="c106 shadow"
                             />
-                            <span
+                            <div
                               class="c107"
                               data-icon-for="button"
                             >
@@ -4687,7 +4682,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </span>
+                            </div>
                           </div>
                           <span
                             class="c82"
@@ -4775,7 +4770,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                 <li
                   class="c118"
                 >
-                  <span
+                  <div
                     class="c121"
                   >
                     <img
@@ -4787,7 +4782,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                     />
-                  </span>
+                  </div>
                   <div
                     class="c119"
                   >
@@ -4803,7 +4798,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                 <li
                   class="c118"
                 >
-                  <span
+                  <div
                     class="c121"
                   >
                     <img
@@ -4815,7 +4810,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                     />
-                  </span>
+                  </div>
                   <div
                     class="c119"
                   >
@@ -4893,7 +4888,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       <div
                         class="c11 c38"
                       >
-                        <span
+                        <div
                           class="c107"
                         >
                           <img
@@ -4905,7 +4900,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149179/icons/ejrm9dpgpzb7ddbo8z2i.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </span>
+                        </div>
                         <span
                           class="c39"
                         >
@@ -4935,7 +4930,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         >
                           Next profile
                         </span>
-                        <span
+                        <div
                           class="c107"
                         >
                           <img
@@ -4947,7 +4942,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </span>
+                        </div>
                       </div>
                     </a>
                   </div>
@@ -5132,25 +5127,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c152"
                       >
                         <a
-<<<<<<< HEAD
-                          class="c152 "
-=======
                           class="c153 "
-                          href="/teachers/curriculum"
-                        >
-                          <span
-                            class="c22"
-                          >
-                            Curriculum plans
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c152"
-                      >
-                        <a
-                          class="c153 "
->>>>>>> main
                           href="/lesson-planning"
                         >
                           <span
@@ -5227,7 +5204,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         class="c152"
                       >
                         <a
-                          class="c152 "
+                          class="c153 "
                           href="/about-us/oaks-curricula"
                         >
                           <span
@@ -5238,10 +5215,10 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c151"
+                        class="c152"
                       >
                         <a
-                          class="c152 "
+                          class="c153 "
                           href="/about-us/get-involved"
                         >
                           <span
@@ -5252,10 +5229,10 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c151"
+                        class="c152"
                       >
                         <a
-                          class="c152 "
+                          class="c153 "
                           href="/about-us/meet-the-team"
                         >
                           <span
@@ -5266,7 +5243,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c151"
+                        class="c152"
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
@@ -5279,7 +5256,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                           >
                             Careers
                           </span>
-                          <span
+                          <div
                             class="c107 "
                           >
                             <img
@@ -5291,7 +5268,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </span>
+                          </div>
                         </a>
                       </li>
                       <li
@@ -5322,7 +5299,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                           >
                             Help
                           </span>
-                          <span
+                          <div
                             class="c107 "
                           >
                             <img
@@ -5334,7 +5311,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </span>
+                          </div>
                         </a>
                       </li>
                       <li
@@ -5379,7 +5356,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                           >
                             Status
                           </span>
-                          <span
+                          <div
                             class="c107 "
                           >
                             <img
@@ -5391,7 +5368,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </span>
+                          </div>
                         </a>
                       </li>
                     </ul>
@@ -5567,7 +5544,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                   <div
                     class="c18"
                   >
-                    <span
+                    <div
                       class="c156"
                     >
                       <img
@@ -5579,7 +5556,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
-                    </span>
+                    </div>
                   </div>
                   <div
                     class="c158 c159"
@@ -5601,7 +5578,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             <div
                               class="c106 shadow"
                             />
-                            <span
+                            <div
                               class="c107"
                               data-icon-for="button"
                             >
@@ -5614,7 +5591,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </span>
+                            </div>
                           </div>
                           <span
                             class="c82"
@@ -5639,7 +5616,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             <div
                               class="c106 shadow"
                             />
-                            <span
+                            <div
                               class="c107"
                               data-icon-for="button"
                             >
@@ -5652,7 +5629,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </span>
+                            </div>
                           </div>
                           <span
                             class="c82"
@@ -5677,7 +5654,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             <div
                               class="c106 shadow"
                             />
-                            <span
+                            <div
                               class="c107"
                               data-icon-for="button"
                             >
@@ -5690,7 +5667,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </span>
+                            </div>
                           </div>
                           <span
                             class="c82"
@@ -5702,7 +5679,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                 </div>
               </div>
             </div>
-            <span
+            <div
               class="c160 c161"
               data-percy-hide="contents"
             >
@@ -5717,7 +5694,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                 srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=3840&q=75 3840w"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </span>
+            </div>
             <div
               class="c162 c163"
             >
@@ -5741,7 +5718,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         <div
                           class="c106 shadow"
                         />
-                        <span
+                        <div
                           class="c107"
                           data-icon-for="button"
                         >
@@ -5754,7 +5731,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </span>
+                        </div>
                       </div>
                       <span
                         class="c82"
@@ -5779,7 +5756,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         <div
                           class="c106 shadow"
                         />
-                        <span
+                        <div
                           class="c107"
                           data-icon-for="button"
                         >
@@ -5792,7 +5769,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </span>
+                        </div>
                       </div>
                       <span
                         class="c82"
@@ -5817,7 +5794,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                         <div
                           class="c106 shadow"
                         />
-                        <span
+                        <div
                           class="c107"
                           data-icon-for="button"
                         >
@@ -5830,7 +5807,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </span>
+                        </div>
                       </div>
                       <span
                         class="c82"
@@ -5842,7 +5819,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
               <div
                 class="c27"
               >
-                <span
+                <div
                   class="c156"
                 >
                   <img
@@ -5854,7 +5831,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                   />
-                </span>
+                </div>
               </div>
               <div
                 class="c148 c63"
@@ -5873,7 +5850,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
             </div>
           </div>
         </nav>
-        <span
+        <div
           class="c168"
         >
           <img
@@ -5885,8 +5862,8 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537015/OWA/ui-graphics/looping-line-3_b8dque.svg"
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
-        </span>
-        <span
+        </div>
+        <div
           class="c170"
         >
           <img
@@ -5898,7 +5875,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537039/OWA/ui-graphics/looping-line-4_xtjj4r.svg"
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
-        </span>
+        </div>
       </footer>
     </div>
   </div>

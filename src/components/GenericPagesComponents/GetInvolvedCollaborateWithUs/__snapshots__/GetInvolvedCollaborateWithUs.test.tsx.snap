@@ -29,8 +29,8 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
             <div
               class="sc-aXZVg sc-gEvEer gpQQnm wjdwM"
             >
-              <span
-                class="sc-aXZVg ccpVbZ sc-a91d9083-0 eDyawt"
+              <div
+                class="sc-aXZVg iGlCVz sc-a91d9083-0 eDyawt"
               >
                 <img
                   alt=""
@@ -41,7 +41,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                   src="http://example.com/chatting.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </span>
+              </div>
             </div>
           </div>
           <div
@@ -96,8 +96,8 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                           >
                             Get in touch
                           </span>
-                          <span
-                            class="sc-aXZVg iUEruK"
+                          <div
+                            class="sc-aXZVg anoZA"
                           >
                             <img
                               alt="external"
@@ -108,7 +108,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </span>
+                          </div>
                         </div>
                       </a>
                     </div>
@@ -161,8 +161,8 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                           >
                             Take part in research
                           </span>
-                          <span
-                            class="sc-aXZVg iUEruK"
+                          <div
+                            class="sc-aXZVg anoZA"
                           >
                             <img
                               alt="external"
@@ -173,7 +173,7 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </span>
+                          </div>
                         </div>
                       </a>
                     </div>

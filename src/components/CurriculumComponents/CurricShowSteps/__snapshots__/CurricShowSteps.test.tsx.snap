@@ -21,8 +21,8 @@ exports[`CurricShowSteps basic usage 1`] = `
             <div
               class="sc-aXZVg sc-gEvEer jkDVxO jMLdOa"
             >
-              <span
-                class="sc-aXZVg iUEruK"
+              <div
+                class="sc-aXZVg anoZA"
               >
                 <img
                   alt=""
@@ -33,7 +33,7 @@ exports[`CurricShowSteps basic usage 1`] = `
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954310/icons/efd3esaor6zqk7seh6kt.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </span>
+              </div>
             </div>
             <div
               class="sc-aXZVg sc-gEvEer hFTcos fXHtRp"
@@ -52,8 +52,8 @@ exports[`CurricShowSteps basic usage 1`] = `
             <div
               class="sc-aXZVg sc-gEvEer jkDVxO jMLdOa"
             >
-              <span
-                class="sc-aXZVg iUEruK"
+              <div
+                class="sc-aXZVg anoZA"
               >
                 <img
                   alt=""
@@ -64,7 +64,7 @@ exports[`CurricShowSteps basic usage 1`] = `
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954310/icons/efd3esaor6zqk7seh6kt.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </span>
+              </div>
             </div>
             <div
               class="sc-aXZVg sc-gEvEer hFTcos fXHtRp"
