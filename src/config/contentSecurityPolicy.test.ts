@@ -8,7 +8,7 @@ const prodCspHeaderFixture = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' https: http: https://vercel.live https://vercel.com https://*.posthog.com *.clerk.accounts.dev https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
     style-src 'self' 'unsafe-inline' https://vercel.live/ https://*.mux.com;
-    img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/;
+    img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/ https://vercel.live/ https://vercel.com *.pusher.com/ data: blob: https://*.hubspot.com/ https://*.hsforms.com/ https://track.hubspot.com/ https://res.cloudinary.com/ https://res.cloudinary.com https://oaknationalacademy-res.cloudinary.com/ https://oaknationalacademy-res.cloudinary.com https://*.cloudinary.com/ https://*.cloudinary.com https://res.cloudinary.com/oak-web-application/ https://img.clerk.com/ https://*.mux.com/ https://stream.mux.com/ https://*.gleap.io/ https://translate.googleusercontent.com https://ssl.gstatic.com;
     font-src 'self' gstatic-fonts.thenational.academy/ fonts.gstatic.com/ data: https://vercel.live/ https://assets.vercel.com;
     object-src 'self' *.google.com;
     base-uri 'self';
@@ -20,14 +20,14 @@ const prodCspHeaderFixture = `
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
     report-uri https://eu.i.posthog.com/report/?token=test-api-key&sample_rate=0.05&v=1;
-    report-to posthog
+    report-to posthog;
 `;
 
 const devCspHeaderFixture = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' https: http: 'unsafe-eval' http://localhost:* https://localhost:* https://vercel.live https://vercel.com https://*.posthog.com *.clerk.accounts.dev https://cdn.mux.com https://mux.com https://*.mux.com https://stream.mux.com https://*.gleap.io/ https://translate.google.com/ https://translate.googleapis.com/ https://www.gstatic.com/ https://*.google.com/;
     style-src 'self' 'unsafe-inline' https://vercel.live/ https://*.mux.com;
-    img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/;
+    img-src 'self' blob: data: https: *.thenational.academy/ thenational.academy/ https://vercel.live/ https://vercel.com *.pusher.com/ data: blob: https://*.hubspot.com/ https://*.hsforms.com/ https://track.hubspot.com/ https://res.cloudinary.com/ https://res.cloudinary.com https://oaknationalacademy-res.cloudinary.com/ https://oaknationalacademy-res.cloudinary.com https://*.cloudinary.com/ https://*.cloudinary.com https://res.cloudinary.com/oak-web-application/ https://img.clerk.com/ https://*.mux.com/ https://stream.mux.com/ https://*.gleap.io/ https://translate.googleusercontent.com https://ssl.gstatic.com;
     font-src 'self' gstatic-fonts.thenational.academy/ fonts.gstatic.com/ data: https://vercel.live/ https://assets.vercel.com;
     object-src 'self' *.google.com;
     base-uri 'self';
@@ -39,7 +39,7 @@ const devCspHeaderFixture = `
     worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
     report-uri https://eu.i.posthog.com/report/?token=test-api-key;
-    report-to posthog
+    report-to posthog;
 `;
 
 describe("Content-Security-Policy Header", () => {
