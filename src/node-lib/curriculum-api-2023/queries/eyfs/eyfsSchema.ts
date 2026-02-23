@@ -27,6 +27,16 @@ export const queryResponse = z.object({
   ),
 });
 
+export const videoResponseSchema = z.object({
+  videos: z.array(
+    z.object({
+      video_mux_playback_id: z.string().nullish(),
+      video_id: z.number().nullish(),
+      video_title: z.string().nullish(),
+    }),
+  ),
+});
+
 export type EyfsUnits = {
   [unitSlug: string]: EYFSUnit;
 };
@@ -47,4 +57,8 @@ export type EYFSLesson = {
   slug: string;
   description?: string;
   orderInUnit?: number | null;
+  video: {
+    muxPlaybackId: string | null;
+    title: string | null;
+  };
 };

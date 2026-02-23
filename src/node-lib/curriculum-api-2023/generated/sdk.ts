@@ -50510,6 +50510,13 @@ export type EyfsPageQueryVariables = Exact<{
 
 export type EyfsPageQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, unit_slug?: string | null, unit_data?: any | null, programme_slug?: string | null, features?: any | null, order_in_unit?: number | null }>, subjects: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', subject_slug?: any | null, subject_title?: any | null }> };
 
+export type EyfsVideosQueryVariables = Exact<{
+  lessonIds?: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
+}>;
+
+
+export type EyfsVideosQuery = { __typename?: 'query_root', videos: Array<{ __typename?: 'published_mv_lesson_content_published_9_0_0', video_mux_playback_id?: string | null, video_id?: number | null, video_title?: string | null }> };
+
 export type KeyStagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -50933,6 +50940,17 @@ export const EyfsPageDocument = gql`
   ) {
     subject_slug: programme_fields(path: "subject_slug")
     subject_title: programme_fields(path: "subject")
+  }
+}
+    `;
+export const EyfsVideosDocument = gql`
+    query eyfsVideos($lessonIds: [String!]) {
+  videos: published_mv_lesson_content_published_9_0_0(
+    where: {lesson_slug: {_in: $lessonIds}}
+  ) {
+    video_mux_playback_id
+    video_id
+    video_title
   }
 }
     `;
@@ -51985,6 +52003,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     eyfsPage(variables: EyfsPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<EyfsPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<EyfsPageQuery>({ document: EyfsPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'eyfsPage', 'query', variables);
+    },
+    eyfsVideos(variables?: EyfsVideosQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<EyfsVideosQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<EyfsVideosQuery>({ document: EyfsVideosDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'eyfsVideos', 'query', variables);
     },
     keyStages(variables?: KeyStagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<KeyStagesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<KeyStagesQuery>({ document: KeyStagesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'keyStages', 'query', variables);
