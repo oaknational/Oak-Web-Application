@@ -228,7 +228,7 @@ describe("pages/about/who-we-are.tsx", () => {
 
       expect(propsResult).toMatchObject({
         props: {
-          enableV2: false,
+          enableV2: true,
           pageData: testAboutWhoWeArePageData,
         },
       });

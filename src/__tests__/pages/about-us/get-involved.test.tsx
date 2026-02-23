@@ -10,11 +10,11 @@ import GetInvolved, {
   GetInvolvedPage,
   getServerSideProps,
 } from "@/pages/about-us/get-involved";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
-jest.mock("@/node-lib/posthog/getFeatureFlag");
+jest.mock("@/utils/isNewAboutUsPagesEnabled");
 jest.mock("../../../node-lib/cms");
 jest.mock("@mux/mux-player-react/lazy", () => {
   return forwardRef((props, ref) => {
@@ -64,7 +64,7 @@ describe("pages/about/get-involved.tsx", () => {
 
   describe("getStaticProps", () => {
     it("should 404 when not enabled", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(false);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
         res: {},
