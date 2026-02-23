@@ -98,6 +98,8 @@ function TmpNav({
 
   return (
     <OakBox
+      as="nav"
+      aria-label="page navigation"
       $minWidth={"spacing-180"}
       $display={["none", "block", "block"]}
       $position={"sticky"}

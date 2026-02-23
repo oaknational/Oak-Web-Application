@@ -4779,7 +4779,8 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
               <div
                 class="c88"
               >
-                <div
+                <nav
+                  aria-label="page navigation"
                   class="c89"
                 >
                   <ul
@@ -4880,7 +4881,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </a>
                     </li>
                   </ul>
-                </div>
+                </nav>
               </div>
               <div
                 class="c88 c98"
