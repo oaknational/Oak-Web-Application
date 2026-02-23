@@ -30,8 +30,8 @@ exports[`AboutSharedHeader renders correctly 1`] = `
         <div
           class="sc-aXZVg sc-9ed44546-0 hdseiA eKCzCZ"
         >
-          <span
-            class="sc-aXZVg ccpVbZ"
+          <div
+            class="sc-aXZVg iGlCVz"
           >
             <img
               alt="Oak logo"
@@ -42,7 +42,7 @@ exports[`AboutSharedHeader renders correctly 1`] = `
               src="http://example.com/image.svg"
               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
             />
-          </span>
+          </div>
         </div>
       </div>
     </div>
@@ -80,8 +80,8 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
         <div
           class="sc-aXZVg sc-9ed44546-0 hdseiA eKCzCZ"
         >
-          <span
-            class="sc-aXZVg gRUGli sc-9ed44546-1 bPEnOT"
+          <div
+            class="sc-aXZVg dhXyYU sc-9ed44546-1 bPEnOT"
             data-testid="about-shared-loop"
           >
             <img
@@ -93,7 +93,7 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
             />
-          </span>
+          </div>
         </div>
       </div>
     </div>
