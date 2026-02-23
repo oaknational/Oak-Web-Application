@@ -1,3 +1,26 @@
+# [1.999.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.998.0...v1.999.0) (2026-02-23)
+
+
+### Bug Fixes
+
+* add optional chaining back in to handle ssr ([e1525a1](https://github.com/oaknational/Oak-Web-Application/commit/e1525a151f1a046899da7667750f39e7037fbb81))
+* add useSpan prop to tags in card listing ([aa2f451](https://github.com/oaknational/Oak-Web-Application/commit/aa2f45197d450ba197bf2f574d51169e2555c0d7))
+* don't disable save button while loading ([c9d1326](https://github.com/oaknational/Oak-Web-Application/commit/c9d1326000a4b48884b6a74edee4a329b9253c9c))
+* dont show lesson count or link to unit for optionality unit cards ([a5ac106](https://github.com/oaknational/Oak-Web-Application/commit/a5ac1064b9eeeab7372dff8d7e14f796f9aff960))
+* ensure programme factors are in programme slug for unit link ([3b57a90](https://github.com/oaknational/Oak-Web-Application/commit/3b57a90a8a1173c7bb68d4d86cab969677547c11))
+* force component requiring document to render on client ([58b06ca](https://github.com/oaknational/Oak-Web-Application/commit/58b06cad6edbfa39ffea536de3795eb2e584fd9b))
+* require actual router module in layouts tests ([65ae1ba](https://github.com/oaknational/Oak-Web-Application/commit/65ae1bab5b7cec97aa0307a658443627f11409a5))
+* use correct font for integrated journey in tier and child subject filters ([07161d4](https://github.com/oaknational/Oak-Web-Application/commit/07161d48881154cc93c8268a3eb440976b3960ee))
+
+
+### Features
+
+* add subject category tags to programme unit cards ([06bd3ce](https://github.com/oaknational/Oak-Web-Application/commit/06bd3ce612d18fb8c0aef25b381b926c66dd114f))
+* add unit options to card ([3c6e48e](https://github.com/oaknational/Oak-Web-Application/commit/3c6e48e73f194ee2df37472178c1adbfb809da4e))
+* align tags to bottom of card listing content in vertical layout ([86450f9](https://github.com/oaknational/Oak-Web-Application/commit/86450f9339fb904fe8bb6bb7d2c4d0d762c717f2))
+* don't show save button on optionality units ([994cba8](https://github.com/oaknational/Oak-Web-Application/commit/994cba8f080b5780c2c1eea7da9c19e450fdb192))
+* show save button with modal when signed out ([befa899](https://github.com/oaknational/Oak-Web-Application/commit/befa89918f04fa4b3413eaf2fe60e591b6e15788))
+
 # [1.998.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.997.0...v1.998.0) (2026-02-19)
 
 
