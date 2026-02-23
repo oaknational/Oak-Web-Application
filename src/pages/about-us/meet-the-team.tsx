@@ -4,10 +4,13 @@ import {
   OakCard,
   OakFlex,
   OakHeading,
-  OakSideMenuNav,
+  OakLI,
+  OakSideMenuNavLink,
   OakTypography,
+  OakUL,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { RefObject, useMemo, useRef } from "react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
@@ -28,6 +31,7 @@ import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { useCurrentSection } from "@/components/TeacherComponents/helpers/lessonHelpers/useCurrentSection";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -47,6 +51,83 @@ export type AboutUsMeetTheTeamPageProps = {
   topNav: TopNavProps;
 };
 
+// Call getProxiedSanityAssetUrl(...) once, rather than every render
+function useWithCachedImage<
+  T extends { image?: null | { asset?: null | { url: string } } },
+>(items: T[]) {
+  return useMemo<(T & { imageUrl: string | undefined })[]>(() => {
+    return items.map((item) => {
+      return {
+        ...item,
+        imageUrl: getProxiedSanityAssetUrl(item.image?.asset?.url) ?? undefined,
+      };
+    });
+  }, [items]);
+}
+
+function TmpNav({
+  sectionRefs,
+}: {
+  sectionRefs: Record<
+    "our-leadership" | "our-board" | "documents",
+    RefObject<HTMLElement>
+  >;
+}) {
+  const { currentSectionId: currentSectionIdOrig } = useCurrentSection({
+    sectionRefs,
+  });
+  const currentSectionId = currentSectionIdOrig ?? "our-leadership";
+
+  const menuLinks = useMemo(
+    () => [
+      {
+        heading: "Our leadership",
+        href: "#our-leadership",
+      },
+      {
+        heading: "Our board",
+        href: "#our-board",
+      },
+      {
+        heading: "Documents",
+        href: "#documents",
+      },
+    ],
+    [],
+  );
+
+  return (
+    <OakBox
+      $minWidth={"spacing-180"}
+      $display={["none", "block", "block"]}
+      $position={"sticky"}
+      $top="spacing-20"
+      $pb={"spacing-80"}
+    >
+      <OakUL $reset $display="flex" $gap="spacing-16" $flexDirection="column">
+        {menuLinks.map((link) => {
+          const anchorId = link.href.replace(/^#/, "");
+          const isCurrent = anchorId === currentSectionId;
+
+          return (
+            <OakLI key={`${link.href}`}>
+              <OakSideMenuNavLink
+                onClick={() => {
+                  document.getElementById(anchorId)?.scrollIntoView();
+                }}
+                item={link}
+                isSelected={isCurrent}
+                $pt={"spacing-8"}
+                $pb={"spacing-8"}
+              />
+            </OakLI>
+          );
+        })}
+      </OakUL>
+    </OakBox>
+  );
+}
+
 const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
   pageData,
   topNav,
@@ -61,6 +142,20 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
     governancePortableText,
     seo,
   } = pageData;
+
+  const boardMembersModified = useWithCachedImage(boardMembers);
+  const leadershipTeamModified = useWithCachedImage(leadershipTeam);
+
+  const leadershipRef = useRef<HTMLDivElement>(null);
+  const boardRef = useRef<HTMLDivElement>(null);
+  const documentsRef = useRef<HTMLDivElement>(null);
+  const sectionRefs = useMemo(() => {
+    return {
+      "our-leadership": leadershipRef,
+      "our-board": boardRef,
+      documents: documentsRef,
+    } as const;
+  }, []);
 
   return (
     <Layout
@@ -82,32 +177,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
         <InnerMaxWidth>
           <OakFlex $gap={["spacing-0", "spacing-16", "spacing-16"]}>
             <OakBox $pb={"spacing-80"}>
-              <OakBox
-                $minWidth={"spacing-180"}
-                $display={["none", "block", "block"]}
-                $position={"sticky"}
-                $top="spacing-20"
-                $pb={"spacing-80"}
-              >
-                <OakSideMenuNav
-                  heading="Page sections"
-                  anchorTargetId=""
-                  menuItems={[
-                    {
-                      heading: "Our leadership",
-                      href: "#our-leadership",
-                    },
-                    {
-                      heading: "Our board",
-                      href: "#our-board",
-                    },
-                    {
-                      heading: "Documents",
-                      href: "#documents",
-                    },
-                  ]}
-                />
-              </OakBox>
+              <TmpNav sectionRefs={sectionRefs} />
             </OakBox>
             <OakFlex
               $flexGrow={1}
@@ -116,22 +186,20 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               $pb={"spacing-80"}
             >
               <MeetTheTeamContainer
+                ref={leadershipRef}
                 title={SECTION_TITLES.leadership}
                 text={leadershipText}
                 anchor="our-leadership"
               >
-                {leadershipTeam.map((member) => {
+                {leadershipTeamModified.map((member) => {
                   const slug = member.slug?.current ?? member.id;
-                  const imageUrl =
-                    getProxiedSanityAssetUrl(member.image?.asset?.url) ??
-                    undefined;
                   return (
                     <UnstyledLi key={member.id}>
                       <OakCard
                         heading={member.name}
                         href={`/about-us/meet-the-team/${slug}?section=leadership`}
                         cardWidth={"100%"}
-                        imageSrc={imageUrl}
+                        imageSrc={member.imageUrl}
                         subCopy={member.role ?? ""}
                         linkText="See bio"
                         linkIconName="chevron-right"
@@ -142,22 +210,20 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               </MeetTheTeamContainer>
 
               <MeetTheTeamContainer
+                ref={boardRef}
                 title={SECTION_TITLES.board}
                 text={boardText}
                 anchor="our-board"
               >
-                {boardMembers.map((member) => {
+                {boardMembersModified.map((member) => {
                   const slug = member.slug?.current ?? member.id;
-                  const imageUrl =
-                    getProxiedSanityAssetUrl(member.image?.asset?.url) ??
-                    undefined;
                   return (
                     <UnstyledLi key={member.id}>
                       <OakCard
                         heading={member.name}
                         href={`/about-us/meet-the-team/${slug}?section=board`}
                         cardWidth={"100%"}
-                        imageSrc={imageUrl}
+                        imageSrc={member.imageUrl}
                         subCopy={member.role ?? ""}
                         linkText="See bio"
                         linkIconName="chevron-right"
@@ -169,6 +235,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
 
               {documents && documents.length > 0 && (
                 <MeetTheTeamContainer
+                  ref={documentsRef}
                   title={SECTION_TITLES.documents}
                   text={null}
                   anchor="documents"

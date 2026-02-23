@@ -1,9 +1,5 @@
 import { RefObject, useEffect, useState } from "react";
 
-import { LessonPageLinkAnchorId } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-
-type SectionRefs = Record<LessonPageLinkAnchorId, RefObject<HTMLElement>>;
-
 /**
  * Sets the hash in the URL without scrolling the page.
  * Without this, the browser auto-scrolls the user to the top of the section
@@ -23,7 +19,9 @@ function safeSetHash(hash: string): void {
   }
 }
 
-const calculateCurrentSectionId = (sectionRefs: SectionRefs): string | null => {
+function calculateCurrentSectionId<
+  T extends Record<string, RefObject<HTMLElement>>,
+>(sectionRefs: T): string | null {
   /**
    * Returns the last section that is above the middle of the screen
    */
@@ -65,12 +63,16 @@ const calculateCurrentSectionId = (sectionRefs: SectionRefs): string | null => {
   );
 
   return currentSectionId?.id ?? null;
-};
+}
 
-type UseCurrentSectionProps = {
-  sectionRefs: SectionRefs;
+export type UseCurrentSectionProps<
+  T extends Record<string, RefObject<HTMLElement>>,
+> = {
+  sectionRefs: T;
 };
-export function useCurrentSection({ sectionRefs }: UseCurrentSectionProps) {
+export function useCurrentSection<
+  T extends Record<string, RefObject<HTMLElement>>,
+>({ sectionRefs }: UseCurrentSectionProps<T>) {
   const [currentSectionId, setCurrentSectionId] = useState<string | null>(null);
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const [lastScrollTop, setLastScrollTop] = useState<number>(0);
