@@ -159,4 +159,17 @@ describe("TeachersTopNavHamburger", () => {
       }),
     );
   });
+  it("should render an aria label for external links", async () => {
+    const { getByTestId, getByRole } = render(
+      <TeachersTopNavHamburger {...mockTopNavProps} />,
+    );
+    const user = userEvent.setup();
+    const button = getByTestId("top-nav-hamburger-button");
+    await user.click(button);
+
+    const aiExperimentsLink = getByRole("link", {
+      name: "AI Experiments (this will open in a new tab)",
+    });
+    expect(aiExperimentsLink).toHaveTextContent("AI Experiments");
+  });
 });

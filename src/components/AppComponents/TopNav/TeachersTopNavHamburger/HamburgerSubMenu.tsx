@@ -103,6 +103,11 @@ export function SubmenuContent(
                   element={Link}
                   target={link.external ? "_blank" : "_self"}
                   iconName={link.external ? "external" : undefined}
+                  aria-label={
+                    link.external
+                      ? `${link.title} (this will open in a new tab)`
+                      : undefined
+                  }
                   isTrailingIcon
                   href={resolveOakHref({
                     page: link.slug,
