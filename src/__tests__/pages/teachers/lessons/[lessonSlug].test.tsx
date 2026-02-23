@@ -55,14 +55,6 @@ jest.mock("posthog-js/react", () => {
   };
 });
 
-jest.mock("next/router", () => ({
-  useRouter: jest.fn(() => ({
-    replace: jest.fn(),
-    pathname: "/teachers/lessons/lesson-1",
-    query: { lessonSlug: "lesson-1" },
-  })),
-}));
-
 jest.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
   __esModule: true,
   default: () => () => null,

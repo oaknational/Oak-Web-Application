@@ -25,7 +25,6 @@ jest.mock("@/hooks/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
-jest.mock("next/router", () => require("next-router-mock"));
 const mockDownloadAllButton = jest.fn();
 const baseProps = {
   ...lessonOverviewFixture(),
