@@ -104,6 +104,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   min-width: 1.5rem;
   height: 2rem;
   min-height: 2rem;
+  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -246,6 +247,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   min-width: 1.5rem;
   height: 1.5rem;
   min-height: 1.5rem;
+  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -289,6 +291,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   min-width: 2rem;
   height: 2rem;
   min-height: 2rem;
+  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -311,6 +314,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
 .c132 {
   position: relative;
   width: 100%;
+  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -395,6 +399,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   min-width: 3.5rem;
   height: 3.5rem;
   min-height: 3.5rem;
+  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -431,6 +436,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   margin-left: 0rem;
   margin-right: 0.75rem;
   margin-bottom: 0rem;
+  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -518,6 +524,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   width: 10rem;
   height: 4rem;
   padding: 0rem;
+  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -4685,7 +4692,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 <div
                   class="c31 c32 oak-save-count"
                 >
-                  <div
+                  <span
                     class="c33"
                     data-testid="bookmark-outlined"
                   >
@@ -4698,7 +4705,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734519491/icons/bookmark-outlined_rxe5v0.svg"
                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                     />
-                  </div>
+                  </span>
                   <div
                     class="c35"
                   >
@@ -4901,7 +4908,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               class="c62 c63 c64"
               data-testid="menu"
             >
-              <div
+              <span
                 class="c65"
               >
                 <img
@@ -4913,8 +4920,8 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734536929/OWA/ui-graphics/looping-line-1_krbrht.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
-              <div
+              </span>
+              <span
                 class="c67"
               >
                 <img
@@ -4926,7 +4933,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734536933/OWA/ui-graphics/looping-line-2_sdinei.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
+              </span>
               <div
                 class="c68"
               >
@@ -5962,7 +5969,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             <div
                               class="c106 shadow"
                             />
-                            <div
+                            <span
                               class="c107"
                               data-icon-for="button"
                             >
@@ -5975,7 +5982,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </div>
+                            </span>
                           </div>
                           <span
                             class="c82"
@@ -6000,7 +6007,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             <div
                               class="c106 shadow"
                             />
-                            <div
+                            <span
                               class="c107"
                               data-icon-for="button"
                             >
@@ -6013,7 +6020,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </div>
+                            </span>
                           </div>
                           <span
                             class="c82"
@@ -6038,7 +6045,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             <div
                               class="c106 shadow"
                             />
-                            <div
+                            <span
                               class="c107"
                               data-icon-for="button"
                             >
@@ -6051,7 +6058,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </div>
+                            </span>
                           </div>
                           <span
                             class="c82"
@@ -6130,7 +6137,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               <div
                 class="c11 c121"
               >
-                <div
+                <span
                   class="c122 c123"
                   data-testid="about-shared-loop"
                 >
@@ -6143,7 +6150,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                   />
-                </div>
+                </span>
               </div>
             </div>
           </div>
@@ -6174,7 +6181,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     <div
                       class="c130 c131"
                     >
-                      <div
+                      <span
                         class="c132 c133"
                       >
                         <img
@@ -6186,7 +6193,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           src="https://res.cloudinary.com/oak-web-application/image/upload/v1763393163/icons/chatting-illustration_l52zaf.svg"
                           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                         />
-                      </div>
+                      </span>
                     </div>
                   </div>
                   <div
@@ -6241,7 +6248,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                   >
                                     Join the research panel
                                   </span>
-                                  <div
+                                  <span
                                     class="c107"
                                   >
                                     <img
@@ -6253,7 +6260,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                       src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                     />
-                                  </div>
+                                  </span>
                                 </div>
                               </a>
                             </div>
@@ -6330,7 +6337,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                   >
                                     Get in touch
                                   </span>
-                                  <div
+                                  <span
                                     class="c107"
                                   >
                                     <img
@@ -6342,7 +6349,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                       src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                     />
-                                  </div>
+                                  </span>
                                 </div>
                               </a>
                             </div>
@@ -6411,7 +6418,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           >
                             Permanent roles
                           </span>
-                          <div
+                          <span
                             class="c107"
                           >
                             <img
@@ -6423,7 +6430,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </div>
+                          </span>
                         </div>
                       </a>
                     </div>
@@ -6450,7 +6457,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           >
                             Freelance roles
                           </span>
-                          <div
+                          <span
                             class="c107"
                           >
                             <img
@@ -6462,7 +6469,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </div>
+                          </span>
                         </div>
                       </a>
                     </div>
@@ -6478,7 +6485,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   <div
                     class="c151 c98"
                   >
-                    <div
+                    <span
                       class="c132"
                     >
                       <img
@@ -6492,7 +6499,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=384&q=75 384w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=3840&q=75 3840w"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
-                    </div>
+                    </span>
                   </div>
                   <div
                     class="c11 c153"
@@ -6524,7 +6531,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             <div
               class="c156"
             >
-              <div
+              <span
                 class="c157"
                 style="pointer-events: none;"
               >
@@ -6537,7 +6544,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
+              </span>
               <div
                 class="c114"
               >
@@ -6573,7 +6580,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               <div
                                 class="c11 c98"
                               >
-                                <div
+                                <span
                                   class="c168"
                                 >
                                   <img
@@ -6585,7 +6592,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
                                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                   />
-                                </div>
+                                </span>
                               </div>
                               <div
                                 class="c169 c170"
@@ -6595,7 +6602,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               <div
                                 class="c11 c98"
                               >
-                                <div
+                                <span
                                   class="c122"
                                 >
                                   <img
@@ -6607,7 +6614,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                   />
-                                </div>
+                                </span>
                               </div>
                             </div>
                           </a>
@@ -6630,7 +6637,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               <div
                                 class="c11 c98"
                               >
-                                <div
+                                <span
                                   class="c168"
                                 >
                                   <img
@@ -6642,7 +6649,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
                                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                   />
-                                </div>
+                                </span>
                               </div>
                               <div
                                 class="c169 c170"
@@ -6652,7 +6659,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               <div
                                 class="c11 c98"
                               >
-                                <div
+                                <span
                                   class="c122"
                                 >
                                   <img
@@ -6664,7 +6671,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                   />
-                                </div>
+                                </span>
                               </div>
                             </div>
                           </a>
@@ -6687,7 +6694,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               <div
                                 class="c11 c98"
                               >
-                                <div
+                                <span
                                   class="c168"
                                 >
                                   <img
@@ -6699,7 +6706,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
                                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                   />
-                                </div>
+                                </span>
                               </div>
                               <div
                                 class="c169 c170"
@@ -6709,7 +6716,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               <div
                                 class="c11 c98"
                               >
-                                <div
+                                <span
                                   class="c122"
                                 >
                                   <img
@@ -6721,7 +6728,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                   />
-                                </div>
+                                </span>
                               </div>
                             </div>
                           </a>
@@ -6744,7 +6751,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               <div
                                 class="c11 c98"
                               >
-                                <div
+                                <span
                                   class="c168"
                                 >
                                   <img
@@ -6756,7 +6763,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
                                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                   />
-                                </div>
+                                </span>
                               </div>
                               <div
                                 class="c169 c170"
@@ -6766,7 +6773,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               <div
                                 class="c11 c98"
                               >
-                                <div
+                                <span
                                   class="c122"
                                 >
                                   <img
@@ -6778,7 +6785,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                   />
-                                </div>
+                                </span>
                               </div>
                             </div>
                           </a>
@@ -6812,7 +6819,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       <div
                         class="c177 c178"
                       >
-                        <div
+                        <span
                           class="c179"
                         >
                           <img
@@ -6824,7 +6831,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953622/icons/jifivg9xxm7sb0fjdilm.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                         <h2
                           class="c180"
                         >
@@ -7330,7 +7337,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                 What describes you best?
                               </span>
                             </div>
-                            <div
+                            <span
                               class="c107"
                             >
                               <img
@@ -7342,7 +7349,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953557/icons/botfld6brychmttwtv6u.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </div>
+                            </span>
                           </button>
                         </div>
                         <div
@@ -7690,7 +7697,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           >
                             Careers
                           </span>
-                          <div
+                          <span
                             class="c107 "
                           >
                             <img
@@ -7702,7 +7709,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </div>
+                          </span>
                         </a>
                       </li>
                       <li
@@ -7733,7 +7740,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           >
                             Help
                           </span>
-                          <div
+                          <span
                             class="c107 "
                           >
                             <img
@@ -7745,7 +7752,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </div>
+                          </span>
                         </a>
                       </li>
                       <li
@@ -7790,7 +7797,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           >
                             Status
                           </span>
-                          <div
+                          <span
                             class="c107 "
                           >
                             <img
@@ -7802,7 +7809,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </div>
+                          </span>
                         </a>
                       </li>
                     </ul>
@@ -7978,7 +7985,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                   <div
                     class="c18"
                   >
-                    <div
+                    <span
                       class="c227"
                     >
                       <img
@@ -7990,7 +7997,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
-                    </div>
+                    </span>
                   </div>
                   <div
                     class="c228 c229"
@@ -8012,7 +8019,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             <div
                               class="c106 shadow"
                             />
-                            <div
+                            <span
                               class="c107"
                               data-icon-for="button"
                             >
@@ -8025,7 +8032,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </div>
+                            </span>
                           </div>
                           <span
                             class="c82"
@@ -8050,7 +8057,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             <div
                               class="c106 shadow"
                             />
-                            <div
+                            <span
                               class="c107"
                               data-icon-for="button"
                             >
@@ -8063,7 +8070,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </div>
+                            </span>
                           </div>
                           <span
                             class="c82"
@@ -8088,7 +8095,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             <div
                               class="c106 shadow"
                             />
-                            <div
+                            <span
                               class="c107"
                               data-icon-for="button"
                             >
@@ -8101,7 +8108,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
                                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                               />
-                            </div>
+                            </span>
                           </div>
                           <span
                             class="c82"
@@ -8113,7 +8120,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 </div>
               </div>
             </div>
-            <div
+            <span
               class="c132 c230"
               data-percy-hide="contents"
             >
@@ -8128,7 +8135,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_OAK_ASSETS_HOST%2FNEXT_PUBLIC_OAK_ASSETS_PATH%2Fv1751992190%2FOWA%2Fillustrations%2FCyber-Essentials-Logo_ryiskg.png&w=3840&q=75 3840w"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
+            </span>
             <div
               class="c231 c232"
             >
@@ -8152,7 +8159,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         <div
                           class="c106 shadow"
                         />
-                        <div
+                        <span
                           class="c107"
                           data-icon-for="button"
                         >
@@ -8165,7 +8172,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954343/icons/ayfeljric0kkimdymvva.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                       <span
                         class="c82"
@@ -8190,7 +8197,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         <div
                           class="c106 shadow"
                         />
-                        <div
+                        <span
                           class="c107"
                           data-icon-for="button"
                         >
@@ -8203,7 +8210,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895330/icons/iojlvh3o5lshy2jupyph.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                       <span
                         class="c82"
@@ -8228,7 +8235,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                         <div
                           class="c106 shadow"
                         />
-                        <div
+                        <span
                           class="c107"
                           data-icon-for="button"
                         >
@@ -8241,7 +8248,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953592/icons/leqneklorqqzb1zo6rf1.svg"
                             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                           />
-                        </div>
+                        </span>
                       </div>
                       <span
                         class="c82"
@@ -8253,7 +8260,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
               <div
                 class="c27"
               >
-                <div
+                <span
                   class="c227"
                 >
                   <img
@@ -8265,7 +8272,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1765468420/OakLogoWithText.svg"
                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                   />
-                </div>
+                </span>
               </div>
               <div
                 class="c219 c63"
@@ -8284,7 +8291,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             </div>
           </div>
         </nav>
-        <div
+        <span
           class="c237"
         >
           <img
@@ -8296,8 +8303,8 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537015/OWA/ui-graphics/looping-line-3_b8dque.svg"
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
-        </div>
-        <div
+        </span>
+        <span
           class="c239"
         >
           <img
@@ -8309,7 +8316,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
             src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537039/OWA/ui-graphics/looping-line-4_xtjj4r.svg"
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
-        </div>
+        </span>
       </footer>
     </div>
   </div>
