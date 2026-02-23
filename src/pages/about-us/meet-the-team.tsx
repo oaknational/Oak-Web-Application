@@ -31,7 +31,7 @@ import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { useCurrentSection } from "@/components/TeacherComponents/helpers/lessonHelpers/useCurrentSection";
+import { useCurrentSection } from "@/hooks/useCurrentSection";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
