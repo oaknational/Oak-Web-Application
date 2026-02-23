@@ -27,7 +27,7 @@ type Props = {
 export default function GoogleClassroomErrorView({ statusCode }: Props) {
   const router = useRouter();
   return (
-    <OakMaxWidth $alignItems={"flex-end"}>
+    <OakMaxWidth $alignItems={"center"}>
       <OakFlex
         $flexDirection="column"
         $mv="spacing-80"
@@ -51,12 +51,7 @@ export default function GoogleClassroomErrorView({ statusCode }: Props) {
           Whoops! It looks like you have fallen too far from the tree.
         </OakHeading>
         <OakP $mb="spacing-24">Let's get you back to browsing</OakP>
-        <OakTertiaryButton
-          onClick={() => router.back()}
-          iconName="arrow-left"
-          $background="blue"
-          isTrailingIcon={true}
-        >
+        <OakTertiaryButton onClick={() => router.back()} iconName="arrow-left">
           Go back
         </OakTertiaryButton>
       </OakFlex>
