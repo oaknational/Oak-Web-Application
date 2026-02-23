@@ -63,4 +63,39 @@ describe("src/app/classroom/browse/programmes/[programmeSlug]/units/[unitSlug]/l
       "/classroom/browse/programmes/:programmeSlug/units",
     );
   });
+
+  it("returns 404 when no lesson browse data is returned", async () => {
+    (curriculumApi2023.pupilLessonListingQuery as jest.Mock).mockResolvedValue({
+      browseData: [],
+    });
+
+    await expect(
+      Page({
+        params: Promise.resolve({
+          programmeSlug: "maths-h",
+          unitSlug: "algebra-1",
+        }),
+      }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
+
+  it("returns 404 when lesson browse data is missing required fields", async () => {
+    (curriculumApi2023.pupilLessonListingQuery as jest.Mock).mockResolvedValue({
+      browseData: [
+        {
+          lessonSlug: "lesson-a",
+          supplementaryData: { orderInUnit: 1 },
+        },
+      ],
+    });
+
+    await expect(
+      Page({
+        params: Promise.resolve({
+          programmeSlug: "maths-h",
+          unitSlug: "algebra-1",
+        }),
+      }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
 });

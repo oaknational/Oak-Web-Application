@@ -1,5 +1,6 @@
 import { groupBy } from "lodash";
 import { UnitsListingView } from "@oaknational/google-classroom-addon/ui";
+import { notFound } from "next/navigation";
 import React from "react";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -14,13 +15,14 @@ async function GoogleClassroomUnitsListingPage({
   params: Promise<{ programmeSlug: string }>;
 }>) {
   const { programmeSlug } = await params;
+
   const baseSlug = extractBaseSlug(programmeSlug);
   const curriculumData = await curriculumApi2023.pupilUnitListingQuery({
     baseSlug,
   });
 
-  if (!curriculumData) {
-    return <>404</>;
+  if (!curriculumData?.length) {
+    notFound();
   }
 
   curriculumData.sort((a, b) => {
@@ -34,6 +36,9 @@ async function GoogleClassroomUnitsListingPage({
   const allUnits = checkAndExcludeUnitsWithAgeRestrictedLessons(
     unitsByProgramme[programmeSlug] ?? [],
   );
+  if (!allUnits?.length) {
+    notFound();
+  }
 
   const optionalityUnits: UnitListingBrowseData[number][][] = Object.values(
     groupBy(allUnits, (unit) =>
@@ -47,7 +52,9 @@ async function GoogleClassroomUnitsListingPage({
     (unit) => unit.programmeSlug === programmeSlug,
   );
 
-  if (!selectedProgramme || !allUnits) return;
+  if (!selectedProgramme) {
+    notFound();
+  }
 
   const { programmeFields } = selectedProgramme;
 

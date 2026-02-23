@@ -47,7 +47,7 @@ describe("src/app/classroom/browse/years/[yearSlug]/subjects/page", () => {
     );
   });
 
-  it("throws error when no curriculum data is returned", async () => {
+  it("returns 404 when no curriculum data is returned", async () => {
     (curriculumApi2023.pupilSubjectListingQuery as jest.Mock).mockResolvedValue(
       {
         curriculumData: [],
@@ -56,6 +56,6 @@ describe("src/app/classroom/browse/years/[yearSlug]/subjects/page", () => {
 
     await expect(
       Page({ params: Promise.resolve({ yearSlug: "year-x" }) }),
-    ).rejects.toThrow("No curriculum data");
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
 });
