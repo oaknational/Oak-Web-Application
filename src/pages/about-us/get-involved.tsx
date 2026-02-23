@@ -40,7 +40,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
 }) => {
   return (
     <Layout
-      seoProps={getSeoProps(null)}
+      seoProps={getSeoProps({ title: "Get Involved" })}
       $background={"bg-primary"}
       topNavProps={topNav}
     >

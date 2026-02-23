@@ -1,6 +1,7 @@
 import {
   OakFlex,
   OakHeading,
+  OakImage,
   OakP,
   OakUiRoleToken,
 } from "@oaknational/oak-components";
@@ -14,19 +15,65 @@ import Illustration from "@/components/SharedComponents/Illustration";
 const StyledResponsiveFlex = styled(OakFlex)`
   flex-direction: column;
 
-  @media (min-width: 1000px) {
+  @media (min-width: 920px) {
     flex-direction: row;
   }
 `;
 
+export type GuidingPrincipleItem = {
+  heading: string;
+  text: string;
+};
+
+const DEFAULT_PRINCIPLES: GuidingPrincipleItem[] = [
+  {
+    heading: "Evidence-informed",
+    text: "Our approach enables the rigorous application of research outcomes, science of learning and impactful best practice.",
+  },
+  {
+    heading: "Knowledge and vocabulary rich",
+    text: "Our curriculum is knowledge and vocabulary rich so that pupils build on what they already know to develop deep knowledge and apply this through skills.",
+  },
+  {
+    heading: "Sequenced and coherent",
+    text: "We carefully and purposefully sequence our curriculum to ensure that pupils can build on and make links with existing knowledge. We pay attention to vertical coherence via threads, which map the developments of concepts over time.",
+  },
+  {
+    heading: "Flexible",
+    text: "Our curriculum is flexible by design so that schools can use them in a way to fit their setting and meet the varying needs of teachers and their pupils - all aligned to the national curriculum.",
+  },
+  {
+    heading: "Accessible",
+    text: "Our curriculum is designed to support all pupils to learn and follows accessibility guidelines. It uses insights from the science of learning to inform how content is designed and presented.",
+  },
+  {
+    heading: "Diverse",
+    text: "Our commitment to breadth and diversity in content, language, texts and media can be seen throughout our curriculum, to help pupils feel positively represented.",
+  },
+];
+
 export type GuidingPrinciplesProps = {
   accentColor: OakUiRoleToken;
   $background: OakUiRoleToken;
+  title?: string;
+  subtitle?: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  principles?: GuidingPrincipleItem[];
 };
 export function GuidingPrinciples({
   accentColor,
   $background,
+  title = "Our guiding principles",
+  subtitle = "We have crafted a set of overarching principles that describe the features important to our curricula in all subjects.",
+  imageUrl,
+  imageAlt = "",
+  principles = DEFAULT_PRINCIPLES,
 }: Readonly<GuidingPrinciplesProps>) {
+  if (principles.length === 0) {
+    return null;
+  }
+
   return (
     <StyledResponsiveFlex
       $justifyContent="space-between"
@@ -45,12 +92,11 @@ export function GuidingPrinciples({
       >
         <OakFlex $flexDirection="column">
           <OakHeading tag="h2" $font={["heading-4", "heading-3"]}>
-            Our guiding principles
+            {title}
           </OakHeading>
 
           <OakP $mt={"spacing-16"} $mb={"spacing-12"} $font={"body-1"}>
-            We have crafted a set of overarching principles that describe the
-            features important to our curricula in all subjects.
+            {subtitle}
           </OakP>
         </OakFlex>
 
@@ -59,15 +105,26 @@ export function GuidingPrinciples({
           $height={[270, 420, 420]}
           $position={"relative"}
         >
-          <Illustration
-            noCrop
-            sizes={getSizes([340, 480])}
-            slug="curriculum-approach"
-            $objectFit="contain"
-            $objectPosition={"center"}
-            fill
-            format={null}
-          />
+          {imageUrl ? (
+            <OakImage
+              src={imageUrl}
+              alt={imageAlt}
+              $objectFit="contain"
+              style={{ objectPosition: "center" }}
+              $height="100%"
+              $width="100%"
+            />
+          ) : (
+            <Illustration
+              noCrop
+              sizes={getSizes([340, 480])}
+              slug="curriculum-approach"
+              $objectFit="contain"
+              $objectPosition={"center"}
+              fill
+              format={null}
+            />
+          )}
         </Cover>
       </OakFlex>
 
@@ -78,39 +135,15 @@ export function GuidingPrinciples({
         $flexBasis={[null, 0]}
         $pb={["spacing-16", "spacing-0"]}
       >
-        <CurricQuote title="Evidence-informed" barColor={accentColor}>
-          Our approach enables the rigorous application of research outcomes,
-          science of learning and impactful best practice.
-        </CurricQuote>
-        <CurricQuote
-          title="Knowledge and vocabulary rich"
-          barColor={accentColor}
-        >
-          Our curriculum is knowledge and vocabulary rich so that pupils build
-          on what they already know to develop deep knowledge and apply this
-          through skills.
-        </CurricQuote>
-        <CurricQuote title="Sequenced and coherent" barColor={accentColor}>
-          We carefully and purposefully sequence our curriculum to ensure that
-          pupils can build on and make links with existing knowledge. We pay
-          attention to vertical coherence via threads, which map the
-          developments of concepts over time.
-        </CurricQuote>
-        <CurricQuote title="Flexible" barColor={accentColor}>
-          Our curriculum is flexible by design so that schools can use them in a
-          way to fit their setting and meet the varying needs of teachers and
-          their pupils - all aligned to the national curriculum.
-        </CurricQuote>
-        <CurricQuote title="Accessible" barColor={accentColor}>
-          Our curriculum is designed to support all pupils to learn and follows
-          accessibility guidelines. It uses insights from the science of
-          learning to inform how content is designed and presented.
-        </CurricQuote>
-        <CurricQuote title="Diverse" barColor={accentColor}>
-          Our commitment to breadth and diversity in content, language, texts
-          and media can be seen throughout our curriculum, to help pupils feel
-          positively represented.
-        </CurricQuote>
+        {principles.map((principle) => (
+          <CurricQuote
+            key={principle.heading}
+            title={principle.heading}
+            barColor={accentColor}
+          >
+            {principle.text}
+          </CurricQuote>
+        ))}
       </OakFlex>
     </StyledResponsiveFlex>
   );

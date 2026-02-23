@@ -138,9 +138,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
                   <TranscriptToggle transcriptSentences={videoCaptions} />
                 </OakBox>
               )}
-              <OakBox
-              // $width={["100%", "100%", "50%"]}
-              >
+              <OakBox>
                 <OakTypography $mb={"spacing-32"} $font={["body-2", "body-1"]}>
                   <PortableTextWithDefaults
                     value={pageData.intro.bodyPortableText}
@@ -233,9 +231,7 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
       <AboutUsLayout>
         <AboutSharedHeader
           title={"About Oak"}
-          content={
-            "We're here to support and inspire teachers to deliver great teaching, so every pupil benefits"
-          }
+          content={newAboutWhoWeArePage.header.subTitle}
         >
           <AboutSharedHeaderImage
             imageAlt=""

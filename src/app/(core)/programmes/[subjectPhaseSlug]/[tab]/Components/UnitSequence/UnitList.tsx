@@ -1,7 +1,9 @@
 import { OakGrid, OakGridArea, OakP } from "@oaknational/oak-components";
 import { keystageSlugs } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
-import { useUser } from "@clerk/nextjs";
+
+import { getTagsForUnitCard } from "./getTagsForUnitCard";
+import { getSavePropsForUnitCard } from "./getSavePropsForUnitCard";
 
 import { isHighlightedUnit } from "@/utils/curriculum/filteringApp";
 import {
@@ -36,7 +38,6 @@ export function ProgrammeUnitList({
   selectedThread,
 }: Readonly<ProgrammeUnitListProps>) {
   const { track } = useAnalytics();
-  const { isSignedIn } = useUser();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const onClick = (unit: Unit, isHighlighted: boolean) => {
@@ -53,6 +54,7 @@ export function ProgrammeUnitList({
 
   function getItems(unit: Unit, index: number) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
+    const isOptionalityUnitCard = unit.unit_options.length;
 
     return (
       <OakGridArea
@@ -65,30 +67,25 @@ export function ProgrammeUnitList({
           layoutVariant="vertical"
           title={unit.title}
           isHighlighted={isHighlighted}
+          tags={getTagsForUnitCard(unit)}
           // TD: [integrated journey] optionality units
-          href={resolveOakHref({
-            page: "lesson-index",
-            unitSlug: unit.slug,
-            programmeSlug: createTeacherProgrammeSlug(unit),
-          })}
-          onClickLink={() => onClick(unit, isHighlighted)}
-          lessonCount={unit.lessons?.length}
-          saveProps={
-            isSignedIn
-              ? {
+          href={
+            isOptionalityUnitCard
+              ? ""
+              : resolveOakHref({
+                  page: "lesson-index",
                   unitSlug: unit.slug,
-                  unitTitle: unit.title,
-                  programmeSlug: createTeacherProgrammeSlug(unit),
-                  trackingProps: {
-                    savedFrom: "unit_listing_save_button",
-                    keyStageSlug: unit.keystage_slug,
-                    keyStageTitle: getKeyStageTitle(unit.keystage_slug),
-                    subjectTitle: unit.subject,
-                    subjectSlug: unit.subject_slug,
-                  },
-                }
-              : undefined
+                  programmeSlug: createTeacherProgrammeSlug(
+                    unit,
+                    unit.examboard_slug,
+                    unit.tier_slug,
+                    unit.pathway_slug,
+                  ),
+                })
           }
+          onClickLink={() => onClick(unit, isHighlighted)}
+          lessonCount={isOptionalityUnitCard ? undefined : unit.lessons?.length}
+          saveProps={getSavePropsForUnitCard(unit)}
           index={index + 1}
         />
       </OakGridArea>
