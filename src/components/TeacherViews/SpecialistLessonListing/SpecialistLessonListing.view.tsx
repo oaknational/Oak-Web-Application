@@ -6,6 +6,7 @@ import usePagination from "@/components/SharedComponents/Pagination/usePaginatio
 import HeaderListing from "@/components/TeacherComponents/HeaderListing";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import { SpecialistLessonListingData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
+import { TakedownBanner } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 
 type SpecialistLessonListingProps = {
   curriculumData: SpecialistLessonListingData;
@@ -93,6 +94,16 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
               unitTitle={unitTitle}
               // TODO: implement new avo tracking function when available
               onClick={() => {}}
+              expiringBanner={
+                <TakedownBanner
+                  hasNewUnits={false}
+                  subjectSlug={subjectSlug}
+                  userType="teacher"
+                  isLegacy={true}
+                  isExpiring={false}
+                  isSingle={false}
+                />
+              }
             />
           </OakGridArea>
         </OakGrid>
