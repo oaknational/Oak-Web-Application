@@ -1,3 +1,6 @@
+import { notFound } from "next/navigation";
+
+import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   OakFlex,
@@ -15,22 +18,32 @@ export default async function EYFSLayout({
 }>) {
   const { subjectSlug } = await params;
 
-  const eyfsPageData = await curriculumApi2023.eyfsPage({ subjectSlug });
+  try {
+    const eyfsPageData = await curriculumApi2023.eyfsPage({ subjectSlug });
 
-  return (
-    <OakMaxWidth
-      $gap={["spacing-40", "spacing-40", "spacing-64"]}
-      $mv={["spacing-48", "spacing-48", "spacing-56"]}
-    >
-      <OakHeading tag="h1">{eyfsPageData.subjectTitle}</OakHeading>
-      <OakFlex $gap="spacing-8">
-        {eyfsPageData.subjectTabs.map((subject) => (
-          <OakSmallPrimaryInvertedButton key={subject.slug}>
-            {subject.title}
-          </OakSmallPrimaryInvertedButton>
-        ))}
-      </OakFlex>
-      {children}
-    </OakMaxWidth>
-  );
+    return (
+      <OakMaxWidth
+        $gap={["spacing-40", "spacing-40", "spacing-64"]}
+        $mv={["spacing-48", "spacing-48", "spacing-56"]}
+      >
+        <OakHeading tag="h1">{eyfsPageData.subjectTitle}</OakHeading>
+        <OakFlex $gap="spacing-8">
+          {eyfsPageData.subjectTabs.map((subject) => (
+            <OakSmallPrimaryInvertedButton key={subject.slug}>
+              {subject.title}
+            </OakSmallPrimaryInvertedButton>
+          ))}
+        </OakFlex>
+        {children}
+      </OakMaxWidth>
+    );
+  } catch (error) {
+    if (error instanceof OakError) {
+      if (error.config.responseStatusCode === 404) {
+        return notFound();
+      }
+    }
+    // TD: [integrated journey] error reporting
+    throw error;
+  }
 }

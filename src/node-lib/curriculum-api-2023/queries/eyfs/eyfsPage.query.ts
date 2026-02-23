@@ -1,5 +1,3 @@
-import { notFound } from "next/navigation";
-
 import {
   queryResponse,
   EyfsUnits,
@@ -9,12 +7,13 @@ import {
 } from "./eyfsSchema";
 
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import OakError from "@/errors/OakError";
 
 const eyfsPageQuery = (sdk: Sdk) => async (args: { subjectSlug: string }) => {
   const res = await sdk.eyfsPage(args);
 
   if (!res.lessons || res.lessons.length === 0) {
-    return notFound();
+    throw new OakError({ code: "curriculum-api/not-found" });
   }
 
   const parsedResponse = queryResponse.parse(res);
@@ -22,7 +21,7 @@ const eyfsPageQuery = (sdk: Sdk) => async (args: { subjectSlug: string }) => {
   const subjectTitle = parsedResponse.lessons[0]?.programme_fields.subject;
 
   if (!subjectTitle) {
-    throw new Error("Could not get subject title");
+    throw new OakError({ code: "curriculum-api/not-found" });
   }
 
   const lessonSlugs = parsedResponse.lessons.map((l) => l.lesson_slug);
@@ -38,8 +37,8 @@ const eyfsPageQuery = (sdk: Sdk) => async (args: { subjectSlug: string }) => {
     );
 
     const eyfsLesson: EYFSLesson = {
-      title: lesson.lesson_data?.title ?? "",
-      slug: lesson.lesson_slug ?? "",
+      title: lesson.lesson_data?.title,
+      slug: lesson.lesson_slug,
       description:
         lesson.lesson_data?.key_learning_points?.[0]?.key_learning_point,
       orderInUnit: lesson.order_in_unit,
