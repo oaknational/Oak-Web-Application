@@ -4,11 +4,7 @@ import { EYFSHeader } from "./components/EyfsHeader/EyfsHeader";
 
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import {
-  OakFlex,
-  OakMaxWidth,
-  OakSmallPrimaryInvertedButton,
-} from "@/styles/oakThemeApp";
+import { OakFlex, OakSmallPrimaryInvertedButton } from "@/styles/oakThemeApp";
 
 export default async function EYFSLayout({
   children,
@@ -23,9 +19,13 @@ export default async function EYFSLayout({
     const eyfsPageData = await curriculumApi2023.eyfsPage({ subjectSlug });
 
     return (
-      <OakMaxWidth
+      <OakFlex
         $gap={["spacing-40", "spacing-40", "spacing-64"]}
         $mv={["spacing-48", "spacing-48", "spacing-56"]}
+        $ph={["spacing-20", "spacing-40", "spacing-12"]}
+        $mh={"auto"}
+        $maxWidth={["100%", "100%", "spacing-1280"]}
+        $flexDirection={"column"}
       >
         <EYFSHeader subjectTitle={eyfsPageData.subjectTitle} />
         <OakFlex $gap="spacing-8">
@@ -36,7 +36,7 @@ export default async function EYFSLayout({
           ))}
         </OakFlex>
         {children}
-      </OakMaxWidth>
+      </OakFlex>
     );
   } catch (error) {
     if (error instanceof OakError) {
