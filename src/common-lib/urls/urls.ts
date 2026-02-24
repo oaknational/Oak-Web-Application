@@ -292,6 +292,14 @@ type AboutUsLeadershipLinkProps = { page: "about-leadership" };
 type AboutUsPartnersLinkProps = { page: "about-partners" };
 type AboutUsWorkWithUsLinkProps = { page: "about-work-with-us" };
 
+type AboutUsMeetTheTeamLinkProps = { page: "about-meet-the-team" };
+type AboutUsMeetTheTeamBioLinkProps = {
+  page: "about-meet-the-team-bio";
+  slug: string;
+};
+type AboutUsGetInvolvedLinkProps = { page: "about-get-involved" };
+type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
+
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
 type HelpLinkProps = { page: "help" };
@@ -432,6 +440,10 @@ export type OakLinkProps =
   | AboutUsLeadershipLinkProps
   | AboutUsPartnersLinkProps
   | AboutUsWorkWithUsLinkProps
+  | AboutUsMeetTheTeamLinkProps
+  | AboutUsMeetTheTeamBioLinkProps
+  | AboutUsGetInvolvedLinkProps
+  | AboutUsOaksCurriculaLinkProps
   | CareersLinkProps
   | ContactUsLinkProps
   | HomeLinkProps
@@ -610,6 +622,30 @@ export const OAK_PAGES: {
     analyticsPageName: "About Us: Who We Are",
     configType: "internal",
     pageType: "about-who-we-are",
+  }),
+  "about-meet-the-team": createOakPageConfig({
+    pathPattern: "/about-us/meet-the-team",
+    analyticsPageName: "About Us: Meet the team",
+    configType: "internal",
+    pageType: "about-meet-the-team",
+  }),
+  "about-meet-the-team-bio": createOakPageConfig({
+    pathPattern: "/about-us/meet-the-team/:slug",
+    analyticsPageName: "About Us: Meet the team Bio",
+    configType: "internal",
+    pageType: "about-meet-the-team-bio",
+  }),
+  "about-get-involved": createOakPageConfig({
+    pathPattern: "/about-us/get-involved",
+    analyticsPageName: "About Us: Get Involved",
+    configType: "internal",
+    pageType: "about-get-involved",
+  }),
+  "about-oaks-curricula": createOakPageConfig({
+    pathPattern: "/about-us/oaks-curricula",
+    analyticsPageName: "About Us: Oak's curricula",
+    configType: "internal",
+    pageType: "about-oaks-curricula",
   }),
   "about-leadership": createOakPageConfig({
     pathPattern: "/about-us/leadership",

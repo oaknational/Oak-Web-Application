@@ -4396,6 +4396,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <a
+                      aria-label="Ai experiments (this will open in a new tab)"
                       class="c35 c36 internal-button"
                       href="https://labs.thenational.academy"
                       id="teachers-labs"
@@ -6047,20 +6048,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       >
                         <a
                           class="c186 "
-                          href="/teachers/curriculum"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Curriculum plans
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c185"
-                      >
-                        <a
-                          class="c186 "
                           href="/lesson-planning"
                         >
                           <span
@@ -6130,6 +6117,48 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             class="c29"
                           >
                             About us
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c185"
+                      >
+                        <a
+                          class="c186 "
+                          href="/about-us/oaks-curricula"
+                        >
+                          <span
+                            class="c29"
+                          >
+                            Oak's curricula
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c185"
+                      >
+                        <a
+                          class="c186 "
+                          href="/about-us/get-involved"
+                        >
+                          <span
+                            class="c29"
+                          >
+                            Get involved
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c185"
+                      >
+                        <a
+                          class="c186 "
+                          href="/about-us/meet-the-team"
+                        >
+                          <span
+                            class="c29"
+                          >
+                            Meet the team
                           </span>
                         </a>
                       </li>
