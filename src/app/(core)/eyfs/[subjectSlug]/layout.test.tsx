@@ -27,7 +27,7 @@ jest.unmock("next/navigation");
 
 const render = renderWithProviders();
 
-describe("core layout", () => {
+describe("eyfs layout", () => {
   it("renders correctly", async () => {
     const result = await EYFSLayout({
       params: Promise.resolve({ subjectSlug: "maths" }),
