@@ -55,6 +55,7 @@ export function SubmenuContainer({
       $gap={"spacing-40"}
       $flexDirection={"column"}
       ref={containerRef}
+      data-testid="submenu-container"
     >
       <OakPrimaryInvertedButton
         iconName="chevron-left"
@@ -103,6 +104,11 @@ export function SubmenuContent(
                   element={Link}
                   target={link.external ? "_blank" : "_self"}
                   iconName={link.external ? "external" : undefined}
+                  aria-label={
+                    link.external
+                      ? `${link.title} (this will open in a new tab)`
+                      : undefined
+                  }
                   isTrailingIcon
                   href={resolveOakHref({
                     page: link.slug,
