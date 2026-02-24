@@ -29,6 +29,7 @@ const InnerEyfsPage = async ({
           $btlr={"border-radius-l"}
           $btrr={"border-radius-l"}
           $width={"fit-content"}
+          $mr={"spacing-24"} // ensures title section doesn't fill the full width on mobile
         >
           <OakHeading tag="h2" $font={"heading-5"}>
             {u.title}
