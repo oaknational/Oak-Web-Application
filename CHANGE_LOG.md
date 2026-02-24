@@ -1,3 +1,10 @@
+## [1.1001.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1001.0...v1.1001.1) (2026-02-24)
+
+
+### Bug Fixes
+
+* remove old polyfills ([73854e6](https://github.com/oaknational/Oak-Web-Application/commit/73854e6fd7856d58a76c1b877b76dfe57ebb8fde))
+
 # [1.1001.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1000.0...v1.1001.0) (2026-02-24)
 
 
