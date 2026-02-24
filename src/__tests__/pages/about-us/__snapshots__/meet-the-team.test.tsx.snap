@@ -4396,6 +4396,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <a
+                      aria-label="Ai experiments (this will open in a new tab)"
                       class="c35 c36 internal-button"
                       href="https://labs.thenational.academy"
                       id="teachers-labs"
