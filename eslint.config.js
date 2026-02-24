@@ -144,7 +144,7 @@ module.exports = defineConfig([
           extensions: [".js", ".jsx", ".ts", ".tsx", ".d.ts", ".svg"],
         },
       },
-      polyfills: ["Array.toSorted"],
+      polyfills: [],
     },
   },
   {
