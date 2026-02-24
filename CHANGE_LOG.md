@@ -1,3 +1,22 @@
+# [1.1001.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1000.0...v1.1001.0) (2026-02-24)
+
+
+### Features
+
+* add eyfs route with layout and page behind ff ([d5d2bc8](https://github.com/oaknational/Oak-Web-Application/commit/d5d2bc885ca64b4996770a60219a88b1d5c26f47))
+
+# [1.1000.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.999.3...v1.1000.0) (2026-02-24)
+
+
+### Bug Fixes
+
+* page outline when takedown banners are displayed ([ae291f8](https://github.com/oaknational/Oak-Web-Application/commit/ae291f8a7e0766d77748c97ac8b031a353c85b39))
+
+
+### Features
+
+* **LESQ-1830:** specialist takedown banners ([467f953](https://github.com/oaknational/Oak-Web-Application/commit/467f95352a7fc25f77a966b22f0694f0879982c7))
+
 ## [1.999.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.999.2...v1.999.3) (2026-02-23)
 
 ## [1.999.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.999.1...v1.999.2) (2026-02-23)
