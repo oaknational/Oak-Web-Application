@@ -370,6 +370,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               onClick={trackLessonSelected}
               expiringBanner={
                 <TakedownBanner
+                  titleTag="h3"
                   isExpiring={actions?.displayExpiringBanner}
                   isLegacy={isSlugLegacy(programmeSlug)}
                   hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug)}
