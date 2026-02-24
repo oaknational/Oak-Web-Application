@@ -1,14 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`eyfs layout renders correctly 1`] = `
-<Styled(Styled(styled.div))
+<Styled(styled.div)
+  $flexDirection="column"
   $gap={
     [
       "spacing-40",
-      "spacing-40",
+      "spacing-48",
       "spacing-64",
     ]
   }
+  $maxWidth={
+    [
+      "100%",
+      "100%",
+      "spacing-1280",
+    ]
+  }
+  $mh="auto"
   $mv={
     [
       "spacing-48",
@@ -16,17 +25,22 @@ exports[`eyfs layout renders correctly 1`] = `
       "spacing-56",
     ]
   }
+  $ph={
+    [
+      "spacing-20",
+      "spacing-40",
+      "spacing-12",
+    ]
+  }
 >
-  <Styled(so)
-    tag="h1"
-  >
-    Maths
-  </Styled(so)>
+  <EYFSHeader
+    subjectTitle="Maths"
+  />
   <Styled(styled.div)
     $gap="spacing-8"
   />
   <styled.div>
     children
   </styled.div>
-</Styled(Styled(styled.div))>
+</Styled(styled.div)>
 `;
