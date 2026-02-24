@@ -36,8 +36,15 @@ exports[`eyfs layout renders correctly 1`] = `
   <EYFSHeader
     subjectTitle="Maths"
   />
-  <Styled(styled.div)
-    $gap="spacing-8"
+  <EYFSNavigation
+    subjectTabs={
+      [
+        {
+          "slug": "maths",
+          "title": "Maths",
+        },
+      ]
+    }
   />
   <styled.div>
     children
