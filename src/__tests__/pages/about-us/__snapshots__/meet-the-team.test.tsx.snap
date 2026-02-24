@@ -4728,7 +4728,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c81"
               >
                 <nav
-                  aria-label="page navigation"
+                  aria-label="page sections"
                   class="c83"
                 >
                   <ul

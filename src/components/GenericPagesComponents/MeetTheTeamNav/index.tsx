@@ -42,7 +42,7 @@ export default function MeetTheTeamNav({
   return (
     <OakBox
       as="nav"
-      aria-label="page navigation"
+      aria-label="page sections"
       $minWidth={"spacing-180"}
       $display={["none", "block", "block"]}
       $position={"sticky"}
