@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 
+import { EYFSHeader } from "./components/EyfsHeader/EyfsHeader";
+
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   OakFlex,
-  OakHeading,
   OakMaxWidth,
   OakSmallPrimaryInvertedButton,
 } from "@/styles/oakThemeApp";
@@ -26,7 +27,7 @@ export default async function EYFSLayout({
         $gap={["spacing-40", "spacing-40", "spacing-64"]}
         $mv={["spacing-48", "spacing-48", "spacing-56"]}
       >
-        <OakHeading tag="h1">{eyfsPageData.subjectTitle}</OakHeading>
+        <EYFSHeader subjectTitle={eyfsPageData.subjectTitle} />
         <OakFlex $gap="spacing-8">
           {eyfsPageData.subjectTabs.map((subject) => (
             <OakSmallPrimaryInvertedButton key={subject.slug}>
