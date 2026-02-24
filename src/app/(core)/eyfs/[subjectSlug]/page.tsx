@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
-import { OakFlex, OakHeading, OakP } from "@/styles/oakThemeApp";
+import { OakBox, OakFlex, OakHeading, OakP } from "@/styles/oakThemeApp";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 const InnerEyfsPage = async ({
@@ -21,11 +21,30 @@ const InnerEyfsPage = async ({
   const units = Object.values(eyfsPageData.units);
 
   return units.map((u) => (
-    <OakFlex $flexDirection={"column"} $gap={"spacing-24"} key={u.title}>
-      <OakHeading tag="h2">{u.title}</OakHeading>
-      {u.lessons.map((l) => (
-        <OakP key={l.slug}>{l.title}</OakP>
-      ))}
+    <OakFlex $flexDirection={"column"} $gap={"spacing-48"} key={u.title}>
+      <OakBox>
+        <OakBox
+          $pa={"spacing-24"}
+          $background={"bg-neutral"}
+          $btlr={"border-radius-l"}
+          $btrr={"border-radius-l"}
+          $width={"fit-content"}
+        >
+          <OakHeading tag="h2" $font={"heading-5"}>
+            {u.title}
+          </OakHeading>
+        </OakBox>
+        <OakBox
+          $background={"bg-neutral"}
+          $pa={"spacing-24"}
+          $borderRadius={"border-radius-l"}
+          $btlr={"border-radius-square"}
+        >
+          {u.lessons.map((l) => (
+            <OakP key={l.slug}>{l.title}</OakP>
+          ))}
+        </OakBox>
+      </OakBox>
     </OakFlex>
   ));
 };
