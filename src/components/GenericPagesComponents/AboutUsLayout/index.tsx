@@ -7,6 +7,7 @@ import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExp
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const NewsletterWrapper = styled(OakFlex)`
   max-width: 100%;
@@ -30,22 +31,30 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
     {
       iconName: "logo" as const,
       title: "About Oak",
-      href: "/about-us/who-we-are",
+      href: resolveOakHref({
+        page: "about-who-we-are",
+      }),
     },
     {
       iconName: "homepage-teacher-map" as const,
       title: "Oak's curricula",
-      href: "/about-us/oaks-curricula",
+      href: resolveOakHref({
+        page: "about-oaks-curricula",
+      }),
     },
     {
       iconName: "snack-break" as const,
       title: "Meet the team",
-      href: "/about-us/meet-the-team",
+      href: resolveOakHref({
+        page: "about-meet-the-team",
+      }),
     },
     {
       iconName: "chatting" as const,
       title: "Get involved",
-      href: "/about-us/get-involved",
+      href: resolveOakHref({
+        page: "about-get-involved",
+      }),
     },
   ];
 
