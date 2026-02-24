@@ -34,7 +34,7 @@ export const formatSentences = (
   // with a crude hack to ignore full stops following Mr or Mrs
   // also ignoring full stops before quotation, which has the undesired effect of grouping near quotes
   const joined = Array.isArray(input) ? input.join(" ") : input;
-  const titles = ["Mr.", "Mrs.", "Ms."];
+  const titles = ["Mr.", "Mrs.", "Ms.", "Mx.", "Dr.", "Prof.", "Rev."];
   const sentences = [];
   let start = 0;
 
