@@ -1,3 +1,12 @@
+# [1.1003.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1002.0...v1.1003.0) (2026-02-24)
+
+
+### Features
+
+* add aria label for external links in hamburger menus ([e0285cf](https://github.com/oaknational/Oak-Web-Application/commit/e0285cfa0042dbe8a1178435c3fb725c83ebe046))
+* add aria label to external link in pupils hamburger ([efb6fdf](https://github.com/oaknational/Oak-Web-Application/commit/efb6fdf62e8f8ac7bf2e44cc0ede8d014db27c78))
+* add aria label to external links in topnav ([97b549e](https://github.com/oaknational/Oak-Web-Application/commit/97b549e839b8b32d1f27c8535a77cb1a1293a5ee))
+
 # [1.1002.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1001.1...v1.1002.0) (2026-02-24)
 
 
