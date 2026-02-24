@@ -32,7 +32,7 @@ export const EYFSHeader = ({ subjectTitle }: { subjectTitle: string }) => {
           >
             This blog
           </OakLink>{" "}
-          explains more
+          explains more.
         </OakP>
       </OakGridArea>
     </OakGrid>
