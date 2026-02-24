@@ -26,7 +26,6 @@ import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { ENABLE_NEW_ABOUT_US } from "@/config/flags";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;

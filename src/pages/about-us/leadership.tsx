@@ -12,7 +12,6 @@ import getPageProps from "@/node-lib/getPageProps";
 import Layout from "@/components/AppComponents/Layout";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { ENABLE_NEW_ABOUT_US } from "@/config/flags";
 
 export type AboutPageProps = {
   pageData: AboutLeadershipPage;

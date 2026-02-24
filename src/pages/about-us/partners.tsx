@@ -22,7 +22,6 @@ import CMSImage, {
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { ENABLE_NEW_ABOUT_US } from "@/config/flags";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;
