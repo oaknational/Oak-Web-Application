@@ -5,6 +5,7 @@ import {
   OakHeading,
   OakP,
 } from "@oaknational/oak-components";
+import { forwardRef } from "react";
 
 export type MeetTheTeamContainerProps = {
   title: string;
@@ -12,14 +13,13 @@ export type MeetTheTeamContainerProps = {
   children: React.ReactNode;
   anchor?: string;
 };
-export function MeetTheTeamContainer({
-  title,
-  text,
-  children,
-  anchor,
-}: Readonly<MeetTheTeamContainerProps>) {
+export const MeetTheTeamContainer = forwardRef<
+  HTMLDivElement,
+  Readonly<MeetTheTeamContainerProps>
+>(({ title, text, children, anchor }, ref) => {
   return (
     <OakBox
+      ref={ref}
       id={anchor}
       $background={"bg-decorative5-very-subdued"}
       $pa={["spacing-16", "spacing-24", "spacing-24"]}
@@ -45,4 +45,4 @@ export function MeetTheTeamContainer({
       </OakFlex>
     </OakBox>
   );
-}
+});

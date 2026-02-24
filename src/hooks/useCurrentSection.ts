@@ -1,9 +1,5 @@
 import { RefObject, useEffect, useState } from "react";
 
-import { LessonPageLinkAnchorId } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-
-type SectionRefs = Record<LessonPageLinkAnchorId, RefObject<HTMLElement>>;
-
 /**
  * Sets the hash in the URL without scrolling the page.
  * Without this, the browser auto-scrolls the user to the top of the section
@@ -16,14 +12,16 @@ function safeSetHash(hash: string): void {
     element.id = "";
   }
 
-  window.location.replace(`#${hash}`);
+  globalThis.location.replace(`#${hash}`);
 
   if (element) {
     element.id = hash;
   }
 }
 
-const calculateCurrentSectionId = (sectionRefs: SectionRefs): string | null => {
+function calculateCurrentSectionId<
+  T extends Record<string, RefObject<HTMLElement>>,
+>(sectionRefs: T): string | null {
   /**
    * Returns the last section that is above the middle of the screen
    */
@@ -38,7 +36,7 @@ const calculateCurrentSectionId = (sectionRefs: SectionRefs): string | null => {
         /**
          * Is this section above the middle of the screen?
          */
-        const isAboveThreshold = rect.top <= window.innerHeight * 0.5;
+        const isAboveThreshold = rect.top <= globalThis.innerHeight * 0.5;
         /**
          * Is this section below the previous section? We include this so that
          * the order of the sections in the sidebar doesn't have to match the
@@ -65,12 +63,16 @@ const calculateCurrentSectionId = (sectionRefs: SectionRefs): string | null => {
   );
 
   return currentSectionId?.id ?? null;
-};
+}
 
-type UseCurrentSectionProps = {
-  sectionRefs: SectionRefs;
+export type UseCurrentSectionProps<
+  T extends Record<string, RefObject<HTMLElement>>,
+> = {
+  sectionRefs: T;
 };
-export function useCurrentSection({ sectionRefs }: UseCurrentSectionProps) {
+export function useCurrentSection<
+  T extends Record<string, RefObject<HTMLElement>>,
+>({ sectionRefs }: UseCurrentSectionProps<T>) {
   const [currentSectionId, setCurrentSectionId] = useState<string | null>(null);
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const [lastScrollTop, setLastScrollTop] = useState<number>(0);
@@ -100,10 +102,10 @@ export function useCurrentSection({ sectionRefs }: UseCurrentSectionProps) {
       });
     };
 
-    window.addEventListener("scroll", onScroll);
+    globalThis.addEventListener("scroll", onScroll);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      globalThis.removeEventListener("scroll", onScroll);
     };
   }, [currentSectionId, lastScrollTop, sectionRefs]);
 
@@ -114,12 +116,12 @@ export function useCurrentSection({ sectionRefs }: UseCurrentSectionProps) {
      */
     const onScroll = () => {
       const currentScrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
+        globalThis.pageYOffset || document.documentElement.scrollTop;
 
-      if (currentScrollTop !== lastScrollTop) {
-        setIsScrolling(true);
-      } else {
+      if (currentScrollTop === lastScrollTop) {
         setIsScrolling(false);
+      } else {
+        setIsScrolling(true);
       }
 
       setLastScrollTop(currentScrollTop);
