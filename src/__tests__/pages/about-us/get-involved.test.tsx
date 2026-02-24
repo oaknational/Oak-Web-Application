@@ -11,6 +11,7 @@ import GetInvolved, {
   getServerSideProps,
 } from "@/pages/about-us/get-involved";
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
+import CMSClient from "@/node-lib/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
@@ -49,6 +50,8 @@ describe("pages/about/get-involved.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
+    (CMSClient.newAboutGetInvolvedPage as jest.Mock).mockResolvedValue(testAboutWhoWeArePageData);
+    
   });
 
   it("renders", () => {
@@ -62,9 +65,26 @@ describe("pages/about/get-involved.tsx", () => {
     expect(container).toMatchSnapshot();
   });
 
-  describe("getStaticProps", () => {
-    it("should 404 when not enabled", async () => {
+  describe("getServerSideProps", () => {
+    it("should 404 when new page is not enabled", async () => {
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(false);
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: {},
+        params: {},
+      } as unknown as GetServerSidePropsContext);
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
+    });
+
+    it("should 404 when no data returned from CMS", async () => {
       (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
+      (CMSClient.newAboutGetInvolvedPage as jest.Mock).mockResolvedValue(null);
+
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
         res: {},
