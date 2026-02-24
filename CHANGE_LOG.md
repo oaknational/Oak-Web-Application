@@ -1,3 +1,31 @@
+# [1.1002.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1001.1...v1.1002.0) (2026-02-24)
+
+
+### Bug Fixes
+
+* add redirects into next config instead of pages ([a5aa985](https://github.com/oaknational/Oak-Web-Application/commit/a5aa985393ad9ff6e592e8e75a77572752a66659))
+* import resolveOakHref ([35149f3](https://github.com/oaknational/Oak-Web-Application/commit/35149f3a164ba404e098a28bc2742838f0134ae0))
+* lint ([d61a035](https://github.com/oaknational/Oak-Web-Application/commit/d61a035c7c89156923f80ccafa4425a26ddf7a06))
+* merge main ([bbdc3e6](https://github.com/oaknational/Oak-Web-Application/commit/bbdc3e683a7cec02be7e2c8fbe985fad7bdca6d8))
+* remove all about-us page exclusions for sitemap for new pages ([4eb27a6](https://github.com/oaknational/Oak-Web-Application/commit/4eb27a6e887b6082d939681372a7d9a30a948236))
+* remove not found tests now redirect logic is not scoped to these files ([47f2226](https://github.com/oaknational/Oak-Web-Application/commit/47f22260d6267c9e66cc637bc13c08f2121693da))
+* remove old pages from pa11y urls ([827bf6b](https://github.com/oaknational/Oak-Web-Application/commit/827bf6b3a768a70e40a2220d54808cc276901543))
+* remove redirects in pages ([229eaed](https://github.com/oaknational/Oak-Web-Application/commit/229eaedc4a49f2be3b0e285ab4d59ba6262136df))
+* remove unnecessary imports ([f8f793b](https://github.com/oaknational/Oak-Web-Application/commit/f8f793b1d8ead79caa00e4f0bcfb93ce7c163a35))
+* snaps ([df98888](https://github.com/oaknational/Oak-Web-Application/commit/df98888e250d107bcebb8b6d73f80c03ac91cdbe))
+* snaps ([c6cbe37](https://github.com/oaknational/Oak-Web-Application/commit/c6cbe37ca3998082347e82cacfc85c196719351b))
+* snaps ([d74b39b](https://github.com/oaknational/Oak-Web-Application/commit/d74b39b46dbd1061c0acfe055228ce1cd3bbf178))
+* switch enable about us to true in flags ([a11413b](https://github.com/oaknational/Oak-Web-Application/commit/a11413b6676d95f31ee5e19f032d9b71499f7f63))
+* tests for about us enabled ([25b6451](https://github.com/oaknational/Oak-Web-Application/commit/25b645192ddb7a0189aba70d37d81eb8fadb12d3))
+* update false passing tests in get involved ([21216b5](https://github.com/oaknational/Oak-Web-Application/commit/21216b544c59b2146264402ec2c2217426ce3b13))
+* update to avo branch with pageNames + added links to footer ([3ade6d1](https://github.com/oaknational/Oak-Web-Application/commit/3ade6d17ca608face2ea7c2bbd6f674e78cdd461))
+
+
+### Features
+
+* added home CTA to new about-us pages ([1bddff3](https://github.com/oaknational/Oak-Web-Application/commit/1bddff3c28c030bbf232f7f94a9bb98602349882))
+* added missing new pages to url helpers ([b2b91c9](https://github.com/oaknational/Oak-Web-Application/commit/b2b91c95b801c3f89dcb3909211576c4df72834e))
+
 ## [1.1001.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1001.0...v1.1001.1) (2026-02-24)
 
 
