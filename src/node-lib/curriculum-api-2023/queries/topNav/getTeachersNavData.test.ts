@@ -61,6 +61,16 @@ describe("getTeachersNavData", () => {
 
     expect(gcseComputing?.title).toEqual("Computer science (GCSE)");
   });
+  it("handles subjects with only one pathway and examboards (RE)", () => {
+    const result = getTeachersNavData(mockResponseData, "secondary");
+    const gcseRe = result.children[1]?.children.filter(
+      (s) => s.slug === "religious-education",
+    );
+
+    expect(gcseRe).toHaveLength(1); // No core option
+    expect(gcseRe?.[0]?.title).toBe("Religious education (GCSE)"); // gcse in title
+    expect(gcseRe?.[0]?.programmeCount).toBe(3); // one programme per examboard
+  });
 });
 
 describe("getProgrammeCount", () => {
