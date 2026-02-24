@@ -13,7 +13,6 @@ import {
   YearData,
 } from "@/utils/curriculum/types";
 import { getSubjectCategoryMessage } from "@/utils/curriculum/formatting";
-import { resolveOakHref } from "@/common-lib/urls";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -72,16 +71,12 @@ export function ProgrammeUnitList({
           href={
             isOptionalityUnitCard
               ? ""
-              : resolveOakHref({
-                  page: "lesson-index",
-                  unitSlug: unit.slug,
-                  programmeSlug: createTeacherProgrammeSlug(
-                    unit,
-                    unit.examboard_slug,
-                    unit.tier_slug,
-                    unit.pathway_slug,
-                  ),
-                })
+              : `/programmes/${createTeacherProgrammeSlug(
+                  unit,
+                  unit.examboard_slug,
+                  unit.tier_slug,
+                  unit.pathway_slug,
+                )}/units/${unit.slug}/lessons`
           }
           onClickLink={() => onClick(unit, isHighlighted)}
           lessonCount={isOptionalityUnitCard ? undefined : unit.lessons?.length}
