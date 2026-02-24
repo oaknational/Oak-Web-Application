@@ -1,3 +1,13 @@
+## [1.999.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.999.2...v1.999.3) (2026-02-23)
+
+## [1.999.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.999.1...v1.999.2) (2026-02-23)
+
+
+### Bug Fixes
+
+* filter out legacy programmes where a new counterpart exists ([4affd06](https://github.com/oaknational/Oak-Web-Application/commit/4affd06f08ddf6071e42c31fbfec95c356410537))
+* remove code to filter out programmes with only one pathway ([73bd4af](https://github.com/oaknational/Oak-Web-Application/commit/73bd4afb4593aeac2976d3bd928a1b42314f5964))
+
 ## [1.999.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.999.0...v1.999.1) (2026-02-23)
 
 
