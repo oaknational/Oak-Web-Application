@@ -3,6 +3,7 @@ import { OakHeading, OakFlex, OakMaxWidth } from "@oaknational/oak-components";
 
 import SpecialistSubjectCardSection from "@/components/TeacherComponents/SpecialistSubjectListingCardSection/SpecialistSubjectListingCardSection";
 import { SpecialistSubjectListingPageData } from "@/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.schema";
+import { TakedownBanner } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 
 const SpecialistSubjectListing: FC<SpecialistSubjectListingPageData> = (
   props,
@@ -22,7 +23,19 @@ const SpecialistSubjectListing: FC<SpecialistSubjectListingPageData> = (
         >
           Specialist and therapies
         </OakHeading>
-        <OakFlex $flexDirection="column" $gap={["spacing-24", "spacing-48"]}>
+        <TakedownBanner
+          hasNewUnits={false}
+          subjectSlug="specialist"
+          userType="teacher"
+          isLegacy={true}
+          isExpiring={false}
+          isSingle={false}
+        />
+        <OakFlex
+          $flexDirection="column"
+          $mt="spacing-48"
+          $gap={["spacing-24", "spacing-48"]}
+        >
           <SpecialistSubjectCardSection
             subjects={specialist}
             heading="Specialist"

@@ -439,8 +439,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 <OakBox $pb={"spacing-16"}>
                   <TakedownBanner
                     isExpiring={actions?.displayExpiringBanner}
-                    isLegacy={isSlugLegacy(programmeSlug ?? "")}
-                    hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug ?? "")}
+                    isLegacy={isSlugLegacy(programmeSlug ?? "") || isSpecialist}
+                    hasNewUnits={
+                      getDoesSubjectHaveNewUnits(subjectSlug ?? "") &&
+                      !isSpecialist
+                    }
                     subjectSlug={subjectSlug ?? ""}
                     userType="teacher"
                     onwardHref={unitListingHref}

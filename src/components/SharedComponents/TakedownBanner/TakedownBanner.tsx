@@ -1,6 +1,7 @@
 import {
   OakFlex,
   OakInlineBanner,
+  OakInlineBannerProps,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
 
@@ -32,6 +33,7 @@ export const TakedownBanner = ({
   isLegacy,
   isExpiring,
   isSingle,
+  titleTag = "h2",
 }: {
   hasNewUnits: boolean;
   subjectSlug: string;
@@ -41,6 +43,7 @@ export const TakedownBanner = ({
   isLegacy: boolean;
   isExpiring: boolean;
   isSingle?: boolean;
+  titleTag?: OakInlineBannerProps["titleTag"];
 }) => {
   const isMobile = useMediaQuery("mobile");
   const isCycle2 = CYCLE_2_SUBJECTS.has(subjectSlug);
@@ -85,6 +88,7 @@ export const TakedownBanner = ({
       $width={"100%"}
       type={"warning"}
       variant={"large"}
+      titleTag={titleTag}
       cta={
         (onwardHref || onButtonClick) &&
         !shouldHideButton && (

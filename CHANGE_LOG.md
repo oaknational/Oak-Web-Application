@@ -1,3 +1,32 @@
+# [1.1001.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1000.0...v1.1001.0) (2026-02-24)
+
+
+### Features
+
+* add eyfs route with layout and page behind ff ([d5d2bc8](https://github.com/oaknational/Oak-Web-Application/commit/d5d2bc885ca64b4996770a60219a88b1d5c26f47))
+
+# [1.1000.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.999.3...v1.1000.0) (2026-02-24)
+
+
+### Bug Fixes
+
+* page outline when takedown banners are displayed ([ae291f8](https://github.com/oaknational/Oak-Web-Application/commit/ae291f8a7e0766d77748c97ac8b031a353c85b39))
+
+
+### Features
+
+* **LESQ-1830:** specialist takedown banners ([467f953](https://github.com/oaknational/Oak-Web-Application/commit/467f95352a7fc25f77a966b22f0694f0879982c7))
+
+## [1.999.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.999.2...v1.999.3) (2026-02-23)
+
+## [1.999.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.999.1...v1.999.2) (2026-02-23)
+
+
+### Bug Fixes
+
+* filter out legacy programmes where a new counterpart exists ([4affd06](https://github.com/oaknational/Oak-Web-Application/commit/4affd06f08ddf6071e42c31fbfec95c356410537))
+* remove code to filter out programmes with only one pathway ([73bd4af](https://github.com/oaknational/Oak-Web-Application/commit/73bd4afb4593aeac2976d3bd928a1b42314f5964))
+
 ## [1.999.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.999.0...v1.999.1) (2026-02-23)
 
 
