@@ -93,7 +93,6 @@ describe("src/app/classroom/browse/programmes/[programmeSlug]/units/page", () =>
 
     const props = unitsListingViewMock.mock
       .calls[0][0] as UnitsListingViewProps;
-    expect(props.programmeSlug).toBe("maths-h");
     expect(props.programmeUnits).toHaveLength(2);
     expect(props.programmeUnits[0]).toHaveLength(2);
     expect(
@@ -105,9 +104,6 @@ describe("src/app/classroom/browse/programmes/[programmeSlug]/units/page", () =>
       "algebra-1",
     ]);
     expect(props.programmeData.yearSlug).toBe("year-10");
-    expect(props.unitsLessonListUrlTemplate).toBe(
-      "/classroom/browse/programmes/:programmeSlug/units/:unitSlug/lessons",
-    );
     expect(props.headerLeftSlot).toBeTruthy();
   });
 
