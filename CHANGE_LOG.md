@@ -1,3 +1,10 @@
+# [1.1001.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1000.0...v1.1001.0) (2026-02-24)
+
+
+### Features
+
+* add eyfs route with layout and page behind ff ([d5d2bc8](https://github.com/oaknational/Oak-Web-Application/commit/d5d2bc885ca64b4996770a60219a88b1d5c26f47))
+
 # [1.1000.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.999.3...v1.1000.0) (2026-02-24)
 
 
