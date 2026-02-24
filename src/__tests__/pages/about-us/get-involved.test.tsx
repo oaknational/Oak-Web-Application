@@ -50,8 +50,9 @@ describe("pages/about/get-involved.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
-    (CMSClient.newAboutGetInvolvedPage as jest.Mock).mockResolvedValue(testAboutWhoWeArePageData);
-    
+    (CMSClient.newAboutGetInvolvedPage as jest.Mock).mockResolvedValue(
+      testAboutWhoWeArePageData,
+    );
   });
 
   it("renders", () => {
