@@ -9,11 +9,11 @@ import AboutUsMeetTheTeamPerson, {
   AboutUsMeetTheTeamPersonPageProps,
   getServerSideProps,
 } from "@/pages/about-us/meet-the-team/[slug]";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CMSClient from "@/node-lib/cms";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
-jest.mock("@/node-lib/posthog/getFeatureFlag");
+jest.mock("@/utils/isNewAboutUsPagesEnabled");
 jest.mock("../../../../node-lib/cms");
 jest.mock("@/node-lib/posthog/getPosthogId", () => ({
   __esModule: true,
@@ -294,7 +294,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
 
   describe("getServerSideProps", () => {
     it("should 404 when not enabled", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(false);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(false);
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
         res: {},
@@ -310,7 +310,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should 200 when enabled", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
         res: {},
@@ -326,7 +326,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should 404 when slug is not provided", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
         res: {},
@@ -340,7 +340,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should 404 when team member not found", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       (CMSClient.teamMemberBySlug as jest.Mock).mockResolvedValue(null);
 
       const propsResult = await getServerSideProps({
@@ -358,7 +358,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should return navigation with prev and next when member is in the middle", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
 
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
@@ -381,7 +381,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should return 'Our leadership' category for leadership team members", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
 
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
@@ -400,7 +400,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should return 'Our board' category for board members", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
 
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
@@ -419,7 +419,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should return circular navigation for first leadership member (prev wraps to board)", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
 
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
@@ -441,7 +441,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should return circular navigation for last board member (next wraps to leadership)", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
 
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
@@ -464,7 +464,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should handle member with id fallback when no slug", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       const pageWithIdOnlyMember = {
         ...mockMeetTheTeamPage,
         leadershipTeam: [
@@ -496,7 +496,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should return empty navigation when meetTheTeamPage is null", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(null);
 
       const propsResult = await getServerSideProps({
@@ -521,7 +521,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should return empty navigation when member not found in list", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       const teamMemberNotInList = {
         ...mockTeamMember,
         slug: { current: "unlisted-member" },
@@ -550,7 +550,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should navigate correctly when member appears in both leadership and board", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       // Create a scenario where a member appears in both lists
       const duplicateMember = {
         id: "duplicate-member",
@@ -597,7 +597,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should show different categories for same member based on section", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       const duplicateMember = {
         id: "duplicate-member",
         name: "Duplicate Member",
@@ -638,7 +638,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should wrap within board only when leadership is empty", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       const pageWithBoardOnly = {
         ...mockMeetTheTeamPage,
         leadershipTeam: [],
@@ -688,7 +688,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should wrap within leadership only when board is empty", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       const pageWithLeadershipOnly = {
         ...mockMeetTheTeamPage,
         leadershipTeam: [
@@ -742,7 +742,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should return no navigation for single member in section", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       const pageWithSingleMember = {
         ...mockMeetTheTeamPage,
         leadershipTeam: [
@@ -773,7 +773,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should wrap last leadership member next to first board member", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
 
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
@@ -794,7 +794,7 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     });
 
     it("should wrap first board member prev to last leadership member", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
 
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
