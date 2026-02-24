@@ -210,7 +210,7 @@ describe("pages/about/who-we-are.tsx", () => {
       });
     });
 
-    it("should not return notFound when the page data is missing", async () => {
+    it("should not return notFound when the page data is not missing", async () => {
       mockCMSClient.aboutWhoWeArePage.mockResolvedValueOnce(
         testAboutWhoWeArePageData,
       );
