@@ -259,6 +259,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 isLegacy={true}
                 banner={
                   <TakedownBanner
+                    titleTag="h4"
                     userType={"teacher"}
                     subjectSlug={subjectSlug}
                     hasNewUnits={hasNewAndLegacyUnitsInProgramme}
@@ -294,6 +295,7 @@ const UnitList: FC<UnitListProps> = (props) => {
             isLegacy={true}
             banner={
               <TakedownBanner
+                titleTag="h4"
                 userType={"teacher"}
                 subjectSlug={subjectSlug}
                 hasNewUnits={hasNewAndLegacyUnitsOnPage}

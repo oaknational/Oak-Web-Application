@@ -210,7 +210,7 @@ const subnavLabels = [
   { label: "Curriculum", element: "link" },
   { label: "About us", element: "button" },
   { label: "Guidance", element: "button" },
-  { label: "Ai experiments", element: "link" },
+  { label: "Ai experiments (this will open in a new tab)", element: "link" },
 ];
 
 describe("TopNav accessibility", () => {
