@@ -1,31 +1,32 @@
 import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
 import {
+  OakBox,
   OakCard,
   OakFlex,
   OakHeading,
   OakSideMenuNav,
   OakTypography,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
-import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import Layout from "@/components/AppComponents/Layout";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
-import { AboutSharedHeader } from "@/components/GenericPagesComponents/AboutSharedHeader";
-import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
-import CMSClient from "@/node-lib/cms";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
-import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import Card from "@/components/SharedComponents/Card";
-import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
-import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import CMSClient from "@/node-lib/cms";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import Layout from "@/components/AppComponents/Layout";
+import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import {
+  AboutSharedHeader,
+  AboutSharedHeaderImage,
+} from "@/components/GenericPagesComponents/AboutSharedHeader";
+import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
+import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTheTeamContainer";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -35,6 +36,10 @@ const SECTION_TITLES = {
   documents: "Documents",
   governance: "Governance",
 };
+
+const UnstyledLi = styled.li`
+  list-style: none;
+`;
 
 export type AboutUsMeetTheTeamPageProps = {
   pageData: MeetTheTeamPage;
@@ -58,7 +63,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
 
   return (
     <Layout
-      seoProps={getSeoProps(seo)}
+      seoProps={getSeoProps(seo ?? { title: "Meet the Team" })}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
@@ -67,37 +72,48 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
           title={"Meet the team"}
           content={introText}
           titleHighlight="bg-decorative5-main"
-        />
-        <InnerMaxWidth>
-          <OakFlex $gap={"spacing-16"}>
-            <OakFlex
-              $display={["none", "block", "block"]}
-              style={{ minWidth: 200 }}
-            >
-              <OakSideMenuNav
-                heading="Page sections"
-                anchorTargetId=""
-                menuItems={[
-                  {
-                    heading: "Our leadership",
-                    href: "#our-leadership",
-                  },
-                  {
-                    heading: "Our board",
-                    href: "#our-board",
-                  },
-                  {
-                    heading: "Documents",
-                    href: "#documents",
-                  },
-                ]}
-              />
-            </OakFlex>
+        >
+          <AboutSharedHeaderImage
+            imageAlt=""
+            imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
+          />
+        </AboutSharedHeader>
+        <NewGutterMaxWidth>
+          <OakFlex
+            $gap={["spacing-0", "spacing-16", "spacing-16"]}
+            $pb={"spacing-80"}
+          >
+            <OakBox $pb={"spacing-80"}>
+              <OakBox
+                $position={"sticky"}
+                $top={"spacing-20"}
+                $display={["none", "block", "block"]}
+                $minWidth={"spacing-180"}
+              >
+                <OakSideMenuNav
+                  heading="Page sections"
+                  anchorTargetId=""
+                  menuItems={[
+                    {
+                      heading: "Our leadership",
+                      href: "#our-leadership",
+                    },
+                    {
+                      heading: "Our board",
+                      href: "#our-board",
+                    },
+                    {
+                      heading: "Documents",
+                      href: "#documents",
+                    },
+                  ]}
+                />
+              </OakBox>
+            </OakBox>
             <OakFlex
               $flexGrow={1}
               $flexDirection={"column"}
               $gap={["spacing-32", "spacing-56", "spacing-56"]}
-              $pb={"spacing-80"}
             >
               <MeetTheTeamContainer
                 title={SECTION_TITLES.leadership}
@@ -110,21 +126,20 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     getProxiedSanityAssetUrl(member.image?.asset?.url) ??
                     undefined;
                   return (
-                    <OakCard
-                      key={member.id}
-                      heading={member.name}
-                      href={`/about-us/meet-the-team/${slug}?section=leadership`}
-                      cardWidth={"100%"}
-                      imageSrc={imageUrl}
-                      imageAlt={`Photo of ${member.name}`}
-                      subCopy={member.role ?? ""}
-                      linkText="See bio"
-                      linkIconName="chevron-right"
-                    />
+                    <UnstyledLi key={member.id}>
+                      <OakCard
+                        heading={member.name}
+                        href={`/about-us/meet-the-team/${slug}?section=leadership`}
+                        cardWidth={"100%"}
+                        imageSrc={imageUrl}
+                        subCopy={member.role ?? ""}
+                        linkText="See bio"
+                        linkIconName="chevron-right"
+                      />
+                    </UnstyledLi>
                   );
                 })}
               </MeetTheTeamContainer>
-
               <MeetTheTeamContainer
                 title={SECTION_TITLES.board}
                 text={boardText}
@@ -136,21 +151,20 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                     getProxiedSanityAssetUrl(member.image?.asset?.url) ??
                     undefined;
                   return (
-                    <OakCard
-                      key={member.id}
-                      heading={member.name}
-                      href={`/about-us/meet-the-team/${slug}?section=board`}
-                      cardWidth={"100%"}
-                      imageSrc={imageUrl}
-                      imageAlt={`Photo of ${member.name}`}
-                      subCopy={member.role ?? ""}
-                      linkText="See bio"
-                      linkIconName="chevron-right"
-                    />
+                    <UnstyledLi key={member.id}>
+                      <OakCard
+                        heading={member.name}
+                        href={`/about-us/meet-the-team/${slug}?section=board`}
+                        cardWidth={"100%"}
+                        imageSrc={imageUrl}
+                        subCopy={member.role ?? ""}
+                        linkText="See bio"
+                        linkIconName="chevron-right"
+                      />
+                    </UnstyledLi>
                   );
                 })}
               </MeetTheTeamContainer>
-
               {documents && documents.length > 0 && (
                 <MeetTheTeamContainer
                   title={SECTION_TITLES.documents}
@@ -162,44 +176,28 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                       doc.file.asset.size,
                     );
                     return (
-                      <Card key={doc.title} $width={240} $pa={16}>
-                        <BoxBorders gapPosition="rightTop" />
-                        <OakFlex
-                          $justifyContent={"space-between"}
-                          $flexDirection={"column"}
-                          $height={"100%"}
-                          $gap={"spacing-8"}
-                        >
-                          <OakTypography $font={"heading-7"}>
-                            {doc.title}
-                          </OakTypography>
-                          <OakFlex
-                            $alignItems={"center"}
-                            $justifyContent={"space-between"}
-                          >
-                            <OakTypography
-                              $font={"body-3"}
-                            >{`${fileSize} ${doc.file.asset.extension.toUpperCase()}`}</OakTypography>
-                            <IconButtonAsLink
-                              icon={"download"}
-                              aria-label={`Download ${doc.title} (${fileSize} ${doc.file.asset.extension.toUpperCase()})`}
-                              page={null}
-                              href={`${doc.file.asset.url}?dl`}
-                              background={"blue"}
-                            />
-                          </OakFlex>
-                        </OakFlex>
-                      </Card>
+                      <UnstyledLi key={doc.title}>
+                        <OakCard
+                          heading={doc.title}
+                          href={`${doc.file.asset.url}?dl`}
+                          cardWidth={"100%"}
+                          subCopy={`${doc.file.asset.extension.toUpperCase()}, ${fileSize}`}
+                          linkText="Download"
+                          linkIconName="download"
+                        />
+                      </UnstyledLi>
                     );
                   })}
                 </MeetTheTeamContainer>
               )}
-
               <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-                <OakHeading tag="h3" $font={"heading-5"}>
+                <OakHeading
+                  tag="h2"
+                  $font={["heading-5", "heading-3", "heading-3"]}
+                >
                   {SECTION_TITLES.governance}
                 </OakHeading>
-                <OakTypography $font={["body-1", "body-2"]}>
+                <OakTypography $font={["body-2", "body-1", "body-1"]}>
                   <PortableTextWithDefaults
                     value={governancePortableText}
                     withoutDefaultComponents
@@ -208,7 +206,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               </OakFlex>
             </OakFlex>
           </OakFlex>
-        </InnerMaxWidth>
+        </NewGutterMaxWidth>
       </AboutUsLayout>
     </Layout>
   );
@@ -217,19 +215,10 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
 export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPageProps
 > = async (context) => {
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
+  const enableV2 = await isNewAboutUsPagesEnabled(
     posthogApiKey,
+    context.req.cookies,
   );
-  let enableV2: boolean = false;
-  if (posthogUserId) {
-    // get the variant key for the user
-    enableV2 =
-      (await getFeatureFlag({
-        featureFlagKey: "about-us--who-we-are--v2",
-        posthogUserId,
-      })) === true;
-  }
 
   if (!enableV2) {
     return {

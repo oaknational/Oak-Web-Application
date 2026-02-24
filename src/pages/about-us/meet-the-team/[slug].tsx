@@ -1,11 +1,11 @@
 import { NextPage, GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 import {
   OakFlex,
   OakGrid,
   OakGridArea,
   OakHeading,
   OakImage,
-  OakMaxWidth,
   OakTypography,
   OakBox,
   OakSmallSecondaryButton,
@@ -15,13 +15,15 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import CMSClient from "@/node-lib/cms";
 import { TeamMember } from "@/common-lib/cms-types/teamMember";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { SocialButton } from "@/components/GenericPagesComponents/SocialButton";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import Breadcrumbs, {
+  Breadcrumb,
+} from "@/components/SharedComponents/Breadcrumbs";
 import {
   ProfileNavigation,
   MemberCategory,
@@ -31,6 +33,7 @@ import {
 } from "@/pages-helpers/shared/about-us-pages/profileNavigation";
 import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -39,6 +42,32 @@ export type AboutUsMeetTheTeamPersonPageProps = {
   topNav: TopNavProps;
   navigation: ProfileNavigation;
   category: MemberCategory;
+};
+
+const ProfileLinkButton: React.FC<{
+  href: string;
+  iconName: "arrow-left" | "arrow-right";
+  isTrailingIcon?: boolean;
+  children: React.ReactNode;
+}> = ({ href, iconName, isTrailingIcon, children }) => {
+  const router = useRouter();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    router.replace(href);
+  };
+
+  return (
+    <OakSmallSecondaryButton
+      element="a"
+      href={href}
+      iconName={iconName}
+      isTrailingIcon={isTrailingIcon}
+      onClick={handleClick}
+    >
+      {children}
+    </OakSmallSecondaryButton>
+  );
 };
 
 const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
@@ -52,25 +81,47 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   const trimmedBio = trimTrailingEmptyBlocks(bioPortableText);
   const imageUrl = getProxiedSanityAssetUrl(image?.asset?.url);
 
+  const breadcrumbs: Breadcrumb[] = [
+    { label: "Home", oakLinkProps: { page: "home" } },
+    {
+      label: "Meet the team",
+      oakLinkProps: { page: null, href: "/about-us/meet-the-team" },
+    },
+    {
+      label: name,
+      oakLinkProps: { page: null, href: "#" },
+      disabled: true,
+    },
+  ];
+
   return (
     <Layout
       seoProps={getSeoProps({
-        title: `${name} - Meet the Team | Oak National Academy`,
+        title: `${name} - Meet the Team`,
         description: role ?? undefined,
       })}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
-      <OakMaxWidth
-        $mb={["spacing-56", "spacing-80"]}
-        $mt={["spacing-56", "spacing-80"]}
-        $ph={["spacing-16", "spacing-32"]}
-      >
-        <OakGrid $cg={["spacing-0", "spacing-16"]} $rg={"spacing-24"}>
+      <NewGutterMaxWidth>
+        <OakFlex $pt={"spacing-24"} $color={"text-primary"}>
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
+        </OakFlex>
+        <OakGrid
+          $pt={["spacing-40", "spacing-56"]}
+          $pb={["spacing-56", "spacing-80"]}
+          $cg={["spacing-0", "spacing-16"]}
+          $rg={"spacing-24"}
+          $color={"text-primary"}
+        >
           {/* Image - Desktop/Tablet only (left column) */}
-          <OakGridArea $colSpan={[12, 5, 4]} $order={1}>
+          <OakGridArea
+            $colSpan={[12, 4]}
+            $order={1}
+            $display={["none", "block"]}
+          >
             {imageUrl && (
-              <OakBox $display={["none", "block"]}>
+              <OakBox>
                 <OakBox $borderRadius={"border-radius-l"} $overflow={"hidden"}>
                   <OakImage
                     src={imageUrl}
@@ -86,27 +137,20 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
           </OakGridArea>
 
           {/* All text content (right column on desktop, full width on mobile) */}
-          <OakGridArea $colSpan={[12, 7, 8]} $order={2}>
+          <OakGridArea $colSpan={[12, 8]} $order={2}>
             <OakFlex
               $flexDirection={"column"}
-              $ph={["spacing-0", "spacing-40"]}
               $gap={"spacing-24"}
+              $ph={["spacing-0", "spacing-40"]}
             >
               {/* Header group - category, name, job title */}
               <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
                 {/* Category + Name */}
                 <OakFlex $flexDirection={"column"} $gap={"spacing-4"}>
-                  <OakTypography
-                    $font={["heading-light-7", "heading-light-6"]}
-                    $color={"text-primary"}
-                  >
+                  <OakTypography $font={["heading-light-7", "heading-light-6"]}>
                     {category}
                   </OakTypography>
-                  <OakHeading
-                    tag="h1"
-                    $font={["heading-3", "heading-2"]}
-                    $color={"text-primary"}
-                  >
+                  <OakHeading tag="h1" $font={["heading-3", "heading-2"]}>
                     {name}
                   </OakHeading>
                 </OakFlex>
@@ -114,7 +158,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                 {/* Job title */}
                 {role && (
                   <OakBox
-                    $background={"lemon"}
+                    $background={"bg-decorative5-main"}
                     $ph={"spacing-4"}
                     style={{ width: "fit-content" }}
                   >
@@ -171,7 +215,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
 
               {/* Bio */}
               {trimmedBio && (
-                <OakBox $font={["body-2", "body-1"]} $color={"text-primary"}>
+                <OakBox $font={["body-2", "body-1"]} $pb={"spacing-16"}>
                   <PortableTextWithDefaults value={trimmedBio} />
                 </OakBox>
               )}
@@ -184,30 +228,25 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
                   aria-label="Team member navigation"
                 >
                   {prevHref && (
-                    <OakSmallSecondaryButton
-                      element="a"
-                      href={prevHref}
-                      iconName="arrow-left"
-                    >
+                    <ProfileLinkButton href={prevHref} iconName="arrow-left">
                       Previous profile
-                    </OakSmallSecondaryButton>
+                    </ProfileLinkButton>
                   )}
                   {nextHref && (
-                    <OakSmallSecondaryButton
-                      element="a"
+                    <ProfileLinkButton
                       href={nextHref}
                       iconName="arrow-right"
                       isTrailingIcon
                     >
                       Next profile
-                    </OakSmallSecondaryButton>
+                    </ProfileLinkButton>
                   )}
                 </OakFlex>
               )}
             </OakFlex>
           </OakGridArea>
         </OakGrid>
-      </OakMaxWidth>
+      </NewGutterMaxWidth>
     </Layout>
   );
 };
@@ -220,18 +259,10 @@ export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPersonPageProps,
   URLParams
 > = async (context) => {
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
+  const enableV2 = await isNewAboutUsPagesEnabled(
     posthogApiKey,
+    context.req.cookies,
   );
-  let enableV2: boolean = false;
-  if (posthogUserId) {
-    enableV2 =
-      (await getFeatureFlag({
-        featureFlagKey: "about-us--who-we-are--v2",
-        posthogUserId,
-      })) === true;
-  }
 
   if (!enableV2) {
     return { notFound: true };

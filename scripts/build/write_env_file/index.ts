@@ -23,7 +23,6 @@ import { OakConfig } from "../fetch_config/config_types.js";
 
 dotenv.config();
 
-// eslint-disable-next-line complexity
 async function main() {
   console.log("Writing config and secrets to temporary env file");
 

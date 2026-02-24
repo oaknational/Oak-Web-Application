@@ -16,8 +16,15 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => ({ enabled: {} }),
 }));
 jest.mock("../../../node-lib/cms");
-globalThis.matchMedia = jest.fn().mockReturnValue({
-  matches: true,
+
+const ENABLE_NEW_ABOUT_US_MOCK = jest.fn(() => false);
+jest.mock("@/config/flags", () => {
+  return {
+    __esModule: true,
+    get ENABLE_NEW_ABOUT_US() {
+      return ENABLE_NEW_ABOUT_US_MOCK();
+    },
+  };
 });
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
@@ -133,6 +140,19 @@ describe("pages/about-us/board.tsx", () => {
 
       expect(propsResult).toMatchObject({
         notFound: true,
+      });
+    });
+
+    it("should redirect if ENABLE_NEW_ABOUT_US=true", async () => {
+      ENABLE_NEW_ABOUT_US_MOCK.mockReturnValue(true);
+      const propsResult = await getStaticProps({
+        params: {},
+      });
+      expect(propsResult).toEqual({
+        redirect: {
+          destination: "/about-us/meet-the-team",
+          permanent: false,
+        },
       });
     });
   });

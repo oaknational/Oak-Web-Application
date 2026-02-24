@@ -125,3 +125,25 @@ jest.mock("@/node-lib/educator-api/helpers/useGetEducatorData", () => ({
     mutate: jest.fn(),
   })),
 }));
+
+// Mock window.matchMedia
+Object.defineProperty(global, "matchMedia", {
+  writable: true,
+  value: jest.fn().mockImplementation((query) => ({
+    matches: true,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
+// App router
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(),
+  useRouter: jest.fn(),
+  useSearchParams: jest.fn(),
+}));

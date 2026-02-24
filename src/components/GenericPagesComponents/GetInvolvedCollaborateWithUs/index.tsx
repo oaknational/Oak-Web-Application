@@ -5,11 +5,13 @@ import {
   OakGrid,
   OakGridArea,
   OakImage,
+  OakP,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { PortableTextBlockComponent } from "@portabletext/react";
 
 import { GetInvolvedLinkCard } from "@/components/GenericPagesComponents/GetInvolvedLinkCard";
-import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
@@ -24,6 +26,10 @@ const StyledImage = styled(OakImage)`
     height: 430px;
   }
 `;
+
+const OakPStyled: PortableTextBlockComponent = (props) => {
+  return <OakP $font={["body-2", "body-1"]}>{props.children}</OakP>;
+};
 
 export type GetInvolvedCollaborateWithUsProps = {
   heading: string;
@@ -49,7 +55,7 @@ export function GetInvolvedCollaborateWithUs({
 }: Readonly<GetInvolvedCollaborateWithUsProps>) {
   return (
     <OakBox $background={"bg-decorative3-very-subdued"}>
-      <InnerMaxWidth>
+      <NewGutterMaxWidth>
         <OakFlex $flexDirection="column" $pv={["spacing-56", "spacing-80"]}>
           <OakGrid
             $gridTemplateColumns={[
@@ -67,7 +73,6 @@ export function GetInvolvedCollaborateWithUs({
             >
               <OakHeading
                 $font={["heading-5", "heading-3", "heading-3"]}
-                $color="text-primary"
                 tag="h2"
               >
                 {heading}
@@ -101,7 +106,14 @@ export function GetInvolvedCollaborateWithUs({
                       headingTag={card.headingTag}
                       headingTitle={card.headingTitle}
                       content={
-                        <PortableTextWithDefaults value={card.content} />
+                        <PortableTextWithDefaults
+                          value={card.content}
+                          components={{
+                            block: {
+                              normal: OakPStyled,
+                            },
+                          }}
+                        />
                       }
                       buttons={card.buttons}
                     />
@@ -111,7 +123,7 @@ export function GetInvolvedCollaborateWithUs({
             </OakGridArea>
           </OakGrid>
         </OakFlex>
-      </InnerMaxWidth>
+      </NewGutterMaxWidth>
     </OakBox>
   );
 }

@@ -3,7 +3,6 @@ import CMSVideo from ".";
 import { mockVideoAsset } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mockPlayer = jest.fn((_props: never) => <div />);
 
 jest.mock("@/components/SharedComponents/VideoPlayer", () => ({

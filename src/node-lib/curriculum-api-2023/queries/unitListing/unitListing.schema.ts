@@ -98,7 +98,7 @@ const tierSchema = z.array(
 export type Tiers = z.infer<typeof tierSchema>;
 
 // reshaped output of the unitListing query
-const unitListingData = z.object({
+export const unitListingData = z.object({
   programmeSlug: z.string(),
   keyStageSlug: keystageSlugs,
   keyStageTitle: keystageDescriptions,

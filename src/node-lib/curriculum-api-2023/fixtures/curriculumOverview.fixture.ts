@@ -1,18 +1,13 @@
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-
-export type curriculumOverviewTabSchema = {
-  curriculumInfo: CurriculumOverviewMVData;
-  curriculumCMSInfo: CurriculumOverviewSanityData;
-  curriculumSelectionSlugs: CurriculumSelectionSlugs;
-};
+import { CurriculumOverviewTabData } from "@/components/CurriculumComponents/OverviewTab/OverviewTab";
 
 export const curriculumOverviewTabFixture = (
-  partial?: Partial<curriculumOverviewTabSchema>,
-): curriculumOverviewTabSchema => {
+  partial?: Partial<CurriculumOverviewTabData>,
+): CurriculumOverviewTabData => {
   return {
-    curriculumInfo: curriculumOverviewMVFixture(),
+    subjectTitle: curriculumOverviewMVFixture().subjectTitle,
     curriculumCMSInfo: curriculumOverviewCMSFixture(),
     curriculumSelectionSlugs: curriculumOverviewSlugsFixture(),
     ...partial,

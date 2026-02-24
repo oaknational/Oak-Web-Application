@@ -1,8 +1,5 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-
 import { PupilViewsLessonOverview } from "./PupilLessonOverview.view";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   LessonEngineContext,
   LessonEngineContextType,
@@ -11,6 +8,7 @@ import { createLessonEngineContext } from "@/components/PupilComponents/pupilTes
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const usePupilAnalyticsMock = {
   track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
@@ -42,22 +40,20 @@ const mockBroweData = lessonBrowseDataFixture({
   },
 });
 
+const render = renderWithProviders();
+
 describe("PupilViewsLessonOverview", () => {
   it("displays the lesson title", () => {
-    const { queryByRole } = renderWithTheme(
+    const { queryByRole } = render(
       <OakPupilClientProvider>
-        {" "}
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider value={createLessonEngineContext()}>
-            <PupilViewsLessonOverview
-              lessonTitle="Introduction to The Canterbury Tales"
-              starterQuizNumQuestions={4}
-              exitQuizNumQuestions={5}
-              browseData={mockBroweData}
-            />
-          </LessonEngineContext.Provider>
-        </OakThemeProvider>
-        ,
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsLessonOverview
+            lessonTitle="Introduction to The Canterbury Tales"
+            starterQuizNumQuestions={4}
+            exitQuizNumQuestions={5}
+            browseData={mockBroweData}
+          />
+        </LessonEngineContext.Provider>
       </OakPupilClientProvider>,
     );
 
@@ -75,22 +71,18 @@ describe("PupilViewsLessonOverview", () => {
     it(`allows navigation to the "${section}" section of the quiz`, () => {
       const updateCurrentSection = jest.fn();
 
-      const { getByRole } = renderWithTheme(
+      const { getByRole } = render(
         <OakPupilClientProvider>
-          {" "}
-          <OakThemeProvider theme={oakDefaultTheme}>
-            <LessonEngineContext.Provider
-              value={createLessonEngineContext({ updateCurrentSection })}
-            >
-              <PupilViewsLessonOverview
-                lessonTitle="Introduction to The Canterbury Tales"
-                starterQuizNumQuestions={4}
-                exitQuizNumQuestions={5}
-                browseData={mockBroweData}
-              />
-            </LessonEngineContext.Provider>
-          </OakThemeProvider>
-          ,
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({ updateCurrentSection })}
+          >
+            <PupilViewsLessonOverview
+              lessonTitle="Introduction to The Canterbury Tales"
+              starterQuizNumQuestions={4}
+              exitQuizNumQuestions={5}
+              browseData={mockBroweData}
+            />
+          </LessonEngineContext.Provider>
         </OakPupilClientProvider>,
       );
 
@@ -101,29 +93,27 @@ describe("PupilViewsLessonOverview", () => {
   });
 
   it("displays in-progress for in progress sections", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <OakPupilClientProvider>
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider
-            value={createLessonEngineContext({
-              currentSection: "starter-quiz",
-              sectionResults: {
-                "starter-quiz": {
-                  grade: 1,
-                  isComplete: false,
-                  numQuestions: 0,
-                },
+        <LessonEngineContext.Provider
+          value={createLessonEngineContext({
+            currentSection: "starter-quiz",
+            sectionResults: {
+              "starter-quiz": {
+                grade: 1,
+                isComplete: false,
+                numQuestions: 0,
               },
-            })}
-          >
-            <PupilViewsLessonOverview
-              lessonTitle="Introduction to The Canterbury Tales"
-              starterQuizNumQuestions={4}
-              exitQuizNumQuestions={5}
-              browseData={mockBroweData}
-            />
-          </LessonEngineContext.Provider>
-        </OakThemeProvider>
+            },
+          })}
+        >
+          <PupilViewsLessonOverview
+            lessonTitle="Introduction to The Canterbury Tales"
+            starterQuizNumQuestions={4}
+            exitQuizNumQuestions={5}
+            browseData={mockBroweData}
+          />
+        </LessonEngineContext.Provider>
       </OakPupilClientProvider>,
     );
 
@@ -132,19 +122,16 @@ describe("PupilViewsLessonOverview", () => {
 
   it("displays the number of questions for each quiz", () => {
     // console.log(logAttempt);
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <OakPupilClientProvider>
-        {" "}
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider value={createLessonEngineContext()}>
-            <PupilViewsLessonOverview
-              lessonTitle="Introduction to The Canterbury Tales"
-              starterQuizNumQuestions={4}
-              exitQuizNumQuestions={5}
-              browseData={mockBroweData}
-            />
-          </LessonEngineContext.Provider>
-        </OakThemeProvider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsLessonOverview
+            lessonTitle="Introduction to The Canterbury Tales"
+            starterQuizNumQuestions={4}
+            exitQuizNumQuestions={5}
+            browseData={mockBroweData}
+          />
+        </LessonEngineContext.Provider>
       </OakPupilClientProvider>,
     );
 
@@ -195,19 +182,17 @@ describe("PupilViewsLessonOverview", () => {
   }>)(
     'renders "$label" for the proceed to next section button',
     ({ label, context }) => {
-      const { getByTestId } = renderWithTheme(
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider
-            value={createLessonEngineContext(context)}
-          >
-            <PupilViewsLessonOverview
-              lessonTitle="Introduction to The Canterbury Tales"
-              starterQuizNumQuestions={4}
-              exitQuizNumQuestions={5}
-              browseData={mockBroweData}
-            />
-          </LessonEngineContext.Provider>
-        </OakThemeProvider>,
+      const { getByTestId } = render(
+        <LessonEngineContext.Provider
+          value={createLessonEngineContext(context)}
+        >
+          <PupilViewsLessonOverview
+            lessonTitle="Introduction to The Canterbury Tales"
+            starterQuizNumQuestions={4}
+            exitQuizNumQuestions={5}
+            browseData={mockBroweData}
+          />
+        </LessonEngineContext.Provider>,
       );
 
       expect(getByTestId("proceed-to-next-section")).toHaveTextContent(label);

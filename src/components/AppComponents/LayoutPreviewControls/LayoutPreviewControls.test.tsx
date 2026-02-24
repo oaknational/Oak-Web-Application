@@ -3,7 +3,6 @@ import LayoutPreviewControls from "./LayoutPreviewControls";
 import { ToastProvider } from "@/context/Toast";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 describe("LayoutPreviewControls", () => {

@@ -16,7 +16,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
           class="sc-5d843393-1 exkneQ"
         >
           <div
-            class="sc-aXZVg sc-kMkxaj ioKvvK hImOLL"
+            class="sc-aXZVg sc-kMkxaj ioKvvK gTHfrn"
           >
             <a
               class="sc-a6022ff2-0 ejmuOd"
@@ -56,8 +56,8 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                     >
                       Unit info
                     </div>
-                    <div
-                      class="sc-aXZVg anoZA"
+                    <span
+                      class="sc-aXZVg iUEruK"
                     >
                       <img
                         alt=""
@@ -68,7 +68,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
-                    </div>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -79,7 +79,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
           class="sc-5d843393-1 exkneQ"
         >
           <div
-            class="sc-aXZVg sc-kMkxaj ioKvvK hImOLL"
+            class="sc-aXZVg sc-kMkxaj ioKvvK gTHfrn"
           >
             <a
               class="sc-a6022ff2-0 ejmuOd"
@@ -119,8 +119,8 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                     >
                       Unit info
                     </div>
-                    <div
-                      class="sc-aXZVg anoZA"
+                    <span
+                      class="sc-aXZVg iUEruK"
                     >
                       <img
                         alt=""
@@ -131,7 +131,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
-                    </div>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -142,7 +142,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
           class="sc-5d843393-1 exkneQ"
         >
           <div
-            class="sc-aXZVg sc-kMkxaj ioKvvK hImOLL"
+            class="sc-aXZVg sc-kMkxaj ioKvvK gTHfrn"
           >
             <a
               class="sc-a6022ff2-0 ejmuOd"
@@ -182,8 +182,8 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                     >
                       Unit info
                     </div>
-                    <div
-                      class="sc-aXZVg anoZA"
+                    <span
+                      class="sc-aXZVg iUEruK"
                     >
                       <img
                         alt=""
@@ -194,7 +194,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
-                    </div>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -205,7 +205,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
           class="sc-5d843393-1 exkneQ"
         >
           <div
-            class="sc-aXZVg sc-kMkxaj ioKvvK hImOLL"
+            class="sc-aXZVg sc-kMkxaj ioKvvK gTHfrn"
           >
             <a
               class="sc-a6022ff2-0 ejmuOd"
@@ -245,8 +245,8 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                     >
                       Unit info
                     </div>
-                    <div
-                      class="sc-aXZVg anoZA"
+                    <span
+                      class="sc-aXZVg iUEruK"
                     >
                       <img
                         alt=""
@@ -257,7 +257,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
-                    </div>
+                    </span>
                   </div>
                 </div>
               </div>

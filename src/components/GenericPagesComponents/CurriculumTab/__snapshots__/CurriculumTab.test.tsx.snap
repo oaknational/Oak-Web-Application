@@ -87,6 +87,7 @@ exports[`CurriculumTab renders 1`] = `
   min-width: 1.5rem;
   height: 1.5rem;
   min-height: 1.5rem;
+  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -873,22 +874,20 @@ exports[`CurriculumTab renders 1`] = `
   box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c37:has( a, button ) {
-  z-index: 2;
-  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
-}
-
-.c37:has(a:hover,button:hover),
-.c37:has(button:hover:not(:active)) {
-  z-index: 1;
-}
-
 .c37:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
+.c37:has( a, button) {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c37:has( a, button)  a,
+.c37:has( a, button) button {
+  outline: none;
+}
+
 .c37:has(a:active,button:active) {
-  z-index: 2;
   box-shadow: none;
 }
 
@@ -1404,7 +1403,7 @@ exports[`CurriculumTab renders 1`] = `
           <div
             style="position: absolute; bottom: 18px; right: calc(-40rem + 50vw - 200px); width: 529px; height: 420px;"
           >
-            <div
+            <span
               class="c4"
             >
               <img
@@ -1416,7 +1415,7 @@ exports[`CurriculumTab renders 1`] = `
                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
+            </span>
           </div>
         </div>
         <div
@@ -1483,7 +1482,7 @@ exports[`CurriculumTab renders 1`] = `
                       Our curriculum planning approach
                     </span>
                   </span>
-                  <div
+                  <span
                     class="c25 "
                   >
                     <img
@@ -1495,7 +1494,7 @@ exports[`CurriculumTab renders 1`] = `
                       src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                     />
-                  </div>
+                  </span>
                 </a>
               </div>
               <div
@@ -1644,7 +1643,7 @@ exports[`CurriculumTab renders 1`] = `
                                     >
                                       View
                                     </span>
-                                    <div
+                                    <span
                                       class="c25"
                                     >
                                       <img
@@ -1656,7 +1655,7 @@ exports[`CurriculumTab renders 1`] = `
                                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                       />
-                                    </div>
+                                    </span>
                                   </div>
                                 </button>
                               </div>
@@ -1835,7 +1834,7 @@ exports[`CurriculumTab renders 1`] = `
                                 >
                                   View
                                 </span>
-                                <div
+                                <span
                                   class="c25"
                                 >
                                   <img
@@ -1847,7 +1846,7 @@ exports[`CurriculumTab renders 1`] = `
                                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                   />
-                                </div>
+                                </span>
                               </div>
                             </button>
                           </div>
