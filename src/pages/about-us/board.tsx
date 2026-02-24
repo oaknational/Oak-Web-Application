@@ -166,43 +166,34 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   context,
 ) => {
-  if (ENABLE_NEW_ABOUT_US) {
-    return {
-      redirect: {
-        destination: "/about-us/meet-the-team",
-        permanent: false,
-      },
-    };
-  } else {
-    return getPageProps({
-      page: "board::getStaticProps",
-      context,
-      getProps: async () => {
-        const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "board::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-        const aboutBoardPage = await CMSClient.aboutBoardPage({
-          previewMode: isPreviewMode,
-        });
+      const aboutBoardPage = await CMSClient.aboutBoardPage({
+        previewMode: isPreviewMode,
+      });
 
-        const topNav = await curriculumApi2023.topNav();
+      const topNav = await curriculumApi2023.topNav();
 
-        if (!aboutBoardPage) {
-          return {
-            notFound: true,
-          };
-        }
-
-        const results: GetStaticPropsResult<AboutPageProps> = {
-          props: {
-            pageData: aboutBoardPage,
-            topNav,
-          },
+      if (!aboutBoardPage) {
+        return {
+          notFound: true,
         };
+      }
 
-        return results;
-      },
-    });
-  }
+      const results: GetStaticPropsResult<AboutPageProps> = {
+        props: {
+          pageData: aboutBoardPage,
+          topNav,
+        },
+      };
+
+      return results;
+    },
+  });
 };
 
 export default AboutUsBoard;

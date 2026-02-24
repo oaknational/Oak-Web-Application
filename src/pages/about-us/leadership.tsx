@@ -70,42 +70,33 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   context,
 ) => {
-  if (ENABLE_NEW_ABOUT_US) {
-    return {
-      redirect: {
-        destination: "/about-us/meet-the-team",
-        permanent: false,
-      },
-    };
-  } else {
-    return getPageProps({
-      page: "leadership::getStaticProps",
-      context,
-      getProps: async () => {
-        const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "leadership::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-        const aboutLeadershipPage = await CMSClient.aboutLeadershipPage({
-          previewMode: isPreviewMode,
-        });
+      const aboutLeadershipPage = await CMSClient.aboutLeadershipPage({
+        previewMode: isPreviewMode,
+      });
 
-        const topNav = await curriculumApi2023.topNav();
+      const topNav = await curriculumApi2023.topNav();
 
-        if (!aboutLeadershipPage) {
-          return {
-            notFound: true,
-          };
-        }
-
-        const results: GetStaticPropsResult<AboutPageProps> = {
-          props: {
-            pageData: aboutLeadershipPage,
-            topNav,
-          },
+      if (!aboutLeadershipPage) {
+        return {
+          notFound: true,
         };
-        return results;
-      },
-    });
-  }
+      }
+
+      const results: GetStaticPropsResult<AboutPageProps> = {
+        props: {
+          pageData: aboutLeadershipPage,
+          topNav,
+        },
+      };
+      return results;
+    },
+  });
 };
 
 export default AboutUsLeadership;
