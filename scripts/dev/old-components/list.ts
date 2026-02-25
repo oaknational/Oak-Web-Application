@@ -260,4 +260,5 @@ async function run(mode: string) {
   }
 }
 
-run("stdout");
+const mode = "stdout";
+run(mode);
