@@ -21,7 +21,7 @@ export default async function EYFSLayout({
     return (
       <OakFlex
         $gap={["spacing-40", "spacing-48", "spacing-64"]}
-        $mv={["spacing-48", "spacing-48", "spacing-56"]}
+        $pv={["spacing-48", "spacing-48", "spacing-64"]}
         $ph={["spacing-20", "spacing-40", "spacing-12"]}
         $mh={"auto"}
         $maxWidth={["100%", "100%", "spacing-1280"]}

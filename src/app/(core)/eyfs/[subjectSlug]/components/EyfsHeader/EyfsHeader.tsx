@@ -13,7 +13,7 @@ export const EYFSHeader = ({ subjectTitle }: { subjectTitle: string }) => {
   return (
     <OakGrid $rg={"spacing-24"}>
       <OakGridArea $colSpan={[12, 10, 12]}>
-        <OakHeading tag="h1" $font={"heading-1"}>
+        <OakHeading tag="h1" $font={["heading-4", "heading-1"]}>
           EYFS {subjectTitle}
         </OakHeading>
       </OakGridArea>
