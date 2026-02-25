@@ -221,9 +221,11 @@ function formatId(id: string) {
 function outputStdout(refs: Record<string, string[]>) {
   for (const [id, files] of Object.entries(refs)) {
     const importFiles = IMPORT_MAP.find((ref) => ref.id === id)!.files;
-    console.log(
-      `${chalk.green(`<${formatId(id)}/>`)} — ${chalk.blue(`./${importFiles[0]}`)} ${chalk.gray(`(${files.length} files)`)}`,
-    );
+    const componentStr = chalk.green(`<${formatId(id)}/>`);
+    const fileStr = chalk.blue(`./${importFiles[0]}`);
+    const countStr = chalk.gray(`(${files.length} files)`);
+
+    console.log(`${componentStr} — ${fileStr} ${countStr}`);
     for (const file of files) {
       console.log(` - ./${file}`);
     }
