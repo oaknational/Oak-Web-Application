@@ -1,3 +1,16 @@
+# [1.1005.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1004.0...v1.1005.0) (2026-02-25)
+
+
+### Bug Fixes
+
+* added constant for `mode` ([f299ac0](https://github.com/oaknational/Oak-Web-Application/commit/f299ac09f504e1a7a4c407ee9bb44e8871debb06))
+* more sonarcloud fixes ([e0cb14e](https://github.com/oaknational/Oak-Web-Application/commit/e0cb14ec719c5c87eaf3a26b1924d7920bb730f5))
+
+
+### Features
+
+* improve old-components script to show all components that need removing ([0c1429a](https://github.com/oaknational/Oak-Web-Application/commit/0c1429aed145ca8358a6244b8e4ad67d91c71fcb))
+
 # [1.1004.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1003.0...v1.1004.0) (2026-02-25)
 
 
