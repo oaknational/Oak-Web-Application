@@ -81,8 +81,8 @@ export const EYFSNavigation = ({
           {subjectTabs.map((subject) => {
             const Button =
               params?.subjectSlug === subject.slug
-                ? OakSecondaryButton
-                : OakPrimaryButton;
+                ? OakPrimaryButton
+                : OakSecondaryButton;
 
             return (
               <Button
