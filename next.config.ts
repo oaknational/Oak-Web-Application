@@ -33,6 +33,7 @@ import {
   cspHeader,
   reportingEndpointsHeader,
 } from "@/config/contentSecurityPolicy";
+import { ENABLE_NEW_ABOUT_US } from "@/config/flags";
 
 const withBundleAnalyzer = buildWithBundleAnalyzer({
   enabled: process.env.ANALYSE_BUNDLE === "on",
@@ -366,7 +367,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       remotePatterns: imageRemotePatterns,
     },
     async redirects() {
-      return [
+      const pupilsRedirects = [
         {
           source: "/pupils/lessons/:lessonSlug",
           destination: "/pupils/lessons/:lessonSlug/overview",
@@ -390,6 +391,33 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           permanent: true,
         },
       ];
+
+      const aboutUsRedirects = ENABLE_NEW_ABOUT_US
+        ? [
+            {
+              source: "/about-us/leadership",
+              destination: "/about-us/meet-the-team",
+              permanent: false,
+            },
+            {
+              source: "/about-us/board",
+              destination: "/about-us/meet-the-team",
+              permanent: false,
+            },
+            {
+              source: "/about-us/partners",
+              destination: "/about-us/oaks-curricula",
+              permanent: false,
+            },
+            {
+              source: "/about-us/work-with-us",
+              destination: "/about-us/get-involved",
+              permanent: false,
+            },
+          ]
+        : [];
+
+      return [...pupilsRedirects, ...aboutUsRedirects];
     },
     async rewrites() {
       // Reverse proxy posthog in development to avoid localhost CORS issues in Chrome https://posthog.com/docs/advanced/proxy/nextjs

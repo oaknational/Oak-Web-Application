@@ -5133,20 +5133,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       >
                         <a
                           class="c153 "
-                          href="/teachers/curriculum"
-                        >
-                          <span
-                            class="c22"
-                          >
-                            Curriculum plans
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c152"
-                      >
-                        <a
-                          class="c153 "
                           href="/lesson-planning"
                         >
                           <span
@@ -5216,6 +5202,48 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             class="c22"
                           >
                             About us
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c152"
+                      >
+                        <a
+                          class="c153 "
+                          href="/about-us/oaks-curricula"
+                        >
+                          <span
+                            class="c22"
+                          >
+                            Oak's curricula
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c152"
+                      >
+                        <a
+                          class="c153 "
+                          href="/about-us/get-involved"
+                        >
+                          <span
+                            class="c22"
+                          >
+                            Get involved
+                          </span>
+                        </a>
+                      </li>
+                      <li
+                        class="c152"
+                      >
+                        <a
+                          class="c153 "
+                          href="/about-us/meet-the-team"
+                        >
+                          <span
+                            class="c22"
+                          >
+                            Meet the team
                           </span>
                         </a>
                       </li>
