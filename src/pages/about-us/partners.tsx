@@ -22,7 +22,6 @@ import CMSImage, {
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { ENABLE_NEW_ABOUT_US } from "@/config/flags";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;
@@ -123,43 +122,34 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   context,
 ) => {
-  if (ENABLE_NEW_ABOUT_US) {
-    return {
-      redirect: {
-        destination: "/about-us/oaks-curricula",
-        permanent: false,
-      },
-    };
-  } else {
-    return getPageProps({
-      page: "partners::getStaticProps",
-      context,
-      getProps: async () => {
-        const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "partners::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-        const aboutPartnersPage = await CMSClient.aboutPartnersPage({
-          previewMode: isPreviewMode,
-        });
+      const aboutPartnersPage = await CMSClient.aboutPartnersPage({
+        previewMode: isPreviewMode,
+      });
 
-        const topNav = await curriculumApi2023.topNav();
+      const topNav = await curriculumApi2023.topNav();
 
-        if (!aboutPartnersPage) {
-          return {
-            notFound: true,
-          };
-        }
-
-        const results = {
-          props: {
-            pageData: aboutPartnersPage,
-            topNav,
-          },
+      if (!aboutPartnersPage) {
+        return {
+          notFound: true,
         };
+      }
 
-        return results;
-      },
-    });
-  }
+      const results = {
+        props: {
+          pageData: aboutPartnersPage,
+          topNav,
+        },
+      };
+
+      return results;
+    },
+  });
 };
 
 export default AboutUsPartners;

@@ -1,6 +1,8 @@
 import { OakFlex } from "@oaknational/oak-components";
 import React from "react";
 
+import { ProgrammeFiltersThreads } from "./ProgrammeFiltersThreads";
+
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { shouldDisplayFilter } from "@/utils/curriculum/filteringApp";
@@ -75,7 +77,14 @@ export default function ProgrammePageFiltersDesktop({
           context={"integrated-journey"}
         />
       )}
-      {/* TD: [integrated journey] add thread filters */}
+      {shouldDisplayFilter(data, filters, "threads") && (
+        <ProgrammeFiltersThreads
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          data={data}
+          radioWidth="100%"
+        />
+      )}
     </OakFlex>
   );
 }

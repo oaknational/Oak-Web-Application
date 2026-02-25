@@ -1,7 +1,6 @@
 import {
   queryResponse,
   EyfsUnits,
-  EyfsPageData,
   videoResponseSchema,
   EYFSLesson,
 } from "./eyfsSchema";
@@ -29,7 +28,7 @@ const eyfsPageQuery = (sdk: Sdk) => async (args: { subjectSlug: string }) => {
 
   const parsedVideos = videoResponseSchema.parse(videos);
 
-  const units = parsedResponse.lessons.reduce((acc, lesson) => {
+  const units = parsedResponse.lessons.reduce<EyfsUnits>((acc, lesson) => {
     const unitSlug = lesson.unit_slug;
 
     const videoForLesson = parsedVideos.videos.find(
@@ -62,14 +61,14 @@ const eyfsPageQuery = (sdk: Sdk) => async (args: { subjectSlug: string }) => {
     }
 
     return acc;
-  }, {} as EyfsUnits);
+  }, {});
 
   const subjectTabs = parsedResponse.subjects.map((s) => ({
     slug: s.subject_slug,
     title: s.subject_title,
   }));
 
-  return { subjectTitle, units, subjectTabs } as EyfsPageData;
+  return { subjectTitle, units, subjectTabs };
 };
 
 export default eyfsPageQuery;
