@@ -39,7 +39,12 @@ const SubNav = <T extends SubNavData>({
   const pathname = usePathname();
   const subNavButtons = Object.values(data);
 
-  const getLinkProps = (slug: string, href: string, external?: boolean) => {
+  const getLinkProps = (
+    slug: string,
+    href: string,
+    title: string,
+    external?: boolean,
+  ) => {
     const buttonId = focusManager.createId(area, slug);
     return {
       target: external ? "_blank" : undefined,
@@ -50,6 +55,9 @@ const SubNav = <T extends SubNavData>({
       onKeyDown: (event: React.KeyboardEvent) =>
         focusManager.handleKeyDown(event, buttonId),
       href,
+      "aria-label": external
+        ? `${title} (this will open in a new tab)`
+        : undefined,
     };
   };
 
@@ -131,7 +139,7 @@ const SubNav = <T extends SubNavData>({
                   </OakSmallPrimaryInvertedButton>
                 ) : (
                   <OakSmallPrimaryInvertedButton
-                    {...getLinkProps(btn.slug, btn.href, external)}
+                    {...getLinkProps(btn.slug, btn.href, btn.title, external)}
                   >
                     {btn.title}
                   </OakSmallPrimaryInvertedButton>

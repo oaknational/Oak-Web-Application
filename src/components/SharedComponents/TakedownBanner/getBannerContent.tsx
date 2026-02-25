@@ -15,6 +15,17 @@ export const CYCLE_2_SUBJECTS = new Set([
   "rshe-pshe",
   "drama",
   "latin",
+  // Specialist and therapies
+  "specialist",
+  "communication-and-language",
+  "creative-arts",
+  "independent-living",
+  "numeracy",
+  "physical-development",
+  "occupational-therapy",
+  "physical-therapy",
+  "sensory-integration",
+  "speech-and-language-therapy",
 ]);
 
 const getCycle2WithNewUnitsContent = (

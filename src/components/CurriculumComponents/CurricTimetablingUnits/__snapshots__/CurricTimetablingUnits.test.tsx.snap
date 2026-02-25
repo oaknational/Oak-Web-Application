@@ -202,7 +202,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 Year group
               </legend>
               <div
-                class="sc-aXZVg sc-gEvEer sc-fxwrCY iLxEEC doeAUE geVANU"
+                class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
               >
                 <span
                   class="sc-kAyceB beiyRr"
@@ -233,7 +233,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 </label>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer sc-fxwrCY iLxEEC doeAUE geVANU"
+                class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
               >
                 <span
                   class="sc-kAyceB beiyRr"
@@ -292,7 +292,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-YysOf cBeINY iDBIXi"
+            class="sc-aXZVg sc-gEvEer sc-bVHCgj cBeINY iDBIXi"
             focusable="false"
           >
             <svg
@@ -750,7 +750,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 Year group
               </legend>
               <div
-                class="sc-aXZVg sc-gEvEer sc-fxwrCY iLxEEC doeAUE geVANU"
+                class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
               >
                 <span
                   class="sc-kAyceB beiyRr"
@@ -781,7 +781,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 </label>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer sc-fxwrCY iLxEEC doeAUE geVANU"
+                class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
               >
                 <span
                   class="sc-kAyceB beiyRr"
@@ -840,7 +840,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-YysOf cBeINY iDBIXi"
+            class="sc-aXZVg sc-gEvEer sc-bVHCgj cBeINY iDBIXi"
             focusable="false"
           >
             <svg
