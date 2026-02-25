@@ -2,7 +2,10 @@
 
 import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { GoogleSignInView } from "@oaknational/google-classroom-addon/ui";
+import {
+  AuthCookieKeys,
+  GoogleSignInView,
+} from "@oaknational/google-classroom-addon/ui";
 
 import { googleClassroomApi } from "@/browser-lib/google-classroom";
 
@@ -10,16 +13,24 @@ function SignInContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const getGoogleSignInLink = (subscribeToNewsletter?: boolean) => {
+  const getGoogleSignInLink = () => {
     return googleClassroomApi.getGoogleSignInUrl(
       searchParams?.get("login_hint") ?? null,
-      subscribeToNewsletter,
+      true,
     );
   };
 
   const onSuccessfulSignIn = () => {
+    const programmeSlug = searchParams?.get("programmeSlug");
+    const unitSlug = searchParams?.get("unitSlug");
+    const lessonSlug = searchParams?.get("lessonSlug");
     const currentParams = searchParams?.toString() ?? "";
-    router.push(`/classroom/browse?${currentParams}`);
+    if (programmeSlug && unitSlug && lessonSlug) {
+      router.push(
+        `/pupils/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}?${currentParams}`,
+      );
+    }
+    // when we have classroom 404/500 pages, we should redirect to those
   };
 
   return (
@@ -27,6 +38,11 @@ function SignInContent() {
       getGoogleSignInLink={getGoogleSignInLink}
       onSuccessfulSignIn={onSuccessfulSignIn}
       privacyPolicyUrl={"/legal/privacy-policy"}
+      showMailingListOption={false}
+      cookieKeys={[
+        AuthCookieKeys.PupilAccessToken,
+        AuthCookieKeys.PupilSession,
+      ]}
     />
   );
 }

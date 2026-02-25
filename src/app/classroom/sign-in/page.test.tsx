@@ -49,7 +49,7 @@ describe("src/app/classroom/sign-in/page", () => {
     const viewProps = googleSignInViewMock.mock.calls[0][0];
 
     await viewProps.getGoogleSignInLink();
-    expect(getGoogleSignInUrlMock).toHaveBeenCalledWith("123456789");
+    expect(getGoogleSignInUrlMock).toHaveBeenCalledWith("123456789", undefined);
 
     viewProps.onSuccessfulSignIn();
     expect(routerPush).toHaveBeenCalledWith(
@@ -65,7 +65,7 @@ describe("src/app/classroom/sign-in/page", () => {
 
     const viewProps = googleSignInViewMock.mock.calls[0][0];
     await viewProps.getGoogleSignInLink();
-    expect(getGoogleSignInUrlMock).toHaveBeenCalledWith(null);
+    expect(getGoogleSignInUrlMock).toHaveBeenCalledWith(null, undefined);
 
     viewProps.onSuccessfulSignIn();
     expect(routerPush).toHaveBeenCalledWith("/classroom/browse?");

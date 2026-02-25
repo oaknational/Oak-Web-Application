@@ -98,6 +98,12 @@ async function main() {
     NEXT_PUBLIC_HUBSPOT_DOWNLOADS_FORM_ID: oakConfig.hubspot.downloadsFormId,
     NEXT_PUBLIC_HUBSPOT_ONBOARDING_FORM_ID: oakConfig.hubspot.onboardingFormId,
     NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID: oakConfig.hubspot.fallbackFormId,
+    HUBSPOT_GOOGLE_CLASSROOM_FORM_ID:
+      process.env.HUBSPOT_GOOGLE_CLASSROOM_FORM_ID ||
+      secretsFromNetwork.HUBSPOT_GOOGLE_CLASSROOM_FORM_ID,
+    HUBSPOT_GOOGLE_CLASSROOM_PORTAL_ID:
+      process.env.HUBSPOT_GOOGLE_CLASSROOM_PORTAL_ID ||
+      secretsFromNetwork.HUBSPOT_GOOGLE_CLASSROOM_PORTAL_ID,
     NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN:
       process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN ||
       oakConfig.hubspot.scriptDomain,
