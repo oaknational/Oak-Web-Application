@@ -1,5 +1,5 @@
 #!/usr/bin/env ./node_modules/.bin/tsx
-import { builtinModules } from "module";
+import { builtinModules } from "node:module";
 
 import { glob } from "glob";
 import {
