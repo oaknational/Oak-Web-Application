@@ -1,3 +1,4 @@
+#!/usr/bin/env ./node_modules/.bin/tsx
 import { builtinModules } from "module";
 
 import { glob } from "glob";
@@ -109,6 +110,86 @@ const IMPORT_MAP = [
   {
     id: "Button",
     files: ["src/components/SharedComponents/Button"],
+  },
+  {
+    id: "MenuBackdrop",
+    files: ["src/components/AppComponents/MenuBackdrop"],
+  },
+  {
+    id: "SignedOutFlow",
+    files: ["src/components/CurriculumComponents/CurriculumDownloadView"],
+  },
+  {
+    id: "HopePageTabButtonLabelWithScreenReaderTitle",
+    files: [
+      "src/components/GenericPagesComponents/HopePageTabButtonLabelWithScreenReaderTitle",
+    ],
+  },
+  {
+    id: "TeachersTabResourceSelectorCard",
+    files: [
+      "src/components/GenericPagesComponents/TeachersTabResourceSelectorCard",
+    ],
+  },
+  {
+    id: "AspectRatio",
+    files: ["src/components/SharedComponents/AspectRatio"],
+  },
+  {
+    id: "AvatarImage",
+    files: ["src/components/SharedComponents/AvatarImage"],
+  },
+  {
+    id: "Card",
+    files: ["src/components/SharedComponents/Card/Card"],
+  },
+  {
+    id: "Checkbox",
+    files: ["src/components/SharedComponents/Checkbox"],
+  },
+  {
+    id: "Circle",
+    files: ["src/components/SharedComponents/Circle"],
+  },
+  {
+    id: "CMSImage",
+    files: ["src/components/SharedComponents/CMSImage"],
+  },
+  {
+    id: "OutlineHeading",
+    files: ["src/components/SharedComponents/OutlineHeading"],
+  },
+  {
+    id: "Popover",
+    files: ["src/components/SharedComponents/Popover"],
+  },
+  {
+    id: "SearchForm",
+    files: ["src/components/SharedComponents/SearchForm"],
+  },
+  {
+    id: "BrushBorders",
+    files: ["src/components/SharedComponents/BrushBorders"],
+  },
+  {
+    id: "TagFunctional",
+    files: ["src/components/SharedComponents/TagFunctional"],
+  },
+  {
+    id: "Label",
+    files: ["src/components/SharedComponents/Label"],
+  },
+  {
+    id: "UnstyledButton",
+    files: ["src/components/SharedComponents/UnstyledButton"],
+  },
+  {
+    id: "OglCopyrightNotice",
+    files: ["src/components/TeacherComponents/OglCopyrightNotice"],
+  },
+  {
+    id: "SubjectListingTextTile",
+    files: ["src/components/TeacherComponents/SubjectListingTextTile"],
   },
 ];
 
