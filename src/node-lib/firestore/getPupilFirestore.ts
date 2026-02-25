@@ -17,7 +17,8 @@ const getEmulatorFirestore = () => {
     host: hostname,
     port: Number.parseInt(port ?? "8089", 10),
     ssl: false,
-    databaseId: process.env.PUPIL_FIRESTORE_ID,
+    // Use (default) database in emulator — named databases export bug with Firestore:
+    // See issue: https://github.com/firebase/firebase-tools/issues/9665
   });
 };
 

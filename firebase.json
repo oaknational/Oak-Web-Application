@@ -2,7 +2,7 @@
   "firestore": {
     "databases": [
       {
-        "name": "ow-beta-ldn-pupil-store"
+        "name": "default"
       }
     ]
   },
