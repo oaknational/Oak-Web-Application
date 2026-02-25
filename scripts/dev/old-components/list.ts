@@ -194,7 +194,8 @@ const IMPORT_MAP = [
 ];
 
 function remapShortRefs(filepath: string) {
-  if (filepath.match(/^@/)) {
+  const re = new RegExp("^@");
+  if (re.exec(filepath)) {
     return filepath.replace(/^@\//, "src/");
   }
   return filepath;
@@ -263,4 +264,4 @@ async function run(mode: string) {
 }
 
 const mode = "stdout";
-run(mode);
+await run(mode);
