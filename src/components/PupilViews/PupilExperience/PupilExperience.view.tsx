@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import { createGlobalStyle } from "styled-components";
 import {
   OakBox,
@@ -9,6 +10,8 @@ import {
 import {
   LessonEngineProvider,
   LessonSection,
+  LessonReviewSection,
+  LessonSectionResults,
   allLessonReviewSections,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
@@ -38,6 +41,12 @@ import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
+import type { AddOnContextResponse } from "@/browser-lib/google-classroom/googleClassroomApi";
+import {
+  mapToSubmitPupilProgress,
+  type ClassroomContext,
+} from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -198,6 +207,64 @@ const PupilExperienceLayout = ({
   const isGoogleClassroomAssignment =
     isClassroomAssignment && classroomAssignmentChecked;
 
+  const searchParams = useSearchParams();
+  const classroomContextRef = useRef<ClassroomContext | null>(null);
+
+  const fetchGoogleClassroomContext = async () => {
+    const courseId = searchParams?.get("courseId");
+    const itemId = searchParams?.get("itemId");
+    const attachmentId = searchParams?.get("attachmentId");
+
+    if (!courseId || !itemId || !attachmentId) return;
+
+    try {
+      const result: AddOnContextResponse | null =
+        await googleClassroomApi.getAddOnContext({
+          courseId,
+          itemId,
+          attachmentId,
+        });
+
+      const submissionId = result?.studentContext?.submissionId;
+      const pupilLoginHint = result?.pupilLoginHint;
+      if (submissionId && pupilLoginHint) {
+        classroomContextRef.current = {
+          submissionId,
+          pupilLoginHint,
+          attachmentId,
+          courseId,
+          itemId,
+        };
+      }
+    } catch {
+      // Failed to get context - progress sync will be disabled
+    }
+  };
+
+  useEffect(() => {
+    if (!isGoogleClassroomAssignment || classroomContextRef.current) return;
+    fetchGoogleClassroomContext();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isGoogleClassroomAssignment, searchParams]);
+
+  const handleOnNext = useCallback(
+    async (
+      sectionResults: LessonSectionResults,
+      _completedSection: LessonReviewSection,
+    ) => {
+      const ctx = classroomContextRef.current;
+      if (!ctx) return;
+
+      try {
+        const payload = mapToSubmitPupilProgress(ctx, sectionResults);
+        await googleClassroomApi.submitPupilProgress(payload);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [],
+  );
+
   const getAgeRestrictionString = (
     ageRestriction: string | undefined | null,
   ) => {
@@ -284,6 +351,10 @@ const PupilExperienceLayout = ({
       <LessonEngineProvider
         initialLessonReviewSections={availableSections}
         initialSection={initialSection}
+        onNext={isGoogleClassroomAssignment ? handleOnNext : undefined}
+        onSectionResultUpdate={
+          isGoogleClassroomAssignment ? handleOnNext : undefined
+        }
       >
         {hasAgeRestriction ? (
           <OakPupilJourneyContentGuidance

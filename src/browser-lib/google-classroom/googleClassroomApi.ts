@@ -161,8 +161,51 @@ const createAttachment = async (attachment: {
   }
 };
 
+export type AddOnContextResponse = {
+  studentContext?: {
+    submissionId: string;
+  };
+  pupilLoginHint: string;
+};
+export type AddOnContextArgs = {
+  courseId: string;
+  itemId: string;
+  attachmentId: string;
+};
+
+const getAddOnContext = async (
+  args: AddOnContextArgs,
+): Promise<AddOnContextResponse | null> => {
+  try {
+    const headers = await getOakGCAuthHeaders(true);
+    return await sendRequest<AddOnContextResponse, AddOnContextArgs>(
+      "/api/classroom/context",
+      "POST",
+      args,
+      headers,
+    );
+  } catch (error) {
+    console.error("Failed to get add-on context:", error);
+    return null;
+  }
+};
+
+const submitPupilProgress = async (
+  args: Record<string, unknown>,
+): Promise<void> => {
+  const headers = await getOakGCAuthHeaders(true);
+  await sendRequest<void, Record<string, unknown>>(
+    "/api/classroom/pupil/progress/submit",
+    "POST",
+    args,
+    headers,
+  );
+};
+
 export default {
   getGoogleSignInUrl,
   verifySession,
   createAttachment,
+  getAddOnContext,
+  submitPupilProgress,
 };

@@ -211,6 +211,14 @@ export type LessonEngineProviderProps = {
   children: ReactNode;
   initialLessonReviewSections: Readonly<LessonReviewSection[]>;
   initialSection: LessonSection;
+  onNext?: (
+    sectionResults: LessonSectionResults,
+    completedSection: LessonReviewSection,
+  ) => void;
+  onSectionResultUpdate?: (
+    sectionResults: LessonSectionResults,
+    section: LessonReviewSection,
+  ) => void;
 };
 
 export const LessonEngineProvider = memo(
@@ -218,6 +226,8 @@ export const LessonEngineProvider = memo(
     children,
     initialLessonReviewSections,
     initialSection,
+    onNext,
+    onSectionResultUpdate,
   }: LessonEngineProviderProps) => {
     const [state, dispatch] = useReducer<
       Reducer<LessonEngineState, LessonEngineAction>
@@ -268,6 +278,17 @@ export const LessonEngineProvider = memo(
         }
       }
       dispatch({ type: "completeActivity", section });
+
+      if (onNext) {
+        const updatedSections = {
+          ...state.sections,
+          [section]: {
+            ...state.sections[section],
+            isComplete: true,
+          },
+        };
+        onNext(updatedSections, section);
+      }
     };
 
     const updateCurrentSection = (section: LessonSection) => {
@@ -285,6 +306,24 @@ export const LessonEngineProvider = memo(
     ) => {
       trackLessonStarted();
       dispatch({ type: "updateSectionResult", result });
+
+      if (
+        onSectionResultUpdate &&
+        isLessonReviewSection(state.currentSection)
+      ) {
+        const updatedSections = {
+          ...state.sections,
+          [state.currentSection]: {
+            ...state.sections[state.currentSection],
+            ...result,
+            isComplete: false,
+          },
+        };
+        onSectionResultUpdate(
+          updatedSections,
+          state.currentSection as LessonReviewSection,
+        );
+      }
     };
 
     const updateWorksheetDownloaded = (result: IntroResult) => {

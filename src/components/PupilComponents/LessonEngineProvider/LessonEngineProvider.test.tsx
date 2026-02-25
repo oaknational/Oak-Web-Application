@@ -207,6 +207,107 @@ describe("LessonEngineProvider", () => {
     );
   });
 
+  it("calls onNext when a section is completed", () => {
+    const onNext = jest.fn();
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ({ children }) => (
+        <LessonEngineProvider
+          initialLessonReviewSections={allLessonReviewSections}
+          initialSection="starter-quiz"
+          onNext={onNext}
+        >
+          {children}
+        </LessonEngineProvider>
+      ),
+    });
+
+    act(() => {
+      result.current.updateSectionResult({ grade: 3, numQuestions: 4 });
+    });
+
+    expect(onNext).not.toHaveBeenCalled();
+
+    act(() => {
+      result.current.completeActivity("starter-quiz");
+    });
+
+    expect(onNext).toHaveBeenCalledTimes(1);
+    expect(onNext).toHaveBeenCalledWith(
+      expect.objectContaining({
+        "starter-quiz": expect.objectContaining({
+          grade: 3,
+          numQuestions: 4,
+          isComplete: true,
+        }),
+      }),
+      "starter-quiz",
+    );
+  });
+
+  it("calls onSectionResultUpdate when updateSectionResult is called", () => {
+    const onSectionResultUpdate = jest.fn();
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ({ children }) => (
+        <LessonEngineProvider
+          initialLessonReviewSections={allLessonReviewSections}
+          initialSection="starter-quiz"
+          onSectionResultUpdate={onSectionResultUpdate}
+        >
+          {children}
+        </LessonEngineProvider>
+      ),
+    });
+
+    act(() => {
+      result.current.updateSectionResult({ grade: 1, numQuestions: 4 });
+    });
+
+    expect(onSectionResultUpdate).toHaveBeenCalledTimes(1);
+    expect(onSectionResultUpdate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        "starter-quiz": expect.objectContaining({
+          grade: 1,
+          numQuestions: 4,
+          isComplete: false,
+        }),
+      }),
+      "starter-quiz",
+    );
+  });
+
+  it("calls onSectionResultUpdate on each update, not just on complete", () => {
+    const onSectionResultUpdate = jest.fn();
+    const onNext = jest.fn();
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ({ children }) => (
+        <LessonEngineProvider
+          initialLessonReviewSections={allLessonReviewSections}
+          initialSection="starter-quiz"
+          onNext={onNext}
+          onSectionResultUpdate={onSectionResultUpdate}
+        >
+          {children}
+        </LessonEngineProvider>
+      ),
+    });
+
+    act(() => {
+      result.current.updateSectionResult({ grade: 1, numQuestions: 4 });
+    });
+    act(() => {
+      result.current.updateSectionResult({ grade: 2, numQuestions: 4 });
+    });
+
+    expect(onSectionResultUpdate).toHaveBeenCalledTimes(2);
+    expect(onNext).not.toHaveBeenCalled();
+
+    act(() => {
+      result.current.completeActivity("starter-quiz");
+    });
+
+    expect(onNext).toHaveBeenCalledTimes(1);
+  });
+
   it("sends tracking data when the lesson is started", () => {
     const lessonStarted = jest.fn();
 
