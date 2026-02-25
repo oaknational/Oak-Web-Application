@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`eyfs layout renders correctly 1`] = `
+<Styled(Styled(styled.div))
+  $gap={
+    [
+      "spacing-40",
+      "spacing-40",
+      "spacing-64",
+    ]
+  }
+  $mv={
+    [
+      "spacing-48",
+      "spacing-48",
+      "spacing-56",
+    ]
+  }
+>
+  <Styled(so)
+    tag="h1"
+  >
+    Maths
+  </Styled(so)>
+  <Styled(styled.div)
+    $gap="spacing-8"
+  />
+  <styled.div>
+    children
+  </styled.div>
+</Styled(Styled(styled.div))>
+`;

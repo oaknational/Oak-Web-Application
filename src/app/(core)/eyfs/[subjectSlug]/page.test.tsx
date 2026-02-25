@@ -7,6 +7,18 @@ jest.mock("@/utils/featureFlags", () => ({
 
 jest.unmock("next/navigation");
 
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  __esModule: true,
+  default: {
+    eyfsPage: () =>
+      jest.fn().mockResolvedValue({
+        subjectTitle: "Maths",
+        units: [],
+        subjectTabs: [],
+      })(),
+  },
+}));
+
 describe("Eyfs page", () => {
   it("renders 404 page if feature flag is disabled", async () => {
     await expect(
