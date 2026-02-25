@@ -1,0 +1,32 @@
+query eyfsPage($subjectSlug: String!) {
+  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
+    where: {
+      programme_fields: {
+        _contains: {
+          subject_slug: $subjectSlug
+          keystage_slug: "early-years-foundation-stage"
+        }
+      }
+    }
+  ) {
+    lesson_data
+    lesson_slug
+    programme_fields
+    unit_slug
+    unit_data
+    programme_slug
+    features
+    order_in_unit
+  }
+  subjects: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
+    where: {
+      programme_fields: {
+        _contains: { keystage_slug: "early-years-foundation-stage" }
+      }
+    }
+    distinct_on: programme_slug
+  ) {
+    subject_slug: programme_fields(path: "subject_slug")
+    subject_title: programme_fields(path: "subject")
+  }
+}

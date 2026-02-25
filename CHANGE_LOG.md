@@ -1,3 +1,21 @@
+# [1.1004.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1003.0...v1.1004.0) (2026-02-25)
+
+
+### Bug Fixes
+
+* reference error during SSR ([bbb670b](https://github.com/oaknational/Oak-Web-Application/commit/bbb670bb545f18dee38e4664b33f730b2e7c33bc))
+
+
+### Features
+
+* add query to get eyfs page data ([d6d3dfb](https://github.com/oaknational/Oak-Web-Application/commit/d6d3dfb56229fb9fd800dc77f405d23c501b7705))
+* add subjects to query ([8ab8f4c](https://github.com/oaknational/Oak-Web-Application/commit/8ab8f4c5595e8361e908a87e849c80ffd2814dd3))
+* add video data to eyfs lessons ([432992d](https://github.com/oaknational/Oak-Web-Application/commit/432992def7c2b00680c4e31526cd83d597812480))
+* **LESQ-1697:** add `ProgrammeFiltersThreads` ([0d0ba73](https://github.com/oaknational/Oak-Web-Application/commit/0d0ba73e9e240b1e02699b3ba71f78ce4271ec11))
+* **LESQ-1697:** plug programme filters into the programme units page ([8cbe56e](https://github.com/oaknational/Oak-Web-Application/commit/8cbe56e838f44edb829869a1e08b94321a33c41e))
+* move highlighted annotation onto a new line ([fc0d86e](https://github.com/oaknational/Oak-Web-Application/commit/fc0d86e70d8baf987332b5831d76c7f40c8d403f))
+* use query data in eyfs page ([6255be8](https://github.com/oaknational/Oak-Web-Application/commit/6255be869d0e2522328fa11cd94eea21af5f4868))
+
 # [1.1003.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1002.0...v1.1003.0) (2026-02-24)
 
 
