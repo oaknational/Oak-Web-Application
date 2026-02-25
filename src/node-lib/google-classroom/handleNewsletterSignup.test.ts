@@ -43,6 +43,9 @@ describe("handleNewsletterSignup", () => {
   });
 
   it("should report a warning if HubSpot config is missing", async () => {
+    const originalConsoleError = console.error;
+    console.error = jest.fn();
+
     const savedEnv = {
       NEXT_PUBLIC_HUBSPOT_FORM_SUBMISSION_URL:
         process.env.NEXT_PUBLIC_HUBSPOT_FORM_SUBMISSION_URL,
@@ -62,6 +65,7 @@ describe("handleNewsletterSignup", () => {
     );
 
     Object.assign(process.env, savedEnv);
+    console.error = originalConsoleError;
 
     expect(global.fetch).not.toHaveBeenCalled();
     expect(mockReportError).toHaveBeenCalledWith(

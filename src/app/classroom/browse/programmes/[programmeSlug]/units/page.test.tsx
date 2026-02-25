@@ -25,6 +25,7 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
     unitsListingViewMock(props);
     return <div data-testid="units-view">Units</div>;
   },
+  UnitCards: () => <div data-testid="unit-cards" />,
 }));
 
 jest.mock("@/node-lib/curriculum-api-2023");
