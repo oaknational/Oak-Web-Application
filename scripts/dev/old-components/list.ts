@@ -31,7 +31,7 @@ const tsHost = createCompilerHost(
 function delintNode(node: Node) {
   const importing: string[] = [];
   if (isImportDeclaration(node)) {
-    const moduleName = node.moduleSpecifier.getText().replaceAll(/['"]/, "");
+    const moduleName = node.moduleSpecifier.getText().replaceAll(/['"]/g, "");
     if (
       !moduleName.startsWith("node:") &&
       !builtinModules.includes(moduleName)
