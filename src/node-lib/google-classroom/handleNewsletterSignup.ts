@@ -14,13 +14,8 @@ export async function handleNewsletterSignup(
   const portalId = process.env.HUBSPOT_GOOGLE_CLASSROOM_PORTAL_ID;
   const formId = process.env.HUBSPOT_GOOGLE_CLASSROOM_FORM_ID;
 
-  console.log(
-    { submissionUrl, portalId, formId },
-    "<< HubSpot config for newsletter signup",
-  );
-
   if (!submissionUrl || !portalId || !formId) {
-    console.log(
+    console.error(
       "Missing HubSpot configuration for newsletter signup, skipping submission",
     );
     reportError(
