@@ -3,7 +3,7 @@ import {
   OakFlex,
   OakSmallTertiaryInvertedButton,
 } from "@oaknational/oak-components";
-import { SignUpButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
 
 import { useEyfsLessonGroupContext } from "../EyfsLessonGroupProvider";
 
@@ -11,46 +11,14 @@ import { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSche
 
 interface EyfsLessonCardProps {
   lesson: EYFSLesson;
-  isSignedIn: boolean;
 }
 
-export const EyfsLessonCard = ({ lesson, isSignedIn }: EyfsLessonCardProps) => {
+export const EyfsLessonCard = ({ lesson }: EyfsLessonCardProps) => {
   const { activeVideoSlug, toggleVideo } = useEyfsLessonGroupContext();
   const isActiveVideo = activeVideoSlug === lesson.slug;
-  const downloadButton = isSignedIn ? (
-    <OakSmallTertiaryInvertedButton
-      iconName="download"
-      isTrailingIcon
-      $textWrap="nowrap"
-    >
-      Download lesson
-    </OakSmallTertiaryInvertedButton>
-  ) : (
-    <SignUpButton>
-      <OakSmallTertiaryInvertedButton
-        iconName="download"
-        isTrailingIcon
-        $textWrap="nowrap"
-      >
-        Sign in to download
-      </OakSmallTertiaryInvertedButton>
-    </SignUpButton>
-  );
-
-  const toggleVideoButton = (
-    <OakSmallTertiaryInvertedButton
-      iconName="chevron-down"
-      isTrailingIcon
-      onClick={() => toggleVideo(lesson.slug)}
-      $textWrap="nowrap"
-    >
-      {isActiveVideo ? "Hide video" : "Show video"}
-    </OakSmallTertiaryInvertedButton>
-  );
 
   return (
     <OakFlex $flexDirection="row" $flexWrap="nowrap" as="article">
-      {/* Order badge - left column, full height on desktop (per design) */}
       <OakFlex
         $flexShrink={0}
         $minWidth="spacing-64"
@@ -64,8 +32,6 @@ export const EyfsLessonCard = ({ lesson, isSignedIn }: EyfsLessonCardProps) => {
       >
         {lesson.orderInUnit}
       </OakFlex>
-
-      {/* Content area - title, buttons, video */}
       <OakFlex
         $flexGrow={1}
         $minWidth={0}
@@ -76,10 +42,9 @@ export const EyfsLessonCard = ({ lesson, isSignedIn }: EyfsLessonCardProps) => {
         $pv={["spacing-20", "spacing-20", "spacing-0"]}
         $gap={["spacing-16", "spacing-16", "spacing-0"]}
       >
-        {/* Article: title + buttons - order|title same row on mobile (order is sibling above) */}
         <OakFlex
           $flexDirection="row"
-          $flexWrap="wrap"
+          $flexWrap={["wrap", "wrap", "nowrap"]}
           $alignItems={["stretch", "stretch", "center"]}
           $gap={["spacing-16", "spacing-16", "spacing-24"]}
           $minHeight={["auto", "auto", "spacing-80"]}
@@ -111,20 +76,48 @@ export const EyfsLessonCard = ({ lesson, isSignedIn }: EyfsLessonCardProps) => {
 
             {lesson.title}
           </OakFlex>
-          <OakFlex $flexBasis={["100%", "100%", "auto"]}>
-            {downloadButton}
+          <OakFlex $flexBasis={["100%", "100%", "auto"]} $flexShrink={0}>
+            <SignedIn>
+              <OakSmallTertiaryInvertedButton
+                iconName="download"
+                isTrailingIcon
+                $textWrap="nowrap"
+              >
+                Download lesson
+              </OakSmallTertiaryInvertedButton>
+            </SignedIn>
+            <SignedOut>
+              <SignUpButton>
+                <OakSmallTertiaryInvertedButton
+                  iconName="download"
+                  isTrailingIcon
+                  $textWrap="nowrap"
+                >
+                  Sign in to download
+                </OakSmallTertiaryInvertedButton>
+              </SignUpButton>
+            </SignedOut>
           </OakFlex>
           <OakFlex
             $flexBasis={["100%", "100%", "auto"]}
+            $flexShrink={0}
             $justifyContent={["flex-end", "flex-end", null]}
           >
-            {toggleVideoButton}
+            <OakSmallTertiaryInvertedButton
+              iconName={isActiveVideo ? "chevron-up" : "chevron-down"}
+              isTrailingIcon
+              onClick={() => toggleVideo(lesson.slug)}
+              $textWrap="nowrap"
+            >
+              {isActiveVideo ? "Hide video" : "Show video"}
+            </OakSmallTertiaryInvertedButton>
           </OakFlex>
         </OakFlex>
         {isActiveVideo && (
           <OakBox
             $pb="spacing-20"
             $pl={["spacing-8", "spacing-8", "spacing-0"]}
+            data-testid="video"
           >
             <OakBox
               $aspectRatio="16/9"

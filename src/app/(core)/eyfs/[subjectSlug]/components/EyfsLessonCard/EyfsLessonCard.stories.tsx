@@ -6,6 +6,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { EyfsLessonGroupProvider } from "../EyfsLessonGroupProvider";
+import { __setMockAuthState } from "../../../../../../../.storybook/mocks/clerk";
 
 import { EyfsLessonCard } from "./EyfsLessonCard";
 
@@ -74,12 +75,6 @@ const meta: Meta<typeof EyfsLessonCard> = {
       </OakThemeProvider>
     ),
   ],
-  argTypes: {
-    isSignedIn: {
-      control: "boolean",
-      description: "Whether the user is signed in (affects download button)",
-    },
-  },
 };
 
 export default meta;
@@ -87,24 +82,40 @@ export default meta;
 type Story = StoryObj<typeof EyfsLessonCard>;
 
 export const SignedIn: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({ isSignedIn: true });
+      return <Story />;
+    },
+  ],
   args: {
     lesson: mockLessons[0],
-    isSignedIn: true,
   },
 };
 
 export const SignedOut: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({ isSignedIn: false });
+      return <Story />;
+    },
+  ],
   args: {
     lesson: mockLessons[0],
-    isSignedIn: false,
   },
 };
 
 export const MultipleLessons: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({ isSignedIn: true });
+      return <Story />;
+    },
+  ],
   render: () => (
     <OakFlex $flexDirection="column" $gap="spacing-20">
       {mockLessons.map((lesson) => (
-        <EyfsLessonCard key={lesson.slug} lesson={lesson} isSignedIn />
+        <EyfsLessonCard key={lesson.slug} lesson={lesson} />
       ))}
     </OakFlex>
   ),
@@ -119,10 +130,16 @@ export const MultipleLessons: Story = {
 };
 
 export const MultipleLessonsWithLongTitles: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({ isSignedIn: true });
+      return <Story />;
+    },
+  ],
   render: () => (
     <OakFlex $flexDirection="column" $gap="spacing-20">
       {mockLessonsWithLongTitles.map((lesson) => (
-        <EyfsLessonCard key={lesson.slug} lesson={lesson} isSignedIn />
+        <EyfsLessonCard key={lesson.slug} lesson={lesson} />
       ))}
     </OakFlex>
   ),
