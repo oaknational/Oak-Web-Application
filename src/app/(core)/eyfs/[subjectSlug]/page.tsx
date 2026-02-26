@@ -1,9 +1,22 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { OakBox, OakFlex, OakHeading, OakP } from "@/styles/oakThemeApp";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+
+export const metadata: Metadata = {
+  title: "Early years foundation stage lesson resources",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
+};
 
 const InnerEyfsPage = async ({
   params,
