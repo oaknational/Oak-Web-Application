@@ -11,7 +11,6 @@ import {
   OakBulletList,
 } from "@oaknational/oak-components";
 import { intersection } from "lodash";
-import Link from "next/link";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
@@ -241,7 +240,7 @@ const renderListItem = (
       unit.lessonCount -
       (unit.ageRestrictedLessonCount + unit.complexCopyrightLessonCount)
     }
-    as={Link}
+    as="a"
     href={resolveOakHref({
       page: "pupil-lesson-index",
       programmeSlug: unit.programmeSlug,
