@@ -5,10 +5,10 @@ import {
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
-import { EyfsLessonGroupProvider } from "../EyfsLessonGroupProvider";
+import { EYFSLessonGroupProvider } from "../EyfsLessonGroupProvider";
 import { __setMockAuthState } from "../../../../../../../.storybook/mocks/clerk";
 
-import { EyfsLessonCard } from "./EyfsLessonCard";
+import { EYFSLessonCard } from "./EyfsLessonCard";
 
 import type { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
 
@@ -64,12 +64,12 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
   },
 ];
 
-const meta: Meta<typeof EyfsLessonCard> = {
-  component: EyfsLessonCard,
+const meta: Meta<typeof EYFSLessonCard> = {
+  component: EYFSLessonCard,
   decorators: [
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
-        <EyfsLessonGroupProvider>
+        <EYFSLessonGroupProvider>
           <OakFlex
             $flexDirection="column"
             $gap="spacing-24"
@@ -78,7 +78,7 @@ const meta: Meta<typeof EyfsLessonCard> = {
           >
             <Story />
           </OakFlex>
-        </EyfsLessonGroupProvider>
+        </EYFSLessonGroupProvider>
       </OakThemeProvider>
     ),
   ],
@@ -86,7 +86,7 @@ const meta: Meta<typeof EyfsLessonCard> = {
 
 export default meta;
 
-type Story = StoryObj<typeof EyfsLessonCard>;
+type Story = StoryObj<typeof EYFSLessonCard>;
 
 export const SignedIn: Story = {
   decorators: [
@@ -142,7 +142,7 @@ export const MultipleLessons: Story = {
   render: () => (
     <OakFlex $flexDirection="column" $gap="spacing-20">
       {mockLessons.map((lesson) => (
-        <EyfsLessonCard key={lesson.slug} lesson={lesson} />
+        <EYFSLessonCard key={lesson.slug} lesson={lesson} />
       ))}
     </OakFlex>
   ),
@@ -166,7 +166,7 @@ export const MultipleLessonsWithLongTitles: Story = {
   render: () => (
     <OakFlex $flexDirection="column" $gap="spacing-20">
       {mockLessonsWithLongTitles.map((lesson) => (
-        <EyfsLessonCard key={lesson.slug} lesson={lesson} />
+        <EYFSLessonCard key={lesson.slug} lesson={lesson} />
       ))}
     </OakFlex>
   ),
