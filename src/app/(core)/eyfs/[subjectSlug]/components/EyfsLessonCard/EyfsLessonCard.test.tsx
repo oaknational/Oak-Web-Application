@@ -14,7 +14,14 @@ const mockLesson: EYFSLesson = {
   title: "Introduction to counting",
   slug: "intro-counting",
   orderInUnit: 1,
-  video: { muxPlaybackId: null, title: "Counting video" },
+  video: { muxPlaybackId: "playback-123", title: "Counting video" },
+};
+
+const mockLessonWithNullVideo: EYFSLesson = {
+  title: "Lesson without video",
+  slug: "lesson-without-video",
+  orderInUnit: 1,
+  video: { muxPlaybackId: null, title: null },
 };
 
 const renderCard = (lesson: EYFSLesson = mockLesson) =>
@@ -66,6 +73,17 @@ describe("EyfsLessonCard", () => {
       screen.getByRole("button", { name: /Show video/i }),
     ).toBeInTheDocument();
     expect(screen.queryByTestId("video")).not.toBeInTheDocument();
+  });
+
+  it("does not show Show/Hide video button when muxPlaybackId is null", () => {
+    renderCard(mockLessonWithNullVideo);
+    expect(
+      screen.queryByRole("button", { name: /Show video/i }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /Hide video/i }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByText("Lesson without video")).toBeInTheDocument();
   });
 
   it("shows Download lesson when signed in", () => {
