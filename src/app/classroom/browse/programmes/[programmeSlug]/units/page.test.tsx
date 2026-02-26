@@ -20,6 +20,12 @@ const unitsListingViewMock = jest.fn();
 
 jest.mock("lodash", () => jest.requireActual("lodash"));
 
+jest.mock("next/navigation", () => ({
+  notFound: () => {
+    throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+  },
+}));
+
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   UnitsListingView: (props: never) => {
     unitsListingViewMock(props);
@@ -113,10 +119,61 @@ describe("src/app/classroom/browse/programmes/[programmeSlug]/units/page", () =>
       null,
     );
 
-    const output = await Page({
-      params: Promise.resolve({ programmeSlug: "nope" }),
-    });
+    await expect(
+      Page({
+        params: Promise.resolve({ programmeSlug: "nope" }),
+      }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
 
-    expect(output).toEqual(<>404</>);
+  it("returns 404 when all units are filtered out", async () => {
+    const mockData = [
+      {
+        programmeSlug: "maths-h",
+        unitSlug: "algebra-1",
+        programmeFields: {
+          yearSlug: "year-10",
+          subjectSlug: "maths",
+          optionality: false,
+        },
+        supplementaryData: { unitOrder: 1 },
+      },
+    ];
+    (curriculumApi2023.pupilUnitListingQuery as jest.Mock).mockResolvedValue(
+      mockData,
+    );
+    (checkAndExcludeUnitsWithAgeRestrictedLessons as jest.Mock).mockReturnValue(
+      [],
+    );
+
+    await expect(
+      Page({
+        params: Promise.resolve({ programmeSlug: "maths-h" }),
+      }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
+
+  it("returns 404 when selected programme cannot be found", async () => {
+    const mockData = [
+      {
+        programmeSlug: 123,
+        unitSlug: "algebra-1",
+        programmeFields: {
+          yearSlug: "year-10",
+          subjectSlug: "maths",
+          optionality: false,
+        },
+        supplementaryData: { unitOrder: 1 },
+      },
+    ];
+    (curriculumApi2023.pupilUnitListingQuery as jest.Mock).mockResolvedValue(
+      mockData,
+    );
+
+    await expect(
+      Page({
+        params: Promise.resolve({ programmeSlug: "123" }),
+      }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
 });

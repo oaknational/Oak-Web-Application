@@ -1,4 +1,5 @@
 import { LessonListingView } from "@oaknational/google-classroom-addon/ui";
+import { notFound } from "next/navigation";
 import React from "react";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -14,6 +15,10 @@ async function GoogleClassroomLessonsListPage({
     programmeSlug,
     unitSlug,
   });
+  if (!browseData?.length) {
+    notFound();
+  }
+
   const sortByOrderInUnit = (
     a: (typeof browseData)[0],
     b: (typeof browseData)[0],
@@ -25,6 +30,9 @@ async function GoogleClassroomLessonsListPage({
   const orderedBrowseData = [...browseData].sort(sortByOrderInUnit);
   const unitData = orderedBrowseData[0]?.unitData;
   const programmeFields = orderedBrowseData[0]?.programmeFields;
+  if (!unitData || !programmeFields) {
+    notFound();
+  }
 
   return (
     <LessonListingView
