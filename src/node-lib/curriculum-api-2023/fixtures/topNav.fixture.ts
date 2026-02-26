@@ -105,9 +105,24 @@ export const topNavFixture: TopNavProps = {
           href: "/about-us/who-we-are",
         },
         {
-          slug: "about-board",
-          title: "Board",
-          href: "/about-us/board",
+          slug: "about-meet-the-team",
+          title: "Meet the team",
+          href: "/about-us/meet-the-team",
+        },
+        {
+          slug: "about-oaks-curricula",
+          title: "Oak's curricula",
+          href: "/about-us/oaks-curricula",
+        },
+        {
+          slug: "about-get-involved",
+          title: "Get involved",
+          href: "/about-us/get-involved",
+        },
+        {
+          slug: "contact",
+          title: "Contact us",
+          href: "/contact-us",
         },
       ],
     },
