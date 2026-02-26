@@ -62,7 +62,12 @@ const meta: Meta<typeof EyfsLessonCard> = {
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
         <EyfsLessonGroupProvider>
-          <OakFlex $flexDirection="column" $gap="spacing-24" $pa="spacing-24">
+          <OakFlex
+            $flexDirection="column"
+            $gap="spacing-24"
+            $pa="spacing-24"
+            $background="bg-neutral"
+          >
             <Story />
           </OakFlex>
         </EyfsLessonGroupProvider>
@@ -97,7 +102,7 @@ export const SignedOut: Story = {
 
 export const MultipleLessons: Story = {
   render: () => (
-    <OakFlex $flexDirection="column" $gap="spacing-32">
+    <OakFlex $flexDirection="column" $gap="spacing-20">
       {mockLessons.map((lesson) => (
         <EyfsLessonCard key={lesson.slug} lesson={lesson} isSignedIn />
       ))}
@@ -115,7 +120,7 @@ export const MultipleLessons: Story = {
 
 export const MultipleLessonsWithLongTitles: Story = {
   render: () => (
-    <OakFlex $flexDirection="column" $gap="spacing-32">
+    <OakFlex $flexDirection="column" $gap="spacing-20">
       {mockLessonsWithLongTitles.map((lesson) => (
         <EyfsLessonCard key={lesson.slug} lesson={lesson} isSignedIn />
       ))}
