@@ -1,3 +1,5 @@
+import { aboutUsContactInitiated, AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
+import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
 import {
   OakFlex,
   OakHeading,
@@ -6,6 +8,7 @@ import {
   OakIcon,
 } from "@oaknational/oak-components";
 import { ReactNode } from "react";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 type GetInvolvedLinkCardProps = {
   headingTag: OakHeadingProps["tag"];
@@ -18,12 +21,29 @@ type GetInvolvedLinkCardProps = {
   content: string | ReactNode;
 };
 
+const handleClick = (label: string, analyticsUseCase: AnalyticsUseCaseValueType) => {
+  if (label === "Explore our research") return;
+
+  const componentType = label === "Join the research panel" ? "join_research_panel" : "get_in_touch";
+
+  return aboutUsContactInitiated(
+    buildAboutUsContactInitiatedAnalytics(
+      {
+        componentType,
+        analyticsUseCase,
+      }
+    )
+  );
+};
+
 export function GetInvolvedLinkCard({
   headingTag,
   headingTitle,
   buttons,
   content,
 }: Readonly<GetInvolvedLinkCardProps>) {
+  const { analyticsUseCase } = useAnalyticsPageProps();
+
   return (
     <OakFlex $pa={"spacing-24"} $gap={"spacing-32"} $flexDirection={"column"}>
       <OakFlex
@@ -47,6 +67,7 @@ export function GetInvolvedLinkCard({
               href={button.link}
               target={button.external ? "_blank" : undefined}
               rel={button.external ? "noopener noreferrer" : undefined}
+              onClick={() => handleClick(button.text, analyticsUseCase)}
               iconOverride={
                 button.external ? (
                   <OakIcon
