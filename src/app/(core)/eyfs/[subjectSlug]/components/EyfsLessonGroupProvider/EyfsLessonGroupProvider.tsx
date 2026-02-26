@@ -1,3 +1,5 @@
+"use client";
+
 import {
   createContext,
   useCallback,
@@ -8,15 +10,15 @@ import {
   type ReactNode,
 } from "react";
 
-type EyfsLessonGroupContextValue = {
+type EYFSLessonGroupContextValue = {
   activeVideoSlug: string | null;
   toggleVideo: (slug: string) => void;
 };
 
 const eyfsLessonGroupContext =
-  createContext<EyfsLessonGroupContextValue | null>(null);
+  createContext<EYFSLessonGroupContextValue | null>(null);
 
-export const EyfsLessonGroupProvider: FC<{ children: ReactNode }> = ({
+export const EYFSLessonGroupProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [activeVideoSlug, setActiveVideoSlug] = useState<string | null>(null);
@@ -25,7 +27,7 @@ export const EyfsLessonGroupProvider: FC<{ children: ReactNode }> = ({
     setActiveVideoSlug((current) => (current === slug ? null : slug));
   }, []);
 
-  const value = useMemo<EyfsLessonGroupContextValue>(
+  const value = useMemo<EYFSLessonGroupContextValue>(
     () => ({
       activeVideoSlug,
       toggleVideo,
