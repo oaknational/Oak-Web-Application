@@ -1,3 +1,18 @@
+# [1.1008.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1007.0...v1.1008.0) (2026-02-26)
+
+
+### Bug Fixes
+
+* revert change to pupils unit list item component ([e3ea8d3](https://github.com/oaknational/Oak-Web-Application/commit/e3ea8d3f56d384ddbf2fcd8aae54902696e20a99))
+* use Link component for footer links ([23cb099](https://github.com/oaknational/Oak-Web-Application/commit/23cb099c229ddfefe976e171ca2a5396cd7e6892))
+* use Link component for top nav tabs ([4265874](https://github.com/oaknational/Oak-Web-Application/commit/4265874683ffa93c5eb198748b0dcd42deb03d78))
+
+
+### Features
+
+* add metadata for new eyfs page ([b0c144d](https://github.com/oaknational/Oak-Web-Application/commit/b0c144db27992b9576854b3487025b4faafe367f))
+* update pupil journey buttons to use Link component ([c91deed](https://github.com/oaknational/Oak-Web-Application/commit/c91deedfa094ff7ffd0372a42329552411cb0a75))
+
 # [1.1007.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1006.0...v1.1007.0) (2026-02-26)
 
 
