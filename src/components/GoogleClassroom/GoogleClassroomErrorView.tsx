@@ -21,7 +21,7 @@ const ErrorHeading = styled(OakHeading)`
 `;
 
 type Props = {
-  statusCode?: number;
+  readonly statusCode?: number;
 };
 
 export default function GoogleClassroomErrorView({ statusCode }: Props) {

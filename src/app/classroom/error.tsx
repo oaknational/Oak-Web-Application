@@ -1,14 +1,13 @@
-/* istanbul ignore file */
 "use client";
 import { useEffect } from "react";
 
 import errorReporter from "@/common-lib/error-reporter";
 import GoogleClassroomErrorView from "@/components/GoogleClassroom/GoogleClassroomErrorView";
 
-export default function Error({
+export default function ClassroomErrorBoundary({
   error,
 }: {
-  error: Error & { digest?: string };
+  readonly error: Error & { readonly digest?: string };
 }) {
   useEffect(() => {
     errorReporter("classroom::error-boundary")(error);

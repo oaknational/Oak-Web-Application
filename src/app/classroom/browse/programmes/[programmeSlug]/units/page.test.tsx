@@ -152,4 +152,28 @@ describe("src/app/classroom/browse/programmes/[programmeSlug]/units/page", () =>
       }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
+
+  it("returns 404 when selected programme cannot be found", async () => {
+    const mockData = [
+      {
+        programmeSlug: 123,
+        unitSlug: "algebra-1",
+        programmeFields: {
+          yearSlug: "year-10",
+          subjectSlug: "maths",
+          optionality: false,
+        },
+        supplementaryData: { unitOrder: 1 },
+      },
+    ];
+    (curriculumApi2023.pupilUnitListingQuery as jest.Mock).mockResolvedValue(
+      mockData,
+    );
+
+    await expect(
+      Page({
+        params: Promise.resolve({ programmeSlug: "123" }),
+      }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
 });
