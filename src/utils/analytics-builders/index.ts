@@ -3,26 +3,20 @@ import {
   Product,
   EngagementIntent,
   EventVersion,
-  AnalyticsUseCaseValueType,
+  AnalyticsUseCase,
   ComponentTypeValueType,
-  AboutUsContactInitiatedProperties
+  AboutUsContactInitiatedProperties,
 } from "@/browser-lib/avo/Avo";
 
 
-export const buildAboutUsContactInitiatedAnalytics = ({
-  componentType,
-  analyticsUseCase,
-}: {
-  componentType: ComponentTypeValueType;
-  analyticsUseCase: AnalyticsUseCaseValueType;
-}): AboutUsContactInitiatedProperties => (
+export const buildAboutUsContactInitiatedAnalytics = (componentType: ComponentTypeValueType): AboutUsContactInitiatedProperties => (
   {
     platform: Platform.OWA,
     product: Product.ABOUT_US,
     engagementIntent: EngagementIntent.USE,
     componentType,
     eventVersion: EventVersion["2_0_0"],
-    analyticsUseCase,
+    analyticsUseCase: AnalyticsUseCase.TEACHER,
   }
 );
 
