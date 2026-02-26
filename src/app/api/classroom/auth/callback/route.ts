@@ -84,9 +84,13 @@ export async function GET(request: NextRequest) {
     }
 
     const baseUrl = `${request.nextUrl.protocol}//${request.nextUrl.host}`;
-    const onNewsletterSignup = subscribeToNewsletter
-      ? (email: string) => handleNewsletterSignup(email, baseUrl, reportError)
-      : undefined;
+    const onNewsletterSignup = (email: string) =>
+      handleNewsletterSignup(
+        email,
+        baseUrl,
+        reportError,
+        subscribeToNewsletter,
+      );
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
     const { encryptedSession, accessToken } =
