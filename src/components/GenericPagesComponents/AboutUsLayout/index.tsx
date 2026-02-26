@@ -34,7 +34,7 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
       href: resolveOakHref({
         page: "about-who-we-are",
       }),
-      componentType: "about_us_footer" as const
+      componentType: "about_oak" as const
     },
     {
       iconName: "homepage-teacher-map" as const,
