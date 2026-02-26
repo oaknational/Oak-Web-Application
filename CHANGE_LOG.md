@@ -1,3 +1,16 @@
+# [1.1007.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1006.0...v1.1007.0) (2026-02-26)
+
+
+### Bug Fixes
+
+* overflow cropping outline on button focus ([549d0db](https://github.com/oaknational/Oak-Web-Application/commit/549d0dbefd542abc292da926678745354c495abf))
+
+
+### Features
+
+* **LESQ-1811:** apply styling and scroll effect to EYFS navigation ([1bb659f](https://github.com/oaknational/Oak-Web-Application/commit/1bb659fa0eef19fe6d4b9f4794a7acc86534a8a9))
+* swap OakPrimaryButton to be the "active" variant ([3b342be](https://github.com/oaknational/Oak-Web-Application/commit/3b342be05be81c378b88dee781db3905a760f1e9))
+
 # [1.1006.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1005.0...v1.1006.0) (2026-02-26)
 
 
