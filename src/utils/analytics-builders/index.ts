@@ -19,7 +19,7 @@ export const buildAboutUsContactInitiatedAnalytics = ({
   {
     platform: Platform.OWA,
     product: Product.ABOUT_US,
-    engagementIntent: EngagementIntent.USE, // or could it be .EXPLORE ?
+    engagementIntent: EngagementIntent.USE,
     componentType,
     eventVersion: EventVersion["2_0_0"],
     analyticsUseCase,

@@ -1,5 +1,3 @@
-import { aboutUsContactInitiated, AnalyticsUseCaseValueType, ComponentTypeValueType } from "@/browser-lib/avo/Avo";
-import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
 import {
   OakFlex,
   OakHeading,
@@ -7,20 +5,10 @@ import {
   OakSecondaryButton,
   OakIcon,
 } from "@oaknational/oak-components";
+import { aboutUsContactInitiated, AnalyticsUseCaseValueType, ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { ReactNode } from "react";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-
-type GetInvolvedLinkCardProps = {
-  headingTag: OakHeadingProps["tag"];
-  headingTitle: string;
-  buttons: Array<{
-    text: string;
-    link: string;
-    external?: boolean;
-    componentType?: ComponentTypeValueType;
-  }>;
-  content: string | ReactNode;
-};
+import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
 
 const handleClick = (componentType: ComponentTypeValueType | undefined, analyticsUseCase: AnalyticsUseCaseValueType) => {
   if (!componentType) return;
@@ -33,6 +21,18 @@ const handleClick = (componentType: ComponentTypeValueType | undefined, analytic
       }
     )
   );
+};
+
+type GetInvolvedLinkCardProps = {
+  headingTag: OakHeadingProps["tag"];
+  headingTitle: string;
+  buttons: Array<{
+    text: string;
+    link: string;
+    external?: boolean;
+    componentType?: ComponentTypeValueType;
+  }>;
+  content: string | ReactNode;
 };
 
 export function GetInvolvedLinkCard({
