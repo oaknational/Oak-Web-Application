@@ -20,13 +20,10 @@ export type AboutPageProps = {
   topNav: TopNavProps;
 };
 
-export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
-  pageData,
-  topNav,
-}) => {
+const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
   return (
     <Layout
-      seoProps={getSeoProps({ title: "Oak's Curricula" })}
+      seoProps={getSeoProps({ title: "Who We Are" })}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
@@ -54,10 +51,6 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
     </Layout>
   );
 };
-
-function AboutWhoWeAre(props: Readonly<AboutPageProps>) {
-  return <AboutWhoWeAreNew {...props} />;
-}
 
 export const getServerSideProps = (async (context) => {
   const isPreviewMode = context.preview === true;

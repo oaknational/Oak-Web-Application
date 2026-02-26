@@ -4582,7 +4582,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
     />
     <fake-head>
       <title>
-        Oak's Curricula | NEXT_PUBLIC_SEO_APP_NAME
+        Who We Are | NEXT_PUBLIC_SEO_APP_NAME
       </title>
       <meta
         content="index,follow"
@@ -4605,7 +4605,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
         name="twitter:creator"
       />
       <meta
-        content="Oak's Curricula | NEXT_PUBLIC_SEO_APP_NAME"
+        content="Who We Are | NEXT_PUBLIC_SEO_APP_NAME"
         property="og:title"
       />
       <meta
