@@ -11,6 +11,7 @@ import {
   OakP,
 } from "@oaknational/oak-components";
 import { GetStaticProps } from "next";
+import Link from "next/link";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import AppLayout from "@/components/SharedComponents/AppLayout";
@@ -127,7 +128,7 @@ const YearListingPage = ({ topNav }: YearListingPageProps) => {
                       role="listitem"
                     >
                       <OakPupilJourneyYearButton
-                        element="a"
+                        element={Link}
                         phase={year.phase}
                         href={resolveOakHref({
                           page: "pupil-subject-index",
