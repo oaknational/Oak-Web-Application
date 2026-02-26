@@ -98,20 +98,22 @@ export const EyfsLessonCard = ({ lesson }: EyfsLessonCardProps) => {
               </SignUpButton>
             </SignedOut>
           </OakFlex>
-          <OakFlex
-            $flexBasis={["100%", "100%", "auto"]}
-            $flexShrink={0}
-            $justifyContent={["flex-end", "flex-end", null]}
-          >
-            <OakSmallTertiaryInvertedButton
-              iconName={isActiveVideo ? "chevron-up" : "chevron-down"}
-              isTrailingIcon
-              onClick={() => toggleVideo(lesson.slug)}
-              $textWrap="nowrap"
+          {lesson.video.muxPlaybackId && (
+            <OakFlex
+              $flexBasis={["100%", "100%", "auto"]}
+              $flexShrink={0}
+              $justifyContent={["flex-end", "flex-end", null]}
             >
-              {isActiveVideo ? "Hide video" : "Show video"}
-            </OakSmallTertiaryInvertedButton>
-          </OakFlex>
+              <OakSmallTertiaryInvertedButton
+                iconName={isActiveVideo ? "chevron-up" : "chevron-down"}
+                isTrailingIcon
+                onClick={() => toggleVideo(lesson.slug)}
+                $textWrap="nowrap"
+              >
+                {isActiveVideo ? "Hide video" : "Show video"}
+              </OakSmallTertiaryInvertedButton>
+            </OakFlex>
+          )}
         </OakFlex>
         {isActiveVideo && (
           <OakBox
