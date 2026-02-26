@@ -33,6 +33,13 @@ const mockLessons: EYFSLesson[] = [
   },
 ];
 
+const mockLessonWithNullVideo: EYFSLesson = {
+  title: "Lesson without video",
+  slug: "lesson-without-video",
+  orderInUnit: 1,
+  video: { muxPlaybackId: null, title: null },
+};
+
 const mockLessonsWithLongTitles: EYFSLesson[] = [
   {
     title:
@@ -102,6 +109,26 @@ export const SignedOut: Story = {
   ],
   args: {
     lesson: mockLessons[0],
+  },
+};
+
+export const NoVideo: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({ isSignedIn: true });
+      return <Story />;
+    },
+  ],
+  args: {
+    lesson: mockLessonWithNullVideo,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Lesson card when no video is available (muxPlaybackId is null). The Show/Hide video button is not rendered.",
+      },
+    },
   },
 };
 
