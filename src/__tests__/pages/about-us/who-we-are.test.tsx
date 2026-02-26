@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import { GetServerSidePropsContext } from "next";
+import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import AboutWhoWeAre, {
