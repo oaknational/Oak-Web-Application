@@ -14,6 +14,12 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   },
 }));
 
+jest.mock("next/navigation", () => ({
+  notFound: () => {
+    throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+  },
+}));
+
 jest.mock("@/node-lib/curriculum-api-2023");
 
 describe("src/app/classroom/browse/years/[yearSlug]/subjects/page", () => {

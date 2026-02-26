@@ -20,6 +20,12 @@ const unitsListingViewMock = jest.fn();
 
 jest.mock("lodash", () => jest.requireActual("lodash"));
 
+jest.mock("next/navigation", () => ({
+  notFound: () => {
+    throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+  },
+}));
+
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   UnitsListingView: (props: never) => {
     unitsListingViewMock(props);
