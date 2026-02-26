@@ -1,5 +1,3 @@
-import { GraphQLClientRequestHeaders } from "graphql-request/build/cjs/types";
-
 import removeLegacySlugSuffix from "./removeLegacySlugSuffix";
 
 export type VariablesType = {
@@ -8,7 +6,7 @@ export type VariablesType = {
   [key: string]: string | undefined;
 };
 
-export type RequestHeadersType = GraphQLClientRequestHeaders | undefined;
+export type RequestHeadersType = HeadersInit | undefined;
 
 // This function is used in the curriculum api to remove the legacy suffix
 //  from the modified programme slug from the args variables before the request is made.
