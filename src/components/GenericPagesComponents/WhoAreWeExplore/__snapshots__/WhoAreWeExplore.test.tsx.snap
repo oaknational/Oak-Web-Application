@@ -36,10 +36,10 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
             aria-labelledby="react-use-id-test-result"
           >
             <ul
-              class="sc-82c3982-2 ivkQVv"
+              class="sc-90d71fe9-2 gxReob"
             >
               <li
-                class="sc-82c3982-1 bXbjKu"
+                class="sc-90d71fe9-1 jnxAIe"
               >
                 <div
                   class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
@@ -49,7 +49,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                     style="outline: none;"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-82c3982-0 krhsqK egjftS geOgkc"
+                      class="sc-aXZVg sc-gEvEer sc-90d71fe9-0 krhsqK egjftS bSsves"
                       data-testid="who-we-are-explore-item"
                     >
                       <div
@@ -96,7 +96,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 </div>
               </li>
               <li
-                class="sc-82c3982-1 bXbjKu"
+                class="sc-90d71fe9-1 jnxAIe"
               >
                 <div
                   class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
@@ -106,7 +106,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                     style="outline: none;"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-82c3982-0 krhsqK egjftS geOgkc"
+                      class="sc-aXZVg sc-gEvEer sc-90d71fe9-0 krhsqK egjftS bSsves"
                       data-testid="who-we-are-explore-item"
                     >
                       <div
@@ -153,7 +153,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 </div>
               </li>
               <li
-                class="sc-82c3982-1 bXbjKu"
+                class="sc-90d71fe9-1 jnxAIe"
               >
                 <div
                   class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
@@ -163,7 +163,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                     style="outline: none;"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-82c3982-0 krhsqK egjftS geOgkc"
+                      class="sc-aXZVg sc-gEvEer sc-90d71fe9-0 krhsqK egjftS bSsves"
                       data-testid="who-we-are-explore-item"
                     >
                       <div
