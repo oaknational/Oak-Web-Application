@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { EyfsLessonGroupProvider } from "../EyfsLessonGroupProvider";
+import { EYFSLessonGroupProvider } from "../EyfsLessonGroupProvider/EyfsLessonGroupProvider";
 
-import { EyfsLessonCard } from "./EyfsLessonCard";
+import { EYFSLessonCard } from "./EyfsLessonCard";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
@@ -26,9 +26,9 @@ const mockLessonWithNullVideo: EYFSLesson = {
 
 const renderCard = (lesson: EYFSLesson = mockLesson) =>
   renderWithTheme(
-    <EyfsLessonGroupProvider>
-      <EyfsLessonCard lesson={lesson} />
-    </EyfsLessonGroupProvider>,
+    <EYFSLessonGroupProvider>
+      <EYFSLessonCard lesson={lesson} />
+    </EYFSLessonGroupProvider>,
   );
 
 describe("EyfsLessonCard", () => {

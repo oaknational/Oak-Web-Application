@@ -1,3 +1,5 @@
+"use client";
+
 import {
   OakBox,
   OakFlex,
@@ -9,11 +11,11 @@ import { useEyfsLessonGroupContext } from "../EyfsLessonGroupProvider";
 
 import { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
 
-interface EyfsLessonCardProps {
+interface EYFSLessonCardProps {
   lesson: EYFSLesson;
 }
 
-export const EyfsLessonCard = ({ lesson }: EyfsLessonCardProps) => {
+export const EYFSLessonCard = ({ lesson }: EYFSLessonCardProps) => {
   const { activeVideoSlug, toggleVideo } = useEyfsLessonGroupContext();
   const isActiveVideo = activeVideoSlug === lesson.slug;
 

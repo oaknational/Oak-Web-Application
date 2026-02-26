@@ -1,4 +1,4 @@
 export {
-  EyfsLessonGroupProvider,
+  EYFSLessonGroupProvider,
   useEyfsLessonGroupContext,
 } from "./EyfsLessonGroupProvider";
