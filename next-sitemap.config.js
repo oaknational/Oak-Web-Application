@@ -30,10 +30,25 @@ const serversideSitemapUrls = serversideSitemapPaths.map(
   (sitemapPath) => new URL(path.join(sitemapBaseUrl, sitemapPath)).href,
 );
 
+// SSR pages that next-sitemap can't discover at build time
+const additionalAboutUsPaths = [
+  "/about-us/who-we-are",
+  "/about-us/oaks-curricula",
+  "/about-us/meet-the-team",
+  "/about-us/get-involved",
+];
+
 // https://github.com/iamvishnusankar/next-sitemap#readme
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: sitemapBaseUrl,
+  additionalPaths: async () =>
+    additionalAboutUsPaths.map((path) => ({
+      loc: path,
+      changefreq: "daily",
+      priority: 0.7,
+      lastmod: new Date().toISOString(),
+    })),
   // Generate a robots.txt that instructs no crawling (individual pages also have no index set).
   generateRobotsTxt: true,
   robotsTxtOptions: {
