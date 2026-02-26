@@ -31,7 +31,7 @@ const Scroller = styled(OakFlex)`
   position: relative;
 
   margin-inline: -${parseSpacing("spacing-20")};
-  margin-bottom: -${parseSpacing("spacing-8")};
+  margin-block: -${parseSpacing("spacing-8")};
 `;
 
 const ScrollIndicators = styled(OakFlex)`
@@ -75,7 +75,7 @@ export const EYFSNavigation = ({
 }: Readonly<EYFSNavigationProps>) => {
   const params = useParams();
   return (
-    <Scroller as="nav" $whiteSpace="nowrap" $overflowX="auto" $pb="spacing-8">
+    <Scroller as="nav" $whiteSpace="nowrap" $overflowX="auto" $pv="spacing-8">
       <ScrollIndicators>
         <OakFlex $gap="spacing-8">
           {subjectTabs.map((subject) => {
