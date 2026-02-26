@@ -10,6 +10,7 @@ import {
 import styled from "styled-components";
 import { PortableTextBlockComponent } from "@portabletext/react";
 
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { GetInvolvedLinkCard } from "@/components/GenericPagesComponents/GetInvolvedLinkCard";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextJSON } from "@/common-lib/cms-types";
@@ -43,6 +44,7 @@ export type GetInvolvedCollaborateWithUsProps = {
       text: string;
       link: string;
       external?: boolean;
+      componentType?: ComponentTypeValueType;
     }>;
   }>;
 };

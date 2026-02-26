@@ -1,4 +1,4 @@
-import { aboutUsContactInitiated, AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
+import { aboutUsContactInitiated, AnalyticsUseCaseValueType, ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
 import {
   OakFlex,
@@ -17,14 +17,13 @@ type GetInvolvedLinkCardProps = {
     text: string;
     link: string;
     external?: boolean;
+    componentType?: ComponentTypeValueType;
   }>;
   content: string | ReactNode;
 };
 
-const handleClick = (label: string, analyticsUseCase: AnalyticsUseCaseValueType) => {
-  if (label === "Explore our research") return;
-
-  const componentType = label === "Join the research panel" ? "join_research_panel" : "get_in_touch";
+const handleClick = (componentType: ComponentTypeValueType | undefined, analyticsUseCase: AnalyticsUseCaseValueType) => {
+  if (!componentType) return;
 
   return aboutUsContactInitiated(
     buildAboutUsContactInitiatedAnalytics(
@@ -67,7 +66,7 @@ export function GetInvolvedLinkCard({
               href={button.link}
               target={button.external ? "_blank" : undefined}
               rel={button.external ? "noopener noreferrer" : undefined}
-              onClick={() => handleClick(button.text, analyticsUseCase)}
+              onClick={() => handleClick(button.componentType, analyticsUseCase)}
               iconOverride={
                 button.external ? (
                   <OakIcon
