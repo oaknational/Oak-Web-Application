@@ -22,6 +22,7 @@ import {
   TeachersSubNavData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 import { resolveOakHref } from "@/common-lib/urls";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export function MainMenuContent(
   props: Readonly<TeachersSubNavData & { hamburgerMenu: HamburgerMenuHook }>,
@@ -64,6 +65,7 @@ export function MainMenuContent(
           external={true}
           title="AI Experiments"
           iconName="external"
+          aria-label="AI Experiments (this will open in a new tab)"
         />
       </OakFlex>
     </OakUL>
@@ -74,6 +76,7 @@ function SubjectsSection(
   props: Readonly<TeachersBrowse & { hamburgerMenu: HamburgerMenuHook }>,
 ) {
   const { hamburgerMenu, ...browseData } = props;
+  const { track } = useAnalytics();
   return (
     <OakBox>
       <OakFlex
@@ -83,7 +86,7 @@ function SubjectsSection(
       >
         <OakBox $position={"relative"}>
           <OakHeading tag="h2" $font={"heading-6"}>
-            {browseData.phaseTitle}
+            {browseData.title}
           </OakHeading>
           <OakSvg
             $position={"absolute"}
@@ -95,12 +98,25 @@ function SubjectsSection(
         </OakBox>
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        {browseData.keystages.map((keystage) => (
+        {browseData.children.map((keystage) => (
           <MainMenuButton
-            key={keystage.slug + browseData.phaseSlug}
+            key={keystage.slug + browseData.slug}
             title={keystage.title as SubmenuState}
             description={keystage.description}
             hamburgerMenu={hamburgerMenu}
+            track={() => {
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "topnav-browse-button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Key stage filter",
+                filterValue: keystage.slug,
+                activeFilters: {},
+              });
+            }}
           />
         ))}
       </OakFlex>
@@ -112,14 +128,17 @@ function MainMenuButton({
   title,
   description,
   hamburgerMenu,
-}: {
-  readonly title: SubmenuState;
-  readonly hamburgerMenu: HamburgerMenuHook;
-  readonly description?: string;
-}) {
+  track,
+}: Readonly<{
+  title: SubmenuState;
+  hamburgerMenu: HamburgerMenuHook;
+  description?: string;
+  track?: () => void;
+}>) {
   const { setSubmenuOpen } = hamburgerMenu;
   const isEYFS = title === "EYFS";
   const shouldShowDescription = !isEYFS && description;
+
   return (
     <OakBox $width={"100%"}>
       <OakLI $listStyle={"none"}>
@@ -131,6 +150,7 @@ function MainMenuButton({
           width={"100%"}
           id={title + "button"}
           onClick={() => {
+            track?.();
             setSubmenuOpen(title);
           }}
         >
@@ -163,6 +183,9 @@ function MainMenuLink({
       iconName={iconName}
       href={href}
       target={external ? "_blank" : "_self"}
+      aria-label={
+        external ? `${title} (this will open in a new tab)` : undefined
+      }
       onClick={handleCloseHamburger}
     >
       {title}

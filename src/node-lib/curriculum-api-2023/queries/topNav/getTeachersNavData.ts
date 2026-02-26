@@ -1,5 +1,7 @@
 import { TopNavResponse, TeachersBrowse } from "./topNav.schema";
 
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+
 export const getTeachersNavData = (
   teachersData: TopNavResponse,
   phaseSlug: "primary" | "secondary",
@@ -7,11 +9,11 @@ export const getTeachersNavData = (
   const keystagesForPhase = getKeystages(teachersData, phaseSlug);
 
   return {
-    phaseSlug: phaseSlug,
-    phaseTitle: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as
+    slug: phaseSlug,
+    title: `${phaseSlug[0]?.toUpperCase()}${phaseSlug.slice(1)}` as
       | "Primary"
       | "Secondary",
-    keystages:
+    children:
       phaseSlug === "primary"
         ? keystagesForPhase.concat(getKeystages(teachersData, "foundation"))
         : keystagesForPhase,
@@ -40,7 +42,7 @@ const getKeystages = (
   const withSubjects = byKeystage.map((ks) => {
     return {
       ...ks,
-      subjects: byPhase
+      children: byPhase
         .filter((p) => p.programme_fields.keystage_slug === ks.slug)
         .filter(
           (p, i, a) =>
@@ -52,22 +54,23 @@ const getKeystages = (
                   p.programme_fields.pathway_slug,
             ) === i,
         )
-        // Filter out edge case where only one pathway and no PFs exist for a subject at ks4
+        // remove legacy programmes where a non-legacy counterpart exists
         .filter((p, _, a) => {
-          if (p.programme_fields.pathway_slug) {
-            const otherSlug =
-              p.programme_fields.pathway_slug === "core" ? "gcse" : "core";
-            const otherPathwayProgramme = a.find(
-              (k) =>
-                k.programme_fields.pathway_slug === otherSlug &&
-                p.programme_fields.subject_slug ===
-                  k.programme_fields.subject_slug,
+          if (isSlugLegacy(p.programme_slug)) {
+            const legacySubject = p.programme_fields.subject_slug;
+            const legacyKeystage = p.programme_fields.keystage_slug;
+            const nonLegacyProgramme = a.find(
+              (p) =>
+                p.programme_fields.subject_slug === legacySubject &&
+                p.programme_fields.keystage_slug === legacyKeystage &&
+                !isSlugLegacy(p.programme_slug),
             );
 
-            return !!otherPathwayProgramme;
-          } else {
-            return true;
+            if (nonLegacyProgramme) {
+              return false;
+            }
           }
+          return true;
         })
         .map((p) => {
           const programmeCount = getProgrammeCount({
@@ -87,7 +90,7 @@ const getKeystages = (
             subjectDisplayName + (pathwayTitle ? ` (${pathwayTitle})` : "");
 
           return {
-            subjectSlug: p.programme_fields.subject_slug,
+            slug: p.programme_fields.subject_slug,
             title,
             nonCurriculum: Boolean(p.features.non_curriculum),
             programmeSlug: programmeCount > 1 ? null : p.programme_slug,

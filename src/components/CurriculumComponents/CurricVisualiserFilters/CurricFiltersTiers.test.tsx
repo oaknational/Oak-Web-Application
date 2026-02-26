@@ -9,7 +9,7 @@ const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricFiltersTiers", () => {
   it("renders correctly ks4", () => {
-    const { getAllByRole, getByRole } = render(
+    const { getAllByRole, getByText } = render(
       <CurricFiltersTiers
         filters={{
           childSubjects: [],
@@ -18,21 +18,23 @@ describe("CurricFiltersTiers", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={() => {}}
         data={ks4Setup}
+        context={"curriculum-visualiser"}
       />,
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(2);
-    expect(getByRole("heading")).toHaveTextContent("Learning tier (KS4)");
+    expect(getByText("Learning tier (KS4)")).toBeInTheDocument();
     expect(elements[0]!.value).toEqual("foundation");
     expect(elements[1]!.value).toEqual("higher");
   });
 
   it("renders correctly ks3&4", () => {
-    const { getAllByRole, getByRole } = render(
+    const { getAllByRole, getByText } = render(
       <CurricFiltersTiers
         filters={{
           childSubjects: [],
@@ -41,15 +43,17 @@ describe("CurricFiltersTiers", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={() => {}}
         data={ks3and4Setup}
+        context={"curriculum-visualiser"}
       />,
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(2);
-    expect(getByRole("heading")).toHaveTextContent("Learning tier");
+    expect(getByText("Learning tier")).toBeInTheDocument();
     expect(elements[0]!.value).toEqual("foundation");
     expect(elements[1]!.value).toEqual("higher");
   });
@@ -64,9 +68,11 @@ describe("CurricFiltersTiers", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={() => {}}
         data={ks4Setup}
+        context={"curriculum-visualiser"}
       />,
     );
 
@@ -87,9 +93,11 @@ describe("CurricFiltersTiers", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={onChangeFilters}
         data={ks4Setup}
+        context={"curriculum-visualiser"}
       />,
     );
 
@@ -105,6 +113,7 @@ describe("CurricFiltersTiers", () => {
         tiers: ["foundation"],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "learning_tier_button",
     );
@@ -117,6 +126,7 @@ describe("CurricFiltersTiers", () => {
         tiers: ["higher"],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "learning_tier_button",
     );

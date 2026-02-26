@@ -9,12 +9,16 @@ export async function handleNewsletterSignup(
   email: string,
   baseUrl: string,
   reportError: ErrorReporter,
+  subscribeToMailingList: boolean,
 ) {
   const submissionUrl = process.env.NEXT_PUBLIC_HUBSPOT_FORM_SUBMISSION_URL;
   const portalId = process.env.HUBSPOT_GOOGLE_CLASSROOM_PORTAL_ID;
   const formId = process.env.HUBSPOT_GOOGLE_CLASSROOM_FORM_ID;
 
   if (!submissionUrl || !portalId || !formId) {
+    console.error(
+      "Missing HubSpot configuration for newsletter signup, skipping submission",
+    );
     reportError(
       new Error("Missing HubSpot configuration for newsletter signup"),
       { severity: "warning" },
@@ -27,7 +31,14 @@ export async function handleNewsletterSignup(
     fields: [
       { name: "email", value: email },
       { name: "user_type", value: "Teacher" },
-      { name: "email_consent_on_gc_addon_account_creation", value: "true" },
+      ...(subscribeToMailingList
+        ? [
+            {
+              name: "email_consent_on_gc_addon_account_creation",
+              value: "true",
+            },
+          ]
+        : []),
     ],
     context: {
       pageUri: `${baseUrl}/classroom/auth/callback`,

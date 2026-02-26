@@ -58,7 +58,6 @@ import {
   checkIfResourceHasLegacyCopyright,
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
-import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips, {
   TrackingCallbackProps,
 } from "@/components/TeacherComponents/LessonOverviewMediaClips";
@@ -69,6 +68,11 @@ import { RestrictedContentPrompt } from "@/components/TeacherComponents/Restrict
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
+import {
+  getDoesSubjectHaveNewUnits,
+  TakedownBanner,
+} from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -433,10 +437,17 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
                 <OakBox $pb={"spacing-16"}>
-                  <ExpiringBanner
-                    isOpen={actions?.displayExpiringBanner}
-                    isResourcesMessage={true}
+                  <TakedownBanner
+                    isExpiring={actions?.displayExpiringBanner}
+                    isLegacy={isSlugLegacy(programmeSlug ?? "") || isSpecialist}
+                    hasNewUnits={
+                      getDoesSubjectHaveNewUnits(subjectSlug ?? "") &&
+                      !isSpecialist
+                    }
+                    subjectSlug={subjectSlug ?? ""}
+                    userType="teacher"
                     onwardHref={unitListingHref}
+                    isSingle
                   />
                 </OakBox>
 

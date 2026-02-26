@@ -7,34 +7,30 @@ exports[`CurriculumPartners renders correctly 1`] = `
       class="sc-aXZVg sc-gEvEer hdseiA daEtut"
     >
       <div
-        class="sc-aXZVg sc-gEvEer hdseiA daEtut"
+        class="sc-aXZVg sc-gEvEer hdseiA gWBhKY"
       >
-        <div
-          class="sc-aXZVg sc-gEvEer hdseiA gWBhKY"
+        <h3
+          class="sc-eldPxv dZzbTI"
         >
-          <h3
-            class="sc-eldPxv dZzbTI"
-          >
-            TEST_TITLE
-          </h3>
-          <p
-            class="sc-ikkxIA cXRvuH"
-          >
-            TEST_TEXT
-          </p>
-        </div>
+          TEST_TITLE
+        </h3>
+        <p
+          class="sc-ikkxIA cXRvuH"
+        >
+          TEST_TEXT
+        </p>
       </div>
       <div
         class="sc-aXZVg hdseiA"
       >
-        <div
-          class="sc-aXZVg sc-tagGq hdseiA hDvzcX"
+        <ul
+          class="sc-aXZVg sc-tagGq NyjaL hDvzcX"
         >
-          <div
-            class="sc-aXZVg fDMDJZ"
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
-            <div
-              class="sc-aXZVg cnjaQN"
+            <span
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 0"
@@ -47,13 +43,13 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 srcset="/_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%230&w=640&q=75 640w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%230&w=750&q=75 750w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%230&w=828&q=75 828w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%230&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%230&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%230&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%230&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%230&w=3840&q=75 3840w"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+            </span>
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
-            <div
-              class="sc-aXZVg cnjaQN"
+            <span
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 1"
@@ -66,13 +62,13 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 srcset="/_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%231&w=640&q=75 640w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%231&w=750&q=75 750w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%231&w=828&q=75 828w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%231&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%231&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%231&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%231&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%231&w=3840&q=75 3840w"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+            </span>
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
-            <div
-              class="sc-aXZVg cnjaQN"
+            <span
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 2"
@@ -85,13 +81,13 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 srcset="/_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%232&w=640&q=75 640w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%232&w=750&q=75 750w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%232&w=828&q=75 828w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%232&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%232&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%232&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%232&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%232&w=3840&q=75 3840w"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+            </span>
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
-            <div
-              class="sc-aXZVg cnjaQN"
+            <span
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 3"
@@ -104,13 +100,13 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 srcset="/_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%233&w=640&q=75 640w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%233&w=750&q=75 750w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%233&w=828&q=75 828w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%233&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%233&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%233&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%233&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%233&w=3840&q=75 3840w"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+            </span>
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
-            <div
-              class="sc-aXZVg cnjaQN"
+            <span
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 4"
@@ -123,13 +119,13 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 srcset="/_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%234&w=640&q=75 640w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%234&w=750&q=75 750w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%234&w=828&q=75 828w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%234&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%234&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%234&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%234&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%234&w=3840&q=75 3840w"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+            </span>
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
-            <div
-              class="sc-aXZVg cnjaQN"
+            <span
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 5"
@@ -142,13 +138,13 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 srcset="/_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%235&w=640&q=75 640w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%235&w=750&q=75 750w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%235&w=828&q=75 828w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%235&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%235&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%235&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%235&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%235&w=3840&q=75 3840w"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+            </span>
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
-            <div
-              class="sc-aXZVg cnjaQN"
+            <span
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 6"
@@ -161,13 +157,13 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 srcset="/_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%236&w=640&q=75 640w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%236&w=750&q=75 750w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%236&w=828&q=75 828w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%236&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%236&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%236&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%236&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%236&w=3840&q=75 3840w"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+            </span>
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
-            <div
-              class="sc-aXZVg cnjaQN"
+            <span
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 7"
@@ -180,13 +176,13 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 srcset="/_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%237&w=640&q=75 640w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%237&w=750&q=75 750w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%237&w=828&q=75 828w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%237&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%237&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%237&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%237&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%237&w=3840&q=75 3840w"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+            </span>
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
-            <div
-              class="sc-aXZVg cnjaQN"
+            <span
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 8"
@@ -199,13 +195,13 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 srcset="/_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%238&w=640&q=75 640w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%238&w=750&q=75 750w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%238&w=828&q=75 828w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%238&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%238&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%238&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%238&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%238&w=3840&q=75 3840w"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
-          </div>
-          <div
-            class="sc-aXZVg fDMDJZ"
+            </span>
+          </li>
+          <li
+            class="sc-fPXMVe jJBTEh"
           >
-            <div
-              class="sc-aXZVg cnjaQN"
+            <span
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 9"
@@ -218,9 +214,9 @@ exports[`CurriculumPartners renders correctly 1`] = `
                 srcset="/_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%239&w=640&q=75 640w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%239&w=750&q=75 750w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%239&w=828&q=75 828w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%239&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%239&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%239&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%239&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Foak-national-academy-logo-512.png%239&w=3840&q=75 3840w"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
-          </div>
-        </div>
+            </span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

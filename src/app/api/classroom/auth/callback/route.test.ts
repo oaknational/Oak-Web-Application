@@ -123,7 +123,7 @@ describe("GET /api/classroom/auth/callback", () => {
     expect(mockHandleGoogleSignInCallback).toHaveBeenCalledTimes(1);
     expect(mockHandleGoogleSignInCallback).toHaveBeenCalledWith(
       mockCode,
-      undefined,
+      expect.any(Function),
     );
 
     expect(mockedRedirect).toHaveBeenCalledTimes(1);

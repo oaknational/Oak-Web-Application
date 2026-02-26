@@ -1,5 +1,8 @@
 import { groupBy } from "lodash";
-import { UnitsListingView } from "@oaknational/google-classroom-addon/ui";
+import {
+  UnitsListingView,
+  UnitCards,
+} from "@oaknational/google-classroom-addon/ui";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -8,6 +11,7 @@ import { extractBaseSlug } from "@/pages-helpers/pupil";
 import { checkAndExcludeUnitsWithAgeRestrictedLessons } from "@/pages-helpers/pupil/units-page/units-page-helper";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/GoogleClassroomSubjectIconHeader";
+import { UnitsContainer } from "@/components/TeacherComponents/UnitsContainer";
 
 async function GoogleClassroomUnitsListingPage({
   params,
@@ -60,21 +64,36 @@ async function GoogleClassroomUnitsListingPage({
 
   return (
     <UnitsListingView
-      programmeSlug={programmeSlug}
       yearSlug={programmeFields.yearSlug}
       programmeUnits={optionalityUnits}
       programmeData={programmeFields}
-      unitsLessonListUrlTemplate={
-        "/classroom/browse/programmes/:programmeSlug/units/:unitSlug/lessons"
-      }
       subjectsUrlTemplate={"/classroom/browse/years/:yearSlug/subjects"}
       headerLeftSlot={
         <GoogleClassroomSubjectIconHeader
+          key={programmeFields.subjectSlug}
           subjectSlug={programmeFields.subjectSlug}
           pageType={"unit"}
         />
       }
-    />
+    >
+      <UnitsContainer
+        isLegacy={false}
+        showHeader={false}
+        phase={programmeFields.phase}
+        subject={programmeFields.subject ?? ""}
+        unitCards={[
+          <UnitCards
+            key={programmeSlug}
+            units={optionalityUnits}
+            programmeSlug={programmeSlug}
+            unitsLessonListUrlTemplate={
+              "/classroom/browse/programmes/:programmeSlug/units/:unitSlug/lessons"
+            }
+          />,
+        ]}
+        curriculumHref={null}
+      />
+    </UnitsListingView>
   );
 }
 

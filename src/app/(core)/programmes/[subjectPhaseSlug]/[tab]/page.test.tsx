@@ -28,7 +28,7 @@ jest.mock("next/navigation", () => {
 
 const featureFlagMock = jest.fn().mockResolvedValue(false);
 jest.mock("@/utils/featureFlags", () => ({
-  useFeatureFlag: () => featureFlagMock(),
+  getFeatureFlagValue: () => featureFlagMock(),
 }));
 
 // Jest is not setup to test RSCs, so it does not load the server build
@@ -75,6 +75,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
       ks4_options: [],
     },
   ]),
+  refreshedMVTime: jest.fn().mockResolvedValue(0),
 }));
 
 jest.mock("@/browser-lib/getBrowserConfig", () => ({

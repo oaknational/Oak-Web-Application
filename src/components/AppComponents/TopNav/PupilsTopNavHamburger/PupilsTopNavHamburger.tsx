@@ -75,6 +75,7 @@ function MainMenuContent(
           iconName="external"
           onClick={props.onClick}
           href={resolveOakHref({ page: "help" })}
+          aria-label="Help using Oak (this will open in a new tab)"
         >
           Help using Oak
         </OakLeftAlignedButton>
@@ -85,9 +86,9 @@ function MainMenuContent(
 
 function YearSection(
   props: Readonly<{
-    phaseTitle: "Primary" | "Secondary";
-    phaseSlug: "primary" | "secondary";
-    years: Array<{ title: string; slug: string }>;
+    title: "Primary" | "Secondary";
+    slug: "primary" | "secondary";
+    children: Array<{ title: string; slug: string }>;
     onClick: () => void;
   }>,
 ) {
@@ -100,7 +101,7 @@ function YearSection(
       >
         <OakBox $position={"relative"}>
           <OakHeading tag="h2" $font={"heading-6"}>
-            {props.phaseTitle}
+            {props.title}
           </OakHeading>
           <OakSvg
             $position={"absolute"}
@@ -117,10 +118,10 @@ function YearSection(
         $gap={"spacing-16"}
         $width={"100%"}
       >
-        {props.years.map((year) => (
+        {props.children.map((year) => (
           <OakLI key={year.slug} $listStyle={"none"}>
             <OakPupilJourneyYearButton
-              phase={props.phaseSlug}
+              phase={props.slug}
               element={Link}
               onClick={props.onClick}
               href={resolveOakHref({

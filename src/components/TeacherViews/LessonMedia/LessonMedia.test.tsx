@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { within } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
@@ -26,10 +25,6 @@ const lesson = {
 const mediaClips = lesson.mediaClips;
 const firstMediaClip = mediaClips ? mediaClips["intro"] : null;
 
-jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
-}));
-
 const mockTrackContentBlock = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -47,12 +42,6 @@ jest.mock(
 );
 
 window.history.replaceState = jest.fn();
-
-const mockRouter = {
-  query: {},
-  replace: jest.fn(),
-  pathname: "/test-path",
-};
 
 const onPlay = jest.fn();
 
@@ -99,7 +88,6 @@ describe("LessonMedia view", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetAllMocks();
-    (useRouter as jest.Mock).mockReturnValue(mockRouter);
   });
 
   jest.mock(

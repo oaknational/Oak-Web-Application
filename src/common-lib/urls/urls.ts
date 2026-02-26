@@ -292,6 +292,14 @@ type AboutUsLeadershipLinkProps = { page: "about-leadership" };
 type AboutUsPartnersLinkProps = { page: "about-partners" };
 type AboutUsWorkWithUsLinkProps = { page: "about-work-with-us" };
 
+type AboutUsMeetTheTeamLinkProps = { page: "about-meet-the-team" };
+type AboutUsMeetTheTeamBioLinkProps = {
+  page: "about-meet-the-team-bio";
+  slug: string;
+};
+type AboutUsGetInvolvedLinkProps = { page: "about-get-involved" };
+type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
+
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
 type HelpLinkProps = { page: "help" };
@@ -369,6 +377,12 @@ type MyLibraryProps = {
   page: "my-library";
 };
 
+type ProgrammePageProps = {
+  page: "teacher-programme";
+  subjectPhaseSlug: string;
+  tab: string;
+};
+
 type OnlyPageRequired<T> = T extends { page: string }
   ? { page: T["page"] } extends T
     ? T
@@ -426,6 +440,10 @@ export type OakLinkProps =
   | AboutUsLeadershipLinkProps
   | AboutUsPartnersLinkProps
   | AboutUsWorkWithUsLinkProps
+  | AboutUsMeetTheTeamLinkProps
+  | AboutUsMeetTheTeamBioLinkProps
+  | AboutUsGetInvolvedLinkProps
+  | AboutUsOaksCurriculaLinkProps
   | CareersLinkProps
   | ContactUsLinkProps
   | HomeLinkProps
@@ -445,18 +463,17 @@ export type OakLinkProps =
   | OnboardingRoleSelectionLinkProps
   | OnboardingUseOfOak
   | PupilLessonCanonical
-  | MyLibraryProps;
+  | MyLibraryProps
+  | ProgrammePageProps;
 
-const EXTERNAL_PAGE_NAMES = [
-  "[external] Careers",
-  "[external] Help",
-  "[external] Classroom",
-  "[external] Labs",
-  "[external] Our teachers",
-  "[external] Teacher hub",
-  "[external] Our curriculum",
-] as const;
-type ExternalPageName = (typeof EXTERNAL_PAGE_NAMES)[number];
+export type ExternalPageName =
+  | "[external] Careers"
+  | "[external] Help"
+  | "[external] Classroom"
+  | "[external] Labs"
+  | "[external] Our teachers"
+  | "[external] Teacher hub"
+  | "[external] Our curriculum";
 
 type OakPages = {
   [K in OakLinkProps as K["page"]]: OakPageConfig<K>;
@@ -605,6 +622,30 @@ export const OAK_PAGES: {
     analyticsPageName: "About Us: Who We Are",
     configType: "internal",
     pageType: "about-who-we-are",
+  }),
+  "about-meet-the-team": createOakPageConfig({
+    pathPattern: "/about-us/meet-the-team",
+    analyticsPageName: "About Us: Meet the team",
+    configType: "internal",
+    pageType: "about-meet-the-team",
+  }),
+  "about-meet-the-team-bio": createOakPageConfig({
+    pathPattern: "/about-us/meet-the-team/:slug",
+    analyticsPageName: "About Us: Meet the team Bio",
+    configType: "internal",
+    pageType: "about-meet-the-team-bio",
+  }),
+  "about-get-involved": createOakPageConfig({
+    pathPattern: "/about-us/get-involved",
+    analyticsPageName: "About Us: Get Involved",
+    configType: "internal",
+    pageType: "about-get-involved",
+  }),
+  "about-oaks-curricula": createOakPageConfig({
+    pathPattern: "/about-us/oaks-curricula",
+    analyticsPageName: "About Us: Oak's curricula",
+    configType: "internal",
+    pageType: "about-oaks-curricula",
   }),
   "about-leadership": createOakPageConfig({
     pathPattern: "/about-us/leadership",
@@ -999,6 +1040,12 @@ export const OAK_PAGES: {
     analyticsPageName: "My library",
     configType: "internal",
     pageType: "my-library",
+  }),
+  "teacher-programme": createOakPageConfig({
+    pathPattern: "/programmes/:subjectPhaseSlug/:tab",
+    analyticsPageName: "Curriculum Unit Sequence",
+    configType: "internal",
+    pageType: "teacher-programme",
   }),
 };
 

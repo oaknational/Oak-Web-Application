@@ -11,6 +11,7 @@ describe("CurricFiltersYears", () => {
   it("renders correctly (non-pathways)", () => {
     const { getAllByRole } = render(
       <CurricFiltersYears
+        context="curriculum-visualiser"
         filters={{
           childSubjects: [],
           subjectCategories: [],
@@ -18,6 +19,7 @@ describe("CurricFiltersYears", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={() => {}}
         data={basicSetup}
@@ -40,6 +42,7 @@ describe("CurricFiltersYears", () => {
   it("renders correctly (pathways)", () => {
     const { getAllByRole } = render(
       <CurricFiltersYears
+        context="curriculum-visualiser"
         filters={{
           childSubjects: [],
           subjectCategories: [],
@@ -47,6 +50,7 @@ describe("CurricFiltersYears", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={() => {}}
         data={basicSetup}
@@ -75,6 +79,7 @@ describe("CurricFiltersYears", () => {
     const onChangeFilters = jest.fn();
     const { getAllByRole, rerender } = render(
       <CurricFiltersYears
+        context="curriculum-visualiser"
         filters={{
           childSubjects: [],
           subjectCategories: [],
@@ -82,6 +87,7 @@ describe("CurricFiltersYears", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={onChangeFilters}
         data={basicSetup}
@@ -107,6 +113,7 @@ describe("CurricFiltersYears", () => {
         tiers: [],
         years: ["10"],
         pathways: [],
+        keystages: [],
       },
       "year_group_button",
     );
@@ -121,6 +128,7 @@ describe("CurricFiltersYears", () => {
         tiers: [],
         years: ["11"],
         pathways: [],
+        keystages: [],
       },
       "year_group_button",
     );
@@ -128,6 +136,7 @@ describe("CurricFiltersYears", () => {
     // Re-render because "all" will be selected by default
     rerender(
       <CurricFiltersYears
+        context="curriculum-visualiser"
         filters={{
           childSubjects: [],
           subjectCategories: [],
@@ -135,6 +144,7 @@ describe("CurricFiltersYears", () => {
           years: ["10"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={onChangeFilters}
         data={basicSetup}
@@ -157,6 +167,7 @@ describe("CurricFiltersYears", () => {
         tiers: [],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "year_group_button",
     );
@@ -166,6 +177,7 @@ describe("CurricFiltersYears", () => {
     const onChangeFilters = jest.fn();
     const { getAllByRole, rerender } = render(
       <CurricFiltersYears
+        context="curriculum-visualiser"
         filters={{
           childSubjects: [],
           subjectCategories: [],
@@ -173,6 +185,7 @@ describe("CurricFiltersYears", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={onChangeFilters}
         data={basicSetup}
@@ -201,6 +214,7 @@ describe("CurricFiltersYears", () => {
         tiers: [],
         years: ["10"],
         pathways: ["core"],
+        keystages: [],
       },
       "year_group_button",
     );
@@ -215,6 +229,7 @@ describe("CurricFiltersYears", () => {
         tiers: [],
         years: ["11"],
         pathways: ["core"],
+        keystages: [],
       },
       "year_group_button",
     );
@@ -229,6 +244,7 @@ describe("CurricFiltersYears", () => {
         tiers: [],
         years: ["10"],
         pathways: ["non_core"],
+        keystages: [],
       },
       "year_group_button",
     );
@@ -243,6 +259,7 @@ describe("CurricFiltersYears", () => {
         tiers: [],
         years: ["11"],
         pathways: ["non_core"],
+        keystages: [],
       },
       "year_group_button",
     );
@@ -250,6 +267,7 @@ describe("CurricFiltersYears", () => {
     // Re-render because "all" will be selected by default
     rerender(
       <CurricFiltersYears
+        context="curriculum-visualiser"
         filters={{
           childSubjects: [],
           subjectCategories: [],
@@ -257,6 +275,7 @@ describe("CurricFiltersYears", () => {
           years: ["10"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={onChangeFilters}
         data={basicSetup}
@@ -279,6 +298,7 @@ describe("CurricFiltersYears", () => {
         tiers: [],
         years: ["10", "11"],
         pathways: [],
+        keystages: [],
       },
       "year_group_button",
     );

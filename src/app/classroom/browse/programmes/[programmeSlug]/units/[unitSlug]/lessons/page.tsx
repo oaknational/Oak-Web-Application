@@ -46,6 +46,7 @@ async function GoogleClassroomLessonsListPage({
       programmeUrlTemplate={"/classroom/browse/programmes/:programmeSlug/units"}
       headerLeftSlot={
         <GoogleClassroomSubjectIconHeader
+          key={programmeFields?.subjectSlug}
           subjectSlug={programmeFields?.subjectSlug ?? null}
           pageType={"lesson"}
         />

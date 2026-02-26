@@ -3,15 +3,15 @@ import { screen } from "@testing-library/react";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 import CMSClient from "../../../node-lib/cms";
-import AboutUsLeadership, {
-  getStaticProps,
-} from "../../../pages/about-us/leadership";
 import {
   mockImageAsset,
   mockSeoResult,
   portableTextFromString,
 } from "../../__helpers__/cms";
 import { AboutLeadershipPage } from "../../../common-lib/cms-types";
+import AboutUsLeadership, {
+  getStaticProps,
+} from "../../../pages/about-us/leadership";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
 

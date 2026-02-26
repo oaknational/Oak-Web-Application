@@ -9,8 +9,6 @@ import { useUser } from "@clerk/nextjs";
 import {
   OakGrid,
   OakGridArea,
-  OakThemeProvider,
-  oakDefaultTheme,
   OakMaxWidth,
   OakInlineRegistrationBanner,
   OakHeading,
@@ -44,7 +42,6 @@ import PaginationHead from "@/components/SharedComponents/Pagination/PaginationH
 import { isLessonListItem } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
 import { useShare } from "@/pages-helpers/teacher/share/useShare";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
-import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareTypes";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -56,6 +53,10 @@ import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import Banners from "@/components/SharedComponents/Banners";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import {
+  getDoesSubjectHaveNewUnits,
+  TakedownBanner,
+} from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -241,156 +242,156 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         isFirstPage={isFirstPage}
         isLastPage={isLastPage}
       />
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Banners />
-        <HeaderListing
-          breadcrumbs={[
-            {
-              oakLinkProps: {
-                page: "home",
-              },
-              label: "Home",
+      <Banners />
+      <HeaderListing
+        breadcrumbs={[
+          {
+            oakLinkProps: {
+              page: "home",
             },
-            {
-              oakLinkProps: {
-                page: "subject-index",
-                keyStageSlug,
-              },
-              label: keyStageTitle,
-            },
-            {
-              oakLinkProps: {
-                page: "unit-index",
-                programmeSlug:
-                  subjectSlug === "maths" && !isSlugEYFS(programmeSlug)
-                    ? removeLegacySlugSuffix(programmeSlug)
-                    : programmeSlug,
-              },
-              label: subjectTitle,
-            },
-
-            {
-              oakLinkProps: {
-                page: "lesson-index",
-                unitSlug,
-                programmeSlug: programmeSlug,
-              },
-
-              label: unitTitle,
-              disabled: true,
-            },
-          ]}
-          background={"bg-decorative4-very-subdued"}
-          subjectIconBackgroundColor={"bg-decorative4-main"}
-          title={unitTitle}
-          programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
-          isNew={isNew}
-          hasCurriculumDownload={isSlugLegacy(programmeSlug)}
-          {...curriculumData}
-          shareButton={teacherShareButton}
-          unitDownloadFileId={`${getSlugifiedTitle(unitTitle)}-${unitvariantId}`}
-          onUnitDownloadSuccess={() =>
-            track.unitDownloadInitiated({
-              platform: "owa",
-              product: "teacher lesson resources",
-              engagementIntent: "use",
-              componentType: "unit_download_button",
-              eventVersion: "2.0.0",
-              analyticsUseCase: "Teacher",
-              unitName: unitTitle,
-              unitSlug,
+            label: "Home",
+          },
+          {
+            oakLinkProps: {
+              page: "subject-index",
               keyStageSlug,
-              keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-              subjectSlug,
-              subjectTitle,
-            })
-          }
-          showRiskAssessmentBanner={showRiskAssessmentBanner}
-          isIncompleteUnit={unpublishedLessonCount > 0}
-          isGeorestrictedUnit={containsGeorestrictedLessons}
-          isLoginRequiredUnit={containsLoginRequiredLessons}
-          isUnitSaved={isUnitSaved(unitSlug)}
-          isUnitSaving={isUnitSaving(unitSlug)}
-          onSave={
-            isSlugLegacy(programmeSlug)
-              ? undefined
-              : () => onSaveToggle(unitSlug)
-          }
-        />
-        <OakMaxWidth $ph={"spacing-16"}>
-          <OakGrid>
-            <OakGridArea $colSpan={[12, 9]} $mt={["spacing-16", "spacing-32"]}>
-              {unpublishedLessonCount > 0 && (
-                <OakInlineRegistrationBanner
-                  onSubmit={(email) => {
-                    const emailPattern =
-                      /^[A-Z0-9._%+-]{1,64}@[A-Z0-9-]+(?:\.[A-Z0-9-]+){0,2}\.[A-Z]{2,64}$/i;
-                    const isValidEmail = emailPattern.test(email);
-                    if (!isValidEmail) {
-                      throw new Error("Please enter a valid email address");
-                    }
-                    return newsletterFormProps.onSubmit({
-                      email,
-                      userRole: "Teacher",
-                    });
-                  }}
-                  bodyText={
-                    <OakSpan $font="body-1">
-                      We’re busy creating the final lessons. We’ll let you know
-                      when the rest of this unit is ready - and send you other
-                      helpful content and resources. Unsubscribe at any time.
-                      Read our{" "}
-                      <OakLink
-                        href={resolveOakHref({
-                          page: "legal",
-                          legalSlug: "privacy-policy",
-                        })}
-                      >
-                        privacy policy
-                      </OakLink>
-                      .
-                    </OakSpan>
+            },
+            label: keyStageTitle,
+          },
+          {
+            oakLinkProps: {
+              page: "unit-index",
+              programmeSlug:
+                subjectSlug === "maths" && !isSlugEYFS(programmeSlug)
+                  ? removeLegacySlugSuffix(programmeSlug)
+                  : programmeSlug,
+            },
+            label: subjectTitle,
+          },
+
+          {
+            oakLinkProps: {
+              page: "lesson-index",
+              unitSlug,
+              programmeSlug: programmeSlug,
+            },
+
+            label: unitTitle,
+            disabled: true,
+          },
+        ]}
+        background={"bg-decorative4-very-subdued"}
+        subjectIconBackgroundColor={"bg-decorative4-main"}
+        title={unitTitle}
+        programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
+        isNew={isNew}
+        hasCurriculumDownload={isSlugLegacy(programmeSlug)}
+        {...curriculumData}
+        shareButton={teacherShareButton}
+        unitDownloadFileId={`${getSlugifiedTitle(unitTitle)}-${unitvariantId}`}
+        onUnitDownloadSuccess={() =>
+          track.unitDownloadInitiated({
+            platform: "owa",
+            product: "teacher lesson resources",
+            engagementIntent: "use",
+            componentType: "unit_download_button",
+            eventVersion: "2.0.0",
+            analyticsUseCase: "Teacher",
+            unitName: unitTitle,
+            unitSlug,
+            keyStageSlug,
+            keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+            subjectSlug,
+            subjectTitle,
+          })
+        }
+        showRiskAssessmentBanner={showRiskAssessmentBanner}
+        isIncompleteUnit={unpublishedLessonCount > 0}
+        isGeorestrictedUnit={containsGeorestrictedLessons}
+        isLoginRequiredUnit={containsLoginRequiredLessons}
+        isUnitSaved={isUnitSaved(unitSlug)}
+        isUnitSaving={isUnitSaving(unitSlug)}
+        onSave={
+          isSlugLegacy(programmeSlug) ? undefined : () => onSaveToggle(unitSlug)
+        }
+      />
+      <OakMaxWidth $ph={"spacing-16"}>
+        <OakGrid>
+          <OakGridArea $colSpan={[12, 9]} $mt={["spacing-16", "spacing-32"]}>
+            {unpublishedLessonCount > 0 && (
+              <OakInlineRegistrationBanner
+                onSubmit={(email) => {
+                  const emailPattern =
+                    /^[A-Z0-9._%+-]{1,64}@[A-Z0-9-]+(?:\.[A-Z0-9-]+){0,2}\.[A-Z]{2,64}$/i;
+                  const isValidEmail = emailPattern.test(email);
+                  if (!isValidEmail) {
+                    throw new Error("Please enter a valid email address");
                   }
-                  headerText={
-                    <OakHeading
-                      tag="h2"
-                      $font={["heading-5", "heading-4", "heading-4"]}
+                  return newsletterFormProps.onSubmit({
+                    email,
+                    userRole: "Teacher",
+                  });
+                }}
+                bodyText={
+                  <OakSpan $font="body-1">
+                    We’re busy creating the final lessons. We’ll let you know
+                    when the rest of this unit is ready - and send you other
+                    helpful content and resources. Unsubscribe at any time. Read
+                    our{" "}
+                    <OakLink
+                      href={resolveOakHref({
+                        page: "legal",
+                        legalSlug: "privacy-policy",
+                      })}
                     >
-                      Full unit on the way!
-                    </OakHeading>
-                  }
-                />
-              )}
-              <LessonList
-                {...curriculumData}
-                lessonCount={lessons.length}
-                lessonCountHeader={lessonCountHeader}
-                currentPageItems={currentPageItems}
-                paginationProps={paginationProps}
-                headingTag={"h2"}
-                unitTitle={unitTitle}
-                onClick={trackLessonSelected}
-                expiringBanner={
-                  <ExpiringBanner
-                    isOpen={actions?.displayExpiringBanner ?? false}
-                    isResourcesMessage={true}
-                    onwardHref={unitListingHref}
-                  />
+                      privacy policy
+                    </OakLink>
+                    .
+                  </OakSpan>
+                }
+                headerText={
+                  <OakHeading
+                    tag="h2"
+                    $font={["heading-5", "heading-4", "heading-4"]}
+                  >
+                    Full unit on the way!
+                  </OakHeading>
                 }
               />
-            </OakGridArea>
-          </OakGrid>
-        </OakMaxWidth>
-        {showSignIn && (
-          <SavingSignedOutModal
-            isOpen={showSignIn}
-            onClose={() => {
-              setShowSignIn(false);
-            }}
-          />
-        )}
-        <TeacherRedirectedOverlay />
-      </OakThemeProvider>
+            )}
+            <LessonList
+              {...curriculumData}
+              lessonCount={lessons.length}
+              lessonCountHeader={lessonCountHeader}
+              currentPageItems={currentPageItems}
+              paginationProps={paginationProps}
+              headingTag={"h2"}
+              unitTitle={unitTitle}
+              onClick={trackLessonSelected}
+              expiringBanner={
+                <TakedownBanner
+                  titleTag="h3"
+                  isExpiring={actions?.displayExpiringBanner}
+                  isLegacy={isSlugLegacy(programmeSlug)}
+                  hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug)}
+                  subjectSlug={subjectSlug}
+                  userType="teacher"
+                  onwardHref={unitListingHref}
+                />
+              }
+            />
+          </OakGridArea>
+        </OakGrid>
+      </OakMaxWidth>
+      {showSignIn && (
+        <SavingSignedOutModal
+          isOpen={showSignIn}
+          onClose={() => {
+            setShowSignIn(false);
+          }}
+        />
+      )}
+      <TeacherRedirectedOverlay />
     </AppLayout>
   );
 };

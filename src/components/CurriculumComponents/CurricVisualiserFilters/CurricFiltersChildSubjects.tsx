@@ -1,8 +1,8 @@
 import {
-  OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
   OakBox,
+  OakP,
 } from "@oaknational/oak-components";
 import { useId } from "react";
 
@@ -23,12 +23,15 @@ export type CurricFiltersChildSubjectsProps = {
     source: ComponentTypeValueType,
   ) => void;
   data: CurriculumUnitsFormattedData<Unit>;
+  // The context prop can be removed once the integrated journey is fully launched
+  context: "curriculum-visualiser" | "integrated-journey";
 };
 
 export function CurricFiltersChildSubjects({
   filters,
   onChangeFilters,
   data,
+  context,
 }: Readonly<CurricFiltersChildSubjectsProps>) {
   const id = useId();
   const { yearData } = data;
@@ -49,11 +52,19 @@ export function CurricFiltersChildSubjects({
   return (
     <OakBox>
       {childSubjects.length > 0 && (
-        <>
-          <OakHeading
-            id="child-subjects-label"
-            tag="h4"
-            $font={["heading-7", "heading-6"]}
+        <OakRadioGroup
+          name={"childSubjects_" + id}
+          onChange={(e) => setSingleInFilter("childSubjects", e.target.value)}
+          value={String(filters.childSubjects[0]!)}
+          $flexDirection="row"
+          $flexWrap="wrap"
+          $gap="spacing-8"
+        >
+          <OakP
+            as="legend"
+            $font={
+              context === "curriculum-visualiser" ? "heading-6" : "heading-7"
+            }
             $mt="spacing-0"
             $mb={["spacing-24", "spacing-16"]}
           >
@@ -61,27 +72,17 @@ export function CurricFiltersChildSubjects({
             {childSubjectsAt.length === 1
               ? ` (${childSubjectsAt[0]?.toUpperCase()})`
               : ""}
-          </OakHeading>
-          <OakRadioGroup
-            name={"childSubjects_" + id}
-            onChange={(e) => setSingleInFilter("childSubjects", e.target.value)}
-            value={String(filters.childSubjects[0]!)}
-            $flexDirection="row"
-            $flexWrap="wrap"
-            $gap="spacing-8"
-            aria-labelledby="child-subjects-label"
-          >
-            {childSubjects.map((childSubject) => (
-              <OakRadioAsButton
-                variant="with-icon"
-                key={childSubject.subject_slug}
-                value={childSubject.subject_slug}
-                displayValue={childSubject.subject}
-                icon={getValidSubjectIconName(childSubject.subject_slug)}
-              />
-            ))}
-          </OakRadioGroup>
-        </>
+          </OakP>
+          {childSubjects.map((childSubject) => (
+            <OakRadioAsButton
+              variant="with-icon"
+              key={childSubject.subject_slug}
+              value={childSubject.subject_slug}
+              displayValue={childSubject.subject}
+              icon={getValidSubjectIconName(childSubject.subject_slug)}
+            />
+          ))}
+        </OakRadioGroup>
       )}
     </OakBox>
   );

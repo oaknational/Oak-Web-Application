@@ -144,7 +144,7 @@ export default function UnitsTab({
             />
           }
           curriculumSeoText={curriculumSeoText}
-          subject={subjectForLayout}
+          subjectTitle={subjectForLayout.title}
         />
         <ScreenReaderOnly aria-live="polite" aria-atomic="true">
           <p>

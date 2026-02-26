@@ -67,7 +67,7 @@ export const useTeacherNotes = ({
         setIsEditable(isEditable);
         setNoteSaved(isEditable);
         setTeacherNote(teacherNote);
-      } catch (e) {
+      } catch (_error) {
         // there is no teacher note lets make a new one against the shareId
         if (shareId) {
           const _isEditable = getTeacherNoteIsEditable({

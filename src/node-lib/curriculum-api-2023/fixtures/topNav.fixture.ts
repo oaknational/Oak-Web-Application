@@ -3,26 +3,33 @@ import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 export const topNavFixture: TopNavProps = {
   teachers: {
     primary: {
-      phaseSlug: "primary",
-      phaseTitle: "Primary",
-      keystages: [
+      slug: "primary",
+      title: "Primary",
+      children: [
         {
           slug: "ks1",
           title: "KS1",
           description: "Key stage 1",
-          subjects: [
+          children: [
             {
               title: "English",
-              subjectSlug: "english",
+              slug: "english",
               programmeSlug: "english-primary-ks1",
               nonCurriculum: false,
               programmeCount: 0,
             },
             {
               title: "Maths",
-              subjectSlug: "maths",
+              slug: "maths",
               programmeSlug: "maths-primary-ks1",
               nonCurriculum: false,
+              programmeCount: 0,
+            },
+            {
+              title: "Financial education",
+              slug: "financial-education",
+              programmeSlug: "financial-education-primary-ks1",
+              nonCurriculum: true,
               programmeCount: 0,
             },
           ],
@@ -31,10 +38,10 @@ export const topNavFixture: TopNavProps = {
           slug: "ks2",
           title: "KS2",
           description: "Key stage 2",
-          subjects: [
+          children: [
             {
               title: "Science",
-              subjectSlug: "science",
+              slug: "science",
               programmeSlug: "science-primary-ks2",
               nonCurriculum: false,
               programmeCount: 0,
@@ -45,22 +52,22 @@ export const topNavFixture: TopNavProps = {
           slug: "eyfs",
           title: "EYFS",
           description: "Early years foundation stage",
-          subjects: [],
+          children: [],
         },
       ],
     },
     secondary: {
-      phaseSlug: "secondary",
-      phaseTitle: "Secondary",
-      keystages: [
+      slug: "secondary",
+      title: "Secondary",
+      children: [
         {
           slug: "ks3",
           title: "KS3",
           description: "Key stage 3",
-          subjects: [
+          children: [
             {
               title: "History",
-              subjectSlug: "history",
+              slug: "history",
               programmeSlug: "history-secondary-ks3",
               nonCurriculum: false,
               programmeCount: 0,
@@ -71,10 +78,10 @@ export const topNavFixture: TopNavProps = {
           slug: "ks4",
           title: "KS4",
           description: "Key stage 4",
-          subjects: [
+          children: [
             {
               title: "Geography",
-              subjectSlug: "geography",
+              slug: "geography",
               programmeSlug: "geography-secondary-ks4",
               nonCurriculum: false,
               programmeCount: 0,
@@ -83,26 +90,85 @@ export const topNavFixture: TopNavProps = {
         },
       ],
     },
-    aboutUs: [
-      {
-        slug: "about-who-we-are",
-        title: "Who we are",
-      },
-      { slug: "about-board", title: "Board" },
-    ],
-    guidance: [
-      {
-        slug: "lesson-planning",
-        title: "Plan a lesson",
-      },
-      {
-        slug: "blog-index",
-        title: "Blogs",
-      },
-    ],
+    curriculum: {
+      slug: "curriculum-landing-page",
+      title: "Curriculum",
+      href: "/teachers/curriculum",
+    },
+    aboutUs: {
+      slug: "aboutUs",
+      title: "About us",
+      children: [
+        {
+          slug: "about-who-we-are",
+          title: "Who we are",
+          href: "/about-us/who-we-are",
+        },
+        {
+          slug: "about-board",
+          title: "Board",
+          href: "/about-us/board",
+        },
+      ],
+    },
+    guidance: {
+      slug: "guidance",
+      title: "Guidance",
+      children: [
+        {
+          slug: "lesson-planning",
+          title: "Plan a lesson",
+          href: "/teachers/lesson-planning",
+        },
+        {
+          slug: "blog-index",
+          title: "Blogs",
+          href: "/blog",
+        },
+        {
+          slug: "help",
+          title: "Help",
+          href: "https://support.thenational.academy",
+          external: true,
+        },
+      ],
+    },
+    aiExperiments: {
+      slug: "labs",
+      title: "Ai experiments",
+      href: "https://labs.thenational.academy",
+      external: true,
+    },
   },
   pupils: {
-    primary: { phaseSlug: "primary", phaseTitle: "Primary", years: [] },
-    secondary: { phaseSlug: "secondary", phaseTitle: "Secondary", years: [] },
+    primary: {
+      slug: "primary",
+      title: "Primary",
+      children: [
+        { slug: "year-1", title: "Year 1" },
+        { slug: "year-2", title: "Year 2" },
+        { slug: "year-3", title: "Year 3" },
+        { slug: "year-4", title: "Year 4" },
+        { slug: "year-5", title: "Year 5" },
+        { slug: "year-6", title: "Year 6" },
+      ],
+    },
+    secondary: {
+      slug: "secondary",
+      title: "Secondary",
+      children: [
+        { slug: "year-7", title: "Year 7" },
+        { slug: "year-8", title: "Year 8" },
+        { slug: "year-9", title: "Year 9" },
+        { slug: "year-10", title: "Year 10" },
+        { slug: "year-11", title: "Year 11" },
+      ],
+    },
+    help: {
+      slug: "help",
+      title: "Help",
+      href: "https://support.thenational.academy",
+      external: true,
+    },
   },
 };
