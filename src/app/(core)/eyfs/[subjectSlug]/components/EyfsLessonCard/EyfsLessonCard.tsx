@@ -3,6 +3,7 @@
 import {
   OakBox,
   OakFlex,
+  OakP,
   OakSmallTertiaryInvertedButton,
 } from "@oaknational/oak-components";
 import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
@@ -124,7 +125,7 @@ export const EYFSLessonCard = ({ lesson, index }: EYFSLessonCardProps) => {
         </OakFlex>
         {isActiveVideo && lesson.video.muxPlaybackId && (
           <OakBox
-            $pb="spacing-20"
+            $pb={["spacing-0", "spacing-0", "spacing-20"]}
             $pl={["spacing-8", "spacing-8", "spacing-0"]}
             data-testid="video"
           >
@@ -136,6 +137,10 @@ export const EYFSLessonCard = ({ lesson, index }: EYFSLessonCardProps) => {
               isLegacy={true}
               autoFocusPlayButton
             />
+            <OakP $textWrap="balance" $mt="spacing-48" $textAlign="right">
+              Some of our videos, including non-English language videos, do not
+              have captions.
+            </OakP>
           </OakBox>
         )}
       </OakFlex>
