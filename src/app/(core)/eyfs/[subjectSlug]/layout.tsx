@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 
 import { EYFSHeader } from "./components/EyfsHeader/EyfsHeader";
+import { EYFSNavigation } from "./components/EyfsNavigation";
 
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { OakFlex, OakSmallPrimaryInvertedButton } from "@/styles/oakThemeApp";
+import { OakFlex } from "@/styles/oakThemeApp";
 
 export default async function EYFSLayout({
   children,
@@ -28,13 +29,7 @@ export default async function EYFSLayout({
         $flexDirection={"column"}
       >
         <EYFSHeader subjectTitle={eyfsPageData.subjectTitle} />
-        <OakFlex $gap="spacing-8">
-          {eyfsPageData.subjectTabs.map((subject) => (
-            <OakSmallPrimaryInvertedButton key={subject.slug}>
-              {subject.title}
-            </OakSmallPrimaryInvertedButton>
-          ))}
-        </OakFlex>
+        <EYFSNavigation subjectTabs={eyfsPageData.subjectTabs} />
         {children}
       </OakFlex>
     );
