@@ -1,8 +1,15 @@
+import { fireEvent } from "@testing-library/react";
 import { GetInvolvedLinkCard } from ".";
 
+import { aboutUsContactInitiated } from "@/browser-lib/avo/Avo";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);
+
+jest.mock("@/browser-lib/avo/Avo", () => ({
+  ...jest.requireActual("@/browser-lib/avo/Avo"),
+  aboutUsContactInitiated: jest.fn(),
+}));
 
 describe("GetInvolvedLinkCard", () => {
   it("renders with single button", () => {
@@ -59,6 +66,42 @@ describe("GetInvolvedLinkCard", () => {
     expect(externalLink).toHaveAttribute("rel", "noopener noreferrer");
     expect(internalLink).not.toHaveAttribute("target");
     expect(internalLink).not.toHaveAttribute("rel");
+  });
+
+  it("should call aboutUsContactInitiated with the correct analytics object when a link with a component type is clicked", () => {
+    const { getByRole } = render(
+      <GetInvolvedLinkCard
+        headingTag={"h2"}
+        headingTitle={"Give your feedback"}
+        buttons={[{ text: "Get in touch", link: "#", componentType: "get_in_touch" }]}
+        content="Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers."
+      />,
+    );
+
+    const link = getByRole("link", { name: /get in touch/i });
+    fireEvent.click(link);
+
+    expect(aboutUsContactInitiated).toHaveBeenCalledWith(
+      expect.objectContaining({
+        componentType: "get_in_touch",
+      })
+    );
+  });
+
+  it("should NOT call aboutUsContactInitiated when a link has no component type", () => {
+    const { getByRole } = render(
+      <GetInvolvedLinkCard
+        headingTag={"h2"}
+        headingTitle={"Give your feedback"}
+        buttons={[{ text: "Explore our research", link: "#" }]}
+        content=""
+      />,
+    );
+
+    const link = getByRole("link", { name: /explore our research/i });
+    fireEvent.click(link);
+
+    expect(aboutUsContactInitiated).not.toHaveBeenCalled
   });
 
   it("renders without buttons", () => {
