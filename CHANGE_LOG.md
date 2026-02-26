@@ -1,3 +1,19 @@
+# [1.1006.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1005.0...v1.1006.0) (2026-02-26)
+
+
+### Bug Fixes
+
+* mobile font size and top padding ([66ce51a](https://github.com/oaknational/Oak-Web-Application/commit/66ce51ae82bdbeab4ab46ff21eebae2cf24693ba))
+
+
+### Features
+
+* add body copy to header and match styling ([cd9fc70](https://github.com/oaknational/Oak-Web-Application/commit/cd9fc701d2d695a3f09c95c868a62b84130bb8aa))
+* add EYFSHeader component with heading ([ef2c67e](https://github.com/oaknational/Oak-Web-Application/commit/ef2c67e0345095510ec62e5861d12267be2e50be))
+* check for wider range of titles in transcripts ([2c810cf](https://github.com/oaknational/Oak-Web-Application/commit/2c810cf5f0d6bf4c4a7fb824570bd9b08e27525c))
+* raise minimum supported safari version and remove polyfill ([da8227a](https://github.com/oaknational/Oak-Web-Application/commit/da8227a92a91599f5825f569b96d312416c60504))
+* update about us links in topnav to new pages ([5328819](https://github.com/oaknational/Oak-Web-Application/commit/532881976cee847c44ed480137bab030036b1943))
+
 # [1.1005.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1004.0...v1.1005.0) (2026-02-25)
 
 
