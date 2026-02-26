@@ -9,14 +9,10 @@ import {
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { GetInvolvedCollaborateWithUs } from "@/components/GenericPagesComponents/GetInvolvedCollaborateWithUs";
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import CMSClient from "@/node-lib/cms";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
-
-const posthogApiKey = getBrowserConfig("posthogApiKey");
 
 export type GetInvolvedPage = {
   pageData: {
@@ -121,13 +117,9 @@ export const getServerSideProps = (async (context) => {
     previewMode: isPreviewMode,
   });
 
-  const enableV2 = await isNewAboutUsPagesEnabled(
-    posthogApiKey,
-    context.req.cookies,
-  );
   const topNav = await curriculumApi2023.topNav();
 
-  if (!enableV2 || !aboutWhoWeArePage) {
+  if (!aboutWhoWeArePage) {
     return {
       notFound: true,
     };

@@ -17,7 +17,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import CMSClient from "@/node-lib/cms";
 import { TeamMember } from "@/common-lib/cms-types/teamMember";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
@@ -32,10 +31,7 @@ import {
 } from "@/pages-helpers/shared/about-us-pages/profileNavigation";
 import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
-import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 import { resolveOakHref } from "@/common-lib/urls";
-
-const posthogApiKey = getBrowserConfig("posthogApiKey");
 
 export type AboutUsMeetTheTeamPersonPageProps = {
   pageData: TeamMember;
@@ -260,15 +256,6 @@ export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPersonPageProps,
   URLParams
 > = async (context) => {
-  const enableV2 = await isNewAboutUsPagesEnabled(
-    posthogApiKey,
-    context.req.cookies,
-  );
-
-  if (!enableV2) {
-    return { notFound: true };
-  }
-
   const slug = context.params?.slug;
   if (!slug) {
     return { notFound: true };

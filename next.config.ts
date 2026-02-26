@@ -33,7 +33,6 @@ import {
   cspHeader,
   reportingEndpointsHeader,
 } from "@/config/contentSecurityPolicy";
-import { ENABLE_NEW_ABOUT_US } from "@/config/flags";
 
 const withBundleAnalyzer = buildWithBundleAnalyzer({
   enabled: process.env.ANALYSE_BUNDLE === "on",
@@ -392,30 +391,28 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
       ];
 
-      const aboutUsRedirects = ENABLE_NEW_ABOUT_US
-        ? [
-            {
-              source: "/about-us/leadership",
-              destination: "/about-us/meet-the-team",
-              permanent: false,
-            },
-            {
-              source: "/about-us/board",
-              destination: "/about-us/meet-the-team",
-              permanent: false,
-            },
-            {
-              source: "/about-us/partners",
-              destination: "/about-us/oaks-curricula",
-              permanent: false,
-            },
-            {
-              source: "/about-us/work-with-us",
-              destination: "/about-us/get-involved",
-              permanent: false,
-            },
-          ]
-        : [];
+      const aboutUsRedirects = [
+        {
+          source: "/about-us/leadership",
+          destination: "/about-us/meet-the-team",
+          permanent: true,
+        },
+        {
+          source: "/about-us/board",
+          destination: "/about-us/meet-the-team",
+          permanent: true,
+        },
+        {
+          source: "/about-us/partners",
+          destination: "/about-us/oaks-curricula",
+          permanent: true,
+        },
+        {
+          source: "/about-us/work-with-us",
+          destination: "/about-us/get-involved",
+          permanent: true,
+        },
+      ];
 
       return [...pupilsRedirects, ...aboutUsRedirects];
     },
