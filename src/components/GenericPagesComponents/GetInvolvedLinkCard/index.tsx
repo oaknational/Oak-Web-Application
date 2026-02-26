@@ -5,14 +5,18 @@ import {
   OakSecondaryButton,
   OakIcon,
 } from "@oaknational/oak-components";
-import { aboutUsContactInitiated, ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import {
+  aboutUsContactInitiated,
+  ComponentTypeValueType,
+} from "@/browser-lib/avo/Avo";
 import { ReactNode } from "react";
 import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
 
 const handleClick = (componentType: ComponentTypeValueType | undefined) => {
   if (!componentType) return;
 
-  const aboutUsContactInititaiedAnalytics = buildAboutUsContactInitiatedAnalytics(componentType);
+  const aboutUsContactInititaiedAnalytics =
+    buildAboutUsContactInitiatedAnalytics(componentType);
 
   return aboutUsContactInitiated(aboutUsContactInititaiedAnalytics);
 };

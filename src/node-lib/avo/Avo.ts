@@ -12,10 +12,25 @@ export enum AvoEnv {
 
 export interface CustomDestination {
   make?(env: AvoEnv, apiKey: string): void;
-  logEvent?: (userId: string, eventName: string, eventProperties: Record<string, any>) => Promise<void>;
-  setUserProperties?: (userId: string, userProperties: Record<string, any>) => Promise<void>;
-  logPage?: (userId: string, pageName: string, eventProperties: Record<string, any>) => Promise<void>;
-  revenue?: (userId: string, amount: number, eventProperties: Record<string, any>) => Promise<void>;
+  logEvent?: (
+    userId: string,
+    eventName: string,
+    eventProperties: Record<string, any>,
+  ) => Promise<void>;
+  setUserProperties?: (
+    userId: string,
+    userProperties: Record<string, any>,
+  ) => Promise<void>;
+  logPage?: (
+    userId: string,
+    pageName: string,
+    eventProperties: Record<string, any>,
+  ) => Promise<void>;
+  revenue?: (
+    userId: string,
+    amount: number,
+    eventProperties: Record<string, any>,
+  ) => Promise<void>;
   setGroupProperties?: (
     userId: string,
     groupType: string,
@@ -42,10 +57,10 @@ interface AvoAssertMessage {
   tag?: string;
   propertyId?: string;
   message?: string;
-  additionalProperties?: string[],
-  shape?: any,
-  shapeUserProps?: any,
-  actualType?: string
+  additionalProperties?: string[];
+  shape?: any;
+  shapeUserProps?: any;
+  actualType?: string;
 }
 
 let __AVO_ENV__: AvoEnv | null = null;
@@ -56,12 +71,11 @@ let __AVO_LOGGER__: AvoLogger | null = null;
 // @ts-ignore
 let __STRICT__: boolean | null = null;
 // @ts-ignore
-let __REPORT_FAILURE_AS__: 'error' | 'warn' | 'log' | null = null;
+let __REPORT_FAILURE_AS__: "error" | "warn" | "log" | null = null;
 export const avoInspectorApiKey = "qcMB8wGjdRz6NFdavy9I";
 // @ts-ignore
 interface AvoInspector {}
 let __INSPECTOR__: AvoInspector | null = null;
-
 
 // polyfill Object.assign
 // @ts-ignore
@@ -69,12 +83,14 @@ declare interface ObjectConstructor {
   assign: any;
 }
 // @ts-ignore
-if (typeof Object.assign !== 'function') {
+if (typeof Object.assign !== "function") {
   // Must be writable: true, enumerable: false, configurable: true
   Object.defineProperty(Object, "assign", {
-    value: function assign(target: any, _varArgs: any) { // .length of function is 2
-      if (target == null) { // TypeError if undefined or null
-        throw new TypeError('Cannot convert undefined or null to object');
+    value: function assign(target: any, _varArgs: any) {
+      // .length of function is 2
+      if (target == null) {
+        // TypeError if undefined or null
+        throw new TypeError("Cannot convert undefined or null to object");
       }
 
       let to = Object(target);
@@ -82,7 +98,8 @@ if (typeof Object.assign !== 'function') {
       for (let index = 1; index < arguments.length; index++) {
         let nextSource = arguments[index];
 
-        if (nextSource != null) { // Skip over if undefined or null
+        if (nextSource != null) {
+          // Skip over if undefined or null
           for (let nextKey in nextSource) {
             // Avoid bugs when hasOwnProperty is shadowed
             if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
@@ -94,7 +111,7 @@ if (typeof Object.assign !== 'function') {
       return to;
     },
     writable: true,
-    configurable: true
+    configurable: true,
   });
 }
 
@@ -105,45 +122,81 @@ interface AvoLogger {
 }
 
 let InternalAvoLogger: any = {
-  logEventSent: function logEventSent(eventName: string, eventProperties: any, userProperties: any) {
-    const message = "Event Sent:" + eventName + "Event Props:" + JSON.stringify(eventProperties) + "User Props:" + JSON.stringify(userProperties);
+  logEventSent: function logEventSent(
+    eventName: string,
+    eventProperties: any,
+    userProperties: any,
+  ) {
+    const message =
+      "Event Sent:" +
+      eventName +
+      "Event Props:" +
+      JSON.stringify(eventProperties) +
+      "User Props:" +
+      JSON.stringify(userProperties);
 
-    if (__AVO_LOGGER__ && __AVO_LOGGER__.logDebug && __AVO_LOGGER__.logDebug(__AVO_ENV__, message)) {
-      return
+    if (
+      __AVO_LOGGER__ &&
+      __AVO_LOGGER__.logDebug &&
+      __AVO_LOGGER__.logDebug(__AVO_ENV__, message)
+    ) {
+      return;
     }
-    typeof console !== 'undefined' && console.log("[avo] Event Sent:", eventName, "Event Props:", eventProperties, "User Props:", userProperties);
+    typeof console !== "undefined" &&
+      console.log(
+        "[avo] Event Sent:",
+        eventName,
+        "Event Props:",
+        eventProperties,
+        "User Props:",
+        userProperties,
+      );
   },
 
   log: function log(message: string) {
-    if (__AVO_LOGGER__ && __AVO_LOGGER__.logDebug && __AVO_LOGGER__.logDebug(__AVO_ENV__, message)) {
-      return
+    if (
+      __AVO_LOGGER__ &&
+      __AVO_LOGGER__.logDebug &&
+      __AVO_LOGGER__.logDebug(__AVO_ENV__, message)
+    ) {
+      return;
     }
-    typeof console !== 'undefined' && console.log("[avo] " + message);
+    typeof console !== "undefined" && console.log("[avo] " + message);
   },
 
   warn: function warn(message: string) {
-    if (__AVO_LOGGER__ && __AVO_LOGGER__.logWarn && __AVO_LOGGER__.logWarn(__AVO_ENV__, message)) {
-      return
+    if (
+      __AVO_LOGGER__ &&
+      __AVO_LOGGER__.logWarn &&
+      __AVO_LOGGER__.logWarn(__AVO_ENV__, message)
+    ) {
+      return;
     }
-    typeof console !== 'undefined' && console.warn("[avo] " + message);
+    typeof console !== "undefined" && console.warn("[avo] " + message);
   },
 
   error: function error(message: string, error: string) {
-    if (__AVO_LOGGER__ && __AVO_LOGGER__.logError && __AVO_LOGGER__.logError(__AVO_ENV__, message + error)) {
-      return
+    if (
+      __AVO_LOGGER__ &&
+      __AVO_LOGGER__.logError &&
+      __AVO_LOGGER__.logError(__AVO_ENV__, message + error)
+    ) {
+      return;
     }
-    typeof console !== 'undefined' && console.error("[avo] " + message, error);
-  }
+    typeof console !== "undefined" && console.error("[avo] " + message, error);
+  },
 };
 
-function convertPropertiesArrayToMap(propertiesArray: [{id: string, name: string, value: string}]): {string: string | null | undefined} {
-    let result: {string: string} = {}
+function convertPropertiesArrayToMap(
+  propertiesArray: [{ id: string; name: string; value: string }],
+): { string: string | null | undefined } {
+  let result: { string: string } = {};
 
-    propertiesArray.forEach(value => {
-      result[value.name] = value.value
-    })
+  propertiesArray.forEach((value) => {
+    result[value.name] = value.value;
+  });
 
-    return result
+  return result;
 }
 
 // @ts-ignore
@@ -158,92 +211,165 @@ array_difference = function array_difference(a1: any[], a2: any[]) {
     }
   }
   return result;
-}
+};
 
 AvoAssert = {
-  assertObject: function assertObject(propertyId: string, propName: string, obj: any) {
-    if (typeof obj !== 'object') {
-      let message = propName +
-          ' should be of type object but you provided type ' +
-          typeof obj +
-          ' with value ' +
-          JSON.stringify(obj);
-      return [{tag: 'expectedObjectType', propertyId, message, actualType: typeof obj}];
+  assertObject: function assertObject(
+    propertyId: string,
+    propName: string,
+    obj: any,
+  ) {
+    if (typeof obj !== "object") {
+      let message =
+        propName +
+        " should be of type object but you provided type " +
+        typeof obj +
+        " with value " +
+        JSON.stringify(obj);
+      return [
+        {
+          tag: "expectedObjectType",
+          propertyId,
+          message,
+          actualType: typeof obj,
+        },
+      ];
     } else {
       return [];
     }
   },
 
-  assertString: function assertString(propertyId: string, propName: string, str: string) {
-    if (typeof str !== 'string') {
-      let message = propName +
-          ' should be of type string but you provided type ' +
-          typeof str +
-          ' with value ' +
-          JSON.stringify(str);
-      return [{tag: 'expectedStringType', propertyId, message, actualType: typeof str}];
+  assertString: function assertString(
+    propertyId: string,
+    propName: string,
+    str: string,
+  ) {
+    if (typeof str !== "string") {
+      let message =
+        propName +
+        " should be of type string but you provided type " +
+        typeof str +
+        " with value " +
+        JSON.stringify(str);
+      return [
+        {
+          tag: "expectedStringType",
+          propertyId,
+          message,
+          actualType: typeof str,
+        },
+      ];
     } else {
       return [];
     }
   },
 
-  assertInt: function assertInt(propertyId: string, propName: string, int: number) {
-    if (typeof int === 'number' && int !== Math.round(int)) {
-      let message = propName +
-          ' should be of type int but you provided type float with value ' +
-          JSON.stringify(int);
-      return [{tag: 'expectedIntType', propertyId, message, actualType: 'float'}];
-    } else if (typeof int !== 'number') {
-      let message = propName +
-          ' should be of type int but you provided type ' +
-          typeof int +
-          ' with value ' +
-          JSON.stringify(int);
-      return [{tag: 'expectedIntType', propertyId, message, actualType: typeof int}];
+  assertInt: function assertInt(
+    propertyId: string,
+    propName: string,
+    int: number,
+  ) {
+    if (typeof int === "number" && int !== Math.round(int)) {
+      let message =
+        propName +
+        " should be of type int but you provided type float with value " +
+        JSON.stringify(int);
+      return [
+        { tag: "expectedIntType", propertyId, message, actualType: "float" },
+      ];
+    } else if (typeof int !== "number") {
+      let message =
+        propName +
+        " should be of type int but you provided type " +
+        typeof int +
+        " with value " +
+        JSON.stringify(int);
+      return [
+        { tag: "expectedIntType", propertyId, message, actualType: typeof int },
+      ];
     } else {
       return [];
     }
   },
 
-  assertLong: function assertLong(propertyId: string, propName: string, long: number) {
-    if (typeof long === 'number' && long !== Math.round(long)) {
-      let message = propName +
-          ' should be of type long but you provided type float with value ' +
-          JSON.stringify(long);
-      return [{tag: 'expectedLongType', propertyId, message, actualType: 'float'}];
-    } else if (typeof long !== 'number') {
-      let message = propName +
-          ' should be of type long but you provided type ' +
-          typeof long +
-          ' with value ' +
-          JSON.stringify(long);
-      return [{tag: 'expectedLongType', propertyId, message, actualType: typeof long}];
+  assertLong: function assertLong(
+    propertyId: string,
+    propName: string,
+    long: number,
+  ) {
+    if (typeof long === "number" && long !== Math.round(long)) {
+      let message =
+        propName +
+        " should be of type long but you provided type float with value " +
+        JSON.stringify(long);
+      return [
+        { tag: "expectedLongType", propertyId, message, actualType: "float" },
+      ];
+    } else if (typeof long !== "number") {
+      let message =
+        propName +
+        " should be of type long but you provided type " +
+        typeof long +
+        " with value " +
+        JSON.stringify(long);
+      return [
+        {
+          tag: "expectedLongType",
+          propertyId,
+          message,
+          actualType: typeof long,
+        },
+      ];
     } else {
       return [];
     }
   },
 
-  assertFloat: function assertFloat(propertyId: string, propName: string, float: number) {
-    if (typeof float !== 'number') {
-      let message = propName +
-          ' should be of type float but you provided type ' +
-          typeof float +
-          ' with value ' +
-          JSON.stringify(float);
-      return [{tag: 'expectedFloatType', propertyId, message, actualType: typeof float}];
+  assertFloat: function assertFloat(
+    propertyId: string,
+    propName: string,
+    float: number,
+  ) {
+    if (typeof float !== "number") {
+      let message =
+        propName +
+        " should be of type float but you provided type " +
+        typeof float +
+        " with value " +
+        JSON.stringify(float);
+      return [
+        {
+          tag: "expectedFloatType",
+          propertyId,
+          message,
+          actualType: typeof float,
+        },
+      ];
     } else {
       return [];
     }
   },
 
-  assertBool: function assertBool(propertyId: string, propName: string, bool: boolean) {
-    if (typeof bool !== 'boolean') {
-      let message = propName +
-          ' should be of type boolean but you provided type ' +
-          typeof bool +
-          ' with value ' +
-          JSON.stringify(bool);
-      return [{tag: 'expectedBoolType', propertyId, message, actualType: typeof bool}];
+  assertBool: function assertBool(
+    propertyId: string,
+    propName: string,
+    bool: boolean,
+  ) {
+    if (typeof bool !== "boolean") {
+      let message =
+        propName +
+        " should be of type boolean but you provided type " +
+        typeof bool +
+        " with value " +
+        JSON.stringify(bool);
+      return [
+        {
+          tag: "expectedBoolType",
+          propertyId,
+          message,
+          actualType: typeof bool,
+        },
+      ];
     } else {
       return [];
     }
@@ -253,15 +379,16 @@ AvoAssert = {
     propertyId: string,
     propName: string,
     max: number,
-    value: number
+    value: number,
   ) {
     if (value > max) {
-      let message = propName +
-        ' has a maximum value of ' +
+      let message =
+        propName +
+        " has a maximum value of " +
         max +
-        ' but you provided the value ' +
+        " but you provided the value " +
         JSON.stringify(value);
-      return [{tag: 'expectedMax', propertyId, message}];
+      return [{ tag: "expectedMax", propertyId, message }];
     } else {
       return [];
     }
@@ -271,44 +398,80 @@ AvoAssert = {
     propertyId: string,
     propName: string,
     min: number,
-    value: number
+    value: number,
   ) {
     if (value < min) {
-      let message = propName +
-        ' has a minimum value of ' +
+      let message =
+        propName +
+        " has a minimum value of " +
         min +
-        ' but you provided the value ' +
+        " but you provided the value " +
         JSON.stringify(value);
-      return [{tag: 'expectedMin', propertyId, message}];
+      return [{ tag: "expectedMin", propertyId, message }];
     } else {
       return [];
     }
   },
 
-  assertList: function assertList(propertyId: string, propName: string, value: any) {
+  assertList: function assertList(
+    propertyId: string,
+    propName: string,
+    value: any,
+  ) {
     if (!Array.isArray(value)) {
-      let message = propName + ' should be of type list but you provided type ' + typeof value;
-      return [{tag: 'expectedList', propertyId, message}];
+      let message =
+        propName +
+        " should be of type list but you provided type " +
+        typeof value;
+      return [{ tag: "expectedList", propertyId, message }];
     } else {
       return [];
     }
   },
 
-  assertNoAdditionalProperties: function assertNoAdditionalProperties(eventName: string, input: string[], spec: string[]) {
+  assertNoAdditionalProperties: function assertNoAdditionalProperties(
+    eventName: string,
+    input: string[],
+    spec: string[],
+  ) {
     let additionalKeys = array_difference(input, spec);
     if (additionalKeys.length) {
-      let message = "Additional properties when sending event " + eventName + ": " + JSON.stringify(additionalKeys);
-      return [{tag: 'expectedNoAdditionalProperties', additionalProperties: additionalKeys, message: message}];
+      let message =
+        "Additional properties when sending event " +
+        eventName +
+        ": " +
+        JSON.stringify(additionalKeys);
+      return [
+        {
+          tag: "expectedNoAdditionalProperties",
+          additionalProperties: additionalKeys,
+          message: message,
+        },
+      ];
     } else {
       return [];
     }
   },
 
-  assertNoAdditionalUserProperties: function assertNoAdditionalProperties(eventName: string, input: string[], spec: string[]) {
+  assertNoAdditionalUserProperties: function assertNoAdditionalProperties(
+    eventName: string,
+    input: string[],
+    spec: string[],
+  ) {
     let additionalKeys = array_difference(input, spec);
     if (additionalKeys.length) {
-      let message = "Additional user properties when sending event " + eventName + ": " + JSON.stringify(additionalKeys);
-      return [{tag: 'expectedNoAdditionalUserProperties', additionalProperties: additionalKeys, message: message}];
+      let message =
+        "Additional user properties when sending event " +
+        eventName +
+        ": " +
+        JSON.stringify(additionalKeys);
+      return [
+        {
+          tag: "expectedNoAdditionalUserProperties",
+          additionalProperties: additionalKeys,
+          message: message,
+        },
+      ];
     } else {
       return [];
     }
@@ -326,227 +489,259 @@ function _avo_invoke_payload(body: any) {
       // @ts-ignore
       const data = JSON.stringify(body);
       let options = {
-        hostname: 'api.avo.app',
+        hostname: "api.avo.app",
         port: 443,
-        path: '/i',
-        method: 'POST',
+        path: "/i",
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(data)
-        }
+          "Content-Type": "application/json",
+          "Content-Length": Buffer.byteLength(data),
+        },
       };
-      let req = require('https').request(options, (res: any) => {
+      let req = require("https").request(options, (res: any) => {
         const chunks: any = [];
-        res.on('data', (data: any) => chunks.push(data));
-        res.on('end', () => {
+        res.on("data", (data: any) => chunks.push(data));
+        res.on("end", () => {
           try {
             // @ts-ignore
             const data = JSON.parse(Buffer.concat(chunks).toString());
             // @ts-ignore
             _avo_sampling_rate = data.sa;
-          } catch(e) {}
+          } catch (e) {}
         });
       });
       req.write(data);
       // @ts-ignore
-      req.on('error', () => { });
+      req.on("error", () => {});
       req.end();
     }
   }
 }
 
-_avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, messages: {tag: string, propertyId: string}[], origin: string) {
+_avo_invoke = function _avo_invoke(
+  env: AvoEnv,
+  eventId: string,
+  hash: string,
+  messages: { tag: string; propertyId: string }[],
+  origin: string,
+) {
   try {
     _avo_invoke_payload({
-      "ac": "PTYDMpFPH6etei0bAmI0",
-      "br": "pIDmL9KIs54WAHElmKQB1",
-      "en": env,
-      "ev": eventId,
-      "ha": hash,
-      "sc": "5PhajbVijwhXVKIJtGMT",
-      "se": (new Date()).toISOString(),
-      "so": "TIyqDLIJa8nMKd9ddScyh",
-      "va": messages.length === 0,
-      "me": messages,
-      "or": origin
+      ac: "PTYDMpFPH6etei0bAmI0",
+      br: "pIDmL9KIs54WAHElmKQB1",
+      en: env,
+      ev: eventId,
+      ha: hash,
+      sc: "5PhajbVijwhXVKIJtGMT",
+      se: new Date().toISOString(),
+      so: "TIyqDLIJa8nMKd9ddScyh",
+      va: messages.length === 0,
+      me: messages,
+      or: origin,
     });
-  } catch (e) { if (env !== AvoEnv.Prod) { throw e; } else { InternalAvoLogger.error("", e); } }
-}
+  } catch (e) {
+    if (env !== AvoEnv.Prod) {
+      throw e;
+    } else {
+      InternalAvoLogger.error("", e);
+    }
+  }
+};
 
-_avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages: {tag: string, propertyId: string}[], origin: string) {
+_avo_invoke_meta = function _avo_invoke_meta(
+  env: AvoEnv,
+  type: string,
+  messages: { tag: string; propertyId: string }[],
+  origin: string,
+) {
   try {
     _avo_invoke_payload({
-      "ac": "PTYDMpFPH6etei0bAmI0",
-      "br": "pIDmL9KIs54WAHElmKQB1",
-      "en": env,
-      "ty": type,
-      "sc": "5PhajbVijwhXVKIJtGMT",
-      "se": (new Date()).toISOString(),
-      "so": "TIyqDLIJa8nMKd9ddScyh",
-      "va": messages.length === 0,
-      "me": messages,
-      "or": origin
+      ac: "PTYDMpFPH6etei0bAmI0",
+      br: "pIDmL9KIs54WAHElmKQB1",
+      en: env,
+      ty: type,
+      sc: "5PhajbVijwhXVKIJtGMT",
+      se: new Date().toISOString(),
+      so: "TIyqDLIJa8nMKd9ddScyh",
+      va: messages.length === 0,
+      me: messages,
+      or: origin,
     });
-  } catch (e) { if (env !== AvoEnv.Prod) { throw e; } else { InternalAvoLogger.error("", e); } }
-}
-
+  } catch (e) {
+    if (env !== AvoEnv.Prod) {
+      throw e;
+    } else {
+      InternalAvoLogger.error("", e);
+    }
+  }
+};
 
 export const SingleSignOnService = {
-  'EMAIL': 'Email',
-  'GOOGLE': 'Google',
-  'MICROSOFT': 'Microsoft',
+  EMAIL: "Email",
+  GOOGLE: "Google",
+  MICROSOFT: "Microsoft",
 } as const;
 export type SingleSignOnServiceType = typeof SingleSignOnService;
-export type SingleSignOnServiceValueType = SingleSignOnServiceType[keyof SingleSignOnServiceType];
+export type SingleSignOnServiceValueType =
+  SingleSignOnServiceType[keyof SingleSignOnServiceType];
 
 export const EventVersion = {
-  '2_0_0': '2.0.0',
+  "2_0_0": "2.0.0",
 } as const;
 export type EventVersionType = typeof EventVersion;
 export type EventVersionValueType = EventVersionType[keyof EventVersionType];
 
 export const ComponentType = {
-  'HAMBURGER_MENU_BUTTON': 'hamburger_menu_button',
-  'TEXT_INPUT': 'text_input',
-  'REGENERATE_RESPONSE_BUTTON': 'regenerate_response_button',
-  'SELECT_OAK_LESSON': 'select_oak_lesson',
-  'TYPE_EDIT': 'type_edit',
-  'LESSON_FINISH_CHECK': 'lesson_finish_check',
-  'CONTINUE_BUTTON': 'continue_button',
-  'CONTINUE_TEXT': 'continue_text',
-  'GO_TO_SHARE_PAGE_BUTTON': 'go_to_share_page_button',
-  'EXAMPLE_LESSON_BUTTON': 'example_lesson_button',
-  'HOMEPAGE_PRIMARY_CREATE_A_LESSON_BUTTON': 'homepage_primary_create_a_lesson_button',
-  'HOMEPAGE_SECONDARY_CREATE_A_LESSON_BUTTON': 'homepage_secondary_create_a_lesson_button',
-  'FOOTER_MENU_LINK': 'footer_menu_link',
-  'FILTER_LINK': 'filter_link',
-  'KEYSTAGE_KEYPAD_BUTTON': 'keystage_keypad_button',
-  'LESSON_CARD': 'lesson_card',
-  'LESSON_DOWNLOAD_BUTTON': 'lesson_download_button',
-  'PROGRAMME_CARD': 'programme_card',
-  'SEARCH_BUTTON': 'search_button',
-  'SEARCH_RESULT_ITEM': 'search_result_item',
-  'SHARE_BUTTON': 'share_button',
-  'SUBJECT_CARD': 'subject_card',
-  'UNIT_CARD': 'unit_card',
-  'SIGNUP_FORM': 'signup_form',
-  'SKIP_BUTTON': 'skip_button',
-  'YEAR_KEYPAD_BUTTON': 'year_keypad_button',
-  'UNIT_DOWNLOAD_BUTTON': 'unit_download_button',
-  'SEARCH_GET_STARTED_BUTTON': 'search_get_started_button',
-  'AIMS_AND_PURPOSE': 'aims_and_purpose',
-  'CURICULUM_COHERENCE': 'curiculum_coherence',
-  'CURRICULUM_DELIVERY': 'curriculum_delivery',
-  'CURRICULUM_VISUALISER_BUTTON': 'curriculum_visualiser_button',
-  'DOWNLOAD_BUTTON': 'download_button',
-  'DOWNLOAD_TAB': 'download_tab',
-  'EXPLAINER_TAB': 'explainer_tab',
-  'FOLLOWING_UNIT_DESC': 'following_unit_desc',
-  'HOMEPAGE_BUTTON': 'homepage_button',
-  'HOMEPAGE_TAB': 'homepage_tab',
-  'LANDING_PAGE_BUTTON': 'landing_page_button',
-  'LEARNING_TIER_BUTTON': 'learning_tier_button',
-  'LESSONS_IN_UNIT': 'lessons_in_unit',
-  'NATIONAL_CURRICULUM': 'national_curriculum',
-  'OAK_CURRICULUM_PRINCIPLES': 'oak_curriculum_principles',
-  'OAK_SUBJECT_PRINCIPLES': 'oak_subject_principles',
-  'OUR_CURRICULUM_PARTNER': 'our_curriculum_partner',
-  'PREVIOUS_UNIT_DESC': 'previous_unit_desc',
-  'RECOMMENDATIONS_FROM_SUBJECT_SPECIFIC_REPORTS': 'recommendations_from_subject_specific_reports',
-  'SEE_LESSONS_IN_UNIT_BUTTON': 'see_lessons_in_unit_button',
-  'SUBJECT_CATEGORY_BUTTON': 'subject_category_button',
-  'SUBJECT_SPECIFIC_NEEDS': 'subject_specific_needs',
-  'UNIT_INFO_BUTTON': 'unit_info_button',
-  'UNIT_SEQUENCE_TAB': 'unit_sequence_tab',
-  'VIDEO': 'video',
-  'WHY_THIS_WHY_NOW': 'why_this_why_now',
-  'YEAR_GROUP_BUTTON': 'year_group_button',
-  'ADD_ADDITIONAL_MATERIALS_BUTTON': 'add_additional_materials_button',
-  'MODIFY_BUTTON': 'modify_button',
-  'EXAM_SUBJECT_BUTTON': 'exam_subject_button',
-  'GO_TO_MEDIA_CLIPS_PAGE_BUTTON': 'go_to_media_clips_page_button',
-  'MEDIA_CLIPS_PLAYED': 'media_clips_played',
-  'LESSON_LISTING_SAVE_BUTTON': 'lesson_listing_save_button',
-  'UNIT_LISTING_SAVE_BUTTON': 'unit_listing_save_button',
-  'MY_LIBRARY_SAVE_BUTTON': 'my-library-save-button',
-  'BACK_A_STEP_BUTTON': 'back_a_step_button',
-  'CREATE_ADDITIONAL_MATERIALS_BUTTON': 'create_additional_materials_button',
-  'CREATE_TEACHING_MATERIAL_BUTTON': 'create_teaching_material_button',
-  'GENERATE_OVERVIEW': 'generate_overview',
-  'INCREASE_READING_AGE_BUTTON': 'increase_reading_age_button',
-  'LESSON_DETAILS_BUTTON': 'lesson_details_button',
-  'LESSON_SUMMARY_BUTTON': 'lesson_summary_button',
-  'LOWER_READING_AGE_BUTTON': 'lower_reading_age_button',
-  'UNDO_BUTTON': 'undo_button',
-  'LESSON_DOWNLOADS': 'lesson_downloads',
-  'LESSON_LISTING': 'lesson_listing',
-  'LESSON_MEDIA_CLIPS': 'lesson_media_clips',
-  'LESSON_OVERVIEW': 'lesson_overview',
-  'ALL_FILTERS': 'all_filters',
-  'SUGGESTED_FILTER': 'suggested_filter',
-  'CREATE_MORE_WITH_AI_BUTTON': 'create_more_with_ai_button',
-  'CREATE_MORE_WITH_AI_DROPDOWN': 'create_more_with_ai_dropdown',
-  'CHILD_SUBJECT_BUTTON': 'child_subject_button',
-  'ABOUT_CURRICULUM': 'about_curriculum',
-  'OAKS_IMPACT': 'oaks_impact',
-  'MEET_THE_TEAM': 'meet_the_team',
-  'GET_INVOLVED': 'get_involved',
-  'JOIN_RESEARCH_PANEL': 'join_research_panel',
-  'GET_IN_TOUCH': 'get_in_touch',
-  'PERMANENT_ROLES': 'permanent_roles',
-  'FREELANCE_ROLES': 'freelance_roles',
-  'ABOUT_OAK': 'about_oak',
+  HAMBURGER_MENU_BUTTON: "hamburger_menu_button",
+  TEXT_INPUT: "text_input",
+  REGENERATE_RESPONSE_BUTTON: "regenerate_response_button",
+  SELECT_OAK_LESSON: "select_oak_lesson",
+  TYPE_EDIT: "type_edit",
+  LESSON_FINISH_CHECK: "lesson_finish_check",
+  CONTINUE_BUTTON: "continue_button",
+  CONTINUE_TEXT: "continue_text",
+  GO_TO_SHARE_PAGE_BUTTON: "go_to_share_page_button",
+  EXAMPLE_LESSON_BUTTON: "example_lesson_button",
+  HOMEPAGE_PRIMARY_CREATE_A_LESSON_BUTTON:
+    "homepage_primary_create_a_lesson_button",
+  HOMEPAGE_SECONDARY_CREATE_A_LESSON_BUTTON:
+    "homepage_secondary_create_a_lesson_button",
+  FOOTER_MENU_LINK: "footer_menu_link",
+  FILTER_LINK: "filter_link",
+  KEYSTAGE_KEYPAD_BUTTON: "keystage_keypad_button",
+  LESSON_CARD: "lesson_card",
+  LESSON_DOWNLOAD_BUTTON: "lesson_download_button",
+  PROGRAMME_CARD: "programme_card",
+  SEARCH_BUTTON: "search_button",
+  SEARCH_RESULT_ITEM: "search_result_item",
+  SHARE_BUTTON: "share_button",
+  SUBJECT_CARD: "subject_card",
+  UNIT_CARD: "unit_card",
+  SIGNUP_FORM: "signup_form",
+  SKIP_BUTTON: "skip_button",
+  YEAR_KEYPAD_BUTTON: "year_keypad_button",
+  UNIT_DOWNLOAD_BUTTON: "unit_download_button",
+  SEARCH_GET_STARTED_BUTTON: "search_get_started_button",
+  AIMS_AND_PURPOSE: "aims_and_purpose",
+  CURICULUM_COHERENCE: "curiculum_coherence",
+  CURRICULUM_DELIVERY: "curriculum_delivery",
+  CURRICULUM_VISUALISER_BUTTON: "curriculum_visualiser_button",
+  DOWNLOAD_BUTTON: "download_button",
+  DOWNLOAD_TAB: "download_tab",
+  EXPLAINER_TAB: "explainer_tab",
+  FOLLOWING_UNIT_DESC: "following_unit_desc",
+  HOMEPAGE_BUTTON: "homepage_button",
+  HOMEPAGE_TAB: "homepage_tab",
+  LANDING_PAGE_BUTTON: "landing_page_button",
+  LEARNING_TIER_BUTTON: "learning_tier_button",
+  LESSONS_IN_UNIT: "lessons_in_unit",
+  NATIONAL_CURRICULUM: "national_curriculum",
+  OAK_CURRICULUM_PRINCIPLES: "oak_curriculum_principles",
+  OAK_SUBJECT_PRINCIPLES: "oak_subject_principles",
+  OUR_CURRICULUM_PARTNER: "our_curriculum_partner",
+  PREVIOUS_UNIT_DESC: "previous_unit_desc",
+  RECOMMENDATIONS_FROM_SUBJECT_SPECIFIC_REPORTS:
+    "recommendations_from_subject_specific_reports",
+  SEE_LESSONS_IN_UNIT_BUTTON: "see_lessons_in_unit_button",
+  SUBJECT_CATEGORY_BUTTON: "subject_category_button",
+  SUBJECT_SPECIFIC_NEEDS: "subject_specific_needs",
+  UNIT_INFO_BUTTON: "unit_info_button",
+  UNIT_SEQUENCE_TAB: "unit_sequence_tab",
+  VIDEO: "video",
+  WHY_THIS_WHY_NOW: "why_this_why_now",
+  YEAR_GROUP_BUTTON: "year_group_button",
+  ADD_ADDITIONAL_MATERIALS_BUTTON: "add_additional_materials_button",
+  MODIFY_BUTTON: "modify_button",
+  EXAM_SUBJECT_BUTTON: "exam_subject_button",
+  GO_TO_MEDIA_CLIPS_PAGE_BUTTON: "go_to_media_clips_page_button",
+  MEDIA_CLIPS_PLAYED: "media_clips_played",
+  LESSON_LISTING_SAVE_BUTTON: "lesson_listing_save_button",
+  UNIT_LISTING_SAVE_BUTTON: "unit_listing_save_button",
+  MY_LIBRARY_SAVE_BUTTON: "my-library-save-button",
+  BACK_A_STEP_BUTTON: "back_a_step_button",
+  CREATE_ADDITIONAL_MATERIALS_BUTTON: "create_additional_materials_button",
+  CREATE_TEACHING_MATERIAL_BUTTON: "create_teaching_material_button",
+  GENERATE_OVERVIEW: "generate_overview",
+  INCREASE_READING_AGE_BUTTON: "increase_reading_age_button",
+  LESSON_DETAILS_BUTTON: "lesson_details_button",
+  LESSON_SUMMARY_BUTTON: "lesson_summary_button",
+  LOWER_READING_AGE_BUTTON: "lower_reading_age_button",
+  UNDO_BUTTON: "undo_button",
+  LESSON_DOWNLOADS: "lesson_downloads",
+  LESSON_LISTING: "lesson_listing",
+  LESSON_MEDIA_CLIPS: "lesson_media_clips",
+  LESSON_OVERVIEW: "lesson_overview",
+  ALL_FILTERS: "all_filters",
+  SUGGESTED_FILTER: "suggested_filter",
+  CREATE_MORE_WITH_AI_BUTTON: "create_more_with_ai_button",
+  CREATE_MORE_WITH_AI_DROPDOWN: "create_more_with_ai_dropdown",
+  CHILD_SUBJECT_BUTTON: "child_subject_button",
+  ABOUT_CURRICULUM: "about_curriculum",
+  OAKS_IMPACT: "oaks_impact",
+  MEET_THE_TEAM: "meet_the_team",
+  GET_INVOLVED: "get_involved",
+  JOIN_RESEARCH_PANEL: "join_research_panel",
+  GET_IN_TOUCH: "get_in_touch",
+  PERMANENT_ROLES: "permanent_roles",
+  FREELANCE_ROLES: "freelance_roles",
+  ABOUT_OAK: "about_oak",
 } as const;
 export type ComponentTypeType = typeof ComponentType;
 export type ComponentTypeValueType = ComponentTypeType[keyof ComponentTypeType];
 
 export const AnalyticsUseCase = {
-  'PUPIL': 'Pupil',
-  'TEACHER': 'Teacher',
+  PUPIL: "Pupil",
+  TEACHER: "Teacher",
 } as const;
 export type AnalyticsUseCaseType = typeof AnalyticsUseCase;
-export type AnalyticsUseCaseValueType = AnalyticsUseCaseType[keyof AnalyticsUseCaseType];
+export type AnalyticsUseCaseValueType =
+  AnalyticsUseCaseType[keyof AnalyticsUseCaseType];
 
 export const Product = {
-  'AI_LESSON_ASSISTANT': 'ai lesson assistant',
-  'CURRICULUM_RESOURCES': 'curriculum resources',
-  'CURRICULUM_VISUALISER': 'curriculum visualiser',
-  'PUPIL_LESSON_ACTIVITIES': 'pupil lesson activities',
-  'TEACHER_LESSON_RESOURCES': 'teacher lesson resources',
-  'USER_ACCOUNT_MANAGEMENT': 'user account management',
-  'MEDIA_CLIPS': 'media clips',
-  'TEACHING_MATERIAL': 'teaching material',
-  'ABOUT_US': 'about us',
+  AI_LESSON_ASSISTANT: "ai lesson assistant",
+  CURRICULUM_RESOURCES: "curriculum resources",
+  CURRICULUM_VISUALISER: "curriculum visualiser",
+  PUPIL_LESSON_ACTIVITIES: "pupil lesson activities",
+  TEACHER_LESSON_RESOURCES: "teacher lesson resources",
+  USER_ACCOUNT_MANAGEMENT: "user account management",
+  MEDIA_CLIPS: "media clips",
+  TEACHING_MATERIAL: "teaching material",
+  ABOUT_US: "about us",
 } as const;
 export type ProductType = typeof Product;
 export type ProductValueType = ProductType[keyof ProductType];
 
 export const Platform = {
-  'OWA': 'owa',
-  'AILA_BETA': 'aila-beta',
+  OWA: "owa",
+  AILA_BETA: "aila-beta",
 } as const;
 export type PlatformType = typeof Platform;
 export type PlatformValueType = PlatformType[keyof PlatformType];
 
 export const EngagementIntent = {
-  'EXPLORE': 'explore',
-  'REFINE': 'refine',
-  'USE': 'use',
-  'ADVOCATE': 'advocate',
+  EXPLORE: "explore",
+  REFINE: "refine",
+  USE: "use",
+  ADVOCATE: "advocate",
 } as const;
 export type EngagementIntentType = typeof EngagementIntent;
-export type EngagementIntentValueType = EngagementIntentType[keyof EngagementIntentType];
+export type EngagementIntentValueType =
+  EngagementIntentType[keyof EngagementIntentType];
 
 let PostHogEU: any;
 
-export function initAvo(options: {env: AvoEnv;
+export function initAvo(
+  options: {
+    env: AvoEnv;
     strict?: boolean;
     noop?: boolean;
-    reportFailureAs?: 'error' | 'warn' | 'log';
+    reportFailureAs?: "error" | "warn" | "log";
     inspector?: AvoInspector;
-    avoLogger?: AvoLogger},
-    destinationOptions: any,
-    PostHogEUDestination: CustomDestination) {
+    avoLogger?: AvoLogger;
+  },
+  destinationOptions: any,
+  PostHogEUDestination: CustomDestination,
+) {
   if (__AVO_ENV__ !== null) {
     return;
   }
@@ -558,19 +753,35 @@ export function initAvo(options: {env: AvoEnv;
     __AVO_NOOP__ = true;
   }
   if (__AVO_NOOP__ && __AVO_ENV__ == AvoEnv.Prod) {
-    InternalAvoLogger.warn("[avo] ****************************************************");
-    InternalAvoLogger.warn("[avo] WARNING Avo cannot be initialized in noop mode in production:");
-    InternalAvoLogger.warn("[avo] - Overwriting configuration with noop=false.");
-    InternalAvoLogger.warn("[avo] - Please reach out if you want to be able to run Avo in production mode with noop=true");
-    InternalAvoLogger.warn("[avo] ****************************************************");
+    InternalAvoLogger.warn(
+      "[avo] ****************************************************",
+    );
+    InternalAvoLogger.warn(
+      "[avo] WARNING Avo cannot be initialized in noop mode in production:",
+    );
+    InternalAvoLogger.warn(
+      "[avo] - Overwriting configuration with noop=false.",
+    );
+    InternalAvoLogger.warn(
+      "[avo] - Please reach out if you want to be able to run Avo in production mode with noop=true",
+    );
+    InternalAvoLogger.warn(
+      "[avo] ****************************************************",
+    );
     __AVO_NOOP__ = false;
   }
   if (__AVO_NOOP__) {
-    InternalAvoLogger.log("[avo] ****************************************************");
-    InternalAvoLogger.log("[avo] Avo is now initialized in noop mode. This means:");
+    InternalAvoLogger.log(
+      "[avo] ****************************************************",
+    );
+    InternalAvoLogger.log(
+      "[avo] Avo is now initialized in noop mode. This means:",
+    );
     InternalAvoLogger.log("[avo] - No events will be sent");
     InternalAvoLogger.log("[avo] - No network requests are made");
-    InternalAvoLogger.log("[avo] ****************************************************");
+    InternalAvoLogger.log(
+      "[avo] ****************************************************",
+    );
   }
   if (options.strict !== undefined) {
     __STRICT__ = options.strict !== false;
@@ -580,30 +791,34 @@ export function initAvo(options: {env: AvoEnv;
   }
   if (!__AVO_NOOP__ && options.inspector !== undefined) {
     __INSPECTOR__ = options.inspector;
-  } else if (__AVO_ENV__ !== 'prod') {
-    InternalAvoLogger.warn("[avo] Avo Inspector not provided in initAvo() call");
+  } else if (__AVO_ENV__ !== "prod") {
+    InternalAvoLogger.warn(
+      "[avo] Avo Inspector not provided in initAvo() call",
+    );
   }
-  
+
   destinationOptions = destinationOptions || {};
-  
+
   if (!__AVO_NOOP__) {
     if (__AVO_ENV__ === AvoEnv.Prod) {
     }
     if (__AVO_ENV__ === AvoEnv.Dev) {
     }
-    
+
     PostHogEU = PostHogEUDestination;
-    if (__AVO_ENV__ === 'prod') {
+    if (__AVO_ENV__ === "prod") {
       PostHogEU && PostHogEU.make && PostHogEU.make(__AVO_ENV__, null);
-    } else if (__AVO_ENV__ === 'dev') {
+    } else if (__AVO_ENV__ === "dev") {
       PostHogEU && PostHogEU.make && PostHogEU.make(__AVO_ENV__, null);
     } else {
-      console[__REPORT_FAILURE_AS__ || 'error']("[avo] No staging key is set for PostHogEU. Head to destination settings in Avo to set a staging key.");
+      console[__REPORT_FAILURE_AS__ || "error"](
+        "[avo] No staging key is set for PostHogEU. Head to destination settings in Avo to set a staging key.",
+      );
       PostHogEU && PostHogEU.make && PostHogEU.make(__AVO_ENV__, null);
     }
     if (__AVO_ENV__ === AvoEnv.Dev) {
       // debug console in Avo
-      _avo_invoke_meta(__AVO_ENV__, 'init', [], 'init');
+      _avo_invoke_meta(__AVO_ENV__, "init", [], "init");
     }
   }
 }
@@ -630,11 +845,11 @@ export interface UserSignMinusUpCompletedProperties {
  * Component Type: [see property description]
  * Event Version: 2.0.0
  * Analytics Use Case: N/A
- * 
+ *
  * When to trigger this event:
  * 1. A user uses SSO or email/password combination to create an account in Clerk.
  * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/pIDmL9KIs54WAHElmKQB1/events/fOlHJypRwg/trigger/aV1XekNBLU
- * 
+ *
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA and Aila. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
  * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
@@ -646,47 +861,113 @@ export interface UserSignMinusUpCompletedProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.userId_: User Id is required for server sources.
  * @param properties.singleSignOnService: The Single Sign-On (SSO) Service used at a given stage of sign-up / sign-on.
- * 
+ *
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/pIDmL9KIs54WAHElmKQB1/events/fOlHJypRwg}
  */
-export function userSignUpCompleted(properties: UserSignMinusUpCompletedProperties) {
+export function userSignUpCompleted(
+  properties: UserSignMinusUpCompletedProperties,
+) {
   // @ts-ignore
   let eventPropertiesArray: array = [];
-  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
-  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
-  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
-  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
-  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
-  properties.analyticsUseCase !== undefined && properties.analyticsUseCase !== null ?
-    eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase}) :
-    eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: null});
-  eventPropertiesArray.push({id: "03PfePESj", name: "Single Sign-on Service", value: properties.singleSignOnService});
-  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  eventPropertiesArray.push({
+    id: "M1ukA4HClh",
+    name: "Platform",
+    value: properties.platform,
+  });
+  eventPropertiesArray.push({
+    id: "JmUs_uxup",
+    name: "Product",
+    value: properties.product,
+  });
+  eventPropertiesArray.push({
+    id: "xJlB159-KB",
+    name: "Engagement Intent",
+    value: properties.engagementIntent,
+  });
+  eventPropertiesArray.push({
+    id: "9b_lf1oq8",
+    name: "Component Type",
+    value: properties.componentType,
+  });
+  eventPropertiesArray.push({
+    id: "3ZqdV-PbJL",
+    name: "Event Version",
+    value: properties.eventVersion,
+  });
+  properties.analyticsUseCase !== undefined &&
+  properties.analyticsUseCase !== null
+    ? eventPropertiesArray.push({
+        id: "DAS5R4dcvH",
+        name: "Analytics Use Case",
+        value: properties.analyticsUseCase,
+      })
+    : eventPropertiesArray.push({
+        id: "DAS5R4dcvH",
+        name: "Analytics Use Case",
+        value: null,
+      });
+  eventPropertiesArray.push({
+    id: "03PfePESj",
+    name: "Single Sign-on Service",
+    value: properties.singleSignOnService,
+  });
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray);
   // @ts-ignore
   let userPropertiesArray: array = [];
-  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray);
   // assert properties
   if (__AVO_ENV__ !== AvoEnv.Prod) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "fOlHJypRwg", "48ffe0b29f1c2872bb38cb9774fb63b128861c5ab4423892e103e17647da3ed2", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(
+        __AVO_ENV__,
+        "fOlHJypRwg",
+        "48ffe0b29f1c2872bb38cb9774fb63b128861c5ab4423892e103e17647da3ed2",
+        messages.map((m) =>
+          Object.assign(
+            {},
+            {
+              tag: m.tag,
+              propertyId: m.propertyId,
+              additionalProperties: m.additionalProperties,
+              actualType: m.actualType,
+            },
+          ),
+        ),
+        "event",
+      );
     }
-    InternalAvoLogger.logEventSent("User Sign-Up Completed", eventProperties, userProperties);
+    InternalAvoLogger.logEventSent(
+      "User Sign-Up Completed",
+      eventProperties,
+      userProperties,
+    );
   }
   if (!__AVO_NOOP__) {
     return Promise.all([
       // report to Avo Inspector
       __INSPECTOR__ != null
-        // @ts-ignore
-        ? __INSPECTOR__._avoFunctionTrackSchemaFromEvent("User Sign-Up Completed", eventProperties, "fOlHJypRwg", "48ffe0b29f1c2872bb38cb9774fb63b128861c5ab4423892e103e17647da3ed2")
-      : Promise.resolve(),
+        ? // @ts-ignore
+          __INSPECTOR__._avoFunctionTrackSchemaFromEvent(
+            "User Sign-Up Completed",
+            eventProperties,
+            "fOlHJypRwg",
+            "48ffe0b29f1c2872bb38cb9774fb63b128861c5ab4423892e103e17647da3ed2",
+          )
+        : Promise.resolve(),
       // destination PostHogEU
-      PostHogEU.logEvent(properties.userId_, "User Sign-Up Completed", (Object as any).assign({}, eventProperties)),
+      PostHogEU.logEvent(
+        properties.userId_,
+        "User Sign-Up Completed",
+        (Object as any).assign({}, eventProperties),
+      ),
     ]);
   } else {
     // do nothing
-    return new Promise((resolve: any) => { resolve(null); });
+    return new Promise((resolve: any) => {
+      resolve(null);
+    });
   }
 }
 
@@ -695,41 +976,72 @@ export interface UserSignMinusInProperties {
 }
 /**
  * User Sign-In: A user signs in to a pre-existing account
- * 
+ *
  * @param properties the properties associated with this event
  * @param properties.userId_: User Id is required for server sources.
- * 
+ *
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/pIDmL9KIs54WAHElmKQB1/events/KiDGLM5Isg}
  */
 export function userSignIn(properties: UserSignMinusInProperties) {
   // @ts-ignore
   let eventPropertiesArray: array = [];
-  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray);
   // @ts-ignore
   let userPropertiesArray: array = [];
-  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray);
   // assert properties
   if (__AVO_ENV__ !== AvoEnv.Prod) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "KiDGLM5Isg", "79712e9f1ba71c986c27dca5b3bafd42181a08ccda00c8151db08a971ba397a8", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(
+        __AVO_ENV__,
+        "KiDGLM5Isg",
+        "79712e9f1ba71c986c27dca5b3bafd42181a08ccda00c8151db08a971ba397a8",
+        messages.map((m) =>
+          Object.assign(
+            {},
+            {
+              tag: m.tag,
+              propertyId: m.propertyId,
+              additionalProperties: m.additionalProperties,
+              actualType: m.actualType,
+            },
+          ),
+        ),
+        "event",
+      );
     }
-    InternalAvoLogger.logEventSent("User Sign-In", eventProperties, userProperties);
+    InternalAvoLogger.logEventSent(
+      "User Sign-In",
+      eventProperties,
+      userProperties,
+    );
   }
   if (!__AVO_NOOP__) {
     return Promise.all([
       // report to Avo Inspector
       __INSPECTOR__ != null
-        // @ts-ignore
-        ? __INSPECTOR__._avoFunctionTrackSchemaFromEvent("User Sign-In", eventProperties, "KiDGLM5Isg", "79712e9f1ba71c986c27dca5b3bafd42181a08ccda00c8151db08a971ba397a8")
-      : Promise.resolve(),
+        ? // @ts-ignore
+          __INSPECTOR__._avoFunctionTrackSchemaFromEvent(
+            "User Sign-In",
+            eventProperties,
+            "KiDGLM5Isg",
+            "79712e9f1ba71c986c27dca5b3bafd42181a08ccda00c8151db08a971ba397a8",
+          )
+        : Promise.resolve(),
       // destination PostHogEU
-      PostHogEU.logEvent(properties.userId_, "User Sign-In", (Object as any).assign({}, eventProperties)),
+      PostHogEU.logEvent(
+        properties.userId_,
+        "User Sign-In",
+        (Object as any).assign({}, eventProperties),
+      ),
     ]);
   } else {
     // do nothing
-    return new Promise((resolve: any) => { resolve(null); });
+    return new Promise((resolve: any) => {
+      resolve(null);
+    });
   }
 }
 
@@ -738,41 +1050,72 @@ export interface UserSignMinusOutProperties {
 }
 /**
  * User Sign-Out: A user signs-out of their account
- * 
+ *
  * @param properties the properties associated with this event
  * @param properties.userId_: User Id is required for server sources.
- * 
+ *
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/pIDmL9KIs54WAHElmKQB1/events/j0lSWreaah}
  */
 export function userSignOut(properties: UserSignMinusOutProperties) {
   // @ts-ignore
   let eventPropertiesArray: array = [];
-  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray);
   // @ts-ignore
   let userPropertiesArray: array = [];
-  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray);
   // assert properties
   if (__AVO_ENV__ !== AvoEnv.Prod) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "j0lSWreaah", "4ec95d6377c8642a7ba3dc7b1b80d12637683f028e836fdba2f68b8ee1dad542", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(
+        __AVO_ENV__,
+        "j0lSWreaah",
+        "4ec95d6377c8642a7ba3dc7b1b80d12637683f028e836fdba2f68b8ee1dad542",
+        messages.map((m) =>
+          Object.assign(
+            {},
+            {
+              tag: m.tag,
+              propertyId: m.propertyId,
+              additionalProperties: m.additionalProperties,
+              actualType: m.actualType,
+            },
+          ),
+        ),
+        "event",
+      );
     }
-    InternalAvoLogger.logEventSent("User Sign-Out", eventProperties, userProperties);
+    InternalAvoLogger.logEventSent(
+      "User Sign-Out",
+      eventProperties,
+      userProperties,
+    );
   }
   if (!__AVO_NOOP__) {
     return Promise.all([
       // report to Avo Inspector
       __INSPECTOR__ != null
-        // @ts-ignore
-        ? __INSPECTOR__._avoFunctionTrackSchemaFromEvent("User Sign-Out", eventProperties, "j0lSWreaah", "4ec95d6377c8642a7ba3dc7b1b80d12637683f028e836fdba2f68b8ee1dad542")
-      : Promise.resolve(),
+        ? // @ts-ignore
+          __INSPECTOR__._avoFunctionTrackSchemaFromEvent(
+            "User Sign-Out",
+            eventProperties,
+            "j0lSWreaah",
+            "4ec95d6377c8642a7ba3dc7b1b80d12637683f028e836fdba2f68b8ee1dad542",
+          )
+        : Promise.resolve(),
       // destination PostHogEU
-      PostHogEU.logEvent(properties.userId_, "User Sign-Out", (Object as any).assign({}, eventProperties)),
+      PostHogEU.logEvent(
+        properties.userId_,
+        "User Sign-Out",
+        (Object as any).assign({}, eventProperties),
+      ),
     ]);
   } else {
     // do nothing
-    return new Promise((resolve: any) => { resolve(null); });
+    return new Promise((resolve: any) => {
+      resolve(null);
+    });
   }
 }
 
@@ -790,7 +1133,7 @@ export default {
   userSignUpCompleted,
   userSignIn,
   userSignOut,
-}
+};
 
 // AVOMODULEMAP:"Avo"
 // AVOEVENTMAP:["userSignUpCompleted","userSignIn","userSignOut"]

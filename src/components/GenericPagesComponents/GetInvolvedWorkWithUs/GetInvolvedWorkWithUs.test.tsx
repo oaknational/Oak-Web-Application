@@ -68,7 +68,7 @@ describe("GetInvolvedWorkWithUs", () => {
     expect(aboutUsContactInitiated).toHaveBeenCalledWith(
       expect.objectContaining({
         componentType: "permanent_roles",
-      })
+      }),
     );
   });
 
@@ -95,7 +95,7 @@ describe("GetInvolvedWorkWithUs", () => {
     expect(aboutUsContactInitiated).toHaveBeenCalledWith(
       expect.objectContaining({
         componentType: "freelance_roles",
-      })
+      }),
     );
   });
 });

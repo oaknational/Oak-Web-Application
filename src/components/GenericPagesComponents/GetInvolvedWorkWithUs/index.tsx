@@ -10,14 +10,18 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { PortableTextBlockComponent } from "@portabletext/react";
-import { aboutUsContactInitiated, ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import {
+  aboutUsContactInitiated,
+  ComponentTypeValueType,
+} from "@/browser-lib/avo/Avo";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
 
 const handleClick = (componentType: ComponentTypeValueType) => {
-  const aboutUsContactInititaiedAnalytics = buildAboutUsContactInitiatedAnalytics(componentType);
+  const aboutUsContactInititaiedAnalytics =
+    buildAboutUsContactInitiatedAnalytics(componentType);
 
   return aboutUsContactInitiated(aboutUsContactInititaiedAnalytics);
 };

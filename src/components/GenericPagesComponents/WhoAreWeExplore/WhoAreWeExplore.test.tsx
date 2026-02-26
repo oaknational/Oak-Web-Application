@@ -73,7 +73,7 @@ describe("WhoAreWeExplore", () => {
     expect(aboutUsExplored).toHaveBeenCalledWith(
       expect.objectContaining({
         componentType: "about_oak",
-      })
+      }),
     );
   });
 });

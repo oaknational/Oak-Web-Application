@@ -73,7 +73,9 @@ describe("GetInvolvedLinkCard", () => {
       <GetInvolvedLinkCard
         headingTag={"h2"}
         headingTitle={"Give your feedback"}
-        buttons={[{ text: "Get in touch", link: "#", componentType: "get_in_touch" }]}
+        buttons={[
+          { text: "Get in touch", link: "#", componentType: "get_in_touch" },
+        ]}
         content="Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers."
       />,
     );
@@ -84,7 +86,7 @@ describe("GetInvolvedLinkCard", () => {
     expect(aboutUsContactInitiated).toHaveBeenCalledWith(
       expect.objectContaining({
         componentType: "get_in_touch",
-      })
+      }),
     );
   });
 
@@ -101,7 +103,7 @@ describe("GetInvolvedLinkCard", () => {
     const link = getByRole("link", { name: /explore our research/i });
     fireEvent.click(link);
 
-    expect(aboutUsContactInitiated).not.toHaveBeenCalled
+    expect(aboutUsContactInitiated).not.toHaveBeenCalled;
   });
 
   it("renders without buttons", () => {

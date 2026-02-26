@@ -34,7 +34,7 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
       href: resolveOakHref({
         page: "about-who-we-are",
       }),
-      componentType: "about_oak" as const
+      componentType: "about_oak" as const,
     },
     {
       iconName: "homepage-teacher-map" as const,
@@ -42,7 +42,7 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
       href: resolveOakHref({
         page: "about-oaks-curricula",
       }),
-      componentType: "about_curriculum" as const
+      componentType: "about_curriculum" as const,
     },
     {
       iconName: "snack-break" as const,
@@ -50,7 +50,7 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
       href: resolveOakHref({
         page: "about-meet-the-team",
       }),
-      componentType: "meet_the_team" as const
+      componentType: "meet_the_team" as const,
     },
     {
       iconName: "chatting" as const,
@@ -58,7 +58,7 @@ export function AboutUsLayout({ children }: Readonly<AboutUsLayoutProps>) {
       href: resolveOakHref({
         page: "about-get-involved",
       }),
-      componentType: "get_involved" as const
+      componentType: "get_involved" as const,
     },
   ];
 

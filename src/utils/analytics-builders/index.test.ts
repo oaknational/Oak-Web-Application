@@ -13,7 +13,7 @@ import {
 } from "./index";
 
 describe("Analytics Builders", () => {
-const mockComponentType = "a_component_type" as ComponentTypeValueType;
+  const mockComponentType = "a_component_type" as ComponentTypeValueType;
 
   describe("buildAboutUsAccessedAnalytics", () => {
     it("should build analytics object with correct properties", () => {
