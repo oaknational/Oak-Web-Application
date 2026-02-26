@@ -9,18 +9,8 @@ import AboutUsMeetTheTeam, {
 } from "@/pages/about-us/meet-the-team";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CMSClient from "@/node-lib/cms";
-import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
-jest.mock("posthog-js/react", () => ({
-  ...jest.requireActual("posthog-js/react"),
-  useFeatureFlagEnabled: () => ({ enabled: {} }),
-}));
-jest.mock("@/utils/isNewAboutUsPagesEnabled");
 jest.mock("../../../node-lib/cms");
-jest.mock("@/node-lib/posthog/getPosthogId", () => ({
-  __esModule: true,
-  getPosthogIdFromCookie: jest.fn().mockReturnValue("test-posthog-id"),
-}));
 
 const mockTeamMember = {
   id: "test-id",
@@ -69,22 +59,7 @@ describe("pages/about/meet-the-team.tsx", () => {
   });
 
   describe("getServerSideProps", () => {
-    it("should 404 when not enabled", async () => {
-      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(false);
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-        res: {},
-        query: {},
-        params: {},
-      } as unknown as GetServerSidePropsContext);
-
-      expect(propsResult).toMatchObject({
-        notFound: true,
-      });
-    });
-
-    it("should 200 when enabled", async () => {
-      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
+    it("should return props when CMS returns data", async () => {
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
         res: {},
@@ -98,7 +73,6 @@ describe("pages/about/meet-the-team.tsx", () => {
     });
 
     it("should 404 when CMS returns no data", async () => {
-      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(null);
 
       const propsResult = await getServerSideProps({

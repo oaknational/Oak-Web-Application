@@ -16,7 +16,6 @@ import {
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
@@ -25,13 +24,10 @@ import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/do
 import { CurriculumPartners } from "@/components/GenericPagesComponents/CurriculumPartners";
 import { GuidingPrinciples } from "@/components/GenericPagesComponents/GuidingPrinciples";
 import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
-import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 import CMSClient from "@/node-lib/cms";
 import { OaksCurriculaPage as OaksCurriculaPageData } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
-
-const posthogApiKey = getBrowserConfig("posthogApiKey");
 
 export type OaksCurriculaPageProps = {
   pageData: OaksCurriculaPageData;
@@ -224,17 +220,6 @@ const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
 
 export const getServerSideProps = (async (context) => {
   const isPreviewMode = context.preview === true;
-
-  const enableV2 = await isNewAboutUsPagesEnabled(
-    posthogApiKey,
-    context.req.cookies,
-  );
-
-  if (!enableV2) {
-    return {
-      notFound: true,
-    };
-  }
 
   const pageData = await CMSClient.oaksCurriculaPage({
     previewMode: isPreviewMode,

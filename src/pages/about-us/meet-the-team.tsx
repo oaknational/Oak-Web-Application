@@ -9,7 +9,6 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
@@ -26,9 +25,6 @@ import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTh
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
-
-const posthogApiKey = getBrowserConfig("posthogApiKey");
 
 const SECTION_TITLES = {
   leadership: "Our leadership",
@@ -215,17 +211,6 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
 export const getServerSideProps: GetServerSideProps<
   AboutUsMeetTheTeamPageProps
 > = async (context) => {
-  const enableV2 = await isNewAboutUsPagesEnabled(
-    posthogApiKey,
-    context.req.cookies,
-  );
-
-  if (!enableV2) {
-    return {
-      notFound: true,
-    };
-  }
-
   const isPreviewMode = context.preview === true;
   const meetTheTeamPage = await CMSClient.meetTheTeamPage({
     previewMode: isPreviewMode,

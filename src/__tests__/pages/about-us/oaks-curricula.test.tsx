@@ -10,9 +10,7 @@ import OaksCurricula, {
   getServerSideProps,
 } from "@/pages/about-us/oaks-curricula";
 import CMSClient from "@/node-lib/cms";
-import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
-jest.mock("@/utils/isNewAboutUsPagesEnabled");
 jest.mock("../../../node-lib/cms");
 
 const mockImage = {
@@ -144,22 +142,7 @@ describe("pages/about/oaks-curricula.tsx", () => {
   });
 
   describe("getServerSideProps", () => {
-    it("should 404 when not enabled", async () => {
-      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(false);
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-        res: {},
-        query: {},
-        params: {},
-      } as unknown as GetServerSidePropsContext);
-
-      expect(propsResult).toMatchObject({
-        notFound: true,
-      });
-    });
-
     it("should 404 when CMS returns null", async () => {
-      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       (CMSClient.oaksCurriculaPage as jest.Mock).mockResolvedValue(null);
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
