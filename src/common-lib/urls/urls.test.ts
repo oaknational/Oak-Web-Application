@@ -182,27 +182,9 @@ describe("urls.ts", () => {
         }),
       ).toBe("/teachers/key-stages/ks2/subjects");
     });
-    it("About us: Board", () => {
-      expect(resolveOakHref({ page: "about-board" })).toBe("/about-us/board");
-    });
     it("About us: Who we are", () => {
       expect(resolveOakHref({ page: "about-who-we-are" })).toBe(
         "/about-us/who-we-are",
-      );
-    });
-    it("About us: Leadership", () => {
-      expect(resolveOakHref({ page: "about-leadership" })).toBe(
-        "/about-us/leadership",
-      );
-    });
-    it("About us: Partners", () => {
-      expect(resolveOakHref({ page: "about-partners" })).toBe(
-        "/about-us/partners",
-      );
-    });
-    it("About us: Work with us", () => {
-      expect(resolveOakHref({ page: "about-work-with-us" })).toBe(
-        "/about-us/work-with-us",
       );
     });
     it("Contact us", () => {

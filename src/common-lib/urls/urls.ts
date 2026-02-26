@@ -286,11 +286,7 @@ type CampaignSingleLinkProps = {
   page: "campaign-single";
   campaignSlug: string;
 };
-type AboutUsBoardLinkProps = { page: "about-board" };
 type AboutUsWhoWeAreLinkProps = { page: "about-who-we-are" };
-type AboutUsLeadershipLinkProps = { page: "about-leadership" };
-type AboutUsPartnersLinkProps = { page: "about-partners" };
-type AboutUsWorkWithUsLinkProps = { page: "about-work-with-us" };
 
 type AboutUsMeetTheTeamLinkProps = { page: "about-meet-the-team" };
 type AboutUsMeetTheTeamBioLinkProps = {
@@ -435,11 +431,7 @@ export type OakLinkProps =
   | HelpLinkProps
   | LegalLinkProps
   | SearchLinkProps
-  | AboutUsBoardLinkProps
   | AboutUsWhoWeAreLinkProps
-  | AboutUsLeadershipLinkProps
-  | AboutUsPartnersLinkProps
-  | AboutUsWorkWithUsLinkProps
   | AboutUsMeetTheTeamLinkProps
   | AboutUsMeetTheTeamBioLinkProps
   | AboutUsGetInvolvedLinkProps
@@ -611,12 +603,6 @@ const postResolveHref =
 export const OAK_PAGES: {
   [K in keyof OakPages]: OakPages[K] & { pageType: K };
 } = {
-  "about-board": createOakPageConfig({
-    pathPattern: "/about-us/board",
-    analyticsPageName: "About Us: Board",
-    configType: "internal",
-    pageType: "about-board",
-  }),
   "about-who-we-are": createOakPageConfig({
     pathPattern: "/about-us/who-we-are",
     analyticsPageName: "About Us: Who We Are",
@@ -646,24 +632,6 @@ export const OAK_PAGES: {
     analyticsPageName: "About Us: Oak's curricula",
     configType: "internal",
     pageType: "about-oaks-curricula",
-  }),
-  "about-leadership": createOakPageConfig({
-    pathPattern: "/about-us/leadership",
-    analyticsPageName: "About Us: Leadership",
-    configType: "internal",
-    pageType: "about-leadership",
-  }),
-  "about-partners": createOakPageConfig({
-    pathPattern: "/about-us/partners",
-    analyticsPageName: "About Us: Partners",
-    configType: "internal",
-    pageType: "about-partners",
-  }),
-  "about-work-with-us": createOakPageConfig({
-    pathPattern: "/about-us/work-with-us",
-    analyticsPageName: "About Us: Work With Us",
-    configType: "internal",
-    pageType: "about-work-with-us",
   }),
   careers: createOakPageConfig({
     url: "https://app.beapplied.com/org/1574/oak-national-academy",
