@@ -1,4 +1,6 @@
-import React, { forwardRef, useEffect, useRef } from "react";
+import { ok } from "assert";
+
+import React, { forwardRef } from "react";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -53,26 +55,9 @@ let currentErrorEvent = { detail: { data: { type: "networkError" } } };
 jest.mock("@mux/mux-player-react/lazy", () => {
   // @ts-expect-error - MuxPlayer mock
   return forwardRef(({ onError, onPlay, onPause }, ref) => {
-    const containerRef = useRef<HTMLElement | null>(null);
-    const setRef = (el: HTMLElement | null) => {
-      containerRef.current = el;
-      if (typeof ref === "function") ref(el);
-      else if (ref)
-        (ref as React.MutableRefObject<HTMLElement | null>).current = el;
-    };
-
-    useEffect(() => {
-      const el = containerRef.current;
-      if (!el?.shadowRoot) return;
-      const playButton = el.shadowRoot.querySelector("media-play-button");
-      if (playButton instanceof HTMLElement) {
-        playButton.onclick = onPlay;
-      }
-    });
-
     return React.createElement(
       "mux-player-mock",
-      { ref: setRef, "data-testid": "mux-player" },
+      { ref, "data-testid": "mux-player" },
       <button
         data-testid="error-button"
         onClick={() => onError(currentErrorEvent)}
@@ -208,7 +193,8 @@ describe("VideoPlayer", () => {
     );
     const shadowPlayButton = mediaController?.shadowRoot?.querySelector(
       "[data-testid='shadow-play-button']",
-    ) as HTMLElement;
+    );
+    ok(shadowPlayButton instanceof HTMLElement);
 
     expect(shadowPlayButton).toBeInTheDocument();
 
