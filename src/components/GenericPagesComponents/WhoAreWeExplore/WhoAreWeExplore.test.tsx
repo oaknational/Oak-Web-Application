@@ -1,6 +1,8 @@
 import { fireEvent } from "@testing-library/react";
-import { aboutUsExplored } from "@/browser-lib/avo/Avo";
+
 import { WhoAreWeExplore } from "./";
+
+import { aboutUsExplored } from "@/browser-lib/avo/Avo";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProvidersByName(["oakTheme"]);

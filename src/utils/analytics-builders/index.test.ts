@@ -1,4 +1,10 @@
 import {
+  buildAboutUsAccessedAnalytics,
+  buildAboutUsContactInitiatedAnalytics,
+  buildAboutUsExploredAnalytics,
+} from "./index";
+
+import {
   Platform,
   Product,
   EngagementIntent,
@@ -6,11 +12,6 @@ import {
   AnalyticsUseCase,
   ComponentTypeValueType,
 } from "@/browser-lib/avo/Avo";
-import {
-  buildAboutUsAccessedAnalytics,
-  buildAboutUsContactInitiatedAnalytics,
-  buildAboutUsExploredAnalytics,
-} from "./index";
 
 describe("Analytics Builders", () => {
   const mockComponentType = "a_component_type" as ComponentTypeValueType;

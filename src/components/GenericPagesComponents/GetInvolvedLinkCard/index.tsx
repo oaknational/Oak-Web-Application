@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   OakFlex,
   OakHeading,
@@ -5,11 +6,11 @@ import {
   OakSecondaryButton,
   OakIcon,
 } from "@oaknational/oak-components";
+
 import {
   aboutUsContactInitiated,
   ComponentTypeValueType,
 } from "@/browser-lib/avo/Avo";
-import { ReactNode } from "react";
 import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
 
 const handleClick = (componentType: ComponentTypeValueType | undefined) => {
