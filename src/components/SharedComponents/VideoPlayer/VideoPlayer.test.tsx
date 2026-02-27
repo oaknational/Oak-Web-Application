@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useEffect, useRef } from "react";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -9,29 +9,82 @@ import VideoPlayer, {
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
+// Custom elements that simulate MuxPlayer's shadow DOM structure for autofocus tests.
+// findPlayButtonInShadowRoots recursively searches shadow roots for media-play-button.
+if (!customElements.get("media-play-button")) {
+  customElements.define(
+    "media-play-button",
+    class extends HTMLElement {
+      connectedCallback() {
+        this.setAttribute("data-testid", "shadow-play-button");
+      }
+    },
+  );
+}
+if (!customElements.get("media-controller-mock")) {
+  customElements.define(
+    "media-controller-mock",
+    class extends HTMLElement {
+      connectedCallback() {
+        if (!this.shadowRoot) {
+          const shadow = this.attachShadow({ mode: "open" });
+          shadow.appendChild(document.createElement("media-play-button"));
+        }
+      }
+    },
+  );
+}
+if (!customElements.get("mux-player-mock")) {
+  customElements.define(
+    "mux-player-mock",
+    class extends HTMLElement {
+      connectedCallback() {
+        if (!this.shadowRoot) {
+          const shadow = this.attachShadow({ mode: "open" });
+          shadow.appendChild(document.createElement("media-controller-mock"));
+        }
+      }
+    },
+  );
+}
+
 let currentErrorEvent = { detail: { data: { type: "networkError" } } };
 // Override the global mock for @mux/mux-player-react/lazy
 jest.mock("@mux/mux-player-react/lazy", () => {
   // @ts-expect-error - MuxPlayer mock
   return forwardRef(({ onError, onPlay, onPause }, ref) => {
-    ref; // This prevents warning about ref not being used
-    return (
-      <div data-testid="mux-player">
-        <button
-          data-testid="error-button"
-          onClick={() => {
-            onError(currentErrorEvent);
-          }}
-        >
-          Error
-        </button>
-        <button data-testid="play-button" onClick={onPlay}>
-          Play
-        </button>
-        <button data-testid="pause-button" onClick={onPause}>
-          Pause
-        </button>
-      </div>
+    const containerRef = useRef<HTMLElement | null>(null);
+    const setRef = (el: HTMLElement | null) => {
+      containerRef.current = el;
+      if (typeof ref === "function") ref(el);
+      else if (ref)
+        (ref as React.MutableRefObject<HTMLElement | null>).current = el;
+    };
+
+    useEffect(() => {
+      const el = containerRef.current;
+      if (!el?.shadowRoot) return;
+      const playButton = el.shadowRoot.querySelector("media-play-button");
+      if (playButton instanceof HTMLElement) {
+        playButton.onclick = onPlay;
+      }
+    });
+
+    return React.createElement(
+      "mux-player-mock",
+      { ref: setRef, "data-testid": "mux-player" },
+      <button
+        data-testid="error-button"
+        onClick={() => onError(currentErrorEvent)}
+      >
+        Error
+      </button>,
+      <button data-testid="play-button" onClick={onPlay}>
+        Play
+      </button>,
+      <button data-testid="pause-button" onClick={onPause}>
+        Pause
+      </button>,
     );
   });
 });
@@ -143,5 +196,29 @@ describe("VideoPlayer", () => {
         muted: false,
       });
     }, 100);
+  });
+
+  it("focuses the play button when autoFocusPlayButton is true", () => {
+    jest.useFakeTimers();
+    renderWithTheme(<VideoPlayer {...defaultProps} autoFocusPlayButton />);
+
+    const muxPlayer = screen.getByTestId("mux-player");
+    const mediaController = muxPlayer.shadowRoot?.querySelector(
+      "media-controller-mock",
+    );
+    const shadowPlayButton = mediaController?.shadowRoot?.querySelector(
+      "[data-testid='shadow-play-button']",
+    ) as HTMLElement;
+
+    expect(shadowPlayButton).toBeInTheDocument();
+
+    const focusSpy = jest.spyOn(shadowPlayButton, "focus");
+
+    jest.advanceTimersByTime(100);
+
+    expect(focusSpy).toHaveBeenCalled();
+
+    focusSpy.mockRestore();
+    jest.useRealTimers();
   });
 });
