@@ -6,8 +6,9 @@ const reactHooks = require("eslint-plugin-react-hooks");
 const { fixupPluginRules, fixupConfigRules } = require("@eslint/compat");
 const js = require("@eslint/js");
 const { FlatCompat } = require("@eslint/eslintrc");
+const browserCompat = require("eslint-plugin-compat");
 
-const compat = new FlatCompat({
+const flatCompat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: js.configs.recommended,
   allConfig: js.configs.all,
@@ -41,14 +42,16 @@ module.exports = defineConfig([
     plugins: {
       react,
       "react-hooks": fixupPluginRules(reactHooks),
+      compat: fixupPluginRules(browserCompat),
     },
 
     extends: fixupConfigRules(
-      compat.extends(
+      flatCompat.extends(
         "eslint:recommended",
         "plugin:@next/next/core-web-vitals",
         "plugin:import/recommended",
         "prettier",
+        "plugin:compat/recommended",
       ),
     ),
 
@@ -92,7 +95,7 @@ module.exports = defineConfig([
     },
 
     extends: fixupConfigRules(
-      compat.extends(
+      flatCompat.extends(
         "plugin:@next/next/core-web-vitals",
         "plugin:@typescript-eslint/recommended",
         "plugin:import/recommended",
@@ -141,6 +144,7 @@ module.exports = defineConfig([
           extensions: [".js", ".jsx", ".ts", ".tsx", ".d.ts", ".svg"],
         },
       },
+      polyfills: [],
     },
   },
   {

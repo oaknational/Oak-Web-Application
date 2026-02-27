@@ -20,6 +20,7 @@ import {
   OakSecondaryLink,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import Link from "next/link";
 
 import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
 import footerSections from "@/browser-lib/fixtures/footerSections";
@@ -60,6 +61,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
   return (
     <OakSecondaryLink
       href={props.href}
+      element={Link}
       aria-label={props.ariaLabel ?? undefined}
       iconName={props.icon}
       isTrailingIcon

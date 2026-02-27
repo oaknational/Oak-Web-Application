@@ -89,7 +89,7 @@
     "@mux/mux-node": "^9.0.1",
     "@mux/mux-player-react": "3.10.2",
     "@oaknational/google-classroom-addon": "^1.13.1",
-    "@oaknational/oak-components": "^2.8.0",
+    "@oaknational/oak-components": "^2.9.1",
     "@oaknational/oak-consent-client": "^2.4.1",
     "@oaknational/oak-curriculum-schema": "^1.67.0",
     "@oaknational/oak-pupil-client": "^2.15.0",
@@ -117,6 +117,7 @@
     "crypto-browserify": "^3.12.1",
     "date-fns": "^4.1.0",
     "dompurify": "^3.2.5",
+    "eslint-plugin-compat": "^6.2.0",
     "favicons": "^7.1.5",
     "gleap": "^14.0.8",
     "google-auth-library": "9.15.1",
@@ -296,5 +297,13 @@
     "embeddedCssTags": [],
     "xmlWhitespaceSensitivity": "ignore",
     "xmlSelfClosingSpace": true
-  }
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Edge versions",
+    "Safari >= 16.0",
+    "iOS >= 16.0",
+    "> 1% in GB and not dead"
+  ]
 }

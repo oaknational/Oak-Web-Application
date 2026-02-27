@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   OakSecondaryButton,
   OakPrimaryButton,
@@ -18,7 +20,7 @@ const TabLink = ({
 
   return (
     <Component
-      element="a"
+      element={Link}
       $bblr={"border-radius-square"}
       $bbrr={"border-radius-square"}
       $bb={"border-solid-none"}

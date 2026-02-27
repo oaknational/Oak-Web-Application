@@ -10,6 +10,7 @@ import {
   OakBox,
   isValidIconName,
 } from "@oaknational/oak-components";
+import Link from "next/link";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
@@ -167,6 +168,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
                     key={index}
                     title={lesson.lessonData.title}
                     unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
+                    as={Link}
                   />
                 );
               })}

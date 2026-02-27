@@ -292,7 +292,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             </div>
           </div>
           <div
+<<<<<<< HEAD
             class="sc-aXZVg sc-gEvEer sc-YysOf cBeINY iDBIXi"
+=======
+            class="sc-aXZVg sc-gEvEer sc-fMMURN cBeINY iDBIXi"
+>>>>>>> main
             focusable="false"
           >
             <svg
@@ -840,7 +844,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             </div>
           </div>
           <div
+<<<<<<< HEAD
             class="sc-aXZVg sc-gEvEer sc-YysOf cBeINY iDBIXi"
+=======
+            class="sc-aXZVg sc-gEvEer sc-fMMURN cBeINY iDBIXi"
+>>>>>>> main
             focusable="false"
           >
             <svg
