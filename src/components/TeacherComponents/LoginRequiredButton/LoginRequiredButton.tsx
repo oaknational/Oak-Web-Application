@@ -1,4 +1,4 @@
-import { SignUpButton } from "@clerk/nextjs";
+import { SignInButton } from "@clerk/nextjs";
 import {
   OakBox,
   OakFlex,
@@ -161,7 +161,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
       );
     case "signup":
       return (
-        <SignUpButton forceRedirectUrl={`/onboarding?returnTo=${path}`}>
+        <SignInButton forceRedirectUrl={`/onboarding?returnTo=${path}`}>
           <ButtonComponent
             iconName={signUpProps?.iconName}
             isTrailingIcon={signUpProps?.isTrailingIcon}
@@ -179,7 +179,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
               {signUpProps?.name ?? "Sign up"}
             </OakFlex>
           </ButtonComponent>
-        </SignUpButton>
+        </SignInButton>
       );
     case "action":
     case "georestricted":

@@ -1,4 +1,4 @@
-import { SignUpButton, useAuth, useUser } from "@clerk/nextjs";
+import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useRouter } from "next/router";
 import {
@@ -50,7 +50,7 @@ const UnitDownloadSignInButton = ({
   redirectUrl: string;
   showNewTag: boolean;
 }) => (
-  <SignUpButton forceRedirectUrl={redirectUrl}>
+  <SignInButton forceRedirectUrl={redirectUrl}>
     <OakPrimaryButton
       iconName={"download"}
       isTrailingIcon
@@ -69,7 +69,7 @@ const UnitDownloadSignInButton = ({
         Download unit
       </OakFlex>
     </OakPrimaryButton>
-  </SignUpButton>
+  </SignInButton>
 );
 
 // Used when the user is signed in and onboarded
