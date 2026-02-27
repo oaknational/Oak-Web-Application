@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { act, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { EYFSLessonGroupProvider } from "../EyfsLessonGroupProvider/EyfsLessonGroupProvider";
@@ -10,19 +10,12 @@ import type { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyf
 import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck",
-  () => {
-    return jest.fn();
-  },
-);
-
 const mockLesson: EYFSLesson = {
   title: "Introduction to counting",
   slug: "intro-counting",
   orderInUnit: 1,
   video: { muxPlaybackId: "playback-123", title: "Counting video" },
-  downloadableResources: [],
+  downloadableResources: ["presentation"],
 };
 
 const mockLessonWithNullVideo: EYFSLesson = {
@@ -30,15 +23,19 @@ const mockLessonWithNullVideo: EYFSLesson = {
   slug: "lesson-without-video",
   orderInUnit: 1,
   video: { muxPlaybackId: null, title: null },
-  downloadableResources: [],
+  downloadableResources: ["presentation"],
 };
 
-const renderCard = (lesson: EYFSLesson = mockLesson) =>
-  renderWithProviders()(
-    <EYFSLessonGroupProvider>
-      <EYFSLessonCard lesson={lesson} />
-    </EYFSLessonGroupProvider>,
-  );
+const renderCard = async (lesson: EYFSLesson = mockLesson) =>
+  await waitFor(() => {
+    act(() =>
+      renderWithProviders()(
+        <EYFSLessonGroupProvider>
+          <EYFSLessonCard lesson={lesson} />
+        </EYFSLessonGroupProvider>,
+      ),
+    );
+  });
 
 describe("EyfsLessonCard", () => {
   beforeEach(() => {
@@ -95,21 +92,30 @@ describe("EyfsLessonCard", () => {
     expect(screen.getByText("Lesson without video")).toBeInTheDocument();
   });
 
-  it("shows Download lesson when signed in", () => {
+  it("shows Download lesson when signed in", async () => {
     setUseUserReturn(mockLoggedIn);
     renderCard();
-    expect(
-      screen.getByRole("button", { name: /Download lesson/i }),
-    ).toBeInTheDocument();
+    const downloadButton = await screen.findByRole("button", {
+      name: /Download lesson/i,
+    });
+    expect(downloadButton).toBeInTheDocument();
   });
 
-  it("shows Sign in to download when signed out", () => {
+  it("shows Sign in to download when signed out", async () => {
     setUseUserReturn(mockLoggedOut);
     renderCard();
-    expect(
-      screen.getByRole("button", { name: /Sign in to download/i }),
-    ).toBeInTheDocument();
+    const signInButton = await screen.findByRole("button", {
+      name: /Sign in to download/i,
+    });
+    expect(signInButton).toBeInTheDocument();
   });
 
-  it.todo("hides download button when no downloads are available");
+  it("hides download button when no downloads are available", async () => {
+    renderCard({ ...mockLesson, downloadableResources: [] });
+
+    const downloadButton = screen.queryByRole("button", {
+      name: /Download lesson/i,
+    });
+    expect(downloadButton).not.toBeInTheDocument();
+  });
 });

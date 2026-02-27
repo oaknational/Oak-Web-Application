@@ -86,25 +86,27 @@ export const EYFSLessonCard = ({ lesson }: EYFSLessonCardProps) => {
             {lesson.title}
           </OakFlex>
           <OakFlex $flexBasis={["100%", "100%", "auto"]} $flexShrink={0}>
-            <LoginRequiredButton
-              buttonVariant="tertiary"
-              sizeVariant="small"
-              geoRestricted={false}
-              loginRequired
-              actionProps={{
-                name: "Download lesson",
-                isActionGeorestricted: false,
-                onClick: onDownload,
-              }}
-              signUpProps={{
-                name: "Sign in to download",
-              }}
-              onboardingProps={{
-                name: "Complete onboarding to download",
-              }}
-              iconName="download"
-              isTrailingIcon
-            />
+            {lesson.downloadableResources.length > 0 && (
+              <LoginRequiredButton
+                buttonVariant="tertiary"
+                sizeVariant="small"
+                geoRestricted={false}
+                loginRequired
+                actionProps={{
+                  name: "Download lesson",
+                  isActionGeorestricted: false,
+                  onClick: onDownload,
+                }}
+                signUpProps={{
+                  name: "Sign in to download",
+                }}
+                onboardingProps={{
+                  name: "Complete onboarding to download",
+                }}
+                iconName="download"
+                isTrailingIcon
+              />
+            )}
           </OakFlex>
           {lesson.video.muxPlaybackId && (
             <OakFlex

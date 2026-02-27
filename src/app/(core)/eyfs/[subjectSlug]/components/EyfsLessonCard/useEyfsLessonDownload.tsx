@@ -1,7 +1,4 @@
-import { useState } from "react";
-
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
-import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
 import { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
@@ -14,22 +11,11 @@ export const useEyfsLessonDownload = ({
 }) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
 
-  const [activeResources, setActiveResources] =
-    useState<ResourcesToDownloadArrayType>([]);
-
-  useLessonDownloadExistenceCheck({
-    lessonSlug: lessonSlug,
-    resourcesToCheck: downloadableResources,
-    additionalFilesIdsToCheck: null,
-    onComplete: (resources) => setActiveResources(resources),
-    isLegacyDownload: true,
-  });
-
   const onDownload = async () => {
     try {
       await downloadLessonResources({
         lessonSlug: lessonSlug,
-        selectedResourceTypes: activeResources,
+        selectedResourceTypes: downloadableResources,
         isLegacyDownload: true,
       });
       setCurrentToastProps({
@@ -52,6 +38,5 @@ export const useEyfsLessonDownload = ({
 
   return {
     onDownload,
-    activeResources,
   };
 };

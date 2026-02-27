@@ -48,17 +48,6 @@ describe("useEyfsLessonDownload", () => {
   afterEach(() => {
     jest.resetAllMocks();
   });
-  it("sets resource existence", async () => {
-    const { result } = renderHookWithProviders()(() =>
-      useEyfsLessonDownload(mockProps),
-    );
-    await waitFor(() =>
-      expect(result.current.activeResources).toEqual([
-        "exit-quiz-answers",
-        "worksheet-pdf",
-      ]),
-    );
-  });
 
   it("onDownload a success toast on successful download", async () => {
     const { result } = renderHookWithProviders()(() =>
