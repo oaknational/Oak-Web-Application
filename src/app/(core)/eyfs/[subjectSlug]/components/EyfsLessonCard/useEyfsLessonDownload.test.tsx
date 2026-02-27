@@ -45,6 +45,25 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
+const mockLocalStorageResponse = jest.fn().mockReturnValue({
+  schoolFromLocalStorage: { schoolName: "schoolName", id: "123" },
+});
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads",
+  () => ({
+    __esModule: true,
+    default: () => mockLocalStorageResponse(),
+  }),
+);
+
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
+  () => ({
+    __esModule: true,
+    useHubspotSubmit: () => ({ onHubspotSubmit: jest.fn() }),
+  }),
+);
+
 const mockProps = {
   lessonSlug: "lesson-123",
   downloadableResources: [
@@ -54,10 +73,6 @@ const mockProps = {
 };
 
 describe("useEyfsLessonDownload", () => {
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
-
   it("onDownload triggers a success toast on successful download", async () => {
     const { result } = renderHookWithProviders()(() =>
       useEyfsLessonDownload(mockProps),

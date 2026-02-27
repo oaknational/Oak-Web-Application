@@ -1,5 +1,7 @@
 import errorReporter from "@/common-lib/error-reporter";
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
+import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
+import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import OakError from "@/errors/OakError";
@@ -15,8 +17,23 @@ export const useEyfsLessonDownload = ({
 }) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
 
+  const { schoolFromLocalStorage } = useLocalStorageForDownloads();
+
+  const {
+    schoolName: schoolNameFromLocalStorage,
+    schoolId: schoolIdFromLocalStorage,
+  } = schoolFromLocalStorage;
+
+  const { onHubspotSubmit } = useHubspotSubmit();
+
   const onDownload = async () => {
     try {
+      onHubspotSubmit({
+        school: schoolIdFromLocalStorage,
+        schoolName: schoolNameFromLocalStorage,
+        resources: downloadableResources,
+        terms: true,
+      });
       await downloadLessonResources({
         lessonSlug: lessonSlug,
         selectedResourceTypes: downloadableResources,
