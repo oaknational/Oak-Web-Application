@@ -12,24 +12,32 @@ import { EYFSLessonCard } from "./EyfsLessonCard";
 
 import type { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
 
+const TEST_VIDEO_PLAYBACK_ID = "wgjCIRWRr00OSum34AWeU87lmSSCtNjEOViD9X5YSG8k";
+
 const mockLessons: EYFSLesson[] = [
   {
     title: "Introduction to counting",
     slug: "introduction-to-counting",
     orderInUnit: 1,
-    video: { muxPlaybackId: "1234", title: "Counting video" },
+    video: { muxPlaybackId: TEST_VIDEO_PLAYBACK_ID, title: "Counting video" },
   },
   {
     title: "Number bonds to 10",
     slug: "number-bonds-to-10",
     orderInUnit: 2,
-    video: { muxPlaybackId: "1234", title: "Number bonds video" },
+    video: {
+      muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
+      title: "Number bonds video",
+    },
   },
   {
     title: "Adding and subtracting",
     slug: "adding-and-subtracting",
     orderInUnit: 3,
-    video: { muxPlaybackId: "1234", title: "Add and subtract video" },
+    video: {
+      muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
+      title: "Add and subtract video",
+    },
   },
 ];
 
@@ -46,21 +54,30 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
       "Exploring mathematical concepts through play-based learning activities and hands-on experiences",
     slug: "exploring-maths-through-play",
     orderInUnit: 1,
-    video: { muxPlaybackId: "1234", title: "Play-based maths video" },
+    video: {
+      muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
+      title: "Play-based maths video",
+    },
   },
   {
     title:
       "Developing early number sense and understanding of quantity through counting, comparing and ordering",
     slug: "developing-early-number-sense",
     orderInUnit: 2,
-    video: { muxPlaybackId: "1234", title: "Number sense video" },
+    video: {
+      muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
+      title: "Number sense video",
+    },
   },
   {
     title:
       "Building confidence with addition and subtraction within 20 using manipulatives and visual representations",
     slug: "addition-subtraction-within-20",
     orderInUnit: 3,
-    video: { muxPlaybackId: "1234", title: "Add and subtract video" },
+    video: {
+      muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
+      title: "Add and subtract video",
+    },
   },
 ];
 
