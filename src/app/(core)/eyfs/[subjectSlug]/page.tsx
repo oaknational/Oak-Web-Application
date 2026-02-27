@@ -1,9 +1,12 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
+import { EYFSLessonGroupProvider } from "./components/EyfsLessonGroupProvider";
+import { EYFSLessonCard } from "./components/EyfsLessonCard";
+
 import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
-import { OakBox, OakFlex, OakHeading, OakP } from "@/styles/oakThemeApp";
+import { OakBox, OakFlex, OakHeading } from "@/styles/oakThemeApp";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export const metadata: Metadata = {
@@ -48,16 +51,29 @@ const InnerEyfsPage = async ({
             {u.title}
           </OakHeading>
         </OakBox>
-        <OakBox
+        <OakFlex
           $background={"bg-neutral"}
           $pa={"spacing-24"}
           $borderRadius={"border-radius-l"}
           $btlr={"border-radius-square"}
+          $flexDirection={"column"}
+          $gap={"spacing-20"}
         >
-          {u.lessons.map((l) => (
-            <OakP key={l.slug}>{l.title}</OakP>
-          ))}
-        </OakBox>
+          <EYFSLessonGroupProvider>
+            {u.lessons
+              .toSorted(
+                (a, b) =>
+                  (a.orderInUnit ?? Infinity) - (b.orderInUnit ?? Infinity),
+              )
+              .map((lesson, index) => (
+                <EYFSLessonCard
+                  key={lesson.slug}
+                  lesson={lesson}
+                  index={index + 1}
+                />
+              ))}
+          </EYFSLessonGroupProvider>
+        </OakFlex>
       </OakBox>
     </OakFlex>
   ));
