@@ -29,7 +29,7 @@ import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFoote
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
-import { buildAboutUsAccessedAnalytics } from "@/utils/analytics-builders";
+import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
 type LayoutFooterLinkProps = {
@@ -87,7 +87,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
         }
 
         if (props.text === "About us") {
-          aboutUsAccessed(buildAboutUsAccessedAnalytics("about_us_footer"));
+          aboutUsAccessed(buildAboutUsAnalytics("about_us_footer"));
         }
       }}
     >

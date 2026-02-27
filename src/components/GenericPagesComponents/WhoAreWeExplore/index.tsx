@@ -13,10 +13,10 @@ import styled from "styled-components";
 
 import { aboutUsExplored, ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
-import { buildAboutUsExploredAnalytics } from "@/utils/analytics-builders";
+import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 
 const handleClick = (componentType: ComponentTypeValueType) => {
-  const aboutUsExploredAnalytics = buildAboutUsExploredAnalytics(componentType);
+  const aboutUsExploredAnalytics = buildAboutUsAnalytics(componentType);
 
   return aboutUsExplored(aboutUsExploredAnalytics);
 };

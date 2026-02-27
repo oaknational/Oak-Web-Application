@@ -1,7 +1,6 @@
 import {
-  buildAboutUsAccessedAnalytics,
+  buildAboutUsAnalytics,
   buildAboutUsContactInitiatedAnalytics,
-  buildAboutUsExploredAnalytics,
 } from "./index";
 
 import {
@@ -16,9 +15,9 @@ import {
 describe("Analytics Builders", () => {
   const mockComponentType = "a_component_type" as ComponentTypeValueType;
 
-  describe("buildAboutUsAccessedAnalytics", () => {
+  describe("buildAboutUsAnalytics", () => {
     it("should build analytics object with correct properties", () => {
-      const result = buildAboutUsAccessedAnalytics(mockComponentType);
+      const result = buildAboutUsAnalytics(mockComponentType);
 
       expect(result).toEqual({
         platform: Platform.OWA,
@@ -39,21 +38,6 @@ describe("Analytics Builders", () => {
         platform: Platform.OWA,
         product: Product.ABOUT_US,
         engagementIntent: EngagementIntent.USE,
-        componentType: mockComponentType,
-        eventVersion: EventVersion["2_0_0"],
-        analyticsUseCase: AnalyticsUseCase.TEACHER,
-      });
-    });
-  });
-
-  describe("buildAboutUsExploredAnalytics", () => {
-    it("should build analytics object with correct properties", () => {
-      const result = buildAboutUsExploredAnalytics(mockComponentType);
-
-      expect(result).toEqual({
-        platform: Platform.OWA,
-        product: Product.ABOUT_US,
-        engagementIntent: EngagementIntent.EXPLORE,
         componentType: mockComponentType,
         eventVersion: EventVersion["2_0_0"],
         analyticsUseCase: AnalyticsUseCase.TEACHER,

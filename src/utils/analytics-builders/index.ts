@@ -10,41 +10,25 @@ import {
   AboutUsExploredProperties,
 } from "@/browser-lib/avo/Avo";
 
-export function buildAboutUsAccessedAnalytics(
-  componentType: ComponentTypeValueType,
-): AboutUsAccessedProperties {
-  return {
-    platform: Platform.OWA,
-    product: Product.ABOUT_US,
-    engagementIntent: EngagementIntent.EXPLORE,
-    componentType,
-    eventVersion: EventVersion["2_0_0"],
-    analyticsUseCase: AnalyticsUseCase.TEACHER,
-  };
-}
+const baseAboutUsAnalytics = {
+  platform: Platform.OWA,
+  product: Product.ABOUT_US,
+  eventVersion: EventVersion["2_0_0"],
+  analyticsUseCase: AnalyticsUseCase.TEACHER,
+};
 
-export function buildAboutUsContactInitiatedAnalytics(
+export const buildAboutUsAnalytics = (
   componentType: ComponentTypeValueType,
-): AboutUsContactInitiatedProperties {
-  return {
-    platform: Platform.OWA,
-    product: Product.ABOUT_US,
-    engagementIntent: EngagementIntent.USE,
-    componentType,
-    eventVersion: EventVersion["2_0_0"],
-    analyticsUseCase: AnalyticsUseCase.TEACHER,
-  };
-}
+): AboutUsAccessedProperties | AboutUsExploredProperties => ({
+  ...baseAboutUsAnalytics,
+  componentType,
+  engagementIntent: EngagementIntent.EXPLORE,
+});
 
-export function buildAboutUsExploredAnalytics(
+export const buildAboutUsContactInitiatedAnalytics = (
   componentType: ComponentTypeValueType,
-): AboutUsExploredProperties {
-  return {
-    platform: Platform.OWA,
-    product: Product.ABOUT_US,
-    engagementIntent: EngagementIntent.EXPLORE,
-    componentType,
-    eventVersion: EventVersion["2_0_0"],
-    analyticsUseCase: AnalyticsUseCase.TEACHER,
-  };
-}
+): AboutUsContactInitiatedProperties => ({
+  ...baseAboutUsAnalytics,
+  componentType,
+  engagementIntent: EngagementIntent.USE,
+});
