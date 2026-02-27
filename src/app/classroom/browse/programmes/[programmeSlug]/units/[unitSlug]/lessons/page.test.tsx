@@ -7,6 +7,16 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 const lessonListingViewMock = jest.fn();
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      classroomLessonSelected: jest.fn(),
+      classroomLessonPreviewed: jest.fn(),
+    },
+  }),
+}));
+
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   LessonListingView: (props: never) => {
     lessonListingViewMock(props);

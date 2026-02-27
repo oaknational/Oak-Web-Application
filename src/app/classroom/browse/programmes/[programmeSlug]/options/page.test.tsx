@@ -14,6 +14,15 @@ jest.mock("next/navigation", () => ({
 
 const optionsViewMock = jest.fn();
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefined: jest.fn(),
+    },
+  }),
+}));
+
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   OptionsView: (props: never) => {
     optionsViewMock(props);
