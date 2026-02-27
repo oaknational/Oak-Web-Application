@@ -44,6 +44,9 @@ export const EYFSLessonCard = ({ lesson, index }: EYFSLessonCardProps) => {
         $pr="spacing-20"
         $pv={["spacing-20", "spacing-20", "spacing-0"]}
         $gap={["spacing-16", "spacing-16", "spacing-0"]}
+        $borderRadius="border-radius-s"
+        $bblr={["border-radius-s", "border-radius-s", "border-radius-square"]}
+        $btlr={["border-radius-s", "border-radius-s", "border-radius-square"]}
       >
         <OakFlex
           $flexDirection="row"
