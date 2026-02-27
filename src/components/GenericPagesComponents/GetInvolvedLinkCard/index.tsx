@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   OakFlex,
   OakHeading,
@@ -5,7 +6,21 @@ import {
   OakSecondaryButton,
   OakIcon,
 } from "@oaknational/oak-components";
-import { ReactNode } from "react";
+
+import {
+  aboutUsContactInitiated,
+  ComponentTypeValueType,
+} from "@/browser-lib/avo/Avo";
+import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
+
+const handleClick = (componentType: ComponentTypeValueType | undefined) => {
+  if (!componentType) return;
+
+  const aboutUsContactInititaiedAnalytics =
+    buildAboutUsContactInitiatedAnalytics(componentType);
+
+  return aboutUsContactInitiated(aboutUsContactInititaiedAnalytics);
+};
 
 type GetInvolvedLinkCardProps = {
   headingTag: OakHeadingProps["tag"];
@@ -14,6 +29,7 @@ type GetInvolvedLinkCardProps = {
     text: string;
     link: string;
     external?: boolean;
+    componentType?: ComponentTypeValueType;
   }>;
   content: string | ReactNode;
 };
@@ -47,6 +63,7 @@ export function GetInvolvedLinkCard({
               href={button.link}
               target={button.external ? "_blank" : undefined}
               rel={button.external ? "noopener noreferrer" : undefined}
+              onClick={() => handleClick(button.componentType)}
               iconOverride={
                 button.external ? (
                   <OakIcon

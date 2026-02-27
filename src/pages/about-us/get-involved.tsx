@@ -66,6 +66,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
                   text: "Join the research panel",
                   link: "https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd",
                   external: true,
+                  componentType: "join_research_panel",
                 },
                 {
                   text: "Explore our research",
@@ -82,6 +83,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
                   text: "Get in touch",
                   link: "https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd",
                   external: true,
+                  componentType: "get_in_touch",
                 },
               ],
             },

@@ -22,12 +22,14 @@ import {
 import styled from "styled-components";
 import Link from "next/link";
 
+import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
+import footerSections from "@/browser-lib/fixtures/footerSections";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
-import footerSections from "@/browser-lib/fixtures/footerSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
+import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
 type LayoutFooterLinkProps = {
@@ -82,6 +84,10 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
             filterValue: props.text,
             activeFilters: [],
           });
+        }
+
+        if (props.text === "About us") {
+          aboutUsAccessed(buildAboutUsAnalytics("about_us_footer"));
         }
       }}
     >

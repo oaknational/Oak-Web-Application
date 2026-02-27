@@ -11,9 +11,21 @@ import {
 import styled from "styled-components";
 import { PortableTextBlockComponent } from "@portabletext/react";
 
+import {
+  aboutUsContactInitiated,
+  ComponentTypeValueType,
+} from "@/browser-lib/avo/Avo";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
+
+const handleClick = (componentType: ComponentTypeValueType) => {
+  const aboutUsContactInititaiedAnalytics =
+    buildAboutUsContactInitiatedAnalytics(componentType);
+
+  return aboutUsContactInitiated(aboutUsContactInititaiedAnalytics);
+};
 
 const BadgeImage = styled.img`
   max-height: 40px;
@@ -107,6 +119,7 @@ export function GetInvolvedWorkWithUs({
                 element="a"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleClick("permanent_roles")}
               >
                 Permanent roles
               </OakSecondaryButton>
@@ -124,6 +137,7 @@ export function GetInvolvedWorkWithUs({
                 element="a"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleClick("freelance_roles")}
               >
                 Freelance roles
               </OakSecondaryButton>

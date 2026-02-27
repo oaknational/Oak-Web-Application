@@ -11,7 +11,15 @@ import Link from "next/link";
 import { useId } from "react";
 import styled from "styled-components";
 
+import { aboutUsExplored, ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
+
+const handleClick = (componentType: ComponentTypeValueType) => {
+  const aboutUsExploredAnalytics = buildAboutUsAnalytics(componentType);
+
+  return aboutUsExplored(aboutUsExploredAnalytics);
+};
 
 const HoverableCard = styled(OakFlex)`
   &:hover {
@@ -45,6 +53,7 @@ export type WhoAreWeExploreProps = {
     iconName: OakIconProps["iconName"];
     title: string;
     href: string;
+    componentType: ComponentTypeValueType;
   }[];
 };
 export function WhoAreWeExplore({
@@ -87,11 +96,15 @@ export function WhoAreWeExplore({
           </OakHeading>
           <nav aria-labelledby={headingId}>
             <CustomUlAsGrid>
-              {items.map(({ title, iconName, href }) => {
+              {items.map(({ title, iconName, href, componentType }) => {
                 return (
                   <UnstyledLi key={title}>
                     <OakFocusIndicator $borderRadius={"border-radius-m2"}>
-                      <Link style={{ outline: "none" }} href={href}>
+                      <Link
+                        style={{ outline: "none" }}
+                        href={href}
+                        onClick={() => handleClick(componentType)}
+                      >
                         <HoverableCard
                           data-testid="who-we-are-explore-item"
                           $flexDirection={"row"}
