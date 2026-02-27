@@ -5,11 +5,15 @@ import {
   OakFlex,
   OakSmallTertiaryInvertedButton,
 } from "@oaknational/oak-components";
-import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
+import { useState } from "react";
 
 import { useEyfsLessonGroupContext } from "../EyfsLessonGroupProvider";
 
 import { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
+import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
+import { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
+import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 
 interface EYFSLessonCardProps {
   lesson: EYFSLesson;
@@ -18,6 +22,26 @@ interface EYFSLessonCardProps {
 export const EYFSLessonCard = ({ lesson }: EYFSLessonCardProps) => {
   const { activeVideoSlug, toggleVideo } = useEyfsLessonGroupContext();
   const isActiveVideo = activeVideoSlug === lesson.slug;
+
+  const [activeResources, setActiveResources] =
+    useState<ResourcesToDownloadArrayType>([]);
+
+  useLessonDownloadExistenceCheck({
+    lessonSlug: lesson.slug,
+    resourcesToCheck: lesson.downloadableResources,
+    additionalFilesIdsToCheck: null,
+    onComplete: (resources) => setActiveResources(resources),
+    isLegacyDownload: true,
+  });
+
+  const onDownload = async () => {
+    await downloadLessonResources({
+      lessonSlug: lesson.slug,
+      selectedResourceTypes: activeResources,
+      selectedAdditionalFilesIds: [],
+      isLegacyDownload: true,
+    });
+  };
 
   return (
     <OakFlex $flexDirection="row" $flexWrap="nowrap" as="article">
@@ -79,26 +103,25 @@ export const EYFSLessonCard = ({ lesson }: EYFSLessonCardProps) => {
             {lesson.title}
           </OakFlex>
           <OakFlex $flexBasis={["100%", "100%", "auto"]} $flexShrink={0}>
-            <SignedIn>
-              <OakSmallTertiaryInvertedButton
-                iconName="download"
-                isTrailingIcon
-                $textWrap="nowrap"
-              >
-                Download lesson
-              </OakSmallTertiaryInvertedButton>
-            </SignedIn>
-            <SignedOut>
-              <SignUpButton>
-                <OakSmallTertiaryInvertedButton
-                  iconName="download"
-                  isTrailingIcon
-                  $textWrap="nowrap"
-                >
-                  Sign in to download
-                </OakSmallTertiaryInvertedButton>
-              </SignUpButton>
-            </SignedOut>
+            <LoginRequiredButton
+              buttonVariant="tertiary"
+              sizeVariant="small"
+              geoRestricted={false}
+              loginRequired
+              actionProps={{
+                name: "Download lesson",
+                isActionGeorestricted: false,
+                onClick: onDownload,
+              }}
+              signUpProps={{
+                name: "Sign in to download",
+              }}
+              onboardingProps={{
+                name: "Complete onboarding to download",
+              }}
+              iconName="download"
+              isTrailingIcon
+            />
           </OakFlex>
           {lesson.video.muxPlaybackId && (
             <OakFlex
