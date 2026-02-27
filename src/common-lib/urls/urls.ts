@@ -383,6 +383,22 @@ type ProgrammePageProps = {
   tab: string;
 };
 
+type ClassroomSignInLinkProps = { page: "classroom-sign-in" };
+
+type ClassroomBrowseLinkProps = { page: "classroom-browse" };
+
+type ClassroomSubjectsLinkProps = { page: "classroom-subjects" };
+
+type ClassroomOptionsLinkProps = { page: "classroom-options" };
+
+type ClassroomUnitsLinkProps = { page: "classroom-units" };
+
+type ClassroomLessonsLinkProps = { page: "classroom-lessons" };
+
+type ClassroomAuthSuccessLinkProps = { page: "classroom-auth-success" };
+
+type ClassroomPupilSignInLinkProps = { page: "classroom-pupil-sign-in" };
+
 type OnlyPageRequired<T> = T extends { page: string }
   ? { page: T["page"] } extends T
     ? T
@@ -464,7 +480,15 @@ export type OakLinkProps =
   | OnboardingUseOfOak
   | PupilLessonCanonical
   | MyLibraryProps
-  | ProgrammePageProps;
+  | ProgrammePageProps
+  | ClassroomSignInLinkProps
+  | ClassroomBrowseLinkProps
+  | ClassroomSubjectsLinkProps
+  | ClassroomOptionsLinkProps
+  | ClassroomUnitsLinkProps
+  | ClassroomLessonsLinkProps
+  | ClassroomAuthSuccessLinkProps
+  | ClassroomPupilSignInLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -1046,6 +1070,55 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Unit Sequence",
     configType: "internal",
     pageType: "teacher-programme",
+  }),
+  "classroom-sign-in": createOakPageConfig({
+    pathPattern: "/classroom/sign-in",
+    analyticsPageName: "Classroom: Sign In",
+    configType: "internal",
+    pageType: "classroom-sign-in",
+  }),
+  "classroom-browse": createOakPageConfig({
+    pathPattern: "/classroom/browse",
+    analyticsPageName: "Classroom: Browse Years",
+    configType: "internal",
+    pageType: "classroom-browse",
+  }),
+  "classroom-subjects": createOakPageConfig({
+    pathPattern: "/classroom/browse/years/:yearSlug/subjects",
+    analyticsPageName: "Classroom: Subjects",
+    configType: "internal",
+    pageType: "classroom-subjects",
+  }),
+  "classroom-options": createOakPageConfig({
+    pathPattern: "/classroom/browse/programmes/:programmeSlug/options",
+    analyticsPageName: "Classroom: Programme Options",
+    configType: "internal",
+    pageType: "classroom-options",
+  }),
+  "classroom-units": createOakPageConfig({
+    pathPattern: "/classroom/browse/programmes/:programmeSlug/units",
+    analyticsPageName: "Classroom: Units",
+    configType: "internal",
+    pageType: "classroom-units",
+  }),
+  "classroom-lessons": createOakPageConfig({
+    pathPattern:
+      "/classroom/browse/programmes/:programmeSlug/units/:unitSlug/lessons",
+    analyticsPageName: "Classroom: Lessons",
+    configType: "internal",
+    pageType: "classroom-lessons",
+  }),
+  "classroom-auth-success": createOakPageConfig({
+    pathPattern: "/classroom/auth/success",
+    analyticsPageName: "Classroom: Auth Success",
+    configType: "internal",
+    pageType: "classroom-auth-success",
+  }),
+  "classroom-pupil-sign-in": createOakPageConfig({
+    pathPattern: "/classroom/pupil/sign-in",
+    analyticsPageName: "Classroom: Pupil Sign In",
+    configType: "internal",
+    pageType: "classroom-pupil-sign-in",
   }),
 };
 

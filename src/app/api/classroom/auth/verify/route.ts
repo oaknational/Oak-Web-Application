@@ -22,6 +22,7 @@ export async function GET(request: NextRequest) {
       session: string;
       token: string;
       userProfilePicUrl?: string;
+      loginHint?: string;
     } | null = await oakClassroomClient.verifyAuthSession(session, accessToken);
 
     const authenticated = !!verifiedSession;
@@ -32,6 +33,7 @@ export async function GET(request: NextRequest) {
         session: verifiedSession?.session,
         token: verifiedSession?.token,
         userProfilePicUrl: verifiedSession?.userProfilePicUrl,
+        loginHint: verifiedSession?.loginHint,
       },
       { status: authenticated ? 200 : 401 },
     );

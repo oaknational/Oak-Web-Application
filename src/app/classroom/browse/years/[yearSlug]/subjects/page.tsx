@@ -1,7 +1,7 @@
-import { SubjectsPageView } from "@oaknational/google-classroom-addon/ui";
 import { notFound } from "next/navigation";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { GoogleClassroomSubjectsAnalytics } from "@/components/GoogleClassroom/GoogleClassroomSubjectsAnalytics";
 
 async function GoogleClassroomSubjectsPage({
   params,
@@ -18,7 +18,7 @@ async function GoogleClassroomSubjectsPage({
   }
 
   return (
-    <SubjectsPageView
+    <GoogleClassroomSubjectsAnalytics
       subjects={curriculumData}
       unitsUrlTemplate={"/classroom/browse/programmes/:programmeSlug/units"}
       optionsUrlTemplate={"/classroom/browse/programmes/:programmeSlug/options"}
