@@ -12,10 +12,11 @@ import { useEyfsLessonGroupContext } from "../EyfsLessonGroupProvider";
 import { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
 
 interface EYFSLessonCardProps {
+  index: number;
   lesson: EYFSLesson;
 }
 
-export const EYFSLessonCard = ({ lesson }: EYFSLessonCardProps) => {
+export const EYFSLessonCard = ({ lesson, index }: EYFSLessonCardProps) => {
   const { activeVideoSlug, toggleVideo } = useEyfsLessonGroupContext();
   const isActiveVideo = activeVideoSlug === lesson.slug;
 
@@ -32,7 +33,7 @@ export const EYFSLessonCard = ({ lesson }: EYFSLessonCardProps) => {
         $font="heading-5"
         $display={["none", "none", "flex"]}
       >
-        {lesson.orderInUnit}
+        {index}
       </OakFlex>
       <OakFlex
         $flexGrow={1}
