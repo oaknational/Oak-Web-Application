@@ -10,35 +10,41 @@ import {
   AboutUsExploredProperties,
 } from "@/browser-lib/avo/Avo";
 
-export const buildAboutUsAccessedAnalytics = (
+export function buildAboutUsAccessedAnalytics(
   componentType: ComponentTypeValueType,
-): AboutUsAccessedProperties => ({
-  platform: Platform.OWA,
-  product: Product.ABOUT_US,
-  engagementIntent: EngagementIntent.EXPLORE,
-  componentType,
-  eventVersion: EventVersion["2_0_0"],
-  analyticsUseCase: AnalyticsUseCase.TEACHER,
-});
+): AboutUsAccessedProperties {
+  return {
+    platform: Platform.OWA,
+    product: Product.ABOUT_US,
+    engagementIntent: EngagementIntent.EXPLORE,
+    componentType,
+    eventVersion: EventVersion["2_0_0"],
+    analyticsUseCase: AnalyticsUseCase.TEACHER,
+  };
+}
 
-export const buildAboutUsContactInitiatedAnalytics = (
+export function buildAboutUsContactInitiatedAnalytics(
   componentType: ComponentTypeValueType,
-): AboutUsContactInitiatedProperties => ({
-  platform: Platform.OWA,
-  product: Product.ABOUT_US,
-  engagementIntent: EngagementIntent.USE,
-  componentType,
-  eventVersion: EventVersion["2_0_0"],
-  analyticsUseCase: AnalyticsUseCase.TEACHER,
-});
+): AboutUsContactInitiatedProperties {
+  return {
+    platform: Platform.OWA,
+    product: Product.ABOUT_US,
+    engagementIntent: EngagementIntent.USE,
+    componentType,
+    eventVersion: EventVersion["2_0_0"],
+    analyticsUseCase: AnalyticsUseCase.TEACHER,
+  };
+}
 
-export const buildAboutUsExploredAnalytics = (
+export function buildAboutUsExploredAnalytics(
   componentType: ComponentTypeValueType,
-): AboutUsExploredProperties => ({
-  platform: Platform.OWA,
-  product: Product.ABOUT_US,
-  engagementIntent: EngagementIntent.EXPLORE,
-  componentType,
-  eventVersion: EventVersion["2_0_0"],
-  analyticsUseCase: AnalyticsUseCase.TEACHER,
-});
+): AboutUsExploredProperties {
+  return {
+    platform: Platform.OWA,
+    product: Product.ABOUT_US,
+    engagementIntent: EngagementIntent.EXPLORE,
+    componentType,
+    eventVersion: EventVersion["2_0_0"],
+    analyticsUseCase: AnalyticsUseCase.TEACHER,
+  };
+}
