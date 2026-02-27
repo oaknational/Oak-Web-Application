@@ -5,15 +5,13 @@ import {
   OakFlex,
   OakSmallTertiaryInvertedButton,
 } from "@oaknational/oak-components";
-import { useState } from "react";
 
 import { useEyfsLessonGroupContext } from "../EyfsLessonGroupProvider";
 
+import { useEyfsLessonDownload } from "./useEyfsLessonDownload";
+
 import { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
-import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
-import { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
-import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 
 interface EYFSLessonCardProps {
   lesson: EYFSLesson;
@@ -23,25 +21,10 @@ export const EYFSLessonCard = ({ lesson }: EYFSLessonCardProps) => {
   const { activeVideoSlug, toggleVideo } = useEyfsLessonGroupContext();
   const isActiveVideo = activeVideoSlug === lesson.slug;
 
-  const [activeResources, setActiveResources] =
-    useState<ResourcesToDownloadArrayType>([]);
-
-  useLessonDownloadExistenceCheck({
+  const { onDownload } = useEyfsLessonDownload({
     lessonSlug: lesson.slug,
-    resourcesToCheck: lesson.downloadableResources,
-    additionalFilesIdsToCheck: null,
-    onComplete: (resources) => setActiveResources(resources),
-    isLegacyDownload: true,
+    downloadableResources: lesson.downloadableResources,
   });
-
-  const onDownload = async () => {
-    await downloadLessonResources({
-      lessonSlug: lesson.slug,
-      selectedResourceTypes: activeResources,
-      selectedAdditionalFilesIds: [],
-      isLegacyDownload: true,
-    });
-  };
 
   return (
     <OakFlex $flexDirection="row" $flexWrap="nowrap" as="article">
