@@ -1,8 +1,8 @@
-import { OptionsView } from "@oaknational/google-classroom-addon/ui";
 import { notFound } from "next/navigation";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
+import { GoogleClassroomOptionsAnalytics } from "@/components/GoogleClassroom/GoogleClassroomOptionsAnalytics";
 
 async function GoogleClassroomOptionsPage({
   params,
@@ -32,7 +32,7 @@ async function GoogleClassroomOptionsPage({
     });
   };
   return (
-    <OptionsView
+    <GoogleClassroomOptionsAnalytics
       programmes={programmes}
       baseSlug={programmeSlug}
       yearSlug={yearSlug}

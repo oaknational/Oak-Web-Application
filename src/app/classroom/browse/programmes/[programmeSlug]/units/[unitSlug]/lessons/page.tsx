@@ -1,9 +1,9 @@
-import { LessonListingView } from "@oaknational/google-classroom-addon/ui";
 import { notFound } from "next/navigation";
 import React from "react";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/GoogleClassroomSubjectIconHeader";
+import { GoogleClassroomLessonListingAnalytics } from "@/components/GoogleClassroom/GoogleClassroomLessonListingAnalytics";
 
 async function GoogleClassroomLessonsListPage({
   params,
@@ -35,9 +35,9 @@ async function GoogleClassroomLessonsListPage({
   }
 
   return (
-    <LessonListingView
+    <GoogleClassroomLessonListingAnalytics
       unitData={unitData}
-      browseData={orderedBrowseData as never}
+      browseData={orderedBrowseData}
       programmeFields={programmeFields}
       programmeSlug={programmeSlug}
       pupilLessonUrlTemplate={

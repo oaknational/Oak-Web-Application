@@ -7,6 +7,15 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 const subjectsPageViewMock = jest.fn();
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefined: jest.fn(),
+    },
+  }),
+}));
+
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   SubjectsPageView: (props: never) => {
     subjectsPageViewMock(props);

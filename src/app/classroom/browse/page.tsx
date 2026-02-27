@@ -2,7 +2,10 @@
 
 import { GoogleClassroomBrowseView } from "@oaknational/google-classroom-addon/ui";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
+
 function BrowseGoogleClassroomPage() {
+  const { track } = useAnalytics();
   const years: {
     yearSlug: string;
     yearDescription: string;
@@ -24,6 +27,19 @@ function BrowseGoogleClassroomPage() {
     <GoogleClassroomBrowseView
       years={years}
       subjectsUrlTemplate={"/classroom/browse/years/:yearSlug/subjects"}
+      onYearSelected={(year) => {
+        track.browseRefined({
+          platform: "google-classroom",
+          product: "teacher lesson resources",
+          analyticsUseCase: "Teacher",
+          componentType: "year_group_button",
+          filterType: "Year filter",
+          filterValue: year.yearSlug,
+          eventVersion: "2.0.0",
+          engagementIntent: "refine",
+          activeFilters: {},
+        });
+      }}
     />
   );
 }

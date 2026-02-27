@@ -8,6 +8,15 @@ import { googleClassroomApi } from "@/browser-lib/google-classroom";
 const withAuthMock = jest.fn();
 const browseLayoutMock = jest.fn();
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      classroomLessonsAttached: jest.fn(),
+    },
+  }),
+}));
+
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   WithGoogleClassroomAuth: (props: never) => {
     withAuthMock(props);
