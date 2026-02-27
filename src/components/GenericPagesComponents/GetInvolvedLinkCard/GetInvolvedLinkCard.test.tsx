@@ -13,6 +13,10 @@ jest.mock("@/browser-lib/avo/Avo", () => ({
 }));
 
 describe("GetInvolvedLinkCard", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("renders with single button", () => {
     const { container } = render(
       <GetInvolvedLinkCard
@@ -104,7 +108,7 @@ describe("GetInvolvedLinkCard", () => {
     const link = getByRole("link", { name: /explore our research/i });
     fireEvent.click(link);
 
-    expect(aboutUsContactInitiated).not.toHaveBeenCalled;
+    expect(aboutUsContactInitiated).not.toHaveBeenCalled();
   });
 
   it("renders without buttons", () => {
