@@ -36,6 +36,15 @@ jest.mock("@/context/OakNotifications/useOakNotificationsContext", () => ({
   }),
 }));
 
+const mockErrorReporter = jest.fn();
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      mockErrorReporter(...args),
+}));
+
 const mockProps = {
   lessonSlug: "lesson-123",
   downloadableResources: [
@@ -49,7 +58,7 @@ describe("useEyfsLessonDownload", () => {
     jest.resetAllMocks();
   });
 
-  it("onDownload a success toast on successful download", async () => {
+  it("onDownload triggers a success toast on successful download", async () => {
     const { result } = renderHookWithProviders()(() =>
       useEyfsLessonDownload(mockProps),
     );
@@ -65,7 +74,7 @@ describe("useEyfsLessonDownload", () => {
       }),
     );
   });
-  it("onDownload an error toast when download fails", async () => {
+  it("onDownload triggers an error toast when download fails", async () => {
     mockDownloadResponse.mockImplementationOnce(() => Promise.reject());
 
     const { result } = renderHookWithProviders()(() =>
@@ -83,5 +92,16 @@ describe("useEyfsLessonDownload", () => {
         autoDismiss: true,
       }),
     );
+  });
+  it("onDownload reports an error", async () => {
+    mockDownloadResponse.mockImplementationOnce(() => Promise.reject());
+
+    const { result } = renderHookWithProviders()(() =>
+      useEyfsLessonDownload(mockProps),
+    );
+
+    result.current.onDownload();
+
+    await waitFor(() => expect(mockErrorReporter).toHaveBeenCalled());
   });
 });

@@ -1,6 +1,10 @@
+import errorReporter from "@/common-lib/error-reporter";
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 import { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import OakError from "@/errors/OakError";
+
+const reportError = errorReporter("EYFS lesson download");
 
 export const useEyfsLessonDownload = ({
   lessonSlug,
@@ -24,8 +28,7 @@ export const useEyfsLessonDownload = ({
         showIcon: true,
         autoDismiss: true,
       });
-    } catch {
-      // TODO: report error
+    } catch (err) {
       setCurrentToastProps({
         message:
           "Something went wrong with the download. Try refreshing the page.",
@@ -33,6 +36,11 @@ export const useEyfsLessonDownload = ({
         showIcon: true,
         autoDismiss: true,
       });
+      const error = new OakError({
+        code: "downloads/failed-to-fetch",
+        meta: { lessonSlug, err },
+      });
+      reportError(error);
     }
   };
 
