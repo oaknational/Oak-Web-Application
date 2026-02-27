@@ -3,6 +3,7 @@
 import {
   OakBox,
   OakFlex,
+  OakP,
   OakSmallTertiaryInvertedButton,
 } from "@oaknational/oak-components";
 import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
@@ -10,6 +11,7 @@ import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
 import { useEyfsLessonGroupContext } from "../EyfsLessonGroupProvider";
 
 import { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
 interface EYFSLessonCardProps {
   index: number;
@@ -121,18 +123,24 @@ export const EYFSLessonCard = ({ lesson, index }: EYFSLessonCardProps) => {
             </OakFlex>
           )}
         </OakFlex>
-        {isActiveVideo && (
+        {isActiveVideo && lesson.video.muxPlaybackId && (
           <OakBox
-            $pb="spacing-20"
+            $pb={["spacing-0", "spacing-0", "spacing-20"]}
             $pl={["spacing-8", "spacing-8", "spacing-0"]}
             data-testid="video"
           >
-            <OakBox
-              $aspectRatio="16/9"
-              $background="bg-neutral"
-              $width="100%"
-              $minHeight="spacing-360"
+            <VideoPlayer
+              playbackId={lesson.video.muxPlaybackId}
+              playbackPolicy={"signed"}
+              title={lesson.title}
+              location={"lesson"}
+              isLegacy={true}
+              autoFocusPlayButton
             />
+            <OakP $textWrap="balance" $mt="spacing-48" $textAlign="right">
+              Some of our videos, including non-English language videos, do not
+              have captions.
+            </OakP>
           </OakBox>
         )}
       </OakFlex>
