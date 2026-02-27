@@ -5,16 +5,24 @@ import { EYFSLessonGroupProvider } from "../EyfsLessonGroupProvider/EyfsLessonGr
 
 import { EYFSLessonCard } from "./EyfsLessonCard";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import type { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
 import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck",
+  () => {
+    return jest.fn();
+  },
+);
 
 const mockLesson: EYFSLesson = {
   title: "Introduction to counting",
   slug: "intro-counting",
   orderInUnit: 1,
   video: { muxPlaybackId: "playback-123", title: "Counting video" },
+  downloadableResources: [],
 };
 
 const mockLessonWithNullVideo: EYFSLesson = {
@@ -22,10 +30,11 @@ const mockLessonWithNullVideo: EYFSLesson = {
   slug: "lesson-without-video",
   orderInUnit: 1,
   video: { muxPlaybackId: null, title: null },
+  downloadableResources: [],
 };
 
 const renderCard = (lesson: EYFSLesson = mockLesson) =>
-  renderWithTheme(
+  renderWithProviders()(
     <EYFSLessonGroupProvider>
       <EYFSLessonCard lesson={lesson} />
     </EYFSLessonGroupProvider>,
@@ -101,4 +110,6 @@ describe("EyfsLessonCard", () => {
       screen.getByRole("button", { name: /Sign in to download/i }),
     ).toBeInTheDocument();
   });
+
+  it.todo("hides download button when no downloads are available");
 });
