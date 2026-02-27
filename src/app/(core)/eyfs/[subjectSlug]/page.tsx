@@ -65,8 +65,12 @@ const InnerEyfsPage = async ({
                 (a, b) =>
                   (a.orderInUnit ?? Infinity) - (b.orderInUnit ?? Infinity),
               )
-              .map((lesson) => (
-                <EYFSLessonCard key={lesson.slug} lesson={lesson} />
+              .map((lesson, index) => (
+                <EYFSLessonCard
+                  key={lesson.slug}
+                  lesson={lesson}
+                  index={index + 1}
+                />
               ))}
           </EYFSLessonGroupProvider>
         </OakFlex>

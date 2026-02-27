@@ -96,6 +96,7 @@ export const SignedIn: Story = {
     },
   ],
   args: {
+    index: 1,
     lesson: mockLessons[0],
   },
 };
@@ -108,6 +109,7 @@ export const SignedOut: Story = {
     },
   ],
   args: {
+    index: 1,
     lesson: mockLessons[0],
   },
 };
@@ -120,6 +122,7 @@ export const NoVideo: Story = {
     },
   ],
   args: {
+    index: 1,
     lesson: mockLessonWithNullVideo,
   },
   parameters: {
@@ -141,8 +144,8 @@ export const MultipleLessons: Story = {
   ],
   render: () => (
     <OakFlex $flexDirection="column" $gap="spacing-20">
-      {mockLessons.map((lesson) => (
-        <EYFSLessonCard key={lesson.slug} lesson={lesson} />
+      {mockLessons.map((lesson, index) => (
+        <EYFSLessonCard key={lesson.slug} lesson={lesson} index={index + 1} />
       ))}
     </OakFlex>
   ),
@@ -165,8 +168,8 @@ export const MultipleLessonsWithLongTitles: Story = {
   ],
   render: () => (
     <OakFlex $flexDirection="column" $gap="spacing-20">
-      {mockLessonsWithLongTitles.map((lesson) => (
-        <EYFSLessonCard key={lesson.slug} lesson={lesson} />
+      {mockLessonsWithLongTitles.map((lesson, index) => (
+        <EYFSLessonCard key={lesson.slug} lesson={lesson} index={index + 1} />
       ))}
     </OakFlex>
   ),
