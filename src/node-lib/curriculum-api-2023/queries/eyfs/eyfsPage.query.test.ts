@@ -134,4 +134,45 @@ describe("eyfs page query", () => {
       "exit-quiz-questions",
     ]);
   });
+  it("excludes expired lessons", async () => {
+    const response = await eyfsPageQuery({
+      ...sdk,
+      eyfsPage: jest.fn(() =>
+        Promise.resolve({
+          lessons: [
+            {
+              programme_slug: "programme-slug",
+              lesson_slug: "lesson-slug",
+              lesson_data: lessonDataFixture(),
+              programme_fields: programmeFieldsFixture(),
+              unit_data: unitDataFixture({ overrides: { slug: "unit-slug" } }),
+              unit_slug: "unit-slug",
+              features: {},
+              order_in_unit: 1,
+            },
+            {
+              programme_slug: "programme-slug",
+              lesson_slug: "lesson-slug",
+              lesson_data: lessonDataFixture(),
+              programme_fields: programmeFieldsFixture(),
+              unit_data: unitDataFixture({ overrides: { slug: "unit-slug" } }),
+              unit_slug: "unit-slug",
+              features: { expired: true },
+              order_in_unit: 1,
+            },
+          ],
+          subjects: [],
+        }),
+      ),
+      eyfsVideos: jest.fn(() =>
+        Promise.resolve({
+          videos: [],
+        }),
+      ),
+    })({
+      subjectSlug: "maths",
+    });
+    const lessons = response.units["unit-slug"]?.lessons;
+    expect(lessons).toHaveLength(1);
+  });
 });
