@@ -167,11 +167,13 @@ async function main() {
   console.log("Done!\n");
 }
 
-(async () => {
+const run = async () => {
   try {
     await main();
   } catch (err) {
     console.error("Fatal error:", err);
     process.exit(1);
   }
-})();
+};
+
+run();
