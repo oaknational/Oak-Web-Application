@@ -12,7 +12,12 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const mockEyfsPage = jest.fn().mockResolvedValue({
   subjectTitle: "Maths",
   units: [],
-  subjectTabs: [],
+  subjectTabs: [
+    {
+      slug: "maths",
+      title: "Maths",
+    },
+  ],
 });
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
