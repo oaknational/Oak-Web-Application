@@ -187,6 +187,21 @@ describe("urls.ts", () => {
         "/about-us/who-we-are",
       );
     });
+    it("About us: Meet the team", () => {
+      expect(resolveOakHref({ page: "about-meet-the-team" })).toBe(
+        "/about-us/meet-the-team",
+      );
+    });
+    it("About us: Oak's curricula", () => {
+      expect(resolveOakHref({ page: "about-oaks-curricula" })).toBe(
+        "/about-us/oaks-curricula",
+      );
+    });
+    it("About us: Get involved", () => {
+      expect(resolveOakHref({ page: "about-get-involved" })).toBe(
+        "/about-us/get-involved",
+      );
+    });
     it("Contact us", () => {
       expect(resolveOakHref({ page: "contact" })).toBe("/contact-us");
     });
