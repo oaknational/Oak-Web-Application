@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
@@ -8,7 +8,7 @@ import { testAboutPageBaseData } from "./about-us.fixtures";
 
 import GetInvolved, {
   GetInvolvedPage,
-  getServerSideProps,
+  getStaticProps,
 } from "@/pages/about-us/get-involved";
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import CMSClient from "@/node-lib/cms";
@@ -63,16 +63,13 @@ describe("pages/about/get-involved.tsx", () => {
     expect(container).toMatchSnapshot();
   });
 
-  describe("getServerSideProps", () => {
+  describe("getStaticProps", () => {
     it("should 404 when no data returned from CMS", async () => {
       (CMSClient.newAboutGetInvolvedPage as jest.Mock).mockResolvedValue(null);
 
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-        res: {},
-        query: {},
+      const propsResult = await getStaticProps({
         params: {},
-      } as unknown as GetServerSidePropsContext);
+      } as unknown as GetStaticPropsContext);
 
       expect(propsResult).toMatchObject({
         notFound: true,

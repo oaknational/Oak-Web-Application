@@ -1,11 +1,11 @@
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
 import AboutUsMeetTheTeam, {
   AboutUsMeetTheTeamPageProps,
-  getServerSideProps,
+  getStaticProps,
 } from "@/pages/about-us/meet-the-team";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CMSClient from "@/node-lib/cms";
@@ -58,14 +58,11 @@ describe("pages/about/meet-the-team.tsx", () => {
     expect(container).toMatchSnapshot();
   });
 
-  describe("getServerSideProps", () => {
+  describe("getStaticProps", () => {
     it("should return props when CMS returns data", async () => {
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-        res: {},
-        query: {},
+      const propsResult = await getStaticProps({
         params: {},
-      } as unknown as GetServerSidePropsContext);
+      } as unknown as GetStaticPropsContext);
 
       expect(propsResult).toMatchObject({
         props: expect.anything(),
@@ -75,12 +72,9 @@ describe("pages/about/meet-the-team.tsx", () => {
     it("should 404 when CMS returns no data", async () => {
       (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(null);
 
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-        res: {},
-        query: {},
+      const propsResult = await getStaticProps({
         params: {},
-      } as unknown as GetServerSidePropsContext);
+      } as unknown as GetStaticPropsContext);
 
       expect(propsResult).toMatchObject({
         notFound: true,
