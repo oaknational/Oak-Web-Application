@@ -18,18 +18,21 @@ const mockLessons: EYFSLesson[] = [
     slug: "introduction-to-counting",
     orderInUnit: 1,
     video: { muxPlaybackId: null, title: "Counting video" },
+    downloadableResources: ["worksheet-pdf"],
   },
   {
     title: "Number bonds to 10",
     slug: "number-bonds-to-10",
     orderInUnit: 2,
     video: { muxPlaybackId: null, title: "Number bonds video" },
+    downloadableResources: [],
   },
   {
     title: "Adding and subtracting",
     slug: "adding-and-subtracting",
     orderInUnit: 3,
     video: { muxPlaybackId: null, title: "Add and subtract video" },
+    downloadableResources: [],
   },
 ];
 
@@ -38,6 +41,7 @@ const mockLessonWithNullVideo: EYFSLesson = {
   slug: "lesson-without-video",
   orderInUnit: 1,
   video: { muxPlaybackId: null, title: null },
+  downloadableResources: ["presentation"],
 };
 
 const mockLessonsWithLongTitles: EYFSLesson[] = [
@@ -47,6 +51,7 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
     slug: "exploring-maths-through-play",
     orderInUnit: 1,
     video: { muxPlaybackId: null, title: "Play-based maths video" },
+    downloadableResources: ["presentation"],
   },
   {
     title:
@@ -54,6 +59,7 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
     slug: "developing-early-number-sense",
     orderInUnit: 2,
     video: { muxPlaybackId: null, title: "Number sense video" },
+    downloadableResources: [],
   },
   {
     title:
@@ -61,6 +67,7 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
     slug: "addition-subtraction-within-20",
     orderInUnit: 3,
     video: { muxPlaybackId: null, title: "Add and subtract video" },
+    downloadableResources: [],
   },
 ];
 
