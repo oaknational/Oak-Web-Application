@@ -8,7 +8,6 @@ import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
 import { Wall } from "@/components/AppComponents/Wall";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 
-
 const OnboardingComponent: NextPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
