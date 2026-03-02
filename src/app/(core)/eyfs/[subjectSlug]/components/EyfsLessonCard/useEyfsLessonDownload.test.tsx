@@ -28,6 +28,48 @@ jest.mock(
   }),
 );
 
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
+  () => ({
+    useHubspotSubmit: () => ({
+      onHubspotSubmit: () => {
+        return Promise.resolve(true);
+      },
+    }),
+  }),
+);
+
+jest.mock(
+  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/fetchHubspotContactDetails",
+  () => ({
+    fetchHubspotContactDetails: async () => {
+      return {
+        schoolId: "SCHOOL_ID",
+        schoolName: "SCHOOL_NAME",
+        email: "EMAIL",
+      };
+    },
+  }),
+);
+
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      setEmailInLocalStorage: jest.fn(),
+      setSchoolInLocalStorage: jest.fn(),
+      setTermsInLocalStorage: jest.fn(),
+      schoolFromLocalStorage: {
+        schoolName: "test-school-local",
+        schoolId: "1-local",
+      },
+      emailFromLocalStorage: "test-email-local",
+      termsFromLocalStorage: true,
+    }),
+  }),
+);
+
 const mockToast = jest.fn();
 jest.mock("@/context/OakNotifications/useOakNotificationsContext", () => ({
   __esModule: true,
@@ -44,17 +86,6 @@ jest.mock("@/common-lib/error-reporter", () => ({
     (...args: []) =>
       mockErrorReporter(...args),
 }));
-
-const mockLocalStorageResponse = jest.fn().mockReturnValue({
-  schoolFromLocalStorage: { schoolName: "schoolName", id: "123" },
-});
-jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads",
-  () => ({
-    __esModule: true,
-    default: () => mockLocalStorageResponse(),
-  }),
-);
 
 jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",

@@ -26,6 +26,48 @@ const mockLessonWithNullVideo: EYFSLesson = {
   downloadableResources: ["presentation"],
 };
 
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
+  () => ({
+    useHubspotSubmit: () => ({
+      onHubspotSubmit: () => {
+        return Promise.resolve(true);
+      },
+    }),
+  }),
+);
+
+jest.mock(
+  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/fetchHubspotContactDetails",
+  () => ({
+    fetchHubspotContactDetails: async () => {
+      return {
+        schoolId: "SCHOOL_ID",
+        schoolName: "SCHOOL_NAME",
+        email: "EMAIL",
+      };
+    },
+  }),
+);
+
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      setEmailInLocalStorage: jest.fn(),
+      setSchoolInLocalStorage: jest.fn(),
+      setTermsInLocalStorage: jest.fn(),
+      schoolFromLocalStorage: {
+        schoolName: "test-school-local",
+        schoolId: "1-local",
+      },
+      emailFromLocalStorage: "test-email-local",
+      termsFromLocalStorage: true,
+    }),
+  }),
+);
+
 const renderCard = async (lesson: EYFSLesson = mockLesson) =>
   await waitFor(() => {
     act(() =>
