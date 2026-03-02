@@ -36,47 +36,49 @@ const InnerEyfsPage = async ({
   const eyfsPageData = await curriculumApi2023.eyfsPage({ subjectSlug });
   const units = Object.values(eyfsPageData.units);
 
-  return units.map((u) => (
-    <OakFlex $flexDirection={"column"} $gap={"spacing-48"} key={u.title}>
-      <OakBox>
-        <OakBox
-          $pa={"spacing-24"}
-          $background={"bg-neutral"}
-          $btlr={"border-radius-l"}
-          $btrr={"border-radius-l"}
-          $width={"fit-content"}
-          $mr={"spacing-24"} // ensures title section doesn't fill the full width on mobile
-        >
-          <OakHeading tag="h2" $font={"heading-5"}>
-            {u.title}
-          </OakHeading>
-        </OakBox>
-        <OakFlex
-          $background={"bg-neutral"}
-          $pa={"spacing-24"}
-          $borderRadius={"border-radius-l"}
-          $btlr={"border-radius-square"}
-          $flexDirection={"column"}
-          $gap={"spacing-20"}
-        >
-          <EYFSLessonGroupProvider>
-            {u.lessons
-              .toSorted(
-                (a, b) =>
-                  (a.orderInUnit ?? Infinity) - (b.orderInUnit ?? Infinity),
-              )
-              .map((lesson, index) => (
-                <EYFSLessonCard
-                  key={lesson.slug}
-                  lesson={lesson}
-                  index={index + 1}
-                />
-              ))}
-          </EYFSLessonGroupProvider>
+  return (
+    <EYFSLessonGroupProvider>
+      {units.map((u) => (
+        <OakFlex $flexDirection={"column"} $gap={"spacing-48"} key={u.title}>
+          <OakBox>
+            <OakBox
+              $pa={"spacing-24"}
+              $background={"bg-neutral"}
+              $btlr={"border-radius-l"}
+              $btrr={"border-radius-l"}
+              $width={"fit-content"}
+              $mr={"spacing-24"} // ensures title section doesn't fill the full width on mobile
+            >
+              <OakHeading tag="h2" $font={"heading-5"}>
+                {u.title}
+              </OakHeading>
+            </OakBox>
+            <OakFlex
+              $background={"bg-neutral"}
+              $pa={"spacing-24"}
+              $borderRadius={"border-radius-l"}
+              $btlr={"border-radius-square"}
+              $flexDirection={"column"}
+              $gap={"spacing-20"}
+            >
+              {u.lessons
+                .toSorted(
+                  (a, b) =>
+                    (a.orderInUnit ?? Infinity) - (b.orderInUnit ?? Infinity),
+                )
+                .map((lesson, index) => (
+                  <EYFSLessonCard
+                    key={lesson.slug}
+                    lesson={lesson}
+                    index={index + 1}
+                  />
+                ))}
+            </OakFlex>
+          </OakBox>
         </OakFlex>
-      </OakBox>
-    </OakFlex>
-  ));
+      ))}
+    </EYFSLessonGroupProvider>
+  );
 };
 
 const EyfsPage = withPageErrorHandling(InnerEyfsPage, "eyfs-page::app");
