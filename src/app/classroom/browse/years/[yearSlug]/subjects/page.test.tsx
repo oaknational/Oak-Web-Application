@@ -2,6 +2,7 @@ import React from "react";
 
 import Page from "./page";
 
+import OakError from "@/errors/OakError";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
@@ -62,6 +63,16 @@ describe("src/app/classroom/browse/years/[yearSlug]/subjects/page", () => {
 
     await expect(
       Page({ params: Promise.resolve({ yearSlug: "year-x" }) }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
+
+  it("returns 404 when API throws OakError not-found", async () => {
+    (curriculumApi2023.pupilSubjectListingQuery as jest.Mock).mockRejectedValue(
+      new OakError({ code: "curriculum-api/not-found" }),
+    );
+
+    await expect(
+      Page({ params: Promise.resolve({ yearSlug: "year-99" }) }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
 });
