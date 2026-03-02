@@ -1,4 +1,4 @@
-import { waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 import { OakToastProps } from "@oaknational/oak-components";
 
 import { useEyfsLessonDownload } from "./useEyfsLessonDownload";
@@ -28,13 +28,12 @@ jest.mock(
   }),
 );
 
+const mockHubspotSubmit = jest.fn().mockResolvedValue(true);
 jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
   () => ({
     useHubspotSubmit: () => ({
-      onHubspotSubmit: () => {
-        return Promise.resolve(true);
-      },
+      onHubspotSubmit: (...args: []) => mockHubspotSubmit(...args),
     }),
   }),
 );
@@ -52,21 +51,23 @@ jest.mock(
   }),
 );
 
+const mockUseLocalStorageForDownloads = jest.fn().mockReturnValue({
+  setEmailInLocalStorage: jest.fn(),
+  setSchoolInLocalStorage: jest.fn(),
+  setTermsInLocalStorage: jest.fn(),
+  schoolFromLocalStorage: {
+    schoolName: "test-school-local",
+    schoolId: "1-local",
+  },
+  emailFromLocalStorage: "test-email-local",
+  termsFromLocalStorage: true,
+});
+
 jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads",
   () => ({
     __esModule: true,
-    default: () => ({
-      setEmailInLocalStorage: jest.fn(),
-      setSchoolInLocalStorage: jest.fn(),
-      setTermsInLocalStorage: jest.fn(),
-      schoolFromLocalStorage: {
-        schoolName: "test-school-local",
-        schoolId: "1-local",
-      },
-      emailFromLocalStorage: "test-email-local",
-      termsFromLocalStorage: true,
-    }),
+    default: () => mockUseLocalStorageForDownloads(),
   }),
 );
 
@@ -149,5 +150,29 @@ describe("useEyfsLessonDownload", () => {
     result.current.onDownload();
 
     await waitFor(() => expect(mockErrorReporter).toHaveBeenCalled());
+  });
+  it("gets school from hubspot if its not in local storage", async () => {
+    const mockSetSchool = jest.fn();
+    mockUseLocalStorageForDownloads.mockReturnValue({
+      setEmailInLocalStorage: jest.fn(),
+      setSchoolInLocalStorage: (args: string) => mockSetSchool(args),
+      setTermsInLocalStorage: jest.fn(),
+      schoolFromLocalStorage: {
+        schoolName: "",
+        schoolId: "",
+      },
+      emailFromLocalStorage: "test-email-local",
+      termsFromLocalStorage: true,
+    });
+
+    await waitFor(() => {
+      act(() => {
+        renderHookWithProviders()(() => useEyfsLessonDownload(mockProps));
+      });
+    });
+    expect(mockSetSchool).toHaveBeenCalledWith({
+      schoolId: "SCHOOL_ID-SCHOOL_NAME",
+      schoolName: "SCHOOL_NAME",
+    });
   });
 });
