@@ -12,6 +12,7 @@ import { useEyfsLessonDownload } from "./useEyfsLessonDownload";
 
 import { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 
 interface EYFSLessonCardProps {
   lesson: EYFSLesson;
@@ -27,7 +28,13 @@ export const EYFSLessonCard = ({ lesson }: EYFSLessonCardProps) => {
   });
 
   return (
-    <OakFlex $flexDirection="row" $flexWrap="nowrap" as="article">
+    <OakFlex
+      $flexDirection="row"
+      $flexWrap="nowrap"
+      as="article"
+      $position={"relative"}
+    >
+      <AnchorTarget id={`download-btn-${lesson.slug}`} />
       <OakFlex
         $flexShrink={0}
         $minWidth="spacing-64"
@@ -92,6 +99,7 @@ export const EYFSLessonCard = ({ lesson }: EYFSLessonCardProps) => {
                 sizeVariant="small"
                 geoRestricted={false}
                 loginRequired
+                returnToAnchor={`download-btn-${lesson.slug}`}
                 actionProps={{
                   name: "Download lesson",
                   isActionGeorestricted: false,

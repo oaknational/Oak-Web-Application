@@ -63,6 +63,7 @@ type BaseProps = {
   sizeVariant?: SizeVariant;
   element?: "a" | "button";
   rel?: string;
+  returnToAnchor?: string; // anchor target id to return to after sign in / onboarding
 };
 
 type LoginRequiredButtonProps = BaseProps & OakPrimaryButtonProps;
@@ -95,6 +96,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     element = "button",
     loginRequired,
     geoRestricted,
+    returnToAnchor,
     ...overrideProps
   } = props;
   const router = useRouter();
@@ -146,7 +148,9 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
       return (
         <ButtonComponent
           onClick={() => {
-            const query = path ? { returnTo: path } : undefined;
+            const query = path
+              ? { returnTo: path + `#${returnToAnchor ?? ""}` }
+              : undefined;
             router.push(
               resolveOakHref({
                 page: "onboarding",
@@ -161,7 +165,9 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
       );
     case "signup":
       return (
-        <SignInButton forceRedirectUrl={`/onboarding?returnTo=${path}`}>
+        <SignInButton
+          forceRedirectUrl={`/onboarding?returnTo=${path}#${returnToAnchor ?? ""}`}
+        >
           <ButtonComponent
             iconName={signUpProps?.iconName}
             isTrailingIcon={signUpProps?.isTrailingIcon}
