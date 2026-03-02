@@ -1,3 +1,20 @@
+# [1.1009.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1008.0...v1.1009.0) (2026-03-02)
+
+
+### Bug Fixes
+
+* missing border-radius on EYFS card ([edaa5df](https://github.com/oaknational/Oak-Web-Application/commit/edaa5dfb4dc54e0081544b725d9fa95f36c6546a))
+* missing video id in storybook args ([0ec0c71](https://github.com/oaknational/Oak-Web-Application/commit/0ec0c717a4657c3ee0fbe8905ec1af3cb10a640b))
+* use an incrementing index for the lesson number ([c1c285a](https://github.com/oaknational/Oak-Web-Application/commit/c1c285a071f4ff2a02716d68862dffa65b39eb25))
+
+
+### Features
+
+* add EYFS lesson card ([79a9122](https://github.com/oaknational/Oak-Web-Application/commit/79a91224726ed94c1dba4dc4e63614d6ac34fa61))
+* apply responsive styling ([410d31e](https://github.com/oaknational/Oak-Web-Application/commit/410d31e667e5772cefc1abe482c8ddd1e40f3a96))
+* dont render toggle for video when null ([fd05048](https://github.com/oaknational/Oak-Web-Application/commit/fd050481fa3c73c7a127a8e6e8060efadee3973d))
+* forgot to plug the actual cards in ([d284fae](https://github.com/oaknational/Oak-Web-Application/commit/d284fae14b26847b10850be6b3082e52aa06853e))
+
 # [1.1008.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1007.0...v1.1008.0) (2026-02-26)
 
 
