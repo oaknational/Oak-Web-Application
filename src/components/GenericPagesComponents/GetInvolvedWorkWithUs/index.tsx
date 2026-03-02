@@ -21,10 +21,10 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
 
 const handleClick = (componentType: ComponentTypeValueType) => {
-  const aboutUsContactInititaiedAnalytics =
+  const aboutUsContactInitiatedAnalytics =
     buildAboutUsContactInitiatedAnalytics(componentType);
 
-  return aboutUsContactInitiated(aboutUsContactInititaiedAnalytics);
+  return aboutUsContactInitiated(aboutUsContactInitiatedAnalytics);
 };
 
 const BadgeImage = styled.img`

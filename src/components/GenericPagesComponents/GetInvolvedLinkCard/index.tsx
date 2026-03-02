@@ -16,10 +16,10 @@ import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builder
 const handleClick = (componentType: ComponentTypeValueType | undefined) => {
   if (!componentType) return;
 
-  const aboutUsContactInititaiedAnalytics =
+  const aboutUsContactInitiatedAnalytics =
     buildAboutUsContactInitiatedAnalytics(componentType);
 
-  return aboutUsContactInitiated(aboutUsContactInititaiedAnalytics);
+  return aboutUsContactInitiated(aboutUsContactInitiatedAnalytics);
 };
 
 type GetInvolvedLinkCardProps = {
