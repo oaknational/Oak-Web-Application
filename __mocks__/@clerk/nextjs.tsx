@@ -35,6 +35,7 @@ const clerkModule = {
   },
   ClerkProvider: RenderChildren,
   SignUpButton: RenderChildren,
+  SignInButton: RenderChildren,
   SignedIn: ({ children }: Readonly<PropsWithChildren>) => {
     const { isLoaded, isSignedIn } = clerkModule.useUser();
     return isLoaded && isSignedIn ? <>{children}</> : null;
