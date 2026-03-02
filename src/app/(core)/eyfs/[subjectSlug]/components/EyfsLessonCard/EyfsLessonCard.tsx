@@ -15,10 +15,11 @@ import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredBut
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 
 interface EYFSLessonCardProps {
+  index: number;
   lesson: EYFSLesson;
 }
 
-export const EYFSLessonCard = ({ lesson }: EYFSLessonCardProps) => {
+export const EYFSLessonCard = ({ lesson, index }: EYFSLessonCardProps) => {
   const { activeVideoSlug, toggleVideo } = useEyfsLessonGroupContext();
   const isActiveVideo = activeVideoSlug === lesson.slug;
 
@@ -46,7 +47,7 @@ export const EYFSLessonCard = ({ lesson }: EYFSLessonCardProps) => {
         $font="heading-5"
         $display={["none", "none", "flex"]}
       >
-        {lesson.orderInUnit}
+        {index}
       </OakFlex>
       <OakFlex
         $flexGrow={1}
@@ -57,6 +58,9 @@ export const EYFSLessonCard = ({ lesson }: EYFSLessonCardProps) => {
         $pr="spacing-20"
         $pv={["spacing-20", "spacing-20", "spacing-0"]}
         $gap={["spacing-16", "spacing-16", "spacing-0"]}
+        $borderRadius="border-radius-s"
+        $bblr={["border-radius-s", "border-radius-s", "border-radius-square"]}
+        $btlr={["border-radius-s", "border-radius-s", "border-radius-square"]}
       >
         <OakFlex
           $flexDirection="row"

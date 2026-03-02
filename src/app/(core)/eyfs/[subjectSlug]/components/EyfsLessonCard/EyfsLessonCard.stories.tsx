@@ -17,22 +17,22 @@ const mockLessons: EYFSLesson[] = [
     title: "Introduction to counting",
     slug: "introduction-to-counting",
     orderInUnit: 1,
-    video: { muxPlaybackId: null, title: "Counting video" },
     downloadableResources: ["worksheet-pdf"],
+    video: { muxPlaybackId: "1234", title: "Counting video" },
   },
   {
     title: "Number bonds to 10",
     slug: "number-bonds-to-10",
     orderInUnit: 2,
-    video: { muxPlaybackId: null, title: "Number bonds video" },
     downloadableResources: [],
+    video: { muxPlaybackId: "1234", title: "Number bonds video" },
   },
   {
     title: "Adding and subtracting",
     slug: "adding-and-subtracting",
     orderInUnit: 3,
-    video: { muxPlaybackId: null, title: "Add and subtract video" },
     downloadableResources: [],
+    video: { muxPlaybackId: "1234", title: "Add and subtract video" },
   },
 ];
 
@@ -50,24 +50,24 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
       "Exploring mathematical concepts through play-based learning activities and hands-on experiences",
     slug: "exploring-maths-through-play",
     orderInUnit: 1,
-    video: { muxPlaybackId: null, title: "Play-based maths video" },
     downloadableResources: ["presentation"],
+    video: { muxPlaybackId: "1234", title: "Play-based maths video" },
   },
   {
     title:
       "Developing early number sense and understanding of quantity through counting, comparing and ordering",
     slug: "developing-early-number-sense",
     orderInUnit: 2,
-    video: { muxPlaybackId: null, title: "Number sense video" },
     downloadableResources: [],
+    video: { muxPlaybackId: "1234", title: "Number sense video" },
   },
   {
     title:
       "Building confidence with addition and subtraction within 20 using manipulatives and visual representations",
     slug: "addition-subtraction-within-20",
     orderInUnit: 3,
-    video: { muxPlaybackId: null, title: "Add and subtract video" },
     downloadableResources: [],
+    video: { muxPlaybackId: "1234", title: "Add and subtract video" },
   },
 ];
 
@@ -103,6 +103,7 @@ export const SignedIn: Story = {
     },
   ],
   args: {
+    index: 1,
     lesson: mockLessons[0],
   },
 };
@@ -115,6 +116,7 @@ export const SignedOut: Story = {
     },
   ],
   args: {
+    index: 1,
     lesson: mockLessons[0],
   },
 };
@@ -127,6 +129,7 @@ export const NoVideo: Story = {
     },
   ],
   args: {
+    index: 1,
     lesson: mockLessonWithNullVideo,
   },
   parameters: {
@@ -148,8 +151,8 @@ export const MultipleLessons: Story = {
   ],
   render: () => (
     <OakFlex $flexDirection="column" $gap="spacing-20">
-      {mockLessons.map((lesson) => (
-        <EYFSLessonCard key={lesson.slug} lesson={lesson} />
+      {mockLessons.map((lesson, index) => (
+        <EYFSLessonCard key={lesson.slug} lesson={lesson} index={index + 1} />
       ))}
     </OakFlex>
   ),
@@ -172,8 +175,8 @@ export const MultipleLessonsWithLongTitles: Story = {
   ],
   render: () => (
     <OakFlex $flexDirection="column" $gap="spacing-20">
-      {mockLessonsWithLongTitles.map((lesson) => (
-        <EYFSLessonCard key={lesson.slug} lesson={lesson} />
+      {mockLessonsWithLongTitles.map((lesson, index) => (
+        <EYFSLessonCard key={lesson.slug} lesson={lesson} index={index + 1} />
       ))}
     </OakFlex>
   ),

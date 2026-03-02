@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 import { EYFSLessonGroupProvider } from "./components/EyfsLessonGroupProvider";
 import { EYFSLessonCard } from "./components/EyfsLessonCard";
@@ -7,6 +8,18 @@ import withPageErrorHandling from "@/hocs/withPageErrorHandling";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { OakBox, OakFlex, OakHeading } from "@/styles/oakThemeApp";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+
+export const metadata: Metadata = {
+  title: "Early years foundation stage lesson resources",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
+};
 
 const InnerEyfsPage = async ({
   params,
@@ -52,8 +65,12 @@ const InnerEyfsPage = async ({
                 (a, b) =>
                   (a.orderInUnit ?? Infinity) - (b.orderInUnit ?? Infinity),
               )
-              .map((lesson) => (
-                <EYFSLessonCard key={lesson.slug} lesson={lesson} />
+              .map((lesson, index) => (
+                <EYFSLessonCard
+                  key={lesson.slug}
+                  lesson={lesson}
+                  index={index + 1}
+                />
               ))}
           </EYFSLessonGroupProvider>
         </OakFlex>

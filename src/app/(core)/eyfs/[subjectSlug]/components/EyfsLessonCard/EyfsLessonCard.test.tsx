@@ -73,7 +73,7 @@ const renderCard = async (lesson: EYFSLesson = mockLesson) =>
     act(() =>
       renderWithProviders()(
         <EYFSLessonGroupProvider>
-          <EYFSLessonCard lesson={lesson} />
+          <EYFSLessonCard lesson={lesson} index={1} />
         </EYFSLessonGroupProvider>,
       ),
     );
@@ -84,7 +84,7 @@ describe("EyfsLessonCard", () => {
     setUseUserReturn(mockLoggedIn);
   });
 
-  it("renders lesson title and order", () => {
+  it("renders lesson title and index", () => {
     renderCard();
     expect(screen.getByText("Introduction to counting")).toBeInTheDocument();
     expect(screen.getAllByText("1").length).toBeGreaterThan(0);
