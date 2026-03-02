@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import Layout from "@/components/AppComponents/Layout";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
@@ -10,6 +10,7 @@ import {
 import { GetInvolvedCollaborateWithUs } from "@/components/GenericPagesComponents/GetInvolvedCollaborateWithUs";
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
 import CMSClient from "@/node-lib/cms";
+import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -110,27 +111,36 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
   );
 };
 
-export const getServerSideProps = (async (context) => {
-  const isPreviewMode = context.preview === true;
+export const getStaticProps: GetStaticProps<GetInvolvedPage> = async (
+  context,
+) => {
+  return getPageProps({
+    page: "about-get-involved::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const aboutWhoWeArePage = await CMSClient.newAboutGetInvolvedPage({
-    previewMode: isPreviewMode,
-  });
+      const aboutWhoWeArePage = await CMSClient.newAboutGetInvolvedPage({
+        previewMode: isPreviewMode,
+      });
 
-  const topNav = await curriculumApi2023.topNav();
+      const topNav = await curriculumApi2023.topNav();
 
-  if (!aboutWhoWeArePage) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!aboutWhoWeArePage) {
+        return {
+          notFound: true,
+        };
+      }
 
-  return {
-    props: {
-      pageData: aboutWhoWeArePage,
-      topNav,
+      const results: GetStaticPropsResult<GetInvolvedPage> = {
+        props: {
+          pageData: aboutWhoWeArePage,
+          topNav,
+        },
+      };
+      return results;
     },
-  };
-}) satisfies GetServerSideProps<GetInvolvedPage>;
+  });
+};
 
 export default GetInvolved;

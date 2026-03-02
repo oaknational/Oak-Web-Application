@@ -1,6 +1,7 @@
-import { NextPage, GetServerSideProps } from "next";
+import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "@/node-lib/cms";
+import getPageProps from "@/node-lib/getPageProps";
 import { NewAboutWhoWeArePage } from "@/common-lib/cms-types";
 import {
   AboutSharedHeader,
@@ -52,27 +53,36 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
   );
 };
 
-export const getServerSideProps = (async (context) => {
-  const isPreviewMode = context.preview === true;
+export const getStaticProps: GetStaticProps<AboutPageProps> = async (
+  context,
+) => {
+  return getPageProps({
+    page: "about-who-we-are::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const pageData = await CMSClient.newAboutWhoWeArePage({
-    previewMode: isPreviewMode,
-  });
+      const pageData = await CMSClient.newAboutWhoWeArePage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!pageData) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!pageData) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const topNav = await curriculumApi2023.topNav();
+      const topNav = await curriculumApi2023.topNav();
 
-  return {
-    props: {
-      pageData,
-      topNav,
+      const results: GetStaticPropsResult<AboutPageProps> = {
+        props: {
+          pageData,
+          topNav,
+        },
+      };
+      return results;
     },
-  };
-}) satisfies GetServerSideProps<AboutPageProps>;
+  });
+};
 
 export default AboutWhoWeAre;

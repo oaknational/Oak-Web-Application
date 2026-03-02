@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import {
   OakAllSpacingToken,
   OakBox,
@@ -25,6 +25,7 @@ import { CurriculumPartners } from "@/components/GenericPagesComponents/Curricul
 import { GuidingPrinciples } from "@/components/GenericPagesComponents/GuidingPrinciples";
 import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
 import CMSClient from "@/node-lib/cms";
+import getPageProps from "@/node-lib/getPageProps";
 import { OaksCurriculaPage as OaksCurriculaPageData } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
@@ -218,31 +219,40 @@ const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
     };
   };
 
-export const getServerSideProps = (async (context) => {
-  const isPreviewMode = context.preview === true;
+export const getStaticProps: GetStaticProps<OaksCurriculaPageProps> = async (
+  context,
+) => {
+  return getPageProps({
+    page: "about-oaks-curricula::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const pageData = await CMSClient.oaksCurriculaPage({
-    previewMode: isPreviewMode,
-  });
+      const pageData = await CMSClient.oaksCurriculaPage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!pageData) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!pageData) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const [curriculumPhaseOptions, topNav] = await Promise.all([
-    fetchSubjectPhasePickerData(),
-    curriculumApi2023.topNav(),
-  ]);
+      const [curriculumPhaseOptions, topNav] = await Promise.all([
+        fetchSubjectPhasePickerData(),
+        curriculumApi2023.topNav(),
+      ]);
 
-  return {
-    props: {
-      pageData,
-      curriculumPhaseOptions,
-      topNav,
+      const results: GetStaticPropsResult<OaksCurriculaPageProps> = {
+        props: {
+          pageData,
+          curriculumPhaseOptions,
+          topNav,
+        },
+      };
+      return results;
     },
-  };
-}) satisfies GetServerSideProps<OaksCurriculaPageProps>;
+  });
+};
 
 export default OaksCurricula;
