@@ -1,6 +1,9 @@
 "use client";
 
-import { SubjectsPageView } from "@oaknational/google-classroom-addon/ui";
+import {
+  SubjectsPageView,
+  useGoogleClassroomAddonStore,
+} from "@oaknational/google-classroom-addon/ui";
 import type { Subject } from "@oaknational/google-classroom-addon/ui";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -17,6 +20,9 @@ export function GoogleClassroomSubjectsAnalytics({
   optionsUrlTemplate,
 }: Props) {
   const { track } = useAnalytics();
+  const googleLoginHint = useGoogleClassroomAddonStore(
+    (state) => state.googleLoginHint,
+  );
 
   return (
     <SubjectsPageView
@@ -34,6 +40,7 @@ export function GoogleClassroomSubjectsAnalytics({
           eventVersion: "2.0.0",
           engagementIntent: "refine",
           activeFilters: {},
+          googleLoginHint,
         });
       }}
     />

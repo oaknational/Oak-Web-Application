@@ -1,7 +1,10 @@
 "use client";
 
 import React from "react";
-import { LessonListingView } from "@oaknational/google-classroom-addon/ui";
+import {
+  LessonListingView,
+  useGoogleClassroomAddonStore,
+} from "@oaknational/google-classroom-addon/ui";
 import type {
   ProgrammeFields,
   UnitData,
@@ -45,6 +48,9 @@ export function GoogleClassroomLessonListingAnalytics({
   headerLeftSlot,
 }: Props) {
   const { track } = useAnalytics();
+  const googleLoginHint = useGoogleClassroomAddonStore(
+    (state) => state.googleLoginHint ?? "",
+  );
 
   const lessonLookup = React.useMemo(
     () => new Map(browseData.map((item) => [item.lessonSlug, item])),
@@ -74,7 +80,11 @@ export function GoogleClassroomLessonListingAnalytics({
           tierName: (programmeFields?.tier ?? null) as TierNameValueType,
           examBoard: (programmeFields?.examboard ?? null) as ExamBoardValueType,
           pathway: (programmeFields?.optionality ?? null) as PathwayValueType,
-          googleLoginHint: "",
+          yearGroupName: programmeFields?.year ?? "",
+          yearGroupSlug: programmeFields?.yearSlug ?? "",
+          subjectTitle: programmeFields?.subject ?? "",
+          subjectSlug: programmeFields?.subjectSlug ?? "",
+          googleLoginHint,
         });
       }}
       onLessonPreviewed={(lessonSlug) => {
@@ -88,7 +98,14 @@ export function GoogleClassroomLessonListingAnalytics({
             lesson.lessonData.lessonReleaseDate ?? "unreleased",
           unitName: unitData?.title ?? "",
           unitSlug: lesson.unitSlug,
-          googleLoginHint: "",
+          tierName: (programmeFields?.tier ?? null) as TierNameValueType,
+          examBoard: (programmeFields?.examboard ?? null) as ExamBoardValueType,
+          pathway: (programmeFields?.optionality ?? null) as PathwayValueType,
+          yearGroupName: programmeFields?.year ?? "",
+          yearGroupSlug: programmeFields?.yearSlug ?? "",
+          subjectTitle: programmeFields?.subject ?? "",
+          subjectSlug: programmeFields?.subjectSlug ?? "",
+          googleLoginHint,
         });
       }}
     />

@@ -1,11 +1,17 @@
 "use client";
 
-import { GoogleClassroomBrowseView } from "@oaknational/google-classroom-addon/ui";
+import {
+  GoogleClassroomBrowseView,
+  useGoogleClassroomAddonStore,
+} from "@oaknational/google-classroom-addon/ui";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
 function BrowseGoogleClassroomPage() {
   const { track } = useAnalytics();
+  const googleLoginHint = useGoogleClassroomAddonStore(
+    (state) => state.googleLoginHint,
+  );
   const years: {
     yearSlug: string;
     yearDescription: string;
@@ -38,6 +44,7 @@ function BrowseGoogleClassroomPage() {
           eventVersion: "2.0.0",
           engagementIntent: "refine",
           activeFilters: {},
+          googleLoginHint,
         });
       }}
     />

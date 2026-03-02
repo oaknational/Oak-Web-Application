@@ -1,6 +1,9 @@
 "use client";
 
-import { OptionsView } from "@oaknational/google-classroom-addon/ui";
+import {
+  OptionsView,
+  useGoogleClassroomAddonStore,
+} from "@oaknational/google-classroom-addon/ui";
 import type {
   FactorData,
   Programme,
@@ -48,6 +51,9 @@ export function GoogleClassroomOptionsAnalytics({
   getAvailableProgrammeFactorAction,
 }: Props) {
   const { track } = useAnalytics();
+  const googleLoginHint = useGoogleClassroomAddonStore(
+    (state) => state.googleLoginHint,
+  );
 
   return (
     <OptionsView
@@ -73,6 +79,7 @@ export function GoogleClassroomOptionsAnalytics({
               factorType === "examboard" ? factor.factorSlug : undefined,
             pathway: factorType === "pathway" ? factor.factorSlug : undefined,
           },
+          googleLoginHint,
         });
       }}
     />

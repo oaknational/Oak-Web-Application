@@ -9,6 +9,11 @@ import {
 
 import { googleClassroomApi } from "@/browser-lib/google-classroom";
 
+// Double check how posthog and avo are set up
+// posthog sdk can it be called directly?!
+// Is there a check that we're utilising google classroom
+// can the pupils events be linked back to the original thread?- knowing how a cluster events is in tesponse to a teachers assignment - can firestore be used for this
+
 function SignInContent() {
   const router = useRouter();
   const searchParams = useSearchParams();

@@ -1,6 +1,9 @@
 "use client";
 
-import { UnitCards } from "@oaknational/google-classroom-addon/ui";
+import {
+  UnitCards,
+  useGoogleClassroomAddonStore,
+} from "@oaknational/google-classroom-addon/ui";
 import type { Unit } from "@oaknational/google-classroom-addon/ui";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -17,6 +20,9 @@ export function GoogleClassroomUnitCardsAnalytics({
   unitsLessonListUrlTemplate,
 }: Props) {
   const { track } = useAnalytics();
+  const googleLoginHint = useGoogleClassroomAddonStore(
+    (state) => state.googleLoginHint,
+  );
 
   return (
     <UnitCards
@@ -34,6 +40,7 @@ export function GoogleClassroomUnitCardsAnalytics({
           eventVersion: "2.0.0",
           engagementIntent: "refine",
           activeFilters: {},
+          googleLoginHint,
         });
       }}
     />
