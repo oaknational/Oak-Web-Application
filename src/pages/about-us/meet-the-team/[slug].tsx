@@ -9,6 +9,8 @@ import {
   OakTypography,
   OakBox,
   OakSmallSecondaryButton,
+  OakBreadcrumbs,
+  OakBreadcrumbsProps,
 } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -21,9 +23,6 @@ import { TeamMember } from "@/common-lib/cms-types/teamMember";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { SocialButton } from "@/components/GenericPagesComponents/SocialButton";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
-import Breadcrumbs, {
-  Breadcrumb,
-} from "@/components/SharedComponents/Breadcrumbs";
 import {
   ProfileNavigation,
   MemberCategory,
@@ -34,6 +33,7 @@ import {
 import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
@@ -81,16 +81,17 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
   const trimmedBio = trimTrailingEmptyBlocks(bioPortableText);
   const imageUrl = getProxiedSanityAssetUrl(image?.asset?.url);
 
-  const breadcrumbs: Breadcrumb[] = [
-    { label: "Home", oakLinkProps: { page: "home" } },
+  const breadcrumbs: OakBreadcrumbsProps["breadcrumbs"] = [
     {
-      label: "Meet the team",
-      oakLinkProps: { page: null, href: "/about-us/meet-the-team" },
+      text: "Home",
+      href: resolveOakHref({ page: "home" }),
     },
     {
-      label: name,
-      oakLinkProps: { page: null, href: "#" },
-      disabled: true,
+      text: "Meet the team",
+      href: resolveOakHref({ page: "about-meet-the-team" }),
+    },
+    {
+      text: name,
     },
   ];
 
@@ -105,7 +106,7 @@ const AboutUsMeetTheTeamPerson: NextPage<AboutUsMeetTheTeamPersonPageProps> = ({
     >
       <NewGutterMaxWidth>
         <OakFlex $pt={"spacing-24"} $color={"text-primary"}>
-          <Breadcrumbs breadcrumbs={breadcrumbs} />
+          <OakBreadcrumbs breadcrumbs={breadcrumbs} />
         </OakFlex>
         <OakGrid
           $pt={["spacing-40", "spacing-56"]}
