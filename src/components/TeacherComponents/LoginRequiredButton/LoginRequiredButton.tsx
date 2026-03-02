@@ -86,6 +86,25 @@ const getButtonVariant = (variant: ButtonVariant, sizeVariant: SizeVariant) => {
   }
 };
 
+const getRedirectUrl = (
+  path: string | null,
+  returnToAnchor: string | undefined,
+) => {
+  let returnTo = "";
+  if (path) {
+    returnTo += path;
+    if (returnToAnchor) {
+      returnTo += `#${returnToAnchor}`;
+    }
+  }
+  const query = returnTo ? { returnTo } : undefined;
+
+  return resolveOakHref({
+    page: "onboarding",
+    query,
+  });
+};
+
 const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
   const {
     actionProps,
@@ -148,15 +167,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
       return (
         <ButtonComponent
           onClick={() => {
-            const query = path
-              ? { returnTo: path + `#${returnToAnchor ?? ""}` }
-              : undefined;
-            router.push(
-              resolveOakHref({
-                page: "onboarding",
-                query,
-              }),
-            );
+            router.push(getRedirectUrl(path, returnToAnchor));
           }}
           {...overrideProps}
         >
@@ -165,9 +176,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
       );
     case "signup":
       return (
-        <SignInButton
-          forceRedirectUrl={`/onboarding?returnTo=${path}#${returnToAnchor ?? ""}`}
-        >
+        <SignInButton forceRedirectUrl={getRedirectUrl(path, returnToAnchor)}>
           <ButtonComponent
             iconName={signUpProps?.iconName}
             isTrailingIcon={signUpProps?.isTrailingIcon}
