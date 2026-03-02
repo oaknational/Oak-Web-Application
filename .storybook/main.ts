@@ -1,3 +1,5 @@
+import path from "path";
+
 export default {
   env: (config) => ({
     ...config,
@@ -54,6 +56,11 @@ export default {
   staticDirs: ["../public"],
 
   webpackFinal: async (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@clerk/nextjs": path.resolve(__dirname, "./mocks/clerk.tsx"),
+    };
+
     config.module.rules = [
       ...config.module.rules.map((rule) => {
         if (rule.test instanceof RegExp) {
