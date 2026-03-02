@@ -16,10 +16,10 @@
  *   npm run dev:gclassroom:refresh-token
  */
 
-import * as fs from "fs";
-import * as http from "http";
-import * as path from "path";
-import * as url from "url";
+import * as fs from "node:fs";
+import * as http from "node:http";
+import * as path from "node:path";
+import * as url from "node:url";
 
 import { config } from "dotenv";
 import { OAuth2Client } from "google-auth-library";
@@ -101,7 +101,7 @@ async function main() {
       if (error) {
         res.writeHead(200, { "Content-Type": "text/html" });
         res.end(
-          `<h2>Authorization failed</h2><p>${error}</p><p>You can close this tab.</p>`,
+          "<h2>Authorization failed</h2><p>An error occurred during authorization. Check the terminal for details.</p><p>You can close this tab.</p>",
         );
         server.close();
         reject(new Error(`OAuth error: ${error}`));
@@ -167,7 +167,11 @@ async function main() {
   console.log("Done!\n");
 }
 
-main().catch((err) => {
-  console.error("Fatal error:", err);
-  process.exit(1);
-});
+(async () => {
+  try {
+    await main();
+  } catch (err) {
+    console.error("Fatal error:", err);
+    process.exit(1);
+  }
+})();

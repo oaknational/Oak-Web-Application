@@ -319,10 +319,7 @@ export const LessonEngineProvider = memo(
             isComplete: false,
           },
         };
-        onSectionResultUpdate(
-          updatedSections,
-          state.currentSection as LessonReviewSection,
-        );
+        onSectionResultUpdate(updatedSections, state.currentSection);
       }
     };
 
