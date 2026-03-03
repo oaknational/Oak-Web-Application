@@ -3,6 +3,11 @@
  */
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+import {
+  ErrorSeverity,
+  ExceptionType,
+  OakGoogleClassroomException,
+} from "@oaknational/google-classroom-addon/server";
 
 import { POST } from "./route";
 
@@ -25,6 +30,8 @@ jest.mock("@/node-lib/google-classroom", () => {
 });
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
+const { isOakGoogleClassroomException: mockedIsOakGoogleClassroomException } =
+  jest.requireMock("@/node-lib/google-classroom");
 
 const mockAccessToken = "mock-access-token";
 const mockSession = "mock-session-id";
@@ -114,12 +121,17 @@ describe("POST /api/classroom/pupil/progress/submit", () => {
   });
 
   it("should return 403 for OakGoogleClassroomException", async () => {
-    const mockException = {
-      name: "OakGoogleClassroomException",
-      message: "Submission is not in an updatable state",
-      type: "OakGoogleClassroom",
-    };
-    mockUpsertPupilLessonProgress.mockRejectedValueOnce(mockException);
+    const mockError = new OakGoogleClassroomException(
+      "Submission is not in an updatable state",
+      ExceptionType.OakGoogleClassroom,
+      {
+        code: "invalid_submission_state",
+        shouldRetry: false,
+        severity: ErrorSeverity.Error,
+      },
+    );
+    mockUpsertPupilLessonProgress.mockRejectedValueOnce(mockError);
+    mockedIsOakGoogleClassroomException.mockReturnValueOnce(true);
 
     mockRequest = {
       json: async () => mockProgressArgs,
@@ -128,7 +140,7 @@ describe("POST /api/classroom/pupil/progress/submit", () => {
 
     await POST(mockRequest);
 
-    expect(NextResponse.json).toHaveBeenCalledWith(mockException, {
+    expect(NextResponse.json).toHaveBeenCalledWith(mockError.toObject(), {
       status: 403,
     });
   });
