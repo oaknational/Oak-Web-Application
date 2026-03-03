@@ -12,8 +12,9 @@ locals {
 
       custom_environments = [
         {
-          name   = "staging"
-          domain = "owa-staging.thenational.academy"
+          name        = "staging"
+          domain      = "owa-staging.thenational.academy"
+          branch_name = "main"
         }
       ]
     },

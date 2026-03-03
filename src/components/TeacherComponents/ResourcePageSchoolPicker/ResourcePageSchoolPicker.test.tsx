@@ -124,7 +124,7 @@ describe("search autocomplete", () => {
     expect(getByText("School picker")).toBeInTheDocument();
   });
 
-  it("renders a label with red background if validation hasError", async () => {
+  it("renders a label with error background if validation hasError", async () => {
     const Wrapper = () => {
       const [schoolPickerInputValue, setSchoolPickerInputValue] = useState("");
       const [, setSelectedSchool] = useState<Key | undefined>("");

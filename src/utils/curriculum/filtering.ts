@@ -94,6 +94,7 @@ export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
     years: data.yearOptions,
     threads: [],
     pathways: [],
+    keystages: [],
   };
 }
 
@@ -104,6 +105,7 @@ const FILTER_TO_QS: Record<keyof CurriculumFilters, string> = {
   years: "years",
   threads: "threads",
   pathways: "pathways",
+  keystages: "keystages",
 };
 
 export function filtersToQuery(
@@ -237,6 +239,7 @@ export function filteringFromYears(
     years: filters.years,
     threads: filters.threads,
     pathways: filters.pathways,
+    keystages: filters.keystages,
   };
   return output;
 }
@@ -312,6 +315,7 @@ export function diffFilters(
     years: [],
     threads: [],
     pathways: [],
+    keystages: [],
   };
   for (const keyRaw of Object.keys(defaultFilterFilter)) {
     const key = keyRaw as keyof CurriculumFilters;

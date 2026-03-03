@@ -1,13 +1,7 @@
 import Head from "next/head";
 import React, { FC } from "react";
 import { useRouter } from "next/router";
-import {
-  OakBox,
-  OakFlex,
-  oakDefaultTheme,
-  OakThemeProvider,
-  OakColorToken,
-} from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import TopNav, { TopNavProps } from "../TopNav/TopNav";
@@ -53,7 +47,7 @@ export type LayoutProps = {
   headerVariant?: HeaderVariant;
   footerVariant?: FooterVariant;
   breadcrumbs?: Breadcrumb[];
-  $background?: OakColorToken;
+  $background?: OakUiRoleToken;
   headerCta?: CTA | null;
   banner?: React.ReactNode;
   skipLinkHref?: string;
@@ -78,7 +72,7 @@ const Layout: FC<LayoutProps> = (props) => {
   const { isPreview } = useRouter();
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
+    <>
       <Seo {...seoProps} />
       <Head>
         <link rel="icon" href="/favicon.ico" />
@@ -116,7 +110,7 @@ const Layout: FC<LayoutProps> = (props) => {
         <Footer />
         {isPreview && <LayoutPreviewControls />}
       </OakFlex>
-    </OakThemeProvider>
+    </>
   );
 };
 

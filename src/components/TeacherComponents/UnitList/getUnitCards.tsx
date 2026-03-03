@@ -3,7 +3,7 @@ import {
   OakUnitListItem,
 } from "@oaknational/oak-components";
 import router, { NextRouter } from "next/router";
-import { MouseEvent, MutableRefObject } from "react";
+import React, { MouseEvent, MutableRefObject, ReactElement } from "react";
 
 import {
   UnitListItemProps,
@@ -107,7 +107,7 @@ export const getUnitCards = ({
   onSaveToggle: (slug: string) => void;
   setElementId?: (elementId: string) => void;
   newAndLegacyUnitsOnPage: boolean;
-}) => {
+}): ReactElement[] => {
   return pageItems.map((item, index) => {
     const baseIndex = index + pageSize * (currentPage - 1);
     let calculatedIndex = baseIndex;
@@ -159,67 +159,71 @@ export const getUnitCards = ({
         getIsSaving={isUnitSaving}
       />
     ) : (
-      item.map((unitOption) => {
-        const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-          // Tracking data was not being sent to avo, so we prevent the default and use router to navigate to the page after the onClick
-          e.preventDefault();
-          onClick({
-            ...unitOption,
-            index: 0,
-            onClick,
+      <React.Fragment
+        key={`UnitList-UnitListItem-UnitListOption-${item[0]!.slug}`}
+      >
+        {item.map((unitOption) => {
+          const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+            // Tracking data was not being sent to avo, so we prevent the default and use router to navigate to the page after the onClick
+            e.preventDefault();
+            onClick({
+              ...unitOption,
+              index: 0,
+              onClick,
+            });
+            router.push(e.currentTarget.href);
+          };
+          const unitLessonCount = getUnitLessonCount({
+            lessonCount: unitOption.lessonCount,
+            expiredLessonCount: unitOption.expiredLessonCount,
+            unpublishedLessonCount: unitOption.unpublishedLessonCount,
           });
-          router.push(e.currentTarget.href);
-        };
-        const unitLessonCount = getUnitLessonCount({
-          lessonCount: unitOption.lessonCount,
-          expiredLessonCount: unitOption.expiredLessonCount,
-          unpublishedLessonCount: unitOption.unpublishedLessonCount,
-        });
 
-        const saveButtonId = `save-button-${unitOption.slug}`;
+          const saveButtonId = `save-button-${unitOption.slug}`;
 
-        return (
-          <OakUnitListItem
-            {...unitOption}
-            lessonCount={unitLessonCount}
-            firstItemRef={
-              isUnitFirstItemRef(
-                unitOption.programmeSlug,
-                newAndLegacyUnitsOnPage,
-                index,
-              )
-                ? firstItemRef
-                : null
-            }
-            data-testid="unit-list-item"
-            key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
-            index={calculatedIndex + 1}
-            isLegacy={isSlugLegacy(unitOption.programmeSlug)}
-            onClick={handleClick}
-            unavailable={unitOption.expired || undefined}
-            href={resolveOakHref({
-              page: `${
-                isSpecialistUnit ? "specialist-lesson-index" : "lesson-index"
-              }`,
-              unitSlug: unitOption.slug,
-              programmeSlug: unitOption.programmeSlug,
-            })}
-            saveButtonId={saveButtonId}
-            onSave={
-              showSave
-                ? () => {
-                    if (setElementId) {
-                      setElementId(saveButtonId);
+          return (
+            <OakUnitListItem
+              {...unitOption}
+              lessonCount={unitLessonCount}
+              firstItemRef={
+                isUnitFirstItemRef(
+                  unitOption.programmeSlug,
+                  newAndLegacyUnitsOnPage,
+                  index,
+                )
+                  ? firstItemRef
+                  : null
+              }
+              data-testid="unit-list-item"
+              key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
+              index={calculatedIndex + 1}
+              isLegacy={isSlugLegacy(unitOption.programmeSlug)}
+              onClick={handleClick}
+              unavailable={unitOption.expired || undefined}
+              href={resolveOakHref({
+                page: `${
+                  isSpecialistUnit ? "specialist-lesson-index" : "lesson-index"
+                }`,
+                unitSlug: unitOption.slug,
+                programmeSlug: unitOption.programmeSlug,
+              })}
+              saveButtonId={saveButtonId}
+              onSave={
+                showSave
+                  ? () => {
+                      if (setElementId) {
+                        setElementId(saveButtonId);
+                      }
+                      onSaveToggle(unitOption.slug);
                     }
-                    onSaveToggle(unitOption.slug);
-                  }
-                : undefined
-            }
-            isSaved={isUnitSaved(unitOption.slug)}
-            isSaving={isUnitSaving?.(unitOption.slug)}
-          />
-        );
-      })
+                  : undefined
+              }
+              isSaved={isUnitSaved(unitOption.slug)}
+              isSaving={isUnitSaving?.(unitOption.slug)}
+            />
+          );
+        })}
+      </React.Fragment>
     );
   });
 };

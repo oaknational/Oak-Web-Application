@@ -3,8 +3,6 @@ import {
   OakP,
   OakFlex,
   OakSearchFilterCheckBox,
-  oakDefaultTheme,
-  OakThemeProvider,
   OakBox,
   OakFieldset,
 } from "@oaknational/oak-components";
@@ -39,7 +37,7 @@ const renderFilterSection = (
   <OakBox
     $mb="spacing-32"
     $bb={!isLast ? "border-solid-s" : null}
-    $borderColor={!isLast ? "grey40" : null}
+    $borderColor={!isLast ? "border-neutral-lighter" : null}
   >
     <OakFieldset>
       <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
@@ -91,8 +89,12 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
   } = props;
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakBox $mb="spacing-32" $bb={"border-solid-s"} $borderColor={"grey40"}>
+    <>
+      <OakBox
+        $mb="spacing-32"
+        $bb={"border-solid-s"}
+        $borderColor={"border-neutral-lighter"}
+      >
         <OakFieldset>
           <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
             Curriculum
@@ -146,7 +148,11 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
           </OakFlex>
         </OakFieldset>
       </OakBox>
-      <OakBox $mb="spacing-32" $bb={"border-solid-s"} $borderColor={"grey40"}>
+      <OakBox
+        $mb="spacing-32"
+        $bb={"border-solid-s"}
+        $borderColor={"border-neutral-lighter"}
+      >
         <OakFieldset>
           <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
             Key stages
@@ -213,7 +219,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
           isMobileFilter,
         )}
       </>
-    </OakThemeProvider>
+    </>
   );
 };
 

@@ -5,24 +5,22 @@ import {
   OakBox,
   OakSpan,
   OakHeading,
+  OakLink,
 } from "@oaknational/oak-components";
-import { ReactNode, useMemo } from "react";
+import { PortableTextMarkComponent } from "@portabletext/react";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 
-function InnerMaxWidth({ children }: { children: ReactNode }) {
-  const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
+export const SecondaryAnchorLink: PortableTextMarkComponent<{
+  _type: "anchor";
+  anchor: string;
+}> = (props) => {
   return (
-    <OakBox
-      style={styleAttrs}
-      $mh={"auto"}
-      $ph={["spacing-16", "spacing-16", "spacing-40"]}
-    >
-      {children}
-    </OakBox>
+    <OakLink href={`#${props.value?.anchor ?? ""}`}>{props.children}</OakLink>
   );
-}
+};
 
 export type WhoAreWeTimelineProps = {
   title: string;
@@ -39,8 +37,8 @@ export default function WhoAreWeTimeline({
   items,
 }: Readonly<WhoAreWeTimelineProps>) {
   return (
-    <OakBox $background={"mint30"}>
-      <InnerMaxWidth>
+    <OakBox $background={"bg-decorative1-very-subdued"}>
+      <NewGutterMaxWidth>
         <OakFlex
           $flexDirection={"column"}
           $gap={["spacing-40", "spacing-56"]}
@@ -51,18 +49,13 @@ export default function WhoAreWeTimeline({
               <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
                 <OakBox $font={["heading-6", "heading-5"]}>
                   <OakSpan
-                    $background={"mint"}
+                    $background={"bg-decorative1-main"}
                     $ph={"spacing-4"}
-                    $color="text-primary"
                   >
                     {subTitle}
                   </OakSpan>
                 </OakBox>
-                <OakHeading
-                  tag="h2"
-                  $font={["heading-5", "heading-3"]}
-                  $color="text-primary"
-                >
+                <OakHeading tag="h2" $font={["heading-5", "heading-3"]}>
                   {title}
                 </OakHeading>
               </OakFlex>
@@ -112,17 +105,12 @@ export default function WhoAreWeTimeline({
                         <OakBox $font={"heading-7"}>
                           <OakSpan
                             $ph={"spacing-4"}
-                            $background={"mint"}
-                            $color="text-primary"
+                            $background={"bg-decorative1-main"}
                           >
                             {item.subTitle}
                           </OakSpan>
                         </OakBox>
-                        <OakHeading
-                          tag="h3"
-                          $font={["heading-6", "heading-5"]}
-                          $color="text-primary"
-                        >
+                        <OakHeading tag="h3" $font={["heading-6", "heading-5"]}>
                           {item.title}
                         </OakHeading>
                         <OakFlex
@@ -130,7 +118,14 @@ export default function WhoAreWeTimeline({
                           $flexDirection={"column"}
                           $gap={["spacing-20", "spacing-24"]}
                         >
-                          <PortableTextWithDefaults value={item.text} />
+                          <PortableTextWithDefaults
+                            value={item.text}
+                            components={{
+                              marks: {
+                                anchorLink: SecondaryAnchorLink,
+                              },
+                            }}
+                          />
                         </OakFlex>
                       </OakFlex>
                     </OakFlex>
@@ -140,7 +135,7 @@ export default function WhoAreWeTimeline({
             </OakGridArea>
           </OakGrid>
         </OakFlex>
-      </InnerMaxWidth>
+      </NewGutterMaxWidth>
     </OakBox>
   );
 }

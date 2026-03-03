@@ -39,16 +39,17 @@ describe("formatSentences", () => {
   it("doesn't split sentences on a full stop after Mr or Ms", () => {
     const result = formatSentences(sentences);
     expect(result[0]).toBe(
-      "Hello, Mr. 'Perfectly fine', How's your heart after breaking mine? Mr. 'Always at the right place at the right time,' baby.",
+      "Hello, Mr. 'Perfectly fine', How's your heart after breaking mine?",
     );
   });
+
   it("splits sentences based on full stops", () => {
     const result = formatSentences(sentences);
-    expect(result[2]).toBe("I've been Ms. 'Misery' since your goodbye.");
+    expect(result[3]).toBe("I've been Ms. 'Misery' since your goodbye.");
   });
   it("creates the expected number of sentences", () => {
     const result = formatSentences(sentences);
-    expect(result).toHaveLength(4);
+    expect(result).toHaveLength(5);
   });
 });
 
@@ -181,14 +182,14 @@ describe("populateLessonWithTranscript", () => {
       }),
     );
 
-    expect(lesson.transcriptSentences).toEqual(["sentence 1, sentence 2."]);
+    expect(lesson.transcriptSentences).toEqual(["sentence 1, sentence 2"]);
   });
   it("handles lessons without transcript sentences", async () => {
     const lesson = await populateLessonWithTranscript(
       lessonOverviewFixture({ videoTitle: "test", transcriptSentences: null }),
     );
 
-    expect(lesson.transcriptSentences).toEqual(["sentence 1 sentence 2."]);
+    expect(lesson.transcriptSentences).toEqual(["sentence 1 sentence 2"]);
   });
 });
 
@@ -220,17 +221,17 @@ describe("populateMediaClipsWithTranscripts", () => {
 
     if (result && result["intro"] && result["intro"][0]) {
       expect(result["intro"][0].transcriptSentences).toEqual([
-        "sentence 3 sentence 4.",
+        "sentence 3 sentence 4",
       ]);
     }
     if (result && result["intro"] && result["intro"][1]) {
       expect(result["intro"][1].transcriptSentences).toEqual([
-        "sentence 5 sentence 6.",
+        "sentence 5 sentence 6",
       ]);
     }
     if (result && result["cycle2"] && result["cycle2"][0]) {
       expect(result["cycle2"][0].transcriptSentences).toEqual([
-        "sentence 7 sentence 8.",
+        "sentence 7 sentence 8",
       ]);
     }
   });

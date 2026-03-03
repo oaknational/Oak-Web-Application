@@ -18,6 +18,7 @@ describe("CurricFiltersThreads", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={() => {}}
         data={basicSetup}
@@ -42,6 +43,7 @@ describe("CurricFiltersThreads", () => {
           years: ["10", "11"],
           threads: ["thread2"],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={() => {}}
         data={basicSetup}
@@ -68,6 +70,7 @@ describe("CurricFiltersThreads", () => {
           years: ["10", "11"],
           threads: [],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={onChangeFilters}
         data={basicSetup}
@@ -85,6 +88,7 @@ describe("CurricFiltersThreads", () => {
       tiers: [],
       years: ["10", "11"],
       pathways: [],
+      keystages: [],
     });
   });
 
@@ -99,6 +103,7 @@ describe("CurricFiltersThreads", () => {
           years: ["10", "11"],
           threads: ["thread1"],
           pathways: [],
+          keystages: [],
         }}
         onChangeFilters={onChangeFilters}
         data={basicSetup}
@@ -116,6 +121,7 @@ describe("CurricFiltersThreads", () => {
       tiers: [],
       years: ["10", "11"],
       pathways: [],
+      keystages: [],
     });
   });
 });

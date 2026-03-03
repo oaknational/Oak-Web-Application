@@ -4,6 +4,7 @@ import {
   useCallback,
   ChangeEventHandler,
   FormEventHandler,
+  useEffect,
 } from "react";
 import styled from "styled-components";
 import {
@@ -39,6 +40,11 @@ const SearchForm: FC<SearchFormProps> = (props) => {
   } = props;
   const [value, setValue] = useState(searchTerm);
   const { track } = useAnalytics();
+
+  // Keep searchTerm in sync with the value of the input
+  useEffect(() => {
+    setValue(searchTerm);
+  }, [searchTerm]);
 
   const trackSearchJourneyInitiated = useCallback(() => {
     track.searchJourneyInitiated({

@@ -148,7 +148,7 @@ describe("hubspotSubmitForm", () => {
       ]).asFetch;
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
-      } catch (error) {
+      } catch (_error) {
         //
       }
 
@@ -164,7 +164,7 @@ describe("hubspotSubmitForm", () => {
 
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
-      } catch (error) {
+      } catch (_error) {
         //
       }
 
@@ -221,7 +221,7 @@ describe("hubspotSubmitForm", () => {
 
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
-      } catch (error) {
+      } catch (_error) {
         //
       }
 
@@ -296,7 +296,7 @@ describe("hubspotSubmitForm", () => {
        */
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
-      } catch (error) {
+      } catch (_error) {
         //
       }
       expect(reportError).toHaveBeenCalled();
@@ -324,7 +324,7 @@ describe("hubspotSubmitForm", () => {
       global.fetch = getFakeFetch([unknownErrorFailure]).asFetch;
       try {
         await hubspotSubmitForm({ hubspotFormId, payload });
-      } catch (error) {
+      } catch (_error) {
         //
       }
 

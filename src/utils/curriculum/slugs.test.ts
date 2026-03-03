@@ -203,10 +203,47 @@ describe("createTeacherProgrammeSlug", () => {
     );
   });
 
-  test("unit data with exam board and tier returns the correct programme slug", () => {
-    const unitData = createTestUnit();
+  test("core pathway excludes examboard from slug (Computing)", () => {
+    const unitData = createTestUnit({
+      slug: "online-safety",
+      subject: "Computing",
+      subject_parent: null,
+      subject_parent_slug: null,
+      subject_slug: "computing",
+      title: "Online safety",
+      year: "10",
+    });
     expect(
-      createTeacherProgrammeSlug(unitData, "aqa", "foundation", "gcse"),
-    ).toEqual("combined-science-secondary-ks4-foundation-gcse-aqa");
+      createTeacherProgrammeSlug(unitData, "ocr", undefined, "core"),
+    ).toEqual("computing-secondary-ks4-core");
   });
+
+  test("core pathway excludes examboard from slug (PE)", () => {
+    const unitData = createTestUnit({
+      slug: "health-fitness-and-wellbeing",
+      subject: "Physical Education",
+      subject_parent: null,
+      subject_parent_slug: null,
+      subject_slug: "physical-education",
+      title: "Health, fitness and wellbeing",
+      year: "10",
+    });
+    expect(
+      createTeacherProgrammeSlug(unitData, "ocr", undefined, "core"),
+    ).toEqual("physical-education-secondary-ks4-core");
+  });
+});
+test("gcse pathway excludes examboard when examboard equals pathway", () => {
+  const unitData = createTestUnit({
+    slug: "what-can-we-do-to-reduce-crime",
+    subject: "Citizenship",
+    subject_parent: null,
+    subject_parent_slug: null,
+    subject_slug: "citizenship",
+    title: "What can we do to reduce crime?",
+    year: "10",
+  });
+  expect(
+    createTeacherProgrammeSlug(unitData, "gcse", undefined, "gcse"),
+  ).toEqual("citizenship-secondary-ks4-gcse");
 });

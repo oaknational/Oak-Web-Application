@@ -5,9 +5,9 @@ import { OakColorName } from "@/styles/theme";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 
 const FocusUnderline = styled(OakSvg).attrs({ name: "underline" })<{
-  $color: OakColorName;
+  $underlineColor: OakColorName;
 }>`
-  color: ${(props) => getColorByName(props.$color)};
+  color: ${(props) => getColorByName(props.$underlineColor)};
   position: absolute;
   width: 100%;
 `;

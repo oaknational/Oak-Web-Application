@@ -1,5 +1,5 @@
 query curriculumOverview($phaseSlug: String, $subjectSlug: String) {
-  curriculumOverview: published_mv_curriculum_overview_0_8 (
+  curriculumOverview: published_mv_curriculum_overview_0_9 (
     where: {
       phase_slug: { _eq: $phaseSlug }
       subject_slug: { _eq: $subjectSlug }

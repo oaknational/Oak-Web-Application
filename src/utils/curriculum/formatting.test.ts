@@ -39,6 +39,7 @@ describe("getYearGroupTitle", () => {
               isSwimming: true,
               groupAs: "Swimming",
               nationalCurriculum: [],
+              keystage: "all-ks",
             },
           },
           "all-years",
@@ -59,6 +60,7 @@ describe("getYearGroupTitle", () => {
               isSwimming: false,
               groupAs: null,
               nationalCurriculum: [],
+              keystage: "ks3",
             },
           },
           "7",
@@ -81,6 +83,7 @@ describe("getYearGroupTitle", () => {
               isSwimming: true,
               groupAs: "Swimming",
               nationalCurriculum: [],
+              keystage: "all-ks",
             },
           },
           "all-years",
@@ -102,6 +105,7 @@ describe("getYearGroupTitle", () => {
               isSwimming: false,
               groupAs: null,
               nationalCurriculum: [],
+              keystage: "ks3",
             },
           },
           "7",
@@ -529,6 +533,7 @@ describe("subjectTitleWithCase", () => {
 
   it("non-language", () => {
     expect(subjectTitleWithCase("science")).toEqual("science");
+    expect(subjectTitleWithCase("RSHE (PSHE)")).toEqual("RSHE (PSHE)");
     expect(subjectTitleWithCase("physical education")).toEqual(
       "physical education",
     );

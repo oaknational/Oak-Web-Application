@@ -25,7 +25,7 @@ export const formatSchoolName = (
               <OakSpan
                 $font={"body-2-bold"}
                 $textDecoration={"underline"}
-                $color={"blue"}
+                $color={"text-link-active"}
                 data-testid="strong-element"
               >
                 {sliceToMakeBold}

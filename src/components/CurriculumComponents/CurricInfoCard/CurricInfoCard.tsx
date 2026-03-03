@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import {
   OakIcon,
   OakIconName,
-  OakColorToken,
+  OakUiRoleToken,
   OakFlex,
   OakP,
   OakAllSpacingToken,
@@ -11,7 +11,8 @@ import {
 export interface CurricInfoCardProps {
   children: ReactNode;
   iconName?: OakIconName;
-  background: OakColorToken;
+  background: OakUiRoleToken;
+  borderColor?: OakUiRoleToken;
   iconHeight: OakAllSpacingToken;
   iconWidth: OakAllSpacingToken;
 }
@@ -22,6 +23,7 @@ export default function CurricInfoCard({
   iconHeight,
   iconWidth,
   background,
+  borderColor = "border-decorative1-stronger",
 }: Readonly<CurricInfoCardProps>) {
   return (
     <OakFlex
@@ -29,7 +31,7 @@ export default function CurricInfoCard({
       $flexBasis={0}
       $borderRadius={"border-radius-m"}
       $background={background}
-      $borderColor={"mint110"}
+      $borderColor={borderColor}
       $ba={"border-solid-m"}
       $flexDirection="column"
       $alignItems={"flex-start"}
@@ -42,7 +44,7 @@ export default function CurricInfoCard({
         iconWidth={iconWidth}
         data-testid={`icon-${iconName}`}
       />
-      <OakP $font="heading-light-6" $textAlign={"left"} $color={"black"}>
+      <OakP $font="heading-light-6" $textAlign={"left"} $color={"text-primary"}>
         {children}
       </OakP>
     </OakFlex>

@@ -1,8 +1,8 @@
 import {
-  OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
   OakBox,
+  OakP,
 } from "@oaknational/oak-components";
 import { useId } from "react";
 
@@ -22,12 +22,15 @@ export type CurricFiltersTiersProps = {
     source: ComponentTypeValueType,
   ) => void;
   data: CurriculumUnitsFormattedData;
+  // The context prop can be removed once the integrated journey is fully launched
+  context: "curriculum-visualiser" | "integrated-journey";
 };
 
 export function CurricFiltersTiers({
   filters,
   onChangeFilters,
   data,
+  context,
 }: Readonly<CurricFiltersTiersProps>) {
   const id = useId();
   const { yearData } = data;
@@ -45,16 +48,6 @@ export function CurricFiltersTiers({
     <>
       {tiers.length > 0 && (
         <OakBox>
-          <OakHeading
-            id={"tiers-label"}
-            tag="h4"
-            $font={["heading-7", "heading-6"]}
-            $mt="spacing-0"
-            $mb={["spacing-24", "spacing-16"]}
-          >
-            Learning tier{" "}
-            {tiersAt.length === 1 ? `(${tiersAt[0]?.toUpperCase()})` : ""}
-          </OakHeading>
           <OakRadioGroup
             name={"tiers" + id}
             onChange={(e) => setSingleInFilter("tiers", e.target.value)}
@@ -62,8 +55,18 @@ export function CurricFiltersTiers({
             $flexDirection="row"
             $flexWrap="wrap"
             $gap="spacing-8"
-            aria-labelledby="tiers-label"
           >
+            <OakP
+              as="legend"
+              $font={
+                context === "curriculum-visualiser" ? "heading-6" : "heading-7"
+              }
+              $mt="spacing-0"
+              $mb={["spacing-24", "spacing-16"]}
+            >
+              Learning tier{" "}
+              {tiersAt.length === 1 ? `(${tiersAt[0]?.toUpperCase()})` : ""}
+            </OakP>
             {tiers.map((tier) => (
               <OakRadioAsButton
                 key={tier.tier_slug}

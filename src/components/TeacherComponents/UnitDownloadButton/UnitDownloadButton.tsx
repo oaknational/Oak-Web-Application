@@ -32,7 +32,7 @@ const UnitDownloadOnboardButton = ({
       {showNewTag && (
         <OakTagFunctional
           label="New"
-          $background="mint"
+          $background="bg-decorative1-main"
           $color="text-primary"
           $pv={"spacing-0"}
         />
@@ -61,7 +61,7 @@ const UnitDownloadSignInButton = ({
         {showNewTag && (
           <OakTagFunctional
             label="New"
-            $background="mint"
+            $background="bg-decorative1-main"
             $color="text-primary"
             $pv={"spacing-0"}
           />
@@ -171,7 +171,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
         createAndClickHiddenDownloadLink(downloadLink);
         onDownloadSuccess();
       }
-    } catch (error) {
+    } catch (_error) {
       setShowDownloadMessage(false);
       setShowIncompleteMessage(false);
       setDownloadError(true);

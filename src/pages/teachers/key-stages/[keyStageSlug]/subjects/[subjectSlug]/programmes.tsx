@@ -139,8 +139,8 @@ const ProgrammesListingPage: NextPage<
             label: subjectTitle,
           },
         ]}
-        background={"lavender30"}
-        subjectIconBackgroundColor={"lavender"}
+        background={"bg-decorative3-very-subdued"}
+        subjectIconBackgroundColor={"bg-decorative3-main"}
         title={`${subjectTitle} ${pathwayTitle ?? ""}`}
         programmeFactor={keyStageTitle}
         hasCurriculumDownload={legacy}

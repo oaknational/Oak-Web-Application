@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakSpan, OakColorToken, OakIcon } from "@oaknational/oak-components";
+import { OakSpan, OakUiRoleToken, OakIcon } from "@oaknational/oak-components";
 
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
@@ -42,12 +42,12 @@ const tagFontMap = {
 type TagWithMap = keyof typeof tagDimMap;
 
 type TagPromotionalProps = FlexProps & {
-  $color?: OakColorToken;
+  $textColor?: OakUiRoleToken;
   size?: TagWithMap;
 };
 
 const TagPromotional: FC<TagPromotionalProps> = ({
-  $color = "lemon",
+  $textColor = "text-promo",
   size = "large",
   ...flexProps
 }) => {
@@ -73,7 +73,7 @@ const TagPromotional: FC<TagPromotionalProps> = ({
         $bottom={textPosMap[size].bottom}
         $position={"absolute"}
       >
-        <OakSpan $color={$color} $font={tagFontMap[size]}>
+        <OakSpan $color={$textColor} $font={tagFontMap[size]}>
           New
         </OakSpan>
       </Flex>

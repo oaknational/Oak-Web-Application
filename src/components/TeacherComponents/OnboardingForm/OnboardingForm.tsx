@@ -149,7 +149,7 @@ const OnboardingForm = ({
       try {
         await onboardUser({ isTeacher });
         await user?.reload();
-      } catch (error) {
+      } catch (_error) {
         setSubmitError("Something went wrong. Please try again.");
         setIsSubmitting(false);
         // No point in proceeding to hubspot sign-up if onboarding failed
@@ -213,7 +213,7 @@ const OnboardingForm = ({
         $pa="spacing-40"
         $dropShadow={[null, "drop-shadow-standard"]}
         $borderRadius="border-radius-m2"
-        $background={"white"}
+        $background={"bg-primary"}
         as="form"
         noValidate
         onSubmit={

@@ -53,8 +53,12 @@ export default function CurricVisualiserFiltersDesktop({
             data={data}
             ks4Options={ks4Options}
             slugs={slugs}
+            context="curriculum-visualiser"
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {shouldDisplayFilter(data, filters, "subjectCategories") && (
@@ -64,8 +68,12 @@ export default function CurricVisualiserFiltersDesktop({
             onChangeFilters={onChangeFilters}
             data={data}
             slugs={slugs}
+            context="curriculum-visualiser"
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {shouldDisplayFilter(data, filters, "childSubjects") && (
@@ -74,8 +82,12 @@ export default function CurricVisualiserFiltersDesktop({
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={data}
+            context={"curriculum-visualiser"}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {shouldDisplayFilter(data, filters, "tiers") && (
@@ -84,8 +96,12 @@ export default function CurricVisualiserFiltersDesktop({
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={data}
+            context={"curriculum-visualiser"}
           />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
+          <OakHandDrawnHR
+            hrColor={"bg-interactive-element2"}
+            $mv={"spacing-32"}
+          />
         </>
       )}
       {shouldDisplayFilter(data, filters, "threads") && (

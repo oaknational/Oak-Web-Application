@@ -31,13 +31,13 @@ const FieldError = (props: FieldErrorProps) => {
       <OakFlex $alignSelf={"flex-start"} $mr="spacing-4">
         <OakIcon
           iconName="content-guidance"
-          $colorFilter={"red"}
+          $colorFilter={"icon-error"}
           $width={"spacing-24"}
           $height={"spacing-24"}
         />
       </OakFlex>
       <OakSpan
-        $color="red"
+        $color="text-error"
         $font={variant === "large" ? ["body-2-bold", "body-1-bold"] : "body-2"}
         id={id}
         aria-live={props.ariaLive || "off"}

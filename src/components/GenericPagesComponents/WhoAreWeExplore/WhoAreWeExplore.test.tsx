@@ -25,11 +25,6 @@ describe("WhoAreWeExplore", () => {
             title: "ITEM_THREE",
             href: "#item_three",
           },
-          {
-            iconName: "search",
-            title: "ITEM_FOUR",
-            href: "#item_four",
-          },
         ]}
       />,
     );
@@ -37,7 +32,7 @@ describe("WhoAreWeExplore", () => {
     expect(getByRole("heading")).toHaveTextContent("TEST_TITLE");
 
     const elements = getAllByRole("link");
-    expect(elements.length).toEqual(4);
+    expect(elements.length).toEqual(3);
 
     expect(elements[0]).toHaveTextContent("ITEM_ONE");
     expect(elements[0]).toHaveAttribute("href", "#item_one");
@@ -45,8 +40,6 @@ describe("WhoAreWeExplore", () => {
     expect(elements[1]).toHaveAttribute("href", "#item_two");
     expect(elements[2]).toHaveTextContent("ITEM_THREE");
     expect(elements[2]).toHaveAttribute("href", "#item_three");
-    expect(elements[3]).toHaveTextContent("ITEM_FOUR");
-    expect(elements[3]).toHaveAttribute("href", "#item_four");
     expect(baseElement).toMatchSnapshot();
   });
 });

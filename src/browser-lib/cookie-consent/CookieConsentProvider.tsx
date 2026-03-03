@@ -1,19 +1,17 @@
+"use client";
 /**
  * This file should provide all we need to:
  * 1. allow the user to set/update cookie preferences
  * 2. determine which services should run depending on which policies are agreed to
  */
-"use client";
-import { PropsWithChildren, useEffect, useState } from "react";
 
-// eslint-disable-next-line import/order
+import { PropsWithChildren, useEffect, useState } from "react";
 import {
   MockOakConsentClient,
   OakConsentClient,
   OakConsentProvider,
   useOakConsent,
 } from "@oaknational/oak-consent-client";
-
 import {
   OakBox,
   OakCookieConsent,
@@ -23,7 +21,6 @@ import {
   useCookieConsent as useCookieConsentUI,
 } from "@oaknational/oak-components";
 
-// eslint-disable-next-line import/order
 import { consentClient } from "./consentClient";
 
 const RequiresInteraction = () => {

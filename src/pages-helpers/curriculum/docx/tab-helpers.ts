@@ -1,4 +1,5 @@
 import { MutableRefObject } from "react";
+import { keystageSlugs } from "@oaknational/oak-curriculum-schema";
 
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import curriculumApi2023, {
@@ -23,6 +24,7 @@ import {
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type CurriculumUnitsYearGroup = {
   units: Unit[];
@@ -44,6 +46,7 @@ export type CurriculumUnitsYearData<T = Unit> = {
     subjectCategories: SubjectCategory[];
     tiers: Tier[];
     pathways: Pathway[];
+    keystage: string;
     isSwimming: boolean;
     groupAs: string | null;
     nationalCurriculum: NationalCurriculumCriteria[];
@@ -63,6 +66,8 @@ export type CurriculumUnitsFormattedData<T = Unit> = {
   yearData: CurriculumUnitsYearData<T>;
   threadOptions: Thread[];
   yearOptions: string[];
+  keystages: KeystageSlug[];
+
   // ncOptions: {id: number, title: string}[];
 };
 
@@ -132,6 +137,15 @@ export function createYearOptions(units: Unit[]): string[] {
   return yearOptions;
 }
 
+export function createKeystageOptions(units: Unit[]): KeystageSlug[] {
+  return units
+    .map((unit) => unit.keystage_slug)
+    .filter((ks, i, a) => a.indexOf(ks) === i)
+    .filter(
+      (ksSlug) => keystageSlugs.safeParse(ksSlug).success,
+    ) as KeystageSlug[];
+}
+
 export function createUnitsListingByYear(
   units: Unit[],
 ): CurriculumUnitsYearData {
@@ -155,6 +169,7 @@ export function createUnitsListingByYear(
         isSwimming: false,
         groupAs: null,
         nationalCurriculum: [],
+        keystage: unit.keystage_slug,
       };
       yearData[year] = currentYearData;
     }
@@ -341,11 +356,14 @@ export function formatCurriculumUnitsData(
   const yearData = createUnitsListingByYear(filteredUnits);
   const threadOptions = createThreadOptions(filteredUnits);
   const yearOptions = createYearOptions(filteredUnits);
+  const keystages = createKeystageOptions(filteredUnits);
   const formattedDataCurriculumUnits = {
     yearData,
     threadOptions,
     yearOptions,
+    keystages,
   };
+
   return formattedDataCurriculumUnits;
 }
 

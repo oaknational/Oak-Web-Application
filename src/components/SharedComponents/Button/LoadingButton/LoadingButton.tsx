@@ -98,7 +98,7 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
   return (
     <>
       <OakFlex $gap="spacing-8" $justifyContent="center">
-        <ButtonLabel aria-live={props.ariaLive || "off"} $color="white">
+        <ButtonLabel aria-live={props.ariaLive || "off"} $color="text-inverted">
           {props.isLoading ? props.loadingText : props.text}
         </ButtonLabel>
         {props.isLoading ? (
@@ -108,7 +108,7 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
         ) : (
           <OakIcon
             iconName={props.success ? "tick" : props.icon}
-            $colorFilter="white"
+            $colorFilter="text-inverted"
             width={"24"}
             height={"24"}
             $width={"spacing-24"}

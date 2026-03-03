@@ -1,6 +1,6 @@
 import {
   OakColorFilterToken,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderDownloadAllButton } from "./LessonOverviewHeaderDownloadAllButton";
@@ -25,7 +25,6 @@ jest.mock("@/hooks/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
-jest.mock("next/router", () => require("next-router-mock"));
 const mockDownloadAllButton = jest.fn();
 const baseProps = {
   ...lessonOverviewFixture(),
@@ -40,7 +39,7 @@ const baseProps = {
   geoRestricted: false,
   loginRequired: false,
   breadcrumbs: [],
-  background: "white" as OakColorToken,
+  background: "bg-primary" as OakUiRoleToken,
   isNew: false,
   subjectIconBackgroundColor: "white" as OakColorFilterToken,
   subjectSlug: "test-subject",

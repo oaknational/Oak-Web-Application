@@ -21,10 +21,10 @@ export function WhoAreWeBreakout({
   image,
 }: Readonly<WhoAreWeBreakoutProps>) {
   return (
-    <CustomFlex $background={"mint"} $mh={"auto"}>
+    <CustomFlex $background={"bg-decorative1-main"} $mh={"auto"}>
       <OakFlex
         $flexGrow={1}
-        $background={"mint110"}
+        $background={"bg-decorative1-subdued"}
         $minWidth={["100%", "spacing-640", "spacing-640"]}
         $aspectRatio={"4/3"}
       >
@@ -32,16 +32,11 @@ export function WhoAreWeBreakout({
       </OakFlex>
       <OakFlex
         $flexShrink={1}
-        $ph={["spacing-16", "spacing-16", "spacing-80"]}
+        $ph={["spacing-20", "spacing-40", "spacing-80"]}
         $pv={["spacing-56", "spacing-40", "spacing-40"]}
         $alignItems={"center"}
       >
-        <OakP
-          $font={["heading-light-7", "heading-light-5"]}
-          $color="text-primary"
-        >
-          {content}
-        </OakP>
+        <OakP $font={["heading-light-7", "heading-light-5"]}>{content}</OakP>
       </OakFlex>
     </CustomFlex>
   );

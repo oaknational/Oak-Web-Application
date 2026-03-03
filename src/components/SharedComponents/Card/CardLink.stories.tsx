@@ -20,7 +20,7 @@ export const CardLink: Story = {
         $mb={"spacing-12"}
         $font={"heading-5"}
         tag={"h5"}
-        $color={"grey70"}
+        $color={"text-primary"}
       >
         <Component page="home">Card link</Component>
       </OakHeading>

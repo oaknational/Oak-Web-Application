@@ -15,7 +15,7 @@ import {
   getUnitProgrammeSlug,
 } from "./utils";
 
-import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
 import errorReporter from "@/common-lib/error-reporter";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
@@ -108,8 +108,6 @@ export const useMyLibrary = () => {
         reportError(parsedData.error, { savedProgrammeUnits });
       }
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [savedProgrammeUnits]);
 
   const isUnitSaved = useCallback(
@@ -123,7 +121,7 @@ export const useMyLibrary = () => {
     [isSavingUnit],
   );
 
-  const { setCurrentToastProps } = useOakToastContext();
+  const { setCurrentToastProps } = useOakNotificationsContext();
 
   const onSave = async (
     unitSlug: string,

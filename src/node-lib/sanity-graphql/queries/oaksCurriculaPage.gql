@@ -1,0 +1,41 @@
+query oaksCurriculaPage($isDraftFilter: Sanity_DocumentFilter) {
+  allNewAboutCorePageOaksCurricula(
+    where: { _: $isDraftFilter, _id: { matches: "*newAboutCorePage.oaksCurricula" } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    header {
+      subtitlePortableText: subtitleRaw
+      image {
+        ...ImageWithAltText
+      }
+    }
+    guidingPrinciples {
+      image {
+        ...ImageWithAltText
+      }
+      principles {
+        heading
+        text
+      }
+    }
+    currentPartners {
+      partners {
+        logo {
+          ...ImageWithAltText
+        }
+      }
+    }
+    legacyPartners {
+      partners {
+        logo {
+          ...ImageWithAltText
+        }
+      }
+    }
+    seo {
+      ...Seo
+    }
+  }
+}

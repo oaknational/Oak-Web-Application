@@ -70,7 +70,7 @@ export const isAllowedUri = (
     }
 
     return true;
-  } catch (error) {
+  } catch (_error) {
     return false;
   }
 };
@@ -85,7 +85,7 @@ export const shouldAutoLink = (url: string) => {
     }
 
     return true;
-  } catch (error) {
+  } catch (_error) {
     return false;
   }
 };

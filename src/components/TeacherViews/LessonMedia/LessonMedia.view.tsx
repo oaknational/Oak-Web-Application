@@ -332,7 +332,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       isLegacy={false}
       isAudioClip={currentClip.mediaObject?.format === "mp3"}
       userEventCallback={handleVideoEvents}
-      loadingTextColor="white"
+      loadingTextColor="text-inverted"
       defaultHiddenCaptions={isPEPractical}
       cloudinaryUrl={currentClip.mediaObject.url}
       muxAssetId={currentClip.videoObject?.muxAssetId}
@@ -518,7 +518,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
                 <OakFlex
                   $width={["100%", "100%", "spacing-960"]}
                   $alignItems={"center"}
-                  $background={"black"}
+                  $background={"bg-inverted"}
                   $overflow={["visible", "visible", "hidden"]}
                   $height={"100%"}
                   $br={"border-solid-m"}

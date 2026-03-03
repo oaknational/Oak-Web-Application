@@ -4,113 +4,113 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR bZZBuO"
+      class="sc-aXZVg cryvKT"
     >
       <div
-        class="sc-fqkvVR sc-jXbUNg hwnObW hXDxZw"
+        class="sc-aXZVg sc-tagGq zxVfg fmhoRo"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW bAHJVP bDcDWT"
+          class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA jIvTUS fWkCIq"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
+            class="sc-aXZVg sc-gEvEer hdseiA iwFTtF"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+              class="sc-aXZVg sc-gEvEer hdseiA daEtut"
             >
               <h2
-                class="sc-kpDqfm eceTdU"
+                class="sc-eldPxv iiNDPs"
               >
                 Work with us
               </h2>
               <div
-                class="sc-fqkvVR sc-kAyceB cThXxF iVYVEn"
+                class="sc-aXZVg sc-gEvEer fSrtDr cofRDW"
               >
                 <p
-                  class="sc-dLMFU sc-ff4f593d-0 hdyvdE imPMXG"
+                  class="sc-ikkxIA esDZwj"
                 >
                   TESTING_PARAGRAPH_1
                 </p>
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB fgBWrW bxbio"
+              class="sc-aXZVg sc-gEvEer hdseiA kVXkap"
             >
               <div
-                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
+                class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
               >
                 <div
-                  class="sc-fqkvVR iPpXCP grey-shadow"
+                  class="sc-aXZVg kMGxHZ grey-shadow"
                 />
                 <div
-                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                  class="sc-aXZVg kMGxHZ yellow-shadow"
                 />
                 <a
-                  class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+                  class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
                   href="https://example.com/permanent"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                    class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
                   >
                     <span
-                      class="sc-dAlyuH hHWgLm"
+                      class="sc-eqUAAy bkXwYG"
                     >
                       Permanent roles
                     </span>
-                    <div
-                      class="sc-fqkvVR kbnxKi"
+                    <span
+                      class="sc-aXZVg iUEruK"
                     >
                       <img
                         alt="external"
-                        class="sc-dcJsrY cDKKvZ"
+                        class="sc-iGgWBj cMzyFO"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
-                    </div>
+                    </span>
                   </div>
                 </a>
               </div>
               <div
-                class="sc-fqkvVR sc-fjvvzt itxqiU kIRemE"
+                class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
               >
                 <div
-                  class="sc-fqkvVR iPpXCP grey-shadow"
+                  class="sc-aXZVg kMGxHZ grey-shadow"
                 />
                 <div
-                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                  class="sc-aXZVg kMGxHZ yellow-shadow"
                 />
                 <a
-                  class="sc-dtBdUo sc-fXSgeo cFaVGX iwHZRx internal-button"
+                  class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
                   href="https://example.com/freelance"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                    class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
                   >
                     <span
-                      class="sc-dAlyuH hHWgLm"
+                      class="sc-eqUAAy bkXwYG"
                     >
                       Freelance roles
                     </span>
-                    <div
-                      class="sc-fqkvVR kbnxKi"
+                    <span
+                      class="sc-aXZVg iUEruK"
                     >
                       <img
                         alt="external"
-                        class="sc-dcJsrY cDKKvZ"
+                        class="sc-iGgWBj cMzyFO"
                         data-nimg="fill"
                         decoding="async"
                         loading="lazy"
                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                       />
-                    </div>
+                    </span>
                   </div>
                 </a>
               </div>
@@ -118,20 +118,20 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW djyvKT cDIrlY"
+          class="sc-aXZVg sc-gEvEer sc-esYiGF hdseiA ccwEJG heXect"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB fgBWrW loubfV"
+            class="sc-aXZVg sc-gEvEer hdseiA bZleOY"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB fIaYTx joHkzz"
+              class="sc-aXZVg sc-gEvEer bcjcnH iDBIXi"
             >
-              <div
-                class="sc-fqkvVR jqqmXN"
+              <span
+                class="sc-aXZVg ccpVbZ"
               >
                 <img
                   alt="Team working together"
-                  class="sc-dcJsrY jIcMOQ"
+                  class="sc-iGgWBj fygrEH"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
@@ -140,24 +140,24 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                   srcset="/_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=384&q=75 384w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=3840&q=75 3840w"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
+              </span>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB fgBWrW dBzTSe"
+              class="sc-aXZVg sc-gEvEer hdseiA enpIhj"
             >
               <img
                 alt="Badge 1"
-                class="sc-a395ada3-0 efrhno"
+                class="sc-6d58e7fe-0 jppgzX"
                 src="http://example.com/badge1.png"
               />
               <img
                 alt="Badge 2"
-                class="sc-a395ada3-0 efrhno"
+                class="sc-6d58e7fe-0 jppgzX"
                 src="http://example.com/badge2.png"
               />
               <img
                 alt="Badge 3"
-                class="sc-a395ada3-0 efrhno"
+                class="sc-6d58e7fe-0 jppgzX"
                 src="http://example.com/badge3.png"
               />
             </div>

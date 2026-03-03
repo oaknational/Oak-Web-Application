@@ -28,7 +28,7 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
 
   return (
     <OakBox
-      $background={"lavender30"}
+      $background={"bg-decorative3-very-subdued"}
       $mb="spacing-16"
       $borderRadius="border-radius-s"
       data-testid="unit-optionality-card"
@@ -72,7 +72,7 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
             <OakP
               $font={"heading-light-7"}
               $mt="spacing-4"
-              $color={"grey60"}
+              $color={"text-subdued"}
               $mb="spacing-8"
             >
               {unitYear}

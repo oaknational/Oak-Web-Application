@@ -35,24 +35,24 @@ const TeachersTabResourceSelectorCard: FC<
         <OakFlex
           $height={"100%"}
           $width={"fit-content"}
-          $background={"oakGreen"}
+          $background={"bg-success"}
           $pa="spacing-8"
         >
           <OakIcon
             iconName={icon}
             $height="spacing-48"
             $width="spacing-48"
-            $colorFilter={"white"}
+            $colorFilter={"text-inverted"}
             alt=""
           />
         </OakFlex>
         <OakFlex $height={"100%"} $alignItems={"center"}>
-          <OakTypography $font={"heading-light-7"} $color={"black"}>
+          <OakTypography $font={"heading-light-7"} $color={"text-primary"}>
             {title}
           </OakTypography>
         </OakFlex>
       </OakFlex>
-      <BoxBorders $color={"black"} gapPosition={"rightTop"} />
+      <BoxBorders $color={"text-primary"} gapPosition={"rightTop"} />
     </Card>
   );
 };

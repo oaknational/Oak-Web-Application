@@ -68,7 +68,7 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
           <OakP
             $font={["body-3", "body-2"]}
             $mb={["spacing-32", "spacing-0"]}
-            color={"black"}
+            color={"text-primary"}
             id={descriptionId}
           >
             Fill this form to watch this webinar and get free resources and

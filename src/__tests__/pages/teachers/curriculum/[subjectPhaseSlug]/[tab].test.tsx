@@ -895,6 +895,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           ],
           groupAs: null,
           isSwimming: false,
+          keystage: "ks4",
           nationalCurriculum: [],
         },
         "11": {
@@ -1260,6 +1261,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           ],
           groupAs: null,
           isSwimming: false,
+          keystage: "ks4",
           nationalCurriculum: [],
         },
         "7": {
@@ -1364,6 +1366,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           ],
           groupAs: null,
           isSwimming: false,
+          keystage: "ks3",
           nationalCurriculum: [],
         },
       };

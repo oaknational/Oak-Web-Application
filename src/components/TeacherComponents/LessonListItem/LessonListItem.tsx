@@ -3,7 +3,7 @@ import {
   OakP,
   OakSpan,
   OakFlex,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import { DisabledListItemHeader } from "../ListItemHeader/ListItemHeader";
@@ -141,11 +141,11 @@ const LessonListItem: FC<
     ? undefined
     : getAvailableResourceList(props);
 
-  const background: OakColorToken =
+  const background: OakUiRoleToken =
     (isUnpublishedLesson && props.isUnpublished) || props.expired
-      ? "grey30"
-      : "pink";
-  const backgroundOnHover: OakColorToken = "pink110";
+      ? "bg-neutral-stronger"
+      : "bg-decorative4-main";
+  const backgroundOnHover: OakUiRoleToken = "icon-decorative4";
 
   return (
     <ListItemCard
@@ -224,10 +224,10 @@ const LessonListItem: FC<
                       __html: props.description,
                     }}
                     $font={["body-3", "body-2"]}
-                    $color={"grey70"}
+                    $color={"text-primary"}
                   />
                 ) : (
-                  <OakP $font={["body-3", "body-2"]} $color={"grey70"}>
+                  <OakP $font={["body-3", "body-2"]} $color={"text-primary"}>
                     {props.pupilLessonOutcome}
                   </OakP>
                 )}

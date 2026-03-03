@@ -1,8 +1,8 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useCallback, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
-import { OakP, OakFlex, OakColorToken } from "@oaknational/oak-components";
+import { OakP, OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
@@ -45,10 +45,12 @@ export type VideoPlayerProps = {
   userEventCallback?: (event: VideoEventCallbackArgs) => void;
   pathwayData?: PupilPathwayData | AnalyticsBrowseData;
   isAudioClip?: boolean;
-  loadingTextColor?: OakColorToken;
+  loadingTextColor?: OakUiRoleToken;
   defaultHiddenCaptions?: boolean;
   cloudinaryUrl?: string | null;
   muxAssetId?: string | null;
+  /** When true, focuses the play button when the player is mounted */
+  autoFocusPlayButton?: boolean;
 };
 
 export type VideoEventCallbackArgs = {
@@ -57,6 +59,43 @@ export type VideoEventCallbackArgs = {
   duration: number | null;
   muted: boolean;
 };
+
+/**
+ * Recursively searches for the play button within the player element's shadow DOM.
+ * MuxPlayer uses Media Chrome;
+ * Play button is nested in: mux-player > media-theme > media-controller > media-play-button
+ */
+function findPlayButtonInShadowRoots(
+  root: DocumentFragment | Element,
+): HTMLElement | null {
+  const playButton = root.querySelector("media-play-button");
+  if (playButton instanceof HTMLElement) {
+    return playButton;
+  }
+  const children = root.querySelectorAll("*");
+  for (const child of children) {
+    if (child.shadowRoot) {
+      const found = findPlayButtonInShadowRoots(child.shadowRoot);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+/**
+ * Focuses the play button within the player element's shadow DOM.
+ */
+function focusPlayButton(el: MuxPlayerElement) {
+  if (!el.shadowRoot) return;
+
+  findPlayButtonInShadowRoots(el.shadowRoot)?.focus({
+    // `focusVisible` forces the appearance of the focus ring even
+    // when the browser doesn't think the element needs it.
+    // this is a very new feature (Landed in Chrome 145, Feb 2026),
+    // so this is a progressive enhancement.
+    focusVisible: true,
+  } as FocusOptions);
+}
 
 function VideoContainer({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -69,7 +108,7 @@ function VideoContainer({ children }: Readonly<{ children: React.ReactNode }>) {
       $justifyContent={"center"}
       $ba={"border-solid-l"}
       $minWidth={"100%"}
-      $borderColor={"black"}
+      $borderColor={"border-primary"}
       style={{
         aspectRatio: "16/9",
         boxSizing: "content-box",
@@ -91,14 +130,25 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     userEventCallback = () => {},
     pathwayData,
     isAudioClip,
-    loadingTextColor = "black",
+    loadingTextColor = "text-primary",
     defaultHiddenCaptions = false,
     cloudinaryUrl,
     muxAssetId,
+    autoFocusPlayButton = false,
   } = props;
 
-  const mediaElRef = useRef<MuxPlayerElement>(null);
+  const mediaElRef = useRef<MuxPlayerElement | null>(null);
   const [endTracked, setEndTracked] = useState<string | null>(null);
+
+  const setMediaElRef = useCallback(
+    (el: MuxPlayerElement | null) => {
+      mediaElRef.current = el;
+      if (autoFocusPlayButton && el) {
+        setTimeout(() => focusPlayButton(el), 100);
+      }
+    },
+    [autoFocusPlayButton],
+  );
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
@@ -258,7 +308,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       <MuxPlayer
         key={reloadOnErrors.length}
         preload="metadata"
-        ref={mediaElRef}
+        ref={setMediaElRef}
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}

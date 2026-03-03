@@ -13,25 +13,24 @@ import {
   truncatePortableTextBlock,
 } from "@/utils/curriculum/formatting";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 type CurricSEOAccordionProps = {
   curriculumSeoText: PortableTextBlock[];
-  subject: SubjectPhasePickerData["subjects"][number];
+  subjectTitle: string;
 };
 
 export default function CurricSEOAccordion({
   curriculumSeoText,
-  subject,
+  subjectTitle,
 }: Readonly<CurricSEOAccordionProps>) {
   const isMobile = useMediaQuery("mobile");
-  const displaySubjectTitle = subjectTitleWithCase(subject.title);
+  const displaySubjectTitle = subjectTitleWithCase(subjectTitle);
   const truncationLength = isMobile ? 40 : 100;
 
   return (
     <OakBox $ph={["spacing-12", "spacing-0"]}>
       <OakHandDrawnHR
-        hrColor={"grey40"}
+        hrColor={"bg-interactive-element2"}
         $mv={"spacing-4"}
         $height={"spacing-2"}
       />
@@ -60,7 +59,7 @@ export default function CurricSEOAccordion({
         </OakBox>
       </OakBasicAccordion>
       <OakHandDrawnHR
-        hrColor={"grey40"}
+        hrColor={"bg-interactive-element2"}
         $mt={"spacing-4"}
         $height={"spacing-2"}
       />

@@ -3,8 +3,6 @@ import { useRouter } from "next/router";
 import { createGlobalStyle } from "styled-components";
 import {
   OakBox,
-  OakThemeProvider,
-  oakDefaultTheme,
   OakPupilJourneyContentGuidance,
 } from "@oaknational/oak-components";
 
@@ -39,6 +37,7 @@ import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsPr
 import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
+import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -194,6 +193,10 @@ const PupilExperienceLayout = ({
 }: PupilExperienceViewProps) => {
   const ageRestriction = browseData.features?.ageRestriction;
   const hasAgeRestriction = !!ageRestriction;
+  const { isClassroomAssignment, classroomAssignmentChecked } =
+    useAssignmentSearchParams();
+  const isGoogleClassroomAssignment =
+    isClassroomAssignment && classroomAssignmentChecked;
 
   const getAgeRestrictionString = (
     ageRestriction: string | undefined | null,
@@ -232,7 +235,19 @@ const PupilExperienceLayout = ({
   };
 
   const handleContentGuidanceDecline = () => {
-    backUrl ? router.replace(backUrl) : router.back();
+    if (isClassroomAssignment) {
+      window?.parent?.postMessage(
+        {
+          type: "Classroom",
+          action: "closeIframe",
+        },
+        "https://classroom.google.com",
+      );
+    } else if (backUrl) {
+      router.replace(backUrl);
+    } else {
+      router.back();
+    }
     track.contentGuidanceDeclined({
       supervisionLevel: lessonContent.supervisionLevel || "",
       contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
@@ -249,6 +264,11 @@ const PupilExperienceLayout = ({
     setTrackingSent(true);
   }
 
+  const declineIcon = isGoogleClassroomAssignment
+    ? ("cross" as const)
+    : undefined;
+  const declineText = isGoogleClassroomAssignment ? "Exit lesson" : undefined;
+
   return (
     <PupilLayout
       seoProps={{
@@ -260,71 +280,73 @@ const PupilExperienceLayout = ({
         noFollow: isSensitive,
       }}
     >
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <CookieConsentStyles />
-        <LessonEngineProvider
-          initialLessonReviewSections={availableSections}
-          initialSection={initialSection}
-        >
-          {hasAgeRestriction ? (
-            <OakPupilJourneyContentGuidance
-              isOpen={isOpen && redirectOverlayCleared}
-              onAccept={handleContentGuidanceAccept}
-              onDecline={handleContentGuidanceDecline}
-              title={getAgeRestrictionString(ageRestriction)}
-              contentGuidance={
-                lessonContent.contentGuidance
-                  ? lessonContent.contentGuidance
-                  : [
-                      {
-                        contentguidanceLabel:
-                          "Speak to an adult before starting this lesson.",
-                        contentguidanceDescription: null,
-                        contentguidanceArea: null,
-                      },
-                    ]
-              }
-              supervisionLevel={
-                lessonContent.contentGuidance
-                  ? lessonContent.supervisionLevel
-                  : null
-              }
-            />
-          ) : (
-            <OakPupilJourneyContentGuidance
-              isOpen={isOpen && redirectOverlayCleared}
-              onAccept={handleContentGuidanceAccept}
-              onDecline={handleContentGuidanceDecline}
-              contentGuidance={lessonContent.contentGuidance}
-              supervisionLevel={lessonContent.supervisionLevel}
-            />
-          )}
+      <CookieConsentStyles />
+      <LessonEngineProvider
+        initialLessonReviewSections={availableSections}
+        initialSection={initialSection}
+      >
+        {hasAgeRestriction ? (
+          <OakPupilJourneyContentGuidance
+            isOpen={isOpen && redirectOverlayCleared}
+            onAccept={handleContentGuidanceAccept}
+            onDecline={handleContentGuidanceDecline}
+            title={getAgeRestrictionString(ageRestriction)}
+            declineIcon={declineIcon}
+            declineText={declineText}
+            contentGuidance={
+              lessonContent.contentGuidance
+                ? lessonContent.contentGuidance
+                : [
+                    {
+                      contentguidanceLabel:
+                        "Speak to an adult before starting this lesson.",
+                      contentguidanceDescription: null,
+                      contentguidanceArea: null,
+                    },
+                  ]
+            }
+            supervisionLevel={
+              lessonContent.contentGuidance
+                ? lessonContent.supervisionLevel
+                : null
+            }
+          />
+        ) : (
+          <OakPupilJourneyContentGuidance
+            isOpen={isOpen && redirectOverlayCleared}
+            onAccept={handleContentGuidanceAccept}
+            onDecline={handleContentGuidanceDecline}
+            contentGuidance={lessonContent.contentGuidance}
+            supervisionLevel={lessonContent.supervisionLevel}
+            declineIcon={declineIcon}
+            declineText={declineText}
+          />
+        )}
 
-          <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
-            <OakBox $height={"100vh"}>
-              {browseData.lessonData.deprecatedFields?.expired ? (
-                <PupilExpiredView lessonTitle={browseData.lessonData.title} />
-              ) : (
-                <PupilPageContent
-                  browseData={browseData}
-                  lessonContent={lessonContent}
-                  hasWorksheet={hasWorksheet}
-                  worksheetInfo={worksheetInfo}
-                  backUrl={backUrl}
-                  pageType={pageType}
-                  hasAdditionalFiles={hasAdditionalFiles}
-                  additionalFiles={additionalFiles}
-                />
-              )}
-            </OakBox>
+        <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
+          <OakBox $height={"100vh"}>
+            {browseData.lessonData.deprecatedFields?.expired ? (
+              <PupilExpiredView lessonTitle={browseData.lessonData.title} />
+            ) : (
+              <PupilPageContent
+                browseData={browseData}
+                lessonContent={lessonContent}
+                hasWorksheet={hasWorksheet}
+                worksheetInfo={worksheetInfo}
+                backUrl={backUrl}
+                pageType={pageType}
+                hasAdditionalFiles={hasAdditionalFiles}
+                additionalFiles={additionalFiles}
+              />
+            )}
           </OakBox>
-        </LessonEngineProvider>
-        <PupilRedirectedOverlay
-          isLessonPage={true}
-          onLoaded={(isShowing) => setRedirectOverlayCleared(!isShowing)}
-          onClose={() => setRedirectOverlayCleared(true)}
-        />
-      </OakThemeProvider>
+        </OakBox>
+      </LessonEngineProvider>
+      <PupilRedirectedOverlay
+        isLessonPage={true}
+        onLoaded={(isShowing) => setRedirectOverlayCleared(!isShowing)}
+        onClose={() => setRedirectOverlayCleared(true)}
+      />
     </PupilLayout>
   );
 };

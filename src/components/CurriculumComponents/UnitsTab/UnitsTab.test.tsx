@@ -279,6 +279,7 @@ describe("unitsTab !subject error", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
 
     const mockSlugs = {

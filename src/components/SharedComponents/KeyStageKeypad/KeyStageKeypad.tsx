@@ -5,6 +5,7 @@ import {
   OakPrimaryButton,
   OakPrimaryInvertedButton,
 } from "@oaknational/oak-components";
+import Link from "next/link";
 
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { KeyStagesData } from "@/node-lib/curriculum-api-2023";
@@ -33,7 +34,7 @@ const KeypadLink: FC<KeypadItem & KeyStageOnClick> = (props) => {
 
   return (
     <ButtonVariant
-      element="a"
+      element={Link}
       href={resolveOakHref({ page: "subject-index", keyStageSlug: slug })}
       aria-current={isCurrent ? "page" : undefined}
       aria-label={title}

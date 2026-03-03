@@ -133,3 +133,48 @@ export const newAboutGetInvolvedPageSchema = z.object({
 export type AboutGetInvolvedPage = z.infer<
   typeof newAboutGetInvolvedPageSchema
 >;
+
+export const oaksCurriculaPartnerSchema = z.object({
+  logo: imageSchema,
+});
+
+export const oaksCurriculaPartnerSectionSchema = z.object({
+  partners: z.array(oaksCurriculaPartnerSchema).nullish(),
+});
+
+export const oaksCurriculaPrincipleSchema = z.object({
+  heading: z.string(),
+  text: z.string(),
+});
+
+export const oaksCurriculaPageSchema = z.object({
+  id: z.string(),
+  header: z.object({
+    subtitlePortableText: portableTextSchema,
+    image: imageSchema.nullish(),
+  }),
+  guidingPrinciples: z.object({
+    image: imageSchema.nullish(),
+    principles: z.array(oaksCurriculaPrincipleSchema),
+  }),
+  currentPartners: oaksCurriculaPartnerSectionSchema,
+  legacyPartners: oaksCurriculaPartnerSectionSchema,
+  seo: seoSchema.nullish(),
+});
+
+export type OaksCurriculaPage = z.infer<typeof oaksCurriculaPageSchema>;
+
+export const meetTheTeamPageSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  introText: z.string(),
+  leadershipText: z.string(),
+  boardText: z.string(),
+  leadershipTeam: z.array(teamMemberSchema),
+  boardMembers: z.array(teamMemberSchema),
+  documents: z.array(attachmentSchema).nullish(),
+  governancePortableText: portableTextSchema,
+  seo: seoSchema.nullish(),
+});
+
+export type MeetTheTeamPage = z.infer<typeof meetTheTeamPageSchema>;

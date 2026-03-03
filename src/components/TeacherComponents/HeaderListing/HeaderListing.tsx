@@ -3,15 +3,14 @@ import {
   OakFlex,
   OakHeading,
   OakSpan,
-  OakColorFilterToken,
   OakBox,
   OakInlineBanner,
   OakP,
   OakSecondaryButton,
   OakTagFunctional,
-  OakColorToken,
   OakGrid,
   OakGridArea,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import UnitDownloadButton, {
@@ -32,7 +31,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import TeacherSubjectDescription from "@/components/TeacherComponents/TeacherSubjectDescription/TeacherSubjectDescription";
 import { getPhaseSlugFromKeystage } from "@/fixtures/curriculum/unit";
-import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
+import type { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 /**
  * This is a header for the listing pages (lesson, unit and programme).
@@ -41,11 +40,11 @@ import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type HeaderListingProps = {
   breadcrumbs: Breadcrumb[];
-  background: OakColorToken;
+  background: OakUiRoleToken;
   subjectTitle: string;
   subjectSlug: string;
   subjectParent?: string | null;
-  subjectIconBackgroundColor: OakColorFilterToken;
+  subjectIconBackgroundColor: OakUiRoleToken;
   year?: string;
   keyStageSlug?: KeystageSlug;
   keyStageTitle?: string;
@@ -197,7 +196,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           <OakFlex $flexDirection={"column"}>
             <OakSpan
               $mb="spacing-8"
-              $color={"grey60"}
+              $color={"text-subdued"}
               $font={"heading-light-7"}
             >
               {yearTitle ? (
@@ -256,7 +255,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     <OakFlex $alignItems="center" $gap={"spacing-12"}>
                       <OakTagFunctional
                         label="New"
-                        $background="mint"
+                        $background="bg-decorative1-main"
                         $color="text-primary"
                         $font="heading-light-7"
                         $pv={"spacing-0"}

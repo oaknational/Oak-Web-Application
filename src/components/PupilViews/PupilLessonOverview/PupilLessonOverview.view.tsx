@@ -29,7 +29,12 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
-import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
+import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import {
+  getDoesSubjectHaveNewUnits,
+  TakedownBanner,
+} from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 
 type PupilViewsLessonOverviewProps = {
   browseData: LessonBrowseData;
@@ -54,13 +59,16 @@ export const PupilViewsLessonOverview = ({
   backUrl,
   browseData,
 }: PupilViewsLessonOverviewProps) => {
-  const { programmeFields, lessonData } = browseData;
+  const { isClassroomAssignment, classroomAssignmentChecked } =
+    useAssignmentSearchParams();
+  const { programmeFields, lessonData, programmeSlug } = browseData;
   const {
     subjectSlug,
     phase = "primary",
     yearDescription,
     subject,
   } = programmeFields;
+
   const { expirationDate } = lessonData;
   const {
     sectionResults,
@@ -112,14 +120,17 @@ export const PupilViewsLessonOverview = ({
     ));
 
   const expiringBanner = (
-    <ExpiringBanner
-      isOpen={
+    <TakedownBanner
+      isExpiring={
         expirationDate !== null ||
         browseData.actions?.displayExpiringBanner === true
       }
-      isResourcesMessage={false}
-      isSingular={true}
+      isLegacy={isSlugLegacy(programmeSlug)}
+      hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug)}
+      subjectSlug={subjectSlug}
+      userType="pupil"
       onwardHref={unitListingHref}
+      isSingle
     />
   );
 
@@ -154,15 +165,21 @@ export const PupilViewsLessonOverview = ({
         $mh="auto"
         $ph={["spacing-16", "spacing-24", "spacing-0"]}
       >
-        <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <ViewAllLessonsButton
-            href={backUrl}
-            onClick={() => {
-              if (isLessonComplete === false) {
-                track.lessonAbandoned({});
-              }
-            }}
-          />
+        <OakGridArea
+          $colStart={[1, 1, 2]}
+          $colSpan={[12, 12, 10]}
+          $minHeight={"spacing-32"}
+        >
+          {classroomAssignmentChecked && !isClassroomAssignment && (
+            <ViewAllLessonsButton
+              href={backUrl}
+              onClick={() => {
+                if (isLessonComplete === false) {
+                  track.lessonAbandoned({});
+                }
+              }}
+            />
+          )}
         </OakGridArea>
         <OakGridArea
           $colStart={[1, 1, 2]}
@@ -245,7 +262,7 @@ export const PupilViewsLessonOverview = ({
                   $alignItems="center"
                   $mb="spacing-16"
                 >
-                  <OakIcon iconName="warning" $colorFilter="amber" />
+                  <OakIcon iconName="warning" $colorFilter="icon-warning" />
                   <OakHeading tag="h2" $font="heading-7">
                     Content guidance
                   </OakHeading>

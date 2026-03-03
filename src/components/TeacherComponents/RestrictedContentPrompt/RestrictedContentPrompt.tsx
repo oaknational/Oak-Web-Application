@@ -142,7 +142,7 @@ export function RestrictedContentPrompt({
       $pa={["spacing-0", "spacing-32"]}
       $pv={["spacing-0", "spacing-80"]}
       $height={"100%"}
-      $background={["bg-primary", "mint"]}
+      $background={["bg-primary", "bg-decorative1-main"]}
       $color={"text-primary"}
     >
       <FlexWithMaxWidth

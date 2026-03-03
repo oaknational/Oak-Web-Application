@@ -165,7 +165,7 @@ export const sectionResultsFixture: LessonSectionResults = {
         mode: "feedback",
         feedback: "incorrect",
         pupilAnswer: "5",
-        correctAnswer: ["3"],
+        correctAnswer: ["3", ""],
       },
       // mcq question
       {

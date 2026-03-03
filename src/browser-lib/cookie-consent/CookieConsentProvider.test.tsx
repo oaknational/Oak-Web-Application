@@ -1,12 +1,13 @@
-import { act, render } from "@testing-library/react";
+import { act } from "@testing-library/react";
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
 import CookieConsentProvider from "./CookieConsentProvider";
 
-import { MockOakConsentClient } from "@oaknational/oak-consent-client";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("CookieConsentProvider", () => {
   test("should render its children", () => {
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithTheme(
       <CookieConsentProvider client={new MockOakConsentClient()}>
         <div data-testid="child" />
       </CookieConsentProvider>,
@@ -33,7 +34,9 @@ describe("CookieConsentProvider", () => {
     });
 
     jest.spyOn(client, "logConsents");
-    const { getByText } = render(<CookieConsentProvider client={client} />);
+    const { getByText } = renderWithTheme(
+      <CookieConsentProvider client={client} />,
+    );
 
     act(() => {
       getByText("Accept all cookies").click();

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styled, { useTheme } from "styled-components";
-import { OakBox, OakColorToken, OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakUiRoleToken, OakFlex } from "@oaknational/oak-components";
 
 import {
   ButtonBackground,
@@ -13,7 +13,6 @@ import {
 
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import ButtonBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "@/components/SharedComponents/Svg";
@@ -75,7 +74,7 @@ export type ButtonInnerProps = {
    */
   currentStyles?: ButtonCurrentStyles;
   $font?: ResponsiveValues<FontVariant> | undefined;
-  labelColor?: OakColorToken;
+  labelColor?: OakUiRoleToken;
 };
 
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
@@ -121,7 +120,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
    * we need the value to depend on the original color of the button, in which
    * case it should come from theme.
    */
-  const currentColor: OakColorToken = "grey60";
+  const currentColor: OakUiRoleToken = "text-subdued";
   const displayProperty = shouldHideLabel?.map((hide) =>
     hide ? "none" : "block",
   );
@@ -156,12 +155,12 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
         </OakFlex>
       )}
       {subjectIcon && (
-        <Flex
+        <OakFlex
           $display={"inline-flex"}
           $position="relative"
           $alignItems="center"
           $color={currentColor}
-          $ml={-8}
+          // $ml={-8}
         >
           <SubjectIcon
             subjectSlug={subjectIcon}
@@ -169,7 +168,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             $maxWidth={40}
             $height={iconSize}
           />
-        </Flex>
+        </OakFlex>
       )}
       <OakBox $position={"relative"} $minWidth={"spacing-0"}>
         <OakBox

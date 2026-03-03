@@ -5,13 +5,6 @@ import RoleSelectionPage from "@/pages/onboarding/role-selection";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: () => "with-login",
-  useFeatureFlagEnabled: () => false,
-}));
-
-jest.mock("next/navigation", () => require("next-router-mock"));
-
 describe("Onboarding role selection page", () => {
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);

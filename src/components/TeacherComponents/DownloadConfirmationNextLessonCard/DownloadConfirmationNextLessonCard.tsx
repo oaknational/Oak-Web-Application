@@ -45,7 +45,7 @@ const DownloadConfirmationNextLessonCard: FC<
           $justifyContent={"space-between"}
           $wordWrap={"break-word"}
           $gap="spacing-16"
-          $background={"aqua50"}
+          $background={"bg-decorative2-subdued"}
           $borderRadius="border-radius-s"
           $width={"100%"}
           $minWidth={["spacing-360", "spacing-240", "spacing-360"]}

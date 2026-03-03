@@ -19,7 +19,7 @@ type Story = StoryObj<typeof Component>;
 export const CurricSEOAccordion: Story = {
   args: {
     curriculumSeoText: mockPortableTextBlocks,
-    subject: mockSubject,
+    subjectTitle: mockSubject.title,
   },
   render: function Render(args) {
     return (

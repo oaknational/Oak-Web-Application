@@ -45,7 +45,7 @@ const SubjectListingTextTile: FC<SubjectListingTextTile> = (
       {children}
       <TileFocusUnderline
         name="underline"
-        $color={"mint50"}
+        $color={"bg-decorative1-subdued"}
         $width={"100%"}
         $height={"100%"}
         $position={"relative"}

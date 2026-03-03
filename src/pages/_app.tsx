@@ -6,12 +6,7 @@ import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { ClerkProvider } from "@clerk/nextjs";
-
-/**
- * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
- */
-
-import "../polyfills";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import "@/browser-lib/gleap/gleap.css";
 import "@/browser-lib/oak-globals/oakGlobals";
@@ -29,7 +24,7 @@ import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 import { ToastProvider } from "@/context/Toast";
 import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
 import AppHooks from "@/components/AppComponents/App/AppHooks";
-import { OakToastProvider } from "@/context/OakToast/OakToastProvider";
+import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
 
 const lexend = Lexend({ subsets: ["latin"] });
@@ -55,34 +50,36 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
       >
         <CookieConsentProvider>
           <ThemeProvider theme={theme}>
-            <ErrorBoundary>
-              <PostHogProvider client={posthog}>
-                <AnalyticsProvider {...analyticsOptions}>
-                  <DefaultSeo />
-                  <OakPupilClientProvider>
-                    <OverlayProvider>
-                      <MenuProvider>
-                        <ToastProvider>
-                          <SaveCountProvider>
-                            <OakToastProvider>
-                              <style jsx global>{`
-                                html {
-                                  font-family: ${lexend.style.fontFamily};
-                                }
-                              `}</style>
-                              <Component {...pageProps} />
-                              <AppHooks />
-                            </OakToastProvider>
-                          </SaveCountProvider>
-                        </ToastProvider>
-                      </MenuProvider>
-                    </OverlayProvider>
-                  </OakPupilClientProvider>
-                </AnalyticsProvider>
-              </PostHogProvider>
-            </ErrorBoundary>
-            <SpriteSheet />
-            <InlineSpriteSheet />
+            <OakThemeProvider theme={oakDefaultTheme}>
+              <ErrorBoundary>
+                <PostHogProvider client={posthog}>
+                  <AnalyticsProvider {...analyticsOptions}>
+                    <DefaultSeo />
+                    <OakPupilClientProvider>
+                      <OverlayProvider>
+                        <MenuProvider>
+                          <ToastProvider>
+                            <SaveCountProvider>
+                              <OakNotificationsProvider>
+                                <style jsx global>{`
+                                  html {
+                                    font-family: ${lexend.style.fontFamily};
+                                  }
+                                `}</style>
+                                <Component {...pageProps} />
+                                <AppHooks />
+                              </OakNotificationsProvider>
+                            </SaveCountProvider>
+                          </ToastProvider>
+                        </MenuProvider>
+                      </OverlayProvider>
+                    </OakPupilClientProvider>
+                  </AnalyticsProvider>
+                </PostHogProvider>
+              </ErrorBoundary>
+              <SpriteSheet />
+              <InlineSpriteSheet />
+            </OakThemeProvider>
           </ThemeProvider>
         </CookieConsentProvider>
       </ClerkProvider>

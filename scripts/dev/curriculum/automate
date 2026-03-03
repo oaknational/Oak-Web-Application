@@ -2,22 +2,10 @@
 import "dotenv/config";
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
-import compare from './_commands/compare';
 import {buildChicken} from "./_commands/chicken"
 
 
 yargs(hideBin(process.argv))
-  .command('compare <basepath> <targetpath>', 'compare two sets of screenshots', (yargs) => {
-    return yargs
-      .positional('basepath', {
-        describe: 'basepath directory',
-      })
-      .positional('targetpath', {
-        describe: 'targetpath directory',
-      })
-  }, async (argv) => {
-    await compare(argv.basepath, argv.targetpath);
-  })
   .command('chicken [message]', false, (yargs) => {
     return yargs
       .positional("message", {

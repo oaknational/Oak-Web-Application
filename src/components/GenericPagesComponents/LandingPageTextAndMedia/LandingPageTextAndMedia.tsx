@@ -16,7 +16,7 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 const landingPortableTextComponent: PortableTextComponents = {
   list: {
     number: ({ children }) => (
-      <LandingPageOlOutline $color={"lemon50"} $mh={"spacing-0"}>
+      <LandingPageOlOutline $textColor="oakGreen" $mh="spacing-0">
         {children}
       </LandingPageOlOutline>
     ),
@@ -28,7 +28,7 @@ const landingPortableTextComponent: PortableTextComponents = {
 
       return (
         <OakFlex $position={"relative"} $mb="spacing-48" $alignItems={"center"}>
-          <OakLI $color={"black"} $font={["heading-7", "heading-6"]}>
+          <OakLI $color={"text-primary"} $font={["heading-7", "heading-6"]}>
             {listItemText}
           </OakLI>
         </OakFlex>

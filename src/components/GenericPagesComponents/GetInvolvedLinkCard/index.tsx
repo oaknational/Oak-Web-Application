@@ -33,7 +33,6 @@ export function GetInvolvedLinkCard({
         <OakHeading
           tag={headingTag}
           $font={["heading-6", "heading-4", "heading-4"]}
-          $color="text-primary"
         >
           {headingTitle}
         </OakHeading>

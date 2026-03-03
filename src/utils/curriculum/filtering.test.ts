@@ -73,6 +73,7 @@ describe("filtering", () => {
           isSwimming: false,
           groupAs: null,
           nationalCurriculum: [],
+          keystage: "ks3",
         },
         "8": {
           units: [
@@ -88,6 +89,7 @@ describe("filtering", () => {
           isSwimming: false,
           groupAs: null,
           nationalCurriculum: [],
+          keystage: "ks3",
         },
       };
       const out = getDefaultChildSubjectForYearGroup(input);
@@ -105,6 +107,7 @@ describe("filtering", () => {
           isSwimming: false,
           groupAs: null,
           nationalCurriculum: [],
+          keystage: "ks3",
         },
         "8": {
           units: [createUnit({ slug: "test2" })],
@@ -115,6 +118,7 @@ describe("filtering", () => {
           isSwimming: false,
           groupAs: null,
           nationalCurriculum: [],
+          keystage: "ks3",
         },
       };
       const out = getDefaultChildSubjectForYearGroup(input);
@@ -136,6 +140,7 @@ describe("filtering", () => {
           isSwimming: false,
           groupAs: null,
           nationalCurriculum: [],
+          keystage: "ks3",
         },
         "8": {
           units: [createUnit({ slug: "test1", subjectcategories: [subCat2] })],
@@ -146,6 +151,7 @@ describe("filtering", () => {
           isSwimming: false,
           groupAs: null,
           nationalCurriculum: [],
+          keystage: "ks3",
         },
       };
       const out = getDefaultSubjectCategoriesForYearGroup(input);
@@ -163,6 +169,7 @@ describe("filtering", () => {
           isSwimming: false,
           groupAs: null,
           nationalCurriculum: [],
+          keystage: "ks3",
         },
         "8": {
           units: [createUnit({ slug: "test1", subjectcategories: [] })],
@@ -173,6 +180,7 @@ describe("filtering", () => {
           isSwimming: false,
           groupAs: null,
           nationalCurriculum: [],
+          keystage: "ks3",
         },
       };
       const out = getDefaultSubjectCategoriesForYearGroup(input);
@@ -196,6 +204,7 @@ describe("filtering", () => {
           isSwimming: false,
           groupAs: null,
           nationalCurriculum: [],
+          keystage: "ks3",
         },
         "8": {
           units: [
@@ -208,6 +217,7 @@ describe("filtering", () => {
           isSwimming: false,
           groupAs: null,
           nationalCurriculum: [],
+          keystage: "ks3",
         } as CurriculumUnitsYearData[number],
       };
       const out = getDefaultTiersForYearGroup(input);
@@ -225,6 +235,7 @@ describe("filtering", () => {
           isSwimming: false,
           groupAs: null,
           nationalCurriculum: [],
+          keystage: "ks3",
         },
         "8": {
           units: [createUnit({ slug: "test2", tier_slug: undefined })],
@@ -235,6 +246,7 @@ describe("filtering", () => {
           isSwimming: false,
           groupAs: null,
           nationalCurriculum: [],
+          keystage: "ks3",
         } as CurriculumUnitsYearData[number],
       };
       const out = getDefaultTiersForYearGroup(input);
@@ -280,6 +292,7 @@ describe("filtering", () => {
         },
         threadOptions: [],
         yearOptions: ["7", "8"],
+        keystages: [],
       });
       expect(out).toEqual({
         childSubjects: ["biology"],
@@ -288,6 +301,7 @@ describe("filtering", () => {
         tiers: ["foundation"],
         years: ["7", "8"],
         pathways: [],
+        keystages: [],
       });
     });
 
@@ -402,6 +416,7 @@ describe("diffFilters", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
     expect(diffFilters(dfltFilter, dfltFilter)).toEqual({
       childSubjects: [],
@@ -410,6 +425,7 @@ describe("diffFilters", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     });
   });
 
@@ -424,6 +440,7 @@ describe("diffFilters", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
     const filter: CurriculumFilters = {
       childSubjects: [],
@@ -432,6 +449,7 @@ describe("diffFilters", () => {
       years: [],
       threads: [thread.slug],
       pathways: [],
+      keystages: [],
     };
     expect(diffFilters(dfltFilter, filter)).toEqual({
       childSubjects: [],
@@ -440,6 +458,7 @@ describe("diffFilters", () => {
       years: [],
       threads: [thread.slug],
       pathways: [],
+      keystages: [],
     });
   });
 });
@@ -458,6 +477,7 @@ describe("shouldDisplayFilter", () => {
         },
         threadOptions: [],
         yearOptions: ["7", "8"],
+        keystages: [],
       };
 
       const result = shouldDisplayFilter(
@@ -473,6 +493,7 @@ describe("shouldDisplayFilter", () => {
         yearData: {},
         threadOptions: [],
         yearOptions: [],
+        keystages: [],
       };
       const result = shouldDisplayFilter(
         data,
@@ -498,6 +519,7 @@ describe("shouldDisplayFilter", () => {
         },
         threadOptions: [],
         yearOptions: ["7", "8"],
+        keystages: [],
       };
 
       const result = shouldDisplayFilter(
@@ -519,6 +541,7 @@ describe("shouldDisplayFilter", () => {
           }),
         },
         threadOptions: [],
+        keystages: [],
         yearOptions: ["7", "8"],
       };
       const result = shouldDisplayFilter(
@@ -545,6 +568,7 @@ describe("shouldDisplayFilter", () => {
         },
         threadOptions: [],
         yearOptions: ["7", "8"],
+        keystages: [],
       };
 
       const result = shouldDisplayFilter(
@@ -567,6 +591,7 @@ describe("shouldDisplayFilter", () => {
         },
         threadOptions: [],
         yearOptions: ["7", "8"],
+        keystages: [],
       };
       const result = shouldDisplayFilter(
         data,
@@ -592,6 +617,7 @@ describe("shouldDisplayFilter", () => {
         },
         threadOptions: [],
         yearOptions: ["7", "8"],
+        keystages: [],
       };
 
       const result = shouldDisplayFilter(
@@ -614,6 +640,7 @@ describe("shouldDisplayFilter", () => {
         },
         threadOptions: [],
         yearOptions: ["7", "8"],
+        keystages: [],
       };
       const result = shouldDisplayFilter(
         data,
@@ -640,6 +667,7 @@ describe("shouldDisplayFilter", () => {
           createThread({ slug: "test2" }),
         ],
         yearOptions: ["7", "8"],
+        keystages: [],
       };
 
       const result = shouldDisplayFilter(
@@ -662,6 +690,7 @@ describe("shouldDisplayFilter", () => {
         },
         threadOptions: [],
         yearOptions: ["7", "8"],
+        keystages: [],
       };
       const result = shouldDisplayFilter(
         data,
@@ -682,6 +711,7 @@ describe("getNumberOfFiltersApplied", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
     expect(getNumberOfFiltersApplied(dfltFilter, dfltFilter)).toEqual(0);
   });
@@ -697,6 +727,7 @@ describe("getNumberOfFiltersApplied", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
     const filter: CurriculumFilters = {
       childSubjects: [],
@@ -705,6 +736,7 @@ describe("getNumberOfFiltersApplied", () => {
       years: [],
       threads: [thread.slug],
       pathways: [],
+      keystages: [],
     };
     expect(getNumberOfFiltersApplied(dfltFilter, filter)).toEqual(3);
   });
@@ -719,6 +751,7 @@ describe("filtersToQuery", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     });
     expect(result).toEqual({});
   });
@@ -752,6 +785,7 @@ describe("filtersToQuery", () => {
         years: [],
         threads: [],
         pathways: [],
+        keystages: [],
       },
     );
 
@@ -774,6 +808,7 @@ describe("mergeInFilterParams", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
 
     const result = mergeInFilterParams(
@@ -789,6 +824,7 @@ describe("mergeInFilterParams", () => {
       years: ["1"],
       threads: ["thread1"],
       pathways: [],
+      keystages: [],
     });
   });
 
@@ -800,6 +836,7 @@ describe("mergeInFilterParams", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     };
 
     const result = mergeInFilterParams(
@@ -815,6 +852,7 @@ describe("mergeInFilterParams", () => {
       years: ["1", "2"],
       threads: ["thread1", "thread2"],
       pathways: [],
+      keystages: [],
     });
   });
 });
@@ -942,6 +980,7 @@ describe("filteringFromYears", () => {
       tiers: [],
       years: [],
       pathways: [],
+      keystages: [],
     });
   });
 
@@ -1024,10 +1063,12 @@ describe("subjectCategoryFor*", () => {
         isSwimming: false,
         groupAs: null,
         nationalCurriculum: [],
+        keystage: "ks3",
       },
     },
     yearOptions: ["7"],
     threadOptions: [thread1, thread2, thread3],
+    keystages: [],
   };
   it("subjectCategoryForFilter", () => {
     const result = subjectCategoryForFilter(
@@ -1083,10 +1124,12 @@ describe("buildTextDescribingFilter", () => {
         isSwimming: false,
         groupAs: null,
         nationalCurriculum: [],
+        keystage: "ks3",
       },
     },
     yearOptions: ["7"],
     threadOptions: [thread1],
+    keystages: [],
   };
 
   const year11Data: CurriculumUnitsFormattedData = {
@@ -1100,10 +1143,12 @@ describe("buildTextDescribingFilter", () => {
         isSwimming: false,
         groupAs: null,
         nationalCurriculum: [],
+        keystage: "ks4",
       },
     },
     yearOptions: ["7"],
     threadOptions: [thread1],
+    keystages: [],
   };
 
   const year11DataWithChildSubject: CurriculumUnitsFormattedData = {
@@ -1117,10 +1162,12 @@ describe("buildTextDescribingFilter", () => {
         isSwimming: false,
         groupAs: null,
         nationalCurriculum: [],
+        keystage: "ks4",
       },
     },
     yearOptions: ["7"],
     threadOptions: [thread1],
+    keystages: [],
   };
 
   const primaryData: CurriculumUnitsFormattedData = {
@@ -1134,6 +1181,7 @@ describe("buildTextDescribingFilter", () => {
         isSwimming: false,
         groupAs: null,
         nationalCurriculum: [],
+        keystage: "ks1",
       },
       "6": {
         units: [],
@@ -1144,10 +1192,12 @@ describe("buildTextDescribingFilter", () => {
         isSwimming: false,
         groupAs: null,
         nationalCurriculum: [],
+        keystage: "ks2",
       },
     },
     yearOptions: ["7"],
     threadOptions: [thread1],
+    keystages: [],
   };
 
   it("subjectCategory (KS3)", () => {
@@ -1233,6 +1283,7 @@ describe("getNumberOfSelectedUnits", () => {
       groupAs: null,
       pathways: [],
       nationalCurriculum: [],
+      keystage: "ks3",
     },
     "8": {
       units: [
@@ -1247,6 +1298,7 @@ describe("getNumberOfSelectedUnits", () => {
       groupAs: null,
       pathways: [],
       nationalCurriculum: [],
+      keystage: "ks3",
     },
   };
 

@@ -4,13 +4,14 @@ import * as NextImage from "next/image";
 import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
 import { fn } from "storybook/test";
 import { Lexend } from "next/font/google";
-import "./jest-mock";
 
 import "../src/browser-lib/oak-globals/oakGlobals";
 import useOakTheme, { THEME_NAMES } from "../src/hooks/useOakTheme";
 import GlobalStyle from "../src/styles/GlobalStyle";
 import SpriteSheet from "../src/components/SharedComponents/SpriteSheet";
 import InlineSpriteSheet from "../src/components/GenericPagesComponents/InlineSpriteSheet";
+
+import "./jest-mock";
 
 const OriginalNextImage = NextImage.default;
 // @ts-ignore

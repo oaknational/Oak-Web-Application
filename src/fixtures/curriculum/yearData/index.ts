@@ -9,6 +9,7 @@ const BASE_YEAR_DATA: CurriculumUnitsYearData[number] = {
   isSwimming: false,
   groupAs: null,
   nationalCurriculum: [],
+  keystage: "",
 };
 
 export function createYearData(

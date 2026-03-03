@@ -10,9 +10,10 @@ import {
 } from "../docx";
 import { formatCurriculumUnitsData } from "../tab-helpers";
 
-import { uncapitalizeSubject } from "./helper";
-
-import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import {
+  getYearGroupTitle,
+  subjectTitleWithCase,
+} from "@/utils/curriculum/formatting";
 import { getModes, groupUnitsByPathway } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CombinedCurriculumData } from "@/utils/curriculum/types";
@@ -65,7 +66,7 @@ export default async function generate(
     }),
     {
       anchorId: "section_threads_appendix",
-      text: `Threads in ${uncapitalizeSubject(data.subjectTitle)}`,
+      text: `Threads in ${subjectTitleWithCase(data.subjectTitle)}`,
     },
   ];
 

@@ -20,33 +20,33 @@ const alertTypes: Record<
 > = {
   info: {
     icon: "info",
-    iconColorFilter: "black",
-    backgroundColour: "lavender30",
-    borderColour: "lavender",
+    iconColorFilter: "icon-primary",
+    backgroundColour: "bg-decorative3-very-subdued",
+    borderColour: "border-decorative3",
   },
   neutral: {
     icon: "info",
-    iconColorFilter: "black",
-    backgroundColour: "grey20",
-    borderColour: "grey40",
+    iconColorFilter: "icon-primary",
+    backgroundColour: "bg-neutral",
+    borderColour: "border-neutral-lighter",
   },
   success: {
     icon: "success",
-    iconColorFilter: "black",
-    backgroundColour: "mint30",
-    borderColour: "mint110",
+    iconColorFilter: "icon-primary",
+    backgroundColour: "bg-decorative1-very-subdued",
+    borderColour: "border-decorative1-stronger",
   },
   alert: {
     icon: "warning",
-    iconColorFilter: "black",
-    backgroundColour: "lemon30",
-    borderColour: "lemon50",
+    iconColorFilter: "icon-primary",
+    backgroundColour: "bg-decorative5-very-subdued",
+    borderColour: "border-decorative5-stronger",
   },
   error: {
     icon: "error",
-    iconColorFilter: "red",
-    backgroundColour: "red30",
-    borderColour: "red",
+    iconColorFilter: "icon-error",
+    backgroundColour: "bg-incorrect",
+    borderColour: "border-error",
   },
 } as const;
 

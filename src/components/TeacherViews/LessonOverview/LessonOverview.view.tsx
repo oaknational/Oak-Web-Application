@@ -59,7 +59,6 @@ import {
   checkIfResourceHasLegacyCopyright,
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
-import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips, {
   TrackingCallbackProps,
 } from "@/components/TeacherComponents/LessonOverviewMediaClips";
@@ -70,6 +69,11 @@ import { RestrictedContentPrompt } from "@/components/TeacherComponents/Restrict
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
+import {
+  getDoesSubjectHaveNewUnits,
+  TakedownBanner,
+} from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -339,12 +343,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const presentationTitle = "Lesson slides";
   const quizDownloadTitle = "quiz pdf";
 
-  const stickyDownloadALlButtonFlag = useFeatureFlagVariantKey(
-    "teachers-sticky-download-button",
-  );
-  const showDownloadAllInSidebar =
-    showDownloadAll && stickyDownloadALlButtonFlag === "test";
-
   return (
     <MathJaxLessonProvider>
       <HeaderLesson
@@ -369,8 +367,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 ),
               ]
         }
-        background={"pink30"}
-        subjectIconBackgroundColor={"pink"}
+        background={"bg-decorative4-very-subdued"}
+        subjectIconBackgroundColor={"bg-decorative4-main"}
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
@@ -425,7 +423,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     links={pageLinks}
                     currentSectionId={currentSectionId}
                     downloadAllButtonProps={{
-                      showDownloadAll: showDownloadAllInSidebar,
+                      showDownloadAll,
                       onClickDownloadAll: () =>
                         trackDownloadResourceButtonClicked({
                           downloadResourceButtonName: "all",
@@ -441,10 +439,17 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
                 <OakBox $pb={"spacing-16"}>
-                  <ExpiringBanner
-                    isOpen={!!lessonActions?.displayExpiringBanner}
-                    isResourcesMessage={true}
+                  <TakedownBanner
+                    isExpiring={lessonActions?.displayExpiringBanner}
+                    isLegacy={isSlugLegacy(programmeSlug ?? "") || isSpecialist}
+                    hasNewUnits={
+                      getDoesSubjectHaveNewUnits(subjectSlug ?? "") &&
+                      !isSpecialist
+                    }
+                    subjectSlug={subjectSlug ?? ""}
+                    userType="teacher"
                     onwardHref={unitListingHref}
+                    isSingle
                   />
                 </OakBox>
 

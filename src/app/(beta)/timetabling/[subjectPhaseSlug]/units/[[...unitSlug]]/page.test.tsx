@@ -2,24 +2,9 @@ import Page from "./page";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { createUnit } from "@/fixtures/curriculum/unit";
-import { useFeatureFlag } from "@/utils/featureFlags";
+import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 jest.mock("@/utils/featureFlags");
-
-// Mock window.matchMedia
-Object.defineProperty(window, "matchMedia", {
-  writable: true,
-  value: jest.fn().mockImplementation((query) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
-});
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumSequence: jest.fn(() => ({
@@ -73,7 +58,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("/timetabling/units", () => {
   test("basic", async () => {
-    (useFeatureFlag as jest.Mock).mockResolvedValue(true);
+    (getFeatureFlagValue as jest.Mock).mockResolvedValue(true);
     const { baseElement } = renderWithTheme(
       await Page({
         params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
@@ -83,7 +68,7 @@ describe("/timetabling/units", () => {
   });
 
   test("with name", async () => {
-    (useFeatureFlag as jest.Mock).mockResolvedValue(true);
+    (getFeatureFlagValue as jest.Mock).mockResolvedValue(true);
     mockUseSearchParams.mockReturnValue(new URLSearchParams("?name=Testing"));
     const { baseElement } = renderWithTheme(
       await Page({

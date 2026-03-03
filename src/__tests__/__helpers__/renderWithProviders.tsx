@@ -21,6 +21,7 @@ import { OverlayProvider } from "react-aria";
 import { MemoryRouterProviderProps } from "next-router-mock/dist/MemoryRouterProvider/MemoryRouterProvider";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { pick } from "lodash";
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
 import "../../browser-lib/oak-globals/oakGlobals";
 import ErrorBoundary from "../../components/AppComponents/ErrorBoundary";
@@ -29,10 +30,9 @@ import { ToastProvider } from "../../context/Toast";
 
 import MockedAnalyticsProvider from "./MockedAnalyticsProvider";
 
-import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 import theme, { OakTheme } from "@/styles/theme";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
-import { OakToastProvider } from "@/context/OakToast/OakToastProvider";
+import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
 
 export type ProviderProps = {
@@ -49,7 +49,7 @@ type ProviderPropsByName = {
   overlay: Record<string, never>;
   toast: Record<string, never>;
   menu: Record<string, never>;
-  oakToast: Record<string, never>;
+  oakNotifications: Record<string, never>;
   saveCount: Record<string, never>;
 };
 
@@ -63,19 +63,19 @@ const providersByName: {
     Partial<ProviderPropsByName[K]>?,
   ];
 } = {
+  oakTheme: [OakThemeProvider, { theme: oakDefaultTheme }],
   cookieConsent: [
     CookieConsentProvider,
     { client: new MockOakConsentClient() },
   ],
   theme: [ThemeProvider, { theme }],
-  oakTheme: [OakThemeProvider, { theme: oakDefaultTheme }],
   errorBoundary: [ErrorBoundary],
   analytics: [MockedAnalyticsProvider],
   router: [MemoryRouterProvider],
   overlay: [OverlayProvider],
   toast: [ToastProvider],
   menu: [MenuProvider],
-  oakToast: [OakToastProvider],
+  oakNotifications: [OakNotificationsProvider],
   saveCount: [SaveCountProvider],
 } as const;
 

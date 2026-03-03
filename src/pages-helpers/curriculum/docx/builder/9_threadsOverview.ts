@@ -14,9 +14,10 @@ import {
 } from "../docx";
 import { createThreadOptions } from "../tab-helpers";
 
-import { generateGridCols, uncapitalizeSubject } from "./helper";
+import { generateGridCols } from "./helper";
 
 import { CombinedCurriculumData } from "@/utils/curriculum/types";
+import { subjectTitleWithCase } from "@/utils/curriculum/formatting";
 
 export default async function generate(
   zip: JSZipCached,
@@ -47,7 +48,9 @@ export default async function generate(
                 <w:sz w:val="56" />
               </w:rPr>
               <w:t>
-                ${cdata(`Threads in ${uncapitalizeSubject(data.subjectTitle)}`)}
+                ${cdata(
+                  `Threads in ${subjectTitleWithCase(data.subjectTitle)}`,
+                )}
               </w:t>
             </w:r>
           `,

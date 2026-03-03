@@ -138,7 +138,7 @@ export type Unset = "unset";
 /**
  * @todo parse theme with zod
  */
-const OakColorNameZod = z.union([
+export const OakColorNameZod = z.union([
   z.literal("white"),
   z.literal("black"),
   z.literal("transparent"),

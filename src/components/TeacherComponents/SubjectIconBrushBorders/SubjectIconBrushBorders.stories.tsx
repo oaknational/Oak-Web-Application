@@ -13,6 +13,6 @@ export const SubjectIconBrushBorders: Story = {
   args: {
     isNew: true,
     subjectSlug: "maths",
-    color: "lavender",
+    color: "bg-decorative3-main",
   },
 };
