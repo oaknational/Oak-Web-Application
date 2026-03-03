@@ -8,10 +8,10 @@ import {
   OakLink,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
+import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
 
-import { useOakConsent } from "@oaknational/oak-consent-client";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";

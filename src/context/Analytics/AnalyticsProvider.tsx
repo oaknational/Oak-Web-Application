@@ -9,6 +9,7 @@ import {
 } from "react";
 import { usePostHog } from "posthog-js/react";
 import { usePathname } from "next/navigation";
+import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
@@ -26,7 +27,6 @@ import { getPageViewProps } from "../../browser-lib/analytics/getPageViewProps";
 import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 import { useHubspotCookieContactLookup } from "../../browser-lib/hubspot/hooks/useHubspotCookieContactLookup";
 
-import { useOakConsent } from "@oaknational/oak-consent-client";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 
 type ServiceName = "posthog" | "gleap" | "bugsnag" | "hubspot" | "sentry";

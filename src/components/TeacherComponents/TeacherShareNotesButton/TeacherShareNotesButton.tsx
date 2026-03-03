@@ -2,10 +2,10 @@ import {
   OakSmallPrimaryInvertedButton,
   OakSmallSecondaryButton,
 } from "@oaknational/oak-components";
+import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
 
-import { useOakConsent } from "@oaknational/oak-consent-client";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 

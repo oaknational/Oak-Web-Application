@@ -1,7 +1,7 @@
 import { watchModals } from "@react-aria/aria-modal-polyfill";
 import { useRouter } from "next/router";
-
 import { useOakConsent } from "@oaknational/oak-consent-client";
+
 import useAxe from "@/browser-lib/axe/useAxe";
 import useBugsnag from "@/browser-lib/bugsnag/useBugsnag";
 import useGleap from "@/browser-lib/gleap";
