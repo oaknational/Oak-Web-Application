@@ -17,15 +17,24 @@ import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 interface EYFSLessonCardProps {
   index: number;
   lesson: EYFSLesson;
+  schoolName: string;
+  schoolId: string;
 }
 
-export const EYFSLessonCard = ({ lesson, index }: EYFSLessonCardProps) => {
+export const EYFSLessonCard = ({
+  lesson,
+  index,
+  schoolId,
+  schoolName,
+}: EYFSLessonCardProps) => {
   const { activeVideoSlug, toggleVideo } = useEyfsLessonGroupContext();
   const isActiveVideo = activeVideoSlug === lesson.slug;
 
   const { onDownload } = useEyfsLessonDownload({
     lessonSlug: lesson.slug,
     downloadableResources: lesson.downloadableResources,
+    schoolId,
+    schoolName,
   });
 
   return (

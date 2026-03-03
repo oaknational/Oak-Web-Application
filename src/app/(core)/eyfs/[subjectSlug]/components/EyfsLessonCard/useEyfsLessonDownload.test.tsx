@@ -1,4 +1,4 @@
-import { act, waitFor } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
 import { OakToastProps } from "@oaknational/oak-components";
 
 import { useEyfsLessonDownload } from "./useEyfsLessonDownload";
@@ -28,49 +28,6 @@ jest.mock(
   }),
 );
 
-const mockHubspotSubmit = jest.fn().mockResolvedValue(true);
-jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
-  () => ({
-    useHubspotSubmit: () => ({
-      onHubspotSubmit: (...args: []) => mockHubspotSubmit(...args),
-    }),
-  }),
-);
-
-jest.mock(
-  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/fetchHubspotContactDetails",
-  () => ({
-    fetchHubspotContactDetails: async () => {
-      return {
-        schoolId: "SCHOOL_ID",
-        schoolName: "SCHOOL_NAME",
-        email: "EMAIL",
-      };
-    },
-  }),
-);
-
-const mockUseLocalStorageForDownloads = jest.fn().mockReturnValue({
-  setEmailInLocalStorage: jest.fn(),
-  setSchoolInLocalStorage: jest.fn(),
-  setTermsInLocalStorage: jest.fn(),
-  schoolFromLocalStorage: {
-    schoolName: "test-school-local",
-    schoolId: "1-local",
-  },
-  emailFromLocalStorage: "test-email-local",
-  termsFromLocalStorage: true,
-});
-
-jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads",
-  () => ({
-    __esModule: true,
-    default: () => mockUseLocalStorageForDownloads(),
-  }),
-);
-
 const mockToast = jest.fn();
 jest.mock("@/context/OakNotifications/useOakNotificationsContext", () => ({
   __esModule: true,
@@ -88,20 +45,14 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
-  () => ({
-    __esModule: true,
-    useHubspotSubmit: () => ({ onHubspotSubmit: jest.fn() }),
-  }),
-);
-
 const mockProps = {
   lessonSlug: "lesson-123",
   downloadableResources: [
     "exit-quiz-answers",
     "worksheet-pdf",
   ] as ResourcesToDownloadArrayType,
+  schoolName: "school name",
+  schoolId: "123",
 };
 
 describe("useEyfsLessonDownload", () => {
@@ -150,29 +101,5 @@ describe("useEyfsLessonDownload", () => {
     result.current.onDownload();
 
     await waitFor(() => expect(mockErrorReporter).toHaveBeenCalled());
-  });
-  it("gets school from hubspot if its not in local storage", async () => {
-    const mockSetSchool = jest.fn();
-    mockUseLocalStorageForDownloads.mockReturnValue({
-      setEmailInLocalStorage: jest.fn(),
-      setSchoolInLocalStorage: (args: string) => mockSetSchool(args),
-      setTermsInLocalStorage: jest.fn(),
-      schoolFromLocalStorage: {
-        schoolName: "",
-        schoolId: "",
-      },
-      emailFromLocalStorage: "test-email-local",
-      termsFromLocalStorage: true,
-    });
-
-    await waitFor(() => {
-      act(() => {
-        renderHookWithProviders()(() => useEyfsLessonDownload(mockProps));
-      });
-    });
-    expect(mockSetSchool).toHaveBeenCalledWith({
-      schoolId: "SCHOOL_ID-SCHOOL_NAME",
-      schoolName: "SCHOOL_NAME",
-    });
   });
 });
