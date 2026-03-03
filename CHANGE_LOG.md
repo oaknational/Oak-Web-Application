@@ -1,3 +1,11 @@
+# [1.1010.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1009.0...v1.1010.0) (2026-03-03)
+
+
+### Features
+
+* add meet the team bio page example to pa11y urls ([a1094ca](https://github.com/oaknational/Oak-Web-Application/commit/a1094ca7c1116b688bbfb58f6ca1555b21cd489b))
+* add oaks curricula, meet the team and get ivolved pages to pa11y deployment urls ([107cb5f](https://github.com/oaknational/Oak-Web-Application/commit/107cb5f0435084da288f6a0a4c239dda82f287b9))
+
 # [1.1009.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1008.0...v1.1009.0) (2026-03-02)
 
 
