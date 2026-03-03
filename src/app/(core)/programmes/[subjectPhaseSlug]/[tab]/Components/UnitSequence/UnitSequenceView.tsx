@@ -11,13 +11,7 @@ import ProgrammePageFiltersMobile from "../Filters/ProgrammePageFiltersMobile";
 import ProgrammeSequence from "./Sequence";
 
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import {
-  CurriculumUnitsFormattedData,
-  CurriculumUnitsTrackingData,
-} from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
+import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import {
   getNumberOfSelectedUnits,
   highlightedUnitCount,
@@ -32,7 +26,6 @@ export type UnitSequenceViewProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   ks4Options: Ks4Option[];
-  trackingData: CurriculumUnitsTrackingData;
 };
 
 export const UnitSequenceView = ({
@@ -41,7 +34,6 @@ export const UnitSequenceView = ({
   curriculumSelectionSlugs,
   curriculumUnitsFormattedData,
   ks4Options,
-  trackingData,
 }: UnitSequenceViewProps) => {
   const { yearData, threadOptions } = curriculumUnitsFormattedData;
   const { ks4OptionSlug } = curriculumSelectionSlugs;
@@ -53,21 +45,6 @@ export const UnitSequenceView = ({
     filters,
     filters.threads,
   );
-
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
-
-  const onChangeFilters = (newFilters: CurriculumFilters) => {
-    setFilters(newFilters);
-
-    const analyticsData = buildUnitSequenceRefinedAnalytics(
-      analyticsUseCase,
-      trackingData,
-      newFilters,
-    );
-
-    track.unitSequenceRefined(analyticsData);
-  };
 
   return (
     <OakBox $ph={["spacing-20", "spacing-40"]}>
@@ -96,7 +73,7 @@ export const UnitSequenceView = ({
         <OakBox $display={["block", "block", "none"]}>
           <ProgrammePageFiltersMobile
             filters={filters}
-            onChangeFilters={onChangeFilters}
+            onChangeFilters={setFilters}
             data={curriculumUnitsFormattedData}
             slugs={curriculumSelectionSlugs}
             ks4Options={ks4Options}
@@ -109,7 +86,7 @@ export const UnitSequenceView = ({
           >
             <ProgrammePageFiltersDesktop
               filters={filters}
-              onChangeFilters={onChangeFilters}
+              onChangeFilters={setFilters}
               data={curriculumUnitsFormattedData}
               slugs={curriculumSelectionSlugs}
               ks4Options={ks4Options}
