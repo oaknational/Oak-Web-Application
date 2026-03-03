@@ -1,4 +1,11 @@
-import { OakHeading, OakMaxWidth } from "@/styles/oakThemeApp";
+import { notFound } from "next/navigation";
+
+import { EYFSHeader } from "./components/EyfsHeader/EyfsHeader";
+import { EYFSNavigation } from "./components/EyfsNavigation";
+
+import OakError from "@/errors/OakError";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { OakFlex } from "@/styles/oakThemeApp";
 
 export default async function EYFSLayout({
   children,
@@ -8,13 +15,31 @@ export default async function EYFSLayout({
   params: Promise<{ subjectSlug: string }>;
 }>) {
   const { subjectSlug } = await params;
-  return (
-    <OakMaxWidth
-      $gap={["spacing-40", "spacing-40", "spacing-64"]}
-      $mv={["spacing-48", "spacing-48", "spacing-56"]}
-    >
-      <OakHeading tag="h1">{subjectSlug}</OakHeading>
-      {children}
-    </OakMaxWidth>
-  );
+
+  try {
+    const eyfsPageData = await curriculumApi2023.eyfsPage({ subjectSlug });
+
+    return (
+      <OakFlex
+        $gap={["spacing-40", "spacing-48", "spacing-64"]}
+        $pv={["spacing-48", "spacing-48", "spacing-64"]}
+        $ph={["spacing-20", "spacing-40", "spacing-12"]}
+        $mh={"auto"}
+        $maxWidth={["100%", "100%", "spacing-1280"]}
+        $flexDirection={"column"}
+      >
+        <EYFSHeader subjectTitle={eyfsPageData.subjectTitle} />
+        <EYFSNavigation subjectTabs={eyfsPageData.subjectTabs} />
+        {children}
+      </OakFlex>
+    );
+  } catch (error) {
+    if (error instanceof OakError) {
+      if (error.config.responseStatusCode === 404) {
+        return notFound();
+      }
+    }
+    // TD: [integrated journey] error reporting
+    throw error;
+  }
 }

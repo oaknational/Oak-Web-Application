@@ -21,6 +21,7 @@ function SignInContent() {
   const getGoogleSignInLink = () => {
     return googleClassroomApi.getGoogleSignInUrl(
       searchParams?.get("login_hint") ?? null,
+      undefined,
       true,
     );
   };

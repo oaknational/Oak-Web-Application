@@ -1,9 +1,27 @@
 import { notFound } from "next/navigation";
 import React from "react";
 
+import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/GoogleClassroomSubjectIconHeader";
 import { GoogleClassroomLessonListingAnalytics } from "@/components/GoogleClassroom/GoogleClassroomLessonListingAnalytics";
+
+async function getLessonsData(programmeSlug: string, unitSlug: string) {
+  try {
+    return await curriculumApi2023.pupilLessonListingQuery({
+      programmeSlug,
+      unitSlug,
+    });
+  } catch (error) {
+    if (
+      error instanceof OakError &&
+      error.code === "curriculum-api/not-found"
+    ) {
+      notFound();
+    }
+    throw error;
+  }
+}
 
 async function GoogleClassroomLessonsListPage({
   params,
@@ -11,13 +29,7 @@ async function GoogleClassroomLessonsListPage({
   params: Promise<{ programmeSlug: string; unitSlug: string }>;
 }>) {
   const { programmeSlug, unitSlug } = await params;
-  const { browseData } = await curriculumApi2023.pupilLessonListingQuery({
-    programmeSlug,
-    unitSlug,
-  });
-  if (!browseData?.length) {
-    notFound();
-  }
+  const { browseData } = await getLessonsData(programmeSlug, unitSlug);
 
   const sortByOrderInUnit = (
     a: (typeof browseData)[0],

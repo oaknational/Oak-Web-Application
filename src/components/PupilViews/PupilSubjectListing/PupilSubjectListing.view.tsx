@@ -10,6 +10,7 @@ import {
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 import { yearDescriptions } from "@oaknational/oak-curriculum-schema";
+import Link from "next/link";
 
 import { ResolveOakHrefProps, resolveOakHref } from "@/common-lib/urls";
 import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
@@ -99,7 +100,7 @@ export const PupilViewsSubjectListing = ({
           <OakSubjectIconButton
             variant="vertical"
             key={subjectSlug}
-            element="a"
+            element={Link}
             subjectIconName={
               isValidIconName(iconSlug) ? iconSlug : "question-mark"
             }

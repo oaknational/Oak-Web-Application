@@ -9,6 +9,19 @@ import {
 
 const reportError = createClassroomErrorReporter("sign-in");
 
+function injectStateParam(
+  signInUrl: string,
+  params: Record<string, unknown>,
+): string {
+  const url = new URL(signInUrl);
+  const existingState = url.searchParams.get("state");
+  const state = existingState
+    ? { ...JSON.parse(existingState), ...params }
+    : params;
+  url.searchParams.set("state", JSON.stringify(state));
+  return url.toString();
+}
+
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
@@ -19,7 +32,10 @@ export async function GET(request: NextRequest) {
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
     const response = isPupil
-      ? await oakClassroomClient.getPupilGoogleSignInUrl(loginHint)
+      ? injectStateParam(
+          await oakClassroomClient.getPupilGoogleSignInUrl(loginHint),
+          { isPupil: true },
+        )
       : await oakClassroomClient.getGoogleSignInUrl(
           loginHint,
           subscribeToNewsletter,

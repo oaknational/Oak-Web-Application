@@ -1,4 +1,5 @@
-import { builtinModules } from "module";
+#!/usr/bin/env ./node_modules/.bin/tsx
+import { builtinModules } from "node:module";
 
 import { glob } from "glob";
 import {
@@ -30,7 +31,7 @@ const tsHost = createCompilerHost(
 function delintNode(node: Node) {
   const importing: string[] = [];
   if (isImportDeclaration(node)) {
-    const moduleName = node.moduleSpecifier.getText().replace(/['"]/g, "");
+    const moduleName = node.moduleSpecifier.getText().replaceAll(/['"]/g, "");
     if (
       !moduleName.startsWith("node:") &&
       !builtinModules.includes(moduleName)
@@ -110,10 +111,91 @@ const IMPORT_MAP = [
     id: "Button",
     files: ["src/components/SharedComponents/Button"],
   },
+  {
+    id: "MenuBackdrop",
+    files: ["src/components/AppComponents/MenuBackdrop"],
+  },
+  {
+    id: "SignedOutFlow",
+    files: ["src/components/CurriculumComponents/CurriculumDownloadView"],
+  },
+  {
+    id: "HopePageTabButtonLabelWithScreenReaderTitle",
+    files: [
+      "src/components/GenericPagesComponents/HopePageTabButtonLabelWithScreenReaderTitle",
+    ],
+  },
+  {
+    id: "TeachersTabResourceSelectorCard",
+    files: [
+      "src/components/GenericPagesComponents/TeachersTabResourceSelectorCard",
+    ],
+  },
+  {
+    id: "AspectRatio",
+    files: ["src/components/SharedComponents/AspectRatio"],
+  },
+  {
+    id: "AvatarImage",
+    files: ["src/components/SharedComponents/AvatarImage"],
+  },
+  {
+    id: "Card",
+    files: ["src/components/SharedComponents/Card/Card"],
+  },
+  {
+    id: "Checkbox",
+    files: ["src/components/SharedComponents/Checkbox"],
+  },
+  {
+    id: "Circle",
+    files: ["src/components/SharedComponents/Circle"],
+  },
+  {
+    id: "CMSImage",
+    files: ["src/components/SharedComponents/CMSImage"],
+  },
+  {
+    id: "OutlineHeading",
+    files: ["src/components/SharedComponents/OutlineHeading"],
+  },
+  {
+    id: "Popover",
+    files: ["src/components/SharedComponents/Popover"],
+  },
+  {
+    id: "SearchForm",
+    files: ["src/components/SharedComponents/SearchForm"],
+  },
+  {
+    id: "BrushBorders",
+    files: ["src/components/SharedComponents/BrushBorders"],
+  },
+  {
+    id: "TagFunctional",
+    files: ["src/components/SharedComponents/TagFunctional"],
+  },
+  {
+    id: "Label",
+    files: ["src/components/SharedComponents/Label"],
+  },
+  {
+    id: "UnstyledButton",
+    files: ["src/components/SharedComponents/UnstyledButton"],
+  },
+  {
+    id: "OglCopyrightNotice",
+    files: ["src/components/TeacherComponents/OglCopyrightNotice"],
+  },
+  {
+    id: "SubjectListingTextTile",
+    files: ["src/components/TeacherComponents/SubjectListingTextTile"],
+  },
 ];
 
 function remapShortRefs(filepath: string) {
-  if (filepath.match(/^@/)) {
+  const re = /^@/;
+  if (re.exec(filepath)) {
     return filepath.replace(/^@\//, "src/");
   }
   return filepath;
@@ -140,9 +222,11 @@ function formatId(id: string) {
 function outputStdout(refs: Record<string, string[]>) {
   for (const [id, files] of Object.entries(refs)) {
     const importFiles = IMPORT_MAP.find((ref) => ref.id === id)!.files;
-    console.log(
-      `${chalk.green(`<${formatId(id)}/>`)} — ${chalk.blue(`./${importFiles[0]}`)} ${chalk.gray(`(${files.length} files)`)}`,
-    );
+    const componentStr = chalk.green(`<${formatId(id)}/>`);
+    const fileStr = chalk.blue(`./${importFiles[0]}`);
+    const countStr = chalk.gray(`(${files.length} files)`);
+
+    console.log(`${componentStr} — ${fileStr} ${countStr}`);
     for (const file of files) {
       console.log(` - ./${file}`);
     }
@@ -179,4 +263,5 @@ async function run(mode: string) {
   }
 }
 
-run("stdout");
+const mode = "stdout";
+await run(mode);
