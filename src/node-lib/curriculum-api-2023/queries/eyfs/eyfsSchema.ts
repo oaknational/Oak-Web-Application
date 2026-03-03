@@ -1,7 +1,7 @@
 import {
   lessonDataSchema,
   programmeFieldsSchema,
-  unitDataSchema,
+  unitSchema,
 } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
 
@@ -16,7 +16,7 @@ export const queryResponse = z.object({
       lesson_slug: z.string(),
       programme_fields: programmeFieldsSchema,
       unit_slug: z.string(),
-      unit_data: unitDataSchema,
+      unit_data: unitSchema,
       programme_slug: z.string(),
       features: z.object({ expired: z.boolean().nullish() }),
       order_in_unit: z.number().nullish(),

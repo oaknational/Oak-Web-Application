@@ -11,12 +11,15 @@ import { EmailCaptureBanner } from "./EmailCaptureBanner";
 import { UnitListProps } from "@/components/TeacherComponents/UnitList/UnitList";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import type { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const getIsUnitExpiring = (
   units: UnitListProps["currentPageItems"] | UnitsSectionData["units"],
 ) => {
   return units.some((unit) =>
-    unit?.some((unitItem) => unitItem.actions?.displayExpiringBanner),
+    unit?.some(
+      (unitItem) => (unitItem.actions as Actions | null)?.displayExpiringBanner,
+    ),
   );
 };
 

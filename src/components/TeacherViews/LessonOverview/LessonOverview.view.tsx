@@ -440,7 +440,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
               <OakFlex $flexDirection={"column"} $position={"relative"}>
                 <OakBox $pb={"spacing-16"}>
                   <TakedownBanner
-                    isExpiring={lessonActions?.displayExpiringBanner}
+                    isExpiring={!!lessonActions?.displayExpiringBanner}
                     isLegacy={isSlugLegacy(programmeSlug ?? "") || isSpecialist}
                     hasNewUnits={
                       getDoesSubjectHaveNewUnits(subjectSlug ?? "") &&
