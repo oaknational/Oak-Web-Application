@@ -176,7 +176,6 @@ export const ProgrammeView = ({
         filters={filters}
         setFilters={onChangeFilters}
         ks4Options={ks4Options}
-        trackingData={trackingData}
       />
     </>
   );
@@ -194,7 +193,6 @@ const TabContent = ({
   filters,
   setFilters,
   ks4Options,
-  trackingData,
 }: { tabSlug: TabSlug } & UnitSequenceViewProps &
   ProgrammeOverviewProps &
   ProgrammeDownloadsProps) => {
@@ -206,7 +204,6 @@ const TabContent = ({
         filters={filters}
         setFilters={setFilters}
         ks4Options={ks4Options}
-        trackingData={trackingData}
       />
     );
   } else if (tabSlug === "overview") {

@@ -16,6 +16,7 @@ function getDeploymentTestUrls() {
     "/about-us/who-we-are",
     "/about-us/oaks-curricula",
     "/about-us/meet-the-team",
+    "/about-us/meet-the-team/john-roberts?section=leadership",
     "/about-us/get-involved",
     // Blog pages
     "/blog",
