@@ -4,6 +4,7 @@ import Page from "./page";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import OakError from "@/errors/OakError";
 
 const lessonListingViewMock = jest.fn();
 
@@ -83,6 +84,37 @@ describe("src/app/classroom/browse/programmes/[programmeSlug]/units/[unitSlug]/l
         }),
       }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
+
+  it("returns 404 when API throws OakError with curriculum-api/not-found", async () => {
+    (curriculumApi2023.pupilLessonListingQuery as jest.Mock).mockRejectedValue(
+      new OakError({ code: "curriculum-api/not-found" }),
+    );
+
+    await expect(
+      Page({
+        params: Promise.resolve({
+          programmeSlug: "maths-h",
+          unitSlug: "algebra-1",
+        }),
+      }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
+
+  it("re-throws when API throws a non-not-found OakError", async () => {
+    const error = new OakError({ code: "curriculum-api/internal-error" });
+    (curriculumApi2023.pupilLessonListingQuery as jest.Mock).mockRejectedValue(
+      error,
+    );
+
+    await expect(
+      Page({
+        params: Promise.resolve({
+          programmeSlug: "maths-h",
+          unitSlug: "algebra-1",
+        }),
+      }),
+    ).rejects.toEqual(error);
   });
 
   it("returns 404 when lesson browse data is missing required fields", async () => {
