@@ -1,20 +1,13 @@
 import { useState, useEffect } from "react";
-import useSWR from "swr";
 
-import {
-  fetchHubspotContactDetails,
-  HUBSPOT_CONTACTS_ENDPOINT,
-} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
+import { useFetchHubspotContactsSwr } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
 import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 
 export const useEyfsSchoolData = () => {
   const { schoolFromLocalStorage, setSchoolInLocalStorage } =
     useLocalStorageForDownloads();
 
-  const { data: hubspotContact, isLoading: hubspotLoading } = useSWR(
-    HUBSPOT_CONTACTS_ENDPOINT,
-    fetchHubspotContactDetails,
-  );
+  const { hubspotContact, hubspotLoading } = useFetchHubspotContactsSwr();
 
   const [schoolName, setSchoolName] = useState<string | undefined>();
   const [schoolId, setSchoolId] = useState<string | undefined>();
