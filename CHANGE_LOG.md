@@ -1,3 +1,10 @@
+## [1.1011.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1011.0...v1.1011.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* **LESQ-1820:** browser refined event firing twice ([8c3c5d2](https://github.com/oaknational/Oak-Web-Application/commit/8c3c5d27df636727d8e8ac6b54350b2a08168abb))
+
 # [1.1011.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1010.0...v1.1011.0) (2026-03-03)
 
 
