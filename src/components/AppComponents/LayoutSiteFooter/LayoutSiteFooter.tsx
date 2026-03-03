@@ -46,6 +46,13 @@ type LayoutFooterLinkProps = {
     }
 );
 
+const aboutUsPagesLinkTexts = [
+  "About us",
+  "Oak's curricula",
+  "Get involved",
+  "Meet the team",
+];
+
 const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
   const { track } = useAnalytics();
   const { openSettings } = useCookieConsent();
@@ -86,7 +93,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
           });
         }
 
-        if (props.text === "About us") {
+        if (aboutUsPagesLinkTexts.includes(props.text)) {
           aboutUsAccessed(buildAboutUsAnalytics("about_us_footer"));
         }
       }}
