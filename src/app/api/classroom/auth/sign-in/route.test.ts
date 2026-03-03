@@ -23,6 +23,7 @@ jest.mock("next/server", () => ({
 // todo: we could create and export one from the package
 // Mock OakGoogleClassroomAddon
 const mockSignInUrl = "https://google.com/signin/url";
+const mockPupilSignInUrl = `https://google.com/signin/url?state=${encodeURIComponent(JSON.stringify({ subscribeToNewsletter: false }))}`;
 jest.mock("@/node-lib/google-classroom", () => {
   const reporterMock = jest.fn();
   return {
@@ -35,7 +36,9 @@ jest.mock("@/node-lib/google-classroom", () => {
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
 const mockGetGoogleSignInUrl = jest.fn().mockResolvedValue(mockSignInUrl);
-const mockGetPupilGoogleSignInUrl = jest.fn().mockResolvedValue(mockSignInUrl);
+const mockGetPupilGoogleSignInUrl = jest
+  .fn()
+  .mockResolvedValue(mockPupilSignInUrl);
 
 // Mock NextResponse search params
 const mockLoginHint = "123456789";
@@ -99,7 +102,7 @@ describe("GET /api/classroom/auth/sign-in", () => {
     );
   });
 
-  it("should call getPupilGoogleSignInUrl when is_pupil is true", async () => {
+  it("should call getPupilGoogleSignInUrl when is_pupil is true and inject isPupil into state", async () => {
     // Arrange
     mockSearchParamsGet.mockImplementation((key: string) => {
       if (key === "login_hint") return mockLoginHint;
@@ -115,10 +118,12 @@ describe("GET /api/classroom/auth/sign-in", () => {
     expect(mockGetPupilGoogleSignInUrl).toHaveBeenCalledWith(mockLoginHint);
     expect(mockGetGoogleSignInUrl).not.toHaveBeenCalled();
 
-    expect(mockNextResponseJson).toHaveBeenCalledWith(
-      { signInUrl: mockSignInUrl },
-      { status: 200 },
+    const [[{ signInUrl }]] = mockNextResponseJson.mock.calls;
+    const returnedState = JSON.parse(
+      new URL(signInUrl).searchParams.get("state")!,
     );
+    expect(returnedState.isPupil).toBe(true);
+    expect(returnedState.subscribeToNewsletter).toBe(false);
   });
 
   it("should call getGoogleSignInUrl when is_pupil is not set", async () => {
