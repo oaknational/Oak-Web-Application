@@ -20,7 +20,7 @@ const OnboardingComponent: NextPage = () => {
         // Return the user to the page they originally arrived from
         // or to the home page as a fallback if they have already onboarded
         const returnTo = searchParams?.get("returnTo") ?? "/";
-        router.push(
+        router.replace(
           toSafeRedirect(returnTo, new URL(globalThis.location.origin)) ?? "/",
         );
       } else {

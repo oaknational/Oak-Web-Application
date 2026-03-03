@@ -12,7 +12,7 @@ jest.mock("posthog-js/react", () => ({
 
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(() => "/onboarding"),
-  useRouter: jest.fn().mockReturnValue({ push: jest.fn() }),
+  useRouter: jest.fn().mockReturnValue({ replace: jest.fn() }),
   useSearchParams: jest.fn(),
 }));
 
