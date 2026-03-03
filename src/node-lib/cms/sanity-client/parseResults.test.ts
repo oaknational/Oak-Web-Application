@@ -54,7 +54,7 @@ describe("cms/sanity-client/parseResults", () => {
 
       expect(() => {
         parseResults(schema, { foo: "true" });
-      }).toThrowError("Expected boolean, received string");
+      }).toThrowError(/expected boolean/i);
     });
 
     it("throws a preview/zod-error when invalid data is provided for schema and previewMode is enabled", () => {

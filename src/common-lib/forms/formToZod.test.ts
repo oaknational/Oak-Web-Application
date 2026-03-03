@@ -148,8 +148,10 @@ describe("formToZod.ts", () => {
       const emptyParseResult = schema.safeParse(
         "",
       ) as ZodSafeParseError<unknown>;
+      // Zod 4: z.email() validates format before .min(), so empty string
+      // hits the email format error first
       expect(emptyParseResult.error.issues?.[0]?.message).toBe(
-        `Email Label can't be empty`,
+        `Email not valid`,
       );
 
       const invalidParseResult = schema.safeParse(

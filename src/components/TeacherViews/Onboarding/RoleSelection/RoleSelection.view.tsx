@@ -1,4 +1,3 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   OakBox,
   OakRadioButton,
@@ -8,6 +7,7 @@ import { Control, UseFormTrigger, useForm } from "react-hook-form";
 
 import { OnboardingLayout } from "../../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
+import { zodResolver } from "@/utils/zodResolver";
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 import {
   OnboardingFormProps,

@@ -45,7 +45,7 @@ describe("localstorage", () => {
             two: z.string(),
           }),
         );
-      }).toThrow("Expected string, received number");
+      }).toThrow(/expected string/i);
     });
 
     it("JSON invalid", () => {

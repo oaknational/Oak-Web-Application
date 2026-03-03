@@ -810,6 +810,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           tiers: [],
           units: [
             {
+              actions: {},
+              features: {},
+              parent_programme_features: null,
               connection_future_unit_description:
                 "Pupils will learn about human and plant defences against pathogens, the role of white blood cells in the human immune system, and the use of vaccination to protect against communicable diseases.",
               connection_future_unit_title:
@@ -923,6 +926,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           ],
           units: [
             {
+              actions: {},
+              features: {},
+              parent_programme_features: null,
               connection_future_unit_description:
                 "Pupils will learn about uses of gene technology in medicine, such as for genetic testing, and in agriculture, such as the production of genetically engineered crop plants with desirable characteristics.",
               connection_future_unit_title: "Gene technology",
@@ -991,6 +997,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               national_curriculum_content: [],
             },
             {
+              actions: {},
+              features: {},
+              parent_programme_features: null,
               connection_future_unit_description:
                 "Pupils will learn about factors that affect the rate of photosynthesis in plants, including temperature, light intensity and carbon dioxide concentration.",
               connection_future_unit_title:
@@ -1084,6 +1093,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               national_curriculum_content: [],
             },
             {
+              actions: {},
+              features: {},
+              parent_programme_features: null,
               connection_future_unit_description:
                 "Pupils will learn about factors that affect the rate of photosynthesis in plants, including temperature, light intensity and carbon dioxide concentration.",
               connection_future_unit_title:
@@ -1171,6 +1183,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               national_curriculum_content: [],
             },
             {
+              actions: {},
+              features: {},
+              parent_programme_features: null,
               connection_future_unit_description:
                 "Pupils will learn about ways in which the human body maintains a constant internal environment in response to internal and external change, including changes in temperature and water balance.",
               connection_future_unit_title:
@@ -1277,6 +1292,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           tiers: [],
           units: [
             {
+              actions: {},
+              features: {},
+              parent_programme_features: null,
               connection_future_unit_description:
                 "Pupils will move on to construct and interpret pyramids of number and biomass from food chains data. Pupils will learn about how plants and animals are adapted to survive and the impact of changes to the environment on biodiversity. The importance of biodiversity and the importance of gene banks. How to sample plant and animal populations to aid our understanding and monitoring of populations. ",
               connection_future_unit_title: "Biodiversity",

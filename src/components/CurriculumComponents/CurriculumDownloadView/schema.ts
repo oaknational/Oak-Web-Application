@@ -12,7 +12,11 @@ export const schoolIdSchema = z
   })
   .min(1, ERRORS.school);
 
-export const emailSchema = z.string().optional().or(z.literal(""));
+export const emailSchema = z
+  .string()
+  .email({ message: ERRORS.email })
+  .optional()
+  .or(z.literal(""));
 
 export const termsAndConditionsSchema = z.literal(true, {
   error: () => ERRORS.terms,

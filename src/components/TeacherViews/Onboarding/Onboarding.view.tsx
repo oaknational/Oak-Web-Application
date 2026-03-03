@@ -1,4 +1,3 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 import { Control, useForm, UseFormTrigger } from "react-hook-form";
 import {
@@ -9,6 +8,7 @@ import {
 
 import { OnboardingLayout } from "../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
+import { zodResolver } from "@/utils/zodResolver";
 import FieldError from "@/components/SharedComponents/FieldError";
 import {
   OnboardingFormProps,

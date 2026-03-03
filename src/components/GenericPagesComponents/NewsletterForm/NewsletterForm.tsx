@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
   OakBoxProps,
@@ -8,6 +7,7 @@ import {
   OakPrimaryButton,
 } from "@oaknational/oak-components";
 
+import { zodResolver } from "@/utils/zodResolver";
 import Input from "@/components/SharedComponents/Input";
 import OakError from "@/errors/OakError";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
@@ -28,11 +28,12 @@ const schema = z.object({
     })
     .max(60, "Name must contain fewer than 60 charaters"),
   email: z
-    .email({
-      error: "Enter a valid email",
-    })
+    .string()
     .min(1, {
       error: "Enter an email",
+    })
+    .email({
+      error: "Enter a valid email",
     }),
   userRole: z.union([z.enum(USER_ROLES), z.literal("")]),
 });

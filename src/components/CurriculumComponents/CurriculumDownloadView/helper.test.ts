@@ -55,7 +55,7 @@ describe("CurriculumDownloadView / helper", () => {
       );
       expect(result2.success).toEqual(false);
       expect(result2.errors).toEqual({
-        favNumber: "Expected number, received string",
+        favNumber: expect.stringMatching(/expected number/i),
       });
     });
   });

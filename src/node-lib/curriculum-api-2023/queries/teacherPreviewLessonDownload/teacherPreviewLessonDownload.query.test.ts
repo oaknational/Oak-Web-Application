@@ -173,13 +173,11 @@ describe("teachersPreviewLessonDownloadQuery()", () => {
     } catch (error: unknown) {
       const err = error as ZodError;
       expect(err.issues).toEqual([
-        {
+        expect.objectContaining({
           code: "invalid_type",
           expected: "boolean",
           path: ["has_slide_deck_asset_object"],
-          received: "undefined",
-          error: "Required",
-        },
+        }),
       ]);
     }
   });
@@ -260,13 +258,11 @@ describe("lessonDownloadsCanonical()", () => {
     } catch (error: unknown) {
       const typedError = error as ZodError;
       expect(typedError.issues).toEqual([
-        {
+        expect.objectContaining({
           code: "invalid_type",
           expected: "boolean",
           path: ["has_slide_deck_asset_object"],
-          received: "undefined",
-          error: "Required",
-        },
+        }),
       ]);
     }
   });

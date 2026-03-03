@@ -280,7 +280,7 @@ describe("OakPupilClient", () => {
           sidKey: mockTeacherNote.sid_key,
           noteId: "not a note id",
         }),
-      ).toThrowError("String must contain exactly 10 character(s)");
+      ).toThrowError(/10 characters/i);
     });
 
     it("should throw an error if the noteId is not provided and not in local storage", async () => {

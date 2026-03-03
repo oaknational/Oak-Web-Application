@@ -311,6 +311,277 @@ If a new transitive ESM dependency appears in future, it will produce the same `
 
 - [x] `jest.config.js`
 
+## Zod 4 error issue fields removed (`error`, `received`)
+
+### Problem
+Zod 3 error issues contained `error` and `received` fields (e.g. `{ code: "invalid_type", expected: "number", received: "undefined", error: "Required" }`). Zod 4 drops `error` and `received` and changes some field values, so tests that asserted the exact issue shape failed.
+
+```ts
+// before — asserting exact Zod 3 issue shape
+expect(result.error.issues[0]).toEqual({
+  code: "invalid_type",
+  expected: "number",
+  received: "undefined",
+  path: ["isLegacy"],
+  error: "Required",
+});
+```
+
+### Fix
+Use `expect.objectContaining()` to match only the stable fields (`code`, `expected`, `path`).
+
+```ts
+// after
+expect(result.error.issues[0]).toEqual(
+  expect.objectContaining({
+    code: "invalid_type",
+    expected: "number",
+    path: ["isLegacy"],
+  }),
+);
+```
+
+- [x] `src/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query.test.ts`
+- [x] `src/node-lib/curriculum-api-2023/queries/teacherPreviewLessonDownload/teacherPreviewLessonDownload.query.test.ts`
+
+## Zod 4 error message wording changed
+
+### Problem
+Zod 4 changed the wording of built-in error messages. For example:
+- `"Expected boolean, received string"` → `"Invalid input: expected boolean, received string"`
+- `"Expected string, received number"` → `"Invalid input: expected string, received number"`
+- `"String must contain exactly 10 character(s)"` → `"Too big: expected string to have <=10 characters"`
+
+Tests using exact string matches on these messages broke.
+
+```ts
+// before
+expect(() => parse(value)).toThrowError("Expected boolean, received string");
+expect(() => parse(value)).toThrow("String must contain exactly 10 character(s)");
+```
+
+### Fix
+Use case-insensitive regex matchers that capture the key part of the message without depending on the exact phrasing.
+
+```ts
+// after
+expect(() => parse(value)).toThrowError(/expected boolean/i);
+expect(() => parse(value)).toThrow(/10 characters/i);
+```
+
+- [x] `src/node-lib/cms/sanity-client/parseResults.test.ts`
+- [x] `src/utils/localstorage.test.ts`
+- [x] `src/browser-lib/pupil-client/client.test.ts`
+- [x] `src/components/CurriculumComponents/CurriculumDownloadView/helper.test.ts`
+
+## Zod 4 codemod can drop `.email()` validation
+
+### Problem
+The automated Zod 3→4 codemod converted `z.string().email({ message: "..." })` into `z.string()`, silently dropping the `.email()` call. This meant email fields accepted any string without format validation.
+
+```ts
+// before (Zod 3)
+export const emailSchema = z.string().email({ message: ERRORS.email }).optional().or(z.literal(""));
+
+// after codemod (broken — no email validation!)
+export const emailSchema = z.string().optional().or(z.literal(""));
+```
+
+### Fix
+Manually restore the `.email()` call after running the codemod. Audit all schemas that had `.email()` in the Zod 3 version.
+
+```ts
+// fixed
+export const emailSchema = z.string().email({ message: ERRORS.email }).optional().or(z.literal(""));
+```
+
+- [x] `src/components/CurriculumComponents/CurriculumDownloadView/schema.ts`
+
+## `z.email().min(1)` validation order changed
+
+### Problem
+In Zod 4, `z.email()` creates a string schema with email format validation built-in. When chained with `.min(1)`, the email format check runs **before** the min-length check. This means an empty string (`""`) now fails with the email format error ("Enter a valid email") instead of the min-length error ("Enter an email").
+
+```ts
+// Zod 4 codemod output — email format check runs first
+email: z.email({ error: "Enter a valid email" }).min(1, { error: "Enter an email" }),
+// Empty string → "Enter a valid email" (wrong — should say "Enter an email")
+```
+
+### Fix
+Use `z.string().min(1).email()` so the min-length check runs first for empty strings.
+
+```ts
+// fixed — min check runs before email format check
+email: z.string().min(1, { error: "Enter an email" }).email({ error: "Enter a valid email" }),
+// Empty string → "Enter an email" ✓
+// "not-an-email" → "Enter a valid email" ✓
+```
+
+This also applies anywhere `z.email()` was used as a base type. The same principle holds for other Zod 4 "convenience" constructors like `z.url()` — the built-in format check runs before any chained checks.
+
+- [x] `src/components/GenericPagesComponents/NewsletterForm/NewsletterForm.tsx`
+- [x] `src/common-lib/forms/formToZod.test.ts`
+
+## `zod-to-camel-case` requires `bidirectional: true` for camelCase input
+
+### Problem
+After the Zod 4 upgrade, `zod-to-camel-case` in its default (non-bidirectional) mode expects **snake_case** input and converts it to camelCase during parsing. If the incoming data already uses camelCase keys (as our API responses do after transformation), parsing silently drops unrecognised keys or fails validation.
+
+```ts
+// before — only accepts snake_case input
+export const zodToCamelCase = <T extends z.ZodObject<z.ZodRawShape>>(schema: T): z.ZodType => {
+  return oakZodToCamelCase(schema) as unknown as z.ZodType;
+};
+```
+
+### Fix
+Pass `{ bidirectional: true }` so both snake_case and camelCase input are accepted.
+
+```ts
+// after — accepts both input formats
+export const zodToCamelCase = <T extends z.ZodObject<z.ZodRawShape>>(schema: T): z.ZodType => {
+  return oakZodToCamelCase(schema, { bidirectional: true }) as unknown as z.ZodType;
+};
+```
+
+- [x] `src/node-lib/curriculum-api-2023/helpers/zodToCamelCase.ts`
+- [x] `src/node-lib/curriculum-api-2023/helpers/zodToCamelCase.test.ts`
+
+## `structuredClone` not available in Jest (OpenAI `zodResponseFormat`)
+
+### Problem
+OpenAI SDK's `zodResponseFormat` helper internally calls `structuredClone`, which is not available in the Jest/jsdom test environment. Tests that import modules using `zodResponseFormat` fail with:
+
+```
+ReferenceError: structuredClone is not defined
+```
+
+### Fix
+Mock the `openai/helpers/zod` module in affected test files.
+
+```ts
+jest.mock("openai/helpers/zod", () => ({
+  zodResponseFormat: jest.fn(() => ({ type: "json_schema" })),
+}));
+```
+
+- [x] `src/context/Search/ai/callModel.test.ts`
+- [x] `src/__tests__/pages/api/search/intent.test.ts`
+
+## ZodError exact constructor comparison breaks
+
+### Problem
+Zod 4 changed the property serialisation order of `ZodError`. Tests that compared against `new ZodError([{ code, message, path }])` failed because the actual error has properties in a different order (e.g. `{ code, path, message }` vs `{ code, message, path }`).
+
+```ts
+// before — exact constructor match, relies on property ordering
+expect(() => parse(data)).toThrow(
+  new ZodError([{ code: "custom", message: "Please select the ways Oak can support you", path: ["root"] }]),
+);
+```
+
+### Fix
+Match on the error message string instead of constructing an exact `ZodError` instance.
+
+```ts
+// after
+expect(() => parse(data)).toThrow("Please select the ways Oak can support you");
+```
+
+- [x] `src/components/TeacherComponents/OnboardingForm/OnboardingForm.schema.test.ts`
+
+## `@hookform/resolvers/zod` is incompatible with Zod 4
+
+### Problem
+The official `@hookform/resolvers/zod` resolver relies on Zod 3 internals:
+- `isZodError` checks `error?.errors` (Zod 3 used `.errors`, Zod 4 uses `.issues`)
+- `parseErrorSchema` reads `error.errors` and `unionErrors` to flatten union branch errors
+- As a result, forms silently swallow all validation errors — the resolver never detects that validation failed
+
+Additionally, `@hookform/resolvers/standard-schema` (the Standard Schema adapter) works for simple schemas but fails for **union schemas**. Zod 4 union errors nest branch errors in an `errors` array, and the Standard Schema adapter's `getDotPath()` cannot resolve paths from this nested structure, returning empty errors.
+
+```ts
+// before — uses @hookform/resolvers/zod (Zod 3 only)
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const { formState } = useForm<FormProps>({
+  resolver: zodResolver(schema),
+});
+// formState.errors is always {} — validation errors are lost
+```
+
+### Fix
+Create a custom `zodResolver` at `src/utils/zodResolver.ts` that:
+1. Calls `schema.safeParseAsync(values)` directly
+2. Reads `.issues` (Zod 4) instead of `.errors` (Zod 3)
+3. Flattens union errors by iterating all branches of `invalid_union` issues (each branch's errors are in `issue.errors[][]`)
+4. Converts flattened issues to `FieldError` records and passes them through `toNestErrors` from `@hookform/resolvers`
+
+```ts
+// src/utils/zodResolver.ts
+import { toNestErrors } from "@hookform/resolvers";
+import { FieldError, FieldErrors, FieldValues, Resolver } from "react-hook-form";
+import type { z } from "zod";
+
+interface ZodIssue {
+  code: string;
+  message: string;
+  path: (string | number)[];
+  errors?: ZodIssue[][];
+}
+
+function flattenIssues(issues: ZodIssue[]): ZodIssue[] {
+  const flat: ZodIssue[] = [];
+  for (const issue of issues) {
+    if (issue.code === "invalid_union" && issue.errors) {
+      for (const branch of issue.errors) {
+        flat.push(...flattenIssues(branch as ZodIssue[]));
+      }
+    } else {
+      flat.push(issue);
+    }
+  }
+  return flat;
+}
+
+export function zodResolver<TFieldValues extends FieldValues>(
+  schema: z.ZodType,
+): Resolver<TFieldValues> {
+  return async (values, _, options) => {
+    const result = await schema.safeParseAsync(values);
+    if (result.success) {
+      return { errors: {} as FieldErrors, values: result.data as TFieldValues };
+    }
+    const errors: Record<string, FieldError> = {};
+    for (const issue of flattenIssues(result.error.issues as unknown as ZodIssue[])) {
+      const path = issue.path.join(".");
+      if (path && !errors[path]) {
+        errors[path] = { message: issue.message, type: issue.code };
+      }
+    }
+    return { values: {}, errors: toNestErrors(errors, options) };
+  };
+}
+```
+
+Update all form components to import from the custom resolver:
+
+```ts
+// after
+import { zodResolver } from "@/utils/zodResolver";
+```
+
+**Important**: The generic signature must be `zodResolver<TFieldValues>(schema: z.ZodType)` — NOT `zodResolver(schema: z.ZodType<TFieldValues>)`. Many form components define `FormProps` as `SchemaOutput & { onSubmit: ... }`, so the form's type is a superset of the schema's output. Using `z.ZodType<TFieldValues>` would force TypeScript to infer `TFieldValues` from the schema, causing a type mismatch with the broader form props type.
+
+- [x] `src/utils/zodResolver.ts` (new file)
+- [x] `src/components/TeacherViews/Onboarding/RoleSelection/RoleSelection.view.tsx`
+- [x] `src/components/TeacherViews/Onboarding/SchoolSelection/SchoolSelection.view.tsx`
+- [x] `src/components/TeacherViews/Onboarding/Onboarding.view.tsx`
+- [x] `src/components/TeacherViews/Onboarding/HowCanOakSupport/HowCanOakSupport.view.tsx`
+- [x] `src/components/GenericPagesComponents/NewsletterForm/NewsletterForm.tsx`
+- [x] `src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.tsx`
+
 ---
 
-With these changes in place, `tsc -p tsconfig.json` succeeds under Zod 4. Start by checking these same hot spots (fixtures, `Actions`, quiz state, Zod errors) if we upgrade again.
+With these changes in place, all 794 test suites pass under Zod 4. Start by checking these same hot spots (fixtures, `Actions`, quiz state, Zod errors, form resolvers, validation ordering) if we upgrade again.

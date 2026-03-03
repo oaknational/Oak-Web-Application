@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
 
@@ -8,6 +7,7 @@ import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelper
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
+import { zodResolver } from "@/utils/zodResolver";
 import {
   getSchoolOption,
   getSchoolUrn,
