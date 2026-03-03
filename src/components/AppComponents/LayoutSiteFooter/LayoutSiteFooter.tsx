@@ -46,12 +46,12 @@ type LayoutFooterLinkProps = {
     }
 );
 
-const aboutUsPagesLinkTexts = [
+const aboutUsPagesLinkTexts = new Set([
   "About us",
   "Oak's curricula",
   "Get involved",
   "Meet the team",
-];
+]);
 
 const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
   const { track } = useAnalytics();
@@ -93,7 +93,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
           });
         }
 
-        if (aboutUsPagesLinkTexts.includes(props.text)) {
+        if (aboutUsPagesLinkTexts.has(props.text)) {
           aboutUsAccessed(buildAboutUsAnalytics("about_us_footer"));
         }
       }}
