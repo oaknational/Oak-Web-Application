@@ -1,3 +1,21 @@
+# [1.1011.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1010.0...v1.1011.0) (2026-03-03)
+
+
+### Features
+
+* add `autoFocusPlayButton` to `VideoPlayer` ([a2f159e](https://github.com/oaknational/Oak-Web-Application/commit/a2f159e12e5cf84c5f1b4a140ac2512d990dd8dd))
+* add copy below player ([f06b7b2](https://github.com/oaknational/Oak-Web-Application/commit/f06b7b2f0f2b2f7e85e6e02367d8fde2f5416584))
+* close video when expanding a video in another unit ([3eba6c0](https://github.com/oaknational/Oak-Web-Application/commit/3eba6c03ade76de02521d2f0f5827cb53217a788))
+* **LESQ-1818:** add player to EYFS card ([622613b](https://github.com/oaknational/Oak-Web-Application/commit/622613bd200b9bc5859c0b8a282534ed667f41c9))
+
+# [1.1010.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1009.0...v1.1010.0) (2026-03-03)
+
+
+### Features
+
+* add meet the team bio page example to pa11y urls ([a1094ca](https://github.com/oaknational/Oak-Web-Application/commit/a1094ca7c1116b688bbfb58f6ca1555b21cd489b))
+* add oaks curricula, meet the team and get ivolved pages to pa11y deployment urls ([107cb5f](https://github.com/oaknational/Oak-Web-Application/commit/107cb5f0435084da288f6a0a4c239dda82f287b9))
+
 # [1.1009.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1008.0...v1.1009.0) (2026-03-02)
 
 

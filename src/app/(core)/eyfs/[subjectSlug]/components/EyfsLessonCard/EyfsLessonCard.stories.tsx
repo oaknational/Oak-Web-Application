@@ -12,27 +12,35 @@ import { EYFSLessonCard } from "./EyfsLessonCard";
 
 import type { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
 
+const TEST_VIDEO_PLAYBACK_ID = "wgjCIRWRr00OSum34AWeU87lmSSCtNjEOViD9X5YSG8k";
+
 const mockLessons: EYFSLesson[] = [
   {
     title: "Introduction to counting",
     slug: "introduction-to-counting",
     orderInUnit: 1,
     downloadableResources: ["worksheet-pdf"],
-    video: { muxPlaybackId: "1234", title: "Counting video" },
+    video: { muxPlaybackId: TEST_VIDEO_PLAYBACK_ID, title: "Counting video" },
   },
   {
     title: "Number bonds to 10",
     slug: "number-bonds-to-10",
     orderInUnit: 2,
     downloadableResources: [],
-    video: { muxPlaybackId: "1234", title: "Number bonds video" },
+    video: {
+      muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
+      title: "Number bonds video",
+    },
   },
   {
     title: "Adding and subtracting",
     slug: "adding-and-subtracting",
     orderInUnit: 3,
     downloadableResources: [],
-    video: { muxPlaybackId: "1234", title: "Add and subtract video" },
+    video: {
+      muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
+      title: "Add and subtract video",
+    },
   },
 ];
 
@@ -51,7 +59,10 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
     slug: "exploring-maths-through-play",
     orderInUnit: 1,
     downloadableResources: ["presentation"],
-    video: { muxPlaybackId: "1234", title: "Play-based maths video" },
+    video: {
+      muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
+      title: "Play-based maths video",
+    },
   },
   {
     title:
@@ -59,7 +70,10 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
     slug: "developing-early-number-sense",
     orderInUnit: 2,
     downloadableResources: [],
-    video: { muxPlaybackId: "1234", title: "Number sense video" },
+    video: {
+      muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
+      title: "Number sense video",
+    },
   },
   {
     title:
@@ -67,7 +81,10 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
     slug: "addition-subtraction-within-20",
     orderInUnit: 3,
     downloadableResources: [],
-    video: { muxPlaybackId: "1234", title: "Add and subtract video" },
+    video: {
+      muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
+      title: "Add and subtract video",
+    },
   },
 ];
 

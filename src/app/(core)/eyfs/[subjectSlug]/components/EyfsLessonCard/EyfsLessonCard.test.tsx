@@ -26,6 +26,7 @@ const mockLessonWithNullVideo: EYFSLesson = {
   downloadableResources: ["presentation"],
 };
 
+jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer");
 const renderCard = async (lesson: EYFSLesson = mockLesson) =>
   await waitFor(() => {
     act(() =>
