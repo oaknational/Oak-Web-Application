@@ -10,6 +10,23 @@ const createJestConfig = nextJest({
 // Add any custom config to be passed to Jest
 const customJestConfig = require("./jest.base.config");
 
-// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-module.exports = createJestConfig(customJestConfig);
+// oak-curriculum-schema v2 bundles ESM-only nested dependencies (camelcase-keys,
+// camelcase, map-obj, type-fest). Jest must transform the whole package tree.
+const esmPackages =
+  "@oaknational/oak-curriculum-schema|camelcase-keys|camelcase|map-obj|type-fest|quick-lru|zod-to-camel-case";
+const esmPackagesPnpm =
+  "@oaknational\\+oak-curriculum-schema|camelcase-keys|camelcase|map-obj|type-fest|quick-lru|zod-to-camel-case";
+
+const jestConfig = createJestConfig(customJestConfig);
+
+module.exports = async () => {
+  const config = await jestConfig();
+  config.transformIgnorePatterns = config.transformIgnorePatterns.map(
+    (pattern) =>
+      pattern
+        .replace("geist)", `geist|${esmPackages})`)
+        .replace("geist)", `geist|${esmPackagesPnpm})`),
+  );
+  return config;
+};
 module.exports.customJestConfig = customJestConfig;
