@@ -202,10 +202,59 @@ const submitPupilProgress = async (
   );
 };
 
+export type PupilLessonProgressPayload = {
+  courseId: string;
+  itemId: string;
+  attachmentId: string;
+  submissionId?: string;
+  lessonSlug: string;
+  programmeSlug: string;
+  unitSlug: string;
+  progress: {
+    currentSection: string;
+    sectionResults: Record<string, unknown>;
+  };
+};
+
+type GetPupilLessonProgressArgs = {
+  submissionId: string;
+  courseId: string;
+  itemId: string;
+  attachmentId: string;
+};
+
+const getPupilLessonProgress = async (
+  args: GetPupilLessonProgressArgs,
+): Promise<{
+  lessonProgress: unknown;
+  submissionState?: string;
+} | null> => {
+  try {
+    const params = new URLSearchParams();
+    params.set("submissionId", args.submissionId);
+    params.set("courseId", args.courseId);
+    params.set("itemId", args.itemId);
+    params.set("attachmentId", args.attachmentId);
+    return await sendRequest<{
+      lessonProgress: unknown;
+      submissionState?: string;
+    }>(
+      `/api/classroom/pupil/progress/submit?${params.toString()}`,
+      "GET",
+      undefined,
+      await getOakGCAuthHeaders(),
+    );
+  } catch (error) {
+    console.error("Failed to fetch pupil lesson progress:", error);
+    return null;
+  }
+};
+
 export default {
   getGoogleSignInUrl,
   verifySession,
   createAttachment,
   getAddOnContext,
   submitPupilProgress,
+  getPupilLessonProgress,
 };

@@ -41,7 +41,7 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
   const quizEngineContext = useQuizEngineContext();
   const lessonEngineContext = useLessonEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
-  const { currentSection } = lessonEngineContext;
+  const { currentSection, isReadOnly } = lessonEngineContext;
   const questionState = quizEngineContext?.questionState[currentQuestionIndex];
   const questionUid = currentQuestionData?.questionUid;
   const numCorrectAnswers = currentQuestionData?.answers?.[
@@ -63,6 +63,7 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
   }
 
   const isFeedbackMode = questionState.mode === "feedback";
+  const isExitQuizReadOnly = isReadOnly && currentSection === "exit-quiz";
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
@@ -141,6 +142,7 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
                 feedback={feedback}
                 image={answerImage}
                 onChange={onChange}
+                disabled={isExitQuizReadOnly || isFeedbackMode}
                 isHighlighted={questionState.mode === "incomplete"}
               />
             </MathJaxWrap>

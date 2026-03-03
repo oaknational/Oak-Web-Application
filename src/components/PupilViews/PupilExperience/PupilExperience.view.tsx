@@ -209,6 +209,38 @@ const PupilExperienceLayout = ({
 
   const searchParams = useSearchParams();
   const classroomContextRef = useRef<ClassroomContext | null>(null);
+  const [isFetchingClassroomContext, setIsFetchingClassroomContext] =
+    useState(false);
+  const [initialSectionResults, setInitialSectionResults] =
+    useState<LessonSectionResults>();
+  const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
+
+  const mapPupilLessonProgressToSectionResults = (
+    lessonProgress: unknown,
+  ): LessonSectionResults => {
+    if (!lessonProgress || typeof lessonProgress !== "object") {
+      return {};
+    }
+    const progress = lessonProgress as Record<string, unknown>;
+    const results: LessonSectionResults = {};
+
+    if (progress.starterQuiz && typeof progress.starterQuiz === "object") {
+      results["starter-quiz"] =
+        progress.starterQuiz as LessonSectionResults["starter-quiz"];
+    }
+    if (progress.exitQuiz && typeof progress.exitQuiz === "object") {
+      results["exit-quiz"] =
+        progress.exitQuiz as LessonSectionResults["exit-quiz"];
+    }
+    if (progress.video && typeof progress.video === "object") {
+      results.video = progress.video as LessonSectionResults["video"];
+    }
+    if (progress.intro && typeof progress.intro === "object") {
+      results.intro = progress.intro as LessonSectionResults["intro"];
+    }
+
+    return results;
+  };
 
   const fetchGoogleClassroomContext = async () => {
     const courseId = searchParams?.get("courseId");
@@ -218,6 +250,7 @@ const PupilExperienceLayout = ({
     if (!courseId || !itemId || !attachmentId) return;
 
     try {
+      setIsFetchingClassroomContext(true);
       const result: AddOnContextResponse | null =
         await googleClassroomApi.getAddOnContext({
           courseId,
@@ -235,9 +268,32 @@ const PupilExperienceLayout = ({
           courseId,
           itemId,
         };
+
+        const progressResult = await googleClassroomApi.getPupilLessonProgress({
+          submissionId,
+          courseId,
+          itemId,
+          attachmentId,
+        });
+
+        const lessonProgress =
+          progressResult &&
+          typeof progressResult === "object" &&
+          "lessonProgress" in progressResult
+            ? progressResult.lessonProgress
+            : progressResult;
+
+        const mappedSectionResults =
+          mapPupilLessonProgressToSectionResults(lessonProgress);
+        if (Object.keys(mappedSectionResults).length > 0) {
+          setInitialSectionResults(mappedSectionResults);
+          setLessonEngineInstanceKey((value) => value + 1);
+        }
       }
     } catch {
       // Failed to get context - progress sync will be disabled
+    } finally {
+      setIsFetchingClassroomContext(false);
     }
   };
 
@@ -331,11 +387,8 @@ const PupilExperienceLayout = ({
     setTrackingSent(true);
   }
 
-  const declineIcon = isGoogleClassroomAssignment
-    ? ("cross" as const)
-    : undefined;
+  const declineIcon = isGoogleClassroomAssignment ? "cross" : undefined;
   const declineText = isGoogleClassroomAssignment ? "Exit lesson" : undefined;
-
   return (
     <PupilLayout
       seoProps={{
@@ -349,12 +402,15 @@ const PupilExperienceLayout = ({
     >
       <CookieConsentStyles />
       <LessonEngineProvider
+        key={lessonEngineInstanceKey}
         initialLessonReviewSections={availableSections}
         initialSection={initialSection}
+        initialSectionResults={initialSectionResults}
         onNext={isGoogleClassroomAssignment ? handleOnNext : undefined}
         onSectionResultUpdate={
           isGoogleClassroomAssignment ? handleOnNext : undefined
         }
+        isHydratingInitialProgress={isFetchingClassroomContext}
       >
         {hasAgeRestriction ? (
           <OakPupilJourneyContentGuidance

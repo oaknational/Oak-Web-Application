@@ -32,6 +32,7 @@ import { LessonSummaryReviewedProperties } from "@/browser-lib/avo/Avo";
 import { useOakPupil } from "@/hooks/useOakPupil";
 import { attemptDataCamelCaseSchema } from "@/node-lib/pupil-api/types";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import type { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -83,16 +84,31 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     attemptId: string;
   }>({ stored: false, attemptId: "" });
 
-  const storeResultsInLocalStorage = () => {
+  const buildParsedAttemptData = () => {
     const attemptData = {
       lessonData: { slug: lessonSlug, title: lessonTitle },
       browseData: {
         subject: subject,
         yearDescription: yearDescription ?? "",
       },
-      sectionResults: sectionResults,
+      sectionResults: normaliseSectionResults(sectionResults),
     };
-    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+
+    const parsed = attemptDataCamelCaseSchema.safeParse(attemptData);
+    if (!parsed.success) {
+      console.error("Failed to parse lesson attempt data", parsed.error);
+      return null;
+    }
+
+    return parsed.data;
+  };
+
+  const storeResultsInLocalStorage = () => {
+    const parsedAttemptData = buildParsedAttemptData();
+    if (!parsedAttemptData) {
+      return;
+    }
+
     const attemptId = logAttempt(parsedAttemptData, true);
     if (typeof attemptId === "string") {
       setStoredAttemptLocally({ stored: true, attemptId });
@@ -118,12 +134,12 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       </OakLessonBottomNav>
     );
   const handleShareResultsClick = () => {
-    const attemptData = {
-      lessonData: { slug: lessonSlug, title: lessonTitle },
-      browseData: { subject: subject, yearDescription: yearDescription ?? "" },
-      sectionResults: sectionResults,
-    };
-    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+    const parsedAttemptData = buildParsedAttemptData();
+    if (!parsedAttemptData) {
+      setIsAttemptingShare("failed");
+      return;
+    }
+
     const res = logAttempt(parsedAttemptData, false);
     if (typeof res === "string") {
       const shareUrl = `${
@@ -425,4 +441,127 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       </OakGrid>
     </OakLessonLayout>
   );
+};
+
+const validQuestionModes = new Set([
+  "init",
+  "incomplete",
+  "input",
+  "grading",
+  "feedback",
+]);
+
+const normaliseQuestionResults = (
+  questionResults: unknown,
+): Array<{
+  offerHint: boolean;
+  grade: number;
+  mode: "init" | "incomplete" | "input" | "grading" | "feedback";
+  pupilAnswer?: string | string[] | number | number[] | null;
+  feedback?: "correct" | "incorrect" | Array<"correct" | "incorrect">;
+  correctAnswer?: string | Array<string | undefined>;
+  isPartiallyCorrect?: boolean;
+}> | null => {
+  if (!Array.isArray(questionResults)) {
+    return null;
+  }
+
+  return questionResults.map((result) => {
+    const value =
+      result && typeof result === "object"
+        ? (result as Record<string, unknown>)
+        : {};
+
+    const mode =
+      typeof value.mode === "string" && validQuestionModes.has(value.mode)
+        ? (value.mode as
+            | "init"
+            | "incomplete"
+            | "input"
+            | "grading"
+            | "feedback")
+        : "init";
+
+    return {
+      offerHint: Boolean(value.offerHint),
+      grade: typeof value.grade === "number" ? value.grade : 0,
+      mode,
+      pupilAnswer:
+        typeof value.pupilAnswer === "string" ||
+        typeof value.pupilAnswer === "number" ||
+        value.pupilAnswer === null ||
+        (Array.isArray(value.pupilAnswer) &&
+          value.pupilAnswer.every(
+            (item) => typeof item === "string" || typeof item === "number",
+          ))
+          ? (value.pupilAnswer as string | string[] | number | number[] | null)
+          : undefined,
+      feedback:
+        value.feedback === "correct" || value.feedback === "incorrect"
+          ? value.feedback
+          : Array.isArray(value.feedback) &&
+              value.feedback.every(
+                (item) => item === "correct" || item === "incorrect",
+              )
+            ? (value.feedback as Array<"correct" | "incorrect">)
+            : undefined,
+      correctAnswer:
+        typeof value.correctAnswer === "string"
+          ? value.correctAnswer
+          : Array.isArray(value.correctAnswer)
+            ? value.correctAnswer.map((item) =>
+                typeof item === "string" ? item : undefined,
+              )
+            : undefined,
+      isPartiallyCorrect:
+        typeof value.isPartiallyCorrect === "boolean"
+          ? value.isPartiallyCorrect
+          : undefined,
+    };
+  });
+};
+
+const normaliseQuizResult = (result: unknown) => {
+  if (!result || typeof result !== "object") {
+    return undefined;
+  }
+
+  const value = result as Record<string, unknown>;
+  const questionResults = normaliseQuestionResults(value.questionResults);
+
+  return {
+    grade: typeof value.grade === "number" ? value.grade : 0,
+    numQuestions:
+      typeof value.numQuestions === "number"
+        ? value.numQuestions
+        : (questionResults?.length ?? 0),
+    questionResults: questionResults ?? undefined,
+  };
+};
+
+const normaliseSectionResults = (sectionResults: LessonSectionResults) => {
+  return {
+    intro: {
+      worksheetDownloaded: Boolean(sectionResults.intro?.worksheetDownloaded),
+      worksheetAvailable: Boolean(sectionResults.intro?.worksheetAvailable),
+      isComplete: Boolean(sectionResults.intro?.isComplete),
+    },
+    "starter-quiz": normaliseQuizResult(sectionResults["starter-quiz"]),
+    video: {
+      isComplete: Boolean(sectionResults.video?.isComplete),
+      played: Boolean(sectionResults.video?.played),
+      duration:
+        typeof sectionResults.video?.duration === "number"
+          ? sectionResults.video.duration
+          : 0,
+      timeElapsed:
+        typeof sectionResults.video?.timeElapsed === "number"
+          ? sectionResults.video.timeElapsed
+          : 0,
+      muted: Boolean(sectionResults.video?.muted),
+      signedOpened: Boolean(sectionResults.video?.signedOpened),
+      transcriptOpened: Boolean(sectionResults.video?.transcriptOpened),
+    },
+    "exit-quiz": normaliseQuizResult(sectionResults["exit-quiz"]),
+  };
 };

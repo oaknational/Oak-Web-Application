@@ -5,7 +5,9 @@ import {
 } from "@oaknational/google-classroom-addon/server";
 import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
-import GoogleClassroomApi from "./googleClassroomApi";
+import GoogleClassroomApi, {
+  PupilLessonProgressPayload,
+} from "./googleClassroomApi";
 
 // Mock fetch
 const mockFetch = jest.fn();
@@ -420,6 +422,78 @@ describe("Google Classroom API", () => {
       const callArgs = mockFetch.mock.calls[0][1];
       expect(callArgs.headers.get("Authorization")).toBe("test-token");
       expect(callArgs.headers.get("X-Oakgc-Session")).toBe("test-session");
+    });
+  });
+
+  describe("getPupilLessonProgress", () => {
+    it("should call the lesson progress API with query parameters", async () => {
+      // Arrange
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === "oak-gclassroom-session")
+          return Promise.resolve({ value: "test-session" });
+        if (name === "oak-gclassroom-token")
+          return Promise.resolve({ value: "test-token" });
+        return Promise.resolve(null);
+      });
+      mockJsonResponse({ lessonProgress: null, submissionState: "NEW" });
+
+      // Act
+      await GoogleClassroomApi.getPupilLessonProgress({
+        submissionId: "submission-1",
+        courseId: "course-1",
+        itemId: "item-1",
+        attachmentId: "attachment-1",
+      });
+
+      // Assert
+      expect(mockFetch).toHaveBeenCalledWith(
+        `/api/classroom/pupil/progress/submit?submissionId=submission-1&courseId=course-1&itemId=item-1&attachmentId=attachment-1`,
+        expect.objectContaining({
+          method: "GET",
+          credentials: "include",
+        }),
+      );
+    });
+  });
+
+  describe("submitPupilProgress", () => {
+    it("should call the lesson progress API with payload", async () => {
+      // Arrange
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === "oak-gclassroom-session")
+          return Promise.resolve({ value: "test-session" });
+        if (name === "oak-gclassroom-token")
+          return Promise.resolve({ value: "test-token" });
+        return Promise.resolve(null);
+      });
+      mockJsonResponse({});
+
+      const payload: PupilLessonProgressPayload = {
+        courseId: "course-1",
+        itemId: "item-1",
+        attachmentId: "attachment-1",
+        submissionId: "submission-1",
+        lessonSlug: "lesson-1",
+        programmeSlug: "programme-1",
+        unitSlug: "unit-1",
+        progress: {
+          currentSection: "intro",
+          sectionResults: {},
+        },
+      };
+
+      // Act
+      await GoogleClassroomApi.submitPupilProgress(payload);
+
+      // Assert
+      expect(mockFetch).toHaveBeenCalledWith(
+        `/api/classroom/pupil/progress/submit`,
+        expect.objectContaining({
+          method: "POST",
+          credentials: "include",
+          body: JSON.stringify(payload),
+        }),
+      );
     });
   });
 

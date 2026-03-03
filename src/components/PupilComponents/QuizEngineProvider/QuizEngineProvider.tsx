@@ -71,20 +71,43 @@ export const useQuizEngineContext = () => {
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
-  const { updateSectionResult, completeActivity, currentSection } =
-    useLessonEngineContext();
+  const {
+    updateSectionResult,
+    completeActivity,
+    currentSection,
+    sectionResults,
+    isReadOnly,
+  } = useLessonEngineContext();
   const { track } = usePupilAnalytics();
 
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const quizSectionKey =
+    currentSection === "starter-quiz" || currentSection === "exit-quiz"
+      ? currentSection
+      : null;
+  const currentQuizSectionResults = quizSectionKey
+    ? sectionResults?.[quizSectionKey]
+    : undefined;
+
+  const nextQuestionIndex =
+    currentQuizSectionResults?.questionResults?.findIndex(
+      (item: QuestionState) => item.mode !== "feedback",
+    ) ?? 0;
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(
+    nextQuestionIndex >= 0 ? nextQuestionIndex : 0,
+  );
   const currentQuestionData = questionsArray[currentQuestionIndex];
 
   const [questionState, setQuestionState] = useState<QuestionState[]>(
-    questionsArray.map(() => ({
-      mode: "init",
-      offerHint: false,
-      grade: 0,
-    })),
+    questionsArray.map((question, index) => {
+      return (
+        currentQuizSectionResults?.questionResults?.[index] ?? {
+          mode: "init",
+          offerHint: false,
+          grade: 0,
+        }
+      );
+    }),
   );
 
   const numQuestions = questionsArray.length;
@@ -92,8 +115,11 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     getInteractiveQuestions(questionsArray).length;
   const score = questionState.reduce((acc, curr) => acc + curr.grade, 0);
 
+  const isExitQuizReadOnly = isReadOnly && currentSection === "exit-quiz";
+
   const updateCurrentQuestion = useCallback(
     (incomingQuestionState: Partial<QuestionState>) => {
+      if (isExitQuizReadOnly) return;
       if (
         (currentSection === "starter-quiz" || currentSection === "exit-quiz") &&
         incomingQuestionState.mode === "feedback"
@@ -139,6 +165,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       currentSection,
       questionState,
       track,
+      isExitQuizReadOnly,
     ],
   );
 

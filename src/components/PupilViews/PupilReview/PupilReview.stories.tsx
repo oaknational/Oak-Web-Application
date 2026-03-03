@@ -108,6 +108,8 @@ export const Default: Story = {
             lessonStarted: true,
             updateWorksheetDownloaded: () => {},
             updateAdditionalFilesDownloaded: () => {},
+            isReadOnly: false,
+            isHydratingInitialProgress: false,
           }}
         >
           <PupilViewsReview
