@@ -34,6 +34,18 @@ function getNewsletterPreference(searchParams: URLSearchParams): boolean {
   }
 }
 
+function isTeacherLogin(searchParams: URLSearchParams): boolean {
+  const stateParam = searchParams.get("state");
+  if (!stateParam) return true;
+
+  try {
+    const parsed = JSON.parse(stateParam);
+    return parsed.isPupil !== true;
+  } catch {
+    return true;
+  }
+}
+
 function oauthErrorResponse(oauthError: OAuthError) {
   return NextResponse.json(
     {
@@ -84,13 +96,15 @@ export async function GET(request: NextRequest) {
     }
 
     const baseUrl = `${request.nextUrl.protocol}//${request.nextUrl.host}`;
-    const onNewsletterSignup = (email: string) =>
-      handleNewsletterSignup(
-        email,
-        baseUrl,
-        reportError,
-        subscribeToNewsletter,
-      );
+    const onNewsletterSignup = isTeacherLogin(searchParams)
+      ? (email: string) =>
+          handleNewsletterSignup(
+            email,
+            baseUrl,
+            reportError,
+            subscribeToNewsletter,
+          )
+      : undefined;
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
     const { encryptedSession, accessToken } =
