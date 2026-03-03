@@ -169,7 +169,13 @@ export const MultipleLessons: Story = {
   render: () => (
     <OakFlex $flexDirection="column" $gap="spacing-20">
       {mockLessons.map((lesson, index) => (
-        <EYFSLessonCard key={lesson.slug} lesson={lesson} index={index + 1} />
+        <EYFSLessonCard
+          key={lesson.slug}
+          lesson={lesson}
+          index={index + 1}
+          schoolName="school-name"
+          schoolId="school-id"
+        />
       ))}
     </OakFlex>
   ),
@@ -193,7 +199,13 @@ export const MultipleLessonsWithLongTitles: Story = {
   render: () => (
     <OakFlex $flexDirection="column" $gap="spacing-20">
       {mockLessonsWithLongTitles.map((lesson, index) => (
-        <EYFSLessonCard key={lesson.slug} lesson={lesson} index={index + 1} />
+        <EYFSLessonCard
+          key={lesson.slug}
+          lesson={lesson}
+          index={index + 1}
+          schoolName="school-name"
+          schoolId="school-id"
+        />
       ))}
     </OakFlex>
   ),
