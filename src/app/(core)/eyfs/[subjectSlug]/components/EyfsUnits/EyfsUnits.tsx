@@ -8,7 +8,6 @@ import { useEyfsSchoolData } from "./useEyfsSchoolData";
 
 import { EYFSUnit } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
 
-
 export const EyfsUnitSection = ({ units }: { units: EYFSUnit[] }) => {
   const { schoolName, schoolId } = useEyfsSchoolData();
   return (
