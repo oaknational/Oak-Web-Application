@@ -176,7 +176,10 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
       );
     case "signup":
       return (
-        <SignInButton forceRedirectUrl={getRedirectUrl(path, returnToAnchor)}>
+        <SignInButton
+          forceRedirectUrl={getRedirectUrl(path, returnToAnchor)}
+          signUpForceRedirectUrl={getRedirectUrl(path, returnToAnchor)}
+        >
           <ButtonComponent
             iconName={signUpProps?.iconName}
             isTrailingIcon={signUpProps?.isTrailingIcon}

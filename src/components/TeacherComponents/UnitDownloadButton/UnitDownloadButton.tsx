@@ -50,7 +50,10 @@ const UnitDownloadSignInButton = ({
   redirectUrl: string;
   showNewTag: boolean;
 }) => (
-  <SignInButton forceRedirectUrl={redirectUrl}>
+  <SignInButton
+    forceRedirectUrl={redirectUrl}
+    signUpForceRedirectUrl={redirectUrl}
+  >
     <OakPrimaryButton
       iconName={"download"}
       isTrailingIcon
