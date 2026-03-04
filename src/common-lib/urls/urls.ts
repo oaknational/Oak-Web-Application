@@ -15,6 +15,7 @@ import {
   PreselectedDownloadType,
   PreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 
 const reportError = errorReporter("urls.ts");
 
@@ -379,6 +380,11 @@ type ProgrammePageProps = {
   tab: string;
 };
 
+type EyfsPageLinkProps = {
+  page: "eyfs-page";
+  subjectSlug: string;
+};
+
 type OnlyPageRequired<T> = T extends { page: string }
   ? { page: T["page"] } extends T
     ? T
@@ -456,7 +462,8 @@ export type OakLinkProps =
   | OnboardingUseOfOak
   | PupilLessonCanonical
   | MyLibraryProps
-  | ProgrammePageProps;
+  | ProgrammePageProps
+  | EyfsPageLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -1015,12 +1022,43 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "teacher-programme",
   }),
+  "eyfs-page": createOakPageConfig({
+    pathPattern: "/eyfs/:subjectSlug",
+    analyticsPageName: "Unit Listing",
+    configType: "internal",
+    pageType: "eyfs-page",
+  }),
 };
 
 export type ResolveOakHrefProps = Exclude<
   Parameters<OakPages[keyof OakPages]["resolveHref"]>[number],
   void
 >;
+
+/**
+ * Helper function to check if a programmeSlug or keyStageSlug is for EYFS
+ * and extract the subject slug for the new EYFS route
+ */
+const isEyfsAndGetSubject = (props: {
+  programmeSlug?: string;
+  keyStageSlug?: string;
+  subjectSlug?: string;
+}): { isEyfs: boolean; subjectSlug?: string } => {
+  const { programmeSlug, keyStageSlug, subjectSlug } = props;
+
+  if (keyStageSlug === "early-years-foundation-stage") {
+    return { isEyfs: true, subjectSlug };
+  }
+
+  if (programmeSlug && isSlugEYFS(programmeSlug)) {
+    const extractedSubject = programmeSlug.match(
+      /^(.+)-foundation-early-years-foundation-stage/,
+    )?.[1];
+    return { isEyfs: true, subjectSlug: extractedSubject };
+  }
+
+  return { isEyfs: false };
+};
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -1031,6 +1069,18 @@ export type ResolveOakHrefProps = Exclude<
  */
 export const resolveOakHref = (props: ResolveOakHrefProps): string => {
   try {
+    const isSubjectOrProgrammeLink =
+      props.page === "unit-index" || props.page === "subject-index";
+    if (isSubjectOrProgrammeLink) {
+      const eyfsCheck = isEyfsAndGetSubject(props);
+      if (eyfsCheck.isEyfs) {
+        return OAK_PAGES["eyfs-page"].resolveHref({
+          page: "eyfs-page",
+          subjectSlug: eyfsCheck.subjectSlug || "maths",
+        } as EyfsPageLinkProps);
+      }
+    }
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const path = OAK_PAGES[props.page].resolveHref(props);
