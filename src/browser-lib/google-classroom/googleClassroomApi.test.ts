@@ -423,6 +423,77 @@ describe("Google Classroom API", () => {
     });
   });
 
+  describe("getPupilLessonProgress", () => {
+    it("should call the lesson progress API with query parameters", async () => {
+      // Arrange
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === "oak-gclassroom-session")
+          return Promise.resolve({ value: "test-session" });
+        if (name === "oak-gclassroom-token")
+          return Promise.resolve({ value: "test-token" });
+        return Promise.resolve(null);
+      });
+      mockJsonResponse({ lessonProgress: null, submissionState: "NEW" });
+
+      // Act
+      await GoogleClassroomApi.getPupilLessonProgress({
+        submissionId: "submission-1",
+        itemId: "item-1",
+        attachmentId: "attachment-1",
+      });
+
+      // Assert
+      expect(mockFetch).toHaveBeenCalledWith(
+        `/api/classroom/pupil/progress/submit?submissionId=submission-1&courseId=course-1&itemId=item-1&attachmentId=attachment-1`,
+        expect.objectContaining({
+          method: "GET",
+          credentials: "include",
+        }),
+      );
+    });
+  });
+
+  describe("submitPupilProgress", () => {
+    it("should call the lesson progress API with payload", async () => {
+      // Arrange
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === "oak-gclassroom-session")
+          return Promise.resolve({ value: "test-session" });
+        if (name === "oak-gclassroom-token")
+          return Promise.resolve({ value: "test-token" });
+        return Promise.resolve(null);
+      });
+      mockJsonResponse({});
+
+      const payload = {
+        courseId: "course-1",
+        itemId: "item-1",
+        attachmentId: "attachment-1",
+        submissionId: "submission-1",
+        lessonSlug: "lesson-1",
+        programmeSlug: "programme-1",
+        unitSlug: "unit-1",
+        progress: {
+          currentSection: "intro",
+          sectionResults: {},
+        },
+      };
+
+      // Act
+      await GoogleClassroomApi.submitPupilProgress(payload);
+
+      // Assert
+      expect(mockFetch).toHaveBeenCalledWith(
+        `/api/classroom/pupil/progress/submit`,
+        expect.objectContaining({
+          method: "POST",
+          credentials: "include",
+          body: JSON.stringify(payload),
+        }),
+      );
+    });
+  });
+
   describe("sendRequest error handling", () => {
     const mockAttachmentSetup = () => {
       mockCookieStore.get.mockImplementation((name) => {

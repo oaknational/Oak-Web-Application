@@ -1,5 +1,6 @@
 "use client";
 
+import { PupilLessonProgress } from "@oaknational/google-classroom-addon/dist/types";
 import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
 const getOakGCAuthHeaders = async (
@@ -202,10 +203,33 @@ const submitPupilProgress = async (
   );
 };
 
+const getPupilLessonProgress = async (args: {
+  submissionId: string;
+  itemId: string;
+  attachmentId: string;
+}): Promise<PupilLessonProgress | null> => {
+  try {
+    const params = new URLSearchParams();
+    params.set("submissionId", args.submissionId);
+    params.set("itemId", args.itemId);
+    params.set("attachmentId", args.attachmentId);
+    return await sendRequest<PupilLessonProgress | null>(
+      `/api/classroom/pupil/progress/submit?${params.toString()}`,
+      "GET",
+      undefined,
+      await getOakGCAuthHeaders(),
+    );
+  } catch (error) {
+    console.error("Failed to fetch pupil lesson progress:", error);
+    return null;
+  }
+};
+
 export default {
   getGoogleSignInUrl,
   verifySession,
   createAttachment,
   getAddOnContext,
   submitPupilProgress,
+  getPupilLessonProgress,
 };

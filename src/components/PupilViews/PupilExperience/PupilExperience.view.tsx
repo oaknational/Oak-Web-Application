@@ -47,6 +47,7 @@ import {
   mapToSubmitPupilProgress,
   type ClassroomContext,
 } from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
+import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -209,6 +210,11 @@ const PupilExperienceLayout = ({
 
   const searchParams = useSearchParams();
   const classroomContextRef = useRef<ClassroomContext | null>(null);
+  const [isFetchingClassroomContext, setIsFetchingClassroomContext] =
+    useState(false);
+  const [initialSectionResults, setInitialSectionResults] =
+    useState<LessonSectionResults>();
+  const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
 
   const fetchGoogleClassroomContext = async () => {
     const courseId = searchParams?.get("courseId");
@@ -218,6 +224,7 @@ const PupilExperienceLayout = ({
     if (!courseId || !itemId || !attachmentId) return;
 
     try {
+      setIsFetchingClassroomContext(true);
       const result: AddOnContextResponse | null =
         await googleClassroomApi.getAddOnContext({
           courseId,
@@ -235,9 +242,24 @@ const PupilExperienceLayout = ({
           courseId,
           itemId,
         };
+
+        const progressResult = await googleClassroomApi.getPupilLessonProgress({
+          submissionId,
+          itemId,
+          attachmentId,
+        });
+        if (!progressResult) return;
+        const mappedSectionResults =
+          mapPupilLessonProgressToSectionResults(progressResult);
+        if (Object.keys(mappedSectionResults).length > 0) {
+          setInitialSectionResults(mappedSectionResults);
+          setLessonEngineInstanceKey((value) => value + 1);
+        }
       }
     } catch {
       // Failed to get context - progress sync will be disabled
+    } finally {
+      setIsFetchingClassroomContext(false);
     }
   };
 
@@ -331,11 +353,8 @@ const PupilExperienceLayout = ({
     setTrackingSent(true);
   }
 
-  const declineIcon = isGoogleClassroomAssignment
-    ? ("cross" as const)
-    : undefined;
+  const declineIcon = isGoogleClassroomAssignment ? "cross" : undefined;
   const declineText = isGoogleClassroomAssignment ? "Exit lesson" : undefined;
-
   return (
     <PupilLayout
       seoProps={{
@@ -349,12 +368,15 @@ const PupilExperienceLayout = ({
     >
       <CookieConsentStyles />
       <LessonEngineProvider
+        key={lessonEngineInstanceKey}
         initialLessonReviewSections={availableSections}
         initialSection={initialSection}
+        initialSectionResults={initialSectionResults}
         onNext={isGoogleClassroomAssignment ? handleOnNext : undefined}
         onSectionResultUpdate={
           isGoogleClassroomAssignment ? handleOnNext : undefined
         }
+        isHydratingInitialProgress={isFetchingClassroomContext}
       >
         {hasAgeRestriction ? (
           <OakPupilJourneyContentGuidance
