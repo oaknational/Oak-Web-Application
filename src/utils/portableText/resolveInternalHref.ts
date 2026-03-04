@@ -14,13 +14,12 @@ export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
     case "aboutCorePage.whoWeAre":
       return resolveOakHref({ page: "about-who-we-are" });
     case "aboutCorePage.board":
-      return resolveOakHref({ page: "about-board" });
     case "aboutCorePage.leadership":
-      return resolveOakHref({ page: "about-leadership" });
+      return resolveOakHref({ page: "about-meet-the-team" });
     case "aboutCorePage.partners":
-      return resolveOakHref({ page: "about-partners" });
+      return resolveOakHref({ page: "about-oaks-curricula" });
     case "aboutCorePage.workWithUs":
-      return resolveOakHref({ page: "about-work-with-us" });
+      return resolveOakHref({ page: "about-get-involved" });
     case "planningCorePage":
       return resolveOakHref({ page: "lesson-planning" });
     case "supportCorePage":

@@ -1,3 +1,36 @@
+# [1.1013.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1012.0...v1.1013.0) (2026-03-04)
+
+
+### Bug Fixes
+
+* "page navigation" -> "page sections" ([0a51344](https://github.com/oaknational/Oak-Web-Application/commit/0a51344c13125d543d2196c6d029942b7f96309a))
+* added missing "aria-label" ([3bd9546](https://github.com/oaknational/Oak-Web-Application/commit/3bd95461b0e0f36ab293a7ea625975d1ba3c18bb))
+* mark props as Readonly<...> ([81e18d5](https://github.com/oaknational/Oak-Web-Application/commit/81e18d5e6b3f3f7463e3380285a768ddf138677d))
+
+
+### Features
+
+* about-us page sidenav improvement ([c784079](https://github.com/oaknational/Oak-Web-Application/commit/c784079eda64a2c668013d17a54f37ad401cb52e))
+* **LESQ-1837:** enable top nav with a hard coded flag ([72719c0](https://github.com/oaknational/Oak-Web-Application/commit/72719c063f2fec3240e6e9f2537766e201a3d1ac))
+
+# [1.1012.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1011.1...v1.1012.0) (2026-03-04)
+
+
+### Bug Fixes
+
+* add jest-styled-components to who-we-are test for stable snapshots ([74c54bc](https://github.com/oaknational/Oak-Web-Application/commit/74c54bc4bdbaa45c8c120dddbbd1703c45a66d9f))
+* add SSR About Us pages to sitemap via additionalPaths ([92f65c4](https://github.com/oaknational/Oak-Web-Application/commit/92f65c4d9a6dd17f5b78bfa7191e99d95208ea36))
+* correct SEO title and remove redundant wrapper in who-we-are ([f196dfd](https://github.com/oaknational/Oak-Web-Application/commit/f196dfd1c65baf17e8f9af208770348c212e26ac))
+* remove old about-us page view analytics tests ([902c4b2](https://github.com/oaknational/Oak-Web-Application/commit/902c4b287f248fb5cd19c3851bf61839e0845a37))
+* rewrite who-we-are test to match current page structure ([7af4a25](https://github.com/oaknational/Oak-Web-Application/commit/7af4a255f2ce191e92991c8571b33a4f06ce9934))
+* update topNav fixture to match live about-us navigation ([1e74528](https://github.com/oaknational/Oak-Web-Application/commit/1e74528dd8f2f2b9126cd15c6fb9273a150d0ac1))
+* update who-we-are snapshot for styled-components class changes ([3c4c4fd](https://github.com/oaknational/Oak-Web-Application/commit/3c4c4fdaa0a6445cc5a26d0a39ff0b93d75c4c08))
+
+
+### Features
+
+* add new About US URLs for Pa11y and Percy ([4a5676e](https://github.com/oaknational/Oak-Web-Application/commit/4a5676ee9ac4aa2cf74f0c47d8fe1c2ddc5bac08))
+
 ## [1.1011.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1011.0...v1.1011.1) (2026-03-03)
 
 

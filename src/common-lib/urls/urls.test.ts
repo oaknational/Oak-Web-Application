@@ -182,27 +182,24 @@ describe("urls.ts", () => {
         }),
       ).toBe("/teachers/key-stages/ks2/subjects");
     });
-    it("About us: Board", () => {
-      expect(resolveOakHref({ page: "about-board" })).toBe("/about-us/board");
-    });
     it("About us: Who we are", () => {
       expect(resolveOakHref({ page: "about-who-we-are" })).toBe(
         "/about-us/who-we-are",
       );
     });
-    it("About us: Leadership", () => {
-      expect(resolveOakHref({ page: "about-leadership" })).toBe(
-        "/about-us/leadership",
+    it("About us: Meet the team", () => {
+      expect(resolveOakHref({ page: "about-meet-the-team" })).toBe(
+        "/about-us/meet-the-team",
       );
     });
-    it("About us: Partners", () => {
-      expect(resolveOakHref({ page: "about-partners" })).toBe(
-        "/about-us/partners",
+    it("About us: Oak's curricula", () => {
+      expect(resolveOakHref({ page: "about-oaks-curricula" })).toBe(
+        "/about-us/oaks-curricula",
       );
     });
-    it("About us: Work with us", () => {
-      expect(resolveOakHref({ page: "about-work-with-us" })).toBe(
-        "/about-us/work-with-us",
+    it("About us: Get involved", () => {
+      expect(resolveOakHref({ page: "about-get-involved" })).toBe(
+        "/about-us/get-involved",
       );
     });
     it("Contact us", () => {
