@@ -21,6 +21,7 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
     unitCardsMock(props);
     return <div />;
   },
+  useGoogleClassroomAddonStore: jest.fn().mockReturnValue(null),
 }));
 
 describe("GoogleClassroomUnitCardsAnalytics", () => {

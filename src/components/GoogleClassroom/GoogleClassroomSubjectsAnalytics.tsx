@@ -6,6 +6,8 @@ import {
 } from "@oaknational/google-classroom-addon/ui";
 import type { Subject } from "@oaknational/google-classroom-addon/ui";
 
+import { getClientEnvironment } from "./getClientEnvironment";
+
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type Props = {
@@ -41,6 +43,7 @@ export function GoogleClassroomSubjectsAnalytics({
           engagementIntent: "refine",
           activeFilters: {},
           googleLoginHint,
+          clientEnvironment: getClientEnvironment(),
         });
       }}
     />

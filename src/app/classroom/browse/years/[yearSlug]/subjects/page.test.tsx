@@ -22,6 +22,7 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
     subjectsPageViewMock(props);
     return <div data-testid="subjects-view">Subjects</div>;
   },
+  useGoogleClassroomAddonStore: jest.fn().mockReturnValue(null),
 }));
 
 jest.mock("next/navigation", () => ({

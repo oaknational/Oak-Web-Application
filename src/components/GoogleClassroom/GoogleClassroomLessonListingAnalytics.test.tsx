@@ -25,6 +25,7 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
     lessonListingViewMock(props);
     return <div />;
   },
+  useGoogleClassroomAddonStore: jest.fn().mockReturnValue(null),
 }));
 
 const browseData = [

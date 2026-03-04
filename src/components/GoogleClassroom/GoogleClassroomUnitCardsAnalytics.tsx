@@ -6,6 +6,8 @@ import {
 } from "@oaknational/google-classroom-addon/ui";
 import type { Unit } from "@oaknational/google-classroom-addon/ui";
 
+import { getClientEnvironment } from "./getClientEnvironment";
+
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type Props = {
@@ -23,7 +25,6 @@ export function GoogleClassroomUnitCardsAnalytics({
   const googleLoginHint = useGoogleClassroomAddonStore(
     (state) => state.googleLoginHint,
   );
-
   return (
     <UnitCards
       units={units}
@@ -41,6 +42,7 @@ export function GoogleClassroomUnitCardsAnalytics({
           engagementIntent: "refine",
           activeFilters: {},
           googleLoginHint,
+          clientEnvironment: getClientEnvironment(),
         });
       }}
     />

@@ -9,6 +9,8 @@ import type {
   Programme,
 } from "@oaknational/google-classroom-addon/ui";
 
+import { getClientEnvironment } from "./getClientEnvironment";
+
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ComponentType, FilterType } from "@/browser-lib/avo/Avo";
 
@@ -80,6 +82,7 @@ export function GoogleClassroomOptionsAnalytics({
             pathway: factorType === "pathway" ? factor.factorSlug : undefined,
           },
           googleLoginHint,
+          clientEnvironment: getClientEnvironment(),
         });
       }}
     />

@@ -21,6 +21,7 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
     browseViewMock(props);
     return <div data-testid="browse-view">Browse</div>;
   },
+  useGoogleClassroomAddonStore: jest.fn().mockReturnValue(null),
 }));
 
 describe("src/app/classroom/browse/page", () => {

@@ -6,12 +6,15 @@ import {
 } from "@oaknational/google-classroom-addon/ui";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
 
 function BrowseGoogleClassroomPage() {
   const { track } = useAnalytics();
   const googleLoginHint = useGoogleClassroomAddonStore(
     (state) => state.googleLoginHint,
   );
+
+  const clientEnvironment = getClientEnvironment();
   const years: {
     yearSlug: string;
     yearDescription: string;
@@ -45,6 +48,7 @@ function BrowseGoogleClassroomPage() {
           engagementIntent: "refine",
           activeFilters: {},
           googleLoginHint,
+          clientEnvironment,
         });
       }}
     />

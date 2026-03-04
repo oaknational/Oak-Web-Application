@@ -11,6 +11,17 @@ const useSearchParamsMock = jest.fn();
 const googleSignInViewMock = jest.fn();
 const getGoogleSignInUrlMock = jest.fn();
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      classroomSignInStarted: jest.fn(),
+      classroomSignInCompleted: jest.fn(),
+      classroomAddOnOpened: jest.fn(),
+    },
+  }),
+}));
+
 jest.mock("next/navigation", () => ({
   __esModule: true,
   useRouter: () => useRouterMock(),

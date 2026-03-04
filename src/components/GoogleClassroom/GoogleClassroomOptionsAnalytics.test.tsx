@@ -21,6 +21,7 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
     optionsViewMock(props);
     return <div />;
   },
+  useGoogleClassroomAddonStore: jest.fn().mockReturnValue(null),
 }));
 
 const defaultProps = {

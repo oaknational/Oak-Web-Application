@@ -18,6 +18,7 @@ import {
   type ExamBoardValueType,
   type PathwayValueType,
 } from "@/browser-lib/avo/Avo";
+import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
 import type { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 
 type Props = {
@@ -52,6 +53,8 @@ export function GoogleClassroomLessonListingAnalytics({
     (state) => state.googleLoginHint ?? "",
   );
 
+  const clientEnvironment = getClientEnvironment();
+
   const lessonLookup = React.useMemo(
     () => new Map(browseData.map((item) => [item.lessonSlug, item])),
     [browseData],
@@ -85,6 +88,7 @@ export function GoogleClassroomLessonListingAnalytics({
           subjectTitle: programmeFields?.subject ?? "",
           subjectSlug: programmeFields?.subjectSlug ?? "",
           googleLoginHint,
+          clientEnvironment,
         });
       }}
       onLessonPreviewed={(lessonSlug) => {
@@ -106,6 +110,7 @@ export function GoogleClassroomLessonListingAnalytics({
           subjectTitle: programmeFields?.subject ?? "",
           subjectSlug: programmeFields?.subjectSlug ?? "",
           googleLoginHint,
+          clientEnvironment,
         });
       }}
     />

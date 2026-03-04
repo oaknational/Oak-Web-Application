@@ -85,6 +85,8 @@ const SubjectListingCardCountCardWithPathways: FC<
                   filterType: "Subject filter",
                   filterValue: subjectSlug,
                   activeFilters: { keyStage: [keyStageSlug] },
+                  googleLoginHint: null,
+                  clientEnvironment: null,
                 });
               }}
             >
