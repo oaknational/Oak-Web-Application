@@ -24,6 +24,8 @@ const mockLessonWithNullVideo: EYFSLesson = {
   video: { muxPlaybackId: null, title: null },
 };
 
+jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer");
+
 const renderCard = (lesson: EYFSLesson = mockLesson) =>
   renderWithTheme(
     <EYFSLessonGroupProvider>

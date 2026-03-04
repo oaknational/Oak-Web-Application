@@ -24,11 +24,14 @@ describe("CardLinkIcon", () => {
         title={"Plan a lesson"}
         titleTag={"h4"}
         background="mint"
-        page="about-board"
+        page="about-meet-the-team"
       />,
     );
 
-    expect(screen.getByRole("link")).toHaveAttribute("href", "/about-us/board");
+    expect(screen.getByRole("link")).toHaveAttribute(
+      "href",
+      "/about-us/meet-the-team",
+    );
   });
   it("Renders correct title ", () => {
     renderWithTheme(

@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
@@ -8,14 +8,11 @@ import { testAboutPageBaseData } from "./about-us.fixtures";
 
 import GetInvolved, {
   GetInvolvedPage,
-  getServerSideProps,
+  getStaticProps,
 } from "@/pages/about-us/get-involved";
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import CMSClient from "@/node-lib/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
-
-jest.mock("@/utils/isNewAboutUsPagesEnabled");
 jest.mock("../../../node-lib/cms");
 jest.mock("@mux/mux-player-react/lazy", () => {
   return forwardRef((props, ref) => {
@@ -66,32 +63,13 @@ describe("pages/about/get-involved.tsx", () => {
     expect(container).toMatchSnapshot();
   });
 
-  describe("getServerSideProps", () => {
-    it("should 404 when new page is not enabled", async () => {
-      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(false);
-
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-        res: {},
-        query: {},
-        params: {},
-      } as unknown as GetServerSidePropsContext);
-
-      expect(propsResult).toMatchObject({
-        notFound: true,
-      });
-    });
-
+  describe("getStaticProps", () => {
     it("should 404 when no data returned from CMS", async () => {
-      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       (CMSClient.newAboutGetInvolvedPage as jest.Mock).mockResolvedValue(null);
 
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-        res: {},
-        query: {},
+      const propsResult = await getStaticProps({
         params: {},
-      } as unknown as GetServerSidePropsContext);
+      } as unknown as GetStaticPropsContext);
 
       expect(propsResult).toMatchObject({
         notFound: true,
