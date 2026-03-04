@@ -49,7 +49,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
 import HeaderLesson from "@/components/TeacherComponents/LessonOverviewHeader";
-import { useCurrentSection } from "@/components/TeacherComponents/helpers/lessonHelpers/useCurrentSection";
+import { useCurrentSection } from "@/hooks/useCurrentSection";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
