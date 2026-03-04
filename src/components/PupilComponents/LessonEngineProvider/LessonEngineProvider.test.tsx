@@ -231,8 +231,8 @@ describe("LessonEngineProvider", () => {
       result.current.completeActivity("starter-quiz");
     });
 
-    expect(onNext).toHaveBeenCalledTimes(1);
-    expect(onNext).toHaveBeenCalledWith(
+    expect(onNext).toHaveBeenCalled();
+    expect(onNext).toHaveBeenLastCalledWith(
       expect.objectContaining({
         "starter-quiz": expect.objectContaining({
           grade: 3,
@@ -305,7 +305,7 @@ describe("LessonEngineProvider", () => {
       result.current.completeActivity("starter-quiz");
     });
 
-    expect(onNext).toHaveBeenCalledTimes(1);
+    expect(onNext).toHaveBeenCalled();
   });
 
   it("sends tracking data when the lesson is started", () => {

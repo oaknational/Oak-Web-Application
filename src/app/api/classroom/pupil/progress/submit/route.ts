@@ -1,18 +1,47 @@
 import { NextRequest, NextResponse } from "next/server";
 import { upsertPupilLessonProgressArgsSchema } from "@oaknational/google-classroom-addon/types";
 
-import {
-  createClassroomErrorReporter,
-  getOakGoogleClassroomAddon,
-  isOakGoogleClassroomException,
-} from "@/node-lib/google-classroom";
+import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
-const reportError = createClassroomErrorReporter("submit-pupil-progress");
+const hasAuthHeaders = (request: NextRequest) => {
+  const accessToken = request.headers.get("Authorization");
+  const session = request.headers.get("x-oakgc-session");
+  return { accessToken, session };
+};
+
+export async function GET(request: NextRequest) {
+  try {
+    const requestUrl = new URL(request.url);
+    const submissionId = requestUrl.searchParams.get("submissionId");
+    const attachmentId = requestUrl.searchParams.get("attachmentId");
+    const itemId = requestUrl.searchParams.get("itemId");
+    if (!submissionId || !attachmentId || !itemId) {
+      return NextResponse.json(
+        { error: "submissionId, attachmentId and itemId required" },
+        { status: 400 },
+      );
+    }
+
+    const oakClassroomClient = getOakGoogleClassroomAddon(request);
+    const result = await oakClassroomClient.getPupilLessonProgress(
+      submissionId,
+      attachmentId,
+      itemId,
+    );
+
+    return NextResponse.json(result ?? { lessonProgress: null });
+  } catch (e) {
+    console.error(JSON.stringify(e));
+    return NextResponse.json(
+      { error: "Failed to fetch pupil lesson progress" },
+      { status: 500 },
+    );
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const accessToken = request.headers.get("Authorization");
-    const session = request.headers.get("x-oakgc-session");
+    const { accessToken, session } = hasAuthHeaders(request);
 
     if (!session || !accessToken)
       return NextResponse.json(
@@ -41,16 +70,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(result, { status: 200 });
   } catch (e) {
     // Check if it's an OakGoogleClassroomException with submission state error
-    if (isOakGoogleClassroomException(e)) {
-      const errorObject = e.toObject();
-      reportError(errorObject);
-      return NextResponse.json(errorObject, { status: 403 });
+    if (
+      e &&
+      typeof e === "object" &&
+      "name" in e &&
+      (e as { name: string }).name === "OakGoogleClassroomException"
+    ) {
+      return NextResponse.json(e, { status: 403 });
     }
-
-    reportError(e);
-    return NextResponse.json(
-      { error: e instanceof Error ? e?.message : String(e) },
-      { status: 500 },
-    );
+    console.error(JSON.stringify(e));
+    return NextResponse.json({ error: e }, { status: 500 });
   }
 }

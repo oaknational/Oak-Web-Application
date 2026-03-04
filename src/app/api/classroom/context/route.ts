@@ -1,19 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
 
-import {
-  createClassroomErrorReporter,
-  getOakGoogleClassroomAddon,
-  isOakGoogleClassroomException,
-} from "@/node-lib/google-classroom";
+import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
 const getAddOnContextSchema = z.object({
   courseId: z.string(),
   itemId: z.string(),
   attachmentId: z.string(),
 });
-
-const reportError = createClassroomErrorReporter("addon-context");
 
 export async function POST(request: NextRequest) {
   try {
@@ -48,11 +42,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(context, { status: 200 });
   } catch (e) {
-    const errorObject = isOakGoogleClassroomException(e) ? e.toObject() : e;
-    reportError(errorObject);
-    return NextResponse.json(
-      { error: e instanceof Error ? e?.message : String(e) },
-      { status: 500 },
-    );
+    console.error(JSON.stringify(e));
+    return NextResponse.json({ error: e }, { status: 500 });
   }
 }
