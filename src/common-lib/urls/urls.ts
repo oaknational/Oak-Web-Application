@@ -1051,9 +1051,8 @@ const isEyfsAndGetSubject = (props: {
   }
 
   if (programmeSlug && isSlugEYFS(programmeSlug)) {
-    const extractedSubject = programmeSlug.match(
-      /^(.+)-foundation-early-years-foundation-stage/,
-    )?.[1];
+    const extractedSubject =
+      /^(.+)-foundation-early-years-foundation-stage/.exec(programmeSlug)?.[1];
     return { isEyfs: true, subjectSlug: extractedSubject };
   }
 
