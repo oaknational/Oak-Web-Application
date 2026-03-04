@@ -135,7 +135,7 @@ function SignInOrUpPage() {
       asideSlot={<RegistrationAside />}
       bannerSlot={formRendered ? <Banner /> : null}
     >
-      <SignIn withSignUp appearance={formAppearanceStyles} routing="hash" />
+      <SignIn withSignUp appearance={formAppearanceStyles} />
     </RegistrationLayout>
   );
 }
