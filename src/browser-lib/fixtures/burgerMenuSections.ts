@@ -48,8 +48,8 @@ export const burgerMenuSections: Array<AppHeaderBurgerMenuSection> = [
       },
       {
         linkTo: {
-          page: "subject-index",
-          keyStageSlug: "early-years-foundation-stage",
+          page: "eyfs-page",
+          subjectSlug: "maths",
         },
         text: "EYFS",
         new: false,
