@@ -54,11 +54,6 @@ jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
   },
 }));
 
-jest.mock("@/browser-lib/google-classroom/classroomUrl", () => ({
-  getSubmissionIdFromUrl: jest.fn(() => null),
-  getClassroomParamsFromUrl: jest.fn(() => null),
-}));
-
 const mockedUseAssignmentSearchParams =
   useAssignmentSearchParams as jest.MockedFunction<
     typeof useAssignmentSearchParams

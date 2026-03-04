@@ -1,6 +1,7 @@
 "use client";
 
 import { PupilLessonProgress } from "@oaknational/google-classroom-addon/dist/types";
+import { UpsertPupilLessonProgressArgs } from "@oaknational/google-classroom-addon/types";
 import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
 const getOakGCAuthHeaders = async (
@@ -192,10 +193,10 @@ const getAddOnContext = async (
 };
 
 const submitPupilProgress = async (
-  args: Record<string, unknown>,
+  args: UpsertPupilLessonProgressArgs,
 ): Promise<void> => {
   const headers = await getOakGCAuthHeaders(true);
-  await sendRequest<void, Record<string, unknown>>(
+  await sendRequest<void, UpsertPupilLessonProgressArgs>(
     "/api/classroom/pupil/progress/submit",
     "POST",
     args,
