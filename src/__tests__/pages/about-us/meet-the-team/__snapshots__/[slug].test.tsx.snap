@@ -3746,7 +3746,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       >
                         <a
                           class="c76 "
-                          href="/teachers/key-stages/early-years-foundation-stage/subjects"
+                          href="/eyfs/maths"
                         >
                           <span
                             class="c29"
