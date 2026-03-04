@@ -7,6 +7,8 @@ import {
   OakBox,
   OakTertiaryButton,
   OakTagFunctional,
+  OakUL,
+  OakLI,
 } from "@oaknational/oak-components";
 
 import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithAiDropdown";
@@ -112,11 +114,22 @@ export const LessonOverviewHeaderMobile: FC<
           {phonicsOutcome && <OakP $font={"body-2"}>{phonicsOutcome}</OakP>}
         </OakBox>
       </OakBox>
-      <LessonOverviewHeaderDownloadAllButton {...props} />
-      {shareButtons}
-      {!excludedFromTeachingMaterials && (
-        <LessonOverviewCreateWithAiDropdown {...props} />
-      )}
+      <OakUL
+        $display={"flex"}
+        $flexDirection={"column"}
+        $pa={"spacing-0"}
+        $gap={"spacing-24"}
+      >
+        <OakLI $listStyle={"none"}>
+          <LessonOverviewHeaderDownloadAllButton {...props} />
+        </OakLI>
+        {shareButtons}
+        {!excludedFromTeachingMaterials && (
+          <OakLI $listStyle={"none"}>
+            <LessonOverviewCreateWithAiDropdown {...props} />
+          </OakLI>
+        )}
+      </OakUL>
       <ComplexCopyrightRestrictionBanner
         isGeorestricted={geoRestricted}
         isLoginRequired={loginRequired}

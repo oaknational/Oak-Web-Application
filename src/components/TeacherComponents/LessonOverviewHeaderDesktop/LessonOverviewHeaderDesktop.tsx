@@ -9,6 +9,8 @@ import {
   OakBox,
   OakTertiaryButton,
   OakTagFunctional,
+  OakUL,
+  OakLI,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -143,17 +145,22 @@ export const LessonOverviewHeaderDesktop: FC<
                   )}
                 </OakBox>
               </OakBox>
-              <OakFlex
+              <OakUL
+                $display={"flex"}
                 $gap="spacing-16"
                 $alignItems={"flex-start"}
                 $flexWrap={"wrap"}
               >
-                <LessonOverviewHeaderDownloadAllButton {...props} />
+                <OakLI $listStyle={"none"}>
+                  <LessonOverviewHeaderDownloadAllButton {...props} />
+                </OakLI>
                 {shareButtons}
                 {!excludedFromTeachingMaterials && (
-                  <LessonOverviewCreateWithAiDropdown {...props} />
+                  <OakLI $listStyle={"none"}>
+                    <LessonOverviewCreateWithAiDropdown {...props} />
+                  </OakLI>
                 )}
-              </OakFlex>
+              </OakUL>
               <ComplexCopyrightRestrictionBanner
                 isGeorestricted={geoRestricted}
                 isLoginRequired={loginRequired}
