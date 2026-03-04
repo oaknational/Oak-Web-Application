@@ -4,22 +4,26 @@ function RenderChildren({ children }: Readonly<PropsWithChildren>) {
   return <>{children}</>;
 }
 
-module.exports = {
-  useUser() {
-    return {
-      isLoaded: true,
-      isSignedIn: false,
-      user: null,
-    };
-  },
+const defaultUseUserReturn = {
+  isLoaded: true,
+  isSignedIn: false,
+  user: null,
+};
 
+function useUser() {
+  return defaultUseUserReturn;
+}
+
+const clerkModule = {
+  useUser,
   UserButton: () => <div data-testid="clerk-user-button" />,
   useAuth() {
+    const { isLoaded, isSignedIn } = clerkModule.useUser();
     return {
       getToken: () => Promise.resolve(null),
       signOut: () => Promise.resolve(),
-      isLoaded: true,
-      isSignedIn: false,
+      isLoaded,
+      isSignedIn,
       userId: undefined,
       sessionId: undefined,
       actor: undefined,
@@ -31,8 +35,16 @@ module.exports = {
   },
   ClerkProvider: RenderChildren,
   SignUpButton: RenderChildren,
-  SignedIn: RenderChildren,
-  SignedOut: RenderChildren,
+  SignedIn: ({ children }: Readonly<PropsWithChildren>) => {
+    const { isLoaded, isSignedIn } = clerkModule.useUser();
+    return isLoaded && isSignedIn ? <>{children}</> : null;
+  },
+  SignedOut: ({ children }: Readonly<PropsWithChildren>) => {
+    const { isLoaded, isSignedIn } = clerkModule.useUser();
+    return isLoaded && !isSignedIn ? <>{children}</> : null;
+  },
   SignOutButton: RenderChildren,
   RedirectToSignUp: () => <div data-testid="clerk-redirect-to-sign-up" />,
 };
+
+module.exports = clerkModule;

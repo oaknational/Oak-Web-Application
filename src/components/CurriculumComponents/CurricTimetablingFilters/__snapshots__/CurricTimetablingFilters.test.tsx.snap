@@ -50,7 +50,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             Year group
           </legend>
           <div
-            class="sc-aXZVg sc-gEvEer sc-fxwrCY iLxEEC doeAUE geVANU"
+            class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
           >
             <span
               class="sc-kAyceB beiyRr"
@@ -81,7 +81,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             </label>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-fxwrCY iLxEEC doeAUE geVANU"
+            class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
           >
             <span
               class="sc-kAyceB beiyRr"
@@ -111,7 +111,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             </label>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-fxwrCY iLxEEC doeAUE geVANU"
+            class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
           >
             <span
               class="sc-kAyceB beiyRr"
@@ -170,7 +170,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
         </div>
       </div>
       <div
-        class="sc-aXZVg sc-gEvEer sc-YysOf cBeINY iDBIXi"
+        class="sc-aXZVg sc-gEvEer sc-fMMURN cBeINY iDBIXi"
         focusable="false"
       >
         <svg

@@ -65,6 +65,7 @@ export function MainMenuContent(
           external={true}
           title="AI Experiments"
           iconName="external"
+          aria-label="AI Experiments (this will open in a new tab)"
         />
       </OakFlex>
     </OakUL>
@@ -182,6 +183,9 @@ function MainMenuLink({
       iconName={iconName}
       href={href}
       target={external ? "_blank" : "_self"}
+      aria-label={
+        external ? `${title} (this will open in a new tab)` : undefined
+      }
       onClick={handleCloseHamburger}
     >
       {title}

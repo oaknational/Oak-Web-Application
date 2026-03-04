@@ -122,7 +122,9 @@ describe("SubNav (Pupils)", () => {
   it("renders Help link as a link element with external icon", () => {
     render(<SubNav {...defaultProps} />);
 
-    const helpLink = screen.getByRole("link", { name: "Help" });
+    const helpLink = screen.getByRole("link", {
+      name: "Help (this will open in a new tab)",
+    });
 
     expect(helpLink).toBeInTheDocument();
     expect(helpLink).toHaveAttribute(

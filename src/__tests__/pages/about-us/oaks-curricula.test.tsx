@@ -3,7 +3,6 @@ import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import OaksCurricula, {
@@ -11,8 +10,9 @@ import OaksCurricula, {
   getServerSideProps,
 } from "@/pages/about-us/oaks-curricula";
 import CMSClient from "@/node-lib/cms";
+import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
-jest.mock("@/node-lib/posthog/getFeatureFlag");
+jest.mock("@/utils/isNewAboutUsPagesEnabled");
 jest.mock("../../../node-lib/cms");
 
 const mockImage = {
@@ -145,7 +145,7 @@ describe("pages/about/oaks-curricula.tsx", () => {
 
   describe("getServerSideProps", () => {
     it("should 404 when not enabled", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(false);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(false);
       const propsResult = await getServerSideProps({
         req: { cookies: {} },
         res: {},
@@ -159,7 +159,7 @@ describe("pages/about/oaks-curricula.tsx", () => {
     });
 
     it("should 404 when CMS returns null", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       (CMSClient.oaksCurriculaPage as jest.Mock).mockResolvedValue(null);
       const propsResult = await getServerSideProps({
         req: { cookies: {} },

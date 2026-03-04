@@ -75,6 +75,7 @@ function MainMenuContent(
           iconName="external"
           onClick={props.onClick}
           href={resolveOakHref({ page: "help" })}
+          aria-label="Help using Oak (this will open in a new tab)"
         >
           Help using Oak
         </OakLeftAlignedButton>

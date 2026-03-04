@@ -23,7 +23,6 @@ import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { ENABLE_NEW_ABOUT_US } from "@/config/flags";
 
 export type AboutPageProps = {
   pageData: AboutWorkWithUsPage & { topNav: TopNavProps };
@@ -107,42 +106,33 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   context,
 ) => {
-  if (ENABLE_NEW_ABOUT_US) {
-    return {
-      redirect: {
-        destination: "/about-us/get-involved",
-        permanent: false,
-      },
-    };
-  } else {
-    return getPageProps({
-      page: "work-with-us::getStaticProps",
-      context,
-      getProps: async () => {
-        const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "work-with-us::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-        const aboutWorkWithUsPage = await CMSClient.aboutWorkWithUsPage({
-          previewMode: isPreviewMode,
-        });
+      const aboutWorkWithUsPage = await CMSClient.aboutWorkWithUsPage({
+        previewMode: isPreviewMode,
+      });
 
-        const topNavData = await curriculumApi2023.topNav();
+      const topNavData = await curriculumApi2023.topNav();
 
-        if (!aboutWorkWithUsPage || !topNavData) {
-          return {
-            notFound: true,
-          };
-        }
-
-        const results: GetStaticPropsResult<AboutPageProps> = {
-          props: {
-            pageData: { ...aboutWorkWithUsPage, topNav: topNavData },
-          },
+      if (!aboutWorkWithUsPage || !topNavData) {
+        return {
+          notFound: true,
         };
+      }
 
-        return results;
-      },
-    });
-  }
+      const results: GetStaticPropsResult<AboutPageProps> = {
+        props: {
+          pageData: { ...aboutWorkWithUsPage, topNav: topNavData },
+        },
+      };
+
+      return results;
+    },
+  });
 };
 
 export default AboutUsBoard;
