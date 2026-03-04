@@ -1,5 +1,5 @@
 import { z } from "zod";
-import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 
 import OakError from "@/errors/OakError";
 import errorReporter from "@/common-lib/error-reporter";
@@ -44,7 +44,7 @@ const hubspotContactsFetcher = async (url: string) => {
 };
 
 export const useFetchHubspotContactsSwr = () => {
-  const { data, isLoading } = useSWR(
+  const { data, isLoading } = useSWRImmutable(
     HUBSPOT_CONTACTS_ENDPOINT,
     hubspotContactsFetcher,
   );
