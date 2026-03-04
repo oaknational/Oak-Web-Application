@@ -8,9 +8,10 @@ import {
   OakToastProps,
 } from "@oaknational/oak-components";
 import { usePathname } from "next/navigation";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import { createContext, FC, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
+
+import { useIsNewTopnavEnabled } from "@/hooks/useIsNewTopnavEnabled";
 
 type OakNotificationsContext = {
   currentToastProps: OakToastProps | null;
@@ -37,8 +38,7 @@ export const OakNotificationsProvider: FC<{
   const [offsetTop, setOffsetTop] = useState<number>(82);
   const [id, setId] = useState(0);
   const path = usePathname();
-
-  const newTopNavEnabled = useFeatureFlagEnabled("teachers-new-top-nav");
+  const newTopNavEnabled = useIsNewTopnavEnabled();
 
   useEffect(() => {
     let observer: IntersectionObserver | null = null;
