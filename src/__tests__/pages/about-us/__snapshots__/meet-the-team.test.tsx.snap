@@ -303,17 +303,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   position: sticky;
   top: 1.25rem;
   min-width: 11.25rem;
+  padding-bottom: 5rem;
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c129 {
-  padding: 3rem;
-  background: #dff9de;
-  font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c138 {
+.c133 {
   position: relative;
   width: 1.5rem;
   min-width: 1.5rem;
@@ -324,20 +319,20 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c140 {
+.c136 {
   padding: 1rem;
   background: #fff7cc;
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c143 {
+.c140 {
   padding: 0rem;
   margin: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c146 {
+.c143 {
   width: 100%;
   height: 100%;
   background: #ffffff;
@@ -345,21 +340,21 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c148 {
+.c145 {
   height: 100%;
   padding: 1rem;
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c150 {
+.c147 {
   height: 100%;
   padding-top: 0rem;
   padding-bottom: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c156 {
+.c153 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -370,20 +365,20 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c158 {
+.c155 {
   overflow: hidden;
   padding-top: 4.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
   overflow: hidden;
 }
 
-.c159 {
+.c156 {
   position: relative;
   background: #bef2bd;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c160 {
+.c157 {
   position: absolute;
   top: 0rem;
   left: 0rem;
@@ -398,26 +393,26 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c161 {
+.c158 {
   position: relative;
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c166 {
+.c163 {
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c168 {
+.c165 {
   padding: 1rem;
   background: #ffffff;
   border-radius: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c171 {
+.c168 {
   position: relative;
   width: 3.5rem;
   min-width: 3.5rem;
@@ -427,7 +422,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c172 {
+.c169 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 700;
   font-size: 1.125rem;
@@ -438,7 +433,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c174 {
+.c171 {
   position: relative;
   width: 2rem;
   min-width: 2rem;
@@ -448,19 +443,19 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c175 {
+.c172 {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
   background: #dff9de;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c181 {
+.c178 {
   margin-bottom: 1.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c183 {
+.c180 {
   position: relative;
   width: 3.5rem;
   min-width: 3.5rem;
@@ -474,36 +469,36 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c187 {
+.c184 {
   margin-top: 0.75rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c203 {
+.c200 {
   position: relative;
   margin-top: 2rem;
   background: #ffffff;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c206 {
+.c203 {
   position: absolute;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c208 {
+.c205 {
   padding-top: 0.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c212 {
+.c209 {
   position: relative;
   width: 100%;
   height: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c217 {
+.c214 {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -513,13 +508,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   z-index: 0;
 }
 
-.c218 {
+.c215 {
   position: relative;
   height: 0.25rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c219 {
+.c216 {
   width: 100%;
   max-width: 30rem;
   padding-left: 1rem;
@@ -531,12 +526,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c222 {
+.c219 {
   margin-top: 2rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c224 {
+.c221 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
@@ -548,12 +543,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c228 {
+.c225 {
   margin-top: 0rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c230 {
+.c227 {
   position: relative;
   width: 10rem;
   height: 4rem;
@@ -562,7 +557,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c231 {
+.c228 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -570,14 +565,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c233 {
+.c230 {
   position: relative;
   width: 100%;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c235 {
+.c232 {
   width: 100%;
   padding-top: 0.75rem;
   margin-top: 2rem;
@@ -585,12 +580,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c237 {
+.c234 {
   display: none;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c241 {
+.c238 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -608,7 +603,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c243 {
+.c240 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -626,7 +621,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   z-index: -1;
 }
 
-.c245 {
+.c242 {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
@@ -634,7 +629,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   z-index: 299;
 }
 
-.c246 {
+.c243 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -642,13 +637,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c247 {
+.c244 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c248 {
+.c245 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -656,7 +651,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c250 {
+.c247 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -667,7 +662,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c253 {
+.c250 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1021,18 +1016,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 0rem;
 }
 
-.c130 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.c136 {
+.c131 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1047,7 +1031,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   column-gap: 1rem;
 }
 
-.c139 {
+.c135 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1062,7 +1046,18 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 2rem;
 }
 
-.c151 {
+.c137 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.c148 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1077,7 +1072,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c154 {
+.c151 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1092,7 +1087,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c155 {
+.c152 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1103,7 +1098,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   align-items: center;
 }
 
-.c162 {
+.c159 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1114,7 +1109,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 2rem;
 }
 
-.c169 {
+.c166 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1129,7 +1124,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c173 {
+.c170 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1140,7 +1135,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c182 {
+.c179 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1154,7 +1149,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   align-items: center;
 }
 
-.c220 {
+.c217 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1172,7 +1167,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c229 {
+.c226 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1183,7 +1178,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   justify-content: left;
 }
 
-.c232 {
+.c229 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1199,7 +1194,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c236 {
+.c233 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1217,7 +1212,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   justify-content: flex-start;
 }
 
-.c238 {
+.c235 {
   display: none;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1230,7 +1225,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c249 {
+.c246 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1245,7 +1240,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1.5rem;
 }
 
-.c252 {
+.c249 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1313,7 +1308,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c137 {
+.c132 {
   color: #222222;
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
@@ -1325,7 +1320,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c198 {
+.c195 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 400;
   font-size: 1rem;
@@ -1336,7 +1331,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c210 {
+.c207 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -1347,7 +1342,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c251 {
+.c248 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
@@ -1471,7 +1466,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   cursor: default;
 }
 
-.c213 {
+.c210 {
   background: none;
   color: inherit;
   border: none;
@@ -1494,12 +1489,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c213:disabled {
+.c210:disabled {
   pointer-events: none;
   cursor: default;
 }
 
-.c254 {
+.c251 {
   background: none;
   color: inherit;
   border: none;
@@ -1521,7 +1516,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c254:disabled {
+.c251:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -1542,13 +1537,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   object-fit: contain;
 }
 
-.c242 {
+.c239 {
   -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   filter: brightness(0) saturate(100%) invert(85%) sepia(7%) saturate(1206%) hue-rotate(70deg) brightness(110%) contrast(90%);
   object-fit: fill;
 }
 
-.c244 {
+.c241 {
   -webkit-filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   filter: brightness(0) saturate(100%) invert(95%) sepia(3%) saturate(1596%) hue-rotate(279deg) brightness(95%) contrast(87%);
   object-fit: fill;
@@ -1641,14 +1636,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: none;
 }
 
-.c214 {
+.c211 {
   position: relative;
   width: 100%;
   height: 100%;
   display: inline-block;
 }
 
-.c214:hover {
+.c211:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #ffffff;
@@ -1656,27 +1651,27 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   border-color: #575757;
 }
 
-.c214:hover [data-state="selected"] {
+.c211:hover [data-state="selected"] {
   display: none;
 }
 
-.c214:active {
+.c211:active {
   background: #222222;
   border-color: #222222;
   color: #ffffff;
 }
 
-.c214:active [data-state="selected"] {
+.c211:active [data-state="selected"] {
   display: none;
 }
 
-.c214:disabled {
+.c211:disabled {
   background: #808080;
   border-color: #808080;
   color: #ffffff;
 }
 
-.c214:disabled [data-state="selected"] {
+.c211:disabled [data-state="selected"] {
   display: none;
 }
 
@@ -1770,19 +1765,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c131 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
-  letter-spacing: 0.0115rem;
-  color: #575757;
-}
-
-.c141 {
+.c138 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1793,7 +1776,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c152 {
+.c149 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.25rem;
@@ -1804,7 +1787,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c163 {
+.c160 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1.5rem;
@@ -1816,7 +1799,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   text-align: center;
 }
 
-.c223 {
+.c220 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1838,7 +1821,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: revert;
 }
 
-.c133 {
+.c128 {
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -1846,7 +1829,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: revert;
 }
 
-.c226 {
+.c223 {
   margin-top: 0.75rem;
   display: revert;
   font-family: --var(google-font),Lexend,sans-serif;
@@ -1866,7 +1849,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115rem;
 }
 
-.c142 {
+.c139 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1.125rem;
@@ -1877,17 +1860,17 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c153 {
+.c150 {
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c185 {
+.c182 {
   font-family: --var(google-font),Lexend,sans-serif;
   margin-right: 0rem;
   margin-bottom: 1.5rem;
 }
 
-.c215 {
+.c212 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -1900,7 +1883,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   margin-top: 0rem;
 }
 
-.c216 {
+.c213 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -1912,7 +1895,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   margin-top: 0rem;
 }
 
-.c239 {
+.c236 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
@@ -1923,7 +1906,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c240 {
+.c237 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.75rem;
@@ -1934,7 +1917,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c157 {
+.c154 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -1945,7 +1928,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c225 {
+.c222 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -1956,7 +1939,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c132 {
+.c127 {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -2016,7 +1999,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #808080;
 }
 
-.c227 {
+.c224 {
   display: inline;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -2039,24 +2022,24 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #222222;
 }
 
-.c227:focus-visible {
+.c224:focus-visible {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c227:visited {
+.c224:visited {
   color: #222222;
 }
 
-.c227:active {
+.c224:active {
   color: #222222;
 }
 
-.c227[disabled] {
+.c224[disabled] {
   cursor: not-allowed;
   color: #808080;
 }
 
-.c144 {
+.c141 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
@@ -2066,13 +2049,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
 }
 
-.c179 {
+.c176 {
   display: grid;
   grid-template-columns: repeat(12,1fr);
   width: 100%;
 }
 
-.c180 {
+.c177 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2081,7 +2064,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   grid-row: span 1;
 }
 
-.c221 {
+.c218 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2090,57 +2073,52 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   grid-row: span 1;
 }
 
-.c147 {
+.c144 {
   box-shadow: none;
 }
 
-.c147:has(a:hover,button:hover) {
+.c144:has(a:hover,button:hover) {
   background-color: #f2f2f2;
   box-shadow: none;
 }
 
-.c147:has( a, button) {
+.c144:has( a, button) {
   border-radius: 0.5rem;
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c147:has( a, button)  a,
-.c147:has( a, button) button {
+.c144:has( a, button)  a,
+.c144:has( a, button) button {
   outline: none;
 }
 
-.c147:has(a:active,button:active) {
+.c144:has(a:active,button:active) {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c167 {
+.c164 {
   box-shadow: none;
 }
 
-.c167:has(a:hover,button:hover) {
+.c164:has(a:hover,button:hover) {
   box-shadow: none;
 }
 
-.c167:has( a, button) {
+.c164:has( a, button) {
   border-radius: 0.5rem;
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
 }
 
-.c167:has( a, button)  a,
-.c167:has( a, button) button {
+.c164:has( a, button)  a,
+.c164:has( a, button) button {
   outline: none;
 }
 
-.c167:has(a:active,button:active) {
+.c164:has(a:active,button:active) {
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%),0.25rem 0.25rem 0 rgba(87,87,87,100%);
 }
 
-.c128 {
-  position: absolute;
-  top: 0;
-}
-
-.c149 {
+.c146 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2148,7 +2126,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   gap: 1rem;
 }
 
-.c149:hover h3 {
+.c146:hover h3 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
@@ -2159,6 +2137,37 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 
 .c30:focus-visible .oak-save-count {
   box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c129 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  outline: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-column-gap: 1rem;
+  column-gap: 1rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
+}
+
+.c129:focus-visible {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%), 0 0 0 0.3rem rgba(87,87,87,100%);
+  border-color: transparent;
+  border-radius: 4px;
 }
 
 .c134 {
@@ -2192,15 +2201,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   border-radius: 4px;
 }
 
-.c135 {
+.c130 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-}
-
-.c127 {
-  outline: none;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .c2 {
@@ -2235,7 +2242,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   height: 63px;
 }
 
-.c177 {
+.c174 {
   position: relative;
   padding: 1.5rem;
   padding-left: 1.5rem;
@@ -2251,27 +2258,52 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: flex;
 }
 
-.c177::-webkit-scrollbar-track {
+.c174::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c177::-webkit-scrollbar {
+.c174::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c177::-webkit-scrollbar-thumb {
+.c174::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: #999999;
+}
+
+.c186 {
+  width: 100%;
+  margin-bottom: 2rem;
+  background-color: #fff;
+  color: #222222;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c186::-webkit-scrollbar-track {
+  border-radius: 15px;
+  background-color: #ffffff;
+}
+
+.c186::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 15px;
+  background-color: #ffffff;
+}
+
+.c186::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
 
 .c189 {
+  position: relative;
   width: 100%;
-  margin-bottom: 2rem;
-  background-color: #fff;
-  color: #222222;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2294,32 +2326,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   background-color: #999999;
 }
 
-.c192 {
-  position: relative;
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c192::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c192::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c192::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
-.c194 {
+.c191 {
   position: absolute;
   display: -webkit-box;
   display: -webkit-flex;
@@ -2327,18 +2334,18 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: flex;
 }
 
-.c194::-webkit-scrollbar-track {
+.c191::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c194::-webkit-scrollbar {
+.c191::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c194::-webkit-scrollbar-thumb {
+.c191::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
@@ -2453,7 +2460,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   text-decoration: underline;
 }
 
-.c186 {
+.c183 {
   overflow-wrap: break-word;
   display: inline;
   -webkit-text-decoration: underline;
@@ -2461,27 +2468,27 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #0D24C4;
 }
 
-.c186::-webkit-scrollbar-track {
+.c183::-webkit-scrollbar-track {
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c186::-webkit-scrollbar {
+.c183::-webkit-scrollbar {
   width: 10px;
   border-radius: 15px;
   background-color: #ffffff;
 }
 
-.c186::-webkit-scrollbar-thumb {
+.c183::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
 }
 
-.c186:hover {
+.c183:hover {
   cursor: pointer;
 }
 
-.c186:hover {
+.c183:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
@@ -2853,7 +2860,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c178 {
+.c175 {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -2863,7 +2870,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   flex-grow: 1;
 }
 
-.c190 {
+.c187 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2964,7 +2971,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   display: block;
 }
 
-.c234 {
+.c231 {
   height: 87px;
   width: 77px;
   margin-top: 2rem;
@@ -2975,16 +2982,16 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   width: auto;
 }
 
-.c170:hover {
+.c167:hover {
   box-shadow: 2px 2px 0 0 #ffe555;
 }
 
-.c165 {
+.c162 {
   padding: 0;
   margin: 0;
 }
 
-.c164 {
+.c161 {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -2996,7 +3003,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   grid-template-columns: repeat(3,1fr);
 }
 
-.c193 {
+.c190 {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -3008,7 +3015,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   transition: all 0.3s ease;
 }
 
-.c199 {
+.c196 {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -3019,32 +3026,32 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   font-family: fontFamily;
 }
 
-.c199::-webkit-input-placeholder {
+.c196::-webkit-input-placeholder {
   color: #575757;
 }
 
-.c199::-moz-placeholder {
+.c196::-moz-placeholder {
   color: #575757;
 }
 
-.c199:-ms-input-placeholder {
+.c196:-ms-input-placeholder {
   color: #575757;
 }
 
-.c199::placeholder {
+.c196::placeholder {
   color: #575757;
 }
 
-.c199::-webkit-search-decoration,
-.c199::-webkit-search-cancel-button,
-.c199::-webkit-search-results-button,
-.c199::-webkit-search-results-decoration {
+.c196::-webkit-search-decoration,
+.c196::-webkit-search-cancel-button,
+.c196::-webkit-search-results-button,
+.c196::-webkit-search-results-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
-.c196 {
+.c193 {
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.25rem;
@@ -3054,7 +3061,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115em;
 }
 
-.c202 {
+.c199 {
   display: none;
   position: absolute;
   bottom: -4px;
@@ -3067,7 +3074,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   z-index: 1;
 }
 
-.c197 {
+.c194 {
   position: relative;
   padding: 4px 8px;
   -webkit-transform: rotate(-2deg) translateY(-16px) translateX(8px);
@@ -3078,16 +3085,16 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #222222;
 }
 
-.c191:focus-within .c195 {
+.c188:focus-within .c192 {
   background: #374cf1;
   color: #fff;
 }
 
-.c191:focus-within .c201 {
+.c188:focus-within .c198 {
   display: inline;
 }
 
-.c200 {
+.c197 {
   color: #222222;
   height: 60px;
   border-radius: 8px;
@@ -3103,7 +3110,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   outline: none;
 }
 
-.c200::-webkit-input-placeholder {
+.c197::-webkit-input-placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: fontFamily;
@@ -3111,7 +3118,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   opacity: 1;
 }
 
-.c200::-moz-placeholder {
+.c197::-moz-placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: fontFamily;
@@ -3119,7 +3126,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   opacity: 1;
 }
 
-.c200:-ms-input-placeholder {
+.c197:-ms-input-placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: fontFamily;
@@ -3127,7 +3134,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   opacity: 1;
 }
 
-.c200::placeholder {
+.c197::placeholder {
   font-size: 16px;
   font-weight: 300;
   font-family: fontFamily;
@@ -3135,40 +3142,40 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   opacity: 1;
 }
 
-.c200:valid:not([value=""]) {
+.c197:valid:not([value=""]) {
   border-color: #2d2d2d;
 }
 
-.c200:valid:not([value=""])::-webkit-input-placeholder {
+.c197:valid:not([value=""])::-webkit-input-placeholder {
   font-size: 16px;
   color: #575757;
 }
 
-.c200:valid:not([value=""])::-moz-placeholder {
+.c197:valid:not([value=""])::-moz-placeholder {
   font-size: 16px;
   color: #575757;
 }
 
-.c200:valid:not([value=""]):-ms-input-placeholder {
+.c197:valid:not([value=""]):-ms-input-placeholder {
   font-size: 16px;
   color: #575757;
 }
 
-.c200:valid:not([value=""])::placeholder {
+.c197:valid:not([value=""])::placeholder {
   font-size: 16px;
   color: #575757;
 }
 
-.c205 {
+.c202 {
   display: none;
 }
 
-.c204:focus-within .c195 {
+.c201:focus-within .c192 {
   background: #374cf1;
   color: #fff;
 }
 
-.c207 {
+.c204 {
   color: #222222;
   height: 60px;
   padding-left: 16px;
@@ -3195,23 +3202,23 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   color: #575757;
 }
 
-.c209 {
+.c206 {
   max-width: calc(100% - 20px);
 }
 
-.c211 {
+.c208 {
   white-space: nowrap;
   text-overflow: ellipsis;
   min-width: 0;
   overflow: hidden;
 }
 
-.c188 {
+.c185 {
   width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c184 {
+.c181 {
   font-weight: 600;
   font-size: 1.5rem;
   line-height: 2rem;
@@ -3221,12 +3228,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   letter-spacing: 0.0115em;
 }
 
-.c176 {
+.c173 {
   max-width: 100%;
   justify-self: center;
 }
 
-.c145 {
+.c142 {
   list-style: none;
 }
 
@@ -3362,73 +3369,61 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c129 {
-    padding: 0rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c129 {
-    background: #ffffff;
-  }
-}
-
-@media (min-width:750px) {
-  .c138 {
+  .c133 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c140 {
+  .c136 {
     padding: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c140 {
+  .c136 {
     padding: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c156 {
+  .c153 {
     font-weight: 300;
   }
 }
 
 @media (min-width:1280px) {
-  .c156 {
+  .c153 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c156 {
+  .c153 {
     font-size: 1.125rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c156 {
+  .c153 {
     font-size: 1.125rem;
   }
 }
 
 @media (min-width:750px) {
-  .c156 {
+  .c153 {
     line-height: 1.75rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c156 {
+  .c153 {
     line-height: 1.75rem;
   }
 }
 
 @media (min-width:750px) {
-  .c156 {
+  .c153 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3437,7 +3432,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c156 {
+  .c153 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3446,13 +3441,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c160 {
+  .c157 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c160 {
+  .c157 {
     -webkit-transform: scale(1.1) translateX(-0.65%) translateY(4%);
     -ms-transform: scale(1.1) translateX(-0.65%) translateY(4%);
     transform: scale(1.1) translateX(-0.65%) translateY(4%);
@@ -3460,7 +3455,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c160 {
+  .c157 {
     -webkit-transform: scale(1.4) translateY(4%);
     -ms-transform: scale(1.4) translateY(4%);
     transform: scale(1.4) translateY(4%);
@@ -3468,67 +3463,67 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c161 {
+  .c158 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c161 {
+  .c158 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c161 {
+  .c158 {
     padding-bottom: 5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c161 {
+  .c158 {
     padding-bottom: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c219 {
+  .c216 {
     max-width: 80rem;
   }
 }
 
 @media (min-width:750px) {
-  .c219 {
+  .c216 {
     padding-top: 5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c222 {
+  .c219 {
     margin-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c228 {
+  .c225 {
     margin-top: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c231 {
+  .c228 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c235 {
+  .c232 {
     padding-top: 0rem;
   }
 }
 
 @media (min-width:750px) {
-  .c237 {
+  .c234 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3537,13 +3532,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c241 {
+  .c238 {
     display: block;
   }
 }
 
 @media (min-width:750px) {
-  .c241 {
+  .c238 {
     -webkit-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     -ms-transform: translate(25%,25%) scale(0.7) rotate(-10deg);
     transform: translate(25%,25%) scale(0.7) rotate(-10deg);
@@ -3551,7 +3546,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c241 {
+  .c238 {
     -webkit-transform: translate(25%,15%) rotate(-10deg);
     -ms-transform: translate(25%,15%) rotate(-10deg);
     transform: translate(25%,15%) rotate(-10deg);
@@ -3559,55 +3554,55 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c243 {
+  .c240 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c248 {
+  .c245 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c248 {
+  .c245 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c248 {
+  .c245 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c248 {
+  .c245 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c250 {
+  .c247 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c250 {
+  .c247 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c250 {
+  .c247 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c250 {
+  .c247 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3700,7 +3695,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c136 {
+  .c131 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -3708,38 +3703,38 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c136 {
+  .c131 {
     -webkit-column-gap: 0.25rem;
     column-gap: 0.25rem;
   }
 }
 
 @media (min-width:750px) {
-  .c139 {
+  .c135 {
     gap: 3.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c139 {
+  .c135 {
     gap: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c162 {
+  .c159 {
     gap: 3.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c162 {
+  .c159 {
     gap: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c229 {
+  .c226 {
     -webkit-box-pack: right;
     -webkit-justify-content: right;
     -ms-flex-pack: right;
@@ -3748,13 +3743,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c232 {
+  .c229 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c236 {
+  .c233 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3762,7 +3757,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c236 {
+  .c233 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -3771,7 +3766,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c236 {
+  .c233 {
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
@@ -3780,7 +3775,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c238 {
+  .c235 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3789,7 +3784,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c249 {
+  .c246 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -3797,7 +3792,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c249 {
+  .c246 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3805,7 +3800,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c249 {
+  .c246 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -3814,7 +3809,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c249 {
+  .c246 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -3823,19 +3818,19 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c249 {
+  .c246 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c249 {
+  .c246 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c252 {
+  .c249 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -3843,7 +3838,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c252 {
+  .c249 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -3851,7 +3846,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c252 {
+  .c249 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -3859,31 +3854,31 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c252 {
+  .c249 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c251 {
+  .c248 {
     font-weight: 700;
   }
 }
 
 @media (min-width:750px) {
-  .c251 {
+  .c248 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c251 {
+  .c248 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c251 {
+  .c248 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -3946,43 +3941,43 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c141 {
+  .c138 {
     font-weight: 600;
   }
 }
 
 @media (min-width:1280px) {
-  .c141 {
+  .c138 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c141 {
+  .c138 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c141 {
+  .c138 {
     font-size: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c141 {
+  .c138 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c141 {
+  .c138 {
     line-height: 3rem;
   }
 }
 
 @media (min-width:750px) {
-  .c141 {
+  .c138 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -3991,7 +3986,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c141 {
+  .c138 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -4000,43 +3995,43 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c163 {
+  .c160 {
     font-weight: 600;
   }
 }
 
 @media (min-width:1280px) {
-  .c163 {
+  .c160 {
     font-weight: 600;
   }
 }
 
 @media (min-width:750px) {
-  .c163 {
+  .c160 {
     font-size: 2rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c163 {
+  .c160 {
     font-size: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c163 {
+  .c160 {
     line-height: 2.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c163 {
+  .c160 {
     line-height: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c163 {
+  .c160 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -4045,7 +4040,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c163 {
+  .c160 {
     -webkit-letter-spacing: 0.0115rem;
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
@@ -4108,49 +4103,49 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c185 {
+  .c182 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c157 {
+  .c154 {
     font-weight: 300;
   }
 }
 
 @media (min-width:1280px) {
-  .c157 {
+  .c154 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c157 {
+  .c154 {
     font-size: 1.125rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c157 {
+  .c154 {
     font-size: 1.125rem;
   }
 }
 
 @media (min-width:750px) {
-  .c157 {
+  .c154 {
     line-height: 1.75rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c157 {
+  .c154 {
     line-height: 1.75rem;
   }
 }
 
 @media (min-width:750px) {
-  .c157 {
+  .c154 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -4159,7 +4154,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c157 {
+  .c154 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -4177,8 +4172,8 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (hover:hover) {
-  .c227:hover,
-  .c227:visited:hover {
+  .c224:hover,
+  .c224:visited:hover {
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
@@ -4186,14 +4181,55 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c180 {
+  .c177 {
     grid-column: span 6;
   }
 }
 
 @media (min-width:750px) {
-  .c221 {
+  .c218 {
     grid-column: span 3;
+  }
+}
+
+@media (min-width:750px) {
+  .c129 {
+    border-left: 4px solid #222222;
+  }
+
+  .c129:hover {
+    -webkit-text-decoration: underline;
+    text-decoration: underline;
+    border-color: #575757;
+  }
+}
+
+@media (min-width:750px) {
+  .c129 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+@media (min-width:750px) {
+  .c129 {
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+  }
+}
+
+@media (min-width:750px) {
+  .c129 {
+    padding-left: 0.75rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c129 {
+    padding-right: 0.75rem;
   }
 }
 
@@ -4239,13 +4275,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c177 {
+  .c174 {
     padding-top: 2.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c177 {
+  .c174 {
     padding-bottom: 2.5rem;
   }
 }
@@ -4287,19 +4323,19 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 }
 
 @media (max-width:800px) {
-  .c164 {
+  .c161 {
     grid-template-columns: repeat(1,1fr);
   }
 }
 
 @media (max-width:750px) {
-  .c200 {
+  .c197 {
     font-size: 16px;
   }
 }
 
 @media (min-width:750px) {
-  .c176 {
+  .c173 {
     max-width: 870px;
   }
 }
@@ -5968,186 +6004,169 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
               <div
                 class="c124"
               >
-                <div
+                <nav
+                  aria-label="page sections"
                   class="c126"
                 >
-                  <nav
-                    aria-labelledby="side-menu-header"
+                  <ul
                     class="c127"
                   >
-                    <span
+                    <li
                       class="c128"
-                      id=""
-                    />
-                    <div
-                      class="c129 c130"
                     >
-                      <h2
-                        class="c131"
-                        id="side-menu-header"
+                      <a
+                        aria-current="true"
+                        class="c129 c130"
+                        href="#our-leadership"
                       >
-                        Page sections
-                      </h2>
-                      <ul
-                        class="c132"
+                        <div
+                          class="c11 c131"
+                        >
+                          <span
+                            class="c132"
+                          >
+                            Our leadership
+                          </span>
+                        </div>
+                        <span
+                          class="c133"
+                        >
+                          <img
+                            alt=""
+                            class="c34"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </a>
+                    </li>
+                    <li
+                      class="c128"
+                    >
+                      <a
+                        class="c134 c130"
+                        href="#our-board"
                       >
-                        <li
+                        <div
+                          class="c11 c131"
+                        >
+                          <span
+                            class="c132"
+                          >
+                            Our board
+                          </span>
+                        </div>
+                        <span
                           class="c133"
                         >
-                          <a
-                            class="c134 c135"
-                            href="#our-leadership"
+                          <img
+                            alt=""
+                            class="c34"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </a>
+                    </li>
+                    <li
+                      class="c128"
+                    >
+                      <a
+                        class="c134 c130"
+                        href="#documents"
+                      >
+                        <div
+                          class="c11 c131"
+                        >
+                          <span
+                            class="c132"
                           >
-                            <div
-                              class="c11 c136"
-                            >
-                              <span
-                                class="c137"
-                              >
-                                Our leadership
-                              </span>
-                            </div>
-                            <span
-                              class="c138"
-                            >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </span>
-                          </a>
-                        </li>
-                        <li
+                            Documents
+                          </span>
+                        </div>
+                        <span
                           class="c133"
                         >
-                          <a
-                            class="c134 c135"
-                            href="#our-board"
-                          >
-                            <div
-                              class="c11 c136"
-                            >
-                              <span
-                                class="c137"
-                              >
-                                Our board
-                              </span>
-                            </div>
-                            <span
-                              class="c138"
-                            >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </span>
-                          </a>
-                        </li>
-                        <li
-                          class="c133"
-                        >
-                          <a
-                            class="c134 c135"
-                            href="#documents"
-                          >
-                            <div
-                              class="c11 c136"
-                            >
-                              <span
-                                class="c137"
-                              >
-                                Documents
-                              </span>
-                            </div>
-                            <span
-                              class="c138"
-                            >
-                              <img
-                                alt=""
-                                class="c34"
-                                data-nimg="fill"
-                                decoding="async"
-                                loading="lazy"
-                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                              />
-                            </span>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </nav>
-                </div>
+                          <img
+                            alt=""
+                            class="c34"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
               </div>
               <div
-                class="c11 c139"
+                class="c11 c135"
               >
                 <div
-                  class="c140"
+                  class="c136"
                   id="our-leadership"
                 >
                   <div
                     class="c11 c72"
                   >
                     <div
-                      class="c11 c130"
+                      class="c11 c137"
                     >
                       <h2
-                        class="c141"
+                        class="c138"
                       >
                         Our leadership
                       </h2>
                       <p
-                        class="c142"
+                        class="c139"
                       >
                         Our leadership team brings together experts to deliver the best support to teachers and value for money for the public.
                       </p>
                     </div>
                     <ul
-                      class="c143 c144"
+                      class="c140 c141"
                     >
                       <li
-                        class="c145"
+                        class="c142"
                       >
                         <div
-                          class="c146 c147"
+                          class="c143 c144"
                         >
                           <a
-                            class="c148 c130 c149"
+                            class="c145 c137 c146"
                             href="/about-us/meet-the-team/ed-southall?section=leadership"
                           >
                             <div
-                              class="c150 c151"
+                              class="c147 c148"
                             >
                               <div
-                                class="c11 c130"
+                                class="c11 c137"
                               >
                                 <h3
-                                  class="c152"
+                                  class="c149"
                                 >
                                   Ed Southall
                                 </h3>
                                 <p
-                                  class="c153"
+                                  class="c150"
                                 >
                                   Subject Lead (maths)
                                 </p>
                               </div>
                               <div
-                                class="c11 c154"
+                                class="c11 c151"
                               >
                                 <div
-                                  class="c11 c155"
+                                  class="c11 c152"
                                 >
                                   <span
                                     class="c22"
@@ -6177,61 +6196,61 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c140"
+                  class="c136"
                   id="our-board"
                 >
                   <div
                     class="c11 c72"
                   >
                     <div
-                      class="c11 c130"
+                      class="c11 c137"
                     >
                       <h2
-                        class="c141"
+                        class="c138"
                       >
                         Our board
                       </h2>
                       <p
-                        class="c142"
+                        class="c139"
                       >
                         Our Board oversees all of our work at Oak National Academy. They provide strategic direction and safeguard our independence.
                       </p>
                     </div>
                     <ul
-                      class="c143 c144"
+                      class="c140 c141"
                     >
                       <li
-                        class="c145"
+                        class="c142"
                       >
                         <div
-                          class="c146 c147"
+                          class="c143 c144"
                         >
                           <a
-                            class="c148 c130 c149"
+                            class="c145 c137 c146"
                             href="/about-us/meet-the-team/ed-southall?section=board"
                           >
                             <div
-                              class="c150 c151"
+                              class="c147 c148"
                             >
                               <div
-                                class="c11 c130"
+                                class="c11 c137"
                               >
                                 <h3
-                                  class="c152"
+                                  class="c149"
                                 >
                                   Ed Southall
                                 </h3>
                                 <p
-                                  class="c153"
+                                  class="c150"
                                 >
                                   Subject Lead (maths)
                                 </p>
                               </div>
                               <div
-                                class="c11 c154"
+                                class="c11 c151"
                               >
                                 <div
-                                  class="c11 c155"
+                                  class="c11 c152"
                                 >
                                   <span
                                     class="c22"
@@ -6261,15 +6280,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c11 c130"
+                  class="c11 c137"
                 >
                   <h2
-                    class="c141"
+                    class="c138"
                   >
                     Governance
                   </h2>
                   <div
-                    class="c156 c157"
+                    class="c153 c154"
                   >
                     <p>
                       Test governance text
@@ -6280,14 +6299,14 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c158"
+            class="c155"
             style="margin-top: -72px;"
           >
             <div
-              class="c159"
+              class="c156"
             >
               <span
-                class="c160"
+                class="c157"
                 style="pointer-events: none;"
               >
                 <img
@@ -6304,10 +6323,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c114"
               >
                 <div
-                  class="c161 c162"
+                  class="c158 c159"
                 >
                   <h2
-                    class="c163"
+                    class="c160"
                     id="react-use-id-test-result"
                   >
                     Explore more about Oak
@@ -6316,27 +6335,27 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                     aria-labelledby="react-use-id-test-result"
                   >
                     <ul
-                      class="c164"
+                      class="c161"
                     >
                       <li
-                        class="c165"
+                        class="c162"
                       >
                         <div
-                          class="c166 c167"
+                          class="c163 c164"
                         >
                           <a
                             href="/about-us/who-we-are"
                             style="outline: none;"
                           >
                             <div
-                              class="c168 c169 c170"
+                              class="c165 c166 c167"
                               data-testid="who-we-are-explore-item"
                             >
                               <div
                                 class="c11 c98"
                               >
                                 <span
-                                  class="c171"
+                                  class="c168"
                                 >
                                   <img
                                     alt=""
@@ -6350,7 +6369,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                                 </span>
                               </div>
                               <div
-                                class="c172 c173"
+                                class="c169 c170"
                               >
                                 About Oak
                               </div>
@@ -6358,7 +6377,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                                 class="c11 c98"
                               >
                                 <span
-                                  class="c174"
+                                  class="c171"
                                 >
                                   <img
                                     alt=""
@@ -6376,24 +6395,24 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="c165"
+                        class="c162"
                       >
                         <div
-                          class="c166 c167"
+                          class="c163 c164"
                         >
                           <a
                             href="/about-us/oaks-curricula"
                             style="outline: none;"
                           >
                             <div
-                              class="c168 c169 c170"
+                              class="c165 c166 c167"
                               data-testid="who-we-are-explore-item"
                             >
                               <div
                                 class="c11 c98"
                               >
                                 <span
-                                  class="c171"
+                                  class="c168"
                                 >
                                   <img
                                     alt=""
@@ -6407,7 +6426,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                                 </span>
                               </div>
                               <div
-                                class="c172 c173"
+                                class="c169 c170"
                               >
                                 Oak's curricula
                               </div>
@@ -6415,7 +6434,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                                 class="c11 c98"
                               >
                                 <span
-                                  class="c174"
+                                  class="c171"
                                 >
                                   <img
                                     alt=""
@@ -6433,24 +6452,24 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="c165"
+                        class="c162"
                       >
                         <div
-                          class="c166 c167"
+                          class="c163 c164"
                         >
                           <a
                             href="/about-us/meet-the-team"
                             style="outline: none;"
                           >
                             <div
-                              class="c168 c169 c170"
+                              class="c165 c166 c167"
                               data-testid="who-we-are-explore-item"
                             >
                               <div
                                 class="c11 c98"
                               >
                                 <span
-                                  class="c171"
+                                  class="c168"
                                 >
                                   <img
                                     alt=""
@@ -6464,7 +6483,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                                 </span>
                               </div>
                               <div
-                                class="c172 c173"
+                                class="c169 c170"
                               >
                                 Meet the team
                               </div>
@@ -6472,7 +6491,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                                 class="c11 c98"
                               >
                                 <span
-                                  class="c174"
+                                  class="c171"
                                 >
                                   <img
                                     alt=""
@@ -6490,24 +6509,24 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </div>
                       </li>
                       <li
-                        class="c165"
+                        class="c162"
                       >
                         <div
-                          class="c166 c167"
+                          class="c163 c164"
                         >
                           <a
                             href="/about-us/get-involved"
                             style="outline: none;"
                           >
                             <div
-                              class="c168 c169 c170"
+                              class="c165 c166 c167"
                               data-testid="who-we-are-explore-item"
                             >
                               <div
                                 class="c11 c98"
                               >
                                 <span
-                                  class="c171"
+                                  class="c168"
                                 >
                                   <img
                                     alt=""
@@ -6521,7 +6540,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                                 </span>
                               </div>
                               <div
-                                class="c172 c173"
+                                class="c169 c170"
                               >
                                 Get involved
                               </div>
@@ -6529,7 +6548,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                                 class="c11 c98"
                               >
                                 <span
-                                  class="c174"
+                                  class="c171"
                                 >
                                   <img
                                     alt=""
@@ -6553,29 +6572,29 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             </div>
           </div>
           <div
-            class="c175"
+            class="c172"
             id="newsletter-signup"
           >
             <div
               class="c114"
             >
               <div
-                class="c11 c98 c176"
+                class="c11 c98 c173"
               >
                 <div
-                  class="c177 c178"
+                  class="c174 c175"
                 >
                   <div
-                    class="c11 c179"
+                    class="c11 c176"
                   >
                     <div
-                      class="c11 c98 c180"
+                      class="c11 c98 c177"
                     >
                       <div
-                        class="c181 c182"
+                        class="c178 c179"
                       >
                         <span
-                          class="c183"
+                          class="c180"
                         >
                           <img
                             alt=""
@@ -6588,20 +6607,20 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           />
                         </span>
                         <h2
-                          class="c184"
+                          class="c181"
                         >
                           Don’t miss out
                         </h2>
                       </div>
                       <p
-                        class="c185"
+                        class="c182"
                         color="text-primary"
                         id="react-use-id-test-result-newsletter-form-description"
                       >
                         Join over 100k teachers and get free resources and other helpful content by email. Unsubscribe at any time. Read our
                          
                         <a
-                          class="c40 c186"
+                          class="c40 c183"
                           href="/legal/privacy-policy"
                           role="link"
                         >
@@ -6611,18 +6630,18 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="c187 c98 c180"
+                      class="c184 c98 c177"
                     >
                       <form
                         aria-describedby="react-use-id-test-result-newsletter-form-description"
-                        class="c188"
+                        class="c185"
                         novalidate=""
                       >
                         <div
-                          class="c189 c190 c191"
+                          class="c186 c187 c188"
                         >
                           <div
-                            class="c192 "
+                            class="c189 "
                           >
                             <div
                               aria-hidden="true"
@@ -6631,7 +6650,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             >
                               <svg
                                 aria-hidden="true"
-                                class="c193"
+                                class="c190"
                                 height="100%"
                                 name="box-border-top"
                                 style="height: 3px;"
@@ -6656,7 +6675,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c193"
+                                class="c190"
                                 height="100%"
                                 name="box-border-right"
                                 style="width: 3px; height: 90%;"
@@ -6681,7 +6700,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c193"
+                                class="c190"
                                 height="100%"
                                 name="box-border-bottom"
                                 style="height: 3px; width: 100%;"
@@ -6706,7 +6725,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c193"
+                                class="c190"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -6731,11 +6750,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </svg>
                             </div>
                             <div
-                              class="c194 "
+                              class="c191 "
                             >
                               <label
                                 aria-hidden="true"
-                                class="c195 c196 c197"
+                                class="c192 c193 c194"
                                 color="black"
                                 data-testid="rotated-input-label"
                                 for="react-use-id-test-result-newsletter-signup-name"
@@ -6747,7 +6766,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                                   Name
                                    
                                   <span
-                                    class="c198"
+                                    class="c195"
                                   >
                                     (required)
                                   </span>
@@ -6758,7 +6777,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               aria-invalid="false"
                               aria-labelledby="react-use-id-test-result-newsletter-signup-name-label"
                               autocomplete="name"
-                              class="c199 c200"
+                              class="c196 c197"
                               id="react-use-id-test-result-newsletter-signup-name"
                               name="name"
                               placeholder="Anna Smith"
@@ -6766,7 +6785,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             />
                             <svg
                               aria-hidden="true"
-                              class="c55 c201 c202"
+                              class="c55 c198 c199"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -6779,10 +6798,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="c189 c190 c191"
+                          class="c186 c187 c188"
                         >
                           <div
-                            class="c192 "
+                            class="c189 "
                           >
                             <div
                               aria-hidden="true"
@@ -6791,7 +6810,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             >
                               <svg
                                 aria-hidden="true"
-                                class="c193"
+                                class="c190"
                                 height="100%"
                                 name="box-border-top"
                                 style="height: 3px;"
@@ -6816,7 +6835,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c193"
+                                class="c190"
                                 height="100%"
                                 name="box-border-right"
                                 style="width: 3px; height: 90%;"
@@ -6841,7 +6860,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c193"
+                                class="c190"
                                 height="100%"
                                 name="box-border-bottom"
                                 style="height: 3px; width: 100%;"
@@ -6866,7 +6885,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="c193"
+                                class="c190"
                                 height="100%"
                                 name="box-border-left"
                                 style="width: 3px;"
@@ -6891,11 +6910,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               </svg>
                             </div>
                             <div
-                              class="c194 "
+                              class="c191 "
                             >
                               <label
                                 aria-hidden="true"
-                                class="c195 c196 c197"
+                                class="c192 c193 c194"
                                 color="black"
                                 data-testid="rotated-input-label"
                                 for="react-use-id-test-result-newsletter-signup-email"
@@ -6907,7 +6926,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                                   Email
                                    
                                   <span
-                                    class="c198"
+                                    class="c195"
                                   >
                                     (required)
                                   </span>
@@ -6918,7 +6937,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                               aria-invalid="false"
                               aria-labelledby="react-use-id-test-result-newsletter-signup-email-label"
                               autocomplete="email"
-                              class="c199 c200"
+                              class="c196 c197"
                               id="react-use-id-test-result-newsletter-signup-email"
                               name="email"
                               placeholder="anna@amail.com"
@@ -6926,7 +6945,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             />
                             <svg
                               aria-hidden="true"
-                              class="c55 c201 c202"
+                              class="c55 c198 c199"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -6939,7 +6958,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="c203 c63 c204"
+                          class="c200 c63 c201"
                         >
                           <div
                             aria-hidden="true"
@@ -6948,7 +6967,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="c193"
+                              class="c190"
                               height="100%"
                               name="box-border-top"
                               style="height: 3px;"
@@ -6973,7 +6992,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="c193"
+                              class="c190"
                               height="100%"
                               name="box-border-right"
                               style="width: 3px; height: 90%;"
@@ -6998,7 +7017,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="c193"
+                              class="c190"
                               height="100%"
                               name="box-border-bottom"
                               style="height: 3px; width: 100%;"
@@ -7023,7 +7042,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="c193"
+                              class="c190"
                               height="100%"
                               name="box-border-left"
                               style="width: 3px;"
@@ -7049,7 +7068,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           </div>
                           <svg
                             aria-hidden="true"
-                            class="c55 c201 c202 c205"
+                            class="c55 c198 c199 c202"
                             height="100%"
                             name="underline-1"
                             width="100%"
@@ -7060,10 +7079,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             />
                           </svg>
                           <div
-                            class="c206 c98"
+                            class="c203 c98"
                           >
                             <label
-                              class="c195 c196 c197"
+                              class="c192 c193 c194"
                               color="black"
                               id="react-use-id-test-result"
                             >
@@ -7075,16 +7094,16 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             aria-haspopup="listbox"
                             aria-invalid="false"
                             aria-labelledby="react-use-id-test-result react-use-id-test-result-button"
-                            class="c49 c207"
+                            class="c49 c204"
                             data-testid="select"
                             id="react-use-id-test-result-button"
                             type="button"
                           >
                             <div
-                              class="c208 c155 c209"
+                              class="c205 c152 c206"
                             >
                               <span
-                                class="c210 c211"
+                                class="c207 c208"
                                 data-testid="select-span"
                                 id="react-use-id-test-result-value"
                                 title="What describes you best?"
@@ -7108,7 +7127,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                           </button>
                         </div>
                         <div
-                          class="c212 c7"
+                          class="c209 c7"
                         >
                           <div
                             class="c8 grey-shadow"
@@ -7117,7 +7136,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                             class="c8 yellow-shadow"
                           />
                           <button
-                            class="c213 c214 internal-button"
+                            class="c210 c211 internal-button"
                           >
                             <div
                               class="c11 c12"
@@ -7132,12 +7151,12 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </div>
                         <p
                           aria-live="assertive"
-                          class="c215"
+                          class="c212"
                           role="alert"
                         />
                         <p
                           aria-live="polite"
-                          class="c216"
+                          class="c213"
                         />
                       </form>
                     </div>
@@ -7149,10 +7168,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
         </div>
       </main>
       <footer
-        class="c217"
+        class="c214"
       >
         <div
-          class="c218 c98"
+          class="c215 c98"
         >
           <svg
             aria-hidden="true"
@@ -7179,33 +7198,33 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
           id="site-footer"
         >
           <div
-            class="c219 c220"
+            class="c216 c217"
           >
             <div
-              class="c11 c179"
+              class="c11 c176"
             >
               <div
-                class="c11 c98 c221"
+                class="c11 c98 c218"
               >
                 <div
-                  class="c222 c63"
+                  class="c219 c63"
                 >
                   <h2
-                    class="c223"
+                    class="c220"
                   >
                     Pupils
                   </h2>
                   <div
-                    class="c224 c225"
+                    class="c221 c222"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/pupils/years"
                         >
                           <span
@@ -7219,27 +7238,27 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="c228"
+                  class="c225"
                 />
                 <div
-                  class="c222 c63"
+                  class="c219 c63"
                 >
                   <h2
-                    class="c223"
+                    class="c220"
                   >
                     Teachers
                   </h2>
                   <div
-                    class="c224 c225"
+                    class="c221 c222"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/teachers/key-stages/early-years-foundation-stage/subjects"
                         >
                           <span
@@ -7250,10 +7269,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/teachers/specialist/subjects"
                         >
                           <span
@@ -7264,10 +7283,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/teachers/key-stages/ks1/subjects"
                         >
                           <span
@@ -7278,10 +7297,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/teachers/key-stages/ks2/subjects"
                         >
                           <span
@@ -7292,10 +7311,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/teachers/key-stages/ks3/subjects"
                         >
                           <span
@@ -7306,10 +7325,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/teachers/key-stages/ks4/subjects"
                         >
                           <span
@@ -7320,10 +7339,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/lesson-planning"
                         >
                           <span
@@ -7334,10 +7353,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/support-your-team"
                         >
                           <span
@@ -7352,27 +7371,27 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c11 c98 c221"
+                class="c11 c98 c218"
               >
                 <div
-                  class="c222 c63"
+                  class="c219 c63"
                 >
                   <h2
-                    class="c223"
+                    class="c220"
                   >
                     Oak
                   </h2>
                   <div
-                    class="c224 c225"
+                    class="c221 c222"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/"
                         >
                           <span
@@ -7383,10 +7402,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/about-us/who-we-are"
                         >
                           <span
@@ -7397,10 +7416,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/about-us/oaks-curricula"
                         >
                           <span
@@ -7411,10 +7430,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/about-us/get-involved"
                         >
                           <span
@@ -7425,10 +7444,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/about-us/meet-the-team"
                         >
                           <span
@@ -7439,11 +7458,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
                           aria-label="Careers (opens in a new tab)"
-                          class="c227 "
+                          class="c224 "
                           href="https://jobs.thenational.academy"
                           target="_blank"
                         >
@@ -7468,10 +7487,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/contact-us"
                         >
                           <span
@@ -7482,11 +7501,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
                           aria-label="Help (opens in a new tab)"
-                          class="c227 "
+                          class="c224 "
                           href="https://support.thenational.academy"
                           target="_blank"
                         >
@@ -7511,10 +7530,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/blog"
                         >
                           <span
@@ -7525,10 +7544,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/webinars"
                         >
                           <span
@@ -7539,11 +7558,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
                           aria-label="Status (opens in a new tab)"
-                          class="c227 "
+                          class="c224 "
                           href="https://status.thenational.academy"
                           target="_blank"
                         >
@@ -7572,27 +7591,27 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c11 c98 c221"
+                class="c11 c98 c218"
               >
                 <div
-                  class="c222 c63"
+                  class="c219 c63"
                 >
                   <h2
-                    class="c223"
+                    class="c220"
                   >
                     Legal
                   </h2>
                   <div
-                    class="c224 c225"
+                    class="c221 c222"
                   >
                     <ul
                       role="list"
                     >
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/legal/terms-and-conditions"
                         >
                           <span
@@ -7603,10 +7622,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/legal/privacy-policy"
                         >
                           <span
@@ -7617,10 +7636,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/legal/cookie-policy"
                         >
                           <span
@@ -7631,10 +7650,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <button
-                          class="c227 "
+                          class="c224 "
                         >
                           <span
                             class="c22"
@@ -7644,10 +7663,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </button>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/legal/copyright-notice"
                         >
                           <span
@@ -7658,10 +7677,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/legal/accessibility-statement"
                         >
                           <span
@@ -7672,10 +7691,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/legal/safeguarding-statement"
                         >
                           <span
@@ -7686,10 +7705,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/legal/physical-activity-disclaimer"
                         >
                           <span
@@ -7700,10 +7719,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/legal/complaints"
                         >
                           <span
@@ -7714,10 +7733,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                         </a>
                       </li>
                       <li
-                        class="c226"
+                        class="c223"
                       >
                         <a
-                          class="c227 "
+                          class="c224 "
                           href="/legal/freedom-of-information-requests"
                         >
                           <span
@@ -7732,16 +7751,16 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </div>
               </div>
               <div
-                class="c11 c98 c221"
+                class="c11 c98 c218"
               >
                 <div
-                  class="c222 c229"
+                  class="c219 c226"
                 >
                   <div
                     class="c18"
                   >
                     <span
-                      class="c230"
+                      class="c227"
                     >
                       <img
                         alt=""
@@ -7755,7 +7774,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                     </span>
                   </div>
                   <div
-                    class="c231 c232"
+                    class="c228 c229"
                   >
                     <div
                       class="c97 c98 c99 c100"
@@ -7876,7 +7895,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
               </div>
             </div>
             <span
-              class="c233 c234"
+              class="c230 c231"
               data-percy-hide="contents"
             >
               <img
@@ -7892,10 +7911,10 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
               />
             </span>
             <div
-              class="c235 c236"
+              class="c232 c233"
             >
               <div
-                class="c237 c238"
+                class="c234 c235"
               >
                 <div
                   class="c97 c98 c99 c100"
@@ -8016,7 +8035,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c27"
               >
                 <span
-                  class="c230"
+                  class="c227"
                 >
                   <img
                     alt=""
@@ -8030,15 +8049,15 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 </span>
               </div>
               <div
-                class="c222 c63"
+                class="c219 c63"
               >
                 <p
-                  class="c239"
+                  class="c236"
                 >
                   © Oak National Academy Limited, No 14174888
                 </p>
                 <p
-                  class="c240"
+                  class="c237"
                 >
                   1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
                 </p>
@@ -8047,11 +8066,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
           </div>
         </nav>
         <span
-          class="c241"
+          class="c238"
         >
           <img
             alt=""
-            class="c242"
+            class="c239"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -8060,11 +8079,11 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
           />
         </span>
         <span
-          class="c243"
+          class="c240"
         >
           <img
             alt=""
-            class="c244"
+            class="c241"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -8076,23 +8095,23 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
     </div>
   </div>
   <div
-    class="c245"
+    class="c242"
   >
     <div
-      class="c246"
+      class="c243"
       data-testid="cookie-banner"
     >
       <div
-        class="c247"
+        class="c244"
       >
         <div
-          class="c248 c249"
+          class="c245 c246"
         >
           <div
-            class="c250"
+            class="c247"
           >
             <strong
-              class="c251"
+              class="c248"
             >
               This site uses cookies to store information on your computer.
             </strong>
@@ -8100,13 +8119,13 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="c11 c252"
+            class="c11 c249"
           >
             <div
-              class="c253 c155"
+              class="c250 c152"
             >
               <button
-                class="c227 "
+                class="c224 "
                 data-testid="cookie-banner-reject"
                 type="button"
               >
@@ -8150,7 +8169,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c8 yellow-shadow"
               />
               <button
-                class="c254 c214 internal-button"
+                class="c251 c211 internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div
