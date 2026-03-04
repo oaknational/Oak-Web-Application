@@ -3886,7 +3886,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                           <a
                             aria-label="EYFS"
                             class="c79"
-                            href="/teachers/key-stages/early-years-foundation-stage/subjects"
+                            href="/eyfs/maths"
                             role="link"
                             title="EYFS"
                           >
@@ -5007,7 +5007,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       >
                         <a
                           class="c118 "
-                          href="/teachers/key-stages/early-years-foundation-stage/subjects"
+                          href="/eyfs/maths"
                         >
                           <span
                             class="c22"

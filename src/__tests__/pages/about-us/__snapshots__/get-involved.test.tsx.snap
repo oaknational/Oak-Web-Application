@@ -5300,7 +5300,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                           <a
                             aria-label="EYFS"
                             class="c79"
-                            href="/teachers/key-stages/early-years-foundation-stage/subjects"
+                            href="/eyfs/maths"
                             role="link"
                             title="EYFS"
                           >
@@ -7485,7 +7485,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       >
                         <a
                           class="c224 "
-                          href="/teachers/key-stages/early-years-foundation-stage/subjects"
+                          href="/eyfs/maths"
                         >
                           <span
                             class="c22"
