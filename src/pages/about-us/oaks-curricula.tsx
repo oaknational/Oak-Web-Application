@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import {
   OakAllSpacingToken,
   OakBox,
@@ -16,7 +16,6 @@ import {
   AboutSharedHeaderImage,
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
@@ -25,13 +24,11 @@ import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/do
 import { CurriculumPartners } from "@/components/GenericPagesComponents/CurriculumPartners";
 import { GuidingPrinciples } from "@/components/GenericPagesComponents/GuidingPrinciples";
 import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
-import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 import CMSClient from "@/node-lib/cms";
+import getPageProps from "@/node-lib/getPageProps";
 import { OaksCurriculaPage as OaksCurriculaPageData } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
-
-const posthogApiKey = getBrowserConfig("posthogApiKey");
 
 export type OaksCurriculaPageProps = {
   pageData: OaksCurriculaPageData;
@@ -222,42 +219,40 @@ const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
     };
   };
 
-export const getServerSideProps = (async (context) => {
-  const isPreviewMode = context.preview === true;
+export const getStaticProps: GetStaticProps<OaksCurriculaPageProps> = async (
+  context,
+) => {
+  return getPageProps({
+    page: "about-oaks-curricula::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const enableV2 = await isNewAboutUsPagesEnabled(
-    posthogApiKey,
-    context.req.cookies,
-  );
+      const pageData = await CMSClient.oaksCurriculaPage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!enableV2) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!pageData) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const pageData = await CMSClient.oaksCurriculaPage({
-    previewMode: isPreviewMode,
-  });
+      const [curriculumPhaseOptions, topNav] = await Promise.all([
+        fetchSubjectPhasePickerData(),
+        curriculumApi2023.topNav(),
+      ]);
 
-  if (!pageData) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const [curriculumPhaseOptions, topNav] = await Promise.all([
-    fetchSubjectPhasePickerData(),
-    curriculumApi2023.topNav(),
-  ]);
-
-  return {
-    props: {
-      pageData,
-      curriculumPhaseOptions,
-      topNav,
+      const results: GetStaticPropsResult<OaksCurriculaPageProps> = {
+        props: {
+          pageData,
+          curriculumPhaseOptions,
+          topNav,
+        },
+      };
+      return results;
     },
-  };
-}) satisfies GetServerSideProps<OaksCurriculaPageProps>;
+  });
+};
 
 export default OaksCurricula;

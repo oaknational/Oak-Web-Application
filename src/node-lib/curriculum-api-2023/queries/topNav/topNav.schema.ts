@@ -1,8 +1,6 @@
 import z from "zod";
 import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 
-import { NavLink } from "@/components/GenericPagesComponents/GenericSummaryCardNavButton/GenericSummaryCardNavButton";
-
 export const topNavResponseSchema = z.object({
   programmes: z.array(
     z.object({

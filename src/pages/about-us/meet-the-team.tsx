@@ -1,4 +1,4 @@
-import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
+import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import {
   OakBox,
   OakCard,
@@ -9,11 +9,11 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import CMSClient from "@/node-lib/cms";
+import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import Layout from "@/components/AppComponents/Layout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
@@ -26,9 +26,6 @@ import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTh
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
-
-const posthogApiKey = getBrowserConfig("posthogApiKey");
 
 const SECTION_TITLES = {
   leadership: "Our leadership",
@@ -212,40 +209,35 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticProps: GetStaticProps<
   AboutUsMeetTheTeamPageProps
 > = async (context) => {
-  const enableV2 = await isNewAboutUsPagesEnabled(
-    posthogApiKey,
-    context.req.cookies,
-  );
+  return getPageProps({
+    page: "about-meet-the-team::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
+      const meetTheTeamPage = await CMSClient.meetTheTeamPage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!enableV2) {
-    return {
-      notFound: true,
-    };
-  }
+      const topNav = await curriculumApi2023.topNav();
 
-  const isPreviewMode = context.preview === true;
-  const meetTheTeamPage = await CMSClient.meetTheTeamPage({
-    previewMode: isPreviewMode,
-  });
+      if (!meetTheTeamPage) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const topNav = await curriculumApi2023.topNav();
-
-  if (!meetTheTeamPage) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const results: GetStaticPropsResult<AboutUsMeetTheTeamPageProps> = {
-    props: {
-      pageData: meetTheTeamPage,
-      topNav,
+      const results: GetStaticPropsResult<AboutUsMeetTheTeamPageProps> = {
+        props: {
+          pageData: meetTheTeamPage,
+          topNav,
+        },
+      };
+      return results;
     },
-  };
-  return results;
+  });
 };
 
 export default AboutUsMeetTheTeam;
