@@ -32,6 +32,9 @@ import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import { resolveOakHref } from "@/common-lib/urls";
 
+const trackAboutUsFooter = () =>
+  aboutUsAccessed(buildAboutUsAnalytics("about_us_footer"));
+
 const footerSections: FooterSections = {
   pupils: {
     title: "Pupils",
@@ -99,25 +102,25 @@ const footerSections: FooterSections = {
         text: "About us",
         type: "link",
         href: resolveOakHref({ page: "about-who-we-are" }),
-        track: () => aboutUsAccessed(buildAboutUsAnalytics("about_us_footer")),
+        track: trackAboutUsFooter,
       },
       {
         text: "Oak's curricula",
         type: "link",
         href: resolveOakHref({ page: "about-oaks-curricula" }),
-        track: () => aboutUsAccessed(buildAboutUsAnalytics("about_us_footer")),
+        track: trackAboutUsFooter,
       },
       {
         text: "Get involved",
         type: "link",
         href: resolveOakHref({ page: "about-get-involved" }),
-        track: () => aboutUsAccessed(buildAboutUsAnalytics("about_us_footer")),
+        track: trackAboutUsFooter,
       },
       {
         text: "Meet the team",
         type: "link",
         href: resolveOakHref({ page: "about-meet-the-team" }),
-        track: () => aboutUsAccessed(buildAboutUsAnalytics("about_us_footer")),
+        track: trackAboutUsFooter,
       },
       {
         text: "Careers",
