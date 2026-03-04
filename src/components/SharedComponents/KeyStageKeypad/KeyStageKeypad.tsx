@@ -2,8 +2,10 @@ import { FC } from "react";
 import {
   OakFlex,
   OakHeading,
+  OakLI,
   OakPrimaryButton,
   OakPrimaryInvertedButton,
+  OakUL,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
@@ -70,15 +72,13 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
       <OakHeading tag={titleTag} $font={"heading-7"}>
         {title}
       </OakHeading>
-      <OakFlex $gap="spacing-16" $flexWrap={"wrap"}>
+      <OakUL $display={"flex"} $gap="spacing-16" $flexWrap={"wrap"}>
         {keyStages.map((ks) => (
-          <KeypadLink
-            {...ks}
-            trackingOnClick={trackingOnClick}
-            key={`key-stage-${ks.slug}`}
-          />
+          <OakLI $listStyle={"none"} key={`key-stage-li-${ks.slug}`}>
+            <KeypadLink {...ks} trackingOnClick={trackingOnClick} />
+          </OakLI>
         ))}
-      </OakFlex>
+      </OakUL>
     </OakFlex>
   );
 };
