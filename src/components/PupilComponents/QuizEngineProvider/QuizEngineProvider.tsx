@@ -123,11 +123,13 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           ...incomingQuestionState,
         };
 
-        updateSectionResult({
-          grade: newState.reduce((pv, v) => pv + v.grade, 0),
-          numQuestions: numInteractiveQuestions,
-          questionResults: newState,
-        });
+        if (incomingQuestionState.mode === "feedback") {
+          updateSectionResult({
+            grade: newState.reduce((pv, v) => pv + v.grade, 0),
+            numQuestions: numInteractiveQuestions,
+            questionResults: newState,
+          });
+        }
         return newState;
       });
     },

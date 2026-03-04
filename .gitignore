@@ -59,6 +59,9 @@ oak-config/live
 # firebase
 firebase-debug.log
 .firebase
+firestore-data/
+firebase-export*/
+firestore-debug.log
 
 # Local Netlify folder
 .netlify

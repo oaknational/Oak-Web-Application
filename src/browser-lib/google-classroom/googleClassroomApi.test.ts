@@ -423,6 +423,111 @@ describe("Google Classroom API", () => {
     });
   });
 
+  describe("getAddOnContext", () => {
+    it("should call the context API with correct parameters and pupil auth headers", async () => {
+      // Arrange
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === AuthCookieKeys.PupilSession)
+          return Promise.resolve({ value: "pupil-session" });
+        if (name === AuthCookieKeys.PupilAccessToken)
+          return Promise.resolve({ value: "pupil-token" });
+        return Promise.resolve(null);
+      });
+
+      const contextArgs = {
+        courseId: "course123",
+        itemId: "item456",
+        attachmentId: "attach789",
+      };
+      const mockResponse = {
+        studentContext: { submissionId: "sub123" },
+        pupilLoginHint: "pupil@example.com",
+      };
+      mockJsonResponse(mockResponse);
+
+      // Act
+      const result = await GoogleClassroomApi.getAddOnContext(contextArgs);
+
+      // Assert
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(
+        `/api/classroom/context`,
+        expect.objectContaining({
+          method: "POST",
+          credentials: "include",
+          body: JSON.stringify(contextArgs),
+        }),
+      );
+      const callArgs = mockFetch.mock.calls[0][1];
+      expect(callArgs.headers.get("Authorization")).toBe("pupil-token");
+      expect(callArgs.headers.get("X-Oakgc-Session")).toBe("pupil-session");
+      expect(result).toEqual(mockResponse);
+    });
+
+    it("should return null when the API call fails", async () => {
+      // Arrange
+      mockCookieStore.get.mockResolvedValue(null);
+      mockJsonResponse({ error: "Server error" }, 500);
+
+      // Act
+      const result = await GoogleClassroomApi.getAddOnContext({
+        courseId: "course123",
+        itemId: "item456",
+        attachmentId: "attach789",
+      });
+
+      // Assert
+      expect(result).toBeNull();
+    });
+  });
+
+  describe("submitPupilProgress", () => {
+    it("should call the submit progress API with correct parameters and pupil auth headers", async () => {
+      // Arrange
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === AuthCookieKeys.PupilSession)
+          return Promise.resolve({ value: "pupil-session" });
+        if (name === AuthCookieKeys.PupilAccessToken)
+          return Promise.resolve({ value: "pupil-token" });
+        return Promise.resolve(null);
+      });
+
+      const progressArgs = {
+        lessonSlug: "test-lesson",
+        sectionResults: { intro: true },
+      };
+      mockJsonResponse({});
+
+      // Act
+      await GoogleClassroomApi.submitPupilProgress(progressArgs);
+
+      // Assert
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+      expect(mockFetch).toHaveBeenCalledWith(
+        `/api/classroom/pupil/progress/submit`,
+        expect.objectContaining({
+          method: "POST",
+          credentials: "include",
+          body: JSON.stringify(progressArgs),
+        }),
+      );
+      const callArgs = mockFetch.mock.calls[0][1];
+      expect(callArgs.headers.get("Authorization")).toBe("pupil-token");
+      expect(callArgs.headers.get("X-Oakgc-Session")).toBe("pupil-session");
+    });
+
+    it("should throw when the API call fails", async () => {
+      // Arrange
+      mockCookieStore.get.mockResolvedValue(null);
+      mockJsonResponse({ error: "Server error" }, 500);
+
+      // Act & Assert
+      await expect(
+        GoogleClassroomApi.submitPupilProgress({ lessonSlug: "test-lesson" }),
+      ).rejects.toThrow("Server error");
+    });
+  });
+
   describe("sendRequest error handling", () => {
     const mockAttachmentSetup = () => {
       mockCookieStore.get.mockImplementation((name) => {

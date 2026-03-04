@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createAnnouncementAttachmentArgsSchema } from "@oaknational/google-classroom-addon/types";
+import z from "zod";
 
 import {
   createClassroomErrorReporter,
@@ -7,7 +7,13 @@ import {
   isOakGoogleClassroomException,
 } from "@/node-lib/google-classroom";
 
-const reportError = createClassroomErrorReporter("create-attachment");
+const getAddOnContextSchema = z.object({
+  courseId: z.string(),
+  itemId: z.string(),
+  attachmentId: z.string(),
+});
+
+const reportError = createClassroomErrorReporter("addon-context");
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,28 +29,24 @@ export async function POST(request: NextRequest) {
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
     const body = await request.json();
 
-    const parsed = createAnnouncementAttachmentArgsSchema.safeParse(body);
+    const parsed = getAddOnContextSchema.safeParse(body);
 
     if (!parsed.success) {
       return NextResponse.json(
-        { error: "Invalid query", details: parsed.error.flatten() },
+        { error: "Invalid request body", details: parsed.error.flatten() },
         { status: 400 },
       );
     }
 
-    if (!session)
-      return NextResponse.json(
-        { message: "Missing auth header" },
-        { status: 400 },
-      );
-
-    await oakClassroomClient.createAttachment(
-      parsed.data,
+    const context = await oakClassroomClient.getAddOnContext(
+      parsed.data.courseId,
+      parsed.data.itemId,
+      parsed.data.attachmentId,
       accessToken,
       session,
     );
 
-    return NextResponse.json({}, { status: 201 });
+    return NextResponse.json(context, { status: 200 });
   } catch (e) {
     const errorObject = isOakGoogleClassroomException(e) ? e.toObject() : e;
     reportError(errorObject);
