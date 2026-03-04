@@ -58,6 +58,7 @@ describe("src/app/classroom/pupil/sign-in/page", () => {
     await viewProps.getGoogleSignInLink();
     expect(getGoogleSignInUrlMock).toHaveBeenCalledWith(
       "pupil@school.com",
+      undefined,
       true,
     );
   });
@@ -105,6 +106,6 @@ describe("src/app/classroom/pupil/sign-in/page", () => {
 
     const viewProps = googleSignInViewMock.mock.calls[0][0];
     await viewProps.getGoogleSignInLink();
-    expect(getGoogleSignInUrlMock).toHaveBeenCalledWith(null, true);
+    expect(getGoogleSignInUrlMock).toHaveBeenCalledWith(null, undefined, true);
   });
 });

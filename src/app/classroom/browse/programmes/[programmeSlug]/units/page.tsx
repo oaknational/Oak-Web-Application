@@ -3,8 +3,10 @@ import {
   UnitsListingView,
   UnitCards,
 } from "@oaknational/google-classroom-addon/ui";
+import { notFound } from "next/navigation";
 import React from "react";
 
+import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { extractBaseSlug } from "@/pages-helpers/pupil";
 import { checkAndExcludeUnitsWithAgeRestrictedLessons } from "@/pages-helpers/pupil/units-page/units-page-helper";
@@ -12,19 +14,32 @@ import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pu
 import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/GoogleClassroomSubjectIconHeader";
 import { UnitsContainer } from "@/components/TeacherComponents/UnitsContainer";
 
+async function getUnitsData(baseSlug: string) {
+  try {
+    return await curriculumApi2023.pupilUnitListingQuery({ baseSlug });
+  } catch (error) {
+    if (
+      error instanceof OakError &&
+      error.code === "curriculum-api/not-found"
+    ) {
+      notFound();
+    }
+    throw error;
+  }
+}
+
 async function GoogleClassroomUnitsListingPage({
   params,
 }: Readonly<{
   params: Promise<{ programmeSlug: string }>;
 }>) {
   const { programmeSlug } = await params;
+
   const baseSlug = extractBaseSlug(programmeSlug);
-  const curriculumData = await curriculumApi2023.pupilUnitListingQuery({
-    baseSlug,
-  });
+  const curriculumData = await getUnitsData(baseSlug);
 
   if (!curriculumData) {
-    return <>404</>;
+    notFound();
   }
 
   curriculumData.sort((a, b) => {
@@ -38,6 +53,9 @@ async function GoogleClassroomUnitsListingPage({
   const allUnits = checkAndExcludeUnitsWithAgeRestrictedLessons(
     unitsByProgramme[programmeSlug] ?? [],
   );
+  if (!allUnits?.length) {
+    notFound();
+  }
 
   const optionalityUnits: UnitListingBrowseData[number][][] = Object.values(
     groupBy(allUnits, (unit) =>
@@ -51,7 +69,9 @@ async function GoogleClassroomUnitsListingPage({
     (unit) => unit.programmeSlug === programmeSlug,
   );
 
-  if (!selectedProgramme || !allUnits) return;
+  if (!selectedProgramme) {
+    notFound();
+  }
 
   const { programmeFields } = selectedProgramme;
 

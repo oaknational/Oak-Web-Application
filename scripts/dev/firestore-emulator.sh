@@ -6,7 +6,7 @@ echo "  Firestore UI: http://localhost:4000/firestore/default/data"
 echo ""
 
 IMPORT_FLAG=""
-if [ -f "$DATA_DIR/firebase-export-metadata.json" ]; then
+if [[ -f "$DATA_DIR/firebase-export-metadata.json" ]]; then
   IMPORT_FLAG="--import=$DATA_DIR"
 fi
 

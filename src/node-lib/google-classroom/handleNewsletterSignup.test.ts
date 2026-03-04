@@ -11,11 +11,12 @@ describe("handleNewsletterSignup", () => {
     global.fetch = jest.fn().mockResolvedValue({ ok: true });
   });
 
-  it("should POST to HubSpot with the correct payload", async () => {
+  it("should POST to HubSpot with mailing list consent when subscribeToMailingList is true", async () => {
     await handleNewsletterSignup(
       "teacher@example.com",
       "https://app.example.com",
       mockReportError,
+      true,
     );
 
     expect(global.fetch).toHaveBeenCalledWith(
@@ -31,6 +32,34 @@ describe("handleNewsletterSignup", () => {
               name: "email_consent_on_gc_addon_account_creation",
               value: "true",
             },
+          ],
+          context: {
+            pageUri: "https://app.example.com/classroom/auth/callback",
+            pageName: "Google Classroom Sign In",
+          },
+        }),
+      },
+    );
+    expect(mockReportError).not.toHaveBeenCalled();
+  });
+
+  it("should POST to HubSpot without mailing list consent when subscribeToMailingList is false", async () => {
+    await handleNewsletterSignup(
+      "teacher@example.com",
+      "https://app.example.com",
+      mockReportError,
+      false,
+    );
+
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://hubspot-forms.thenational.academy/submissions/v3/integration/submit/portal-456/form-123",
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          fields: [
+            { name: "email", value: "teacher@example.com" },
+            { name: "user_type", value: "Teacher" },
           ],
           context: {
             pageUri: "https://app.example.com/classroom/auth/callback",
@@ -62,6 +91,7 @@ describe("handleNewsletterSignup", () => {
       "teacher@example.com",
       "https://app.example.com",
       mockReportError,
+      true,
     );
 
     Object.assign(process.env, savedEnv);
@@ -87,6 +117,7 @@ describe("handleNewsletterSignup", () => {
       "teacher@example.com",
       "https://app.example.com",
       mockReportError,
+      true,
     );
 
     expect(mockReportError).toHaveBeenCalledWith(
@@ -105,6 +136,7 @@ describe("handleNewsletterSignup", () => {
       "teacher@example.com",
       "https://app.example.com",
       mockReportError,
+      true,
     );
 
     expect(mockReportError).toHaveBeenCalledWith(networkError, {

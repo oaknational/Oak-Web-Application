@@ -123,7 +123,7 @@ describe("GET /api/classroom/auth/callback", () => {
     expect(mockHandleGoogleSignInCallback).toHaveBeenCalledTimes(1);
     expect(mockHandleGoogleSignInCallback).toHaveBeenCalledWith(
       mockCode,
-      undefined,
+      expect.any(Function),
     );
 
     expect(mockedRedirect).toHaveBeenCalledTimes(1);
@@ -131,6 +131,29 @@ describe("GET /api/classroom/auth/callback", () => {
       `/classroom/auth/success?s=${encodeURIComponent(mockSession)}&at=${encodeURIComponent(mockAccessToken)}`,
     );
 
+    expect(mockNextResponseJson).not.toHaveBeenCalled();
+  });
+
+  it("should not submit to HubSpot when a pupil signs in", async () => {
+    // Arrange
+    mockSearchParamsGet.mockImplementation((key: string) => {
+      if (key === "code") return mockCode;
+      if (key === "state")
+        return JSON.stringify({ subscribeToNewsletter: false, isPupil: true });
+      return null;
+    });
+
+    // Act
+    await GET(mockRequest);
+
+    // Assert
+    expect(mockHandleGoogleSignInCallback).toHaveBeenCalledTimes(1);
+    expect(mockHandleGoogleSignInCallback).toHaveBeenCalledWith(
+      mockCode,
+      undefined,
+    );
+
+    expect(mockedRedirect).toHaveBeenCalledTimes(1);
     expect(mockNextResponseJson).not.toHaveBeenCalled();
   });
 

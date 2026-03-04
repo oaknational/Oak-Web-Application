@@ -1,3 +1,95 @@
+# [1.1009.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1008.0...v1.1009.0) (2026-03-02)
+
+
+### Bug Fixes
+
+* missing border-radius on EYFS card ([edaa5df](https://github.com/oaknational/Oak-Web-Application/commit/edaa5dfb4dc54e0081544b725d9fa95f36c6546a))
+* missing video id in storybook args ([0ec0c71](https://github.com/oaknational/Oak-Web-Application/commit/0ec0c717a4657c3ee0fbe8905ec1af3cb10a640b))
+* use an incrementing index for the lesson number ([c1c285a](https://github.com/oaknational/Oak-Web-Application/commit/c1c285a071f4ff2a02716d68862dffa65b39eb25))
+
+
+### Features
+
+* add EYFS lesson card ([79a9122](https://github.com/oaknational/Oak-Web-Application/commit/79a91224726ed94c1dba4dc4e63614d6ac34fa61))
+* apply responsive styling ([410d31e](https://github.com/oaknational/Oak-Web-Application/commit/410d31e667e5772cefc1abe482c8ddd1e40f3a96))
+* dont render toggle for video when null ([fd05048](https://github.com/oaknational/Oak-Web-Application/commit/fd050481fa3c73c7a127a8e6e8060efadee3973d))
+* forgot to plug the actual cards in ([d284fae](https://github.com/oaknational/Oak-Web-Application/commit/d284fae14b26847b10850be6b3082e52aa06853e))
+
+# [1.1008.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1007.0...v1.1008.0) (2026-02-26)
+
+
+### Bug Fixes
+
+* revert change to pupils unit list item component ([e3ea8d3](https://github.com/oaknational/Oak-Web-Application/commit/e3ea8d3f56d384ddbf2fcd8aae54902696e20a99))
+* use Link component for footer links ([23cb099](https://github.com/oaknational/Oak-Web-Application/commit/23cb099c229ddfefe976e171ca2a5396cd7e6892))
+* use Link component for top nav tabs ([4265874](https://github.com/oaknational/Oak-Web-Application/commit/4265874683ffa93c5eb198748b0dcd42deb03d78))
+
+
+### Features
+
+* add metadata for new eyfs page ([b0c144d](https://github.com/oaknational/Oak-Web-Application/commit/b0c144db27992b9576854b3487025b4faafe367f))
+* update pupil journey buttons to use Link component ([c91deed](https://github.com/oaknational/Oak-Web-Application/commit/c91deedfa094ff7ffd0372a42329552411cb0a75))
+
+# [1.1007.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1006.0...v1.1007.0) (2026-02-26)
+
+
+### Bug Fixes
+
+* overflow cropping outline on button focus ([549d0db](https://github.com/oaknational/Oak-Web-Application/commit/549d0dbefd542abc292da926678745354c495abf))
+
+
+### Features
+
+* **LESQ-1811:** apply styling and scroll effect to EYFS navigation ([1bb659f](https://github.com/oaknational/Oak-Web-Application/commit/1bb659fa0eef19fe6d4b9f4794a7acc86534a8a9))
+* swap OakPrimaryButton to be the "active" variant ([3b342be](https://github.com/oaknational/Oak-Web-Application/commit/3b342be05be81c378b88dee781db3905a760f1e9))
+
+# [1.1006.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1005.0...v1.1006.0) (2026-02-26)
+
+
+### Bug Fixes
+
+* mobile font size and top padding ([66ce51a](https://github.com/oaknational/Oak-Web-Application/commit/66ce51ae82bdbeab4ab46ff21eebae2cf24693ba))
+
+
+### Features
+
+* add body copy to header and match styling ([cd9fc70](https://github.com/oaknational/Oak-Web-Application/commit/cd9fc701d2d695a3f09c95c868a62b84130bb8aa))
+* add EYFSHeader component with heading ([ef2c67e](https://github.com/oaknational/Oak-Web-Application/commit/ef2c67e0345095510ec62e5861d12267be2e50be))
+* check for wider range of titles in transcripts ([2c810cf](https://github.com/oaknational/Oak-Web-Application/commit/2c810cf5f0d6bf4c4a7fb824570bd9b08e27525c))
+* raise minimum supported safari version and remove polyfill ([da8227a](https://github.com/oaknational/Oak-Web-Application/commit/da8227a92a91599f5825f569b96d312416c60504))
+* update about us links in topnav to new pages ([5328819](https://github.com/oaknational/Oak-Web-Application/commit/532881976cee847c44ed480137bab030036b1943))
+
+# [1.1005.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1004.0...v1.1005.0) (2026-02-25)
+
+
+### Bug Fixes
+
+* added constant for `mode` ([f299ac0](https://github.com/oaknational/Oak-Web-Application/commit/f299ac09f504e1a7a4c407ee9bb44e8871debb06))
+* more sonarcloud fixes ([e0cb14e](https://github.com/oaknational/Oak-Web-Application/commit/e0cb14ec719c5c87eaf3a26b1924d7920bb730f5))
+
+
+### Features
+
+* improve old-components script to show all components that need removing ([0c1429a](https://github.com/oaknational/Oak-Web-Application/commit/0c1429aed145ca8358a6244b8e4ad67d91c71fcb))
+
+# [1.1004.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1003.0...v1.1004.0) (2026-02-25)
+
+
+### Bug Fixes
+
+* reference error during SSR ([bbb670b](https://github.com/oaknational/Oak-Web-Application/commit/bbb670bb545f18dee38e4664b33f730b2e7c33bc))
+
+
+### Features
+
+* add query to get eyfs page data ([d6d3dfb](https://github.com/oaknational/Oak-Web-Application/commit/d6d3dfb56229fb9fd800dc77f405d23c501b7705))
+* add subjects to query ([8ab8f4c](https://github.com/oaknational/Oak-Web-Application/commit/8ab8f4c5595e8361e908a87e849c80ffd2814dd3))
+* add video data to eyfs lessons ([432992d](https://github.com/oaknational/Oak-Web-Application/commit/432992def7c2b00680c4e31526cd83d597812480))
+* **LESQ-1697:** add `ProgrammeFiltersThreads` ([0d0ba73](https://github.com/oaknational/Oak-Web-Application/commit/0d0ba73e9e240b1e02699b3ba71f78ce4271ec11))
+* **LESQ-1697:** plug programme filters into the programme units page ([8cbe56e](https://github.com/oaknational/Oak-Web-Application/commit/8cbe56e838f44edb829869a1e08b94321a33c41e))
+* move highlighted annotation onto a new line ([fc0d86e](https://github.com/oaknational/Oak-Web-Application/commit/fc0d86e70d8baf987332b5831d76c7f40c8d403f))
+* use query data in eyfs page ([6255be8](https://github.com/oaknational/Oak-Web-Application/commit/6255be869d0e2522328fa11cd94eea21af5f4868))
+
 # [1.1003.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1002.0...v1.1003.0) (2026-02-24)
 
 

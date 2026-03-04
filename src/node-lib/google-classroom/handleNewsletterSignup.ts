@@ -9,6 +9,7 @@ export async function handleNewsletterSignup(
   email: string,
   baseUrl: string,
   reportError: ErrorReporter,
+  subscribeToMailingList: boolean,
 ) {
   const submissionUrl = process.env.NEXT_PUBLIC_HUBSPOT_FORM_SUBMISSION_URL;
   const portalId = process.env.HUBSPOT_GOOGLE_CLASSROOM_PORTAL_ID;
@@ -30,7 +31,14 @@ export async function handleNewsletterSignup(
     fields: [
       { name: "email", value: email },
       { name: "user_type", value: "Teacher" },
-      { name: "email_consent_on_gc_addon_account_creation", value: "true" },
+      ...(subscribeToMailingList
+        ? [
+            {
+              name: "email_consent_on_gc_addon_account_creation",
+              value: "true",
+            },
+          ]
+        : []),
     ],
     context: {
       pageUri: `${baseUrl}/classroom/auth/callback`,

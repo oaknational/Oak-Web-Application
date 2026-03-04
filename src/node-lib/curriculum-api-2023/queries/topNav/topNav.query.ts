@@ -83,24 +83,19 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
           href: resolveOakHref({ page: "about-who-we-are" }),
         },
         {
-          title: "Leadership",
-          slug: "about-leadership",
-          href: resolveOakHref({ page: "about-leadership" }),
+          title: "Meet the team",
+          slug: "about-meet-the-team",
+          href: resolveOakHref({ page: "about-meet-the-team" }),
         },
         {
-          title: "Board",
-          slug: "about-board",
-          href: resolveOakHref({ page: "about-board" }),
+          title: "Oak's curricula",
+          slug: "about-oaks-curricula",
+          href: resolveOakHref({ page: "about-oaks-curricula" }),
         },
         {
-          title: "Partners",
-          slug: "about-partners",
-          href: resolveOakHref({ page: "about-partners" }),
-        },
-        {
-          title: "Work with us",
-          slug: "about-work-with-us",
-          href: resolveOakHref({ page: "about-work-with-us" }),
+          title: "Get involved",
+          slug: "about-get-involved",
+          href: resolveOakHref({ page: "about-get-involved" }),
         },
         {
           title: "Contact us",

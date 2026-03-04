@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAnnouncementAttachmentArgsSchema } from "@oaknational/google-classroom-addon/types";
 
-import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
+import {
+  createClassroomErrorReporter,
+  getOakGoogleClassroomAddon,
+  isOakGoogleClassroomException,
+} from "@/node-lib/google-classroom";
+
+const reportError = createClassroomErrorReporter("create-attachment");
 
 export async function POST(request: NextRequest) {
   try {
@@ -40,7 +46,11 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({}, { status: 201 });
   } catch (e) {
-    console.error(JSON.stringify(e));
-    return NextResponse.json({ error: e }, { status: 500 });
+    const errorObject = isOakGoogleClassroomException(e) ? e.toObject() : e;
+    reportError(errorObject);
+    return NextResponse.json(
+      { error: e instanceof Error ? e?.message : String(e) },
+      { status: 500 },
+    );
   }
 }
