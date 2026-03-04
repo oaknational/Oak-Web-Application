@@ -1,3 +1,5 @@
+import { useUser } from "@clerk/nextjs";
+
 import errorReporter from "@/common-lib/error-reporter";
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
@@ -19,6 +21,7 @@ export const useEyfsLessonDownload = ({
   schoolId: string;
 }) => {
   const { setCurrentToastProps } = useOakNotificationsContext();
+  const { user } = useUser();
 
   const { onHubspotSubmit } = useHubspotSubmit();
 
@@ -29,6 +32,7 @@ export const useEyfsLessonDownload = ({
         schoolName: schoolName,
         resources: downloadableResources,
         terms: true,
+        email: user?.primaryEmailAddress?.emailAddress,
       });
       await downloadLessonResources({
         lessonSlug: lessonSlug,
