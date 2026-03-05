@@ -315,30 +315,5 @@ describe("urls.ts", () => {
       };
       expect(resolveOakHref(props)).toBe("/eyfs/maths");
     });
-
-    it("Unit listing with EYFS programmeSlug redirects to EYFS page", () => {
-      const props: ResolveOakHrefProps = {
-        page: "unit-index",
-        programmeSlug: "maths-foundation-early-years-foundation-stage-l",
-      };
-      expect(resolveOakHref(props)).toBe("/eyfs/maths");
-    });
-
-    it("Unit listing with EYFS expressive-arts-and-design programmeSlug redirects correctly", () => {
-      const props: ResolveOakHrefProps = {
-        page: "unit-index",
-        programmeSlug:
-          "expressive-arts-and-design-foundation-early-years-foundation-stage-l",
-      };
-      expect(resolveOakHref(props)).toBe("/eyfs/expressive-arts-and-design");
-    });
-
-    it("Subject index with EYFS keyStageSlug redirects to EYFS page (defaults to maths)", () => {
-      const props: ResolveOakHrefProps = {
-        page: "subject-index",
-        keyStageSlug: "early-years-foundation-stage",
-      };
-      expect(resolveOakHref(props)).toBe("/eyfs/maths");
-    });
   });
 });

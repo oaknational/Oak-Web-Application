@@ -15,7 +15,6 @@ import {
   PreselectedDownloadType,
   PreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 
 const reportError = errorReporter("urls.ts");
 
@@ -1036,30 +1035,6 @@ export type ResolveOakHrefProps = Exclude<
 >;
 
 /**
- * Helper function to check if a programmeSlug or keyStageSlug is for EYFS
- * and extract the subject slug for the new EYFS route
- */
-const isEyfsAndGetSubject = (props: {
-  programmeSlug?: string;
-  keyStageSlug?: string;
-  subjectSlug?: string;
-}): { isEyfs: boolean; subjectSlug?: string } => {
-  const { programmeSlug, keyStageSlug, subjectSlug } = props;
-
-  if (keyStageSlug === "early-years-foundation-stage") {
-    return { isEyfs: true, subjectSlug };
-  }
-
-  if (programmeSlug && isSlugEYFS(programmeSlug)) {
-    const extractedSubject =
-      /^(.+)-foundation-early-years-foundation-stage/.exec(programmeSlug)?.[1];
-    return { isEyfs: true, subjectSlug: extractedSubject };
-  }
-
-  return { isEyfs: false };
-};
-
-/**
  * Pass readable props which are unlikely to need to change, and return an href.
  * @example
  * resolveOakHref({ page: "teacher-hub "})
@@ -1068,18 +1043,6 @@ const isEyfsAndGetSubject = (props: {
  */
 export const resolveOakHref = (props: ResolveOakHrefProps): string => {
   try {
-    const isSubjectOrProgrammeLink =
-      props.page === "unit-index" || props.page === "subject-index";
-    if (isSubjectOrProgrammeLink) {
-      const eyfsCheck = isEyfsAndGetSubject(props);
-      if (eyfsCheck.isEyfs) {
-        return OAK_PAGES["eyfs-page"].resolveHref({
-          page: "eyfs-page",
-          subjectSlug: eyfsCheck.subjectSlug || "maths",
-        } as EyfsPageLinkProps);
-      }
-    }
-
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const path = OAK_PAGES[props.page].resolveHref(props);
