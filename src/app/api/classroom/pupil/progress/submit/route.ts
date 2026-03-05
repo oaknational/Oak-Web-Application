@@ -8,6 +8,7 @@ import {
 } from "@/node-lib/google-classroom";
 
 const reportError = createClassroomErrorReporter("submit-pupil-progress");
+
 const hasAuthHeaders = (request: NextRequest) => {
   const accessToken = request.headers.get("Authorization");
   const session = request.headers.get("x-oakgc-session");
@@ -50,6 +51,7 @@ export async function POST(request: NextRequest) {
       reportError(errorObject);
       return NextResponse.json(errorObject, { status: 403 });
     }
+
     reportError(e);
     return NextResponse.json(
       { error: e instanceof Error ? e?.message : String(e) },
