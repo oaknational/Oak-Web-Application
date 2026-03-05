@@ -82,4 +82,97 @@ describe("eyfs page query", () => {
     const lesson = response.units["unit-slug"]?.lessons[0];
     expect(lesson?.video.muxPlaybackId).toBe("test-playback_id");
   });
+  it("populates lesson with downloadable resources", async () => {
+    const response = await eyfsPageQuery({
+      ...sdk,
+      eyfsPage: jest.fn(() =>
+        Promise.resolve({
+          lessons: [
+            {
+              programme_slug: "programme-slug",
+              lesson_slug: "lesson-slug",
+              lesson_data: lessonDataFixture({
+                overrides: {
+                  asset_id_slidedeck: 123,
+                  asset_id_worksheet: 456,
+                  quiz_id_exit: 123,
+                  quiz_id_starter: 456,
+                },
+              }),
+              programme_fields: programmeFieldsFixture(),
+              unit_data: unitDataFixture({ overrides: { slug: "unit-slug" } }),
+              unit_slug: "unit-slug",
+              features: {},
+              order_in_unit: 1,
+            },
+          ],
+          subjects: [],
+        }),
+      ),
+      eyfsVideos: jest.fn(() =>
+        Promise.resolve({
+          videos: [
+            {
+              video_mux_playback_id: "test-playback_id",
+              video_id: 123,
+              video_title: "video title",
+            },
+          ],
+        }),
+      ),
+    })({
+      subjectSlug: "maths",
+    });
+    const lesson = response.units["unit-slug"]?.lessons[0];
+    expect(lesson?.downloadableResources).toEqual([
+      "worksheet-pdf",
+      "worksheet-pptx",
+      "presentation",
+      "intro-quiz-answers",
+      "intro-quiz-questions",
+      "exit-quiz-answers",
+      "exit-quiz-questions",
+    ]);
+  });
+  it("excludes expired lessons", async () => {
+    const response = await eyfsPageQuery({
+      ...sdk,
+      eyfsPage: jest.fn(() =>
+        Promise.resolve({
+          lessons: [
+            {
+              programme_slug: "programme-slug",
+              lesson_slug: "lesson-slug",
+              lesson_data: lessonDataFixture(),
+              programme_fields: programmeFieldsFixture(),
+              unit_data: unitDataFixture({ overrides: { slug: "unit-slug" } }),
+              unit_slug: "unit-slug",
+              features: {},
+              order_in_unit: 1,
+            },
+            {
+              programme_slug: "programme-slug",
+              lesson_slug: "lesson-slug",
+              lesson_data: lessonDataFixture(),
+              programme_fields: programmeFieldsFixture(),
+              unit_data: unitDataFixture({ overrides: { slug: "unit-slug" } }),
+              unit_slug: "unit-slug",
+              features: { expired: true },
+              order_in_unit: 1,
+            },
+          ],
+          subjects: [],
+        }),
+      ),
+      eyfsVideos: jest.fn(() =>
+        Promise.resolve({
+          videos: [],
+        }),
+      ),
+    })({
+      subjectSlug: "maths",
+    });
+    const lessons = response.units["unit-slug"]?.lessons;
+    expect(lessons).toHaveLength(1);
+  });
 });

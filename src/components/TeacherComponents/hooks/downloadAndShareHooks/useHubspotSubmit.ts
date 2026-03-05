@@ -15,7 +15,7 @@ export const useHubspotSubmit = () => {
   const hubspotDownloadsFormId = getBrowserConfig("hubspotDownloadsFormId");
   const reportError = errorReporter("hubsportSubmitForm");
 
-  const onHubspotSubmit = async (data: ResourceFormProps) => {
+  const onHubspotSubmit = async (data: Omit<ResourceFormProps, "onSubmit">) => {
     const school =
       data.school === "homeschool" || data.school === "notListed"
         ? data.school
