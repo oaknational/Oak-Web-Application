@@ -1,3 +1,30 @@
+# [1.1014.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1013.0...v1.1014.0) (2026-03-05)
+
+
+### Bug Fixes
+
+* add signUp redirect url on sign in buttons ([ed9a9fa](https://github.com/oaknational/Oak-Web-Application/commit/ed9a9fa02f5de503919cb897140c3bd6fab0c894))
+* extract use school data into hook and lift to page level ([81b36d2](https://github.com/oaknational/Oak-Web-Application/commit/81b36d2bce5cb16385f3bc40a710a72b7194be27))
+* use SignInButton for clerk sign in to fix onboarding redirect functionality ([03e972d](https://github.com/oaknational/Oak-Web-Application/commit/03e972d30a1f20f21afb6ea3ea8fe566959cc7ff))
+
+
+### Features
+
+* add downloads to eyfs lesson data ([2bbf75e](https://github.com/oaknational/Oak-Web-Application/commit/2bbf75ecf16e9bac5cd7aacf9efc9cd0170f258c))
+* add EYFS lesson card ([55fcdb3](https://github.com/oaknational/Oak-Web-Application/commit/55fcdb399c8b716d622f5079c86c23e6393c1029))
+* add happy path download to eyfs lesson card ([4aa3e01](https://github.com/oaknational/Oak-Web-Application/commit/4aa3e0151592f1d930907e71c42d7f5d0e735be6))
+* add hubspot submission on download ([35322a4](https://github.com/oaknational/Oak-Web-Application/commit/35322a4ba6a42f4aace6bab5bf1d96c8c514fa43))
+* add notifications for download ([4947b80](https://github.com/oaknational/Oak-Web-Application/commit/4947b8029040191fedeeae3d3ea2cf3300b124be))
+* add return to anchor on eyfs download btn ([98445f4](https://github.com/oaknational/Oak-Web-Application/commit/98445f4bd33339c22708940b0ffde3b514c4971e))
+* apply responsive styling ([c928b1e](https://github.com/oaknational/Oak-Web-Application/commit/c928b1e3fdb246340d433187de93750f43136007))
+* dont render toggle for video when null ([d4a6376](https://github.com/oaknational/Oak-Web-Application/commit/d4a6376b13046a108683ca70f6e9fe8824c3c43b))
+* forgot to plug the actual cards in ([dcf5cf6](https://github.com/oaknational/Oak-Web-Application/commit/dcf5cf6c270a4d85f813b839cc7f8c118b6846bc))
+* get school data from hubspot if not available in local storage ([3786f7a](https://github.com/oaknational/Oak-Web-Application/commit/3786f7a0220b2db6674bc35b10bb84044e04510d))
+* include email in hubspot reporting ([e2b66ca](https://github.com/oaknational/Oak-Web-Application/commit/e2b66ca8009da26025174543e111cca309c6e271))
+* remove check resources ([98cc65b](https://github.com/oaknational/Oak-Web-Application/commit/98cc65b1d19faaa1d8bd02ee6dbe394fff60a8fb))
+* report download error ([9a49fe8](https://github.com/oaknational/Oak-Web-Application/commit/9a49fe814dd0d64a3a0a0d88bb6621061d688747))
+* use router replace in onboarding redirect for onboarded user ([78b53c3](https://github.com/oaknational/Oak-Web-Application/commit/78b53c3a3023012ca4a332a295c29fdbd3b14fec))
+
 # [1.1013.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1012.0...v1.1013.0) (2026-03-04)
 
 
