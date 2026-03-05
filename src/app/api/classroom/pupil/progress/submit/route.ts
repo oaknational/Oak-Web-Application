@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { upsertPupilLessonProgressArgsSchema } from "@oaknational/google-classroom-addon/types";
 
-import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
+import {
+  createClassroomErrorReporter,
+  getOakGoogleClassroomAddon,
+  isOakGoogleClassroomException,
+} from "@/node-lib/google-classroom";
 
+const reportError = createClassroomErrorReporter("submit-pupil-progress");
 const hasAuthHeaders = (request: NextRequest) => {
   const accessToken = request.headers.get("Authorization");
   const session = request.headers.get("x-oakgc-session");
@@ -70,15 +75,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(result, { status: 200 });
   } catch (e) {
     // Check if it's an OakGoogleClassroomException with submission state error
-    if (
-      e &&
-      typeof e === "object" &&
-      "name" in e &&
-      (e as { name: string }).name === "OakGoogleClassroomException"
-    ) {
-      return NextResponse.json(e, { status: 403 });
+    if (isOakGoogleClassroomException(e)) {
+      const errorObject = e.toObject();
+      reportError(errorObject);
+      return NextResponse.json(errorObject, { status: 403 });
     }
-    console.error(JSON.stringify(e));
-    return NextResponse.json({ error: e }, { status: 500 });
+    reportError(e);
+    return NextResponse.json(
+      { error: e instanceof Error ? e?.message : String(e) },
+      { status: 500 },
+    );
   }
 }
