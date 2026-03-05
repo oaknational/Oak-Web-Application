@@ -103,7 +103,7 @@ describe("ProgrammeFiltersThreads", () => {
 
     const radios = getAllByRole("radio") as HTMLInputElement[];
     expect(radios[1]).toBeChecked();
-    expect(getByText(/Thread 1/)).toBeInTheDocument();
+    expect(getByText("Thread 1")).toBeInTheDocument();
     expect(getByText(/1 unit highlighted/)).toBeInTheDocument();
   });
 

@@ -444,7 +444,7 @@ describe("Google Classroom API", () => {
 
       // Assert
       expect(mockFetch).toHaveBeenCalledWith(
-        "/api/classroom/pupil/progress/submit?submissionId=submission-1&itemId=item-1&attachmentId=attachment-1",
+        "/api/classroom/pupil/progress?submissionId=submission-1&itemId=item-1&attachmentId=attachment-1",
         expect.objectContaining({
           method: "GET",
           credentials: "include",

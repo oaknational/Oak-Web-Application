@@ -94,7 +94,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       (item: QuestionState) => item.mode !== "feedback",
     ) ?? 0;
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(
-    nextQuestionIndex >= 0 ? nextQuestionIndex : 0,
+    Math.max(nextQuestionIndex, 0),
   );
   const currentQuestionData = questionsArray[currentQuestionIndex];
 

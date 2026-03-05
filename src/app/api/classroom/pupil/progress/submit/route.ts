@@ -14,36 +14,6 @@ const hasAuthHeaders = (request: NextRequest) => {
   return { accessToken, session };
 };
 
-export async function GET(request: NextRequest) {
-  try {
-    const requestUrl = new URL(request.url);
-    const submissionId = requestUrl.searchParams.get("submissionId");
-    const attachmentId = requestUrl.searchParams.get("attachmentId");
-    const itemId = requestUrl.searchParams.get("itemId");
-    if (!submissionId || !attachmentId || !itemId) {
-      return NextResponse.json(
-        { error: "submissionId, attachmentId and itemId required" },
-        { status: 400 },
-      );
-    }
-
-    const oakClassroomClient = getOakGoogleClassroomAddon(request);
-    const result = await oakClassroomClient.getPupilLessonProgress(
-      submissionId,
-      attachmentId,
-      itemId,
-    );
-
-    return NextResponse.json(result ?? { lessonProgress: null });
-  } catch (e) {
-    console.error(JSON.stringify(e));
-    return NextResponse.json(
-      { error: "Failed to fetch pupil lesson progress" },
-      { status: 500 },
-    );
-  }
-}
-
 export async function POST(request: NextRequest) {
   try {
     const { accessToken, session } = hasAuthHeaders(request);

@@ -302,17 +302,6 @@ export const LessonEngineProvider = memo(
         };
         onNext(updatedSections, section);
       }
-
-      if (onNext) {
-        const updatedSections = {
-          ...state.sections,
-          [section]: {
-            ...state.sections[section],
-            isComplete: true,
-          },
-        };
-        onNext(updatedSections, section);
-      }
     };
 
     const updateCurrentSection = (section: LessonSection) => {
@@ -346,10 +335,7 @@ export const LessonEngineProvider = memo(
             isComplete: false,
           },
         };
-        onSectionResultUpdate(
-          updatedSections,
-          state.currentSection as LessonReviewSection,
-        );
+        onSectionResultUpdate(updatedSections, state.currentSection);
       }
     };
 

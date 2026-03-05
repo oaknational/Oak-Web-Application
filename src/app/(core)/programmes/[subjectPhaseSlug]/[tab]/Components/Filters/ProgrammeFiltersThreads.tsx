@@ -39,7 +39,14 @@ export function ProgrammeFiltersThreads({
       filters.threads,
     );
     if (isSelected) {
-      return `${threadOption.title} (${highlightCount} ${pluralizeUnits(highlightCount)} highlighted)`;
+      return (
+        <div>
+          <div>{threadOption.title}</div>
+          <OakBox $font="body-2">
+            {`${highlightCount} ${pluralizeUnits(highlightCount)} highlighted`}
+          </OakBox>
+        </div>
+      );
     }
 
     return threadOption.title;

@@ -9,7 +9,7 @@ import {
   OakGoogleClassroomException,
 } from "@oaknational/google-classroom-addon/server";
 
-import { POST, GET } from "./route";
+import { POST } from "./route";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
@@ -35,7 +35,6 @@ const { isOakGoogleClassroomException: mockedIsOakGoogleClassroomException } =
 
 const mockAccessToken = "mock-access-token";
 const mockSession = "mock-session-id";
-const mockGetPupilLessonProgress = jest.fn();
 
 const mockProgressArgs = {
   submissionId: "submission-123",
@@ -160,58 +159,6 @@ describe("POST /api/classroom/pupil/progress/submit", () => {
     expect(NextResponse.json).toHaveBeenCalledWith(
       { error: "Unknown error" },
       { status: 500 },
-    );
-  });
-});
-describe("GET", () => {
-  const mockHeaders = {
-    get: jest.fn((headerName: string) => {
-      if (headerName === "Authorization") return mockAccessToken;
-      if (headerName === "x-oakgc-session") return mockSession;
-      return null;
-    }),
-  };
-
-  beforeEach(() => {
-    jest.clearAllMocks();
-    mockedGetOakGoogleClassroomAddon.mockReturnValue({
-      getPupilLessonProgress: mockGetPupilLessonProgress,
-      upsertPupilLessonProgress: mockUpsertPupilLessonProgress,
-    });
-  });
-  it("should fetch pupil lesson progress", async () => {
-    const mockPayload = { lessonProgress: null, submissionState: "NEW" };
-    mockGetPupilLessonProgress.mockResolvedValue(mockPayload);
-
-    const mockRequest = {
-      headers: mockHeaders,
-      url: "http://localhost/api/classroom/pupil/progress/submit?submissionId=sub-1&courseId=course-1&itemId=item-1&attachmentId=attachment-1",
-    } as unknown as NextRequest;
-
-    await GET(mockRequest);
-
-    expect(mockGetPupilLessonProgress).toHaveBeenCalledWith(
-      "sub-1",
-      "attachment-1",
-      "item-1",
-    );
-    expect(NextResponse.json).toHaveBeenCalledWith(mockPayload);
-  });
-
-  it("should reject with 400 if required query params are missing", async () => {
-    const mockRequest = {
-      headers: mockHeaders,
-      url: "http://localhost/api/classroom/pupil/progress/submit",
-    } as unknown as NextRequest;
-
-    await GET(mockRequest);
-
-    expect(mockGetPupilLessonProgress).not.toHaveBeenCalled();
-    expect(NextResponse.json).toHaveBeenCalledWith(
-      expect.objectContaining({
-        error: "submissionId, attachmentId and itemId required",
-      }),
-      { status: 400 },
     );
   });
 });

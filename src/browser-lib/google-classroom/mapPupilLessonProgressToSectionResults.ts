@@ -1,4 +1,4 @@
-import { PupilLessonProgress } from "@oaknational/google-classroom-addon/dist/types";
+import { PupilLessonProgress } from "@oaknational/google-classroom-addon/types";
 
 import { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
 
