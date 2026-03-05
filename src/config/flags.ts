@@ -1,2 +1,3 @@
-// Note: Enabling this will enable the new about-us pages regardless the state of the feature flag
-export const ENABLE_NEW_ABOUT_US: boolean = true;
+// Note: Enabling this will enable the new TopNav regardless the state of the feature flag.
+// Set to false to roll back to feature flag control.
+export const ENABLE_NEW_TOPNAV = true;

@@ -81,7 +81,7 @@ describe("DropdownFocusManager", () => {
     const focusMap = manager.getFocusMap();
     // AboutUs links
     expect(focusMap.has("teachers-aboutUs-about-who-we-are")).toBe(true);
-    expect(focusMap.has("teachers-aboutUs-about-board")).toBe(true);
+    expect(focusMap.has("teachers-aboutUs-about-meet-the-team")).toBe(true);
     // Guidance links
     expect(focusMap.has("teachers-guidance-lesson-planning")).toBe(true);
     expect(focusMap.has("teachers-guidance-blog-index")).toBe(true);
