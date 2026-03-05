@@ -72,7 +72,12 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
       <OakHeading id={headingId} tag={titleTag} $font={"heading-7"}>
         {title}
       </OakHeading>
-      <OakUL $display={"flex"} $gap="spacing-16" $flexWrap={"wrap"}>
+      <OakUL
+        $display={"flex"}
+        $pa={"spacing-0"}
+        $gap="spacing-16"
+        $flexWrap={"wrap"}
+      >
         {keyStages.map((ks) => (
           <OakLI $listStyle={"none"} key={`key-stage-li-${ks.slug}`}>
             <KeypadLink {...ks} trackingOnClick={trackingOnClick} />
