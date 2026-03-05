@@ -229,6 +229,8 @@ const TopNav = (props: TopNavProps) => {
             $flexDirection={"column"}
             $background={"bg-primary"}
             data-testid="topnav-dropdown-container"
+            $bb="border-solid-s"
+            $borderColor="border-neutral-lighter"
           >
             <TopNavDropdown
               focusManager={focusManager!}
