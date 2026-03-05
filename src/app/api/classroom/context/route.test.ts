@@ -14,9 +14,15 @@ jest.mock("next/server", () => ({
   },
 }));
 
-jest.mock("@/node-lib/google-classroom", () => ({
-  getOakGoogleClassroomAddon: jest.fn(),
-}));
+jest.mock("@/node-lib/google-classroom", () => {
+  const reporterMock = jest.fn();
+  return {
+    getOakGoogleClassroomAddon: jest.fn(),
+    createClassroomErrorReporter: jest.fn(() => reporterMock),
+    isOakGoogleClassroomException: jest.fn(() => false),
+    __mockReportError: reporterMock,
+  };
+});
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
 
