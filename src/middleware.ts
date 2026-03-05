@@ -39,7 +39,14 @@ const getRedirect = (request: NextRequest) => {
   }
 };
 
-async function redirectMiddleware(request: NextRequest) {
+const isApiRoute = (url: string) =>
+  !!url.match(/\/(api|trpc)((?!\/classroom))(.*)/)?.[0];
+
+export default async function redirectMiddleware(request: NextRequest) {
+  if (isApiRoute(request.url)) {
+    return clerkMiddleware();
+  }
+
   const redirect = getRedirect(request);
   if (redirect) {
     const cookies = request.cookies
@@ -67,10 +74,6 @@ async function redirectMiddleware(request: NextRequest) {
     }
   }
 }
-
-export default clerkMiddleware((_, req) => {
-  return redirectMiddleware(req);
-});
 
 /**
  * Clerk middleware causes page latency, we're only enabling it for API routes or pages where
