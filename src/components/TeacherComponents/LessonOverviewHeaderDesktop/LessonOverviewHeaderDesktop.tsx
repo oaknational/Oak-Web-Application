@@ -147,6 +147,7 @@ export const LessonOverviewHeaderDesktop: FC<
               </OakBox>
               <OakUL
                 $display={"flex"}
+                $pa={"spacing-0"}
                 $gap="spacing-16"
                 $alignItems={"flex-start"}
                 $flexWrap={"wrap"}
