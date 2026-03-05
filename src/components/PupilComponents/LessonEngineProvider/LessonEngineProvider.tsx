@@ -195,6 +195,8 @@ export type LessonEngineContextType = {
   updateAdditionalFilesDownloaded: (result: IntroResult) => void;
   lessonReviewSections: Readonly<LessonReviewSection[]>;
   lessonStarted: boolean;
+  isReadOnly: boolean;
+  isHydratingInitialProgress: boolean;
 } | null;
 
 export const LessonEngineContext = createContext<LessonEngineContextType>(null);
@@ -211,6 +213,8 @@ export type LessonEngineProviderProps = {
   children: ReactNode;
   initialLessonReviewSections: Readonly<LessonReviewSection[]>;
   initialSection: LessonSection;
+  initialSectionResults?: LessonSectionResults;
+  isReadOnly?: boolean;
   onNext?: (
     sectionResults: LessonSectionResults,
     completedSection: LessonReviewSection,
@@ -219,6 +223,7 @@ export type LessonEngineProviderProps = {
     sectionResults: LessonSectionResults,
     section: LessonReviewSection,
   ) => void;
+  isHydratingInitialProgress?: boolean;
 };
 
 export const LessonEngineProvider = memo(
@@ -226,16 +231,23 @@ export const LessonEngineProvider = memo(
     children,
     initialLessonReviewSections,
     initialSection,
+    initialSectionResults,
+    isReadOnly = false,
     onNext,
     onSectionResultUpdate,
+    isHydratingInitialProgress = false,
   }: LessonEngineProviderProps) => {
+    const hasInitialSectionResults = Boolean(
+      initialSectionResults && Object.keys(initialSectionResults).length > 0,
+    );
+
     const [state, dispatch] = useReducer<
       Reducer<LessonEngineState, LessonEngineAction>
     >(lessonEngineReducer, {
       lessonReviewSections: initialLessonReviewSections,
       currentSection: initialSection,
-      lessonStarted: false,
-      sections: {},
+      lessonStarted: hasInitialSectionResults,
+      sections: initialSectionResults ?? {},
       timeStamp: {
         section: initialSection,
         time: new Date().getTime(),
@@ -262,6 +274,7 @@ export const LessonEngineProvider = memo(
     };
 
     const completeActivity = (section: LessonReviewSection) => {
+      if (isReadOnly) return;
       if (state.sections[section]?.isComplete) {
         console.warn(`Section '${section}' is already complete`);
         return;
@@ -292,11 +305,13 @@ export const LessonEngineProvider = memo(
     };
 
     const updateCurrentSection = (section: LessonSection) => {
+      if (isReadOnly) return;
       trackLessonStarted();
       dispatch({ type: "setCurrentSection", section });
     };
 
     const proceedToNextSection = () => {
+      if (isReadOnly) return;
       dispatch({ type: "proceedToNextSection" });
       trackLessonStarted();
     };
@@ -304,6 +319,7 @@ export const LessonEngineProvider = memo(
     const updateSectionResult = (
       result: QuizResult | VideoResult | IntroResult,
     ) => {
+      if (isReadOnly) return;
       trackLessonStarted();
       dispatch({ type: "updateSectionResult", result });
 
@@ -348,6 +364,8 @@ export const LessonEngineProvider = memo(
           updateSectionResult,
           lessonReviewSections: state.lessonReviewSections,
           lessonStarted: state.lessonStarted,
+          isReadOnly,
+          isHydratingInitialProgress,
           updateWorksheetDownloaded,
           updateAdditionalFilesDownloaded,
         }}

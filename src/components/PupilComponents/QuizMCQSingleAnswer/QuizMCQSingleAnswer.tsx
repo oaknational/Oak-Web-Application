@@ -34,7 +34,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   const quizEngineContext = useQuizEngineContext();
   const lessonEngineContext = useLessonEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
-  const { currentSection } = lessonEngineContext;
+  const { currentSection, isReadOnly } = lessonEngineContext;
   const answers = useMemo(
     () => currentQuestionData?.answers?.["multiple-choice"] ?? [],
     [currentQuestionData],
@@ -53,6 +53,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   }
 
   const isFeedbackMode = questionState.mode === "feedback";
+  const isExitQuizReadOnly = isReadOnly && currentSection === "exit-quiz";
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
@@ -72,7 +73,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
         $flexDirection={"column"}
         $gap={"spacing-16"}
         onChange={onChange}
-        disabled={isFeedbackMode}
+        disabled={isFeedbackMode || isExitQuizReadOnly}
         aria-labelledby={`${questionUid}-legend`}
       >
         {answers?.map((answer, i) => {
