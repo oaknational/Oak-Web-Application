@@ -1,19 +1,19 @@
-import { NextPage, GetStaticPropsResult, GetServerSideProps } from "next";
+import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import {
   OakBox,
   OakCard,
   OakFlex,
   OakHeading,
-  OakSideMenuNav,
   OakTypography,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { useMemo, useRef } from "react";
 
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { MeetTheTeamPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import CMSClient from "@/node-lib/cms";
+import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import Layout from "@/components/AppComponents/Layout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
@@ -26,9 +26,7 @@ import { MeetTheTeamContainer } from "@/components/GenericPagesComponents/MeetTh
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
-
-const posthogApiKey = getBrowserConfig("posthogApiKey");
+import MeetTheTeamNav from "@/components/GenericPagesComponents/MeetTheTeamNav";
 
 const SECTION_TITLES = {
   leadership: "Our leadership",
@@ -46,6 +44,20 @@ export type AboutUsMeetTheTeamPageProps = {
   topNav: TopNavProps;
 };
 
+// Call getProxiedSanityAssetUrl(...) once, rather than every render
+function useWithCachedImage<
+  T extends { image?: null | { asset?: null | { url: string } } },
+>(items: T[]) {
+  return useMemo<(T & { imageUrl: string | undefined })[]>(() => {
+    return items.map((item) => {
+      return {
+        ...item,
+        imageUrl: getProxiedSanityAssetUrl(item.image?.asset?.url) ?? undefined,
+      };
+    });
+  }, [items]);
+}
+
 const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
   pageData,
   topNav,
@@ -60,6 +72,20 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
     governancePortableText,
     seo,
   } = pageData;
+
+  const boardMembersModified = useWithCachedImage(boardMembers);
+  const leadershipTeamModified = useWithCachedImage(leadershipTeam);
+
+  const leadershipRef = useRef<HTMLDivElement>(null);
+  const boardRef = useRef<HTMLDivElement>(null);
+  const documentsRef = useRef<HTMLDivElement>(null);
+  const sectionRefs = useMemo(() => {
+    return {
+      "our-leadership": leadershipRef,
+      "our-board": boardRef,
+      documents: documentsRef,
+    } as const;
+  }, []);
 
   return (
     <Layout
@@ -84,31 +110,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
             $pb={"spacing-80"}
           >
             <OakBox $pb={"spacing-80"}>
-              <OakBox
-                $position={"sticky"}
-                $top={"spacing-20"}
-                $display={["none", "block", "block"]}
-                $minWidth={"spacing-180"}
-              >
-                <OakSideMenuNav
-                  heading="Page sections"
-                  anchorTargetId=""
-                  menuItems={[
-                    {
-                      heading: "Our leadership",
-                      href: "#our-leadership",
-                    },
-                    {
-                      heading: "Our board",
-                      href: "#our-board",
-                    },
-                    {
-                      heading: "Documents",
-                      href: "#documents",
-                    },
-                  ]}
-                />
-              </OakBox>
+              <MeetTheTeamNav sectionRefs={sectionRefs} />
             </OakBox>
             <OakFlex
               $flexGrow={1}
@@ -116,22 +118,20 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               $gap={["spacing-32", "spacing-56", "spacing-56"]}
             >
               <MeetTheTeamContainer
+                ref={leadershipRef}
                 title={SECTION_TITLES.leadership}
                 text={leadershipText}
                 anchor="our-leadership"
               >
-                {leadershipTeam.map((member) => {
+                {leadershipTeamModified.map((member) => {
                   const slug = member.slug?.current ?? member.id;
-                  const imageUrl =
-                    getProxiedSanityAssetUrl(member.image?.asset?.url) ??
-                    undefined;
                   return (
                     <UnstyledLi key={member.id}>
                       <OakCard
                         heading={member.name}
                         href={`/about-us/meet-the-team/${slug}?section=leadership`}
                         cardWidth={"100%"}
-                        imageSrc={imageUrl}
+                        imageSrc={member.imageUrl}
                         subCopy={member.role ?? ""}
                         linkText="See bio"
                         linkIconName="chevron-right"
@@ -141,22 +141,20 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                 })}
               </MeetTheTeamContainer>
               <MeetTheTeamContainer
+                ref={boardRef}
                 title={SECTION_TITLES.board}
                 text={boardText}
                 anchor="our-board"
               >
-                {boardMembers.map((member) => {
+                {boardMembersModified.map((member) => {
                   const slug = member.slug?.current ?? member.id;
-                  const imageUrl =
-                    getProxiedSanityAssetUrl(member.image?.asset?.url) ??
-                    undefined;
                   return (
                     <UnstyledLi key={member.id}>
                       <OakCard
                         heading={member.name}
                         href={`/about-us/meet-the-team/${slug}?section=board`}
                         cardWidth={"100%"}
-                        imageSrc={imageUrl}
+                        imageSrc={member.imageUrl}
                         subCopy={member.role ?? ""}
                         linkText="See bio"
                         linkIconName="chevron-right"
@@ -167,6 +165,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               </MeetTheTeamContainer>
               {documents && documents.length > 0 && (
                 <MeetTheTeamContainer
+                  ref={documentsRef}
                   title={SECTION_TITLES.documents}
                   text={null}
                   anchor="documents"
@@ -212,40 +211,35 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticProps: GetStaticProps<
   AboutUsMeetTheTeamPageProps
 > = async (context) => {
-  const enableV2 = await isNewAboutUsPagesEnabled(
-    posthogApiKey,
-    context.req.cookies,
-  );
+  return getPageProps({
+    page: "about-meet-the-team::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
+      const meetTheTeamPage = await CMSClient.meetTheTeamPage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!enableV2) {
-    return {
-      notFound: true,
-    };
-  }
+      const topNav = await curriculumApi2023.topNav();
 
-  const isPreviewMode = context.preview === true;
-  const meetTheTeamPage = await CMSClient.meetTheTeamPage({
-    previewMode: isPreviewMode,
-  });
+      if (!meetTheTeamPage) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const topNav = await curriculumApi2023.topNav();
-
-  if (!meetTheTeamPage) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const results: GetStaticPropsResult<AboutUsMeetTheTeamPageProps> = {
-    props: {
-      pageData: meetTheTeamPage,
-      topNav,
+      const results: GetStaticPropsResult<AboutUsMeetTheTeamPageProps> = {
+        props: {
+          pageData: meetTheTeamPage,
+          topNav,
+        },
+      };
+      return results;
     },
-  };
-  return results;
+  });
 };
 
 export default AboutUsMeetTheTeam;

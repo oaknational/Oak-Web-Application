@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
@@ -7,12 +7,10 @@ import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import OaksCurricula, {
   OaksCurriculaPageProps,
-  getServerSideProps,
+  getStaticProps,
 } from "@/pages/about-us/oaks-curricula";
 import CMSClient from "@/node-lib/cms";
-import isNewAboutUsPagesEnabled from "@/utils/isNewAboutUsPagesEnabled";
 
-jest.mock("@/utils/isNewAboutUsPagesEnabled");
 jest.mock("../../../node-lib/cms");
 
 const mockImage = {
@@ -143,30 +141,12 @@ describe("pages/about/oaks-curricula.tsx", () => {
     expect(queryByText("Curriculum partners")).not.toBeInTheDocument();
   });
 
-  describe("getServerSideProps", () => {
-    it("should 404 when not enabled", async () => {
-      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(false);
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-        res: {},
-        query: {},
-        params: {},
-      } as unknown as GetServerSidePropsContext);
-
-      expect(propsResult).toMatchObject({
-        notFound: true,
-      });
-    });
-
+  describe("getStaticProps", () => {
     it("should 404 when CMS returns null", async () => {
-      (isNewAboutUsPagesEnabled as jest.Mock).mockResolvedValue(true);
       (CMSClient.oaksCurriculaPage as jest.Mock).mockResolvedValue(null);
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-        res: {},
-        query: {},
+      const propsResult = await getStaticProps({
         params: {},
-      } as unknown as GetServerSidePropsContext);
+      } as unknown as GetStaticPropsContext);
 
       expect(propsResult).toMatchObject({
         notFound: true,

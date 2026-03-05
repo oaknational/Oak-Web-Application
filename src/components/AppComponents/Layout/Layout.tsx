@@ -2,10 +2,10 @@ import Head from "next/head";
 import React, { FC } from "react";
 import { useRouter } from "next/router";
 import { OakBox, OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import TopNav, { TopNavProps } from "../TopNav/TopNav";
 
+import { useIsNewTopnavEnabled } from "@/hooks/useIsNewTopnavEnabled";
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
 import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
@@ -65,7 +65,7 @@ const Layout: FC<LayoutProps> = (props) => {
     banner,
     topNavProps,
   } = props;
-  const newTopNavEnabled = useFeatureFlagEnabled("teachers-new-top-nav");
+  const newTopNavEnabled = useIsNewTopnavEnabled();
 
   const Header = headers[headerVariant];
   const Footer = footers[footerVariant];

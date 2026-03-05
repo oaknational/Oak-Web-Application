@@ -12,11 +12,13 @@ function getDeploymentTestUrls() {
     "/lesson-planning",
     "/support-your-team",
     "/contact-us",
-    "/about-us/get-involved",
+    // About Us pages
+    "/about-us/who-we-are",
     "/about-us/oaks-curricula",
     "/about-us/meet-the-team",
     "/about-us/meet-the-team/john-roberts?section=leadership",
-    "/about-us/who-we-are",
+    "/about-us/get-involved",
+    // Blog pages
     "/blog",
     "/blog/how-to-design-a-unit-of-study",
     "/blog/evolution-of-oak",
