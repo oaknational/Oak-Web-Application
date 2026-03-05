@@ -21,7 +21,7 @@ import {
 import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
 import type { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 
-type Props = {
+type Props = Readonly<{
   browseData: LessonListingBrowseData;
   programmeSlug: string;
   unitData?: UnitData;
@@ -29,7 +29,7 @@ type Props = {
   programmeUrlTemplate: string;
   pupilLessonUrlTemplate: string;
   headerLeftSlot?: React.ReactElement;
-};
+}>;
 
 function getLessonReleaseCohort(
   isLegacy: boolean,
@@ -60,6 +60,28 @@ export function GoogleClassroomLessonListingAnalytics({
     [browseData],
   );
 
+  const buildAvoLessonPayload = (lessonSlug: string) => {
+    const lesson = lessonLookup.get(lessonSlug);
+    if (!lesson) return null;
+    return {
+      lessonName: lesson.lessonData.title,
+      lessonSlug: lesson.lessonSlug,
+      lessonReleaseCohort: getLessonReleaseCohort(lesson.isLegacy),
+      lessonReleaseDate: lesson.lessonData.lessonReleaseDate ?? "unreleased",
+      unitName: unitData?.title ?? "",
+      unitSlug: lesson.unitSlug,
+      tierName: (programmeFields?.tier ?? null) as TierNameValueType,
+      examBoard: (programmeFields?.examboard ?? null) as ExamBoardValueType,
+      pathway: (programmeFields?.optionality ?? null) as PathwayValueType,
+      yearGroupName: programmeFields?.year ?? "",
+      yearGroupSlug: programmeFields?.yearSlug ?? "",
+      subjectTitle: programmeFields?.subject ?? "",
+      subjectSlug: programmeFields?.subjectSlug ?? "",
+      googleLoginHint,
+      clientEnvironment,
+    };
+  };
+
   return (
     <LessonListingView
       browseData={browseData as never}
@@ -70,48 +92,14 @@ export function GoogleClassroomLessonListingAnalytics({
       pupilLessonUrlTemplate={pupilLessonUrlTemplate}
       headerLeftSlot={headerLeftSlot}
       onLessonSelected={(lessonSlug) => {
-        const lesson = lessonLookup.get(lessonSlug);
-        if (!lesson) return;
-        track.classroomLessonSelected({
-          lessonName: lesson.lessonData.title,
-          lessonSlug: lesson.lessonSlug,
-          lessonReleaseCohort: getLessonReleaseCohort(lesson.isLegacy),
-          lessonReleaseDate:
-            lesson.lessonData.lessonReleaseDate ?? "unreleased",
-          unitName: unitData?.title ?? "",
-          unitSlug: lesson.unitSlug,
-          tierName: (programmeFields?.tier ?? null) as TierNameValueType,
-          examBoard: (programmeFields?.examboard ?? null) as ExamBoardValueType,
-          pathway: (programmeFields?.optionality ?? null) as PathwayValueType,
-          yearGroupName: programmeFields?.year ?? "",
-          yearGroupSlug: programmeFields?.yearSlug ?? "",
-          subjectTitle: programmeFields?.subject ?? "",
-          subjectSlug: programmeFields?.subjectSlug ?? "",
-          googleLoginHint,
-          clientEnvironment,
-        });
+        const payload = buildAvoLessonPayload(lessonSlug);
+        if (!payload) return;
+        track.classroomLessonSelected(payload);
       }}
       onLessonPreviewed={(lessonSlug) => {
-        const lesson = lessonLookup.get(lessonSlug);
-        if (!lesson) return;
-        track.classroomLessonPreviewed({
-          lessonName: lesson.lessonData.title,
-          lessonSlug: lesson.lessonSlug,
-          lessonReleaseCohort: getLessonReleaseCohort(lesson.isLegacy),
-          lessonReleaseDate:
-            lesson.lessonData.lessonReleaseDate ?? "unreleased",
-          unitName: unitData?.title ?? "",
-          unitSlug: lesson.unitSlug,
-          tierName: (programmeFields?.tier ?? null) as TierNameValueType,
-          examBoard: (programmeFields?.examboard ?? null) as ExamBoardValueType,
-          pathway: (programmeFields?.optionality ?? null) as PathwayValueType,
-          yearGroupName: programmeFields?.year ?? "",
-          yearGroupSlug: programmeFields?.yearSlug ?? "",
-          subjectTitle: programmeFields?.subject ?? "",
-          subjectSlug: programmeFields?.subjectSlug ?? "",
-          googleLoginHint,
-          clientEnvironment,
-        });
+        const payload = buildAvoLessonPayload(lessonSlug);
+        if (!payload) return;
+        track.classroomLessonPreviewed(payload);
       }}
     />
   );

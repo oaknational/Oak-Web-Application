@@ -10,11 +10,11 @@ import { getClientEnvironment } from "./getClientEnvironment";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
-type Props = {
+type Props = Readonly<{
   units: Unit[][];
   programmeSlug: string;
   unitsLessonListUrlTemplate: string;
-};
+}>;
 
 export function GoogleClassroomUnitCardsAnalytics({
   units,

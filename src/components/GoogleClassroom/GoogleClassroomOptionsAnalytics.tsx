@@ -14,7 +14,7 @@ import { getClientEnvironment } from "./getClientEnvironment";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ComponentType, FilterType } from "@/browser-lib/avo/Avo";
 
-type Props = {
+type Props = Readonly<{
   programmes: Programme[];
   baseSlug: string;
   yearSlug?: string;
@@ -24,7 +24,7 @@ type Props = {
     factorPrefix: "tier" | "examboard" | "pathway";
     programmes: never[];
   }) => Promise<FactorData[]>;
-};
+}>;
 
 const FACTOR_TO_FILTER: Record<
   "tier" | "examboard" | "pathway",
