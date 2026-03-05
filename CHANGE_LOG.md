@@ -1,3 +1,10 @@
+## [1.1014.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1014.0...v1.1014.1) (2026-03-05)
+
+
+### Bug Fixes
+
+* **LESQ-1720:** risk assessment banner for PE only appearing for entirely practical units ([a345113](https://github.com/oaknational/Oak-Web-Application/commit/a345113374edbc5bbad685d61de8b454dd20a252))
+
 # [1.1014.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1013.0...v1.1014.0) (2026-03-05)
 
 
