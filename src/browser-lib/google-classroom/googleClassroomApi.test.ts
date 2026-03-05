@@ -427,9 +427,9 @@ describe("Google Classroom API", () => {
     it("should call the lesson progress API with query parameters", async () => {
       // Arrange
       mockCookieStore.get.mockImplementation((name) => {
-        if (name === "oak-gclassroom-session")
+        if (name === AuthCookieKeys.Session)
           return Promise.resolve({ value: "test-session" });
-        if (name === "oak-gclassroom-token")
+        if (name === AuthCookieKeys.AccessToken)
           return Promise.resolve({ value: "test-token" });
         return Promise.resolve(null);
       });
@@ -457,9 +457,9 @@ describe("Google Classroom API", () => {
     it("should call the lesson progress API with payload", async () => {
       // Arrange
       mockCookieStore.get.mockImplementation((name) => {
-        if (name === "oak-gclassroom-session")
+        if (name === AuthCookieKeys.Session)
           return Promise.resolve({ value: "test-session" });
-        if (name === "oak-gclassroom-token")
+        if (name === AuthCookieKeys.AccessToken)
           return Promise.resolve({ value: "test-token" });
         return Promise.resolve(null);
       });

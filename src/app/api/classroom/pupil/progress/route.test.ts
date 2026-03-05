@@ -67,7 +67,7 @@ describe("GET /api/classroom/pupil/progress", () => {
 
     const mockRequest = {
       headers: mockHeaders,
-      url: "http://localhost/api/classroom/pupil/progress/submit?submissionId=sub-1&courseId=course-1&itemId=item-1&attachmentId=attachment-1",
+      url: "http://localhost/api/classroom/pupil/progress?submissionId=sub-1&courseId=course-1&itemId=item-1&attachmentId=attachment-1",
     } as unknown as NextRequest;
 
     await GET(mockRequest);
@@ -83,7 +83,7 @@ describe("GET /api/classroom/pupil/progress", () => {
   it("should reject with 400 if required query params are missing", async () => {
     const mockRequest = {
       headers: mockHeaders,
-      url: "http://localhost/api/classroom/pupil/progress/submit",
+      url: "http://localhost/api/classroom/pupil/progress",
     } as unknown as NextRequest;
 
     await GET(mockRequest);
