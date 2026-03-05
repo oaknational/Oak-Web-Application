@@ -8,14 +8,30 @@ import Link from "next/link";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
-import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
+import { resolveOakHref } from "@/common-lib/urls";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import {
   TeachersSubNavData,
   TeachersSubNavData as TeachersData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
+import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 
-export const getSubjectLinkProps = ({
+const getEyfsSubjectSlug = (props: {
+  programmeSlug?: string | null;
+  keyStageSlug?: string;
+}): string | null => {
+  const { programmeSlug } = props;
+
+  if (programmeSlug && isSlugEYFS(programmeSlug)) {
+    const extractedSubject =
+      /^(.+)-foundation-early-years-foundation-stage/.exec(programmeSlug)?.[1];
+    return extractedSubject || null;
+  }
+
+  return null;
+};
+
+export const getSubjectLinkHref = ({
   programmeCount,
   subjectSlug,
   programmeSlug,
@@ -25,19 +41,41 @@ export const getSubjectLinkProps = ({
   subjectSlug: string;
   programmeSlug: string | null;
   keyStageSlug?: string;
-}): ResolveOakHrefProps => {
+}): string => {
+  // Check if this is EYFS and redirect to new EYFS route
+  const eyfsSubject = getEyfsSubjectSlug({ programmeSlug, keyStageSlug });
+  if (eyfsSubject) {
+    return resolveOakHref({
+      page: "eyfs-page",
+      subjectSlug: eyfsSubject,
+    });
+  }
+
   return programmeCount > 1 && keyStageSlug
     ? // If there are multiple programmes, link to the programme listing page
-      {
+      resolveOakHref({
         page: "programme-index",
         subjectSlug,
         keyStageSlug,
-      }
+      })
     : // If there is only one programme, link to the unit listing page for that programme
-      {
+      resolveOakHref({
         page: "unit-index",
         programmeSlug: programmeSlug!,
-      };
+      });
+};
+
+export const getSubjectIndexHref = ({
+  keyStageSlug,
+}: {
+  keyStageSlug: string;
+}): string => {
+  return keyStageSlug === "early-years-foundation-stage"
+    ? resolveOakHref({
+        page: "eyfs-page",
+        subjectSlug: "maths",
+      })
+    : resolveOakHref({ page: "subject-index", keyStageSlug });
 };
 
 const TopNavSubjectButtons = ({
@@ -85,14 +123,12 @@ const TopNavSubjectButtons = ({
                 variant={"horizontal"}
                 element={Link}
                 subjectIconName={getValidSubjectIconName(slug)}
-                href={resolveOakHref(
-                  getSubjectLinkProps({
-                    programmeCount,
-                    subjectSlug: slug,
-                    programmeSlug,
-                    keyStageSlug,
-                  }),
-                )}
+                href={getSubjectLinkHref({
+                  programmeCount,
+                  subjectSlug: slug,
+                  programmeSlug,
+                  keyStageSlug,
+                })}
                 onClick={() => handleClick(slug, keyStageSlug)}
                 onKeyDown={(e) =>
                   buttonId && focusManager?.handleKeyDown(e, buttonId)
@@ -122,14 +158,12 @@ const TopNavSubjectButtons = ({
                 key={subject.slug}
                 element={Link}
                 subjectIconName={getValidSubjectIconName(subject.slug)}
-                href={resolveOakHref(
-                  getSubjectLinkProps({
-                    programmeCount,
-                    subjectSlug: subject.slug,
-                    programmeSlug,
-                    keyStageSlug,
-                  }),
-                )}
+                href={getSubjectLinkHref({
+                  programmeCount,
+                  subjectSlug: subject.slug,
+                  programmeSlug,
+                  keyStageSlug,
+                })}
                 onClick={() => handleClick(subject.slug, keyStageSlug)}
                 onKeyDown={(e) =>
                   buttonId && focusManager?.handleKeyDown(e, buttonId)
@@ -161,7 +195,9 @@ const TopNavSubjectButtons = ({
               ),
             )
           }
-          href={resolveOakHref({ page: "subject-index", keyStageSlug })}
+          href={getSubjectIndexHref({
+            keyStageSlug,
+          })}
         >
           All {keyStageTitle} subjects
         </OakPrimaryInvertedButton>
