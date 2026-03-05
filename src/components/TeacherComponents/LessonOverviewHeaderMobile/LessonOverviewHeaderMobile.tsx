@@ -7,14 +7,13 @@ import {
   OakBox,
   OakTertiaryButton,
   OakTagFunctional,
-  OakUL,
-  OakLI,
 } from "@oaknational/oak-components";
 
-import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithAiDropdown";
+// import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithAiDropdown";
+import { LessonOverviewDownloadAndShareButtons } from "../LessonOverviewDownloadAndShareButtons/LessonOverviewDownloadAndShareButtons";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
-import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
+// import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
@@ -45,7 +44,6 @@ export const LessonOverviewHeaderMobile: FC<
     lessonSlug,
     lessonReleaseDate,
     unitSlug,
-    excludedFromTeachingMaterials,
     shareButtons,
   } = props;
 
@@ -114,22 +112,10 @@ export const LessonOverviewHeaderMobile: FC<
           {phonicsOutcome && <OakP $font={"body-2"}>{phonicsOutcome}</OakP>}
         </OakBox>
       </OakBox>
-      <OakUL
-        $display={"flex"}
-        $flexDirection={"column"}
-        $pa={"spacing-0"}
-        $gap={"spacing-24"}
-      >
-        <OakLI $listStyle={"none"}>
-          <LessonOverviewHeaderDownloadAllButton {...props} />
-        </OakLI>
-        {shareButtons}
-        {!excludedFromTeachingMaterials && (
-          <OakLI $listStyle={"none"}>
-            <LessonOverviewCreateWithAiDropdown {...props} />
-          </OakLI>
-        )}
-      </OakUL>
+      <LessonOverviewDownloadAndShareButtons
+        {...props}
+        shareButtons={shareButtons}
+      />
       <ComplexCopyrightRestrictionBanner
         isGeorestricted={geoRestricted}
         isLoginRequired={loginRequired}
