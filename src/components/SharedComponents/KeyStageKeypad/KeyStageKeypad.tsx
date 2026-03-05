@@ -61,15 +61,15 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
   keyStages.sort((a, b) =>
     a.displayOrder && b.displayOrder ? a.displayOrder - b.displayOrder : 0,
   );
-
+  const headingId = `key-stage-keypad-heading`;
   return (
     <OakFlex
       as="nav"
       $gap="spacing-16"
       $flexDirection="column"
-      aria-label="key stages and year groups"
+      aria-labelledby={headingId}
     >
-      <OakHeading tag={titleTag} $font={"heading-7"}>
+      <OakHeading id={headingId} tag={titleTag} $font={"heading-7"}>
         {title}
       </OakHeading>
       <OakUL $display={"flex"} $gap="spacing-16" $flexWrap={"wrap"}>
