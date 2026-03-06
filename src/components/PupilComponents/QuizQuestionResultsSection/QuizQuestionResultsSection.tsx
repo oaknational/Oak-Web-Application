@@ -35,22 +35,21 @@ export const QuizQuestionResultsSection = ({
           />
         </>
       )}
-      {quiz?.questionResults &&
-        quiz.questionResults.map((questionResult, index) => {
-          const displayIndex =
-            questionResult.mode === "init" ? 999 : incrementQuestionIndex();
+      {quiz?.questionResults?.map((questionResult, index) => {
+        const displayIndex =
+          questionResult.mode === "init" ? 999 : incrementQuestionIndex();
 
-          return (
-            <QuizSectionRender
-              key={`section-render'${index}`}
-              index={index}
-              displayIndex={displayIndex}
-              questionResult={questionResult}
-              quizQuestionArray={quizQuestionsArray}
-              lessonSection={quizLessonSection}
-            />
-          );
-        })}
+        return (
+          <QuizSectionRender
+            key={quizQuestionsArray[index]?.questionUid ?? index}
+            index={index}
+            displayIndex={displayIndex}
+            questionResult={questionResult}
+            quizQuestionArray={quizQuestionsArray}
+            lessonSection={quizLessonSection}
+          />
+        );
+      })}
     </>
   );
 };

@@ -99,7 +99,7 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
         $background={grade === 1 ? "icon-success" : "icon-error"}
         $colorFilter={"text-inverted"}
         $borderRadius={"border-radius-circle"}
-        $visibility={!isHint ? "visible" : "hidden"}
+        $visibility={isHint ? "hidden" : "visible"}
       />
       <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
         {questionStem && (

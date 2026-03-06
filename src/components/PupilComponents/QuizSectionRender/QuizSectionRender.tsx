@@ -44,7 +44,7 @@ export const QuizSectionRender = (props: QuizResultsProps) => {
       </OakFlex>
       <OakHandDrawnHR
         hrColor={
-          index !== quizQuestionArray.length - 1 ? "bg-inverted" : "transparent"
+          index === quizQuestionArray.length - 1 ? "transparent" : "bg-inverted"
         }
         $height={"spacing-4"}
         $pl={["spacing-0", "spacing-24"]}
@@ -57,9 +57,9 @@ export const QuizSectionRender = (props: QuizResultsProps) => {
         $background={"bg-neutral"}
         $font={"heading-light-7"}
         label={
-          !isUnanswered
-            ? `Question hint used - ${questionResult.offerHint}`
-            : "Unanswered"
+          isUnanswered
+            ? "Unanswered"
+            : `Question hint used - ${questionResult.offerHint}`
         }
       />
     </OakFlex>
