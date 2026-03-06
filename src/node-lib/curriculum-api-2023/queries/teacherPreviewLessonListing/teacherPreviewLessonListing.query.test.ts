@@ -57,7 +57,7 @@ describe("teacherPreviewLessonListing()", () => {
         pathwaySlug: null,
         pathwayTitle: null,
         pathwayDisplayOrder: null,
-        actions: {},
+        actions: { isPePractical: false },
         lessons: [
           {
             lessonSlug: "lesson-slug",
@@ -212,7 +212,7 @@ describe("teacherPreviewLessonListing()", () => {
         pathwaySlug: null,
         pathwayTitle: null,
         pathwayDisplayOrder: null,
-        actions: {},
+        actions: { isPePractical: false },
       });
     });
     test("getTransformedUnit returns the correct data for optionality units", () => {
@@ -270,7 +270,7 @@ describe("teacherPreviewLessonListing()", () => {
         pathwaySlug: null,
         pathwayTitle: null,
         pathwayDisplayOrder: null,
-        actions: {},
+        actions: { isPePractical: false },
       });
     });
     test("getTransformedLessons returns the correct data", async () => {
@@ -297,6 +297,47 @@ describe("teacherPreviewLessonListing()", () => {
           actions: null,
         },
       ]);
+    });
+
+    describe("isPePractical", () => {
+      const baseLesson = {
+        lessonSlug: "lesson-slug",
+        lessonTitle: "lesson-title",
+        description: "lesson-description",
+        pupilLessonOutcome: "pupil-lesson-outcome",
+        expired: false,
+        quizCount: 0,
+        videoCount: 0,
+        presentationCount: 0,
+        worksheetCount: 0,
+        hasLegacyCopyrightMaterial: false,
+        orderInUnit: 1,
+        lessonCohort: "2023-2024",
+        lessonReleaseDate: "unreleased",
+        geoRestricted: false,
+        loginRequired: false,
+        actions: null as { isPePractical?: boolean } | null,
+      };
+
+      test("sets isPePractical true when at least one lesson is practical", () => {
+        const result = getPackagedUnit(mockPackagedUnitData, [
+          { ...baseLesson, actions: { isPePractical: true } },
+          {
+            ...baseLesson,
+            lessonSlug: "lesson-2",
+            actions: {},
+          },
+        ]);
+        expect(result.actions?.isPePractical).toBe(true);
+      });
+
+      test("sets isPePractical false when no lessons are practical", () => {
+        const result = getPackagedUnit(mockPackagedUnitData, [
+          { ...baseLesson, actions: {} },
+          { ...baseLesson, lessonSlug: "lesson-2", actions: null },
+        ]);
+        expect(result.actions?.isPePractical).toBe(false);
+      });
     });
   });
 });

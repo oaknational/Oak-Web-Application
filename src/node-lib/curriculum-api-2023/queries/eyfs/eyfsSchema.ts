@@ -5,14 +5,18 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
 
+import { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
+
+export const lessonDataWithKLPs = lessonDataSchema.extend({
+  key_learning_points: z
+    .array(z.object({ key_learning_point: z.string().optional() }))
+    .nullish(),
+});
+
 export const queryResponse = z.object({
   lessons: z.array(
     z.object({
-      lesson_data: lessonDataSchema.extend({
-        key_learning_points: z
-          .array(z.object({ key_learning_point: z.string().optional() }))
-          .nullish(),
-      }),
+      lesson_data: lessonDataWithKLPs,
       lesson_slug: z.string(),
       programme_fields: programmeFieldsSchema,
       unit_slug: z.string(),
@@ -61,4 +65,5 @@ export type EYFSLesson = {
     muxPlaybackId: string | null;
     title: string | null;
   };
+  downloadableResources: ResourcesToDownloadArrayType;
 };
