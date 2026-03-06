@@ -83,7 +83,7 @@ export const quizResultSchema = z
     question_results: z
       .array(
         z.object({
-          offer_hint: z.boolean(),
+          offer_hint: z.boolean().default(false),
           grade: z.number(),
           mode: questionModeSchema,
           pupil_answer: pupilAnswerSchema.nullable().optional(),
