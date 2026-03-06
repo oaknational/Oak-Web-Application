@@ -19,7 +19,7 @@ export const LessonOverviewDownloadAndShareButtons: FC<
     $flexDirection={["column", "row"]}
     $flexWrap={"wrap"}
     $pa={"spacing-0"}
-    $gap={"spacing-24"}
+    $gap={["spacing-24", "spacing-16"]}
   >
     <OakLI $listStyle={"none"}>
       <LessonOverviewHeaderDownloadAllButton {...props} />
