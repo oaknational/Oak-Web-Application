@@ -77,10 +77,13 @@ describe("src/app/classroom/pupil/.../results/printable/page", () => {
     mockToLessonAttemptData.mockReturnValue(mockAttemptData);
   });
 
-  it("shows a loading spinner on initial render", () => {
+  it("shows a loading spinner on initial render", async () => {
     renderWithTheme(<Page />);
     expect(screen.getByText("Loading")).toBeInTheDocument();
     expect(screen.queryByTestId("pupil-results")).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(getLessonData).toHaveBeenCalled();
+    });
   });
 
   it("renders PupilViewsResults after data loads", async () => {

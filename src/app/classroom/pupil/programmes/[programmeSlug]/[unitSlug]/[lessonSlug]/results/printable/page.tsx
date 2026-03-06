@@ -81,8 +81,7 @@ function GoogleClassroomPupilResultsPage() {
         }),
       );
       setLoadingResults(false);
-    } catch (e) {
-      console.error(e);
+    } catch {
       setLoadingResults(false);
     }
   };

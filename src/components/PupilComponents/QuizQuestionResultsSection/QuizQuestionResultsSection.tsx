@@ -38,10 +38,11 @@ export const QuizQuestionResultsSection = ({
       {quiz?.questionResults?.map((questionResult, index) => {
         const displayIndex =
           questionResult.mode === "init" ? 999 : incrementQuestionIndex();
+        const questionKey = `${quizType}-${quizQuestionsArray[index]?.questionUid ?? "question"}-${index}`;
 
         return (
           <QuizSectionRender
-            key={quizQuestionsArray[index]?.questionUid ?? index}
+            key={questionKey}
             index={index}
             displayIndex={displayIndex}
             questionResult={questionResult}
