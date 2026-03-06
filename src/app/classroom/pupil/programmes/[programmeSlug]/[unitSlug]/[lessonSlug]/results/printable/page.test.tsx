@@ -79,7 +79,7 @@ describe("src/app/classroom/pupil/.../results/printable/page", () => {
 
   it("shows a loading spinner on initial render", () => {
     renderWithTheme(<Page />);
-    expect(screen.getByRole("img", { hidden: true })).toBeInTheDocument();
+    expect(screen.getByText("Loading")).toBeInTheDocument();
     expect(screen.queryByTestId("pupil-results")).not.toBeInTheDocument();
   });
 
