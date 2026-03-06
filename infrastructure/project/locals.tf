@@ -41,8 +41,8 @@ locals {
   required_env_keys = {
     website = {
       shared  = ["NEXT_PUBLIC_CLERK_SIGN_IN_URL", "NEXT_PUBLIC_CLERK_SIGN_UP_URL"]
-      prod    = ["OAK_CONFIG_LOCATION", "OVERRIDE_APP_VERSION", "OVERRIDE_URL", "PUPIL_FIRESTORE_ID"]
-      preview = ["OAK_CONFIG_LOCATION", "PUPIL_FIRESTORE_ID"]
+      prod    = ["OAK_CONFIG_LOCATION", "OVERRIDE_APP_VERSION", "OVERRIDE_URL"]
+      preview = ["OAK_CONFIG_LOCATION"]
     }
     storybook = {
       shared  = ["NEXT_PUBLIC_CLIENT_APP_BASE_URL"]
@@ -164,7 +164,18 @@ locals {
     ]
   ])
 
-  all_custom_env_vars = concat(local.custom_env_vars, local.sensitive_custom_env_vars, local.custom_env_vars_shared, local.custom_env_lookup_vars)
+  firestore_custom_vars = flatten([
+    for env_name in [for env in local.required_env_names : env if env.is_custom_env] : [
+      {
+        key                     = "PUPIL_FIRESTORE_ID"
+        value                   = module.firestore["staging"].database_name
+        custom_environment_name = env_name.vercel
+        sensitive               = false
+      }
+    ]
+  ])
+
+  all_custom_env_vars = concat(local.custom_env_vars, local.sensitive_custom_env_vars, local.custom_env_vars_shared, local.custom_env_lookup_vars, local.firestore_custom_vars)
 
   lookup_vars = flatten([
     for env_name in [for env in local.required_env_names : env if !env.is_custom_env] : [
@@ -181,5 +192,16 @@ locals {
     ]
   ])
 
-  environment_variables = concat(local.non_sensitive_vars, local.sensitive_vars, local.lookup_vars)
+  firestore_vars = flatten([
+    for env_name in [for env in local.required_env_names : env if !env.is_custom_env] : [
+      {
+        key       = "PUPIL_FIRESTORE_ID"
+        value     = module.firestore[env_name.gcp == "prod" ? "prod" : "staging"].database_name
+        target    = [env_name.vercel]
+        sensitive = false
+      }
+    ]
+  ])
+
+  environment_variables = concat(local.non_sensitive_vars, local.sensitive_vars, local.lookup_vars, local.firestore_vars)
 }
