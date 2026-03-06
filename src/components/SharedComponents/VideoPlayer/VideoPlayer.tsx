@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useRef, useState } from "react";
+import React, { FC, useCallback, useEffect, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
@@ -52,6 +52,8 @@ export type VideoPlayerProps = {
   muxAssetId?: string | null;
   /** When true, focuses the play button when the player is mounted */
   autoFocusPlayButton?: boolean;
+  /** When false, pauses playback */
+  isActive?: boolean;
 };
 
 export type VideoEventCallbackArgs = {
@@ -137,6 +139,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     cloudinaryUrl,
     muxAssetId,
     autoFocusPlayButton = false,
+    isActive = true,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement | null>(null);
@@ -155,6 +158,12 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const [debug] = useState(INITIAL_DEBUG);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
   const [reloadOnErrors, setReloadOnErrors] = useState<number[]>([]);
+
+  useEffect(() => {
+    if (!isActive) {
+      mediaElRef.current?.pause();
+    }
+  }, [isActive]);
 
   const getState: VideoTrackingGetState = () => {
     const captioned = Boolean(getSubtitleTrack(mediaElRef));

@@ -111,6 +111,15 @@ export const PupilPageContent = ({
       : [transcriptSentences ?? ""];
 
   const hasVideoSection = Boolean(videoMuxPlaybackId);
+  const [hasVisitedVideoSection, setHasVisitedVideoSection] = useState(
+    currentSection === "video",
+  );
+
+  useEffect(() => {
+    if (currentSection === "video") {
+      setHasVisitedVideoSection(true);
+    }
+  }, [currentSection]);
 
   return (
     <>
@@ -143,7 +152,7 @@ export const PupilPageContent = ({
         <PupilViewsQuiz questionsArray={starterQuiz ?? []} />
       )}
 
-      {hasVideoSection && (
+      {hasVideoSection && hasVisitedVideoSection && (
         <OakBox
           $display={currentSection === "video" ? "block" : "none"}
           aria-hidden={currentSection !== "video"}

@@ -106,9 +106,12 @@ export const PupilViewsVideo = ({
     const t = event.timeElapsed || 0;
     // throttling updates to every 10 seconds to avoid overloading state updates
     // also prevents timeElapsed from being updated when the skips to an earlier moment
-    if (event.event !== "playing" || t - videoResult.current.timeElapsed > 10) {
+    if (
+      event.event !== "playing" ||
+      (t - videoResult.current.timeElapsed > 10 && currentSection === "video")
+    ) {
       videoResult.current.timeElapsed = t;
-      updateSectionResult(videoResult.current);
+      if (currentSection === "video") updateSectionResult(videoResult.current);
     }
   };
 
@@ -189,6 +192,7 @@ export const PupilViewsVideo = ({
               playbackId={playbackId}
               playbackPolicy="signed"
               initialStartTime={sectionResults.video?.timeElapsed ?? 0}
+              isActive={currentSection === "video"}
               title={lessonTitle}
               location="pupil"
               isLegacy={isLegacy}
