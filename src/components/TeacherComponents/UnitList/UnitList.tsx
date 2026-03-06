@@ -152,9 +152,7 @@ const UnitList: FC<UnitListProps> = (props) => {
   );
   const hasNewAndLegacyUnitsInProgramme = hasLegacyUnits && hasNewUnits;
 
-  //TODO: Temporary measure until curriculum downloads are ready for RSHE
-  const hideNewCurriculumDownloadButton =
-    subjectSlug === "rshe-pshe" || subjectSlug === "financial-education";
+  const hideNewCurriculumDownloadButton = subjectSlug === "financial-education";
 
   const [saveButtonElementId, setSaveButtonElementId] = useState<
     string | undefined
