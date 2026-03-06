@@ -38,6 +38,7 @@ export type VideoStyleConfig = {
 export type VideoPlayerProps = {
   playbackId: string;
   playbackPolicy: PlaybackPolicy;
+  initialStartTime?: number;
   thumbnailTime?: number | null;
   title: string;
   location: VideoLocationValueType;
@@ -122,6 +123,7 @@ function VideoContainer({ children }: Readonly<{ children: React.ReactNode }>) {
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const {
     thumbnailTime: thumbTime,
+    initialStartTime = 0,
     title,
     location,
     playbackId,
@@ -297,7 +299,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   };
 
   const reloadingDueToErrors = reloadOnErrors.length > 0;
-  let startTime = 0;
+  let startTime = Math.max(0, initialStartTime);
 
   if (reloadingDueToErrors) {
     startTime = reloadOnErrors[reloadOnErrors.length - 1] || 0;

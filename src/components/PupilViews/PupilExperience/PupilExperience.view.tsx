@@ -110,9 +110,11 @@ export const PupilPageContent = ({
       ? transcriptSentences
       : [transcriptSentences ?? ""];
 
-  switch (currentSection) {
-    case "overview":
-      return (
+  const hasVideoSection = Boolean(videoMuxPlaybackId);
+
+  return (
+    <>
+      {currentSection === "overview" && (
         <PupilViewsLessonOverview
           lessonTitle={lessonTitle ?? ""}
           browseData={browseData}
@@ -124,9 +126,9 @@ export const PupilPageContent = ({
           exitQuizNumQuestions={exitQuizNumQuestions}
           backUrl={backUrl}
         />
-      );
-    case "intro":
-      return (
+      )}
+
+      {currentSection === "intro" && (
         <PupilViewsIntro
           {...lessonContent}
           hasWorksheet={hasWorksheet}
@@ -135,30 +137,39 @@ export const PupilPageContent = ({
           worksheetInfo={worksheetInfo}
           ageRestriction={ageRestriction}
         />
-      );
-    case "starter-quiz":
-      return <PupilViewsQuiz questionsArray={starterQuiz ?? []} />;
-    case "video":
-      return (
-        <PupilViewsVideo
-          lessonTitle={lessonTitle ?? ""}
-          videoMuxPlaybackId={videoMuxPlaybackId ?? undefined}
-          videoWithSignLanguageMuxPlaybackId={
-            videoWithSignLanguageMuxPlaybackId ?? undefined
-          }
-          transcriptSentences={narrowTranscriptSentences(
-            lessonContent.transcriptSentences,
-          )}
-          isLegacy={isLegacy ?? false}
-          browseData={browseData}
-          hasAdditionalFiles={hasAdditionalFiles}
-          additionalFiles={additionalFiles}
-        />
-      );
-    case "exit-quiz":
-      return <PupilViewsQuiz questionsArray={exitQuiz ?? []} />;
-    case "review":
-      return (
+      )}
+
+      {currentSection === "starter-quiz" && (
+        <PupilViewsQuiz questionsArray={starterQuiz ?? []} />
+      )}
+
+      {hasVideoSection && (
+        <OakBox
+          $display={currentSection === "video" ? "block" : "none"}
+          aria-hidden={currentSection !== "video"}
+        >
+          <PupilViewsVideo
+            lessonTitle={lessonTitle ?? ""}
+            videoMuxPlaybackId={videoMuxPlaybackId ?? undefined}
+            videoWithSignLanguageMuxPlaybackId={
+              videoWithSignLanguageMuxPlaybackId ?? undefined
+            }
+            transcriptSentences={narrowTranscriptSentences(
+              lessonContent.transcriptSentences,
+            )}
+            isLegacy={isLegacy ?? false}
+            browseData={browseData}
+            hasAdditionalFiles={hasAdditionalFiles}
+            additionalFiles={additionalFiles}
+          />
+        </OakBox>
+      )}
+
+      {currentSection === "exit-quiz" && (
+        <PupilViewsQuiz questionsArray={exitQuiz ?? []} />
+      )}
+
+      {currentSection === "review" && (
         <PupilViewsReview
           lessonTitle={lessonTitle ?? ""}
           backUrl={backUrl}
@@ -169,10 +180,9 @@ export const PupilPageContent = ({
           browseData={browseData}
           pageType={pageType}
         />
-      );
-    default:
-      return null;
-  }
+      )}
+    </>
+  );
 };
 
 // Moves Confirmic modal clear of the bottom navigation

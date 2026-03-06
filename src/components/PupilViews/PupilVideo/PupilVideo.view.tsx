@@ -68,6 +68,7 @@ export const PupilViewsVideo = ({
     proceedToNextSection,
     lessonReviewSections,
     updateAdditionalFilesDownloaded,
+    currentSection,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
   const additionalFilesAssetIds = additionalFiles
@@ -87,14 +88,14 @@ export const PupilViewsVideo = ({
   const videoResult = useRef<VideoResult>({
     played: false,
     duration: 0,
-    timeElapsed: 0,
+    timeElapsed: sectionResults.video?.timeElapsed || 0,
     muted: false,
     signedOpened: false,
     transcriptOpened: false,
   });
 
   // make sure the video result is initialized
-  if (!sectionResults.video) {
+  if (!sectionResults.video && currentSection === "video") {
     updateSectionResult(videoResult.current);
   }
 
@@ -187,6 +188,7 @@ export const PupilViewsVideo = ({
             <VideoPlayer
               playbackId={playbackId}
               playbackPolicy="signed"
+              initialStartTime={sectionResults.video?.timeElapsed ?? 0}
               title={lessonTitle}
               location="pupil"
               isLegacy={isLegacy}
