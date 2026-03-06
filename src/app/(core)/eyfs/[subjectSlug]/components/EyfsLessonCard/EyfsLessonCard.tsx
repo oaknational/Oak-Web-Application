@@ -6,24 +6,47 @@ import {
   OakP,
   OakSmallTertiaryInvertedButton,
 } from "@oaknational/oak-components";
-import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
 
 import { useEyfsLessonGroupContext } from "../EyfsLessonGroupProvider";
 
+import { useEyfsLessonDownload } from "./useEyfsLessonDownload";
+
 import { EYFSLesson } from "@/node-lib/curriculum-api-2023/queries/eyfs/eyfsSchema";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 
 interface EYFSLessonCardProps {
   index: number;
   lesson: EYFSLesson;
+  schoolName: string;
+  schoolId: string;
 }
 
-export const EYFSLessonCard = ({ lesson, index }: EYFSLessonCardProps) => {
+export const EYFSLessonCard = ({
+  lesson,
+  index,
+  schoolId,
+  schoolName,
+}: EYFSLessonCardProps) => {
   const { activeVideoSlug, toggleVideo } = useEyfsLessonGroupContext();
   const isActiveVideo = activeVideoSlug === lesson.slug;
 
+  const { onDownload } = useEyfsLessonDownload({
+    lessonSlug: lesson.slug,
+    downloadableResources: lesson.downloadableResources,
+    schoolId,
+    schoolName,
+  });
+
   return (
-    <OakFlex $flexDirection="row" $flexWrap="nowrap" as="article">
+    <OakFlex
+      $flexDirection="row"
+      $flexWrap="nowrap"
+      as="article"
+      $position={"relative"}
+    >
+      <AnchorTarget id={`download-btn-${lesson.slug}`} />
       <OakFlex
         $flexShrink={0}
         $minWidth="spacing-64"
@@ -85,26 +108,28 @@ export const EYFSLessonCard = ({ lesson, index }: EYFSLessonCardProps) => {
             {lesson.title}
           </OakFlex>
           <OakFlex $flexBasis={["100%", "100%", "auto"]} $flexShrink={0}>
-            <SignedIn>
-              <OakSmallTertiaryInvertedButton
+            {lesson.downloadableResources.length > 0 && (
+              <LoginRequiredButton
+                buttonVariant="tertiary"
+                sizeVariant="small"
+                geoRestricted={false}
+                loginRequired
+                returnToAnchor={`download-btn-${lesson.slug}`}
+                actionProps={{
+                  name: "Download lesson",
+                  isActionGeorestricted: false,
+                  onClick: onDownload,
+                }}
+                signUpProps={{
+                  name: "Sign in to download",
+                }}
+                onboardingProps={{
+                  name: "Complete onboarding to download",
+                }}
                 iconName="download"
                 isTrailingIcon
-                $textWrap="nowrap"
-              >
-                Download lesson
-              </OakSmallTertiaryInvertedButton>
-            </SignedIn>
-            <SignedOut>
-              <SignUpButton>
-                <OakSmallTertiaryInvertedButton
-                  iconName="download"
-                  isTrailingIcon
-                  $textWrap="nowrap"
-                >
-                  Sign in to download
-                </OakSmallTertiaryInvertedButton>
-              </SignUpButton>
-            </SignedOut>
+              />
+            )}
           </OakFlex>
           {lesson.video.muxPlaybackId && (
             <OakFlex

@@ -11,7 +11,7 @@ const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 /**
  * Expected response schema
  */
-const lessonDataSchema = z.object({
+export const lessonDataSchema = z.object({
   resources: z.array(
     z.tuple([
       z.custom<DownloadResourceType>(),

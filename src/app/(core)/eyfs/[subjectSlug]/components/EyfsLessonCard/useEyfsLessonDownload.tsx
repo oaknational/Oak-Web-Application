@@ -1,0 +1,67 @@
+import { useUser } from "@clerk/nextjs";
+
+import errorReporter from "@/common-lib/error-reporter";
+import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
+import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
+import { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import OakError from "@/errors/OakError";
+
+const reportError = errorReporter("EYFS lesson download");
+
+export const useEyfsLessonDownload = ({
+  lessonSlug,
+  downloadableResources,
+  schoolName,
+  schoolId,
+}: {
+  lessonSlug: string;
+  downloadableResources: ResourcesToDownloadArrayType;
+  schoolName: string;
+  schoolId: string;
+}) => {
+  const { setCurrentToastProps } = useOakNotificationsContext();
+  const { user } = useUser();
+
+  const { onHubspotSubmit } = useHubspotSubmit();
+
+  const onDownload = async () => {
+    try {
+      onHubspotSubmit({
+        school: schoolId ?? "",
+        schoolName: schoolName,
+        resources: downloadableResources,
+        terms: true,
+        email: user?.primaryEmailAddress?.emailAddress,
+      });
+      await downloadLessonResources({
+        lessonSlug: lessonSlug,
+        selectedResourceTypes: downloadableResources,
+        isLegacyDownload: true,
+      });
+      setCurrentToastProps({
+        message: "Download successful",
+        variant: "success",
+        showIcon: true,
+        autoDismiss: true,
+      });
+    } catch (err) {
+      setCurrentToastProps({
+        message:
+          "Something went wrong with the download. Try refreshing the page.",
+        variant: "error",
+        showIcon: true,
+        autoDismiss: true,
+      });
+      const error = new OakError({
+        code: "downloads/failed-to-fetch",
+        meta: { lessonSlug, err },
+      });
+      reportError(error);
+    }
+  };
+
+  return {
+    onDownload,
+  };
+};
