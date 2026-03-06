@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import {
+  OakLI,
   OakSmallSecondaryButtonWithDropdown,
   OakUiRoleToken,
 } from "@oaknational/oak-components";
@@ -96,24 +97,32 @@ const ShareButtons: FC<{
 
   if (shouldUseDropdown && teacherShareButtonProps) {
     return (
-      <OakSmallSecondaryButtonWithDropdown primaryActionText={"Share lesson"}>
-        <LessonOverviewHeaderShareAllButton
-          variant="dropdown"
-          {...overviewProps}
-        />
-        <TeacherShareNotesButton
-          variant="dropdown"
-          {...teacherShareButtonProps}
-        />
-      </OakSmallSecondaryButtonWithDropdown>
+      <OakLI $listStyle={"none"}>
+        <OakSmallSecondaryButtonWithDropdown primaryActionText={"Share lesson"}>
+          <LessonOverviewHeaderShareAllButton
+            variant="dropdown"
+            {...overviewProps}
+          />
+          <TeacherShareNotesButton
+            variant="dropdown"
+            {...teacherShareButtonProps}
+          />
+        </OakSmallSecondaryButtonWithDropdown>
+      </OakLI>
     );
   }
 
   return (
     <>
-      {showShare && <LessonOverviewHeaderShareAllButton {...overviewProps} />}
+      {showShare && (
+        <OakLI $listStyle={"none"}>
+          <LessonOverviewHeaderShareAllButton {...overviewProps} />
+        </OakLI>
+      )}
       {teacherShareButtonProps && (
-        <TeacherShareNotesButton {...teacherShareButtonProps} />
+        <OakLI $listStyle={"none"}>
+          <TeacherShareNotesButton {...teacherShareButtonProps} />
+        </OakLI>
       )}
     </>
   );
