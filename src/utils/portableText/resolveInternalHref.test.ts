@@ -10,7 +10,6 @@ describe("resolveInternalHref()", () => {
     ["aboutCorePage.partners", {}, `/about-us/oaks-curricula`],
     ["aboutCorePage.workWithUs", {}, `/about-us/get-involved`],
     ["planningCorePage", {}, "/lesson-planning"],
-    ["supportCorePage", {}, "/support-your-team"],
     ["webinar", { slug: "the-webinar" }, "/webinars/the-webinar"],
     ["webinarListingPage", {}, "/webinars"],
     ["newsPost", { slug: "the-post" }, "/blog/the-post"],
