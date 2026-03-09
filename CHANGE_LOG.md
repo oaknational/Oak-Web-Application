@@ -1,3 +1,70 @@
+## [1.1014.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1014.0...v1.1014.1) (2026-03-05)
+
+
+### Bug Fixes
+
+* **LESQ-1720:** risk assessment banner for PE only appearing for entirely practical units ([a345113](https://github.com/oaknational/Oak-Web-Application/commit/a345113374edbc5bbad685d61de8b454dd20a252))
+
+# [1.1014.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1013.0...v1.1014.0) (2026-03-05)
+
+
+### Bug Fixes
+
+* add signUp redirect url on sign in buttons ([ed9a9fa](https://github.com/oaknational/Oak-Web-Application/commit/ed9a9fa02f5de503919cb897140c3bd6fab0c894))
+* extract use school data into hook and lift to page level ([81b36d2](https://github.com/oaknational/Oak-Web-Application/commit/81b36d2bce5cb16385f3bc40a710a72b7194be27))
+* use SignInButton for clerk sign in to fix onboarding redirect functionality ([03e972d](https://github.com/oaknational/Oak-Web-Application/commit/03e972d30a1f20f21afb6ea3ea8fe566959cc7ff))
+
+
+### Features
+
+* add downloads to eyfs lesson data ([2bbf75e](https://github.com/oaknational/Oak-Web-Application/commit/2bbf75ecf16e9bac5cd7aacf9efc9cd0170f258c))
+* add EYFS lesson card ([55fcdb3](https://github.com/oaknational/Oak-Web-Application/commit/55fcdb399c8b716d622f5079c86c23e6393c1029))
+* add happy path download to eyfs lesson card ([4aa3e01](https://github.com/oaknational/Oak-Web-Application/commit/4aa3e0151592f1d930907e71c42d7f5d0e735be6))
+* add hubspot submission on download ([35322a4](https://github.com/oaknational/Oak-Web-Application/commit/35322a4ba6a42f4aace6bab5bf1d96c8c514fa43))
+* add notifications for download ([4947b80](https://github.com/oaknational/Oak-Web-Application/commit/4947b8029040191fedeeae3d3ea2cf3300b124be))
+* add return to anchor on eyfs download btn ([98445f4](https://github.com/oaknational/Oak-Web-Application/commit/98445f4bd33339c22708940b0ffde3b514c4971e))
+* apply responsive styling ([c928b1e](https://github.com/oaknational/Oak-Web-Application/commit/c928b1e3fdb246340d433187de93750f43136007))
+* dont render toggle for video when null ([d4a6376](https://github.com/oaknational/Oak-Web-Application/commit/d4a6376b13046a108683ca70f6e9fe8824c3c43b))
+* forgot to plug the actual cards in ([dcf5cf6](https://github.com/oaknational/Oak-Web-Application/commit/dcf5cf6c270a4d85f813b839cc7f8c118b6846bc))
+* get school data from hubspot if not available in local storage ([3786f7a](https://github.com/oaknational/Oak-Web-Application/commit/3786f7a0220b2db6674bc35b10bb84044e04510d))
+* include email in hubspot reporting ([e2b66ca](https://github.com/oaknational/Oak-Web-Application/commit/e2b66ca8009da26025174543e111cca309c6e271))
+* remove check resources ([98cc65b](https://github.com/oaknational/Oak-Web-Application/commit/98cc65b1d19faaa1d8bd02ee6dbe394fff60a8fb))
+* report download error ([9a49fe8](https://github.com/oaknational/Oak-Web-Application/commit/9a49fe814dd0d64a3a0a0d88bb6621061d688747))
+* use router replace in onboarding redirect for onboarded user ([78b53c3](https://github.com/oaknational/Oak-Web-Application/commit/78b53c3a3023012ca4a332a295c29fdbd3b14fec))
+
+# [1.1013.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1012.0...v1.1013.0) (2026-03-04)
+
+
+### Bug Fixes
+
+* "page navigation" -> "page sections" ([0a51344](https://github.com/oaknational/Oak-Web-Application/commit/0a51344c13125d543d2196c6d029942b7f96309a))
+* added missing "aria-label" ([3bd9546](https://github.com/oaknational/Oak-Web-Application/commit/3bd95461b0e0f36ab293a7ea625975d1ba3c18bb))
+* mark props as Readonly<...> ([81e18d5](https://github.com/oaknational/Oak-Web-Application/commit/81e18d5e6b3f3f7463e3380285a768ddf138677d))
+
+
+### Features
+
+* about-us page sidenav improvement ([c784079](https://github.com/oaknational/Oak-Web-Application/commit/c784079eda64a2c668013d17a54f37ad401cb52e))
+* **LESQ-1837:** enable top nav with a hard coded flag ([72719c0](https://github.com/oaknational/Oak-Web-Application/commit/72719c063f2fec3240e6e9f2537766e201a3d1ac))
+
+# [1.1012.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1011.1...v1.1012.0) (2026-03-04)
+
+
+### Bug Fixes
+
+* add jest-styled-components to who-we-are test for stable snapshots ([74c54bc](https://github.com/oaknational/Oak-Web-Application/commit/74c54bc4bdbaa45c8c120dddbbd1703c45a66d9f))
+* add SSR About Us pages to sitemap via additionalPaths ([92f65c4](https://github.com/oaknational/Oak-Web-Application/commit/92f65c4d9a6dd17f5b78bfa7191e99d95208ea36))
+* correct SEO title and remove redundant wrapper in who-we-are ([f196dfd](https://github.com/oaknational/Oak-Web-Application/commit/f196dfd1c65baf17e8f9af208770348c212e26ac))
+* remove old about-us page view analytics tests ([902c4b2](https://github.com/oaknational/Oak-Web-Application/commit/902c4b287f248fb5cd19c3851bf61839e0845a37))
+* rewrite who-we-are test to match current page structure ([7af4a25](https://github.com/oaknational/Oak-Web-Application/commit/7af4a255f2ce191e92991c8571b33a4f06ce9934))
+* update topNav fixture to match live about-us navigation ([1e74528](https://github.com/oaknational/Oak-Web-Application/commit/1e74528dd8f2f2b9126cd15c6fb9273a150d0ac1))
+* update who-we-are snapshot for styled-components class changes ([3c4c4fd](https://github.com/oaknational/Oak-Web-Application/commit/3c4c4fdaa0a6445cc5a26d0a39ff0b93d75c4c08))
+
+
+### Features
+
+* add new About US URLs for Pa11y and Percy ([4a5676e](https://github.com/oaknational/Oak-Web-Application/commit/4a5676ee9ac4aa2cf74f0c47d8fe1c2ddc5bac08))
+
 ## [1.1011.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1011.0...v1.1011.1) (2026-03-03)
 
 
