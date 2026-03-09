@@ -58,7 +58,24 @@ describe("src/app/classroom/sign-in/page", () => {
     expect(viewProps.privacyPolicyUrl).toBe("/legal/privacy-policy");
   });
 
-  it("falls back to empty query params when not present", async () => {
+  it("redirects to decoded redirecturi when present", () => {
+    useSearchParamsMock.mockReturnValue(
+      new URLSearchParams(
+        "redirecturi=%2Fclassroom%2Fpupil%2Fresults%2Fprintable%3FloginHint%3Dabc%26courseId%3Dgc-1%26itemId%3Ditem-1",
+      ),
+    );
+
+    renderWithTheme(<Page />);
+
+    const viewProps = googleSignInViewMock.mock.calls[0][0];
+    viewProps.onSuccessfulSignIn();
+
+    expect(routerPush).toHaveBeenCalledWith(
+      "/classroom/pupil/results/printable?loginHint=abc&courseId=gc-1&itemId=item-1",
+    );
+  });
+
+  it("falls back to current query params when redirecturi is not present", async () => {
     useSearchParamsMock.mockReturnValue(new URLSearchParams(""));
 
     renderWithTheme(<Page />);

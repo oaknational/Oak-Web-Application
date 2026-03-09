@@ -206,11 +206,14 @@ const submitPupilProgress = async (
   );
 };
 
-const getPupilLessonProgress = async (args: {
+type GetPupilLessonProgressArgs = {
   submissionId: string;
   itemId: string;
   attachmentId: string;
-}): Promise<PupilLessonProgress | null> => {
+};
+const getPupilLessonProgress = async (
+  args: GetPupilLessonProgressArgs,
+): Promise<PupilLessonProgress | null> => {
   try {
     const params = new URLSearchParams();
     params.set("submissionId", args.submissionId);

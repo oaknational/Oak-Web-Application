@@ -3,10 +3,14 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   getOakGoogleClassroomAddon,
   isOakGoogleClassroomException,
+  createClassroomErrorReporter,
 } from "@/node-lib/google-classroom";
+
+const reportError = createClassroomErrorReporter("pupil-progress");
 
 export async function GET(request: NextRequest) {
   try {
+    // add requireClassroomAuthHeaders check here
     const requestUrl = new URL(request.url);
     const submissionId = requestUrl.searchParams.get("submissionId");
     const attachmentId = requestUrl.searchParams.get("attachmentId");

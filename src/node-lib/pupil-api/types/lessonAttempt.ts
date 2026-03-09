@@ -76,27 +76,31 @@ const questionModeSchema = z.union([
   z.literal("feedback"),
 ]);
 
+export const questionResultSchema = z.object({
+  offer_hint: z.boolean().default(false),
+  grade: z.number(),
+  mode: questionModeSchema,
+  pupil_answer: pupilAnswerSchema.nullable().optional(),
+  feedback: z
+    .union([questionFeedbackSchema, z.array(questionFeedbackSchema)])
+    .optional(),
+  correct_answer: correctAnswerSchema.optional(),
+  is_partially_correct: z.boolean().optional(),
+});
+
+export type QuestionResult = z.infer<typeof questionResultSchema>;
+export type QuestionResultCamelCase = ConvertKeysToCamelCase<QuestionResult>;
+
 export const quizResultSchema = z
   .object({
     grade: z.number().optional(),
     num_questions: z.number().optional(),
-    question_results: z
-      .array(
-        z.object({
-          offer_hint: z.boolean().default(false),
-          grade: z.number(),
-          mode: questionModeSchema,
-          pupil_answer: pupilAnswerSchema.nullable().optional(),
-          feedback: z
-            .union([questionFeedbackSchema, z.array(questionFeedbackSchema)])
-            .optional(),
-          correct_answer: correctAnswerSchema.optional(),
-          is_partially_correct: z.boolean().optional(),
-        }),
-      )
-      .optional(),
+    question_results: z.array(questionResultSchema).optional(),
   })
   .optional();
+
+export type QuizResult = z.infer<typeof quizResultSchema>;
+export type QuizResultCamelCase = ConvertKeysToCamelCase<QuizResult>;
 
 export const lessonAttemptSchema = z.object({
   attempt_id: z.string().nanoid({ message: "Invalid attempt_id" }),
@@ -121,9 +125,9 @@ export const lessonAttemptSchema = z.object({
       played: z.boolean(),
       duration: z.number(),
       time_elapsed: z.number(),
-      muted: z.boolean(),
-      signed_opened: z.boolean(),
-      transcript_opened: z.boolean(),
+      muted: z.boolean().default(false),
+      signed_opened: z.boolean().default(false),
+      transcript_opened: z.boolean().default(false),
     }),
     "exit-quiz": quizResultSchema,
   }),

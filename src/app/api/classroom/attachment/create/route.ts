@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
-
+    // this isn't reachable because of initial session check
     if (!session)
       return NextResponse.json(
         { message: "Missing auth header" },

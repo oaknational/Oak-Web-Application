@@ -82,6 +82,9 @@ describe("mapToSubmitPupilProgress", () => {
             grade: 1,
             pupilAnswer: 2,
             feedback: "correct",
+            isPartiallyCorrect: undefined,
+            usedHint: false,
+            correctAnswer: "Some answer",
           },
           {
             mode: "feedback",
@@ -89,30 +92,48 @@ describe("mapToSubmitPupilProgress", () => {
             pupilAnswer: ["a", "b"],
             feedback: ["correct", "incorrect"],
             isPartiallyCorrect: true,
+            usedHint: true,
+            correctAnswer: ["a", "c"],
           },
           {
             mode: "feedback",
             grade: 1,
             pupilAnswer: "my answer",
             feedback: "correct",
+            isPartiallyCorrect: undefined,
+            usedHint: false,
+            correctAnswer: undefined,
           },
           {
             mode: "init",
             grade: 0,
             pupilAnswer: null,
+            feedback: undefined,
+            isPartiallyCorrect: undefined,
+            usedHint: false,
+            correctAnswer: undefined,
           },
           {
             mode: "init",
             grade: 0,
             pupilAnswer: null,
+            feedback: undefined,
+            isPartiallyCorrect: undefined,
+            usedHint: false,
+            correctAnswer: undefined,
           },
         ],
       },
-      exitQuiz: { grade: 4, numQuestions: 6, isComplete: true },
+      exitQuiz: {
+        grade: 4,
+        numQuestions: 6,
+        isComplete: true,
+        questionResults: undefined,
+      },
     });
   });
 
-  it("should exclude correctAnswer and offerHint from questionResults", () => {
+  it("should include correctAnswer and map offerHint to usedHint in questionResults", () => {
     const sectionResults: LessonSectionResults = {
       "starter-quiz": {
         grade: 1,
@@ -136,7 +157,6 @@ describe("mapToSubmitPupilProgress", () => {
     const qr = result.starterQuiz?.questionResults?.[0];
 
     expect(qr).toBeDefined();
-    expect(qr).not.toHaveProperty("correctAnswer");
     expect(qr).not.toHaveProperty("offerHint");
     expect(qr).toEqual({
       mode: "feedback",
@@ -144,6 +164,8 @@ describe("mapToSubmitPupilProgress", () => {
       pupilAnswer: 0,
       feedback: "correct",
       isPartiallyCorrect: false,
+      usedHint: true,
+      correctAnswer: "The correct answer text",
     });
   });
 
