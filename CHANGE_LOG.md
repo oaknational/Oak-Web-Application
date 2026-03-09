@@ -1,3 +1,15 @@
+# [1.1017.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1016.0...v1.1017.0) (2026-03-09)
+
+
+### Bug Fixes
+
+* **LESQ-1836:** add missing border bottom to top nav dropdown ([016aab7](https://github.com/oaknational/Oak-Web-Application/commit/016aab75c5eae8d0e2b17b74714d0ae618d22ad9))
+
+
+### Features
+
+* **LESQ-1836:** point pupils to the pupil help area ([15c9e13](https://github.com/oaknational/Oak-Web-Application/commit/15c9e13964895bc1bfb66be4bc192e4b98fe22f8))
+
 # [1.1016.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1015.0...v1.1016.0) (2026-03-09)
 
 
