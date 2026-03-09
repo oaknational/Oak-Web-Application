@@ -49,8 +49,7 @@ export const LessonSeoHelper = ({
     ? convertSubjectToSlug(parentSubject)
     : subjectSlug;
 
-  const hideCurriculumLink =
-    subjectSlug === "rshe-pshe" || subjectSlug === "financial-education";
+  const hideCurriculumLink = subjectSlug === "financial-education";
 
   return (
     <OakBasicAccordion
