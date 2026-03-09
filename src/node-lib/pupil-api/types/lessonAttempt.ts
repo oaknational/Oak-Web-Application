@@ -77,7 +77,7 @@ const questionModeSchema = z.union([
 ]);
 
 export const questionResultSchema = z.object({
-  offer_hint: z.boolean(),
+  offer_hint: z.boolean().default(false),
   grade: z.number(),
   mode: questionModeSchema,
   pupil_answer: pupilAnswerSchema.nullable().optional(),

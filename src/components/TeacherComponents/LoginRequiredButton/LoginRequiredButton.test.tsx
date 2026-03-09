@@ -25,6 +25,14 @@ jest.mock("@/hooks/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
+const mockPush = jest.fn();
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn().mockReturnValue("/"),
+  useRouter: jest
+    .fn()
+    .mockReturnValue({ push: (args: string) => mockPush(args) }),
+}));
+
 describe("LoginRequiredButton", () => {
   afterEach(() => {
     mockUseComplexCopyright = defaultCopyrightRequirements;
@@ -39,12 +47,16 @@ describe("LoginRequiredButton", () => {
       screen.getByRole("button", { name: /sign up/i }),
     ).toBeInTheDocument();
   });
-  it("should render an onboarding button", () => {
+  it("should render an onboarding button", async () => {
     mockUseComplexCopyright = signedInNotOnboarded;
     render(<LoginRequiredButton loginRequired={true} geoRestricted={false} />);
-    expect(
-      screen.getByRole("button", { name: /complete sign up to continue/i }),
-    ).toBeInTheDocument();
+    const onboardButton = screen.getByRole("button", {
+      name: /complete sign up to continue/i,
+    });
+    expect(onboardButton).toBeInTheDocument();
+    const user = userEvent.setup();
+    await user.click(onboardButton);
+    expect(mockPush).toHaveBeenCalledWith("/onboarding?returnTo=%2F");
   });
   it("should render a loading button", () => {
     mockUseComplexCopyright = isLoading;
@@ -158,5 +170,23 @@ describe("LoginRequiredButton", () => {
     );
     const tertiaryButton = screen.getByRole("button", { name: /sign up/i });
     expect(tertiaryButton).toHaveStyle("background: none");
+  });
+  it("includes anchor in returnTo query", async () => {
+    mockUseComplexCopyright = signedInNotOnboarded;
+    render(
+      <LoginRequiredButton
+        loginRequired={true}
+        geoRestricted={false}
+        returnToAnchor="button-id"
+      />,
+    );
+    const onboardButton = screen.getByRole("button", {
+      name: /complete sign up to continue/i,
+    });
+    const user = userEvent.setup();
+    await user.click(onboardButton);
+    expect(mockPush).toHaveBeenCalledWith(
+      "/onboarding?returnTo=%2F%23button-id",
+    );
   });
 });

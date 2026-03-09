@@ -14,7 +14,7 @@ import { mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 
 jest.mock("@clerk/nextjs", () => ({
   useUser: jest.fn(),
-  SignUpButton: jest.fn(() => <button>Sign up</button>),
+  SignInButton: jest.fn(() => <button>Sign up</button>),
 }));
 let mockUseComplexCopyright = defaultCopyrightRequirements;
 jest.mock("@/hooks/useComplexCopyright", () => ({

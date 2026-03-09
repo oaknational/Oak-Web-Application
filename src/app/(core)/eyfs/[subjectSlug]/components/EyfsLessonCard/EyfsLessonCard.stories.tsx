@@ -19,12 +19,14 @@ const mockLessons: EYFSLesson[] = [
     title: "Introduction to counting",
     slug: "introduction-to-counting",
     orderInUnit: 1,
+    downloadableResources: ["worksheet-pdf"],
     video: { muxPlaybackId: TEST_VIDEO_PLAYBACK_ID, title: "Counting video" },
   },
   {
     title: "Number bonds to 10",
     slug: "number-bonds-to-10",
     orderInUnit: 2,
+    downloadableResources: [],
     video: {
       muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
       title: "Number bonds video",
@@ -34,6 +36,7 @@ const mockLessons: EYFSLesson[] = [
     title: "Adding and subtracting",
     slug: "adding-and-subtracting",
     orderInUnit: 3,
+    downloadableResources: [],
     video: {
       muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
       title: "Add and subtract video",
@@ -46,6 +49,7 @@ const mockLessonWithNullVideo: EYFSLesson = {
   slug: "lesson-without-video",
   orderInUnit: 1,
   video: { muxPlaybackId: null, title: null },
+  downloadableResources: ["presentation"],
 };
 
 const mockLessonsWithLongTitles: EYFSLesson[] = [
@@ -54,6 +58,7 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
       "Exploring mathematical concepts through play-based learning activities and hands-on experiences",
     slug: "exploring-maths-through-play",
     orderInUnit: 1,
+    downloadableResources: ["presentation"],
     video: {
       muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
       title: "Play-based maths video",
@@ -64,6 +69,7 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
       "Developing early number sense and understanding of quantity through counting, comparing and ordering",
     slug: "developing-early-number-sense",
     orderInUnit: 2,
+    downloadableResources: [],
     video: {
       muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
       title: "Number sense video",
@@ -74,6 +80,7 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
       "Building confidence with addition and subtraction within 20 using manipulatives and visual representations",
     slug: "addition-subtraction-within-20",
     orderInUnit: 3,
+    downloadableResources: [],
     video: {
       muxPlaybackId: TEST_VIDEO_PLAYBACK_ID,
       title: "Add and subtract video",
@@ -162,7 +169,13 @@ export const MultipleLessons: Story = {
   render: () => (
     <OakFlex $flexDirection="column" $gap="spacing-20">
       {mockLessons.map((lesson, index) => (
-        <EYFSLessonCard key={lesson.slug} lesson={lesson} index={index + 1} />
+        <EYFSLessonCard
+          key={lesson.slug}
+          lesson={lesson}
+          index={index + 1}
+          schoolName="school-name"
+          schoolId="school-id"
+        />
       ))}
     </OakFlex>
   ),
@@ -186,7 +199,13 @@ export const MultipleLessonsWithLongTitles: Story = {
   render: () => (
     <OakFlex $flexDirection="column" $gap="spacing-20">
       {mockLessonsWithLongTitles.map((lesson, index) => (
-        <EYFSLessonCard key={lesson.slug} lesson={lesson} index={index + 1} />
+        <EYFSLessonCard
+          key={lesson.slug}
+          lesson={lesson}
+          index={index + 1}
+          schoolName="school-name"
+          schoolId="school-id"
+        />
       ))}
     </OakFlex>
   ),

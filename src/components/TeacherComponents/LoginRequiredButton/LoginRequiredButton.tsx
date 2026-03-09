@@ -1,4 +1,4 @@
-import { SignUpButton } from "@clerk/nextjs";
+import { SignInButton } from "@clerk/nextjs";
 import {
   OakBox,
   OakFlex,
@@ -63,6 +63,7 @@ type BaseProps = {
   sizeVariant?: SizeVariant;
   element?: "a" | "button";
   rel?: string;
+  returnToAnchor?: string; // anchor target id to return to after sign in / onboarding
 };
 
 type LoginRequiredButtonProps = BaseProps & OakPrimaryButtonProps;
@@ -85,6 +86,25 @@ const getButtonVariant = (variant: ButtonVariant, sizeVariant: SizeVariant) => {
   }
 };
 
+const getRedirectUrl = (
+  path: string | null,
+  returnToAnchor: string | undefined,
+) => {
+  let returnTo = "";
+  if (path) {
+    returnTo += path;
+    if (returnToAnchor) {
+      returnTo += `#${returnToAnchor}`;
+    }
+  }
+  const query = returnTo ? { returnTo } : undefined;
+
+  return resolveOakHref({
+    page: "onboarding",
+    query,
+  });
+};
+
 const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
   const {
     actionProps,
@@ -95,6 +115,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     element = "button",
     loginRequired,
     geoRestricted,
+    returnToAnchor,
     ...overrideProps
   } = props;
   const router = useRouter();
@@ -146,13 +167,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
       return (
         <ButtonComponent
           onClick={() => {
-            const query = path ? { returnTo: path } : undefined;
-            router.push(
-              resolveOakHref({
-                page: "onboarding",
-                query,
-              }),
-            );
+            router.push(getRedirectUrl(path, returnToAnchor));
           }}
           {...overrideProps}
         >
@@ -161,7 +176,10 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
       );
     case "signup":
       return (
-        <SignUpButton forceRedirectUrl={`/onboarding?returnTo=${path}`}>
+        <SignInButton
+          forceRedirectUrl={getRedirectUrl(path, returnToAnchor)}
+          signUpForceRedirectUrl={getRedirectUrl(path, returnToAnchor)}
+        >
           <ButtonComponent
             iconName={signUpProps?.iconName}
             isTrailingIcon={signUpProps?.isTrailingIcon}
@@ -179,7 +197,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
               {signUpProps?.name ?? "Sign up"}
             </OakFlex>
           </ButtonComponent>
-        </SignUpButton>
+        </SignInButton>
       );
     case "action":
     case "georestricted":
