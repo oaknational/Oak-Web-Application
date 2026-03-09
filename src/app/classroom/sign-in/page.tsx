@@ -21,8 +21,14 @@ function SignInContent() {
   const onSuccessfulSignIn = () => {
     const redirectUrl = searchParams?.get("redirecturi");
     const decodedUrl = redirectUrl ? decodeURIComponent(redirectUrl) : null;
+    const isSafeInternalPath =
+      decodedUrl !== null &&
+      decodedUrl.startsWith("/") &&
+      !decodedUrl.startsWith("//");
     const currentParams = searchParams?.toString() ?? "";
-    const url = decodedUrl ?? `/classroom/browse?${currentParams}`;
+    const url = isSafeInternalPath
+      ? decodedUrl
+      : `/classroom/browse?${currentParams}`;
     router.push(url);
   };
 

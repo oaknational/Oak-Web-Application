@@ -39,9 +39,11 @@ function GoogleClassroomPupilResultsPage() {
     LessonAttemptCamelCase | undefined
   >();
   const [loadingResults, setLoadingResults] = React.useState<boolean>(true);
+  const [error, setError] = React.useState<string | null>(null);
 
   const getPupilResults = async (): Promise<PupilLessonProgress | null> => {
     const submissionId = searchParams?.get("submissionId");
+    // courseId is not required to fetch pupil progress, cna it be removed?
     const courseId = searchParams?.get("courseId");
     const itemId = searchParams?.get("itemId");
     const attachmentId = searchParams?.get("attachmentId");
@@ -53,7 +55,7 @@ function GoogleClassroomPupilResultsPage() {
       itemId,
       attachmentId,
     });
-    if ((pupilProgress as PupilLessonProgress).submissionId)
+    if (pupilProgress && (pupilProgress as PupilLessonProgress).submissionId)
       return pupilProgress as PupilLessonProgress;
     return null;
   };
@@ -81,7 +83,8 @@ function GoogleClassroomPupilResultsPage() {
         }),
       );
       setLoadingResults(false);
-    } catch {
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to load results");
       setLoadingResults(false);
     }
   };
@@ -94,10 +97,18 @@ function GoogleClassroomPupilResultsPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!showResults) {
+  if (loadingResults) {
     return (
       <OakFlex $justifyContent={"center"} $alignItems={"center"}>
         <OakLoadingSpinner $width={"spacing-100"} $color={"icon-brand"} />
+      </OakFlex>
+    );
+  }
+  // redirect to an error page
+  if (!showResults) {
+    return (
+      <OakFlex $justifyContent={"center"} $alignItems={"center"}>
+        <p>{error ?? "Unable to load results"}</p>
       </OakFlex>
     );
   }

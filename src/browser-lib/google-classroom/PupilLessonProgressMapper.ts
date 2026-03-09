@@ -61,8 +61,9 @@ export class PupilLessonProgressMapper {
       },
       sectionResults: {
         intro: {
-          worksheetDownloaded: pupilProgress.intro?.worksheetAvailable ?? false,
-          worksheetAvailable: pupilProgress.intro?.worksheetDownloaded ?? false,
+          worksheetDownloaded:
+            pupilProgress.intro?.worksheetDownloaded ?? false,
+          worksheetAvailable: pupilProgress.intro?.worksheetAvailable ?? false,
           isComplete: pupilProgress.intro?.isComplete ?? false,
         },
         "starter-quiz":
