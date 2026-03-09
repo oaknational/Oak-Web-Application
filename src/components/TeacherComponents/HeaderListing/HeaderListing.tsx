@@ -11,6 +11,8 @@ import {
   OakGrid,
   OakGridArea,
   OakUiRoleToken,
+  OakUL,
+  OakLI,
 } from "@oaknational/oak-components";
 
 import UnitDownloadButton, {
@@ -224,48 +226,57 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               </OakBox>
             )}
             <OakFlex $flexDirection="column" $gap="spacing-16">
-              <OakFlex $gap="spacing-16" $height="max-content" $flexWrap="wrap">
+              <OakUL
+                $display={"flex"}
+                $pa={"spacing-0"}
+                $gap="spacing-16"
+                $height="max-content"
+                $flexWrap="wrap"
+              >
                 {unitDownloadFileId && onUnitDownloadSuccess && (
-                  <UnitDownloadButton
-                    setDownloadError={setDownloadError}
-                    setDownloadInProgress={setDownloadInProgress}
-                    setShowDownloadMessage={setShowDownloadMessage}
-                    setShowIncompleteMessage={setShowIncompleteMessage}
-                    downloadInProgress={downloadInProgress}
-                    unitFileId={unitDownloadFileId}
-                    onDownloadSuccess={onUnitDownloadSuccess}
-                    showNewTag={false}
-                    geoRestricted={Boolean(isGeorestrictedUnit)}
-                  />
+                  <OakLI $listStyle={"none"}>
+                    <UnitDownloadButton
+                      setDownloadError={setDownloadError}
+                      setDownloadInProgress={setDownloadInProgress}
+                      setShowDownloadMessage={setShowDownloadMessage}
+                      setShowIncompleteMessage={setShowIncompleteMessage}
+                      downloadInProgress={downloadInProgress}
+                      unitFileId={unitDownloadFileId}
+                      onDownloadSuccess={onUnitDownloadSuccess}
+                      showNewTag={false}
+                      geoRestricted={Boolean(isGeorestrictedUnit)}
+                    />
+                  </OakLI>
                 )}
-                {shareButton}
+                <OakLI $listStyle={"none"}>{shareButton}</OakLI>
                 {onSave && (
-                  <OakSecondaryButton
-                    iconName={
-                      isUnitSaved ? "bookmark-filled" : "bookmark-outlined"
-                    }
-                    isTrailingIcon
-                    onClick={onSave}
-                    ph={["spacing-8", "spacing-16"]}
-                    pv={["spacing-4", "spacing-4"]}
-                    $mb={["spacing-0", "spacing-16", "spacing-0"]}
-                    data-testid="save-unit-button"
-                    disabled={isUnitSaving}
-                  >
-                    <OakFlex $alignItems="center" $gap={"spacing-12"}>
-                      <OakTagFunctional
-                        label="New"
-                        $background="bg-decorative1-main"
-                        $color="text-primary"
-                        $font="heading-light-7"
-                        $pv={"spacing-0"}
-                        $display={["none", "inline"]}
-                      />
-                      {isUnitSaved ? "Saved" : "Save"}
-                    </OakFlex>
-                  </OakSecondaryButton>
+                  <OakLI $listStyle={"none"}>
+                    <OakSecondaryButton
+                      iconName={
+                        isUnitSaved ? "bookmark-filled" : "bookmark-outlined"
+                      }
+                      isTrailingIcon
+                      onClick={onSave}
+                      ph={["spacing-8", "spacing-16"]}
+                      pv={["spacing-4", "spacing-12"]}
+                      data-testid="save-unit-button"
+                      disabled={isUnitSaving}
+                    >
+                      <OakFlex $alignItems="center" $gap={"spacing-12"}>
+                        <OakTagFunctional
+                          label="New"
+                          $background="bg-decorative1-main"
+                          $color="text-primary"
+                          $font="heading-light-7"
+                          $pv={"spacing-0"}
+                          $display={["none", "inline"]}
+                        />
+                        {isUnitSaved ? "Saved" : "Save"}
+                      </OakFlex>
+                    </OakSecondaryButton>
+                  </OakLI>
                 )}
-              </OakFlex>
+              </OakUL>
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}
               </OakBox>

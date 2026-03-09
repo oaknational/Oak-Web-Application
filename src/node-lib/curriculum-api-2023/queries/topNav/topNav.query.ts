@@ -118,7 +118,7 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
     help: {
       title: "Help using Oak",
       slug: "help",
-      href: resolveOakHref({ page: "help" }),
+      href: resolveOakHref({ page: "pupil-help" }),
       external: true,
     },
   };

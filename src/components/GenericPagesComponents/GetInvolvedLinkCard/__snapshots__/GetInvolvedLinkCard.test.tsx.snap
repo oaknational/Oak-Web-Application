@@ -28,7 +28,7 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
           class="sc-aXZVg kMGxHZ yellow-shadow"
         />
         <a
-          class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+          class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
           href="https://example.com/research"
         >
           <div
@@ -52,7 +52,7 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
           class="sc-aXZVg kMGxHZ yellow-shadow"
         />
         <a
-          class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+          class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
           href="https://example.com/explore"
         >
           <div
@@ -99,7 +99,7 @@ exports[`GetInvolvedLinkCard renders with single button 1`] = `
           class="sc-aXZVg kMGxHZ yellow-shadow"
         />
         <a
-          class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+          class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
           href="#"
         >
           <div

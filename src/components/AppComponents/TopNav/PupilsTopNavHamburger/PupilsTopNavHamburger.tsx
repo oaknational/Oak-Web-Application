@@ -74,7 +74,7 @@ function MainMenuContent(
           target="_blank"
           iconName="external"
           onClick={props.onClick}
-          href={resolveOakHref({ page: "help" })}
+          href={resolveOakHref({ page: "pupil-help" })}
           aria-label="Help using Oak (this will open in a new tab)"
         >
           Help using Oak
