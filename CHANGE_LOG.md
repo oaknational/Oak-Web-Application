@@ -1,3 +1,10 @@
+# [1.1016.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1015.0...v1.1016.0) (2026-03-09)
+
+
+### Features
+
+* rm rshe overrides hiding curriculum links ([22be534](https://github.com/oaknational/Oak-Web-Application/commit/22be5348f34e29bc4c5188d6b68942bb72e8b5f4))
+
 # [1.1015.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1014.1...v1.1015.0) (2026-03-06)
 
 
