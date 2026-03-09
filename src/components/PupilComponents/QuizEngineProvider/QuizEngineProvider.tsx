@@ -4,6 +4,7 @@ import React, {
   memo,
   useCallback,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -93,13 +94,29 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     currentQuizSectionResults?.questionResults?.findIndex(
       (item: QuestionState) => item.mode !== "feedback",
     ) ?? 0;
+  // When findIndex returns -1, all questions are already in "feedback" mode
+  // (quiz was completed in a previous session, e.g. loaded from GC progress).
+  // Initialise past the end so nothing renders while the useEffect below
+  // calls completeActivity to transition the lesson engine away from this section.
+  const isAlreadyComplete =
+    nextQuestionIndex === -1 &&
+    Boolean(currentQuizSectionResults?.questionResults?.length);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(
-    Math.max(nextQuestionIndex, 0),
+    isAlreadyComplete ? questionsArray.length : Math.max(nextQuestionIndex, 0),
   );
+
+  useEffect(() => {
+    if (isAlreadyComplete && quizSectionKey) {
+      completeActivity(quizSectionKey);
+    }
+    // Intentional empty deps — only run on mount to handle a GC-hydrated
+    // quiz that was already fully answered in a previous session.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const currentQuestionData = questionsArray[currentQuestionIndex];
 
   const [questionState, setQuestionState] = useState<QuestionState[]>(
-    questionsArray.map((question, index) => {
+    questionsArray.map((_question, index) => {
       return (
         currentQuizSectionResults?.questionResults?.[index] ?? {
           mode: "init",

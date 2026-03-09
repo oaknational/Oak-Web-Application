@@ -55,8 +55,7 @@ function GoogleClassroomPupilResultsPage() {
       itemId,
       attachmentId,
     });
-    if (pupilProgress && (pupilProgress as PupilLessonProgress).submissionId)
-      return pupilProgress as PupilLessonProgress;
+    if (pupilProgress && pupilProgress.submissionId) return pupilProgress;
     return null;
   };
 
@@ -67,6 +66,7 @@ function GoogleClassroomPupilResultsPage() {
         getLessonData(lessonSlug),
         getPupilResults(),
       ]);
+      // add nice error handling for missing pupil progress data
       if (!pupilProgress) {
         throw new Error("No pupil progress data found for this lesson");
       }
