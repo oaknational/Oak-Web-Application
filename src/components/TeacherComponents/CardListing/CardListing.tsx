@@ -7,6 +7,7 @@ import {
   parseColor,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import Link from "next/link";
 
 import { SaveUnitButton } from "../SaveUnitButton/SaveUnitButton";
 
@@ -65,8 +66,8 @@ const CardListing = (props: CardListingProps) => {
 
   // If the card is disabled use a div for the container, otherwise use a link element
   const cardLinkProps = disabled
-    ? { "data-disabled": true, as: "div" as const }
-    : { href, onClick: onClickLink };
+    ? { "data-disabled": true, href: "" }
+    : { href, onClick: onClickLink, element: Link };
 
   return (
     <OakFlex
