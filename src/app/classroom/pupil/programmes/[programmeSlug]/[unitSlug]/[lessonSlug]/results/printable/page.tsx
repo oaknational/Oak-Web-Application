@@ -55,7 +55,7 @@ function GoogleClassroomPupilResultsPage() {
       itemId,
       attachmentId,
     });
-    if (pupilProgress && pupilProgress.submissionId) return pupilProgress;
+    if (pupilProgress?.submissionId) return pupilProgress;
     return null;
   };
 
