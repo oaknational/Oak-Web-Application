@@ -1,4 +1,5 @@
 import FinancialEducationDescription from "./descriptions/FinancialEducationDescription";
+import RuleOfLawDescription from "./descriptions/RuleOfLawDescription";
 
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
@@ -10,6 +11,10 @@ type OptionalSubjectDescriptionsType = {
 const optionalSubjectDescriptions: OptionalSubjectDescriptionsType = {
   "financial-education": (data) => (
     <FinancialEducationDescription unitListingData={data} />
+  ),
+  // TD: remove type assertion once curriculum schema is updated
+  ["rule-of-law" as SubjectSlugs]: (data: UnitListingData) => (
+    <RuleOfLawDescription unitListingData={data} />
   ),
 };
 
