@@ -47,6 +47,15 @@ export function isLessonReviewSection(
   return allLessonReviewSections.includes(section as LessonReviewSection);
 }
 
+const getIsCompleteAfterSectionResultUpdate = (
+  section: LessonReviewSection,
+  currentIsComplete?: boolean,
+) => {
+  // Video section emits frequent progress updates; keep completion once achieved.
+  if (section === "video") return currentIsComplete ?? false;
+  return false;
+};
+
 export type QuizResult = {
   grade: number;
   numQuestions: number;
@@ -162,15 +171,20 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
           `Cannot update result for non-review section '${currentState.currentSection}'`,
         );
       }
+      const section = currentState.currentSection;
+      const currentSectionResult = currentState.sections[section];
       return {
         ...currentState,
         lessonStarted: true,
         sections: {
           ...currentState.sections,
-          [currentState.currentSection]: {
-            ...currentState.sections[currentState.currentSection],
+          [section]: {
+            ...currentSectionResult,
             ...action.result,
-            isComplete: false,
+            isComplete: getIsCompleteAfterSectionResultUpdate(
+              section,
+              currentSectionResult?.isComplete,
+            ),
           },
         },
       };
@@ -327,15 +341,20 @@ export const LessonEngineProvider = memo(
         onSectionResultUpdate &&
         isLessonReviewSection(state.currentSection)
       ) {
+        const section = state.currentSection;
+        const currentSectionResult = state.sections[section];
         const updatedSections = {
           ...state.sections,
-          [state.currentSection]: {
-            ...state.sections[state.currentSection],
+          [section]: {
+            ...currentSectionResult,
             ...result,
-            isComplete: false,
+            isComplete: getIsCompleteAfterSectionResultUpdate(
+              section,
+              currentSectionResult?.isComplete,
+            ),
           },
         };
-        onSectionResultUpdate(updatedSections, state.currentSection);
+        onSectionResultUpdate(updatedSections, section);
       }
     };
 

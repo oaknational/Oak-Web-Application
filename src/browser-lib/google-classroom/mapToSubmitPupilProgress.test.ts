@@ -211,6 +211,52 @@ describe("mapToSubmitPupilProgress", () => {
     });
   });
 
+  it("should sanitize non-text correctAnswer values to keep payload valid", () => {
+    const sectionResults = {
+      "starter-quiz": {
+        grade: 1,
+        numQuestions: 1,
+        isComplete: false,
+        questionResults: [
+          {
+            mode: "feedback",
+            grade: 1,
+            offerHint: false,
+            pupilAnswer: [0],
+            feedback: ["correct"],
+            correctAnswer: [
+              "first",
+              { type: "image", imageObject: { url: "test" } },
+              undefined,
+            ],
+          },
+        ],
+      },
+    } as unknown as LessonSectionResults;
+
+    const result = mapToSubmitPupilProgress(mockContext, sectionResults);
+    const qr = result.starterQuiz?.questionResults?.[0];
+
+    expect(qr?.correctAnswer).toEqual(["first"]);
+  });
+
+  it("should default missing quiz metrics to keep submission valid", () => {
+    const sectionResults = {
+      "starter-quiz": {
+        isComplete: true,
+      },
+    } as unknown as LessonSectionResults;
+
+    const result = mapToSubmitPupilProgress(mockContext, sectionResults);
+
+    expect(result.starterQuiz).toEqual({
+      grade: 0,
+      numQuestions: 0,
+      isComplete: true,
+      questionResults: undefined,
+    });
+  });
+
   it("should include intro progress when present", () => {
     const sectionResults: LessonSectionResults = {
       intro: {

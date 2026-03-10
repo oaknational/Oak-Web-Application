@@ -207,6 +207,31 @@ describe("LessonEngineProvider", () => {
     );
   });
 
+  it("preserves video completion when video progress updates after completion", () => {
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: (props) => <ProviderWrapper initialSection="video" {...props} />,
+    });
+
+    act(() => {
+      result.current.completeActivity("video");
+    });
+    act(() => {
+      result.current.updateCurrentSection("video");
+    });
+    act(() => {
+      result.current.updateSectionResult({
+        played: true,
+        duration: 120,
+        timeElapsed: 60,
+        muted: false,
+        signedOpened: false,
+        transcriptOpened: false,
+      });
+    });
+
+    expect(result.current.sectionResults.video?.isComplete).toEqual(true);
+  });
+
   it("calls onNext when a section is completed", () => {
     const onNext = jest.fn();
     const { result } = renderHook(() => useLessonEngineContext(), {
@@ -306,6 +331,47 @@ describe("LessonEngineProvider", () => {
     });
 
     expect(onNext).toHaveBeenCalled();
+  });
+
+  it("keeps isComplete=true in onSectionResultUpdate payload for completed video", () => {
+    const onSectionResultUpdate = jest.fn();
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ({ children }) => (
+        <LessonEngineProvider
+          initialLessonReviewSections={allLessonReviewSections}
+          initialSection="video"
+          onSectionResultUpdate={onSectionResultUpdate}
+        >
+          {children}
+        </LessonEngineProvider>
+      ),
+    });
+
+    act(() => {
+      result.current.completeActivity("video");
+    });
+    act(() => {
+      result.current.updateCurrentSection("video");
+    });
+    act(() => {
+      result.current.updateSectionResult({
+        played: true,
+        duration: 60,
+        timeElapsed: 15,
+        muted: false,
+        signedOpened: false,
+        transcriptOpened: false,
+      });
+    });
+
+    expect(onSectionResultUpdate).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        video: expect.objectContaining({
+          isComplete: true,
+        }),
+      }),
+      "video",
+    );
   });
 
   it("sends tracking data when the lesson is started", () => {

@@ -42,7 +42,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
       : 0;
 
   const iconSlug = `subject-${subjectSlug}`;
-  let questionIndex = 0;
+  let questionIndex = 1;
 
   return (
     <MathJaxWrap>
