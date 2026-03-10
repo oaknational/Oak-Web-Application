@@ -1,12 +1,14 @@
-import { Meta, StoryObj } from "@storybook/nextjs";
+import { Meta } from "@storybook/nextjs";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { HeaderListingProps } from "./HeaderListing";
 
 import Component from ".";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import unitListingFixture from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
 
-export const headerListingProps = {
+export const headerListingProps: HeaderListingProps = {
   breadcrumbs: [
     {
       oakLinkProps: {
@@ -30,55 +32,42 @@ export const headerListingProps = {
       label: "English",
     },
   ],
-  background: "lavender30",
-  subjectIconBackgroundColor: "lavender",
+  background: "bg-decorative3-very-subdued",
+  subjectIconBackgroundColor: "bg-decorative3-main",
   title: "English",
   programmeFactor: "Key Stage 4",
   keyStageTitle: "Key Stage 4",
   keyStageSlug: "ks4",
   subjectSlug: "english",
   subjectTitle: "English",
-  programmes: [
-    {
-      programmeSlug: "english-secondary-ks4-aqa",
-      subjectTitle: "English",
-      unitCount: 22,
-      lessonCount: 482,
-      tierSlug: null,
-      tierTitle: null,
-      tierDisplayOrder: null,
-      examBoardSlug: "aqa",
-      examBoardTitle: "AQA",
-      examBoardDisplayOrder: "1",
-    },
-    {
-      programmeSlug: "english-secondary-ks4-edexcel",
-      subjectTitle: "English",
-      unitCount: 22,
-      lessonCount: 438,
-      tierSlug: null,
-      tierTitle: null,
-      tierDisplayOrder: null,
-      examBoardSlug: "edexcel",
-      examBoardTitle: "Edexcel",
-      examBoardDisplayOrder: "2",
-    },
-  ],
+  isNew: false,
+  subjectDescriptionUnitListingData: unitListingFixture({
+    subjectSlug: "english",
+    keyStageSlug: "ks4",
+    keyStageTitle: "Key Stage 4",
+  }),
 };
 
 const meta: Meta<typeof Component> = {
-  decorators: [AnalyticsDecorator],
+  decorators: [
+    AnalyticsDecorator,
+    (Story) => (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Story />
+      </OakThemeProvider>
+    ),
+  ],
   component: Component,
+  args: headerListingProps,
 };
 
 export default meta;
-type Story = StoryObj<typeof Component>;
 
-export const HeaderLesson: Story = {
+type Story = import("@storybook/nextjs").StoryObj<typeof Component>;
+
+export const WithUnitListingSeoAccordion: Story = {
   args: {
-    ...(headerListingProps as unknown as HeaderListingProps),
-  },
-  render: (args) => {
-    return <Component {...args} />;
+    ...headerListingProps,
+    showUnitListingSeo: true,
   },
 };
