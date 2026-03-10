@@ -156,6 +156,7 @@ export const PupilPageContent = ({
         <OakBox
           $display={currentSection === "video" ? "block" : "none"}
           aria-hidden={currentSection !== "video"}
+          $height="100vh"
         >
           <PupilViewsVideo
             lessonTitle={lessonTitle ?? ""}
