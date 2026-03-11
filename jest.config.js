@@ -16,7 +16,7 @@ module.exports = async () => ({
   ...(await createJestConfig(customJestConfig)()),
   transformIgnorePatterns: [
     // As of v5 it no longer ships CJS export, see <https://github.com/portabletext/react-portabletext/blob/main/CHANGELOG.md#500>
-    "/node_modules/(?!(@portabletext/react|@portabletext/toolkit)/)",
+    "/node_modules/(?!(@portabletext/react|@portabletext/toolkit|@ooxml-tools/xml)/)",
   ],
 });
 module.exports.customJestConfig = customJestConfig;
