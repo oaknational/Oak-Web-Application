@@ -9,6 +9,15 @@ import { resolveOakHref, OakPageType } from "@/common-lib/urls";
 
 export const StyledVideoFlex = styled(OakFlex)`
   transition: width 0.4s ease-in;
+  flex: 0 0 auto;
+
+  @media (min-width: 750px) {
+    flex: 0 0 30%;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 0 45%;
+  }
 `;
 
 type NewContentBannerProps = {
