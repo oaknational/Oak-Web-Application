@@ -12,6 +12,9 @@ import {
 import { GET } from "./route";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
+jest.mock("@/node-lib/google-classroom/handleNewsletterSignup", () => ({
+  handleNewsletterSignup: jest.fn(),
+}));
 
 const mockSession = "encrypted_session_data";
 const mockAccessToken = "google_access_token";
@@ -78,7 +81,8 @@ describe("GET /api/classroom/auth/callback", () => {
     // Arrange
     mockSearchParamsGet.mockImplementation((key: string) => {
       if (key === "code") return mockCode;
-      if (key === "subscribeToNewsletter") return "true";
+      if (key === "state")
+        return JSON.stringify({ subscribeToNewsletter: true });
       return null;
     });
 
@@ -87,7 +91,7 @@ describe("GET /api/classroom/auth/callback", () => {
 
     // Assert
     expect(mockSearchParamsGet).toHaveBeenCalledWith("code");
-    expect(mockSearchParamsGet).toHaveBeenCalledWith("subscribeToNewsletter");
+    expect(mockSearchParamsGet).toHaveBeenCalledWith("state");
 
     expect(mockHandleGoogleSignInCallback).toHaveBeenCalledTimes(1);
     expect(mockHandleGoogleSignInCallback).toHaveBeenCalledWith(
@@ -107,7 +111,35 @@ describe("GET /api/classroom/auth/callback", () => {
     // Arrange
     mockSearchParamsGet.mockImplementation((key: string) => {
       if (key === "code") return mockCode;
-      if (key === "subscribeToNewsletter") return "false"; // or null
+      if (key === "state")
+        return JSON.stringify({ subscribeToNewsletter: false });
+      return null;
+    });
+
+    // Act
+    await GET(mockRequest);
+
+    // Assert
+    expect(mockHandleGoogleSignInCallback).toHaveBeenCalledTimes(1);
+    expect(mockHandleGoogleSignInCallback).toHaveBeenCalledWith(
+      mockCode,
+      expect.any(Function),
+    );
+
+    expect(mockedRedirect).toHaveBeenCalledTimes(1);
+    expect(mockedRedirect).toHaveBeenCalledWith(
+      `/classroom/auth/success?s=${encodeURIComponent(mockSession)}&at=${encodeURIComponent(mockAccessToken)}`,
+    );
+
+    expect(mockNextResponseJson).not.toHaveBeenCalled();
+  });
+
+  it("should not submit to HubSpot when a pupil signs in", async () => {
+    // Arrange
+    mockSearchParamsGet.mockImplementation((key: string) => {
+      if (key === "code") return mockCode;
+      if (key === "state")
+        return JSON.stringify({ subscribeToNewsletter: false, isPupil: true });
       return null;
     });
 
@@ -122,10 +154,6 @@ describe("GET /api/classroom/auth/callback", () => {
     );
 
     expect(mockedRedirect).toHaveBeenCalledTimes(1);
-    expect(mockedRedirect).toHaveBeenCalledWith(
-      `/classroom/auth/success?s=${encodeURIComponent(mockSession)}&at=${encodeURIComponent(mockAccessToken)}`,
-    );
-
     expect(mockNextResponseJson).not.toHaveBeenCalled();
   });
 

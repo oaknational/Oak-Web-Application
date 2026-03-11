@@ -35,6 +35,9 @@ export const QuizShortAnswer = ({ onChange }: QuizShortAnswerProps) => {
     typeof questionState.feedback === "string"
       ? questionState.feedback
       : undefined;
+  const isExitQuizReadOnly =
+    lessonEngineContext.isReadOnly &&
+    lessonEngineContext.currentSection === "exit-quiz";
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"spacing-24"} $font={"body-1"}>
@@ -56,6 +59,7 @@ export const QuizShortAnswer = ({ onChange }: QuizShortAnswerProps) => {
         key={`short-answer-${questionUid}`}
         name={`short-answer-${questionUid}`}
         onChange={onChange}
+        disabled={isExitQuizReadOnly || questionState.mode === "feedback"}
         feedback={feedback}
         wrapperWidth={["100%", "spacing-640"]}
         isHighlighted={questionState.mode === "incomplete"}

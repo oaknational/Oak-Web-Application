@@ -9,10 +9,12 @@ export function createLessonEngineContext(
   return {
     lessonStarted: false,
     isLessonComplete: false,
+    isReadOnly: false,
     currentSection: "starter-quiz",
     sectionResults: {},
     timeStamp: { section: "overview", time: 0 },
     lessonReviewSections: allLessonReviewSections,
+    isHydratingInitialProgress: false,
     completeActivity: jest.fn(),
     updateCurrentSection: jest.fn(),
     proceedToNextSection: jest.fn(),
