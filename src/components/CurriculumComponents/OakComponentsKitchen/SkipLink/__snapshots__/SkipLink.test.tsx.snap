@@ -13,7 +13,7 @@ exports[`SkipLink functions as expected 1`] = `
         class="sc-aXZVg kMGxHZ yellow-shadow"
       />
       <a
-        class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+        class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
         data-testid="skip-link"
         href="foo"
         style=""
