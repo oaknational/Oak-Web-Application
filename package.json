@@ -163,7 +163,7 @@
     "zustand": "^5.0.9"
   },
   "devDependencies": {
-    "@actions/core": "^1.11.1",
+    "@actions/core": "^3.0.0",
     "@actions/exec": "^3.0.0",
     "@actions/github": "^6.0.1",
     "@axe-core/react": "^4.10.1",
