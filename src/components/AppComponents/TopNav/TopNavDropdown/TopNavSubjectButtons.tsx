@@ -14,22 +14,6 @@ import {
   TeachersSubNavData,
   TeachersSubNavData as TeachersData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
-import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
-
-const getEyfsSubjectSlug = (props: {
-  programmeSlug?: string | null;
-  keyStageSlug?: string;
-}): string | null => {
-  const { programmeSlug } = props;
-
-  if (programmeSlug && isSlugEYFS(programmeSlug)) {
-    const extractedSubject =
-      /^(.+)-foundation-early-years-foundation-stage/.exec(programmeSlug)?.[1];
-    return extractedSubject || null;
-  }
-
-  return null;
-};
 
 export const getSubjectLinkHref = ({
   programmeCount,
@@ -42,15 +26,6 @@ export const getSubjectLinkHref = ({
   programmeSlug: string | null;
   keyStageSlug?: string;
 }): string => {
-  // Check if this is EYFS and redirect to new EYFS route
-  const eyfsSubject = getEyfsSubjectSlug({ programmeSlug, keyStageSlug });
-  if (eyfsSubject) {
-    return resolveOakHref({
-      page: "eyfs-page",
-      subjectSlug: eyfsSubject,
-    });
-  }
-
   return programmeCount > 1 && keyStageSlug
     ? // If there are multiple programmes, link to the programme listing page
       resolveOakHref({
@@ -63,19 +38,6 @@ export const getSubjectLinkHref = ({
         page: "unit-index",
         programmeSlug: programmeSlug!,
       });
-};
-
-export const getSubjectIndexHref = ({
-  keyStageSlug,
-}: {
-  keyStageSlug: string;
-}): string => {
-  return keyStageSlug === "early-years-foundation-stage"
-    ? resolveOakHref({
-        page: "eyfs-page",
-        subjectSlug: "maths",
-      })
-    : resolveOakHref({ page: "subject-index", keyStageSlug });
 };
 
 const TopNavSubjectButtons = ({
@@ -195,9 +157,7 @@ const TopNavSubjectButtons = ({
               ),
             )
           }
-          href={getSubjectIndexHref({
-            keyStageSlug,
-          })}
+          href={resolveOakHref({ page: "subject-index", keyStageSlug })}
         >
           All {keyStageTitle} subjects
         </OakPrimaryInvertedButton>

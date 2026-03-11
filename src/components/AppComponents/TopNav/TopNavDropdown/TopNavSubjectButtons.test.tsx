@@ -1,7 +1,4 @@
-import {
-  getSubjectLinkHref,
-  getSubjectIndexHref,
-} from "./TopNavSubjectButtons";
+import { getSubjectLinkHref } from "./TopNavSubjectButtons";
 
 describe("TopNavSubjectButtons - Link Generation", () => {
   describe("getSubjectLinkHref", () => {
@@ -88,24 +85,6 @@ describe("TopNavSubjectButtons - Link Generation", () => {
 
         expect(href).toBe("/teachers/programmes/english-primary-ks1/units");
       });
-    });
-  });
-
-  describe("getSubjectIndexHref", () => {
-    it("should generate EYFS maths page for early-years-foundation-stage", () => {
-      const href = getSubjectIndexHref({
-        keyStageSlug: "early-years-foundation-stage",
-      });
-
-      expect(href).toBe("/eyfs/maths");
-    });
-
-    it("should generate subject-index for other key stages", () => {
-      const href = getSubjectIndexHref({
-        keyStageSlug: "ks1",
-      });
-
-      expect(href).toBe("/teachers/key-stages/ks1/subjects");
     });
   });
 });
