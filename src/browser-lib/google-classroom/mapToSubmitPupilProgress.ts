@@ -1,0 +1,91 @@
+import {
+  upsertPupilLessonProgressArgsSchema,
+  type UpsertPupilLessonProgressArgs,
+} from "@oaknational/google-classroom-addon/types";
+
+import type { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
+import type { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
+
+export type ClassroomContext = {
+  submissionId: string;
+  pupilLoginHint: string;
+  attachmentId: string;
+  courseId: string;
+  itemId: string;
+};
+
+type QuizSectionResult = NonNullable<
+  LessonSectionResults["starter-quiz"] | LessonSectionResults["exit-quiz"]
+>;
+
+const sanitizeCorrectAnswer = (
+  correctAnswer: QuestionState["correctAnswer"],
+) => {
+  if (typeof correctAnswer === "string") return correctAnswer;
+  if (Array.isArray(correctAnswer)) {
+    return correctAnswer.filter(
+      (answer): answer is string => typeof answer === "string",
+    );
+  }
+  return undefined;
+};
+
+const mapQuizQuestionResults = (questionResults: QuestionState[] | undefined) =>
+  questionResults?.map((qr) => ({
+    mode: qr.mode,
+    grade: qr.grade,
+    pupilAnswer: qr.pupilAnswer ?? null,
+    feedback: qr.feedback,
+    isPartiallyCorrect: qr.isPartiallyCorrect,
+    usedHint: qr.offerHint,
+    correctAnswer: sanitizeCorrectAnswer(qr.correctAnswer),
+  }));
+
+const mapQuizProgress = (quizResult: QuizSectionResult | undefined) => {
+  if (!quizResult) return undefined;
+  return {
+    grade: quizResult.grade ?? 0,
+    numQuestions: quizResult.numQuestions ?? 0,
+    isComplete: quizResult.isComplete ?? false,
+    questionResults: mapQuizQuestionResults(quizResult.questionResults),
+  };
+};
+
+export function mapToSubmitPupilProgress(
+  context: ClassroomContext,
+  sectionResults: LessonSectionResults,
+): UpsertPupilLessonProgressArgs {
+  const starterQuiz = mapQuizProgress(sectionResults["starter-quiz"]);
+  const exitQuiz = mapQuizProgress(sectionResults["exit-quiz"]);
+
+  const payload = {
+    submissionId: context.submissionId,
+    attachmentId: context.attachmentId,
+    courseId: context.courseId,
+    itemId: context.itemId,
+    pupilLoginHint: context.pupilLoginHint,
+    ...(starterQuiz && {
+      starterQuiz,
+    }),
+    ...(exitQuiz && {
+      exitQuiz,
+    }),
+    ...(sectionResults["video"] && {
+      video: {
+        played: sectionResults["video"].played,
+        duration: sectionResults["video"].duration,
+        timeElapsed: sectionResults["video"].timeElapsed,
+        isComplete: sectionResults["video"].isComplete,
+      },
+    }),
+    ...(sectionResults["intro"] && {
+      intro: {
+        worksheetAvailable: sectionResults["intro"].worksheetAvailable,
+        worksheetDownloaded: sectionResults["intro"].worksheetDownloaded,
+        isComplete: sectionResults["intro"].isComplete,
+      },
+    }),
+  };
+
+  return upsertPupilLessonProgressArgsSchema.parse(payload);
+}

@@ -207,6 +207,173 @@ describe("LessonEngineProvider", () => {
     );
   });
 
+  it("preserves video completion when video progress updates after completion", () => {
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: (props) => <ProviderWrapper initialSection="video" {...props} />,
+    });
+
+    act(() => {
+      result.current.completeActivity("video");
+    });
+    act(() => {
+      result.current.updateCurrentSection("video");
+    });
+    act(() => {
+      result.current.updateSectionResult({
+        played: true,
+        duration: 120,
+        timeElapsed: 60,
+        muted: false,
+        signedOpened: false,
+        transcriptOpened: false,
+      });
+    });
+
+    expect(result.current.sectionResults.video?.isComplete).toEqual(true);
+  });
+
+  it("calls onNext when a section is completed", () => {
+    const onNext = jest.fn();
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ({ children }) => (
+        <LessonEngineProvider
+          initialLessonReviewSections={allLessonReviewSections}
+          initialSection="starter-quiz"
+          onNext={onNext}
+        >
+          {children}
+        </LessonEngineProvider>
+      ),
+    });
+
+    act(() => {
+      result.current.updateSectionResult({ grade: 3, numQuestions: 4 });
+    });
+
+    expect(onNext).not.toHaveBeenCalled();
+
+    act(() => {
+      result.current.completeActivity("starter-quiz");
+    });
+
+    expect(onNext).toHaveBeenCalled();
+    expect(onNext).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        "starter-quiz": expect.objectContaining({
+          grade: 3,
+          numQuestions: 4,
+          isComplete: true,
+        }),
+      }),
+      "starter-quiz",
+    );
+  });
+
+  it("calls onSectionResultUpdate when updateSectionResult is called", () => {
+    const onSectionResultUpdate = jest.fn();
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ({ children }) => (
+        <LessonEngineProvider
+          initialLessonReviewSections={allLessonReviewSections}
+          initialSection="starter-quiz"
+          onSectionResultUpdate={onSectionResultUpdate}
+        >
+          {children}
+        </LessonEngineProvider>
+      ),
+    });
+
+    act(() => {
+      result.current.updateSectionResult({ grade: 1, numQuestions: 4 });
+    });
+
+    expect(onSectionResultUpdate).toHaveBeenCalledTimes(1);
+    expect(onSectionResultUpdate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        "starter-quiz": expect.objectContaining({
+          grade: 1,
+          numQuestions: 4,
+          isComplete: false,
+        }),
+      }),
+      "starter-quiz",
+    );
+  });
+
+  it("calls onSectionResultUpdate on each update, not just on complete", () => {
+    const onSectionResultUpdate = jest.fn();
+    const onNext = jest.fn();
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ({ children }) => (
+        <LessonEngineProvider
+          initialLessonReviewSections={allLessonReviewSections}
+          initialSection="starter-quiz"
+          onNext={onNext}
+          onSectionResultUpdate={onSectionResultUpdate}
+        >
+          {children}
+        </LessonEngineProvider>
+      ),
+    });
+
+    act(() => {
+      result.current.updateSectionResult({ grade: 1, numQuestions: 4 });
+    });
+    act(() => {
+      result.current.updateSectionResult({ grade: 2, numQuestions: 4 });
+    });
+
+    expect(onSectionResultUpdate).toHaveBeenCalledTimes(2);
+    expect(onNext).not.toHaveBeenCalled();
+
+    act(() => {
+      result.current.completeActivity("starter-quiz");
+    });
+
+    expect(onNext).toHaveBeenCalled();
+  });
+
+  it("keeps isComplete=true in onSectionResultUpdate payload for completed video", () => {
+    const onSectionResultUpdate = jest.fn();
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: ({ children }) => (
+        <LessonEngineProvider
+          initialLessonReviewSections={allLessonReviewSections}
+          initialSection="video"
+          onSectionResultUpdate={onSectionResultUpdate}
+        >
+          {children}
+        </LessonEngineProvider>
+      ),
+    });
+
+    act(() => {
+      result.current.completeActivity("video");
+    });
+    act(() => {
+      result.current.updateCurrentSection("video");
+    });
+    act(() => {
+      result.current.updateSectionResult({
+        played: true,
+        duration: 60,
+        timeElapsed: 15,
+        muted: false,
+        signedOpened: false,
+        transcriptOpened: false,
+      });
+    });
+
+    expect(onSectionResultUpdate).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        video: expect.objectContaining({
+          isComplete: true,
+        }),
+      }),
+      "video",
+    );
+  });
+
   it("sends tracking data when the lesson is started", () => {
     const lessonStarted = jest.fn();
 
