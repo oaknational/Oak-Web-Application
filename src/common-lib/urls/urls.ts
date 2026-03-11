@@ -15,6 +15,9 @@ import {
   PreselectedDownloadType,
   PreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import isSlugEYFS, {
+  EYFS_PROGRAMME_SLUG_REGEX,
+} from "@/utils/slugModifiers/isSlugEYFS";
 
 const reportError = errorReporter("urls.ts");
 
@@ -1035,6 +1038,48 @@ export type ResolveOakHrefProps = Exclude<
 >;
 
 /**
+ * Intercepts subject-index and unit-index links that target EYFS
+ * and redirects them to the new /eyfs/:subjectSlug route.
+ * Returns the EYFS href if applicable, or null to continue with normal resolution.
+ */
+const eyfsIntercept = (props: ResolveOakHrefProps): string | null => {
+  const isSubjectOrProgrammeLink =
+    props.page === "unit-index" || props.page === "subject-index";
+
+  if (!isSubjectOrProgrammeLink) {
+    return null;
+  }
+
+  const { programmeSlug, keyStageSlug, subjectSlug } = props as {
+    programmeSlug?: string;
+    keyStageSlug?: string;
+    subjectSlug?: string;
+  };
+
+  let eyfsSubjectSlug: string | undefined;
+
+  if (keyStageSlug === "early-years-foundation-stage") {
+    eyfsSubjectSlug = subjectSlug;
+  } else if (programmeSlug && isSlugEYFS(programmeSlug)) {
+    eyfsSubjectSlug =
+      EYFS_PROGRAMME_SLUG_REGEX.exec(programmeSlug)?.groups?.subject ??
+      undefined;
+  }
+
+  if (
+    eyfsSubjectSlug !== undefined ||
+    keyStageSlug === "early-years-foundation-stage"
+  ) {
+    return OAK_PAGES["eyfs-page"].resolveHref({
+      page: "eyfs-page",
+      subjectSlug: eyfsSubjectSlug || "maths",
+    } as EyfsPageLinkProps);
+  }
+
+  return null;
+};
+
+/**
  * Pass readable props which are unlikely to need to change, and return an href.
  * @example
  * resolveOakHref({ page: "teacher-hub "})
@@ -1043,6 +1088,11 @@ export type ResolveOakHrefProps = Exclude<
  */
 export const resolveOakHref = (props: ResolveOakHrefProps): string => {
   try {
+    const intercepted = eyfsIntercept(props);
+    if (intercepted) {
+      return intercepted;
+    }
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const path = OAK_PAGES[props.page].resolveHref(props);
