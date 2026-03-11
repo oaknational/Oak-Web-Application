@@ -11,12 +11,5 @@ const createJestConfig = nextJest({
 const customJestConfig = require("./jest.base.config");
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-// From <https://stackoverflow.com/a/72926763>
-module.exports = async () => ({
-  ...(await createJestConfig(customJestConfig)()),
-  transformIgnorePatterns: [
-    // As of v5 it no longer ships CJS export, see <https://github.com/portabletext/react-portabletext/blob/main/CHANGELOG.md#500>
-    "/node_modules/(?!(@portabletext/react|@portabletext/toolkit|@ooxml-tools/xml)/)",
-  ],
-});
+module.exports = createJestConfig(customJestConfig);
 module.exports.customJestConfig = customJestConfig;
