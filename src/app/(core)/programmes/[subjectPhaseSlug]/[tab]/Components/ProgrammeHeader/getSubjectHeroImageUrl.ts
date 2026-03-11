@@ -97,6 +97,7 @@ export const subjectHeroImages: Record<SubjectName, string | null> = {
   "gcse-religious-education": subjectHeroAssets["RE"],
   "rshe-pshe": subjectHeroAssets["RSHE"],
   rshe: subjectHeroAssets["RSHE"],
+  "rule-of-law": subjectHeroAssets["citizenship"],
   philosophy: subjectHeroAssets["RE"],
   "social-science": subjectHeroAssets["RE"],
   theology: subjectHeroAssets["RE"],
