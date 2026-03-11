@@ -31,7 +31,6 @@ export const QuizQuestionResultsSection = ({
             title={quizTitle}
             grade={quiz.grade ?? 0}
             numQuestions={quiz.numQuestions ?? 0}
-            attempts={1}
           />
         </>
       )}
