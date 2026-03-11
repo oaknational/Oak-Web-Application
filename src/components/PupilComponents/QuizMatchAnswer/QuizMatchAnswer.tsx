@@ -14,6 +14,7 @@ import { isMatchAnswer } from "../QuizUtils/answerTypeDiscriminators";
 import { getStemTextData } from "../QuizUtils/stemUtils";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { invariant } from "@/utils/invariant";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
@@ -29,11 +30,13 @@ export const QuizMatchAnswer = () => {
     currentQuestionIndex,
     updateQuestionMode,
   } = useQuizEngineContext();
+  const { currentSection, isReadOnly } = useLessonEngineContext();
   invariant(currentQuestionData, "currentQuestionData is not defined");
   const questionUid = currentQuestionData.questionUid;
   const currentQuestionState = questionState[currentQuestionIndex];
   const feedback = currentQuestionState?.feedback;
   const [documentLoaded, setDocumentLoaded] = useState(false);
+  const isExitQuizReadOnly = isReadOnly && currentSection === "exit-quiz";
 
   invariant(
     currentQuestionData.answers && isMatchAnswer(currentQuestionData.answers),
@@ -122,6 +125,7 @@ export const QuizMatchAnswer = () => {
     [matchId: string]: string;
   }>({});
   const handleChange: OakQuizMatchProps["onChange"] = (matches) => {
+    if (isExitQuizReadOnly) return;
     // Update the question mode to input if all matches have been made
     // to enable the question to be submitted
     updateQuestionMode(
@@ -180,7 +184,7 @@ export const QuizMatchAnswer = () => {
       <OakQuizMatch
         initialOptions={choiceItems}
         initialSlots={matchItems}
-        onChange={handleChange}
+        onChange={isExitQuizReadOnly ? undefined : handleChange}
         isHighlighted={currentQuestionState?.mode === "incomplete"}
       />
       {Object.entries(currentMatches).map(([matchId, choiceId]) => {

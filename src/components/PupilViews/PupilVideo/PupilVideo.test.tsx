@@ -232,7 +232,10 @@ describe(PupilViewsVideo, () => {
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider
-          value={createLessonEngineContext({ updateSectionResult })}
+          value={createLessonEngineContext({
+            updateSectionResult,
+            currentSection: "video",
+          })}
         >
           <PupilViewsVideo
             videoMuxPlaybackId="123"
