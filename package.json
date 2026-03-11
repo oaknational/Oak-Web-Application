@@ -164,7 +164,7 @@
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
-    "@actions/exec": "^1.1.1",
+    "@actions/exec": "^3.0.0",
     "@actions/github": "^6.0.1",
     "@axe-core/react": "^4.10.1",
     "@babel/core": "^7.28.3",
