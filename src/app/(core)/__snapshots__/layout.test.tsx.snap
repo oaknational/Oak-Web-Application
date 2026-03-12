@@ -79,9 +79,24 @@ exports[`core layout renders correctly 1`] = `
               "title": "Who we are",
             },
             {
-              "href": "/about-us/board",
-              "slug": "about-board",
-              "title": "Board",
+              "href": "/about-us/meet-the-team",
+              "slug": "about-meet-the-team",
+              "title": "Meet the team",
+            },
+            {
+              "href": "/about-us/oaks-curricula",
+              "slug": "about-oaks-curricula",
+              "title": "Oak's curricula",
+            },
+            {
+              "href": "/about-us/get-involved",
+              "slug": "about-get-involved",
+              "title": "Get involved",
+            },
+            {
+              "href": "/contact-us",
+              "slug": "contact",
+              "title": "Contact us",
             },
           ],
           "slug": "aboutUs",

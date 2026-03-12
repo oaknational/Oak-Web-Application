@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { GoogleSignInView } from "@oaknational/google-classroom-addon/ui";
+import { OakBox } from "@oaknational/oak-components";
 
 import { googleClassroomApi } from "@/browser-lib/google-classroom";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -33,6 +34,12 @@ function SignInContent() {
   };
 
   const onSuccessfulSignIn = () => {
+    const redirectUrl = searchParams?.get("redirecturi");
+    const decodedUrl = redirectUrl ? decodeURIComponent(redirectUrl) : null;
+    const isSafeInternalPath =
+      decodedUrl !== null &&
+      decodedUrl.startsWith("/") &&
+      !decodedUrl.startsWith("//");
     track.classroomSignInCompleted({
       platform: "google-classroom",
       product: "google classroom addon",
@@ -42,7 +49,10 @@ function SignInContent() {
       clientEnvironment,
     });
     const currentParams = searchParams?.toString() ?? "";
-    router.push(`/classroom/browse?${currentParams}`);
+    const url = isSafeInternalPath
+      ? decodedUrl
+      : `/classroom/browse?${currentParams}`;
+    router.push(url);
   };
 
   useEffect(() => {
@@ -59,11 +69,13 @@ function SignInContent() {
   }, []);
 
   return (
-    <GoogleSignInView
-      getGoogleSignInLink={getGoogleSignInLink}
-      onSuccessfulSignIn={onSuccessfulSignIn}
-      privacyPolicyUrl={"/legal/privacy-policy"}
-    />
+    <OakBox $background={"bg-primary"} $width={"100%"} $minHeight={"100vh"}>
+      <GoogleSignInView
+        getGoogleSignInLink={getGoogleSignInLink}
+        onSuccessfulSignIn={onSuccessfulSignIn}
+        privacyPolicyUrl={"/legal/privacy-policy"}
+      />
+    </OakBox>
   );
 }
 

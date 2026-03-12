@@ -11,6 +11,7 @@ import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
+  mockLoggedIn,
   mockLoggedOut,
   mockGeorestrictedUser,
 } from "@/__tests__/__helpers__/mockUser";
@@ -44,8 +45,11 @@ jest.mock(
 window.history.replaceState = jest.fn();
 
 const onPlay = jest.fn();
+const mockVideoPlayerProps = jest.fn<void, [VideoPlayerProps]>();
 
-const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
+const VideoPlayerMock = (props: VideoPlayerProps) => {
+  mockVideoPlayerProps(props);
+  const { userEventCallback } = props;
   if (userEventCallback) {
     setTimeout(() => {
       userEventCallback({
@@ -66,9 +70,7 @@ const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
 };
 
 jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
-  return ({ userEventCallback }: Partial<VideoPlayerProps>) => (
-    <VideoPlayerMock userEventCallback={userEventCallback} />
-  );
+  return (props: VideoPlayerProps) => <VideoPlayerMock {...props} />;
 });
 
 function getMediaClipList(mediaClipWrapper: HTMLElement) {
@@ -317,5 +319,48 @@ describe("LessonMedia view", () => {
       accessBlockType: "Geo-restriction",
       accessBlockDetails: {},
     });
+  });
+
+  it("passes pathwayData to VideoPlayer for video event tracking", () => {
+    setUseUserReturn(mockLoggedIn);
+    render(<LessonMedia lesson={lesson} isCanonical={false} />);
+
+    expect(mockVideoPlayerProps).toHaveBeenCalledWith(
+      expect.objectContaining({
+        pathwayData: expect.objectContaining({
+          keyStageSlug: "ks4",
+          keyStageTitle: "Key stage 4",
+          subjectSlug: "physical-education",
+          subjectTitle: "Physical Education",
+          unitSlug: "running-and-jumping",
+          unitName: "Running and jumping",
+          lessonSlug: "running-as-a-team",
+          lessonName: "Running as a team",
+          releaseGroup: "2023",
+          phase: "secondary",
+          lessonReleaseCohort: "2023-2026",
+          lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+        }),
+      }),
+    );
+  });
+
+  it("passes legacy pathwayData to VideoPlayer when lessonCohort is legacy", () => {
+    setUseUserReturn(mockLoggedIn);
+    const legacyLesson = {
+      ...lesson,
+      lessonCohort: "2020-2023",
+    };
+    render(<LessonMedia lesson={legacyLesson} isCanonical={false} />);
+
+    expect(mockVideoPlayerProps).toHaveBeenCalledWith(
+      expect.objectContaining({
+        pathwayData: expect.objectContaining({
+          releaseGroup: "legacy",
+          lessonReleaseCohort: "2020-2023",
+        }),
+        isLegacy: true,
+      }),
+    );
   });
 });

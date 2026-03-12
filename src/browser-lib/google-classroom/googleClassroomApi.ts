@@ -1,5 +1,9 @@
 "use client";
 
+import {
+  UpsertPupilLessonProgressArgs,
+  PupilLessonProgress,
+} from "@oaknational/google-classroom-addon/types";
 import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
 const getOakGCAuthHeaders = async (
@@ -164,8 +168,77 @@ const createAttachment = async (attachment: {
   }
 };
 
+export type AddOnContextResponse = {
+  studentContext?: {
+    submissionId: string;
+  };
+  pupilLoginHint: string;
+};
+export type AddOnContextArgs = {
+  courseId: string;
+  itemId: string;
+  attachmentId: string;
+};
+
+const getAddOnContext = async (
+  args: AddOnContextArgs,
+): Promise<AddOnContextResponse | null> => {
+  try {
+    const headers = await getOakGCAuthHeaders(true);
+    return await sendRequest<AddOnContextResponse, AddOnContextArgs>(
+      "/api/classroom/context",
+      "POST",
+      args,
+      headers,
+    );
+  } catch (error) {
+    console.error("Failed to get add-on context:", error);
+    return null;
+  }
+};
+
+const submitPupilProgress = async (
+  args: UpsertPupilLessonProgressArgs,
+): Promise<void> => {
+  const headers = await getOakGCAuthHeaders(true);
+  await sendRequest<void, UpsertPupilLessonProgressArgs>(
+    "/api/classroom/pupil/progress/submit",
+    "POST",
+    args,
+    headers,
+  );
+};
+
+type GetPupilLessonProgressArgs = {
+  submissionId: string;
+  itemId: string;
+  attachmentId: string;
+};
+const getPupilLessonProgress = async (
+  args: GetPupilLessonProgressArgs,
+): Promise<PupilLessonProgress | null> => {
+  try {
+    const params = new URLSearchParams();
+    params.set("submissionId", args.submissionId);
+    params.set("itemId", args.itemId);
+    params.set("attachmentId", args.attachmentId);
+    return await sendRequest<PupilLessonProgress | null>(
+      `/api/classroom/pupil/progress?${params.toString()}`,
+      "GET",
+      undefined,
+      await getOakGCAuthHeaders(),
+    );
+  } catch (error) {
+    console.error("Failed to fetch pupil lesson progress:", error);
+    return null;
+  }
+};
+
 export default {
   getGoogleSignInUrl,
   verifySession,
   createAttachment,
+  getAddOnContext,
+  submitPupilProgress,
+  getPupilLessonProgress,
 };

@@ -1,12 +1,42 @@
+import z from "zod";
+
 import {
   queryResponse,
   EyfsUnits,
   videoResponseSchema,
   EYFSLesson,
+  lessonDataWithKLPs,
 } from "./eyfsSchema";
 
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import OakError from "@/errors/OakError";
+import { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
+
+const getDownloadableResources = (
+  lessonData: z.infer<typeof lessonDataWithKLPs>,
+) => {
+  const hasWorksheet = lessonData.asset_id_worksheet !== null;
+  const hasSlidedeck = lessonData.asset_id_slidedeck !== null;
+  const hasStarterQuiz = lessonData.quiz_id_starter !== null;
+  const hasExitQuiz = lessonData.quiz_id_exit !== null;
+
+  const resources: ResourcesToDownloadArrayType = [];
+
+  if (hasWorksheet) {
+    resources.push("worksheet-pdf", "worksheet-pptx");
+  }
+  if (hasSlidedeck) {
+    resources.push("presentation");
+  }
+  if (hasStarterQuiz) {
+    resources.push("intro-quiz-answers", "intro-quiz-questions");
+  }
+  if (hasExitQuiz) {
+    resources.push("exit-quiz-answers", "exit-quiz-questions");
+  }
+
+  return resources;
+};
 
 const eyfsPageQuery = (sdk: Sdk) => async (args: { subjectSlug: string }) => {
   const res = await sdk.eyfsPage(args);
@@ -45,6 +75,7 @@ const eyfsPageQuery = (sdk: Sdk) => async (args: { subjectSlug: string }) => {
         muxPlaybackId: videoForLesson?.video_mux_playback_id ?? null,
         title: videoForLesson?.video_title ?? null,
       },
+      downloadableResources: getDownloadableResources(lesson.lesson_data),
     };
 
     if (lesson.features.expired === true) {
