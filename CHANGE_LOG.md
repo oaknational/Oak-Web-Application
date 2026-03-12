@@ -1,3 +1,15 @@
+# [1.1020.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1019.3...v1.1020.0) (2026-03-12)
+
+
+### Bug Fixes
+
+* stories for HeaderListing not rendering ([61afdfe](https://github.com/oaknational/Oak-Web-Application/commit/61afdfecbfa983cd49524e818f4b59b298f68506))
+
+
+### Features
+
+* **LESQ-1840:** add SEO text overrides for rule-of-lwa ([0449ccf](https://github.com/oaknational/Oak-Web-Application/commit/0449ccf9f14a4dd5deb155ac83d603898d344462))
+
 ## [1.1019.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1019.2...v1.1019.3) (2026-03-12)
 
 ## [1.1019.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1019.1...v1.1019.2) (2026-03-12)
