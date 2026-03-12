@@ -1,3 +1,10 @@
+## [1.1019.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1019.0...v1.1019.1) (2026-03-12)
+
+
+### Bug Fixes
+
+* **LESQ-1852:** missing event tracking data for media clips ([bdef3cc](https://github.com/oaknational/Oak-Web-Application/commit/bdef3cc19bf866a7cfa54210cd25e61e7b55d73d))
+
 # [1.1019.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1018.0...v1.1019.0) (2026-03-11)
 
 
