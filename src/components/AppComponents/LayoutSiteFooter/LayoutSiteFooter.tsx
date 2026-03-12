@@ -255,6 +255,8 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
             filterType: "Key stage filter",
             filterValue: props.text,
             activeFilters: [],
+            googleLoginHint: null,
+            clientEnvironment: null,
           });
         }
 
