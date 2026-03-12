@@ -333,5 +333,23 @@ describe("urls.ts", () => {
         }),
       ).toBe("/teachers/key-stages/ks1/subjects");
     });
+
+    it("unit-index with EYFS programmeSlug redirects to /eyfs/:subjectSlug", () => {
+      expect(
+        resolveOakHref({
+          page: "unit-index",
+          programmeSlug: "maths-foundation-early-years-foundation-stage-l",
+        }),
+      ).toBe("/eyfs/maths");
+    });
+
+    it("unit-index with non-EYFS programmeSlug resolves normally", () => {
+      expect(
+        resolveOakHref({
+          page: "unit-index",
+          programmeSlug: "primary-ks2-maths",
+        }),
+      ).toBe("/teachers/programmes/primary-ks2-maths/units");
+    });
   });
 });
