@@ -15,9 +15,7 @@ import {
   PreselectedDownloadType,
   PreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import isSlugEYFS, {
-  EYFS_PROGRAMME_SLUG_REGEX,
-} from "@/utils/slugModifiers/isSlugEYFS";
+import { EYFS_PROGRAMME_SLUG_REGEX } from "@/utils/slugModifiers/isSlugEYFS";
 
 const reportError = errorReporter("urls.ts");
 
@@ -609,6 +607,66 @@ const postResolveHref =
     return `${path}?${queryString}`;
   };
 
+const createSubjectIndexPageConfig = () => {
+  const pathPattern = "/teachers/key-stages/:keyStageSlug/subjects";
+  const matchHref = match<Omit<SubjectListingLinkProps, "page">>(pathPattern, {
+    decode: decodeURIComponent,
+  });
+  const resolveSubjectIndexHref = compile<
+    Omit<SubjectListingLinkProps, "page">
+  >(pathPattern, {
+    encode: encodeURIComponent,
+  });
+  const resolveHref = (props: SubjectListingLinkProps) => {
+    if (props.keyStageSlug === "early-years-foundation-stage") {
+      return OAK_PAGES["eyfs-page"].resolveHref({
+        page: "eyfs-page",
+        subjectSlug: "maths",
+      });
+    }
+    return resolveSubjectIndexHref(props);
+  };
+  return createOakPageConfig({
+    analyticsPageName: "Subject Listing",
+    configType: "internal-custom-resolve",
+    pageType: "subject-index",
+    matchHref,
+    resolveHref,
+  });
+};
+
+const createUnitIndexPageConfig = () => {
+  const pathPattern = "/teachers/programmes/:programmeSlug/units";
+  const matchHref = match<Omit<UnitListingLinkProps, "page">>(pathPattern, {
+    decode: decodeURIComponent,
+  });
+  const resolveUnitIndexHref = compile<Omit<UnitListingLinkProps, "page">>(
+    pathPattern,
+    { encode: encodeURIComponent },
+  );
+  const resolveHref = (props: UnitListingLinkProps) => {
+    const eyfsMatch = EYFS_PROGRAMME_SLUG_REGEX.exec(props.programmeSlug);
+    if (eyfsMatch) {
+      return OAK_PAGES["eyfs-page"].resolveHref({
+        page: "eyfs-page",
+        subjectSlug: eyfsMatch.groups?.subject || "maths",
+      });
+    }
+    const path = resolveUnitIndexHref(props);
+    if (props.search) {
+      return `${path}?${createQueryStringFromObject(props.search)}`;
+    }
+    return path;
+  };
+  return createOakPageConfig({
+    analyticsPageName: "Unit Listing",
+    configType: "internal-custom-resolve",
+    pageType: "unit-index",
+    matchHref,
+    resolveHref,
+  });
+};
+
 export const OAK_PAGES: {
   [K in keyof OakPages]: OakPages[K] & { pageType: K };
 } = {
@@ -734,12 +792,7 @@ export const OAK_PAGES: {
     matchHref: postMatchHref("webinar-index"),
     resolveHref: postResolveHref("webinar-index"),
   }),
-  "unit-index": createOakPageConfig({
-    pathPattern: "/teachers/programmes/:programmeSlug/units",
-    analyticsPageName: "Unit Listing",
-    configType: "internal",
-    pageType: "unit-index",
-  }),
+  "unit-index": createUnitIndexPageConfig(),
   "specialist-unit-index": createOakPageConfig({
     pathPattern: "/teachers/specialist/programmes/:programmeSlug/units",
     analyticsPageName: "Unit Listing",
@@ -927,12 +980,7 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "landing-page",
   }),
-  "subject-index": createOakPageConfig({
-    pathPattern: "/teachers/key-stages/:keyStageSlug/subjects",
-    analyticsPageName: "Subject Listing",
-    configType: "internal",
-    pageType: "subject-index",
-  }),
+  "subject-index": createSubjectIndexPageConfig(),
   "specialist-subject-index": createOakPageConfig({
     pathPattern: "/teachers/specialist/subjects",
     analyticsPageName: "Subject Listing",
@@ -1038,48 +1086,6 @@ export type ResolveOakHrefProps = Exclude<
 >;
 
 /**
- * Intercepts subject-index and unit-index links that target EYFS
- * and redirects them to the new /eyfs/:subjectSlug route.
- * Returns the EYFS href if applicable, or null to continue with normal resolution.
- */
-const eyfsIntercept = (props: ResolveOakHrefProps): string | null => {
-  const isSubjectOrProgrammeLink =
-    props.page === "unit-index" || props.page === "subject-index";
-
-  if (!isSubjectOrProgrammeLink) {
-    return null;
-  }
-
-  const { programmeSlug, keyStageSlug, subjectSlug } = props as {
-    programmeSlug?: string;
-    keyStageSlug?: string;
-    subjectSlug?: string;
-  };
-
-  let eyfsSubjectSlug: string | undefined;
-
-  if (keyStageSlug === "early-years-foundation-stage") {
-    eyfsSubjectSlug = subjectSlug;
-  } else if (programmeSlug && isSlugEYFS(programmeSlug)) {
-    eyfsSubjectSlug =
-      EYFS_PROGRAMME_SLUG_REGEX.exec(programmeSlug)?.groups?.subject ??
-      undefined;
-  }
-
-  if (
-    eyfsSubjectSlug !== undefined ||
-    keyStageSlug === "early-years-foundation-stage"
-  ) {
-    return OAK_PAGES["eyfs-page"].resolveHref({
-      page: "eyfs-page",
-      subjectSlug: eyfsSubjectSlug || "maths",
-    } as EyfsPageLinkProps);
-  }
-
-  return null;
-};
-
-/**
  * Pass readable props which are unlikely to need to change, and return an href.
  * @example
  * resolveOakHref({ page: "teacher-hub "})
@@ -1088,11 +1094,6 @@ const eyfsIntercept = (props: ResolveOakHrefProps): string | null => {
  */
 export const resolveOakHref = (props: ResolveOakHrefProps): string => {
   try {
-    const intercepted = eyfsIntercept(props);
-    if (intercepted) {
-      return intercepted;
-    }
-
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const path = OAK_PAGES[props.page].resolveHref(props);
