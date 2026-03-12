@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { isClassroomAssignment as checkIsClassroom } from "@oaknational/google-classroom-addon/ui";
 
 export function useAssignmentSearchParams() {
   const router = useRouter();
@@ -15,10 +16,8 @@ export function useAssignmentSearchParams() {
 
   const checkIsAssignment = useCallback(() => {
     if (!globalThis?.window || !searchParams) return;
-    const itemId = searchParams?.get("itemId");
-    const itemType = searchParams?.get("itemType");
 
-    setIsClassroomAssignment(itemType === "courseWork" && itemId !== null);
+    setIsClassroomAssignment(checkIsClassroom(searchParams));
     setClassroomAssignmentChecked(true);
   }, [searchParams]);
 

@@ -49,7 +49,7 @@ const isQuizSection = (section: string): section is QuizSection => {
 };
 
 const QuizInner = () => {
-  const { currentSection, updateCurrentSection, completeActivity } =
+  const { currentSection, updateCurrentSection, completeActivity, isReadOnly } =
     useLessonEngineContext();
   const quizEngineContext = useQuizEngineContext();
   const {
@@ -116,6 +116,7 @@ const QuizInner = () => {
   const grade = currentQuestionState?.grade;
   const isPartiallyCorrect = currentQuestionState?.isPartiallyCorrect;
   const isCorrect = grade === 1;
+  const isExitQuizReadOnly = isReadOnly && currentSection === "exit-quiz";
 
   const handleNextQuestionClick = () => {
     const _currentQuestionIndex = Math.min(
@@ -220,6 +221,7 @@ const QuizInner = () => {
               isTrailingIcon
               iconName="arrow-right"
               width={["100%", "max-content"]}
+              disabled={isExitQuizReadOnly}
               aria-describedby={
                 currentQuestionState?.mode === "incomplete"
                   ? "quiz-tooltip"

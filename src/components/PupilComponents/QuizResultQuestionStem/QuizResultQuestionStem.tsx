@@ -20,13 +20,15 @@ import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 export interface QuizQuestionStemProps {
   questionStem: (ImageItem | TextItem)[];
   displayIndex: number;
+  isDisabled?: boolean;
 }
 
 export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
-  const { questionStem, displayIndex } = props;
+  const { questionStem, displayIndex, isDisabled } = props;
 
   const isHint = displayIndex === 999;
   const questionNumber = isHint ? "" : `Q${displayIndex}.`;
+  const textColor = isDisabled ? "text-disabled" : "text-primary";
 
   return (
     <CodeRenderWrapper>
@@ -42,6 +44,7 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
               <OakSpan
                 key={`q-${displayIndex}-stem-element-0`}
                 $font={"body-2-bold"}
+                $color={textColor}
               >
                 {questionNumber}{" "}
                 {shortAnswerTitleFormatter(
@@ -57,6 +60,7 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
                 <OakSpan
                   key={`q-${displayIndex}-stem-element-${i}`}
                   $font={"body-2-bold"}
+                  $color={textColor}
                 >
                   {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
                 </OakSpan>

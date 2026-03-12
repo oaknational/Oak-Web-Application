@@ -4,6 +4,7 @@ import Page from "./page";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import OakError from "@/errors/OakError";
 
 const subjectsPageViewMock = jest.fn();
 
@@ -11,6 +12,12 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   SubjectsPageView: (props: never) => {
     subjectsPageViewMock(props);
     return <div data-testid="subjects-view">Subjects</div>;
+  },
+}));
+
+jest.mock("next/navigation", () => ({
+  notFound: () => {
+    throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
   },
 }));
 
@@ -47,7 +54,28 @@ describe("src/app/classroom/browse/years/[yearSlug]/subjects/page", () => {
     );
   });
 
-  it("throws error when no curriculum data is returned", async () => {
+  it("returns 404 when API throws OakError with curriculum-api/not-found", async () => {
+    (curriculumApi2023.pupilSubjectListingQuery as jest.Mock).mockRejectedValue(
+      new OakError({ code: "curriculum-api/not-found" }),
+    );
+
+    await expect(
+      Page({ params: Promise.resolve({ yearSlug: "year-x" }) }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
+
+  it("re-throws when API throws a non-not-found OakError", async () => {
+    const error = new OakError({ code: "curriculum-api/internal-error" });
+    (curriculumApi2023.pupilSubjectListingQuery as jest.Mock).mockRejectedValue(
+      error,
+    );
+
+    await expect(
+      Page({ params: Promise.resolve({ yearSlug: "year-x" }) }),
+    ).rejects.toEqual(error);
+  });
+
+  it("returns 404 when no curriculum data is returned", async () => {
     (curriculumApi2023.pupilSubjectListingQuery as jest.Mock).mockResolvedValue(
       {
         curriculumData: [],
@@ -56,6 +84,6 @@ describe("src/app/classroom/browse/years/[yearSlug]/subjects/page", () => {
 
     await expect(
       Page({ params: Promise.resolve({ yearSlug: "year-x" }) }),
-    ).rejects.toThrow("No curriculum data");
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
 });
