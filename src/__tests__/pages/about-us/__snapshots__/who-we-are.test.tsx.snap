@@ -6183,20 +6183,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                           </span>
                         </a>
                       </li>
-                      <li
-                        class="c191"
-                      >
-                        <a
-                          class="c192 "
-                          href="/support-your-team"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Support your team
-                          </span>
-                        </a>
-                      </li>
                     </ul>
                   </div>
                 </div>
