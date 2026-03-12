@@ -1,3 +1,10 @@
+## [1.1020.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1020.0...v1.1020.1) (2026-03-12)
+
+
+### Bug Fixes
+
+* resolve video thumbnail sizing in Safari on PromoBannerWithVideo ([669176e](https://github.com/oaknational/Oak-Web-Application/commit/669176ef09e51431238d6094efd21ee8d71399ce))
+
 # [1.1020.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1019.3...v1.1020.0) (2026-03-12)
 
 
