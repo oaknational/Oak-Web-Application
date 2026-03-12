@@ -9,6 +9,7 @@ import {
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 
+import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
@@ -26,6 +27,7 @@ import { CampaignPromoBanner } from "@/components/GenericPagesComponents/Campaig
 import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
 import { CampaignPromoBannerType } from "@/common-lib/cms-types/campaignPage";
 import { resolveOakHref } from "@/common-lib/urls";
+import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -91,6 +93,9 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                       href={resolveOakHref({ page: "about-who-we-are" })}
                       iconName="arrow-right"
                       isTrailingIcon={true}
+                      onClick={() =>
+                        aboutUsAccessed(buildAboutUsAnalytics("about_oak"))
+                      }
                     >
                       About Oak
                     </OakSecondaryButton>

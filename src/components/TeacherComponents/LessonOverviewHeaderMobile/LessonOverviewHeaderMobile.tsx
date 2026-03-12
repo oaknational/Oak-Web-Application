@@ -9,10 +9,9 @@ import {
   OakTagFunctional,
 } from "@oaknational/oak-components";
 
-import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithAiDropdown";
+import { LessonOverviewDownloadAndShareButtons } from "../LessonOverviewDownloadAndShareButtons/LessonOverviewDownloadAndShareButtons";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
-import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
@@ -43,7 +42,6 @@ export const LessonOverviewHeaderMobile: FC<
     lessonSlug,
     lessonReleaseDate,
     unitSlug,
-    excludedFromTeachingMaterials,
     shareButtons,
   } = props;
 
@@ -112,11 +110,10 @@ export const LessonOverviewHeaderMobile: FC<
           {phonicsOutcome && <OakP $font={"body-2"}>{phonicsOutcome}</OakP>}
         </OakBox>
       </OakBox>
-      <LessonOverviewHeaderDownloadAllButton {...props} />
-      {shareButtons}
-      {!excludedFromTeachingMaterials && (
-        <LessonOverviewCreateWithAiDropdown {...props} />
-      )}
+      <LessonOverviewDownloadAndShareButtons
+        {...props}
+        shareButtons={shareButtons}
+      />
       <ComplexCopyrightRestrictionBanner
         isGeorestricted={geoRestricted}
         isLoginRequired={loginRequired}

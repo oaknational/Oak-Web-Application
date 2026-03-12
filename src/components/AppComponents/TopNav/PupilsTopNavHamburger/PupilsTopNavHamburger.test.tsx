@@ -129,7 +129,7 @@ describe("PupilsTopNavHamburger", () => {
     const helpLink = screen.getByText("Help using Oak").closest("a");
     expect(helpLink).toHaveAttribute(
       "href",
-      "https://support.thenational.academy",
+      "https://support.thenational.academy/our-pupil-area",
     );
   });
 
@@ -147,7 +147,7 @@ describe("PupilsTopNavHamburger", () => {
     expect(helpLink).toBeInTheDocument();
     expect(helpLink).toHaveAttribute(
       "href",
-      "https://support.thenational.academy",
+      "https://support.thenational.academy/our-pupil-area",
     );
   });
 });

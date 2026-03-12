@@ -302,6 +302,7 @@ type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
 type HelpLinkProps = { page: "help" };
+type PupilHelpLinkProps = { page: "pupil-help" };
 type HomeLinkProps = { page: "home" };
 type LessonPlanningLinkProps = { page: "lesson-planning" };
 type LegalLinkProps = {
@@ -437,6 +438,7 @@ export type OakLinkProps =
   | WebinarListingLinkProps
   | WebinarSingleLinkProps
   | HelpLinkProps
+  | PupilHelpLinkProps
   | LegalLinkProps
   | SearchLinkProps
   | AboutUsWhoWeAreLinkProps
@@ -699,6 +701,12 @@ export const OAK_PAGES: {
     analyticsPageName: "[external] Help",
     configType: "external",
     pageType: "help",
+  }),
+  "pupil-help": createOakPageConfig({
+    url: "https://support.thenational.academy/our-pupil-area",
+    analyticsPageName: "[external] Help",
+    configType: "external",
+    pageType: "pupil-help",
   }),
   home: createOakPageConfig({
     pathPattern: "/",

@@ -223,8 +223,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const subjectParentSlug = subjectParent
     ? convertSubjectToSlug(subjectParent)
     : null;
-  const showCurriculumDownloadBanner =
-    hasCycle2Content && subjectSlug !== "rshe-pshe";
+  const showCurriculumDownloadBanner = hasCycle2Content;
 
   return (
     <AppLayout seoProps={unitsSEO} topNavProps={topNav}>

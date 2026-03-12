@@ -1,4 +1,11 @@
 {
+  "firestore": {
+    "databases": [
+      {
+        "name": "default"
+      }
+    ]
+  },
   "emulators": {
     "firestore": {
       "port": 8089,
