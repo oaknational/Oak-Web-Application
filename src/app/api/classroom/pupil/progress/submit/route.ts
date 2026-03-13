@@ -6,24 +6,18 @@ import {
   getOakGoogleClassroomAddon,
   isOakGoogleClassroomException,
 } from "@/node-lib/google-classroom";
+import {
+  handleClassroomError,
+  requireClassroomAuthHeaders,
+} from "@/app/api/classroom/classroomUtils";
 
 const reportError = createClassroomErrorReporter("submit-pupil-progress");
 
-const hasAuthHeaders = (request: NextRequest) => {
-  const accessToken = request.headers.get("Authorization");
-  const session = request.headers.get("x-oakgc-session");
-  return { accessToken, session };
-};
-
 export async function POST(request: NextRequest) {
   try {
-    const { accessToken, session } = hasAuthHeaders(request);
-
-    if (!session || !accessToken)
-      return NextResponse.json(
-        { message: "Authentication required" },
-        { status: 401 },
-      );
+    const auth = requireClassroomAuthHeaders(request);
+    if (auth instanceof NextResponse) return auth;
+    const { accessToken, session } = auth;
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
     const body = await request.json();
@@ -44,16 +38,11 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(result, { status: 200 });
   } catch (e) {
-    // Check if it's an OakGoogleClassroomException with submission state error
     if (isOakGoogleClassroomException(e)) {
       const errorObject = e.toObject();
       reportError(errorObject);
       return NextResponse.json(errorObject, { status: 403 });
     }
-    reportError(e);
-    return NextResponse.json(
-      { error: e instanceof Error ? e?.message : String(e) },
-      { status: 500 },
-    );
+    return handleClassroomError(reportError, e);
   }
 }
