@@ -4,8 +4,11 @@ import z from "zod";
 import {
   createClassroomErrorReporter,
   getOakGoogleClassroomAddon,
-  isOakGoogleClassroomException,
 } from "@/node-lib/google-classroom";
+import {
+  handleClassroomError,
+  requireClassroomAuthHeaders,
+} from "@/app/api/classroom/classroomUtils";
 
 const getAddOnContextSchema = z.object({
   courseId: z.string(),
@@ -17,14 +20,9 @@ const reportError = createClassroomErrorReporter("addon-context");
 
 export async function POST(request: NextRequest) {
   try {
-    const accessToken = request.headers.get("Authorization");
-    const session = request.headers.get("x-oakgc-session");
-
-    if (!session || !accessToken)
-      return NextResponse.json(
-        { message: "Authentication required" },
-        { status: 401 },
-      );
+    const auth = requireClassroomAuthHeaders(request);
+    if (auth instanceof NextResponse) return auth;
+    const { accessToken, session } = auth;
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
     const body = await request.json();
@@ -48,11 +46,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(context, { status: 200 });
   } catch (e) {
-    const errorObject = isOakGoogleClassroomException(e) ? e.toObject() : e;
-    reportError(errorObject);
-    return NextResponse.json(
-      { error: e instanceof Error ? e?.message : String(e) },
-      { status: 500 },
-    );
+    return handleClassroomError(reportError, e);
   }
 }

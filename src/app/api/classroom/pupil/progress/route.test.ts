@@ -8,11 +8,13 @@ import { GET } from "./route";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
-jest.mock("next/server", () => ({
-  NextResponse: {
-    json: jest.fn(),
-  },
-}));
+jest.mock("next/server", () => {
+  class MockNextResponse {}
+  (MockNextResponse as unknown as { json: jest.Mock }).json = jest.fn(
+    () => new MockNextResponse(),
+  );
+  return { NextResponse: MockNextResponse };
+});
 
 jest.mock("@/node-lib/google-classroom", () => {
   const reporterMock = jest.fn();

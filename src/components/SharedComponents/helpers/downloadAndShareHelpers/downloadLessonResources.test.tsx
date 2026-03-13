@@ -90,6 +90,7 @@ describe("downloadLessonResources", () => {
       expect(windowOpenSpy).toHaveBeenCalledWith(
         "/classroom/download/lesson-slug?selection=exit-quiz-answers%2Cworksheet-pdf",
         "_blank",
+        "noopener,noreferrer",
       );
       expect(createLessonDownloadLink).not.toHaveBeenCalled();
     });
@@ -105,6 +106,7 @@ describe("downloadLessonResources", () => {
       expect(windowOpenSpy).toHaveBeenCalledWith(
         "/classroom/download/lesson-slug?selection=exit-quiz-answers%2Cworksheet-pdf&additionalFiles=1%2C2%2C3",
         "_blank",
+        "noopener,noreferrer",
       );
     });
 

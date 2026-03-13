@@ -59,7 +59,11 @@ describe("createAndClickHiddenDownloadLink()", () => {
 
     createAndClickHiddenDownloadLink("testUrl");
 
-    expect(windowOpenSpy).toHaveBeenCalledWith("testUrl", "_blank");
+    expect(windowOpenSpy).toHaveBeenCalledWith(
+      "testUrl",
+      "_blank",
+      "noopener,noreferrer",
+    );
   });
 
   it("creates a hidden download link when not in an iframe", () => {
