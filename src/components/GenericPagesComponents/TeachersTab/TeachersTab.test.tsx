@@ -56,6 +56,8 @@ describe("TeachersTab", () => {
       filterType: "Key stage filter",
       filterValue: "eyfs",
       activeFilters: {},
+      googleLoginHint: null,
+      clientEnvironment: null,
     });
   });
 

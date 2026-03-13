@@ -15,9 +15,10 @@ if (typeof window !== "undefined") {
       ? getBrowserConfig("posthogApiHost")
       : undefined,
     capture_pageview: false,
+    // required for google classroom iframe events
+    debug: getBrowserConfig("releaseStage") !== "production",
   });
 }
-
 export function PHProvider({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

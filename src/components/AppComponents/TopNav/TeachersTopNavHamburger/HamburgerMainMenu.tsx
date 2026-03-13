@@ -115,6 +115,8 @@ function SubjectsSection(
                 filterType: "Key stage filter",
                 filterValue: keystage.slug,
                 activeFilters: {},
+                googleLoginHint: null,
+                clientEnvironment: null,
               });
             }}
           />
