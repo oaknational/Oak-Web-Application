@@ -56,12 +56,13 @@ variable "env_vars" {
 variable "firestore" {
   description = "Firestore configuration"
   type = object({
-    firestore_weekly_backup_retention       = string
-    firestore_enable_point_in_time_recovery = bool
+    firestore_weekly_backup_retention       = optional(string)
+    firestore_enable_point_in_time_recovery = optional(bool)
   })
+  default = null
 
   validation {
-    condition     = var.firestore.firestore_weekly_backup_retention >= 0
+    condition     = try(var.firestore.weekly_backup_retention >= 0, true)
     error_message = "Weekly backup retention must be a positive number or 0 to disable backups."
   }
 }
