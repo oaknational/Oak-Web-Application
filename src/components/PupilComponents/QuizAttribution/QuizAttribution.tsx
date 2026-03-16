@@ -5,7 +5,7 @@ import { isImage } from "../QuizUtils/stemUtils";
 
 import {
   QuizQuestion,
-  ImageOrTextItem,
+  ImageItem,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 type QuizAttributionProps = {
@@ -20,20 +20,11 @@ export const QuizAttribution = ({ questionData }: QuizAttributionProps) => {
     ? questionData
     : [questionData];
 
-  const getAttributionEntry = (stem: ImageOrTextItem, idx: string | number) => {
-    if (!isImage(stem)) {
-      return null;
-    }
+  const getAttributionEntry = (stem: ImageItem, idx: string | number) => {
     const metadata = stem.imageObject.metadata;
-    if (
-      metadata &&
-      !Array.isArray(metadata) &&
-      "attribution" in metadata &&
-      metadata.attribution
-    ) {
+    if (!!metadata && "attribution" in metadata && metadata.attribution) {
       return { idx, attribution: metadata.attribution };
     }
-
     return null;
   };
 
