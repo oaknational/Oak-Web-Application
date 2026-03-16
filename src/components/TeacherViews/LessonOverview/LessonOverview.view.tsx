@@ -33,7 +33,6 @@ import {
   LessonOverviewAll,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
-import type { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
@@ -135,7 +134,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     loginRequired,
     geoRestricted,
   } = lesson;
-  const lessonActions = actions as Actions | null | undefined;
+
   const {
     showSignedOutGeoRestricted,
     showSignedOutLoginRequired,
@@ -332,7 +331,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const showShare =
     !isSpecialist &&
     keyStageSlug !== "early-years-foundation-stage" &&
-    !lessonActions?.disablePupilShare &&
+    !actions?.disablePupilShare &&
     !contentRestricted;
 
   const pageLinks = getPageLinksWithSubheadingsForLesson(
@@ -372,7 +371,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
-        isShareable={!expired && !lessonActions?.disablePupilShare}
+        isShareable={!expired && !actions?.disablePupilShare}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
@@ -440,7 +439,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
               <OakFlex $flexDirection={"column"} $position={"relative"}>
                 <OakBox $pb={"spacing-16"}>
                   <TakedownBanner
-                    isExpiring={!!lessonActions?.displayExpiringBanner}
+                    isExpiring={!!actions?.displayExpiringBanner}
                     isLegacy={isSlugLegacy(programmeSlug ?? "") || isSpecialist}
                     hasNewUnits={
                       getDoesSubjectHaveNewUnits(subjectSlug ?? "") &&
@@ -550,8 +549,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
                         lessonOutline={lessonOutline}
-                        isPELesson={!!lessonActions?.displayPETitle}
-                        isMFL={!!lessonActions?.displayVocabButton}
+                        isPELesson={!!actions?.displayPETitle}
+                        isMFL={!!actions?.displayVocabButton}
                         onTrackingCallback={trackMediaClipsButtonClicked}
                       />
                     </LessonItemContainer>
@@ -582,7 +581,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     isLegacyLicense={isLegacyLicense}
                     isMathJaxLesson={isMathJaxLesson}
                     hasVocabAndTranscripts={Boolean(additionalMaterialUrl)}
-                    displayVocab={!!lessonActions?.displayVocabButton}
+                    displayVocab={!!actions?.displayVocabButton}
                     updatedAt={updatedAt}
                     additionalFiles={additionalFiles}
                     year={yearTitle}
@@ -593,7 +592,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     examBoardSlug={examBoardSlug}
                     subjectSlug={subjectSlug}
                     subjectParent={subjectParent}
-                    disablePupilLink={lessonActions?.disablePupilShare}
+                    disablePupilLink={actions?.disablePupilShare}
                     hideSeoHelper={showGeoBlocked}
                   />
                 </LessonItemContainer>

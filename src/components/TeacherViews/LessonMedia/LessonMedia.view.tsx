@@ -89,7 +89,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
     loginRequired,
     geoRestricted,
   } = lesson;
-  const lessonActions = actions as Actions | null | undefined;
+
   const { track } = useAnalytics();
   const {
     showSignedOutLoginRequired,
@@ -129,9 +129,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   // construct list of all clips in one array
 
-  const isPEPractical = !!lessonActions?.isPePractical;
-  const isPELesson = !!lessonActions?.displayPETitle;
-  const isMFL = !!lessonActions?.displayVocabButton;
+  const isPEPractical = !!actions?.isPePractical;
+  const isPELesson = !!actions?.displayPETitle;
+  const isMFL = !!actions?.displayVocabButton;
 
   const learningCycleVideosTitleMap = createLearningCycleVideosTitleMap({
     isMFL,
