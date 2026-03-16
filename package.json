@@ -90,7 +90,7 @@
     "@oaknational/google-classroom-addon": "^1.13.1",
     "@oaknational/oak-components": "^2.9.1",
     "@oaknational/oak-consent-client": "2.4.0",
-    "@oaknational/oak-curriculum-schema": "^2.1.2",
+    "@oaknational/oak-curriculum-schema": "^2.2.0-beta.14",
     "@ooxml-tools/units": "^0.3.0",
     "@ooxml-tools/xml": "^0.1.0",
     "@portabletext/react": "^4.0.3",
