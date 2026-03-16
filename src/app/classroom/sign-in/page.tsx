@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { GoogleSignInView } from "@oaknational/google-classroom-addon/ui";
 import { OakBox } from "@oaknational/oak-components";
@@ -54,19 +54,6 @@ function SignInContent() {
       : `/classroom/browse?${currentParams}`;
     router.push(url);
   };
-
-  useEffect(() => {
-    track.classroomAddOnOpened({
-      platform: "google-classroom",
-      product: "google classroom addon",
-      engagementIntent: "use",
-      componentType: "page view",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      clientEnvironment,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <OakBox $background={"bg-primary"} $width={"100%"} $minHeight={"100vh"}>

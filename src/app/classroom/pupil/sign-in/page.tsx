@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   AuthCookieKeys,
@@ -55,19 +55,6 @@ function SignInContent() {
     }
     // when we have classroom 404/500 pages, we should redirect to those
   };
-
-  useEffect(() => {
-    track.classroomAddOnOpened({
-      platform: "google-classroom",
-      product: "google classroom addon",
-      engagementIntent: "use",
-      componentType: "page view",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Pupil",
-      clientEnvironment,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <GoogleSignInView
