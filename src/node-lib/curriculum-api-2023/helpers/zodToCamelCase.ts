@@ -1,4 +1,3 @@
-// @ts-expect-error patch needed for ts error
 import oakZodToCamelCase from "zod-to-camel-case";
 import { z } from "zod";
 

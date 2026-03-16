@@ -65,7 +65,7 @@ const unitListingQuery =
 
     const unitsCamel = keysToCamelCase(parsedUnits);
     const hasCycle2Content = unitsCamel.some(
-      (u) => u.unitData.Cohort === "2024-2025",
+      (u) => u.unitData._cohort === "2024-2025",
     );
 
     const programmeFields = unitsCamel.reduce(
