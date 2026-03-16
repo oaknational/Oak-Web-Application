@@ -8,7 +8,7 @@ import {
 
 import { OnboardingLayout } from "../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
-import { zodResolver } from "@/utils/zodResolver";
+import { zodResolver } from "@hookform/resolvers/zod";
 import FieldError from "@/components/SharedComponents/FieldError";
 import {
   OnboardingFormProps,

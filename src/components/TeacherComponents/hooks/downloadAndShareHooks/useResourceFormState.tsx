@@ -7,7 +7,7 @@ import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelper
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
-import { zodResolver } from "@/utils/zodResolver";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   getSchoolOption,
   getSchoolUrn,

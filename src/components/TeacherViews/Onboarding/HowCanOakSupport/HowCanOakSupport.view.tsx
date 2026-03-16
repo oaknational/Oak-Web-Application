@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Link from "next/link";
 
-import { zodResolver } from "@/utils/zodResolver";
+import { zodResolver } from "@hookform/resolvers/zod";
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 import {
   UseOfOakFormProps,

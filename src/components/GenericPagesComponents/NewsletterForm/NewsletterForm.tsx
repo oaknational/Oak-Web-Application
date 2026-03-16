@@ -17,6 +17,7 @@ import {
   USER_ROLES,
   UserRole,
 } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 

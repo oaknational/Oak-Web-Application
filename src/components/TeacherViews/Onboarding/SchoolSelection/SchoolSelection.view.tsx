@@ -10,7 +10,7 @@ import {
 
 import { OnboardingLayout } from "../../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
-import { zodResolver } from "@/utils/zodResolver";
+import { zodResolver } from "@hookform/resolvers/zod";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
