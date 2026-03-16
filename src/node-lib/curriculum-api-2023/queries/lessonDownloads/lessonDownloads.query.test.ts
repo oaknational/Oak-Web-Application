@@ -1,7 +1,7 @@
 import {
   syntheticUnitvariantLessonsFixture,
-  lessonDataFixture,
   additionalFilesFixture,
+  lessonFixture,
 } from "@oaknational/oak-curriculum-schema";
 import { ZodError } from "zod";
 
@@ -285,7 +285,7 @@ describe("lessonDownloadsCanonical()", () => {
             browse_data: [
               syntheticUnitvariantLessonsFixture({
                 overrides: {
-                  lesson_data: lessonDataFixture({
+                  lesson_data: lessonFixture({
                     overrides: {
                       copyright_content: mockCopyrightContentSnake,
                     },
@@ -313,7 +313,7 @@ describe("lessonDownloadsCanonical()", () => {
             browse_data: [
               syntheticUnitvariantLessonsFixture({
                 overrides: {
-                  lesson_data: lessonDataFixture({
+                  lesson_data: lessonFixture({
                     overrides: {
                       copyright_content: null,
                     },
