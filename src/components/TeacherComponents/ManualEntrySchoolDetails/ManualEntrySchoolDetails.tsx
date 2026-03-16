@@ -8,17 +8,17 @@ import {
 } from "react-hook-form";
 import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
 
-import { SchoolSelectFormProps } from "../OnboardingForm/OnboardingForm.schema";
+import { SchoolSelectFormValues } from "../OnboardingForm/OnboardingForm.schema";
 
 import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
 
 type ManualEntrySchoolDetailsProps = {
-  setValue: UseFormSetValue<SchoolSelectFormProps>;
+  setValue: UseFormSetValue<SchoolSelectFormValues>;
   onSelectFromDropdown: () => void;
-  control: Control<SchoolSelectFormProps>;
-  hasErrors: FieldErrors<SchoolSelectFormProps>;
+  control: Control<SchoolSelectFormValues>;
+  hasErrors: FieldErrors<SchoolSelectFormValues>;
   onManualSchoolInputChange: (isSchoolName: boolean, value: string) => void;
-  reset: UseFormReset<SchoolSelectFormProps>;
+  reset: UseFormReset<SchoolSelectFormValues>;
 };
 
 const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({

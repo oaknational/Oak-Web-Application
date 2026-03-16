@@ -9,14 +9,13 @@ import { Control, Controller, UseFormTrigger, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Link from "next/link";
-
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 import {
-  UseOfOakFormProps,
-  OnboardingFormProps,
   extendedUseOfOakSchema,
   OakSupportKey,
+  OnboardingFormValues,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import { OnboardingLayout } from "@/components/TeacherComponents/OnboardingLayout/OnboardingLayout";
 import FieldError from "@/components/SharedComponents/FieldError";
@@ -38,7 +37,7 @@ const HowCanOakSupport = () => {
   const router = useRouter();
   const onboardingState = decodeOnboardingDataQueryParam(router.query);
   const { formState, setValue, handleSubmit, control, clearErrors, trigger } =
-    useForm<UseOfOakFormProps>({
+    useForm({
       resolver: zodResolver(extendedUseOfOakSchema),
       mode: "onBlur",
       defaultValues: {
@@ -70,8 +69,8 @@ const HowCanOakSupport = () => {
         formState={formState}
         canSubmit={formState.isValid}
         handleSubmit={handleSubmit}
-        control={control as Control<OnboardingFormProps>}
-        trigger={trigger as UseFormTrigger<OnboardingFormProps>}
+        control={control as Control<OnboardingFormValues>}
+        trigger={trigger as UseFormTrigger<OnboardingFormValues>}
         forceHideNewsletterSignUp={true}
         subheading="Select all that apply"
         onSubmit={() => {

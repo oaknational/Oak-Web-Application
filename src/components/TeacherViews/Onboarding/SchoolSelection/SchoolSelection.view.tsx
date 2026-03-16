@@ -7,16 +7,15 @@ import {
   OakP,
   OakSpan,
 } from "@oaknational/oak-components";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { OnboardingLayout } from "../../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 import {
-  OnboardingFormProps,
-  SchoolSelectFormProps,
+  OnboardingFormValues,
   schoolSelectFormSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import ManualEntrySchoolDetails from "@/components/TeacherComponents/ManualEntrySchoolDetails";
@@ -29,7 +28,7 @@ export const SchoolSelectionView = () => {
     useState<SchoolSelectionView>("school-picker");
 
   const { formState, setValue, handleSubmit, control, trigger, reset } =
-    useForm<SchoolSelectFormProps>({
+    useForm({
       resolver: zodResolver(schoolSelectFormSchema),
       mode: "onBlur",
       defaultValues: {
@@ -100,8 +99,8 @@ export const SchoolSelectionView = () => {
       promptBody="We need a few more details to complete your account setup."
     >
       <OnboardingForm
-        control={control as Control<OnboardingFormProps>}
-        trigger={trigger as UseFormTrigger<OnboardingFormProps>}
+        control={control as Control<OnboardingFormValues>}
+        trigger={trigger as UseFormTrigger<OnboardingFormValues>}
         formState={formState}
         heading="Select your school"
         handleSubmit={handleSubmit}

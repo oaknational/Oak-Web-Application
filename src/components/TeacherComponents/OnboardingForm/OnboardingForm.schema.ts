@@ -120,6 +120,12 @@ export type UseOfOakFormProps = UseOfOakFormSchema & {
   onSubmit: (values: UseOfOakFormSchema) => Promise<void>;
 };
 
+export type OnboardingFormValues =
+  | SchoolSelectFormValues
+  | RoleSelectFormValues
+  | WorksInSchoolFormValues
+  | UseOfOakFormSchema;
+
 export type OnboardingFormProps =
   | SchoolSelectFormProps
   | RoleSelectFormProps
@@ -127,8 +133,8 @@ export type OnboardingFormProps =
   | UseOfOakFormProps;
 
 export const isSchoolSelectData = (
-  d: OnboardingFormProps,
-): d is SchoolSelectFormProps => {
+  d: OnboardingFormValues,
+): d is SchoolSelectFormValues => {
   return (
     ("school" in d || "manualSchoolName" in d) &&
     !("curriculumDesign" in d) &&
