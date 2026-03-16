@@ -4,18 +4,12 @@ import {
   getOakGoogleClassroomAddon,
   createClassroomErrorReporter,
 } from "@/node-lib/google-classroom";
-import {
-  handleClassroomError,
-  requireClassroomAuthHeaders,
-} from "@/app/api/classroom/classroomUtils";
+import { handleClassroomError } from "@/app/api/classroom/classroomUtils";
 
 const reportError = createClassroomErrorReporter("pupil-progress");
 
 export async function GET(request: NextRequest) {
   try {
-    const auth = requireClassroomAuthHeaders(request);
-    if (auth instanceof NextResponse) return auth;
-
     const requestUrl = new URL(request.url);
     const submissionId = requestUrl.searchParams.get("submissionId");
     const attachmentId = requestUrl.searchParams.get("attachmentId");
