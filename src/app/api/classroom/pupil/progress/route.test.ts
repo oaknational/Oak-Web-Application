@@ -114,9 +114,7 @@ describe("GET /api/classroom/pupil/progress", () => {
     expect(mockGetPupilLessonProgress).not.toHaveBeenCalled();
     expect(mockUpsertPupilLessonProgress).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
-      expect.objectContaining({
-        error: expect.any(String),
-      }),
+      { message: "Authentication required" },
       { status: 401 },
     );
   });
