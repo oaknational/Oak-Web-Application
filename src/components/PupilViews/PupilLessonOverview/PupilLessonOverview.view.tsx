@@ -77,6 +77,8 @@ export const PupilViewsLessonOverview = ({
     isLessonComplete,
     lessonStarted,
     updateCurrentSection,
+    isReadOnly,
+    isHydratingInitialProgress,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
   const { track } = usePupilAnalytics();
@@ -107,6 +109,11 @@ export const PupilViewsLessonOverview = ({
       lessonReviewSections.find(
         (section) => !sectionResults[section]?.isComplete,
       ) ?? "review";
+    if (isReadOnly && nextSection === "exit-quiz") {
+      updateCurrentSection("review");
+      trackSectionStarted("review");
+      return;
+    }
     proceedToNextSection();
     trackSectionStarted(nextSection);
   };
@@ -311,6 +318,7 @@ export const PupilViewsLessonOverview = ({
                     })}
                     lessonSectionName="intro"
                     progress={pickProgressForSection("intro")}
+                    isLoading={isHydratingInitialProgress}
                   />
                 </OakLI>
               )}
@@ -326,6 +334,8 @@ export const PupilViewsLessonOverview = ({
                     numQuestions={starterQuizNumQuestions}
                     grade={sectionResults["starter-quiz"]?.grade ?? 0}
                     data-testid="starter-quiz"
+                    disabled={sectionResults["starter-quiz"]?.isComplete}
+                    isLoading={isHydratingInitialProgress}
                   />
                 </OakLI>
               )}
@@ -338,6 +348,7 @@ export const PupilViewsLessonOverview = ({
                     })}
                     lessonSectionName="video"
                     progress={pickProgressForSection("video")}
+                    isLoading={isHydratingInitialProgress}
                   />
                 </OakLI>
               )}
@@ -353,6 +364,10 @@ export const PupilViewsLessonOverview = ({
                     numQuestions={exitQuizNumQuestions}
                     grade={sectionResults["exit-quiz"]?.grade ?? 0}
                     data-testid="exit-quiz"
+                    disabled={
+                      sectionResults["exit-quiz"]?.isComplete || isReadOnly
+                    }
+                    isLoading={isHydratingInitialProgress}
                   />
                 </OakLI>
               )}

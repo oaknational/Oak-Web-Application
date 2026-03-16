@@ -8,6 +8,8 @@ import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineCon
 import { QuizMatchAnswer } from "./QuizMatchAnswer";
 
 import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
+import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
@@ -152,9 +154,11 @@ describe(QuizMatchAnswer, () => {
   it("renders a hidden input for each item", () => {
     const { getAllByTestId } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizMatchAnswer />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <QuizEngineContext.Provider value={context}>
+            <QuizMatchAnswer />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
 
@@ -181,9 +185,11 @@ describe(QuizMatchAnswer, () => {
 
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={contextWithUpdateSpy}>
-          <QuizMatchAnswer />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <QuizEngineContext.Provider value={contextWithUpdateSpy}>
+            <QuizMatchAnswer />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
 
@@ -221,9 +227,11 @@ describe(QuizMatchAnswer, () => {
     it("displays the feedback", () => {
       const { getAllByTestId, rerender } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
-          <QuizEngineContext.Provider value={context}>
-            <QuizMatchAnswer />
-          </QuizEngineContext.Provider>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <QuizEngineContext.Provider value={context}>
+              <QuizMatchAnswer />
+            </QuizEngineContext.Provider>
+          </LessonEngineContext.Provider>
         </OakThemeProvider>,
       );
 
@@ -233,9 +241,11 @@ describe(QuizMatchAnswer, () => {
 
       rerender(
         <OakThemeProvider theme={oakDefaultTheme}>
-          <QuizEngineContext.Provider value={feedbackContext}>
-            <QuizMatchAnswer />
-          </QuizEngineContext.Provider>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <QuizEngineContext.Provider value={feedbackContext}>
+              <QuizMatchAnswer />
+            </QuizEngineContext.Provider>
+          </LessonEngineContext.Provider>
         </OakThemeProvider>,
       );
 

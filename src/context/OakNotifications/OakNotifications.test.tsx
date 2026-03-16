@@ -72,7 +72,7 @@ describe("OakToastProvider", () => {
     });
   });
 
-  test("sets offset to 82 when header is visible", async () => {
+  test("sets offset to 152 when header is visible", async () => {
     const { container } = render(<TestComponent />);
 
     act(() => {
@@ -85,7 +85,7 @@ describe("OakToastProvider", () => {
 
     await waitFor(() => {
       const toastContainer = container.querySelector('[aria-live="polite"]');
-      expect(toastContainer).toHaveStyle("top: 82px");
+      expect(toastContainer).toHaveStyle("top: 152px");
     });
   });
 

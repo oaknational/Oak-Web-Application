@@ -1,5 +1,6 @@
-import { screen, within, getByRole } from "@testing-library/react";
+import { screen, within, getByRole, fireEvent } from "@testing-library/react";
 
+import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
@@ -11,6 +12,10 @@ import {
 import { mockImageAsset } from "@/__tests__/__helpers__/cms";
 
 jest.mock("src/node-lib/cms");
+jest.mock("@/browser-lib/avo/Avo", () => ({
+  ...jest.requireActual("@/browser-lib/avo/Avo"),
+  aboutUsAccessed: jest.fn(),
+}));
 
 const mockPosts = [
   {
@@ -37,6 +42,34 @@ const mockCampaignPromoBanner = {
   bodyPortableTextWithPromo: bodyPortableTextWithStyling(),
   buttonCta: "Learn More",
   media: [mockImageAsset()],
+};
+
+const mockTestimonials = [
+  {
+    quote: {
+      text: "This is a testimonial quote.",
+      attribution: "John Doe",
+      role: "Teacher",
+      organisation: null,
+    },
+  },
+];
+
+const mockIntroVideo = {
+  mediaType: "video" as const,
+  title: "We're here to support great teaching",
+  video: {
+    title: "Mock Video Title",
+    video: {
+      asset: {
+        assetId: "mockAssetId",
+        playbackId: "mockPlaybackId",
+        thumbTime: null,
+      },
+    },
+  },
+  bodyPortableText: [],
+  alignMedia: "left" as const,
 };
 
 const render = renderWithProviders();
@@ -108,5 +141,24 @@ describe("HomePageLowerView", () => {
     const blogLink = screen.getByText("All blogs");
     expect(blogLink).toBeInTheDocument();
     expect(blogLink).toHaveAttribute("href", "/blog");
+  });
+
+  it("should call aboutUsAccessed with the correct analytics object when the About Oak button is clicked", () => {
+    const { getByRole } = render(
+      <HomePageLowerView
+        posts={mockPosts}
+        testimonials={mockTestimonials}
+        introVideo={mockIntroVideo}
+      />,
+    );
+
+    const aboutOakButtonLink = getByRole("link", { name: /about oak/i });
+    fireEvent.click(aboutOakButtonLink);
+
+    expect(aboutUsAccessed).toHaveBeenCalledWith(
+      expect.objectContaining({
+        componentType: "about_oak",
+      }),
+    );
   });
 });

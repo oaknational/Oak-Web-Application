@@ -108,11 +108,20 @@ export const getPackagedUnit = (
     programmeFields,
   });
 
+  const publishedLessonActions = unitLessons
+    .filter((lesson) => !lesson.isUnpublished)
+    .map((lesson) => lesson.actions);
+
   const combinedActions = getIntersection<LessonListItem["actions"]>(
-    unitLessons
-      .filter((lesson) => !lesson.isUnpublished)
-      .map((lesson) => lesson.actions),
+    publishedLessonActions,
   );
+
+  if (combinedActions) {
+    // Set `isPePractical` to true if any lesson is practical
+    combinedActions.isPePractical = publishedLessonActions.some(
+      (actions) => actions?.isPePractical === true,
+    );
+  }
 
   return {
     programmeSlug,

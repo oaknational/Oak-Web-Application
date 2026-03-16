@@ -61,7 +61,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       class="sc-aXZVg kMGxHZ yellow-shadow"
                     />
                     <button
-                      class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+                      class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
                     >
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
@@ -97,7 +97,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       class="sc-aXZVg kMGxHZ yellow-shadow"
                     />
                     <button
-                      class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+                      class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
                     >
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
@@ -168,7 +168,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
               class="sc-aXZVg kMGxHZ yellow-shadow"
             />
             <a
-              class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+              class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
               data-testid="skip-link"
               href="#content"
               style="position: absolute; left: -10000px;"
@@ -277,7 +277,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 class="sc-aXZVg kMGxHZ yellow-shadow"
               />
               <button
-                class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+                class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
               >
                 <div
                   class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
@@ -501,7 +501,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
               <button
                 aria-disabled="true"
                 aria-label="Coming soon See lessons in unit"
-                class="sc-dcJsrY sc-jXbUNg gqXsav hHLXEI internal-button"
+                class="sc-dcJsrY sc-jXbUNg xHEYB hQGRaM internal-button"
                 data-testid="unit-lessons-button"
                 disabled=""
               >
@@ -609,7 +609,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-aXZVg kMGxHZ yellow-shadow"
                     />
                     <button
-                      class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+                      class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
                     >
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
@@ -645,7 +645,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-aXZVg kMGxHZ yellow-shadow"
                     />
                     <button
-                      class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+                      class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
                     >
                       <div
                         class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
@@ -716,7 +716,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
               class="sc-aXZVg kMGxHZ yellow-shadow"
             />
             <a
-              class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+              class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
               data-testid="skip-link"
               href="#content"
               style="position: absolute; left: -10000px;"
@@ -825,7 +825,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 class="sc-aXZVg kMGxHZ yellow-shadow"
               />
               <button
-                class="sc-dcJsrY sc-jXbUNg gGvZcD inYdht internal-button"
+                class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
               >
                 <div
                   class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
@@ -1274,7 +1274,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
               <button
                 aria-disabled="true"
                 aria-label="Coming soon See lessons in unit"
-                class="sc-dcJsrY sc-jXbUNg gqXsav hHLXEI internal-button"
+                class="sc-dcJsrY sc-jXbUNg xHEYB hQGRaM internal-button"
                 data-testid="unit-lessons-button"
                 disabled=""
               >

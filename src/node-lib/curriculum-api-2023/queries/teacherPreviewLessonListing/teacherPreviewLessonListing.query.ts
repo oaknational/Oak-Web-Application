@@ -86,9 +86,15 @@ export const getPackagedUnit = (
     programmeFields,
   });
 
+  const lessonActions = unitLessons.map((lesson) => lesson.actions);
   const combinedActions = getIntersection<
     BetaLessonListSchema[number]["actions"]
-  >(unitLessons.map((lesson) => lesson.actions)) as Actions;
+  >(lessonActions) as Actions;
+
+  // Set `isPePractical` to true if any lesson is practical
+  combinedActions.isPePractical = lessonActions.some(
+    (actions) => actions?.isPePractical === true,
+  );
 
   return {
     programmeSlug,

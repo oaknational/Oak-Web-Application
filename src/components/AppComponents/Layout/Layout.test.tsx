@@ -25,21 +25,23 @@ describe("Layout", () => {
   });
   it("renders a hidden skip to content button until focused", () => {
     render(<Layout seoProps={DEFAULT_SEO_PROPS} topNavProps={topNavFixture} />);
-    const skipButtonLink = screen.getByText("Skip to content").closest("a");
+    const skipButtonLink = screen.getAllByRole("link", {
+      name: "Skip to content",
+    })[0];
 
-    if (!skipButtonLink) {
-      throw new Error("Could not find filter button");
-    }
+    expect(skipButtonLink).toBeInTheDocument();
 
     act(() => {
-      skipButtonLink.focus();
+      skipButtonLink?.focus();
     });
+
     expect(skipButtonLink).toHaveFocus();
     expect(skipButtonLink).not.toHaveStyle("position: absolute");
 
     act(() => {
-      skipButtonLink.blur();
+      skipButtonLink?.blur();
     });
+
     expect(skipButtonLink).not.toHaveFocus();
   });
 });
