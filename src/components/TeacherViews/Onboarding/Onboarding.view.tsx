@@ -5,24 +5,22 @@ import {
   OakRadioButton,
   OakRadioGroup,
 } from "@oaknational/oak-components";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { OnboardingLayout } from "../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
-import { zodResolver } from "@/utils/zodResolver";
 import FieldError from "@/components/SharedComponents/FieldError";
 import {
-  OnboardingFormProps,
-  WorksInSchoolFormProps,
+  OnboardingFormValues,
   worksInSchoolFormSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 
 export const OnboardingView = () => {
-  const { formState, setValue, handleSubmit, control, trigger } =
-    useForm<WorksInSchoolFormProps>({
-      resolver: zodResolver(worksInSchoolFormSchema),
-      mode: "onBlur",
-    });
+  const { formState, setValue, handleSubmit, control, trigger } = useForm({
+    resolver: zodResolver(worksInSchoolFormSchema),
+    mode: "onBlur",
+  });
 
   const setWorksInSchool = useCallback(
     (value: boolean) => {
@@ -39,8 +37,8 @@ export const OnboardingView = () => {
       promptBody="We need a few more details to complete your account setup."
     >
       <OnboardingForm
-        control={control as Control<OnboardingFormProps>}
-        trigger={trigger as UseFormTrigger<OnboardingFormProps>}
+        control={control as Control<OnboardingFormValues>}
+        trigger={trigger as UseFormTrigger<OnboardingFormValues>}
         formState={formState}
         heading="Do you work in a school?"
         handleSubmit={handleSubmit}

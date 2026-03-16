@@ -4,14 +4,13 @@ import {
   OakRadioGroup,
 } from "@oaknational/oak-components";
 import { Control, UseFormTrigger, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { OnboardingLayout } from "../../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
-import { zodResolver } from "@/utils/zodResolver";
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 import {
-  OnboardingFormProps,
-  RoleSelectFormProps,
+  OnboardingFormValues,
   roleSelectFormSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import FieldError from "@/components/SharedComponents/FieldError";
@@ -31,7 +30,7 @@ const RoleSelectionView = () => {
     control,
     trigger,
     register,
-  } = useForm<RoleSelectFormProps>({
+  } = useForm({
     resolver: zodResolver(roleSelectFormSchema),
     mode: "onBlur",
     defaultValues: {
@@ -59,8 +58,8 @@ const RoleSelectionView = () => {
           formState.errors.role === undefined &&
           formState.errors.other === undefined
         }
-        control={control as Control<OnboardingFormProps>}
-        trigger={trigger as UseFormTrigger<OnboardingFormProps>}
+        control={control as Control<OnboardingFormValues>}
+        trigger={trigger as UseFormTrigger<OnboardingFormValues>}
       >
         {formState.errors.role && (
           <FieldError id="role-error">

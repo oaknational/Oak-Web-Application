@@ -23,8 +23,8 @@ import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpe
 import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import {
-  ResourceFormProps,
   DownloadResourceType,
+  ResourceFormValues,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
@@ -237,7 +237,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const [isDownloadSuccessful, setIsDownloadSuccessful] =
     useState<boolean>(false);
 
-  const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
+  const onFormSubmit = async (data: ResourceFormValues): Promise<void> => {
     setApiError(null);
     await onHubspotSubmit(data);
 
