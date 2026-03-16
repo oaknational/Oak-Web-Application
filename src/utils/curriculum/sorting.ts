@@ -2,12 +2,6 @@ import { Actions } from "@oaknational/oak-curriculum-schema";
 
 import { Subject, SubjectCategory, Tier, Unit } from "./types";
 
-type SubjectCategoryActions = {
-  subject_category_actions?: {
-    default_category_id?: number | null;
-  } | null;
-};
-
 export function sortYears(a: string, b: string) {
   if (a === "all-years") {
     return -1;
@@ -20,7 +14,7 @@ type sortSubjectCategoriesOnFeaturesReturn = (
   b: Pick<SubjectCategory, "id">,
 ) => number;
 export function sortSubjectCategoriesOnFeatures(
-  actions: (Actions & SubjectCategoryActions) | null,
+  actions: Actions | null,
 ): sortSubjectCategoriesOnFeaturesReturn {
   const default_category_id =
     actions?.subject_category_actions?.default_category_id ?? -1;
