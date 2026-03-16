@@ -8,7 +8,10 @@ import mockRouter from "next-router-mock";
 import fetchMock from "jest-fetch-mock";
 
 import OnboardingForm from "./OnboardingForm";
-import { OnboardingFormProps } from "./OnboardingForm.schema";
+import {
+  OnboardingFormProps,
+  OnboardingFormValues,
+} from "./OnboardingForm.schema";
 import * as onboardingActions from "./onboardingActions";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -212,7 +215,7 @@ function renderForm(
   forceHideNewsletterSignUp: boolean = true,
 ) {
   const { result } = renderHook(() =>
-    useForm<OnboardingFormProps>({
+    useForm<OnboardingFormValues>({
       defaultValues: formState,
     }),
   );

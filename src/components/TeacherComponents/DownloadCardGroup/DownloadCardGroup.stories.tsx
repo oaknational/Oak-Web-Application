@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { useForm } from "react-hook-form";
 
+import { ResourceFormValues } from "../types/downloadAndShare.types";
+
 import Component, { DownloadCardGroupProps } from "./DownloadCardGroup";
 
 import * as downloads from "@/node-lib/curriculum-api-2023/fixtures/downloads.fixture";
@@ -14,7 +16,7 @@ export default meta;
 type Story = StoryObj<typeof Component>;
 
 const Wrapper = (args: DownloadCardGroupProps) => {
-  const { control } = useForm({
+  const { control } = useForm<ResourceFormValues>({
     mode: "onBlur",
   });
   return <Component {...args} control={control} />;
