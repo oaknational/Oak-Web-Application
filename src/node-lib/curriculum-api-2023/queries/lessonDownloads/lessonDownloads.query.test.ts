@@ -1,7 +1,7 @@
 import {
   syntheticUnitvariantLessonsFixture,
-  lessonDataFixture,
   additionalFilesFixture,
+  lessonFixture,
   Lesson,
   LessonCamel,
 } from "@oaknational/oak-curriculum-schema";
@@ -287,7 +287,7 @@ describe("lessonDownloadsCanonical()", () => {
             browse_data: [
               syntheticUnitvariantLessonsFixture({
                 overrides: {
-                  lesson_data: lessonDataFixture({
+                  lesson_data: lessonFixture({
                     overrides: {
                       copyright_content: mockCopyrightContentSnake,
                     },
@@ -315,7 +315,7 @@ describe("lessonDownloadsCanonical()", () => {
             browse_data: [
               syntheticUnitvariantLessonsFixture({
                 overrides: {
-                  lesson_data: lessonDataFixture({
+                  lesson_data: lessonFixture({
                     overrides: {
                       copyright_content: null,
                     },

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { actionsSchema } from "@oaknational/oak-curriculum-schema";
+import { actionsSchemaCamel } from "@oaknational/oak-curriculum-schema";
 
 import {
   legacyCopyrightContentSchema,
@@ -68,7 +68,7 @@ export const SpecialistLessonDownloadSchema = z.object({
     legacyCopyrightContent: legacyCopyrightContentSchema,
     geoRestricted: z.boolean().nullable(),
     loginRequired: z.boolean().nullable(),
-    actions: actionsSchema.nullish(),
+    actions: actionsSchemaCamel.nullish(),
     lessonReleaseDate: z.string().nullable(),
   }),
 });
