@@ -2,6 +2,7 @@ import {
   syntheticUnitvariantLessonsFixture,
   lessonDataFixture,
   additionalFilesFixture,
+  Lesson,
 } from "@oaknational/oak-curriculum-schema";
 import { ZodError } from "zod";
 
@@ -269,11 +270,11 @@ describe("lessonDownloadsCanonical()", () => {
 
   describe("teachersPreviewLessonDownloadQuery() - Copyright Content", () => {
     test("returns copyright content if present in the response", async () => {
-      const mockCopyrightContentSnake = [
+      const mockCopyrightContentSnake: Lesson["copyright_content"] = [
         {
           copyright_info: "info about copyright",
         },
-      ] as unknown as Record<string, never>[];
+      ];
       const expectedCopyrightContent = [
         {
           copyrightInfo: "info about copyright",
