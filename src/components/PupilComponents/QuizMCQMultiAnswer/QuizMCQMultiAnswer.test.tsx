@@ -83,7 +83,7 @@ describe("QuizMCQMultiAnswer", () => {
         feedback: "",
         hint: "",
         active: true,
-        State: "published",
+        _state: "published",
       },
 
       currentQuestionIndex: 0,
