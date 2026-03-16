@@ -19,7 +19,7 @@ import styled from "styled-components";
 
 import CopyrightNotice from "../OglCopyrightNotice";
 
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
@@ -30,17 +30,17 @@ import FieldError from "@/components/SharedComponents/FieldError";
 export type SharePageLayoutProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
     header: string;
-    errors: FieldErrors<ResourceFormProps>;
+    errors: FieldErrors<ResourceFormValues>;
     cardGroup: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
     schoolId?: string;
-    register: UseFormRegister<ResourceFormProps>;
-    control: Control<ResourceFormProps>;
+    register: UseFormRegister<ResourceFormValues>;
+    control: Control<ResourceFormValues>;
     showPostAlbCopyright: boolean;
     showSavedDetails: boolean;
     cta: React.ReactNode;
-    triggerForm: UseFormTrigger<ResourceFormProps>;
+    triggerForm: UseFormTrigger<ResourceFormValues>;
     apiError?: string | null;
     updatedAt: string;
     showTermsAgreement: boolean;
