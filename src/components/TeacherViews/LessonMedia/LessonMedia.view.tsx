@@ -11,6 +11,7 @@ import {
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
+import { ActionsCamel } from "@oaknational/oak-curriculum-schema";
 
 import VideoPlayer, {
   VideoEventCallbackArgs,
@@ -40,7 +41,6 @@ import {
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import {
   KeyStageTitleValueType,
   PathwayValueType,
@@ -57,7 +57,7 @@ type BaseLessonMedia = {
   mediaClips: MediaClipListCamelCase;
   lessonOutline: { lessonOutline: string }[];
   lessonReleaseDate: string | null;
-  actions?: Actions | null;
+  actions?: ActionsCamel | null;
 };
 
 type CanonicalLesson = BaseLessonMedia & {
@@ -89,7 +89,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
     loginRequired,
     geoRestricted,
   } = lesson;
-  const lessonActions = actions as Actions | null | undefined;
+
   const { track } = useAnalytics();
   const {
     showSignedOutLoginRequired,
@@ -129,9 +129,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   // construct list of all clips in one array
 
-  const isPEPractical = !!lessonActions?.isPePractical;
-  const isPELesson = !!lessonActions?.displayPETitle;
-  const isMFL = !!lessonActions?.displayVocabButton;
+  const isPEPractical = !!actions?.isPePractical;
+  const isPELesson = !!actions?.displayPETitle;
+  const isMFL = !!actions?.displayVocabButton;
 
   const learningCycleVideosTitleMap = createLearningCycleVideosTitleMap({
     isMFL,

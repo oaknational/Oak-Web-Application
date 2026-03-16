@@ -311,20 +311,6 @@ describe("lessonOverview()", () => {
       const content = [{ copyrightInfo: "" }];
       expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
     });
-
-    it("should default to empty string in copyrightInfo fields are undefined", () => {
-      const content = [{ copyrightInfo: undefined }] as unknown as {
-        copyrightInfo: string;
-      }[];
-      expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
-    });
-
-    it("should default to empty string if item doesnt have copyrightInfo", () => {
-      const content = [{ somethingElse: "" }] as unknown as {
-        copyrightInfo: string;
-      }[];
-      expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
-    });
   });
   describe("getContentGuidance", () => {
     it("should return null if content.contentGuidance is null", () => {

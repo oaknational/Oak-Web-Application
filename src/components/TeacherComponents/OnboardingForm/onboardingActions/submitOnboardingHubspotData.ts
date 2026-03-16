@@ -1,4 +1,4 @@
-import { OnboardingFormProps } from "../OnboardingForm.schema";
+import { OnboardingFormValues } from "../OnboardingForm.schema";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
@@ -14,7 +14,7 @@ interface OnboardingHubspotData {
       string
     >
   >;
-  data: OnboardingFormProps;
+  data: OnboardingFormValues;
   userSubscribed: boolean;
   posthogDistinctId: string | null;
   userEmail: string | undefined;

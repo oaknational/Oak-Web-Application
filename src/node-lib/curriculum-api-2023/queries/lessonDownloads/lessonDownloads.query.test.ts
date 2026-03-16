@@ -1,7 +1,9 @@
 import {
   syntheticUnitvariantLessonsFixture,
-  lessonDataFixture,
   additionalFilesFixture,
+  lessonFixture,
+  Lesson,
+  LessonCamel,
 } from "@oaknational/oak-curriculum-schema";
 import { ZodError } from "zod";
 
@@ -266,12 +268,12 @@ describe("lessonDownloadsCanonical()", () => {
 
   describe("lessonDownloads() - Copyright Content", () => {
     test("returns copyright content if present in the response", async () => {
-      const mockCopyrightContentSnake = [
+      const mockCopyrightContentSnake: Lesson["copyright_content"] = [
         {
           copyright_info: "info about copyright",
         },
-      ] as unknown as Record<string, never>[];
-      const expectedCopyrightContent = [
+      ];
+      const expectedCopyrightContent: LessonCamel["copyrightContent"] = [
         {
           copyrightInfo: "info about copyright",
         },
@@ -285,7 +287,7 @@ describe("lessonDownloadsCanonical()", () => {
             browse_data: [
               syntheticUnitvariantLessonsFixture({
                 overrides: {
-                  lesson_data: lessonDataFixture({
+                  lesson_data: lessonFixture({
                     overrides: {
                       copyright_content: mockCopyrightContentSnake,
                     },
@@ -313,7 +315,7 @@ describe("lessonDownloadsCanonical()", () => {
             browse_data: [
               syntheticUnitvariantLessonsFixture({
                 overrides: {
-                  lesson_data: lessonDataFixture({
+                  lesson_data: lessonFixture({
                     overrides: {
                       copyright_content: null,
                     },

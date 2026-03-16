@@ -19,7 +19,7 @@ export const nameInputSchema = z
   })
   .min(1, ERRORS.name);
 
-export const emailRequiredSchema = z.string();
+export const emailRequiredSchema = z.email();
 
 const schoolCombinedSchema = z
   .object({

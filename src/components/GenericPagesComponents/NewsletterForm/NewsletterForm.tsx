@@ -6,8 +6,8 @@ import {
   OakP,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import { zodResolver } from "@/utils/zodResolver";
 import Input from "@/components/SharedComponents/Input";
 import OakError from "@/errors/OakError";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";

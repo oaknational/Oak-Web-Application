@@ -1,4 +1,4 @@
-import type { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { ActionsCamel } from "@oaknational/oak-curriculum-schema";
 
 export type TeachingMaterialType =
   | "additional-glossary"
@@ -198,7 +198,7 @@ export function getTeachingMaterialTypesByCategory(
 }
 
 const actionsAvailableTeachingMaterialTypes = (
-  actions?: Actions | null,
+  actions?: ActionsCamel | null,
 ): TeachingMaterialType[] | undefined => {
   if (actions?.isPePractical) {
     return [
@@ -212,7 +212,7 @@ export function getAvailableTeachingMaterials(
   subjectSlug: string | null,
   keyStageSlug: string | null | undefined,
   subjectCategories?: Array<string | number | null> | null,
-  actions?: Actions | null,
+  actions?: ActionsCamel | null,
 ): TeachingMaterialType[] {
   // Default teaching materials for all subjects
   const defaultMaterials: TeachingMaterialType[] = [

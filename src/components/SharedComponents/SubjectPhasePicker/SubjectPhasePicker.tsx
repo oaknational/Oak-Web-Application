@@ -57,15 +57,12 @@ const OakFocusIndicatorAlt = styled(OakFocusIndicator)<{
 `;
 
 // FIXME: This is from <@/pages-helpers/pupil/options-pages/options-pages-helpers> being duplicated here to fix bundle issues.
-const examboardSlugOptions =
-  examboardSlugs.options as readonly ProgrammeFields["examboard_slug"][];
-
 const isExamboardSlug = (
-  examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
-): examboardSlug is ProgrammeFields["examboard_slug"] =>
-  examboardSlugOptions.includes(
-    (examboardSlug ?? "") as ProgrammeFields["examboard_slug"],
-  );
+  examboardSlug: unknown,
+): examboardSlug is ProgrammeFields["examboard_slug"] => {
+  const parsedSlug = examboardSlugs.safeParse(examboardSlug);
+  return parsedSlug.success;
+};
 
 const DEFAULT_KEYSTAGES = [
   { slug: "ks1" },

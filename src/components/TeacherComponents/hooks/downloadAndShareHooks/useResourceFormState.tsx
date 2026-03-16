@@ -2,18 +2,17 @@ import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
-import { zodResolver } from "@/utils/zodResolver";
 import {
   getSchoolOption,
   getSchoolUrn,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import {
-  ResourceFormProps,
   ResourceType,
   isPreselectedDownloadType,
   isPreselectedShareType,
@@ -49,7 +48,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     trigger,
     watch,
     handleSubmit,
-  } = useForm<ResourceFormProps>({
+  } = useForm({
     resolver: zodResolver(resourceFormValuesSchema),
     mode: "onBlur",
   });

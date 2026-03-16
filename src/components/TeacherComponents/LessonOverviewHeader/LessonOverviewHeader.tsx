@@ -3,6 +3,7 @@ import {
   OakSmallSecondaryButtonWithDropdown,
   OakUiRoleToken,
 } from "@oaknational/oak-components";
+import { ActionsCamel } from "@oaknational/oak-curriculum-schema";
 
 import { TeacherShareNotesButton } from "../TeacherShareNotesButton/TeacherShareNotesButton";
 import { LessonOverviewHeaderShareAllButton } from "../LessonOverviewHeaderShareAllButton";
@@ -17,7 +18,6 @@ import {
 } from "@/browser-lib/avo/Avo";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
-import type { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 /**
  * This is a header for the lesson overview page.
@@ -74,7 +74,7 @@ export type LessonOverviewHeaderProps = {
   ) => void;
   trackCreateWithAiButtonClicked?: () => void;
   subjectCategories?: Array<string | number | null> | null;
-  actions?: Actions | null;
+  actions?: ActionsCamel | null;
 };
 
 const ShareButtons: FC<{

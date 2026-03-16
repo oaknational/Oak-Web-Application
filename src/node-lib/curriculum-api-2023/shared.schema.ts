@@ -1,11 +1,10 @@
 import { z } from "zod";
 import {
-  actionsSchema,
+  actionsSchemaCamel,
   keystageSlugs,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
-import { zodToCamelCase } from "./helpers/zodToCamelCase";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
@@ -180,37 +179,6 @@ export const lessonOverviewQuizData = z
 
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
 
-export const camelActionSchema = zodToCamelCase(
-  actionsSchema,
-) as unknown as z.ZodType<Actions>;
-
-export type Actions = z.infer<typeof actionsSchema> & {
-  displayExpiringBanner?: boolean;
-  display_expiring_banner?: boolean;
-  isPePractical?: boolean;
-  is_pe_practical?: boolean;
-  displayPETitle?: boolean;
-  display_pe_title?: boolean;
-  displayVocabButton?: boolean;
-  display_vocab_button?: boolean;
-  disablePupilShare?: boolean;
-  disable_pupil_share?: boolean;
-  groupUnitsAs?: string;
-  group_units_as?: string;
-  programme_field_overrides?: {
-    subject?: string | null;
-    year_slug?: string | null;
-    [key: string]: unknown;
-  } | null;
-  subject_category_actions?: {
-    default_category_id?: number | null;
-    group_by_subjectcategory?: boolean;
-    all_disabled?: boolean;
-    [key: string]: unknown;
-  } | null;
-  [key: string]: unknown;
-};
-
 export const baseLessonOverviewSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
@@ -252,7 +220,7 @@ export const baseLessonOverviewSchema = z.object({
   updatedAt: z.string(),
   lessonGuideUrl: z.string().nullable(),
   phonicsOutcome: z.string().nullish(),
-  actions: camelActionSchema.nullish(),
+  actions: actionsSchemaCamel.nullish(),
   hasMediaClips: z.boolean(),
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
@@ -332,7 +300,7 @@ export const baseLessonDownloadsSchema = z.object({
   updatedAt: z.string(),
   geoRestricted: z.boolean().nullable(),
   loginRequired: z.boolean().nullable(),
-  actions: camelActionSchema.nullable().optional(),
+  actions: actionsSchemaCamel.nullish(),
   lessonReleaseDate: z.string().nullable(),
 });
 
@@ -349,7 +317,7 @@ export const lessonListItemSchema = z.object({
   hasLegacyCopyrightMaterial: z.boolean().nullish(),
   orderInUnit: z.number().nullish(),
   lessonCohort: z.string().nullish(),
-  actions: camelActionSchema.nullish(),
+  actions: actionsSchemaCamel.nullish(),
   isUnpublished: z.literal(false),
   lessonReleaseDate: z.string().nullable(),
   geoRestricted: z.boolean(),

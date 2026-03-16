@@ -22,7 +22,6 @@ import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createTier } from "@/fixtures/curriculum/tier";
 import { mockPortableTextBlocks } from "@/components/CurriculumComponents/CurricVisualiser/CurricVisualiser.fixtures";
-import type { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 describe("getYearGroupTitle", () => {
   describe("no suffix", () => {
@@ -379,9 +378,9 @@ describe("getYearSubheadingText", () => {
   it("displays subject from programme_field_overrides when it exists", () => {
     const actions = {
       programme_field_overrides: {
-        subject: "Overridden Subject",
+        subject: "Religious education" as const,
       },
-    } as unknown as Actions;
+    };
 
     const result = getYearSubheadingText(
       data,
@@ -393,15 +392,15 @@ describe("getYearSubheadingText", () => {
       actions,
     );
 
-    expect(result).toEqual("Overridden Subject");
+    expect(result).toEqual("Religious education");
   });
 
   it("combines programme_field_overrides subject with other filters", () => {
     const actions = {
       programme_field_overrides: {
-        subject: "Overridden Subject",
+        subject: "Religious education" as const,
       },
-    } as unknown as Actions;
+    };
 
     const result = getYearSubheadingText(
       data,
@@ -417,7 +416,7 @@ describe("getYearSubheadingText", () => {
     );
 
     expect(result).toEqual(
-      "Overridden Subject, SUB_CAT_1, CHILD_SUBJECT_1, TIER_1",
+      "Religious education, SUB_CAT_1, CHILD_SUBJECT_1, TIER_1",
     );
   });
 

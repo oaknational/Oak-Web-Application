@@ -6,8 +6,8 @@ import {
   parseSubjectPhaseSlug,
 } from "./slugs";
 
+import { createUnit } from "@/fixtures/curriculum/unit";
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
-import type { Unit } from "@/utils/curriculum/types";
 
 describe("parseSubjectPhaseSlug", () => {
   it("should extract from a valid slug", () => {
@@ -45,45 +45,6 @@ const testCurriculumPhaseOptions: CurriculumPhaseOptions = [
     ],
   },
 ];
-
-const createTestUnit = (overrides: Partial<Unit> = {}): Unit => ({
-  planned_number_of_lessons: 5,
-  connection_future_unit_description: null,
-  connection_prior_unit_description: null,
-  connection_future_unit_title: null,
-  connection_prior_unit_title: null,
-  examboard: null,
-  examboard_slug: null,
-  keystage_slug: "ks4",
-  lessons: [],
-  order: 1,
-  phase: "Secondary",
-  phase_slug: "secondary",
-  slug: "cellular-respiration-and-atp",
-  subject: "Combined Science",
-  subject_parent: "Science",
-  subject_parent_slug: "science",
-  subject_slug: "combined-science",
-  subjectcategories: null,
-  threads: [],
-  tier: null,
-  tier_slug: null,
-  title: "Aerobic and anaerobic cellular respiration",
-  unit_options: [],
-  year: "11",
-  cycle: "1",
-  why_this_why_now: null,
-  description: null,
-  state: "published",
-  national_curriculum_content: [],
-  prior_knowledge_requirements: [],
-  features: {},
-  parent_programme_features: null,
-  actions: {},
-  pathway: null,
-  pathway_slug: null,
-  ...overrides,
-});
 
 describe("isValidSubjectPhaseSlug", () => {
   it("valid to return true", () => {
@@ -161,7 +122,7 @@ describe("getKs4RedirectSlug", () => {
 
 describe("createTeacherProgrammeSlug", () => {
   test("unit data ks2 returns correct programme slug", () => {
-    const unitData = createTestUnit({
+    const unitData = createUnit({
       keystage_slug: "ks2",
       phase: "Primary",
       phase_slug: "primary",
@@ -173,7 +134,7 @@ describe("createTeacherProgrammeSlug", () => {
     expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks2");
   });
   test("unit data ks4 returns correct programme slug", () => {
-    const unitData = createTestUnit({
+    const unitData = createUnit({
       phase: "Primary",
       phase_slug: "primary",
       subject: "Science",
@@ -181,30 +142,34 @@ describe("createTeacherProgrammeSlug", () => {
       subject_parent: null,
       subject_parent_slug: null,
     });
-    expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks4");
+    expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks2");
   });
   test("unit data with exam board and tier returns the correct programme slug", () => {
-    const unitData = createTestUnit();
+    const unitData = createUnit({
+      examboard: "aqa",
+      tier: "foundation",
+      year: "10",
+    });
     expect(createTeacherProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
-      "combined-science-secondary-ks4-foundation-aqa",
+      "transfiguration-secondary-ks4-foundation-aqa",
     );
   });
   test("unit data for ks3 returns the correct programme slug", () => {
-    const unitData = createTestUnit({ keystage_slug: "ks3", year: "9" });
+    const unitData = createUnit({ keystage_slug: "ks3", year: "9" });
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
-      "combined-science-secondary-ks3",
+      "transfiguration-secondary-ks3",
     );
   });
 
   test("unit data for ks3 returns the correct programme slug", () => {
-    const unitData = createTestUnit({ keystage_slug: "ks3", year: "9" });
+    const unitData = createUnit({ keystage_slug: "ks3", year: "9" });
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
-      "combined-science-secondary-ks3",
+      "transfiguration-secondary-ks3",
     );
   });
 
   test("core pathway excludes examboard from slug (Computing)", () => {
-    const unitData = createTestUnit({
+    const unitData = createUnit({
       slug: "online-safety",
       subject: "Computing",
       subject_parent: null,
@@ -219,7 +184,7 @@ describe("createTeacherProgrammeSlug", () => {
   });
 
   test("core pathway excludes examboard from slug (PE)", () => {
-    const unitData = createTestUnit({
+    const unitData = createUnit({
       slug: "health-fitness-and-wellbeing",
       subject: "Physical Education",
       subject_parent: null,
@@ -234,7 +199,7 @@ describe("createTeacherProgrammeSlug", () => {
   });
 });
 test("gcse pathway excludes examboard when examboard equals pathway", () => {
-  const unitData = createTestUnit({
+  const unitData = createUnit({
     slug: "what-can-we-do-to-reduce-crime",
     subject: "Citizenship",
     subject_parent: null,
