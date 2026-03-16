@@ -1,4 +1,5 @@
 import {
+  ActionsCamel,
   ProgrammeFields,
   StaticLesson,
 } from "@oaknational/oak-curriculum-schema";
@@ -14,7 +15,6 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import OakError from "@/errors/OakError";
 import {
   LessonListSchema,
-  Actions,
   LessonListItem,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
@@ -59,7 +59,7 @@ export const getTransformedLessons = (
           hasLegacyCopyrightMaterial,
           orderInUnit: lesson.order_in_unit,
           lessonCohort: lesson.lesson_data._cohort,
-          actions: (keysToCamelCase(lesson.actions) || null) as Actions,
+          actions: (keysToCamelCase(lesson.actions) || null) as ActionsCamel,
           isUnpublished: false,
           lessonReleaseDate: lesson.lesson_data.lesson_release_date,
           geoRestricted: lesson.features?.agf__geo_restricted ?? false,
@@ -112,7 +112,7 @@ export const getPackagedUnit = (
     unitLessons
       .filter((lesson) => !lesson.isUnpublished)
       .map((lesson) => lesson.actions),
-  ) as Actions;
+  );
 
   return {
     programmeSlug,

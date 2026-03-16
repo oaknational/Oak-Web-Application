@@ -1,6 +1,6 @@
-import { Subject, SubjectCategory, Tier, Unit } from "./types";
+import { Actions } from "@oaknational/oak-curriculum-schema";
 
-import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { Subject, SubjectCategory, Tier, Unit } from "./types";
 
 type SubjectCategoryActions = {
   subject_category_actions?: {

@@ -11,6 +11,7 @@ import {
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
+import { ActionsCamel } from "@oaknational/oak-curriculum-schema";
 
 import VideoPlayer, {
   VideoEventCallbackArgs,
@@ -40,7 +41,6 @@ import {
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import {
   KeyStageTitleValueType,
   PathwayValueType,
@@ -57,7 +57,7 @@ type BaseLessonMedia = {
   mediaClips: MediaClipListCamelCase;
   lessonOutline: { lessonOutline: string }[];
   lessonReleaseDate: string | null;
-  actions?: Actions | null;
+  actions?: ActionsCamel | null;
 };
 
 type CanonicalLesson = BaseLessonMedia & {
