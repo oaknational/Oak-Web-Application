@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z, ZodError } from "zod";
 
 import { parseResults, uniqBy } from "./parseResults";
 
@@ -54,7 +54,16 @@ describe("cms/sanity-client/parseResults", () => {
 
       expect(() => {
         parseResults(schema, { foo: "true" });
-      }).toThrowError(/expected boolean/i);
+      }).toThrow(
+        new ZodError([
+          {
+            expected: "boolean",
+            code: "invalid_type",
+            path: ["foo"],
+            message: "Invalid input: expected boolean, received string",
+          },
+        ]),
+      );
     });
 
     it("throws a preview/zod-error when invalid data is provided for schema and previewMode is enabled", () => {

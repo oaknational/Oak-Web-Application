@@ -1,3 +1,5 @@
+import { ZodError } from "zod";
+
 import { extendedUseOfOakSchema } from "./OnboardingForm.schema";
 
 describe("extendedUseOfOakSchema", () => {
@@ -9,7 +11,15 @@ describe("extendedUseOfOakSchema", () => {
   it("requires a support option to have been selected when continuing", () => {
     expect(() => {
       extendedUseOfOakSchema.parse({ ...baseData, submitMode: "continue" });
-    }).toThrow("Please select the ways Oak can support you");
+    }).toThrow(
+      new ZodError([
+        {
+          code: "custom",
+          path: ["root"],
+          message: "Please select the ways Oak can support you",
+        },
+      ]),
+    );
   });
 
   it("removes support options when skipping", () => {
