@@ -11,6 +11,7 @@ const useSearchParamsMock = jest.fn();
 jest.mock("next/navigation", () => ({
   __esModule: true,
   useSearchParams: () => useSearchParamsMock(),
+  usePathname: () => "/pupil/some-page",
 }));
 
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
@@ -19,6 +20,15 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
     const { children } = props;
     return <div data-testid="provider">{children}</div>;
   },
+}));
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      classroomAddOnOpened: jest.fn(),
+    },
+  }),
 }));
 
 describe("src/app/classroom/layout", () => {
