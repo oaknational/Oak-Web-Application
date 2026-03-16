@@ -20,13 +20,16 @@ export const fieldToZod = (formField: FormField) => {
         .string()
         .min(1, { message: `${formField.label} can't be empty` });
       break;
-    case "email":
-      schema = z
-        .email({
-          error: "Email not valid",
-        })
+    case "email": {
+      const minLengthSchema = z
+        .string()
         .min(1, { message: `${formField.label} can't be empty` });
+      const emailSchema = z.email({
+        error: "Email not valid",
+      });
+      schema = z.intersection(minLengthSchema, emailSchema);
       break;
+    }
     case "select":
     case "radio":
     case "checkbox":
