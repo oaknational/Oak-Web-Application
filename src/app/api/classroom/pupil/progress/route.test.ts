@@ -98,4 +98,26 @@ describe("GET /api/classroom/pupil/progress", () => {
       { status: 400 },
     );
   });
+
+  it("should reject with 401 if auth headers are missing", async () => {
+    const mockMissingAuthHeaders = {
+      get: jest.fn(() => null),
+    };
+
+    const mockRequest = {
+      headers: mockMissingAuthHeaders,
+      url: "http://localhost/api/classroom/pupil/progress?submissionId=sub-1&courseId=course-1&itemId=item-1&attachmentId=attachment-1",
+    } as unknown as NextRequest;
+
+    await GET(mockRequest);
+
+    expect(mockGetPupilLessonProgress).not.toHaveBeenCalled();
+    expect(mockUpsertPupilLessonProgress).not.toHaveBeenCalled();
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        error: expect.any(String),
+      }),
+      { status: 401 },
+    );
+  });
 });
