@@ -26,17 +26,25 @@ const headers: Headers = {
 
 const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
 
+const retryCount = 5;
 const withRetries = <T>(action: () => Promise<T>) =>
   polly()
     .handle((err: Error) => {
-      console.log("HANDLE", err.message);
+      // Retry timeout errors
       return err.message.includes("connect ETIMEDOUT");
     })
-    .waitAndRetry(3)
-    .executeForPromise((info) => {
-      console.log("RETRY", info);
-      return action();
-    });
+    .waitAndRetry(retryCount)
+    .executeForPromise(() => action())
+    .then(
+      (result) => {
+        console.log("Success retrying", result);
+        return result;
+      },
+      (err) => {
+        console.error(`Failed retrying ${retryCount} times`, err);
+        return err;
+      },
+    );
 
 const sdk = getSdk(graphqlClient, withRetries);
 
