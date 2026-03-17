@@ -6,6 +6,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-24.04
+    timeout-minutes: 60
 
     steps:
       - uses: actions/checkout@v3
@@ -14,9 +15,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22.x
-          cache: "npm"
 
-      - run: npm ci
+      - run: npm ci --verbose
         env:
           NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
