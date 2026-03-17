@@ -77,7 +77,7 @@ describe("Onboarding form", () => {
   });
   it("should render the Controller component and handle checkbox change", async () => {
     fetchMock.mockResponse(JSON.stringify(false));
-    renderForm({}, false);
+    const { unmount } = renderForm({}, false);
 
     const checkbox = await screen.findByRole("checkbox", {
       name: /Sign up for our latest resources and updates by email. Unsubscribe at any time/i,
@@ -87,6 +87,8 @@ describe("Onboarding form", () => {
     fireEvent.click(checkbox);
 
     expect(checkbox).toBeChecked();
+
+    unmount();
   });
 
   it.each<[string, string, boolean]>([
@@ -220,7 +222,7 @@ function renderForm(
     }),
   );
 
-  renderWithProviders()(
+  const { unmount } = renderWithProviders()(
     <OnboardingForm
       handleSubmit={result.current.handleSubmit}
       formState={result.current.formState}
@@ -233,6 +235,7 @@ function renderForm(
       <div />
     </OnboardingForm>,
   );
+  return { unmount };
 }
 
 async function submitForm(
