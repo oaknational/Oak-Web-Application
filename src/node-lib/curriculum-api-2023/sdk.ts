@@ -29,6 +29,7 @@ const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
 const retryCount = 5;
 const withRetries = <T>(action: () => Promise<T>) =>
   polly()
+    .logger(console.error)
     .handle((err: Error) => {
       // Retry timeout errors
       return err.message.includes("connect ETIMEDOUT");
