@@ -35,19 +35,16 @@ const withRetries = <T>(action: () => Promise<T>) =>
     })
     .waitAndRetry(retryCount)
     .executeForPromise((info) => {
-      if (info.count === retryCount) {
-        console.error("GraphqlClient:MaxRetries", null, {
-          ...info,
-          action: action.toString(),
-        });
-      } else if (info.count >= 0) {
-        console.warn(`GraphqlClient:RetryingCall`, null, {
-          ...info,
-          action: action.toString(),
-        });
-      }
+      console.warn("Retrying, current count:", info.count);
       return action();
-    });
+    })
+    .then(
+      (result) => result,
+      (err) => {
+        console.error(`Failed retrying ${retryCount} times`, err);
+        return err;
+      },
+    );
 
 const sdk = getSdk(graphqlClient, withRetries);
 
