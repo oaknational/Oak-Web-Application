@@ -27,7 +27,7 @@ export function getABTestSchema<PageSchema extends z.ZodType>(
         }),
       ),
     })
-    .merge(documentSchema);
+    .extend(documentSchema.shape);
 }
 
 // A loose type where the control/variants are typed as any - use ABTestForPage where possible

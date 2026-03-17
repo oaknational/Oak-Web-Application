@@ -20,6 +20,16 @@ import {
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
+const emailSchema = (() => {
+  const minLengthSchema = z.string().min(1, {
+    error: "Enter an email",
+  });
+  const emailFormatSchema = z.email({
+    error: "Enter a valid email",
+  });
+  return z.intersection(minLengthSchema, emailFormatSchema);
+})();
+
 const schema = z.object({
   name: z
     .string()
@@ -27,14 +37,7 @@ const schema = z.object({
       error: "Enter a name",
     })
     .max(60, "Name must contain fewer than 60 charaters"),
-  email: z
-    .string()
-    .min(1, {
-      error: "Enter an email",
-    })
-    .email({
-      error: "Enter a valid email",
-    }),
+  email: emailSchema,
   userRole: z.union([z.enum(USER_ROLES), z.literal("")]),
 });
 

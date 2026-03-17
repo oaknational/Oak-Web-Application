@@ -36,8 +36,7 @@ export const getParsedData = <T extends { data?: unknown; error?: unknown }>(
     });
   }
 
-  const result = parsedJson.data as T;
-  const { data, error } = result;
+  const { data, error } = parsedJson.data;
 
   if (!data || error) {
     throw new OakError({
@@ -50,5 +49,5 @@ export const getParsedData = <T extends { data?: unknown; error?: unknown }>(
     });
   }
 
-  return data as NonNullable<T["data"]>;
+  return data;
 };

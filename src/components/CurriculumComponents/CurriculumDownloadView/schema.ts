@@ -13,8 +13,7 @@ export const schoolIdSchema = z
   .min(1, ERRORS.school);
 
 export const emailSchema = z
-  .string()
-  .email({ message: ERRORS.email })
+  .email({ error: ERRORS.email })
   .optional()
   .or(z.literal(""));
 

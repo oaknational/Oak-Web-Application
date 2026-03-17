@@ -15,7 +15,7 @@ export type ConvertKeysToCamelCase<T> =
       : T;
 export function convertKey(key: string): string {
   if (key.startsWith("_")) return key;
-  return key.replace(/_([a-z0-9])/gi, (_, char) => char.toUpperCase());
+  return key.replaceAll(/_([a-z0-9])/gi, (_, char) => char.toUpperCase());
 }
 export function keysToCamelCase<T>(obj: T): ConvertKeysToCamelCase<T> {
   if (Array.isArray(obj)) {

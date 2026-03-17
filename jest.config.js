@@ -14,12 +14,11 @@ const customJestConfig = require("./jest.base.config");
 // camelcase, map-obj, type-fest). Jest must transform the whole package tree.
 const esmPackages =
   "@oaknational/oak-curriculum-schema|camelcase-keys|camelcase|map-obj|type-fest|quick-lru|zod-to-camel-case";
-const esmPackagesPnpm =
-  "@oaknational\\+oak-curriculum-schema|camelcase-keys|camelcase|map-obj|type-fest|quick-lru|zod-to-camel-case";
+const esmPackagesPnpm = String.raw`@oaknational\+oak-curriculum-schema|camelcase-keys|camelcase|map-obj|type-fest|quick-lru|zod-to-camel-case`;
 
 const jestConfig = createJestConfig(customJestConfig);
 
-module.exports = async () => {
+module.exports = async function createPatchedJestConfig() {
   const config = await jestConfig();
   config.transformIgnorePatterns = config.transformIgnorePatterns.map(
     (pattern) =>
