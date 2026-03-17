@@ -1,3 +1,11 @@
+# [1.1021.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1020.2...v1.1021.0) (2026-03-17)
+
+
+### Features
+
+* remove all URL, CMS and type info from old 'support-your-team' page ([f7e153b](https://github.com/oaknational/Oak-Web-Application/commit/f7e153bdb1f1e1eb7ee141d177c29873a132a86a))
+* remove components/pages associated with '/support-your-team' ([bb39a46](https://github.com/oaknational/Oak-Web-Application/commit/bb39a46418d12ce6b02b2867c619ea938a456848))
+
 ## [1.1020.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1020.1...v1.1020.2) (2026-03-13)
 
 ## [1.1020.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1020.0...v1.1020.1) (2026-03-12)
