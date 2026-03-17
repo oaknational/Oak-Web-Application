@@ -287,7 +287,7 @@ export function shouldDisplayFilter(
   ).filter((ks) => !childSubjectsAt.includes(ks));
 
   if (key === "years") {
-    return data.yearOptions.length > 0;
+    return data.yearOptions.length > 1;
   }
   if (key === "subjectCategories") {
     return subjectCategoriesAt.length > 0;
