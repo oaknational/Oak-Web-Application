@@ -1,5 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 import { DocumentNode } from "graphql";
+import polly from "polly-js";
 
 import getServerConfig from "../getServerConfig";
 
@@ -24,7 +25,20 @@ const headers: Headers = {
 };
 
 const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
-const sdk = getSdk(graphqlClient);
+
+const withRetries = <T>(action: () => Promise<T>) =>
+  polly()
+    .handle((err: Error) => {
+      console.log("HANDLE", err.message);
+      return err.message.includes("connect ETIMEDOUT");
+    })
+    .waitAndRetry(3)
+    .executeForPromise((info) => {
+      console.log("RETRY", info);
+      return action();
+    });
+
+const sdk = getSdk(graphqlClient, withRetries);
 
 /*
  * batched queries not currently supported with the sdk
