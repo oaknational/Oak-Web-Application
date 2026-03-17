@@ -6,6 +6,12 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 
+jest.mock("next/navigation", () => ({
+  notFound: () => {
+    throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+  },
+}));
+
 const optionsViewMock = jest.fn();
 
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
@@ -54,6 +60,16 @@ describe("src/app/classroom/browse/programmes/[programmeSlug]/options/page", () 
       }),
     );
     expect(result).toBe("tier:x");
+  });
+
+  it("throws 404 when no programmes are returned", async () => {
+    (
+      curriculumApi2023.pupilProgrammeListingQuery as jest.Mock
+    ).mockResolvedValue([]);
+
+    await expect(
+      Page({ params: Promise.resolve({ programmeSlug: "unknown-slug" }) }),
+    ).rejects.toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
   });
 
   it("falls back to /classroom/browse when no yearSlug", async () => {

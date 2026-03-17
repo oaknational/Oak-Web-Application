@@ -1,83 +1,23 @@
 import {
   isValidIconName,
   OakFlex,
-  OakHandDrawnHR,
   OakHeading,
-  OakJauntyAngleLabel,
   OakMaxWidth,
   OakQuizPrintableHeader,
-  OakQuizPrintableSubHeader,
 } from "@oaknational/oak-components";
 
 import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { QuizResultInner } from "@/components/PupilComponents/QuizResultInner";
-import { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
+import { QuizQuestionResultsSection } from "@/components/PupilComponents/QuizQuestionResultsSection";
 
 type PupilViewsResultsProps = {
   attemptData: LessonAttemptCamelCase;
   starterQuizQuestionsArray: QuestionsArray;
   exitQuizQuestionsArray: QuestionsArray;
   browseData: LessonBrowseData;
-};
-
-type QuizResultsProps = {
-  index: number;
-  displayIndex: number;
-  questionResult: QuestionState;
-  quizQuestionArray: QuestionsArray;
-  lessonSection: "exit-quiz" | "starter-quiz";
-};
-
-const QuizSectionRender = (props: QuizResultsProps) => {
-  const {
-    index,
-    displayIndex,
-    questionResult,
-    quizQuestionArray,
-    lessonSection,
-  } = props;
-  const isHint = questionResult.mode === "init";
-
-  return (
-    <OakFlex
-      $position={"relative"}
-      $flexDirection={"column"}
-      key={`section-${index}`}
-      $gap={"spacing-20"}
-    >
-      <OakFlex $pb={["spacing-24", "spacing-0"]}>
-        <QuizResultInner
-          index={index}
-          displayIndex={displayIndex}
-          questionResult={questionResult}
-          quizArray={quizQuestionArray}
-          lessonSection={lessonSection}
-        />
-      </OakFlex>
-      <OakHandDrawnHR
-        hrColor={
-          index !== quizQuestionArray.length - 1 ? "bg-inverted" : "transparent"
-        }
-        $height={"spacing-4"}
-        $pl={["spacing-0", "spacing-24"]}
-        $ml={["spacing-0", "spacing-16"]}
-      />
-      {!isHint && (
-        <OakJauntyAngleLabel
-          $position={"absolute"}
-          $bottom={"spacing-20"}
-          $right={"spacing-0"}
-          $background={"bg-neutral"}
-          $font={"heading-light-7"}
-          label={`Question hint used - ${questionResult.offerHint}`}
-        />
-      )}
-    </OakFlex>
-  );
 };
 
 export const PupilViewsResults = (props: PupilViewsResultsProps) => {
@@ -125,62 +65,18 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
           <OakHeading tag="h2" $font={"heading-5"}>
             Results
           </OakHeading>
-
-          {starterQuiz?.questionResults && (
-            <>
-              <OakHandDrawnHR $height={"spacing-4"} />
-              <OakQuizPrintableSubHeader
-                title={"Starter quiz"}
-                grade={starterQuiz.grade ?? 0}
-                numQuestions={starterQuiz.numQuestions ?? 0}
-                attempts={1}
-              />
-            </>
-          )}
-          {starterQuiz?.questionResults &&
-            starterQuiz.questionResults.map((questionResult, index) => {
-              const displayIndex =
-                questionResult.mode === "init" ? 999 : questionIndex++;
-
-              return (
-                <QuizSectionRender
-                  key={`section-render'${index}`}
-                  index={index}
-                  displayIndex={displayIndex}
-                  questionResult={questionResult}
-                  quizQuestionArray={starterQuizQuestionsArray}
-                  lessonSection={"starter-quiz"}
-                />
-              );
-            })}
-
-          {exitQuiz?.questionResults && (
-            <>
-              <OakHandDrawnHR $height={"spacing-4"} />
-              <OakQuizPrintableSubHeader
-                title={"Exit quiz"}
-                grade={exitQuiz.grade ?? 0}
-                numQuestions={exitQuiz.numQuestions ?? 0}
-                attempts={1}
-              />
-            </>
-          )}
-          {exitQuiz?.questionResults &&
-            exitQuiz.questionResults.map((questionResult, index) => {
-              const displayIndex =
-                questionResult.mode === "init" ? 999 : questionIndex++;
-
-              return (
-                <QuizSectionRender
-                  key={`section-${index}`}
-                  index={index}
-                  displayIndex={displayIndex}
-                  questionResult={questionResult}
-                  quizQuestionArray={exitQuizQuestionsArray}
-                  lessonSection={"exit-quiz"}
-                />
-              );
-            })}
+          <QuizQuestionResultsSection
+            quiz={starterQuiz}
+            quizQuestionsArray={starterQuizQuestionsArray}
+            quizType={"starter"}
+            incrementQuestionIndex={() => questionIndex++}
+          />
+          <QuizQuestionResultsSection
+            quiz={exitQuiz}
+            quizQuestionsArray={exitQuizQuestionsArray}
+            quizType={"exit"}
+            incrementQuestionIndex={() => questionIndex++}
+          />
           <CopyrightNotice isLegacyLicense={isLegacy} />
         </OakFlex>
       </OakMaxWidth>

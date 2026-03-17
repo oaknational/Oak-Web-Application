@@ -4,6 +4,7 @@ import React, {
   memo,
   useCallback,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -71,20 +72,59 @@ export const useQuizEngineContext = () => {
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
-  const { updateSectionResult, completeActivity, currentSection } =
-    useLessonEngineContext();
+  const {
+    updateSectionResult,
+    completeActivity,
+    currentSection,
+    sectionResults,
+    isReadOnly,
+  } = useLessonEngineContext();
   const { track } = usePupilAnalytics();
 
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const quizSectionKey =
+    currentSection === "starter-quiz" || currentSection === "exit-quiz"
+      ? currentSection
+      : null;
+  const currentQuizSectionResults = quizSectionKey
+    ? sectionResults?.[quizSectionKey]
+    : undefined;
+
+  const nextQuestionIndex =
+    currentQuizSectionResults?.questionResults?.findIndex(
+      (item: QuestionState) => item.mode !== "feedback",
+    ) ?? 0;
+  // When findIndex returns -1, all questions are already in "feedback" mode
+  // (quiz was completed in a previous session, e.g. loaded from GC progress).
+  // Initialise past the end so nothing renders while the useEffect below
+  // calls completeActivity to transition the lesson engine away from this section.
+  const isAlreadyComplete =
+    nextQuestionIndex === -1 &&
+    Boolean(currentQuizSectionResults?.questionResults?.length);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(
+    isAlreadyComplete ? questionsArray.length : Math.max(nextQuestionIndex, 0),
+  );
+
+  useEffect(() => {
+    if (isAlreadyComplete && quizSectionKey) {
+      completeActivity(quizSectionKey);
+    }
+    // Intentional empty deps — only run on mount to handle a GC-hydrated
+    // quiz that was already fully answered in a previous session.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const currentQuestionData = questionsArray[currentQuestionIndex];
 
   const [questionState, setQuestionState] = useState<QuestionState[]>(
-    questionsArray.map(() => ({
-      mode: "init",
-      offerHint: false,
-      grade: 0,
-    })),
+    questionsArray.map((_question, index) => {
+      return (
+        currentQuizSectionResults?.questionResults?.[index] ?? {
+          mode: "init",
+          offerHint: false,
+          grade: 0,
+        }
+      );
+    }),
   );
 
   const numQuestions = questionsArray.length;
@@ -92,8 +132,11 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     getInteractiveQuestions(questionsArray).length;
   const score = questionState.reduce((acc, curr) => acc + curr.grade, 0);
 
+  const isExitQuizReadOnly = isReadOnly && currentSection === "exit-quiz";
+
   const updateCurrentQuestion = useCallback(
     (incomingQuestionState: Partial<QuestionState>) => {
+      if (isExitQuizReadOnly) return;
       if (
         (currentSection === "starter-quiz" || currentSection === "exit-quiz") &&
         incomingQuestionState.mode === "feedback"
@@ -123,11 +166,13 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           ...incomingQuestionState,
         };
 
-        updateSectionResult({
-          grade: newState.reduce((pv, v) => pv + v.grade, 0),
-          numQuestions: numInteractiveQuestions,
-          questionResults: newState,
-        });
+        if (incomingQuestionState.mode === "feedback") {
+          updateSectionResult({
+            grade: newState.reduce((pv, v) => pv + v.grade, 0),
+            numQuestions: numInteractiveQuestions,
+            questionResults: newState,
+          });
+        }
         return newState;
       });
     },
@@ -139,6 +184,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       currentSection,
       questionState,
       track,
+      isExitQuizReadOnly,
     ],
   );
 

@@ -106,6 +106,8 @@ export const Default: Story = {
               "exit-quiz",
             ],
             lessonStarted: true,
+            isReadOnly: false,
+            isHydratingInitialProgress: false,
             updateWorksheetDownloaded: () => {},
             updateAdditionalFilesDownloaded: () => {},
           }}

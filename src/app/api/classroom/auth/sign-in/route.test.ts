@@ -23,6 +23,7 @@ jest.mock("next/server", () => ({
 // todo: we could create and export one from the package
 // Mock OakGoogleClassroomAddon
 const mockSignInUrl = "https://google.com/signin/url";
+const mockPupilSignInUrl = `https://google.com/signin/url?state=${encodeURIComponent(JSON.stringify({ subscribeToNewsletter: false }))}`;
 jest.mock("@/node-lib/google-classroom", () => {
   const reporterMock = jest.fn();
   return {
@@ -35,6 +36,9 @@ jest.mock("@/node-lib/google-classroom", () => {
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
 const mockGetGoogleSignInUrl = jest.fn().mockResolvedValue(mockSignInUrl);
+const mockGetPupilGoogleSignInUrl = jest
+  .fn()
+  .mockResolvedValue(mockPupilSignInUrl);
 
 // Mock NextResponse search params
 const mockLoginHint = "123456789";
@@ -48,6 +52,7 @@ describe("GET /api/classroom/auth/sign-in", () => {
 
     mockedGetOakGoogleClassroomAddon.mockReturnValue({
       getGoogleSignInUrl: mockGetGoogleSignInUrl,
+      getPupilGoogleSignInUrl: mockGetPupilGoogleSignInUrl,
     });
     mockRequest = {
       nextUrl: {
@@ -63,11 +68,11 @@ describe("GET /api/classroom/auth/sign-in", () => {
     await GET(mockRequest);
 
     // Assert
-    expect(mockSearchParamsGet).toHaveBeenCalledTimes(1);
     expect(mockSearchParamsGet).toHaveBeenCalledWith("login_hint");
+    expect(mockSearchParamsGet).toHaveBeenCalledWith("subscribeToNewsletter");
 
     expect(mockGetGoogleSignInUrl).toHaveBeenCalledTimes(1);
-    expect(mockGetGoogleSignInUrl).toHaveBeenCalledWith(mockLoginHint);
+    expect(mockGetGoogleSignInUrl).toHaveBeenCalledWith(mockLoginHint, false);
 
     expect(mockNextResponseJson).toHaveBeenCalledTimes(1);
     expect(mockNextResponseJson).toHaveBeenCalledWith(
@@ -85,9 +90,10 @@ describe("GET /api/classroom/auth/sign-in", () => {
 
     // Assert
     expect(mockSearchParamsGet).toHaveBeenCalledWith("login_hint");
+    expect(mockSearchParamsGet).toHaveBeenCalledWith("subscribeToNewsletter");
 
     expect(mockGetGoogleSignInUrl).toHaveBeenCalledTimes(1);
-    expect(mockGetGoogleSignInUrl).toHaveBeenCalledWith(undefined);
+    expect(mockGetGoogleSignInUrl).toHaveBeenCalledWith(undefined, false);
 
     expect(mockNextResponseJson).toHaveBeenCalledTimes(1);
     expect(mockNextResponseJson).toHaveBeenCalledWith(
@@ -95,6 +101,48 @@ describe("GET /api/classroom/auth/sign-in", () => {
       { status: 200 },
     );
   });
+
+  it("should call getPupilGoogleSignInUrl when is_pupil is true and inject isPupil into state", async () => {
+    // Arrange
+    mockSearchParamsGet.mockImplementation((key: string) => {
+      if (key === "login_hint") return mockLoginHint;
+      if (key === "is_pupil") return "true";
+      return null;
+    });
+
+    // Act
+    await GET(mockRequest);
+
+    // Assert
+    expect(mockGetPupilGoogleSignInUrl).toHaveBeenCalledTimes(1);
+    expect(mockGetPupilGoogleSignInUrl).toHaveBeenCalledWith(mockLoginHint);
+    expect(mockGetGoogleSignInUrl).not.toHaveBeenCalled();
+
+    const [[{ signInUrl }]] = mockNextResponseJson.mock.calls;
+    const returnedState = JSON.parse(
+      new URL(signInUrl).searchParams.get("state")!,
+    );
+    expect(returnedState.isPupil).toBe(true);
+    expect(returnedState.subscribeToNewsletter).toBe(false);
+  });
+
+  it("should call getGoogleSignInUrl when is_pupil is not set", async () => {
+    // Arrange
+    mockSearchParamsGet.mockImplementation((key: string) => {
+      if (key === "login_hint") return mockLoginHint;
+      if (key === "subscribeToNewsletter") return null;
+      if (key === "is_pupil") return null;
+      return null;
+    });
+
+    // Act
+    await GET(mockRequest);
+
+    // Assert
+    expect(mockGetGoogleSignInUrl).toHaveBeenCalledTimes(1);
+    expect(mockGetPupilGoogleSignInUrl).not.toHaveBeenCalled();
+  });
+
   describe("error handling", () => {
     const {
       isOakGoogleClassroomException: mockedIsOakGoogleClassroomException,
@@ -108,6 +156,7 @@ describe("GET /api/classroom/auth/sign-in", () => {
       jest.clearAllMocks();
       mockedGetOakGoogleClassroomAddon.mockReturnValue({
         getGoogleSignInUrl: mockGetGoogleSignInUrl,
+        getPupilGoogleSignInUrl: mockGetPupilGoogleSignInUrl,
       });
       // Reset to default (false) - tests that need true will override
       mockedIsOakGoogleClassroomException.mockReturnValue(false);

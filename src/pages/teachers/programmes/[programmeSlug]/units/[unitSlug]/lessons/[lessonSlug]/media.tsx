@@ -91,7 +91,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context.params");
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
-      let curriculumData;
+      let curriculumData: LessonMediaClipsData | undefined;
 
       try {
         curriculumData =
