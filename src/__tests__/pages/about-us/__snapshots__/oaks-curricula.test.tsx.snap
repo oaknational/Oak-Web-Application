@@ -6682,20 +6682,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                           </span>
                         </a>
                       </li>
-                      <li
-                        class="c213"
-                      >
-                        <a
-                          class="c214 "
-                          href="/support-your-team"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Support your team
-                          </span>
-                        </a>
-                      </li>
                     </ul>
                   </div>
                 </div>
