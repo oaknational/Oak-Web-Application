@@ -34,10 +34,13 @@ const withRetries = <T>(action: () => Promise<T>) =>
       return err.message.includes("connect ETIMEDOUT");
     })
     .waitAndRetry(retryCount)
-    .executeForPromise(() => action())
+    .executeForPromise((info) => {
+      console.warn("Retrying count:", info.count);
+      return action();
+    })
     .then(
       (result) => {
-        console.log("Success retrying", result);
+        console.log("Success retrying");
         return result;
       },
       (err) => {
