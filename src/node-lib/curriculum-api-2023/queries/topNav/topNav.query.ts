@@ -51,11 +51,6 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
           href: resolveOakHref({ page: "lesson-planning" }),
         },
         {
-          title: "Support your team",
-          slug: "support-your-team",
-          href: resolveOakHref({ page: "support-your-team" }),
-        },
-        {
           title: "Blogs",
           slug: "blog-index",
           href: resolveOakHref({ page: "blog-index" }),
