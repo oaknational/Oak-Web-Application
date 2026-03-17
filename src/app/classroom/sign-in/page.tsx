@@ -26,6 +26,7 @@ function SignInContent() {
       product: "google classroom addon",
       analyticsUseCase: "Teacher",
       googleLoginHint: loginHint,
+      clientEnvironment,
     });
     return googleClassroomApi.getGoogleSignInUrl(
       loginHint,

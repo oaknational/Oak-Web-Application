@@ -25,6 +25,7 @@ function SignInContent() {
       product: "google classroom addon",
       analyticsUseCase: "Pupil",
       googleLoginHint: loginHint,
+      clientEnvironment,
     });
     return googleClassroomApi.getGoogleSignInUrl(
       searchParams?.get("login_hint") ?? null,
