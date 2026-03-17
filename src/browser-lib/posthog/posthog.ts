@@ -43,7 +43,6 @@ export const posthogToAnalyticsServiceWithoutQueue = (
           autocapture: {
             url_allowlist: [
               "/plan-a-lesson",
-              "/support-your-team",
               "/blog/.*",
               "/webinars/.*",
               "/about-us/.*",
