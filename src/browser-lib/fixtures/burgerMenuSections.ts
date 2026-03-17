@@ -73,12 +73,6 @@ export const burgerMenuSections: Array<AppHeaderBurgerMenuSection> = [
         new: false,
         external: false,
       },
-      {
-        linkTo: { page: "support-your-team" },
-        text: "Support your team",
-        new: false,
-        external: false,
-      },
     ],
   },
   {
