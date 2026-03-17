@@ -1,3 +1,35 @@
+## [1.1020.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1020.1...v1.1020.2) (2026-03-13)
+
+## [1.1020.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1020.0...v1.1020.1) (2026-03-12)
+
+
+### Bug Fixes
+
+* resolve video thumbnail sizing in Safari on PromoBannerWithVideo ([669176e](https://github.com/oaknational/Oak-Web-Application/commit/669176ef09e51431238d6094efd21ee8d71399ce))
+
+# [1.1020.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1019.3...v1.1020.0) (2026-03-12)
+
+
+### Bug Fixes
+
+* stories for HeaderListing not rendering ([61afdfe](https://github.com/oaknational/Oak-Web-Application/commit/61afdfecbfa983cd49524e818f4b59b298f68506))
+
+
+### Features
+
+* **LESQ-1840:** add SEO text overrides for rule-of-lwa ([0449ccf](https://github.com/oaknational/Oak-Web-Application/commit/0449ccf9f14a4dd5deb155ac83d603898d344462))
+
+## [1.1019.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1019.2...v1.1019.3) (2026-03-12)
+
+## [1.1019.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1019.1...v1.1019.2) (2026-03-12)
+
+## [1.1019.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1019.0...v1.1019.1) (2026-03-12)
+
+
+### Bug Fixes
+
+* **LESQ-1852:** missing event tracking data for media clips ([bdef3cc](https://github.com/oaknational/Oak-Web-Application/commit/bdef3cc19bf866a7cfa54210cd25e61e7b55d73d))
+
 # [1.1019.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1018.0...v1.1019.0) (2026-03-11)
 
 

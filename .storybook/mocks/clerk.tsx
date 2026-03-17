@@ -64,6 +64,10 @@ export const SignUpButton = ({ children }: { children: React.ReactNode }) => (
   <>{children}</>
 );
 
+export const SignInButton = ({ children }: { children: React.ReactNode }) => (
+  <>{children}</>
+);
+
 /**
  * Optional: redirect helpers (no-op)
  */

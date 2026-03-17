@@ -171,6 +171,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     isKeyStagesAvailable &&
     showUnitListingSeo &&
     subjectSlug !== "financial-education" &&
+    subjectSlug !== "rule-of-law" &&
     subjectSlug !== "drama" &&
     subjectSlug !== "latin";
 
