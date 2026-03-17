@@ -14,7 +14,7 @@ import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndEx
 import { getCorrectYear } from "../../helpers/getCorrectYear";
 import { isExcludedFromTeachingMaterials } from "../../helpers/teachingMaterialsAi/isExcluded";
 
-import lessonOverviewSchema, {
+import {
   lessonContentSchema,
   LessonOverviewContent,
   LessonOverviewDownloads,
@@ -384,16 +384,13 @@ const lessonOverviewQuery =
       restrictedAndHighlyRestrictedWorksList,
       content,
     );
-
-    return lessonOverviewSchema.parse({
-      ...transformedLessonOverviewData(
-        browseData,
-        content,
-        pathways,
-        unitData,
-        excludedFromTeachingMaterials,
-      ),
-    });
+    return transformedLessonOverviewData(
+      browseData,
+      content,
+      pathways,
+      unitData,
+      excludedFromTeachingMaterials,
+    );
   };
 
 export default lessonOverviewQuery;
