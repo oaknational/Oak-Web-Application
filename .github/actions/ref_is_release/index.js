@@ -4,10 +4,10 @@
  * Used to change the behaviour of the Vercel deployments.
  */
 
-const core = require("@actions/core");
-const github = require("@actions/github");
+import core from "@actions/core";
+import github from "@actions/github";
 
-const getIsReleaseTag = require("./is_release_tag");
+import getIsReleaseTag from "./is_release_tag";
 
 async function run() {
   try {
