@@ -79,22 +79,11 @@ export function getAppVersion(isProductionBuild: boolean): string {
       return `${gcpTagName}-static`;
     }
 
-    // Vercel or Netlify, parse the release commit message or log.
+    // Vercel parse the release commit message or log.
     let infoMessage;
     const vercelCommitMessage = process.env.VERCEL_GIT_COMMIT_MESSAGE;
-    const netlifyCommitRef = process.env.COMMIT_REF;
     if (vercelCommitMessage) {
       infoMessage = vercelCommitMessage;
-    } else if (netlifyCommitRef) {
-      const commitRegex = /^([a-zA-Z0-9]){8,}$/;
-      if (!commitRegex.test(netlifyCommitRef)) {
-        throw new TypeError(`Invalid exec input: ${netlifyCommitRef}`);
-      }
-      const netlifyCommitLog = execSync(
-        `git show --no-patch --oneline ${netlifyCommitRef}`,
-        { encoding: "utf8" },
-      );
-      infoMessage = netlifyCommitLog;
     } else {
       throw new Error("Could not determine build environment");
     }
@@ -102,7 +91,7 @@ export function getAppVersion(isProductionBuild: boolean): string {
     // DEBUG
     console.log("infoMessage", infoMessage);
 
-    // Vercel or Netlify
+    // Vercel
     // Release commit format defined in release.config.js
     const releaseCommitFormat = /build\(release [vV]\d+\.\d+\.\d+\):/;
     const isReleaseCommit = releaseCommitFormat.test(infoMessage);
@@ -115,7 +104,7 @@ export function getAppVersion(isProductionBuild: boolean): string {
       }
       let version = matches[0];
 
-      // Differentiate Vercel and Netlify versions for Bugsnag
+      // Differentiate Vercel versions for Bugsnag
       if (process.env.VERCEL) {
         version = `${version}-vercel`;
       }
@@ -137,10 +126,7 @@ export function getAppVersion(isProductionBuild: boolean): string {
 
 export const RELEASE_STAGE_TESTING = "test";
 export const RELEASE_STAGE_DEVELOPMENT = "development";
-export const RELEASE_STAGE_DEVELOPMENT_NETLIFY = "dev";
-export const RELEASE_STAGE_BRANCH_DEPLOY_NETLIFY = "branch-deploy";
 export const RELEASE_STAGE_PREVIEW = "preview";
-export const RELEASE_STAGE_PREVIEW_NETLIFY = "deploy-preview";
 export const RELEASE_STAGE_PRODUCTION = "production";
 export const RELEASE_STAGE_NOT_DEFINED = "NOT_DEFINED";
 
@@ -158,11 +144,8 @@ export function getReleaseStage(
 ): string {
   switch (candidateReleaseStage) {
     case RELEASE_STAGE_DEVELOPMENT:
-    case RELEASE_STAGE_DEVELOPMENT_NETLIFY:
-    case RELEASE_STAGE_BRANCH_DEPLOY_NETLIFY:
       return RELEASE_STAGE_DEVELOPMENT;
     case RELEASE_STAGE_PREVIEW:
-    case RELEASE_STAGE_PREVIEW_NETLIFY:
       return RELEASE_STAGE_PREVIEW;
     case RELEASE_STAGE_PRODUCTION:
       return RELEASE_STAGE_PRODUCTION;

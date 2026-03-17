@@ -28,7 +28,6 @@ module.exports = {
     "(\\.|/)(fixtures?)\\.[jt]sx?$",
     "src/__tests__/__helpers__/*",
     ".storybook/storybook.*.test.js$",
-    ".netlify/*",
     ".yalc/*",
   ],
   moduleNameMapper: {
