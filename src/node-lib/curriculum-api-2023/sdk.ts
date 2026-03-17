@@ -40,7 +40,7 @@ const withRetries = <T>(action: () => Promise<T>) =>
           ...info,
           action: action.toString(),
         });
-      } else if (info.count > 0) {
+      } else if (info.count >= 0) {
         console.warn(`GraphqlClient:RetryingCall`, null, {
           ...info,
           action: action.toString(),
