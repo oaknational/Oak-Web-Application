@@ -10,7 +10,6 @@ function getDeploymentTestUrls() {
     // Public pages
     "/",
     "/lesson-planning",
-    "/support-your-team",
     "/contact-us",
     // About Us pages
     "/about-us/who-we-are",
