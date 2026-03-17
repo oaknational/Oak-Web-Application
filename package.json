@@ -6,7 +6,7 @@
   "scripts": {
     "generate-sprites": "NODE_ENV=production tsx scripts/build/write_env_file/index.ts && NODE_ENV=production npm run image-data:all",
     "prebuild": "npm run generate-sprites",
-    "build": "npm run build:prep && next build",
+    "build": "npm run build:prep && next build --debug-prerender",
     "build:prep": "rimraf ./reports/*",
     "build:analyse-bundle": "ANALYSE_BUNDLE=on next build",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
