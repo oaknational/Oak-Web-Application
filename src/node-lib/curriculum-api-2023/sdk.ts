@@ -33,18 +33,20 @@ const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
 const retryCount = 5;
 const withRetries = <T>(action: () => Promise<T>) =>
   polly()
-    .logger(console.error)
-    .handle((err: Error) => {
-      const isTimeoutError = err.message.includes("connect ETIMEDOUT");
-      if (isTimeoutError) {
+    .logger((err) => {
+      if (err.message.includes("connect ETIMEDOUT")) {
+        // log timeout errors
         const timeoutError = new OakError({
           code: "graphql/timeout",
           meta: { originalError: err },
         });
         reportError(timeoutError);
       }
+      console.error(err);
+    })
+    .handle((err: Error) => {
       // Retry timeout errors
-      return isTimeoutError;
+      return err.message.includes("connect ETIMEDOUT");
     })
     .waitAndRetry(retryCount)
     .executeForPromise((info) => {
