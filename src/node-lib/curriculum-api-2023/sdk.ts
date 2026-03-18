@@ -6,6 +6,9 @@ import getServerConfig from "../getServerConfig";
 
 import { getSdk } from "./generated/sdk";
 
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
+
 const curriculumApiUrl = getServerConfig("curriculumApi2023Url");
 const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
 const curriculumApiAuthKey = getServerConfig("curriculumApi2023AuthKey");
@@ -24,6 +27,7 @@ const headers: Headers = {
   "user-agent": "OWA Curriculum API Client",
 };
 
+const reportError = errorReporter("Graphql sdk");
 const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
 
 const retryCount = 5;
@@ -31,8 +35,16 @@ const withRetries = <T>(action: () => Promise<T>) =>
   polly()
     .logger(console.error)
     .handle((err: Error) => {
+      const isTimeoutError = err.message.includes("connect ETIMEDOUT");
+      if (isTimeoutError) {
+        const timeoutError = new OakError({
+          code: "graphql/timeout",
+          meta: { originalError: err },
+        });
+        reportError(timeoutError);
+      }
       // Retry timeout errors
-      return err.message.includes("connect ETIMEDOUT");
+      return isTimeoutError;
     })
     .waitAndRetry(retryCount)
     .executeForPromise((info) => {
