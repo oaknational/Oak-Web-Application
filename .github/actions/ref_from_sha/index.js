@@ -5,11 +5,11 @@
  * set the GITHUB_REF to the commit SHA value.
  */
 
-const core = require("@actions/core");
-const github = require("@actions/github");
+import core from "@actions/core";
+import github from "@actions/github";
 
-const prFromSha = require("./pr_from_sha");
-const branchFromSha = require("./branch_from_sha");
+import prFromSha from "./pr_from_sha";
+import branchFromSha from "./branch_from_sha";
 
 async function run() {
   try {
