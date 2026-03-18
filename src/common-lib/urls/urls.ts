@@ -15,6 +15,9 @@ import {
   PreselectedDownloadType,
   PreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import isSlugEYFS, {
+  EYFS_PROGRAMME_SLUG_REGEX,
+} from "@/utils/slugModifiers/isSlugEYFS";
 
 const reportError = errorReporter("urls.ts");
 
@@ -379,6 +382,11 @@ type ProgrammePageProps = {
   tab: string;
 };
 
+type EyfsPageLinkProps = {
+  page: "eyfs-page";
+  subjectSlug: string;
+};
+
 type OnlyPageRequired<T> = T extends { page: string }
   ? { page: T["page"] } extends T
     ? T
@@ -456,7 +464,8 @@ export type OakLinkProps =
   | OnboardingUseOfOak
   | PupilLessonCanonical
   | MyLibraryProps
-  | ProgrammePageProps;
+  | ProgrammePageProps
+  | EyfsPageLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -600,6 +609,46 @@ const postResolveHref =
     return `${path}?${queryString}`;
   };
 
+const subjectIndexMatchHref = (href: string) => {
+  const pattern = "/teachers/key-stages/:keyStageSlug/subjects";
+  if (match(pattern)(href)) {
+    return match<SubjectListingLinkProps>(pattern)(href);
+  }
+  return false;
+};
+
+const subjectIndexResolveHref = (props: SubjectListingLinkProps): string => {
+  if (props.keyStageSlug === "early-years-foundation-stage") {
+    return "/eyfs/maths";
+  }
+  return `/teachers/key-stages/${encodeURIComponent(props.keyStageSlug)}/subjects`;
+};
+
+const unitIndexMatchHref = (href: string) => {
+  const pattern = "/teachers/programmes/:programmeSlug/units";
+  if (match(pattern)(href)) {
+    return match<UnitListingLinkProps>(pattern)(href);
+  }
+  return false;
+};
+
+const unitIndexResolveHref = (props: UnitListingLinkProps): string => {
+  if (isSlugEYFS(props.programmeSlug)) {
+    const eyfsSubjectSlug = EYFS_PROGRAMME_SLUG_REGEX.exec(props.programmeSlug)
+      ?.groups?.subject;
+    return `/eyfs/${encodeURIComponent(eyfsSubjectSlug || "maths")}`;
+  }
+  const path = `/teachers/programmes/${encodeURIComponent(props.programmeSlug)}/units`;
+  if (!props.search) {
+    return path;
+  }
+  const queryString = createQueryStringFromObject(props.search);
+  if (!queryString) {
+    return path;
+  }
+  return `${path}?${queryString}`;
+};
+
 export const OAK_PAGES: {
   [K in keyof OakPages]: OakPages[K] & { pageType: K };
 } = {
@@ -726,10 +775,11 @@ export const OAK_PAGES: {
     resolveHref: postResolveHref("webinar-index"),
   }),
   "unit-index": createOakPageConfig({
-    pathPattern: "/teachers/programmes/:programmeSlug/units",
     analyticsPageName: "Unit Listing",
-    configType: "internal",
+    configType: "internal-custom-resolve",
     pageType: "unit-index",
+    matchHref: unitIndexMatchHref,
+    resolveHref: unitIndexResolveHref,
   }),
   "specialist-unit-index": createOakPageConfig({
     pathPattern: "/teachers/specialist/programmes/:programmeSlug/units",
@@ -919,10 +969,11 @@ export const OAK_PAGES: {
     pageType: "landing-page",
   }),
   "subject-index": createOakPageConfig({
-    pathPattern: "/teachers/key-stages/:keyStageSlug/subjects",
     analyticsPageName: "Subject Listing",
-    configType: "internal",
+    configType: "internal-custom-resolve",
     pageType: "subject-index",
+    matchHref: subjectIndexMatchHref,
+    resolveHref: subjectIndexResolveHref,
   }),
   "specialist-subject-index": createOakPageConfig({
     pathPattern: "/teachers/specialist/subjects",
@@ -1014,6 +1065,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Unit Sequence",
     configType: "internal",
     pageType: "teacher-programme",
+  }),
+  "eyfs-page": createOakPageConfig({
+    pathPattern: "/eyfs/:subjectSlug",
+    analyticsPageName: "Unit Listing",
+    configType: "internal",
+    pageType: "eyfs-page",
   }),
 };
 

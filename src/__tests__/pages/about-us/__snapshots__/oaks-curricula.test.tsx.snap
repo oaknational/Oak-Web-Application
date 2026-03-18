@@ -6589,7 +6589,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       >
                         <a
                           class="c214 "
-                          href="/teachers/key-stages/early-years-foundation-stage/subjects"
+                          href="/eyfs/maths"
                         >
                           <span
                             class="c29"

@@ -302,5 +302,31 @@ describe("urls.ts", () => {
         "https://labs.thenational.academy/aila/teaching-materials?programmeSlug=science-ks3",
       );
     });
+
+    it("EYFS page direct link", () => {
+      const props: ResolveOakHrefProps = {
+        page: "eyfs-page",
+        subjectSlug: "maths",
+      };
+      expect(resolveOakHref(props)).toBe("/eyfs/maths");
+    });
+
+    it("subject-index with EYFS keyStageSlug redirects to /eyfs/maths", () => {
+      expect(
+        resolveOakHref({
+          page: "subject-index",
+          keyStageSlug: "early-years-foundation-stage",
+        }),
+      ).toBe("/eyfs/maths");
+    });
+
+    it("subject-index with non-EYFS keyStageSlug resolves normally", () => {
+      expect(
+        resolveOakHref({
+          page: "subject-index",
+          keyStageSlug: "ks1",
+        }),
+      ).toBe("/teachers/key-stages/ks1/subjects");
+    });
   });
 });
