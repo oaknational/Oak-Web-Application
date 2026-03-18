@@ -67,7 +67,7 @@ describe("lessonListing()", () => {
         pathwayTitle: null,
         pathwayDisplayOrder: null,
         parentSubject: "Maths",
-        actions: {},
+        actions: { isPePractical: false },
         containsGeorestrictedLessons: false,
         containsLoginRequiredLessons: false,
         lessons: [

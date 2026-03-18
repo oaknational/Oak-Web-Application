@@ -60,7 +60,7 @@ describe("teacherPreviewLessonListing()", () => {
         pathwaySlug: null,
         pathwayTitle: null,
         pathwayDisplayOrder: null,
-        actions: {},
+        actions: { isPePractical: false },
         lessons: [
           {
             lessonSlug: "lesson-slug",
