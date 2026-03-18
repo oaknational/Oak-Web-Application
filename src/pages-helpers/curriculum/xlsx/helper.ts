@@ -1,5 +1,8 @@
 import { capitalize } from "lodash";
-import { examboardSlugs } from "@oaknational/oak-curriculum-schema";
+import {
+  examboardSlugs,
+  ProgrammeFields,
+} from "@oaknational/oak-curriculum-schema";
 
 import {
   groupUnitsBySubjectCategory,
@@ -80,8 +83,11 @@ export function ks4OptionSlugToPathway(ks4OptionSlug?: string | null) {
   }
 }
 
-function isExamboardSlug(examboardSlug: string) {
-  return Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
+function isExamboardSlug(
+  examboardSlug: unknown,
+): examboardSlug is ProgrammeFields["examboard_slug"] {
+  const parsedSlug = examboardSlugs.safeParse(examboardSlug);
+  return parsedSlug.success;
 }
 
 // This is an old HACK and should be replace with "features" on the programme

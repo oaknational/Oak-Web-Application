@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { ZodError } from "zod";
 
 import { OakPupilClient } from "./client";
 
@@ -280,7 +281,38 @@ describe("OakPupilClient", () => {
           sidKey: mockTeacherNote.sid_key,
           noteId: "not a note id",
         }),
-      ).toThrowError("String must contain exactly 10 character(s)");
+      ).toThrow(
+        new ZodError([
+          {
+            origin: "string",
+            code: "too_big",
+            maximum: 10,
+            inclusive: true,
+            exact: true,
+            path: [],
+            message: "Too big: expected string to have <=10 characters",
+          },
+        ]),
+      );
+
+      expect(() =>
+        client.getTeacherNote({
+          sidKey: mockTeacherNote.sid_key,
+          noteId: "small",
+        }),
+      ).toThrow(
+        new ZodError([
+          {
+            origin: "string",
+            code: "too_small",
+            minimum: 10,
+            inclusive: true,
+            exact: true,
+            path: [],
+            message: "Too small: expected string to have >=10 characters",
+          },
+        ]),
+      );
     });
 
     it("should throw an error if the noteId is not provided and not in local storage", async () => {

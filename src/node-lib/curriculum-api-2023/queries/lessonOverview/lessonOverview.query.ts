@@ -14,7 +14,7 @@ import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndEx
 import { getCorrectYear } from "../../helpers/getCorrectYear";
 import { isExcludedFromTeachingMaterials } from "../../helpers/teachingMaterialsAi/isExcluded";
 
-import lessonOverviewSchema, {
+import {
   lessonContentSchema,
   LessonOverviewContent,
   LessonOverviewDownloads,
@@ -249,7 +249,7 @@ export const transformedLessonOverviewData = (
     starterQuiz: starterQuiz,
     exitQuiz: exitQuiz,
     videoTitle: content.videoTitle,
-    lessonCohort: browseData.lessonData.Cohort,
+    lessonCohort: browseData.lessonData._cohort,
     lessonGuideUrl: content.lessonGuideAssetObjectUrl ?? null,
     phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
@@ -385,15 +385,13 @@ const lessonOverviewQuery =
       content,
     );
 
-    return lessonOverviewSchema.parse({
-      ...transformedLessonOverviewData(
-        browseData,
-        content,
-        pathways,
-        unitData,
-        excludedFromTeachingMaterials,
-      ),
-    });
+    return transformedLessonOverviewData(
+      browseData,
+      content,
+      pathways,
+      unitData,
+      excludedFromTeachingMaterials,
+    );
   };
 
 export default lessonOverviewQuery;

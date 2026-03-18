@@ -4,8 +4,8 @@ import {
   keystageSlugs,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
+import zodToCamelCase from "zod-to-camel-case";
 
-import { zodToCamelCase } from "./helpers/zodToCamelCase";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
@@ -69,8 +69,8 @@ export const isStemTextObject = (
 const stemImageObjectSchema = z.object({
   imageObject: z.object({
     format: z.enum(["png", "jpg", "jpeg", "webp", "gif", "svg"]).optional(),
-    secureUrl: z.string().url(),
-    url: z.string().url().optional(),
+    secureUrl: z.url(),
+    url: z.url().optional(),
     height: z.number().optional(),
     width: z.number().optional(),
     metadata: z.union([
@@ -180,10 +180,9 @@ export const lessonOverviewQuizData = z
 
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
 
-export const camelActionSchema = zodToCamelCase(actionsSchema);
-
-export type Actions = z.infer<typeof camelActionSchema>;
-
+const actionsSchemaCamel = zodToCamelCase(actionsSchema, {
+  bidirectional: true,
+});
 export const baseLessonOverviewSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
@@ -225,7 +224,7 @@ export const baseLessonOverviewSchema = z.object({
   updatedAt: z.string(),
   lessonGuideUrl: z.string().nullable(),
   phonicsOutcome: z.string().nullish(),
-  actions: camelActionSchema.nullish(),
+  actions: actionsSchemaCamel.nullish(),
   hasMediaClips: z.boolean(),
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
@@ -305,7 +304,7 @@ export const baseLessonDownloadsSchema = z.object({
   updatedAt: z.string(),
   geoRestricted: z.boolean().nullable(),
   loginRequired: z.boolean().nullable(),
-  actions: camelActionSchema.nullable().optional(),
+  actions: actionsSchemaCamel.nullish(),
   lessonReleaseDate: z.string().nullable(),
 });
 
@@ -322,7 +321,7 @@ export const lessonListItemSchema = z.object({
   hasLegacyCopyrightMaterial: z.boolean().nullish(),
   orderInUnit: z.number().nullish(),
   lessonCohort: z.string().nullish(),
-  actions: camelActionSchema.nullish(),
+  actions: actionsSchemaCamel.nullish(),
   isUnpublished: z.literal(false),
   lessonReleaseDate: z.string().nullable(),
   geoRestricted: z.boolean(),

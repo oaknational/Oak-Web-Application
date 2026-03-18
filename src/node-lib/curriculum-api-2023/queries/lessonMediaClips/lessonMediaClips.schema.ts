@@ -1,12 +1,12 @@
 import { z } from "zod";
 import {
-  actionsSchema,
   syntheticUnitvariantLessonsSchema,
   mediaClipCycleSchema,
   mediaClipsRecordSchema,
+  actionsSchema,
 } from "@oaknational/oak-curriculum-schema";
+import zodToCamelCase from "zod-to-camel-case";
 
-import { zodToCamelCase } from "@/node-lib/curriculum-api-2023/helpers/zodToCamelCase";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
@@ -71,13 +71,16 @@ const lessonPathwaySchema = z.object({
   tierTitle: z.string().nullish(),
 });
 
+const actionsSchemaCamel = zodToCamelCase(actionsSchema, {
+  bidirectional: true,
+});
 const baseLessonMediaClipsPageSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   keyStageTitle: z.string(),
   mediaClips: mediaClipsRecordCamelSchema,
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })),
-  actions: zodToCamelCase(actionsSchema).nullish(),
+  actions: actionsSchemaCamel.nullish(),
   lessonReleaseDate: z.string().nullable(),
   geoRestricted: z.boolean(),
   loginRequired: z.boolean(),

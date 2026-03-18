@@ -14,13 +14,13 @@ import {
   ProgrammeFields,
   tierDescriptions,
   pathways,
-  actionsSchema,
   years,
   pathwaySlugs,
+  actionsSchema,
 } from "@oaknational/oak-curriculum-schema";
+import zodToCamelCase from "zod-to-camel-case";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
-import { zodToCamelCase } from "@/node-lib/curriculum-api-2023/helpers/zodToCamelCase";
 
 export const learningThemesSchema = z.object({
   themeTitle: z.string(),
@@ -41,6 +41,9 @@ const yearGroupsSchema = z.array(
 );
 export type YearGroups = z.infer<typeof yearGroupsSchema>;
 
+const actionsSchemaCamel = zodToCamelCase(actionsSchema, {
+  bidirectional: true,
+});
 const reshapedUnitData = z.object({
   slug: z.string(),
   title: z.string(),
@@ -63,7 +66,7 @@ const reshapedUnitData = z.object({
   learningThemes: z.array(learningThemesSchema).nullable(),
   subjectCategories: z.array(subjectCategorySchema).nullish(),
   groupUnitsAs: z.string().nullish(),
-  actions: zodToCamelCase(actionsSchema).nullish(),
+  actions: actionsSchemaCamel.nullish(),
 });
 
 export type ReshapedUnitData = z.infer<typeof reshapedUnitData>;

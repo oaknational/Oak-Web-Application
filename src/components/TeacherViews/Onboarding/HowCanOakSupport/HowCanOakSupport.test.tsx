@@ -1,9 +1,9 @@
 import { screen, waitFor } from "@testing-library/dom";
+import mockRouter from "next-router-mock";
+import fetchMock from "jest-fetch-mock";
 import userEvent, {
   PointerEventsCheckLevel,
 } from "@testing-library/user-event";
-import mockRouter from "next-router-mock";
-import fetchMock from "jest-fetch-mock";
 
 import HowCanOakSupport, { oakSupportMap } from "./HowCanOakSupport.view";
 
@@ -30,18 +30,20 @@ describe("HowCanOakSupport", () => {
   });
 
   it("renders the onboarding layout with the correct prompt", () => {
-    renderWithProviders()(<HowCanOakSupport />);
+    const { unmount } = renderWithProviders()(<HowCanOakSupport />);
     const promptHeading = screen.getByText(/Last step.../i);
     expect(promptHeading).toBeInTheDocument();
     const promptBody = screen.getByText(
       /Tell us a little bit about you so we can tailor Oak to suit your needs./i,
     );
     expect(promptBody).toBeInTheDocument();
+    unmount();
   });
   it('renders checkboxes for each key in "oakSupportMap"', () => {
-    renderWithProviders()(<HowCanOakSupport />);
+    const { unmount } = renderWithProviders()(<HowCanOakSupport />);
     const checkboxes = screen.getAllByRole("checkbox");
     expect(checkboxes).toHaveLength(Object.keys(oakSupportMap).length);
+    unmount();
   });
   it("renders a continue button that is enabled by default", async () => {
     renderWithProviders({ ...allProviders, router: mockRouter })(

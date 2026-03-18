@@ -27,13 +27,13 @@ const hubspotFormOptionSchema = z.object({
 
 const fieldBase = z.object({
   name: z.string(),
-  label: z.string().nullish().default(null),
-  description: z.string().nullish().default(null),
-  required: z.boolean().nullish().default(null),
-  enabled: z.boolean().nullish().default(null),
-  hidden: z.boolean().nullish().default(false),
-  defaultValue: z.string().nullish().default(null),
-  placeholder: z.string().nullish().default(null),
+  label: z.string().nullish().prefault(null),
+  description: z.string().nullish().prefault(null),
+  required: z.boolean().nullish().prefault(null),
+  enabled: z.boolean().nullish().prefault(null),
+  hidden: z.boolean().nullish().prefault(false),
+  defaultValue: z.string().nullish().prefault(null),
+  placeholder: z.string().nullish().prefault(null),
 });
 
 const stringField = fieldBase.extend({
@@ -101,15 +101,15 @@ const fieldDependencyObject = z.object({
 });
 
 export const hubspotFormFieldSchema = z.discriminatedUnion("type", [
-  stringField.merge(fieldDependencyObject),
-  enumField.merge(fieldDependencyObject),
+  stringField.extend(fieldDependencyObject.shape),
+  enumField.extend(fieldDependencyObject.shape),
 ]);
 
 export type HubspotFormField = z.infer<typeof hubspotFormFieldSchema>;
 
 // The actual form object
 export const hubspotFormDefinitionSchema = z.object({
-  guid: z.string().uuid(),
+  guid: z.uuid(),
   portalId: z.number(),
   submitText: z.string(),
   inlineMessage: z.string(),

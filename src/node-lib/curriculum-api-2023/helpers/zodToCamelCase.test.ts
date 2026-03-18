@@ -29,14 +29,14 @@ describe("zodToCamelCase", () => {
     const nested_schema = z.object({
       test_param: z.string(),
       nested_param: z.object({
-        nested_param_2: z.number(),
+        inner_value: z.number(),
       }),
     });
 
     const nested_data = {
       test_param: "test",
       nested_param: {
-        nested_param_2: 123,
+        inner_value: 123,
       },
     };
 
