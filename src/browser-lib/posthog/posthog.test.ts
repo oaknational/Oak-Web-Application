@@ -18,6 +18,7 @@ const capture = jest.fn();
 const register = jest.fn();
 const optInCapturing = jest.fn();
 const optOutCapturing = jest.fn();
+const clearOptInOutCapturing = jest.fn();
 
 const posthog = posthogToAnalyticsServiceWithoutQueue(posthogJs);
 const textDistinctId = "test-distinct-id";
@@ -30,6 +31,8 @@ jest.mock("posthog-js", () => ({
   capture: (...args: unknown[]) => capture(...args),
   opt_in_capturing: (...args: unknown[]) => optInCapturing(...args),
   opt_out_capturing: (...args: unknown[]) => optOutCapturing(...args),
+  clear_opt_in_out_capturing: (...args: unknown[]) =>
+    clearOptInOutCapturing(...args),
   has_opted_out_capturing: () => true,
   get_distinct_id: () => textDistinctId,
   register: (...args: []) => register(...args),
@@ -126,7 +129,8 @@ describe("posthog.ts", () => {
   });
   test("optOut", () => {
     posthog.optOut();
-    expect(optOutCapturing).toHaveBeenCalled();
+    expect(clearOptInOutCapturing).toHaveBeenCalled();
+    expect(optOutCapturing).not.toHaveBeenCalled();
   });
   test("state", () => {
     expect(posthog.state()).toBe("pending");

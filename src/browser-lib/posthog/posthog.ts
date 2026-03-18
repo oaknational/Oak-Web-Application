@@ -72,7 +72,10 @@ export const posthogToAnalyticsServiceWithoutQueue = (
     }
   },
   optOut: () => {
-    client.opt_out_capturing();
+    // Reset PostHog back to its default "pending" consent state. In
+    // `cookieless_mode: "on_reject"` that prevents capture, while avoiding the
+    // internal `$pageview` emitted by `opt_out_capturing()`.
+    client.clear_opt_in_out_capturing();
   },
   state: () => {
     switch (consentClient.getConsent(ServicePolicyMap.POSTHOG)) {
