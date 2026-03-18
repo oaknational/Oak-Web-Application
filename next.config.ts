@@ -414,7 +414,21 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
       ];
 
-      return [...pupilsRedirects, ...aboutUsRedirects];
+      const eyfsRedirects = [
+        {
+          source: "/teachers/key-stages/early-years-foundation-stage/subjects",
+          destination: "/teachers/eyfs/maths",
+          permanent: true,
+        },
+        {
+          source:
+            "/teachers/programmes/:subjectSlug-foundation-early-years-foundation-stage-l/units",
+          destination: "/teachers/eyfs/:subjectSlug",
+          permanent: true,
+        },
+      ];
+
+      return [...pupilsRedirects, ...aboutUsRedirects, ...eyfsRedirects];
     },
     async rewrites() {
       // Reverse proxy posthog in development to avoid localhost CORS issues in Chrome https://posthog.com/docs/advanced/proxy/nextjs
