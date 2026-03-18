@@ -3,6 +3,7 @@ import posthogJs from "posthog-js";
 import { consentClient } from "../cookie-consent/consentClient";
 
 import { posthogToAnalyticsServiceWithoutQueue } from "./posthog";
+import { POSTHOG_AUTOCAPTURE_URL_ALLOWLIST } from "./getPosthogInitConfig";
 
 const getLegacyAnonymousId = jest.fn();
 jest.mock("../analytics/getLegacyAnonymousId", () => ({
@@ -41,9 +42,23 @@ describe("posthog.ts", () => {
     const config = {
       apiKey: "12",
       apiHost: "https://test.thenational.academy",
+      uiHost: "https://eu.posthog.thenational.academy",
     };
     await posthog.init(config);
-    expect(init).toHaveBeenCalledWith(config.apiKey, expect.any(Object));
+    expect(init).toHaveBeenCalledWith(
+      config.apiKey,
+      expect.objectContaining({
+        api_host: config.apiHost,
+        ui_host: config.uiHost,
+        cookieless_mode: "on_reject",
+        disable_session_recording: true,
+        capture_pageview: false,
+        autocapture: {
+          url_allowlist: POSTHOG_AUTOCAPTURE_URL_ALLOWLIST,
+        },
+        loaded: expect.any(Function),
+      }),
+    );
   });
   test("init return distinct id", async () => {
     const config = {
