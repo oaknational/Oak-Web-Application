@@ -384,6 +384,7 @@ const lessonOverviewQuery =
       restrictedAndHighlyRestrictedWorksList,
       content,
     );
+
     return transformedLessonOverviewData(
       browseData,
       content,

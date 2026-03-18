@@ -1,9 +1,10 @@
 import { z } from "zod";
 import {
-  actionsSchemaCamel,
+  actionsSchema,
   keystageSlugs,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
+import zodToCamelCase from "zod-to-camel-case";
 
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
@@ -179,6 +180,9 @@ export const lessonOverviewQuizData = z
 
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
 
+const actionsSchemaCamel = zodToCamelCase(actionsSchema, {
+  bidirectional: true,
+});
 export const baseLessonOverviewSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),

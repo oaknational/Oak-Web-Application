@@ -1,5 +1,6 @@
+import { actionsSchema } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
-import { actionsSchemaCamel } from "@oaknational/oak-curriculum-schema";
+import zodToCamelCase from "zod-to-camel-case";
 
 const themeSchema = z.object({
   themeSlug: z.string().nullish(),
@@ -103,6 +104,9 @@ export const developmentStageSchema = z.object({
 
 export type DevelopmentStage = z.infer<typeof developmentStageSchema>;
 
+const actionsSchemaCamel = zodToCamelCase(actionsSchema, {
+  bidirectional: true,
+});
 const individualSpecialistUnitSchema = z.object({
   slug: z.string(),
   title: z.string(),

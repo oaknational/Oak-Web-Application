@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { actionsSchemaCamel } from "@oaknational/oak-curriculum-schema";
+import { actionsSchema } from "@oaknational/oak-curriculum-schema";
+import zodToCamelCase from "zod-to-camel-case";
 
 import {
   legacyCopyrightContentSchema,
@@ -43,6 +44,9 @@ export const specialistLessonDownloadQueryResponseSchema = z.array(
   specialistLessonDownloadRawSchema,
 );
 
+const actionsSchemaCamel = zodToCamelCase(actionsSchema, {
+  bidirectional: true,
+});
 export const SpecialistLessonDownloadSchema = z.object({
   lesson: z.object({
     updatedAt: z.string(),

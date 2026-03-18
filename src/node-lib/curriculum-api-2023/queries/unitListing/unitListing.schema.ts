@@ -16,8 +16,9 @@ import {
   pathways,
   years,
   pathwaySlugs,
-  actionsSchemaCamel,
+  actionsSchema,
 } from "@oaknational/oak-curriculum-schema";
+import zodToCamelCase from "zod-to-camel-case";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
@@ -40,6 +41,9 @@ const yearGroupsSchema = z.array(
 );
 export type YearGroups = z.infer<typeof yearGroupsSchema>;
 
+const actionsSchemaCamel = zodToCamelCase(actionsSchema, {
+  bidirectional: true,
+});
 const reshapedUnitData = z.object({
   slug: z.string(),
   title: z.string(),
