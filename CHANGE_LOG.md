@@ -1,3 +1,17 @@
+# [1.1022.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1021.1...v1.1022.0) (2026-03-17)
+
+
+### Features
+
+* retire old standalone video player ([2a2f161](https://github.com/oaknational/Oak-Web-Application/commit/2a2f1614cde4b69a5f3bb6e6106813167c7e200c))
+
+## [1.1021.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1021.0...v1.1021.1) (2026-03-17)
+
+
+### Bug Fixes
+
+* remove top-level await from old-components script as not support by default ([37d6f27](https://github.com/oaknational/Oak-Web-Application/commit/37d6f27faa2c4b2416840bc03853f7d6b7cf8384))
+
 # [1.1021.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1020.2...v1.1021.0) (2026-03-17)
 
 
