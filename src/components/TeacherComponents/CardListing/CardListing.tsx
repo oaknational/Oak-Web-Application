@@ -11,6 +11,12 @@ import styled from "styled-components";
 
 import { SaveUnitButton } from "../SaveUnitButton/SaveUnitButton";
 
+import {
+  getCardListingDefaultTextColour,
+  getCardListingLinkProps,
+  getCardListingBorderColour,
+} from "./helpers";
+
 import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 
 type CardProps = {
@@ -37,63 +43,6 @@ type CardListingProps = CardProps & {
   childCards?: Array<CardProps>;
 };
 
-export const getDefaultTextColour = ({
-  disabled,
-  isHighlighted,
-  hasChildCards,
-}: {
-  disabled?: boolean;
-  isHighlighted?: boolean;
-  hasChildCards: boolean;
-}) => {
-  if (disabled) {
-    return "text-disabled";
-  } else if (isHighlighted && !hasChildCards) {
-    return "text-inverted";
-  }
-
-  // use the default colour value for the component
-  return undefined;
-};
-
-const getBorderColour = ({
-  showBorder,
-  isHighlighted,
-}: {
-  showBorder?: boolean;
-  isHighlighted: boolean;
-}) => {
-  if (showBorder) {
-    if (isHighlighted) {
-      return "border-neutral-stronger";
-    } else {
-      return "border-neutral-lighter";
-    }
-  } else {
-    return undefined;
-  }
-};
-
-const getCardLinkProps = ({
-  disabled,
-  hasChildCards,
-  href,
-  onClickLink,
-}: {
-  disabled?: boolean;
-  hasChildCards: boolean;
-  href: string;
-  onClickLink?: () => void;
-}) => {
-  // If the card is disabled or has child cards use a div for the container,
-  if (disabled || hasChildCards) {
-    return { "data-disabled": true, as: "div" as const };
-  } else {
-    // otherwise use a link element
-    return { href, onClick: onClickLink };
-  }
-};
-
 const CardListing = (props: CardListingProps) => {
   const {
     layoutVariant,
@@ -110,13 +59,13 @@ const CardListing = (props: CardListingProps) => {
   const hasChildCards = (childCards?.length ?? 0) > 0;
   const showSave = saveProps !== undefined;
   const showFooter = (lessonCount !== undefined || showSave) && !hasChildCards;
-  const defaultTextColour = getDefaultTextColour({
+  const defaultTextColour = getCardListingDefaultTextColour({
     disabled,
     isHighlighted,
     hasChildCards,
   });
 
-  const cardLinkProps = getCardLinkProps({
+  const cardLinkProps = getCardListingLinkProps({
     disabled,
     hasChildCards,
     href,
@@ -134,7 +83,7 @@ const CardListing = (props: CardListingProps) => {
       $flexDirection={layoutVariant === "horizontal" ? "row" : "column"}
       $flexGrow={1}
       data-testid="card-listing-container"
-      $borderColor={getBorderColour({ showBorder, isHighlighted })}
+      $borderColor={getCardListingBorderColour({ showBorder, isHighlighted })}
       $ba={showBorder ? "border-solid-s" : undefined}
     >
       {layoutVariant === "horizontal" ? (
