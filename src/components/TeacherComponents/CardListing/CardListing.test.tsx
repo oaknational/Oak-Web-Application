@@ -27,6 +27,14 @@ const saveProps = {
   },
 };
 
+const childCardProps = {
+  title: "Card title",
+  isHighlighted: false,
+  href: "testUrl",
+  lessonCount: 10,
+  saveProps,
+};
+
 describe("CardListing", () => {
   it("renders a title and an index", () => {
     render(<CardListing {...defaultProps} />);
@@ -123,5 +131,16 @@ describe("CardListing", () => {
       name: "Save this unit: Unit title",
     });
     expect(rerenderedSaveButton).toHaveStyle({ background: "none" });
+  });
+  it("should render an options tag when child cards are passed in", () => {
+    render(
+      <CardListing
+        {...defaultProps}
+        childCards={[childCardProps, childCardProps, childCardProps]}
+      />,
+    );
+
+    const optionsTag = screen.getByText("3 options");
+    expect(optionsTag).toBeInTheDocument();
   });
 });
