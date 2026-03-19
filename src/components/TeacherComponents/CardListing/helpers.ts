@@ -17,24 +17,6 @@ export const getCardListingDefaultTextColour = ({
   return undefined;
 };
 
-export const getCardListingBorderColour = ({
-  showBorder,
-  isHighlighted,
-}: {
-  showBorder?: boolean;
-  isHighlighted: boolean;
-}) => {
-  if (showBorder) {
-    if (isHighlighted) {
-      return "border-neutral-stronger";
-    } else {
-      return "border-neutral-lighter";
-    }
-  } else {
-    return undefined;
-  }
-};
-
 export const getCardListingLinkProps = ({
   disabled,
   hasChildCards,

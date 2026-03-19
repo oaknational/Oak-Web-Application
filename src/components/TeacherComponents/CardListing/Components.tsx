@@ -26,6 +26,13 @@ export const CardListingStyledLink = styled(OakSecondaryLink)`
   }
 `;
 
+export const CardListingStyledFlex = styled(OakFlex)`
+  border-color: ${parseColor("border-neutral-lighter")};
+  &:has(${CardListingStyledLink}:hover) {
+    border-color: ${parseColor("border-neutral-stronger")};
+  }
+`;
+
 export const CardListingTitle = ({ title }: CardListingProps) => {
   return (
     <OakTypography $font={"heading-7"} className="card-listing-header">

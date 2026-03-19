@@ -5,7 +5,6 @@ import { SaveUnitButton } from "../SaveUnitButton/SaveUnitButton";
 import {
   getCardListingDefaultTextColour,
   getCardListingLinkProps,
-  getCardListingBorderColour,
 } from "./helpers";
 import {
   CardListingStyledLink,
@@ -15,6 +14,7 @@ import {
   CardListingLessonCount,
   CardListingChildCardList,
   CardListingIndex,
+  CardListingStyledFlex,
 } from "./Components";
 
 import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
@@ -73,7 +73,7 @@ const CardListing = (props: CardListingProps) => {
   });
 
   return (
-    <OakFlex
+    <CardListingStyledFlex
       $borderRadius={"border-radius-m2"}
       $background={
         isHighlighted && !hasChildCards ? "bg-inverted" : "bg-primary"
@@ -83,12 +83,13 @@ const CardListing = (props: CardListingProps) => {
       $flexDirection={layoutVariant === "horizontal" ? "row" : "column"}
       $flexGrow={1}
       data-testid="card-listing-container"
-      $borderColor={getCardListingBorderColour({ showBorder, isHighlighted })}
+      $borderColor={"border-neutral-lighter"}
       $ba={showBorder ? "border-solid-s" : undefined}
+      className="card-listing-container"
     >
       {layoutVariant === "horizontal" ? (
         <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
-          <CardListingStyledLink {...cardLinkProps}>
+          <CardListingStyledLink {...cardLinkProps} className="styled-link">
             <OakFlex
               $flexDirection={"row"}
               $gap={"spacing-20"}
@@ -168,7 +169,7 @@ const CardListing = (props: CardListingProps) => {
           )}
         </OakFlex>
       )}
-    </OakFlex>
+    </CardListingStyledFlex>
   );
 };
 
