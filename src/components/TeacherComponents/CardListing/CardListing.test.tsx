@@ -28,7 +28,6 @@ const saveProps = {
 };
 
 const childCardProps = {
-  title: "Card title",
   isHighlighted: false,
   href: "testUrl",
   lessonCount: 10,
@@ -136,7 +135,11 @@ describe("CardListing", () => {
     render(
       <CardListing
         {...defaultProps}
-        childCards={[childCardProps, childCardProps, childCardProps]}
+        childCards={[
+          { ...childCardProps, title: "Optionality 1" },
+          { ...childCardProps, title: "Optionality 2" },
+          { ...childCardProps, title: "Optionality 3" },
+        ]}
       />,
     );
 
@@ -148,7 +151,11 @@ describe("CardListing", () => {
       <CardListing
         {...defaultProps}
         lessonCount={22}
-        childCards={[childCardProps, childCardProps, childCardProps]}
+        childCards={[
+          { ...childCardProps, title: "Optionality 1" },
+          { ...childCardProps, title: "Optionality 2" },
+          { ...childCardProps, title: "Optionality 3" },
+        ]}
       />,
     );
 
@@ -159,10 +166,14 @@ describe("CardListing", () => {
     render(
       <CardListing
         {...defaultProps}
-        childCards={[childCardProps, childCardProps, childCardProps]}
+        childCards={[
+          { ...childCardProps, title: "Optionality 1" },
+          { ...childCardProps, title: "Optionality 2" },
+          { ...childCardProps, title: "Optionality 3" },
+        ]}
       />,
     );
-    const link = screen.queryByRole("link");
-    expect(link).not.toBeInTheDocument();
+    const links = screen.getAllByRole("link");
+    links.forEach((link) => expect(link).not.toHaveTextContent("Card title"));
   });
 });
