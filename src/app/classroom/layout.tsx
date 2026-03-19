@@ -34,22 +34,21 @@ export default function Layout({
   const { track } = useAnalytics();
   const pathname = usePathname();
   const clientEnvironment = getClientEnvironment();
+  const isPupilRoute = pathname?.includes("/classroom/pupil/") ?? false;
 
   useEffect(() => {
-    const analyticsUseCase = pathname?.includes("/pupil/")
-      ? "Pupil"
-      : "Teacher";
+    if (isPupilRoute) return;
+
     track.classroomAddOnOpened({
       platform: "google-classroom",
       product: "google classroom addon",
       engagementIntent: "use",
       componentType: "page view",
       eventVersion: "2.0.0",
-      analyticsUseCase,
+      analyticsUseCase: "Teacher",
       clientEnvironment,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [clientEnvironment, isPupilRoute, track]);
 
   return (
     <Suspense fallback={null}>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   AuthCookieKeys,
@@ -10,6 +10,11 @@ import {
 import { googleClassroomApi } from "@/browser-lib/google-classroom";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
+import {
+  clearClassroomAddOnOpened,
+  markClassroomAddOnNavigation,
+  trackClassroomAddOnOpenedOnce,
+} from "@/browser-lib/google-classroom/classroomAddonTracking";
 
 function SignInContent() {
   const router = useRouter();
@@ -18,6 +23,27 @@ function SignInContent() {
 
   const clientEnvironment = getClientEnvironment();
   const loginHint = searchParams?.get("login_hint") ?? null;
+
+  // We only want to fire the event once either from sign up page or from pupil experience
+  useEffect(() => {
+    window.addEventListener("pagehide", clearClassroomAddOnOpened);
+    return () =>
+      window.removeEventListener("pagehide", clearClassroomAddOnOpened);
+  }, []);
+
+  useEffect(() => {
+    trackClassroomAddOnOpenedOnce(() => {
+      track.classroomAddOnOpened({
+        platform: "google-classroom",
+        product: "google classroom addon",
+        engagementIntent: "use",
+        componentType: "page view",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Pupil",
+        clientEnvironment,
+      });
+    });
+  }, [clientEnvironment, track]);
 
   const getGoogleSignInLink = () => {
     track.classroomSignInStarted({
@@ -50,9 +76,12 @@ function SignInContent() {
     });
 
     if (programmeSlug && unitSlug && lessonSlug) {
-      router.push(
-        `/pupils/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}?${currentParams}`,
-      );
+      setTimeout(() => {
+        markClassroomAddOnNavigation();
+        router.push(
+          `/pupils/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}?${currentParams}`,
+        );
+      }, 300);
     }
     // when we have classroom 404/500 pages, we should redirect to those
   };
