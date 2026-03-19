@@ -52,6 +52,26 @@ export const getDefaultTextColour = ({
   return undefined;
 };
 
+const getCardLinkProps = ({
+  disabled,
+  hasChildCards,
+  href,
+  onClickLink,
+}: {
+  disabled?: boolean;
+  hasChildCards: boolean;
+  href: string;
+  onClickLink?: () => void;
+}) => {
+  // If the card is disabled or has child cards use a div for the container,
+  if (disabled || hasChildCards) {
+    return { "data-disabled": true, as: "div" as const };
+  } else {
+    // otherwise use a link element
+    return { href, onClick: onClickLink };
+  }
+};
+
 const CardListing = (props: CardListingProps) => {
   const {
     layoutVariant,
@@ -64,15 +84,17 @@ const CardListing = (props: CardListingProps) => {
     childCards,
   } = props;
 
-  const hasChildCards = childCards?.length;
+  const hasChildCards = (childCards?.length ?? 0) > 0;
   const showSave = saveProps !== undefined;
   const showFooter = (lessonCount !== undefined || showSave) && !hasChildCards;
   const defaultTextColour = getDefaultTextColour({ disabled, isHighlighted });
 
-  // If the card is disabled use a div for the container, otherwise use a link element
-  const cardLinkProps = disabled
-    ? { "data-disabled": true, as: "div" as const }
-    : { href, onClick: onClickLink };
+  const cardLinkProps = getCardLinkProps({
+    disabled,
+    hasChildCards,
+    href,
+    onClickLink,
+  });
 
   return (
     <OakFlex
