@@ -87,46 +87,44 @@ const CardListing = (props: CardListingProps) => {
       $ba={showBorder ? "border-solid-s" : undefined}
     >
       {layoutVariant === "horizontal" ? (
-        <OakFlex $flexDirection={"column"} $gap={"spacing-20"}>
-          <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
-            <CardListingStyledLink {...cardLinkProps}>
+        <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
+          <CardListingStyledLink {...cardLinkProps}>
+            <OakFlex
+              $flexDirection={"row"}
+              $gap={"spacing-20"}
+              $width={"100%"}
+              $color={defaultTextColour}
+            >
+              <CardListingIndex {...props} />
               <OakFlex
-                $flexDirection={"row"}
+                $flexDirection={"column"}
                 $gap={"spacing-20"}
                 $width={"100%"}
-                $color={defaultTextColour}
               >
-                <CardListingIndex {...props} />
-                <OakFlex
-                  $flexDirection={"column"}
-                  $gap={"spacing-20"}
-                  $width={"100%"}
-                >
-                  <CardListingTitle {...props} />
-                  <CardListingSubCopy {...props} />
-                  <CardListingCardTags {...props} />
-                </OakFlex>
+                <CardListingTitle {...props} />
+                <CardListingSubCopy {...props} />
+                <CardListingCardTags {...props} />
+                <CardListingChildCardList {...props} />
               </OakFlex>
-            </CardListingStyledLink>
-            {showFooter && (
-              <OakFlex
-                $alignItems={"center"}
-                $alignSelf={"flex-end"}
-                $font={"heading-light-7"}
-                $gap={"spacing-20"}
-              >
-                <CardListingLessonCount {...props} />
-                {showSave && (
-                  <SaveUnitButton
-                    buttonVariant={isHighlighted ? "inverted" : "default"}
-                    disabled={disabled}
-                    {...saveProps}
-                  />
-                )}
-              </OakFlex>
-            )}
-          </OakFlex>
-          <CardListingChildCardList {...props} />
+            </OakFlex>
+          </CardListingStyledLink>
+          {showFooter && (
+            <OakFlex
+              $alignItems={"center"}
+              $alignSelf={"flex-end"}
+              $font={"heading-light-7"}
+              $gap={"spacing-20"}
+            >
+              <CardListingLessonCount {...props} />
+              {showSave && (
+                <SaveUnitButton
+                  buttonVariant={isHighlighted ? "inverted" : "default"}
+                  disabled={disabled}
+                  {...saveProps}
+                />
+              )}
+            </OakFlex>
+          )}
         </OakFlex>
       ) : (
         // Vertical Layout

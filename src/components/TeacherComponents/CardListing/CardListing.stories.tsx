@@ -346,15 +346,14 @@ export const Optionality: Story = {
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <OakTypography $font={"heading-5"}>With no subcopy</OakTypography>
-        <CardListing {...args} layoutVariant="horizontal" subcopy={undefined} />
+        <CardListing {...args} subcopy={undefined} />
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <OakTypography $font={"heading-5"}>Highlighted</OakTypography>
         <CardListing
           {...args}
-          isHighlighted={true}
           childCards={[
-            { ...cardProps, title: "Optionality 2" },
+            { ...cardProps, title: "Optionality 1" },
             { ...cardProps, title: "Optionality 2", isHighlighted: true },
             { ...cardProps, title: "Optionality 3" },
           ]}
@@ -362,11 +361,19 @@ export const Optionality: Story = {
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <OakTypography $font={"heading-5"}>Without save button</OakTypography>
-        <CardListing {...args} saveProps={undefined} />
+        <CardListing
+          {...args}
+          saveProps={undefined}
+          childCards={[
+            { ...cardProps, title: "Optionality 1", saveProps: undefined },
+            { ...cardProps, title: "Optionality 2", saveProps: undefined },
+            { ...cardProps, title: "Optionality 3", saveProps: undefined },
+          ]}
+        />
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <OakTypography $font={"heading-5"}>Disabled</OakTypography>
-        <CardListing {...args} layoutVariant="horizontal" disabled />
+        <CardListing {...args} disabled />
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <OakTypography $font={"heading-5"}>
