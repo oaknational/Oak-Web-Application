@@ -143,4 +143,16 @@ describe("CardListing", () => {
     const optionsTag = screen.getByText("3 options");
     expect(optionsTag).toBeInTheDocument();
   });
+  it("does not show the footer when child cards are passed in", () => {
+    render(
+      <CardListing
+        {...defaultProps}
+        lessonCount={22}
+        childCards={[childCardProps, childCardProps, childCardProps]}
+      />,
+    );
+
+    const lessonCount = screen.queryByText("22 lessons");
+    expect(lessonCount).not.toBeInTheDocument();
+  });
 });
