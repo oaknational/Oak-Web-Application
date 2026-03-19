@@ -204,6 +204,7 @@ const CardListing = (props: CardListingProps) => {
                 <SubCopy {...props} />
               </OakFlex>
               <CardTags {...props} />
+              <ChildCardList {...props} />
             </OakFlex>
           </StyledLink>
           {showFooter && (
@@ -317,14 +318,20 @@ const LessonCount = ({ lessonCount, isHighlighted }: CardListingProps) => {
   );
 };
 
-const ChildCardList = ({ childCards, disabled }: CardListingProps) => {
+const ChildCardList = ({
+  childCards,
+  disabled,
+  layoutVariant,
+}: CardListingProps) => {
   const hasChildCards = (childCards?.length ?? 0) > 0;
   if (hasChildCards) {
     return (
       <OakGrid
         $cg={"spacing-20"}
         $rg={"spacing-20"}
-        $gridTemplateColumns={"repeat(3, 1fr)"}
+        $gridTemplateColumns={
+          layoutVariant === "horizontal" ? "repeat(3, 1fr)" : "1fr"
+        }
       >
         {childCards?.map((child) => (
           <CardListing

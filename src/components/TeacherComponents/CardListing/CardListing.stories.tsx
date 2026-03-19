@@ -323,10 +323,14 @@ const cardProps = {
 };
 export const Optionality: Story = {
   render: (args) => (
-    <OakFlex $flexDirection={"column"} $gap={"spacing-20"}>
+    <OakFlex
+      $flexDirection={"column"}
+      $gap={"spacing-20"}
+      $width={args.layoutVariant === "vertical" ? "spacing-360" : "100%"}
+    >
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
-        <OakTypography $font={"heading-5"}>Horizontal layout</OakTypography>
-        <CardListing {...args} layoutVariant="horizontal" />
+        <OakTypography $font={"heading-5"}>With all props</OakTypography>
+        <CardListing {...args} />
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <OakTypography $font={"heading-5"}>
@@ -334,7 +338,6 @@ export const Optionality: Story = {
         </OakTypography>
         <CardListing
           {...args}
-          layoutVariant="horizontal"
           subcopy={undefined}
           saveProps={undefined}
           lessonCount={undefined}
@@ -349,7 +352,6 @@ export const Optionality: Story = {
         <OakTypography $font={"heading-5"}>Highlighted</OakTypography>
         <CardListing
           {...args}
-          layoutVariant="horizontal"
           isHighlighted={true}
           childCards={[
             { ...cardProps, title: "Optionality 2" },
@@ -360,11 +362,7 @@ export const Optionality: Story = {
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <OakTypography $font={"heading-5"}>Without save button</OakTypography>
-        <CardListing
-          {...args}
-          layoutVariant="horizontal"
-          saveProps={undefined}
-        />
+        <CardListing {...args} saveProps={undefined} />
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         <OakTypography $font={"heading-5"}>Disabled</OakTypography>
@@ -374,11 +372,7 @@ export const Optionality: Story = {
         <OakTypography $font={"heading-5"}>
           Visited link (google.com)
         </OakTypography>
-        <CardListing
-          {...args}
-          layoutVariant="horizontal"
-          href="https://google.com"
-        />
+        <CardListing {...args} href="https://google.com" />
       </OakFlex>
     </OakFlex>
   ),
