@@ -322,9 +322,112 @@ const cardProps = {
   href: "fakeurl.com",
 };
 export const Optionality: Story = {
-  render: (args) => <CardListing {...args} />,
+  render: (args) => (
+    <OakFlex $flexDirection={"column"} $gap={"spacing-20"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Horizontal layout</OakTypography>
+        <CardListing {...args} layoutVariant="horizontal" />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>
+          With no optional props
+        </OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          subcopy={undefined}
+          saveProps={undefined}
+          lessonCount={undefined}
+          tags={undefined}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>With no subcopy</OakTypography>
+        <CardListing {...args} layoutVariant="horizontal" subcopy={undefined} />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Highlighted</OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          isHighlighted={true}
+          childCards={[
+            { ...cardProps, title: "Optionality 2" },
+            { ...cardProps, title: "Optionality 2", isHighlighted: true },
+            { ...cardProps, title: "Optionality 3" },
+          ]}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Without save button</OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          saveProps={undefined}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Disabled</OakTypography>
+        <CardListing {...args} layoutVariant="horizontal" disabled />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>
+          Visited link (google.com)
+        </OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          href="https://google.com"
+        />
+      </OakFlex>
+    </OakFlex>
+  ),
   args: {
     ...defaultArgs,
-    childCards: [cardProps, cardProps, cardProps],
+    childCards: [
+      {
+        ...cardProps,
+        title:
+          "Optionality 1 really long title with lots of words in it to fill out the space on the page",
+      },
+      { ...cardProps, title: "Optionality 2" },
+      { ...cardProps, title: "Optionality 3" },
+    ],
+  },
+  argTypes: {
+    childCards: {
+      control: {
+        type: "select",
+      },
+      options: ["1", "3", "5"],
+      mapping: {
+        1: [{ ...cardProps, title: "Optionality 1" }],
+        3: [
+          {
+            ...cardProps,
+            title:
+              "Optionality 1 really long title with lots of words in it to fill out the space on the page",
+          },
+          { ...cardProps, title: "Optionality 2" },
+          { ...cardProps, title: "Optionality 3" },
+        ],
+        5: [
+          {
+            ...cardProps,
+            title:
+              "Optionality 1 really long title with lots of words in it to fill out the space on the page",
+          },
+          { ...cardProps, title: "Optionality 2" },
+          { ...cardProps, title: "Optionality 3" },
+          { ...cardProps, title: "Optionality 4" },
+          { ...cardProps, title: "Optionality 5" },
+        ],
+      },
+    },
+  },
+  parameters: {
+    controls: {
+      include: ["layoutVariant", "childCards"],
+    },
   },
 };
