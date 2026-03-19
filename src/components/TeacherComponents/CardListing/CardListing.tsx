@@ -64,8 +64,9 @@ const CardListing = (props: CardListingProps) => {
     childCards,
   } = props;
 
+  const hasChildCards = childCards?.length;
   const showSave = saveProps !== undefined;
-  const showFooter = lessonCount !== undefined || showSave;
+  const showFooter = (lessonCount !== undefined || showSave) && !hasChildCards;
   const defaultTextColour = getDefaultTextColour({ disabled, isHighlighted });
 
   // If the card is disabled use a div for the container, otherwise use a link element
