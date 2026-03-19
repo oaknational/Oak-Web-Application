@@ -77,7 +77,6 @@ const defaultArgs = {
     { label: "Tag 5" },
     { label: "Tag 6" },
   ],
-  showSave: true,
   lessonCount: 10,
   title:
     "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
@@ -302,4 +301,30 @@ export const Horizontal: Story = {
     </OakFlex>
   ),
   args: defaultArgs,
+};
+const cardProps = {
+  isHighlighted: false,
+  lessonCount: 10,
+  title:
+    "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
+  saveProps: {
+    unitSlug: "unit-slug",
+    unitTitle: "Unit title",
+    programmeSlug: "programme-slug",
+    trackingProps: {
+      savedFrom: "unit_listing_save_button" as const,
+      keyStageSlug: "ks1" as const,
+      keyStageTitle: "Key stage 1" as const,
+      subjectSlug: "maths",
+      subjectTitle: "Maths",
+    },
+  },
+  href: "fakeurl.com",
+};
+export const Optionality: Story = {
+  render: (args) => <CardListing {...args} />,
+  args: {
+    ...defaultArgs,
+    childCards: [cardProps, cardProps, cardProps],
+  },
 };

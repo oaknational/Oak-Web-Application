@@ -12,13 +12,9 @@ import { SaveUnitButton } from "../SaveUnitButton/SaveUnitButton";
 
 import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 
-type CardListingProps = {
-  layoutVariant: "horizontal" | "vertical";
+type CardProps = {
   isHighlighted: boolean;
-  index: number;
   title: string;
-  subcopy?: string;
-  tags?: Array<{ label: string; icon?: OakIconName }>;
   lessonCount?: number;
   href: string;
   saveProps?: {
@@ -29,6 +25,14 @@ type CardListingProps = {
   };
   disabled?: boolean;
   onClickLink?: () => void;
+};
+
+type CardListingProps = CardProps & {
+  layoutVariant: "horizontal" | "vertical";
+  index: number;
+  subcopy?: string;
+  tags?: Array<{ label: string; icon?: OakIconName }>;
+  childCards?: Array<CardProps>;
 };
 
 export const getDefaultTextColour = ({
@@ -57,6 +61,7 @@ const CardListing = (props: CardListingProps) => {
     href,
     disabled,
     onClickLink,
+    childCards,
   } = props;
 
   const showSave = saveProps !== undefined;
@@ -193,7 +198,17 @@ const Index = ({ index }: CardListingProps) => {
   return <OakTypography $font={"heading-7"}>{index}</OakTypography>;
 };
 
-const CardTags = ({ tags, disabled }: CardListingProps) => {
+const CardTags = ({ tags, disabled, childCards }: CardListingProps) => {
+  const ChildCardTag = childCards?.length ? (
+    <OakTagFunctional
+      key="options"
+      label={`${childCards?.length} options`}
+      $background={"bg-primary"}
+      $ba={"border-solid-s"}
+      $borderRadius={"border-radius-s"}
+      $borderColor={"border-neutral"}
+    />
+  ) : null;
   return tags ? (
     <OakFlex
       $flexWrap={"wrap"}
@@ -201,6 +216,7 @@ const CardTags = ({ tags, disabled }: CardListingProps) => {
       $gap={"spacing-8"}
       $pb={"spacing-8"}
     >
+      {ChildCardTag}
       {tags.map((tag) => (
         <OakTagFunctional
           key={tag.label}
@@ -213,7 +229,9 @@ const CardTags = ({ tags, disabled }: CardListingProps) => {
         />
       ))}
     </OakFlex>
-  ) : null;
+  ) : (
+    ChildCardTag
+  );
 };
 
 const SubCopy = ({ subcopy, isHighlighted }: CardListingProps) => {
