@@ -155,4 +155,14 @@ describe("CardListing", () => {
     const lessonCount = screen.queryByText("22 lessons");
     expect(lessonCount).not.toBeInTheDocument();
   });
+  it("does not render the card as a link when child cards are passed in", () => {
+    render(
+      <CardListing
+        {...defaultProps}
+        childCards={[childCardProps, childCardProps, childCardProps]}
+      />,
+    );
+    const link = screen.queryByRole("link");
+    expect(link).not.toBeInTheDocument();
+  });
 });
