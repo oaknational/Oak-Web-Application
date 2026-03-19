@@ -1,5 +1,6 @@
 import {
   OakFlex,
+  OakGrid,
   OakIconName,
   OakSecondaryLink,
   OakTagFunctional,
@@ -25,11 +26,12 @@ type CardProps = {
   };
   disabled?: boolean;
   onClickLink?: () => void;
+  showBorder?: boolean;
 };
 
 type CardListingProps = CardProps & {
   layoutVariant: "horizontal" | "vertical";
-  index: number;
+  index?: number;
   subcopy?: string;
   tags?: Array<{ label: string; icon?: OakIconName }>;
   childCards?: Array<CardProps>;
@@ -38,18 +40,38 @@ type CardListingProps = CardProps & {
 export const getDefaultTextColour = ({
   disabled,
   isHighlighted,
+  hasChildCards,
 }: {
   disabled?: boolean;
   isHighlighted?: boolean;
+  hasChildCards: boolean;
 }) => {
   if (disabled) {
     return "text-disabled";
-  } else if (isHighlighted) {
+  } else if (isHighlighted && !hasChildCards) {
     return "text-inverted";
   }
 
   // use the default colour value for the component
   return undefined;
+};
+
+const getBorderColour = ({
+  showBorder,
+  isHighlighted,
+}: {
+  showBorder?: boolean;
+  isHighlighted: boolean;
+}) => {
+  if (showBorder) {
+    if (isHighlighted) {
+      return "border-neutral-stronger";
+    } else {
+      return "border-neutral-lighter";
+    }
+  } else {
+    return undefined;
+  }
 };
 
 const getCardLinkProps = ({
@@ -82,12 +104,17 @@ const CardListing = (props: CardListingProps) => {
     disabled,
     onClickLink,
     childCards,
+    showBorder,
   } = props;
 
   const hasChildCards = (childCards?.length ?? 0) > 0;
   const showSave = saveProps !== undefined;
   const showFooter = (lessonCount !== undefined || showSave) && !hasChildCards;
-  const defaultTextColour = getDefaultTextColour({ disabled, isHighlighted });
+  const defaultTextColour = getDefaultTextColour({
+    disabled,
+    isHighlighted,
+    hasChildCards,
+  });
 
   const cardLinkProps = getCardLinkProps({
     disabled,
@@ -99,52 +126,58 @@ const CardListing = (props: CardListingProps) => {
   return (
     <OakFlex
       $borderRadius={"border-radius-m2"}
-      $background={isHighlighted ? "bg-inverted" : "bg-primary"}
+      $background={
+        isHighlighted && !hasChildCards ? "bg-inverted" : "bg-primary"
+      }
       $pa={"spacing-20"}
       $gap={"spacing-20"}
       $flexDirection={layoutVariant === "horizontal" ? "row" : "column"}
-      $width={"100%"}
       $flexGrow={1}
       data-testid="card-listing-container"
+      $borderColor={getBorderColour({ showBorder, isHighlighted })}
+      $ba={showBorder ? "border-solid-s" : undefined}
     >
       {layoutVariant === "horizontal" ? (
-        <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
-          <StyledLink {...cardLinkProps}>
-            <OakFlex
-              $flexDirection={"row"}
-              $gap={"spacing-20"}
-              $width={"100%"}
-              $color={defaultTextColour}
-            >
-              <Index {...props} />
+        <OakFlex $flexDirection={"column"} $gap={"spacing-20"}>
+          <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
+            <StyledLink {...cardLinkProps}>
               <OakFlex
-                $flexDirection={"column"}
+                $flexDirection={"row"}
                 $gap={"spacing-20"}
                 $width={"100%"}
+                $color={defaultTextColour}
               >
-                <Title {...props} />
-                <SubCopy {...props} />
-                <CardTags {...props} />
+                <Index {...props} />
+                <OakFlex
+                  $flexDirection={"column"}
+                  $gap={"spacing-20"}
+                  $width={"100%"}
+                >
+                  <Title {...props} />
+                  <SubCopy {...props} />
+                  <CardTags {...props} />
+                </OakFlex>
               </OakFlex>
-            </OakFlex>
-          </StyledLink>
-          {showFooter && (
-            <OakFlex
-              $alignItems={"center"}
-              $alignSelf={"flex-end"}
-              $font={"heading-light-7"}
-              $gap={"spacing-20"}
-            >
-              <LessonCount {...props} />
-              {showSave && (
-                <SaveUnitButton
-                  buttonVariant={isHighlighted ? "inverted" : "default"}
-                  disabled={disabled}
-                  {...saveProps}
-                />
-              )}
-            </OakFlex>
-          )}
+            </StyledLink>
+            {showFooter && (
+              <OakFlex
+                $alignItems={"center"}
+                $alignSelf={"flex-end"}
+                $font={"heading-light-7"}
+                $gap={"spacing-20"}
+              >
+                <LessonCount {...props} />
+                {showSave && (
+                  <SaveUnitButton
+                    buttonVariant={isHighlighted ? "inverted" : "default"}
+                    disabled={disabled}
+                    {...saveProps}
+                  />
+                )}
+              </OakFlex>
+            )}
+          </OakFlex>
+          <ChildCardList {...props} />
         </OakFlex>
       ) : (
         // Vertical Layout
@@ -218,7 +251,9 @@ const Title = ({ title }: CardListingProps) => {
 };
 
 const Index = ({ index }: CardListingProps) => {
-  return <OakTypography $font={"heading-7"}>{index}</OakTypography>;
+  return index ? (
+    <OakTypography $font={"heading-7"}>{index}</OakTypography>
+  ) : null;
 };
 
 const CardTags = ({ tags, disabled, childCards }: CardListingProps) => {
@@ -230,6 +265,7 @@ const CardTags = ({ tags, disabled, childCards }: CardListingProps) => {
       $ba={"border-solid-s"}
       $borderRadius={"border-radius-s"}
       $borderColor={"border-neutral"}
+      $width={"max-content"}
     />
   ) : null;
   return tags ? (
@@ -279,4 +315,29 @@ const LessonCount = ({ lessonCount, isHighlighted }: CardListingProps) => {
       {lessonCount + " lesson" + (lessonCount === 1 ? "" : "s")}
     </OakTypography>
   );
+};
+
+const ChildCardList = ({ childCards, disabled }: CardListingProps) => {
+  const hasChildCards = (childCards?.length ?? 0) > 0;
+  if (hasChildCards) {
+    return (
+      <OakGrid
+        $cg={"spacing-20"}
+        $rg={"spacing-20"}
+        $gridTemplateColumns={"repeat(3, 1fr)"}
+      >
+        {childCards?.map((child) => (
+          <CardListing
+            {...child}
+            layoutVariant="vertical"
+            key={child.title}
+            showBorder
+            disabled={disabled}
+          />
+        ))}
+      </OakGrid>
+    );
+  } else {
+    return null;
+  }
 };
