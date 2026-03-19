@@ -9,37 +9,33 @@ import {
   lessonContentSchema as lessonContentSchemaFull,
   syntheticUnitvariantLessonsSchema,
   quizQuestionSchema,
-  multipleChoiceSchema,
-  shortAnswerSchema,
-  orderSchema,
-  matchSchema,
-  imageItemSchema,
-  textItemSchema,
-  additionalFileObjectSchema,
-  additionalFilesSchema,
+  multipleChoiceSchemaCamel,
+  shortAnswerSchemaCamel,
+  orderSchemaCamel,
+  matchSchemaCamel,
+  imageItemSchemaCamel,
+  textItemSchemaCamel,
+  additionalFileObjectSchemaCamel,
+  additionalFilesSchemaCamel,
 } from "@oaknational/oak-curriculum-schema";
+import zodToCamelCase from "zod-to-camel-case";
 
-import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
-
-export type QuizQuestion = ConvertKeysToCamelCase<
-  z.infer<typeof quizQuestionSchema>
->;
+const quizQuestionCamel = zodToCamelCase(quizQuestionSchema);
+export type QuizQuestion = z.infer<typeof quizQuestionCamel>;
 
 export type QuizQuestionAnswers = NonNullable<
-  ConvertKeysToCamelCase<z.infer<typeof quizQuestionSchema>["answers"]>
+  z.infer<typeof quizQuestionCamel>["answers"]
 >;
 
-export type MCAnswer = ConvertKeysToCamelCase<
-  z.infer<typeof multipleChoiceSchema>
->;
-export type ShortAnswer = ConvertKeysToCamelCase<
-  z.infer<typeof shortAnswerSchema>
->;
-export type OrderAnswer = ConvertKeysToCamelCase<z.infer<typeof orderSchema>>;
-export type MatchAnswer = ConvertKeysToCamelCase<z.infer<typeof matchSchema>>;
+export type MCAnswer = z.infer<typeof multipleChoiceSchemaCamel>;
 
-export type ImageItem = ConvertKeysToCamelCase<z.infer<typeof imageItemSchema>>;
-export type TextItem = ConvertKeysToCamelCase<z.infer<typeof textItemSchema>>;
+export type ShortAnswer = z.infer<typeof shortAnswerSchemaCamel>;
+
+export type OrderAnswer = z.infer<typeof orderSchemaCamel>;
+export type MatchAnswer = z.infer<typeof matchSchemaCamel>;
+
+export type ImageItem = z.infer<typeof imageItemSchemaCamel>;
+export type TextItem = z.infer<typeof textItemSchemaCamel>;
 export type ImageOrTextItem = ImageItem | TextItem;
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
@@ -60,8 +56,9 @@ export const lessonContentSchema = lessonContentSchemaFull.omit({
   login_required: true,
 });
 
+const lessonContentCamel = zodToCamelCase(lessonContentSchema);
 export type LessonContent = Omit<
-  ConvertKeysToCamelCase<z.infer<typeof lessonContentSchema>>,
+  z.infer<typeof lessonContentCamel>,
   "starterQuiz" | "exitQuiz" | "transcriptSentences"
 > & {
   starterQuiz: QuizQuestion[];
@@ -69,18 +66,13 @@ export type LessonContent = Omit<
   transcriptSentences: string | string[];
 };
 
-export type AdditionalFile = ConvertKeysToCamelCase<
-  z.infer<typeof additionalFileObjectSchema>
->;
+export type AdditionalFile = z.infer<typeof additionalFileObjectSchemaCamel>;
 
-export type AdditionalFiles = ConvertKeysToCamelCase<
-  z.infer<typeof additionalFilesSchema>
->;
+export type AdditionalFiles = z.infer<typeof additionalFilesSchemaCamel>;
 
 export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
   null_unitvariant_id: true,
 });
 
-export type LessonBrowseData = ConvertKeysToCamelCase<
-  z.infer<typeof lessonBrowseDataSchema>
->;
+const lessonBrowseDataCamel = zodToCamelCase(lessonBrowseDataSchema);
+export type LessonBrowseData = z.infer<typeof lessonBrowseDataCamel>;

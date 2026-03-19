@@ -8,8 +8,6 @@ import zodToCamelCase from "zod-to-camel-case";
 
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
-import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
-
 export const contentGuidanceSchemaCamelCase = z.object({
   contentGuidanceLabel: z.string(),
   contentGuidanceDescription: z.string(),
@@ -244,9 +242,8 @@ export const lessonUnitDataByKsSchema =
     supplementary_data: true,
   });
 
-export type LessonUnitDataByKs = ConvertKeysToCamelCase<
-  z.infer<typeof lessonUnitDataByKsSchema>
->;
+const lessonUnitDataByKsCamel = zodToCamelCase(lessonUnitDataByKsSchema);
+export type LessonUnitDataByKs = z.infer<typeof lessonUnitDataByKsCamel>;
 
 export const lessonDownloadsListSchema = z.array(
   z.object({

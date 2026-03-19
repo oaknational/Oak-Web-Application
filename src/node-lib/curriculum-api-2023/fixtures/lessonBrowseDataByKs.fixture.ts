@@ -2,7 +2,7 @@
 import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
 
 import { LessonBrowseDataByKs } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 export const lessonBrowseDataByKsFixture = (
   overrides: Partial<LessonBrowseDataByKs>,

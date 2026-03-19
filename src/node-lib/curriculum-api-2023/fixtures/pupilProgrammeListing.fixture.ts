@@ -1,11 +1,9 @@
+import { ProgrammeFieldsCamel } from "@oaknational/oak-curriculum-schema";
 import { programmeFieldsFixture } from "./programmeFields.fixture";
 
-import {
-  ProgrammeFields,
-  PupilProgrammeListingData,
-} from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
+import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 
-const examboardOverrides: Partial<ProgrammeFields>[] = [
+const examboardOverrides: Partial<ProgrammeFieldsCamel>[] = [
   {
     examboard: "AQA",
     examboardSlug: "aqa",
@@ -18,7 +16,7 @@ const examboardOverrides: Partial<ProgrammeFields>[] = [
   },
 ];
 
-const pathwayOverrides: Partial<ProgrammeFields>[] = [
+const pathwayOverrides: Partial<ProgrammeFieldsCamel>[] = [
   {
     pathway: "Core",
     pathwaySlug: "core",
@@ -31,7 +29,7 @@ const pathwayOverrides: Partial<ProgrammeFields>[] = [
   },
 ];
 
-const tierOverrides: Partial<ProgrammeFields>[] = [
+const tierOverrides: Partial<ProgrammeFieldsCamel>[] = [
   {
     tier: "foundation",
     tierSlug: "foundation",

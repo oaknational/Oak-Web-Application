@@ -33,8 +33,10 @@ import { useOakPupil } from "@/hooks/useOakPupil";
 import {
   attemptDataCamelCaseSchema,
   AttemptDataCamelCase,
+  attemptDataSchema,
 } from "@/node-lib/pupil-api/types";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import zodToCamelCase from "zod-to-camel-case";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -95,6 +97,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       },
       sectionResults: sectionResults,
     };
+
     const parsedAttemptData: AttemptDataCamelCase =
       attemptDataCamelCaseSchema.parse(attemptData);
     const attemptId = logAttempt(parsedAttemptData, true);

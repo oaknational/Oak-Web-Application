@@ -1,6 +1,6 @@
 import { syntheticUnitvariantsWithLessonIdsFixture } from "@oaknational/oak-curriculum-schema";
 
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 
 export const unitBrowseDataFixture = (

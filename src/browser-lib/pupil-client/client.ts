@@ -13,7 +13,7 @@ import {
 } from "@/node-lib/pupil-api/types";
 import { createHash } from "@/utils/createHash";
 import convertKeysToSnakeCase from "@/utils/camelCaseConverter";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 const logger = console;
 

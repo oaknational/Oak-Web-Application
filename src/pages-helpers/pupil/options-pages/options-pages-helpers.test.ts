@@ -12,7 +12,7 @@ import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/querie
 import OakError from "@/errors/OakError";
 import { subjectBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/subjectBrowseData.fixture";
 import { PupilViewsProgrammeListingProps } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 describe("options-pages-helpers", () => {
   describe("getYearSlug", () => {

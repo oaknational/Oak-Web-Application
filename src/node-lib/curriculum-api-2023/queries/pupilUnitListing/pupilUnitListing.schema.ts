@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { syntheticUnitvariantsWithLessonIdsByYearsSchema } from "@oaknational/oak-curriculum-schema";
-
-import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+import zodToCamelCase from "zod-to-camel-case";
 
 export const unitBrowseDataSchema = z.array(
   syntheticUnitvariantsWithLessonIdsByYearsSchema.omit({
@@ -10,6 +9,5 @@ export const unitBrowseDataSchema = z.array(
   }),
 );
 
-export type UnitListingBrowseData = ConvertKeysToCamelCase<
-  z.infer<typeof unitBrowseDataSchema>
->;
+const unitBrowseDataCamel = zodToCamelCase(unitBrowseDataSchema);
+export type UnitListingBrowseData = z.infer<typeof unitBrowseDataCamel>;

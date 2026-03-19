@@ -1,6 +1,5 @@
 import { z } from "zod";
-
-import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+import zodToCamelCase from "zod-to-camel-case";
 
 export const teacherNoteSchema = z.object({
   note_id: z.string().length(10),
@@ -13,7 +12,8 @@ export const teacherNoteSchema = z.object({
 });
 
 export type TeacherNote = z.infer<typeof teacherNoteSchema>;
-export type TeacherNoteCamelCase = ConvertKeysToCamelCase<TeacherNote>;
+const teacherNoteCamel = zodToCamelCase(teacherNoteSchema);
+export type TeacherNoteCamelCase = z.infer<typeof teacherNoteCamel>;
 
 export const piiMatchSchema = z.object({
   infoType: z.enum([

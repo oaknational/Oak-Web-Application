@@ -7,7 +7,7 @@ import CanonicalResultsPage, {
   CanonicalResultsSharePageProps,
   getServerSideProps,
 } from "@/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/share";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 import { LessonAttemptFixture } from "@/node-lib/pupil-api/__mocks__/fixtures/lesson-attempt.fixture";
 
 jest.mock("@/node-lib/pupil-api/pupilDataStore", () => ({

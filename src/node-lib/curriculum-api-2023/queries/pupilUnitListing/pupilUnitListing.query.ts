@@ -7,7 +7,7 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { PupilUnitListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 export const pupilUnitListingQuery =
   (sdk: Sdk) =>

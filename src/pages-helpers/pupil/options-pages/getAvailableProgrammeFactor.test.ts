@@ -1,13 +1,11 @@
 import { getAvailableProgrammeFactor } from "./getAvailableProgrammeFactor";
 
 import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
-import {
-  ProgrammeFields,
-  PupilProgrammeListingData,
-} from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
+import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
+import { ProgrammeFieldsCamel } from "@oaknational/oak-curriculum-schema";
 
 describe("getAvailableProgrammeFactors", () => {
-  const overrides: Partial<ProgrammeFields>[] = [
+  const overrides: Partial<ProgrammeFieldsCamel>[] = [
     {
       tier: "foundation",
       tierSlug: "foundation",

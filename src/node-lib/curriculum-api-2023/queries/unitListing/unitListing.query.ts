@@ -8,19 +8,20 @@ import {
 } from "./helpers/getAllCategories";
 import { getAllYearGroups } from "./helpers/getAllYearGroups";
 import {
-  ProgrammeFieldsCamel,
   rawQuerySchema,
   UnitListingData,
+  UnitsCamel,
 } from "./unitListing.schema";
 
 import { NEW_COHORT } from "@/config/cohort";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import {
   UnitListingQuery,
   Sdk,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import OakError from "@/errors/OakError";
+import { ProgrammeFieldsCamel } from "@oaknational/oak-curriculum-schema";
 
 const getTierData = (programmeSlug: string): UnitListingData["tiers"] => [
   {
@@ -63,7 +64,7 @@ const unitListingQuery =
       });
     }
 
-    const unitsCamel = keysToCamelCase(parsedUnits);
+    const unitsCamel: UnitsCamel = keysToCamelCase(parsedUnits);
     const hasCycle2Content = unitsCamel.some(
       (u) => u.unitData._cohort === "2024-2025",
     );

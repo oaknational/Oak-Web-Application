@@ -8,7 +8,7 @@ import {
 } from "./rawSyntheticUVLesson.schema";
 
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 const constructLessonDownloads = ({
   downloads,
