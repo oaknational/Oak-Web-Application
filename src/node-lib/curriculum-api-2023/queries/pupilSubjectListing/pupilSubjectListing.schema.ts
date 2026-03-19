@@ -3,8 +3,7 @@ import {
   syntheticProgrammesByYearSchema,
   subjectSlugs,
 } from "@oaknational/oak-curriculum-schema";
-
-import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+import zodToCamelCase from "zod-to-camel-case";
 
 export const pupilSubjectListingSchema = syntheticProgrammesByYearSchema.pick({
   programme_slug: true,
@@ -16,8 +15,7 @@ export const pupilSubjectListingSchema = syntheticProgrammesByYearSchema.pick({
   actions: true,
 });
 
-export type PupilSubjectListingData = ConvertKeysToCamelCase<
-  z.infer<typeof pupilSubjectListingSchema>
->;
+const pupilSubjectListingCamel = zodToCamelCase(pupilSubjectListingSchema);
+export type PupilSubjectListingData = z.infer<typeof pupilSubjectListingCamel>;
 
-export type SubjectSlugs = ConvertKeysToCamelCase<z.infer<typeof subjectSlugs>>;
+export type SubjectSlugs = z.infer<typeof subjectSlugs>;

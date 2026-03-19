@@ -16,7 +16,7 @@ import lessonOverview, {
 
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 export const _additionalFilesFixture = keysToCamelCase(
   additionalFilesFixture().downloadable_files,

@@ -1,10 +1,14 @@
-import { programmeFieldsFixture as programmeFieldsFixture_snake } from "@oaknational/oak-curriculum-schema";
+import {
+  ProgrammeFieldsCamel,
+  programmeFieldsFixture as programmeFieldsFixture_snake,
+} from "@oaknational/oak-curriculum-schema";
 
-import keysToCamelCase from "@/utils/snakeCaseConverter";
-import { ProgrammeFields } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 export const programmeFieldsFixture = ({
   overrides = {},
-}: { overrides?: Partial<ProgrammeFields> } = {}): ProgrammeFields => {
+}: {
+  overrides?: Partial<ProgrammeFieldsCamel>;
+} = {}): ProgrammeFieldsCamel => {
   return { ...keysToCamelCase(programmeFieldsFixture_snake({})), ...overrides };
 };

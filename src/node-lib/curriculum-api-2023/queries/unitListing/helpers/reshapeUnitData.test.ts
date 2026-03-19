@@ -4,7 +4,7 @@ import { UnitsCamel } from "../unitListing.schema";
 
 import { reshapeUnitData } from "./reshapeUnitData";
 
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 const camelCaseFixture = ({
   overrides,

@@ -8,7 +8,7 @@ import {
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import getPageProps from "@/node-lib/getPageProps";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
 import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 

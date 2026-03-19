@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+import zodToCamelCase from "zod-to-camel-case";
 
 export const teachersSitemapDataSchema = z.object({
   keyStages: z.array(
@@ -52,6 +52,7 @@ export type TeachersSitemapDataSchemaSnake = z.infer<
   typeof teachersSitemapDataSchema
 >;
 
-export type TeachersSitemapBrowseData = ConvertKeysToCamelCase<
-  z.infer<typeof teachersSitemapDataSchema>
+const teachersSitemapDataCamel = zodToCamelCase(teachersSitemapDataSchema);
+export type TeachersSitemapBrowseData = z.infer<
+  typeof teachersSitemapDataCamel
 >;

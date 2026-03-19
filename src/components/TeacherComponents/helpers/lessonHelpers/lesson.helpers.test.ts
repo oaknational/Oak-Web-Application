@@ -15,7 +15,7 @@ import {
   quizQuestionsNoImages,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 describe("getCommonPathway()", () => {
   it("returns the intersection of a single LessonPathway", () => {

@@ -7,7 +7,7 @@ import type {
   State,
 } from "@/browser-lib/pupil-client/client";
 import { TeacherNote } from "@/node-lib/pupil-api/types";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 const mockAttempt = {
   attemptId: "gCgkXUx42GY-9cAniQelm",

@@ -27,9 +27,9 @@ import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 export const getDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -186,7 +186,7 @@ export const transformedLessonOverviewData = (
     browseData.lessonData.mediaClips = null;
     reportError(error);
   }
-
+  console.log("diego browse data", browseData.features);
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
@@ -271,8 +271,8 @@ export const transformedLessonOverviewData = (
       unitData?.supplementaryData?.staticLessonList?.length ??
       unitData?.lessonCount ??
       1,
-    geoRestricted: browseData.features?.agf_geoRestricted ?? false,
-    loginRequired: browseData.features?.agf_loginRequired ?? false,
+    geoRestricted: browseData.features?.agfGeoRestricted ?? false,
+    loginRequired: browseData.features?.agfLoginRequired ?? false,
     excludedFromTeachingMaterials,
     subjectCategories: browseData.unitData.subjectcategories || null,
   };

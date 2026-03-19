@@ -10,7 +10,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+import zodToCamelCase from "zod-to-camel-case";
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
   _state: true,
@@ -19,8 +19,13 @@ export const lessonContentSchema = lessonContentSchemaFull.omit({
   video_duration: true,
 });
 
+const lessonContentSchemaCamel = zodToCamelCase(lessonContentSchema, {
+  bidirectional: true,
+});
+type LessonContentCamel = z.infer<typeof lessonContentSchemaCamel>;
+
 export type LessonOverviewContent = Omit<
-  ConvertKeysToCamelCase<z.infer<typeof lessonContentSchema>>,
+  LessonContentCamel,
   "starterQuiz" | "exitQuiz" | "transcriptSentences"
 > & {
   starterQuiz: QuizQuestion[];
@@ -96,6 +101,7 @@ export const lessonBrowseDataByKsSchema =
     null_unitvariant_id: true,
   });
 
-export type LessonBrowseDataByKs = ConvertKeysToCamelCase<
-  z.infer<typeof lessonBrowseDataByKsSchema>
->;
+const browseDataCamelCase = zodToCamelCase(lessonBrowseDataByKsSchema, {
+  bidirectional: true,
+});
+export type LessonBrowseDataByKs = z.infer<typeof browseDataCamelCase>;
