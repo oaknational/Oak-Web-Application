@@ -8,43 +8,15 @@ import {
   createClassroomErrorReporter,
 } from "@/node-lib/google-classroom";
 import { handleNewsletterSignup } from "@/node-lib/google-classroom/handleNewsletterSignup";
+import {
+  getOAuthError,
+  getNewsletterPreference,
+  isTeacherLogin,
+  parseStateParam,
+  type OAuthError,
+} from "@/app/api/classroom/classroomUtils";
 
 const reportError = createClassroomErrorReporter("callback");
-
-type OAuthError = {
-  error: string;
-  errorDescription?: string | null;
-};
-
-function getOAuthError(searchParams: URLSearchParams): OAuthError | null {
-  const error = searchParams.get("error");
-  if (!error) return null;
-  return { error, errorDescription: searchParams.get("error_description") };
-}
-
-function getNewsletterPreference(searchParams: URLSearchParams): boolean {
-  const stateParam = searchParams.get("state");
-  if (!stateParam) return false;
-
-  try {
-    const parsed = JSON.parse(stateParam);
-    return parsed.subscribeToNewsletter === true;
-  } catch {
-    return false;
-  }
-}
-
-function isTeacherLogin(searchParams: URLSearchParams): boolean {
-  const stateParam = searchParams.get("state");
-  if (!stateParam) return true;
-
-  try {
-    const parsed = JSON.parse(stateParam);
-    return parsed.isPupil !== true;
-  } catch {
-    return true;
-  }
-}
 
 function oauthErrorResponse(oauthError: OAuthError) {
   return NextResponse.json(
@@ -78,7 +50,8 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const code = searchParams.get("code");
     const oauthError = getOAuthError(searchParams);
-    const subscribeToNewsletter = getNewsletterPreference(searchParams);
+    const state = parseStateParam(searchParams);
+    const subscribeToNewsletter = getNewsletterPreference(state);
     const parsedCode = codeSchema.safeParse(code);
 
     // Check for OAuth errors from Google -
@@ -96,7 +69,7 @@ export async function GET(request: NextRequest) {
     }
 
     const baseUrl = `${request.nextUrl.protocol}//${request.nextUrl.host}`;
-    const onNewsletterSignup = isTeacherLogin(searchParams)
+    const onNewsletterSignup = isTeacherLogin(state)
       ? (email: string) =>
           handleNewsletterSignup(
             email,

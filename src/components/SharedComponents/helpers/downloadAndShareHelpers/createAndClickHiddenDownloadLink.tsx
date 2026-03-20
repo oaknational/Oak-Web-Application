@@ -21,7 +21,7 @@ export const isInIframe = () => {
 
 const createAndClickHiddenDownloadLink = (url: string) => {
   if (isInIframe()) {
-    globalThis.open(encodeURI(url), "_blank");
+    globalThis.open(encodeURI(url), "_blank", "noopener,noreferrer");
     return;
   }
   const link = createLink();

@@ -8,11 +8,13 @@ import { GET } from "./route";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
-jest.mock("next/server", () => ({
-  NextResponse: {
-    json: jest.fn(),
-  },
-}));
+jest.mock("next/server", () => {
+  class MockNextResponse {}
+  (MockNextResponse as unknown as { json: jest.Mock }).json = jest.fn(
+    () => new MockNextResponse(),
+  );
+  return { NextResponse: MockNextResponse };
+});
 
 jest.mock("@/node-lib/google-classroom", () => {
   const reporterMock = jest.fn();
@@ -94,6 +96,26 @@ describe("GET /api/classroom/pupil/progress", () => {
         error: "submissionId, attachmentId and itemId required",
       }),
       { status: 400 },
+    );
+  });
+
+  it("should reject with 401 if auth headers are missing", async () => {
+    const mockMissingAuthHeaders = {
+      get: jest.fn(() => null),
+    };
+
+    const mockRequest = {
+      headers: mockMissingAuthHeaders,
+      url: "http://localhost/api/classroom/pupil/progress?submissionId=sub-1&courseId=course-1&itemId=item-1&attachmentId=attachment-1",
+    } as unknown as NextRequest;
+
+    await GET(mockRequest);
+
+    expect(mockGetPupilLessonProgress).not.toHaveBeenCalled();
+    expect(mockUpsertPupilLessonProgress).not.toHaveBeenCalled();
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      { message: "Authentication required" },
+      { status: 401 },
     );
   });
 });

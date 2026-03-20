@@ -49,7 +49,7 @@ const downloadLessonResources = async ({
       selection,
       additionalFilesIdsSelection,
     });
-    globalThis.open(downloadPageUrl, "_blank");
+    globalThis.open(downloadPageUrl, "_blank", "noopener,noreferrer");
     return;
   }
 
