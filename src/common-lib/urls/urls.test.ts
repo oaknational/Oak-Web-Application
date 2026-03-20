@@ -221,11 +221,6 @@ describe("urls.ts", () => {
         resolveOakHref({ page: "legal", legalSlug: "legal-page-123" }),
       ).toBe("/legal/legal-page-123");
     });
-    it("Support your team", () => {
-      expect(resolveOakHref({ page: "support-your-team" })).toBe(
-        "/support-your-team",
-      );
-    });
     it("Help", () => {
       expect(resolveOakHref({ page: "help" })).toBe(
         "https://support.thenational.academy",

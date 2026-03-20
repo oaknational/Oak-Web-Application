@@ -311,7 +311,6 @@ type LegalLinkProps = {
    */
   legalSlug: OrString<"privacy-policy" | "terms-and-conditions">;
 };
-type SupportYourTeamLinkProps = { page: "support-your-team" };
 type OurTeachersLinkProps = { page: "our-teachers" };
 type OakCurriculumLinkProps = { page: "oak-curriculum" };
 type ClassroomLinkProps = { page: "classroom" };
@@ -458,7 +457,6 @@ export type OakLinkProps =
   | ContactUsLinkProps
   | HomeLinkProps
   | LessonPlanningLinkProps
-  | SupportYourTeamLinkProps
   | OurTeachersLinkProps
   | OakCurriculumLinkProps
   | ClassroomLinkProps
@@ -718,12 +716,6 @@ export const OAK_PAGES: {
     analyticsPageName: "[external] Labs",
     configType: "external",
     pageType: "labs-teaching-materials",
-  }),
-  "support-your-team": createOakPageConfig({
-    pathPattern: "/support-your-team",
-    analyticsPageName: "Support Your Team",
-    configType: "internal",
-    pageType: "support-your-team",
   }),
   "our-teachers": createOakPageConfig({
     url: "https://classroom.thenational.academy/teachers",

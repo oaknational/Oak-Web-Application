@@ -87,11 +87,6 @@ const footerSections: FooterSections = {
         type: "link",
         href: resolveOakHref({ page: "lesson-planning" }),
       },
-      {
-        text: "Support your team",
-        type: "link",
-        href: resolveOakHref({ page: "support-your-team" }),
-      },
     ],
   },
   oak: {

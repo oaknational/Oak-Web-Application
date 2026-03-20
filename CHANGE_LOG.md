@@ -1,3 +1,41 @@
+# [1.1023.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1022.0...v1.1023.0) (2026-03-20)
+
+
+### Features
+
+* filter out rule of law subject from search filters ([731b076](https://github.com/oaknational/Oak-Web-Application/commit/731b07600e6345d107abad74bd08d470efe25936))
+
+# [1.1022.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1021.1...v1.1022.0) (2026-03-17)
+
+
+### Features
+
+* retire old standalone video player ([2a2f161](https://github.com/oaknational/Oak-Web-Application/commit/2a2f1614cde4b69a5f3bb6e6106813167c7e200c))
+
+## [1.1021.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1021.0...v1.1021.1) (2026-03-17)
+
+
+### Bug Fixes
+
+* remove top-level await from old-components script as not support by default ([37d6f27](https://github.com/oaknational/Oak-Web-Application/commit/37d6f27faa2c4b2416840bc03853f7d6b7cf8384))
+
+# [1.1021.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1020.2...v1.1021.0) (2026-03-17)
+
+
+### Features
+
+* remove all URL, CMS and type info from old 'support-your-team' page ([f7e153b](https://github.com/oaknational/Oak-Web-Application/commit/f7e153bdb1f1e1eb7ee141d177c29873a132a86a))
+* remove components/pages associated with '/support-your-team' ([bb39a46](https://github.com/oaknational/Oak-Web-Application/commit/bb39a46418d12ce6b02b2867c619ea938a456848))
+
+## [1.1020.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1020.1...v1.1020.2) (2026-03-13)
+
+## [1.1020.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1020.0...v1.1020.1) (2026-03-12)
+
+
+### Bug Fixes
+
+* resolve video thumbnail sizing in Safari on PromoBannerWithVideo ([669176e](https://github.com/oaknational/Oak-Web-Application/commit/669176ef09e51431238d6094efd21ee8d71399ce))
+
 # [1.1020.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1019.3...v1.1020.0) (2026-03-12)
 
 
