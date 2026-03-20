@@ -14,6 +14,9 @@ jest.mock("./createAndClickHiddenDownloadLink", () => ({
   createLink: jest.fn(),
   hideAndClickDownloadLink: jest.fn(),
 }));
+jest.mock("@/utils/iframe", () => ({
+  isInIframe: jest.fn(),
+}));
 
 const mockIsInIframe = isInIframe as jest.MockedFunction<typeof isInIframe>;
 
