@@ -22,7 +22,7 @@ type Props = Readonly<{
   backUrlTemplate: string;
   getAvailableProgrammeFactorAction: (args: {
     factorPrefix: "tier" | "examboard" | "pathway";
-    programmes: never[];
+    programmes: Programme[];
   }) => Promise<FactorData[]>;
 }>;
 
@@ -30,18 +30,18 @@ const FACTOR_TO_FILTER: Record<
   "tier" | "examboard" | "pathway",
   (typeof FilterType)[keyof typeof FilterType]
 > = {
-  tier: FilterType.TIER_FILTER,
-  examboard: FilterType.EXAM_BOARD_FILTER,
-  pathway: FilterType.PATHWAY_FILTER,
+  tier: "Tier filter",
+  examboard: "Exam board filter",
+  pathway: "Pathway filter",
 };
 
 const FACTOR_TO_COMPONENT: Record<
   "tier" | "examboard" | "pathway",
   (typeof ComponentType)[keyof typeof ComponentType]
 > = {
-  tier: ComponentType.LEARNING_TIER_BUTTON,
-  examboard: ComponentType.PROGRAMME_CARD,
-  pathway: ComponentType.PROGRAMME_CARD,
+  tier: "learning_tier_button",
+  examboard: "programme_card",
+  pathway: "programme_card",
 };
 
 export function GoogleClassroomOptionsAnalytics({

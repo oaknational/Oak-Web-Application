@@ -7,7 +7,7 @@ type GetPosthogInitConfigArgs = {
 };
 
 export const POSTHOG_AUTOCAPTURE_URL_ALLOWLIST = [
-  "/plan-a-lesson",
+  "/lesson-planning",
   "/support-your-team",
   "/blog/.*",
   "/webinars/.*",

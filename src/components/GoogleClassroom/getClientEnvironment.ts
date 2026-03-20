@@ -1,5 +1,5 @@
 import { ClientEnvironmentValueType } from "@/browser-lib/avo/Avo";
-import { isInIframe } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
+import { isInIframe } from "@/utils/iframe";
 
 export function getClientEnvironment(): ClientEnvironmentValueType {
   // could be extended for native app use in future

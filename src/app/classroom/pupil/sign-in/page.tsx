@@ -76,6 +76,7 @@ function SignInContent() {
     });
 
     if (programmeSlug && unitSlug && lessonSlug) {
+      // setTimeout is needed to ensure tracking event is sent before navigation
       setTimeout(() => {
         markClassroomAddOnNavigation();
         router.push(
