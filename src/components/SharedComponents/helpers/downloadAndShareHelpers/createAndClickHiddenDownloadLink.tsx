@@ -1,5 +1,4 @@
 import { isInIframe } from "@/utils/iframe";
-export { isInIframe };
 
 export const createLink = () => {
   const a = document.createElement("a");
