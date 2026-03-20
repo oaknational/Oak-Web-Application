@@ -2,7 +2,7 @@ const SESSION_KEY = "classroomAddOnOpened";
 const NAVIGATION_KEY = "classroomAddOnOpenedNavigation";
 
 const getSessionStorage = () => {
-  if (typeof globalThis.window === "undefined") return null;
+  if (globalThis.window === undefined) return null;
 
   try {
     return globalThis.window.sessionStorage;
