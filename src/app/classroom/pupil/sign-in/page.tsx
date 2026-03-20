@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   AuthCookieKeys,
@@ -8,12 +8,51 @@ import {
 } from "@oaknational/google-classroom-addon/ui";
 
 import { googleClassroomApi } from "@/browser-lib/google-classroom";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
+import {
+  clearClassroomAddOnOpened,
+  markClassroomAddOnNavigation,
+  trackClassroomAddOnOpenedOnce,
+} from "@/browser-lib/google-classroom/classroomAddonTracking";
 
 function SignInContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { track } = useAnalytics();
+
+  const clientEnvironment = getClientEnvironment();
+  const loginHint = searchParams?.get("login_hint") ?? null;
+
+  // We only want to fire the event once either from sign up page or from pupil experience
+  useEffect(() => {
+    window.addEventListener("pagehide", clearClassroomAddOnOpened);
+    return () =>
+      window.removeEventListener("pagehide", clearClassroomAddOnOpened);
+  }, []);
+
+  useEffect(() => {
+    trackClassroomAddOnOpenedOnce(() => {
+      track.classroomAddOnOpened({
+        platform: "google-classroom",
+        product: "google classroom addon",
+        engagementIntent: "use",
+        componentType: "page view",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Pupil",
+        clientEnvironment,
+      });
+    });
+  }, [clientEnvironment, track]);
 
   const getGoogleSignInLink = () => {
+    track.classroomSignInStarted({
+      platform: "google-classroom",
+      product: "google classroom addon",
+      analyticsUseCase: "Pupil",
+      googleLoginHint: loginHint,
+      clientEnvironment,
+    });
     return googleClassroomApi.getGoogleSignInUrl(
       searchParams?.get("login_hint") ?? null,
       undefined,
@@ -26,10 +65,24 @@ function SignInContent() {
     const unitSlug = searchParams?.get("unitSlug");
     const lessonSlug = searchParams?.get("lessonSlug");
     const currentParams = searchParams?.toString() ?? "";
+
+    track.classroomSignInCompleted({
+      platform: "google-classroom",
+      product: "google classroom addon",
+      analyticsUseCase: "Pupil",
+      googleLoginHint: loginHint,
+      subscribeToNewsletter: null,
+      clientEnvironment,
+    });
+
     if (programmeSlug && unitSlug && lessonSlug) {
-      router.push(
-        `/pupils/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}?${currentParams}`,
-      );
+      // setTimeout is needed to ensure tracking event is sent before navigation
+      setTimeout(() => {
+        markClassroomAddOnNavigation();
+        router.push(
+          `/pupils/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}?${currentParams}`,
+        );
+      }, 300);
     }
     // when we have classroom 404/500 pages, we should redirect to those
   };

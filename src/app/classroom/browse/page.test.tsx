@@ -7,11 +7,21 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const browseViewMock = jest.fn();
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefined: jest.fn(),
+    },
+  }),
+}));
+
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   GoogleClassroomBrowseView: (props: never) => {
     browseViewMock(props);
     return <div data-testid="browse-view">Browse</div>;
   },
+  useGoogleClassroomAddonStore: jest.fn().mockReturnValue(null),
 }));
 
 describe("src/app/classroom/browse/page", () => {

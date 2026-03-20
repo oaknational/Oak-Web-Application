@@ -48,6 +48,12 @@ import {
   type ClassroomContext,
 } from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
 import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
+import {
+  clearClassroomAddOnOpened,
+  trackClassroomAddOnOpenedOnce,
+} from "@/browser-lib/google-classroom/classroomAddonTracking";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -227,6 +233,31 @@ const PupilExperienceLayout = ({
     useAssignmentSearchParams();
   const isGoogleClassroomAssignment =
     isClassroomAssignment && classroomAssignmentChecked;
+
+  const { track: globalTrack } = useAnalytics();
+  const clientEnvironment = getClientEnvironment();
+
+  useEffect(() => {
+    window.addEventListener("pagehide", clearClassroomAddOnOpened);
+    return () =>
+      window.removeEventListener("pagehide", clearClassroomAddOnOpened);
+  }, []);
+
+  useEffect(() => {
+    if (!isGoogleClassroomAssignment) return;
+
+    trackClassroomAddOnOpenedOnce(() => {
+      globalTrack.classroomAddOnOpened({
+        platform: "google-classroom",
+        product: "google classroom addon",
+        engagementIntent: "use",
+        componentType: "page view",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Pupil",
+        clientEnvironment,
+      });
+    });
+  }, [clientEnvironment, globalTrack, isGoogleClassroomAssignment]);
 
   const searchParams = useSearchParams();
   const classroomContextRef = useRef<ClassroomContext | null>(null);

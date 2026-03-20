@@ -11,6 +11,7 @@ import {
 import * as LessonEngineProvider from "@/components/PupilComponents/LessonEngineProvider";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { allLessonReviewSections } from "@/components/PupilComponents/LessonEngineProvider";
+import { markClassroomAddOnOpened } from "@/browser-lib/google-classroom/classroomAddonTracking";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
@@ -18,6 +19,24 @@ import { createLessonEngineContext } from "@/components/PupilComponents/pupilTes
 import "@/__tests__/__helpers__/IntersectionObserverMock";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+
+const classroomAddOnOpenedMock = jest.fn();
+const analyticsTrackMock = new Proxy(
+  {
+    classroomAddOnOpened: classroomAddOnOpenedMock,
+  } as Record<string, jest.Mock>,
+  {
+    get: (target, property) => {
+      const key = String(property);
+
+      if (!(key in target)) {
+        target[key] = jest.fn();
+      }
+
+      return target[key];
+    },
+  },
+);
 
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
@@ -44,6 +63,13 @@ jest.mock("@/components/PupilViews/PupilReview", () => {
 
 jest.mock("@/hooks/useAssignmentSearchParams", () => ({
   useAssignmentSearchParams: jest.fn(),
+}));
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: analyticsTrackMock,
+  }),
 }));
 
 jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
@@ -98,6 +124,15 @@ jest.mock("@oaknational/oak-components", () => {
 const render = renderWithProviders();
 
 describe("PupilExperienceView", () => {
+  beforeEach(() => {
+    sessionStorage.clear();
+    classroomAddOnOpenedMock.mockClear();
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+  });
+
   describe("pickAvailableSectionsForLesson", () => {
     it("returns all sections if all are available", () => {
       const sections = pickAvailableSectionsForLesson(
@@ -128,6 +163,69 @@ describe("PupilExperienceView", () => {
       expect(withoutStarterQuiz).not.toContain("starter-quiz");
       expect(withoutExitQuiz).not.toContain("exit-quiz");
       expect(withoutVideo).not.toContain("video");
+    });
+  });
+
+  describe("classroom add-on tracking", () => {
+    it("tracks classroomAddOnOpened for a direct classroom pupil landing", async () => {
+      const lessonContent = lessonContentFixture({});
+      const lessonBrowseData = lessonBrowseDataFixture({});
+
+      jest
+        .spyOn(LessonEngineProvider, "useLessonEngineContext")
+        .mockReturnValue(
+          createLessonEngineContext({
+            currentSection: "overview",
+          }),
+        );
+
+      render(
+        <PupilExperienceView
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
+          initialSection="overview"
+          pageType="browse"
+        />,
+      );
+
+      await waitFor(() => {
+        expect(classroomAddOnOpenedMock).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    it("does not retrack classroomAddOnOpened when sign-in already marked it", async () => {
+      const lessonContent = lessonContentFixture({});
+      const lessonBrowseData = lessonBrowseDataFixture({});
+
+      markClassroomAddOnOpened();
+      jest
+        .spyOn(LessonEngineProvider, "useLessonEngineContext")
+        .mockReturnValue(
+          createLessonEngineContext({
+            currentSection: "overview",
+          }),
+        );
+
+      render(
+        <PupilExperienceView
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
+          initialSection="overview"
+          pageType="browse"
+        />,
+      );
+
+      await waitFor(() => {
+        expect(classroomAddOnOpenedMock).not.toHaveBeenCalled();
+      });
     });
   });
 

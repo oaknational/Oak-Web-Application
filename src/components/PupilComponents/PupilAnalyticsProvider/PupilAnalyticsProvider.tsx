@@ -22,6 +22,7 @@ import {
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { unionOrNull } from "@/utils/narrowToUnion";
+import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
 
 /**
  * This file is used to wrap the track function from the analytics context
@@ -187,9 +188,9 @@ export const PupilAnalyticsProvider = ({
     ...pupilPathwayData,
     analyticsUseCase: "Pupil",
   };
-
+  const clientEnvironment = getClientEnvironment();
   const corePropertyArgs: CorePropertyArgType = {
-    platform: "owa",
+    platform: clientEnvironment === "iframe" ? "google-classroom" : "owa",
     product: "pupil lesson activities",
     engagementIntent: "use",
     eventVersion: "2.0.0",
