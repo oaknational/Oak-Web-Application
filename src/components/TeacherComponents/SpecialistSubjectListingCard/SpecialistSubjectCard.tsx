@@ -3,12 +3,13 @@ import {
   OakSpan,
   OakFlex,
   OakIcon,
+  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
 import Card from "@/components/SharedComponents/Card";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import {
+  resolveOakHref,
   SpecialistProgrammeListingLinkProps,
   SpecialistUnitListingLinkProps,
 } from "@/common-lib/urls";
@@ -81,10 +82,9 @@ const SpecialistSubjectCard = (props: {
             {getSentenceCase(props.subject.subjectTitle)}
           </OakHeading>
         </OakFlex>
-        <OwaLink
-          {...getOakLinkProps(props.subject)}
+        <OakSecondaryLink
+          href={resolveOakHref(getOakLinkProps(props.subject))}
           aria-label={getAriaLabel(props.subject)}
-          $hideDefaultFocus
         >
           <SubjectListingTextTile>
             <OakFlex $flexDirection={"column"} $pa="spacing-16">
@@ -100,7 +100,7 @@ const SpecialistSubjectCard = (props: {
               }`}</OakSpan>
             </OakFlex>
           </SubjectListingTextTile>
-        </OwaLink>
+        </OakSecondaryLink>
       </OakFlex>
     </Card>
   );
