@@ -35,7 +35,7 @@ export type CardTitleProps = {
   icon?: OakIconName;
   $iconPosition?: ResponsiveValues<IconPosition>;
   iconSize?: OakAllSpacingToken;
-  $font?: OakFontToken;
+  $font?: ResponsiveValues<OakFontToken>;
 };
 
 const CardTitle: FC<CardTitleProps> = ({
