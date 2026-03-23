@@ -53,7 +53,9 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
       >
         {author && (
           <OakFlex $alignItems={"center"}>
-            {author.image && <AvatarImage image={author.image} $mr={12} />}
+            {author.image && (
+              <AvatarImage image={author.image} $mr="spacing-12" />
+            )}
             <Box $mr={[0, 40]}>
               <OakHeading tag="h2" $font={"heading-7"}>
                 {author.name}

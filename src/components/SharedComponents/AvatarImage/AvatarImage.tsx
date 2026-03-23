@@ -1,40 +1,30 @@
-import { max } from "lodash";
 import { FC } from "react";
+import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
 
 import { Image } from "@/common-lib/cms-types";
-import { PixelSpacing } from "@/styles/theme";
-import { ResponsiveValues } from "@/styles/utils/responsive";
-import Circle from "@/components/SharedComponents/Circle";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
-const DEFAULT_AVATAR_SIZE = 56;
-
-type AvatarImageProps = FlexProps & {
+type AvatarImageProps = OakFlexProps & {
   image?: Image | null;
-  size?: ResponsiveValues<PixelSpacing>;
 };
 const AvatarImage: FC<AvatarImageProps> = (props) => {
-  const { size = DEFAULT_AVATAR_SIZE, image, ...flexProps } = props;
-  const largestSize = (Array.isArray(size) ? max(size) : size) || 0;
+  const { image, ...flexProps } = props;
 
   return (
-    <Circle
+    <OakFlex
       $overflow={"hidden"}
-      size={size}
-      $background="lemon50"
+      $width={"spacing-56"}
+      $height={"spacing-56"}
       $position={"relative"}
+      $borderRadius="border-radius-circle"
+      $justifyContent={"center"}
+      $alignItems={"center"}
       {...flexProps}
     >
-      {image && largestSize ? (
-        <CMSImage
-          image={image}
-          $objectFit={"cover"}
-          width={largestSize}
-          height={largestSize}
-        />
+      {image ? (
+        <CMSImage image={image} $objectFit={"cover"} width={56} height={56} />
       ) : null}
-    </Circle>
+    </OakFlex>
   );
 };
 
