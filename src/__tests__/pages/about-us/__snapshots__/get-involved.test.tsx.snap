@@ -6221,7 +6221,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       >
                         <a
                           class="c184 "
-                          href="/eyfs/maths"
+                          href="/teachers/eyfs/maths"
                         >
                           <span
                             class="c29"

@@ -3749,7 +3749,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       >
                         <a
                           class="c76 "
-                          href="/eyfs/maths"
+                          href="/teachers/eyfs/maths"
                         >
                           <span
                             class="c29"

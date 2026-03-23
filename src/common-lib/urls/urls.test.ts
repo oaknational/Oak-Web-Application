@@ -308,16 +308,16 @@ describe("urls.ts", () => {
         page: "eyfs-page",
         subjectSlug: "maths",
       };
-      expect(resolveOakHref(props)).toBe("/eyfs/maths");
+      expect(resolveOakHref(props)).toBe("/teachers/eyfs/maths");
     });
 
-    it("subject-index with EYFS keyStageSlug redirects to /eyfs/maths", () => {
+    it("subject-index with EYFS keyStageSlug redirects to /teachers/eyfs/maths", () => {
       expect(
         resolveOakHref({
           page: "subject-index",
           keyStageSlug: "early-years-foundation-stage",
         }),
-      ).toBe("/eyfs/maths");
+      ).toBe("/teachers/eyfs/maths");
     });
 
     it("subject-index with non-EYFS keyStageSlug resolves normally", () => {

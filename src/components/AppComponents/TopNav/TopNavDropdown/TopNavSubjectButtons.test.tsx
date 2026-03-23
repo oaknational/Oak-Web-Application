@@ -11,7 +11,7 @@ describe("TopNavSubjectButtons - Link Generation", () => {
           keyStageSlug: "early-years-foundation-stage",
         });
 
-        expect(href).toBe("/eyfs/maths");
+        expect(href).toBe("/teachers/eyfs/maths");
       });
 
       it("should generate EYFS route for multi-word EYFS programmes", () => {
@@ -23,7 +23,7 @@ describe("TopNavSubjectButtons - Link Generation", () => {
           keyStageSlug: "early-years-foundation-stage",
         });
 
-        expect(href).toBe("/eyfs/communication-and-language");
+        expect(href).toBe("/teachers/eyfs/communication-and-language");
       });
     });
 

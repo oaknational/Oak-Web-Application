@@ -6090,7 +6090,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       >
                         <a
                           class="c192 "
-                          href="/eyfs/maths"
+                          href="/teachers/eyfs/maths"
                         >
                           <span
                             class="c29"

@@ -6589,7 +6589,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       >
                         <a
                           class="c214 "
-                          href="/eyfs/maths"
+                          href="/teachers/eyfs/maths"
                         >
                           <span
                             class="c29"

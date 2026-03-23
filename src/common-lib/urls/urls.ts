@@ -619,7 +619,7 @@ const subjectIndexMatchHref = (href: string) => {
 
 const subjectIndexResolveHref = (props: SubjectListingLinkProps): string => {
   if (props.keyStageSlug === "early-years-foundation-stage") {
-    return "/eyfs/maths";
+    return "/teachers/eyfs/maths";
   }
   return `/teachers/key-stages/${encodeURIComponent(props.keyStageSlug)}/subjects`;
 };
@@ -636,7 +636,7 @@ const unitIndexResolveHref = (props: UnitListingLinkProps): string => {
   if (isSlugEYFS(props.programmeSlug)) {
     const eyfsSubjectSlug = EYFS_PROGRAMME_SLUG_REGEX.exec(props.programmeSlug)
       ?.groups?.subject;
-    return `/eyfs/${encodeURIComponent(eyfsSubjectSlug || "maths")}`;
+    return `/teachers/eyfs/${encodeURIComponent(eyfsSubjectSlug || "maths")}`;
   }
   const path = `/teachers/programmes/${encodeURIComponent(props.programmeSlug)}/units`;
   if (!props.search) {
@@ -1067,7 +1067,7 @@ export const OAK_PAGES: {
     pageType: "teacher-programme",
   }),
   "eyfs-page": createOakPageConfig({
-    pathPattern: "/eyfs/:subjectSlug",
+    pathPattern: "/teachers/eyfs/:subjectSlug",
     analyticsPageName: "Unit Listing",
     configType: "internal",
     pageType: "eyfs-page",

@@ -5987,7 +5987,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       >
                         <a
                           class="c183 "
-                          href="/eyfs/maths"
+                          href="/teachers/eyfs/maths"
                         >
                           <span
                             class="c29"
