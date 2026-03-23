@@ -1,22 +1,24 @@
+import {
+  OakBoxProps,
+  oakBoxCss,
+  OakUiRoleToken,
+} from "@oaknational/oak-components";
 import { FC } from "react";
 import styled from "styled-components";
 
 import getSvgId, {
   SvgName,
 } from "@/components/SharedComponents/SpriteSheet/getSvgId";
-import { OakColorName } from "@/styles/theme/types";
-import { box, BoxProps } from "@/components/SharedComponents/Box";
-
-const StyledSvg = styled.svg<BoxProps>`
-  ${box};
+const StyledSvg = styled.svg<OakBoxProps>`
+  ${oakBoxCss}
   transition: all 0.3s ease;
 `;
-export type SvgProps = BoxProps & {
+export type SvgProps = OakBoxProps & {
   name: SvgName;
   className?: string;
   hideOnMobileH?: boolean;
   hideOnMobileV?: boolean;
-  color?: OakColorName;
+  color?: OakUiRoleToken;
   filter?: string;
 };
 const Svg: FC<SvgProps> = (props) => {
