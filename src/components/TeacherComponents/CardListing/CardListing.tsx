@@ -35,11 +35,12 @@ export type CardProps = {
   showBorder?: boolean;
 };
 
+export type CardListingTags = Array<{ label: string; icon?: OakIconName }>;
 export type CardListingProps = CardProps & {
   layoutVariant: "horizontal" | "vertical";
   index?: number;
   subcopy?: string;
-  tags?: Array<{ label: string; icon?: OakIconName }>;
+  tags?: CardListingTags;
   childCards?: Array<CardProps>;
 };
 
