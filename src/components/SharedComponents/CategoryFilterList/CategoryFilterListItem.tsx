@@ -1,4 +1,4 @@
-import { OakLI } from "@oaknational/oak-components";
+import { OakFlex, OakLI } from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
@@ -6,7 +6,6 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
 import { PixelSpacing } from "@/styles/theme";
 import Icon from "@/components/SharedComponents/Icon.deprecated";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type CategoryLinkProps = ResolveOakHrefProps;
 export interface Category<T extends CategoryLinkProps> {
@@ -91,9 +90,9 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
           $transition="all 0.1s ease"
           aria-hidden
         />
-        <Flex
+        <OakFlex
           $alignItems="center"
-          $transition="all 0.1s ease"
+          $transition="standard-ease"
           $transform={
             !arrowHidden
               ? TRANSLATE_X.map((x) => `translateX(${x}px)`)
@@ -102,7 +101,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
           $width="100%"
         >
           {label}
-        </Flex>
+        </OakFlex>
       </OwaLink>
     </OakLI>
   );
