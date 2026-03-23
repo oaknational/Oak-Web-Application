@@ -20,7 +20,7 @@ exports[`WhoAreWeBreakout renders correctly 1`] = `
             height="300"
             loading="lazy"
             src="https://next_public_sanity_asset_cdn_host/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png"
-            style="color: transparent; height: 100%;"
+            style="color: transparent;"
             width="300"
           />
         </span>

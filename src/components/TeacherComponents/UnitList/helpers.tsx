@@ -1,14 +1,18 @@
-import { UnitListItemProps } from "../UnitListItem/UnitListItem";
-import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
-
-import { CurrentPageItemsProps, UnitListProps } from "./UnitList";
+import {
+  CurrentPageItemsProps,
+  UnitListItemProps,
+  UnitListProps,
+} from "./UnitList";
 
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
 } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
-import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import {
+  ReshapedUnitData,
+  UnitListingData,
+} from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 export const isCurrentPageItems = (
@@ -74,7 +78,7 @@ export const getProgrammeFactors = (props: UnitListProps) => {
     };
   }
 };
-
+export type UnitOption = Omit<ReshapedUnitData, "unitStudyOrder">;
 export const isUnitOption = (
   x: Omit<UnitListItemProps, "onClick" | "index">[] | SpecialistUnit[],
 ): x is UnitOption[] => {

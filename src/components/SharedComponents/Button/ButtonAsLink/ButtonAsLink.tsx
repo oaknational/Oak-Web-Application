@@ -11,7 +11,8 @@ import {
 import {
   OwaLinkPropsWithoutChildren,
   transformOwaLinkProps,
-} from "@/components/SharedComponents/OwaLink";
+} from "./OwaLink.deprecated";
+
 import useButtonAsLinkProps from "@/components/SharedComponents/Button/useButtonAsLinkProps";
 import buttonStyles, {
   ButtonStylesProps,

@@ -5,7 +5,6 @@ import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OakColorName } from "@/styles/theme/types";
 import { getBreakpoint } from "@/styles/utils/responsive";
 import Svg from "@/components/SharedComponents/Svg";
-import { $selectedStyle } from "@/components/SharedComponents/OwaLink/OwaLink";
 
 const brushBorder = css<{ color: OakColorName }>`
   position: absolute;
@@ -23,7 +22,10 @@ const TOP_THICKNESS = 12;
 const RIGHT_THICKNESS = 8;
 const BOTTOM_THICKNESS = 11;
 const LEFT_THICKNESS = 8;
-
+const $selectedStyle = css`
+  transition-duration: 0s;
+  transition-delay: 0s;
+`;
 const brushBorderTop = css`
   ${brushBorder}
   ${$selectedStyle}
