@@ -5,13 +5,13 @@ import {
 import router, { NextRouter } from "next/router";
 import React, { MouseEvent, MutableRefObject, ReactElement } from "react";
 
-import {
-  UnitListItemProps,
-  SpecialistListItemProps,
-} from "../UnitListItem/UnitListItem";
-
 import { isUnitOption } from "./helpers";
-import { CurrentPageItemsProps, getUnitLessonCount } from "./UnitList";
+import {
+  CurrentPageItemsProps,
+  getUnitLessonCount,
+  SpecialistListItemProps,
+  UnitListItemProps,
+} from "./UnitList";
 
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
@@ -114,6 +114,8 @@ export const getUnitCards = ({
     const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
 
     const showSave = !isSpecialistUnit && !isItemLegacy;
+    // this is a TS hack to get around typescript not following the logic of isSpecialistUnit
+    const castItem = item as Omit<UnitListItemProps, "index" | "onClick">[];
 
     if (isItemLegacy) {
       if (newAndLegacyUnitsOnPage) {
@@ -122,9 +124,6 @@ export const getUnitCards = ({
         const legacyUnits = filteredUnits?.filter((unit) =>
           isSlugLegacy(unit[0]!.programmeSlug),
         );
-
-        // this is a TS hack to get around typescript not following the logic of isSpecialistUnit
-        const castItem = item as Omit<UnitListItemProps, "index" | "onClick">[];
 
         const findIndex = legacyUnits?.findIndex(
           (unit) =>
@@ -143,7 +142,7 @@ export const getUnitCards = ({
         key={`UnitList-UnitListItem-UnitListOption-${item[0]!.slug}`}
         data-testid="unit-optionality-card"
         nullTitle={item[0]!.nullTitle}
-        yearTitle={item[0]?.yearTitle}
+        yearTitle={castItem[0]?.yearTitle}
         firstItemRef={
           isUnitFirstItemRef(
             item[0]!.programmeSlug,

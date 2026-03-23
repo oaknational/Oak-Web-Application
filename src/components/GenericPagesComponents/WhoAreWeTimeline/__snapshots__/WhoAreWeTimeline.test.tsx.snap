@@ -82,7 +82,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       class="sc-aXZVg sc-gEvEer fVXChP cofRDW"
                     >
                       <p
-                        class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
+                        class="sc-ikkxIA sc-94fdfbc9-0 iidje ghkYMu"
                       >
                         ITEM_TEXT_1
                       </p>
@@ -124,7 +124,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       class="sc-aXZVg sc-gEvEer fVXChP cofRDW"
                     >
                       <p
-                        class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
+                        class="sc-ikkxIA sc-94fdfbc9-0 iidje ghkYMu"
                       >
                         ITEM_TEXT_2
                       </p>
@@ -166,7 +166,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       class="sc-aXZVg sc-gEvEer fVXChP cofRDW"
                     >
                       <p
-                        class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
+                        class="sc-ikkxIA sc-94fdfbc9-0 iidje ghkYMu"
                       >
                         ITEM_TEXT_3
                         <a

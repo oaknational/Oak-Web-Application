@@ -4,6 +4,7 @@ import {
   OakSpan,
   OakP,
   OakFlex,
+  OakLink,
 } from "@oaknational/oak-components";
 
 import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
@@ -13,7 +14,7 @@ import formatDate from "@/utils/formatDate";
 import AvatarImage from "@/components/SharedComponents/AvatarImage";
 import Box from "@/components/SharedComponents/Box";
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
-import OwaLink from "@/components/SharedComponents/OwaLink";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type PostHeaderProps = {
   post: SerializedBlog | SerializedWebinar;
@@ -29,10 +30,17 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
         $justifyContent="space-between"
         $flexDirection={["column", "row"]}
       >
-        <OakHeading tag={"h2"} $color="text-link-active" $font={["heading-7"]}>
-          <OwaLink page={page} categorySlug={post.category.slug}>
+        <OakHeading
+          tag={"h2"}
+          $color="text-link-active"
+          $font={["heading-7"]}
+          $textWrap={"nowrap"}
+        >
+          <OakLink
+            href={resolveOakHref({ page, categorySlug: post.category.slug })}
+          >
             {post.category.title}
-          </OwaLink>
+          </OakLink>
         </OakHeading>
         <OakSpan $font={"body-3"} $mt={["spacing-8", "spacing-0"]}>
           {formattedDate}

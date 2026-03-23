@@ -21,12 +21,12 @@ export const getBlogWebinarListBreadcrumbs = (
   page: CrumbPageVariant,
   label: string,
 ): Breadcrumb[] => [
-  { label, oakLinkProps: { href: `/${page}`, page: null } },
+  { label, href: `/${page}` },
   {
     label:
       categories.find((cat) => cat.slug === currentCategorySlug)?.title ||
       "All",
-    oakLinkProps: { href: currentCategorySlug || `/${page}`, page: null },
+    href: currentCategorySlug || `/${page}`,
     disabled: true,
   },
 ];
@@ -39,18 +39,15 @@ export const getBlogWebinarPostBreadcrumbs = (
 ): Breadcrumb[] => {
   const { title, slug, category } = blog;
   return [
-    { label, oakLinkProps: { href: `/${page}`, page: null } },
+    { label, href: `/${page}` },
     {
       label:
         categories.find((cat) => cat.slug === category.slug)?.title || "All",
-      oakLinkProps: {
-        href: `/${page}/categories/${category.slug}`,
-        page: null,
-      },
+      href: `/${page}/categories/${category.slug}`,
     },
     {
       label: title,
-      oakLinkProps: { href: slug, page: null },
+      href: slug,
       disabled: true,
     },
   ];
