@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { OakFlex, OakP } from "@oaknational/oak-components";
+import { OakFlex, OakP, OakSecondaryLink } from "@oaknational/oak-components";
 
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import Card from "@/components/SharedComponents/Card";
 import useClickableCard from "@/hooks/useClickableCard";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type SubjectProgrammeListItemProps = {
   programme: ProgrammeListingPageData["programmes"][number];
@@ -32,16 +32,18 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
       $transition={"all 0.4s ease-out"}
     >
       <OakFlex $pa="spacing-16">
-        <OwaLink
-          page="unit-index"
+        <OakSecondaryLink
+          href={resolveOakHref({
+            page: "unit-index",
+            programmeSlug: programme.programmeSlug,
+          })}
           {...primaryTargetProps}
-          {...props.programme}
           data-testid="programme-list-item-link"
           onClick={() => onClick(programme)}
           aria-label={ariaLabel}
         >
           <OakP $font={"heading-7"}>{heading}</OakP>
-        </OwaLink>
+        </OakSecondaryLink>
       </OakFlex>
       <BoxBorders gapPosition="rightTop" />
     </Card>
