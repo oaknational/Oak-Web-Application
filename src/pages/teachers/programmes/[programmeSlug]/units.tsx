@@ -32,7 +32,6 @@ import filterUnits from "@/utils/filterUnits/filterUnits";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import {
   UnitListingData,
@@ -54,6 +53,7 @@ import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/Teacher
 import Banners from "@/components/SharedComponents/Banners";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { resolveOakHref } from "@/common-lib/urls";
+import { UnitListItemProps } from "@/components/TeacherComponents/UnitList/UnitList";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;

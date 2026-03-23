@@ -15,7 +15,6 @@ import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
 import { AppHeaderMenu } from "@/components/AppComponents/AppHeaderMenu";
 import { useMenuContext } from "@/context/Menu";
 import AppHeaderBurgerMenuSections from "@/components/AppComponents/AppHeaderBurgerMenuSections";
-import { ActiveLinkUnderline } from "@/components/SharedComponents/OwaLink/OwaLink";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import { StyledHeader } from "@/components/AppComponents/StyledHeader";
 import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderline";
@@ -102,13 +101,14 @@ const AppHeader: FC<HeaderProps> = () => {
               aria-current={selectedArea !== siteAreas.pupils}
             >
               Teachers
-              {selectedArea == siteAreas.teachers && (
+              {/* If reverting to app header uncomment the following and add ActiveLinkUnderline */}
+              {/* {selectedArea == siteAreas.teachers && (
                 <ActiveLinkUnderline
                   name="horizontal-rule"
                   $width="100%"
                   $height={"spacing-8"}
                 />
-              )}
+              )} */}
             </OakSecondaryLink>
             <OakFlex $alignItems="center" $gap="spacing-4">
               <OakSecondaryLink
@@ -120,13 +120,14 @@ const AppHeader: FC<HeaderProps> = () => {
                 aria-current={selectedArea == siteAreas.pupils}
               >
                 Pupils
-                {selectedArea == siteAreas.pupils && (
+                {/* If reverting to app header uncomment the following and add ActiveLinkUnderline */}
+                {/* {selectedArea == siteAreas.pupils && (
                   <ActiveLinkUnderline
                     name="horizontal-rule"
                     $width="100%"
                     $height={"spacing-8"}
                   />
-                )}
+                )} */}
               </OakSecondaryLink>
             </OakFlex>
             <IconButton

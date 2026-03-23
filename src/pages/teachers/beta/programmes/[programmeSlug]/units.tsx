@@ -33,7 +33,6 @@ import filterUnits from "@/utils/filterUnits/filterUnits";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import {
   UnitListingData,
@@ -49,6 +48,7 @@ import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers"
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { resolveOakHref } from "@/common-lib/urls";
+import { UnitListItemProps } from "@/components/TeacherComponents/UnitList/UnitList";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -150,7 +150,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   };
 
   const trackUnitSelected = (
-    props: UnitListItemProps | SpecialistUnit,
+    props:
+      | Omit<UnitListingData["units"][number][number], "unitStudyOrder">
+      | SpecialistUnit,
     examBoardTitle: z.infer<typeof examboards> | null,
     tierSlug: z.infer<typeof tierSlugs> | null,
     tiers: Tiers,
