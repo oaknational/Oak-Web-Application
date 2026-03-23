@@ -7,11 +7,12 @@ import {
   OakLink,
 } from "@oaknational/oak-components";
 
+import CMSImage from "../CMSImage";
+
 import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
 import { SerializedWebinar } from "@/pages/webinars/[webinarSlug]";
 import { SerializedBlog } from "@/pages/blog/[blogSlug]";
 import formatDate from "@/utils/formatDate";
-import AvatarImage from "@/components/SharedComponents/AvatarImage";
 import Box from "@/components/SharedComponents/Box";
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -61,7 +62,25 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
       >
         {author && (
           <OakFlex $alignItems={"center"}>
-            {author.image && <AvatarImage image={author.image} $mr={12} />}
+            {author.image && (
+              <OakFlex
+                $overflow={"hidden"}
+                $width={"spacing-56"}
+                $height={"spacing-56"}
+                $position={"relative"}
+                $borderRadius="border-radius-circle"
+                $justifyContent={"center"}
+                $alignItems={"center"}
+                $mr={"spacing-12"}
+              >
+                <CMSImage
+                  image={author.image}
+                  $objectFit={"cover"}
+                  width={56}
+                  height={56}
+                />
+              </OakFlex>
+            )}
             <Box $mr={[0, 40]}>
               <OakHeading tag="h2" $font={"heading-7"}>
                 {author.name}
