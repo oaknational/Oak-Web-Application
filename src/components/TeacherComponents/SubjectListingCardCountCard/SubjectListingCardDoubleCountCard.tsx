@@ -1,7 +1,10 @@
 import { FC } from "react";
-import { OakSpan, OakFlex } from "@oaknational/oak-components";
+import {
+  OakSpan,
+  OakFlex,
+  OakSecondaryLink,
+} from "@oaknational/oak-components";
 
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
 import { SubjectListingCardProps } from "@/components/TeacherComponents/SubjectListingCard";
@@ -9,6 +12,7 @@ import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subj
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   ProgrammeListingLinkProps,
+  resolveOakHref,
   UnitListingLinkProps,
 } from "@/common-lib/urls";
 
@@ -65,10 +69,9 @@ const SubjectListingCardCountCard: FC<SubjectListingCardCountCardProps> = ({
           size={"small"}
         />
       )}
-      <OwaLink
-        {...oakLinkProps}
+      <OakSecondaryLink
+        href={resolveOakHref(oakLinkProps)}
         aria-label={ariaLabel}
-        $hideDefaultFocus
         onClick={() => {
           track.browseRefined({
             platform: "owa",
@@ -93,7 +96,7 @@ const SubjectListingCardCountCard: FC<SubjectListingCardCountCardProps> = ({
             lessonCount > 1 ? "lessons" : "lesson"
           }`}</OakSpan>
         </OakFlex>
-      </OwaLink>
+      </OakSecondaryLink>
     </SubjectListingTextTile>
   );
 };
