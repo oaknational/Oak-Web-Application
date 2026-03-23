@@ -422,7 +422,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
         {
           source:
-            "/teachers/programmes/:subjectSlug-foundation-early-years-foundation-stage-l/units",
+            "/teachers/programmes/:subjectSlug-foundation-early-years-foundation-stage-l/units/:path*",
           destination: "/teachers/eyfs/:subjectSlug",
           permanent: true,
         },
