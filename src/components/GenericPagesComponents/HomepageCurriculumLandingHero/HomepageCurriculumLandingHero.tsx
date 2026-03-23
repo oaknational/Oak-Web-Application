@@ -32,8 +32,8 @@ const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
         </OakBox>
       </OakFlex>
       <Cover
-        $top={[48, 48, 0]}
-        $right={[0, 12, 0]}
+        $top={["spacing-48", "spacing-48", "spacing-0"]}
+        $right={["spacing-0", "spacing-12", "spacing-0"]}
         $display={["none", "block"]}
       />
     </OakBox>

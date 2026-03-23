@@ -2605,36 +2605,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   top: 82px;
 }
 
-.c101 {
-  position: relative;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  width: 18.75rem;
-  height: 16.875rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c101::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c101::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c101::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
 .c163 {
   position: relative;
   padding: 1.5rem;
@@ -3126,6 +3096,12 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+}
+
+.c101 {
+  position: relative;
+  width: 300px;
+  height: 270px;
 }
 
 .c86 {
@@ -4358,30 +4334,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c101 {
-    width: 28.125rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c101 {
-    width: 28.125rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c101 {
-    height: 26.25rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c101 {
-    height: 26.25rem;
-  }
-}
-
-@media (min-width:750px) {
   .c163 {
     padding-top: 2.5rem;
   }
@@ -4422,6 +4374,20 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
+  }
+}
+
+@media (min-width:750px) {
+  .c101 {
+    width: 450px;
+    height: 420px;
+  }
+}
+
+@media (min-width:1280px) {
+  .c101 {
+    width: 450px;
+    height: 420px;
   }
 }
 
@@ -5268,7 +5234,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="c101 "
+                      class="c11 c49 c101"
                     >
                       <span
                         class="c102"
