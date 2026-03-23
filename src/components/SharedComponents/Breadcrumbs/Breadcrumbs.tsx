@@ -42,6 +42,11 @@ export type BreadcrumbsProps = {
   breadcrumbs: Breadcrumb[];
 };
 
+// To fix ellipsis showing in firefox unecessarily
+const StyledLink = styled(OakSecondaryLink)`
+  display: block;
+`;
+
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
   return (
     <>
@@ -66,7 +71,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                   {disabled ? (
                     <>{label}</>
                   ) : (
-                    <OakSecondaryLink href={href}>{label}</OakSecondaryLink>
+                    <StyledLink href={href}>{label}</StyledLink>
                   )}
                 </BreadcrumbConstrainer>
               </BreadcrumbsLi>
