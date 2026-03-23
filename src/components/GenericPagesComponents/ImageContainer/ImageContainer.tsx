@@ -36,7 +36,7 @@ const ImageContainer: FC<ImageContainerProps> = (props) => {
         priority
         $ba={"border-solid-l"}
         $borderStyle={"solid"}
-        $borderColor={"border-inverted"}
+        $borderColor={"border-primary"}
         width={width}
         height={height}
       />
