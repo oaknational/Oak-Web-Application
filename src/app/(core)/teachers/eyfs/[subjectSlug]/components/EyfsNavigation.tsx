@@ -88,7 +88,7 @@ export const EYFSNavigation = ({
               <Button
                 key={subject.slug}
                 element={Link}
-                href={`/eyfs/${subject.slug}`}
+                href={`/teachers/eyfs/${subject.slug}`}
               >
                 {pickSubjectTitle(subject)}
               </Button>
