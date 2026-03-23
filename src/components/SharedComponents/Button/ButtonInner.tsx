@@ -164,9 +164,9 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
         >
           <SubjectIcon
             subjectSlug={subjectIcon}
-            $maxHeight={40}
-            $maxWidth={40}
-            $height={iconSize}
+            $maxHeight={"spacing-40"}
+            $maxWidth={"spacing-40"}
+            style={{ height: iconSize }}
           />
         </OakFlex>
       )}
