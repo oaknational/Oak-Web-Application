@@ -247,7 +247,10 @@ const CMSImage: FC<CMSImageProps> = (props) => {
       $maxHeight={"100%"}
       imageProps={{
         "aria-hidden": isPresentational ? true : undefined,
-        style: { height: "100%", objectPosition: rest.$objectPosition },
+        style: {
+          // height: "100%",
+          objectPosition: rest.$objectPosition,
+        },
         // CMS images are already optimised
         unoptimized: true,
       }}
