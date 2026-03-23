@@ -53,6 +53,7 @@ import { useUnitFilterState } from "@/hooks/useUnitFilterState";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import Banners from "@/components/SharedComponents/Banners";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -237,23 +238,23 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
       <HeaderListing
         breadcrumbs={[
           {
-            oakLinkProps: { page: "home" },
+            href: resolveOakHref({ page: "home" }),
             label: "Home",
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "subject-index",
 
               keyStageSlug,
-            },
+            }),
             label: toSentenceCase(keyStageTitle),
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "unit-index",
 
               programmeSlug,
-            },
+            }),
             label: subjectTitle,
             disabled: true,
           },
