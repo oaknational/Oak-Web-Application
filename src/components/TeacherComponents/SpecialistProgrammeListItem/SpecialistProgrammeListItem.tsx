@@ -3,13 +3,14 @@ import {
   OakHeading,
   OakFlex,
   OakBulletList,
+  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import Card from "@/components/SharedComponents/Card";
 import useClickableCard from "@/hooks/useClickableCard";
 import { SpecialistProgramme } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type SpecialistProgrammeListItemProps = {
   programme: SpecialistProgramme;
@@ -35,10 +36,12 @@ const SpecialistProgrammeListItem: FC<SpecialistProgrammeListItemProps> = (
       $flexGrow={0}
     >
       <OakFlex $pa="spacing-16">
-        <OwaLink
-          page={"specialist-unit-index"}
+        <OakSecondaryLink
+          href={resolveOakHref({
+            page: "specialist-unit-index",
+            programmeSlug: props.programme.programmeSlug,
+          })}
           {...primaryTargetProps}
-          {...props.programme}
           onClick={() => onClick(programme)}
         >
           <OakFlex $flexDirection="column" $gap={"spacing-4"}>
@@ -56,7 +59,7 @@ const SpecialistProgrammeListItem: FC<SpecialistProgrammeListItemProps> = (
               ]}
             />
           </OakFlex>
-        </OwaLink>
+        </OakSecondaryLink>
       </OakFlex>
       <BoxBorders gapPosition="rightTop" />
     </Card>

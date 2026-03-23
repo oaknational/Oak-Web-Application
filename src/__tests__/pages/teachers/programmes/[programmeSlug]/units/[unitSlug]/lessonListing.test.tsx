@@ -325,6 +325,7 @@ describe("tracking", () => {
     );
 
     const lesson = getByText("Add two surds");
+    lesson.addEventListener("click", (event) => event.preventDefault());
     await userEvent.click(lesson);
 
     expect(globalThis.fetch).toHaveBeenCalledWith(

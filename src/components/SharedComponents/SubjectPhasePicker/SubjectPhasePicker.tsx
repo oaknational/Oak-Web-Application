@@ -14,6 +14,7 @@ import {
   OakSpan,
   OakHandDrawnHR,
   OakFocusIndicator,
+  OakSecondaryLink,
 } from "@oaknational/oak-components";
 import { sortBy } from "lodash";
 import { flushSync } from "react-dom";
@@ -22,7 +23,6 @@ import {
   ProgrammeFields,
 } from "@oaknational/oak-curriculum-schema";
 
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import type {
   KS4Option,
@@ -39,6 +39,7 @@ import Button from "@/components/SharedComponents/Button";
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const TruncatedFlex = styled(OakFlex)`
   max-width: calc(100% - 1rem);
@@ -317,18 +318,19 @@ function SubjectContainer({
           {children}
         </OakFlex>
       </OakBox>
-      <OakBox $mb={["spacing-32", "spacing-0"]}>
-        <OwaLink
-          page={"curriculum-previous-downloads"}
-          $textDecoration={"underline"}
-          $font={"heading-7"}
+      <OakBox
+        $font={"heading-7"}
+        $mb={["spacing-32", "spacing-0"]}
+        $textDecoration={"underline"}
+      >
+        <OakSecondaryLink
+          href={resolveOakHref({ page: "curriculum-previous-downloads" })}
           data-testid="subject-picker-previous-plans-link"
-          $display={"flex"}
-          $alignItems={"center"}
+          iconName="arrow-right"
+          isTrailingIcon
         >
           Previously released plans
-          <OakIcon iconName="arrow-right" $width={"spacing-24"} />
-        </OwaLink>
+        </OakSecondaryLink>
       </OakBox>
     </SubjectContainerWrapper>
   );

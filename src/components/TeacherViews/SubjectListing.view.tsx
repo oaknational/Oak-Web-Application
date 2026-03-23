@@ -7,15 +7,16 @@ import {
   OakP,
   OakHandDrawnHR,
   OakMaxWidth,
+  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
-import OwaLink from "../SharedComponents/OwaLink";
 import { SubjectKeystageSeoText } from "../TeacherComponents/SubjectKeystageSEO/SubjectKeystageSeoText";
 import { SubjectKeystageSeoAccordion } from "../TeacherComponents/SubjectKeystageSEO/SubjectKeystageSeoAccordion";
 import { getSubjectKeystageSeoLinks } from "../TeacherComponents/SubjectKeystageSEO/getSubjectKeystageSeoLinks";
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCard";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
   const { subjects, keyStageSlug, keyStageTitle } = props;
@@ -59,13 +60,15 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
               as inspiration for their own lesson planning. Learn about the
               evolution of our EYFS curriculum and how to use it in your
               classroom. Visit our blog to learn more{" "}
-              <OwaLink
-                href="https://www.thenational.academy/blog/oaks-approach-to-eyfs"
+              <OakSecondaryLink
+                href={resolveOakHref({
+                  page: "blog-single",
+                  blogSlug: "oaks-approach-to-eyfs",
+                })}
                 aria-label="eyfs-at-oak-blog"
-                page={null}
               >
                 here
-              </OwaLink>
+              </OakSecondaryLink>
               .
             </OakP>
           ) : (
