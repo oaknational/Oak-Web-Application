@@ -2,6 +2,7 @@
 import { FC, useCallback, useMemo } from "react";
 import { ImageLoader } from "next/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { OakImage, OakImageProps } from "@oaknational/oak-components";
 
 import {
   getImageDimensions,
@@ -9,10 +10,6 @@ import {
   imageBuilder,
 } from "@/components/HooksAndUtils/sanityImageBuilder";
 import { Image } from "@/common-lib/cms-types";
-import { SizeValues } from "@/styles/utils/size";
-import OwaImage, {
-  OwaImageProps,
-} from "@/components/SharedComponents/OwaImage";
 
 function getAspectRatio({
   cropRect,
@@ -36,7 +33,7 @@ function getAspectRatio({
   return null;
 }
 
-export type CMSImageProps = Omit<OwaImageProps, "src" | "alt"> & {
+export type OwaImageNewProps = Omit<OakImageProps, "src" | "alt"> & {
   /**
    * Sanity image asset
    */
@@ -77,6 +74,48 @@ export type CMSImageProps = Omit<OwaImageProps, "src" | "alt"> & {
   format?: "webp" | null;
 };
 
+export type CMSImageProps = Omit<OwaImageNewProps, "src" | "alt"> & {
+  /**
+   * Sanity image asset
+   */
+  image: Omit<SanityImageSource, "string"> | Image;
+  /**
+   * width for transform
+   */
+  width?: number;
+  /**
+   * height for transform
+   */
+  height?: number;
+  children?: React.ReactNode;
+  alt?: string;
+  /**
+   * @next/image loader to override the default
+   */
+  loader?: ImageLoader;
+  /**
+   * In the case when we want to fetch an image from Sanity with specific dimensions,
+   * but we don't want sanity to crop the original image, pass `noCrop`.
+   * For example, passing width: 400, height:400, noCrop: true; will mean ask
+   * the CDN for an image that fits within a 400 by 400 square. F.i. the image
+   * returned might be 400x320 or 126x400
+   * If noCrop is not passed, then a crop will be applied. This crop is applied
+   * by @sanity/url-builder
+   * Is nullified if `cropRect` prop is passed
+   */
+  noCrop?: boolean;
+  /**
+   * Crop rectangle in pixels (left, top, width, height)
+   * @see https://www.sanity.io/docs/image-urls#rect-b9848ab43728
+   */
+  cropRect?: [number, number, number, number];
+  /**
+   * Format: "webp" | null (set null if source is svg and you want to keep it as svg)
+   */
+  format?: "webp" | null;
+  $objectPosition?: string;
+};
+
 const CMSImage: FC<CMSImageProps> = (props) => {
   const {
     image,
@@ -84,11 +123,12 @@ const CMSImage: FC<CMSImageProps> = (props) => {
     noCrop,
     cropRect,
     format = "webp",
+    fill,
     ...rest
   } = props;
 
   const id = getSanityRefId(image);
-  const originalDimensions = getImageDimensions(id, { fill: rest.fill });
+  const originalDimensions = getImageDimensions(id, { fill });
 
   const defaultLoader = useCallback(
     ({ width: srcWidth }: { width: number }) => {
@@ -179,9 +219,12 @@ const CMSImage: FC<CMSImageProps> = (props) => {
   /**
    * $width/$height to be passed to css
    */
-  const styleDimensions: { $width?: SizeValues; $height?: SizeValues } = {
-    $width: rest.$width || (rest.$cover ? undefined : "100%"),
-    $height: rest.$height || (rest.$cover ? undefined : "auto"),
+  const styleDimensions: {
+    $width?: OakImageProps["$width"];
+    $height?: OakImageProps["$height"];
+  } = {
+    $width: rest.$width, // || (rest.$cover ? undefined : "100%"),
+    $height: rest.$height, // || (rest.$cover ? undefined : "auto"),
   };
   /**
    * width/height to be passed to @next/image, so that it can apply appropriate
@@ -193,14 +236,24 @@ const CMSImage: FC<CMSImageProps> = (props) => {
   };
 
   return (
-    <OwaImage
+    <OakImage
       {...rest}
       {...styleDimensions}
       {...nextImageDimensions}
       alt={finalAltText}
-      aria-hidden={isPresentational ? true : undefined}
       src={finalUrl}
       loader={loader}
+      $maxWidth={"100%"}
+      $maxHeight={"100%"}
+      imageProps={{
+        "aria-hidden": isPresentational ? true : undefined,
+        style: {
+          // height: "100%",
+          objectPosition: rest.$objectPosition,
+        },
+        // CMS images are already optimised
+        unoptimized: true,
+      }}
     />
   );
 };

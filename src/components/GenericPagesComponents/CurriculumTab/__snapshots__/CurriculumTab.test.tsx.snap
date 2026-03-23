@@ -248,14 +248,28 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c64 {
+.c63 {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  border: 0.188rem solid;
+  border-color: #ffffff;
+  border-style: solid;
+  display: block;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
+.c65 {
   max-width: 60rem;
   padding-top: 1.5rem;
   display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c65 {
+.c66 {
   position: -webkit-sticky;
   position: sticky;
   bottom: 0rem;
@@ -263,7 +277,7 @@ exports[`CurriculumTab renders 1`] = `
   z-index: 299;
 }
 
-.c66 {
+.c67 {
   color: #222222;
   background: #f2f2f2;
   border-top: 0.063rem solid;
@@ -271,13 +285,13 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c67 {
+.c68 {
   margin-left: auto;
   margin-right: auto;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c68 {
+.c69 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   margin-left: 1rem;
@@ -285,7 +299,7 @@ exports[`CurriculumTab renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c70 {
+.c71 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
   font-size: 0.875rem;
@@ -296,7 +310,7 @@ exports[`CurriculumTab renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c73 {
+.c74 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -490,7 +504,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 0.5rem;
 }
 
-.c69 {
+.c70 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -505,7 +519,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 1.5rem;
 }
 
-.c72 {
+.c73 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -527,7 +541,7 @@ exports[`CurriculumTab renders 1`] = `
   gap: 0.75rem;
 }
 
-.c74 {
+.c75 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -567,7 +581,7 @@ exports[`CurriculumTab renders 1`] = `
   text-align: left;
 }
 
-.c71 {
+.c72 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
@@ -606,7 +620,7 @@ exports[`CurriculumTab renders 1`] = `
   cursor: default;
 }
 
-.c75 {
+.c76 {
   background: none;
   color: inherit;
   border: none;
@@ -629,7 +643,7 @@ exports[`CurriculumTab renders 1`] = `
   border-radius: 0.25rem;
 }
 
-.c75:disabled {
+.c76:disabled {
   pointer-events: none;
   cursor: default;
 }
@@ -648,6 +662,16 @@ exports[`CurriculumTab renders 1`] = `
   -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
   object-fit: contain;
+}
+
+.c64 {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHBhdGggZmlsbD0iIzIyMiIgZD0iTTI4Ljc3OSAxOS4xNzZhMjcuMTkxIDI3LjE5MSAwIDAgMC0zLjggMS42IDE2LjcgMTYuNyAwIDAgMC03LjEgOC40YzAgLjEtLjEuMi0uMS4zLS43IDIuNC0uNiAyIDEuMyAyLjMgMS45LjMgMSAuNSAxIDEuMy0uMSA4LjggNC4xIDE1LjEgMTEuNCAxOS42YTEuNSAxLjUgMCAwIDAgMS43LjJjNS43LTIuNiA5LjMtNyAxMC4zLTEzLjJhMSAxIDAgMCAxIDEtMWwzLS4yYy44IDAgMS4zLjIgMS4yIDEuMmExNy45IDE3LjkgMCAwIDEtMy4yIDkuMiAyMy43IDIzLjcgMCAwIDEtMTAuOSA5LjEgNS40MDEgNS40MDEgMCAwIDEtNC41LS4yIDI2LjI5OCAyNi4yOTggMCAwIDEtOC41LTYuNiAyNS45IDI1LjkgMCAwIDEtNi40LTE0LjRjMC0uNi0uMi0uNy0uOC0uOC0yLjUtLjQtMi41LS4xLTIuMy0yLjlhMTkuMyAxOS4zIDAgMCAxIDEwLjgtMTYuNiAzOC45OTkgMzguOTk5IDAgMCAxIDUuNy0yLjEgMi4xIDIuMSAwIDAgMCAuOS0xLjMgMTQuMSAxNC4xIDAgMCAxIDMuNS02LjNsLjMtLjNjMS45LTIgMi42LTIgNC4zLjJsLjQuNWMxLjEgMS4xIDEgMS41LS4xIDIuNmExMS45IDExLjkgMCAwIDAtMy4yIDQuNCAxNi45IDE2LjkgMCAwIDEgNy41IDIuM2M1LjcgMy41IDkuMiA4LjMgOS45IDE1IC4wMTYuOTAxLS4wMTcgMS44MDItLjEgMi43IDAgLjgtLjYgMS0xLjIgMS4yYTE2LjEgMTYuMSAwIDAgMS0xMS0uNyAxNy45MDEgMTcuOTAxIDAgMCAxLTEwLjktMTMuNiA5Ljc5NiA5Ljc5NiAwIDAgMS0uMS0xLjlabTE4LjEgMTIuMmMuNC01LjUtNi45LTEyLjYtMTMtMTIuMS41IDYuNSA3LjYgMTIuOCAxMyAxMi4xWiIgb3BhY2l0eT0iLjEiLz48L3N2Zz4=);
+  background-color: #e7f6f5;
+  background-size: 4rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: auto;
 }
 
 .c56 {
@@ -688,13 +712,13 @@ exports[`CurriculumTab renders 1`] = `
   display: none;
 }
 
-.c76 {
+.c77 {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.c76:hover {
+.c77:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #222222;
@@ -702,27 +726,27 @@ exports[`CurriculumTab renders 1`] = `
   border-color: #222222;
 }
 
-.c76:hover [data-state="selected"] {
+.c77:hover [data-state="selected"] {
   display: none;
 }
 
-.c76:active {
+.c77:active {
   background: #ffffff;
   border-color: #222222;
   color: #222222;
 }
 
-.c76:active [data-state="selected"] {
+.c77:active [data-state="selected"] {
   display: none;
 }
 
-.c76:disabled {
+.c77:disabled {
   background: #e4e4e4;
   border-color: #808080;
   color: #808080;
 }
 
-.c76:disabled [data-state="selected"] {
+.c77:disabled [data-state="selected"] {
   display: none;
 }
 
@@ -889,33 +913,6 @@ exports[`CurriculumTab renders 1`] = `
 
 .c37:has(a:active,button:active) {
   box-shadow: none;
-}
-
-.c63 {
-  object-fit: contain;
-  width: 100%;
-  height: auto;
-  border: 0.188rem solid;
-  border-color: #222222;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-}
-
-.c63::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c63::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c63::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
 }
 
 .c44 {
@@ -1100,61 +1097,77 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c64 {
+  .c63 {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+}
+
+@media (min-width:1280px) {
+  .c63 {
+    -webkit-transform: rotate(-2deg);
+    -ms-transform: rotate(-2deg);
+    transform: rotate(-2deg);
+  }
+}
+
+@media (min-width:750px) {
+  .c65 {
     display: block;
   }
 }
 
 @media (min-width:1280px) {
-  .c64 {
+  .c65 {
     display: none;
   }
 }
 
 @media (min-width:750px) {
-  .c68 {
+  .c69 {
     margin-left: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c68 {
+  .c69 {
     margin-left: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c68 {
+  .c69 {
     margin-right: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c68 {
+  .c69 {
     margin-right: 3.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c70 {
+  .c71 {
     font-weight: 300;
   }
 }
 
 @media (min-width:750px) {
-  .c70 {
+  .c71 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c70 {
+  .c71 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c70 {
+  .c71 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -1204,7 +1217,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c69 {
+  .c70 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -1212,7 +1225,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c69 {
+  .c70 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -1220,7 +1233,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c69 {
+  .c70 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -1229,7 +1242,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c69 {
+  .c70 {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -1238,19 +1251,19 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c69 {
+  .c70 {
     gap: 1.5rem;
   }
 }
 
 @media (min-width:1280px) {
-  .c69 {
+  .c70 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c73 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -1258,7 +1271,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c73 {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -1266,7 +1279,7 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:1280px) {
-  .c72 {
+  .c73 {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -1274,31 +1287,31 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
-  .c72 {
+  .c73 {
     gap: 2rem;
   }
 }
 
 @media (min-width:750px) {
-  .c71 {
+  .c72 {
     font-weight: 700;
   }
 }
 
 @media (min-width:750px) {
-  .c71 {
+  .c72 {
     font-size: 1rem;
   }
 }
 
 @media (min-width:750px) {
-  .c71 {
+  .c72 {
     line-height: 1.5rem;
   }
 }
 
 @media (min-width:750px) {
-  .c71 {
+  .c72 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
     -ms-letter-spacing: -0.005rem;
@@ -1366,22 +1379,6 @@ exports[`CurriculumTab renders 1`] = `
     color: #222222;
     -webkit-text-decoration: underline;
     text-decoration: underline;
-  }
-}
-
-@media (min-width:750px) {
-  .c63 {
-    -webkit-transform: none;
-    -ms-transform: none;
-    transform: none;
-  }
-}
-
-@media (min-width:1280px) {
-  .c63 {
-    -webkit-transform: rotate(-2deg);
-    -ms-transform: rotate(-2deg);
-    transform: rotate(-2deg);
   }
 }
 
@@ -1674,22 +1671,26 @@ exports[`CurriculumTab renders 1`] = `
               <div
                 class="c8 c62"
               >
-                <img
-                  alt=""
+                <span
                   class="c63"
-                  data-nimg="1"
-                  decoding="async"
-                  height="628"
-                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=1080&h=647&fm=webp&q=80&fit=clip&auto=format"
-                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=640&h=383&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=1080&h=647&fm=webp&q=80&fit=clip&auto=format 2x"
-                  style="color: transparent;"
-                  width="520"
-                />
+                >
+                  <img
+                    alt=""
+                    class="c64"
+                    data-nimg="1"
+                    decoding="async"
+                    height="628"
+                    loading="lazy"
+                    src="https://next_public_sanity_asset_cdn_host/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg"
+                    style="color: transparent;"
+                    width="520"
+                  />
+                </span>
               </div>
             </div>
           </div>
           <div
-            class="c64"
+            class="c65"
           >
             <nav
               aria-labelledby="choose-curriculum-label"
@@ -1862,23 +1863,23 @@ exports[`CurriculumTab renders 1`] = `
       </div>
     </div>
     <div
-      class="c65"
+      class="c66"
     >
       <div
-        class="c66"
+        class="c67"
         data-testid="cookie-banner"
       >
         <div
-          class="c67"
+          class="c68"
         >
           <div
-            class="c68 c69"
+            class="c69 c70"
           >
             <div
-              class="c70"
+              class="c71"
             >
               <strong
-                class="c71"
+                class="c72"
               >
                 This site uses cookies to store information on your computer.
               </strong>
@@ -1886,10 +1887,10 @@ exports[`CurriculumTab renders 1`] = `
               Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div
-              class="c8 c72"
+              class="c8 c73"
             >
               <div
-                class="c73 c74"
+                class="c74 c75"
               >
                 <button
                   class="c21 "
@@ -1913,7 +1914,7 @@ exports[`CurriculumTab renders 1`] = `
                   class="c54 yellow-shadow"
                 />
                 <button
-                  class="c75 c76 internal-button"
+                  class="c76 c77 internal-button"
                 >
                   <div
                     class="c8 c57"

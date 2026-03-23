@@ -41,7 +41,7 @@ export const CampaignPageHeader = ({
           $display={["block", "block", "none"]}
           image={campaignHeader.image}
           format={null}
-          $width="none"
+          $width="spacing-0"
           $objectFit="contain"
         />
         <OakHeading tag="h1" $font={["heading-4", "heading-2"]}>
@@ -58,7 +58,6 @@ export const CampaignPageHeader = ({
         $display={["none", "none", "block"]}
         image={campaignHeader.image}
         format={null}
-        $width="none"
         $objectFit="contain"
       />
     </OakMaxWidth>
