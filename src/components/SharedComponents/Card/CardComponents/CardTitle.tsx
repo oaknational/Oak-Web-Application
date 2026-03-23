@@ -5,13 +5,12 @@ import {
   OakIcon,
   OakAllSpacingToken,
   OakIconName,
+  OakHeadingTag,
+  OakHeading,
+  OakFontToken,
 } from "@oaknational/oak-components";
 
 import { ResponsiveValues } from "@/styles/utils/responsive";
-import { FontVariant } from "@/styles/utils/typography";
-import Heading, {
-  HeadingTag,
-} from "@/components/SharedComponents/Typography/Heading.deprecated";
 
 export const getIconFlexPosition = (
   $iconPosition: IconPosition | null,
@@ -32,11 +31,11 @@ type IconPosition = "leading" | "trailing" | "aboveTitle";
 
 export type CardTitleProps = {
   children?: React.ReactNode;
-  tag: HeadingTag;
+  tag: OakHeadingTag;
   icon?: OakIconName;
   $iconPosition?: ResponsiveValues<IconPosition>;
   iconSize?: OakAllSpacingToken;
-  $font?: ResponsiveValues<FontVariant>;
+  $font?: OakFontToken;
 };
 
 const CardTitle: FC<CardTitleProps> = ({
@@ -100,9 +99,9 @@ const CardTitle: FC<CardTitleProps> = ({
           $pa={"spacing-0"}
         />
       )}
-      <Heading $font={$font} tag={tag}>
+      <OakHeading $font={$font} tag={tag}>
         {children}
-      </Heading>
+      </OakHeading>
     </OakFlex>
   );
 };
