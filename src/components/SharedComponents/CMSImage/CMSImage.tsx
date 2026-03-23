@@ -123,11 +123,12 @@ const CMSImage: FC<CMSImageProps> = (props) => {
     noCrop,
     cropRect,
     format = "webp",
+    fill,
     ...rest
   } = props;
 
   const id = getSanityRefId(image);
-  const originalDimensions = getImageDimensions(id, { fill: rest.fill });
+  const originalDimensions = getImageDimensions(id, { fill });
 
   const defaultLoader = useCallback(
     ({ width: srcWidth }: { width: number }) => {
@@ -234,20 +235,18 @@ const CMSImage: FC<CMSImageProps> = (props) => {
     height: props.height || originalDimensions.height,
   };
 
-  console.log({ rest, styleDimensions, nextImageDimensions });
-
   return (
     <OakImage
       {...rest}
       {...styleDimensions}
       {...nextImageDimensions}
       alt={finalAltText}
-      aria-hidden={isPresentational ? true : undefined}
       src={finalUrl}
       loader={loader}
       $maxWidth={"100%"}
       $maxHeight={"100%"}
       imageProps={{
+        "aria-hidden": isPresentational ? true : undefined,
         style: { height: "100%", objectPosition: rest.$objectPosition },
       }}
     />
