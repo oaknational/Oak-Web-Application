@@ -7,7 +7,6 @@ import NewsletterForm, {
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type WebinarRegistrationProps = {
   headingTag?: OakHeadingTag;
@@ -41,19 +40,19 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
   const newsletterForm = useNewsletterForm({ onSubmit });
 
   return (
-    <Flex
+    <OakFlex
       $flexDirection={["column", "row"]}
       $position="relative"
-      $background="white"
+      $background="bg-primary"
       $width="100%"
-      $pv={44}
-      $ph={20}
+      $pv={"spacing-40"}
+      $ph={"spacing-20"}
     >
       <BoxBorders />
       <OakFlex $flexGrow={1}>
-        <Flex
-          $maxWidth={[360, 300]}
-          $pr={20}
+        <OakFlex
+          $maxWidth={"spacing-360"}
+          $pr={"spacing-20"}
           $flexDirection="column"
           $ma="auto"
         >
@@ -78,7 +77,7 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
             </OwaLink>
             .
           </OakP>
-        </Flex>
+        </OakFlex>
       </OakFlex>
       <OakFlex
         $width={["100%", "spacing-360"]}
@@ -91,7 +90,7 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
           {...newsletterForm}
         />
       </OakFlex>
-    </Flex>
+    </OakFlex>
   );
 };
 
