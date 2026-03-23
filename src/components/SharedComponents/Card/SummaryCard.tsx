@@ -3,12 +3,12 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import Card from "./Card";
 
 import { PortableTextJSON, Image } from "@/common-lib/cms-types";
-import { OakColorName } from "@/styles/theme/types";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import Cover from "@/components/SharedComponents/Cover";
@@ -21,7 +21,7 @@ export type SummaryCardProps = {
   heading: string;
   summaryPortableText: PortableTextJSON | string;
   summaryCardImage?: Image | null;
-  background?: OakColorName;
+  background?: OakUiRoleToken;
   imageContainerProps?: FlexProps;
 };
 
@@ -38,7 +38,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
   heading,
   summaryPortableText,
   summaryCardImage,
-  background = "lemon50",
+  background = "bg-decorative5-subdued",
   imageContainerProps,
   children,
 }) => {

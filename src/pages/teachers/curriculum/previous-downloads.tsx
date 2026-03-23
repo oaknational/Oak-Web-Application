@@ -168,7 +168,7 @@ const CurriculumPreviousDownloadsPage = ({
               $mv={"auto"}
               $position={"relative"}
             >
-              <BrushBorders color="mint30" />
+              <BrushBorders color="bg-decorative1-very-subdued" />
               <OakIcon
                 iconName={"download"}
                 $width={"spacing-120"}

@@ -34,9 +34,9 @@ const ImageContainer: FC<ImageContainerProps> = (props) => {
         noCrop
         $objectFit="contain"
         priority
-        $ba={3}
+        $ba={"border-solid-l"}
         $borderStyle={"solid"}
-        $borderColor={"black"}
+        $borderColor={"bg-inverted"}
         width={width}
         height={height}
       />

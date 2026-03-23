@@ -136,10 +136,10 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
                 noCrop
                 $objectFit="contain"
                 priority
-                $ba={3}
+                $ba={"border-solid-l"}
                 width={520}
                 $borderStyle={"solid"}
-                $borderColor={"black"}
+                $borderColor={"bg-inverted"}
               />
             </OakFlex>
           </OakFlex>

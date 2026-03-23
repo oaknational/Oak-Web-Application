@@ -197,7 +197,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             aria-describedby={error ? errorId : undefined}
             aria-labelledby={labelId}
           />
-          {icon && <InputIcon $pa={8} size={40} name={icon} />}
+          {icon && <InputIcon $pa={"spacing-8"} size={40} name={icon} />}
           <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
         </Flex>
       </InputFieldWrap>

@@ -95,7 +95,7 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData, topNav }) => {
           $mt={[72, 80]}
           $font={["body-2", "body-1"]}
         >
-          <BrushBorders hideOnMobileH color={"pink50"} />
+          <BrushBorders hideOnMobileH color={"bg-decorative4-subdued"} />
           <OakFlex
             $alignItems={["flex-start", "center"]}
             $flexDirection={["column", "row"]}

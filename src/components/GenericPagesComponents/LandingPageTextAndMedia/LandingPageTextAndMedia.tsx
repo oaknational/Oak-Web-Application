@@ -47,7 +47,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
       $pb={24}
       $ph={[16, 56]}
     >
-      <BrushBorders hideOnMobileH color={"lemon50"} />
+      <BrushBorders hideOnMobileH color={"bg-decorative5-subdued"} />
       <Flex
         $minHeight={200}
         $position="relative"
@@ -56,7 +56,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
       >
         {props.mediaType == "image" && (
           <CMSImage
-            $pr={[0, 24, 72]}
+            $pr={["spacing-0", "spacing-24", "spacing-72"]}
             alt={props.image.altText || ""}
             $objectFit="contain"
             $objectPosition={"center"}
