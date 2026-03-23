@@ -5,6 +5,7 @@ import {
   OakUL,
   OakHandDrawnHR,
   OakBox,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import UpcomingWebinarListItem from "../PostListUpcomingWebinarListItem";
@@ -14,7 +15,6 @@ import PostListItem, {
   PostListItemProps,
 } from "@/components/SharedComponents/PostListItem";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type PostListProps = {
   upcomingItem?: PostListItemProps;
@@ -63,11 +63,7 @@ const PostList: FC<PostListProps> = (props) => {
     currentPageItems[0]?.contentType === "blog-post" ? "Blogs" : "Webinars";
 
   return (
-    <Flex
-      $flexDirection="column"
-      $alignItems="flex-start"
-      $minHeight={[0, 840]}
-    >
+    <OakFlex $flexDirection="column" $alignItems="flex-start">
       {withContainingHrs && (
         <OakHandDrawnHR
           $height={"spacing-4"}
@@ -132,7 +128,7 @@ const PostList: FC<PostListProps> = (props) => {
           />
         </OakBox>
       )}
-    </Flex>
+    </OakFlex>
   );
 };
 
