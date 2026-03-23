@@ -83,7 +83,7 @@ describe("CMSImage", () => {
 
     const img = getByRole("presentation");
     expect(img.getAttribute("src")).toBe(
-      "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/abcdef-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format",
+      "https://next_public_sanity_asset_cdn_host/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/abcdef-300x300.png",
     );
   });
 });

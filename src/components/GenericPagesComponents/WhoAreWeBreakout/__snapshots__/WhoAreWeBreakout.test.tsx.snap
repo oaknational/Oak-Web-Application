@@ -9,18 +9,21 @@ exports[`WhoAreWeBreakout renders correctly 1`] = `
       <div
         class="sc-aXZVg sc-gEvEer kWBqWY fXHtRp"
       >
-        <img
-          alt="test"
-          class="sc-6170517-0 eeeRRY"
-          data-nimg="1"
-          decoding="async"
-          height="300"
-          loading="lazy"
-          src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
-          srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=384&h=384&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format 2x"
-          style="color: transparent;"
-          width="300"
-        />
+        <span
+          class="sc-aXZVg cASpnj"
+        >
+          <img
+            alt="test"
+            class="sc-gsFSXq csFNAF"
+            data-nimg="1"
+            decoding="async"
+            height="300"
+            loading="lazy"
+            src="https://next_public_sanity_asset_cdn_host/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/1-300x300.png"
+            style="color: transparent; height: 100%;"
+            width="300"
+          />
+        </span>
       </div>
       <div
         class="sc-aXZVg sc-gEvEer iUDQXX jwSfkN"

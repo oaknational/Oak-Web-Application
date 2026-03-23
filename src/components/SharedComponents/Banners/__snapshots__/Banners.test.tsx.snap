@@ -35,7 +35,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           </p>
         </div>
         <a
-          class="sc-f63c4ba9-0 jtFtcT"
+          class="sc-f63c4ba9-0 bthZKf"
           href="/campaigns/mythbusting"
           role="link"
           title="Learn why"
@@ -93,7 +93,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           </div>
           <svg
             aria-hidden="true"
-            class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
+            class="sc-86d1d46f-0 jOBmUC sc-2b5261a6-0 fOvTTt"
             height="100%"
             name="underline-1"
             width="100%"
@@ -105,7 +105,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           </svg>
           <svg
             aria-hidden="true"
-            class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
+            class="sc-86d1d46f-0 jOBmUC sc-2b5261a6-2 jcfzpP"
             height="100%"
             name="underline-1"
             width="100%"
