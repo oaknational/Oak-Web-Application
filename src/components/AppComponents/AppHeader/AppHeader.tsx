@@ -1,5 +1,10 @@
 import { FC, useRef } from "react";
-import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakLink,
+  OakSecondaryLink,
+} from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
@@ -7,7 +12,6 @@ import TeacherAccountButton from "@/components/TeacherComponents/TeacherAccountB
 import { resolveOakHref } from "@/common-lib/urls";
 import Logo from "@/components/AppComponents/Logo";
 import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import { AppHeaderMenu } from "@/components/AppComponents/AppHeaderMenu";
 import { useMenuContext } from "@/context/Menu";
 import AppHeaderBurgerMenuSections from "@/components/AppComponents/AppHeaderBurgerMenuSections";
@@ -93,10 +97,8 @@ const AppHeader: FC<HeaderProps> = () => {
               })}
               buttonVariant="secondary"
             />
-            <OwaLink
-              page={"teachers-home-page"}
-              $focusStyles={["underline"]}
-              $isSelected={true}
+            <OakSecondaryLink
+              href={resolveOakHref({ page: "teachers-home-page" })}
               aria-current={selectedArea !== siteAreas.pupils}
             >
               Teachers
@@ -107,16 +109,14 @@ const AppHeader: FC<HeaderProps> = () => {
                   $height={"spacing-8"}
                 />
               )}
-            </OwaLink>
+            </OakSecondaryLink>
             <OakFlex $alignItems="center" $gap="spacing-4">
-              <OwaLink
-                page="pupil-year-index"
-                $focusStyles={["underline"]}
-                htmlAnchorProps={{
-                  onClick: () =>
-                    track.classroomSelected({ navigatedFrom: "header" }),
-                  "aria-label": "Pupils browse years",
-                }}
+              <OakSecondaryLink
+                href={resolveOakHref({ page: "pupil-year-index" })}
+                onClick={() =>
+                  track.classroomSelected({ navigatedFrom: "header" })
+                }
+                aria-label="Pupils browse years"
                 aria-current={selectedArea == siteAreas.pupils}
               >
                 Pupils
@@ -127,7 +127,7 @@ const AppHeader: FC<HeaderProps> = () => {
                     $height={"spacing-8"}
                   />
                 )}
-              </OwaLink>
+              </OakSecondaryLink>
             </OakFlex>
             <IconButton
               aria-label="Menu"
