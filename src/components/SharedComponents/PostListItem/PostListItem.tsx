@@ -1,11 +1,13 @@
 import { FC, RefObject } from "react";
-import { useHover } from "react-aria";
 import {
   OakP,
   OakHeading,
   OakHeadingTag,
   OakFlex,
   OakBox,
+  OakLink,
+  OakSpan,
+  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
 import PostListItemImage from "./PostListItemImage";
@@ -13,42 +15,39 @@ import PostListItemImage from "./PostListItemImage";
 import { BlogWebinarCategory, Image } from "@/common-lib/cms-types";
 import useClickableCard from "@/hooks/useClickableCard";
 import LineClamp from "@/components/SharedComponents/LineClamp";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import { ResolveOakHrefProps } from "@/common-lib/urls";
+import { resolveOakHref } from "@/common-lib/urls";
 import formatDate from "@/utils/formatDate";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 
 type PostListItemContentType = "blog-post" | "webinar";
 
-const getItemLinkProps = (props: PostListItemProps): ResolveOakHrefProps => {
+const getItemLinkProps = (props: PostListItemProps): string => {
   switch (props.contentType) {
     case "blog-post":
-      return {
+      return resolveOakHref({
         page: "blog-single",
         blogSlug: props.slug,
-      };
+      });
     case "webinar":
-      return {
+      return resolveOakHref({
         page: "webinar-single",
         webinarSlug: props.slug,
-      };
+      });
   }
 };
-const getItemCategoryLinkProps = (
-  props: PostListItemProps,
-): ResolveOakHrefProps => {
+const getItemCategoryHref = (props: PostListItemProps): string => {
   switch (props.contentType) {
     case "blog-post":
-      return {
+      return resolveOakHref({
         page: "blog-index",
         categorySlug: props.category.slug,
-      };
+      });
     case "webinar":
-      return {
+      return resolveOakHref({
         page: "webinar-index",
         categorySlug: props.category.slug,
-      };
+      });
   }
 };
 
@@ -91,13 +90,7 @@ const PostListItem: FC<PostListItemProps> = (props) => {
     imageDisplay = ["block", "block", "block"];
   }
 
-  const {
-    containerProps,
-    primaryTargetProps,
-    isHovered: cardIsHovered,
-  } = useClickableCard<HTMLAnchorElement>(firstItemRef);
-  const { hoverProps: categoryHoverProps, isHovered: categoryIsHovered } =
-    useHover({});
+  const { containerProps } = useClickableCard<HTMLAnchorElement>(firstItemRef);
 
   const blogDate = formatDate(date);
 
@@ -138,29 +131,19 @@ const PostListItem: FC<PostListItemProps> = (props) => {
           $justifyContent="space-between"
           $flexDirection={["column", "row"]}
         >
-          <OwaLink
-            {...categoryHoverProps}
-            {...getItemCategoryLinkProps(props)}
-            $focusStyles={["underline"]}
-            $font="heading-7"
-            $color="navy"
-          >
-            {category.title}
-          </OwaLink>
+          <OakSpan $font="heading-7">
+            <OakLink href={getItemCategoryHref(props)}>
+              {category.title}
+            </OakLink>
+          </OakSpan>
           <OakP $font={"body-3"} $mt={["spacing-8", "spacing-0"]}>
             {blogDate}
           </OakP>
         </OakFlex>
         <OakHeading tag={titleTag} $font={"heading-5"} $mt="spacing-8">
-          <OwaLink
-            {...primaryTargetProps}
-            {...getItemLinkProps(props)}
-            htmlAnchorProps={{ title }}
-            $focusStyles={["underline"]}
-            $isHovered={cardIsHovered && !categoryIsHovered}
-          >
+          <OakSecondaryLink href={getItemLinkProps(props)} title={title}>
             {title}
-          </OwaLink>
+          </OakSecondaryLink>
         </OakHeading>
         <OakP
           $font={"body-3"}
