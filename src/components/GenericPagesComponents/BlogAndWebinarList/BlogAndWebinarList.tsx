@@ -54,12 +54,16 @@ const BlogAndWebinarList: FC<BlogAndWebinarListProps> = ({
           {title}
         </OakHeading>
         <OakFlex $flexDirection={"row"}>
-          <OakTypography $mr={"spacing-16"} $font={"heading-7"}>
+          <OakTypography
+            $mr={"spacing-16"}
+            $font={"heading-7"}
+            $textWrap={"nowrap"}
+          >
             <OakSecondaryLink href={resolveOakHref({ page: "webinar-index" })}>
               All webinars
             </OakSecondaryLink>
           </OakTypography>
-          <OakTypography $font={"heading-7"}>
+          <OakTypography $font={"heading-7"} $textWrap={"nowrap"}>
             <OakSecondaryLink href={resolveOakHref({ page: "blog-index" })}>
               All blogs
             </OakSecondaryLink>

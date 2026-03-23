@@ -131,7 +131,7 @@ const PostListItem: FC<PostListItemProps> = (props) => {
           $justifyContent="space-between"
           $flexDirection={["column", "row"]}
         >
-          <OakSpan $font="heading-7">
+          <OakSpan $font="heading-7" $textWrap={"nowrap"}>
             <OakLink href={getItemCategoryHref(props)}>
               {category.title}
             </OakLink>

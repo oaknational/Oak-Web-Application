@@ -30,7 +30,12 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
         $justifyContent="space-between"
         $flexDirection={["column", "row"]}
       >
-        <OakHeading tag={"h2"} $color="text-link-active" $font={["heading-7"]}>
+        <OakHeading
+          tag={"h2"}
+          $color="text-link-active"
+          $font={["heading-7"]}
+          $textWrap={"nowrap"}
+        >
           <OakLink
             href={resolveOakHref({ page, categorySlug: post.category.slug })}
           >
