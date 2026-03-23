@@ -2384,6 +2384,23 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   border: 0;
 }
 
+.c153 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.c161 {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  font-family: unset;
+}
+
 .c130 {
   position: relative;
   padding: 1.5rem;
@@ -2490,38 +2507,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 .c146::-webkit-scrollbar-thumb {
   border-radius: 15px;
   background-color: #999999;
-}
-
-.c153 {
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.c153::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c153::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c153::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
-.c161 {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  text-align: left;
-  font-family: unset;
 }
 
 .c131 {

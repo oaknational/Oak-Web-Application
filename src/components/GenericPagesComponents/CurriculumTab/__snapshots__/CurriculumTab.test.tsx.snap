@@ -897,25 +897,11 @@ exports[`CurriculumTab renders 1`] = `
   height: auto;
   border: 0.188rem solid;
   border-color: #222222;
+  border-style: solid;
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
-}
-
-.c63::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c63::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c63::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
+  font-family: --var(google-font),Lexend,sans-serif;
 }
 
 .c44 {

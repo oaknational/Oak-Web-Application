@@ -3,22 +3,22 @@
 exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
 <div>
   <div
-    class="sc-aXZVg sc-gEvEer bIQGWy bktafW"
+    class="sc-aXZVg sc-gEvEer buCQhf bktafW"
   >
     <div
-      class="sc-aXZVg jsYSMF"
+      class="sc-aXZVg gwENAg"
     >
       <div
-        class="sc-aXZVg sc-gEvEer hdseiA fjNQtm"
+        class="sc-aXZVg sc-gEvEer hkJkIR fjNQtm"
       >
         <div
-          class="sc-aXZVg sc-gEvEer hdseiA fUxOFh"
+          class="sc-aXZVg sc-gEvEer hkJkIR fUxOFh"
         >
           <div
-            class="sc-aXZVg sc-gEvEer Dxwds kjWHLN"
+            class="sc-aXZVg sc-gEvEer deqSdR kjWHLN"
           >
             <span
-              class="sc-aXZVg ccpVbZ"
+              class="sc-aXZVg hefbZs"
               style="height: 52px; width: 114px;"
             >
               <img
@@ -33,10 +33,10 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             </span>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
+            class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
           >
             <div
-              class="sc-aXZVg sc-gEvEer hdseiA gMazQC"
+              class="sc-aXZVg sc-gEvEer hkJkIR gMazQC"
             >
               <h1
                 class="sc-eldPxv hBOEef"
@@ -45,34 +45,34 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 Your Transfiguration timetable
               </h1>
               <div
-                class="sc-aXZVg hdseiA"
+                class="sc-aXZVg hkJkIR"
                 data-testid="timetable-header-additional"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer dmPZfX dXoawi"
+                  class="sc-aXZVg sc-gEvEer czRvOC dXoawi"
                 >
                   <div
-                    class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+                    class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
                   >
                     <div
-                      class="sc-aXZVg kMGxHZ grey-shadow"
+                      class="sc-aXZVg hpZeuU grey-shadow"
                     />
                     <div
-                      class="sc-aXZVg kMGxHZ yellow-shadow"
+                      class="sc-aXZVg hpZeuU yellow-shadow"
                     />
                     <button
-                      class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
+                      class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+                        class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
                       >
                         <span
-                          class="sc-eqUAAy bkXwYG"
+                          class="sc-eqUAAy dorClf"
                         >
                           Edit details
                         </span>
                         <span
-                          class="sc-aXZVg iUEruK"
+                          class="sc-aXZVg bQyjPj"
                         >
                           <img
                             alt=""
@@ -88,27 +88,27 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                     </button>
                   </div>
                   <div
-                    class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+                    class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
                   >
                     <div
-                      class="sc-aXZVg kMGxHZ grey-shadow"
+                      class="sc-aXZVg hpZeuU grey-shadow"
                     />
                     <div
-                      class="sc-aXZVg kMGxHZ yellow-shadow"
+                      class="sc-aXZVg hpZeuU yellow-shadow"
                     />
                     <button
-                      class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
+                      class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+                        class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
                       >
                         <span
-                          class="sc-eqUAAy bkXwYG"
+                          class="sc-eqUAAy dorClf"
                         >
                           Copy link
                         </span>
                         <span
-                          class="sc-aXZVg iUEruK"
+                          class="sc-aXZVg bQyjPj"
                         >
                           <img
                             alt=""
@@ -129,11 +129,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer fbiuPV dnBYlX"
+          class="sc-aXZVg sc-gEvEer eubaRU dnBYlX"
         >
           <img
             alt=""
-            class="sc-6170517-0 gnvkSN"
+            class="sc-78715429-0 DBOoG"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -147,37 +147,37 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
     </div>
   </div>
   <div
-    class="sc-aXZVg sc-gEvEer sc-fvtFIe iiIiRe fUxOFh"
+    class="sc-aXZVg sc-gEvEer sc-fvtFIe dcJZBD fUxOFh"
   >
     <div
-      class="sc-aXZVg sc-gEvEer hdseiA fjNQtm"
+      class="sc-aXZVg sc-gEvEer hkJkIR fjNQtm"
     >
       <div
-        class="sc-aXZVg sc-gEvEer fALgff bktafW"
+        class="sc-aXZVg sc-gEvEer byKjeG bktafW"
       >
         <div
-          class="sc-aXZVg fqIpsl"
+          class="sc-aXZVg cLbzUI"
         >
           <div
-            class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+            class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
           >
             <div
-              class="sc-aXZVg kMGxHZ grey-shadow"
+              class="sc-aXZVg hpZeuU grey-shadow"
             />
             <div
-              class="sc-aXZVg kMGxHZ yellow-shadow"
+              class="sc-aXZVg hpZeuU yellow-shadow"
             />
             <a
-              class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
+              class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
               data-testid="skip-link"
               href="#content"
               style="position: absolute; left: -10000px;"
             >
               <div
-                class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+                class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
               >
                 <span
-                  class="sc-eqUAAy bkXwYG"
+                  class="sc-eqUAAy dorClf"
                 >
                   Skip to units
                 </span>
@@ -190,10 +190,10 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             Filter and highlight
           </h3>
           <div
-            class="sc-aXZVg hdseiA"
+            class="sc-aXZVg hkJkIR"
           >
             <fieldset
-              class="sc-aXZVg sc-gEvEer hUsuNC jLsiAX"
+              class="sc-aXZVg sc-gEvEer cdxmqb jLsiAX"
               data-testid="year-group-filter-desktop"
             >
               <legend
@@ -202,13 +202,13 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 Year group
               </legend>
               <div
-                class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
+                class="sc-aXZVg sc-gEvEer sc-fxwrCY bqwASE doeAUE geVANU"
               >
                 <span
                   class="sc-kAyceB beiyRr"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer gzTYAh kgixWU"
+                    class="sc-aXZVg sc-gEvEer wbtnY kgixWU"
                   >
                     <input
                       checked=""
@@ -220,7 +220,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       value="0"
                     />
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-uVWWZ kLjZsS kbmCyy iUaQHs"
+                      class="sc-aXZVg sc-gEvEer sc-uVWWZ iKjdzP kbmCyy iUaQHs"
                     />
                   </div>
                 </span>
@@ -233,13 +233,13 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 </label>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
+                class="sc-aXZVg sc-gEvEer sc-fxwrCY bqwASE doeAUE geVANU"
               >
                 <span
                   class="sc-kAyceB beiyRr"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer gzTYAh kgixWU"
+                    class="sc-aXZVg sc-gEvEer wbtnY kgixWU"
                   >
                     <input
                       class="sc-fjvvzt fqgMCl"
@@ -250,7 +250,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       value="1"
                     />
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-uVWWZ kLjZsS kbmCyy iUaQHs"
+                      class="sc-aXZVg sc-gEvEer sc-uVWWZ iKjdzP kbmCyy iUaQHs"
                     />
                   </div>
                 </span>
@@ -265,25 +265,25 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             </fieldset>
           </div>
           <div
-            class="sc-aXZVg csyrAt"
+            class="sc-aXZVg iAUmKY"
           >
             <div
-              class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+              class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
             >
               <div
-                class="sc-aXZVg kMGxHZ grey-shadow"
+                class="sc-aXZVg hpZeuU grey-shadow"
               />
               <div
-                class="sc-aXZVg kMGxHZ yellow-shadow"
+                class="sc-aXZVg hpZeuU yellow-shadow"
               />
               <button
-                class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
+                class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+                  class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
                 >
                   <span
-                    class="sc-eqUAAy bkXwYG"
+                    class="sc-eqUAAy dorClf"
                   >
                     Add next year
                   </span>
@@ -292,7 +292,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-fMMURN cBeINY iDBIXi"
+            class="sc-aXZVg sc-gEvEer sc-fMMURN cKYNrZ iDBIXi"
             focusable="false"
           >
             <svg
@@ -314,10 +314,10 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             </svg>
           </div>
           <div
-            class="sc-aXZVg hdseiA"
+            class="sc-aXZVg hkJkIR"
           >
             <fieldset
-              class="sc-aXZVg sc-6b497e8d-0 hdseiA giVBfy"
+              class="sc-aXZVg sc-6b497e8d-0 hkJkIR giVBfy"
               data-testid="threads-filter-desktop"
             >
               <legend
@@ -326,7 +326,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 Highlight a thread
               </legend>
               <div
-                class="sc-aXZVg gYkLtg"
+                class="sc-aXZVg cvkNcd"
               >
                 <label
                   style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
@@ -369,10 +369,10 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
         </pre>
       </div>
       <div
-        class="sc-aXZVg sc-gEvEer hdseiA fXHtRp"
+        class="sc-aXZVg sc-gEvEer hkJkIR fXHtRp"
       >
         <div
-          class="sc-aXZVg hdseiA"
+          class="sc-aXZVg hkJkIR"
         >
           <ul>
             <li>
@@ -406,44 +406,44 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
     style="z-index: 320;"
   >
     <div
-      class="sc-aXZVg sc-fd1b6bd3-0 frwMNv jsTHOJ"
+      class="sc-aXZVg sc-fd1b6bd3-0 fEQzbe jsTHOJ"
     />
     <div
-      class="sc-aXZVg sc-gEvEer sc-702fbad0-0 ccFHYi iDBIXi igbdss"
+      class="sc-aXZVg sc-gEvEer sc-702fbad0-0 fCwEr iDBIXi igbdss"
       data-testid="sidebar-modal"
       direction="right"
     >
       <div
-        class="sc-aXZVg sc-gEvEer eAZuMw fUxOFh"
+        class="sc-aXZVg sc-gEvEer izqeWh fUxOFh"
       >
         <div
-          class="sc-aXZVg sc-gEvEer fRNXtL jMLdOa"
+          class="sc-aXZVg sc-gEvEer khewFS jMLdOa"
         >
           <div
-            class="sc-aXZVg eXMwzZ"
+            class="sc-aXZVg isEOIM"
           >
             <div
-              class="sc-aXZVg sc-5f217d9c-0 hdseiA jxsPIm"
+              class="sc-aXZVg sc-5f217d9c-0 hkJkIR fvcgKw"
             >
               <div
-                class="sc-aXZVg sc-gEvEer sc-jlZhew cPOqJf iDBIXi klOkwi"
+                class="sc-aXZVg sc-gEvEer sc-jlZhew lqCcG iDBIXi klOkwi"
               >
                 <button
                   aria-label="Close"
-                  class="sc-dcJsrY sc-dAlyuH foenqX emFNcG"
+                  class="sc-dcJsrY sc-dAlyuH foenqX eGtIkY"
                   data-testid="close-modal-button"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer hdseiA btEZOP"
+                    class="sc-aXZVg sc-gEvEer hkJkIR btEZOP"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer fbXuuz jMLdOa icon-container"
+                      class="sc-aXZVg sc-gEvEer kptAky jMLdOa icon-container"
                     >
                       <div
-                        class="sc-aXZVg jUsDlH shadow"
+                        class="sc-aXZVg jwYyGK shadow"
                       />
                       <span
-                        class="sc-aXZVg iUEruK"
+                        class="sc-aXZVg bQyjPj"
                         data-icon-for="button"
                       >
                         <img
@@ -458,7 +458,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                       </span>
                     </div>
                     <span
-                      class="sc-eqUAAy WYobB"
+                      class="sc-eqUAAy iuxBUE"
                     />
                   </div>
                 </button>
@@ -467,55 +467,55 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer ieXcUy eUIBLO"
+          class="sc-aXZVg sc-gEvEer eXECUb eUIBLO"
           data-testid="modal-content"
         >
           <div
-            class="sc-aXZVg hdseiA"
+            class="sc-aXZVg hkJkIR"
           >
             <div
-              class="sc-aXZVg sc-gEvEer eAZuMw fUxOFh"
+              class="sc-aXZVg sc-gEvEer izqeWh fUxOFh"
             >
               <div
-                class="sc-aXZVg sc-gEvEer cRyCch eYvwPo"
+                class="sc-aXZVg sc-gEvEer jFoCjY eYvwPo"
               />
             </div>
           </div>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer eisgfD cSOHri"
+          class="sc-aXZVg sc-gEvEer fyhNre cSOHri"
           data-testid="modal-footer"
         >
           <div
-            class="sc-aXZVg sc-gEvEer jfwyBT xdNJA"
+            class="sc-aXZVg sc-gEvEer gZkuDC xdNJA"
           >
             <div
-              class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+              class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
             >
               <div
-                class="sc-aXZVg kMGxHZ grey-shadow"
+                class="sc-aXZVg hpZeuU grey-shadow"
               />
               <div
-                class="sc-aXZVg kMGxHZ yellow-shadow"
+                class="sc-aXZVg hpZeuU yellow-shadow"
               />
               <button
                 aria-disabled="true"
                 aria-label="Coming soon See lessons in unit"
-                class="sc-dcJsrY sc-jXbUNg xHEYB hQGRaM internal-button"
+                class="sc-dcJsrY sc-jXbUNg xHEYB dglRoS internal-button"
                 data-testid="unit-lessons-button"
                 disabled=""
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+                  class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
                 >
                   <span
-                    class="sc-eqUAAy bkXwYG"
+                    class="sc-eqUAAy dorClf"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer hdseiA fDXMok"
+                      class="sc-aXZVg sc-gEvEer hkJkIR fDXMok"
                     >
                       <span
-                        class="sc-eqUAAy kSwHjY"
+                        class="sc-eqUAAy hNmRXB"
                         color="grey"
                         data-testid="coming-soon-flag"
                       >
@@ -525,7 +525,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                     </div>
                   </span>
                   <span
-                    class="sc-aXZVg iUEruK"
+                    class="sc-aXZVg bQyjPj"
                   >
                     <img
                       alt=""
@@ -551,22 +551,22 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
 exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
 <div>
   <div
-    class="sc-aXZVg sc-gEvEer bIQGWy bktafW"
+    class="sc-aXZVg sc-gEvEer buCQhf bktafW"
   >
     <div
-      class="sc-aXZVg jsYSMF"
+      class="sc-aXZVg gwENAg"
     >
       <div
-        class="sc-aXZVg sc-gEvEer hdseiA fjNQtm"
+        class="sc-aXZVg sc-gEvEer hkJkIR fjNQtm"
       >
         <div
-          class="sc-aXZVg sc-gEvEer hdseiA fUxOFh"
+          class="sc-aXZVg sc-gEvEer hkJkIR fUxOFh"
         >
           <div
-            class="sc-aXZVg sc-gEvEer Dxwds kjWHLN"
+            class="sc-aXZVg sc-gEvEer deqSdR kjWHLN"
           >
             <span
-              class="sc-aXZVg ccpVbZ"
+              class="sc-aXZVg hefbZs"
               style="height: 52px; width: 114px;"
             >
               <img
@@ -581,10 +581,10 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             </span>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
+            class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
           >
             <div
-              class="sc-aXZVg sc-gEvEer hdseiA gMazQC"
+              class="sc-aXZVg sc-gEvEer hkJkIR gMazQC"
             >
               <h1
                 class="sc-eldPxv hBOEef"
@@ -593,34 +593,34 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 Your Transfiguration timetable
               </h1>
               <div
-                class="sc-aXZVg hdseiA"
+                class="sc-aXZVg hkJkIR"
                 data-testid="timetable-header-additional"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer dmPZfX dXoawi"
+                  class="sc-aXZVg sc-gEvEer czRvOC dXoawi"
                 >
                   <div
-                    class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+                    class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
                   >
                     <div
-                      class="sc-aXZVg kMGxHZ grey-shadow"
+                      class="sc-aXZVg hpZeuU grey-shadow"
                     />
                     <div
-                      class="sc-aXZVg kMGxHZ yellow-shadow"
+                      class="sc-aXZVg hpZeuU yellow-shadow"
                     />
                     <button
-                      class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
+                      class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+                        class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
                       >
                         <span
-                          class="sc-eqUAAy bkXwYG"
+                          class="sc-eqUAAy dorClf"
                         >
                           Edit details
                         </span>
                         <span
-                          class="sc-aXZVg iUEruK"
+                          class="sc-aXZVg bQyjPj"
                         >
                           <img
                             alt=""
@@ -636,27 +636,27 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                     </button>
                   </div>
                   <div
-                    class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+                    class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
                   >
                     <div
-                      class="sc-aXZVg kMGxHZ grey-shadow"
+                      class="sc-aXZVg hpZeuU grey-shadow"
                     />
                     <div
-                      class="sc-aXZVg kMGxHZ yellow-shadow"
+                      class="sc-aXZVg hpZeuU yellow-shadow"
                     />
                     <button
-                      class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
+                      class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+                        class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
                       >
                         <span
-                          class="sc-eqUAAy bkXwYG"
+                          class="sc-eqUAAy dorClf"
                         >
                           Copy link
                         </span>
                         <span
-                          class="sc-aXZVg iUEruK"
+                          class="sc-aXZVg bQyjPj"
                         >
                           <img
                             alt=""
@@ -677,11 +677,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer fbiuPV dnBYlX"
+          class="sc-aXZVg sc-gEvEer eubaRU dnBYlX"
         >
           <img
             alt=""
-            class="sc-6170517-0 gnvkSN"
+            class="sc-78715429-0 DBOoG"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -695,37 +695,37 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
     </div>
   </div>
   <div
-    class="sc-aXZVg sc-gEvEer sc-fvtFIe iiIiRe fUxOFh"
+    class="sc-aXZVg sc-gEvEer sc-fvtFIe dcJZBD fUxOFh"
   >
     <div
-      class="sc-aXZVg sc-gEvEer hdseiA fjNQtm"
+      class="sc-aXZVg sc-gEvEer hkJkIR fjNQtm"
     >
       <div
-        class="sc-aXZVg sc-gEvEer fALgff bktafW"
+        class="sc-aXZVg sc-gEvEer byKjeG bktafW"
       >
         <div
-          class="sc-aXZVg fqIpsl"
+          class="sc-aXZVg cLbzUI"
         >
           <div
-            class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+            class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
           >
             <div
-              class="sc-aXZVg kMGxHZ grey-shadow"
+              class="sc-aXZVg hpZeuU grey-shadow"
             />
             <div
-              class="sc-aXZVg kMGxHZ yellow-shadow"
+              class="sc-aXZVg hpZeuU yellow-shadow"
             />
             <a
-              class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
+              class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
               data-testid="skip-link"
               href="#content"
               style="position: absolute; left: -10000px;"
             >
               <div
-                class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+                class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
               >
                 <span
-                  class="sc-eqUAAy bkXwYG"
+                  class="sc-eqUAAy dorClf"
                 >
                   Skip to units
                 </span>
@@ -738,10 +738,10 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             Filter and highlight
           </h3>
           <div
-            class="sc-aXZVg hdseiA"
+            class="sc-aXZVg hkJkIR"
           >
             <fieldset
-              class="sc-aXZVg sc-gEvEer hUsuNC jLsiAX"
+              class="sc-aXZVg sc-gEvEer cdxmqb jLsiAX"
               data-testid="year-group-filter-desktop"
             >
               <legend
@@ -750,13 +750,13 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 Year group
               </legend>
               <div
-                class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
+                class="sc-aXZVg sc-gEvEer sc-fxwrCY bqwASE doeAUE geVANU"
               >
                 <span
                   class="sc-kAyceB beiyRr"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer gzTYAh kgixWU"
+                    class="sc-aXZVg sc-gEvEer wbtnY kgixWU"
                   >
                     <input
                       checked=""
@@ -768,7 +768,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       value="0"
                     />
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-uVWWZ kLjZsS kbmCyy iUaQHs"
+                      class="sc-aXZVg sc-gEvEer sc-uVWWZ iKjdzP kbmCyy iUaQHs"
                     />
                   </div>
                 </span>
@@ -781,13 +781,13 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 </label>
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
+                class="sc-aXZVg sc-gEvEer sc-fxwrCY bqwASE doeAUE geVANU"
               >
                 <span
                   class="sc-kAyceB beiyRr"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer gzTYAh kgixWU"
+                    class="sc-aXZVg sc-gEvEer wbtnY kgixWU"
                   >
                     <input
                       class="sc-fjvvzt fqgMCl"
@@ -798,7 +798,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       value="1"
                     />
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-uVWWZ kLjZsS kbmCyy iUaQHs"
+                      class="sc-aXZVg sc-gEvEer sc-uVWWZ iKjdzP kbmCyy iUaQHs"
                     />
                   </div>
                 </span>
@@ -813,25 +813,25 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             </fieldset>
           </div>
           <div
-            class="sc-aXZVg csyrAt"
+            class="sc-aXZVg iAUmKY"
           >
             <div
-              class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+              class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
             >
               <div
-                class="sc-aXZVg kMGxHZ grey-shadow"
+                class="sc-aXZVg hpZeuU grey-shadow"
               />
               <div
-                class="sc-aXZVg kMGxHZ yellow-shadow"
+                class="sc-aXZVg hpZeuU yellow-shadow"
               />
               <button
-                class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
+                class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+                  class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
                 >
                   <span
-                    class="sc-eqUAAy bkXwYG"
+                    class="sc-eqUAAy dorClf"
                   >
                     Add next year
                   </span>
@@ -840,7 +840,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-fMMURN cBeINY iDBIXi"
+            class="sc-aXZVg sc-gEvEer sc-fMMURN cKYNrZ iDBIXi"
             focusable="false"
           >
             <svg
@@ -862,10 +862,10 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             </svg>
           </div>
           <div
-            class="sc-aXZVg hdseiA"
+            class="sc-aXZVg hkJkIR"
           >
             <fieldset
-              class="sc-aXZVg sc-6b497e8d-0 hdseiA giVBfy"
+              class="sc-aXZVg sc-6b497e8d-0 hkJkIR giVBfy"
               data-testid="threads-filter-desktop"
             >
               <legend
@@ -874,7 +874,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 Highlight a thread
               </legend>
               <div
-                class="sc-aXZVg gYkLtg"
+                class="sc-aXZVg cvkNcd"
               >
                 <label
                   style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
@@ -917,16 +917,16 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
         </pre>
       </div>
       <div
-        class="sc-aXZVg sc-gEvEer hdseiA fXHtRp"
+        class="sc-aXZVg sc-gEvEer hkJkIR fXHtRp"
       >
         <div
-          class="sc-aXZVg hdseiA"
+          class="sc-aXZVg hkJkIR"
         >
           <div
-            class="sc-aXZVg iBdPjk mobileYearDisplay"
+            class="sc-aXZVg ebPGIF mobileYearDisplay"
           >
             <div
-              class="sc-aXZVg sc-gEvEer hdseiA nKhZu"
+              class="sc-aXZVg sc-gEvEer hkJkIR nKhZu"
             >
               <h3
                 class="sc-eldPxv kaRSLd"
@@ -936,26 +936,26 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
               </h3>
             </div>
             <div
-              class="sc-aXZVg hdseiA"
+              class="sc-aXZVg hkJkIR"
             />
             <div
-              class="sc-aXZVg hdseiA"
+              class="sc-aXZVg hkJkIR"
             >
               <div
-                class="sc-aXZVg sc-gEvEer hdseiA daEtut"
+                class="sc-aXZVg sc-gEvEer hkJkIR daEtut"
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer diOGYE hrIDCC"
+                  class="sc-aXZVg sc-gEvEer dKqVld hrIDCC"
                   data-testid="oak-inline-banner"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer iGlCVz iLxNYL"
+                    class="sc-aXZVg sc-gEvEer kvlTCS iLxNYL"
                   >
                     <div
-                      class="sc-aXZVg hdseiA"
+                      class="sc-aXZVg hkJkIR"
                     >
                       <span
-                        class="sc-aXZVg gRUGli"
+                        class="sc-aXZVg jcHcan"
                         data-testid="inline-banner-icon"
                       >
                         <img
@@ -970,14 +970,14 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       </span>
                     </div>
                     <div
-                      class="sc-aXZVg sc-gEvEer cXVDob gsZhDY"
+                      class="sc-aXZVg sc-gEvEer tDjnS gsZhDY"
                     >
                       <div
-                        class="sc-aXZVg jScGbX"
+                        class="sc-aXZVg kjlEvO"
                         data-testid="inline-banner-message"
                       >
                         <div
-                          class="sc-aXZVg hdseiA"
+                          class="sc-aXZVg hkJkIR"
                         >
                           <strong>
                             You’re 1 lesson short:
@@ -989,10 +989,10 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-aXZVg sc-gEvEer FDmBr gWvaOf"
+                  class="sc-aXZVg sc-gEvEer jSYdzG gWvaOf"
                 >
                   <div
-                    class="sc-aXZVg hdseiA"
+                    class="sc-aXZVg hkJkIR"
                   >
                     <h5
                       class="sc-eldPxv fqxCxQ"
@@ -1000,10 +1000,10 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       Autumn Term
                     </h5>
                     <div
-                      class="sc-aXZVg sc-gEvEer hdseiA fUsBHa"
+                      class="sc-aXZVg sc-gEvEer hkJkIR fUsBHa"
                     >
                       <span
-                        class="sc-eqUAAy dtaNGQ"
+                        class="sc-eqUAAy DQGGZ"
                       >
                         0
                         /
@@ -1011,7 +1011,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                          lessons scheduled
                       </span>
                       <span
-                        class="sc-aXZVg gRUGli"
+                        class="sc-aXZVg jcHcan"
                       >
                         <img
                           alt=""
@@ -1033,7 +1033,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-f456e885-1 bqYjse"
                     >
                       <div
-                        class="sc-aXZVg sc-kMkxaj ioKvvK gTHfrn"
+                        class="sc-aXZVg sc-kMkxaj hSSbvD gTHfrn"
                       >
                         <a
                           class="sc-a6022ff2-0 ejmuOd"
@@ -1041,11 +1041,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                           href="/timetabling/maths-primary/units/test-1?mode=normal&year=1"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer fMYYaJ bktafW"
+                            class="sc-aXZVg sc-gEvEer dktOiQ bktafW"
                             data-testid="unit-card"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer hdseiA gWvaOf"
+                              class="sc-aXZVg sc-gEvEer hkJkIR gWvaOf"
                             >
                               <div
                                 class="sc-eldPxv sc-ef43f00b-0 fqxCxQ ebOXeQ pa11y-ignore"
@@ -1057,24 +1057,24 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                                 </span>
                               </div>
                               <span
-                                class="sc-eqUAAy WYobB"
+                                class="sc-eqUAAy iuxBUE"
                               >
                                 Test 1
                               </span>
                             </div>
                             <div
-                              class="sc-aXZVg sc-gEvEer hgzzUG ioiTMB"
+                              class="sc-aXZVg sc-gEvEer gobIoP ioiTMB"
                             >
                               <div
-                                class="sc-aXZVg sc-gEvEer hdseiA fUsBHa"
+                                class="sc-aXZVg sc-gEvEer hkJkIR fUsBHa"
                               >
                                 <div
-                                  class="sc-aXZVg sc-dAbbOL ifqfxt qwGmk"
+                                  class="sc-aXZVg sc-dAbbOL gObPQU qwGmk"
                                 >
                                   Unit info
                                 </div>
                                 <span
-                                  class="sc-aXZVg iUEruK"
+                                  class="sc-aXZVg bQyjPj"
                                 >
                                   <img
                                     alt=""
@@ -1096,7 +1096,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-f456e885-1 bqYjse"
                     >
                       <div
-                        class="sc-aXZVg sc-kMkxaj ioKvvK gTHfrn"
+                        class="sc-aXZVg sc-kMkxaj hSSbvD gTHfrn"
                       >
                         <a
                           class="sc-a6022ff2-0 ejmuOd"
@@ -1104,11 +1104,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                           href="/timetabling/maths-primary/units/test-2?mode=normal&year=1"
                         >
                           <div
-                            class="sc-aXZVg sc-gEvEer fMYYaJ bktafW"
+                            class="sc-aXZVg sc-gEvEer dktOiQ bktafW"
                             data-testid="unit-card"
                           >
                             <div
-                              class="sc-aXZVg sc-gEvEer hdseiA gWvaOf"
+                              class="sc-aXZVg sc-gEvEer hkJkIR gWvaOf"
                             >
                               <div
                                 class="sc-eldPxv sc-ef43f00b-0 fqxCxQ ebOXeQ pa11y-ignore"
@@ -1120,24 +1120,24 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                                 </span>
                               </div>
                               <span
-                                class="sc-eqUAAy WYobB"
+                                class="sc-eqUAAy iuxBUE"
                               >
                                 Test 2
                               </span>
                             </div>
                             <div
-                              class="sc-aXZVg sc-gEvEer hgzzUG ioiTMB"
+                              class="sc-aXZVg sc-gEvEer gobIoP ioiTMB"
                             >
                               <div
-                                class="sc-aXZVg sc-gEvEer hdseiA fUsBHa"
+                                class="sc-aXZVg sc-gEvEer hkJkIR fUsBHa"
                               >
                                 <div
-                                  class="sc-aXZVg sc-dAbbOL ifqfxt qwGmk"
+                                  class="sc-aXZVg sc-dAbbOL gObPQU qwGmk"
                                 >
                                   Unit info
                                 </div>
                                 <span
-                                  class="sc-aXZVg iUEruK"
+                                  class="sc-aXZVg bQyjPj"
                                 >
                                   <img
                                     alt=""
@@ -1156,13 +1156,13 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       </div>
                     </li>
                     <div
-                      class="sc-aXZVg sc-gEvEer dcNixJ fXHtRp"
+                      class="sc-aXZVg sc-gEvEer dndqzs fXHtRp"
                     />
                     <div
-                      class="sc-aXZVg sc-gEvEer dcNixJ fXHtRp"
+                      class="sc-aXZVg sc-gEvEer dndqzs fXHtRp"
                     />
                     <div
-                      class="sc-aXZVg sc-gEvEer dcNixJ fXHtRp"
+                      class="sc-aXZVg sc-gEvEer dndqzs fXHtRp"
                     />
                   </ol>
                 </div>
@@ -1179,44 +1179,44 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
     style="z-index: 320;"
   >
     <div
-      class="sc-aXZVg sc-fd1b6bd3-0 frwMNv jsTHOJ"
+      class="sc-aXZVg sc-fd1b6bd3-0 fEQzbe jsTHOJ"
     />
     <div
-      class="sc-aXZVg sc-gEvEer sc-702fbad0-0 ccFHYi iDBIXi igbdss"
+      class="sc-aXZVg sc-gEvEer sc-702fbad0-0 fCwEr iDBIXi igbdss"
       data-testid="sidebar-modal"
       direction="right"
     >
       <div
-        class="sc-aXZVg sc-gEvEer eAZuMw fUxOFh"
+        class="sc-aXZVg sc-gEvEer izqeWh fUxOFh"
       >
         <div
-          class="sc-aXZVg sc-gEvEer fRNXtL jMLdOa"
+          class="sc-aXZVg sc-gEvEer khewFS jMLdOa"
         >
           <div
-            class="sc-aXZVg eXMwzZ"
+            class="sc-aXZVg isEOIM"
           >
             <div
-              class="sc-aXZVg sc-5f217d9c-0 hdseiA jxsPIm"
+              class="sc-aXZVg sc-5f217d9c-0 hkJkIR fvcgKw"
             >
               <div
-                class="sc-aXZVg sc-gEvEer sc-jlZhew cPOqJf iDBIXi klOkwi"
+                class="sc-aXZVg sc-gEvEer sc-jlZhew lqCcG iDBIXi klOkwi"
               >
                 <button
                   aria-label="Close"
-                  class="sc-dcJsrY sc-dAlyuH foenqX emFNcG"
+                  class="sc-dcJsrY sc-dAlyuH foenqX eGtIkY"
                   data-testid="close-modal-button"
                 >
                   <div
-                    class="sc-aXZVg sc-gEvEer hdseiA btEZOP"
+                    class="sc-aXZVg sc-gEvEer hkJkIR btEZOP"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer fbXuuz jMLdOa icon-container"
+                      class="sc-aXZVg sc-gEvEer kptAky jMLdOa icon-container"
                     >
                       <div
-                        class="sc-aXZVg jUsDlH shadow"
+                        class="sc-aXZVg jwYyGK shadow"
                       />
                       <span
-                        class="sc-aXZVg iUEruK"
+                        class="sc-aXZVg bQyjPj"
                         data-icon-for="button"
                       >
                         <img
@@ -1231,7 +1231,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       </span>
                     </div>
                     <span
-                      class="sc-eqUAAy WYobB"
+                      class="sc-eqUAAy iuxBUE"
                     />
                   </div>
                 </button>
@@ -1240,55 +1240,55 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer ieXcUy eUIBLO"
+          class="sc-aXZVg sc-gEvEer eXECUb eUIBLO"
           data-testid="modal-content"
         >
           <div
-            class="sc-aXZVg hdseiA"
+            class="sc-aXZVg hkJkIR"
           >
             <div
-              class="sc-aXZVg sc-gEvEer eAZuMw fUxOFh"
+              class="sc-aXZVg sc-gEvEer izqeWh fUxOFh"
             >
               <div
-                class="sc-aXZVg sc-gEvEer cRyCch eYvwPo"
+                class="sc-aXZVg sc-gEvEer jFoCjY eYvwPo"
               />
             </div>
           </div>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer eisgfD cSOHri"
+          class="sc-aXZVg sc-gEvEer fyhNre cSOHri"
           data-testid="modal-footer"
         >
           <div
-            class="sc-aXZVg sc-gEvEer jfwyBT xdNJA"
+            class="sc-aXZVg sc-gEvEer gZkuDC xdNJA"
           >
             <div
-              class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
+              class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
             >
               <div
-                class="sc-aXZVg kMGxHZ grey-shadow"
+                class="sc-aXZVg hpZeuU grey-shadow"
               />
               <div
-                class="sc-aXZVg kMGxHZ yellow-shadow"
+                class="sc-aXZVg hpZeuU yellow-shadow"
               />
               <button
                 aria-disabled="true"
                 aria-label="Coming soon See lessons in unit"
-                class="sc-dcJsrY sc-jXbUNg xHEYB hQGRaM internal-button"
+                class="sc-dcJsrY sc-jXbUNg xHEYB dglRoS internal-button"
                 data-testid="unit-lessons-button"
                 disabled=""
               >
                 <div
-                  class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
+                  class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
                 >
                   <span
-                    class="sc-eqUAAy bkXwYG"
+                    class="sc-eqUAAy dorClf"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer hdseiA fDXMok"
+                      class="sc-aXZVg sc-gEvEer hkJkIR fDXMok"
                     >
                       <span
-                        class="sc-eqUAAy kSwHjY"
+                        class="sc-eqUAAy hNmRXB"
                         color="grey"
                         data-testid="coming-soon-flag"
                       >
@@ -1298,7 +1298,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                     </div>
                   </span>
                   <span
-                    class="sc-aXZVg iUEruK"
+                    class="sc-aXZVg bQyjPj"
                   >
                     <img
                       alt=""
