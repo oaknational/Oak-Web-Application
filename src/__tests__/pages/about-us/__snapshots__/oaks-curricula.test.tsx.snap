@@ -2175,6 +2175,17 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   text-align: center;
 }
 
+.c170 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+}
+
 .c210 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
@@ -3049,16 +3060,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 .c173 {
   width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c170 {
-  font-weight: 600;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  -webkit-letter-spacing: 0.0115em;
-  -moz-letter-spacing: 0.0115em;
-  -ms-letter-spacing: 0.0115em;
-  letter-spacing: 0.0115em;
 }
 
 .c162 {
