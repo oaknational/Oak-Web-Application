@@ -53,10 +53,10 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
         $position="relative"
         $minWidth={["100%", "50%"]}
         $mb={[40, 0]}
+        $pr={[0, 0, 72]}
       >
         {props.mediaType == "image" && (
           <CMSImage
-            $pr={["spacing-0", "spacing-24", "spacing-72"]}
             alt={props.image.altText || ""}
             $objectFit="contain"
             $objectPosition={"center"}

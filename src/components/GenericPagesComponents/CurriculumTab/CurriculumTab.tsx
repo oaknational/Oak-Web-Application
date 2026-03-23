@@ -129,7 +129,12 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
             $flexGrow={1}
             $display={["none", "flex", "flex"]}
           >
-            <OakFlex $flexDirection={"column"} $gap="spacing-8">
+            <OakFlex
+              $flexDirection={"column"}
+              $gap="spacing-8"
+              $width={"spacing-640"}
+              $pl={"spacing-72"}
+            >
               <Illustration
                 $transform={["none", "none", "rotate(-2deg)"]}
                 slug={"teacher-whiteboard"}
@@ -139,7 +144,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
                 $ba={"border-solid-l"}
                 width={520}
                 $borderStyle={"solid"}
-                $borderColor={"border-inverted"}
+                $borderColor={"border-primary"}
               />
             </OakFlex>
           </OakFlex>
