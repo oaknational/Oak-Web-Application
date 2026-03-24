@@ -1884,6 +1884,17 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
   text-align: center;
 }
 
+.c137 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+}
+
 .c178 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 600;
@@ -2775,16 +2786,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
 .c140 {
   width: 100%;
   font-family: --var(google-font),Lexend,sans-serif;
-}
-
-.c137 {
-  font-weight: 600;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  -webkit-letter-spacing: 0.0115em;
-  -moz-letter-spacing: 0.0115em;
-  -ms-letter-spacing: 0.0115em;
-  letter-spacing: 0.0115em;
 }
 
 .c129 {
