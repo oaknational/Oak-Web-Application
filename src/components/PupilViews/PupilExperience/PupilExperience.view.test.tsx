@@ -21,6 +21,11 @@ import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/"),
+  useSearchParams: jest.fn(() => new URLSearchParams()),
+}));
+
 jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
   ...jest.requireActual("@/components/PupilComponents/LessonEngineProvider"),
   useLessonEngineContext: jest.fn(),
@@ -49,6 +54,7 @@ jest.mock("@/hooks/useAssignmentSearchParams", () => ({
 jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
   __esModule: true,
   default: {
+    getAddOnContext: jest.fn().mockResolvedValue(null),
     getPupilLessonProgress: jest.fn(),
     submitPupilProgress: jest.fn(),
   },

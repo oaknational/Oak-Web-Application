@@ -39,6 +39,11 @@ jest.mock(
   }),
 );
 
+jest.mock("@/hooks/useFetch", () => ({
+  __esModule: true,
+  useFetch: () => ({ data: [], error: null, isLoading: false }),
+}));
+
 // Mock window history
 let pushSpy: jest.SpyInstance;
 beforeEach(() => {

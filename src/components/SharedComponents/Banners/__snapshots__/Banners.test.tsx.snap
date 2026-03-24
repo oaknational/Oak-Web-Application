@@ -34,88 +34,34 @@ exports[`Banners shows mythbusting banner 1`] = `
             </b>
           </p>
         </div>
-        <a
-          class="sc-f63c4ba9-0 jtFtcT"
-          href="/campaigns/mythbusting"
-          role="link"
-          title="Learn why"
+        <div
+          class="sc-aXZVg dOpWRM"
         >
-          <div
-            class="sc-aXZVg sc-gEvEer ekMPMw bRncHa"
+          <a
+            class="sc-hzhJZQ hCUlEv sc-fHjqPf"
+            href="/campaigns/mythbusting"
+            title="Learn why"
           >
             <span
-              aria-hidden="true"
-              class="sc-cba1a45e-0 hBtmPZ"
-              data-testid="button-icon"
+              class="sc-eqUAAy dtaNGQ"
             >
-              <svg
-                aria-hidden="true"
-                class="sc-86d1d46f-0 jOBmUC sc-cba1a45e-2 bfQjKE"
-                height="100%"
-                name="icon-background"
-                width="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <use
-                  xlink:href="/images/sprite/sprite.svg#icon-background"
-                />
-              </svg>
-              <span
-                class="sc-cba1a45e-1 bGtAOv"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="sc-86d1d46f-0 eJtvEZ"
-                  height="100%"
-                  name="chevron-right"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <use
-                    xlink:href="/images/sprite/sprite.svg#chevron-right"
-                  />
-                </svg>
-              </span>
+              Learn why
             </span>
-          </div>
-          <div
-            class="sc-aXZVg jxyORG"
-          >
-            <div
-              class="sc-aXZVg hdseiA"
+            <span
+              class="sc-aXZVg iUEruK sc-fUnMCh"
             >
-              <span
-                class="sc-eqUAAy sc-ca3376e3-0 WYobB eEriKr"
-              >
-                Learn why
-              </span>
-            </div>
-          </div>
-          <svg
-            aria-hidden="true"
-            class="sc-86d1d46f-0 jOBmUC sc-d68767cb-0 dpTFSD"
-            height="100%"
-            name="underline-1"
-            width="100%"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <use
-              xlink:href="/images/sprite/sprite.svg#underline-1"
-            />
-          </svg>
-          <svg
-            aria-hidden="true"
-            class="sc-86d1d46f-0 jOBmUC sc-d68767cb-2 bEJdap"
-            height="100%"
-            name="underline-1"
-            width="100%"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <use
-              xlink:href="/images/sprite/sprite.svg#underline-1"
-            />
-          </svg>
-        </a>
+              <img
+                alt=""
+                class="sc-iGgWBj cMzyFO"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </span>
+          </a>
+        </div>
       </div>
     </div>
     <div
