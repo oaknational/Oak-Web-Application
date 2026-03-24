@@ -2,6 +2,8 @@ import { Meta, StoryObj } from "@storybook/nextjs";
 
 import Component from ".";
 
+import { resolveOakHref } from "@/common-lib/urls";
+
 const meta: Meta<typeof Component> = {
   component: Component,
   argTypes: {},
@@ -14,20 +16,20 @@ export const SpecialistProgrammeHeaderListing: Story = {
     title: "Specialist & therapies",
     breadcrumbs: [
       {
-        oakLinkProps: { page: "home" },
+        href: resolveOakHref({ page: "home" }),
         label: "Home",
       },
       {
-        oakLinkProps: {
+        href: resolveOakHref({
           page: "specialist-subject-index",
-        },
+        }),
         label: "Specialist and therapies",
       },
       {
-        oakLinkProps: {
+        href: resolveOakHref({
           page: "specialist-programme-index",
           subjectSlug: "communication-and-language",
-        },
+        }),
         label: "Communication and Language",
       },
     ],

@@ -94,6 +94,7 @@ describe("components/ Lesson List", () => {
       />,
     );
     const unit = getByText("Add two surds");
+    unit.addEventListener("click", (event) => event.preventDefault());
 
     await userEvent.click(unit);
 
