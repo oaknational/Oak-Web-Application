@@ -26,9 +26,10 @@ export const CardListingStyledLink = styled(OakSecondaryLink)`
   }
 `;
 
+// Adds a border colour to the flex container which intensifies when the link in the card is hovered, as long as the link is not disabled
 export const CardListingStyledFlex = styled(OakFlex)`
   border-color: ${parseColor("border-neutral-lighter")};
-  &:has(${CardListingStyledLink}:hover) {
+  &:has(${CardListingStyledLink}:hover:not([data-disabled="true"])) {
     border-color: ${parseColor("border-neutral-stronger")};
   }
 `;
