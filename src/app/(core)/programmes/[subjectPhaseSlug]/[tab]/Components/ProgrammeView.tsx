@@ -146,6 +146,7 @@ export const ProgrammeView = ({
         <OakMaxWidth
           data-testid="programme-tabs"
           $ph={["spacing-20", "spacing-20", "spacing-0"]}
+          $mb={["spacing-0", "spacing-48", "spacing-48"]}
         >
           <OakTabs<TabName>
             sizeVariant={["compact", "default"]}
