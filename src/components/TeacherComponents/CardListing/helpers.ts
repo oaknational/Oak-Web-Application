@@ -26,7 +26,7 @@ export const getCardListingLinkProps = ({
   href: string;
   onClickLink?: () => void;
 }) => {
-  // If the card is disabled or has child cards use a div for the container,
+  // If the card is disabled use a div for the container,
   if (disabled) {
     return { "data-disabled": true, as: "div" as const };
   } else {

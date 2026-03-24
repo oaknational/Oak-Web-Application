@@ -52,7 +52,7 @@ export const CardListingCardTags = ({
   disabled,
   childCards,
 }: CardListingProps) => {
-  const ChildCardTag = childCards?.length ? (
+  const childCardTag = childCards?.length ? (
     <OakTagFunctional
       key="options"
       label={`${childCards?.length} options`}
@@ -70,7 +70,7 @@ export const CardListingCardTags = ({
       $gap={"spacing-8"}
       $pb={"spacing-8"}
     >
-      {ChildCardTag}
+      {childCardTag}
       {tags.map((tag) => (
         <OakTagFunctional
           key={tag.label}
@@ -84,7 +84,7 @@ export const CardListingCardTags = ({
       ))}
     </OakFlex>
   ) : (
-    ChildCardTag
+    childCardTag
   );
 };
 
