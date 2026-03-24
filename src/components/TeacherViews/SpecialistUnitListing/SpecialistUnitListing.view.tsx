@@ -211,7 +211,6 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                         programmeSlug: programmeSlug,
                         page: "specialist-unit-index",
                         isCurrent: developmentStageSlug === slug,
-                        currentStyles: ["underline"],
                       }),
                     )}
                   />

@@ -7,6 +7,7 @@ import {
   OakBox,
   OakHandDrawnHR,
   OakMaxWidth,
+  OakPrimaryButton,
 } from "@oaknational/oak-components";
 
 import { getResourcesWithoutLegacyCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
@@ -41,7 +42,6 @@ import {
   LessonPathway,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
-import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadPageWithAccordion from "@/components/TeacherComponents/DownloadPageWithAccordion";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
 import {
@@ -459,13 +459,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               )
             }
             cta={
-              <LoadingButton
+              <OakPrimaryButton
                 type="button"
                 onClick={
                   (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
                 }
-                text={"Download .zip"}
-                icon={"download"}
+                iconName={"download"}
                 isLoading={
                   isAttemptingDownload || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
                 }
@@ -476,10 +475,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     (!form.formState.isValid && !localStorageDetails)) &&
                   hubspotLoaded
                 }
-                loadingText={
-                  isAttemptingDownload ? "Downloading..." : "Loading..."
-                }
-              />
+              >
+                {isAttemptingDownload
+                  ? "Downloading..."
+                  : !hubspotLoaded
+                    ? "Loading..."
+                    : "Download .zip"}
+              </OakPrimaryButton>
             }
             showRiskAssessmentBanner={showRiskAssessmentBanner}
             downloads={downloadsFilteredByCopyright}

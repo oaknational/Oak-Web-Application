@@ -216,7 +216,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               programmeSlug: tierProgrammeSlug,
               page: "unit-index",
               isCurrent: tierSlug === slug,
-              currentStyles: ["underline"],
             }),
           )}
         />
