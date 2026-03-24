@@ -57,7 +57,7 @@ type ProgrammePageProps = {
   curriculumSelectionTitles: CurriculumSelectionTitles;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   subjectPhaseSanityData: ProgrammePageHeaderCMS | null;
-  curriculumCMSInfo: CurriculumOverviewSanityData;
+  curriculumCMSInfo: CurriculumOverviewSanityData | null;
   curriculumInfo: CurriculumOverviewMVData;
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
   mvRefreshTime: number;
@@ -194,8 +194,9 @@ const TabContent = ({
   setFilters,
   ks4Options,
 }: { tabSlug: TabSlug } & UnitSequenceViewProps &
-  ProgrammeOverviewProps &
-  ProgrammeDownloadsProps) => {
+  Omit<ProgrammeOverviewProps, "curriculumCMSInfo"> & {
+    curriculumCMSInfo: CurriculumOverviewSanityData | null;
+  } & ProgrammeDownloadsProps) => {
   if (tabSlug === "units") {
     return (
       <UnitSequenceView
@@ -207,6 +208,9 @@ const TabContent = ({
       />
     );
   } else if (tabSlug === "overview") {
+    if (!curriculumCMSInfo) {
+      return notFound();
+    }
     return (
       <ProgrammeOverview
         subjectTitle={subjectTitle}
