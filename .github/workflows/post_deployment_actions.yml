@@ -72,6 +72,7 @@ jobs:
     if: ${{ (github.event.deployment_status.state == 'success') && !endsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment, 'storybook-console')}}
     name: Pa11y
     runs-on: ubuntu-24.04
+    timeout-minutes: 60
 
     steps:
       - uses: actions/checkout@v4
@@ -81,7 +82,7 @@ jobs:
           node-version: 22.x
           cache: "npm"
       # Install.
-      - run: npm ci
+      - run: npm ci --verbose
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"
@@ -114,6 +115,7 @@ jobs:
     if: ${{ (github.event.deployment_status.state == 'success') && !endsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment, 'storybook-console')}}
     name: Percy
     runs-on: ubuntu-24.04
+    timeout-minutes: 60
 
     steps:
       - uses: actions/checkout@v4
@@ -122,7 +124,7 @@ jobs:
         with:
           node-version: 22.x
           cache: "npm"
-      - run: npm ci
+      - run: npm ci --verbose
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"
