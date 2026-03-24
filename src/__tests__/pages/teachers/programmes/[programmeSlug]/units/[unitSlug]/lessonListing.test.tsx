@@ -351,6 +351,14 @@ describe("tracking", () => {
       lessonReleaseCohort: "2023-2026",
       lessonReleaseDate: "2025-09-29T14:00:00.000Z",
       pathway: null,
+      courseId: null,
+      itemId: null,
+      attachmentId: null,
+      submissionId: null,
+      classroomAssignmentId: null,
+      teacherLoginHint: null,
+      pupilLoginHint: null,
+      clientEnvironment: "web-browser",
     });
   });
 });
