@@ -136,7 +136,7 @@ export type LessonAttemptCamelCase = {
       worksheetAvailable?: boolean;
       isComplete?: boolean;
     };
-    starterQuiz: QuizResultCamelCase;
+    "starter-quiz": QuizResultCamelCase;
     video?: {
       isComplete?: boolean;
       played?: boolean;
@@ -146,7 +146,7 @@ export type LessonAttemptCamelCase = {
       signedOpened?: boolean;
       transcriptOpened?: boolean;
     };
-    exitQuiz: QuizResultCamelCase;
+    "exit-quiz": QuizResultCamelCase;
   };
 };
 

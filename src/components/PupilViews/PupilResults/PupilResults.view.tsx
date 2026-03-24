@@ -31,8 +31,8 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
   const { programmeFields, lessonData, isLegacy } = browseData;
   const { yearDescription, subject, subjectSlug } = programmeFields;
   const { title } = lessonData;
-  const exitQuiz = sectionResults["exitQuiz"];
-  const starterQuiz = sectionResults["starterQuiz"];
+  const exitQuiz = sectionResults["exit-quiz"];
+  const starterQuiz = sectionResults["starter-quiz"];
   const video = sectionResults["video"];
 
   const getPercentageWatched = () => {

@@ -66,7 +66,8 @@ export class PupilLessonProgressMapper {
           worksheetAvailable: pupilProgress.intro?.worksheetAvailable ?? false,
           isComplete: pupilProgress.intro?.isComplete ?? false,
         },
-        starterQuiz: this.toLessonAttemptQuiz(pupilProgress.starterQuiz) ?? {},
+        "starter-quiz":
+          this.toLessonAttemptQuiz(pupilProgress.starterQuiz) ?? {},
         video: {
           isComplete: pupilProgress.video?.isComplete ?? false,
           played: pupilProgress.video?.played ?? false,
@@ -76,7 +77,7 @@ export class PupilLessonProgressMapper {
           signedOpened: false,
           transcriptOpened: false,
         },
-        exitQuiz: this.toLessonAttemptQuiz(pupilProgress.exitQuiz) ?? {},
+        "exit-quiz": this.toLessonAttemptQuiz(pupilProgress.exitQuiz) ?? {},
       },
     };
   }

@@ -27,7 +27,7 @@ const mockAttempt = {
       worksheetAvailable: false,
       isComplete: false,
     },
-    starterQuiz: {
+    "starter-quiz": {
       isComplete: true,
       grade: 3,
       numQuestions: 3,
@@ -41,7 +41,7 @@ const mockAttempt = {
       signedOpened: false,
       transcriptOpened: false,
     },
-    exitQuiz: {
+    "exit-quiz": {
       isComplete: false,
       grade: 3,
       numQuestions: 3,
