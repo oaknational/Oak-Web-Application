@@ -49,6 +49,7 @@ const PromoBanner: FC<PromoBannerProps> = ({
           <OakBox $mh={"spacing-0"}>
             <OakSecondaryLink
               href={href}
+              title={ctaText}
               iconName="chevron-right"
               isTrailingIcon
             >
