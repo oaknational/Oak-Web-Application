@@ -72,7 +72,8 @@ export function ProgrammeUnitList({
     );
 
     const getLayoutVariant = () => {
-      if (isOptionalityUnitCard && !isMobile) {
+      const useHorizontalLayout = isOptionalityUnitCard && !isMobile;
+      if (useHorizontalLayout) {
         return "horizontal";
       } else {
         return "vertical";
