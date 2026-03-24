@@ -239,6 +239,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const [isDownloadSuccessful, setIsDownloadSuccessful] =
     useState<boolean>(false);
 
+  let downloadButtonText = "Download .zip";
+  if (isAttemptingDownload) {
+    downloadButtonText = "Downloading...";
+  } else if (!hubspotLoaded) {
+    downloadButtonText = "Loading...";
+  }
+
   const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
     setApiError(null);
     await onHubspotSubmit(data);
@@ -476,11 +483,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   hubspotLoaded
                 }
               >
-                {isAttemptingDownload
-                  ? "Downloading..."
-                  : !hubspotLoaded
-                    ? "Loading..."
-                    : "Download .zip"}
+                {downloadButtonText}
               </OakPrimaryButton>
             }
             showRiskAssessmentBanner={showRiskAssessmentBanner}
