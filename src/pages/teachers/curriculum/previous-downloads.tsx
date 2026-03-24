@@ -21,7 +21,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import CurriculumDownloads, {
   CurriculumDownload,
   CurriculumDownloadsRef,
@@ -77,7 +76,7 @@ const CurriculumPreviousDownloadsPage = ({
   };
 
   const downloads: CurriculumDownload[] = [];
-  const links: ButtonAsLinkProps[] = [];
+  const tabPage = "curriculum-previous-downloads" as const;
   const LEGACY_DOWNLOADS_API_URL = getBrowserConfig("vercelApiUrl");
 
   for (const category of Object.keys(categoryDocuments) as DownloadCategory[]) {
@@ -90,18 +89,21 @@ const CurriculumPreviousDownloadsPage = ({
         });
       });
     }
-    links.push({
-      label: category,
-      page: "curriculum-previous-downloads",
-      isCurrent: activeTab == category,
-      currentStyles: ["underline"],
-      scroll: false,
-      onClick: (event) => {
-        event.preventDefault();
-        updateTab(category);
-      },
-    });
   }
+  const links = (Object.keys(categoryDocuments) as DownloadCategory[]).map(
+    (category) => {
+      return {
+        label: category,
+        page: tabPage,
+        isCurrent: activeTab == category,
+        scroll: false,
+        onClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
+          event.preventDefault();
+          updateTab(category);
+        },
+      };
+    },
+  );
 
   useEffect(() => {
     const keystage = router.query.keystage as string;

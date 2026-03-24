@@ -24,6 +24,21 @@ jest.mock("next/navigation", () => {
   };
 });
 
+jest.mock(
+  "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      schools: [],
+      error: null,
+      schoolPickerInputValue: "",
+      setSchoolPickerInputValue: jest.fn(),
+      selectedSchool: undefined,
+      setSelectedSchool: jest.fn(),
+    }),
+  }),
+);
+
 // Mock window history
 let pushSpy: jest.SpyInstance;
 beforeEach(() => {

@@ -107,6 +107,21 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn(() => mockRouter),
 }));
 
+jest.mock(
+  "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      schools: [],
+      error: null,
+      schoolPickerInputValue: "",
+      setSchoolPickerInputValue: jest.fn(),
+      selectedSchool: undefined,
+      setSelectedSchool: jest.fn(),
+    }),
+  }),
+);
+
 beforeEach(() => {
   renderHook(() => useForm());
   localStorage.clear();

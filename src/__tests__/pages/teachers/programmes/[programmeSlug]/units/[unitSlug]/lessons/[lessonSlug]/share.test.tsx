@@ -24,6 +24,7 @@ import curriculumApi2023, {
 } from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import { LS_KEY_SCHOOL } from "@/config/localStorageKeys";
 
 const props: LessonSharePageProps = {
   curriculumData: lessonShareFixtures(),
@@ -57,6 +58,30 @@ jest.mock(
         return Promise.resolve(true);
       },
     }),
+  }),
+);
+
+jest.mock("@/hooks/useFetch", () => ({
+  __esModule: true,
+  useFetch: () => ({ data: [], error: null, isLoading: false }),
+}));
+
+jest.mock(
+  "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker",
+  () => ({
+    __esModule: true,
+    default: () => {
+      const stored = localStorage.getItem(LS_KEY_SCHOOL);
+      const parsed = stored ? JSON.parse(stored) : null;
+      return {
+        schools: [],
+        error: null,
+        schoolPickerInputValue: parsed?.schoolName ?? "",
+        setSchoolPickerInputValue: jest.fn(),
+        selectedSchool: undefined,
+        setSelectedSchool: jest.fn(),
+      };
+    },
   }),
 );
 
