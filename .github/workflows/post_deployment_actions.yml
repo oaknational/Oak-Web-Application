@@ -7,7 +7,6 @@ env:
 
 jobs:
   dump_github_event:
-    timeout-minutes: 60
     uses: ./.github/workflows/dump_event.yml
 
   # Do a find-and-replace to add a link to the deployment to the PR body
