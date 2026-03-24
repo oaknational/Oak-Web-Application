@@ -36,7 +36,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
   const video = sectionResults["video"];
 
   const getPercentageWatched = () => {
-    if (video?.duration != null && video.timeElapsed != null) {
+    if (video?.duration != undefined && video.timeElapsed != undefined) {
       if (video.duration > 0 && video.timeElapsed > 0) {
         return Math.ceil((video.timeElapsed / video.duration) * 100);
       }
