@@ -1,13 +1,18 @@
 import { FC, useId } from "react";
-import { OakHeadingTag, OakP, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeadingTag,
+  OakP,
+  OakFlex,
+  OakLink,
+} from "@oaknational/oak-components";
 
 import NewsletterForm, {
   useNewsletterForm,
 } from "@/components/GenericPagesComponents/NewsletterForm";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type WebinarRegistrationProps = {
   headingTag?: OakHeadingTag;
@@ -73,9 +78,14 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
           >
             Fill this form to watch this webinar and get free resources and
             other helpful content by email. Unsubscribe any time.{" "}
-            <OwaLink page="legal" legalSlug="privacy-policy" $isInline>
+            <OakLink
+              href={resolveOakHref({
+                page: "legal",
+                legalSlug: "privacy-policy",
+              })}
+            >
               Privacy policy
-            </OwaLink>
+            </OakLink>
             .
           </OakP>
         </Flex>

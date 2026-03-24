@@ -1,11 +1,10 @@
 import React from "react";
 import { StoryObj, StoryFn, Meta } from "@storybook/nextjs";
-import { OakP, OakFlex } from "@oaknational/oak-components";
+import { OakP } from "@oaknational/oak-components";
 
 import Component from ".";
 
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
-import CardImage from "@/components/SharedComponents/Card/CardComponents/CardImage";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 export default {
@@ -49,33 +48,6 @@ export const CardIconButton: StoryObj<typeof Component> = {
       </Component>
     </div>
   ),
-};
-
-export const CardImageButton: StoryObj<typeof Component> = {
-  render: (args) => (
-    <div style={{ width: "300px" }}>
-      <Component {...args}>
-        <CardImage illustration="magic-carpet" />
-        <OakFlex $pa="spacing-24" $flexDirection={"column"}>
-          <CardTitle tag={"h4"}>Title</CardTitle>
-          <OakP $font={"body-2"} $mb={"spacing-24"} $color={"text-disabled"}>
-            Short snappy description of what this card is about.
-          </OakP>
-          <ButtonAsLink
-            $mt={"auto"}
-            $mb={16}
-            label={"Label"}
-            $fullWidth
-            page={"home"}
-          />
-        </OakFlex>
-      </Component>
-    </div>
-  ),
-
-  args: {
-    pa: 0,
-  },
 };
 
 export const CardLargeIconCentered: StoryObj<typeof Component> = {

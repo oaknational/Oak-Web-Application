@@ -16,7 +16,6 @@ import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFoc
 import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import ButtonBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "@/components/SharedComponents/Svg";
-import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OakColorName } from "@/styles/theme";
@@ -58,7 +57,6 @@ export type ButtonInnerProps = {
   label: string;
   labelSuffixA11y?: string;
   icon?: IconName;
-  subjectIcon?: string;
   iconBackground?: OakColorName;
   $iconPosition: IconPosition;
   shouldHideLabel?: boolean[];
@@ -79,7 +77,6 @@ export type ButtonInnerProps = {
 
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   let { icon } = props;
-  const { subjectIcon } = props;
   const {
     $iconPosition,
     iconBackground,
@@ -152,22 +149,6 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           {(variant === "minimal" || variant === "minimalNav") && (
             <IconFocusUnderline $color={underlineColor} />
           )}
-        </OakFlex>
-      )}
-      {subjectIcon && (
-        <OakFlex
-          $display={"inline-flex"}
-          $position="relative"
-          $alignItems="center"
-          $color={currentColor}
-          // $ml={-8}
-        >
-          <SubjectIcon
-            subjectSlug={subjectIcon}
-            $maxHeight={40}
-            $maxWidth={40}
-            $height={iconSize}
-          />
         </OakFlex>
       )}
       <OakBox $position={"relative"} $minWidth={"spacing-0"}>

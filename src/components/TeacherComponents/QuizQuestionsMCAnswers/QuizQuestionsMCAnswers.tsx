@@ -11,7 +11,6 @@ import QuizImage from "@/components/TeacherComponents/QuizImage";
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import QuizImageAnswer from "@/components/TeacherComponents/QuizImageAnswer";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Typography from "@/components/SharedComponents/Typography";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizQuestionsMCAnswers = (props: {
@@ -60,17 +59,17 @@ export const QuizQuestionsMCAnswers = (props: {
             {choice.answer.map((answerItem, j) => {
               if (answerItem.type === "text" && !choice.answerIsCorrect) {
                 return (
-                  <Typography
+                  <OakTypography
                     key={`q-${questionNumber}-answer-element-${j}`}
                     $font={["body-2", "body-1"]}
-                    $ph={40}
+                    $ph={"spacing-40"}
                   >
                     <OakCodeRenderer
                       string={removeMarkdown(answerItem.text)}
                       $font="code-3"
                       $mt={"spacing-0"}
                     />
-                  </Typography>
+                  </OakTypography>
                 );
               } else if (answerItem.type === "text" && choice.answerIsCorrect) {
                 return (
