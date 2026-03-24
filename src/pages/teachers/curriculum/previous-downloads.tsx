@@ -30,6 +30,7 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type Document = ReturnType<
   typeof curriculumPreviousDownloadsFixture
@@ -136,21 +137,21 @@ const CurriculumPreviousDownloadsPage = ({
           <Breadcrumbs
             breadcrumbs={[
               {
-                oakLinkProps: {
+                href: resolveOakHref({
                   page: "home",
-                },
+                }),
                 label: "Home",
               },
               {
-                oakLinkProps: {
+                href: resolveOakHref({
                   page: "curriculum-landing-page",
-                },
+                }),
                 label: "Curriculum resources",
               },
               {
-                oakLinkProps: {
+                href: resolveOakHref({
                   page: "curriculum-previous-downloads",
-                },
+                }),
                 label: "Previous downloads",
                 disabled: true,
               },

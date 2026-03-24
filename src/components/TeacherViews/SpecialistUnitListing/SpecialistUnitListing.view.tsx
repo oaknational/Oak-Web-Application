@@ -20,6 +20,7 @@ import filterUnits from "@/utils/filterUnits/filterUnits";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import MobileUnitFilters from "@/components/TeacherComponents/MobileUnitFilters";
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type SpecialistPageData = {
   curriculumData: SpecialistUnitListingData;
@@ -76,20 +77,20 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
       <HeaderListing
         breadcrumbs={[
           {
-            oakLinkProps: { page: "home" },
+            href: resolveOakHref({ page: "home" }),
             label: "Home",
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "specialist-subject-index",
-            },
+            }),
             label: "Specialist and therapies",
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "specialist-unit-index",
               programmeSlug: programmeSlug,
-            },
+            }),
             label: subjectTitle,
             disabled: true,
           },

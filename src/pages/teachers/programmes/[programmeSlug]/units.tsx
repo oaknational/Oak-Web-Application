@@ -32,7 +32,6 @@ import filterUnits from "@/utils/filterUnits/filterUnits";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import {
   UnitListingData,
@@ -53,6 +52,8 @@ import { useUnitFilterState } from "@/hooks/useUnitFilterState";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import Banners from "@/components/SharedComponents/Banners";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import { resolveOakHref } from "@/common-lib/urls";
+import { UnitListItemProps } from "@/components/TeacherComponents/UnitList/UnitList";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -236,23 +237,23 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
       <HeaderListing
         breadcrumbs={[
           {
-            oakLinkProps: { page: "home" },
+            href: resolveOakHref({ page: "home" }),
             label: "Home",
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "subject-index",
 
               keyStageSlug,
-            },
+            }),
             label: toSentenceCase(keyStageTitle),
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "unit-index",
 
               programmeSlug,
-            },
+            }),
             label: subjectTitle,
             disabled: true,
           },
