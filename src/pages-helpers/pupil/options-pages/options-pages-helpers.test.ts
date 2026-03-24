@@ -1,4 +1,5 @@
 import { syntheticProgrammesByYearFixture } from "@oaknational/oak-curriculum-schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import {
   getPupilOptionData,
@@ -12,7 +13,6 @@ import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/querie
 import OakError from "@/errors/OakError";
 import { subjectBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/subjectBrowseData.fixture";
 import { PupilViewsProgrammeListingProps } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
-import { keysToCamelCase } from "zod-to-camel-case";
 
 describe("options-pages-helpers", () => {
   describe("getYearSlug", () => {

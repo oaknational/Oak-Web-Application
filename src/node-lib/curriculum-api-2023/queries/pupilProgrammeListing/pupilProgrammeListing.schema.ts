@@ -1,6 +1,7 @@
-import { z } from "zod";
-import { syntheticProgrammesByYearSchema } from "@oaknational/oak-curriculum-schema";
-import zodToCamelCase from "zod-to-camel-case";
+import {
+  SyntheticProgrammesByYearCamel,
+  syntheticProgrammesByYearSchema,
+} from "@oaknational/oak-curriculum-schema";
 
 export const pupilProgrammeListingSchema = syntheticProgrammesByYearSchema.pick(
   {
@@ -10,7 +11,7 @@ export const pupilProgrammeListingSchema = syntheticProgrammesByYearSchema.pick(
   },
 );
 
-const pupilProgrammeListingCamel = zodToCamelCase(pupilProgrammeListingSchema);
-export type PupilProgrammeListingData = z.infer<
-  typeof pupilProgrammeListingCamel
+export type PupilProgrammeListingData = Pick<
+  SyntheticProgrammesByYearCamel,
+  "programmeSlug" | "programmeFields" | "yearSlug"
 >;

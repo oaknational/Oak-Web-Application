@@ -1,10 +1,9 @@
 import { syntheticUnitvariantsWithLessonIdsByKsFixture } from "@oaknational/oak-curriculum-schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import { UnitsCamel } from "../unitListing.schema";
 
 import { reshapeUnitData } from "./reshapeUnitData";
-
-import { keysToCamelCase } from "zod-to-camel-case";
 
 const camelCaseFixture = ({
   overrides,

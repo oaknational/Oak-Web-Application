@@ -2,6 +2,7 @@ import {
   ActionsCamel,
   ProgrammeFields,
 } from "@oaknational/oak-curriculum-schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import { BetaLessonListSchema } from "./teacherPreviewLessonListing.schema";
 
@@ -17,7 +18,6 @@ import { TeacherPreviewLessonListingQuery } from "@/node-lib/curriculum-api-2023
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
 import { getIntersection } from "@/utils/getIntersection";
-import { keysToCamelCase } from "zod-to-camel-case";
 
 export const getTransformedLessons = (
   lessons: TeacherPreviewLessonListingQuery["lessons"],

@@ -82,7 +82,7 @@ describe("OakPupilClientProvider + useOakPupil", () => {
           worksheetAvailable: false,
           isComplete: false,
         },
-        "starter-quiz": { isComplete: true, grade: 3, numQuestions: 3 },
+        starterQuiz: { isComplete: true, grade: 3, numQuestions: 3 },
         video: {
           isComplete: false,
           duration: 0,
@@ -92,7 +92,7 @@ describe("OakPupilClientProvider + useOakPupil", () => {
           timeElapsed: 0,
           transcriptOpened: false,
         },
-        "exit-quiz": { isComplete: false, grade: 3, numQuestions: 3 },
+        exitQuiz: { isComplete: false, grade: 3, numQuestions: 3 },
       },
     });
   });

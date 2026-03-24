@@ -8,7 +8,6 @@ import { z } from "zod";
 import {
   lessonContentSchema as lessonContentSchemaFull,
   syntheticUnitvariantLessonsSchema,
-  quizQuestionSchema,
   multipleChoiceSchemaCamel,
   shortAnswerSchemaCamel,
   orderSchemaCamel,
@@ -17,14 +16,15 @@ import {
   textItemSchemaCamel,
   additionalFileObjectSchemaCamel,
   additionalFilesSchemaCamel,
+  QuestionCamel,
+  LessonContentCamel,
+  SyntheticUnitvariantLessonsCamel,
 } from "@oaknational/oak-curriculum-schema";
-import zodToCamelCase from "zod-to-camel-case";
 
-const quizQuestionCamel = zodToCamelCase(quizQuestionSchema);
-export type QuizQuestion = z.infer<typeof quizQuestionCamel>;
+export type QuizQuestion = QuestionCamel;
 
 export type QuizQuestionAnswers = NonNullable<
-  z.infer<typeof quizQuestionCamel>["answers"]
+  Pick<QuestionCamel, "answers">["answers"]
 >;
 
 export type MCAnswer = z.infer<typeof multipleChoiceSchemaCamel>;
@@ -56,9 +56,8 @@ export const lessonContentSchema = lessonContentSchemaFull.omit({
   login_required: true,
 });
 
-const lessonContentCamel = zodToCamelCase(lessonContentSchema);
 export type LessonContent = Omit<
-  z.infer<typeof lessonContentCamel>,
+  LessonContentCamel,
   "starterQuiz" | "exitQuiz" | "transcriptSentences"
 > & {
   starterQuiz: QuizQuestion[];
@@ -74,5 +73,7 @@ export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
   null_unitvariant_id: true,
 });
 
-const lessonBrowseDataCamel = zodToCamelCase(lessonBrowseDataSchema);
-export type LessonBrowseData = z.infer<typeof lessonBrowseDataCamel>;
+export type LessonBrowseData = Omit<
+  SyntheticUnitvariantLessonsCamel,
+  "nullUnitvariantId"
+>;

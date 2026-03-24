@@ -1,5 +1,4 @@
 import { z } from "zod";
-import zodToCamelCase from "zod-to-camel-case";
 
 export const teacherNoteSchema = z.object({
   note_id: z.string().length(10),
@@ -12,8 +11,16 @@ export const teacherNoteSchema = z.object({
 });
 
 export type TeacherNote = z.infer<typeof teacherNoteSchema>;
-const teacherNoteCamel = zodToCamelCase(teacherNoteSchema);
-export type TeacherNoteCamelCase = z.infer<typeof teacherNoteCamel>;
+
+export type TeacherNoteCamelCase = {
+  noteId: string;
+  sidKey: string;
+  noteText: string;
+  noteHtml: string;
+  lessonPath: string;
+  updatedAt?: string;
+  checkedForPii?: boolean;
+};
 
 export const piiMatchSchema = z.object({
   infoType: z.enum([

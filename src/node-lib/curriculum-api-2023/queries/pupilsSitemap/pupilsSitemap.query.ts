@@ -1,3 +1,5 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import {
   PupilsSitemapBrowseData,
   pupilsSitemapDataSchema,
@@ -5,7 +7,6 @@ import {
 
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
-import { keysToCamelCase } from "zod-to-camel-case";
 
 const pupilsSitemap =
   (sdk: Sdk) => async (): Promise<PupilsSitemapBrowseData> => {

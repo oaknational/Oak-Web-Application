@@ -2,6 +2,7 @@ import { z } from "zod";
 import {
   actionsSchema,
   keystageSlugs,
+  SyntheticUnitvariantsWithLessonIdsByKsCamel,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
 import zodToCamelCase from "zod-to-camel-case";
@@ -242,8 +243,10 @@ export const lessonUnitDataByKsSchema =
     supplementary_data: true,
   });
 
-const lessonUnitDataByKsCamel = zodToCamelCase(lessonUnitDataByKsSchema);
-export type LessonUnitDataByKs = z.infer<typeof lessonUnitDataByKsCamel>;
+export type LessonUnitDataByKs = Pick<
+  SyntheticUnitvariantsWithLessonIdsByKsCamel,
+  "lessonCount" | "supplementaryData"
+>;
 
 export const lessonDownloadsListSchema = z.array(
   z.object({

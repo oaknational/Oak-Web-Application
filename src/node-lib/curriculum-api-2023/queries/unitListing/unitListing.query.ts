@@ -1,3 +1,6 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+import { ProgrammeFieldsCamel } from "@oaknational/oak-curriculum-schema";
+
 import { SubjectSlugs } from "../pupilSubjectListing/pupilSubjectListing.schema";
 
 import { reshapeUnitData } from "./helpers/reshapeUnitData";
@@ -14,14 +17,12 @@ import {
 } from "./unitListing.schema";
 
 import { NEW_COHORT } from "@/config/cohort";
-import { keysToCamelCase } from "zod-to-camel-case";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import {
   UnitListingQuery,
   Sdk,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import OakError from "@/errors/OakError";
-import { ProgrammeFieldsCamel } from "@oaknational/oak-curriculum-schema";
 
 const getTierData = (programmeSlug: string): UnitListingData["tiers"] => [
   {

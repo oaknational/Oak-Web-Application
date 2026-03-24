@@ -107,7 +107,7 @@ describe("PupilLessonProgressMapper.toLessonAttemptData", () => {
 
   it("maps starter quiz grade and numQuestions", () => {
     const result = PupilLessonProgressMapper.toLessonAttemptData(baseArgs);
-    expect(result.sectionResults["starter-quiz"]).toMatchObject({
+    expect(result.sectionResults["starterQuiz"]).toMatchObject({
       grade: 3,
       numQuestions: 5,
     });
@@ -115,7 +115,7 @@ describe("PupilLessonProgressMapper.toLessonAttemptData", () => {
 
   it("maps exit quiz grade and numQuestions", () => {
     const result = PupilLessonProgressMapper.toLessonAttemptData(baseArgs);
-    expect(result.sectionResults["exit-quiz"]).toMatchObject({
+    expect(result.sectionResults["exitQuiz"]).toMatchObject({
       grade: 4,
       numQuestions: 6,
     });
@@ -123,7 +123,7 @@ describe("PupilLessonProgressMapper.toLessonAttemptData", () => {
 
   it("maps question results for starter quiz", () => {
     const result = PupilLessonProgressMapper.toLessonAttemptData(baseArgs);
-    const qrs = result.sectionResults["starter-quiz"]?.questionResults;
+    const qrs = result.sectionResults["starterQuiz"]?.questionResults;
     expect(qrs).toHaveLength(1);
     expect(qrs?.[0]).toMatchObject({
       grade: 1,
@@ -134,7 +134,7 @@ describe("PupilLessonProgressMapper.toLessonAttemptData", () => {
 
   it("maps usedHint to offerHint for exit quiz question results", () => {
     const result = PupilLessonProgressMapper.toLessonAttemptData(baseArgs);
-    const qrs = result.sectionResults["exit-quiz"]?.questionResults;
+    const qrs = result.sectionResults["exitQuiz"]?.questionResults;
     expect(qrs?.[0]?.offerHint).toBe(true);
   });
 
@@ -163,20 +163,20 @@ describe("PupilLessonProgressMapper.toLessonAttemptData", () => {
     });
   });
 
-  it("returns empty object for starter-quiz when starterQuiz is undefined", () => {
+  it("returns empty object for starterQuiz when starterQuiz is undefined", () => {
     const result = PupilLessonProgressMapper.toLessonAttemptData({
       ...baseArgs,
       pupilProgress: { ...mockPupilProgress, starterQuiz: undefined },
     });
-    expect(result.sectionResults["starter-quiz"]).toEqual({});
+    expect(result.sectionResults["starterQuiz"]).toEqual({});
   });
 
-  it("returns empty object for exit-quiz when exitQuiz is undefined", () => {
+  it("returns empty object for exitQuiz when exitQuiz is undefined", () => {
     const result = PupilLessonProgressMapper.toLessonAttemptData({
       ...baseArgs,
       pupilProgress: { ...mockPupilProgress, exitQuiz: undefined },
     });
-    expect(result.sectionResults["exit-quiz"]).toEqual({});
+    expect(result.sectionResults["exitQuiz"]).toEqual({});
   });
 
   it("returns empty questionResults array when questionResults is undefined", () => {
@@ -187,7 +187,7 @@ describe("PupilLessonProgressMapper.toLessonAttemptData", () => {
         starterQuiz: { grade: 0, numQuestions: 3, isComplete: false },
       },
     });
-    expect(result.sectionResults["starter-quiz"]?.questionResults).toHaveLength(
+    expect(result.sectionResults["starterQuiz"]?.questionResults).toHaveLength(
       0,
     );
   });

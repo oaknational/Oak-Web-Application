@@ -4,6 +4,7 @@ import {
   actionsSchema,
   mediaClipsRecordSchemaCamel,
   mediaClipCycleSchemaCamel,
+  SyntheticUnitvariantLessonsCamel,
 } from "@oaknational/oak-curriculum-schema";
 import zodToCamelCase from "zod-to-camel-case";
 
@@ -11,8 +12,10 @@ export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
   null_unitvariant_id: true,
 });
 
-const lessonBrowseDataSchemaCamel = zodToCamelCase(lessonBrowseDataSchema);
-export type LessonBrowseData = z.infer<typeof lessonBrowseDataSchemaCamel>;
+export type LessonBrowseData = Omit<
+  SyntheticUnitvariantLessonsCamel,
+  "nullUnitvariantId"
+>;
 
 export const mediaClipObjectCamelCaseSchema = z.object({
   url: z.string(),

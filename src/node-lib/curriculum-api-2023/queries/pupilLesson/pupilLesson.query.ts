@@ -1,3 +1,5 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import {
   LessonContent,
   LessonBrowseData,
@@ -17,7 +19,6 @@ import {
   InputMaybe,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_12_0_0_Bool_Exp,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
-import { keysToCamelCase } from "zod-to-camel-case";
 import { getIntersection } from "@/utils/getIntersection";
 
 export const pupilLessonQuery =

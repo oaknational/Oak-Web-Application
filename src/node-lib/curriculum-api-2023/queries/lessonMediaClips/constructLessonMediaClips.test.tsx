@@ -1,8 +1,7 @@
 import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import { constructLessonMediaData } from "./constructLessonMediaClips";
-
-import { keysToCamelCase } from "zod-to-camel-case";
 
 describe("constructMediaClips", () => {
   const fixture = syntheticUnitvariantLessonsByKsFixture({

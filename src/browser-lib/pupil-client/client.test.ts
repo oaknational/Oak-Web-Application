@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import { ZodError } from "zod";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import { OakPupilClient } from "./client";
 
@@ -13,7 +14,6 @@ import {
 import convertKeysToSnakeCase from "@/utils/camelCaseConverter";
 import { createHash } from "@/utils/createHash";
 import { mockTeacherNote } from "@/node-lib/pupil-api/__mocks__/MockPupilClient";
-import { keysToCamelCase } from "zod-to-camel-case";
 
 jest.mock("nanoid", () => ({
   nanoid: jest.fn(() => "testUserId"),

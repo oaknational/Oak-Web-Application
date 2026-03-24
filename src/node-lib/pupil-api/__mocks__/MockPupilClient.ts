@@ -1,3 +1,5 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import type {
   AddTeacherNote,
   GetAttempt,
@@ -7,7 +9,6 @@ import type {
   State,
 } from "@/browser-lib/pupil-client/client";
 import { TeacherNote } from "@/node-lib/pupil-api/types";
-import { keysToCamelCase } from "zod-to-camel-case";
 
 const mockAttempt = {
   attemptId: "gCgkXUx42GY-9cAniQelm",
@@ -26,7 +27,7 @@ const mockAttempt = {
       worksheetAvailable: false,
       isComplete: false,
     },
-    "starter-quiz": {
+    starterQuiz: {
       isComplete: true,
       grade: 3,
       numQuestions: 3,
@@ -40,7 +41,7 @@ const mockAttempt = {
       signedOpened: false,
       transcriptOpened: false,
     },
-    "exit-quiz": {
+    exitQuiz: {
       isComplete: false,
       grade: 3,
       numQuestions: 3,

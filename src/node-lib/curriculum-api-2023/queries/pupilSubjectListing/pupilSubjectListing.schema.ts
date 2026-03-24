@@ -2,8 +2,8 @@ import { z } from "zod";
 import {
   syntheticProgrammesByYearSchema,
   subjectSlugs,
+  SyntheticProgrammesByYearCamel,
 } from "@oaknational/oak-curriculum-schema";
-import zodToCamelCase from "zod-to-camel-case";
 
 export const pupilSubjectListingSchema = syntheticProgrammesByYearSchema.pick({
   programme_slug: true,
@@ -15,7 +15,6 @@ export const pupilSubjectListingSchema = syntheticProgrammesByYearSchema.pick({
   actions: true,
 });
 
-const pupilSubjectListingCamel = zodToCamelCase(pupilSubjectListingSchema);
-export type PupilSubjectListingData = z.infer<typeof pupilSubjectListingCamel>;
+export type PupilSubjectListingData = SyntheticProgrammesByYearCamel;
 
 export type SubjectSlugs = z.infer<typeof subjectSlugs>;

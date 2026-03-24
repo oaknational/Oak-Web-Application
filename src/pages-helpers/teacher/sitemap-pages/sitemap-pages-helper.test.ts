@@ -1,6 +1,7 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import { buildAllUrlFields } from "./sitemap-pages-helper";
 
-import { keysToCamelCase } from "zod-to-camel-case";
 import { teachersSitemapDataSchema } from "@/node-lib/curriculum-api-2023/queries/teachersSitemap/teacherSitemap.schema";
 import { teachersSitemapDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 

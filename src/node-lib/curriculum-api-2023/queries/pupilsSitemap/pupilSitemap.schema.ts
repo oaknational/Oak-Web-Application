@@ -4,7 +4,6 @@ import {
   syntheticProgrammesByYearSchema,
   syntheticUnitvariantLessonsSchema,
 } from "@oaknational/oak-curriculum-schema";
-import zodToCamelCase from "zod-to-camel-case";
 
 export const pupilsSitemapDataSchema = z.object({
   programmes: z.array(
@@ -27,5 +26,17 @@ export const pupilsSitemapDataSchema = z.object({
   ),
 });
 
-const pupilsSitemapDataCamel = zodToCamelCase(pupilsSitemapDataSchema);
-export type PupilsSitemapBrowseData = z.infer<typeof pupilsSitemapDataCamel>;
+export type PupilsSitemapBrowseData = {
+  programmes: Array<{
+    programmeSlug: string;
+  }>;
+  units: Array<{
+    programmeSlug: string;
+    unitSlug: string;
+  }>;
+  lessons: Array<{
+    programmeSlug: string;
+    unitSlug: string;
+    lessonSlug: string;
+  }>;
+};

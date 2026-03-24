@@ -2,6 +2,8 @@ import { z } from "zod";
 import {
   lessonContentSchema as lessonContentSchemaFull,
   syntheticUnitvariantLessonsByKsSchema,
+  LessonContentCamel as LessonContentCamelFull,
+  SyntheticUnitvariantLessonsByKsCamel,
 } from "@oaknational/oak-curriculum-schema";
 
 import {
@@ -10,7 +12,6 @@ import {
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import zodToCamelCase from "zod-to-camel-case";
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
   _state: true,
@@ -19,10 +20,10 @@ export const lessonContentSchema = lessonContentSchemaFull.omit({
   video_duration: true,
 });
 
-const lessonContentSchemaCamel = zodToCamelCase(lessonContentSchema, {
-  bidirectional: true,
-});
-type LessonContentCamel = z.infer<typeof lessonContentSchemaCamel>;
+type LessonContentCamel = Omit<
+  LessonContentCamelFull,
+  "state" | "exitQuiz" | "starterQuiz" | "videoDuration"
+>;
 
 export type LessonOverviewContent = Omit<
   LessonContentCamel,
@@ -101,7 +102,7 @@ export const lessonBrowseDataByKsSchema =
     null_unitvariant_id: true,
   });
 
-const browseDataCamelCase = zodToCamelCase(lessonBrowseDataByKsSchema, {
-  bidirectional: true,
-});
-export type LessonBrowseDataByKs = z.infer<typeof browseDataCamelCase>;
+export type LessonBrowseDataByKs = Omit<
+  SyntheticUnitvariantLessonsByKsCamel,
+  "nullUnitvariantId"
+>;

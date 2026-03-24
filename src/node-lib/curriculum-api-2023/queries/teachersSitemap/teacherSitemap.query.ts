@@ -1,3 +1,5 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import {
   TeachersSitemapBrowseData,
   teachersSitemapDataSchema,
@@ -6,7 +8,6 @@ import {
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
-import { keysToCamelCase } from "zod-to-camel-case";
 
 export type TeachersSitemap = {
   urls: string;

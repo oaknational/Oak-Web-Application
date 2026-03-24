@@ -14,7 +14,7 @@ describe("questionUtils", () => {
       hint: "Hint",
       active: true,
       order: 0,
-      _state: "published",
+      state: "published",
     };
 
     it("should return an empty array if no questions are provided", () => {

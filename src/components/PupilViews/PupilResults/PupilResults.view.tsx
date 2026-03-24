@@ -31,15 +31,21 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
   const { programmeFields, lessonData, isLegacy } = browseData;
   const { yearDescription, subject, subjectSlug } = programmeFields;
   const { title } = lessonData;
-  const exitQuiz = sectionResults["exit-quiz"];
-  const starterQuiz = sectionResults["starter-quiz"];
-  const { worksheetDownloaded, worksheetAvailable } = sectionResults["intro"];
+  const exitQuiz = sectionResults["exitQuiz"];
+  const starterQuiz = sectionResults["starterQuiz"];
   const video = sectionResults["video"];
 
-  const percentageVideoWatched =
-    video.duration > 0 && video.timeElapsed > 0
-      ? Math.ceil((video.timeElapsed / video.duration) * 100)
-      : 0;
+  const getPercentageWatched = () => {
+    if (video && video.duration != null && video.timeElapsed != null) {
+      if (video.duration > 0 && video.timeElapsed > 0) {
+        return Math.ceil((video.timeElapsed / video.duration) * 100);
+      }
+    }
+
+    return 0;
+  };
+
+  const percentageVideoWatched = getPercentageWatched();
 
   const iconSlug = `subject-${subjectSlug}`;
   let questionIndex = 1;
@@ -58,8 +64,8 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
           iconName={isValidIconName(iconSlug) ? iconSlug : "question-mark"}
           title={title}
           videoPercentage={percentageVideoWatched}
-          worksheetDownloaded={worksheetDownloaded}
-          workSheetAvailable={worksheetAvailable}
+          worksheetDownloaded={!!sectionResults["intro"]?.worksheetDownloaded}
+          workSheetAvailable={!!sectionResults["intro"]?.worksheetAvailable}
         />
         <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
           <OakHeading tag="h2" $font={"heading-5"}>

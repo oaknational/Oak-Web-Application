@@ -1,3 +1,5 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { constructLessonMediaData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/constructLessonMediaClips";
 import errorReporter from "@/common-lib/error-reporter";
@@ -5,7 +7,6 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { BetaLessonMediaClipsQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
-import { keysToCamelCase } from "zod-to-camel-case";
 import {
   LessonBrowseDataByKs,
   lessonBrowseDataByKsSchema,

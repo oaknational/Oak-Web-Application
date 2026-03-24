@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import { PupilApiClient } from "@/browser-lib/pupil-client/network/PupilApiClient";
 import {
@@ -13,7 +14,6 @@ import {
 } from "@/node-lib/pupil-api/types";
 import { createHash } from "@/utils/createHash";
 import convertKeysToSnakeCase from "@/utils/camelCaseConverter";
-import { keysToCamelCase } from "zod-to-camel-case";
 
 const logger = console;
 
