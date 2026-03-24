@@ -43,7 +43,7 @@ jobs:
           cache: "npm"
 
       # Install.
-      - run: npm ci
+      - run: npm ci --verbose
 
       # Create Github release using semantic-release package.
       # See config here release.config.js
