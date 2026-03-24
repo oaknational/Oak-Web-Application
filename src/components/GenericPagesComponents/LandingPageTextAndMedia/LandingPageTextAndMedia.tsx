@@ -9,7 +9,6 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Card from "@/components/SharedComponents/Card";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
@@ -48,11 +47,11 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
       $ph={[16, 56]}
     >
       <BrushBorders hideOnMobileH color={"lemon50"} />
-      <Flex
-        $minHeight={200}
+      <OakFlex
+        $minHeight={"spacing-240"}
         $position="relative"
         $minWidth={["100%", "50%"]}
-        $mb={[40, 0]}
+        $mb={["spacing-48", "spacing-0"]}
       >
         {props.mediaType == "image" && (
           <CMSImage
@@ -70,8 +69,8 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
             <CMSVideo video={props.video} location="marketing" />
           </OakFlex>
         )}
-      </Flex>
-      <Flex
+      </OakFlex>
+      <OakFlex
         $minWidth={["100%", "50%"]}
         $justifyContent={"center"}
         $flexDirection={"column"}
@@ -80,7 +79,6 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
           components={landingPortableTextComponent}
           value={props.bodyPortableText}
         />
-
         <div>
           {props.cta && (
             <ButtonAsLink
@@ -93,7 +91,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
             />
           )}
         </div>
-      </Flex>
+      </OakFlex>
     </Card>
   );
 };
