@@ -19,17 +19,15 @@ export const getCardListingDefaultTextColour = ({
 
 export const getCardListingLinkProps = ({
   disabled,
-  hasChildCards,
   href,
   onClickLink,
 }: {
   disabled?: boolean;
-  hasChildCards: boolean;
   href: string;
   onClickLink?: () => void;
 }) => {
   // If the card is disabled or has child cards use a div for the container,
-  if (disabled || hasChildCards) {
+  if (disabled) {
     return { "data-disabled": true, as: "div" as const };
   } else {
     // otherwise use a link element

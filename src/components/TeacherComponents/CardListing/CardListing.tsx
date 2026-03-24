@@ -68,7 +68,6 @@ const CardListing = (props: CardListingProps) => {
 
   const cardLinkProps = getCardListingLinkProps({
     disabled,
-    hasChildCards,
     href,
     onClickLink,
   });
@@ -88,7 +87,25 @@ const CardListing = (props: CardListingProps) => {
       $ba={showBorder ? "border-solid-s" : undefined}
       className="card-listing-container"
     >
-      {layoutVariant === "horizontal" ? (
+      {hasChildCards ? (
+        // Container card layout
+        <OakFlex $flexDirection={"column"} $gap={"spacing-20"} $width={"100%"}>
+          {layoutVariant === "vertical" && <CardListingIndex {...props} />}
+          <OakFlex
+            $flexDirection={"row"}
+            $gap={"spacing-20"}
+            $width={"100%"}
+            $color={defaultTextColour}
+          >
+            {layoutVariant === "horizontal" && <CardListingIndex {...props} />}
+            <CardListingTitle {...props} />
+          </OakFlex>
+          <CardListingSubCopy {...props} />
+          <CardListingCardTags {...props} />
+          <CardListingChildCardList {...props} />
+        </OakFlex>
+      ) : layoutVariant === "horizontal" ? (
+        // Horizontal layout with no child cards
         <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
           <CardListingStyledLink {...cardLinkProps} className="styled-link">
             <OakFlex
@@ -106,7 +123,6 @@ const CardListing = (props: CardListingProps) => {
                 <CardListingTitle {...props} />
                 <CardListingSubCopy {...props} />
                 <CardListingCardTags {...props} />
-                <CardListingChildCardList {...props} />
               </OakFlex>
             </OakFlex>
           </CardListingStyledLink>
@@ -129,7 +145,7 @@ const CardListing = (props: CardListingProps) => {
           )}
         </OakFlex>
       ) : (
-        // Vertical Layout
+        // Vertical Layout with no child cards
         <OakFlex
           $flexDirection={"column"}
           $gap={"spacing-20"}
