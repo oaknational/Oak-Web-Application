@@ -31,6 +31,20 @@ const props: LessonSharePageProps = {
   topNav: topNavFixture,
 };
 
+const mockUseFetchResult = { data: [], error: null, isLoading: false };
+
+const getStoredSchoolName = () => {
+  const stored = localStorage.getItem(LS_KEY_SCHOOL);
+  if (!stored) return "";
+
+  try {
+    const parsed = JSON.parse(stored) as { schoolName?: string } | null;
+    return parsed?.schoolName ?? "";
+  } catch {
+    return "";
+  }
+};
+
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 jest.mock(
@@ -63,25 +77,21 @@ jest.mock(
 
 jest.mock("@/hooks/useFetch", () => ({
   __esModule: true,
-  useFetch: () => ({ data: [], error: null, isLoading: false }),
+  useFetch: () => mockUseFetchResult,
 }));
 
 jest.mock(
   "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker",
   () => ({
     __esModule: true,
-    default: () => {
-      const stored = localStorage.getItem(LS_KEY_SCHOOL);
-      const parsed = stored ? JSON.parse(stored) : null;
-      return {
-        schools: [],
-        error: null,
-        schoolPickerInputValue: parsed?.schoolName ?? "",
-        setSchoolPickerInputValue: jest.fn(),
-        selectedSchool: undefined,
-        setSelectedSchool: jest.fn(),
-      };
-    },
+    default: () => ({
+      schools: [],
+      error: null,
+      schoolPickerInputValue: getStoredSchoolName(),
+      setSchoolPickerInputValue: jest.fn(),
+      selectedSchool: undefined,
+      setSelectedSchool: jest.fn(),
+    }),
   }),
 );
 

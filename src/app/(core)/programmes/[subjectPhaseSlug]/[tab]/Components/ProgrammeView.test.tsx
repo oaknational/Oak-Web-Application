@@ -14,13 +14,15 @@ import {
 const usePathnameMock = jest
   .fn()
   .mockReturnValue("/programmes/science-secondary-aqa/units");
+const useRouterMock = jest.fn();
+const mockUseFetchResult = { data: [], error: null, isLoading: false };
 
 jest.mock("next/navigation", () => {
   return {
     __esModule: true,
     usePathname: () => usePathnameMock(),
     useSearchParams: jest.fn(),
-    useRouter: () => jest.fn(),
+    useRouter: () => useRouterMock,
   };
 });
 
@@ -41,7 +43,7 @@ jest.mock(
 
 jest.mock("@/hooks/useFetch", () => ({
   __esModule: true,
-  useFetch: () => ({ data: [], error: null, isLoading: false }),
+  useFetch: () => mockUseFetchResult,
 }));
 
 // Mock window history
