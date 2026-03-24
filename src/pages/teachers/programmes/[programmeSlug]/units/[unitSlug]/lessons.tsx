@@ -189,6 +189,14 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           ? "2020-2023"
           : "2023-2026",
         lessonReleaseDate: props.lessonReleaseDate ?? "unreleased",
+        courseId: null,
+        itemId: null,
+        attachmentId: null,
+        submissionId: null,
+        classroomAssignmentId: null,
+        teacherLoginHint: null,
+        pupilLoginHint: null,
+        clientEnvironment: "web-browser",
       });
     }
   };

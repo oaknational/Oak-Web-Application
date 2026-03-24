@@ -82,6 +82,47 @@ describe("PupilAnalyticsProvider", () => {
     );
   });
 
+  it("adds classroom tracking context to pupil lesson events", () => {
+    const trackSpy = { lessonStarted: jest.fn() };
+    (useAnalytics as jest.Mock).mockReturnValue({ track: trackSpy });
+
+    const { result } = renderHook(() => usePupilAnalytics(), {
+      wrapper: ({ children }: { children: ReactNode }) => (
+        <PupilAnalyticsProvider
+          lessonContent={lessonContentFixture({})}
+          pupilPathwayData={getPupilPathwayData(lessonBrowseDataFixture({}))}
+          classroomTrackingContext={{
+            courseId: "course-1",
+            itemId: "item-1",
+            attachmentId: "attachment-1",
+            submissionId: "submission-1",
+            classroomAssignmentId: "course-1:item-1",
+            teacherLoginHint: "teacher-1",
+            pupilLoginHint: "pupil-1",
+            clientEnvironment: "iframe",
+          }}
+        >
+          {children}
+        </PupilAnalyticsProvider>
+      ),
+    });
+
+    result.current.track.lessonStarted({});
+
+    expect(trackSpy.lessonStarted).toHaveBeenCalledWith(
+      expect.objectContaining({
+        courseId: "course-1",
+        itemId: "item-1",
+        attachmentId: "attachment-1",
+        submissionId: "submission-1",
+        classroomAssignmentId: "course-1:item-1",
+        teacherLoginHint: "teacher-1",
+        pupilLoginHint: "pupil-1",
+        clientEnvironment: "iframe",
+      }),
+    );
+  });
+
   it.each([
     "lessonActivityStartedLessonAudio",
     "lessonActivityCompletedLessonAudio",

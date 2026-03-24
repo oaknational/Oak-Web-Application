@@ -177,6 +177,14 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         tierName: tierTitle,
         lessonReleaseCohort: "2023-2026",
         lessonReleaseDate: "unpublished",
+        courseId: null,
+        itemId: null,
+        attachmentId: null,
+        submissionId: null,
+        classroomAssignmentId: null,
+        teacherLoginHint: null,
+        pupilLoginHint: null,
+        clientEnvironment: "web-browser",
       });
     }
   };

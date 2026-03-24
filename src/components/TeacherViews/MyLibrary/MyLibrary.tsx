@@ -168,6 +168,14 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                       lessonSlug,
                       lessonReleaseCohort: "2023-2026",
                       lessonReleaseDate: "", // we don't have access to lesson content data here
+                      courseId: null,
+                      itemId: null,
+                      attachmentId: null,
+                      submissionId: null,
+                      classroomAssignmentId: null,
+                      teacherLoginHint: null,
+                      pupilLoginHint: null,
+                      clientEnvironment: "web-browser",
                     }),
                   onSave: () =>
                     onSaveToggle(

@@ -7,6 +7,7 @@ import { NextResponse } from "next/server";
 import { POST } from "./route";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
+import { getPupilFirestore } from "@/node-lib/firestore";
 
 jest.mock("next/server", () => ({
   NextResponse: {
@@ -23,8 +24,12 @@ jest.mock("@/node-lib/google-classroom", () => {
     __mockReportError: reporterMock,
   };
 });
+jest.mock("@/node-lib/firestore", () => ({
+  getPupilFirestore: jest.fn(),
+}));
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
+const mockedGetPupilFirestore = getPupilFirestore as jest.Mock;
 
 const mockAccessToken = "mock-access-token";
 const mockSession = "mock-session-id";
@@ -32,6 +37,9 @@ const mockSession = "mock-session-id";
 const mockGetAddOnContext = jest.fn().mockResolvedValue({
   studentContext: { submissionId: "submission-123" },
   pupilLoginHint: "123456789",
+});
+const mockAttachmentGet = jest.fn().mockResolvedValue({
+  data: () => ({ teacherLoginHint: "teacher-123" }),
 });
 
 describe("POST /api/classroom/context", () => {
@@ -49,6 +57,13 @@ describe("POST /api/classroom/context", () => {
     jest.clearAllMocks();
     mockedGetOakGoogleClassroomAddon.mockReturnValue({
       getAddOnContext: mockGetAddOnContext,
+    });
+    mockedGetPupilFirestore.mockReturnValue({
+      collection: jest.fn(() => ({
+        doc: jest.fn(() => ({
+          get: mockAttachmentGet,
+        })),
+      })),
     });
   });
 
@@ -75,6 +90,7 @@ describe("POST /api/classroom/context", () => {
       {
         studentContext: { submissionId: "submission-123" },
         pupilLoginHint: "123456789",
+        teacherLoginHint: "teacher-123",
       },
       { status: 200 },
     );

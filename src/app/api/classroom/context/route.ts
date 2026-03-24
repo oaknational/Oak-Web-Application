@@ -6,6 +6,7 @@ import {
   getOakGoogleClassroomAddon,
   isOakGoogleClassroomException,
 } from "@/node-lib/google-classroom";
+import { getPupilFirestore } from "@/node-lib/firestore";
 
 const getAddOnContextSchema = z.object({
   courseId: z.string(),
@@ -46,7 +47,28 @@ export async function POST(request: NextRequest) {
       session,
     );
 
-    return NextResponse.json(context, { status: 200 });
+    let teacherLoginHint: string | undefined;
+
+    try {
+      const attachmentSnapshot = await getPupilFirestore()
+        .collection("classroomAttachments")
+        .doc(parsed.data.attachmentId)
+        .get();
+
+      teacherLoginHint = attachmentSnapshot.data()?.teacherLoginHint;
+    } catch (error) {
+      reportError(error, {
+        severity: "warning",
+      });
+    }
+
+    return NextResponse.json(
+      {
+        ...context,
+        teacherLoginHint,
+      },
+      { status: 200 },
+    );
   } catch (e) {
     const errorObject = isOakGoogleClassroomException(e) ? e.toObject() : e;
     reportError(errorObject);

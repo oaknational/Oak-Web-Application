@@ -1,4 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 import { useRouter } from "next/router";
 import { useSearchParams } from "next/navigation";
 import { createGlobalStyle } from "styled-components";
@@ -30,6 +38,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   PupilAnalyticsProvider,
   getPupilPathwayData,
+  type PupilClassroomTrackingContext,
 } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import {
   LessonBrowseData,
@@ -43,6 +52,7 @@ import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/u
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 import type { AddOnContextResponse } from "@/browser-lib/google-classroom/googleClassroomApi";
+import { getClassroomAssignmentId } from "@/browser-lib/google-classroom/classroomAnalytics";
 import {
   mapToSubmitPupilProgress,
   type ClassroomContext,
@@ -73,6 +83,14 @@ export type PupilExperienceViewProps = {
   hasAdditionalFiles: boolean;
   additionalFiles: AdditionalFile[] | null;
   worksheetInfo: WorksheetInfo | null;
+};
+
+type PupilExperienceLayoutProps = PupilExperienceViewProps & {
+  isGoogleClassroomAssignment: boolean;
+  classroomTrackingContext?: PupilClassroomTrackingContext;
+  setClassroomTrackingContext: Dispatch<
+    SetStateAction<PupilClassroomTrackingContext | undefined>
+  >;
 };
 
 export const PupilPageContent = ({
@@ -220,15 +238,12 @@ const PupilExperienceLayout = ({
   initialSection,
   pageType,
   worksheetInfo,
-}: PupilExperienceViewProps) => {
+  isGoogleClassroomAssignment,
+  classroomTrackingContext,
+  setClassroomTrackingContext,
+}: PupilExperienceLayoutProps) => {
   const ageRestriction = browseData.features?.ageRestriction;
   const hasAgeRestriction = !!ageRestriction;
-  const { isClassroomAssignment, classroomAssignmentChecked } =
-    useAssignmentSearchParams();
-  const isGoogleClassroomAssignment =
-    isClassroomAssignment && classroomAssignmentChecked;
-
-  const searchParams = useSearchParams();
   const classroomContextRef = useRef<ClassroomContext | null>(null);
   const [isFetchingClassroomContext, setIsFetchingClassroomContext] =
     useState(false);
@@ -237,10 +252,9 @@ const PupilExperienceLayout = ({
   const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
 
   const fetchGoogleClassroomContext = async () => {
-    const courseId = searchParams?.get("courseId");
-    const itemId = searchParams?.get("itemId");
-    const attachmentId = searchParams?.get("attachmentId");
+    if (!classroomTrackingContext) return;
 
+    const { courseId, itemId, attachmentId } = classroomTrackingContext;
     if (!courseId || !itemId || !attachmentId) return;
 
     try {
@@ -254,6 +268,19 @@ const PupilExperienceLayout = ({
 
       const submissionId = result?.studentContext?.submissionId;
       const pupilLoginHint = result?.pupilLoginHint;
+      const teacherLoginHint = result?.teacherLoginHint;
+
+      setClassroomTrackingContext((existing) =>
+        existing
+          ? {
+              ...existing,
+              submissionId: submissionId ?? existing.submissionId,
+              teacherLoginHint: teacherLoginHint ?? existing.teacherLoginHint,
+              pupilLoginHint: pupilLoginHint ?? existing.pupilLoginHint,
+            }
+          : existing,
+      );
+
       if (submissionId && pupilLoginHint) {
         classroomContextRef.current = {
           submissionId,
@@ -284,10 +311,15 @@ const PupilExperienceLayout = ({
   };
 
   useEffect(() => {
-    if (!isGoogleClassroomAssignment || classroomContextRef.current) return;
+    if (
+      !isGoogleClassroomAssignment ||
+      classroomContextRef.current ||
+      !classroomTrackingContext
+    )
+      return;
     fetchGoogleClassroomContext();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isGoogleClassroomAssignment, searchParams]);
+  }, [classroomTrackingContext, isGoogleClassroomAssignment]);
 
   const handleOnNext = useCallback(
     async (
@@ -344,7 +376,7 @@ const PupilExperienceLayout = ({
   };
 
   const handleContentGuidanceDecline = () => {
-    if (isClassroomAssignment) {
+    if (isGoogleClassroomAssignment) {
       window?.parent?.postMessage(
         {
           type: "Classroom",
@@ -466,18 +498,78 @@ const PupilExperienceLayout = ({
 
 export const PupilExperienceView = (props: PupilExperienceViewProps) => {
   const { browseData, lessonContent } = props;
+  const searchParams = useSearchParams();
+  const { isClassroomAssignment, classroomAssignmentChecked } =
+    useAssignmentSearchParams();
+  const isGoogleClassroomAssignment = Boolean(
+    isClassroomAssignment && classroomAssignmentChecked,
+  );
 
   const { worksheetInfo } = useWorksheetInfoState(
     lessonContent.hasWorksheetAssetObject,
     lessonContent.lessonSlug,
   );
 
+  const baseClassroomTrackingContext = useMemo(() => {
+    if (!isGoogleClassroomAssignment) return undefined;
+
+    const courseId = searchParams?.get("courseId");
+    const itemId = searchParams?.get("itemId");
+    const attachmentId = searchParams?.get("attachmentId");
+
+    if (!courseId || !itemId || !attachmentId) return undefined;
+
+    return {
+      courseId,
+      itemId,
+      attachmentId,
+      submissionId: "",
+      classroomAssignmentId: getClassroomAssignmentId({ courseId, itemId }),
+      teacherLoginHint: "",
+      pupilLoginHint: "",
+      clientEnvironment: "iframe",
+    } satisfies PupilClassroomTrackingContext;
+  }, [isGoogleClassroomAssignment, searchParams]);
+
+  const [classroomTrackingContext, setClassroomTrackingContext] = useState<
+    PupilClassroomTrackingContext | undefined
+  >(baseClassroomTrackingContext);
+
+  useEffect(() => {
+    setClassroomTrackingContext((existing) => {
+      if (!baseClassroomTrackingContext) return undefined;
+
+      const isSameAssignment =
+        existing?.classroomAssignmentId ===
+          baseClassroomTrackingContext.classroomAssignmentId &&
+        existing?.attachmentId === baseClassroomTrackingContext.attachmentId;
+
+      return {
+        ...baseClassroomTrackingContext,
+        submissionId: isSameAssignment ? (existing?.submissionId ?? "") : "",
+        teacherLoginHint: isSameAssignment
+          ? (existing?.teacherLoginHint ?? "")
+          : "",
+        pupilLoginHint: isSameAssignment
+          ? (existing?.pupilLoginHint ?? "")
+          : "",
+      };
+    });
+  }, [baseClassroomTrackingContext]);
+
   return (
     <PupilAnalyticsProvider
       pupilPathwayData={getPupilPathwayData(browseData)}
       lessonContent={lessonContent}
+      classroomTrackingContext={classroomTrackingContext}
     >
-      <PupilExperienceLayout {...props} worksheetInfo={worksheetInfo} />
+      <PupilExperienceLayout
+        {...props}
+        worksheetInfo={worksheetInfo}
+        isGoogleClassroomAssignment={isGoogleClassroomAssignment}
+        classroomTrackingContext={classroomTrackingContext}
+        setClassroomTrackingContext={setClassroomTrackingContext}
+      />
     </PupilAnalyticsProvider>
   );
 };

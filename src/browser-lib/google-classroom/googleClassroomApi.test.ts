@@ -301,6 +301,7 @@ describe("Google Classroom API", () => {
         authenticated: true,
         session: "new-session",
         token: "new-token",
+        loginHint: "teacher-123",
       });
 
       // Act
@@ -311,6 +312,7 @@ describe("Google Classroom API", () => {
         authenticated: true,
         session: "new-session",
         token: "new-token",
+        loginHint: "teacher-123",
       });
     });
 
@@ -631,6 +633,7 @@ describe("Google Classroom API", () => {
         session: undefined,
         token: undefined,
         userProfilePicUrl: undefined,
+        loginHint: undefined,
       });
     });
 

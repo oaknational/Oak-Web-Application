@@ -5,6 +5,7 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   AnalyticsUseCaseValueType,
+  ClientEnvironmentValueType,
   EngagementIntentValueType,
   EventVersionValueType,
   ExamBoardValueType,
@@ -57,6 +58,16 @@ type CorePropertyEventProps =
   | "product"
   | "engagementIntent"
   | "eventVersion";
+
+type ClassroomPropertyEventProps =
+  | "courseId"
+  | "itemId"
+  | "attachmentId"
+  | "submissionId"
+  | "classroomAssignmentId"
+  | "teacherLoginHint"
+  | "pupilLoginHint"
+  | "clientEnvironment";
 
 type VideoDataProps =
   | "videoTitle"
@@ -111,6 +122,7 @@ export type PupilAnalyticsTrack = {
       | VideoDataProps
       | AudioDataProps
       | CorePropertyEventProps
+      | ClassroomPropertyEventProps
     >,
   ) => void;
 };
@@ -161,9 +173,21 @@ export type PupilAudioData = {
   signedAvailable: boolean;
 };
 
-export type AdditionalArgType = PupilPathwayData & {
-  analyticsUseCase: AnalyticsUseCaseValueType;
+export type PupilClassroomTrackingContext = {
+  courseId: string | null;
+  itemId: string | null;
+  attachmentId: string | null;
+  submissionId: string | null;
+  classroomAssignmentId: string | null;
+  teacherLoginHint: string | null;
+  pupilLoginHint: string | null;
+  clientEnvironment: ClientEnvironmentValueType;
 };
+
+export type AdditionalArgType = PupilPathwayData &
+  PupilClassroomTrackingContext & {
+    analyticsUseCase: AnalyticsUseCaseValueType;
+  };
 
 export type CorePropertyArgType = {
   platform: PlatformValueType;
@@ -176,15 +200,30 @@ export const PupilAnalyticsProvider = ({
   children,
   pupilPathwayData,
   lessonContent,
+  classroomTrackingContext,
 }: {
   children: React.ReactNode;
   pupilPathwayData: PupilPathwayData;
   lessonContent?: LessonContent;
+  classroomTrackingContext?: Partial<PupilClassroomTrackingContext>;
 }) => {
   const { track } = useAnalytics();
 
+  const defaultClassroomTrackingContext: PupilClassroomTrackingContext = {
+    courseId: null,
+    itemId: null,
+    attachmentId: null,
+    submissionId: null,
+    classroomAssignmentId: null,
+    teacherLoginHint: null,
+    pupilLoginHint: null,
+    clientEnvironment: "web-browser",
+  };
+
   const additionalArgs: AdditionalArgType = {
     ...pupilPathwayData,
+    ...defaultClassroomTrackingContext,
+    ...classroomTrackingContext,
     analyticsUseCase: "Pupil",
   };
 

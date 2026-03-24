@@ -65,6 +65,7 @@ describe("POST /api/classroom/auth/verify", () => {
     mockVerifyAuthSession.mockResolvedValue({
       session: mockVerifiedSession,
       token: mockValidToken,
+      loginHint: "teacher-123",
     });
     mockRequestHeadersGet.mockImplementation((name) => {
       if (name === "Authorization") return mockValidToken;
@@ -88,6 +89,7 @@ describe("POST /api/classroom/auth/verify", () => {
         authenticated: true,
         session: mockVerifiedSession,
         token: mockValidToken,
+        loginHint: "teacher-123",
       },
       { status: 200 },
     );
@@ -131,7 +133,12 @@ describe("POST /api/classroom/auth/verify", () => {
 
       expect(mockNextResponseJson).toHaveBeenCalledTimes(1);
       expect(mockNextResponseJson).toHaveBeenCalledWith(
-        { authenticated: false, session: undefined, token: undefined },
+        {
+          authenticated: false,
+          session: undefined,
+          token: undefined,
+          loginHint: undefined,
+        },
         { status: 401 },
       );
     });
