@@ -10,24 +10,12 @@ import styled from "styled-components";
 import CurricQuote from "@/components/CurriculumComponents/CurricQuote";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import Illustration from "@/components/SharedComponents/Illustration";
-import { getBreakpoint } from "@/styles/utils/responsive";
 
 const StyledResponsiveFlex = styled(OakFlex)`
   flex-direction: column;
 
   @media (min-width: 920px) {
     flex-direction: row;
-  }
-`;
-
-const StyledCover = styled(OakFlex)`
-  position: relative;
-  width: 300px;
-  height: 270px;
-
-  @media (min-width: ${getBreakpoint("small")}px) {
-    width: 450px;
-    height: 420px;
   }
 `;
 
@@ -111,7 +99,11 @@ export function GuidingPrinciples({
           </OakP>
         </OakFlex>
 
-        <StyledCover>
+        <OakFlex
+          $position={"relative"}
+          $width={["spacing-360", "spacing-480", "spacing-480"]}
+          $height={["spacing-360", "spacing-480", "spacing-480"]}
+        >
           {imageUrl ? (
             <OakImage
               src={imageUrl}
@@ -132,7 +124,7 @@ export function GuidingPrinciples({
               format={null}
             />
           )}
-        </StyledCover>
+        </OakFlex>
       </OakFlex>
 
       <OakFlex
