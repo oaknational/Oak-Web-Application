@@ -4,7 +4,7 @@ import React from "react";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/GoogleClassroomSubjectIconHeader";
-import { GoogleClassroomLessonListingAnalytics } from "@/components/GoogleClassroom/GoogleClassroomLessonListingAnalytics";
+import { GoogleClassroomLessonListing } from "@/components/GoogleClassroom/GoogleClassroomLessonListing";
 
 async function getLessonsData(programmeSlug: string, unitSlug: string) {
   try {
@@ -47,7 +47,7 @@ async function GoogleClassroomLessonsListPage({
   }
 
   return (
-    <GoogleClassroomLessonListingAnalytics
+    <GoogleClassroomLessonListing
       unitData={unitData}
       browseData={orderedBrowseData}
       programmeFields={programmeFields}

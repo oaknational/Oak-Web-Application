@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GoogleClassroomOptionsAnalytics } from "./GoogleClassroomOptionsAnalytics";
+import { GoogleClassroomOptions } from "./GoogleClassroomOptions";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -32,11 +32,11 @@ const defaultProps = {
   getAvailableProgrammeFactorAction: jest.fn(),
 };
 
-describe("GoogleClassroomOptionsAnalytics", () => {
+describe("GoogleClassroomOptions", () => {
   beforeEach(() => jest.clearAllMocks());
 
   it("calls track.browseRefined with tier filter args when a tier option is selected", () => {
-    renderWithTheme(<GoogleClassroomOptionsAnalytics {...defaultProps} />);
+    renderWithTheme(<GoogleClassroomOptions {...defaultProps} />);
 
     const { onOptionSelected } = optionsViewMock.mock.calls[0][0];
     onOptionSelected("tier", { factorSlug: "higher" });
@@ -57,7 +57,7 @@ describe("GoogleClassroomOptionsAnalytics", () => {
   });
 
   it("calls track.browseRefined with examboard filter args when an examboard option is selected", () => {
-    renderWithTheme(<GoogleClassroomOptionsAnalytics {...defaultProps} />);
+    renderWithTheme(<GoogleClassroomOptions {...defaultProps} />);
 
     const { onOptionSelected } = optionsViewMock.mock.calls[0][0];
     onOptionSelected("examboard", { factorSlug: "aqa" });
@@ -77,7 +77,7 @@ describe("GoogleClassroomOptionsAnalytics", () => {
   });
 
   it("calls track.browseRefined with pathway filter args when a pathway option is selected", () => {
-    renderWithTheme(<GoogleClassroomOptionsAnalytics {...defaultProps} />);
+    renderWithTheme(<GoogleClassroomOptions {...defaultProps} />);
 
     const { onOptionSelected } = optionsViewMock.mock.calls[0][0];
     onOptionSelected("pathway", { factorSlug: "combined-higher" });

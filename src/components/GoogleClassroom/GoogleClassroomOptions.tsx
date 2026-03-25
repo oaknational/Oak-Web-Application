@@ -44,7 +44,7 @@ const FACTOR_TO_COMPONENT: Record<
   pathway: "programme_card",
 };
 
-export function GoogleClassroomOptionsAnalytics({
+export function GoogleClassroomOptions({
   programmes,
   baseSlug,
   yearSlug,

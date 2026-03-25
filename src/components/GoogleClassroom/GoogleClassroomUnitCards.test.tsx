@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GoogleClassroomUnitCardsAnalytics } from "./GoogleClassroomUnitCardsAnalytics";
+import { GoogleClassroomUnitCards } from "./GoogleClassroomUnitCards";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -24,12 +24,12 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   useGoogleClassroomAddonStore: jest.fn().mockReturnValue(null),
 }));
 
-describe("GoogleClassroomUnitCardsAnalytics", () => {
+describe("GoogleClassroomUnitCards", () => {
   beforeEach(() => jest.clearAllMocks());
 
   it("calls track.browseRefined with correct args when a unit is selected", () => {
     renderWithTheme(
-      <GoogleClassroomUnitCardsAnalytics
+      <GoogleClassroomUnitCards
         units={[]}
         programmeSlug="maths-h"
         unitsLessonListUrlTemplate="/classroom/browse/programmes/:programmeSlug/units/:unitSlug/lessons"

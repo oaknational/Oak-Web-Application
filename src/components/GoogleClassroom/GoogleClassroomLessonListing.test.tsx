@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GoogleClassroomLessonListingAnalytics } from "./GoogleClassroomLessonListingAnalytics";
+import { GoogleClassroomLessonListing } from "./GoogleClassroomLessonListing";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -69,13 +69,11 @@ const defaultProps = {
     "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
 };
 
-describe("GoogleClassroomLessonListingAnalytics", () => {
+describe("GoogleClassroomLessonListing", () => {
   beforeEach(() => jest.clearAllMocks());
 
   it("fires classroomLessonSelected with correct args when a lesson is selected", () => {
-    renderWithTheme(
-      <GoogleClassroomLessonListingAnalytics {...defaultProps} />,
-    );
+    renderWithTheme(<GoogleClassroomLessonListing {...defaultProps} />);
 
     const { onLessonSelected } = lessonListingViewMock.mock.calls[0][0];
     onLessonSelected("lesson-a");
@@ -93,9 +91,7 @@ describe("GoogleClassroomLessonListingAnalytics", () => {
   });
 
   it("fires classroomLessonPreviewed with correct args when a lesson is previewed", () => {
-    renderWithTheme(
-      <GoogleClassroomLessonListingAnalytics {...defaultProps} />,
-    );
+    renderWithTheme(<GoogleClassroomLessonListing {...defaultProps} />);
 
     const { onLessonPreviewed } = lessonListingViewMock.mock.calls[0][0];
     onLessonPreviewed("lesson-a");
@@ -112,9 +108,7 @@ describe("GoogleClassroomLessonListingAnalytics", () => {
   });
 
   it("uses lessonReleaseCohort '2020-2023' for legacy lessons", () => {
-    renderWithTheme(
-      <GoogleClassroomLessonListingAnalytics {...defaultProps} />,
-    );
+    renderWithTheme(<GoogleClassroomLessonListing {...defaultProps} />);
 
     const { onLessonSelected } = lessonListingViewMock.mock.calls[0][0];
     onLessonSelected("lesson-b");
@@ -127,9 +121,7 @@ describe("GoogleClassroomLessonListingAnalytics", () => {
   });
 
   it("falls back to 'unreleased' when lessonReleaseDate is null", () => {
-    renderWithTheme(
-      <GoogleClassroomLessonListingAnalytics {...defaultProps} />,
-    );
+    renderWithTheme(<GoogleClassroomLessonListing {...defaultProps} />);
 
     const { onLessonSelected } = lessonListingViewMock.mock.calls[0][0];
     onLessonSelected("lesson-b");
@@ -140,9 +132,7 @@ describe("GoogleClassroomLessonListingAnalytics", () => {
   });
 
   it("does not fire classroomLessonSelected when lesson slug is not in browseData", () => {
-    renderWithTheme(
-      <GoogleClassroomLessonListingAnalytics {...defaultProps} />,
-    );
+    renderWithTheme(<GoogleClassroomLessonListing {...defaultProps} />);
 
     const { onLessonSelected } = lessonListingViewMock.mock.calls[0][0];
     onLessonSelected("nonexistent-slug");
@@ -151,9 +141,7 @@ describe("GoogleClassroomLessonListingAnalytics", () => {
   });
 
   it("does not fire classroomLessonPreviewed when lesson slug is not in browseData", () => {
-    renderWithTheme(
-      <GoogleClassroomLessonListingAnalytics {...defaultProps} />,
-    );
+    renderWithTheme(<GoogleClassroomLessonListing {...defaultProps} />);
 
     const { onLessonPreviewed } = lessonListingViewMock.mock.calls[0][0];
     onLessonPreviewed("nonexistent-slug");

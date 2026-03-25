@@ -16,7 +16,7 @@ type Props = Readonly<{
   unitsLessonListUrlTemplate: string;
 }>;
 
-export function GoogleClassroomUnitCardsAnalytics({
+export function GoogleClassroomUnitCards({
   units,
   programmeSlug,
   unitsLessonListUrlTemplate,

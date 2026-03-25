@@ -16,7 +16,7 @@ type Props = Readonly<{
   optionsUrlTemplate: string;
 }>;
 
-export function GoogleClassroomSubjectsAnalytics({
+export function GoogleClassroomSubjects({
   subjects,
   unitsUrlTemplate,
   optionsUrlTemplate,

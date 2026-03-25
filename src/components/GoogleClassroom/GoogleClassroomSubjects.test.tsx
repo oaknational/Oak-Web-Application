@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GoogleClassroomSubjectsAnalytics } from "./GoogleClassroomSubjectsAnalytics";
+import { GoogleClassroomSubjects } from "./GoogleClassroomSubjects";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -24,12 +24,12 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   useGoogleClassroomAddonStore: jest.fn().mockReturnValue(null),
 }));
 
-describe("GoogleClassroomSubjectsAnalytics", () => {
+describe("GoogleClassroomSubjects", () => {
   beforeEach(() => jest.clearAllMocks());
 
   it("calls track.browseRefined with correct args when a subject is selected", () => {
     renderWithTheme(
-      <GoogleClassroomSubjectsAnalytics
+      <GoogleClassroomSubjects
         subjects={[]}
         unitsUrlTemplate="/classroom/browse/programmes/:programmeSlug/units"
         optionsUrlTemplate="/classroom/browse/programmes/:programmeSlug/options"
@@ -52,7 +52,7 @@ describe("GoogleClassroomSubjectsAnalytics", () => {
 
   it("uses empty string for filterValue when subjectSlug is null", () => {
     renderWithTheme(
-      <GoogleClassroomSubjectsAnalytics
+      <GoogleClassroomSubjects
         subjects={[]}
         unitsUrlTemplate="/classroom/browse/programmes/:programmeSlug/units"
         optionsUrlTemplate="/classroom/browse/programmes/:programmeSlug/options"

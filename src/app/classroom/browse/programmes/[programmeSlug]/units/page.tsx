@@ -10,7 +10,7 @@ import { checkAndExcludeUnitsWithAgeRestrictedLessons } from "@/pages-helpers/pu
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/GoogleClassroomSubjectIconHeader";
 import { UnitsContainer } from "@/components/TeacherComponents/UnitsContainer";
-import { GoogleClassroomUnitCardsAnalytics } from "@/components/GoogleClassroom/GoogleClassroomUnitCardsAnalytics";
+import { GoogleClassroomUnitCards } from "@/components/GoogleClassroom/GoogleClassroomUnitCards";
 
 async function getUnitsData(baseSlug: string) {
   try {
@@ -93,7 +93,7 @@ async function GoogleClassroomUnitsListingPage({
         phase={programmeFields.phase}
         subject={programmeFields.subject ?? ""}
         unitCards={[
-          <GoogleClassroomUnitCardsAnalytics
+          <GoogleClassroomUnitCards
             key={programmeSlug}
             units={optionalityUnits}
             programmeSlug={programmeSlug}

@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
-import { GoogleClassroomOptionsAnalytics } from "@/components/GoogleClassroom/GoogleClassroomOptionsAnalytics";
+import { GoogleClassroomOptions } from "@/components/GoogleClassroom/GoogleClassroomOptions";
 
 async function GoogleClassroomOptionsPage({
   params,
@@ -32,7 +32,7 @@ async function GoogleClassroomOptionsPage({
     });
   };
   return (
-    <GoogleClassroomOptionsAnalytics
+    <GoogleClassroomOptions
       programmes={programmes}
       baseSlug={programmeSlug}
       yearSlug={yearSlug}

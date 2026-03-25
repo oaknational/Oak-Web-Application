@@ -39,7 +39,7 @@ function getLessonReleaseCohort(
     : LessonReleaseCohort["2023_2026"];
 }
 
-export function GoogleClassroomLessonListingAnalytics({
+export function GoogleClassroomLessonListing({
   browseData,
   programmeSlug,
   unitData,
