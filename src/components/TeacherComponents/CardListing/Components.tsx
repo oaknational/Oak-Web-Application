@@ -62,6 +62,7 @@ export const CardListingCardTags = ({
       $borderRadius={"border-radius-s"}
       $borderColor={"border-neutral"}
       $width={"max-content"}
+      useSpan
     />
   ) : null;
   return tags ? (
