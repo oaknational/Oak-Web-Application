@@ -125,8 +125,7 @@ export const CardListingChildCardList = ({
   disabled,
   layoutVariant,
 }: CardListingProps) => {
-  const hasChildCards = (childCards?.length ?? 0) > 0;
-  if (hasChildCards) {
+  if (childCards?.length) {
     return (
       <OakGrid
         $cg={"spacing-20"}
@@ -135,7 +134,7 @@ export const CardListingChildCardList = ({
           layoutVariant === "horizontal" ? "repeat(3, 1fr)" : "1fr"
         }
       >
-        {childCards?.map((child) => (
+        {childCards.map((child) => (
           <CardListing
             {...child}
             layoutVariant="vertical"
