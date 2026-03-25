@@ -338,6 +338,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
+.c101 {
+  position: relative;
+  width: 22.5rem;
+  height: 22.5rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
 .c102 {
   position: relative;
   width: 100%;
@@ -3066,12 +3073,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   flex-direction: column;
 }
 
-.c101 {
-  position: relative;
-  width: 300px;
-  height: 270px;
-}
-
 .c86 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -3275,6 +3276,30 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 @media (min-width:1280px) {
   .c94 {
     padding: 5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c101 {
+    width: 30rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c101 {
+    width: 30rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c101 {
+    height: 30rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c101 {
+    height: 30rem;
   }
 }
 
@@ -4345,20 +4370,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   }
 }
 
-@media (min-width:750px) {
-  .c101 {
-    width: 450px;
-    height: 420px;
-  }
-}
-
-@media (min-width:1280px) {
-  .c101 {
-    width: 450px;
-    height: 420px;
-  }
-}
-
 <div>
   <div
     data-overlay-container="true"
@@ -5202,7 +5213,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="c11 c49 c101"
+                      class="c101 c49"
                     >
                       <span
                         class="c102"
