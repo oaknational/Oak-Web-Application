@@ -1,3 +1,24 @@
+# [1.1025.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1024.0...v1.1025.0) (2026-03-25)
+
+
+### Bug Fixes
+
+* add useSpan to tag to fix a11y issue ([c9045a5](https://github.com/oaknational/Oak-Web-Application/commit/c9045a5ae727ae416bdcbf5254ed2adbaad314d2))
+* keep child cards in line with content ([12b9cd3](https://github.com/oaknational/Oak-Web-Application/commit/12b9cd362d43a3cb282900a49e049fbdf58a0a4b))
+* remove border change on hover ([fb472aa](https://github.com/oaknational/Oak-Web-Application/commit/fb472aad9f58ca9d42a554f440fabc7db6b453ab))
+
+
+### Features
+
+* add child cards to horizontal card layout ([5b8bdc8](https://github.com/oaknational/Oak-Web-Application/commit/5b8bdc8510b165e348a006b2b53845192ba042b0))
+* add child cards to vertical layout ([bb0a537](https://github.com/oaknational/Oak-Web-Application/commit/bb0a53740ba9ac1fba11b75bc1481e1f00ca091f))
+* add optionality cards into unit list ([97a3e8b](https://github.com/oaknational/Oak-Web-Application/commit/97a3e8ba158fc58e338e5d382fe73d727b35e87a))
+* add options tag to optionality card ([53b4036](https://github.com/oaknational/Oak-Web-Application/commit/53b4036eeed7f4821523f525f9213664d6d1a58d))
+* border colour change on hover ([63b79dd](https://github.com/oaknational/Oak-Web-Application/commit/63b79dd096ef4a75b1dac089bf57751344fe76d5))
+* dont render card as link when child cards passed in ([8202e5c](https://github.com/oaknational/Oak-Web-Application/commit/8202e5cfdb56d48a5e869c1b6265b52d663ecf1e))
+* hide footer on main card when child cards exist ([bfbfbcc](https://github.com/oaknational/Oak-Web-Application/commit/bfbfbcc284af4fe6d8195ef092c020df25ff7cf1))
+* update optionality stories ([3ac3465](https://github.com/oaknational/Oak-Web-Application/commit/3ac3465a1088f8cf806a62510ec5101c5cd739d6))
+
 # [1.1024.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1023.3...v1.1024.0) (2026-03-24)
 
 
