@@ -12,6 +12,7 @@ import {
   LessonReleaseCohortValueType,
   PathwayValueType,
   PhaseValueType,
+  Platform,
   PlatformValueType,
   ProductValueType,
   TierNameValueType,
@@ -190,7 +191,8 @@ export const PupilAnalyticsProvider = ({
   };
   const clientEnvironment = getClientEnvironment();
   const corePropertyArgs: CorePropertyArgType = {
-    platform: clientEnvironment === "iframe" ? "google-classroom" : "owa",
+    platform:
+      clientEnvironment === "iframe" ? Platform.GOOGLE_CLASSROOM : Platform.OWA,
     product: "pupil lesson activities",
     engagementIntent: "use",
     eventVersion: "2.0.0",
