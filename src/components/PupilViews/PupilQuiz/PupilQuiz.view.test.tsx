@@ -195,7 +195,7 @@ describe("PupilQuizView", () => {
                     [questionType]: answers,
                   },
                   order: 0,
-                  state: "published",
+                  _state: "published",
                 },
               ]}
             />

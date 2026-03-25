@@ -250,7 +250,7 @@ export const transformedLessonOverviewData = (
     starterQuiz: starterQuiz,
     exitQuiz: exitQuiz,
     videoTitle: content.videoTitle,
-    lessonCohort: browseData.lessonData.cohort,
+    lessonCohort: browseData.lessonData._cohort,
     lessonGuideUrl: content.lessonGuideAssetObjectUrl ?? null,
     phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
