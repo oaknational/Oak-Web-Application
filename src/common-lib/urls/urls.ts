@@ -489,7 +489,6 @@ export type OakLinkProps =
   | ClassroomLessonsLinkProps
   | ClassroomAuthSuccessLinkProps
   | ClassroomPupilSignInLinkProps
-  | ProgrammePageProps
   | EyfsPageLinkProps;
 
 export type ExternalPageName =

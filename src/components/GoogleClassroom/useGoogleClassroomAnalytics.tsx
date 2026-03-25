@@ -447,9 +447,9 @@ const createGoogleClassroomAnalyticsStore = (
 
 export function GoogleClassroomAnalyticsProvider({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   const { track } = useAnalytics();
   const searchParams = useSearchParams();
   const addonCourseId = useGoogleClassroomAddonStore((state) => state.courseId);
@@ -464,15 +464,13 @@ export function GoogleClassroomAnalyticsProvider({
   const clientEnvironment = getClientEnvironment();
   const storeRef = useRef<StoreApi<GoogleClassroomAnalyticsStore> | null>(null);
 
-  if (!storeRef.current) {
-    storeRef.current = createGoogleClassroomAnalyticsStore({
-      track: track as GoogleClassroomTrackFns,
-      clientEnvironment,
-      googleLoginHint,
-      courseId,
-      itemId,
-    });
-  }
+  storeRef.current ??= createGoogleClassroomAnalyticsStore({
+    track: track as GoogleClassroomTrackFns,
+    clientEnvironment,
+    googleLoginHint,
+    courseId,
+    itemId,
+  });
 
   useEffect(() => {
     storeRef.current?.getState().syncContext({
