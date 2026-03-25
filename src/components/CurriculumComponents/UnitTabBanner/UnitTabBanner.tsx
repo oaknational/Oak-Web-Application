@@ -19,8 +19,10 @@ const UnitTabBanner = () => {
       <OakFlex
         $flexDirection={["column", "row"]}
         $alignItems={["flex-start", "flex-end"]}
+        $width={"100%"}
+        $maxWidth={"spacing-1280"}
         $ma={"auto"}
-        $justifyContent={["space-evenly"]}
+        $justifyContent={["space-between"]}
         $gap="spacing-24"
       >
         <OakFlex $alignItems={"flex-start"} $flexDirection={["column", "row"]}>
@@ -31,10 +33,8 @@ const UnitTabBanner = () => {
             $mr={"spacing-48"}
             $mb={["spacing-24", "spacing-0"]}
           />
-
-          {/* @todo replace with OakFlex - work out width value */}
           <OakFlex
-            $maxWidth={"spacing-1280"}
+            $maxWidth={"spacing-640"}
             $gap={"spacing-16"}
             $flexDirection={"column"}
             $alignItems={"flex-start"}
