@@ -6,6 +6,7 @@ jobs:
   run:
     name: dump GitHub event
     runs-on: ubuntu-24.04
+    timeout-minutes: 60
     steps:
       - run: |
           echo GITHUB_ACTION: $GITHUB_ACTION

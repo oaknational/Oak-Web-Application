@@ -6090,7 +6090,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       >
                         <a
                           class="c192 "
-                          href="/teachers/key-stages/early-years-foundation-stage/subjects"
+                          href="/teachers/eyfs/maths"
                         >
                           <span
                             class="c29"

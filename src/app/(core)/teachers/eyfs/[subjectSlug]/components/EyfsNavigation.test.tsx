@@ -51,15 +51,15 @@ describe("EYFSNavigation", () => {
 
     expect(screen.getByRole("link", { name: "Maths" })).toHaveAttribute(
       "href",
-      "/eyfs/maths",
+      "/teachers/eyfs/maths",
     );
     expect(screen.getByRole("link", { name: "PSED" })).toHaveAttribute(
       "href",
-      "/eyfs/personal-social-and-emotional-development",
+      "/teachers/eyfs/personal-social-and-emotional-development",
     );
     expect(screen.getByRole("link", { name: "Literacy" })).toHaveAttribute(
       "href",
-      "/eyfs/literacy",
+      "/teachers/eyfs/literacy",
     );
   });
 

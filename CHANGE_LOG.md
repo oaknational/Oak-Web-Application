@@ -1,3 +1,24 @@
+# [1.1024.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1023.3...v1.1024.0) (2026-03-24)
+
+
+### Features
+
+* add custom resolve and match functions for subject and unit indices ([55dd692](https://github.com/oaknational/Oak-Web-Application/commit/55dd692ff755f646e22f7da459c9c3fa587f1a0a))
+* revert refactor, centralise regex check for eyfs ([de48138](https://github.com/oaknational/Oak-Web-Application/commit/de4813873a3aca2d36e7b2fd6b7600376af42422))
+* update EYFS links and add related tests ([2152df9](https://github.com/oaknational/Oak-Web-Application/commit/2152df9ac0632c75de6ed259bc81181067f7312d))
+* update link in layoutfooter after merge conflict ([f90fc17](https://github.com/oaknational/Oak-Web-Application/commit/f90fc170e2460542d1376c147a56d5394a55e9bf))
+
+## [1.1023.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1023.2...v1.1023.3) (2026-03-24)
+
+## [1.1023.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1023.1...v1.1023.2) (2026-03-24)
+
+## [1.1023.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1023.0...v1.1023.1) (2026-03-24)
+
+
+### Bug Fixes
+
+* added verbose flag to "npm ci", removed npm cache and set timeout to 60mins ([8b9caeb](https://github.com/oaknational/Oak-Web-Application/commit/8b9caebebbc9b971438174a239bae2e252300858))
+
 # [1.1023.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1022.0...v1.1023.0) (2026-03-20)
 
 
