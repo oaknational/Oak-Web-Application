@@ -44,6 +44,19 @@ export type Boolean_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['Boolean']['input']>>;
 };
 
+/** Boolean expression to compare columns of type "Float". All fields are combined with logical 'AND'. */
+export type Float_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['Float']['input']>;
+  _gt?: InputMaybe<Scalars['Float']['input']>;
+  _gte?: InputMaybe<Scalars['Float']['input']>;
+  _in?: InputMaybe<Array<Scalars['Float']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['Float']['input']>;
+  _lte?: InputMaybe<Scalars['Float']['input']>;
+  _neq?: InputMaybe<Scalars['Float']['input']>;
+  _nin?: InputMaybe<Array<Scalars['Float']['input']>>;
+};
+
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type Int_Comparison_Exp = {
   _eq?: InputMaybe<Scalars['Int']['input']>;
@@ -18061,6 +18074,13 @@ export type Programmes_Variance_Order_By = {
   programme_id?: InputMaybe<Order_By>;
 };
 
+export type Published_Function__Table__Mv_Lesson_Openapi_Search_1_Args = {
+  filter_keystage_slug?: InputMaybe<Scalars['String']['input']>;
+  filter_subject_slug?: InputMaybe<Scalars['String']['input']>;
+  filter_unit_slug?: InputMaybe<Scalars['String']['input']>;
+  search_term?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** columns and relationships of "published.mv_curriculum_overview_0_9" */
 export type Published_Mv_Curriculum_Overview_0_9 = {
   __typename?: 'published_mv_curriculum_overview_0_9';
@@ -30631,6 +30651,141 @@ export type Published_View_Lesson_Content_9_Variance_Fields = {
   worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.view_lesson_openapi_search_result_1" */
+export type Published_View_Lesson_Openapi_Search_Result_1 = {
+  __typename?: 'published_view_lesson_openapi_search_result_1';
+  lessonSlug?: Maybe<Scalars['String']['output']>;
+  similarity?: Maybe<Scalars['Float']['output']>;
+};
+
+export type Published_View_Lesson_Openapi_Search_Result_1_Aggregate = {
+  __typename?: 'published_view_lesson_openapi_search_result_1_aggregate';
+  aggregate?: Maybe<Published_View_Lesson_Openapi_Search_Result_1_Aggregate_Fields>;
+  nodes: Array<Published_View_Lesson_Openapi_Search_Result_1>;
+};
+
+/** aggregate fields of "published.view_lesson_openapi_search_result_1" */
+export type Published_View_Lesson_Openapi_Search_Result_1_Aggregate_Fields = {
+  __typename?: 'published_view_lesson_openapi_search_result_1_aggregate_fields';
+  avg?: Maybe<Published_View_Lesson_Openapi_Search_Result_1_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_View_Lesson_Openapi_Search_Result_1_Max_Fields>;
+  min?: Maybe<Published_View_Lesson_Openapi_Search_Result_1_Min_Fields>;
+  stddev?: Maybe<Published_View_Lesson_Openapi_Search_Result_1_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_View_Lesson_Openapi_Search_Result_1_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_View_Lesson_Openapi_Search_Result_1_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_View_Lesson_Openapi_Search_Result_1_Sum_Fields>;
+  var_pop?: Maybe<Published_View_Lesson_Openapi_Search_Result_1_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_View_Lesson_Openapi_Search_Result_1_Var_Samp_Fields>;
+  variance?: Maybe<Published_View_Lesson_Openapi_Search_Result_1_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.view_lesson_openapi_search_result_1" */
+export type Published_View_Lesson_Openapi_Search_Result_1_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_View_Lesson_Openapi_Search_Result_1_Avg_Fields = {
+  __typename?: 'published_view_lesson_openapi_search_result_1_avg_fields';
+  similarity?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.view_lesson_openapi_search_result_1". All fields are combined with a logical 'AND'. */
+export type Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp>>;
+  _not?: InputMaybe<Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp>>;
+  lessonSlug?: InputMaybe<String_Comparison_Exp>;
+  similarity?: InputMaybe<Float_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_View_Lesson_Openapi_Search_Result_1_Max_Fields = {
+  __typename?: 'published_view_lesson_openapi_search_result_1_max_fields';
+  lessonSlug?: Maybe<Scalars['String']['output']>;
+  similarity?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_View_Lesson_Openapi_Search_Result_1_Min_Fields = {
+  __typename?: 'published_view_lesson_openapi_search_result_1_min_fields';
+  lessonSlug?: Maybe<Scalars['String']['output']>;
+  similarity?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Ordering options when selecting data from "published.view_lesson_openapi_search_result_1". */
+export type Published_View_Lesson_Openapi_Search_Result_1_Order_By = {
+  lessonSlug?: InputMaybe<Order_By>;
+  similarity?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.view_lesson_openapi_search_result_1" */
+export enum Published_View_Lesson_Openapi_Search_Result_1_Select_Column {
+  /** column name */
+  LessonSlug = 'lessonSlug',
+  /** column name */
+  Similarity = 'similarity'
+}
+
+/** aggregate stddev on columns */
+export type Published_View_Lesson_Openapi_Search_Result_1_Stddev_Fields = {
+  __typename?: 'published_view_lesson_openapi_search_result_1_stddev_fields';
+  similarity?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_View_Lesson_Openapi_Search_Result_1_Stddev_Pop_Fields = {
+  __typename?: 'published_view_lesson_openapi_search_result_1_stddev_pop_fields';
+  similarity?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_View_Lesson_Openapi_Search_Result_1_Stddev_Samp_Fields = {
+  __typename?: 'published_view_lesson_openapi_search_result_1_stddev_samp_fields';
+  similarity?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_view_lesson_openapi_search_result_1" */
+export type Published_View_Lesson_Openapi_Search_Result_1_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_View_Lesson_Openapi_Search_Result_1_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_View_Lesson_Openapi_Search_Result_1_Stream_Cursor_Value_Input = {
+  lessonSlug?: InputMaybe<Scalars['String']['input']>;
+  similarity?: InputMaybe<Scalars['Float']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_View_Lesson_Openapi_Search_Result_1_Sum_Fields = {
+  __typename?: 'published_view_lesson_openapi_search_result_1_sum_fields';
+  similarity?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_View_Lesson_Openapi_Search_Result_1_Var_Pop_Fields = {
+  __typename?: 'published_view_lesson_openapi_search_result_1_var_pop_fields';
+  similarity?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_View_Lesson_Openapi_Search_Result_1_Var_Samp_Fields = {
+  __typename?: 'published_view_lesson_openapi_search_result_1_var_samp_fields';
+  similarity?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_View_Lesson_Openapi_Search_Result_1_Variance_Fields = {
+  __typename?: 'published_view_lesson_openapi_search_result_1_variance_fields';
+  similarity?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "published.view_quiz_question_details" */
 export type Published_View_Quiz_Question_Details = {
   __typename?: 'published_view_quiz_question_details';
@@ -34383,6 +34538,10 @@ export type Query_Root = {
   programmes_aggregate: Programmes_Aggregate;
   /** fetch data from the table: "programmes" using primary key columns */
   programmes_by_pk?: Maybe<Programmes>;
+  /** execute function "published.function__table__mv_lesson_openapi_search_1" which returns "published.view_lesson_openapi_search_result_1" */
+  published_function__table__mv_lesson_openapi_search_1: Array<Published_View_Lesson_Openapi_Search_Result_1>;
+  /** execute function "published.function__table__mv_lesson_openapi_search_1" and query aggregates on result of table type "published.view_lesson_openapi_search_result_1" */
+  published_function__table__mv_lesson_openapi_search_1_aggregate: Published_View_Lesson_Openapi_Search_Result_1_Aggregate;
   /** fetch data from the table: "published.mv_curriculum_overview_0_9" */
   published_mv_curriculum_overview_0_9: Array<Published_Mv_Curriculum_Overview_0_9>;
   /** fetch aggregated fields from the table: "published.mv_curriculum_overview_0_9" */
@@ -34561,6 +34720,10 @@ export type Query_Root = {
   published_view_lesson_content_9: Array<Published_View_Lesson_Content_9>;
   /** fetch aggregated fields from the table: "published.view_lesson_content_9" */
   published_view_lesson_content_9_aggregate: Published_View_Lesson_Content_9_Aggregate;
+  /** fetch data from the table: "published.view_lesson_openapi_search_result_1" */
+  published_view_lesson_openapi_search_result_1: Array<Published_View_Lesson_Openapi_Search_Result_1>;
+  /** fetch aggregated fields from the table: "published.view_lesson_openapi_search_result_1" */
+  published_view_lesson_openapi_search_result_1_aggregate: Published_View_Lesson_Openapi_Search_Result_1_Aggregate;
   /** fetch data from the table: "published.view_quiz_question_details" */
   published_view_quiz_question_details: Array<Published_View_Quiz_Question_Details>;
   /** fetch aggregated fields from the table: "published.view_quiz_question_details" */
@@ -35414,6 +35577,26 @@ export type Query_RootProgrammes_By_PkArgs = {
 };
 
 
+export type Query_RootPublished_Function__Table__Mv_Lesson_Openapi_Search_1Args = {
+  args: Published_Function__Table__Mv_Lesson_Openapi_Search_1_Args;
+  distinct_on?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Order_By>>;
+  where?: InputMaybe<Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Function__Table__Mv_Lesson_Openapi_Search_1_AggregateArgs = {
+  args: Published_Function__Table__Mv_Lesson_Openapi_Search_1_Args;
+  distinct_on?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Order_By>>;
+  where?: InputMaybe<Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp>;
+};
+
+
 export type Query_RootPublished_Mv_Curriculum_Overview_0_9Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Overview_0_9_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -36209,6 +36392,24 @@ export type Query_RootPublished_View_Lesson_Content_9_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_View_Lesson_Content_9_Order_By>>;
   where?: InputMaybe<Published_View_Lesson_Content_9_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Lesson_Openapi_Search_Result_1Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Order_By>>;
+  where?: InputMaybe<Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Lesson_Openapi_Search_Result_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Order_By>>;
+  where?: InputMaybe<Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp>;
 };
 
 
@@ -38993,6 +39194,10 @@ export type Subscription_Root = {
   programmes_by_pk?: Maybe<Programmes>;
   /** fetch data from the table in a streaming manner: "programmes" */
   programmes_stream: Array<Programmes>;
+  /** execute function "published.function__table__mv_lesson_openapi_search_1" which returns "published.view_lesson_openapi_search_result_1" */
+  published_function__table__mv_lesson_openapi_search_1: Array<Published_View_Lesson_Openapi_Search_Result_1>;
+  /** execute function "published.function__table__mv_lesson_openapi_search_1" and query aggregates on result of table type "published.view_lesson_openapi_search_result_1" */
+  published_function__table__mv_lesson_openapi_search_1_aggregate: Published_View_Lesson_Openapi_Search_Result_1_Aggregate;
   /** fetch data from the table: "published.mv_curriculum_overview_0_9" */
   published_mv_curriculum_overview_0_9: Array<Published_Mv_Curriculum_Overview_0_9>;
   /** fetch aggregated fields from the table: "published.mv_curriculum_overview_0_9" */
@@ -39259,6 +39464,12 @@ export type Subscription_Root = {
   published_view_lesson_content_9_aggregate: Published_View_Lesson_Content_9_Aggregate;
   /** fetch data from the table in a streaming manner: "published.view_lesson_content_9" */
   published_view_lesson_content_9_stream: Array<Published_View_Lesson_Content_9>;
+  /** fetch data from the table: "published.view_lesson_openapi_search_result_1" */
+  published_view_lesson_openapi_search_result_1: Array<Published_View_Lesson_Openapi_Search_Result_1>;
+  /** fetch aggregated fields from the table: "published.view_lesson_openapi_search_result_1" */
+  published_view_lesson_openapi_search_result_1_aggregate: Published_View_Lesson_Openapi_Search_Result_1_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.view_lesson_openapi_search_result_1" */
+  published_view_lesson_openapi_search_result_1_stream: Array<Published_View_Lesson_Openapi_Search_Result_1>;
   /** fetch data from the table: "published.view_quiz_question_details" */
   published_view_quiz_question_details: Array<Published_View_Quiz_Question_Details>;
   /** fetch aggregated fields from the table: "published.view_quiz_question_details" */
@@ -40377,6 +40588,26 @@ export type Subscription_RootProgrammes_StreamArgs = {
 };
 
 
+export type Subscription_RootPublished_Function__Table__Mv_Lesson_Openapi_Search_1Args = {
+  args: Published_Function__Table__Mv_Lesson_Openapi_Search_1_Args;
+  distinct_on?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Order_By>>;
+  where?: InputMaybe<Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Function__Table__Mv_Lesson_Openapi_Search_1_AggregateArgs = {
+  args: Published_Function__Table__Mv_Lesson_Openapi_Search_1_Args;
+  distinct_on?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Order_By>>;
+  where?: InputMaybe<Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp>;
+};
+
+
 export type Subscription_RootPublished_Mv_Curriculum_Overview_0_9Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Curriculum_Overview_0_9_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -41480,6 +41711,31 @@ export type Subscription_RootPublished_View_Lesson_Content_9_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_View_Lesson_Content_9_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_View_Lesson_Content_9_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Lesson_Openapi_Search_Result_1Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Order_By>>;
+  where?: InputMaybe<Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Lesson_Openapi_Search_Result_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Lesson_Openapi_Search_Result_1_Order_By>>;
+  where?: InputMaybe<Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Lesson_Openapi_Search_Result_1_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_View_Lesson_Openapi_Search_Result_1_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_View_Lesson_Openapi_Search_Result_1_Bool_Exp>;
 };
 
 
@@ -50807,6 +51063,14 @@ export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TeachersSitemapQuery = { __typename?: 'query_root', keyStages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null }>, programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', programme_slug?: string | null }>, units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', unit_slug?: string | null, programme_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null }>, specialistProgrammes: Array<{ __typename?: 'published_mv_specialist_1_0_3', programme_slug?: string | null }>, specialistUnits: Array<{ __typename?: 'published_mv_specialist_1_0_3', unit_slug?: string | null, programme_slug?: string | null }>, specialistLessons: Array<{ __typename?: 'published_mv_specialist_1_0_3', unit_slug?: string | null, lesson_slug?: string | null, programme_slug?: string | null }> };
 
+export type TeachersUnitPageQueryVariables = Exact<{
+  programmeSlug: Scalars['String']['input'];
+  unitSlug: Scalars['String']['input'];
+}>;
+
+
+export type TeachersUnitPageQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, programme_slug_by_year?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unitvariant_id?: number | null, unit_data?: any | null, programme_slug?: string | null, actions?: any | null, features?: any | null, order_in_unit?: number | null, static_lesson_list?: any | null }> };
+
 export type TopNavQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -51942,6 +52206,27 @@ export const TeachersSitemapDocument = gql`
   }
 }
     `;
+export const TeachersUnitPageDocument = gql`
+    query teachersUnitPage($programmeSlug: String!, $unitSlug: String!) {
+  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
+    where: {unit_slug: {_eq: $unitSlug}, programme_slug: {_eq: $programmeSlug}, is_legacy: {_eq: false}}
+  ) {
+    lesson_data
+    lesson_slug
+    programme_fields
+    programme_slug_by_year
+    null_unitvariant_id
+    unit_slug
+    unitvariant_id
+    unit_data
+    programme_slug
+    actions
+    features
+    order_in_unit
+    static_lesson_list
+  }
+}
+    `;
 export const TopNavDocument = gql`
     query topNav {
   programmes: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
@@ -52126,6 +52411,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersSitemapQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>({ document: TeachersSitemapDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersSitemap', 'query', variables);
+    },
+    teachersUnitPage(variables: TeachersUnitPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersUnitPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersUnitPageQuery>({ document: TeachersUnitPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersUnitPage', 'query', variables);
     },
     topNav(variables?: TopNavQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TopNavQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TopNavQuery>({ document: TopNavDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'topNav', 'query', variables);
