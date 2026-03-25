@@ -19,15 +19,6 @@ const trackMock = {
   classroomLessonsAttached: jest.fn(),
 };
 
-const trackClassroomAddOnOpenedOnceMock = jest.fn(
-  (onTrack: () => void): boolean => {
-    onTrack();
-    return true;
-  },
-);
-const markClassroomAddOnNavigationMock = jest.fn();
-const clearClassroomAddOnOpenedMock = jest.fn();
-
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: jest.fn(),
@@ -47,14 +38,6 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
 jest.mock("@/components/GoogleClassroom/getClientEnvironment", () => ({
   __esModule: true,
   getClientEnvironment: jest.fn(() => "web-browser"),
-}));
-
-jest.mock("@/browser-lib/google-classroom/classroomAddonTracking", () => ({
-  __esModule: true,
-  trackClassroomAddOnOpenedOnce: (onTrack: () => void) =>
-    trackClassroomAddOnOpenedOnceMock(onTrack),
-  markClassroomAddOnNavigation: () => markClassroomAddOnNavigationMock(),
-  clearClassroomAddOnOpened: () => clearClassroomAddOnOpenedMock(),
 }));
 
 const mockUseAnalytics = useAnalytics as jest.MockedFunction<
@@ -90,6 +73,7 @@ const legacyLesson = {
 describe("useGoogleClassroomAnalytics", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    sessionStorage.clear();
     mockUseAnalytics.mockReturnValue({
       track: trackMock as unknown as TrackFns,
       identify: jest.fn(),
@@ -269,18 +253,28 @@ describe("useGoogleClassroomAnalytics", () => {
     );
   });
 
-  it("uses the once-per-open helper when tracking classroomAddOnOpenedOnce", () => {
+  it("tracks classroomAddOnOpened only once until the session flag is cleared", () => {
     const { result } = renderHook(() => useGoogleClassroomAnalytics(), {
       wrapper,
     });
 
     act(() => {
-      result.current.trackAddOnOpenedOnce({
-        analyticsUseCase: "Pupil",
-      });
+      expect(
+        result.current.trackAddOnOpenedOnce({
+          analyticsUseCase: "Pupil",
+        }),
+      ).toBe(true);
     });
 
-    expect(trackClassroomAddOnOpenedOnceMock).toHaveBeenCalledTimes(1);
+    act(() => {
+      expect(
+        result.current.trackAddOnOpenedOnce({
+          analyticsUseCase: "Pupil",
+        }),
+      ).toBe(false);
+    });
+
+    expect(trackMock.classroomAddOnOpened).toHaveBeenCalledTimes(1);
     expect(trackMock.classroomAddOnOpened).toHaveBeenCalledWith(
       expect.objectContaining({
         analyticsUseCase: "Pupil",
@@ -357,17 +351,36 @@ describe("useGoogleClassroomAnalytics", () => {
     );
   });
 
-  it("delegates markAddOnNavigation and clearAddOnOpenedFlag to the helper module", () => {
+  it("preserves add-on opened state for sign-in navigation until the next clear", () => {
     const { result } = renderHook(() => useGoogleClassroomAnalytics(), {
       wrapper,
     });
 
     act(() => {
+      result.current.trackAddOnOpenedOnce({
+        analyticsUseCase: "Pupil",
+      });
       result.current.markAddOnNavigation();
       result.current.clearAddOnOpenedFlag();
     });
 
-    expect(markClassroomAddOnNavigationMock).toHaveBeenCalledTimes(1);
-    expect(clearClassroomAddOnOpenedMock).toHaveBeenCalledTimes(1);
+    act(() => {
+      expect(
+        result.current.trackAddOnOpenedOnce({
+          analyticsUseCase: "Pupil",
+        }),
+      ).toBe(false);
+      result.current.clearAddOnOpenedFlag();
+    });
+
+    act(() => {
+      expect(
+        result.current.trackAddOnOpenedOnce({
+          analyticsUseCase: "Pupil",
+        }),
+      ).toBe(true);
+    });
+
+    expect(trackMock.classroomAddOnOpened).toHaveBeenCalledTimes(2);
   });
 });
