@@ -37,7 +37,7 @@ export type SubjectPathwayArray = [SubjectPathway, ...SubjectPathway[]];
 
 export type SubjectListingPageProps = {
   subjects: [SubjectPathwayArray, ...SubjectPathwayArray[]];
-  keyStageSlug: KeyStageSlug | "early-years-foundation-stage";
+  keyStageSlug: KeyStageSlug;
   keyStageTitle: string;
   keyStages: KeyStageData[];
   topNav: TopNavProps;
@@ -47,10 +47,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const { keyStageSlug, keyStageTitle, keyStages, topNav } = props;
   const { track } = useAnalytics();
 
-  const metaDescriptionSlug =
-    keyStageSlug === "early-years-foundation-stage"
-      ? "EYFS"
-      : keyStageSlug.toUpperCase();
+  const metaDescriptionSlug = keyStageSlug.toUpperCase();
 
   return (
     <AppLayout
@@ -131,6 +128,11 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No keyStageSlug");
       }
       const keyStage = context.params?.keyStageSlug;
+
+      // EYFS now has its own area under /teachers/eyfs/
+      if (keyStage === "early-years-foundation-stage") {
+        return { notFound: true };
+      }
       const curriculumData = await curriculumApi2023.subjectListingPage({
         keyStageSlug: keyStage,
       });
