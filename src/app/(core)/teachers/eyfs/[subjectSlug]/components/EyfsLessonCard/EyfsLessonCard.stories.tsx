@@ -6,7 +6,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { EYFSLessonGroupProvider } from "../EyfsLessonGroupProvider";
-import { __setMockAuthState } from "../../../../../../../.storybook/mocks/clerk";
+import { __setMockAuthState } from "../../../../../../../../.storybook/mocks/clerk";
 
 import { EYFSLessonCard } from "./EyfsLessonCard";
 
