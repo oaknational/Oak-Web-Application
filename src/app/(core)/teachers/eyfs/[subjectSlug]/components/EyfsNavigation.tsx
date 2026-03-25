@@ -10,6 +10,7 @@ import {
   OakPrimaryButton,
   OakSecondaryButton,
 } from "@/styles/oakThemeApp";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type SubjectTab = {
   slug: string;
@@ -88,7 +89,10 @@ export const EYFSNavigation = ({
               <Button
                 key={subject.slug}
                 element={Link}
-                href={`/eyfs/${subject.slug}`}
+                href={resolveOakHref({
+                  page: "eyfs-page",
+                  subjectSlug: subject.slug,
+                })}
               >
                 {pickSubjectTitle(subject)}
               </Button>
