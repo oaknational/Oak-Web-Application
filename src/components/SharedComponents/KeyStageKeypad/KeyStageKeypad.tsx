@@ -58,7 +58,8 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
   keyStages,
   trackingOnClick,
 }) => {
-  keyStages.sort((a, b) =>
+  const filteredKeyStages = keyStages.filter((ks) => ks.shortCode !== "EYFS");
+  filteredKeyStages.sort((a, b) =>
     a.displayOrder && b.displayOrder ? a.displayOrder - b.displayOrder : 0,
   );
   const headingId = `key-stage-keypad-heading`;
@@ -78,7 +79,7 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
         $gap="spacing-16"
         $flexWrap={"wrap"}
       >
-        {keyStages.map((ks) => (
+        {filteredKeyStages.map((ks) => (
           <OakLI $listStyle={"none"} key={`key-stage-li-${ks.slug}`}>
             <KeypadLink {...ks} trackingOnClick={trackingOnClick} />
           </OakLI>
