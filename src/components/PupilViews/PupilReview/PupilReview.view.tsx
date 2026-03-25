@@ -95,6 +95,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       },
       sectionResults: sectionResults,
     };
+
     const parsedAttemptData: AttemptDataCamelCase =
       attemptDataCamelCaseSchema.parse(attemptData);
     const attemptId = logAttempt(parsedAttemptData, true);

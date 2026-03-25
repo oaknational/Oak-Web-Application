@@ -1,6 +1,6 @@
-import { TeachersSitemapDataSchemaSnake } from "../queries/teachersSitemap/teacherSitemap.schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { TeachersSitemapDataSchemaSnake } from "../queries/teachersSitemap/teacherSitemap.schema";
 
 export const teachersSitemapDataFixture: TeachersSitemapDataSchemaSnake = {
   keyStages: [{ slug: "ks1" }, { slug: "ks2" }],

@@ -1,8 +1,8 @@
 import {
-  Actions,
   ActionsCamel,
   ProgrammeFields,
 } from "@oaknational/oak-curriculum-schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import { BetaLessonListSchema } from "./teacherPreviewLessonListing.schema";
 
@@ -18,9 +18,6 @@ import { TeacherPreviewLessonListingQuery } from "@/node-lib/curriculum-api-2023
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
 import { getIntersection } from "@/utils/getIntersection";
-import keysToCamelCase, {
-  ConvertKeysToCamelCase,
-} from "@/utils/snakeCaseConverter";
 
 export const getTransformedLessons = (
   lessons: TeacherPreviewLessonListingQuery["lessons"],
@@ -91,7 +88,7 @@ export const getPackagedUnit = (
   const lessonActions = unitLessons.map((lesson) => lesson.actions);
   const combinedActions = getIntersection<
     BetaLessonListSchema[number]["actions"]
-  >(lessonActions) as ConvertKeysToCamelCase<Actions>;
+  >(lessonActions) as ActionsCamel;
 
   // Set `isPePractical` to true if any lesson is practical
   combinedActions.isPePractical = lessonActions.some(

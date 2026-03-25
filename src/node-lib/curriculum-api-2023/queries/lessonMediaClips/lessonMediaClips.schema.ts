@@ -1,20 +1,20 @@
 import { z } from "zod";
 import {
   syntheticUnitvariantLessonsSchema,
-  mediaClipCycleSchema,
-  mediaClipsRecordSchema,
   actionsSchema,
+  mediaClipsRecordSchemaCamel,
+  mediaClipCycleSchemaCamel,
+  SyntheticUnitvariantLessonsCamel,
 } from "@oaknational/oak-curriculum-schema";
 import zodToCamelCase from "zod-to-camel-case";
-
-import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
   null_unitvariant_id: true,
 });
 
-export type LessonBrowseData = ConvertKeysToCamelCase<
-  z.infer<typeof lessonBrowseDataSchema>
+export type LessonBrowseData = Omit<
+  SyntheticUnitvariantLessonsCamel,
+  "nullUnitvariantId"
 >;
 
 export const mediaClipObjectCamelCaseSchema = z.object({
@@ -95,12 +95,11 @@ export const canonicalLessonMediaClipsSchema =
     pathways: z.array(lessonPathwaySchema),
   });
 
-export type MediaClipListCamelCase = ConvertKeysToCamelCase<
-  z.infer<typeof mediaClipsRecordSchema>
+export type MediaClipListCamelCase = z.infer<
+  typeof mediaClipsRecordSchemaCamel
 >;
-export type MediaClip = ConvertKeysToCamelCase<
-  z.infer<typeof mediaClipCycleSchema>
->;
+
+export type MediaClip = z.infer<typeof mediaClipCycleSchemaCamel>;
 
 // Page Schemas
 export type LessonMediaClipsData = z.infer<typeof lessonMediaClipsSchema>;

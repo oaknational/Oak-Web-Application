@@ -2,13 +2,12 @@ import { z } from "zod";
 import {
   actionsSchema,
   keystageSlugs,
+  SyntheticUnitvariantsWithLessonIdsByKsCamel,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
 import zodToCamelCase from "zod-to-camel-case";
 
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
-
-import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const contentGuidanceSchemaCamelCase = z.object({
   contentGuidanceLabel: z.string(),
@@ -244,8 +243,9 @@ export const lessonUnitDataByKsSchema =
     supplementary_data: true,
   });
 
-export type LessonUnitDataByKs = ConvertKeysToCamelCase<
-  z.infer<typeof lessonUnitDataByKsSchema>
+export type LessonUnitDataByKs = Pick<
+  SyntheticUnitvariantsWithLessonIdsByKsCamel,
+  "lessonCount" | "supplementaryData"
 >;
 
 export const lessonDownloadsListSchema = z.array(

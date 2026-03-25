@@ -1,3 +1,5 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import {
   LessonOverviewQuery,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp,
@@ -27,7 +29,6 @@ import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 
@@ -271,8 +272,8 @@ export const transformedLessonOverviewData = (
       unitData?.supplementaryData?.staticLessonList?.length ??
       unitData?.lessonCount ??
       1,
-    geoRestricted: browseData.features?.agf_geoRestricted ?? false,
-    loginRequired: browseData.features?.agf_loginRequired ?? false,
+    geoRestricted: browseData.features?.agfGeoRestricted ?? false,
+    loginRequired: browseData.features?.agfLoginRequired ?? false,
     excludedFromTeachingMaterials,
     subjectCategories: browseData.unitData.subjectcategories || null,
   };
