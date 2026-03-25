@@ -29,11 +29,6 @@ const StyledCover = styled(OakFlex)`
     width: 450px;
     height: 420px;
   }
-
-  @media (min-width: ${getBreakpoint("large")}px) {
-    width: 450px;
-    height: 420px;
-  }
 `;
 
 export type GuidingPrincipleItem = {

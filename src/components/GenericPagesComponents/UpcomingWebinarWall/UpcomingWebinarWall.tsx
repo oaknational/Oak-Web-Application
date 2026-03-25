@@ -7,8 +7,7 @@ import {
   OakHeadingTag,
 } from "@oaknational/oak-components";
 
-import Cover from "../../SharedComponents/Cover";
-
+import Cover from "@/components/SharedComponents/Cover";
 import Illustration from "@/components/SharedComponents/Illustration";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
