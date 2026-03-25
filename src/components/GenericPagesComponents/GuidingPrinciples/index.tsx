@@ -9,7 +9,6 @@ import styled from "styled-components";
 
 import CurricQuote from "@/components/CurriculumComponents/CurricQuote";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-import Cover from "@/components/SharedComponents/Cover";
 import Illustration from "@/components/SharedComponents/Illustration";
 
 const StyledResponsiveFlex = styled(OakFlex)`
@@ -100,10 +99,10 @@ export function GuidingPrinciples({
           </OakP>
         </OakFlex>
 
-        <Cover
-          $width={[300, 450, 450]}
-          $height={[270, 420, 420]}
+        <OakFlex
           $position={"relative"}
+          $width={["spacing-360", "spacing-480", "spacing-480"]}
+          $height={["spacing-360", "spacing-480", "spacing-480"]}
         >
           {imageUrl ? (
             <OakImage
@@ -125,7 +124,7 @@ export function GuidingPrinciples({
               format={null}
             />
           )}
-        </Cover>
+        </OakFlex>
       </OakFlex>
 
       <OakFlex

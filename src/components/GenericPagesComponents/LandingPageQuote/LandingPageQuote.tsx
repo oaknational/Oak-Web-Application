@@ -1,19 +1,18 @@
 import { FC } from "react";
-import { OakTypography } from "@oaknational/oak-components";
+import { OakFlex, OakTypography } from "@oaknational/oak-components";
 
 import { Quote as QuoteSchema } from "@/common-lib/cms-types";
 import Blockquote from "@/components/SharedComponents/Typography/Blockquote";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export const LandingPageQuote: FC<QuoteSchema> = ({ text, attribution }) => {
   return (
-    <Flex
+    <OakFlex
       $flexDirection={"column"}
       $justifyContent={"center"}
       $alignItems={"center"}
-      $mb={[56, 92]}
-      $ph={[16]}
-      $maxWidth={[720]}
+      $mb={["spacing-56", "spacing-80"]}
+      $ph={"spacing-16"}
+      $maxWidth={"spacing-640"}
       $ma={"auto"}
     >
       <Blockquote
@@ -24,6 +23,6 @@ export const LandingPageQuote: FC<QuoteSchema> = ({ text, attribution }) => {
         &ldquo;{text}&rdquo;
       </Blockquote>
       <OakTypography $font={"body-2"}>{attribution}</OakTypography>
-    </Flex>
+    </OakFlex>
   );
 };
