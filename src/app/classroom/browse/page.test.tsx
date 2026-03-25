@@ -6,14 +6,20 @@ import Page from "./page";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const browseViewMock = jest.fn();
+const trackYearSelectedMock = jest.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const googleClassroomAnalyticsMock = {
+  trackYearSelected: trackYearSelectedMock,
+};
+
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
   __esModule: true,
-  default: () => ({
-    track: {
-      browseRefined: jest.fn(),
-    },
-  }),
+  useGoogleClassroomAnalytics: (
+    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
+  ) =>
+    selector
+      ? selector(googleClassroomAnalyticsMock)
+      : googleClassroomAnalyticsMock,
 }));
 
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
@@ -49,5 +55,22 @@ describe("src/app/classroom/browse/page", () => {
       phase: "secondary",
     });
     expect(screen.getByTestId("browse-view")).toBeInTheDocument();
+  });
+
+  it("dispatches year selection through the Google Classroom analytics hook", () => {
+    renderWithTheme(<Page />);
+
+    const { onYearSelected } = browseViewMock.mock.calls[0][0];
+    onYearSelected({
+      yearSlug: "year-7",
+      yearDescription: "Year 7",
+      phase: "secondary",
+    });
+
+    expect(trackYearSelectedMock).toHaveBeenCalledWith({
+      yearSlug: "year-7",
+      yearDescription: "Year 7",
+      phase: "secondary",
+    });
   });
 });

@@ -8,58 +8,43 @@ import {
 } from "@oaknational/google-classroom-addon/ui";
 
 import { googleClassroomApi } from "@/browser-lib/google-classroom";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
-import {
-  AnalyticsUseCase,
-  ComponentType,
-  EngagementIntent,
-  EventVersion,
-  Platform,
-  Product,
-} from "@/browser-lib/avo/Avo";
-import {
-  clearClassroomAddOnOpened,
-  markClassroomAddOnNavigation,
-  trackClassroomAddOnOpenedOnce,
-} from "@/browser-lib/google-classroom/classroomAddonTracking";
+import { AnalyticsUseCase } from "@/browser-lib/avo/Avo";
+import { useGoogleClassroomAnalytics } from "@/components/GoogleClassroom/useGoogleClassroomAnalytics";
 
 function SignInContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { track } = useAnalytics();
-
-  const clientEnvironment = getClientEnvironment();
-  const loginHint = searchParams?.get("login_hint") ?? null;
+  const trackAddOnOpenedOnce = useGoogleClassroomAnalytics(
+    (state) => state.trackAddOnOpenedOnce,
+  );
+  const trackSignInStarted = useGoogleClassroomAnalytics(
+    (state) => state.trackSignInStarted,
+  );
+  const trackSignInCompleted = useGoogleClassroomAnalytics(
+    (state) => state.trackSignInCompleted,
+  );
+  const markAddOnNavigation = useGoogleClassroomAnalytics(
+    (state) => state.markAddOnNavigation,
+  );
+  const clearAddOnOpenedFlag = useGoogleClassroomAnalytics(
+    (state) => state.clearAddOnOpenedFlag,
+  );
 
   // We only want to fire the event once either from sign up page or from pupil experience
   useEffect(() => {
-    window.addEventListener("pagehide", clearClassroomAddOnOpened);
-    return () =>
-      window.removeEventListener("pagehide", clearClassroomAddOnOpened);
-  }, []);
+    window.addEventListener("pagehide", clearAddOnOpenedFlag);
+    return () => window.removeEventListener("pagehide", clearAddOnOpenedFlag);
+  }, [clearAddOnOpenedFlag]);
 
   useEffect(() => {
-    trackClassroomAddOnOpenedOnce(() => {
-      track.classroomAddOnOpened({
-        platform: Platform.GOOGLE_CLASSROOM,
-        product: Product.GOOGLE_CLASSROOM_ADDON,
-        engagementIntent: EngagementIntent.USE,
-        componentType: ComponentType.PAGE_VIEW,
-        eventVersion: EventVersion["2_0_0"],
-        analyticsUseCase: AnalyticsUseCase.PUPIL,
-        clientEnvironment,
-      });
+    trackAddOnOpenedOnce({
+      analyticsUseCase: AnalyticsUseCase.PUPIL,
     });
-  }, [clientEnvironment, track]);
+  }, [trackAddOnOpenedOnce]);
 
   const getGoogleSignInLink = () => {
-    track.classroomSignInStarted({
-      platform: Platform.GOOGLE_CLASSROOM,
-      product: Product.GOOGLE_CLASSROOM_ADDON,
+    trackSignInStarted({
       analyticsUseCase: AnalyticsUseCase.PUPIL,
-      googleLoginHint: loginHint,
-      clientEnvironment,
     });
     return googleClassroomApi.getGoogleSignInUrl(
       searchParams?.get("login_hint") ?? null,
@@ -74,19 +59,15 @@ function SignInContent() {
     const lessonSlug = searchParams?.get("lessonSlug");
     const currentParams = searchParams?.toString() ?? "";
 
-    track.classroomSignInCompleted({
-      platform: Platform.GOOGLE_CLASSROOM,
-      product: Product.GOOGLE_CLASSROOM_ADDON,
+    trackSignInCompleted({
       analyticsUseCase: AnalyticsUseCase.PUPIL,
-      googleLoginHint: loginHint,
       subscribeToNewsletter: null,
-      clientEnvironment,
     });
 
     if (programmeSlug && unitSlug && lessonSlug) {
       // setTimeout is needed to ensure tracking event is sent before navigation
       setTimeout(() => {
-        markClassroomAddOnNavigation();
+        markAddOnNavigation();
         router.push(
           `/pupils/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}?${currentParams}`,
         );

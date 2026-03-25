@@ -31,6 +31,10 @@ jest.mock("next/navigation", () => ({
   },
 }));
 
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
+  useGoogleClassroomAnalytics: jest.fn().mockReturnValue(jest.fn()),
+}));
+
 jest.mock("@/node-lib/curriculum-api-2023");
 
 describe("src/app/classroom/browse/years/[yearSlug]/subjects/page", () => {

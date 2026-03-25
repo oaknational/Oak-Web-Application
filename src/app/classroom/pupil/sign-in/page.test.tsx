@@ -5,7 +5,6 @@ import Page from "./page";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { googleClassroomApi } from "@/browser-lib/google-classroom";
-import { markClassroomAddOnOpened } from "@/browser-lib/google-classroom/classroomAddonTracking";
 
 const useRouterMock = jest.fn();
 const useSearchParamsMock = jest.fn();
@@ -13,17 +12,26 @@ const googleSignInViewMock = jest.fn();
 const getGoogleSignInUrlMock = jest.fn();
 const classroomSignInStartedMock = jest.fn();
 const classroomSignInCompletedMock = jest.fn();
-const classroomAddOnOpenedMock = jest.fn();
+const trackAddOnOpenedOnceMock = jest.fn();
+const markAddOnNavigationMock = jest.fn();
+const clearAddOnOpenedFlagMock = jest.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const googleClassroomAnalyticsMock = {
+  trackAddOnOpenedOnce: trackAddOnOpenedOnceMock,
+  trackSignInStarted: classroomSignInStartedMock,
+  trackSignInCompleted: classroomSignInCompletedMock,
+  markAddOnNavigation: markAddOnNavigationMock,
+  clearAddOnOpenedFlag: clearAddOnOpenedFlagMock,
+};
+
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
   __esModule: true,
-  default: () => ({
-    track: {
-      classroomSignInStarted: classroomSignInStartedMock,
-      classroomSignInCompleted: classroomSignInCompletedMock,
-      classroomAddOnOpened: classroomAddOnOpenedMock,
-    },
-  }),
+  useGoogleClassroomAnalytics: (
+    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
+  ) =>
+    selector
+      ? selector(googleClassroomAnalyticsMock)
+      : googleClassroomAnalyticsMock,
 }));
 
 jest.mock("next/navigation", () => ({
@@ -55,7 +63,6 @@ describe("src/app/classroom/pupil/sign-in/page", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.useFakeTimers();
-    sessionStorage.clear();
     (googleClassroomApi.getGoogleSignInUrl as jest.Mock) =
       getGoogleSignInUrlMock;
     useRouterMock.mockReturnValue({ push: routerPush });
@@ -65,6 +72,7 @@ describe("src/app/classroom/pupil/sign-in/page", () => {
       ),
     );
     getGoogleSignInUrlMock.mockResolvedValue("https://example.com");
+    trackAddOnOpenedOnceMock.mockReturnValue(true);
   });
 
   afterEach(() => {
@@ -83,6 +91,9 @@ describe("src/app/classroom/pupil/sign-in/page", () => {
       undefined,
       true,
     );
+    expect(classroomSignInStartedMock).toHaveBeenCalledWith({
+      analyticsUseCase: "Pupil",
+    });
   });
 
   it("provides correct props to GoogleSignInView", () => {
@@ -104,6 +115,11 @@ describe("src/app/classroom/pupil/sign-in/page", () => {
     viewProps.onSuccessfulSignIn();
     jest.runAllTimers();
 
+    expect(classroomSignInCompletedMock).toHaveBeenCalledWith({
+      analyticsUseCase: "Pupil",
+      subscribeToNewsletter: null,
+    });
+    expect(markAddOnNavigationMock).toHaveBeenCalledTimes(1);
     expect(routerPush).toHaveBeenCalledWith(
       "/pupils/programmes/maths-primary/units/unit-1/lessons/lesson-1?login_hint=pupil%40school.com&programmeSlug=maths-primary&unitSlug=unit-1&lessonSlug=lesson-1",
     );
@@ -136,19 +152,17 @@ describe("src/app/classroom/pupil/sign-in/page", () => {
   it("tracks classroomAddOnOpened on first render", () => {
     renderWithTheme(<Page />);
 
-    expect(classroomAddOnOpenedMock).toHaveBeenCalledTimes(1);
-    expect(classroomAddOnOpenedMock).toHaveBeenCalledWith(
-      expect.objectContaining({
-        analyticsUseCase: "Pupil",
-      }),
-    );
+    expect(trackAddOnOpenedOnceMock).toHaveBeenCalledTimes(1);
+    expect(trackAddOnOpenedOnceMock).toHaveBeenCalledWith({
+      analyticsUseCase: "Pupil",
+    });
   });
 
   it("does not retrack classroomAddOnOpened when already marked for this open", () => {
-    markClassroomAddOnOpened();
+    trackAddOnOpenedOnceMock.mockReturnValue(false);
 
     renderWithTheme(<Page />);
 
-    expect(classroomAddOnOpenedMock).not.toHaveBeenCalled();
+    expect(trackAddOnOpenedOnceMock).toHaveBeenCalledTimes(1);
   });
 });

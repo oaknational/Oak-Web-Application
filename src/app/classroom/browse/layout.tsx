@@ -6,8 +6,7 @@ import {
 } from "@oaknational/google-classroom-addon/ui";
 
 import { googleClassroomApi } from "@/browser-lib/google-classroom";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
+import { useGoogleClassroomAnalytics } from "@/components/GoogleClassroom/useGoogleClassroomAnalytics";
 
 type Props = {
   children: React.ReactNode;
@@ -15,8 +14,9 @@ type Props = {
 export default function BrowseGoogleClassroomLayout({
   children,
 }: Readonly<Props>) {
-  const { track } = useAnalytics();
-  const clientEnvironment = getClientEnvironment();
+  const trackLessonAttached = useGoogleClassroomAnalytics(
+    (state) => state.trackLessonAttached,
+  );
   return (
     <WithGoogleClassroomAuth
       verifySessionAction={googleClassroomApi.verifySession()}
@@ -24,17 +24,7 @@ export default function BrowseGoogleClassroomLayout({
     >
       <BrowseLayout
         createAttachmentAction={googleClassroomApi.createAttachment}
-        onLessonAttached={(data) => {
-          track.classroomLessonsAttached({
-            lessonName: data.lessonName,
-            unitName: data.unitName,
-            courseId: data.courseId,
-            itemId: data.itemId,
-            gradeSyncEnabled: data.gradeSyncEnabled,
-            googleLoginHint: data.googleLoginHint ?? "",
-            clientEnvironment,
-          });
-        }}
+        onLessonAttached={trackLessonAttached}
       >
         {children}
       </BrowseLayout>

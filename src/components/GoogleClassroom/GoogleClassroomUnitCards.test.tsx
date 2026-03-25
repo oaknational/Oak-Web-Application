@@ -5,15 +5,20 @@ import { GoogleClassroomUnitCards } from "./GoogleClassroomUnitCards";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const unitCardsMock = jest.fn();
-const trackBrowseRefined = jest.fn();
+const trackUnitSelected = jest.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const googleClassroomAnalyticsMock = {
+  trackUnitSelected,
+};
+
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
   __esModule: true,
-  default: () => ({
-    track: {
-      browseRefined: (...args: unknown[]) => trackBrowseRefined(...args),
-    },
-  }),
+  useGoogleClassroomAnalytics: (
+    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
+  ) =>
+    selector
+      ? selector(googleClassroomAnalyticsMock)
+      : googleClassroomAnalyticsMock,
 }));
 
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
@@ -27,7 +32,7 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
 describe("GoogleClassroomUnitCards", () => {
   beforeEach(() => jest.clearAllMocks());
 
-  it("calls track.browseRefined with correct args when a unit is selected", () => {
+  it("dispatches trackUnitSelected when a unit is selected", () => {
     renderWithTheme(
       <GoogleClassroomUnitCards
         units={[]}
@@ -39,14 +44,8 @@ describe("GoogleClassroomUnitCards", () => {
     const { onUnitSelected } = unitCardsMock.mock.calls[0][0];
     onUnitSelected({ unitSlug: "algebra-1" });
 
-    expect(trackBrowseRefined).toHaveBeenCalledWith(
-      expect.objectContaining({
-        platform: "google-classroom",
-        componentType: "unit_card",
-        filterType: "Unit filter",
-        filterValue: "algebra-1",
-        engagementIntent: "refine",
-      }),
-    );
+    expect(trackUnitSelected).toHaveBeenCalledWith({
+      unitSlug: "algebra-1",
+    });
   });
 });

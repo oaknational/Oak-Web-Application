@@ -1,23 +1,9 @@
 "use client";
 
-import {
-  SubjectsPageView,
-  useGoogleClassroomAddonStore,
-} from "@oaknational/google-classroom-addon/ui";
+import { SubjectsPageView } from "@oaknational/google-classroom-addon/ui";
 import type { Subject } from "@oaknational/google-classroom-addon/ui";
 
-import { getClientEnvironment } from "./getClientEnvironment";
-
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import {
-  AnalyticsUseCase,
-  ComponentType,
-  EngagementIntent,
-  EventVersion,
-  FilterType,
-  Platform,
-  Product,
-} from "@/browser-lib/avo/Avo";
+import { useGoogleClassroomAnalytics } from "@/components/GoogleClassroom/useGoogleClassroomAnalytics";
 
 type Props = Readonly<{
   subjects: Subject[];
@@ -30,9 +16,8 @@ export function GoogleClassroomSubjects({
   unitsUrlTemplate,
   optionsUrlTemplate,
 }: Props) {
-  const { track } = useAnalytics();
-  const googleLoginHint = useGoogleClassroomAddonStore(
-    (state) => state.googleLoginHint,
+  const trackSubjectSelected = useGoogleClassroomAnalytics(
+    (state) => state.trackSubjectSelected,
   );
 
   return (
@@ -40,21 +25,7 @@ export function GoogleClassroomSubjects({
       subjects={subjects}
       unitsUrlTemplate={unitsUrlTemplate}
       optionsUrlTemplate={optionsUrlTemplate}
-      onSubjectSelected={(subject) => {
-        track.browseRefined({
-          platform: Platform.GOOGLE_CLASSROOM,
-          product: Product.TEACHER_LESSON_RESOURCES,
-          analyticsUseCase: AnalyticsUseCase.TEACHER,
-          componentType: ComponentType.SUBJECT_CARD,
-          filterType: FilterType.SUBJECT_FILTER,
-          filterValue: subject.programmeFields.subjectSlug ?? "",
-          eventVersion: EventVersion["2_0_0"],
-          engagementIntent: EngagementIntent.REFINE,
-          activeFilters: {},
-          googleLoginHint,
-          clientEnvironment: getClientEnvironment(),
-        });
-      }}
+      onSubjectSelected={trackSubjectSelected}
     />
   );
 }

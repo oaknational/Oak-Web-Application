@@ -31,6 +31,10 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   useGoogleClassroomAddonStore: jest.fn().mockReturnValue(null),
 }));
 
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
+  useGoogleClassroomAnalytics: jest.fn().mockReturnValue(jest.fn()),
+}));
+
 jest.mock("@/node-lib/curriculum-api-2023");
 jest.mock("@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor");
 

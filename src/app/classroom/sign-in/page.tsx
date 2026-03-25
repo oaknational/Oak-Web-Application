@@ -6,28 +6,26 @@ import { GoogleSignInView } from "@oaknational/google-classroom-addon/ui";
 import { OakBox } from "@oaknational/oak-components";
 
 import { googleClassroomApi } from "@/browser-lib/google-classroom";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
-import { AnalyticsUseCase, Platform, Product } from "@/browser-lib/avo/Avo";
+import { AnalyticsUseCase } from "@/browser-lib/avo/Avo";
+import { useGoogleClassroomAnalytics } from "@/components/GoogleClassroom/useGoogleClassroomAnalytics";
 
 function SignInContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { track } = useAnalytics();
-
-  const clientEnvironment = getClientEnvironment();
   const loginHint = searchParams?.get("login_hint") ?? null;
+  const trackSignInStarted = useGoogleClassroomAnalytics(
+    (state) => state.trackSignInStarted,
+  );
+  const trackSignInCompleted = useGoogleClassroomAnalytics(
+    (state) => state.trackSignInCompleted,
+  );
 
   const subscribeToNewsletterRef = useRef<boolean>(false);
 
   const getGoogleSignInLink = (subscribeToNewsletter?: boolean) => {
     subscribeToNewsletterRef.current = subscribeToNewsletter ?? false;
-    track.classroomSignInStarted({
-      platform: Platform.GOOGLE_CLASSROOM,
-      product: Product.GOOGLE_CLASSROOM_ADDON,
+    trackSignInStarted({
       analyticsUseCase: AnalyticsUseCase.TEACHER,
-      googleLoginHint: loginHint,
-      clientEnvironment,
     });
     return googleClassroomApi.getGoogleSignInUrl(
       loginHint,
@@ -42,13 +40,9 @@ function SignInContent() {
       decodedUrl !== null &&
       decodedUrl.startsWith("/") &&
       !decodedUrl.startsWith("//");
-    track.classroomSignInCompleted({
-      platform: Platform.GOOGLE_CLASSROOM,
-      product: Product.GOOGLE_CLASSROOM_ADDON,
+    trackSignInCompleted({
       analyticsUseCase: AnalyticsUseCase.TEACHER,
-      googleLoginHint: loginHint,
       subscribeToNewsletter: subscribeToNewsletterRef.current,
-      clientEnvironment,
     });
     const currentParams = searchParams?.toString() ?? "";
     const url = isSafeInternalPath

@@ -7,14 +7,20 @@ import { googleClassroomApi } from "@/browser-lib/google-classroom";
 
 const withAuthMock = jest.fn();
 const browseLayoutMock = jest.fn();
+const trackLessonAttachedMock = jest.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const googleClassroomAnalyticsMock = {
+  trackLessonAttached: trackLessonAttachedMock,
+};
+
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
   __esModule: true,
-  default: () => ({
-    track: {
-      classroomLessonsAttached: jest.fn(),
-    },
-  }),
+  useGoogleClassroomAnalytics: (
+    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
+  ) =>
+    selector
+      ? selector(googleClassroomAnalyticsMock)
+      : googleClassroomAnalyticsMock,
 }));
 
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({

@@ -11,7 +11,6 @@ import {
 import * as LessonEngineProvider from "@/components/PupilComponents/LessonEngineProvider";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { allLessonReviewSections } from "@/components/PupilComponents/LessonEngineProvider";
-import { markClassroomAddOnOpened } from "@/browser-lib/google-classroom/classroomAddonTracking";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
@@ -21,6 +20,7 @@ import "@/__tests__/__helpers__/ResizeObserverMock";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
 const classroomAddOnOpenedMock = jest.fn();
+const clearAddOnOpenedFlagMock = jest.fn();
 const analyticsTrackMock = new Proxy(
   {
     classroomAddOnOpened: classroomAddOnOpenedMock,
@@ -37,6 +37,11 @@ const analyticsTrackMock = new Proxy(
     },
   },
 );
+
+const googleClassroomAnalyticsMock = {
+  trackAddOnOpenedOnce: classroomAddOnOpenedMock,
+  clearAddOnOpenedFlag: clearAddOnOpenedFlagMock,
+};
 
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
@@ -78,6 +83,21 @@ jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
     getPupilLessonProgress: jest.fn(),
     submitPupilProgress: jest.fn(),
   },
+}));
+
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
+  __esModule: true,
+  GoogleClassroomAnalyticsProvider: ({
+    children,
+  }: {
+    children: React.ReactNode;
+  }) => children,
+  useGoogleClassroomAnalytics: (
+    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
+  ) =>
+    selector
+      ? selector(googleClassroomAnalyticsMock)
+      : googleClassroomAnalyticsMock,
 }));
 
 const mockedUseAssignmentSearchParams =
@@ -125,8 +145,9 @@ const render = renderWithProviders();
 
 describe("PupilExperienceView", () => {
   beforeEach(() => {
-    sessionStorage.clear();
     classroomAddOnOpenedMock.mockClear();
+    clearAddOnOpenedFlagMock.mockClear();
+    classroomAddOnOpenedMock.mockReturnValue(true);
     mockedUseAssignmentSearchParams.mockReturnValue({
       isClassroomAssignment: true,
       classroomAssignmentChecked: true,
@@ -195,13 +216,16 @@ describe("PupilExperienceView", () => {
       await waitFor(() => {
         expect(classroomAddOnOpenedMock).toHaveBeenCalledTimes(1);
       });
+      expect(classroomAddOnOpenedMock).toHaveBeenCalledWith({
+        analyticsUseCase: "Pupil",
+      });
     });
 
     it("does not retrack classroomAddOnOpened when sign-in already marked it", async () => {
       const lessonContent = lessonContentFixture({});
       const lessonBrowseData = lessonBrowseDataFixture({});
 
-      markClassroomAddOnOpened();
+      classroomAddOnOpenedMock.mockReturnValue(false);
       jest
         .spyOn(LessonEngineProvider, "useLessonEngineContext")
         .mockReturnValue(
@@ -224,7 +248,7 @@ describe("PupilExperienceView", () => {
       );
 
       await waitFor(() => {
-        expect(classroomAddOnOpenedMock).not.toHaveBeenCalled();
+        expect(classroomAddOnOpenedMock).toHaveBeenCalledTimes(1);
       });
     });
   });

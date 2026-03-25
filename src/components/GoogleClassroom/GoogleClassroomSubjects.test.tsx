@@ -5,15 +5,20 @@ import { GoogleClassroomSubjects } from "./GoogleClassroomSubjects";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const subjectsPageViewMock = jest.fn();
-const trackBrowseRefined = jest.fn();
+const trackSubjectSelected = jest.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const googleClassroomAnalyticsMock = {
+  trackSubjectSelected,
+};
+
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
   __esModule: true,
-  default: () => ({
-    track: {
-      browseRefined: (...args: unknown[]) => trackBrowseRefined(...args),
-    },
-  }),
+  useGoogleClassroomAnalytics: (
+    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
+  ) =>
+    selector
+      ? selector(googleClassroomAnalyticsMock)
+      : googleClassroomAnalyticsMock,
 }));
 
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
@@ -27,7 +32,7 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
 describe("GoogleClassroomSubjects", () => {
   beforeEach(() => jest.clearAllMocks());
 
-  it("calls track.browseRefined with correct args when a subject is selected", () => {
+  it("dispatches trackSubjectSelected when a subject is selected", () => {
     renderWithTheme(
       <GoogleClassroomSubjects
         subjects={[]}
@@ -39,18 +44,12 @@ describe("GoogleClassroomSubjects", () => {
     const { onSubjectSelected } = subjectsPageViewMock.mock.calls[0][0];
     onSubjectSelected({ programmeFields: { subjectSlug: "maths" } });
 
-    expect(trackBrowseRefined).toHaveBeenCalledWith(
-      expect.objectContaining({
-        platform: "google-classroom",
-        componentType: "subject_card",
-        filterType: "Subject filter",
-        filterValue: "maths",
-        engagementIntent: "refine",
-      }),
-    );
+    expect(trackSubjectSelected).toHaveBeenCalledWith({
+      programmeFields: { subjectSlug: "maths" },
+    });
   });
 
-  it("uses empty string for filterValue when subjectSlug is null", () => {
+  it("passes through the base subject object when subjectSlug is null", () => {
     renderWithTheme(
       <GoogleClassroomSubjects
         subjects={[]}
@@ -62,8 +61,8 @@ describe("GoogleClassroomSubjects", () => {
     const { onSubjectSelected } = subjectsPageViewMock.mock.calls[0][0];
     onSubjectSelected({ programmeFields: { subjectSlug: null } });
 
-    expect(trackBrowseRefined).toHaveBeenCalledWith(
-      expect.objectContaining({ filterValue: "" }),
-    );
+    expect(trackSubjectSelected).toHaveBeenCalledWith({
+      programmeFields: { subjectSlug: null },
+    });
   });
 });

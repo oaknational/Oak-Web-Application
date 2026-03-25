@@ -5,19 +5,22 @@ import { GoogleClassroomLessonListing } from "./GoogleClassroomLessonListing";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const lessonListingViewMock = jest.fn();
-const trackClassroomLessonSelected = jest.fn();
-const trackClassroomLessonPreviewed = jest.fn();
+const trackLessonSelected = jest.fn();
+const trackLessonPreviewed = jest.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const googleClassroomAnalyticsMock = {
+  trackLessonSelected,
+  trackLessonPreviewed,
+};
+
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
   __esModule: true,
-  default: () => ({
-    track: {
-      classroomLessonSelected: (...args: unknown[]) =>
-        trackClassroomLessonSelected(...args),
-      classroomLessonPreviewed: (...args: unknown[]) =>
-        trackClassroomLessonPreviewed(...args),
-    },
-  }),
+  useGoogleClassroomAnalytics: (
+    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
+  ) =>
+    selector
+      ? selector(googleClassroomAnalyticsMock)
+      : googleClassroomAnalyticsMock,
 }));
 
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
@@ -72,80 +75,47 @@ const defaultProps = {
 describe("GoogleClassroomLessonListing", () => {
   beforeEach(() => jest.clearAllMocks());
 
-  it("fires classroomLessonSelected with correct args when a lesson is selected", () => {
+  it("dispatches trackLessonSelected with the resolved lesson context", () => {
     renderWithTheme(<GoogleClassroomLessonListing {...defaultProps} />);
 
     const { onLessonSelected } = lessonListingViewMock.mock.calls[0][0];
     onLessonSelected("lesson-a");
 
-    expect(trackClassroomLessonSelected).toHaveBeenCalledWith(
-      expect.objectContaining({
-        lessonName: "Introduction to Algebra",
-        lessonSlug: "lesson-a",
-        lessonReleaseCohort: "2023-2026",
-        lessonReleaseDate: "2024-01-01",
-        unitName: "Algebra",
-        unitSlug: "algebra-1",
-      }),
-    );
+    expect(trackLessonSelected).toHaveBeenCalledWith({
+      lesson: browseData[0],
+      unitData: defaultProps.unitData,
+      programmeFields: defaultProps.programmeFields,
+    });
   });
 
-  it("fires classroomLessonPreviewed with correct args when a lesson is previewed", () => {
+  it("dispatches trackLessonPreviewed with the resolved lesson context", () => {
     renderWithTheme(<GoogleClassroomLessonListing {...defaultProps} />);
 
     const { onLessonPreviewed } = lessonListingViewMock.mock.calls[0][0];
     onLessonPreviewed("lesson-a");
 
-    expect(trackClassroomLessonPreviewed).toHaveBeenCalledWith(
-      expect.objectContaining({
-        lessonName: "Introduction to Algebra",
-        lessonSlug: "lesson-a",
-        lessonReleaseCohort: "2023-2026",
-        lessonReleaseDate: "2024-01-01",
-        unitSlug: "algebra-1",
-      }),
-    );
+    expect(trackLessonPreviewed).toHaveBeenCalledWith({
+      lesson: browseData[0],
+      unitData: defaultProps.unitData,
+      programmeFields: defaultProps.programmeFields,
+    });
   });
 
-  it("uses lessonReleaseCohort '2020-2023' for legacy lessons", () => {
-    renderWithTheme(<GoogleClassroomLessonListing {...defaultProps} />);
-
-    const { onLessonSelected } = lessonListingViewMock.mock.calls[0][0];
-    onLessonSelected("lesson-b");
-
-    expect(trackClassroomLessonSelected).toHaveBeenCalledWith(
-      expect.objectContaining({
-        lessonReleaseCohort: "2020-2023",
-      }),
-    );
-  });
-
-  it("falls back to 'unreleased' when lessonReleaseDate is null", () => {
-    renderWithTheme(<GoogleClassroomLessonListing {...defaultProps} />);
-
-    const { onLessonSelected } = lessonListingViewMock.mock.calls[0][0];
-    onLessonSelected("lesson-b");
-
-    expect(trackClassroomLessonSelected).toHaveBeenCalledWith(
-      expect.objectContaining({ lessonReleaseDate: "unreleased" }),
-    );
-  });
-
-  it("does not fire classroomLessonSelected when lesson slug is not in browseData", () => {
+  it("does not dispatch trackLessonSelected when lesson slug is not in browseData", () => {
     renderWithTheme(<GoogleClassroomLessonListing {...defaultProps} />);
 
     const { onLessonSelected } = lessonListingViewMock.mock.calls[0][0];
     onLessonSelected("nonexistent-slug");
 
-    expect(trackClassroomLessonSelected).not.toHaveBeenCalled();
+    expect(trackLessonSelected).not.toHaveBeenCalled();
   });
 
-  it("does not fire classroomLessonPreviewed when lesson slug is not in browseData", () => {
+  it("does not dispatch trackLessonPreviewed when lesson slug is not in browseData", () => {
     renderWithTheme(<GoogleClassroomLessonListing {...defaultProps} />);
 
     const { onLessonPreviewed } = lessonListingViewMock.mock.calls[0][0];
     onLessonPreviewed("nonexistent-slug");
 
-    expect(trackClassroomLessonPreviewed).not.toHaveBeenCalled();
+    expect(trackLessonPreviewed).not.toHaveBeenCalled();
   });
 });

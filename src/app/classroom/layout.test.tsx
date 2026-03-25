@@ -10,6 +10,10 @@ const useSearchParamsMock = jest.fn();
 const usePathnameMock = jest.fn();
 const classroomAddOnOpenedMock = jest.fn();
 
+const googleClassroomAnalyticsMock = {
+  trackAddOnOpened: classroomAddOnOpenedMock,
+};
+
 jest.mock("next/navigation", () => ({
   __esModule: true,
   useSearchParams: () => useSearchParamsMock(),
@@ -24,13 +28,19 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   },
 }));
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
   __esModule: true,
-  default: () => ({
-    track: {
-      classroomAddOnOpened: classroomAddOnOpenedMock,
-    },
-  }),
+  GoogleClassroomAnalyticsProvider: ({
+    children,
+  }: {
+    children: React.ReactNode;
+  }) => children,
+  useGoogleClassroomAnalytics: (
+    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
+  ) =>
+    selector
+      ? selector(googleClassroomAnalyticsMock)
+      : googleClassroomAnalyticsMock,
 }));
 
 describe("src/app/classroom/layout", () => {
@@ -86,11 +96,9 @@ describe("src/app/classroom/layout", () => {
     );
 
     expect(classroomAddOnOpenedMock).toHaveBeenCalledTimes(1);
-    expect(classroomAddOnOpenedMock).toHaveBeenCalledWith(
-      expect.objectContaining({
-        analyticsUseCase: "Teacher",
-      }),
-    );
+    expect(classroomAddOnOpenedMock).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+    });
   });
 
   it("does not track classroomAddOnOpened for pupil classroom routes", () => {
