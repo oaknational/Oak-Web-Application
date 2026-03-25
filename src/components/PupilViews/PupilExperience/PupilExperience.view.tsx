@@ -37,7 +37,15 @@ import {
   AdditionalFile,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
-import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
+import {
+  AnalyticsUseCase,
+  ComponentType,
+  ContentGuidanceWarningValueType,
+  EngagementIntent,
+  EventVersion,
+  Platform,
+  Product,
+} from "@/browser-lib/avo/Avo";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
@@ -248,12 +256,12 @@ const PupilExperienceLayout = ({
 
     trackClassroomAddOnOpenedOnce(() => {
       globalTrack.classroomAddOnOpened({
-        platform: "google-classroom",
-        product: "google classroom addon",
-        engagementIntent: "use",
-        componentType: "page view",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Pupil",
+        platform: Platform.GOOGLE_CLASSROOM,
+        product: Product.GOOGLE_CLASSROOM_ADDON,
+        engagementIntent: EngagementIntent.USE,
+        componentType: ComponentType.PAGE_VIEW,
+        eventVersion: EventVersion["2_0_0"],
+        analyticsUseCase: AnalyticsUseCase.PUPIL,
         clientEnvironment,
       });
     });
@@ -399,7 +407,7 @@ const PupilExperienceLayout = ({
 
   if (trackingSent === false) {
     track.lessonAccessed({
-      componentType: "page view",
+      componentType: ComponentType.PAGE_VIEW,
     });
     setTrackingSent(true);
   }

@@ -12,7 +12,15 @@ import type {
 import { getClientEnvironment } from "./getClientEnvironment";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { ComponentType, FilterType } from "@/browser-lib/avo/Avo";
+import {
+  AnalyticsUseCase,
+  ComponentType,
+  EngagementIntent,
+  EventVersion,
+  FilterType,
+  Platform,
+  Product,
+} from "@/browser-lib/avo/Avo";
 
 type Props = Readonly<{
   programmes: Programme[];
@@ -30,18 +38,18 @@ const FACTOR_TO_FILTER: Record<
   "tier" | "examboard" | "pathway",
   (typeof FilterType)[keyof typeof FilterType]
 > = {
-  tier: "Tier filter",
-  examboard: "Exam board filter",
-  pathway: "Pathway filter",
+  tier: FilterType.TIER_FILTER,
+  examboard: FilterType.EXAM_BOARD_FILTER,
+  pathway: FilterType.PATHWAY_FILTER,
 };
 
 const FACTOR_TO_COMPONENT: Record<
   "tier" | "examboard" | "pathway",
   (typeof ComponentType)[keyof typeof ComponentType]
 > = {
-  tier: "learning_tier_button",
-  examboard: "programme_card",
-  pathway: "programme_card",
+  tier: ComponentType.LEARNING_TIER_BUTTON,
+  examboard: ComponentType.PROGRAMME_CARD,
+  pathway: ComponentType.PROGRAMME_CARD,
 };
 
 export function GoogleClassroomOptions({
@@ -67,14 +75,14 @@ export function GoogleClassroomOptions({
       getAvailableProgrammeFactorAction={getAvailableProgrammeFactorAction}
       onOptionSelected={(factorType, factor) => {
         track.browseRefined({
-          platform: "google-classroom",
-          product: "teacher lesson resources",
-          analyticsUseCase: "Teacher",
+          platform: Platform.GOOGLE_CLASSROOM,
+          product: Product.TEACHER_LESSON_RESOURCES,
+          analyticsUseCase: AnalyticsUseCase.TEACHER,
           componentType: FACTOR_TO_COMPONENT[factorType],
           filterType: FACTOR_TO_FILTER[factorType],
           filterValue: factor.factorSlug ?? "",
-          eventVersion: "2.0.0",
-          engagementIntent: "refine",
+          eventVersion: EventVersion["2_0_0"],
+          engagementIntent: EngagementIntent.REFINE,
           activeFilters: {
             tier: factorType === "tier" ? factor.factorSlug : undefined,
             examboard:

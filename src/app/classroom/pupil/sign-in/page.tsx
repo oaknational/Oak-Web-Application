@@ -11,6 +11,14 @@ import { googleClassroomApi } from "@/browser-lib/google-classroom";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
 import {
+  AnalyticsUseCase,
+  ComponentType,
+  EngagementIntent,
+  EventVersion,
+  Platform,
+  Product,
+} from "@/browser-lib/avo/Avo";
+import {
   clearClassroomAddOnOpened,
   markClassroomAddOnNavigation,
   trackClassroomAddOnOpenedOnce,
@@ -34,12 +42,12 @@ function SignInContent() {
   useEffect(() => {
     trackClassroomAddOnOpenedOnce(() => {
       track.classroomAddOnOpened({
-        platform: "google-classroom",
-        product: "google classroom addon",
-        engagementIntent: "use",
-        componentType: "page view",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Pupil",
+        platform: Platform.GOOGLE_CLASSROOM,
+        product: Product.GOOGLE_CLASSROOM_ADDON,
+        engagementIntent: EngagementIntent.USE,
+        componentType: ComponentType.PAGE_VIEW,
+        eventVersion: EventVersion["2_0_0"],
+        analyticsUseCase: AnalyticsUseCase.PUPIL,
         clientEnvironment,
       });
     });
@@ -47,9 +55,9 @@ function SignInContent() {
 
   const getGoogleSignInLink = () => {
     track.classroomSignInStarted({
-      platform: "google-classroom",
-      product: "google classroom addon",
-      analyticsUseCase: "Pupil",
+      platform: Platform.GOOGLE_CLASSROOM,
+      product: Product.GOOGLE_CLASSROOM_ADDON,
+      analyticsUseCase: AnalyticsUseCase.PUPIL,
       googleLoginHint: loginHint,
       clientEnvironment,
     });
@@ -67,9 +75,9 @@ function SignInContent() {
     const currentParams = searchParams?.toString() ?? "";
 
     track.classroomSignInCompleted({
-      platform: "google-classroom",
-      product: "google classroom addon",
-      analyticsUseCase: "Pupil",
+      platform: Platform.GOOGLE_CLASSROOM,
+      product: Product.GOOGLE_CLASSROOM_ADDON,
+      analyticsUseCase: AnalyticsUseCase.PUPIL,
       googleLoginHint: loginHint,
       subscribeToNewsletter: null,
       clientEnvironment,

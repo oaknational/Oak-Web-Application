@@ -6,6 +6,14 @@ import { OakGoogleClassroomProvider } from "@oaknational/google-classroom-addon/
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
+import {
+  AnalyticsUseCase,
+  ComponentType,
+  EngagementIntent,
+  EventVersion,
+  Platform,
+  Product,
+} from "@/browser-lib/avo/Avo";
 
 function GoogleClassroomProviderWrapper({
   children,
@@ -40,12 +48,12 @@ export default function Layout({
     if (isPupilRoute) return;
 
     track.classroomAddOnOpened({
-      platform: "google-classroom",
-      product: "google classroom addon",
-      engagementIntent: "use",
-      componentType: "page view",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
+      platform: Platform.GOOGLE_CLASSROOM,
+      product: Product.GOOGLE_CLASSROOM_ADDON,
+      engagementIntent: EngagementIntent.USE,
+      componentType: ComponentType.PAGE_VIEW,
+      eventVersion: EventVersion["2_0_0"],
+      analyticsUseCase: AnalyticsUseCase.TEACHER,
       clientEnvironment,
     });
   }, [clientEnvironment, isPupilRoute, track]);

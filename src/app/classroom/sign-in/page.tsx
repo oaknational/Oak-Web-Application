@@ -8,6 +8,7 @@ import { OakBox } from "@oaknational/oak-components";
 import { googleClassroomApi } from "@/browser-lib/google-classroom";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
+import { AnalyticsUseCase, Platform, Product } from "@/browser-lib/avo/Avo";
 
 function SignInContent() {
   const router = useRouter();
@@ -22,9 +23,9 @@ function SignInContent() {
   const getGoogleSignInLink = (subscribeToNewsletter?: boolean) => {
     subscribeToNewsletterRef.current = subscribeToNewsletter ?? false;
     track.classroomSignInStarted({
-      platform: "google-classroom",
-      product: "google classroom addon",
-      analyticsUseCase: "Teacher",
+      platform: Platform.GOOGLE_CLASSROOM,
+      product: Product.GOOGLE_CLASSROOM_ADDON,
+      analyticsUseCase: AnalyticsUseCase.TEACHER,
       googleLoginHint: loginHint,
       clientEnvironment,
     });
@@ -42,9 +43,9 @@ function SignInContent() {
       decodedUrl.startsWith("/") &&
       !decodedUrl.startsWith("//");
     track.classroomSignInCompleted({
-      platform: "google-classroom",
-      product: "google classroom addon",
-      analyticsUseCase: "Teacher",
+      platform: Platform.GOOGLE_CLASSROOM,
+      product: Product.GOOGLE_CLASSROOM_ADDON,
+      analyticsUseCase: AnalyticsUseCase.TEACHER,
       googleLoginHint: loginHint,
       subscribeToNewsletter: subscribeToNewsletterRef.current,
       clientEnvironment,

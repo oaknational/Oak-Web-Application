@@ -9,6 +9,15 @@ import type { Unit } from "@oaknational/google-classroom-addon/ui";
 import { getClientEnvironment } from "./getClientEnvironment";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import {
+  AnalyticsUseCase,
+  ComponentType,
+  EngagementIntent,
+  EventVersion,
+  FilterType,
+  Platform,
+  Product,
+} from "@/browser-lib/avo/Avo";
 
 type Props = Readonly<{
   units: Unit[][];
@@ -32,14 +41,14 @@ export function GoogleClassroomUnitCards({
       unitsLessonListUrlTemplate={unitsLessonListUrlTemplate}
       onUnitSelected={(unit) => {
         track.browseRefined({
-          platform: "google-classroom",
-          product: "teacher lesson resources",
-          analyticsUseCase: "Teacher",
-          componentType: "unit_card",
-          filterType: "Unit filter",
+          platform: Platform.GOOGLE_CLASSROOM,
+          product: Product.TEACHER_LESSON_RESOURCES,
+          analyticsUseCase: AnalyticsUseCase.TEACHER,
+          componentType: ComponentType.UNIT_CARD,
+          filterType: FilterType.UNIT_FILTER,
           filterValue: unit.unitSlug,
-          eventVersion: "2.0.0",
-          engagementIntent: "refine",
+          eventVersion: EventVersion["2_0_0"],
+          engagementIntent: EngagementIntent.REFINE,
           activeFilters: {},
           googleLoginHint,
           clientEnvironment: getClientEnvironment(),

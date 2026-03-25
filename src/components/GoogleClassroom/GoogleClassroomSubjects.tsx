@@ -9,6 +9,15 @@ import type { Subject } from "@oaknational/google-classroom-addon/ui";
 import { getClientEnvironment } from "./getClientEnvironment";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import {
+  AnalyticsUseCase,
+  ComponentType,
+  EngagementIntent,
+  EventVersion,
+  FilterType,
+  Platform,
+  Product,
+} from "@/browser-lib/avo/Avo";
 
 type Props = Readonly<{
   subjects: Subject[];
@@ -33,14 +42,14 @@ export function GoogleClassroomSubjects({
       optionsUrlTemplate={optionsUrlTemplate}
       onSubjectSelected={(subject) => {
         track.browseRefined({
-          platform: "google-classroom",
-          product: "teacher lesson resources",
-          analyticsUseCase: "Teacher",
-          componentType: "subject_card",
-          filterType: "Subject filter",
+          platform: Platform.GOOGLE_CLASSROOM,
+          product: Product.TEACHER_LESSON_RESOURCES,
+          analyticsUseCase: AnalyticsUseCase.TEACHER,
+          componentType: ComponentType.SUBJECT_CARD,
+          filterType: FilterType.SUBJECT_FILTER,
           filterValue: subject.programmeFields.subjectSlug ?? "",
-          eventVersion: "2.0.0",
-          engagementIntent: "refine",
+          eventVersion: EventVersion["2_0_0"],
+          engagementIntent: EngagementIntent.REFINE,
           activeFilters: {},
           googleLoginHint,
           clientEnvironment: getClientEnvironment(),

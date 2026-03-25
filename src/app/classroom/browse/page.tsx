@@ -7,6 +7,15 @@ import {
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
+import {
+  AnalyticsUseCase,
+  ComponentType,
+  EngagementIntent,
+  EventVersion,
+  FilterType,
+  Platform,
+  Product,
+} from "@/browser-lib/avo/Avo";
 
 function BrowseGoogleClassroomPage() {
   const { track } = useAnalytics();
@@ -38,14 +47,14 @@ function BrowseGoogleClassroomPage() {
       subjectsUrlTemplate={"/classroom/browse/years/:yearSlug/subjects"}
       onYearSelected={(year) => {
         track.browseRefined({
-          platform: "google-classroom",
-          product: "teacher lesson resources",
-          analyticsUseCase: "Teacher",
-          componentType: "year_group_button",
-          filterType: "Year filter",
+          platform: Platform.GOOGLE_CLASSROOM,
+          product: Product.TEACHER_LESSON_RESOURCES,
+          analyticsUseCase: AnalyticsUseCase.TEACHER,
+          componentType: ComponentType.YEAR_GROUP_BUTTON,
+          filterType: FilterType.YEAR_FILTER,
           filterValue: year.yearSlug,
-          eventVersion: "2.0.0",
-          engagementIntent: "refine",
+          eventVersion: EventVersion["2_0_0"],
+          engagementIntent: EngagementIntent.REFINE,
           activeFilters: {},
           googleLoginHint,
           clientEnvironment,
