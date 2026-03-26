@@ -44,13 +44,13 @@ const SummaryCard: FC<SummaryCardProps> = ({
 }) => {
   return (
     <Card
-      $pa={0}
+      $pa={"spacing-0"}
       $background={background}
       $flexDirection={"row"}
       $justifyContent={"space-between"}
       $width="100%"
-      $pv={[24]}
-      $ph={[16, 24]}
+      $pv={["spacing-24"]}
+      $ph={["spacing-16", "spacing-24"]}
     >
       <OakFlex $flexDirection={"column"} $width="100%">
         <OakFlex>

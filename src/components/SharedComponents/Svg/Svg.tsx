@@ -11,7 +11,6 @@ import getSvgId, {
 } from "@/components/SharedComponents/SpriteSheet/getSvgId";
 const StyledSvg = styled.svg<OakBoxProps>`
   ${oakBoxCss}
-  transition: all 0.3s ease;
 `;
 export type SvgProps = OakBoxProps & {
   name: SvgName;
@@ -28,6 +27,7 @@ const Svg: FC<SvgProps> = (props) => {
       xmlns="http://www.w3.org/2000/svg"
       width="100%"
       height="100%"
+      $transition={"standard-ease"}
       {...props}
     >
       <use xlinkHref={`/images/sprite/sprite.svg#${getSvgId(props)}`} />

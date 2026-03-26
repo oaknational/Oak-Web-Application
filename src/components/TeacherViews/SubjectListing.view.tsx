@@ -128,7 +128,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
                     subjectSlug={subject[0].slug}
                     keyStageSlug={keyStageSlug}
                     keyStageTitle={sentenceCaseKeyStageTitle}
-                    $background="mint50"
+                    $background="bg-decorative1-subdued"
                   />
                 </OakGridArea>
               ))}

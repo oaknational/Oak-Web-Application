@@ -4,31 +4,29 @@ import {
   OakFlex,
   OakIcon,
   OakIconName,
+  OakFlexProps,
 } from "@oaknational/oak-components";
 
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Card from "@/components/SharedComponents/Card";
-import { PositionProps } from "@/styles/utils/position";
-import { DisplayProps } from "@/styles/utils/display";
 
 type TeachersTabResourceSelectorCardProps = {
   icon: OakIconName;
   title: string;
   angle: number;
-} & Omit<PositionProps, "$gap"> &
-  DisplayProps;
+} & Omit<OakFlexProps, "$gap">;
 const TeachersTabResourceSelectorCard: FC<
   TeachersTabResourceSelectorCardProps
 > = (props) => {
   const { icon, title, angle, ...positionAndDisplayProps } = props;
   return (
     <Card
-      $width={195}
-      $height={66}
-      $pa={0}
+      $width={"spacing-180"}
+      $height={"spacing-64"}
+      $pa={"spacing-0"}
       $transform={`rotate(${angle}deg)`}
       $position={"absolute"}
-      $background={"white"}
+      $background={"bg-primary"}
       {...positionAndDisplayProps}
     >
       <OakFlex $gap="spacing-16">

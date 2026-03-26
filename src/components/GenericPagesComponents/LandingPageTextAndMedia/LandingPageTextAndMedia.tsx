@@ -41,11 +41,11 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
   return (
     <Card
       $flexDirection={["column", "row"]}
-      $background={"lemon50"}
+      $background={"bg-decorative5-subdued"}
       $width={"100%"}
-      $mb={[56, 92]}
-      $pb={24}
-      $ph={[16, 56]}
+      $mb={["spacing-56", "spacing-80"]}
+      $pb={"spacing-24"}
+      $ph={["spacing-16", "spacing-56"]}
     >
       <BrushBorders hideOnMobileH color={"bg-decorative5-subdued"} />
       <Flex
@@ -56,7 +56,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
       >
         {props.mediaType == "image" && (
           <CMSImage
-            $pr={["spacing-0", "spacing-24", "spacing-72"]}
+            $pr={[0, 24, 72]}
             alt={props.image.altText || ""}
             $objectFit="contain"
             $objectPosition={"center"}

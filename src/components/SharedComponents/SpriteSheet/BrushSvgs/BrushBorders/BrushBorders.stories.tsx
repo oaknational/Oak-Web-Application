@@ -10,7 +10,7 @@ export default {
 } as Meta<typeof Component>;
 
 const Template: StoryFn<typeof Component> = () => (
-  <Card $background={"lemon"}>
+  <Card $background={"bg-decorative5-main"}>
     <CardTitle tag="h2">Did you know about our lessons?</CardTitle>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

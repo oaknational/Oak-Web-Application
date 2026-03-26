@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useTheme } from "styled-components";
+import { OakUiRoleToken } from "@oaknational/oak-components";
 
 import {
   ButtonBackground,
@@ -10,7 +11,6 @@ import {
 import IconButtonWrapper from "./IconButtonWrapper";
 import { IconFocusUnderline } from "./IconFocusUnderline";
 
-import { OakColorName } from "@/styles/theme";
 import Icon, {
   IconName,
   isIconVariant,
@@ -21,7 +21,7 @@ export type IconButtonInnerProps = {
   background: ButtonBackground;
   icon: IconName;
   size: ButtonSize;
-  iconColorOverride?: OakColorName;
+  iconColorOverride?: OakUiRoleToken;
   iconAnimateTo?: IconName;
 };
 /**

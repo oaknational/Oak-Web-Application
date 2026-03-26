@@ -35,7 +35,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           </p>
         </div>
         <a
-          class="sc-88d86f2f-0 ljhVPp"
+          class="sc-88d86f2f-0 hBwiyZ"
           href="/campaigns/mythbusting"
           role="link"
           title="Learn why"
@@ -45,12 +45,12 @@ exports[`Banners shows mythbusting banner 1`] = `
           >
             <span
               aria-hidden="true"
-              class="sc-aXZVg sc-8d5dc3e8-0 hkJkIR dhcMtw"
+              class="sc-aXZVg sc-71a01736-0 hkJkIR jqwpeM"
               data-testid="button-icon"
             >
               <svg
                 aria-hidden="true"
-                class="sc-351fe44c-0 csfpgv sc-8d5dc3e8-2 gUjSer"
+                class="sc-2c4cc93e-0 dsodAn sc-71a01736-2 brMIHb"
                 height="100%"
                 name="icon-background"
                 width="100%"
@@ -61,12 +61,12 @@ exports[`Banners shows mythbusting banner 1`] = `
                 />
               </svg>
               <span
-                class="sc-aXZVg sc-8d5dc3e8-1 popxP eYVCZQ"
+                class="sc-aXZVg sc-71a01736-1 popxP cGvaNg"
                 style="transition: transform 0.8s ease-in-out;"
               >
                 <svg
                   aria-hidden="true"
-                  class="sc-351fe44c-0 csfpgv sc-8d5dc3e8-3 fvTBSA"
+                  class="sc-2c4cc93e-0 dsodAn sc-71a01736-3 jqFfpY"
                   height="100%"
                   name="chevron-right"
                   width="100%"
@@ -94,7 +94,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           </div>
           <svg
             aria-hidden="true"
-            class="sc-351fe44c-0 csfpgv sc-38d96f56-0 fwjXJz"
+            class="sc-2c4cc93e-0 dsodAn sc-d8d24eba-0 giCBMq"
             height="100%"
             name="underline-1"
             width="100%"
@@ -106,7 +106,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           </svg>
           <svg
             aria-hidden="true"
-            class="sc-351fe44c-0 csfpgv sc-38d96f56-2 brHXmh"
+            class="sc-2c4cc93e-0 dsodAn sc-d8d24eba-2 eZdcMI"
             height="100%"
             name="underline-1"
             width="100%"

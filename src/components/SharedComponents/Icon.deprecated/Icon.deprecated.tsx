@@ -1,14 +1,18 @@
-import { OakBox, OakBoxProps } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakBoxProps,
+  OakUiRoleToken,
+} from "@oaknational/oak-components";
 import { CSSProperties, FC } from "react";
 import styled, { css } from "styled-components";
 
 import useIconAnimation from "./useIconAnimation";
 
-import { PixelSpacing } from "@/styles/theme";
+import { OakColorName, PixelSpacing } from "@/styles/theme";
 import { getRemUnits } from "@/styles/utils/getRemUnits";
 import responsive, { ResponsiveValues } from "@/styles/utils/responsive";
 import { UiIconName } from "@/image-data";
-import Svg, { SvgProps } from "@/components/SharedComponents/Svg";
+import { LegacySvg, LegacySvgProps } from "@/components/SharedComponents/Svg";
 
 export type IconName = UiIconName;
 export type IconVariant = "minimal" | "brush" | "buttonStyledAsLink";
@@ -29,7 +33,9 @@ type IconOuterWrapperProps = {
   $iconMinHeight?: ResponsiveValues<PixelSpacing>;
 } & RotateProps &
   OakBoxProps;
-const IconOuterWrapper = styled(OakBox).attrs({ as: "span" })<IconOuterWrapperProps>`
+const IconOuterWrapper = styled(OakBox).attrs({
+  as: "span",
+})<IconOuterWrapperProps>`
   position: relative;
   display: inline-block;
   ${(props) =>
@@ -56,7 +62,7 @@ const IconWrapper = styled(OakBox).attrs({ as: "span" })<OakBoxProps>`
   justify-content: center;
 `;
 
-export const BackgroundIcon = styled(Svg)`
+export const BackgroundIcon = styled(LegacySvg)`
   position: absolute;
   top: 0;
   right: 0;
@@ -64,11 +70,11 @@ export const BackgroundIcon = styled(Svg)`
   left: 0;
 `;
 
-const AnimatedSvg = styled(Svg)`
+const AnimatedSvg = styled(LegacySvg)`
   transition: transform 0.4s ease-out;
 `;
 
-const SPECIAL_ICON_SVG_PROPS: Partial<Record<IconName, SvgProps>> = {
+const SPECIAL_ICON_SVG_PROPS: Partial<Record<IconName, LegacySvgProps>> = {
   "chevron-down": {
     name: "chevron-up",
     $transform: "rotate(-180deg)",
@@ -113,8 +119,8 @@ type IconProps = Omit<
   height?: IconSize;
   animateTo?: IconName;
   verticalAlign?: VerticalAlign;
-  $background?: OakBoxProps["$background"];
-  $color?: OakBoxProps["$color"];
+  $background?: OakColorName;
+  $color?: OakUiRoleToken;
   style?: CSSProperties;
   className?: string;
 };
@@ -146,9 +152,7 @@ const Icon: FC<IconProps> = (props) => {
     typeof $background === "string" ? $background : undefined;
   const foregroundColor = $color ?? getContrastingIconColor(solidBackground);
   const padding =
-    typeof $pa === "number"
-      ? (`spacing-${$pa}` as OakBoxProps["$pa"])
-      : $pa;
+    typeof $pa === "number" ? (`spacing-${$pa}` as OakBoxProps["$pa"]) : $pa;
 
   const svgProps = SPECIAL_ICON_SVG_PROPS[name] ?? { name };
 
@@ -180,10 +184,7 @@ const Icon: FC<IconProps> = (props) => {
         style={{ transition: "transform 0.8s ease-in-out" }}
         $transform={rotate}
       >
-        <AnimatedSvg
-          {...svgProps}
-          $transform={svgProps.$transform || scale}
-        />
+        <AnimatedSvg {...svgProps} $transform={svgProps.$transform || scale} />
       </IconWrapper>
     </IconOuterWrapper>
   );
