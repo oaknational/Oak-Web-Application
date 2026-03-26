@@ -21,7 +21,7 @@ const teachersUnitPageQuery =
       TeachersUnitPageQuery["lessons"][number]
     >({
       journey: "teacher",
-      queryName: "lessonListingQuery", // TODO: update query name?
+      queryName: "lessonListingQuery", // TODO: update query name, dependent on oak-curriculum-schema update
       browseData: lessons,
     });
 
