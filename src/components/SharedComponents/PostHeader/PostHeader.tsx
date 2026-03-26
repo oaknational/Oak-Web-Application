@@ -1,5 +1,6 @@
 import { FC } from "react";
 import {
+  OakBox,
   OakHeading,
   OakSpan,
   OakP,
@@ -13,7 +14,6 @@ import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList
 import { SerializedWebinar } from "@/pages/webinars/[webinarSlug]";
 import { SerializedBlog } from "@/pages/blog/[blogSlug]";
 import formatDate from "@/utils/formatDate";
-import Box from "@/components/SharedComponents/Box";
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -81,7 +81,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
                 />
               </OakFlex>
             )}
-            <Box $mr={[0, 40]}>
+            <OakBox $mr={["spacing-0", "spacing-32"]}>
               <OakHeading tag="h2" $font={"heading-7"}>
                 {author.name}
               </OakHeading>
@@ -90,7 +90,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
                   {author.role}
                 </OakP>
               )}
-            </Box>
+            </OakBox>
           </OakFlex>
         )}
         <CopyLinkButton />

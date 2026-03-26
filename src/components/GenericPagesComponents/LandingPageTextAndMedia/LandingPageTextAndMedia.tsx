@@ -40,13 +40,13 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
   return (
     <Card
       $flexDirection={["column", "row"]}
-      $background={"lemon50"}
+      $background={"bg-decorative5-subdued"}
       $width={"100%"}
-      $mb={[56, 92]}
-      $pb={24}
-      $ph={[16, 56]}
+      $mb={["spacing-56", "spacing-80"]}
+      $pb={"spacing-24"}
+      $ph={["spacing-16", "spacing-56"]}
     >
-      <BrushBorders hideOnMobileH color={"lemon50"} />
+      <BrushBorders hideOnMobileH color={"bg-decorative5-subdued"} />
       <OakFlex
         $minHeight={"spacing-240"}
         $position="relative"

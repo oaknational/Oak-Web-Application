@@ -76,8 +76,8 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
           <Illustration
             slug={"magic-carpet"}
             $objectFit="contain"
-            $objectPosition={"bottom right"}
             $opacity={0.2}
+            $objectPosition={"bottom right"}
             cropRect={[0, 0, 401, 289]}
             fill
           />

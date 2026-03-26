@@ -40,10 +40,10 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       role="listitem"
       $justifyContent={"space-between"}
       $flexDirection={"row"}
-      $mb={16}
-      $minHeight={80}
+      $mb={"spacing-16"}
+      $minHeight={"spacing-80"}
       $overflow={"hidden"}
-      $pa={0}
+      $pa={"spacing-0"}
       {...(!expired ? containerProps : null)}
     >
       <OakFlex

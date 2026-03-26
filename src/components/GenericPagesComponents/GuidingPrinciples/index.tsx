@@ -109,7 +109,7 @@ export function GuidingPrinciples({
               src={imageUrl}
               alt={imageAlt}
               $objectFit="contain"
-              style={{ objectPosition: "center" }}
+              $objectPosition={"center"}
               $height="100%"
               $width="100%"
             />

@@ -34,10 +34,10 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
   const descriptionId = `${id}-newsletter-form-description`;
   return (
     <Card
-      $ph={24}
-      $pv={[24, desktopColSpan === 12 ? 24 : 40]}
-      $borderRadius={2}
-      $background="white"
+      $ph={"spacing-24"}
+      $pv={["spacing-24", desktopColSpan === 12 ? "spacing-24" : "spacing-40"]}
+      $borderRadius={"border-radius-xs"}
+      $background="bg-primary"
       {...containerProps}
     >
       {anchorTargetId && <AnchorTarget id={anchorTargetId} />}
