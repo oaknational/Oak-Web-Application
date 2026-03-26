@@ -5,11 +5,8 @@ import {
 
 import sdk from "../../sdk";
 
-import teachersUnitPageQuery, {
-  getPackagedUnit,
-  getTransformedLessons,
-} from "./teachersUnitPage.query";
-import { unitPageDataSchema } from "./teachersUnitPage.schema";
+import teachersUnitPageQuery from "./teachersUnitPage.query";
+import { unitPageDataSchema, UnitSequence } from "./teachersUnitPage.schema";
 
 const unitPageFixture = syntheticUnitvariantLessonsByKsFixture({
   overrides: {
@@ -68,12 +65,44 @@ const unitPageFixture2 = syntheticUnitvariantLessonsByKsFixture({
   },
 });
 
+export const unitSequenceFixture: UnitSequence = [
+  {
+    unitSlug: "unit-1",
+    unitTitle: "Unit 1",
+    unitOrder: 1,
+    nullUnitvariantId: 1,
+  },
+  {
+    unitSlug: "unit-2",
+    unitTitle: "Unit 2",
+    unitOrder: 2,
+    nullUnitvariantId: 2,
+  },
+  {
+    unitSlug: "unit-3",
+    unitTitle: "Unit 3",
+    unitOrder: 3,
+    nullUnitvariantId: 3,
+  },
+  {
+    unitSlug: "unit-4",
+    unitTitle: "Unit 4",
+    unitOrder: 4,
+    nullUnitvariantId: 4,
+  },
+];
+
 describe("teachersUnitPage", () => {
-  it("throws a not found error if no unit is found", async () => {
+  it("throws a not found error if no lessons are found", async () => {
     await expect(async () => {
       await teachersUnitPageQuery({
         ...sdk,
-        teachersUnitPage: jest.fn(() => Promise.resolve({ lessons: [] })),
+        teachersUnitPage: jest.fn(() =>
+          Promise.resolve({
+            lessons: [],
+            unitSequence: unitSequenceFixture,
+          }),
+        ),
       })({
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
@@ -86,6 +115,7 @@ describe("teachersUnitPage", () => {
       teachersUnitPage: jest.fn(() =>
         Promise.resolve({
           lessons: [syntheticUnitvariantLessonsByKsFixture()],
+          unitSequence: unitSequenceFixture,
         }),
       ),
     })({
@@ -135,6 +165,11 @@ describe("teachersUnitPage", () => {
           lessonReleaseDate: null,
         },
       ],
+      nextUnit: {
+        slug: "unit-2",
+        title: "Unit 2",
+      },
+      prevUnit: undefined,
     });
   });
   it("returns lessons in the correct order", async () => {
@@ -143,6 +178,7 @@ describe("teachersUnitPage", () => {
       teachersUnitPage: jest.fn(() =>
         Promise.resolve({
           lessons: [unitPageFixture2, unitPageFixture],
+          unitSequence: unitSequenceFixture,
         }),
       ),
     })({
@@ -172,6 +208,7 @@ describe("teachersUnitPage", () => {
                 lessons: [],
               },
             ],
+            unitSequence: unitSequenceFixture,
           }),
         ),
       })({
@@ -179,224 +216,5 @@ describe("teachersUnitPage", () => {
         unitSlug: "unit-slug",
       });
     }).rejects.toThrow(`lesson_slug`);
-  });
-});
-
-describe("transform functions ", () => {
-  const mockPackagedUnitData = {
-    programmeFields: syntheticUnitvariantLessonsByKsFixture().programme_fields,
-    unitSlug: "unit-slug",
-    programmeSlug: "programme-slug",
-    unitvariantId: 1,
-    unitTitle:
-      syntheticUnitvariantLessonsByKsFixture().programme_fields.optionality ??
-      syntheticUnitvariantLessonsByKsFixture().unit_data.title,
-    programmeSlugByYear:
-      syntheticUnitvariantLessonsByKsFixture().programme_slug_by_year,
-  };
-  test("getTransformedUnit returns the correct data", async () => {
-    const transformedLessons = getPackagedUnit(
-      mockPackagedUnitData,
-      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
-      false,
-      false,
-    );
-    expect(transformedLessons).toEqual({
-      examBoardSlug: null,
-      examBoardTitle: null,
-      keyStageSlug: "ks1",
-      keyStageTitle: "Key Stage 1",
-      lessons: [
-        {
-          description: "lesson-description",
-          expired: false,
-          lessonReleaseDate: null,
-          lessonSlug: "lesson-slug",
-          lessonTitle: "lesson-title",
-          orderInUnit: 1,
-          presentationCount: 0,
-          pupilLessonOutcome: "pupil-lesson-outcome",
-          quizCount: 0,
-          videoCount: 0,
-          worksheetCount: 0,
-          actions: null,
-          geoRestricted: false,
-          loginRequired: false,
-          isUnpublished: false,
-        },
-      ],
-      programmeSlug: "programme-slug",
-      subjectSlug: "maths",
-      subjectTitle: "Maths",
-      parentSubject: "Maths",
-      tierSlug: null,
-      tierTitle: null,
-      unitSlug: "unit-slug",
-      unitTitle: "unit-title",
-      unitvariantId: 1,
-      yearTitle: "Year 1",
-      yearSlug: "year-1",
-      year: "1",
-      pathwaySlug: null,
-      pathwayTitle: null,
-      pathwayDisplayOrder: null,
-      actions: { isPePractical: false },
-      containsGeorestrictedLessons: false,
-      containsLoginRequiredLessons: false,
-    });
-  });
-  test("getTransformedUnit returns the correct data for optionality units", () => {
-    const pfs = syntheticUnitvariantLessonsByKsFixture().programme_fields;
-    const transformedLessons = getPackagedUnit(
-      mockPackagedUnitData,
-      getTransformedLessons([
-        syntheticUnitvariantLessonsByKsFixture({
-          overrides: {
-            programme_fields: {
-              ...pfs,
-              optionality: "optional",
-            },
-          },
-        }),
-      ]),
-      false,
-      false,
-    );
-    expect(transformedLessons).toEqual({
-      examBoardSlug: null,
-      examBoardTitle: null,
-      keyStageSlug: "ks1",
-      keyStageTitle: "Key Stage 1",
-      lessons: [
-        {
-          description: "lesson-description",
-          expired: false,
-          lessonReleaseDate: null,
-          lessonSlug: "lesson-slug",
-          lessonTitle: "lesson-title",
-          orderInUnit: 1,
-          presentationCount: 0,
-          pupilLessonOutcome: "pupil-lesson-outcome",
-          quizCount: 0,
-          videoCount: 0,
-          worksheetCount: 0,
-          actions: null,
-          geoRestricted: false,
-          loginRequired: false,
-          isUnpublished: false,
-        },
-      ],
-      programmeSlug: "programme-slug",
-      subjectSlug: "maths",
-      subjectTitle: "Maths",
-      tierSlug: null,
-      tierTitle: null,
-      unitSlug: "unit-slug",
-      unitTitle: "unit-title",
-      unitvariantId: 1,
-      yearTitle: "Year 1",
-      yearSlug: "year-1",
-      year: "1",
-      pathwaySlug: null,
-      pathwayTitle: null,
-      pathwayDisplayOrder: null,
-      actions: { isPePractical: false },
-      containsGeorestrictedLessons: false,
-      containsLoginRequiredLessons: false,
-      parentSubject: "Maths",
-    });
-  });
-  test("getTransformedLessons returns the correct data", async () => {
-    const transformedLessons = getTransformedLessons([
-      syntheticUnitvariantLessonsByKsFixture(),
-    ]);
-    expect(transformedLessons).toEqual([
-      {
-        description: "lesson-description",
-        expired: false,
-        lessonSlug: "lesson-slug",
-        lessonTitle: "lesson-title",
-        orderInUnit: 1,
-        presentationCount: 0,
-        pupilLessonOutcome: "pupil-lesson-outcome",
-        quizCount: 0,
-        videoCount: 0,
-        worksheetCount: 0,
-        actions: null,
-        geoRestricted: false,
-        loginRequired: false,
-        isUnpublished: false,
-        lessonReleaseDate: null,
-      },
-    ]);
-  });
-
-  describe("isPePractical", () => {
-    const baseLesson = {
-      lessonSlug: "lesson-slug",
-      lessonTitle: "lesson-title",
-      description: "lesson-description",
-      pupilLessonOutcome: "pupil-lesson-outcome",
-      expired: false,
-      quizCount: 0,
-      videoCount: 0,
-      presentationCount: 0,
-      worksheetCount: 0,
-      orderInUnit: 1,
-      geoRestricted: false,
-      loginRequired: false,
-      isUnpublished: false,
-      lessonReleaseDate: null,
-    };
-
-    test("sets isPePractical true when at least one lesson is practical", () => {
-      const result = getPackagedUnit(
-        mockPackagedUnitData,
-        [
-          { ...baseLesson, actions: { isPePractical: true } },
-          {
-            ...baseLesson,
-            lessonSlug: "lesson-2",
-            actions: {},
-          },
-        ],
-        false,
-        false,
-      );
-      expect(result.actions?.isPePractical).toBe(true);
-    });
-
-    test("sets isPePractical false when no lessons are practical", () => {
-      const result = getPackagedUnit(
-        mockPackagedUnitData,
-        [
-          { ...baseLesson, actions: {} },
-          { ...baseLesson, lessonSlug: "lesson-2", actions: null },
-        ],
-        false,
-        false,
-      );
-      expect(result.actions?.isPePractical).toBe(false);
-    });
-
-    test("excludes unpublished lessons when determining isPePractical", () => {
-      const result = getPackagedUnit(
-        mockPackagedUnitData,
-        [
-          { ...baseLesson, actions: {} },
-          {
-            lessonSlug: "lesson-2",
-            lessonTitle: "lesson-title-2",
-            orderInUnit: 2,
-            isUnpublished: true,
-            lessonReleaseDate: null,
-            expired: false,
-          },
-        ],
-        false,
-        false,
-      );
-      expect(result.actions?.isPePractical).toBe(false);
-    });
   });
 });

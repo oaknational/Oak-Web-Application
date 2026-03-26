@@ -1,5 +1,6 @@
 import { z } from "zod";
 import {
+  ProgrammeFields,
   programmeFieldsSchema,
   syntheticUnitvariantLessonsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
@@ -8,6 +9,10 @@ import {
   lessonListItemSchema,
   lessonListSchema,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
+
+const neighbourUnitSchema = z
+  .object({ title: z.string(), slug: z.string() })
+  .optional();
 
 export const unitPageDataSchema = z.object({
   programmeSlug: z.string(),
@@ -33,10 +38,35 @@ export const unitPageDataSchema = z.object({
   actions: lessonListItemSchema.shape.actions.nullable(),
   containsGeorestrictedLessons: z.boolean().optional(),
   containsLoginRequiredLessons: z.boolean().optional(),
+  nextUnit: neighbourUnitSchema,
+  prevUnit: neighbourUnitSchema,
 });
 
 export type TeachersUnitPageData = z.infer<typeof unitPageDataSchema>;
 
-export const modifiedResponseSchema =
+export const modifiedLessonsResponseSchema =
   syntheticUnitvariantLessonsByKsSchema.omit({ is_legacy: true });
-export const modifiedResponseSchemaArray = z.array(modifiedResponseSchema);
+export const modifiedLessonsResponseSchemaArray = z.array(
+  modifiedLessonsResponseSchema,
+);
+
+export const unitSequenceResponseSchema = z.array(
+  z.object({
+    unitSlug: z.string(),
+    unitTitle: z.string(),
+    unitOrder: z.number(),
+    optionalityTitle: z.string().nullish(),
+    nullUnitvariantId: z.number(),
+  }),
+);
+export type UnitSequence = z.infer<typeof unitSequenceResponseSchema>;
+
+export type PackagedUnitData = {
+  programmeFields: ProgrammeFields;
+  unitSlug: string;
+  unitvariantId: number;
+  programmeSlug: string;
+  unitTitle: string;
+  programmeSlugByYear: string[];
+  nullUnitvariantId: number;
+};
