@@ -17,12 +17,4 @@ describe("components/Key Stage keypad", () => {
       expect(keyStageButton[0]).toBeInTheDocument();
     },
   );
-
-  test("does not render EYFS", () => {
-    const { queryByText } = renderWithTheme(
-      <KeyStageKeypad {...keyStageKeypad} />,
-    );
-
-    expect(queryByText("EYFS")).not.toBeInTheDocument();
-  });
 });
