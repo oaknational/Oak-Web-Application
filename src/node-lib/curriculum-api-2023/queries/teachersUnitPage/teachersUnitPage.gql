@@ -26,6 +26,7 @@ query teachersUnitPage($programmeSlug: String!, $unitSlug: String!) {
     unitSlug: unit_slug
     unitTitle: unit_data(path: "title")
     unitOrder: supplementary_data(path: "unit_order")
+    yearOrder: programme_fields(path: "year_display_order")
     optionalityTitle: programme_fields(path: "optionality")
     nullUnitvariantId: null_unitvariant_id
   }

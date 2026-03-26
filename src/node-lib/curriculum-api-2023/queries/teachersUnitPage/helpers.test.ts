@@ -174,6 +174,7 @@ describe("getNeighbourUnits", () => {
         optionalityTitle: "Optionality title",
         unitOrder: 5,
         nullUnitvariantId: 5,
+        yearOrder: 1,
       }),
     );
 
@@ -192,12 +193,14 @@ describe("getNeighbourUnits", () => {
           optionalityTitle: "Optionality title",
           unitOrder: 5,
           nullUnitvariantId: 5,
+          yearOrder: 1,
         },
         {
           unitSlug: "unit-slug",
           unitTitle: "Unit Title",
           unitOrder: 6,
           nullUnitvariantId: 6,
+          yearOrder: 1,
         },
       ],
       nullUnitvariantId: 6,
@@ -217,6 +220,7 @@ describe("getNeighbourUnits", () => {
           unitSlug: "next-slug",
           unitTitle: "Next unit",
           nullUnitvariantId: 6,
+          yearOrder: 1,
         },
       ],
       nullUnitvariantId: 4,
@@ -235,23 +239,90 @@ describe("getNeighbourUnits", () => {
           unitSlug: "prev-slug",
           unitTitle: "Prev unit",
           nullUnitvariantId: 2,
+          yearOrder: 1,
         },
         {
           unitOrder: 5,
           unitSlug: "current-slug",
           unitTitle: "Current unit",
           nullUnitvariantId: 5,
+          yearOrder: 1,
         },
         {
           unitOrder: 6,
           unitSlug: "next-slug",
           unitTitle: "Next unit",
           nullUnitvariantId: 6,
+          yearOrder: 1,
         },
       ],
       nullUnitvariantId: 5,
     });
     expect(result.prevUnit).toEqual({ slug: "prev-slug", title: "Prev unit" });
+  });
+  it("gets the next unit from the correct year", () => {
+    const result = getNeighbourUnits({
+      unitSequenceData: [
+        {
+          unitSlug: "unit-1",
+          unitTitle: "Unit 1",
+          nullUnitvariantId: 1,
+          yearOrder: 1,
+          unitOrder: 1,
+        },
+        {
+          unitSlug: "unit-10",
+          unitTitle: "Unit 10",
+          nullUnitvariantId: 20,
+          yearOrder: 2,
+          unitOrder: 2,
+        },
+        {
+          unitSlug: "unit-2",
+          unitTitle: "Unit 2",
+          nullUnitvariantId: 2,
+          yearOrder: 1,
+          unitOrder: 2,
+        },
+      ],
+      nullUnitvariantId: 1,
+    });
+    expect(result.nextUnit).toEqual({
+      slug: "unit-2",
+      title: "Unit 2",
+    });
+  });
+  it("gets the previous unit from the correct year", () => {
+    const result = getNeighbourUnits({
+      unitSequenceData: [
+        {
+          unitSlug: "unit-2",
+          unitTitle: "Unit 2",
+          nullUnitvariantId: 2,
+          yearOrder: 2,
+          unitOrder: 2,
+        },
+        {
+          unitSlug: "unit-20",
+          unitTitle: "Unit 20",
+          nullUnitvariantId: 20,
+          yearOrder: 1,
+          unitOrder: 2,
+        },
+        {
+          unitSlug: "unit-3",
+          unitTitle: "Unit 3",
+          nullUnitvariantId: 3,
+          yearOrder: 2,
+          unitOrder: 2,
+        },
+      ],
+      nullUnitvariantId: 3,
+    });
+    expect(result.prevUnit).toEqual({
+      slug: "unit-2",
+      title: "Unit 2",
+    });
   });
 });
 

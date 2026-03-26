@@ -80,7 +80,11 @@ export const getNeighbourUnits = ({
   }
 
   const sortedUniqueUnits = unitSequenceData
-    .toSorted((a, b) => a.unitOrder - b.unitOrder)
+    .toSorted((a, b) => {
+      // Sort units first by year and then by unit order
+      // because unitOrder is unique only within year
+      return a.yearOrder - b.yearOrder || a.unitOrder - b.unitOrder;
+    })
     .filter((unit, i, a) => {
       const uv = a.find((u) => u.nullUnitvariantId === unit.nullUnitvariantId);
       return a.indexOf(uv!) === i;

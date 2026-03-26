@@ -71,24 +71,28 @@ export const unitSequenceFixture: UnitSequence = [
     unitTitle: "Unit 1",
     unitOrder: 1,
     nullUnitvariantId: 1,
+    yearOrder: 1,
   },
   {
     unitSlug: "unit-2",
     unitTitle: "Unit 2",
     unitOrder: 2,
     nullUnitvariantId: 2,
+    yearOrder: 1,
   },
   {
     unitSlug: "unit-3",
     unitTitle: "Unit 3",
     unitOrder: 3,
     nullUnitvariantId: 3,
+    yearOrder: 1,
   },
   {
     unitSlug: "unit-4",
     unitTitle: "Unit 4",
     unitOrder: 4,
     nullUnitvariantId: 4,
+    yearOrder: 1,
   },
 ];
 

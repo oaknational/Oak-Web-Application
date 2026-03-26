@@ -57,6 +57,7 @@ export const unitSequenceResponseSchema = z.array(
     unitOrder: z.number(),
     optionalityTitle: z.string().nullish(),
     nullUnitvariantId: z.number(),
+    yearOrder: z.number(),
   }),
 );
 export type UnitSequence = z.infer<typeof unitSequenceResponseSchema>;
