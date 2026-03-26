@@ -1,3 +1,25 @@
+# [1.1026.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1025.0...v1.1026.0) (2026-03-26)
+
+
+### Bug Fixes
+
+* add retry wrapper to graphql sdk ([5409fce](https://github.com/oaknational/Oak-Web-Application/commit/5409fce89c08e9ea73499a853fb3b9cd4f5e5359))
+* retry count ([05f950d](https://github.com/oaknational/Oak-Web-Application/commit/05f950db990bda9595399c42b56e9dcbaaa821e0))
+* update retry count and add more logging ([8b179ae](https://github.com/oaknational/Oak-Web-Application/commit/8b179aefd8e18bb1b37702fb6adec2dc85937025))
+
+
+### Features
+
+* add error reporting on error ([8c76d7d](https://github.com/oaknational/Oak-Web-Application/commit/8c76d7d1a01bb5305f40e2da54ef6de8131f3b40))
+* add logger to retry handler ([57438e2](https://github.com/oaknational/Oak-Web-Application/commit/57438e2e757335b3795d3e5acd42d107e5e9250e))
+* **LESQ-1843:** allow querying for non-curriculum subjects ([f80b97a](https://github.com/oaknational/Oak-Web-Application/commit/f80b97a79cadb22d611fca019a78c9f276d7c10f))
+* **LESQ-1843:** dont load curriculum overview for non-curriculum subjects ([57cb985](https://github.com/oaknational/Oak-Web-Application/commit/57cb985e511992bc989fc7659b73e9b2917f2ffa))
+* **LESQ-1843:** dont render tabs for non-curriculum subjects ([2e36c42](https://github.com/oaknational/Oak-Web-Application/commit/2e36c425a3b8a392419b5888924a4f318603b3d8))
+* **LESQ-1843:** move margin to tabs ([4823e60](https://github.com/oaknational/Oak-Web-Application/commit/4823e6028765c9b52db3401b3fa6c86f71a44976))
+* move error reporting to logger fn ([bb845a4](https://github.com/oaknational/Oak-Web-Application/commit/bb845a4962f77d6149652ef6f5c2bd8a3adc512f))
+* remove final error logging ([a9d134b](https://github.com/oaknational/Oak-Web-Application/commit/a9d134b71a6ba90c1787b9029da06c66ba90569f))
+* update logging ([8bd945a](https://github.com/oaknational/Oak-Web-Application/commit/8bd945ae425a33b153613aa4921e3f5e416527a8))
+
 # [1.1025.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1024.0...v1.1025.0) (2026-03-25)
 
 

@@ -50740,14 +50740,15 @@ export type CanonicalLessonRedirectQueryVariables = Exact<{
 export type CanonicalLessonRedirectQuery = { __typename?: 'query_root', canonicalLessonRedirectData: Array<{ __typename?: 'published_mv_redirects_lessons_canonical_by_keystage_19_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
 
 export type CurriculumOverviewQueryVariables = Exact<{
-  phaseSlug?: InputMaybe<Scalars['String']['input']>;
-  subjectSlug?: InputMaybe<Scalars['String']['input']>;
+  where?: InputMaybe<Published_Mv_Curriculum_Overview_0_9_Bool_Exp>;
 }>;
 
 
-export type CurriculumOverviewQuery = { __typename?: 'query_root', curriculumOverview: Array<{ __typename?: 'published_mv_curriculum_overview_0_9', curriculaDesc?: string | null, subjectTitle?: string | null, phaseTitle?: string | null, examboardTitle?: string | null }> };
+export type CurriculumOverviewQuery = { __typename?: 'query_root', curriculumOverview: Array<{ __typename?: 'published_mv_curriculum_overview_0_9', curriculaDesc?: string | null, subjectTitle?: string | null, phaseTitle?: string | null, examboardTitle?: string | null, nonCurriculum?: boolean | null }> };
 
-export type CurriculumPhaseOptionsQueryVariables = Exact<{ [key: string]: never; }>;
+export type CurriculumPhaseOptionsQueryVariables = Exact<{
+  where?: InputMaybe<Published_Mv_Curriculum_Phase_Options_0_4_Bool_Exp>;
+}>;
 
 
 export type CurriculumPhaseOptionsQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_curriculum_phase_options_0_4', title?: string | null, slug?: string | null, phases?: any | null, keystages?: any | null, ks4_options?: any | null }> };
@@ -51118,23 +51119,23 @@ export const CanonicalLessonRedirectDocument = gql`
 }
     `;
 export const CurriculumOverviewDocument = gql`
-    query curriculumOverview($phaseSlug: String, $subjectSlug: String) {
+    query curriculumOverview($where: published_mv_curriculum_overview_0_9_bool_exp) {
   curriculumOverview: published_mv_curriculum_overview_0_9(
-    where: {phase_slug: {_eq: $phaseSlug}, subject_slug: {_eq: $subjectSlug}, non_curriculum: {_eq: false}}
+    where: $where
     limit: 1
+    order_by: {non_curriculum: desc}
   ) {
     curriculaDesc: curriculum_intent
     subjectTitle: subject
     phaseTitle: phase
     examboardTitle: examboard
+    nonCurriculum: non_curriculum
   }
 }
     `;
 export const CurriculumPhaseOptionsDocument = gql`
-    query curriculumPhaseOptions {
-  options: published_mv_curriculum_phase_options_0_4(
-    where: {non_curriculum: {_eq: false}}
-  ) {
+    query curriculumPhaseOptions($where: published_mv_curriculum_phase_options_0_4_bool_exp) {
+  options: published_mv_curriculum_phase_options_0_4(where: $where) {
     title
     slug
     phases
