@@ -3,21 +3,18 @@ import { upsertPupilLessonProgressArgsSchema } from "@oaknational/google-classro
 
 import {
   createClassroomErrorReporter,
+  getClassroomAuthFromRequest,
   getOakGoogleClassroomAddon,
   isOakGoogleClassroomException,
 } from "@/node-lib/google-classroom";
 
 const reportError = createClassroomErrorReporter("submit-pupil-progress");
 
-const hasAuthHeaders = (request: NextRequest) => {
-  const accessToken = request.headers.get("Authorization");
-  const session = request.headers.get("x-oakgc-session");
-  return { accessToken, session };
-};
-
 export async function POST(request: NextRequest) {
   try {
-    const { accessToken, session } = hasAuthHeaders(request);
+    const auth = getClassroomAuthFromRequest(request, "pupil");
+    const accessToken = auth?.accessToken;
+    const session = auth?.session;
 
     if (!session || !accessToken)
       return NextResponse.json(

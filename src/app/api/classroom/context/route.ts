@@ -3,6 +3,7 @@ import z from "zod";
 
 import {
   createClassroomErrorReporter,
+  getClassroomAuthFromRequest,
   getOakGoogleClassroomAddon,
   isOakGoogleClassroomException,
 } from "@/node-lib/google-classroom";
@@ -17,8 +18,9 @@ const reportError = createClassroomErrorReporter("addon-context");
 
 export async function POST(request: NextRequest) {
   try {
-    const accessToken = request.headers.get("Authorization");
-    const session = request.headers.get("x-oakgc-session");
+    const auth = getClassroomAuthFromRequest(request, "pupil");
+    const accessToken = auth?.accessToken;
+    const session = auth?.session;
 
     if (!session || !accessToken)
       return NextResponse.json(

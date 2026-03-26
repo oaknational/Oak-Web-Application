@@ -3,6 +3,7 @@ import { createAnnouncementAttachmentArgsSchema } from "@oaknational/google-clas
 
 import {
   createClassroomErrorReporter,
+  getClassroomAuthFromRequest,
   getOakGoogleClassroomAddon,
   isOakGoogleClassroomException,
 } from "@/node-lib/google-classroom";
@@ -11,8 +12,9 @@ const reportError = createClassroomErrorReporter("create-attachment");
 
 export async function POST(request: NextRequest) {
   try {
-    const accessToken = request.headers.get("Authorization");
-    const session = request.headers.get("x-oakgc-session");
+    const auth = getClassroomAuthFromRequest(request, "teacher");
+    const accessToken = auth?.accessToken;
+    const session = auth?.session;
 
     if (!session || !accessToken)
       return NextResponse.json(

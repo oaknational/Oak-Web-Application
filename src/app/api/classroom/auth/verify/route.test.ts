@@ -7,6 +7,7 @@ import {
   ErrorSeverity,
   ExceptionType,
 } from "@oaknational/google-classroom-addon/server";
+import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
 import { GET } from "./route";
 
@@ -22,8 +23,12 @@ jest.mock("next/server", () => ({
 
 // Mock OakGoogleClassroomAddon
 jest.mock("@/node-lib/google-classroom", () => {
+  const actual = jest.requireActual<
+    typeof import("@/node-lib/google-classroom")
+  >("@/node-lib/google-classroom");
   const reporterMock = jest.fn();
   return {
+    ...actual,
     getOakGoogleClassroomAddon: jest.fn(),
     createClassroomErrorReporter: jest.fn(() => reporterMock),
     isOakGoogleClassroomException: jest.fn(() => false),
@@ -42,6 +47,10 @@ const mockVerifyAuthSession = jest.fn();
 const mockRequestJson = jest.fn();
 const mockRequestHeadersGet = jest.fn();
 
+/** Mirrors real Headers: session header is read as `x-oakgc-session` in app code. */
+const isOakgcSessionHeader = (name: string) =>
+  name.toLowerCase() === "x-oakgc-session";
+
 describe("POST /api/classroom/auth/verify", () => {
   let mockRequest: NextRequest;
 
@@ -57,6 +66,7 @@ describe("POST /api/classroom/auth/verify", () => {
       headers: {
         get: mockRequestHeadersGet,
       },
+      cookies: { get: jest.fn(() => undefined) },
     } as unknown as NextRequest;
   });
 
@@ -68,7 +78,7 @@ describe("POST /api/classroom/auth/verify", () => {
     });
     mockRequestHeadersGet.mockImplementation((name) => {
       if (name === "Authorization") return mockValidToken;
-      if (name === "X-Oakgc-Session") return mockValidSession;
+      if (isOakgcSessionHeader(name)) return mockValidSession;
       return null;
     });
 
@@ -83,6 +93,84 @@ describe("POST /api/classroom/auth/verify", () => {
     );
 
     expect(mockNextResponseJson).toHaveBeenCalledTimes(1);
+    expect(mockNextResponseJson).toHaveBeenCalledWith(
+      {
+        authenticated: true,
+        session: mockVerifiedSession,
+        token: mockValidToken,
+      },
+      { status: 200 },
+    );
+  });
+
+  it("should verify using teacher cookies when headers are absent", async () => {
+    mockVerifyAuthSession.mockResolvedValue({
+      session: mockVerifiedSession,
+      token: mockValidToken,
+    });
+    mockRequestHeadersGet.mockImplementation(() => null);
+
+    mockRequest = {
+      json: mockRequestJson,
+      headers: { get: mockRequestHeadersGet },
+      cookies: {
+        get: jest.fn((name: string) => {
+          if (name === AuthCookieKeys.AccessToken) {
+            return { name, value: mockValidToken };
+          }
+          if (name === AuthCookieKeys.Session) {
+            return { name, value: mockValidSession };
+          }
+          return undefined;
+        }),
+      },
+    } as unknown as NextRequest;
+
+    await GET(mockRequest);
+
+    expect(mockVerifyAuthSession).toHaveBeenCalledWith(
+      mockValidSession,
+      mockValidToken,
+    );
+    expect(mockNextResponseJson).toHaveBeenCalledWith(
+      {
+        authenticated: true,
+        session: mockVerifiedSession,
+        token: mockValidToken,
+      },
+      { status: 200 },
+    );
+  });
+
+  it("should verify using pupil cookies when headers and teacher cookies are absent", async () => {
+    mockVerifyAuthSession.mockResolvedValue({
+      session: mockVerifiedSession,
+      token: mockValidToken,
+    });
+    mockRequestHeadersGet.mockImplementation(() => null);
+
+    mockRequest = {
+      json: mockRequestJson,
+      headers: { get: mockRequestHeadersGet },
+      cookies: {
+        get: jest.fn((name: string) => {
+          if (name === AuthCookieKeys.PupilAccessToken) {
+            return { name, value: mockValidToken };
+          }
+          if (name === AuthCookieKeys.PupilSession) {
+            return { name, value: mockValidSession };
+          }
+          return undefined;
+        }),
+      },
+    } as unknown as NextRequest;
+
+    await GET(mockRequest);
+
+    expect(mockVerifyAuthSession).toHaveBeenCalledWith(
+      mockValidSession,
+      mockValidToken,
+    );
     expect(mockNextResponseJson).toHaveBeenCalledWith(
       {
         authenticated: true,
@@ -115,7 +203,7 @@ describe("POST /api/classroom/auth/verify", () => {
       mockVerifyAuthSession.mockResolvedValue(null);
       mockRequestHeadersGet.mockImplementation((name) => {
         if (name === "Authorization") return mockValidToken;
-        if (name === "X-Oakgc-Session") return mockInvalidSession;
+        if (isOakgcSessionHeader(name)) return mockInvalidSession;
         return null;
       });
 
@@ -141,7 +229,7 @@ describe("POST /api/classroom/auth/verify", () => {
       mockRequestJson.mockResolvedValue({ session: null });
       mockRequestHeadersGet.mockImplementation((name) => {
         if (name === "Authorization") return null;
-        if (name === "X-Oakgc-Session") return null;
+        if (isOakgcSessionHeader(name)) return null;
         return null;
       });
 
@@ -173,7 +261,7 @@ describe("POST /api/classroom/auth/verify", () => {
 
       mockRequestHeadersGet.mockImplementation((name) => {
         if (name === "Authorization") return mockValidToken;
-        if (name === "X-Oakgc-Session") return mockValidSession;
+        if (isOakgcSessionHeader(name)) return mockValidSession;
         return null;
       });
       mockVerifyAuthSession.mockRejectedValue(mockError);
@@ -194,7 +282,7 @@ describe("POST /api/classroom/auth/verify", () => {
       const mockError = new Error("Unexpected verification failure");
       mockRequestHeadersGet.mockImplementation((name) => {
         if (name === "Authorization") return mockValidToken;
-        if (name === "X-Oakgc-Session") return mockValidSession;
+        if (isOakgcSessionHeader(name)) return mockValidSession;
         return null;
       });
       mockVerifyAuthSession.mockRejectedValue(mockError);

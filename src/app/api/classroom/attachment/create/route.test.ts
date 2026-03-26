@@ -3,6 +3,7 @@
  */
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
 import { POST } from "./route";
 
@@ -15,8 +16,12 @@ jest.mock("next/server", () => ({
 }));
 
 jest.mock("@/node-lib/google-classroom", () => {
+  const actual = jest.requireActual<
+    typeof import("@/node-lib/google-classroom")
+  >("@/node-lib/google-classroom");
   const reporterMock = jest.fn();
   return {
+    ...actual,
     getOakGoogleClassroomAddon: jest.fn(),
     createClassroomErrorReporter: jest.fn(() => reporterMock),
     isOakGoogleClassroomException: jest.fn(() => false),
@@ -116,6 +121,7 @@ describe("POST /api/classroom/attachment/create", () => {
     mockRequest = {
       json: async () => mockArgs,
       headers: missingHeaders,
+      cookies: { get: jest.fn(() => undefined) },
     } as unknown as NextRequest;
 
     await POST(mockRequest);
@@ -126,5 +132,32 @@ describe("POST /api/classroom/attachment/create", () => {
       { message: "Authentication required" },
       { status: 401 },
     );
+  });
+
+  it("should accept auth from teacher cookies when headers are missing", async () => {
+    mockRequest = {
+      json: async () => mockArgs,
+      headers: { get: jest.fn(() => null) },
+      cookies: {
+        get: jest.fn((name: string) => {
+          if (name === AuthCookieKeys.AccessToken) {
+            return { name, value: mockAccessToken };
+          }
+          if (name === AuthCookieKeys.Session) {
+            return { name, value: mockSession };
+          }
+          return undefined;
+        }),
+      },
+    } as unknown as NextRequest;
+
+    await POST(mockRequest);
+
+    expect(mockCreateAttachment).toHaveBeenCalledWith(
+      mockArgs,
+      mockAccessToken,
+      mockSession,
+    );
+    expect(NextResponse.json).toHaveBeenCalledWith({}, { status: 201 });
   });
 });

@@ -3,6 +3,7 @@
  */
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
 import { POST } from "./route";
 
@@ -15,8 +16,12 @@ jest.mock("next/server", () => ({
 }));
 
 jest.mock("@/node-lib/google-classroom", () => {
+  const actual = jest.requireActual<
+    typeof import("@/node-lib/google-classroom")
+  >("@/node-lib/google-classroom");
   const reporterMock = jest.fn();
   return {
+    ...actual,
     getOakGoogleClassroomAddon: jest.fn(),
     createClassroomErrorReporter: jest.fn(() => reporterMock),
     isOakGoogleClassroomException: jest.fn(() => false),
@@ -88,6 +93,7 @@ describe("POST /api/classroom/context", () => {
         attachmentId: "attachment-789",
       }),
       headers: { get: jest.fn(() => null) },
+      cookies: { get: jest.fn(() => undefined) },
     } as unknown as NextRequest;
 
     await POST(mockRequest);
@@ -96,6 +102,45 @@ describe("POST /api/classroom/context", () => {
     expect(NextResponse.json).toHaveBeenCalledWith(
       { message: "Authentication required" },
       { status: 401 },
+    );
+  });
+
+  it("should accept auth from pupil cookies when headers are missing", async () => {
+    mockRequest = {
+      json: async () => ({
+        courseId: "course-123",
+        itemId: "item-456",
+        attachmentId: "attachment-789",
+      }),
+      headers: { get: jest.fn(() => null) },
+      cookies: {
+        get: jest.fn((name: string) => {
+          if (name === AuthCookieKeys.PupilAccessToken) {
+            return { name, value: mockAccessToken };
+          }
+          if (name === AuthCookieKeys.PupilSession) {
+            return { name, value: mockSession };
+          }
+          return undefined;
+        }),
+      },
+    } as unknown as NextRequest;
+
+    await POST(mockRequest);
+
+    expect(mockGetAddOnContext).toHaveBeenCalledWith(
+      "course-123",
+      "item-456",
+      "attachment-789",
+      mockAccessToken,
+      mockSession,
+    );
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      {
+        studentContext: { submissionId: "submission-123" },
+        pupilLoginHint: "123456789",
+      },
+      { status: 200 },
     );
   });
 

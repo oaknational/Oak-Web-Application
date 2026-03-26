@@ -8,10 +8,20 @@ import {
   ExceptionType,
   OakGoogleClassroomException,
 } from "@oaknational/google-classroom-addon/server";
+import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
 import { POST } from "./route";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
+
+jest.mock("@oaknational/google-classroom-addon/types", () => ({
+  upsertPupilLessonProgressArgsSchema: {
+    safeParse: jest.fn((body: unknown) => ({
+      success: true,
+      data: body,
+    })),
+  },
+}));
 
 jest.mock("next/server", () => ({
   NextResponse: {
@@ -20,8 +30,12 @@ jest.mock("next/server", () => ({
 }));
 
 jest.mock("@/node-lib/google-classroom", () => {
+  const actual = jest.requireActual<
+    typeof import("@/node-lib/google-classroom")
+  >("@/node-lib/google-classroom");
   const reporterMock = jest.fn();
   return {
+    ...actual,
     getOakGoogleClassroomAddon: jest.fn(),
     createClassroomErrorReporter: jest.fn(() => reporterMock),
     isOakGoogleClassroomException: jest.fn(() => false),
@@ -32,6 +46,11 @@ const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
 const { isOakGoogleClassroomException: mockedIsOakGoogleClassroomException } =
   jest.requireMock("@/node-lib/google-classroom");
+
+const mockUpsertArgsSafeParse = jest.mocked(
+  jest.requireMock("@oaknational/google-classroom-addon/types")
+    .upsertPupilLessonProgressArgsSchema.safeParse,
+);
 
 const mockAccessToken = "mock-access-token";
 const mockSession = "mock-session-id";
@@ -63,7 +82,11 @@ describe("POST /api/classroom/pupil/progress/submit", () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    mockUpsertPupilLessonProgress.mockClear();
+    mockUpsertArgsSafeParse.mockImplementation((body: unknown) => ({
+      success: true,
+      data: body,
+    }));
     mockedGetOakGoogleClassroomAddon.mockReturnValue({
       upsertPupilLessonProgress: mockUpsertPupilLessonProgress,
     });
@@ -94,6 +117,7 @@ describe("POST /api/classroom/pupil/progress/submit", () => {
     mockRequest = {
       json: async () => mockProgressArgs,
       headers: { get: jest.fn(() => null) },
+      cookies: { get: jest.fn(() => undefined) },
     } as unknown as NextRequest;
 
     await POST(mockRequest);
@@ -105,7 +129,38 @@ describe("POST /api/classroom/pupil/progress/submit", () => {
     );
   });
 
+  it("should accept auth from pupil cookies when headers are missing", async () => {
+    mockRequest = {
+      json: async () => mockProgressArgs,
+      headers: { get: jest.fn(() => null) },
+      cookies: {
+        get: jest.fn((name: string) => {
+          if (name === AuthCookieKeys.PupilAccessToken) {
+            return { name, value: mockAccessToken };
+          }
+          if (name === AuthCookieKeys.PupilSession) {
+            return { name, value: mockSession };
+          }
+          return undefined;
+        }),
+      },
+    } as unknown as NextRequest;
+
+    await POST(mockRequest);
+
+    expect(mockUpsertPupilLessonProgress).toHaveBeenCalledWith(
+      mockProgressArgs,
+      mockAccessToken,
+      mockSession,
+    );
+  });
+
   it("should reject with 400 if body is invalid", async () => {
+    mockUpsertArgsSafeParse.mockReturnValueOnce({
+      success: false,
+      error: { flatten: () => ({ fieldErrors: {} }) },
+    });
+
     mockRequest = {
       json: async () => ({ submissionId: "sub-123" }), // missing required fields
       headers: mockHeaders,
