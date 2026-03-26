@@ -46,7 +46,7 @@ describe("CampaignHeader", () => {
     const ks1Button = keystageButtons[0];
     expect(ks1Button).toBeInTheDocument();
     const href = ks1Button?.getAttribute("href");
-    expect(href).toBe("/teachers/key-stages/ks1/subjects");
+    expect(href).toBe("/teachers/key-stages/eyfs/subjects");
   });
   it("renders search bar", () => {
     render(

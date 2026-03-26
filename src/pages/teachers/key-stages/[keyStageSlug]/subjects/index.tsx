@@ -46,6 +46,7 @@ export type SubjectListingPageProps = {
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const { keyStageSlug, keyStageTitle, keyStages, topNav } = props;
   const { track } = useAnalytics();
+  const filteredKeyStages = keyStages.filter((ks) => ks.shortCode !== "EYFS");
 
   const metaDescriptionSlug = keyStageSlug.toUpperCase();
 
@@ -68,7 +69,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
           $pv="spacing-32"
         >
           <KeyStageKeypad
-            keyStages={keyStages}
+            keyStages={filteredKeyStages}
             title="Select key stage"
             trackingOnClick={(
               filterValue: string,
