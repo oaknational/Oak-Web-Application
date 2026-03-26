@@ -8,17 +8,17 @@ import LessonShareCanonicalPage, {
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
+import { lessonShareCanonicalFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 
 const render = renderWithProviders();
 
-const lesson = lessonShareFixtures();
+const lesson = lessonShareCanonicalFixture();
 describe("LessonShareCanonicalPage", () => {
   it("Renders title from the props", async () => {
     const result = render(
       <LessonShareCanonicalPage
-        curriculumData={{ ...lesson, pathways: [] }}
+        curriculumData={lesson}
         topNav={topNavFixture}
       />,
     );
@@ -32,6 +32,10 @@ describe("LessonShareCanonicalPage", () => {
     });
 
     it("Should fetch the correct data", async () => {
+      jest
+        .mocked(curriculumApi2023.lessonShare)
+        .mockResolvedValueOnce(lessonShareCanonicalFixture());
+
       const propsResult = (await getStaticProps({
         params: {
           lessonSlug: "macbeth-lesson-1",
@@ -63,8 +67,11 @@ describe("LessonShareCanonicalPage", () => {
     });
 
     it("should return a 404 page if lesson is georestricted or login required", async () => {
-      (curriculumApi2023.lessonShare as jest.Mock).mockResolvedValue(
-        lessonShareFixtures({ georestricted: true, loginRequired: true }),
+      jest.mocked(curriculumApi2023.lessonShare).mockResolvedValueOnce(
+        lessonShareCanonicalFixture({
+          georestricted: true,
+          loginRequired: true,
+        }),
       );
 
       const result = await getStaticProps({
@@ -77,6 +84,37 @@ describe("LessonShareCanonicalPage", () => {
       } as GetStaticPropsContext<URLParams, PreviewData>);
 
       expect(result).toEqual({ notFound: true });
+    });
+
+    it("should redirect to the EYFS page when lesson pathway is EYFS", async () => {
+      jest.mocked(curriculumApi2023.lessonShare).mockResolvedValueOnce(
+        lessonShareCanonicalFixture({
+          pathways: [
+            {
+              programmeSlug: "eyfs-communication-and-language",
+              unitSlug: "unit-slug",
+              unitTitle: "Unit title",
+              keyStageSlug: "early-years-foundation-stage",
+              keyStageTitle: "Early Years Foundation Stage",
+              subjectSlug: "communication-and-language",
+              subjectTitle: "Communication and language",
+            },
+          ],
+        }),
+      );
+
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "eyfs-lesson-slug",
+        },
+      });
+
+      expect(result).toEqual({
+        redirect: {
+          destination: "/teachers/eyfs/communication-and-language",
+          statusCode: 301,
+        },
+      });
     });
   });
 });
