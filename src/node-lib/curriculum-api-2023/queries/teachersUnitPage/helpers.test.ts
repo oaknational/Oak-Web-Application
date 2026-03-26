@@ -1,7 +1,10 @@
 import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
 
-import { getNeighbourUnits, getPackagedUnit } from "./helpers";
-import { getTransformedLessons } from "./teachersUnitPage.query";
+import {
+  getNeighbourUnits,
+  getPackagedUnit,
+  getTransformedLessons,
+} from "./helpers";
 import { unitSequenceFixture } from "./teachersUnitPage.query.test";
 
 const mockPackagedUnitData = {
