@@ -21,6 +21,8 @@ export type SvgProps = OakBoxProps & {
   filter?: string;
 };
 const Svg: FC<SvgProps> = (props) => {
+  const { color, $color = color, ...rest } = props;
+
   return (
     <StyledSvg
       aria-hidden={true}
@@ -28,9 +30,10 @@ const Svg: FC<SvgProps> = (props) => {
       width="100%"
       height="100%"
       $transition={"standard-ease"}
-      {...props}
+      $color={$color}
+      {...rest}
     >
-      <use xlinkHref={`/images/sprite/sprite.svg#${getSvgId(props)}`} />
+      <use xlinkHref={`/images/sprite/sprite.svg#${getSvgId(rest)}`} />
     </StyledSvg>
   );
 };

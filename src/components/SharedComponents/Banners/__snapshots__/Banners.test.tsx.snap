@@ -45,12 +45,12 @@ exports[`Banners shows mythbusting banner 1`] = `
           >
             <span
               aria-hidden="true"
-              class="sc-aXZVg sc-71a01736-0 hkJkIR jqwpeM"
+              class="sc-3a85db58-0 gFtgPt"
               data-testid="button-icon"
             >
               <svg
                 aria-hidden="true"
-                class="sc-2c4cc93e-0 dsodAn sc-71a01736-2 brMIHb"
+                class="sc-2c4cc93e-0 dsodAn sc-3a85db58-2 jeFJfk"
                 height="100%"
                 name="icon-background"
                 width="100%"
@@ -61,12 +61,11 @@ exports[`Banners shows mythbusting banner 1`] = `
                 />
               </svg>
               <span
-                class="sc-aXZVg sc-71a01736-1 popxP cGvaNg"
-                style="transition: transform 0.8s ease-in-out;"
+                class="sc-3a85db58-1 iNrkJz"
               >
                 <svg
                   aria-hidden="true"
-                  class="sc-2c4cc93e-0 dsodAn sc-71a01736-3 jqFfpY"
+                  class="sc-2c4cc93e-0 kRWVVU"
                   height="100%"
                   name="chevron-right"
                   width="100%"

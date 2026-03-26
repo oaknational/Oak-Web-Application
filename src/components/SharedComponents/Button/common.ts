@@ -3,7 +3,6 @@ import {
   ButtonHTMLAttributes,
   AnchorHTMLAttributes,
 } from "react";
-import { OakUiRoleToken } from "@oaknational/oak-components";
 
 import { ResponsiveValues } from "@/styles/utils/responsive";
 import { FontVariant } from "@/styles/utils/typography";
@@ -361,6 +360,6 @@ export type CommonIconButtonProps = Omit<
 > & {
   icon: IconName;
   "aria-label": string;
-  iconColorOverride?: OakUiRoleToken;
+  iconColorOverride?: OakColorName;
   iconAnimateTo?: IconName;
 };

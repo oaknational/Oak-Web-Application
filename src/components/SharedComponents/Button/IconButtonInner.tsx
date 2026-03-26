@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { useTheme } from "styled-components";
-import { OakUiRoleToken } from "@oaknational/oak-components";
 
 import {
   ButtonBackground,
@@ -15,13 +14,14 @@ import Icon, {
   IconName,
   isIconVariant,
 } from "@/components/SharedComponents/Icon.deprecated";
+import { OakColorName } from "@/styles/theme";
 
 export type IconButtonInnerProps = {
   variant: ButtonVariant;
   background: ButtonBackground;
   icon: IconName;
   size: ButtonSize;
-  iconColorOverride?: OakUiRoleToken;
+  iconColorOverride?: OakColorName;
   iconAnimateTo?: IconName;
 };
 /**
