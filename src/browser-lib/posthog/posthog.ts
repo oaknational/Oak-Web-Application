@@ -3,9 +3,10 @@ import { PostHog } from "posthog-js";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 import withQueue from "../analytics/withQueue";
 import getLegacyAnonymousId from "../analytics/getLegacyAnonymousId";
-import getBrowserConfig from "../getBrowserConfig";
 import { consentClient } from "../cookie-consent/consentClient";
 import { ServicePolicyMap } from "../cookie-consent/ServicePolicyMap";
+
+import { getPosthogInitConfig } from "./getPosthogInitConfig";
 
 export type PosthogDistinctId = string;
 export type MaybeDistinctId = string | null;
@@ -23,34 +24,23 @@ export const posthogToAnalyticsServiceWithoutQueue = (
   init: ({ apiKey, apiHost, uiHost }) =>
     new Promise((resolve) => {
       if (!client.__loaded) {
-        client.init(apiKey, {
-          api_host: apiHost,
-          ui_host: uiHost,
-          cookieless_mode: "on_reject",
-          debug: getBrowserConfig("releaseStage") !== "production",
-          loaded: () => {
-            const legacyAnonymousId = getLegacyAnonymousId();
-            if (legacyAnonymousId) {
-              client.register({
-                legacy_anonymous_id: legacyAnonymousId,
-              });
-            }
+        client.init(
+          apiKey,
+          getPosthogInitConfig({
+            apiHost,
+            uiHost,
+            loaded: () => {
+              const legacyAnonymousId = getLegacyAnonymousId();
+              if (legacyAnonymousId) {
+                client.register({
+                  legacy_anonymous_id: legacyAnonymousId,
+                });
+              }
 
-            resolve(client.get_distinct_id());
-          },
-          disable_session_recording: true,
-          capture_pageview: false,
-          autocapture: {
-            url_allowlist: [
-              "/plan-a-lesson",
-              "/blog/.*",
-              "/webinars/.*",
-              "/about-us/.*",
-              "/contact-us",
-              "/campaigns/.*",
-            ],
-          },
-        });
+              resolve(client.get_distinct_id());
+            },
+          }),
+        );
       } else {
         resolve(client.get_distinct_id());
       }
@@ -82,7 +72,10 @@ export const posthogToAnalyticsServiceWithoutQueue = (
     }
   },
   optOut: () => {
-    client.opt_out_capturing();
+    // Reset PostHog back to its default "pending" consent state. In
+    // `cookieless_mode: "on_reject"` that prevents capture, while avoiding the
+    // internal `$pageview` emitted by `opt_out_capturing()`.
+    client.clear_opt_in_out_capturing();
   },
   state: () => {
     switch (consentClient.getConsent(ServicePolicyMap.POSTHOG)) {
