@@ -3,6 +3,7 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
+  OakFlexProps,
   OakUiRoleToken,
 } from "@oaknational/oak-components";
 
@@ -13,7 +14,6 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import Cover from "@/components/SharedComponents/Cover";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 export type SummaryCardProps = {
   children?: React.ReactNode;
@@ -22,7 +22,7 @@ export type SummaryCardProps = {
   summaryPortableText: PortableTextJSON | string;
   summaryCardImage?: Image | null;
   background?: OakUiRoleToken;
-  imageContainerProps?: FlexProps;
+  imageContainerProps?: OakFlexProps;
 };
 
 /**
@@ -53,7 +53,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
       $ph={["spacing-16", "spacing-24"]}
     >
       <OakFlex $flexDirection={"column"} $width="100%">
-        <OakFlex>
+        <OakFlex $justifyContent={"space-between"}>
           <OakFlex
             $justifyContent={"center"}
             $flexDirection={"column"}
@@ -83,14 +83,14 @@ const SummaryCard: FC<SummaryCardProps> = ({
             </OakTypography>
           </OakFlex>
           {summaryCardImage && (
-            <Flex
+            <OakFlex
               $display={["none", "flex"]}
               $position="relative"
-              $minWidth={"30%"}
+              $minWidth={["spacing-180", "spacing-240", "spacing-360"]}
               $justifyContent={["center", "flex-end"]}
               $alignItems={["flex-end"]}
-              $pr={[0, 24]}
-              $pb={24}
+              $pr={["spacing-0", "spacing-24"]}
+              $pb={"spacing-24"}
               {...imageContainerProps}
             >
               <Cover>
@@ -106,7 +106,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
                   priority
                 />
               </Cover>
-            </Flex>
+            </OakFlex>
           )}
         </OakFlex>
         {children}

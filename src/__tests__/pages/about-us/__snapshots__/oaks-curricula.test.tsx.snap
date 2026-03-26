@@ -338,6 +338,13 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
+.c101 {
+  position: relative;
+  width: 22.5rem;
+  height: 22.5rem;
+  font-family: --var(google-font),Lexend,sans-serif;
+}
+
 .c102 {
   position: relative;
   object-position: center;
@@ -2647,36 +2654,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
-.c101 {
-  position: relative;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  width: 18.75rem;
-  height: 16.875rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.c101::-webkit-scrollbar-track {
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c101::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.c101::-webkit-scrollbar-thumb {
-  border-radius: 15px;
-  background-color: #999999;
-}
-
 .c174 {
   width: 100%;
   margin-bottom: 2rem;
@@ -3263,6 +3240,30 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 @media (min-width:1280px) {
   .c94 {
     padding: 5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c101 {
+    width: 30rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c101 {
+    width: 30rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c101 {
+    height: 30rem;
+  }
+}
+
+@media (min-width:1280px) {
+  .c101 {
+    height: 30rem;
   }
 }
 
@@ -4301,30 +4302,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   }
 }
 
-@media (min-width:750px) {
-  .c101 {
-    width: 28.125rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c101 {
-    width: 28.125rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c101 {
-    height: 26.25rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c101 {
-    height: 26.25rem;
-  }
-}
-
 @media (max-width:800px) {
   .c151 {
     grid-template-columns: repeat(1,1fr);
@@ -5200,7 +5177,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       </p>
                     </div>
                     <div
-                      class="c101 "
+                      class="c101 c49"
                     >
                       <span
                         class="c102"
