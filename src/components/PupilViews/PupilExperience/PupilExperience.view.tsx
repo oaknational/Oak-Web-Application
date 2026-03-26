@@ -284,10 +284,16 @@ const PupilExperienceLayout = ({
   };
 
   useEffect(() => {
-    if (!isGoogleClassroomAssignment || classroomContextRef.current) return;
+    if (
+      !isGoogleClassroomAssignment ||
+      classroomContextRef.current ||
+      !globalThis.cookieStore
+    ) {
+      return;
+    }
     fetchGoogleClassroomContext();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isGoogleClassroomAssignment, searchParams]);
+  }, [isGoogleClassroomAssignment, searchParams, globalThis.cookieStore]);
 
   const handleOnNext = useCallback(
     async (
