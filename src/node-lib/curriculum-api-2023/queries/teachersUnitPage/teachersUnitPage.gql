@@ -20,4 +20,13 @@ query teachersUnitPage($programmeSlug: String!, $unitSlug: String!) {
     order_in_unit
     static_lesson_list
   }
+  unitSequence: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
+    where: { programme_slug: { _eq: $programmeSlug } }
+  ) {
+    unitSlug: unit_slug
+    unitTitle: unit_data(path: "title")
+    unitOrder: supplementary_data(path: "unit_order")
+    optionalityTitle: programme_fields(path: "optionality")
+    nullUnitvariantId: null_unitvariant_id
+  }
 }
