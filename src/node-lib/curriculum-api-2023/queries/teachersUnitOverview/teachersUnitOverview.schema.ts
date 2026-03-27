@@ -50,6 +50,16 @@ export const modifiedLessonsResponseSchemaArray = z.array(
   modifiedLessonsResponseSchema,
 );
 
+export const unitsInOtherProgrammesResponseSchema = z.array(
+  z.object({
+    programme_slug: z.string(),
+    programme_fields: programmeFieldsSchema,
+  }),
+);
+export type UnitsInOtherProgrammes = z.infer<
+  typeof unitsInOtherProgrammesResponseSchema
+>;
+
 export const unitSequenceResponseSchema = z.array(
   z.object({
     unitSlug: z.string(),
