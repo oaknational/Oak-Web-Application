@@ -207,6 +207,8 @@ export const PupilViewsProgrammeListing = ({
                   [currentFactor]: f,
                 }[currentFactor]?.factor || "",
               activeFilters,
+              googleLoginHint: null,
+              clientEnvironment: null,
             });
           }}
           phaseSlug={phaseSlug}

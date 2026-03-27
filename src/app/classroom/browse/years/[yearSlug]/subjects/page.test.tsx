@@ -8,17 +8,31 @@ import OakError from "@/errors/OakError";
 
 const subjectsPageViewMock = jest.fn();
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefined: jest.fn(),
+    },
+  }),
+}));
+
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   SubjectsPageView: (props: never) => {
     subjectsPageViewMock(props);
     return <div data-testid="subjects-view">Subjects</div>;
   },
+  useGoogleClassroomAddonStore: jest.fn().mockReturnValue(null),
 }));
 
 jest.mock("next/navigation", () => ({
   notFound: () => {
     throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
   },
+}));
+
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
+  useGoogleClassroomAnalytics: jest.fn().mockReturnValue(jest.fn()),
 }));
 
 jest.mock("@/node-lib/curriculum-api-2023");
