@@ -453,6 +453,41 @@ describe("Google Classroom API", () => {
     });
   });
 
+  describe("getPostSubmissionState", () => {
+    it("should call the submission API with query parameters", async () => {
+      mockCookieStore.get.mockImplementation((name) => {
+        if (name === AuthCookieKeys.PupilSession)
+          return Promise.resolve({ value: "pupil-session" });
+        if (name === AuthCookieKeys.PupilAccessToken)
+          return Promise.resolve({ value: "pupil-token" });
+        return Promise.resolve(null);
+      });
+      mockJsonResponse({ submissionState: "CREATED" });
+
+      const payload = {
+        courseId: "course-1",
+        itemId: "item-1",
+        attachmentId: "attachment-1",
+        submissionId: "submission-1",
+      };
+
+      await GoogleClassroomApi.getPostSubmissionState(payload);
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        "/api/classroom/submission?submissionId=submission-1&itemId=item-1&attachmentId=attachment-1&courseId=course-1",
+        expect.objectContaining({
+          method: "GET",
+          credentials: "include",
+          headers: expect.any(Headers),
+        }),
+      );
+
+      const callArgs = mockFetch.mock.calls[0][1];
+      expect(callArgs.headers.get("Authorization")).toBe("pupil-token");
+      expect(callArgs.headers.get("X-Oakgc-Session")).toBe("pupil-session");
+    });
+  });
+
   describe("submitPupilProgress", () => {
     it("should call the lesson progress API with payload", async () => {
       // Arrange

@@ -211,6 +211,18 @@ type GetPupilLessonProgressArgs = {
   itemId: string;
   attachmentId: string;
 };
+
+export type GetPostSubmissionStateArgs = {
+  courseId: string;
+  itemId: string;
+  attachmentId: string;
+  submissionId: string;
+};
+
+export type GetPostSubmissionStateResponse = {
+  submissionState: string;
+};
+
 const getPupilLessonProgress = async (
   args: GetPupilLessonProgressArgs,
 ): Promise<PupilLessonProgress | null> => {
@@ -231,6 +243,29 @@ const getPupilLessonProgress = async (
   }
 };
 
+const getPostSubmissionState = async (
+  args: GetPostSubmissionStateArgs,
+): Promise<GetPostSubmissionStateResponse | null> => {
+  try {
+    const params = new URLSearchParams();
+    params.set("submissionId", args.submissionId);
+    params.set("itemId", args.itemId);
+    params.set("attachmentId", args.attachmentId);
+    params.set("courseId", args.courseId);
+    const headers = await getOakGCAuthHeaders(true);
+
+    return await sendRequest<GetPostSubmissionStateResponse>(
+      `/api/classroom/submission?${params.toString()}`,
+      "GET",
+      undefined,
+      headers,
+    );
+  } catch (error) {
+    console.error("Failed to fetch pupil submission state:", error);
+    return null;
+  }
+};
+
 export default {
   getGoogleSignInUrl,
   verifySession,
@@ -238,4 +273,5 @@ export default {
   getAddOnContext,
   submitPupilProgress,
   getPupilLessonProgress,
+  getPostSubmissionState,
 };

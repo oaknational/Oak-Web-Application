@@ -288,7 +288,6 @@ export const LessonEngineProvider = memo(
     };
 
     const completeActivity = (section: LessonReviewSection) => {
-      if (isReadOnly) return;
       if (state.sections[section]?.isComplete) {
         console.warn(`Section '${section}' is already complete`);
         return;
@@ -319,13 +318,12 @@ export const LessonEngineProvider = memo(
     };
 
     const updateCurrentSection = (section: LessonSection) => {
-      if (isReadOnly) return;
       trackLessonStarted();
       dispatch({ type: "setCurrentSection", section });
     };
 
     const proceedToNextSection = () => {
-      if (isReadOnly) return;
+      if (isReadOnly) updateCurrentSection("review");
       dispatch({ type: "proceedToNextSection" });
       trackLessonStarted();
     };
@@ -333,7 +331,6 @@ export const LessonEngineProvider = memo(
     const updateSectionResult = (
       result: QuizResult | VideoResult | IntroResult,
     ) => {
-      if (isReadOnly) return;
       trackLessonStarted();
       dispatch({ type: "updateSectionResult", result });
 
