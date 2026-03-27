@@ -3,6 +3,7 @@ import posthogJs from "posthog-js";
 import { consentClient } from "../cookie-consent/consentClient";
 
 import { posthogToAnalyticsServiceWithoutQueue } from "./posthog";
+import { POSTHOG_AUTOCAPTURE_URL_ALLOWLIST } from "./getPosthogInitConfig";
 
 const getLegacyAnonymousId = jest.fn();
 jest.mock("../analytics/getLegacyAnonymousId", () => ({
@@ -17,6 +18,7 @@ const capture = jest.fn();
 const register = jest.fn();
 const optInCapturing = jest.fn();
 const optOutCapturing = jest.fn();
+const clearOptInOutCapturing = jest.fn();
 
 const posthog = posthogToAnalyticsServiceWithoutQueue(posthogJs);
 const textDistinctId = "test-distinct-id";
@@ -29,6 +31,8 @@ jest.mock("posthog-js", () => ({
   capture: (...args: unknown[]) => capture(...args),
   opt_in_capturing: (...args: unknown[]) => optInCapturing(...args),
   opt_out_capturing: (...args: unknown[]) => optOutCapturing(...args),
+  clear_opt_in_out_capturing: (...args: unknown[]) =>
+    clearOptInOutCapturing(...args),
   has_opted_out_capturing: () => true,
   get_distinct_id: () => textDistinctId,
   register: (...args: []) => register(...args),
@@ -41,9 +45,23 @@ describe("posthog.ts", () => {
     const config = {
       apiKey: "12",
       apiHost: "https://test.thenational.academy",
+      uiHost: "https://eu.posthog.thenational.academy",
     };
     await posthog.init(config);
-    expect(init).toHaveBeenCalledWith(config.apiKey, expect.any(Object));
+    expect(init).toHaveBeenCalledWith(
+      config.apiKey,
+      expect.objectContaining({
+        api_host: config.apiHost,
+        ui_host: config.uiHost,
+        cookieless_mode: "on_reject",
+        disable_session_recording: true,
+        capture_pageview: false,
+        autocapture: {
+          url_allowlist: POSTHOG_AUTOCAPTURE_URL_ALLOWLIST,
+        },
+        loaded: expect.any(Function),
+      }),
+    );
   });
   test("init return distinct id", async () => {
     const config = {
@@ -111,7 +129,8 @@ describe("posthog.ts", () => {
   });
   test("optOut", () => {
     posthog.optOut();
-    expect(optOutCapturing).toHaveBeenCalled();
+    expect(clearOptInOutCapturing).toHaveBeenCalled();
+    expect(optOutCapturing).not.toHaveBeenCalled();
   });
   test("state", () => {
     expect(posthog.state()).toBe("pending");

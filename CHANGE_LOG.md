@@ -1,3 +1,53 @@
+# [1.1027.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1026.0...v1.1027.0) (2026-03-27)
+
+
+### Bug Fixes
+
+* fix broken tests ([ae5361f](https://github.com/oaknational/Oak-Web-Application/commit/ae5361ffcf6cbaffb7774f9ce90a5f3a8848f509))
+* remove typeof as safe to compare directly ([75411c4](https://github.com/oaknational/Oak-Web-Application/commit/75411c4eb76e66e9b98e94ba24d7001272ef2568))
+* sort unit sequence by year as well as unit order ([f0701af](https://github.com/oaknational/Oak-Web-Application/commit/f0701af1d499d5cbb159fc7baab8e08d8980849f))
+
+
+### Features
+
+* add mock to test file ([94507cd](https://github.com/oaknational/Oak-Web-Application/commit/94507cd2be7b250405b4976a98f03510d5173e59))
+* add prev and next unit to response data ([fae9500](https://github.com/oaknational/Oak-Web-Application/commit/fae9500a4fd9f657def29349532e46fc4d9a7815))
+* add teachers unit page query ([11efe75](https://github.com/oaknational/Oak-Web-Application/commit/11efe75020fdbddd779c24338674f243912497dc))
+* adds new properties to browse refined event and updates tests ([e3dc650](https://github.com/oaknational/Oak-Web-Application/commit/e3dc65048fd98ffa2fe82215c1f756e2181d7cba))
+* adds property to avo event, iterates classroom version, tierDescription ([f899cb8](https://github.com/oaknational/Oak-Web-Application/commit/f899cb84d8212d2c8451d56cceb4444d961d5a3f))
+* adds test for anaytics components and adds mock for page files ([c424fb3](https://github.com/oaknational/Oak-Web-Application/commit/c424fb3f9b26838d2dfd7d1448d7f59a15b3daa2))
+* fire tracking event from layout page ([cda6e6b](https://github.com/oaknational/Oak-Web-Application/commit/cda6e6b9593097c8798258d5ccf0b6f2441a453d))
+* implement avo tracking on g-classroom journey ([ff3e1e1](https://github.com/oaknational/Oak-Web-Application/commit/ff3e1e17c05b67653ac3622d693a648e6a0b508f))
+* init feature branch ([194e997](https://github.com/oaknational/Oak-Web-Application/commit/194e997d0704c72d544fc429807c5e0feb60c0db))
+* pupil classroomAddOnOpened tracking event  implementation ([c0d21d2](https://github.com/oaknational/Oak-Web-Application/commit/c0d21d2e0689839fee1fb30c6ef42179e14b0a5c))
+* readonly components and remove duplicate code ([6ecb9d5](https://github.com/oaknational/Oak-Web-Application/commit/6ecb9d5ccd5f15703f6958aede37feb7c7ba57f9))
+* trigger ci:cd ([9312f26](https://github.com/oaknational/Oak-Web-Application/commit/9312f26036afe5ed669ce99d6ea750231bc5d4a1))
+* update avo branch to point at main ([af2392c](https://github.com/oaknational/Oak-Web-Application/commit/af2392ce2a2a90859be68651c2da933a1fea9610))
+* update query with unit sequence data ([1a6ab89](https://github.com/oaknational/Oak-Web-Application/commit/1a6ab89358fb5a5a2798c54d3f4a0545f6a1f61f))
+* utilise zustard and a specific analytics hooks and context for google classroom ([35f4a08](https://github.com/oaknational/Oak-Web-Application/commit/35f4a089444b101942f456177d2a88b94b937a1e))
+
+# [1.1026.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1025.0...v1.1026.0) (2026-03-26)
+
+
+### Bug Fixes
+
+* add retry wrapper to graphql sdk ([5409fce](https://github.com/oaknational/Oak-Web-Application/commit/5409fce89c08e9ea73499a853fb3b9cd4f5e5359))
+* retry count ([05f950d](https://github.com/oaknational/Oak-Web-Application/commit/05f950db990bda9595399c42b56e9dcbaaa821e0))
+* update retry count and add more logging ([8b179ae](https://github.com/oaknational/Oak-Web-Application/commit/8b179aefd8e18bb1b37702fb6adec2dc85937025))
+
+
+### Features
+
+* add error reporting on error ([8c76d7d](https://github.com/oaknational/Oak-Web-Application/commit/8c76d7d1a01bb5305f40e2da54ef6de8131f3b40))
+* add logger to retry handler ([57438e2](https://github.com/oaknational/Oak-Web-Application/commit/57438e2e757335b3795d3e5acd42d107e5e9250e))
+* **LESQ-1843:** allow querying for non-curriculum subjects ([f80b97a](https://github.com/oaknational/Oak-Web-Application/commit/f80b97a79cadb22d611fca019a78c9f276d7c10f))
+* **LESQ-1843:** dont load curriculum overview for non-curriculum subjects ([57cb985](https://github.com/oaknational/Oak-Web-Application/commit/57cb985e511992bc989fc7659b73e9b2917f2ffa))
+* **LESQ-1843:** dont render tabs for non-curriculum subjects ([2e36c42](https://github.com/oaknational/Oak-Web-Application/commit/2e36c425a3b8a392419b5888924a4f318603b3d8))
+* **LESQ-1843:** move margin to tabs ([4823e60](https://github.com/oaknational/Oak-Web-Application/commit/4823e6028765c9b52db3401b3fa6c86f71a44976))
+* move error reporting to logger fn ([bb845a4](https://github.com/oaknational/Oak-Web-Application/commit/bb845a4962f77d6149652ef6f5c2bd8a3adc512f))
+* remove final error logging ([a9d134b](https://github.com/oaknational/Oak-Web-Application/commit/a9d134b71a6ba90c1787b9029da06c66ba90569f))
+* update logging ([8bd945a](https://github.com/oaknational/Oak-Web-Application/commit/8bd945ae425a33b153613aa4921e3f5e416527a8))
+
 # [1.1025.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1024.0...v1.1025.0) (2026-03-25)
 
 

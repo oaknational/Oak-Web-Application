@@ -4,6 +4,7 @@
 import { getProgrammeData } from "./getProgrammeData";
 import ProgrammePageTabs, { generateMetadata } from "./page";
 
+import CMSClient from "@/node-lib/cms";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
@@ -105,6 +106,10 @@ jest.mock("@/common-lib/error-reporter", () => ({
 }));
 
 describe("Programme page tabs", () => {
+  beforeEach(() => {
+    jest.mocked(CMSClient.curriculumOverviewPage).mockClear();
+  });
+
   it("renders 404 page if feature flag is disabled", async () => {
     await expect(
       ProgrammePageTabs({
@@ -157,6 +162,101 @@ describe("Programme page tabs", () => {
     });
 
     expect(result).toBeDefined();
+  });
+
+  it("skips CMSClient.curriculumOverviewPage and renders when nonCurriculum is true", async () => {
+    featureFlagMock.mockResolvedValue(true);
+
+    jest.mocked(getProgrammeData).mockResolvedValue({
+      programmeUnitsData: curriculumOverviewMVFixture({
+        subjectTitle: "Financial education",
+        nonCurriculum: true,
+      }),
+      curriculumUnitsData: {
+        units: [
+          createUnit({
+            slug: "test",
+            year: "5",
+            subject_slug: "financial-education",
+            phase_slug: "primary",
+          }),
+        ],
+      },
+      curriculumPhaseOptions: {
+        subjects: filterValidCurriculumPhaseOptions([
+          {
+            slug: "financial-education",
+            title: "Financial education",
+            phases: [{ slug: "primary", title: "Primary" }],
+            ks4_options: [],
+          },
+        ]),
+        tab: "units",
+      },
+      subjectPhaseKeystageSlugs: {
+        subjectSlug: "financial-education",
+        phaseSlug: "primary",
+        ks4OptionSlug: null,
+      },
+    });
+
+    const result = await ProgrammePageTabs({
+      params: Promise.resolve({
+        subjectPhaseSlug: "financial-education-primary",
+        tab: "units",
+      }),
+      searchParams: Promise.resolve({}),
+    });
+
+    expect(result).toBeDefined();
+    expect(CMSClient.curriculumOverviewPage).not.toHaveBeenCalled();
+  });
+
+  it("returns 404 when nonCurriculum is false and CMSClient.curriculumOverviewPage returns null", async () => {
+    featureFlagMock.mockResolvedValue(true);
+    jest
+      .mocked(CMSClient.curriculumOverviewPage)
+      .mockResolvedValueOnce(null as never);
+
+    jest.mocked(getProgrammeData).mockResolvedValue({
+      programmeUnitsData: curriculumOverviewMVFixture({
+        subjectTitle: "Maths",
+        nonCurriculum: false,
+      }),
+      curriculumUnitsData: {
+        units: [
+          createUnit({
+            slug: "test",
+            year: "5",
+            subject_slug: "maths",
+            phase_slug: "primary",
+          }),
+        ],
+      },
+      curriculumPhaseOptions: {
+        subjects: filterValidCurriculumPhaseOptions(
+          curriculumPhaseOptionsFixture().filter((s) => s.slug === "maths"),
+        ),
+        tab: "units" as const,
+      },
+      subjectPhaseKeystageSlugs: {
+        subjectSlug: "maths",
+        phaseSlug: "primary",
+        ks4OptionSlug: null,
+      },
+    });
+
+    await expect(
+      ProgrammePageTabs({
+        params: Promise.resolve({
+          subjectPhaseSlug: "maths-primary",
+          tab: "units",
+        }),
+        searchParams: Promise.resolve({}),
+      }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+
+    expect(CMSClient.curriculumOverviewPage).toHaveBeenCalled();
   });
 
   it("returns 404 page if params are invalid", async () => {
