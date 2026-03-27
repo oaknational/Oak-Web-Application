@@ -215,6 +215,7 @@ export const getProgrammeToggles = (
       .map((programme) => ({
         title: programme.programme_fields.tier_description,
         programmeSlug: programme.programme_slug,
+        isSelected: programme.programme_slug === programmeSlug,
       })) as ProgrammeToggles;
   }
 
@@ -229,6 +230,7 @@ export const getProgrammeToggles = (
     .map((programme) => ({
       title: programme.programme_fields.subject,
       programmeSlug: programme.programme_slug,
+      isSelected: programme.programme_slug === programmeSlug,
     }));
 
   if (subjectOptionToggles.length === 1) {

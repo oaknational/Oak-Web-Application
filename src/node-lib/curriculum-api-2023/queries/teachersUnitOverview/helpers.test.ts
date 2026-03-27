@@ -488,10 +488,12 @@ describe("getProgrammeToggles", () => {
       {
         title: "Foundation",
         programmeSlug: "maths-secondary-ks4-foundation",
+        isSelected: true,
       },
       {
         title: "Higher",
         programmeSlug: "maths-secondary-ks4-higher",
+        isSelected: false,
       },
     ]);
   });
@@ -528,10 +530,12 @@ describe("getProgrammeToggles", () => {
       {
         title: "Biology",
         programmeSlug: "biology-secondary-ks4-aqa",
+        isSelected: false,
       },
       {
         title: "Combined science",
         programmeSlug: "combined-science-secondary-ks4-aqa",
+        isSelected: true,
       },
     ]);
   });
@@ -599,20 +603,24 @@ describe("getProgrammeToggles", () => {
       {
         title: "Biology",
         programmeSlug: "biology-secondary-ks4-higher-aqa",
+        isSelected: false,
       },
       {
         title: "Combined science",
         programmeSlug: "combined-science-secondary-ks4-higher-aqa",
+        isSelected: true,
       },
     ]);
     expect(result.tierOptionToggles).toEqual([
       {
         title: "Higher",
         programmeSlug: "combined-science-secondary-ks4-higher-aqa",
+        isSelected: true,
       },
       {
         title: "Foundation",
         programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
+        isSelected: false,
       },
     ]);
   });
@@ -660,10 +668,12 @@ describe("getProgrammeToggles", () => {
       {
         title: "Biology",
         programmeSlug: "biology-secondary-ks4-aqa",
+        isSelected: false,
       },
       {
         title: "Combined science",
         programmeSlug: "combined-science-secondary-ks4-aqa",
+        isSelected: true,
       },
     ]);
   });

@@ -15,7 +15,11 @@ const neighbourUnitSchema = z
   .nullable();
 
 const programmeToggleSchema = z.array(
-  z.object({ title: z.string(), programmeSlug: z.string() }),
+  z.object({
+    title: z.string(),
+    programmeSlug: z.string(),
+    isSelected: z.boolean(),
+  }),
 );
 export type ProgrammeToggles = z.infer<typeof programmeToggleSchema>;
 
