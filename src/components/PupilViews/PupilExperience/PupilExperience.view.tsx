@@ -37,7 +37,11 @@ import {
   AdditionalFile,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
-import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
+import {
+  AnalyticsUseCase,
+  ComponentType,
+  ContentGuidanceWarningValueType,
+} from "@/browser-lib/avo/Avo";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
@@ -48,6 +52,10 @@ import {
   type ClassroomContext,
 } from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
 import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
+import {
+  GoogleClassroomAnalyticsProvider,
+  useGoogleClassroomAnalytics,
+} from "@/components/GoogleClassroom/useGoogleClassroomAnalytics";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -210,6 +218,34 @@ const CookieConsentStyles = createGlobalStyle`
 }
 `;
 
+const PupilExperienceClassroomAnalytics = ({
+  isGoogleClassroomAssignment,
+}: {
+  isGoogleClassroomAssignment: boolean;
+}) => {
+  const trackAddOnOpenedOnce = useGoogleClassroomAnalytics(
+    (state) => state.trackAddOnOpenedOnce,
+  );
+  const clearAddOnOpenedFlag = useGoogleClassroomAnalytics(
+    (state) => state.clearAddOnOpenedFlag,
+  );
+
+  useEffect(() => {
+    window.addEventListener("pagehide", clearAddOnOpenedFlag);
+    return () => window.removeEventListener("pagehide", clearAddOnOpenedFlag);
+  }, [clearAddOnOpenedFlag]);
+
+  useEffect(() => {
+    if (!isGoogleClassroomAssignment) return;
+
+    trackAddOnOpenedOnce({
+      analyticsUseCase: AnalyticsUseCase.PUPIL,
+    });
+  }, [isGoogleClassroomAssignment, trackAddOnOpenedOnce]);
+
+  return null;
+};
+
 const PupilExperienceLayout = ({
   browseData,
   lessonContent,
@@ -226,7 +262,7 @@ const PupilExperienceLayout = ({
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
   const isGoogleClassroomAssignment =
-    isClassroomAssignment && classroomAssignmentChecked;
+    isClassroomAssignment === true && classroomAssignmentChecked === true;
 
   const searchParams = useSearchParams();
   const classroomContextRef = useRef<ClassroomContext | null>(null);
@@ -368,7 +404,7 @@ const PupilExperienceLayout = ({
 
   if (trackingSent === false) {
     track.lessonAccessed({
-      componentType: "page view",
+      componentType: ComponentType.PAGE_VIEW,
     });
     setTrackingSent(true);
   }
@@ -376,91 +412,96 @@ const PupilExperienceLayout = ({
   const declineIcon = isGoogleClassroomAssignment ? "cross" : undefined;
   const declineText = isGoogleClassroomAssignment ? "Exit lesson" : undefined;
   return (
-    <PupilLayout
-      seoProps={{
-        ...getSeoProps({
-          title: browseData.lessonData.title,
-          description: browseData.lessonData.pupilLessonOutcome,
-        }),
-        noIndex: true,
-        noFollow: isSensitive,
-      }}
-    >
-      <CookieConsentStyles />
-      <LessonEngineProvider
-        key={lessonEngineInstanceKey}
-        initialLessonReviewSections={availableSections}
-        initialSection={initialSection}
-        initialSectionResults={initialSectionResults}
-        onNext={isGoogleClassroomAssignment ? handleOnNext : undefined}
-        onSectionResultUpdate={
-          isGoogleClassroomAssignment ? handleOnNext : undefined
-        }
-        isHydratingInitialProgress={isFetchingClassroomContext}
-      >
-        {hasAgeRestriction ? (
-          <OakPupilJourneyContentGuidance
-            isOpen={isOpen && redirectOverlayCleared}
-            onAccept={handleContentGuidanceAccept}
-            onDecline={handleContentGuidanceDecline}
-            title={getAgeRestrictionString(ageRestriction)}
-            declineIcon={declineIcon}
-            declineText={declineText}
-            contentGuidance={
-              lessonContent.contentGuidance
-                ? lessonContent.contentGuidance
-                : [
-                    {
-                      contentguidanceLabel:
-                        "Speak to an adult before starting this lesson.",
-                      contentguidanceDescription: null,
-                      contentguidanceArea: null,
-                    },
-                  ]
-            }
-            supervisionLevel={
-              lessonContent.contentGuidance
-                ? lessonContent.supervisionLevel
-                : null
-            }
-          />
-        ) : (
-          <OakPupilJourneyContentGuidance
-            isOpen={isOpen && redirectOverlayCleared}
-            onAccept={handleContentGuidanceAccept}
-            onDecline={handleContentGuidanceDecline}
-            contentGuidance={lessonContent.contentGuidance}
-            supervisionLevel={lessonContent.supervisionLevel}
-            declineIcon={declineIcon}
-            declineText={declineText}
-          />
-        )}
-
-        <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
-          <OakBox $height={"100vh"}>
-            {browseData.lessonData.deprecatedFields?.expired ? (
-              <PupilExpiredView lessonTitle={browseData.lessonData.title} />
-            ) : (
-              <PupilPageContent
-                browseData={browseData}
-                lessonContent={lessonContent}
-                hasWorksheet={hasWorksheet}
-                worksheetInfo={worksheetInfo}
-                backUrl={backUrl}
-                pageType={pageType}
-                hasAdditionalFiles={hasAdditionalFiles}
-                additionalFiles={additionalFiles}
-              />
-            )}
-          </OakBox>
-        </OakBox>
-      </LessonEngineProvider>
-      <PupilRedirectedOverlay
-        isLessonPage={true}
-        onLoaded={(isShowing) => setRedirectOverlayCleared(!isShowing)}
-        onClose={() => setRedirectOverlayCleared(true)}
+    <GoogleClassroomAnalyticsProvider>
+      <PupilExperienceClassroomAnalytics
+        isGoogleClassroomAssignment={isGoogleClassroomAssignment}
       />
-    </PupilLayout>
+      <PupilLayout
+        seoProps={{
+          ...getSeoProps({
+            title: browseData.lessonData.title,
+            description: browseData.lessonData.pupilLessonOutcome,
+          }),
+          noIndex: true,
+          noFollow: isSensitive,
+        }}
+      >
+        <CookieConsentStyles />
+        <LessonEngineProvider
+          key={lessonEngineInstanceKey}
+          initialLessonReviewSections={availableSections}
+          initialSection={initialSection}
+          initialSectionResults={initialSectionResults}
+          onNext={isGoogleClassroomAssignment ? handleOnNext : undefined}
+          onSectionResultUpdate={
+            isGoogleClassroomAssignment ? handleOnNext : undefined
+          }
+          isHydratingInitialProgress={isFetchingClassroomContext}
+        >
+          {hasAgeRestriction ? (
+            <OakPupilJourneyContentGuidance
+              isOpen={isOpen && redirectOverlayCleared}
+              onAccept={handleContentGuidanceAccept}
+              onDecline={handleContentGuidanceDecline}
+              title={getAgeRestrictionString(ageRestriction)}
+              declineIcon={declineIcon}
+              declineText={declineText}
+              contentGuidance={
+                lessonContent.contentGuidance
+                  ? lessonContent.contentGuidance
+                  : [
+                      {
+                        contentguidanceLabel:
+                          "Speak to an adult before starting this lesson.",
+                        contentguidanceDescription: null,
+                        contentguidanceArea: null,
+                      },
+                    ]
+              }
+              supervisionLevel={
+                lessonContent.contentGuidance
+                  ? lessonContent.supervisionLevel
+                  : null
+              }
+            />
+          ) : (
+            <OakPupilJourneyContentGuidance
+              isOpen={isOpen && redirectOverlayCleared}
+              onAccept={handleContentGuidanceAccept}
+              onDecline={handleContentGuidanceDecline}
+              contentGuidance={lessonContent.contentGuidance}
+              supervisionLevel={lessonContent.supervisionLevel}
+              declineIcon={declineIcon}
+              declineText={declineText}
+            />
+          )}
+
+          <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
+            <OakBox $height={"100vh"}>
+              {browseData.lessonData.deprecatedFields?.expired ? (
+                <PupilExpiredView lessonTitle={browseData.lessonData.title} />
+              ) : (
+                <PupilPageContent
+                  browseData={browseData}
+                  lessonContent={lessonContent}
+                  hasWorksheet={hasWorksheet}
+                  worksheetInfo={worksheetInfo}
+                  backUrl={backUrl}
+                  pageType={pageType}
+                  hasAdditionalFiles={hasAdditionalFiles}
+                  additionalFiles={additionalFiles}
+                />
+              )}
+            </OakBox>
+          </OakBox>
+        </LessonEngineProvider>
+        <PupilRedirectedOverlay
+          isLessonPage={true}
+          onLoaded={(isShowing) => setRedirectOverlayCleared(!isShowing)}
+          onClose={() => setRedirectOverlayCleared(true)}
+        />
+      </PupilLayout>
+    </GoogleClassroomAnalyticsProvider>
   );
 };
 

@@ -81,6 +81,26 @@ jest.mock(
   }),
 );
 
+jest.mock("@/hooks/useFetch", () => ({
+  __esModule: true,
+  useFetch: () => ({ data: [], error: null, isLoading: false }),
+}));
+
+jest.mock(
+  "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      schools: [],
+      error: null,
+      schoolPickerInputValue: "",
+      setSchoolPickerInputValue: jest.fn(),
+      selectedSchool: undefined,
+      setSelectedSchool: jest.fn(),
+    }),
+  }),
+);
+
 describe("Component Curriculum Download Tab", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -107,6 +127,7 @@ describe("Component Curriculum Download Tab", () => {
         subjectTitle: "English",
         phaseTitle: "Secondary",
         examboardTitle: null,
+        nonCurriculum: false,
       },
       ...overrides,
     };

@@ -1,4 +1,9 @@
-import { OakGrid, OakGridArea, OakP } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakP,
+  useMediaQuery,
+} from "@oaknational/oak-components";
 import { keystageSlugs } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
 
@@ -18,7 +23,9 @@ import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
-import CardListing from "@/components/TeacherComponents/CardListing/CardListing";
+import CardListing, {
+  CardProps,
+} from "@/components/TeacherComponents/CardListing/CardListing";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 type KeystageSlug = z.infer<typeof keystageSlugs>;
@@ -39,6 +46,7 @@ export function ProgrammeUnitList({
 }: Readonly<ProgrammeUnitListProps>) {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  const isMobile = useMediaQuery("mobile");
 
   const onClick = (unit: Unit, isHighlighted: boolean) => {
     track.unitOverviewAccessed(
@@ -52,41 +60,80 @@ export function ProgrammeUnitList({
     );
   };
 
-  function getItems(unit: Unit, index: number) {
+  function getItems(unit: Unit, index: number, isMobile: boolean) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
-    const isOptionalityUnitCard = unit.unit_options.length;
+    const isOptionalityUnitCard = !!unit.unit_options.length;
+
+    const programmeSlug = createTeacherProgrammeSlug(
+      unit,
+      unit.examboard_slug,
+      unit.tier_slug,
+      unit.pathway_slug,
+    );
+
+    const getLayoutVariant = () => {
+      const useHorizontalLayout = isOptionalityUnitCard && !isMobile;
+      if (useHorizontalLayout) {
+        return "horizontal";
+      } else {
+        return "vertical";
+      }
+    };
+
+    const childCards: CardProps[] | undefined = isOptionalityUnitCard
+      ? unit.unit_options.map((option) => ({
+          isHighlighted,
+          title: option.title,
+          saveProps: getSavePropsForUnitCard({
+            slug: option.slug ?? unit.slug,
+            title: option.title,
+            programmeSlug,
+            subject: unit.subject,
+            subjectSlug: unit.subject_slug,
+            keystageSlug: unit.keystage_slug,
+            isOptionalityUnit: false,
+          }),
+          href: resolveOakHref({
+            page: "lesson-index",
+            unitSlug: option.slug ?? unit.slug,
+            programmeSlug,
+          }),
+          showBorder: true,
+          onClickLink: () => onClick(unit, isHighlighted),
+          lessonCount: option.lessons.length,
+        }))
+      : undefined;
 
     return (
       <OakGridArea
-        $colSpan={[12, 4]}
+        $colSpan={[12, isOptionalityUnitCard ? 12 : 4]}
         $minHeight="spacing-180"
         key={`${unit.slug}-${index}`}
         as="li"
       >
         <CardListing
-          layoutVariant="vertical"
+          layoutVariant={getLayoutVariant()}
           title={unit.title}
           isHighlighted={isHighlighted}
           tags={getTagsForUnitCard(unit)}
-          // TD: [integrated journey] optionality units
-          href={
-            isOptionalityUnitCard
-              ? ""
-              : resolveOakHref({
-                  page: "lesson-index",
-                  unitSlug: unit.slug,
-                  programmeSlug: createTeacherProgrammeSlug(
-                    unit,
-                    unit.examboard_slug,
-                    unit.tier_slug,
-                    unit.pathway_slug,
-                  ),
-                })
-          }
+          href={resolveOakHref({
+            page: "lesson-index",
+            unitSlug: unit.slug,
+            programmeSlug,
+          })}
           onClickLink={() => onClick(unit, isHighlighted)}
           lessonCount={isOptionalityUnitCard ? undefined : unit.lessons?.length}
-          saveProps={getSavePropsForUnitCard(unit)}
+          saveProps={getSavePropsForUnitCard({
+            slug: unit.slug,
+            title: unit.title,
+            programmeSlug,
+            subject: unit.subject,
+            subjectSlug: unit.subject_slug,
+            keystageSlug: unit.keystage_slug,
+            isOptionalityUnit: isOptionalityUnitCard,
+          })}
           index={index + 1}
+          childCards={childCards}
         />
       </OakGridArea>
     );
@@ -108,7 +155,7 @@ export function ProgrammeUnitList({
       $pa={"spacing-0"}
       $mv={"spacing-0"}
     >
-      {units.map((unit, index) => getItems(unit, index))}
+      {units.map((unit, index) => getItems(unit, index, isMobile))}
     </OakGrid>
   );
 }

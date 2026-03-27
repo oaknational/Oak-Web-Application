@@ -1,8 +1,13 @@
-import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
+import type { MouseEventHandler } from "react";
+import styled from "styled-components";
+import {
+  OakFlex,
+  OakFlexProps,
+  OakSecondaryLink,
+  OakTypography,
+} from "@oaknational/oak-components";
 
-import ButtonAsLink, {
-  ButtonAsLinkProps,
-} from "@/components/SharedComponents/Button/ButtonAsLink";
+import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 
 /**
  * TabularNav is a 'nav' component which renders 'minimal' (text-link) link
@@ -14,26 +19,37 @@ import ButtonAsLink, {
  * Used for example in the 'unit listing' page to filter by 'tier' (where
  * tiers are available).
  */
+type TabularNavLink = ResolveOakHrefProps & {
+  label: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
+  isCurrent?: boolean;
+};
+
 const TabularNav = ({
   label,
   links,
   ...flexProps
 }: OakFlexProps & {
   label: string;
-  links: ButtonAsLinkProps[];
+  links: TabularNavLink[];
 }) => {
   return (
     <OakFlex as="nav" aria-label={label} $pv={"spacing-4"} {...flexProps}>
       {links.map((link, i) => {
+        const { label: linkLabel, onClick, isCurrent, ...hrefProps } = link;
+        const href = resolveOakHref(hrefProps);
         return (
-          <ButtonAsLink
-            {...link}
-            size="small"
-            variant="minimal"
-            aria-current={link.isCurrent ? "page" : undefined}
+          <StyledTabularLink
+            href={href}
+            onClick={onClick}
+            aria-current={isCurrent ? "page" : undefined}
+            $mr={"spacing-24"}
             key={`TabularNav-${link.page}-${i}`}
-            $mr={[24, 24]}
-          />
+          >
+            <OakTypography $font={"heading-7"} as="span">
+              {linkLabel}
+            </OakTypography>
+          </StyledTabularLink>
         );
       })}
     </OakFlex>
@@ -41,3 +57,11 @@ const TabularNav = ({
 };
 
 export default TabularNav;
+
+const StyledTabularLink = styled(OakSecondaryLink)`
+  text-decoration: none;
+
+  &[aria-current="page"] {
+    text-decoration: underline;
+  }
+`;

@@ -4,28 +4,28 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg cLbzUI"
+      class="sc-aXZVg fqIpsl"
     >
       <div
-        class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
+        class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
       >
         <div
-          class="sc-aXZVg hpZeuU grey-shadow"
+          class="sc-aXZVg kMGxHZ grey-shadow"
         />
         <div
-          class="sc-aXZVg hpZeuU yellow-shadow"
+          class="sc-aXZVg kMGxHZ yellow-shadow"
         />
         <a
-          class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
+          class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
           data-testid="skip-link"
           href="#content"
           style="position: absolute; left: -10000px;"
         >
           <div
-            class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
+            class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
           >
             <span
-              class="sc-eqUAAy dorClf"
+              class="sc-eqUAAy bkXwYG"
             >
               Skip to units
             </span>
@@ -38,10 +38,10 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
         Filter and highlight
       </h3>
       <div
-        class="sc-aXZVg hkJkIR"
+        class="sc-aXZVg hdseiA"
       >
         <fieldset
-          class="sc-aXZVg sc-gEvEer cdxmqb jLsiAX"
+          class="sc-aXZVg sc-gEvEer hUsuNC jLsiAX"
           data-testid="year-group-filter-desktop"
         >
           <legend
@@ -50,13 +50,13 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             Year group
           </legend>
           <div
-            class="sc-aXZVg sc-gEvEer sc-fxwrCY bqwASE doeAUE geVANU"
+            class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
           >
             <span
               class="sc-kAyceB beiyRr"
             >
               <div
-                class="sc-aXZVg sc-gEvEer wbtnY kgixWU"
+                class="sc-aXZVg sc-gEvEer gzTYAh kgixWU"
               >
                 <input
                   checked=""
@@ -68,7 +68,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                   value="0"
                 />
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-uVWWZ iKjdzP kbmCyy iUaQHs"
+                  class="sc-aXZVg sc-gEvEer sc-uVWWZ kLjZsS kbmCyy iUaQHs"
                 />
               </div>
             </span>
@@ -81,13 +81,13 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             </label>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-fxwrCY bqwASE doeAUE geVANU"
+            class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
           >
             <span
               class="sc-kAyceB beiyRr"
             >
               <div
-                class="sc-aXZVg sc-gEvEer wbtnY kgixWU"
+                class="sc-aXZVg sc-gEvEer gzTYAh kgixWU"
               >
                 <input
                   class="sc-fjvvzt fqgMCl"
@@ -98,7 +98,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                   value="1"
                 />
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-uVWWZ iKjdzP kbmCyy iUaQHs"
+                  class="sc-aXZVg sc-gEvEer sc-uVWWZ kLjZsS kbmCyy iUaQHs"
                 />
               </div>
             </span>
@@ -111,13 +111,13 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             </label>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-fxwrCY bqwASE doeAUE geVANU"
+            class="sc-aXZVg sc-gEvEer sc-fxwrCY eHmOFB doeAUE geVANU"
           >
             <span
               class="sc-kAyceB beiyRr"
             >
               <div
-                class="sc-aXZVg sc-gEvEer wbtnY kgixWU"
+                class="sc-aXZVg sc-gEvEer gzTYAh kgixWU"
               >
                 <input
                   class="sc-fjvvzt fqgMCl"
@@ -128,7 +128,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                   value="2"
                 />
                 <div
-                  class="sc-aXZVg sc-gEvEer sc-uVWWZ iKjdzP kbmCyy iUaQHs"
+                  class="sc-aXZVg sc-gEvEer sc-uVWWZ kLjZsS kbmCyy iUaQHs"
                 />
               </div>
             </span>
@@ -143,25 +143,25 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
         </fieldset>
       </div>
       <div
-        class="sc-aXZVg iAUmKY"
+        class="sc-aXZVg csyrAt"
       >
         <div
-          class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
+          class="sc-aXZVg sc-kpDqfm jmcyMy cvxBYX"
         >
           <div
-            class="sc-aXZVg hpZeuU grey-shadow"
+            class="sc-aXZVg kMGxHZ grey-shadow"
           />
           <div
-            class="sc-aXZVg hpZeuU yellow-shadow"
+            class="sc-aXZVg kMGxHZ yellow-shadow"
           />
           <button
-            class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
+            class="sc-dcJsrY sc-jXbUNg iYWyWJ hIATfF internal-button"
           >
             <div
-              class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
+              class="sc-aXZVg sc-gEvEer hdseiA krHAKs"
             >
               <span
-                class="sc-eqUAAy dorClf"
+                class="sc-eqUAAy bkXwYG"
               >
                 Add next year
               </span>
@@ -170,7 +170,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
         </div>
       </div>
       <div
-        class="sc-aXZVg sc-gEvEer sc-fMMURN cKYNrZ iDBIXi"
+        class="sc-aXZVg sc-gEvEer sc-fMMURN cBeINY iDBIXi"
         focusable="false"
       >
         <svg
@@ -192,10 +192,10 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
         </svg>
       </div>
       <div
-        class="sc-aXZVg hkJkIR"
+        class="sc-aXZVg hdseiA"
       >
         <fieldset
-          class="sc-aXZVg sc-6b497e8d-0 hkJkIR giVBfy"
+          class="sc-aXZVg sc-6b497e8d-0 hdseiA giVBfy"
           data-testid="threads-filter-desktop"
         >
           <legend
@@ -204,7 +204,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             Highlight a thread
           </legend>
           <div
-            class="sc-aXZVg cvkNcd"
+            class="sc-aXZVg gYkLtg"
           >
             <label
               style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
@@ -228,7 +228,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             </label>
           </div>
           <div
-            class="sc-aXZVg hZHVOU"
+            class="sc-aXZVg eFqwYV"
           >
             <label
               style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
@@ -248,14 +248,14 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                 class="sc-3299cdd2-0 jFTuAP"
               />
               <span
-                class="sc-eqUAAy DQGGZ"
+                class="sc-eqUAAy dtaNGQ"
               >
                 Addition
               </span>
             </label>
           </div>
           <div
-            class="sc-aXZVg hZHVOU"
+            class="sc-aXZVg eFqwYV"
           >
             <label
               style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
@@ -275,7 +275,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                 class="sc-3299cdd2-0 jFTuAP"
               />
               <span
-                class="sc-eqUAAy DQGGZ"
+                class="sc-eqUAAy dtaNGQ"
               >
                 Subtraction
               </span>

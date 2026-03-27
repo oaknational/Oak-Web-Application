@@ -14,15 +14,40 @@ import {
 const usePathnameMock = jest
   .fn()
   .mockReturnValue("/programmes/science-secondary-aqa/units");
+const useRouterMock = jest.fn();
+const mockUseFetchResult = { data: [], error: null, isLoading: false };
 
 jest.mock("next/navigation", () => {
   return {
     __esModule: true,
     usePathname: () => usePathnameMock(),
     useSearchParams: jest.fn(),
-    useRouter: () => jest.fn(),
+    useRouter: () => useRouterMock,
+    notFound: () => {
+      throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+    },
   };
 });
+
+jest.mock(
+  "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      schools: [],
+      error: null,
+      schoolPickerInputValue: "",
+      setSchoolPickerInputValue: jest.fn(),
+      selectedSchool: undefined,
+      setSelectedSchool: jest.fn(),
+    }),
+  }),
+);
+
+jest.mock("@/hooks/useFetch", () => ({
+  __esModule: true,
+  useFetch: () => mockUseFetchResult,
+}));
 
 // Mock window history
 let pushSpy: jest.SpyInstance;
@@ -108,5 +133,24 @@ describe("ProgrammeView", () => {
     const user = userEvent.setup();
     await user.click(overviewTabButton);
     expect(pushSpy).toHaveBeenCalledWith(null, "", "overview");
+  });
+
+  describe("non-curriculum subjects", () => {
+    const nonCurriculumProps = {
+      ...defaultProps,
+      curriculumInfo: curriculumOverviewMVFixture({ nonCurriculum: true }),
+      curriculumCMSInfo: null,
+    };
+
+    it("does not render tabs", () => {
+      render(<ProgrammeView {...nonCurriculumProps} />);
+      expect(screen.queryByTestId("programme-tabs")).not.toBeInTheDocument();
+    });
+
+    it("calls notFound when the overview tab is active", () => {
+      expect(() =>
+        render(<ProgrammeView {...nonCurriculumProps} tabSlug="overview" />),
+      ).toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
+    });
   });
 });

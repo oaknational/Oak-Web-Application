@@ -1,11 +1,9 @@
+import { CardListingTags } from "@/components/TeacherComponents/CardListing/CardListing";
 import { Unit } from "@/utils/curriculum/types";
 
 export const getTagsForUnitCard = (unit: Unit) => {
-  const unitOptionsCount = unit.unit_options.length;
-  const tags = [];
-  if (unitOptionsCount) {
-    tags.push({ label: `${unitOptionsCount} unit options` });
-  }
+  const tags: CardListingTags = [];
+
   unit.subjectcategories?.forEach((category) => {
     tags.push({
       label: category.title,

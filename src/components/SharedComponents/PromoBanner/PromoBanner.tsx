@@ -3,11 +3,11 @@ import {
   OakFlex,
   OakBox,
   OakHandDrawnHR,
+  OakSecondaryLink,
   OakUiRoleToken,
 } from "@oaknational/oak-components";
 
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import { ResolveOakHrefProps } from "@/common-lib/urls";
+import { ResolveOakHrefProps, resolveOakHref } from "@/common-lib/urls";
 
 export type PromoBannerProps = {
   background: OakUiRoleToken;
@@ -21,6 +21,7 @@ const PromoBanner: FC<PromoBannerProps> = ({
   ctaText,
   ...linkProps
 }) => {
+  const href = resolveOakHref(linkProps);
   return (
     <OakBox role="banner">
       <OakFlex
@@ -33,7 +34,7 @@ const PromoBanner: FC<PromoBannerProps> = ({
         <OakFlex
           $alignItems={"center"}
           $flexWrap={"wrap"}
-          $gap={["spacing-4", "spacing-40"]}
+          $gap={["spacing-20", "spacing-40"]}
           $flexDirection={["column", "row"]}
           $justifyContent={"center"}
           $pv={"spacing-0"}
@@ -45,16 +46,16 @@ const PromoBanner: FC<PromoBannerProps> = ({
           >
             {message}
           </OakFlex>
-          <ButtonAsLink
-            $ml={[20, 0]}
-            {...linkProps}
-            label={ctaText}
-            variant={"buttonStyledAsLink"}
-            icon={"chevron-right"}
-            $iconPosition={"trailing"}
-            iconBackground="transparent"
-            $mh={0}
-          />
+          <OakBox $mh={"spacing-0"}>
+            <OakSecondaryLink
+              href={href}
+              title={ctaText}
+              iconName="chevron-right"
+              isTrailingIcon
+            >
+              {ctaText}
+            </OakSecondaryLink>
+          </OakBox>
         </OakFlex>
       </OakFlex>
       <OakBox $background={background} $height={"spacing-4"}>

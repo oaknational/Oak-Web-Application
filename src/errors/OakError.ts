@@ -38,7 +38,8 @@ export type ErrorCode =
   | "oak-components/invalid-icon-name"
   | "educator-api/failed-to-save-unit"
   | "educator-api/failed-to-get-saved-units"
-  | "educator-api/failed-to-unsave-unit";
+  | "educator-api/failed-to-unsave-unit"
+  | "graphql/timeout";
 
 type ErrorConfig = {
   // Message intended for developer's convenience. Human error messages should probably be handled in the view layer
@@ -206,6 +207,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "cms/missing-programme-page-data": {
     message: "Could not find programme page data for subject phase",
+    shouldNotify: true,
+  },
+  "graphql/timeout": {
+    message: "Graphql timeout error",
     shouldNotify: true,
   },
 };

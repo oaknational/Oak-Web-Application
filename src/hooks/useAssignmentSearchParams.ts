@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/compat/router";
 import { isClassroomAssignment as checkIsClassroom } from "@oaknational/google-classroom-addon/ui";
 
 export function useAssignmentSearchParams() {
@@ -22,12 +22,15 @@ export function useAssignmentSearchParams() {
   }, [searchParams]);
 
   useEffect(() => {
-    if (router.isReady) checkIsAssignment();
+    if (router && !router.isReady) return;
+
+    checkIsAssignment();
+
     return () => {
       setIsClassroomAssignment(null);
       setClassroomAssignmentChecked(false);
     };
-  }, [checkIsAssignment, router]);
+  }, [checkIsAssignment, router, router?.isReady]);
 
   return { isClassroomAssignment, classroomAssignmentChecked };
 }
