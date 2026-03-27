@@ -146,6 +146,15 @@ jest.mock("@oaknational/oak-components", () => {
 
 const render = renderWithProviders();
 
+beforeAll(() => {
+  jest.spyOn(console, "error").mockImplementation(() => {});
+  jest.spyOn(console, "warn").mockImplementation(() => {});
+});
+
+afterAll(() => {
+  jest.restoreAllMocks();
+});
+
 describe("PupilExperienceView", () => {
   beforeEach(() => {
     classroomAddOnOpenedMock.mockClear();
