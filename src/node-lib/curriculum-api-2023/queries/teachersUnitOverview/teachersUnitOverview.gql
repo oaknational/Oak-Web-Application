@@ -1,4 +1,4 @@
-query teachersUnitPage($programmeSlug: String!, $unitSlug: String!) {
+query teachersUnitOverview($programmeSlug: String!, $unitSlug: String!) {
   lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
     where: {
       unit_slug: { _eq: $unitSlug }

@@ -1,24 +1,24 @@
 import {
-  unitPageDataSchema,
+  unitOverviewDataSchema,
   modifiedLessonsResponseSchemaArray,
   unitSequenceResponseSchema,
   PackagedUnitData,
-} from "./teachersUnitPage.schema";
+} from "./teachersUnitOverview.schema";
 import { getPackagedUnit, getTransformedLessons } from "./helpers";
 
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import OakError from "@/errors/OakError";
-import { TeachersUnitPageQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
+import { TeachersUnitOverviewQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 
-const teachersUnitPageQuery =
+const teachersUnitOverviewQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string; unitSlug: string }) => {
-    const { lessons, unitSequence } = await sdk.teachersUnitPage(args);
+    const { lessons, unitSequence } = await sdk.teachersUnitOverview(args);
 
     const parsedUnitSequence = unitSequenceResponseSchema.parse(unitSequence);
 
     const modifiedLessons = applyGenericOverridesAndExceptions<
-      TeachersUnitPageQuery["lessons"][number]
+      TeachersUnitOverviewQuery["lessons"][number]
     >({
       journey: "teacher",
       queryName: "lessonListingQuery", // TODO: update query name, dependent on oak-curriculum-schema update
@@ -62,7 +62,7 @@ const teachersUnitPageQuery =
       containsLoginRequiredLessons,
       parsedUnitSequence,
     );
-    return unitPageDataSchema.parse(packagedUnit);
+    return unitOverviewDataSchema.parse(packagedUnit);
   };
 
-export default teachersUnitPageQuery;
+export default teachersUnitOverviewQuery;

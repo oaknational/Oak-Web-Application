@@ -5,7 +5,7 @@ import {
   getPackagedUnit,
   getTransformedLessons,
 } from "./helpers";
-import { unitSequenceFixture } from "./teachersUnitPage.query.test";
+import { unitSequenceFixture } from "./teachersUnitOverview.query.test";
 
 const mockPackagedUnitData = {
   programmeFields: syntheticUnitvariantLessonsByKsFixture().programme_fields,
@@ -75,7 +75,7 @@ describe("getTransformedUnit", () => {
         slug: "unit-2",
         title: "Unit 2",
       },
-      prevUnit: undefined,
+      prevUnit: null,
     });
   });
   it("getTransformedUnit returns the correct data for optionality units", () => {
@@ -142,7 +142,7 @@ describe("getTransformedUnit", () => {
         slug: "unit-2",
         title: "Unit 2",
       },
-      prevUnit: undefined,
+      prevUnit: null,
     });
   });
 });

@@ -8,9 +8,9 @@ import {
   modifiedLessonsResponseSchema,
   modifiedLessonsResponseSchemaArray,
   PackagedUnitData,
-  TeachersUnitPageData,
+  TeachersUnitOverviewData,
   UnitSequence,
-} from "./teachersUnitPage.schema";
+} from "./teachersUnitOverview.schema";
 
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import OakError from "@/errors/OakError";
@@ -116,7 +116,7 @@ export const getPackagedUnit = (
   containsGeorestrictedLessons: boolean,
   containsLoginRequiredLessons: boolean,
   unitSequenceData: UnitSequence,
-): TeachersUnitPageData => {
+): TeachersUnitOverviewData => {
   const {
     programmeFields,
     unitSlug,

@@ -14,7 +14,7 @@ const neighbourUnitSchema = z
   .object({ title: z.string(), slug: z.string() })
   .nullable();
 
-export const unitPageDataSchema = z.object({
+export const unitOverviewDataSchema = z.object({
   programmeSlug: z.string(),
   unitSlug: z.string(),
   unitvariantId: z.number(),
@@ -42,7 +42,7 @@ export const unitPageDataSchema = z.object({
   prevUnit: neighbourUnitSchema,
 });
 
-export type TeachersUnitPageData = z.infer<typeof unitPageDataSchema>;
+export type TeachersUnitOverviewData = z.infer<typeof unitOverviewDataSchema>;
 
 export const modifiedLessonsResponseSchema =
   syntheticUnitvariantLessonsByKsSchema.omit({ is_legacy: true });

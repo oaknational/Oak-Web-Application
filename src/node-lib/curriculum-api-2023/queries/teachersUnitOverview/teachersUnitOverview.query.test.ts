@@ -5,8 +5,11 @@ import {
 
 import sdk from "../../sdk";
 
-import teachersUnitPageQuery from "./teachersUnitPage.query";
-import { unitPageDataSchema, UnitSequence } from "./teachersUnitPage.schema";
+import teachersUnitOverviewQuery from "./teachersUnitOverview.query";
+import {
+  unitOverviewDataSchema,
+  UnitSequence,
+} from "./teachersUnitOverview.schema";
 
 const unitPageFixture = syntheticUnitvariantLessonsByKsFixture({
   overrides: {
@@ -96,12 +99,12 @@ export const unitSequenceFixture: UnitSequence = [
   },
 ];
 
-describe("teachersUnitPage", () => {
+describe("teachersUnitOverview", () => {
   it("throws a not found error if no lessons are found", async () => {
     await expect(async () => {
-      await teachersUnitPageQuery({
+      await teachersUnitOverviewQuery({
         ...sdk,
-        teachersUnitPage: jest.fn(() =>
+        teachersUnitOverview: jest.fn(() =>
           Promise.resolve({
             lessons: [],
             unitSequence: unitSequenceFixture,
@@ -114,9 +117,9 @@ describe("teachersUnitPage", () => {
     }).rejects.toThrow(`Resource not found`);
   });
   it("returns data in the correct shape", async () => {
-    const res = await teachersUnitPageQuery({
+    const res = await teachersUnitOverviewQuery({
       ...sdk,
-      teachersUnitPage: jest.fn(() =>
+      teachersUnitOverview: jest.fn(() =>
         Promise.resolve({
           lessons: [syntheticUnitvariantLessonsByKsFixture()],
           unitSequence: unitSequenceFixture,
@@ -127,7 +130,7 @@ describe("teachersUnitPage", () => {
       unitSlug: "unit-slug",
     });
 
-    expect(unitPageDataSchema.parse(res)).toEqual({
+    expect(unitOverviewDataSchema.parse(res)).toEqual({
       programmeSlug: "programme-slug",
       keyStageSlug: "ks1",
       keyStageTitle: "Key Stage 1",
@@ -173,13 +176,13 @@ describe("teachersUnitPage", () => {
         slug: "unit-2",
         title: "Unit 2",
       },
-      prevUnit: undefined,
+      prevUnit: null,
     });
   });
   it("returns lessons in the correct order", async () => {
-    const res = await teachersUnitPageQuery({
+    const res = await teachersUnitOverviewQuery({
       ...sdk,
-      teachersUnitPage: jest.fn(() =>
+      teachersUnitOverview: jest.fn(() =>
         Promise.resolve({
           lessons: [unitPageFixture2, unitPageFixture],
           unitSequence: unitSequenceFixture,
@@ -195,11 +198,11 @@ describe("teachersUnitPage", () => {
   });
   it("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
-      await teachersUnitPageQuery({
+      await teachersUnitOverviewQuery({
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        teachersUnitPage: jest.fn(() =>
+        teachersUnitOverview: jest.fn(() =>
           Promise.resolve({
             lessons: [
               {
