@@ -76,10 +76,21 @@ const CurriculumPreviousDownloadsPage = ({
   };
 
   const downloads: CurriculumDownload[] = [];
+  const links: React.ComponentProps<typeof TabularNav>["links"] = [];
   const tabPage = "curriculum-previous-downloads" as const;
   const LEGACY_DOWNLOADS_API_URL = getBrowserConfig("vercelApiUrl");
 
   for (const category of Object.keys(categoryDocuments) as DownloadCategory[]) {
+    links.push({
+      label: category,
+      page: tabPage,
+      isCurrent: activeTab == category,
+      onClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        updateTab(category);
+      },
+    });
+
     if (category == activeTab) {
       categoryDocuments[category]?.forEach((document) => {
         downloads.push({
@@ -90,20 +101,6 @@ const CurriculumPreviousDownloadsPage = ({
       });
     }
   }
-  const links = (Object.keys(categoryDocuments) as DownloadCategory[]).map(
-    (category) => {
-      return {
-        label: category,
-        page: tabPage,
-        isCurrent: activeTab == category,
-        scroll: false,
-        onClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
-          event.preventDefault();
-          updateTab(category);
-        },
-      };
-    },
-  );
 
   useEffect(() => {
     const keystage = router.query.keystage as string;
