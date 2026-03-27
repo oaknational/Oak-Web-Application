@@ -103,6 +103,7 @@ const verifySession =
     session: string | undefined;
     token: string | undefined;
     userProfilePicUrl?: string;
+    loginHint?: string;
   }> => {
     try {
       const headers = await getOakGCAuthHeaders(isPupil);
@@ -112,6 +113,7 @@ const verifySession =
         session: string | undefined;
         token: string | undefined;
         userProfilePicUrl?: string;
+        loginHint?: string;
       }>("/api/classroom/auth/verify", "GET", undefined, headers);
 
       return {
@@ -119,6 +121,7 @@ const verifySession =
         session: data.session,
         token: data.token,
         userProfilePicUrl: data.userProfilePicUrl,
+        loginHint: data.loginHint,
       };
     } catch (error) {
       console.error("Session verification error:", error);

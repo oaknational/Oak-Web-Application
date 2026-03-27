@@ -1,0 +1,180 @@
+import { StaticLesson } from "@oaknational/oak-curriculum-schema";
+import z from "zod";
+
+import { getCorrectYear } from "../../helpers/getCorrectYear";
+import { LessonListSchema, LessonListItem, Actions } from "../../shared.schema";
+
+import {
+  modifiedLessonsResponseSchema,
+  modifiedLessonsResponseSchemaArray,
+  PackagedUnitData,
+  TeachersUnitOverviewData,
+  UnitSequence,
+} from "./teachersUnitOverview.schema";
+
+import keysToCamelCase from "@/utils/snakeCaseConverter";
+import OakError from "@/errors/OakError";
+import { getIntersection } from "@/utils/getIntersection";
+
+export const getTransformedLessons = (
+  lessons: z.infer<typeof modifiedLessonsResponseSchemaArray>,
+): LessonListSchema => {
+  return (lessons[0]?.static_lesson_list ?? [])
+    .toSorted((a: StaticLesson, b: StaticLesson) => a.order - b.order)
+    .map((staticLesson: StaticLesson) => {
+      const publishedLesson = lessons.find(
+        (lesson) => lesson.lesson_slug === staticLesson.slug,
+      );
+
+      if (publishedLesson) {
+        const lesson = modifiedLessonsResponseSchema.parse(publishedLesson);
+
+        const transformedLesson = {
+          lessonSlug: lesson.lesson_slug,
+          lessonTitle: lesson.lesson_data.title,
+          description:
+            lesson.lesson_data.description ||
+            lesson.lesson_data.pupil_lesson_outcome,
+          pupilLessonOutcome: lesson.lesson_data.pupil_lesson_outcome,
+          expired: Boolean(lesson.lesson_data.deprecated_fields?.expired),
+          quizCount:
+            (lesson.lesson_data.quiz_id_starter ? 1 : 0) +
+            (lesson.lesson_data.quiz_id_exit ? 1 : 0),
+          videoCount: lesson.lesson_data.video_id ? 1 : 0,
+          presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
+          worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
+          orderInUnit: lesson.order_in_unit,
+          actions: (keysToCamelCase(lesson.actions) || null) as Actions,
+          isUnpublished: false,
+          lessonReleaseDate: lesson.lesson_data.lesson_release_date,
+          geoRestricted: lesson.features?.agf__geo_restricted ?? false,
+          loginRequired: lesson.features?.agf__login_required ?? false,
+        };
+        return transformedLesson;
+      } else {
+        return {
+          lessonSlug: staticLesson.slug,
+          lessonTitle: staticLesson.title,
+          orderInUnit: staticLesson.order,
+          isUnpublished: true,
+          lessonReleaseDate: null,
+          expired: false,
+        };
+      }
+    });
+};
+
+export const getNeighbourUnits = ({
+  unitSequenceData,
+  nullUnitvariantId,
+}: {
+  unitSequenceData: UnitSequence;
+  nullUnitvariantId: number;
+}) => {
+  const currentUnit = unitSequenceData.find(
+    (u) => u.nullUnitvariantId === nullUnitvariantId,
+  );
+
+  if (!currentUnit) {
+    throw new OakError({ code: "curriculum-api/not-found" });
+  }
+
+  const sortedUniqueUnits = unitSequenceData
+    .toSorted((a, b) => {
+      // Sort units first by year and then by unit order
+      // because unitOrder is unique only within year
+      return a.yearOrder - b.yearOrder || a.unitOrder - b.unitOrder;
+    })
+    .filter((unit, i, a) => {
+      const uv = a.find((u) => u.nullUnitvariantId === unit.nullUnitvariantId);
+      return a.indexOf(uv!) === i;
+    });
+
+  const currentUnitIndex = sortedUniqueUnits.indexOf(currentUnit);
+  const nextUnit = sortedUniqueUnits[currentUnitIndex + 1];
+  const prevUnit = sortedUniqueUnits[currentUnitIndex - 1];
+
+  return {
+    nextUnit: nextUnit
+      ? {
+          slug: nextUnit.unitSlug,
+          title: nextUnit.optionalityTitle ?? nextUnit.unitTitle,
+        }
+      : null,
+    prevUnit: prevUnit
+      ? {
+          slug: prevUnit.unitSlug,
+          title: prevUnit.optionalityTitle ?? prevUnit.unitTitle,
+        }
+      : null,
+  };
+};
+
+export const getPackagedUnit = (
+  packagedUnitData: PackagedUnitData,
+  unitLessons: LessonListSchema,
+  containsGeorestrictedLessons: boolean,
+  containsLoginRequiredLessons: boolean,
+  unitSequenceData: UnitSequence,
+): TeachersUnitOverviewData => {
+  const {
+    programmeFields,
+    unitSlug,
+    unitvariantId,
+    unitTitle,
+    programmeSlug,
+    programmeSlugByYear,
+    nullUnitvariantId,
+  } = packagedUnitData;
+
+  const modifiedProgrammeFields = getCorrectYear({
+    programmeSlugByYear,
+    programmeFields,
+  });
+
+  const publishedLessonActions = unitLessons
+    .filter((lesson) => !lesson.isUnpublished)
+    .map((lesson) => lesson.actions);
+
+  const combinedActions = getIntersection<LessonListItem["actions"]>(
+    publishedLessonActions,
+  ) as Actions;
+
+  // Set `isPePractical` to true if any lesson is practical
+  combinedActions.isPePractical = publishedLessonActions.some(
+    (actions) => actions?.isPePractical === true,
+  );
+
+  const { nextUnit, prevUnit } = getNeighbourUnits({
+    unitSequenceData,
+    nullUnitvariantId,
+  });
+
+  return {
+    programmeSlug,
+    keyStageSlug: modifiedProgrammeFields.keystage_slug,
+    keyStageTitle: modifiedProgrammeFields.keystage_description,
+    subjectSlug: modifiedProgrammeFields.subject_slug,
+    subjectTitle: modifiedProgrammeFields.subject,
+    parentSubject: modifiedProgrammeFields.subject_parent ?? null,
+    unitSlug,
+    unitvariantId,
+    unitTitle,
+    tierSlug: modifiedProgrammeFields.tier_slug,
+    tierTitle: modifiedProgrammeFields.tier_description,
+    examBoardSlug: modifiedProgrammeFields.examboard_slug,
+    examBoardTitle: modifiedProgrammeFields.examboard,
+    yearSlug: modifiedProgrammeFields.year_slug,
+    yearTitle: modifiedProgrammeFields.year_description,
+    year: modifiedProgrammeFields.year,
+    lessons: unitLessons,
+    pathwaySlug: modifiedProgrammeFields.pathway_slug,
+    pathwayTitle: modifiedProgrammeFields.pathway,
+    pathwayDisplayOrder: modifiedProgrammeFields.pathway_display_order,
+    actions: combinedActions,
+    containsGeorestrictedLessons,
+    containsLoginRequiredLessons,
+    nextUnit,
+    prevUnit,
+  };
+};
