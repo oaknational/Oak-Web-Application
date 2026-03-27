@@ -461,7 +461,7 @@ describe("getProgrammeToggles", () => {
         programme_slug: "maths-secondary-ks4-foundation",
         programme_fields: programmeFieldsFixture({
           overrides: {
-            tier: "foundation",
+            tier_slug: "foundation",
             tier_description: "Foundation",
             keystage_slug: "ks4",
             subject_slug: "maths",
@@ -472,7 +472,7 @@ describe("getProgrammeToggles", () => {
         programme_slug: "maths-secondary-ks4-higher",
         programme_fields: programmeFieldsFixture({
           overrides: {
-            tier: "higher",
+            tier_slug: "higher",
             tier_description: "Higher",
             keystage_slug: "ks4",
             subject_slug: "maths",
@@ -516,6 +516,138 @@ describe("getProgrammeToggles", () => {
             keystage_slug: "ks4",
             subject_slug: "combined-science",
             examboard_slug: "aqa",
+          },
+        }),
+      },
+    ];
+    const result = getProgrammeToggles(
+      "combined-science-secondary-ks4-aqa",
+      allProgrammes,
+    );
+    expect(result.subjectOptionToggles).toEqual([
+      {
+        title: "Biology",
+        programmeSlug: "biology-secondary-ks4-aqa",
+      },
+      {
+        title: "Combined science",
+        programmeSlug: "combined-science-secondary-ks4-aqa",
+      },
+    ]);
+  });
+
+  it("returns both subject and tier toggles", () => {
+    const allProgrammes = [
+      {
+        programme_slug: "biology-secondary-ks4-higher-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Biology",
+            keystage_slug: "ks4",
+            subject_slug: "biology",
+            examboard_slug: "aqa",
+            tier_slug: "higher",
+            tier_description: "Higher",
+          },
+        }),
+      },
+      {
+        programme_slug: "combined-science-secondary-ks4-higher-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Combined science",
+            keystage_slug: "ks4",
+            subject_slug: "combined-science",
+            examboard_slug: "aqa",
+            tier_slug: "higher",
+            tier_description: "Higher",
+          },
+        }),
+      },
+      {
+        programme_slug: "biology-secondary-ks4-foundation-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Biology",
+            keystage_slug: "ks4",
+            subject_slug: "biology",
+            examboard_slug: "aqa",
+            tier_slug: "foundation",
+            tier_description: "Foundation",
+          },
+        }),
+      },
+      {
+        programme_slug: "combined-science-secondary-ks4-foundation-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Combined science",
+            keystage_slug: "ks4",
+            subject_slug: "combined-science",
+            examboard_slug: "aqa",
+            tier_slug: "foundation",
+            tier_description: "Foundation",
+          },
+        }),
+      },
+    ];
+    const result = getProgrammeToggles(
+      "combined-science-secondary-ks4-higher-aqa",
+      allProgrammes,
+    );
+    expect(result.subjectOptionToggles).toEqual([
+      {
+        title: "Biology",
+        programmeSlug: "biology-secondary-ks4-higher-aqa",
+      },
+      {
+        title: "Combined science",
+        programmeSlug: "combined-science-secondary-ks4-higher-aqa",
+      },
+    ]);
+    expect(result.tierOptionToggles).toEqual([
+      {
+        title: "Higher",
+        programmeSlug: "combined-science-secondary-ks4-higher-aqa",
+      },
+      {
+        title: "Foundation",
+        programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
+      },
+    ]);
+  });
+  it("does not include options from other exam boards", () => {
+    const allProgrammes = [
+      {
+        programme_slug: "biology-secondary-ks4-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Biology",
+            keystage_slug: "ks4",
+            subject_slug: "biology",
+            examboard_slug: "aqa",
+          },
+        }),
+      },
+      {
+        programme_slug: "combined-science-secondary-ks4-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Combined science",
+            keystage_slug: "ks4",
+            subject_slug: "combined-science",
+            examboard_slug: "aqa",
+          },
+        }),
+      },
+      {
+        programme_slug: "physics-secondary-ks4-edexcel",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Physics",
+            keystage_slug: "ks4",
+            subject_slug: "physics",
+            examboard_slug: "edexcel",
           },
         }),
       },
