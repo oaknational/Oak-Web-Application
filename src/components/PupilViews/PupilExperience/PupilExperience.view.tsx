@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { createGlobalStyle } from "styled-components";
 import {
   OakBox,
+  OakInlineBanner,
   OakPupilJourneyContentGuidance,
 } from "@oaknational/oak-components";
 
@@ -271,7 +272,55 @@ const PupilExperienceLayout = ({
   const [initialSectionResults, setInitialSectionResults] =
     useState<LessonSectionResults>();
   const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
+  const [isReadOnlyState, setIsReadOnlyState] = useState(false);
 
+  const fetchGoogleClassroomSubmissionState = async () => {
+    const courseId = searchParams?.get("courseId");
+    const itemId = searchParams?.get("itemId");
+    const attachmentId = searchParams?.get("attachmentId");
+
+    if (!courseId || !itemId || !attachmentId) return;
+
+    try {
+      const result: AddOnContextResponse | null =
+        await googleClassroomApi.getAddOnContext({
+          courseId,
+          itemId,
+          attachmentId,
+        });
+
+      const submissionId = result?.studentContext?.submissionId;
+      const pupilLoginHint = result?.pupilLoginHint;
+      if (submissionId && pupilLoginHint) {
+        classroomContextRef.current = {
+          submissionId,
+          pupilLoginHint,
+          attachmentId,
+          courseId,
+          itemId,
+        };
+        const submissionState = await googleClassroomApi.getPostSubmissionState(
+          {
+            courseId,
+            itemId,
+            attachmentId,
+            submissionId,
+          },
+        );
+        if (!submissionState) return;
+        if (
+          submissionState.submissionState === "RETURNED" ||
+          submissionState.submissionState === "TURNED_IN"
+        ) {
+          setIsReadOnlyState(true);
+        } else {
+          setIsReadOnlyState(false);
+        }
+      }
+    } catch {
+      // Failed to get context - progress sync will be disabled
+    }
+  };
   const fetchGoogleClassroomContext = async () => {
     const courseId = searchParams?.get("courseId");
     const itemId = searchParams?.get("itemId");
@@ -321,7 +370,17 @@ const PupilExperienceLayout = ({
 
   useEffect(() => {
     if (!isGoogleClassroomAssignment || classroomContextRef.current) return;
+    fetchGoogleClassroomSubmissionState();
     fetchGoogleClassroomContext();
+
+    const handleWindowFocus = async () => {
+      await fetchGoogleClassroomSubmissionState();
+    };
+
+    window.addEventListener("focus", handleWindowFocus);
+    return () => {
+      window.removeEventListener("focus", handleWindowFocus);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isGoogleClassroomAssignment, searchParams]);
 
@@ -430,13 +489,14 @@ const PupilExperienceLayout = ({
         <LessonEngineProvider
           key={lessonEngineInstanceKey}
           initialLessonReviewSections={availableSections}
-          initialSection={initialSection}
+          initialSection={isReadOnlyState ? "review" : initialSection}
           initialSectionResults={initialSectionResults}
           onNext={isGoogleClassroomAssignment ? handleOnNext : undefined}
           onSectionResultUpdate={
             isGoogleClassroomAssignment ? handleOnNext : undefined
           }
           isHydratingInitialProgress={isFetchingClassroomContext}
+          isReadOnly={isReadOnlyState}
         >
           {hasAgeRestriction ? (
             <OakPupilJourneyContentGuidance
@@ -481,16 +541,22 @@ const PupilExperienceLayout = ({
               {browseData.lessonData.deprecatedFields?.expired ? (
                 <PupilExpiredView lessonTitle={browseData.lessonData.title} />
               ) : (
-                <PupilPageContent
-                  browseData={browseData}
-                  lessonContent={lessonContent}
-                  hasWorksheet={hasWorksheet}
-                  worksheetInfo={worksheetInfo}
-                  backUrl={backUrl}
-                  pageType={pageType}
-                  hasAdditionalFiles={hasAdditionalFiles}
-                  additionalFiles={additionalFiles}
-                />
+                <>
+                  <OakInlineBanner
+                    message="You have turned-in this assignment. You can review the lesson and see your previous answers."
+                    isOpen={isReadOnlyState}
+                  />
+                  <PupilPageContent
+                    browseData={browseData}
+                    lessonContent={lessonContent}
+                    hasWorksheet={hasWorksheet}
+                    worksheetInfo={worksheetInfo}
+                    backUrl={backUrl}
+                    pageType={pageType}
+                    hasAdditionalFiles={hasAdditionalFiles}
+                    additionalFiles={additionalFiles}
+                  />
+                </>
               )}
             </OakBox>
           </OakBox>

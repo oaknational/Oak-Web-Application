@@ -61,6 +61,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     sectionResults,
     isLessonComplete,
     lessonReviewSections,
+    isReadOnly,
   } = useLessonEngineContext();
   const { track } = usePupilAnalytics();
   const getSectionLinkProps = useGetSectionLinkProps();
@@ -240,13 +241,15 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
         $ph={["spacing-16", "spacing-24", "spacing-0"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <OakTertiaryButton
-            iconName="arrow-left"
-            element="a"
-            {...getSectionLinkProps("overview", updateCurrentSection)}
-          >
-            Lesson overview
-          </OakTertiaryButton>
+          {!isReadOnly && (
+            <OakTertiaryButton
+              iconName="arrow-left"
+              element="a"
+              {...getSectionLinkProps("overview", updateCurrentSection)}
+            >
+              Lesson overview
+            </OakTertiaryButton>
+          )}
 
           <OakFlex $mv="spacing-56">
             <OakFlex

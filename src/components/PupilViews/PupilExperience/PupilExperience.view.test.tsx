@@ -80,6 +80,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
   __esModule: true,
   default: {
+    getAddOnContext: jest.fn(),
+    getPostSubmissionState: jest.fn(),
     getPupilLessonProgress: jest.fn(),
     submitPupilProgress: jest.fn(),
   },
