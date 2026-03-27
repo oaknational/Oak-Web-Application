@@ -3,16 +3,10 @@ import {
   type UpsertPupilLessonProgressArgs,
 } from "@oaknational/google-classroom-addon/types";
 
+import type { ClassroomProgressContext } from "./classroomAssignmentContext";
+
 import type { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
 import type { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
-
-export type ClassroomContext = {
-  submissionId: string;
-  pupilLoginHint: string;
-  attachmentId: string;
-  courseId: string;
-  itemId: string;
-};
 
 type QuizSectionResult = NonNullable<
   LessonSectionResults["starter-quiz"] | LessonSectionResults["exit-quiz"]
@@ -52,7 +46,7 @@ const mapQuizProgress = (quizResult: QuizSectionResult | undefined) => {
 };
 
 export function mapToSubmitPupilProgress(
-  context: ClassroomContext,
+  context: ClassroomProgressContext,
   sectionResults: LessonSectionResults,
 ): UpsertPupilLessonProgressArgs {
   const starterQuiz = mapQuizProgress(sectionResults["starter-quiz"]);

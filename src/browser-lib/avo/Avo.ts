@@ -974,8 +974,8 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "8wMS8LLDIY8MhcIaAOji",
-          "br": "master",
+          "ac": "0gPU6YTt6zaSlvMF47bz",
+          "br": "hOSJE-zt2GEJO-28oMDjD",
           "en": env,
           "ev": eventId,
           "ha": hash,
@@ -1001,8 +1001,8 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "8wMS8LLDIY8MhcIaAOji",
-          "br": "master",
+          "ac": "0gPU6YTt6zaSlvMF47bz",
+          "br": "hOSJE-zt2GEJO-28oMDjD",
           "en": env,
           "ty": type,
           "sc": "5PhajbVijwhXVKIJtGMT",
@@ -1774,11 +1774,11 @@ export function setAvoLogger(avoLogger: AvoLogger | null) {
  * 
  * When to trigger this event:
  * 1. User has completed the newsletter fields and pressed the Sign Up button
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sLqKBjU-Wt/trigger/_MC_apwfp
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/sLqKBjU-Wt/trigger/_MC_apwfp
  * 2. Clicking Sign-in with Google button after checking the receive sign ups box.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sLqKBjU-Wt/trigger/tZTijzcL6sdSe6YVaWUUJ
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/sLqKBjU-Wt/trigger/tZTijzcL6sdSe6YVaWUUJ
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sLqKBjU-Wt}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/sLqKBjU-Wt}
  */
 export function newsletterSignUpCompleted() {
   // @ts-ignore
@@ -1820,14 +1820,14 @@ export interface ClassroomSelectedProperties {
  * 
  * When to trigger this event:
  * 1. Classroom app selected from homepage card
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/esgLdNSBsj/trigger/d46nqqMBY
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/esgLdNSBsj/trigger/d46nqqMBY
  * 2. Classroom app selected from menu
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/esgLdNSBsj/trigger/M_vqoTLFQ
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/esgLdNSBsj/trigger/M_vqoTLFQ
  * 
  * @param properties the properties associated with this event
  * @param properties.navigatedFrom: The location of the link used to navigate to the current page
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/esgLdNSBsj}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/esgLdNSBsj}
  */
 export function classroomSelected(properties: ClassroomSelectedProperties) {
   // @ts-ignore
@@ -1921,7 +1921,7 @@ export interface VideoStartedProperties {
  * @param properties.cloudinaryUrl: Url for the asset in cloudinary
  * @param properties.muxAssetId: Unique identifier of the asset in mux
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/G0I28K0B2f}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/G0I28K0B2f}
  */
 export function videoStarted(properties: VideoStartedProperties) {
   // @ts-ignore
@@ -2078,7 +2078,7 @@ export interface VideoPausedProperties {
  * @param properties.cloudinaryUrl: Url for the asset in cloudinary
  * @param properties.muxAssetId: Unique identifier of the asset in mux
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/z91WauKeVB}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/z91WauKeVB}
  */
 export function videoPaused(properties: VideoPausedProperties) {
   // @ts-ignore
@@ -2235,7 +2235,7 @@ export interface VideoPlayedProperties {
  * @param properties.cloudinaryUrl: Url for the asset in cloudinary
  * @param properties.muxAssetId: Unique identifier of the asset in mux
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/r4DFADUHFh}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/r4DFADUHFh}
  */
 export function videoPlayed(properties: VideoPlayedProperties) {
   // @ts-ignore
@@ -2392,7 +2392,7 @@ export interface VideoFinishedProperties {
  * @param properties.cloudinaryUrl: Url for the asset in cloudinary
  * @param properties.muxAssetId: Unique identifier of the asset in mux
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/NP9klWkaki}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/NP9klWkaki}
  */
 export function videoFinished(properties: VideoFinishedProperties) {
   // @ts-ignore
@@ -2523,7 +2523,7 @@ export interface LessonResourcesDownloadedProperties {
  * 
  * When to trigger this event:
  * 1. The download .zip button is clicked on the lesson download page and submission passes validation checks
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/k9ZQJai7ws/trigger/sAqordxVG
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/k9ZQJai7ws/trigger/sAqordxVG
  * 
  * @param properties the properties associated with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -2555,7 +2555,7 @@ export interface LessonResourcesDownloadedProperties {
  * @param properties.onwardContent: A list of slugs representing content (e.g. lessons) that are placed to allow a user journey to 'continue' onward.
  * @param properties.totalDownloadableResources: The total number of resources that are available to be downloaded
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/k9ZQJai7ws}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/k9ZQJai7ws}
  */
 export function lessonResourcesDownloaded(properties: LessonResourcesDownloadedProperties) {
   // @ts-ignore
@@ -2667,7 +2667,7 @@ export interface UnitAccessedProperties {
  * 
  * When to trigger this event:
  * 1. A unit card is selected from the unit listing page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Me4ouIgPxh/trigger/t8lbfIsGe
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/Me4ouIgPxh/trigger/t8lbfIsGe
  * 
  * @param properties the properties associated with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -2690,7 +2690,7 @@ export interface UnitAccessedProperties {
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Me4ouIgPxh}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/Me4ouIgPxh}
  */
 export function unitAccessed(properties: UnitAccessedProperties) {
   // @ts-ignore
@@ -2772,19 +2772,19 @@ export interface UnitSequenceRefinedProperties {
  * 
  * When to trigger this event:
  * 1. An example of year group being selected from within the curriculum visualiser tool
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6DwKZEuYUk/trigger/Y36tMwp1l
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/6DwKZEuYUk/trigger/Y36tMwp1l
  * 2. User selects a learning tier
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6DwKZEuYUk/trigger/wNnLPxDLB
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/6DwKZEuYUk/trigger/wNnLPxDLB
  * 3. User selects a subject category
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6DwKZEuYUk/trigger/6ah3h300p
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/6DwKZEuYUk/trigger/6ah3h300p
  * 4. Another example of year group being selected within the curriculum visualiser tool (new layout).
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6DwKZEuYUk/trigger/83b58SsoMa00aIvxdXAc8
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/6DwKZEuYUk/trigger/83b58SsoMa00aIvxdXAc8
  * 5. New way of user selecting subject category - selecting one of the buttons on the left menu
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6DwKZEuYUk/trigger/YJGa0DxCzKH6WnBCKuAHX
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/6DwKZEuYUk/trigger/YJGa0DxCzKH6WnBCKuAHX
  * 6. Another example of how the user can select a Learning Tier - on button click
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6DwKZEuYUk/trigger/JVy21DEdSwv_cJGcwWhht
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/6DwKZEuYUk/trigger/JVy21DEdSwv_cJGcwWhht
  * 7. User selects one of the Exam subjects - button click
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6DwKZEuYUk/trigger/xbLsT77YcTEO3WXlZDRvM
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/6DwKZEuYUk/trigger/xbLsT77YcTEO3WXlZDRvM
  * 
  * @param properties the properties associated with this event
  * @param properties.yearGroupName: Name of the current year group.
@@ -2808,7 +2808,7 @@ export interface UnitSequenceRefinedProperties {
  * @param properties.subjectCategory: no description
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6DwKZEuYUk}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/6DwKZEuYUk}
  */
 export function unitSequenceRefined(properties: UnitSequenceRefinedProperties) {
   // @ts-ignore
@@ -2891,7 +2891,7 @@ export interface WebinarPageViewedProperties {
  * @param properties.webinarCategory: Category of the webinar
  * @param properties.videoAvailable: Watchable video is available on page (eg. not 'upcoming' or 'processing' status
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/-9FHudlATb}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/-9FHudlATb}
  */
 export function webinarPageViewed(properties: WebinarPageViewedProperties) {
   // @ts-ignore
@@ -2942,7 +2942,7 @@ export interface PageviewProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pageName: The main pages of a user journey eg. subject listing, unit listing, etc
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/iYVEEwNT0q}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/iYVEEwNT0q}
  */
 export function pageview(properties: PageviewProperties) {
   // @ts-ignore
@@ -3008,9 +3008,9 @@ export interface LessonResourceDownloadStartedProperties {
  * 
  * When to trigger this event:
  * 1. Download all resources button is clicked on the lesson overview page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/0n50tfMg2N/trigger/w2ACuk2F3
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/0n50tfMg2N/trigger/w2ACuk2F3
  * 2. An individual resource download button on an expandable container is clicked (eg. slide deck, starter quiz, worksheet, etc)
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/0n50tfMg2N/trigger/5PBz6j66G
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/0n50tfMg2N/trigger/5PBz6j66G
  * 
  * @param properties the properties associated with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -3036,7 +3036,7 @@ export interface LessonResourceDownloadStartedProperties {
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
  * @param properties.downloadResourceButtonName: The name of the button to download the resource (all, or individual resources)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/0n50tfMg2N}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/0n50tfMg2N}
  */
 export function lessonResourceDownloadStarted(properties: LessonResourceDownloadStartedProperties) {
   // @ts-ignore
@@ -3126,13 +3126,13 @@ export interface SearchAccessedProperties {
  * 1. A user initiates a search from the homepage by 
 entering the search term and clicking "Go"
 entering the search term and pressing ENTER on the keyboard
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_dSzYI2PB/trigger/GRZ05_zLD
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/I_dSzYI2PB/trigger/GRZ05_zLD
  * 2. A user initiates a search from the search page (eg. they refine their search term or try looking for something else) by entering the search term and 
 clicking "Go", or 
 pressing ENTER 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_dSzYI2PB/trigger/SG8O6HFoP
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/I_dSzYI2PB/trigger/SG8O6HFoP
  * 3. A search is initiated from the homepage by clicking on one of the search suggestion option beneath the search box
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_dSzYI2PB/trigger/5gULgsDoY
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/I_dSzYI2PB/trigger/5gULgsDoY
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -3147,7 +3147,7 @@ pressing ENTER
  * @param properties.searchResultCount: total number of search results returned
  * @param properties.searchResultsLoadTime: Amount of time taken to fetch and load the search results
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_dSzYI2PB}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/I_dSzYI2PB}
  */
 export function searchAccessed(properties: SearchAccessedProperties) {
   // @ts-ignore
@@ -3213,7 +3213,7 @@ export interface SearchResultOpenedProperties {
  * 
  * When to trigger this event:
  * 1. A search result card (could be unit or lesson) is clicked
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_TD-gtSgIj/trigger/ZezXTZ0ri
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/_TD-gtSgIj/trigger/ZezXTZ0ri
  * 
  * @param properties the properties associated with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -3235,7 +3235,7 @@ export interface SearchResultOpenedProperties {
  * @param properties.searchResultType: The type of result returned (eg. unit or lesson)
  * @param properties.context: Relates to the application or view from which a action was performed
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_TD-gtSgIj}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/_TD-gtSgIj}
  */
 export function searchResultOpened(properties: SearchResultOpenedProperties) {
   // @ts-ignore
@@ -3310,16 +3310,16 @@ export interface SearchJourneyInitiatedProperties {
  * 
  * When to trigger this event:
  * 1. A user types in the search bar on the homepage (first letter is typed).
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/rYxJBK8Kpm/trigger/aeEheVqLW
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/rYxJBK8Kpm/trigger/aeEheVqLW
  * 2. A user types in the search bar on the search page (first letter is typed)
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/rYxJBK8Kpm/trigger/5OM1jFoWf
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/rYxJBK8Kpm/trigger/5OM1jFoWf
  * 
  * @param properties the properties associated with this event
  * @param properties.searchSource: The location of the search box/entry point. 
  * eg. homepage search box, search page search box, hamburger menu search box (future)
  * @param properties.context: Relates to the application or view from which a action was performed
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/rYxJBK8Kpm}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/rYxJBK8Kpm}
  */
 export function searchJourneyInitiated(properties: SearchJourneyInitiatedProperties) {
   // @ts-ignore
@@ -3372,13 +3372,13 @@ export interface CurriculumVisualiserAccessedProperties {
  * When to trigger this event:
  * 1. A user has clicked view after successfully completing the "Subject" and "School phase" fields.
 Component Type: 'homepage_button'
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_ImUDkApb7/trigger/R19ayisHj
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/_ImUDkApb7/trigger/R19ayisHj
  * 2. Illustration of same component with would trigger this event but this time from the curriculum visualiser itself where this event could also be triggered
 component: curriculum_visualiser_button
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_ImUDkApb7/trigger/LFOFUdkpr
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/_ImUDkApb7/trigger/LFOFUdkpr
  * 3. The lot picker is also accessible from the curriculum landing page
 component type: 'landing_page_button'
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_ImUDkApb7/trigger/vCEJO0o_GAdCNaTlSlkoP
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/_ImUDkApb7/trigger/vCEJO0o_GAdCNaTlSlkoP
  * 
  * @param properties the properties associated with this event
  * @param properties.subjectTitle: Title of the current subject.
@@ -3393,7 +3393,7 @@ component type: 'landing_page_button'
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_ImUDkApb7}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/_ImUDkApb7}
  */
 export function curriculumVisualiserAccessed(properties: CurriculumVisualiserAccessedProperties) {
   // @ts-ignore
@@ -3459,7 +3459,7 @@ export interface UnitOverviewAccessedProperties {
  * 
  * When to trigger this event:
  * 1. Unit info div is selected on div corresponding to a particular unit (in this case one that is highlighted a resulted of the selected thread)
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/OnjKTo8kYs/trigger/I6HnzeUNk
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/OnjKTo8kYs/trigger/I6HnzeUNk
  * 
  * @param properties the properties associated with this event
  * @param properties.unitName: Title of the current unit.
@@ -3481,7 +3481,7 @@ export interface UnitOverviewAccessedProperties {
  * @param properties.unitHighlighted: A boolean describing whether a given unit is highlighted when unit information is viewed
  * @param properties.isUnitPublished: A boolean describing whether the unit has been published and therefore it is possible to click through to the unit listing page (i.e. the 'See lessons in Unit' button is active)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/OnjKTo8kYs}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/OnjKTo8kYs}
  */
 export function unitOverviewAccessed(properties: UnitOverviewAccessedProperties) {
   // @ts-ignore
@@ -3549,7 +3549,7 @@ export interface OnwardContentSelectedProperties {
  * 
  * When to trigger this event:
  * 1. Onward Content presentation screen following the download of a resource. Any of the links highlighted below would trigger this event.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/H9jrWEk8wy/trigger/t_FkWxgTH
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/H9jrWEk8wy/trigger/t_FkWxgTH
  * 
  * @param properties the properties associated with this event
  * @param properties.unitName: Title of the current unit.
@@ -3560,7 +3560,7 @@ export interface OnwardContentSelectedProperties {
  * @param properties.lessonReleaseDate: The date in which the lesson was published
  * @param properties.onwardIntent: Describes the intent of the action when a user journey continues following the presentation of relevant content
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/H9jrWEk8wy}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/H9jrWEk8wy}
  */
 export function onwardContentSelected(properties: OnwardContentSelectedProperties) {
   // @ts-ignore
@@ -3625,7 +3625,7 @@ export interface LessonSharedProperties {
  * 
  * When to trigger this event:
  * 1. One of the share options is selected
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/RnJu4EY4bA/trigger/lvtGVFDJo
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/RnJu4EY4bA/trigger/lvtGVFDJo
  * 
  * @param properties the properties associated with this event
  * @param properties.lessonName: Name of the current lesson.
@@ -3648,7 +3648,7 @@ export interface LessonSharedProperties {
  * @param properties.emailSupplied: A user has signed up for updates on the downloads page
  * @param properties.audience: Corresponds to the a target audience (usually in relation to a share event)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/RnJu4EY4bA}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/RnJu4EY4bA}
  */
 export function lessonShared(properties: LessonSharedProperties) {
   // @ts-ignore
@@ -3716,11 +3716,11 @@ export interface LessonShareStartedProperties {
  * 
  * When to trigger this event:
  * 1. Share activities with pupils button clicked at top of the page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/PS8tcnGrN2/trigger/Lsaaeanis
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/PS8tcnGrN2/trigger/Lsaaeanis
  * 2. Share activities with pupils button clicked at the resource level
 
 NB. There is no sharing of slide decks at this time
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/PS8tcnGrN2/trigger/QMYuEgDaG
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/PS8tcnGrN2/trigger/QMYuEgDaG
  * 
  * @param properties the properties associated with this event
  * @param properties.lessonName: Name of the current lesson.
@@ -3734,7 +3734,7 @@ NB. There is no sharing of slide decks at this time
  * @param properties.subjectTitle: Title of the current subject.
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/PS8tcnGrN2}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/PS8tcnGrN2}
  */
 export function lessonShareStarted(properties: LessonShareStartedProperties) {
   // @ts-ignore
@@ -3806,11 +3806,11 @@ export interface SearchRefinedProperties {
  * 
  * When to trigger this event:
  * 1. Results are returned by the search and a count of results is known
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/XpQ27vPNH4/trigger/PcgndFCLH2PP2U6ErGXCe
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/XpQ27vPNH4/trigger/PcgndFCLH2PP2U6ErGXCe
  * 2. (AI) A user selects from the list of suggested filters
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/XpQ27vPNH4/trigger/3uRc57QBJnE3_9gJlojNZ
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/XpQ27vPNH4/trigger/3uRc57QBJnE3_9gJlojNZ
  * 3. User selects filter from the ‘All filters’ list
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/XpQ27vPNH4/trigger/jJhXn8kQGmPcNHrAl_DbV
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/XpQ27vPNH4/trigger/jJhXn8kQGmPcNHrAl_DbV
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -3834,7 +3834,7 @@ export interface SearchRefinedProperties {
  * Only include keys/values for active filters.
  * @param properties.searchTerm: The term entered by the user for the search.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/XpQ27vPNH4}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/XpQ27vPNH4}
  */
 export function searchRefined(properties: SearchRefinedProperties) {
   // @ts-ignore
@@ -3929,7 +3929,7 @@ export interface SearchResultExpandedProperties {
  * @param properties.searchResultCount: total number of search results returned
  * @param properties.searchResultType: The type of result returned (eg. unit or lesson)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/eP2lOQQj8C}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/eP2lOQQj8C}
  */
 export function searchResultExpanded(properties: SearchResultExpandedProperties) {
   // @ts-ignore
@@ -3997,6 +3997,14 @@ export interface LessonCompletedProperties {
   keyStageSlug: string | null | undefined;
   yearGroupName: string;
   yearGroupSlug: string;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   phase: PhaseValueType;
 }
@@ -4016,11 +4024,19 @@ export interface LessonCompletedProperties {
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
  * @param properties.yearGroupName: Name of the current year group.
  * @param properties.yearGroupSlug: Human-readable unique ID of the current year group.
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Hy-6QNrYKU}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/Hy-6QNrYKU}
  */
 export function lessonCompleted(properties: LessonCompletedProperties) {
   // @ts-ignore
@@ -4049,6 +4065,28 @@ export function lessonCompleted(properties: LessonCompletedProperties) {
     eventPropertiesArray.push({id: "XMx9WMqh0H", name: "Key Stage Slug", value: null});
   eventPropertiesArray.push({id: "mIpfmyUTSY", name: "Year Group Name", value: properties.yearGroupName});
   eventPropertiesArray.push({id: "ySTg1Sz9in", name: "Year Group Slug", value: properties.yearGroupSlug});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
@@ -4060,7 +4098,7 @@ export function lessonCompleted(properties: LessonCompletedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "Hy-6QNrYKU", "93997c5e38c723ce422a9db401067a5304a88f018c6ecb37ef4f037de128c3a4", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "Hy-6QNrYKU", "019de0f5699f3213d1ca557bef32d78b97e276664fa38848082dcc6b606cf892", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Completed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4071,7 +4109,7 @@ export function lessonCompleted(properties: LessonCompletedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Completed", eventProperties, "Hy-6QNrYKU", "93997c5e38c723ce422a9db401067a5304a88f018c6ecb37ef4f037de128c3a4");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Completed", eventProperties, "Hy-6QNrYKU", "019de0f5699f3213d1ca557bef32d78b97e276664fa38848082dcc6b606cf892");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Completed", (Object as any).assign({}, eventProperties));
@@ -4096,6 +4134,14 @@ export interface LessonActivityCompletedProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
@@ -4121,6 +4167,14 @@ export interface LessonActivityCompletedProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -4128,7 +4182,7 @@ export interface LessonActivityCompletedProperties {
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.activityTimeSpent: time spent on activity in seconds
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sBllxa-nuz}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/sBllxa-nuz}
  */
 export function lessonActivityCompleted(properties: LessonActivityCompletedProperties) {
   // @ts-ignore
@@ -4166,6 +4220,28 @@ export function lessonActivityCompleted(properties: LessonActivityCompletedPrope
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
@@ -4180,7 +4256,7 @@ export function lessonActivityCompleted(properties: LessonActivityCompletedPrope
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "sBllxa-nuz", "3d2904127705e3e64bd8d85b5805a2c0faafa68d1717b04746a03352fa020aad", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "sBllxa-nuz", "53cae43d1f2b413390fc4014012928599428b742eb5eb56854440ffa9bfc0729", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Completed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4191,7 +4267,7 @@ export function lessonActivityCompleted(properties: LessonActivityCompletedPrope
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Completed", eventProperties, "sBllxa-nuz", "3d2904127705e3e64bd8d85b5805a2c0faafa68d1717b04746a03352fa020aad");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Completed", eventProperties, "sBllxa-nuz", "53cae43d1f2b413390fc4014012928599428b742eb5eb56854440ffa9bfc0729");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Completed", (Object as any).assign({}, eventProperties));
@@ -4216,6 +4292,14 @@ export interface LessonActivityCompletedIntroductionProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
@@ -4241,6 +4325,14 @@ export interface LessonActivityCompletedIntroductionProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -4248,7 +4340,7 @@ export interface LessonActivityCompletedIntroductionProperties {
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.activityTimeSpent: time spent on activity in seconds
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sBllxa-nuz.w-tN4OqGk}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/sBllxa-nuz.w-tN4OqGk}
  */
 export function lessonActivityCompletedIntroduction(properties: LessonActivityCompletedIntroductionProperties) {
   // @ts-ignore
@@ -4286,6 +4378,28 @@ export function lessonActivityCompletedIntroduction(properties: LessonActivityCo
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
@@ -4300,7 +4414,7 @@ export function lessonActivityCompletedIntroduction(properties: LessonActivityCo
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "sBllxa-nuz.w-tN4OqGk", "5891b12515e69c3e6ed022e07193ecce4d8c69f6a54c63795e56e3e9a5b69cac", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "sBllxa-nuz.w-tN4OqGk", "28b2ad1e03d59b836727418ddcb060b26f5e76cef6711072fd545bb851a204b0", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Completed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4311,7 +4425,7 @@ export function lessonActivityCompletedIntroduction(properties: LessonActivityCo
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Completed", eventProperties, "sBllxa-nuz.w-tN4OqGk", "5891b12515e69c3e6ed022e07193ecce4d8c69f6a54c63795e56e3e9a5b69cac");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Completed", eventProperties, "sBllxa-nuz.w-tN4OqGk", "28b2ad1e03d59b836727418ddcb060b26f5e76cef6711072fd545bb851a204b0");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Completed", (Object as any).assign({}, eventProperties));
@@ -4336,6 +4450,14 @@ export interface LessonActivityCompletedStarterQuizProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   releaseGroup: string;
@@ -4366,6 +4488,14 @@ export interface LessonActivityCompletedStarterQuizProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -4378,7 +4508,7 @@ export interface LessonActivityCompletedStarterQuizProperties {
  * @param properties.pupilQuizNumQuestions: The total number of questions in the quiz
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sBllxa-nuz.VPlVqR6yv}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/sBllxa-nuz.VPlVqR6yv}
  */
 export function lessonActivityCompletedStarterQuiz(properties: LessonActivityCompletedStarterQuizProperties) {
   // @ts-ignore
@@ -4416,6 +4546,28 @@ export function lessonActivityCompletedStarterQuiz(properties: LessonActivityCom
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "CUxL56KQZ", name: "Release Group", value: properties.releaseGroup});
@@ -4435,7 +4587,7 @@ export function lessonActivityCompletedStarterQuiz(properties: LessonActivityCom
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "sBllxa-nuz.VPlVqR6yv", "b5b2f4f2bf42a20f3123b9ff94bd91ee6c329fbf7b1f64d79c1816850e1acdda", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "sBllxa-nuz.VPlVqR6yv", "1affc4998d7e56321dbfe3257cf8f50d1d0aee8b6ad6e7336cc310142f33af03", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Completed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4446,7 +4598,7 @@ export function lessonActivityCompletedStarterQuiz(properties: LessonActivityCom
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Completed", eventProperties, "sBllxa-nuz.VPlVqR6yv", "b5b2f4f2bf42a20f3123b9ff94bd91ee6c329fbf7b1f64d79c1816850e1acdda");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Completed", eventProperties, "sBllxa-nuz.VPlVqR6yv", "1affc4998d7e56321dbfe3257cf8f50d1d0aee8b6ad6e7336cc310142f33af03");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Completed", (Object as any).assign({}, eventProperties));
@@ -4471,6 +4623,14 @@ export interface LessonActivityCompletedLessonVideoProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
@@ -4507,6 +4667,14 @@ export interface LessonActivityCompletedLessonVideoProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -4525,7 +4693,7 @@ export interface LessonActivityCompletedLessonVideoProperties {
  * @param properties.isCaptioned: Indicates whether captions were enabled when the event was triggered
  * @param properties.transcriptOpened: if the transcript of the video was accessed/viewed
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sBllxa-nuz.66NwEPbGj}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/sBllxa-nuz.66NwEPbGj}
  */
 export function lessonActivityCompletedLessonVideo(properties: LessonActivityCompletedLessonVideoProperties) {
   // @ts-ignore
@@ -4563,6 +4731,28 @@ export function lessonActivityCompletedLessonVideo(properties: LessonActivityCom
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
@@ -4588,7 +4778,7 @@ export function lessonActivityCompletedLessonVideo(properties: LessonActivityCom
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "sBllxa-nuz.66NwEPbGj", "9d2b916110497a4334f92aea617147db49e7e02555c130654ec8d017fa2627ef", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "sBllxa-nuz.66NwEPbGj", "704e6dfa82f5e78492ffb89d706273fc3ce07899d95bf855b906318df6bc0dd3", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Completed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4599,7 +4789,7 @@ export function lessonActivityCompletedLessonVideo(properties: LessonActivityCom
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Completed", eventProperties, "sBllxa-nuz.66NwEPbGj", "9d2b916110497a4334f92aea617147db49e7e02555c130654ec8d017fa2627ef");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Completed", eventProperties, "sBllxa-nuz.66NwEPbGj", "704e6dfa82f5e78492ffb89d706273fc3ce07899d95bf855b906318df6bc0dd3");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Completed", (Object as any).assign({}, eventProperties));
@@ -4624,6 +4814,14 @@ export interface LessonActivityCompletedExitQuizProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   releaseGroup: string;
@@ -4654,6 +4852,14 @@ export interface LessonActivityCompletedExitQuizProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -4666,7 +4872,7 @@ export interface LessonActivityCompletedExitQuizProperties {
  * @param properties.pupilQuizNumQuestions: The total number of questions in the quiz
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sBllxa-nuz.pE7MH59gY}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/sBllxa-nuz.pE7MH59gY}
  */
 export function lessonActivityCompletedExitQuiz(properties: LessonActivityCompletedExitQuizProperties) {
   // @ts-ignore
@@ -4704,6 +4910,28 @@ export function lessonActivityCompletedExitQuiz(properties: LessonActivityComple
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "CUxL56KQZ", name: "Release Group", value: properties.releaseGroup});
@@ -4723,7 +4951,7 @@ export function lessonActivityCompletedExitQuiz(properties: LessonActivityComple
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "sBllxa-nuz.pE7MH59gY", "dbb15accec36ca6a65824c53ba8330a03efb7c1fee7245c7267a092e7e0ceb86", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "sBllxa-nuz.pE7MH59gY", "2be74e1258934d24136baad31ce03c650c37db1edc0c4cfa6962b0ad74deb4d0", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Completed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4734,7 +4962,7 @@ export function lessonActivityCompletedExitQuiz(properties: LessonActivityComple
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Completed", eventProperties, "sBllxa-nuz.pE7MH59gY", "dbb15accec36ca6a65824c53ba8330a03efb7c1fee7245c7267a092e7e0ceb86");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Completed", eventProperties, "sBllxa-nuz.pE7MH59gY", "2be74e1258934d24136baad31ce03c650c37db1edc0c4cfa6962b0ad74deb4d0");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Completed", (Object as any).assign({}, eventProperties));
@@ -4759,6 +4987,14 @@ export interface LessonActivityCompletedLessonAudioProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
@@ -4793,6 +5029,14 @@ export interface LessonActivityCompletedLessonAudioProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -4809,7 +5053,7 @@ export interface LessonActivityCompletedLessonAudioProperties {
  * @param properties.audioTitle: Title of Audio
  * @param properties.transcriptOpened: if the transcript of the video was accessed/viewed
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sBllxa-nuz.vftftUlwJ}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/sBllxa-nuz.vftftUlwJ}
  */
 export function lessonActivityCompletedLessonAudio(properties: LessonActivityCompletedLessonAudioProperties) {
   // @ts-ignore
@@ -4847,6 +5091,28 @@ export function lessonActivityCompletedLessonAudio(properties: LessonActivityCom
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
@@ -4870,7 +5136,7 @@ export function lessonActivityCompletedLessonAudio(properties: LessonActivityCom
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "sBllxa-nuz.vftftUlwJ", "669cbacc4563baa10b231be8de7d3d5c9e54116b0c4ebb8cb6574f7e5ac9f37b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "sBllxa-nuz.vftftUlwJ", "85fd6637fac260d86ef87b5799dca05ccac1a554f9e7500368a14642d62f7b91", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Completed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4881,7 +5147,7 @@ export function lessonActivityCompletedLessonAudio(properties: LessonActivityCom
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Completed", eventProperties, "sBllxa-nuz.vftftUlwJ", "669cbacc4563baa10b231be8de7d3d5c9e54116b0c4ebb8cb6574f7e5ac9f37b");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Completed", eventProperties, "sBllxa-nuz.vftftUlwJ", "85fd6637fac260d86ef87b5799dca05ccac1a554f9e7500368a14642d62f7b91");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Completed", (Object as any).assign({}, eventProperties));
@@ -4903,6 +5169,14 @@ export interface LessonStartedProperties {
   lessonReleaseDate: string;
   yearGroupName: string;
   yearGroupSlug: string;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   phase: PhaseValueType;
 }
@@ -4922,11 +5196,19 @@ export interface LessonStartedProperties {
  * @param properties.lessonReleaseDate: The date in which the lesson was published
  * @param properties.yearGroupName: Name of the current year group.
  * @param properties.yearGroupSlug: Human-readable unique ID of the current year group.
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/9zz1OCsT2}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/9zz1OCsT2}
  */
 export function lessonStarted(properties: LessonStartedProperties) {
   // @ts-ignore
@@ -4945,6 +5227,28 @@ export function lessonStarted(properties: LessonStartedProperties) {
   eventPropertiesArray.push({id: "RLjiajchvo1_cecbBI4ol", name: "Lesson Release Date", value: properties.lessonReleaseDate});
   eventPropertiesArray.push({id: "mIpfmyUTSY", name: "Year Group Name", value: properties.yearGroupName});
   eventPropertiesArray.push({id: "ySTg1Sz9in", name: "Year Group Slug", value: properties.yearGroupSlug});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
@@ -4956,7 +5260,7 @@ export function lessonStarted(properties: LessonStartedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "9zz1OCsT2", "a900aae26780712fafb073caed04d48b7fd17513b49673487880b98f4f8d7841", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "9zz1OCsT2", "c6103800eea4148aae7105c9434c5bb591962e4bf1d9329fba1764f7d5f15ec6", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4967,7 +5271,7 @@ export function lessonStarted(properties: LessonStartedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Started", eventProperties, "9zz1OCsT2", "a900aae26780712fafb073caed04d48b7fd17513b49673487880b98f4f8d7841");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Started", eventProperties, "9zz1OCsT2", "c6103800eea4148aae7105c9434c5bb591962e4bf1d9329fba1764f7d5f15ec6");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Started", (Object as any).assign({}, eventProperties));
@@ -4992,6 +5296,14 @@ export interface LessonActivityStartedProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
   releaseGroup: string;
@@ -5015,11 +5327,19 @@ export interface LessonActivityStartedProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/8LfOc60dl}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/8LfOc60dl}
  */
 export function lessonActivityStarted(properties: LessonActivityStartedProperties) {
   // @ts-ignore
@@ -5047,6 +5367,28 @@ export function lessonActivityStarted(properties: LessonActivityStartedPropertie
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   eventPropertiesArray.push({id: "CUxL56KQZ", name: "Release Group", value: properties.releaseGroup});
@@ -5059,7 +5401,7 @@ export function lessonActivityStarted(properties: LessonActivityStartedPropertie
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "8LfOc60dl", "bb5d232b875552fda7936e33b1f80456105e49002edeae21946e47b028d31790", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "8LfOc60dl", "954bffa7e308968fadb7383edf200dfc90b184fb4da0b8d49fe11ba3c8705e34", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -5070,7 +5412,7 @@ export function lessonActivityStarted(properties: LessonActivityStartedPropertie
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Started", eventProperties, "8LfOc60dl", "bb5d232b875552fda7936e33b1f80456105e49002edeae21946e47b028d31790");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Started", eventProperties, "8LfOc60dl", "954bffa7e308968fadb7383edf200dfc90b184fb4da0b8d49fe11ba3c8705e34");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Started", (Object as any).assign({}, eventProperties));
@@ -5095,6 +5437,14 @@ export interface LessonActivityStartedIntroductionProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
   releaseGroup: string;
@@ -5118,11 +5468,19 @@ export interface LessonActivityStartedIntroductionProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/8LfOc60dl.sQj7v3rhg}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/8LfOc60dl.sQj7v3rhg}
  */
 export function lessonActivityStartedIntroduction(properties: LessonActivityStartedIntroductionProperties) {
   // @ts-ignore
@@ -5150,6 +5508,28 @@ export function lessonActivityStartedIntroduction(properties: LessonActivityStar
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   eventPropertiesArray.push({id: "CUxL56KQZ", name: "Release Group", value: properties.releaseGroup});
@@ -5162,7 +5542,7 @@ export function lessonActivityStartedIntroduction(properties: LessonActivityStar
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "8LfOc60dl.sQj7v3rhg", "ff4c1076fdeef717cb47b0b732eefc0c8b37fac44f06013cc0219a89fcd05e11", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "8LfOc60dl.sQj7v3rhg", "3a309689fd09a8d2261ac2cee48c1c3e1408bdfda2e12adcd99c3167254727c6", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -5173,7 +5553,7 @@ export function lessonActivityStartedIntroduction(properties: LessonActivityStar
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Started", eventProperties, "8LfOc60dl.sQj7v3rhg", "ff4c1076fdeef717cb47b0b732eefc0c8b37fac44f06013cc0219a89fcd05e11");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Started", eventProperties, "8LfOc60dl.sQj7v3rhg", "3a309689fd09a8d2261ac2cee48c1c3e1408bdfda2e12adcd99c3167254727c6");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Started", (Object as any).assign({}, eventProperties));
@@ -5198,6 +5578,14 @@ export interface LessonActivityStartedStarterQuizProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   releaseGroup: string;
   hintAvailable: boolean;
@@ -5224,6 +5612,14 @@ export interface LessonActivityStartedStarterQuizProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.hintAvailable: if a hint is provided for quiz question
@@ -5231,7 +5627,7 @@ export interface LessonActivityStartedStarterQuizProperties {
  * @param properties.pupilQuizNumQuestions: The total number of questions in the quiz
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/8LfOc60dl.jXPPatapH}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/8LfOc60dl.jXPPatapH}
  */
 export function lessonActivityStartedStarterQuiz(properties: LessonActivityStartedStarterQuizProperties) {
   // @ts-ignore
@@ -5259,6 +5655,28 @@ export function lessonActivityStartedStarterQuiz(properties: LessonActivityStart
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "CUxL56KQZ", name: "Release Group", value: properties.releaseGroup});
   eventPropertiesArray.push({id: "0dn7bZTfJ", name: "Hint Available", value: properties.hintAvailable});
@@ -5274,7 +5692,7 @@ export function lessonActivityStartedStarterQuiz(properties: LessonActivityStart
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "8LfOc60dl.jXPPatapH", "69328298544e6e948965197f6363f1dd86cfeb530a3bcff20660445f21b62f84", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "8LfOc60dl.jXPPatapH", "cc6e8cde8f83e21f8e366972cea6298bac17f3a1ce26b4631d4c93be1b94f47f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -5285,7 +5703,7 @@ export function lessonActivityStartedStarterQuiz(properties: LessonActivityStart
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Started", eventProperties, "8LfOc60dl.jXPPatapH", "69328298544e6e948965197f6363f1dd86cfeb530a3bcff20660445f21b62f84");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Started", eventProperties, "8LfOc60dl.jXPPatapH", "cc6e8cde8f83e21f8e366972cea6298bac17f3a1ce26b4631d4c93be1b94f47f");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Started", (Object as any).assign({}, eventProperties));
@@ -5310,6 +5728,14 @@ export interface LessonActivityStartedLessonVideoProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
   releaseGroup: string;
@@ -5340,6 +5766,14 @@ export interface LessonActivityStartedLessonVideoProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
@@ -5351,7 +5785,7 @@ export interface LessonActivityStartedLessonVideoProperties {
  * @param properties.pupilVideoPlayed: True if the play button has been pressed at all during the session
  * @param properties.videoPlaybackId: Playback Id of a mux video
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/8LfOc60dl.--Q2qdv1R}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/8LfOc60dl.--Q2qdv1R}
  */
 export function lessonActivityStartedLessonVideo(properties: LessonActivityStartedLessonVideoProperties) {
   // @ts-ignore
@@ -5379,6 +5813,28 @@ export function lessonActivityStartedLessonVideo(properties: LessonActivityStart
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   eventPropertiesArray.push({id: "CUxL56KQZ", name: "Release Group", value: properties.releaseGroup});
@@ -5398,7 +5854,7 @@ export function lessonActivityStartedLessonVideo(properties: LessonActivityStart
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "8LfOc60dl.--Q2qdv1R", "6a61b6612c5651aa774656e6e097c6f77b81199a6a5bb619325324e840f13156", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "8LfOc60dl.--Q2qdv1R", "4a1bcfaead112211c4d54260a6f23072e0b8edde260fe323b7abdc0dd2533f82", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -5409,7 +5865,7 @@ export function lessonActivityStartedLessonVideo(properties: LessonActivityStart
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Started", eventProperties, "8LfOc60dl.--Q2qdv1R", "6a61b6612c5651aa774656e6e097c6f77b81199a6a5bb619325324e840f13156");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Started", eventProperties, "8LfOc60dl.--Q2qdv1R", "4a1bcfaead112211c4d54260a6f23072e0b8edde260fe323b7abdc0dd2533f82");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Started", (Object as any).assign({}, eventProperties));
@@ -5434,6 +5890,14 @@ export interface LessonActivityStartedExitQuizProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   releaseGroup: string;
   hintAvailable: boolean;
@@ -5460,6 +5924,14 @@ export interface LessonActivityStartedExitQuizProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.hintAvailable: if a hint is provided for quiz question
@@ -5467,7 +5939,7 @@ export interface LessonActivityStartedExitQuizProperties {
  * @param properties.pupilQuizNumQuestions: The total number of questions in the quiz
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/8LfOc60dl.bwLDlBvXo}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/8LfOc60dl.bwLDlBvXo}
  */
 export function lessonActivityStartedExitQuiz(properties: LessonActivityStartedExitQuizProperties) {
   // @ts-ignore
@@ -5495,6 +5967,28 @@ export function lessonActivityStartedExitQuiz(properties: LessonActivityStartedE
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "CUxL56KQZ", name: "Release Group", value: properties.releaseGroup});
   eventPropertiesArray.push({id: "0dn7bZTfJ", name: "Hint Available", value: properties.hintAvailable});
@@ -5510,7 +6004,7 @@ export function lessonActivityStartedExitQuiz(properties: LessonActivityStartedE
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "8LfOc60dl.bwLDlBvXo", "f2453d9d007f128d47d5632f74ae6775b1f4f32907f8effb7db22456a607e701", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "8LfOc60dl.bwLDlBvXo", "e78b0e59916974273b2a5ae1aac0524d490efc9bd13bc25bc1a8cc47455ad38b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -5521,7 +6015,7 @@ export function lessonActivityStartedExitQuiz(properties: LessonActivityStartedE
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Started", eventProperties, "8LfOc60dl.bwLDlBvXo", "f2453d9d007f128d47d5632f74ae6775b1f4f32907f8effb7db22456a607e701");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Started", eventProperties, "8LfOc60dl.bwLDlBvXo", "e78b0e59916974273b2a5ae1aac0524d490efc9bd13bc25bc1a8cc47455ad38b");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Started", (Object as any).assign({}, eventProperties));
@@ -5546,6 +6040,14 @@ export interface LessonActivityStartedLessonAudioProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
   releaseGroup: string;
@@ -5575,6 +6077,14 @@ export interface LessonActivityStartedLessonAudioProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
@@ -5585,7 +6095,7 @@ export interface LessonActivityStartedLessonAudioProperties {
  * @param properties.pupilAudioDurationSeconds: The total length of the audio in seconds
  * @param properties.audioTitle: Title of Audio
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/8LfOc60dl.UadcF0krG}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/8LfOc60dl.UadcF0krG}
  */
 export function lessonActivityStartedLessonAudio(properties: LessonActivityStartedLessonAudioProperties) {
   // @ts-ignore
@@ -5613,6 +6123,28 @@ export function lessonActivityStartedLessonAudio(properties: LessonActivityStart
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   eventPropertiesArray.push({id: "CUxL56KQZ", name: "Release Group", value: properties.releaseGroup});
@@ -5631,7 +6163,7 @@ export function lessonActivityStartedLessonAudio(properties: LessonActivityStart
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "8LfOc60dl.UadcF0krG", "5053342caf55a5d067ca1655f41ad26c99be09e6d16018f44814faab663f9255", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "8LfOc60dl.UadcF0krG", "045f0bb5f73e366559839fceba184ffff4bf0d1b698c9b8ad9c8930df8350c2e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -5642,7 +6174,7 @@ export function lessonActivityStartedLessonAudio(properties: LessonActivityStart
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Started", eventProperties, "8LfOc60dl.UadcF0krG", "5053342caf55a5d067ca1655f41ad26c99be09e6d16018f44814faab663f9255");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Started", eventProperties, "8LfOc60dl.UadcF0krG", "045f0bb5f73e366559839fceba184ffff4bf0d1b698c9b8ad9c8930df8350c2e");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Started", (Object as any).assign({}, eventProperties));
@@ -5673,9 +6205,9 @@ export interface CurriculumResourcesDownloadedProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on the 'download' button on the 'Downloads' tab to download a curriculum plan, resource type = 'curriculum_plan'
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/L7-HOgqfOB/trigger/jUQsfF-ITbWp_67NmYgz3
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/L7-HOgqfOB/trigger/jUQsfF-ITbWp_67NmYgz3
  * 2. User clicks on the 'Download PDF' button on the 'Previously Released Curricula' page - Resource Type = 'previously_released_curricula'
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/L7-HOgqfOB/trigger/8nxd5KGbX7Ulg8ZhUyiRB
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/L7-HOgqfOB/trigger/8nxd5KGbX7Ulg8ZhUyiRB
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -5696,7 +6228,7 @@ export interface CurriculumResourcesDownloadedProperties {
  * @param properties.subjectTitle: Title of the current subject.
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/L7-HOgqfOB}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/L7-HOgqfOB}
  */
 export function curriculumResourcesDownloaded(properties: CurriculumResourcesDownloadedProperties) {
   // @ts-ignore
@@ -5765,6 +6297,14 @@ export interface LessonActivityAbandonedProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
@@ -5790,6 +6330,14 @@ export interface LessonActivityAbandonedProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -5797,7 +6345,7 @@ export interface LessonActivityAbandonedProperties {
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.activityTimeSpent: time spent on activity in seconds
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lucA3x3s4}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/lucA3x3s4}
  */
 export function lessonActivityAbandoned(properties: LessonActivityAbandonedProperties) {
   // @ts-ignore
@@ -5823,6 +6371,28 @@ export function lessonActivityAbandoned(properties: LessonActivityAbandonedPrope
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
@@ -5837,7 +6407,7 @@ export function lessonActivityAbandoned(properties: LessonActivityAbandonedPrope
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "lucA3x3s4", "315215a9d7d1e11bf65d5322adcbfdad4777b17e551e2add72abf6ac9ed356de", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "lucA3x3s4", "d8ce51620835e8970086fac11c1d755994deeb229922699eaa52f15590e1be58", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Abandoned", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -5848,7 +6418,7 @@ export function lessonActivityAbandoned(properties: LessonActivityAbandonedPrope
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Abandoned", eventProperties, "lucA3x3s4", "315215a9d7d1e11bf65d5322adcbfdad4777b17e551e2add72abf6ac9ed356de");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Abandoned", eventProperties, "lucA3x3s4", "d8ce51620835e8970086fac11c1d755994deeb229922699eaa52f15590e1be58");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Abandoned", (Object as any).assign({}, eventProperties));
@@ -5873,6 +6443,14 @@ export interface LessonActivityAbandonedStarterQuizProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
@@ -5903,6 +6481,14 @@ export interface LessonActivityAbandonedStarterQuizProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -5915,7 +6501,7 @@ export interface LessonActivityAbandonedStarterQuizProperties {
  * @param properties.hintUsed: Shows whether the pupil used the available hint
  * @param properties.pupilQuizNumQuestions: The total number of questions in the quiz
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lucA3x3s4.RRbQMT3mC}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/lucA3x3s4.RRbQMT3mC}
  */
 export function lessonActivityAbandonedStarterQuiz(properties: LessonActivityAbandonedStarterQuizProperties) {
   // @ts-ignore
@@ -5941,6 +6527,28 @@ export function lessonActivityAbandonedStarterQuiz(properties: LessonActivityAba
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
@@ -5960,7 +6568,7 @@ export function lessonActivityAbandonedStarterQuiz(properties: LessonActivityAba
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "lucA3x3s4.RRbQMT3mC", "8f740b8d5d2586c639052970c7a2977b178ae4ad59121431db7408652315dfff", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "lucA3x3s4.RRbQMT3mC", "c89b8c9aa267ee1245c017b0d56aa205feeb9e9e5343d1774f3d82aa28dc651e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Abandoned", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -5971,7 +6579,7 @@ export function lessonActivityAbandonedStarterQuiz(properties: LessonActivityAba
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Abandoned", eventProperties, "lucA3x3s4.RRbQMT3mC", "8f740b8d5d2586c639052970c7a2977b178ae4ad59121431db7408652315dfff");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Abandoned", eventProperties, "lucA3x3s4.RRbQMT3mC", "c89b8c9aa267ee1245c017b0d56aa205feeb9e9e5343d1774f3d82aa28dc651e");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Abandoned", (Object as any).assign({}, eventProperties));
@@ -5996,6 +6604,14 @@ export interface LessonActivityAbandonedIntroductionProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
@@ -6021,6 +6637,14 @@ export interface LessonActivityAbandonedIntroductionProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -6028,7 +6652,7 @@ export interface LessonActivityAbandonedIntroductionProperties {
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.activityTimeSpent: time spent on activity in seconds
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lucA3x3s4.lfCw2Vowr}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/lucA3x3s4.lfCw2Vowr}
  */
 export function lessonActivityAbandonedIntroduction(properties: LessonActivityAbandonedIntroductionProperties) {
   // @ts-ignore
@@ -6054,6 +6678,28 @@ export function lessonActivityAbandonedIntroduction(properties: LessonActivityAb
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
@@ -6068,7 +6714,7 @@ export function lessonActivityAbandonedIntroduction(properties: LessonActivityAb
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "lucA3x3s4.lfCw2Vowr", "398f0eb0f8e0654be057af2662d26b2ad1189a17309d439ca27f6ba2213d203a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "lucA3x3s4.lfCw2Vowr", "947f46766a43f50fdeaabbd1592d5eee368bc45637b47a7c70f62139733b14fe", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Abandoned", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -6079,7 +6725,7 @@ export function lessonActivityAbandonedIntroduction(properties: LessonActivityAb
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Abandoned", eventProperties, "lucA3x3s4.lfCw2Vowr", "398f0eb0f8e0654be057af2662d26b2ad1189a17309d439ca27f6ba2213d203a");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Abandoned", eventProperties, "lucA3x3s4.lfCw2Vowr", "947f46766a43f50fdeaabbd1592d5eee368bc45637b47a7c70f62139733b14fe");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Abandoned", (Object as any).assign({}, eventProperties));
@@ -6104,6 +6750,14 @@ export interface LessonActivityAbandonedLessonVideoProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
@@ -6140,6 +6794,14 @@ export interface LessonActivityAbandonedLessonVideoProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -6158,7 +6820,7 @@ export interface LessonActivityAbandonedLessonVideoProperties {
  * @param properties.isCaptioned: Indicates whether captions were enabled when the event was triggered
  * @param properties.transcriptOpened: if the transcript of the video was accessed/viewed
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lucA3x3s4.F-FcsZGOv}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/lucA3x3s4.F-FcsZGOv}
  */
 export function lessonActivityAbandonedLessonVideo(properties: LessonActivityAbandonedLessonVideoProperties) {
   // @ts-ignore
@@ -6184,6 +6846,28 @@ export function lessonActivityAbandonedLessonVideo(properties: LessonActivityAba
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
@@ -6209,7 +6893,7 @@ export function lessonActivityAbandonedLessonVideo(properties: LessonActivityAba
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "lucA3x3s4.F-FcsZGOv", "33da03eb95c992ac6aebe68163c5d4b5ee48c4f354dfd68fc99bdb0155df55bb", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "lucA3x3s4.F-FcsZGOv", "e599bbc934c586ba25248285959244fa7eaeb4e71d13c4d4c2e019fdb49d07a7", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Abandoned", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -6220,7 +6904,7 @@ export function lessonActivityAbandonedLessonVideo(properties: LessonActivityAba
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Abandoned", eventProperties, "lucA3x3s4.F-FcsZGOv", "33da03eb95c992ac6aebe68163c5d4b5ee48c4f354dfd68fc99bdb0155df55bb");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Abandoned", eventProperties, "lucA3x3s4.F-FcsZGOv", "e599bbc934c586ba25248285959244fa7eaeb4e71d13c4d4c2e019fdb49d07a7");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Abandoned", (Object as any).assign({}, eventProperties));
@@ -6245,6 +6929,14 @@ export interface LessonActivityAbandonedExitQuizProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
@@ -6275,6 +6967,14 @@ export interface LessonActivityAbandonedExitQuizProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -6287,7 +6987,7 @@ export interface LessonActivityAbandonedExitQuizProperties {
  * @param properties.hintUsed: Shows whether the pupil used the available hint
  * @param properties.pupilQuizNumQuestions: The total number of questions in the quiz
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lucA3x3s4.67Vn1Fv8t}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/lucA3x3s4.67Vn1Fv8t}
  */
 export function lessonActivityAbandonedExitQuiz(properties: LessonActivityAbandonedExitQuizProperties) {
   // @ts-ignore
@@ -6313,6 +7013,28 @@ export function lessonActivityAbandonedExitQuiz(properties: LessonActivityAbando
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
@@ -6332,7 +7054,7 @@ export function lessonActivityAbandonedExitQuiz(properties: LessonActivityAbando
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "lucA3x3s4.67Vn1Fv8t", "dd864878164e7a7246f117af7806cec4a65790163255b536ac521624aade486e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "lucA3x3s4.67Vn1Fv8t", "fe12ab9d2ac45bba53f60d973e509baad7018641e451304b9fc826663ffe0567", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Abandoned", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -6343,7 +7065,7 @@ export function lessonActivityAbandonedExitQuiz(properties: LessonActivityAbando
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Abandoned", eventProperties, "lucA3x3s4.67Vn1Fv8t", "dd864878164e7a7246f117af7806cec4a65790163255b536ac521624aade486e");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Abandoned", eventProperties, "lucA3x3s4.67Vn1Fv8t", "fe12ab9d2ac45bba53f60d973e509baad7018641e451304b9fc826663ffe0567");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Abandoned", (Object as any).assign({}, eventProperties));
@@ -6368,6 +7090,14 @@ export interface LessonActivityAbandonedLessonAudioProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
@@ -6403,6 +7133,14 @@ export interface LessonActivityAbandonedLessonAudioProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -6420,7 +7158,7 @@ export interface LessonActivityAbandonedLessonAudioProperties {
  * @param properties.audioTitle: Title of Audio
  * @param properties.transcriptOpened: if the transcript of the video was accessed/viewed
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lucA3x3s4.6YVHZaiT6}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/lucA3x3s4.6YVHZaiT6}
  */
 export function lessonActivityAbandonedLessonAudio(properties: LessonActivityAbandonedLessonAudioProperties) {
   // @ts-ignore
@@ -6446,6 +7184,28 @@ export function lessonActivityAbandonedLessonAudio(properties: LessonActivityAba
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
@@ -6470,7 +7230,7 @@ export function lessonActivityAbandonedLessonAudio(properties: LessonActivityAba
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "lucA3x3s4.6YVHZaiT6", "e12f12134ebb5a9eddca3370920175d79a9a7d78b109f8f259f4112e6b29b6c7", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "lucA3x3s4.6YVHZaiT6", "4d691f9ed0f0825d47dd26eb180e0aa1a90b71fef3cf002433acba16d2836700", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Abandoned", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -6481,7 +7241,7 @@ export function lessonActivityAbandonedLessonAudio(properties: LessonActivityAba
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Abandoned", eventProperties, "lucA3x3s4.6YVHZaiT6", "e12f12134ebb5a9eddca3370920175d79a9a7d78b109f8f259f4112e6b29b6c7");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Abandoned", eventProperties, "lucA3x3s4.6YVHZaiT6", "4d691f9ed0f0825d47dd26eb180e0aa1a90b71fef3cf002433acba16d2836700");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Abandoned", (Object as any).assign({}, eventProperties));
@@ -6500,16 +7260,16 @@ export interface LessonAssistantAccessedProperties {
  * 
  * When to trigger this event:
  * 1. The user selects the Lesson Planner from the footer menu on the labs homepage
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/xsOZT-77ro/trigger/DLeioZeJ8
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/xsOZT-77ro/trigger/DLeioZeJ8
  * 2. User clicks on the 'Get started' button from the search results
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/xsOZT-77ro/trigger/LCMU0NPnivcZrJQ58uvzN
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/xsOZT-77ro/trigger/LCMU0NPnivcZrJQ58uvzN
  * 
  * @param properties the properties associated with this event
  * @param properties.isLoggedIn: Flags whether the user logged in or not before accessing the Oak object
  * @param properties.componentType: The web component used to carry out the action on the Oak object
  * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/xsOZT-77ro}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/xsOZT-77ro}
  */
 export function lessonAssistantAccessed(properties: LessonAssistantAccessedProperties) {
   // @ts-ignore
@@ -6572,9 +7332,9 @@ export interface LessonAccessedProperties {
  * 
  * When to trigger this event:
  * 1. Lesson Page is loaded in the Pupil Experience
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/u21IHcK8_t/trigger/8mS2FLJSv
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/u21IHcK8_t/trigger/8mS2FLJSv
  * 2. Lesson Page is loaded in the Teacher Experience
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/u21IHcK8_t/trigger/MU1FQL9Lp
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/u21IHcK8_t/trigger/MU1FQL9Lp
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -6599,7 +7359,7 @@ export interface LessonAccessedProperties {
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/u21IHcK8_t}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/u21IHcK8_t}
  */
 export function lessonAccessed(properties: LessonAccessedProperties) {
   // @ts-ignore
@@ -6658,6 +7418,150 @@ export function lessonAccessed(properties: LessonAccessedProperties) {
   }
 }
 
+export interface LessonAccessedPupilJourneyProperties {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  lessonName: string;
+  lessonSlug: string;
+  lessonReleaseCohort: LessonReleaseCohortValueType;
+  lessonReleaseDate: string;
+  unitName: string;
+  unitSlug: string;
+  keyStageTitle: KeyStageTitleValueType;
+  keyStageSlug: string;
+  yearGroupName: string;
+  yearGroupSlug: string;
+  tierName: TierNameValueType | null | undefined;
+  examBoard: ExamBoardValueType | null | undefined;
+  pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
+}
+/**
+ * Lesson Accessed: Replaces the previous "Lesson Selected" event. Describes a user visiting a lesson in either the Teacher or Pupil Experience, typically at the end of a search or browse journey., event variant
+ * 
+ * @param properties the properties associated with this event
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+ * This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ * NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.lessonName: Name of the current lesson.
+ * @param properties.lessonSlug: Human-readable unique ID of the current lesson.
+ * @param properties.lessonReleaseCohort: Determines which cycle of lesson creation
+ * @param properties.lessonReleaseDate: The date in which the lesson was published
+ * @param properties.unitName: Title of the current unit.
+ * @param properties.unitSlug: Human-readable unique ID of the current unit.
+ * @param properties.keyStageTitle: Title of the current key stage.
+ * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
+ * @param properties.yearGroupName: Name of the current year group.
+ * @param properties.yearGroupSlug: Human-readable unique ID of the current year group.
+ * @param properties.tierName: Name of the learning tier
+ * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
+ * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_}
+ */
+export function lessonAccessedPupilJourney(properties: LessonAccessedPupilJourneyProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  eventPropertiesArray.push({id: "vbCKXJ6xRQ", name: "Lesson Name", value: properties.lessonName});
+  eventPropertiesArray.push({id: "1FiHL77eSX", name: "Lesson Slug", value: properties.lessonSlug});
+  eventPropertiesArray.push({id: "1MWGICtAX6RYKgkHCdzQe", name: "Lesson Release Cohort", value: properties.lessonReleaseCohort});
+  eventPropertiesArray.push({id: "RLjiajchvo1_cecbBI4ol", name: "Lesson Release Date", value: properties.lessonReleaseDate});
+  eventPropertiesArray.push({id: "YfsvSpyEEd", name: "Unit Name", value: properties.unitName});
+  eventPropertiesArray.push({id: "r4GW5No741", name: "Unit Slug", value: properties.unitSlug});
+  eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle});
+  eventPropertiesArray.push({id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug});
+  eventPropertiesArray.push({id: "mIpfmyUTSY", name: "Year Group Name", value: properties.yearGroupName});
+  eventPropertiesArray.push({id: "ySTg1Sz9in", name: "Year Group Slug", value: properties.yearGroupSlug});
+  properties.tierName !== undefined && properties.tierName !== null ?
+    eventPropertiesArray.push({id: "IFuPjLaNs", name: "Tier Name", value: properties.tierName}) :
+    eventPropertiesArray.push({id: "IFuPjLaNs", name: "Tier Name", value: null});
+  properties.examBoard !== undefined && properties.examBoard !== null ?
+    eventPropertiesArray.push({id: "7Emhfe0Q2", name: "Exam Board", value: properties.examBoard}) :
+    eventPropertiesArray.push({id: "7Emhfe0Q2", name: "Exam Board", value: null});
+  properties.pathway !== undefined && properties.pathway !== null ?
+    eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
+    eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "5dbfa941524903345e9538670a2bdb5515056639edc0b6d8feefaf6ecb166b23", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Lesson Accessed", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "Lesson Accessed", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Accessed", eventProperties, "u21IHcK8_t.ohEZ3G-E4C1P-RIAsc4D_", "5dbfa941524903345e9538670a2bdb5515056639edc0b6d8feefaf6ecb166b23");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Lesson Accessed", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
 export interface BrowseRefinedProperties {
   platform: PlatformValueType;
   product: ProductValueType;
@@ -6676,9 +7580,9 @@ export interface BrowseRefinedProperties {
  * 
  * When to trigger this event:
  * 1. An example from the Teacher Experience. Clicking on a Key Stage or a Subject would be an example of a refinement
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qqX_ISnl2q/trigger/JfZk0CQKk
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/qqX_ISnl2q/trigger/JfZk0CQKk
  * 2. An example from the Pupil Experience. Selecting a subject would class as a refinement
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qqX_ISnl2q/trigger/4yqBipPtJ
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/qqX_ISnl2q/trigger/4yqBipPtJ
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -6704,7 +7608,7 @@ export interface BrowseRefinedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qqX_ISnl2q}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/qqX_ISnl2q}
  */
 export function browseRefined(properties: BrowseRefinedProperties) {
   // @ts-ignore
@@ -6772,9 +7676,9 @@ export interface BrowseRefinedAccessedProperties {
  * 
  * When to trigger this event:
  * 1. In the current iteration of the pupil experience the Accessed event will always be a year-group selection
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qqX_ISnl2q.oU4o61r0g/trigger/yqG1kLnrT
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/qqX_ISnl2q.oU4o61r0g/trigger/yqG1kLnrT
  * 2. In the teacher experience the first browse event will always be through a key stage
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qqX_ISnl2q.oU4o61r0g/trigger/jjG0aRtDl
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/qqX_ISnl2q.oU4o61r0g/trigger/jjG0aRtDl
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -6800,7 +7704,7 @@ export interface BrowseRefinedAccessedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qqX_ISnl2q.oU4o61r0g}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/qqX_ISnl2q.oU4o61r0g}
  */
 export function browseRefinedAccessed(properties: BrowseRefinedAccessedProperties) {
   // @ts-ignore
@@ -6865,6 +7769,14 @@ export interface LessonActivityDownloadedProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   phase: PhaseValueType;
   releaseGroup: string;
 }
@@ -6873,7 +7785,7 @@ export interface LessonActivityDownloadedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/reCapRsfgU/trigger/7ch5HthPl
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/reCapRsfgU/trigger/7ch5HthPl
  * 
  * @param properties the properties associated with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -6891,10 +7803,18 @@ export interface LessonActivityDownloadedProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/reCapRsfgU}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/reCapRsfgU}
  */
 export function lessonActivityDownloaded(properties: LessonActivityDownloadedProperties) {
   // @ts-ignore
@@ -6920,6 +7840,28 @@ export function lessonActivityDownloaded(properties: LessonActivityDownloadedPro
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   eventPropertiesArray.push({id: "CUxL56KQZ", name: "Release Group", value: properties.releaseGroup});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
@@ -6931,7 +7873,7 @@ export function lessonActivityDownloaded(properties: LessonActivityDownloadedPro
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "reCapRsfgU", "19c57e2ccf75003425dfc28933cb9f1baa4fa265af1913b96d9ef221ab57f4c7", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "reCapRsfgU", "c20bb3f729f312a0901a2da8ff252e6f93363d839d0492871f209389b25e170e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Downloaded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -6942,7 +7884,7 @@ export function lessonActivityDownloaded(properties: LessonActivityDownloadedPro
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Downloaded", eventProperties, "reCapRsfgU", "19c57e2ccf75003425dfc28933cb9f1baa4fa265af1913b96d9ef221ab57f4c7");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Downloaded", eventProperties, "reCapRsfgU", "c20bb3f729f312a0901a2da8ff252e6f93363d839d0492871f209389b25e170e");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Downloaded", (Object as any).assign({}, eventProperties));
@@ -6967,6 +7909,14 @@ export interface LessonActivityDownloadedWorksheetProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   phase: PhaseValueType;
   releaseGroup: string;
 }
@@ -6989,10 +7939,18 @@ export interface LessonActivityDownloadedWorksheetProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/reCapRsfgU.1gaZkUNtF}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/reCapRsfgU.1gaZkUNtF}
  */
 export function lessonActivityDownloadedWorksheet(properties: LessonActivityDownloadedWorksheetProperties) {
   // @ts-ignore
@@ -7018,6 +7976,28 @@ export function lessonActivityDownloadedWorksheet(properties: LessonActivityDown
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   eventPropertiesArray.push({id: "CUxL56KQZ", name: "Release Group", value: properties.releaseGroup});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
@@ -7029,7 +8009,7 @@ export function lessonActivityDownloadedWorksheet(properties: LessonActivityDown
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "reCapRsfgU.1gaZkUNtF", "16702baca4b09611efa90dd589b2542010caeb16a1f05f2d6c53b78efa9317d9", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "reCapRsfgU.1gaZkUNtF", "5a06f34b68319e1b12793947b4f6df5fa51675b8aea78e83b3e829bbb039f03b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Activity Downloaded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7040,7 +8020,7 @@ export function lessonActivityDownloadedWorksheet(properties: LessonActivityDown
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Downloaded", eventProperties, "reCapRsfgU.1gaZkUNtF", "16702baca4b09611efa90dd589b2542010caeb16a1f05f2d6c53b78efa9317d9");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Activity Downloaded", eventProperties, "reCapRsfgU.1gaZkUNtF", "5a06f34b68319e1b12793947b4f6df5fa51675b8aea78e83b3e829bbb039f03b");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Activity Downloaded", (Object as any).assign({}, eventProperties));
@@ -7065,6 +8045,14 @@ export interface ContentGuidanceAcceptedProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   phase: PhaseValueType;
   supervisionLevel: string;
   contentGuidanceWarning: ContentGuidanceWarningValueType;
@@ -7089,12 +8077,20 @@ export interface ContentGuidanceAcceptedProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.supervisionLevel: The degree of adult oversight needed during a lesson
  * @param properties.contentGuidanceWarning: The category of the specific content guidance
  * @param properties.ageRestriction: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1u1gDPFXp3}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/1u1gDPFXp3}
  */
 export function contentGuidanceAccepted(properties: ContentGuidanceAcceptedProperties) {
   // @ts-ignore
@@ -7132,6 +8128,28 @@ export function contentGuidanceAccepted(properties: ContentGuidanceAcceptedPrope
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   eventPropertiesArray.push({id: "AbSwsn_Lc", name: "Supervision Level", value: properties.supervisionLevel});
   eventPropertiesArray.push({id: "S-dilt6HW", name: "Content Guidance Warning", value: properties.contentGuidanceWarning});
@@ -7145,7 +8163,7 @@ export function contentGuidanceAccepted(properties: ContentGuidanceAcceptedPrope
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "1u1gDPFXp3", "9c4c4a6e8c6205caa00eccf50008cc3dc634561d3802289a4f271c48e1aa5755", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "1u1gDPFXp3", "31a4a2fa96f941daaf7ab9e47977cafbc9d56ac23e643f5d59f5f1610555c2a4", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Content Guidance Accepted", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7156,7 +8174,7 @@ export function contentGuidanceAccepted(properties: ContentGuidanceAcceptedPrope
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Guidance Accepted", eventProperties, "1u1gDPFXp3", "9c4c4a6e8c6205caa00eccf50008cc3dc634561d3802289a4f271c48e1aa5755");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Guidance Accepted", eventProperties, "1u1gDPFXp3", "31a4a2fa96f941daaf7ab9e47977cafbc9d56ac23e643f5d59f5f1610555c2a4");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Content Guidance Accepted", (Object as any).assign({}, eventProperties));
@@ -7181,6 +8199,14 @@ export interface ContentGuidanceDeclinedProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   supervisionLevel: string;
   phase: PhaseValueType;
   contentGuidanceWarning: ContentGuidanceWarningValueType;
@@ -7205,12 +8231,20 @@ export interface ContentGuidanceDeclinedProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.supervisionLevel: The degree of adult oversight needed during a lesson
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.contentGuidanceWarning: The category of the specific content guidance
  * @param properties.ageRestriction: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/2spbwH8iKS}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/2spbwH8iKS}
  */
 export function contentGuidanceDeclined(properties: ContentGuidanceDeclinedProperties) {
   // @ts-ignore
@@ -7236,6 +8270,28 @@ export function contentGuidanceDeclined(properties: ContentGuidanceDeclinedPrope
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "AbSwsn_Lc", name: "Supervision Level", value: properties.supervisionLevel});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   eventPropertiesArray.push({id: "S-dilt6HW", name: "Content Guidance Warning", value: properties.contentGuidanceWarning});
@@ -7249,7 +8305,7 @@ export function contentGuidanceDeclined(properties: ContentGuidanceDeclinedPrope
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "2spbwH8iKS", "7a66e6d82d90f9d2e9832ebb5c844d47321538a3531c329280c24c972f5fdd8c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "2spbwH8iKS", "76d79f920b9cff14890f17df246d7908c04eb6f06c15f728dd021a36cefc4203", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Content Guidance Declined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7260,7 +8316,7 @@ export function contentGuidanceDeclined(properties: ContentGuidanceDeclinedPrope
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Guidance Declined", eventProperties, "2spbwH8iKS", "7a66e6d82d90f9d2e9832ebb5c844d47321538a3531c329280c24c972f5fdd8c");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Guidance Declined", eventProperties, "2spbwH8iKS", "76d79f920b9cff14890f17df246d7908c04eb6f06c15f728dd021a36cefc4203");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Content Guidance Declined", (Object as any).assign({}, eventProperties));
@@ -7285,6 +8341,14 @@ export interface ActivityResultsSharedProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   phase: PhaseValueType;
   shareMedium: ShareMediumValueType;
   pupilExitQuizGrade: number | null | undefined;
@@ -7313,6 +8377,14 @@ export interface ActivityResultsSharedProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.shareMedium: The medium through which a link to a resource is shared
  * @param properties.pupilExitQuizGrade: Exit quiz results
@@ -7322,7 +8394,7 @@ export interface ActivityResultsSharedProperties {
  * @param properties.pupilExitQuiz: no description
  * @param properties.pupilStarterQuiz: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/IEzudJUnh0}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/IEzudJUnh0}
  */
 export function activityResultsShared(properties: ActivityResultsSharedProperties) {
   // @ts-ignore
@@ -7348,6 +8420,28 @@ export function activityResultsShared(properties: ActivityResultsSharedPropertie
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   eventPropertiesArray.push({id: "aMDyFQBYq", name: "Share Medium", value: properties.shareMedium});
   properties.pupilExitQuizGrade !== undefined && properties.pupilExitQuizGrade !== null ?
@@ -7395,7 +8489,7 @@ export function activityResultsShared(properties: ActivityResultsSharedPropertie
     messages = messages.concat(assertPupilStarterQuizOptional(properties.pupilStarterQuiz));
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "IEzudJUnh0", "193cb75b41069c1b1958e827791823ab74b884ea6b6dbbca4b4ef273361b3af8", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "IEzudJUnh0", "a06065ccd28ce504b2f0f44144ea4f5de985fe456351d5d047f802596657308f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Activity Results Shared", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7417,7 +8511,7 @@ export function activityResultsShared(properties: ActivityResultsSharedPropertie
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Activity Results Shared", eventProperties, "IEzudJUnh0", "193cb75b41069c1b1958e827791823ab74b884ea6b6dbbca4b4ef273361b3af8");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Activity Results Shared", eventProperties, "IEzudJUnh0", "a06065ccd28ce504b2f0f44144ea4f5de985fe456351d5d047f802596657308f");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Activity Results Shared", (Object as any).assign({}, eventProperties));
@@ -7448,6 +8542,14 @@ export interface LessonSummaryReviewedProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   phase: PhaseValueType;
   pupilVideoPlayed: boolean;
   pupilVideoDurationSeconds: number | null | undefined;
@@ -7480,6 +8582,14 @@ export interface LessonSummaryReviewedProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.pupilVideoPlayed: True if the play button has been pressed at all during the session
  * @param properties.pupilVideoDurationSeconds: The total length of the video in seconds
@@ -7487,7 +8597,7 @@ export interface LessonSummaryReviewedProperties {
  * @param properties.pupilExitQuiz: no description
  * @param properties.pupilStarterQuiz: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/HO-MSD-SiA}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/HO-MSD-SiA}
  */
 export function lessonSummaryReviewed(properties: LessonSummaryReviewedProperties) {
   // @ts-ignore
@@ -7527,6 +8637,28 @@ export function lessonSummaryReviewed(properties: LessonSummaryReviewedPropertie
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   eventPropertiesArray.push({id: "hmpQPI6sI", name: "Pupil Video Played", value: properties.pupilVideoPlayed});
   properties.pupilVideoDurationSeconds !== undefined && properties.pupilVideoDurationSeconds !== null ?
@@ -7568,7 +8700,7 @@ export function lessonSummaryReviewed(properties: LessonSummaryReviewedPropertie
     messages = messages.concat(assertPupilStarterQuizOptional(properties.pupilStarterQuiz));
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "HO-MSD-SiA", "149a3b793a5c780a5822782de0499191b5d92d0cec6f0a0b0aef04a230cab87f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "HO-MSD-SiA", "731c8c94b0ff21a982ab120d1e28ae02c0c0be4c10727f51bd7ad24d1a9f75cd", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Summary Reviewed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7590,7 +8722,7 @@ export function lessonSummaryReviewed(properties: LessonSummaryReviewedPropertie
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Summary Reviewed", eventProperties, "HO-MSD-SiA", "149a3b793a5c780a5822782de0499191b5d92d0cec6f0a0b0aef04a230cab87f");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Summary Reviewed", eventProperties, "HO-MSD-SiA", "731c8c94b0ff21a982ab120d1e28ae02c0c0be4c10727f51bd7ad24d1a9f75cd");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Summary Reviewed", (Object as any).assign({}, eventProperties));
@@ -7620,7 +8752,7 @@ export interface UserSignMinusUpCompletedProperties {
  * 
  * When to trigger this event:
  * 1. A user uses SSO or email/password combination to create an account in Clerk.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/fOlHJypRwg/trigger/aV1XekNBLU
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/fOlHJypRwg/trigger/aV1XekNBLU
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -7634,7 +8766,7 @@ export interface UserSignMinusUpCompletedProperties {
  * @param properties.userId_: The value used to identify the user. Make sure it's a unique sequence of characters used to identify the user.
  * @param properties.singleSignOnService: The Single Sign-On (SSO) Service used at a given stage of sign-up / sign-on.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/fOlHJypRwg}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/fOlHJypRwg}
  */
 export function userSignUpCompleted(properties: UserSignMinusUpCompletedProperties) {
   // @ts-ignore
@@ -7705,9 +8837,9 @@ export interface UserOnboardingCompletedProperties {
  * 
  * When to trigger this event:
  * 1. A teacher user completes the final stage of the onboarding journey (either continue or skip) and onboarding is complete.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1Wfnj8Bspf/trigger/rwg0-pla4a
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/1Wfnj8Bspf/trigger/rwg0-pla4a
  * 2. A non-teacher user completes the final stage of the onboarding journey and can be thought of as having completed the onboarding journey
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1Wfnj8Bspf/trigger/mA2lAiF3la
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/1Wfnj8Bspf/trigger/mA2lAiF3la
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -7727,7 +8859,7 @@ export interface UserOnboardingCompletedProperties {
  * @param properties.userAccountVerificationStatus: The status of the user account
  * @param properties.teacherSchoolManualEntryDetails: A small object containing the manually entered details of a users school when it is not available in the school picker.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1Wfnj8Bspf}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/1Wfnj8Bspf}
  */
 export function userOnboardingCompleted(properties: UserOnboardingCompletedProperties) {
   // @ts-ignore
@@ -7807,7 +8939,7 @@ export interface UserSignMinusInProperties {
  * @param properties the properties associated with this event
  * @param properties.userId_: The value used to identify the user. Make sure it's a unique sequence of characters used to identify the user.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/KiDGLM5Isg}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/KiDGLM5Isg}
  */
 export function userSignIn(properties: UserSignMinusInProperties) {
   // @ts-ignore
@@ -7845,7 +8977,7 @@ export function userSignIn(properties: UserSignMinusInProperties) {
 /**
  * User Sign-Out: A user signs-out of their account
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/j0lSWreaah}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/j0lSWreaah}
  */
 export function userSignOut() {
   // @ts-ignore
@@ -7888,6 +9020,14 @@ export interface LessonAbandonedProperties {
   unitSlug: string;
   keyStageTitle: KeyStageTitleValueType;
   keyStageSlug: string;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   platform: PlatformValueType;
   product: ProductValueType;
   engagementIntent: EngagementIntentValueType;
@@ -7908,6 +9048,14 @@ export interface LessonAbandonedProperties {
  * @param properties.unitSlug: Human-readable unique ID of the current unit.
  * @param properties.keyStageTitle: Title of the current key stage.
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
  * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
  * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
@@ -7918,7 +9066,7 @@ export interface LessonAbandonedProperties {
  * @param properties.yearGroupSlug: Human-readable unique ID of the current year group.
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/qv9EeULbT}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/qv9EeULbT}
  */
 export function lessonAbandoned(properties: LessonAbandonedProperties) {
   // @ts-ignore
@@ -7931,6 +9079,28 @@ export function lessonAbandoned(properties: LessonAbandonedProperties) {
   eventPropertiesArray.push({id: "r4GW5No741", name: "Unit Slug", value: properties.unitSlug});
   eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle});
   eventPropertiesArray.push({id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
   eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
   eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
@@ -7947,7 +9117,7 @@ export function lessonAbandoned(properties: LessonAbandonedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "qv9EeULbT", "6e58b30c9d2b0ffe12a65b2f5564e180e46fc7fa23735597f2cf57a5b873b8a8", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "qv9EeULbT", "204b1f4348d75b7de89f219a5caf0126ad1b8a625e432d3ea9f32ae003482498", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Abandoned", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7958,7 +9128,7 @@ export function lessonAbandoned(properties: LessonAbandonedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Abandoned", eventProperties, "qv9EeULbT", "6e58b30c9d2b0ffe12a65b2f5564e180e46fc7fa23735597f2cf57a5b873b8a8");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Abandoned", eventProperties, "qv9EeULbT", "204b1f4348d75b7de89f219a5caf0126ad1b8a625e432d3ea9f32ae003482498");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Abandoned", (Object as any).assign({}, eventProperties));
@@ -7988,7 +9158,7 @@ export interface BrowseAccessedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/MFzroCdj0}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/MFzroCdj0}
  */
 export function browseAccessed(properties: BrowseAccessedProperties) {
   // @ts-ignore
@@ -8042,6 +9212,14 @@ export interface QuestionAttemptSubmittedProperties {
   tierName: TierNameValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   pathway: PathwayValueType | null | undefined;
+  courseId: string | null | undefined;
+  itemId: string | null | undefined;
+  attachmentId: string | null | undefined;
+  submissionId: string | null | undefined;
+  classroomAssignmentId: string | null | undefined;
+  teacherLoginHint: string | null | undefined;
+  pupilLoginHint: string | null | undefined;
+  clientEnvironment: ClientEnvironmentValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilExperienceLessonActivity: PupilExperienceLessonActivityValueType;
   phase: PhaseValueType;
@@ -8070,6 +9248,14 @@ export interface QuestionAttemptSubmittedProperties {
  * @param properties.tierName: Name of the learning tier
  * @param properties.examBoard: The name of the exam board for a given unit, lesson etc…
  * @param properties.pathway: Optionality around type of study (i.e. whether working towards a particular certificate or not).
+ * @param properties.courseId: Course Id for google classroom asset
+ * @param properties.itemId: Item ID for Google Classroom shared attachement
+ * @param properties.attachmentId: Google Classroom Attachment ID
+ * @param properties.submissionId: Google Classroom Pupil Submission Id
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
+ * @param properties.teacherLoginHint: Google Classroom Teacher Login Hint
+ * @param properties.pupilLoginHint: Google Classroom Pupil Login Hint
+ * @param properties.clientEnvironment: Denotes the environment the client is running
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.pupilExperienceLessonActivity: All Oak pupil lessons have a set of sections which can be interacted with. This property tracks which section a particular action (e.g. starting, completing, abandoning) a particular event relates to.
@@ -8082,7 +9268,7 @@ export interface QuestionAttemptSubmittedProperties {
  * @param properties.hintAccessed: no description
  * @param properties.questionNumber: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/oxHJDrfL0el}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/oxHJDrfL0el}
  */
 export function questionAttemptSubmitted(properties: QuestionAttemptSubmittedProperties) {
   // @ts-ignore
@@ -8106,6 +9292,28 @@ export function questionAttemptSubmitted(properties: QuestionAttemptSubmittedPro
   properties.pathway !== undefined && properties.pathway !== null ?
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: properties.pathway}) :
     eventPropertiesArray.push({id: "hjCgkqBH8U", name: "Pathway", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.attachmentId !== undefined && properties.attachmentId !== null ?
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: properties.attachmentId}) :
+    eventPropertiesArray.push({id: "swlx4QcvoIk-ljB5gS8qF", name: "Attachment Id", value: null});
+  properties.submissionId !== undefined && properties.submissionId !== null ?
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: properties.submissionId}) :
+    eventPropertiesArray.push({id: "rzaH7Opf5kbjaT3mUuP_v", name: "Submission Id", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
+  properties.teacherLoginHint !== undefined && properties.teacherLoginHint !== null ?
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: properties.teacherLoginHint}) :
+    eventPropertiesArray.push({id: "JnDwcpiwitJ7k-tJ-LbNh", name: "Teacher Login Hint", value: null});
+  properties.pupilLoginHint !== undefined && properties.pupilLoginHint !== null ?
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: properties.pupilLoginHint}) :
+    eventPropertiesArray.push({id: "e1RKlQxiyzPf_uYY0wYuq", name: "Pupil Login Hint", value: null});
+  eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "Vv6ZE-oYpa", name: "Pupil Experience Lesson Activity", value: properties.pupilExperienceLessonActivity});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
@@ -8125,7 +9333,7 @@ export function questionAttemptSubmitted(properties: QuestionAttemptSubmittedPro
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "oxHJDrfL0el", "c67789424f363046a1278243de5da6cfbed3de1335ee393c41662b674dfabf0f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "oxHJDrfL0el", "a0661c304be55fe2c5a8ef2346062b2b77e39c1b7e83913668a4f0f967b57326", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Question Attempt Submitted", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -8136,7 +9344,7 @@ export function questionAttemptSubmitted(properties: QuestionAttemptSubmittedPro
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Question Attempt Submitted", eventProperties, "oxHJDrfL0el", "c67789424f363046a1278243de5da6cfbed3de1335ee393c41662b674dfabf0f");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Question Attempt Submitted", eventProperties, "oxHJDrfL0el", "a0661c304be55fe2c5a8ef2346062b2b77e39c1b7e83913668a4f0f967b57326");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Question Attempt Submitted", (Object as any).assign({}, eventProperties));
@@ -8190,7 +9398,7 @@ export interface TeacherShareInitiatedProperties {
  * @param properties.shareId: unique id associated with a share event
  * @param properties.sourcePageSlug: The slug portion of the url used to identify the page (on Oak's Website) from which an event was triggered. (e.g.  'teachers/curriculum/english-primary/units')
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/4zw48vJqLbd}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/4zw48vJqLbd}
  */
 export function teacherShareInitiated(properties: TeacherShareInitiatedProperties) {
   // @ts-ignore
@@ -8309,7 +9517,7 @@ export interface TeacherShareActivatedProperties {
  * @param properties.linkUrl: The href of a link
  * @param properties.noteLengthChars: The character length of a teacher note
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/ttpIP3aUQX2}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/ttpIP3aUQX2}
  */
 export function teacherShareActivated(properties: TeacherShareActivatedProperties) {
   // @ts-ignore
@@ -8428,7 +9636,7 @@ export interface TeacherShareConvertedProperties {
  * @param properties.shareId: unique id associated with a share event
  * @param properties.linkUrl: The href of a link
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/ANLiC7JLe7-}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/ANLiC7JLe7-}
  */
 export function teacherShareConverted(properties: TeacherShareConvertedProperties) {
   // @ts-ignore
@@ -8529,7 +9737,7 @@ export interface UnitDownloadInitiatedProperties {
  * @param properties.keyStageTitle: Title of the current key stage.
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/72bRke5-7b0}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/72bRke5-7b0}
  */
 export function unitDownloadInitiated(properties: UnitDownloadInitiatedProperties) {
   // @ts-ignore
@@ -8622,7 +9830,7 @@ export interface TeacherNoteDialogueOpenedProperties {
  * @param properties.sourcePageSlug: The slug portion of the url used to identify the page (on Oak's Website) from which an event was triggered. (e.g.  'teachers/curriculum/english-primary/units')
  * @param properties.linkUrl: The href of a link
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/ZfGgVMk2GGv2hxZQMZDBl}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/ZfGgVMk2GGv2hxZQMZDBl}
  */
 export function teacherNoteDialogueOpened(properties: TeacherNoteDialogueOpenedProperties) {
   // @ts-ignore
@@ -8746,7 +9954,7 @@ export interface TeacherNoteSavedProperties {
  * @param properties.linkUrl: The href of a link
  * @param properties.noteLengthChars: The character length of a teacher note
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/rY3jUdERBSrdNUQPY_2h-}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/rY3jUdERBSrdNUQPY_2h-}
  */
 export function teacherNoteSaved(properties: TeacherNoteSavedProperties) {
   // @ts-ignore
@@ -8837,7 +10045,7 @@ export interface CurriculumVisualiserExitedProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on 'See lessons in unit'
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/zsO3YXYKon/trigger/DevPKYouf
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/zsO3YXYKon/trigger/DevPKYouf
  * 
  * @param properties the properties associated with this event
  * @param properties.unitName: Title of the current unit.
@@ -8855,7 +10063,7 @@ export interface CurriculumVisualiserExitedProperties {
  * @param properties.yearGroupName: Name of the current year group.
  * @param properties.yearGroupSlug: Human-readable unique ID of the current year group.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/zsO3YXYKon}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/zsO3YXYKon}
  */
 export function curriculumVisualiserExited(properties: CurriculumVisualiserExitedProperties) {
   // @ts-ignore
@@ -8917,11 +10125,11 @@ export interface CurriculumVisualiserTabAccessedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lyC0uySKzt/trigger/PcASRZWOw1ku51PJZc9CB
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/lyC0uySKzt/trigger/PcASRZWOw1ku51PJZc9CB
  * 2. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lyC0uySKzt/trigger/D1VxROFKdnXDVTvFaw9Gs
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/lyC0uySKzt/trigger/D1VxROFKdnXDVTvFaw9Gs
  * 3. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lyC0uySKzt/trigger/fgn-xU4Zxy0ZQxt_KOcnH
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/lyC0uySKzt/trigger/fgn-xU4Zxy0ZQxt_KOcnH
  * 
  * @param properties the properties associated with this event
  * @param properties.subjectTitle: Title of the current subject.
@@ -8936,7 +10144,7 @@ export interface CurriculumVisualiserTabAccessedProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/lyC0uySKzt}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/lyC0uySKzt}
  */
 export function curriculumVisualiserTabAccessed(properties: CurriculumVisualiserTabAccessedProperties) {
   // @ts-ignore
@@ -9000,9 +10208,9 @@ export interface UnitOverviewExploredProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on one of the accordians within the unit overview pop out
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/i6-nnHEIYs/trigger/1eRpH5Gxy
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/i6-nnHEIYs/trigger/1eRpH5Gxy
  * 2. Depending on the unit, the accordian tab names will vary
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/i6-nnHEIYs/trigger/Iy1Mdcswp_HFz7gu3Vkv8
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/i6-nnHEIYs/trigger/Iy1Mdcswp_HFz7gu3Vkv8
  * 
  * @param properties the properties associated with this event
  * @param properties.subjectTitle: Title of the current subject.
@@ -9022,7 +10230,7 @@ export interface UnitOverviewExploredProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/i6-nnHEIYs}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/i6-nnHEIYs}
  */
 export function unitOverviewExplored(properties: UnitOverviewExploredProperties) {
   // @ts-ignore
@@ -9083,13 +10291,13 @@ export interface ProductHomepageAccessedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/a85DGvpxPtzycSgl20lbY
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/a85DGvpxPtzycSgl20lbY
  * 2. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/dWx1KqJ9Z1YDgC5lDOY94
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/dWx1KqJ9Z1YDgC5lDOY94
  * 3. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/MMsrYL3JK596X0m5vVdWP
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/MMsrYL3JK596X0m5vVdWP
  * 4. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/Crn6BaMk17vcqoYOgaFs1
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/Lftzxt-mHyPsAzsv5H2Vi/trigger/Crn6BaMk17vcqoYOgaFs1
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -9101,7 +10309,7 @@ export interface ProductHomepageAccessedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Lftzxt-mHyPsAzsv5H2Vi}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/Lftzxt-mHyPsAzsv5H2Vi}
  */
 export function productHomepageAccessed(properties: ProductHomepageAccessedProperties) {
   // @ts-ignore
@@ -9154,7 +10362,7 @@ export interface CurriculumLandingPageAccessedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Sv8oxJgYPLCidSo_wxLpN/trigger/6A2Ow5TjrtpMpDLy_gR_n
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/Sv8oxJgYPLCidSo_wxLpN/trigger/6A2Ow5TjrtpMpDLy_gR_n
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -9166,7 +10374,7 @@ export interface CurriculumLandingPageAccessedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Sv8oxJgYPLCidSo_wxLpN}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/Sv8oxJgYPLCidSo_wxLpN}
  */
 export function curriculumLandingPageAccessed(properties: CurriculumLandingPageAccessedProperties) {
   // @ts-ignore
@@ -9222,7 +10430,7 @@ export interface CurriculumExplainerExploredProperties {
  * 
  * When to trigger this event:
  * 1. User navigates to any of the contents on the left
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/FP1B-pCMEjGG0k3hk6oXU/trigger/YgOtQr6ps2icWqT4X3JT7
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/FP1B-pCMEjGG0k3hk6oXU/trigger/YgOtQr6ps2icWqT4X3JT7
  * 
  * @param properties the properties associated with this event
  * @param properties.subjectTitle: Title of the current subject.
@@ -9237,7 +10445,7 @@ export interface CurriculumExplainerExploredProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.phase: School phase related to key stage and age of audience
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/FP1B-pCMEjGG0k3hk6oXU}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/FP1B-pCMEjGG0k3hk6oXU}
  */
 export function curriculumExplainerExplored(properties: CurriculumExplainerExploredProperties) {
   // @ts-ignore
@@ -9298,7 +10506,7 @@ export interface CurriculumResourcesDownloadRefinedProperties {
  * 
  * When to trigger this event:
  * 1. User selects a subject and learning tier to download curriculum resources for
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/cTKf4kbAHd211SR05Bbq8/trigger/j79s4AM_FvlH_6oP87NBj
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/cTKf4kbAHd211SR05Bbq8/trigger/j79s4AM_FvlH_6oP87NBj
  * 
  * @param properties the properties associated with this event
  * @param properties.subjectTitle: Title of the current subject.
@@ -9315,7 +10523,7 @@ export interface CurriculumResourcesDownloadRefinedProperties {
  * @param properties.childSubjectName: Name of the Child Subject Associated with the event
  * @param properties.learningTier: Learning tier that was selected
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/cTKf4kbAHd211SR05Bbq8}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/cTKf4kbAHd211SR05Bbq8}
  */
 export function curriculumResourcesDownloadRefined(properties: CurriculumResourcesDownloadRefinedProperties) {
   // @ts-ignore
@@ -9378,7 +10586,7 @@ export interface SearchFilterModifiedProperties {
  * 
  * When to trigger this event:
  * 1. A search filter button is selected.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/JbWzId2dPo6mN6Y3aHwMr/trigger/Cx9_xD-MYDD1Tt00diuFC
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/JbWzId2dPo6mN6Y3aHwMr/trigger/Cx9_xD-MYDD1Tt00diuFC
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -9395,7 +10603,7 @@ export interface SearchFilterModifiedProperties {
  * @param properties.searchTerm: The term entered by the user for the search.
  * @param properties.searchFilterMatchType: Whether the filters applied are applied via Fuzzy Match or AI.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/JbWzId2dPo6mN6Y3aHwMr}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/JbWzId2dPo6mN6Y3aHwMr}
  */
 export function searchFilterModified(properties: SearchFilterModifiedProperties) {
   // @ts-ignore
@@ -9499,7 +10707,7 @@ export interface LessonMediaClipsStartedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/YbxoviiZ7zqvdvU_8FRv9}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/YbxoviiZ7zqvdvU_8FRv9}
  */
 export function lessonMediaClipsStarted(properties: LessonMediaClipsStartedProperties) {
   // @ts-ignore
@@ -9659,7 +10867,7 @@ export interface MediaClipsPlaylistPlayedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/VvOi9lNYmXNrmqXMSkT-X}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/VvOi9lNYmXNrmqXMSkT-X}
  */
 export function mediaClipsPlaylistPlayed(properties: MediaClipsPlaylistPlayedProperties) {
   // @ts-ignore
@@ -9785,7 +10993,7 @@ export interface ContentSavedProperties {
  * @param properties.contentType: no description
  * @param properties.contentItemSlug: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/SA9Od8Lltuc37iY7IHGP4}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/SA9Od8Lltuc37iY7IHGP4}
  */
 export function contentSaved(properties: ContentSavedProperties) {
   // @ts-ignore
@@ -9864,7 +11072,7 @@ export interface ContentUnsavedProperties {
  * @param properties.contentType: no description
  * @param properties.contentItemSlug: no description
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/ma0dTvBAlMIMPsHIHNKW4}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/ma0dTvBAlMIMPsHIHNKW4}
  */
 export function contentUnsaved(properties: ContentUnsavedProperties) {
   // @ts-ignore
@@ -9924,7 +11132,7 @@ export interface CreateTeachingMaterialsInitiatedProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on the 'Create additional materials' button
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_3ZXJv2dxdML9tN8VHYb/trigger/7HC7dZHAPT8KBGGnQOp6C
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/I_3ZXJv2dxdML9tN8VHYb/trigger/7HC7dZHAPT8KBGGnQOp6C
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -9937,7 +11145,7 @@ export interface CreateTeachingMaterialsInitiatedProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.isLoggedIn: Flags whether the user logged in or not before accessing the Oak object
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_3ZXJv2dxdML9tN8VHYb}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/I_3ZXJv2dxdML9tN8VHYb}
  */
 export function createTeachingMaterialsInitiated(properties: CreateTeachingMaterialsInitiatedProperties) {
   // @ts-ignore
@@ -9993,7 +11201,7 @@ export interface TeachingMaterialsSelectedProperties {
  * 
  * When to trigger this event:
  * 1. The user selects from the radial options which type of additional material to create, and clicks on 'Next, lesson details'.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/53a2df64-53be-4f28-9b3e-2918d78d9477/trigger/G4MY_H0MONSXFiAi_PstL
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/53a2df64-53be-4f28-9b3e-2918d78d9477/trigger/G4MY_H0MONSXFiAi_PstL
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -10007,7 +11215,7 @@ export interface TeachingMaterialsSelectedProperties {
  * @param properties.interactionId: Currently applies to interactions with the Additional Material creation flow. Groups together elements of an interaction to form one journey.
  * @param properties.teachingMaterialType: Type of Additional Material user has selected to generate.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/53a2df64-53be-4f28-9b3e-2918d78d9477}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/53a2df64-53be-4f28-9b3e-2918d78d9477}
  */
 export function teachingMaterialsSelected(properties: TeachingMaterialsSelectedProperties) {
   // @ts-ignore
@@ -10070,13 +11278,13 @@ export interface TeachingMaterialsRefinedProperties {
  * 
  * When to trigger this event:
  * 1. The user selects a year group, subject and lesson title for the additional materials, then clicks on ‘Create lesson summary’ 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/DZzW7MOE1d7mmFy-3KXnq/trigger/FDM2fVMrZ51mmmXDlsAQw
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/DZzW7MOE1d7mmFy-3KXnq/trigger/FDM2fVMrZ51mmmXDlsAQw
  * 2. The user clicks on the ‘Create glossary’ button to carry on with the additional resources creation. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/DZzW7MOE1d7mmFy-3KXnq/trigger/ELWI6ZF7mpGVF0X_ch4jk
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/DZzW7MOE1d7mmFy-3KXnq/trigger/ELWI6ZF7mpGVF0X_ch4jk
  * 3. The user selects one of the Modify options on the Glossary page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/DZzW7MOE1d7mmFy-3KXnq/trigger/e3YmT5oE5dvmk9LTbQrqU
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/DZzW7MOE1d7mmFy-3KXnq/trigger/e3YmT5oE5dvmk9LTbQrqU
  * 4. The user clicks on ‘Back a step’
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/DZzW7MOE1d7mmFy-3KXnq/trigger/0Lqu48jyX2732YmT_-dTc
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/DZzW7MOE1d7mmFy-3KXnq/trigger/0Lqu48jyX2732YmT_-dTc
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -10096,7 +11304,7 @@ export interface TeachingMaterialsRefinedProperties {
  * @param properties.lessonPlanTitle: Title of the lesson plan
  * @param properties.moderatedContentType: The flag displayed to the user if the content they are looking at is sensitive/blocked
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/DZzW7MOE1d7mmFy-3KXnq}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/DZzW7MOE1d7mmFy-3KXnq}
  */
 export function teachingMaterialsRefined(properties: TeachingMaterialsRefinedProperties) {
   // @ts-ignore
@@ -10169,7 +11377,7 @@ export interface TeachingMaterialDownloadedProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on 'Download (.zip)'.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6E7DzaaR8xj-jTMeAu7TS/trigger/pTcRgM36sUy0DWCa6X1kp
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/6E7DzaaR8xj-jTMeAu7TS/trigger/pTcRgM36sUy0DWCa6X1kp
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -10191,7 +11399,7 @@ export interface TeachingMaterialDownloadedProperties {
  * @param properties.resourceFileType: The file type of the resource related to the event
  * @param properties.moderatedContentType: The flag displayed to the user if the content they are looking at is sensitive/blocked
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6E7DzaaR8xj-jTMeAu7TS}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/6E7DzaaR8xj-jTMeAu7TS}
  */
 export function teachingMaterialDownloaded(properties: TeachingMaterialDownloadedProperties) {
   // @ts-ignore
@@ -10282,7 +11490,7 @@ export interface ContentBlockNotificationDisplayedProperties {
  * @param properties.accessBlockType: The reason why an item of content was blocked from being accessed.
  * @param properties.accessBlockDetails: An object providing details about the block reason (e.g. the country of the user at the time geo-restricted content was blocked)
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/E_1QtSmDaMHlZzmoL1bSm}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/E_1QtSmDaMHlZzmoL1bSm}
  */
 export function contentBlockNotificationDisplayed(properties: ContentBlockNotificationDisplayedProperties) {
   // @ts-ignore
@@ -10380,7 +11588,7 @@ export interface UserOnboardingProgressedProperties {
  * @param properties.userAccountVerificationStatus: The status of the user account
  * @param properties.teacherSchoolManualEntryDetails: A small object containing the manually entered details of a users school when it is not available in the school picker.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/WFQ_xNUmm}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/WFQ_xNUmm}
  */
 export function userOnboardingProgressed(properties: UserOnboardingProgressedProperties) {
   // @ts-ignore
@@ -10463,7 +11671,7 @@ export interface AboutUsAccessedProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on the About Oak button from the homepage
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/oSWvaTUE8hKucXrR3I4V4/trigger/GC1EHCHa7Lm7iUZfbZh7q
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/oSWvaTUE8hKucXrR3I4V4/trigger/GC1EHCHa7Lm7iUZfbZh7q
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -10475,7 +11683,7 @@ export interface AboutUsAccessedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/oSWvaTUE8hKucXrR3I4V4}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/oSWvaTUE8hKucXrR3I4V4}
  */
 export function aboutUsAccessed(properties: AboutUsAccessedProperties) {
   // @ts-ignore
@@ -10528,7 +11736,7 @@ export interface AboutUsExploredProperties {
  * 
  * When to trigger this event:
  * 1. User selects any of the four options in this section
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/GTkyUItOAwx_e4-aU1pXH/trigger/jCTVX9nXJdT7DwN9dxeKS
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/GTkyUItOAwx_e4-aU1pXH/trigger/jCTVX9nXJdT7DwN9dxeKS
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -10540,7 +11748,7 @@ export interface AboutUsExploredProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/GTkyUItOAwx_e4-aU1pXH}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/GTkyUItOAwx_e4-aU1pXH}
  */
 export function aboutUsExplored(properties: AboutUsExploredProperties) {
   // @ts-ignore
@@ -10593,11 +11801,11 @@ export interface AboutUsContactInitiatedProperties {
  * 
  * When to trigger this event:
  * 1. User clicks on 'join the research panel' (component type = 'join_research_panel')
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1kAeBL_oSYtSUA_xJrLFz/trigger/CZqCjnoNG1tfXzDfGMQZf
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/1kAeBL_oSYtSUA_xJrLFz/trigger/CZqCjnoNG1tfXzDfGMQZf
  * 2. User clicks 'get in touch' (component_type = 'get_in_touch')
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1kAeBL_oSYtSUA_xJrLFz/trigger/0mHzNpxH8P4Eh0nu7LGYK
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/1kAeBL_oSYtSUA_xJrLFz/trigger/0mHzNpxH8P4Eh0nu7LGYK
  * 3. User clicks on 'permanent roles' or 'freelance roles' (component type = 'permanent_roles'/'freelance roles')
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1kAeBL_oSYtSUA_xJrLFz/trigger/f_oDDB8k7c9p_8ZRnnlsO
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/1kAeBL_oSYtSUA_xJrLFz/trigger/f_oDDB8k7c9p_8ZRnnlsO
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -10609,7 +11817,7 @@ export interface AboutUsContactInitiatedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1kAeBL_oSYtSUA_xJrLFz}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/1kAeBL_oSYtSUA_xJrLFz}
  */
 export function aboutUsContactInitiated(properties: AboutUsContactInitiatedProperties) {
   // @ts-ignore
@@ -10669,7 +11877,7 @@ export interface ClassroomSignInCompletedProperties {
  * @param properties.subscribeToNewsletter: Newsletter subscribe button selected
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/b7534ea2-1ff5-4707-9395-b93dd01d8944}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/b7534ea2-1ff5-4707-9395-b93dd01d8944}
  */
 export function classroomSignInCompleted(properties: ClassroomSignInCompletedProperties) {
   // @ts-ignore
@@ -10727,7 +11935,7 @@ export interface ClassroomSignInStartedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/NH1qVkE2GB5IFRN2i5QyY/trigger/V7rxuuU3dpqHVeWA4i-Hi
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/NH1qVkE2GB5IFRN2i5QyY/trigger/V7rxuuU3dpqHVeWA4i-Hi
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -10737,7 +11945,7 @@ export interface ClassroomSignInStartedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/NH1qVkE2GB5IFRN2i5QyY}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/NH1qVkE2GB5IFRN2i5QyY}
  */
 export function classroomSignInStarted(properties: ClassroomSignInStartedProperties) {
   // @ts-ignore
@@ -10800,7 +12008,7 @@ export interface ClassroomLessonSelectedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/7ed5d88c-5b8d-4af2-87a2-2d7611079795/trigger/H3G3BWqetpDQYy_zDAqDo
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/7ed5d88c-5b8d-4af2-87a2-2d7611079795/trigger/H3G3BWqetpDQYy_zDAqDo
  * 
  * @param properties the properties associated with this event
  * @param properties.lessonName: Name of the current lesson.
@@ -10819,7 +12027,7 @@ export interface ClassroomLessonSelectedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/7ed5d88c-5b8d-4af2-87a2-2d7611079795}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/7ed5d88c-5b8d-4af2-87a2-2d7611079795}
  */
 export function classroomLessonSelected(properties: ClassroomLessonSelectedProperties) {
   // @ts-ignore
@@ -10892,7 +12100,7 @@ export interface ClassroomLessonPreviewedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/yyH7tlz5DF7yCPBTS7ukR/trigger/NFnARcInP5Uvh60kuCZ_Z
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/yyH7tlz5DF7yCPBTS7ukR/trigger/NFnARcInP5Uvh60kuCZ_Z
  * 
  * @param properties the properties associated with this event
  * @param properties.lessonName: Name of the current lesson.
@@ -10911,7 +12119,7 @@ export interface ClassroomLessonPreviewedProperties {
  * @param properties.googleLoginHint: no description
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/yyH7tlz5DF7yCPBTS7ukR}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/yyH7tlz5DF7yCPBTS7ukR}
  */
 export function classroomLessonPreviewed(properties: ClassroomLessonPreviewedProperties) {
   // @ts-ignore
@@ -10964,19 +12172,20 @@ export function classroomLessonPreviewed(properties: ClassroomLessonPreviewedPro
 
 export interface ClassroomLessonsAttachedProperties {
   googleLoginHint: string;
-  itemId: string;
-  courseId: string;
+  itemId: string | null | undefined;
+  courseId: string | null | undefined;
   lessonName: string;
   unitName: string;
   gradeSyncEnabled: boolean;
   clientEnvironment: ClientEnvironmentValueType | null | undefined;
+  classroomAssignmentId: string | null | undefined;
 }
 /**
  * Classroom Lessons Attached: Click "Attach lessons to assignment" 
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/t7nhIQuz1fXoUi0xheAxT/trigger/SWV04E6prIUjsxP0dVXEh
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/t7nhIQuz1fXoUi0xheAxT/trigger/SWV04E6prIUjsxP0dVXEh
  * 
  * @param properties the properties associated with this event
  * @param properties.googleLoginHint: no description
@@ -10986,21 +12195,29 @@ export interface ClassroomLessonsAttachedProperties {
  * @param properties.unitName: Title of the current unit.
  * @param properties.gradeSyncEnabled: Teacher has enabled grade sync
  * @param properties.clientEnvironment: Denotes the environment the client is running
+ * @param properties.classroomAssignmentId: Google Classroom join key consisting of courseId:itemId
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/t7nhIQuz1fXoUi0xheAxT}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/t7nhIQuz1fXoUi0xheAxT}
  */
 export function classroomLessonsAttached(properties: ClassroomLessonsAttachedProperties) {
   // @ts-ignore
   let eventPropertiesArray: array = [];
   eventPropertiesArray.push({id: "86AjgGPsfPrUhMUY_Hkkl", name: "Google Login Hint", value: properties.googleLoginHint});
-  eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId});
-  eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId});
+  properties.itemId !== undefined && properties.itemId !== null ?
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: properties.itemId}) :
+    eventPropertiesArray.push({id: "F8tpTmqbTxEqlOXo1c79C", name: "Item Id", value: null});
+  properties.courseId !== undefined && properties.courseId !== null ?
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: properties.courseId}) :
+    eventPropertiesArray.push({id: "t8RHgWfL1Ft3at-LRzgNb", name: "Course Id", value: null});
   eventPropertiesArray.push({id: "vbCKXJ6xRQ", name: "Lesson Name", value: properties.lessonName});
   eventPropertiesArray.push({id: "YfsvSpyEEd", name: "Unit Name", value: properties.unitName});
   eventPropertiesArray.push({id: "dCdz44N1Wv-fpslSFWP2R", name: "Grade Sync Enabled", value: properties.gradeSyncEnabled});
   properties.clientEnvironment !== undefined && properties.clientEnvironment !== null ?
     eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: properties.clientEnvironment}) :
     eventPropertiesArray.push({id: "9RoNY4Sg_zpaBzxCl3sTB", name: "Client Environment", value: null});
+  properties.classroomAssignmentId !== undefined && properties.classroomAssignmentId !== null ?
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: properties.classroomAssignmentId}) :
+    eventPropertiesArray.push({id: "EneREMaayMMSe6UHp0lfi", name: "Classroom Assignment Id", value: null});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -11010,7 +12227,7 @@ export function classroomLessonsAttached(properties: ClassroomLessonsAttachedPro
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "t7nhIQuz1fXoUi0xheAxT", "2bd6d669016e34a4f3a0c6451a73778d6c9d21410c5e87e2369eab61f065888c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "t7nhIQuz1fXoUi0xheAxT", "c3f42bb692dfd0eaea7c458631ca7bc936f299a3caa0621504bcabef1db9599a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Classroom Lessons Attached", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -11021,7 +12238,7 @@ export function classroomLessonsAttached(properties: ClassroomLessonsAttachedPro
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Classroom Lessons Attached", eventProperties, "t7nhIQuz1fXoUi0xheAxT", "2bd6d669016e34a4f3a0c6451a73778d6c9d21410c5e87e2369eab61f065888c");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Classroom Lessons Attached", eventProperties, "t7nhIQuz1fXoUi0xheAxT", "c3f42bb692dfd0eaea7c458631ca7bc936f299a3caa0621504bcabef1db9599a");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Classroom Lessons Attached", (Object as any).assign({}, eventProperties));
@@ -11044,7 +12261,7 @@ export interface ClassroomAddOnOpenedProperties {
  * 
  * When to trigger this event:
  * 1. 
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/f6c5fadc-2289-4875-a4a5-062de83dc9c1/trigger/MBJLU55HRcRhUoHwRSu8p
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/f6c5fadc-2289-4875-a4a5-062de83dc9c1/trigger/MBJLU55HRcRhUoHwRSu8p
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -11057,7 +12274,7 @@ export interface ClassroomAddOnOpenedProperties {
  * NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.clientEnvironment: Denotes the environment the client is running
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/f6c5fadc-2289-4875-a4a5-062de83dc9c1}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/f6c5fadc-2289-4875-a4a5-062de83dc9c1}
  */
 export function classroomAddOnOpened(properties: ClassroomAddOnOpenedProperties) {
   // @ts-ignore
@@ -11190,6 +12407,7 @@ export default {
   lessonActivityAbandonedLessonAudio,
   lessonAssistantAccessed,
   lessonAccessed,
+  lessonAccessedPupilJourney,
   browseRefined,
   browseRefinedAccessed,
   lessonActivityDownloaded,
@@ -11241,4 +12459,4 @@ export default {
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["newsletterSignUpCompleted","classroomSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","unitAccessed","unitSequenceRefined","webinarPageViewed","pageview","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","unitOverviewAccessed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloadInitiated","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved","createTeachingMaterialsInitiated","teachingMaterialsSelected","teachingMaterialsRefined","teachingMaterialDownloaded","contentBlockNotificationDisplayed","userOnboardingProgressed","aboutUsAccessed","aboutUsExplored","aboutUsContactInitiated","classroomSignInCompleted","classroomSignInStarted","classroomLessonSelected","classroomLessonPreviewed","classroomLessonsAttached","classroomAddOnOpened"]
+// AVOEVENTMAP:["newsletterSignUpCompleted","classroomSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","unitAccessed","unitSequenceRefined","webinarPageViewed","pageview","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","unitOverviewAccessed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","lessonAccessedPupilJourney","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloadInitiated","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved","createTeachingMaterialsInitiated","teachingMaterialsSelected","teachingMaterialsRefined","teachingMaterialDownloaded","contentBlockNotificationDisplayed","userOnboardingProgressed","aboutUsAccessed","aboutUsExplored","aboutUsContactInitiated","classroomSignInCompleted","classroomSignInStarted","classroomLessonSelected","classroomLessonPreviewed","classroomLessonsAttached","classroomAddOnOpened"]
