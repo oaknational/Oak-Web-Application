@@ -12,7 +12,7 @@ import {
 
 const neighbourUnitSchema = z
   .object({ title: z.string(), slug: z.string() })
-  .optional();
+  .nullable();
 
 export const unitPageDataSchema = z.object({
   programmeSlug: z.string(),

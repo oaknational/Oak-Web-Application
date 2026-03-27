@@ -100,13 +100,13 @@ export const getNeighbourUnits = ({
           slug: nextUnit.unitSlug,
           title: nextUnit.optionalityTitle ?? nextUnit.unitTitle,
         }
-      : undefined,
+      : null,
     prevUnit: prevUnit
       ? {
           slug: prevUnit.unitSlug,
           title: prevUnit.optionalityTitle ?? prevUnit.unitTitle,
         }
-      : undefined,
+      : null,
   };
 };
 
