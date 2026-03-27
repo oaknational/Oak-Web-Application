@@ -488,6 +488,26 @@ describe("shouldDisplayFilter", () => {
       expect(result).toEqual(true);
     });
 
+    it("with only one year", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7"],
+        keystages: [],
+      };
+
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7"] }),
+        "years",
+      );
+      expect(result).toEqual(false);
+    });
+
     it("no data", () => {
       const data: CurriculumUnitsFormattedData = {
         yearData: {},
