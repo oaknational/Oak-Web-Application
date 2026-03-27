@@ -210,16 +210,34 @@ export const getProgrammeToggles = (
             currentProgramme.programme_fields.subject_slug &&
           programme.programme_fields.examboard_slug ===
             currentProgramme.programme_fields.examboard_slug &&
-          !!programme.programme_fields.tier_description,
+          programme.programme_fields.tier_description !== null,
       )
       .map((programme) => ({
-        title: programme.programme_fields.tier_description!,
+        title: programme.programme_fields.tier_description,
         programmeSlug: programme.programme_slug,
-      }));
+      })) as ProgrammeToggles;
+  }
+
+  let subjectOptionToggles: ProgrammeToggles = allProgrammes
+    .filter(
+      (programme) =>
+        programme.programme_fields.examboard_slug ===
+          currentProgramme.programme_fields.examboard_slug &&
+        programme.programme_fields.tier_slug ===
+          currentProgramme.programme_fields.tier_slug,
+    )
+    .map((programme) => ({
+      title: programme.programme_fields.subject,
+      programmeSlug: programme.programme_slug,
+    }));
+
+  if (subjectOptionToggles.length === 1) {
+    // clear the array, we don't need to return the current subject as a single toggle
+    subjectOptionToggles = [];
   }
 
   return {
     tierOptionToggles,
-    subjectOptionToggles: [],
+    subjectOptionToggles,
   };
 };

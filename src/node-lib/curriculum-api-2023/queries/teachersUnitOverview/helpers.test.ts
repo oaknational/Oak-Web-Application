@@ -495,4 +495,44 @@ describe("getProgrammeToggles", () => {
       },
     ]);
   });
+  it("returns subject toggles", () => {
+    const allProgrammes = [
+      {
+        programme_slug: "biology-secondary-ks4-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Biology",
+            keystage_slug: "ks4",
+            subject_slug: "biology",
+            examboard_slug: "aqa",
+          },
+        }),
+      },
+      {
+        programme_slug: "combined-science-secondary-ks4-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Combined science",
+            keystage_slug: "ks4",
+            subject_slug: "combined-science",
+            examboard_slug: "aqa",
+          },
+        }),
+      },
+    ];
+    const result = getProgrammeToggles(
+      "combined-science-secondary-ks4-aqa",
+      allProgrammes,
+    );
+    expect(result.subjectOptionToggles).toEqual([
+      {
+        title: "Biology",
+        programmeSlug: "biology-secondary-ks4-aqa",
+      },
+      {
+        title: "Combined science",
+        programmeSlug: "combined-science-secondary-ks4-aqa",
+      },
+    ]);
+  });
 });
