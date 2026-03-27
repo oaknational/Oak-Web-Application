@@ -34,7 +34,7 @@ const PromoBanner: FC<PromoBannerProps> = ({
         <OakFlex
           $alignItems={"center"}
           $flexWrap={"wrap"}
-          $gap={["spacing-4", "spacing-40"]}
+          $gap={["spacing-20", "spacing-40"]}
           $flexDirection={["column", "row"]}
           $justifyContent={"center"}
           $pv={"spacing-0"}
@@ -46,7 +46,7 @@ const PromoBanner: FC<PromoBannerProps> = ({
           >
             {message}
           </OakFlex>
-          <OakBox $ml={["spacing-16", "spacing-0"]} $mh={"spacing-0"}>
+          <OakBox $mh={"spacing-0"}>
             <OakSecondaryLink
               href={href}
               iconName="chevron-right"

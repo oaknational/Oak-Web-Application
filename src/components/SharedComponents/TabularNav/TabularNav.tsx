@@ -43,7 +43,7 @@ const TabularNav = ({
             href={href}
             onClick={onClick}
             aria-current={isCurrent ? "page" : undefined}
-            data-current={isCurrent ? "true" : undefined}
+            $mr={"spacing-24"}
             key={`TabularNav-${link.page}-${i}`}
           >
             <OakTypography $font={"heading-7"} as="span">
@@ -60,9 +60,8 @@ export default TabularNav;
 
 const StyledTabularLink = styled(OakSecondaryLink)`
   text-decoration: none;
-  margin-right: 24px;
 
-  &[data-current="true"] {
+  &[aria-current="page"] {
     text-decoration: underline;
   }
 `;
