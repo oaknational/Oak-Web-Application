@@ -21,6 +21,7 @@ import {
   Platform,
   Product,
 } from "@/browser-lib/avo/Avo";
+import { getClassroomAssignmentId } from "@/browser-lib/google-classroom";
 
 export type BrowseRefinedPayload = Parameters<
   GoogleClassroomTrackFns["browseRefined"]
@@ -154,13 +155,17 @@ export const buildLessonAttachedPayload = (
   data: OnLessonAttachedData,
   context: GoogleClassroomAnalyticsSharedContext,
 ): LessonsAttachedPayload => {
+  const courseId = data.courseId || context.courseId || "";
+  const itemId = data.itemId || context.itemId || "";
+
   return {
     lessonName: data.lessonName,
     unitName: data.unitName,
-    courseId: data.courseId || context.courseId || "",
-    itemId: data.itemId || context.itemId || "",
+    courseId,
+    itemId,
     gradeSyncEnabled: data.gradeSyncEnabled,
     googleLoginHint: data.googleLoginHint ?? context.googleLoginHint,
     clientEnvironment: context.clientEnvironment,
+    classroomAssignmentId: getClassroomAssignmentId(courseId, itemId),
   };
 };

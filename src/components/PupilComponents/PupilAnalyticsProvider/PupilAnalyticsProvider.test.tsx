@@ -23,6 +23,24 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 jest.mock("@/common-lib/error-reporter", () => jest.fn(() => jest.fn()));
 
+jest.mock("next/navigation", () => ({
+  ...jest.requireActual("next/navigation"),
+  useSearchParams: () => null,
+  usePathname: () => "/",
+}));
+
+jest.mock("@/browser-lib/google-classroom/getClientEnvironment", () => ({
+  getClientEnvironment: () => "web-browser",
+}));
+
+jest.mock("@/browser-lib/google-classroom", () => ({
+  ...jest.requireActual("@/browser-lib/google-classroom"),
+  getClassroomAssignmentId: (
+    courseId: string | null | undefined,
+    itemId: string | null | undefined,
+  ) => (courseId && itemId ? `${courseId}:${itemId}` : null),
+}));
+
 const render = renderWithProviders();
 
 const pupilPathwayData = getPupilPathwayData(lessonBrowseDataFixture({}));
@@ -76,6 +94,14 @@ describe("PupilAnalyticsProvider", () => {
           expect.objectContaining({
             ...pupilPathwayData,
             analyticsUseCase: "Pupil",
+            clientEnvironment: "web-browser",
+            classroomAssignmentId: null,
+            courseId: null,
+            itemId: null,
+            attachmentId: null,
+            submissionId: null,
+            teacherLoginHint: null,
+            pupilLoginHint: null,
           }),
         );
       },

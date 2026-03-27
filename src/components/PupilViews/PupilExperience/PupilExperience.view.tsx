@@ -47,10 +47,8 @@ import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/u
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 import type { AddOnContextResponse } from "@/browser-lib/google-classroom/googleClassroomApi";
-import {
-  mapToSubmitPupilProgress,
-  type ClassroomContext,
-} from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
+import { type ClassroomProgressContext } from "@/browser-lib/google-classroom";
+import { mapToSubmitPupilProgress } from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
 import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
 import {
   GoogleClassroomAnalyticsProvider,
@@ -246,6 +244,12 @@ const PupilExperienceClassroomAnalytics = ({
   return null;
 };
 
+type ClassroomAnalyticsContext = {
+  pupilLoginHint: string | null;
+  teacherLoginHint: string | null;
+  submissionId: string | null;
+};
+
 const PupilExperienceLayout = ({
   browseData,
   lessonContent,
@@ -256,7 +260,10 @@ const PupilExperienceLayout = ({
   initialSection,
   pageType,
   worksheetInfo,
-}: PupilExperienceViewProps) => {
+  onClassroomContextResolved,
+}: PupilExperienceViewProps & {
+  onClassroomContextResolved: (ctx: ClassroomAnalyticsContext) => void;
+}) => {
   const ageRestriction = browseData.features?.ageRestriction;
   const hasAgeRestriction = !!ageRestriction;
   const { isClassroomAssignment, classroomAssignmentChecked } =
@@ -265,9 +272,10 @@ const PupilExperienceLayout = ({
     isClassroomAssignment === true && classroomAssignmentChecked === true;
 
   const searchParams = useSearchParams();
-  const classroomContextRef = useRef<ClassroomContext | null>(null);
+  const classroomContextRef = useRef<ClassroomProgressContext | null>(null);
   const [isFetchingClassroomContext, setIsFetchingClassroomContext] =
     useState(false);
+  const [isContextReady, setIsContextReady] = useState(false);
   const [initialSectionResults, setInitialSectionResults] =
     useState<LessonSectionResults>();
   const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
@@ -290,6 +298,12 @@ const PupilExperienceLayout = ({
 
       const submissionId = result?.studentContext?.submissionId;
       const pupilLoginHint = result?.pupilLoginHint;
+      const teacherLoginHint = result?.teacherLoginHint ?? null;
+      onClassroomContextResolved({
+        pupilLoginHint: pupilLoginHint ?? null,
+        teacherLoginHint,
+        submissionId: submissionId ?? null,
+      });
       if (submissionId && pupilLoginHint) {
         classroomContextRef.current = {
           submissionId,
@@ -316,6 +330,7 @@ const PupilExperienceLayout = ({
       // Failed to get context - progress sync will be disabled
     } finally {
       setIsFetchingClassroomContext(false);
+      setIsContextReady(true);
     }
   };
 
@@ -324,6 +339,11 @@ const PupilExperienceLayout = ({
     fetchGoogleClassroomContext();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isGoogleClassroomAssignment, searchParams]);
+
+  useEffect(() => {
+    if (!classroomAssignmentChecked) return;
+    if (!isGoogleClassroomAssignment) setIsContextReady(true);
+  }, [classroomAssignmentChecked, isGoogleClassroomAssignment]);
 
   const handleOnNext = useCallback(
     async (
@@ -356,7 +376,6 @@ const PupilExperienceLayout = ({
     }
   };
 
-  const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const { track } = usePupilAnalytics();
   const [isOpen, setIsOpen] = useState<boolean>(
     !!lessonContent.contentGuidance || hasAgeRestriction,
@@ -380,7 +399,7 @@ const PupilExperienceLayout = ({
   };
 
   const handleContentGuidanceDecline = () => {
-    if (isClassroomAssignment) {
+    if (isGoogleClassroomAssignment) {
       window?.parent?.postMessage(
         {
           type: "Classroom",
@@ -402,12 +421,13 @@ const PupilExperienceLayout = ({
     });
   };
 
-  if (trackingSent === false) {
-    track.lessonAccessed({
+  useEffect(() => {
+    if (!isContextReady) return;
+    track.lessonAccessedPupilJourney({
       componentType: ComponentType.PAGE_VIEW,
     });
-    setTrackingSent(true);
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isContextReady]);
 
   const declineIcon = isGoogleClassroomAssignment ? "cross" : undefined;
   const declineText = isGoogleClassroomAssignment ? "Exit lesson" : undefined;
@@ -507,6 +527,12 @@ const PupilExperienceLayout = ({
 
 export const PupilExperienceView = (props: PupilExperienceViewProps) => {
   const { browseData, lessonContent } = props;
+  const [classroomAnalyticsContext, setClassroomAnalyticsContext] =
+    useState<ClassroomAnalyticsContext>({
+      pupilLoginHint: null,
+      teacherLoginHint: null,
+      submissionId: null,
+    });
 
   const { worksheetInfo } = useWorksheetInfoState(
     lessonContent.hasWorksheetAssetObject,
@@ -517,8 +543,15 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
     <PupilAnalyticsProvider
       pupilPathwayData={getPupilPathwayData(browseData)}
       lessonContent={lessonContent}
+      pupilLoginHint={classroomAnalyticsContext.pupilLoginHint}
+      teacherLoginHint={classroomAnalyticsContext.teacherLoginHint}
+      submissionId={classroomAnalyticsContext.submissionId}
     >
-      <PupilExperienceLayout {...props} worksheetInfo={worksheetInfo} />
+      <PupilExperienceLayout
+        {...props}
+        worksheetInfo={worksheetInfo}
+        onClassroomContextResolved={setClassroomAnalyticsContext}
+      />
     </PupilAnalyticsProvider>
   );
 };

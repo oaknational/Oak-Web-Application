@@ -35,7 +35,7 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   useGoogleClassroomAddonStore: jest.fn().mockReturnValue(null),
 }));
 
-jest.mock("@/components/GoogleClassroom/getClientEnvironment", () => ({
+jest.mock("@/browser-lib/google-classroom/getClientEnvironment", () => ({
   __esModule: true,
   getClientEnvironment: jest.fn(() => "web-browser"),
 }));

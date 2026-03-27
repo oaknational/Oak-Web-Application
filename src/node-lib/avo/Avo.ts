@@ -527,8 +527,8 @@ _avo_invoke = function _avo_invoke(
 ) {
   try {
     _avo_invoke_payload({
-      ac: "8wMS8LLDIY8MhcIaAOji",
-      br: "master",
+      ac: "0gPU6YTt6zaSlvMF47bz",
+      br: "hOSJE-zt2GEJO-28oMDjD",
       en: env,
       ev: eventId,
       ha: hash,
@@ -556,8 +556,8 @@ _avo_invoke_meta = function _avo_invoke_meta(
 ) {
   try {
     _avo_invoke_payload({
-      ac: "8wMS8LLDIY8MhcIaAOji",
-      br: "master",
+      ac: "0gPU6YTt6zaSlvMF47bz",
+      br: "hOSJE-zt2GEJO-28oMDjD",
       en: env,
       ty: type,
       sc: "5PhajbVijwhXVKIJtGMT",
@@ -850,7 +850,7 @@ export interface UserSignMinusUpCompletedProperties {
  *
  * When to trigger this event:
  * 1. A user uses SSO or email/password combination to create an account in Clerk.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/fOlHJypRwg/trigger/aV1XekNBLU
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/fOlHJypRwg/trigger/aV1XekNBLU
  *
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA, Aila and Google Classroom. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -864,7 +864,7 @@ export interface UserSignMinusUpCompletedProperties {
  * @param properties.userId_: User Id is required for server sources.
  * @param properties.singleSignOnService: The Single Sign-On (SSO) Service used at a given stage of sign-up / sign-on.
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/fOlHJypRwg}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/fOlHJypRwg}
  */
 export function userSignUpCompleted(
   properties: UserSignMinusUpCompletedProperties,
@@ -982,7 +982,7 @@ export interface UserSignMinusInProperties {
  * @param properties the properties associated with this event
  * @param properties.userId_: User Id is required for server sources.
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/KiDGLM5Isg}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/KiDGLM5Isg}
  */
 export function userSignIn(properties: UserSignMinusInProperties) {
   // @ts-ignore
@@ -1056,7 +1056,7 @@ export interface UserSignMinusOutProperties {
  * @param properties the properties associated with this event
  * @param properties.userId_: User Id is required for server sources.
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/j0lSWreaah}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hOSJE-zt2GEJO-28oMDjD/events/j0lSWreaah}
  */
 export function userSignOut(properties: UserSignMinusOutProperties) {
   // @ts-ignore
