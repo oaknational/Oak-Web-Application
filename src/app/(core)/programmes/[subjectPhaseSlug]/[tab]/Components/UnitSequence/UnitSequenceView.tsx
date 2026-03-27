@@ -53,7 +53,6 @@ export const UnitSequenceView = ({
         aria-labelledby="programme-unit-sequence-heading"
         tabIndex={-1}
         $mh={"auto"}
-        $mt={["spacing-0", "spacing-48", "spacing-48"]}
         $width={"100%"}
         $maxWidth={"spacing-1280"}
         $color="text-primary"

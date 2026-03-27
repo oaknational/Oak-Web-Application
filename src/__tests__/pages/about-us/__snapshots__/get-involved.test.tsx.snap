@@ -6192,7 +6192,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       >
                         <a
                           class="c183 "
-                          href="/teachers/key-stages/early-years-foundation-stage/subjects"
+                          href="/teachers/eyfs/maths"
                         >
                           <span
                             class="c29"

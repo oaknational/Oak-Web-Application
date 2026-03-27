@@ -2,7 +2,12 @@
 
 import { GoogleClassroomBrowseView } from "@oaknational/google-classroom-addon/ui";
 
+import { useGoogleClassroomAnalytics } from "@/components/GoogleClassroom/useGoogleClassroomAnalytics";
+
 function BrowseGoogleClassroomPage() {
+  const trackYearSelected = useGoogleClassroomAnalytics(
+    (state) => state.trackYearSelected,
+  );
   const years: {
     yearSlug: string;
     yearDescription: string;
@@ -24,6 +29,7 @@ function BrowseGoogleClassroomPage() {
     <GoogleClassroomBrowseView
       years={years}
       subjectsUrlTemplate={"/classroom/browse/years/:yearSlug/subjects"}
+      onYearSelected={trackYearSelected}
     />
   );
 }

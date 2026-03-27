@@ -40,6 +40,8 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
         filterType: "Learning theme filter",
         filterValue: label,
         activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
+        googleLoginHint: null,
+        clientEnvironment: null,
       });
     }
   };

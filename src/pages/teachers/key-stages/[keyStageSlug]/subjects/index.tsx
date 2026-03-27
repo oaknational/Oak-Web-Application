@@ -87,6 +87,8 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
                 filterType: "Key stage filter",
                 filterValue,
                 activeFilters,
+                googleLoginHint: null,
+                clientEnvironment: null,
               })
             }
           />
