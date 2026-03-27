@@ -18,6 +18,10 @@ import { LessonShareCanonical } from "@/node-lib/curriculum-api-2023/queries/les
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import {
+  isEyfsPathway,
+  redirectToEyfsPage,
+} from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
 
 export type LessonShareCanonicalPageProps = {
   curriculumData: LessonShareCanonical;
@@ -95,6 +99,10 @@ export const getStaticProps: GetStaticProps<
           isLesson: true,
         });
         return redirect ? { redirect } : { notFound: true };
+      }
+
+      if (isEyfsPathway(curriculumData.pathways[0])) {
+        return { redirect: redirectToEyfsPage(curriculumData.pathways[0]) };
       }
 
       if (curriculumData.georestricted || curriculumData.loginRequired) {

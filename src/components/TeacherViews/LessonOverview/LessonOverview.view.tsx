@@ -312,10 +312,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const showDownloadAll = hasDownloadableAssets && !contentRestricted;
   const showShare =
-    !isSpecialist &&
-    keyStageSlug !== "early-years-foundation-stage" &&
-    !actions?.disablePupilShare &&
-    !contentRestricted;
+    !isSpecialist && !actions?.disablePupilShare && !contentRestricted;
 
   const pageLinks = getPageLinksWithSubheadingsForLesson(
     lesson,
