@@ -8,8 +8,10 @@ import {
   modifiedLessonsResponseSchema,
   modifiedLessonsResponseSchemaArray,
   PackagedUnitData,
+  ProgrammeToggles,
   TeachersUnitOverviewData,
   UnitSequence,
+  UnitsInOtherProgrammes,
 } from "./teachersUnitOverview.schema";
 
 import keysToCamelCase from "@/utils/snakeCaseConverter";
@@ -116,6 +118,7 @@ export const getPackagedUnit = (
   containsGeorestrictedLessons: boolean,
   containsLoginRequiredLessons: boolean,
   unitSequenceData: UnitSequence,
+  unitsInOtherProgrammes: UnitsInOtherProgrammes,
 ): TeachersUnitOverviewData => {
   const {
     programmeFields,
@@ -150,6 +153,11 @@ export const getPackagedUnit = (
     nullUnitvariantId,
   });
 
+  const { tierOptionToggles, subjectOptionToggles } = getProgrammeToggles(
+    programmeSlug,
+    unitsInOtherProgrammes,
+  );
+
   return {
     programmeSlug,
     keyStageSlug: modifiedProgrammeFields.keystage_slug,
@@ -176,5 +184,42 @@ export const getPackagedUnit = (
     containsLoginRequiredLessons,
     nextUnit,
     prevUnit,
+    tierOptionToggles,
+    subjectOptionToggles,
+  };
+};
+
+export const getProgrammeToggles = (
+  programmeSlug: string,
+  allProgrammes: UnitsInOtherProgrammes,
+) => {
+  const currentProgramme = allProgrammes.find(
+    (programme) => programme.programme_slug === programmeSlug,
+  );
+  if (!currentProgramme) {
+    throw new OakError({ code: "curriculum-api/not-found" });
+  }
+
+  let tierOptionToggles: ProgrammeToggles = [];
+  if (currentProgramme.programme_fields.tier_description) {
+    // Reduce to programmes that only differ on tier
+    tierOptionToggles = allProgrammes
+      .filter(
+        (programme) =>
+          programme.programme_fields.subject_slug ===
+            currentProgramme.programme_fields.subject_slug &&
+          programme.programme_fields.examboard_slug ===
+            currentProgramme.programme_fields.examboard_slug &&
+          !!programme.programme_fields.tier_description,
+      )
+      .map((programme) => ({
+        title: programme.programme_fields.tier_description!,
+        programmeSlug: programme.programme_slug,
+      }));
+  }
+
+  return {
+    tierOptionToggles,
+    subjectOptionToggles: [],
   };
 };

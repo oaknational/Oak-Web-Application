@@ -3,6 +3,7 @@ import {
   modifiedLessonsResponseSchemaArray,
   unitSequenceResponseSchema,
   PackagedUnitData,
+  unitsInOtherProgrammesResponseSchema,
 } from "./teachersUnitOverview.schema";
 import { getPackagedUnit, getTransformedLessons } from "./helpers";
 
@@ -13,9 +14,12 @@ import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-20
 
 const teachersUnitOverviewQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string; unitSlug: string }) => {
-    const { lessons, unitSequence } = await sdk.teachersUnitOverview(args);
+    const { lessons, unitSequence, unitsInOtherProgrammes } =
+      await sdk.teachersUnitOverview(args);
 
     const parsedUnitSequence = unitSequenceResponseSchema.parse(unitSequence);
+    const parsedUnitsInOtherProgrammes =
+      unitsInOtherProgrammesResponseSchema.parse(unitsInOtherProgrammes);
 
     const modifiedLessons = applyGenericOverridesAndExceptions<
       TeachersUnitOverviewQuery["lessons"][number]
@@ -61,7 +65,9 @@ const teachersUnitOverviewQuery =
       containsGeorestrictedLessons,
       containsLoginRequiredLessons,
       parsedUnitSequence,
+      parsedUnitsInOtherProgrammes,
     );
+
     return unitOverviewDataSchema.parse(packagedUnit);
   };
 

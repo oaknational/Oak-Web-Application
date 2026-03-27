@@ -1,11 +1,18 @@
-import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
+import {
+  programmeFieldsFixture,
+  syntheticUnitvariantLessonsByKsFixture,
+} from "@oaknational/oak-curriculum-schema";
 
 import {
   getNeighbourUnits,
   getPackagedUnit,
+  getProgrammeToggles,
   getTransformedLessons,
 } from "./helpers";
-import { unitSequenceFixture } from "./teachersUnitOverview.query.test";
+import {
+  unitSequenceFixture,
+  unitsInOtherProgrammesFixture,
+} from "./teachersUnitOverview.query.test";
 
 const mockPackagedUnitData = {
   programmeFields: syntheticUnitvariantLessonsByKsFixture().programme_fields,
@@ -28,6 +35,7 @@ describe("getTransformedUnit", () => {
       false,
       false,
       unitSequenceFixture,
+      unitsInOtherProgrammesFixture,
     );
     expect(transformedLessons).toEqual({
       examBoardSlug: null,
@@ -76,6 +84,8 @@ describe("getTransformedUnit", () => {
         title: "Unit 2",
       },
       prevUnit: null,
+      tierOptionToggles: [],
+      subjectOptionToggles: [],
     });
   });
   it("getTransformedUnit returns the correct data for optionality units", () => {
@@ -95,6 +105,7 @@ describe("getTransformedUnit", () => {
       false,
       false,
       unitSequenceFixture,
+      unitsInOtherProgrammesFixture,
     );
     expect(transformedLessons).toEqual({
       examBoardSlug: null,
@@ -143,6 +154,8 @@ describe("getTransformedUnit", () => {
         title: "Unit 2",
       },
       prevUnit: null,
+      tierOptionToggles: [],
+      subjectOptionToggles: [],
     });
   });
 });
@@ -155,6 +168,7 @@ describe("getNeighbourUnits", () => {
       false,
       false,
       unitSequenceFixture,
+      unitsInOtherProgrammesFixture,
     );
 
     expect(transformedLessons.prevUnit).toEqual({
@@ -176,6 +190,7 @@ describe("getNeighbourUnits", () => {
         nullUnitvariantId: 5,
         yearOrder: 1,
       }),
+      unitsInOtherProgrammesFixture,
     );
 
     expect(transformedLessons.nextUnit).toEqual({
@@ -385,6 +400,7 @@ describe("isPePractical", () => {
       false,
       false,
       unitSequenceFixture,
+      unitsInOtherProgrammesFixture,
     );
     expect(result.actions?.isPePractical).toBe(true);
   });
@@ -399,6 +415,7 @@ describe("isPePractical", () => {
       false,
       false,
       unitSequenceFixture,
+      unitsInOtherProgrammesFixture,
     );
     expect(result.actions?.isPePractical).toBe(false);
   });
@@ -420,7 +437,62 @@ describe("isPePractical", () => {
       false,
       false,
       unitSequenceFixture,
+      unitsInOtherProgrammesFixture,
     );
     expect(result.actions?.isPePractical).toBe(false);
+  });
+});
+
+describe("getProgrammeToggles", () => {
+  it("returns empty array for tier and subject toggles", () => {
+    const allProgrammes = [
+      {
+        programme_slug: "english-primary-ks1",
+        programme_fields: programmeFieldsFixture(),
+      },
+    ];
+    const result = getProgrammeToggles("english-primary-ks1", allProgrammes);
+    expect(result.subjectOptionToggles).toEqual([]);
+    expect(result.tierOptionToggles).toEqual([]);
+  });
+  it("returns tier toggles", () => {
+    const allProgrammes = [
+      {
+        programme_slug: "maths-secondary-ks4-foundation",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            tier: "foundation",
+            tier_description: "Foundation",
+            keystage_slug: "ks4",
+            subject_slug: "maths",
+          },
+        }),
+      },
+      {
+        programme_slug: "maths-secondary-ks4-higher",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            tier: "higher",
+            tier_description: "Higher",
+            keystage_slug: "ks4",
+            subject_slug: "maths",
+          },
+        }),
+      },
+    ];
+    const result = getProgrammeToggles(
+      "maths-secondary-ks4-foundation",
+      allProgrammes,
+    );
+    expect(result.tierOptionToggles).toEqual([
+      {
+        title: "Foundation",
+        programmeSlug: "maths-secondary-ks4-foundation",
+      },
+      {
+        title: "Higher",
+        programmeSlug: "maths-secondary-ks4-higher",
+      },
+    ]);
   });
 });
