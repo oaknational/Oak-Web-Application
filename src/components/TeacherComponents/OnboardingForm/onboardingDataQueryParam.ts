@@ -1,13 +1,13 @@
 import type { ParsedUrlQuery } from "querystring";
 
-import { OnboardingFormProps } from "./OnboardingForm.schema";
+import { OnboardingFormValues } from "./OnboardingForm.schema";
 
 /**
  * Decodes the onboarding form data from a query param
  */
 export function decodeOnboardingDataQueryParam(
   query: ParsedUrlQuery,
-): OnboardingFormProps | null {
+): OnboardingFormValues | null {
   try {
     const formData = query.state?.toString();
 
@@ -26,7 +26,7 @@ export function decodeOnboardingDataQueryParam(
  */
 export function encodeOnboardingDataQueryParam(
   query: ParsedUrlQuery,
-  data: OnboardingFormProps,
+  data: OnboardingFormValues,
 ): ParsedUrlQuery {
   const currentState = decodeOnboardingDataQueryParam(query) ?? undefined;
 

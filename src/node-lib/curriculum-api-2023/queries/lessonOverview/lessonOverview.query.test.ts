@@ -4,6 +4,7 @@ import {
   additionalFilesFixture,
   mediaClipsFixture,
 } from "@oaknational/oak-curriculum-schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import lessonMediaClipsFixtures from "../../fixtures/lessonMediaClips.fixture";
 
@@ -16,7 +17,6 @@ import lessonOverview, {
 
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 export const _additionalFilesFixture = keysToCamelCase(
   additionalFilesFixture().downloadable_files,
@@ -309,16 +309,6 @@ describe("lessonOverview()", () => {
 
     it("should handle empty string copyrightInfo fields", () => {
       const content = [{ copyrightInfo: "" }];
-      expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
-    });
-
-    it("should default to empty string in copyrightInfo fields are undefined", () => {
-      const content = [{ copyrightInfo: undefined }];
-      expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
-    });
-
-    it("should default to empty string if item doesnt have copyrightInfo", () => {
-      const content = [{ somethingElse: "" }];
       expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
     });
   });

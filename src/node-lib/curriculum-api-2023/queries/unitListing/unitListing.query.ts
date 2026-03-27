@@ -1,3 +1,6 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+import { ProgrammeFieldsCamel } from "@oaknational/oak-curriculum-schema";
+
 import { SubjectSlugs } from "../pupilSubjectListing/pupilSubjectListing.schema";
 
 import { reshapeUnitData } from "./helpers/reshapeUnitData";
@@ -8,13 +11,12 @@ import {
 } from "./helpers/getAllCategories";
 import { getAllYearGroups } from "./helpers/getAllYearGroups";
 import {
-  ProgrammeFieldsCamel,
   rawQuerySchema,
   UnitListingData,
+  UnitsCamel,
 } from "./unitListing.schema";
 
 import { NEW_COHORT } from "@/config/cohort";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import {
   UnitListingQuery,
@@ -63,9 +65,9 @@ const unitListingQuery =
       });
     }
 
-    const unitsCamel = keysToCamelCase(parsedUnits);
+    const unitsCamel: UnitsCamel = keysToCamelCase(parsedUnits);
     const hasCycle2Content = unitsCamel.some(
-      (u) => u.unitData.Cohort === "2024-2025",
+      (u) => u.unitData._cohort === "2024-2025",
     );
 
     const programmeFields = unitsCamel.reduce(

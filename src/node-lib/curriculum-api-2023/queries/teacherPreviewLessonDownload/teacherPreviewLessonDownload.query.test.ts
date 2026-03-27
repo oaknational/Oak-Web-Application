@@ -2,6 +2,7 @@ import {
   syntheticUnitvariantLessonsFixture,
   lessonDataFixture,
   additionalFilesFixture,
+  Lesson,
 } from "@oaknational/oak-curriculum-schema";
 import { ZodError } from "zod";
 
@@ -172,14 +173,12 @@ describe("teachersPreviewLessonDownloadQuery()", () => {
       });
     } catch (error: unknown) {
       const err = error as ZodError;
-      expect(err.errors).toEqual([
-        {
+      expect(err.issues).toEqual([
+        expect.objectContaining({
           code: "invalid_type",
           expected: "boolean",
-          message: "Required",
           path: ["has_slide_deck_asset_object"],
-          received: "undefined",
-        },
+        }),
       ]);
     }
   });
@@ -259,21 +258,24 @@ describe("lessonDownloadsCanonical()", () => {
       });
     } catch (error: unknown) {
       const typedError = error as ZodError;
-      expect(typedError.errors).toEqual([
-        {
+      expect(typedError.issues).toEqual([
+        expect.objectContaining({
           code: "invalid_type",
           expected: "boolean",
-          message: "Required",
           path: ["has_slide_deck_asset_object"],
-          received: "undefined",
-        },
+        }),
       ]);
     }
   });
 
   describe("teachersPreviewLessonDownloadQuery() - Copyright Content", () => {
     test("returns copyright content if present in the response", async () => {
-      const mockCopyrightContent = [
+      const mockCopyrightContentSnake: Lesson["copyright_content"] = [
+        {
+          copyright_info: "info about copyright",
+        },
+      ];
+      const expectedCopyrightContent = [
         {
           copyrightInfo: "info about copyright",
         },
@@ -289,7 +291,7 @@ describe("lessonDownloadsCanonical()", () => {
                 overrides: {
                   lesson_data: lessonDataFixture({
                     overrides: {
-                      copyright_content: mockCopyrightContent,
+                      copyright_content: mockCopyrightContentSnake,
                     },
                   }),
                 },
@@ -303,7 +305,7 @@ describe("lessonDownloadsCanonical()", () => {
         lessonSlug: "lesson-slug",
       })) as LessonDownloadsPageData;
 
-      expect(unit.legacyCopyrightContent).toEqual(mockCopyrightContent);
+      expect(unit.legacyCopyrightContent).toEqual(expectedCopyrightContent);
     });
 
     test("returns null for copyright content if not present in the response", async () => {

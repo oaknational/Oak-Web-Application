@@ -1,12 +1,12 @@
 import { PortableTextBlock } from "@portabletext/types";
 import { capitalize } from "lodash";
 import { format } from "date-fns";
+import { Actions } from "@oaknational/oak-curriculum-schema";
 
 import { CurriculumFilters, YearData } from "./types";
 import { keystageFromYear } from "./keystage";
 import { sortYears } from "./sorting";
 
-import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Phase } from "@/node-lib/curriculum-api-2023";
 import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 

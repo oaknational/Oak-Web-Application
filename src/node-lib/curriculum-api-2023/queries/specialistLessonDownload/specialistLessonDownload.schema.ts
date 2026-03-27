@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { actionsSchema } from "@oaknational/oak-curriculum-schema";
+import zodToCamelCase from "zod-to-camel-case";
 
 import {
   legacyCopyrightContentSchema,
@@ -43,6 +44,9 @@ export const specialistLessonDownloadQueryResponseSchema = z.array(
   specialistLessonDownloadRawSchema,
 );
 
+const actionsSchemaCamel = zodToCamelCase(actionsSchema, {
+  bidirectional: true,
+});
 export const SpecialistLessonDownloadSchema = z.object({
   lesson: z.object({
     updatedAt: z.string(),
@@ -68,7 +72,7 @@ export const SpecialistLessonDownloadSchema = z.object({
     legacyCopyrightContent: legacyCopyrightContentSchema,
     geoRestricted: z.boolean().nullable(),
     loginRequired: z.boolean().nullable(),
-    actions: actionsSchema.nullish(),
+    actions: actionsSchemaCamel.nullish(),
     lessonReleaseDate: z.string().nullable(),
   }),
 });

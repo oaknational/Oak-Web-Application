@@ -8,24 +8,17 @@ const ERRORS = {
 
 export const schoolIdSchema = z
   .string({
-    errorMap: () => ({
-      message: ERRORS.school,
-    }),
+    error: () => ERRORS.school,
   })
   .min(1, ERRORS.school);
 
 export const emailSchema = z
-  .string()
-  .email({
-    message: ERRORS.email,
-  })
+  .email({ error: ERRORS.email })
   .optional()
   .or(z.literal(""));
 
 export const termsAndConditionsSchema = z.literal(true, {
-  errorMap: () => ({
-    message: ERRORS.terms,
-  }),
+  error: () => ERRORS.terms,
 });
 
 const schoolCombinedSchema = z
@@ -36,7 +29,7 @@ const schoolCombinedSchema = z
   .superRefine((values, context) => {
     if (!values.schoolNotListed && values.schoolId === undefined) {
       context.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: ERRORS.school,
         path: ["schoolId", "school"],
       });

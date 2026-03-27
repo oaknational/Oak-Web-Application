@@ -2,6 +2,7 @@ import {
   lessonContentSchema as lessonContentSchemaFull,
   QuizQuestion,
 } from "@oaknational/oak-curriculum-schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { TeachersPreviewLessonQuery } from "../../generated/sdk";
@@ -9,7 +10,6 @@ import { TeachersPreviewLessonQuery } from "../../generated/sdk";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { transformedLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query";
 import lessonOverviewSchema, {
   LessonBrowseDataByKs,

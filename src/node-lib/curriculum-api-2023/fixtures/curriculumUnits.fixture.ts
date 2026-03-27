@@ -2,8 +2,8 @@ import { CurriculumUnitsTabData } from "..";
 
 const curriculumUnitsTabFixture = (
   partial?: Partial<CurriculumUnitsTabData>,
-): CurriculumUnitsTabData => ({
-  units: [
+): CurriculumUnitsTabData => {
+  const units = [
     {
       connection_prior_unit_description:
         "In primary science, pupils learnt that air resistance, water resistance and friction push back against moving objects. ",
@@ -19753,8 +19753,17 @@ const curriculumUnitsTabFixture = (
       national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
-  ],
-  ...partial,
-});
+  ].map((unit) => ({
+    features: {},
+    parent_programme_features: null,
+    actions: {},
+    ...unit,
+  }));
+
+  return {
+    units,
+    ...partial,
+  };
+};
 
 export default curriculumUnitsTabFixture;

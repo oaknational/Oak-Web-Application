@@ -67,6 +67,7 @@ describe(QuizOrderAnswer, () => {
       answers: {
         order: [mouse, cat, elephant],
       },
+      _state: "published",
     },
   });
   const newOrder = [

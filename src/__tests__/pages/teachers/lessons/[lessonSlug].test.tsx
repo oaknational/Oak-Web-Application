@@ -1,6 +1,6 @@
 import { GetStaticPropsContext, PreviewData } from "next";
-import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 import { omit } from "lodash";
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
 import LessonOverviewCanonicalPage, {
   URLParams,
