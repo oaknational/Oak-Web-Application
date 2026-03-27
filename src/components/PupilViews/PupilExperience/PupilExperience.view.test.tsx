@@ -2,6 +2,7 @@ import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { OakTooltipProps } from "@oaknational/oak-components";
 import mockRouter from "next-router-mock";
+import { useSearchParams } from "next/navigation";
 
 import {
   PupilExperienceView,
@@ -18,6 +19,7 @@ import { createLessonEngineContext } from "@/components/PupilComponents/pupilTes
 import "@/__tests__/__helpers__/IntersectionObserverMock";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 
 const classroomAddOnOpenedMock = jest.fn();
 const clearAddOnOpenedFlagMock = jest.fn();
@@ -780,6 +782,175 @@ describe("PupilExperienceView", () => {
     expect(queryByText("Lesson Title")).toBeNull();
   });
 });
+describe("lessonAccessedPupilJourney analytics", () => {
+  const defaultLessonEngineContext = () =>
+    jest
+      .spyOn(LessonEngineProvider, "useLessonEngineContext")
+      .mockReturnValue(
+        createLessonEngineContext({ currentSection: "overview" }),
+      );
+
+  const defaultProps = () => ({
+    lessonContent: lessonContentFixture({}),
+    browseData: lessonBrowseDataFixture({}),
+    hasWorksheet: false as const,
+    hasAdditionalFiles: false as const,
+    additionalFiles: null,
+    worksheetInfo: null,
+    initialSection: "overview" as const,
+    pageType: "browse" as const,
+  });
+
+  beforeEach(() => {
+    (useSearchParams as jest.Mock).mockReturnValue(null);
+    (googleClassroomApi.getAddOnContext as jest.Mock).mockResolvedValue(null);
+    (googleClassroomApi.getPupilLessonProgress as jest.Mock).mockResolvedValue(
+      null,
+    );
+    analyticsTrackMock.lessonAccessedPupilJourney?.mockClear();
+  });
+
+  it("fires immediately for a non-classroom lesson once the assignment check is complete", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: false,
+      classroomAssignmentChecked: true,
+    });
+    defaultLessonEngineContext();
+
+    render(<PupilExperienceView {...defaultProps()} />);
+
+    await waitFor(() => {
+      expect(
+        analyticsTrackMock.lessonAccessedPupilJourney,
+      ).toHaveBeenCalledWith(
+        expect.objectContaining({
+          componentType: "page view",
+          clientEnvironment: "web-browser",
+          courseId: null,
+          itemId: null,
+          attachmentId: null,
+          submissionId: null,
+          pupilLoginHint: null,
+          teacherLoginHint: null,
+          classroomAssignmentId: null,
+        }),
+      );
+    });
+  });
+
+  it("does not fire before the assignment check is complete", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: false,
+      classroomAssignmentChecked: false,
+    });
+    defaultLessonEngineContext();
+
+    render(<PupilExperienceView {...defaultProps()} />);
+
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    expect(
+      analyticsTrackMock.lessonAccessedPupilJourney,
+    ).not.toHaveBeenCalled();
+  });
+
+  it("fires after getAddOnContext resolves and includes the resolved classroom context", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+    (useSearchParams as jest.Mock).mockReturnValue(
+      new URLSearchParams({
+        courseId: "course-123",
+        itemId: "item-456",
+        attachmentId: "attachment-789",
+      }),
+    );
+    (googleClassroomApi.getAddOnContext as jest.Mock).mockResolvedValue({
+      studentContext: { submissionId: "sub-101" },
+      pupilLoginHint: "pupil@example.com",
+      teacherLoginHint: "teacher@example.com",
+    });
+    defaultLessonEngineContext();
+
+    render(<PupilExperienceView {...defaultProps()} />);
+
+    await waitFor(() => {
+      expect(
+        analyticsTrackMock.lessonAccessedPupilJourney,
+      ).toHaveBeenCalledWith(
+        expect.objectContaining({
+          componentType: "page view",
+          courseId: "course-123",
+          itemId: "item-456",
+          attachmentId: "attachment-789",
+          submissionId: "sub-101",
+          pupilLoginHint: "pupil@example.com",
+          teacherLoginHint: "teacher@example.com",
+          classroomAssignmentId: "course-123:item-456",
+          clientEnvironment: "web-browser",
+        }),
+      );
+    });
+  });
+
+  it("fires with null classroom context when getAddOnContext returns no student context", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+    (useSearchParams as jest.Mock).mockReturnValue(
+      new URLSearchParams({
+        courseId: "course-123",
+        itemId: "item-456",
+        attachmentId: "attachment-789",
+      }),
+    );
+    (googleClassroomApi.getAddOnContext as jest.Mock).mockResolvedValue({
+      pupilLoginHint: "pupil@example.com",
+      teacherLoginHint: null,
+    });
+    defaultLessonEngineContext();
+
+    render(<PupilExperienceView {...defaultProps()} />);
+
+    await waitFor(() => {
+      expect(
+        analyticsTrackMock.lessonAccessedPupilJourney,
+      ).toHaveBeenCalledWith(
+        expect.objectContaining({
+          submissionId: null,
+          teacherLoginHint: null,
+          pupilLoginHint: "pupil@example.com",
+        }),
+      );
+    });
+  });
+
+  it("fires even when getAddOnContext throws", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+    (useSearchParams as jest.Mock).mockReturnValue(
+      new URLSearchParams({
+        courseId: "course-123",
+        itemId: "item-456",
+        attachmentId: "attachment-789",
+      }),
+    );
+    (googleClassroomApi.getAddOnContext as jest.Mock).mockRejectedValue(
+      new Error("Network error"),
+    );
+    defaultLessonEngineContext();
+
+    render(<PupilExperienceView {...defaultProps()} />);
+
+    await waitFor(() => {
+      expect(analyticsTrackMock.lessonAccessedPupilJourney).toHaveBeenCalled();
+    });
+  });
+});
+
 describe("redirected overlay", () => {
   beforeEach(() => {
     mockRouter.setCurrentUrl("/?redirected=true");
