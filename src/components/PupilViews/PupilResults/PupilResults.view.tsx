@@ -42,7 +42,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
       : 0;
 
   const iconSlug = `subject-${subjectSlug}`;
-  let questionIndex = 1;
+  // let questionIndex = 1;
 
   return (
     <MathJaxWrap>
@@ -69,13 +69,13 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
             quiz={starterQuiz}
             quizQuestionsArray={starterQuizQuestionsArray}
             quizType={"starter"}
-            incrementQuestionIndex={() => questionIndex++}
+            // incrementQuestionIndex={() => questionIndex++}
           />
           <QuizQuestionResultsSection
             quiz={exitQuiz}
             quizQuestionsArray={exitQuizQuestionsArray}
             quizType={"exit"}
-            incrementQuestionIndex={() => questionIndex++}
+            // incrementQuestionIndex={() => questionIndex++}
           />
           <CopyrightNotice isLegacyLicense={isLegacy} />
         </OakFlex>
