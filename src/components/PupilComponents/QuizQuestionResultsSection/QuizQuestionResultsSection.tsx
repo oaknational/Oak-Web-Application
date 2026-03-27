@@ -11,13 +11,11 @@ type QuizQuestionResultsSectionProps = {
   quiz: QuizResultCamelCase;
   quizType: "starter" | "exit";
   quizQuestionsArray: QuestionsArray;
-  // incrementQuestionIndex: () => number;
 };
 export const QuizQuestionResultsSection = ({
   quiz,
   quizType,
   quizQuestionsArray,
-  // incrementQuestionIndex,
 }: QuizQuestionResultsSectionProps) => {
   const quizLessonSection =
     quizType === "starter" ? "starter-quiz" : "exit-quiz";
@@ -37,7 +35,6 @@ export const QuizQuestionResultsSection = ({
       {quiz?.questionResults?.map((questionResult, index) => {
         const displayIndex = questionResult.mode === "init" ? 999 : index + 1;
         const questionKey = `${quizType}-${quizQuestionsArray[index]?.questionUid ?? "question"}-${index}`;
-        console.log("displayIndex", displayIndex, questionResult);
 
         return (
           <QuizSectionRender
