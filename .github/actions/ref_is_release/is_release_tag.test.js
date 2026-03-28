@@ -1,4 +1,4 @@
-const isReleaseTag = require("./is_release_tag");
+import isReleaseTag from "./is_release_tag";
 
 const branchRef = "refs/heads/some_branch";
 const nonReleaseTagRef = "refs/tags/some_tag";

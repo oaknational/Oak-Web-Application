@@ -2,8 +2,8 @@
  * Create a Github commit status with the provided name and conclusion values.
  */
 
-const core = require("@actions/core");
-const github = require("@actions/github");
+import core from "@actions/core";
+import github from "@actions/github";
 
 const allowedStates = ["error", "failure", "skipped", "pending", "success"];
 
