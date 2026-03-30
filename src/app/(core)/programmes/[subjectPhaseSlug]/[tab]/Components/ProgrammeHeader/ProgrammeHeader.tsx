@@ -13,11 +13,11 @@ import {
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import {
   Header,
-  HeaderProps,
+  LargeHeaderProps,
 } from "@/components/TeacherComponents/Header/Header";
 
 export type ProgrammeHeaderProps = Omit<
-  HeaderProps,
+  LargeHeaderProps,
   "heading" | "heroImage"
 > & {
   /**

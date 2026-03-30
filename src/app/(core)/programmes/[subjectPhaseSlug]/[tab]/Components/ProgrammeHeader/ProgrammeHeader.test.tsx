@@ -21,6 +21,7 @@ const baseProps = {
   phaseTitle: "Secondary",
   summary: "Test content for the programme header.",
   bullets: ["Bullet 1", "Bullet 2"],
+  layoutVariant: "large" as const,
 };
 
 describe("ProgrammeHeader", () => {

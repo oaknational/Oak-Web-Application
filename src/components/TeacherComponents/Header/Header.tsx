@@ -9,9 +9,10 @@ import {
   OakLI,
   OakIcon,
   OakImage,
+  OakIconName,
 } from "@oaknational/oak-components";
 
-export type HeaderProps = {
+type HeaderProps = {
   /**
    * Top level heading
    */
@@ -19,7 +20,7 @@ export type HeaderProps = {
   /**
    * Summary copy
    */
-  summary: React.ReactNode;
+  summary?: React.ReactNode;
   /**
    * Bullet points rendered as a list with a tick icon
    */
@@ -38,14 +39,36 @@ export type HeaderProps = {
    * Ideal for action buttons and links.
    */
   footerSlot?: React.ReactNode;
+};
+
+export type LargeHeaderProps = {
+  layoutVariant: "large";
   /**
-   * The hero image for the header;
+   * A hero image for the header;
    */
   heroImage: string | null;
   /**
-   * The background color of the programme header. Defaults to transparent.
+   * The background color of the header. Defaults to transparent.
    */
   background?: Extract<OakUiRoleToken, `bg-decorative${number}-main`>;
+} & HeaderProps;
+
+export type CompactHeaderProps = {
+  layoutVariant: "compact";
+  /**
+   * An optional icon to display alongside the header
+   */
+  headerIcon?: OakIconName;
+  /**
+   * The background color of the header. Defaults to transparent.
+   */
+  background?: Extract<OakUiRoleToken, `bg-decorative${number}-very-subdued`>;
+} & HeaderProps;
+
+const isCompactHeaderProps = (
+  u: LargeHeaderProps | CompactHeaderProps,
+): u is CompactHeaderProps => {
+  return u.layoutVariant === "compact";
 };
 
 /**
@@ -65,15 +88,13 @@ export type HeaderProps = {
  * |-------------|
  * ```
  */
-export const Header = ({
-  heading,
-  summary,
-  bullets,
-  headerSlot,
-  footerSlot,
-  background,
-  heroImage,
-}: HeaderProps) => {
+export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
+  const { heading, summary, bullets, headerSlot, footerSlot, background } =
+    props;
+
+  const isCompactLayout = isCompactHeaderProps(props);
+  const heroImage = isCompactLayout ? null : props.heroImage;
+
   return (
     <OakBox
       $background={background}
@@ -101,7 +122,13 @@ export const Header = ({
           $gap="spacing-24"
           $textWrap="balance"
         >
-          <OakHeading tag="h1" $font={["heading-4", "heading-1"]}>
+          <OakHeading
+            tag={"h1"}
+            $font={[
+              isCompactLayout ? "heading-5" : "heading-4",
+              isCompactLayout ? "heading-4" : "heading-1",
+            ]}
+          >
             {heading}
           </OakHeading>
           <OakTypography $font="body-2">{summary}</OakTypography>

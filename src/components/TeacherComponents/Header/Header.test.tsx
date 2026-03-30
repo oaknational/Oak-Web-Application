@@ -12,6 +12,7 @@ const baseProps = {
   summary: "Test content for the programme header.",
   bullets: ["Bullet 1", "Bullet 2"],
   heroImage: null,
+  layoutVariant: "large" as const,
 };
 
 describe("Header", () => {

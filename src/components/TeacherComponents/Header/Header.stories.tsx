@@ -40,17 +40,7 @@ const meta: Meta<typeof Header> = {
   },
   parameters: {
     controls: {
-      include: [
-        "subject",
-        "background",
-        "subjectTitle",
-        "phaseTitle",
-        "schoolYear",
-        "keyStage",
-        "examboardTitle",
-        "summary",
-        "bullets",
-      ],
+      include: ["background", "summary", "bullets"],
     },
   },
   decorators: [

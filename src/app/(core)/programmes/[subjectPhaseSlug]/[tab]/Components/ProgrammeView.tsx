@@ -130,6 +130,7 @@ export const ProgrammeView = ({
   return (
     <>
       <ProgrammeHeader
+        layoutVariant="large"
         subject={subjectSlug as SubjectHeroImageName}
         subjectTitle={
           pickSubjectTitleFromFilters(curriculumUnitsFormattedData, filters) ??
