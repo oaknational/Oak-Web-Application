@@ -10,7 +10,7 @@ import { mocked } from "storybook/test";
 import { __setMockAuthState } from "../../../../.storybook/mocks/clerk";
 import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
-import UnitHeader from "./UnitHeader";
+import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
 
 const meta: Meta<typeof UnitHeader> = {
   component: UnitHeader,
@@ -23,12 +23,6 @@ const meta: Meta<typeof UnitHeader> = {
     });
   },
   argTypes: {
-    backgroundColorLevel: {
-      control: {
-        type: "select",
-      },
-      options: [undefined, 1, 2, 3, 4, 5, 6],
-    },
     subjectIcon: {
       options: [
         undefined,
@@ -40,7 +34,14 @@ const meta: Meta<typeof UnitHeader> = {
   },
   parameters: {
     controls: {
-      include: ["backgroundColorLevel", "subjectIcon"],
+      include: [
+        "heading",
+        "summary",
+        "backgroundColorLevel",
+        "subjectIcon",
+        "prevUnit",
+        "nextUnit",
+      ],
     },
   },
   decorators: [
@@ -59,18 +60,23 @@ export default meta;
 
 type Story = StoryObj<typeof UnitHeader>;
 
+const coreProps: UnitHeaderProps = {
+  heading: "IT and the world of work",
+  backgroundColorLevel: 3,
+  subjectIcon: "subject-computer-science",
+  unitDownloadFileId: "1",
+  onUnitDownloadSuccess: () => console.log("success"),
+  nextUnit: "unit 3",
+  prevUnit: "unit 1",
+};
+
 export const Default: Story = {
-  args: {
-    heading: "IT and the world of work",
-    backgroundColorLevel: 3,
-    subjectIcon: "subject-computer-science",
-    unitDownloadFileId: "1",
-    onUnitDownloadSuccess: () => console.log("success"),
-  },
+  args: coreProps,
 };
 
 export const WithSummaryAndBullets: Story = {
   args: {
+    ...coreProps,
     heading: "IT and the world of work",
     summary:
       "Our computing curriculum is taught through real-world contexts, helping pupils understand how technology works, think critically and develop future-ready digital skills.",
@@ -79,20 +85,12 @@ export const WithSummaryAndBullets: Story = {
       "Practical, engaging lessons",
       "Responsible digital citizenship",
     ],
-    backgroundColorLevel: 3,
-    subjectIcon: "subject-computer-science",
-    unitDownloadFileId: "1",
-    onUnitDownloadSuccess: () => console.log("success"),
   },
 };
 
 export const WithHeaderSlot: Story = {
   args: {
-    heading: "IT and the world of work",
-    backgroundColorLevel: 3,
-    subjectIcon: "subject-computer-science",
-    unitDownloadFileId: "1",
-    onUnitDownloadSuccess: () => console.log("success"),
+    ...coreProps,
     headerSlot: (
       <OakBreadcrumbs
         breadcrumbs={[
@@ -119,12 +117,8 @@ export const WithHeaderSlot: Story = {
 
 export const WithTags: Story = {
   args: {
-    heading: "IT and the world of work",
-    backgroundColorLevel: 3,
-    subjectIcon: "subject-computer-science",
+    ...coreProps,
     tags: ["Tag 1", "Long tag name for number 2", "T3"],
-    unitDownloadFileId: "1",
-    onUnitDownloadSuccess: () => console.log("success"),
     headerSlot: (
       <OakBreadcrumbs
         breadcrumbs={[
@@ -161,11 +155,7 @@ export const SignedOut: Story = {
     },
   ],
   args: {
-    heading: "IT and the world of work",
-    backgroundColorLevel: 3,
-    subjectIcon: "subject-computer-science",
-    unitDownloadFileId: "1",
-    onUnitDownloadSuccess: () => console.log("success"),
+    ...coreProps,
     headerSlot: (
       <OakBreadcrumbs
         breadcrumbs={[

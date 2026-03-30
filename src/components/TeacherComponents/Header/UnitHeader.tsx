@@ -2,7 +2,8 @@ import {
   OakBox,
   OakFlex,
   OakFlexProps,
-  OakLeftAlignedButton,
+  OakIcon,
+  OakSmallPrimaryInvertedButton,
   OakTertiaryInvertedButton,
   OakUiRoleToken,
 } from "@oaknational/oak-components";
@@ -13,10 +14,12 @@ import UnitDownloadButton, {
 
 import { CompactHeaderProps, Header } from "./Header";
 
-export type UnitHeaderProps = CompactHeaderProps & {
+export type UnitHeaderProps = Omit<CompactHeaderProps, "layoutVariant"> & {
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
   isGeorestrictedUnit?: boolean;
+  nextUnit?: string; // TODO: use type
+  prevUnit?: string;
 };
 
 const UnitHeader = (props: UnitHeaderProps) => {
@@ -64,7 +67,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
                 `border-decorative${backgroundColorLevel}` as OakUiRoleToken
               }
             />
-            <UnitNavButtons display={["none", "flex"]} />
+            <UnitNavButtons display={["none", "flex"]} {...props} />
           </OakFlex>
           {unitDownloadFileId && onUnitDownloadSuccess && (
             <UnitDownloadButton
@@ -87,22 +90,53 @@ const UnitHeader = (props: UnitHeaderProps) => {
             `border-decorative${backgroundColorLevel}` as OakUiRoleToken
           }
           $width={"100%"}
-         />
-        <UnitNavButtons display={["flex", "none"]} />
+        />
+        <UnitNavButtons display={["flex", "none"]} {...props} />
       </OakFlex>
     </>
   );
 };
 
-const UnitNavButtons = ({ display }: { display: OakFlexProps["$display"] }) => {
+const UnitNavButtons = ({
+  display,
+  backgroundColorLevel,
+  nextUnit,
+  prevUnit,
+}: {
+  display: OakFlexProps["$display"];
+} & UnitHeaderProps) => {
+  const iconColor = `icon-decorative${backgroundColorLevel}` as OakUiRoleToken;
   return (
     <OakFlex $display={display} $gap={"spacing-16"}>
-      <OakLeftAlignedButton iconName="arrow-left">
-        Previous unit
-      </OakLeftAlignedButton>
-      <OakLeftAlignedButton isTrailingIcon iconName="arrow-right">
-        Next unit
-      </OakLeftAlignedButton>
+      {prevUnit && (
+        <OakSmallPrimaryInvertedButton
+          iconOverride={
+            <OakIcon
+              iconName="arrow-left"
+              $color={iconColor}
+              $width={"spacing-24"}
+              $height="spacing-24"
+            />
+          }
+        >
+          Previous unit
+        </OakSmallPrimaryInvertedButton>
+      )}
+      {nextUnit && (
+        <OakSmallPrimaryInvertedButton
+          isTrailingIcon
+          iconOverride={
+            <OakIcon
+              iconName="arrow-right"
+              $color={iconColor}
+              $width={"spacing-24"}
+              $height="spacing-24"
+            />
+          }
+        >
+          Next unit
+        </OakSmallPrimaryInvertedButton>
+      )}
     </OakFlex>
   );
 };
