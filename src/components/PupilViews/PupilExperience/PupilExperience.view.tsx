@@ -250,6 +250,10 @@ type ClassroomAnalyticsContext = {
   submissionId: string | null;
 };
 
+type PupilExperienceLayoutProps = PupilExperienceViewProps & {
+  onClassroomContextResolved: (ctx: ClassroomAnalyticsContext) => void;
+};
+
 const PupilExperienceLayout = ({
   browseData,
   lessonContent,
@@ -261,9 +265,7 @@ const PupilExperienceLayout = ({
   pageType,
   worksheetInfo,
   onClassroomContextResolved,
-}: PupilExperienceViewProps & {
-  onClassroomContextResolved: (ctx: ClassroomAnalyticsContext) => void;
-}) => {
+}: PupilExperienceLayoutProps) => {
   const ageRestriction = browseData.features?.ageRestriction;
   const hasAgeRestriction = !!ageRestriction;
   const { isClassroomAssignment, classroomAssignmentChecked } =

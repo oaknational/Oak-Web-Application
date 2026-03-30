@@ -1,6 +1,5 @@
 import { createContext } from "react";
 import { capitalize } from "lodash";
-import { useSearchParams } from "next/navigation";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -25,8 +24,7 @@ import {
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { unionOrNull } from "@/utils/narrowToUnion";
-import { getClientEnvironment } from "@/browser-lib/google-classroom/getClientEnvironment";
-import { getClassroomAssignmentId } from "@/browser-lib/google-classroom";
+import { useGoogleClassroomContext } from "@/components/GoogleClassroom/useGoogleClassroomContext";
 
 /**
  * This file is used to wrap the track function from the analytics context
@@ -212,12 +210,13 @@ export const PupilAnalyticsProvider = ({
   submissionId?: string | null;
 }) => {
   const { track } = useAnalytics();
-  const searchParams = useSearchParams();
-  const courseId = searchParams?.get("courseId") ?? null;
-  const itemId = searchParams?.get("itemId") ?? null;
-  const attachmentId = searchParams?.get("attachmentId") ?? null;
-  const clientEnvironment = getClientEnvironment();
-  const classroomAssignmentId = getClassroomAssignmentId(courseId, itemId);
+  const {
+    courseId,
+    itemId,
+    attachmentId,
+    clientEnvironment,
+    classroomAssignmentId,
+  } = useGoogleClassroomContext();
 
   const additionalArgs: AdditionalArgType = {
     ...pupilPathwayData,

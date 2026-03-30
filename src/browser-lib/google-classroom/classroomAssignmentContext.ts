@@ -11,19 +11,6 @@ export type ClassroomAssignmentContext = {
   clientEnvironment: ClientEnvironmentValueType;
 };
 
-export const EMPTY_CLASSROOM_ASSIGNMENT_CONTEXT: Omit<
-  ClassroomAssignmentContext,
-  "clientEnvironment"
-> = {
-  courseId: null,
-  itemId: null,
-  attachmentId: null,
-  submissionId: null,
-  teacherLoginHint: null,
-  pupilLoginHint: null,
-  classroomAssignmentId: null,
-};
-
 export const getClassroomAssignmentId = (
   courseId: string | null | undefined,
   itemId: string | null | undefined,
@@ -39,29 +26,4 @@ export type ClassroomProgressContext = {
     | "attachmentId"
     | "courseId"
     | "itemId"]-?: NonNullable<ClassroomAssignmentContext[Key]>;
-};
-
-export const toClassroomProgressContext = (
-  context: ClassroomAssignmentContext,
-): ClassroomProgressContext | null => {
-  const { submissionId, pupilLoginHint, attachmentId, courseId, itemId } =
-    context;
-
-  if (
-    !submissionId ||
-    !pupilLoginHint ||
-    !attachmentId ||
-    !courseId ||
-    !itemId
-  ) {
-    return null;
-  }
-
-  return {
-    submissionId,
-    pupilLoginHint,
-    attachmentId,
-    courseId,
-    itemId,
-  };
 };

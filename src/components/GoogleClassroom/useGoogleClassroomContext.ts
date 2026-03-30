@@ -3,8 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useGoogleClassroomAddonStore } from "@oaknational/google-classroom-addon/ui";
 
-import { getClientEnvironment } from "../../browser-lib/google-classroom/getClientEnvironment";
-
+import { getClientEnvironment } from "@/browser-lib/google-classroom/getClientEnvironment";
 import { getClassroomAssignmentId } from "@/browser-lib/google-classroom";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
