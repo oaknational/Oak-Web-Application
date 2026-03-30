@@ -124,7 +124,7 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
         $cg="spacing-16"
         $maxWidth="spacing-1280"
         $mh="auto"
-        $rg={["spacing-32", "spacing-48"]}
+        $rg={["spacing-32", isCompactLayout ? "spacing-32" : "spacing-48"]}
       >
         {headerSlot && (
           <OakGridArea $colSpan={12} $order={1}>
