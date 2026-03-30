@@ -53,6 +53,7 @@ const unitOverviewFixture: TeachersUnitOverviewData = {
   unitSlug: "geometry-abc123",
   unitvariantId: 1,
   unitTitle: "Geometry",
+  unitDescription: null,
   subjectSlug: "maths",
   subjectTitle: "Maths",
   parentSubject: null,

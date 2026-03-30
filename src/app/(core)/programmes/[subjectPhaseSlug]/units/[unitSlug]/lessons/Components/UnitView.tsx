@@ -15,6 +15,7 @@ type UnitViewProps = {
   programmeSlug: string;
   unitSlug: string;
   unitTitle: string;
+  unitDescription: string | null;
   subjectTitle?: string | null;
   subjectSlug: string;
   keyStageSlug?: string;
@@ -27,6 +28,7 @@ export const UnitView = ({
   programmeSlug,
   unitSlug,
   unitTitle,
+  unitDescription,
   subjectTitle,
   subjectSlug,
   keyStageSlug,
@@ -48,6 +50,7 @@ export const UnitView = ({
             programmeSlug={programmeSlug}
             unitSlug={unitSlug}
             unitTitle={unitTitle}
+            unitDescription={unitDescription}
             subjectTitle={subjectTitle}
             subjectSlug={subjectSlug}
             keyStageSlug={keyStageSlug}
