@@ -69,7 +69,8 @@ const defaultArgs: LessonListProps = {
   subjectSlug: "science",
   keyStageSlug: "ks4",
   keyStageTitle: "Key Stage 4",
-  unitIndexLabel: "Unit 14 of 28",
+  unitOrder: 14,
+  unitCount: 28,
   lessonCount: 4,
   lessons: [
     {

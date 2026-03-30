@@ -33,7 +33,8 @@ type LessonListProps = {
   keyStageSlug?: string;
   keyStageTitle?: string | null;
   lessons: LessonListLesson[];
-  unitIndexLabel: string;
+  unitOrder: number;
+  unitCount: number;
   lessonCount: number;
 };
 
@@ -47,7 +48,8 @@ const LessonList = ({
   keyStageSlug,
   keyStageTitle,
   lessons,
-  unitIndexLabel,
+  unitOrder,
+  unitCount,
   lessonCount,
 }: LessonListProps) => {
   return (
@@ -60,7 +62,10 @@ const LessonList = ({
           $btrr="border-radius-l"
           $font="body-2"
         >
-          {unitIndexLabel}
+          <OakSpan as="strong" $font="body-2-bold">
+            Unit {unitOrder}
+          </OakSpan>{" "}
+          of {unitCount}
         </OakBox>
         {subjectTitle ? (
           <OakTagFunctional
@@ -132,7 +137,7 @@ const LessonList = ({
             $borderRadius="border-radius-l"
             $btlr="border-radius-square"
           >
-            {lessons.map((lesson, index) => (
+            {lessons.map((lesson) => (
               <OakLI
                 $listStyle="none"
                 key={lesson.lessonSlug}
@@ -149,7 +154,7 @@ const LessonList = ({
                     unitSlug,
                     lessonSlug: lesson.lessonSlug,
                   })}
-                  index={lesson.orderInUnit ?? index + 1}
+                  index={lesson.orderInUnit ?? undefined}
                   disabled={lesson.isUnpublished}
                 />
               </OakLI>

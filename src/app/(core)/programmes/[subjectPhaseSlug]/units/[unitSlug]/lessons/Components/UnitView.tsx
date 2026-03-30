@@ -21,7 +21,8 @@ type UnitViewProps = {
   keyStageSlug?: string;
   keyStageTitle?: string | null;
   lessons: UnitViewLesson[];
-  yearTitle: string;
+  unitOrder: number;
+  unitCount: number;
 };
 
 export const UnitView = ({
@@ -34,7 +35,8 @@ export const UnitView = ({
   keyStageSlug,
   keyStageTitle,
   lessons,
-  yearTitle,
+  unitOrder,
+  unitCount,
 }: UnitViewProps) => {
   return (
     <OakMaxWidth
@@ -56,7 +58,8 @@ export const UnitView = ({
             keyStageSlug={keyStageSlug}
             keyStageTitle={keyStageTitle}
             lessons={lessons}
-            unitIndexLabel={yearTitle}
+            unitOrder={unitOrder}
+            unitCount={unitCount}
             lessonCount={lessons.length}
           />
         </OakGridArea>
