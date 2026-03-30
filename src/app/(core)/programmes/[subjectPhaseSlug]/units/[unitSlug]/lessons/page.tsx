@@ -59,12 +59,12 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
 
   const { subjectPhaseSlug, unitSlug } = await props.params;
   const data = await getCachedUnitData(subjectPhaseSlug, unitSlug);
-
   return (
     <UnitView
       programmeSlug={data.programmeSlug}
       unitSlug={data.unitSlug}
       unitTitle={data.unitTitle}
+      unitDescription={data.unitDescription}
       subjectTitle={data.subjectTitle}
       subjectSlug={data.subjectSlug}
       keyStageSlug={data.keyStageSlug}
