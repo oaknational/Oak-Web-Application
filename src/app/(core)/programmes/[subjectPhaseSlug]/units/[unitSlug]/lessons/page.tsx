@@ -1,12 +1,14 @@
-import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { cache } from "react";
 
+import { LessonList } from "./Components/LessonList";
+
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 
 type LessonsPageParams = { subjectPhaseSlug: string; unitSlug: string };
@@ -58,7 +60,29 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
   const { subjectPhaseSlug, unitSlug } = await props.params;
   const data = await getCachedUnitData(subjectPhaseSlug, unitSlug);
 
-  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+  return (
+    <LessonList
+      programmeSlug={data.programmeSlug}
+      unitSlug={data.unitSlug}
+      unitTitle={data.unitTitle}
+      subjectTitle={data.subjectTitle}
+      subjectSlug={data.subjectSlug}
+      keyStageSlug={data.keyStageSlug}
+      keyStageTitle={data.keyStageTitle}
+      lessons={data.lessons.map((lesson) => ({
+        lessonSlug: lesson.lessonSlug,
+        lessonTitle: lesson.lessonTitle,
+        pupilLessonOutcome:
+          "pupilLessonOutcome" in lesson
+            ? lesson.pupilLessonOutcome
+            : undefined,
+        orderInUnit: lesson.orderInUnit,
+        isUnpublished: lesson.isUnpublished,
+      }))}
+      unitIndexLabel={data.yearTitle}
+      lessonCount={data.lessons.length}
+    />
+  );
 };
 
 const UnitPage = withPageErrorHandling(InnerUnitPage, "unit-page::app");
