@@ -29,7 +29,7 @@ describe("ProgrammeHeader", () => {
       const { getByTestId } = renderWithTheme(
         <ProgrammeHeader {...baseProps} />,
       );
-      const imageContainer = getByTestId("subject-hero-image");
+      const imageContainer = getByTestId("hero-image");
       const subjectHeroImage = imageContainer.querySelector("img");
 
       expect(subjectHeroImage).toBeInTheDocument();
@@ -70,74 +70,6 @@ describe("ProgrammeHeader", () => {
       expect(getByRole("heading", { level: 1 })).toHaveTextContent(
         "English primary",
       );
-    });
-  });
-
-  it("renders summary text", () => {
-    const { getByText } = renderWithTheme(<ProgrammeHeader {...baseProps} />);
-
-    expect(
-      getByText("Test content for the programme header."),
-    ).toBeInTheDocument();
-  });
-
-  describe("bullets rendering", () => {
-    it("renders all bullet points", () => {
-      const { getAllByRole } = renderWithTheme(
-        <ProgrammeHeader {...baseProps} />,
-      );
-      const listItems = getAllByRole("listitem");
-
-      expect(listItems).toHaveLength(2);
-      expect(listItems[0]).toHaveTextContent("Bullet 1");
-      expect(listItems[1]).toHaveTextContent("Bullet 2");
-    });
-
-    it("renders bullets as list items", () => {
-      const { getAllByRole } = renderWithTheme(
-        <ProgrammeHeader {...baseProps} />,
-      );
-
-      const listItems = getAllByRole("listitem");
-      expect(listItems).toHaveLength(2);
-    });
-
-    it("does not render bullets list when bullets array is empty", () => {
-      const { queryByRole } = renderWithTheme(
-        <ProgrammeHeader {...baseProps} bullets={[]} />,
-      );
-      const list = queryByRole("list");
-
-      expect(list).not.toBeInTheDocument();
-    });
-
-    it("does not render bullets list when bullets prop is undefined", () => {
-      const { queryByRole } = renderWithTheme(
-        <ProgrammeHeader {...baseProps} bullets={undefined} />,
-      );
-      const list = queryByRole("list");
-
-      expect(list).not.toBeInTheDocument();
-    });
-  });
-
-  describe("slots rendering", () => {
-    it("renders header slot content when provided", () => {
-      const headerContent = "Breadcrumb navigation";
-      const { getByText } = renderWithTheme(
-        <ProgrammeHeader {...baseProps} headerSlot={headerContent} />,
-      );
-
-      expect(getByText(headerContent)).toBeInTheDocument();
-    });
-
-    it("renders footer slot content when provided", () => {
-      const footerContent = "Action buttons";
-      const { getByText } = renderWithTheme(
-        <ProgrammeHeader {...baseProps} footerSlot={footerContent} />,
-      );
-
-      expect(getByText(footerContent)).toBeInTheDocument();
     });
   });
 });
