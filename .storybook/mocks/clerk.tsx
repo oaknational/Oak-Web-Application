@@ -47,6 +47,11 @@ export const useUser = () => ({
         primaryEmailAddress: {
           emailAddress: "billy@example.com",
         },
+        publicMetadata: {
+          owa: {
+            isOnboarded: true,
+          },
+        },
       }
     : null,
 });

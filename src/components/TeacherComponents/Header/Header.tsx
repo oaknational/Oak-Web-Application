@@ -110,7 +110,14 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
     <OakBox
       $background={mainBackground}
       $ph={["spacing-20", "spacing-40"]}
-      $pv={["spacing-40", "spacing-64"]}
+      $pb={[
+        isCompactLayout ? "spacing-32" : "spacing-40",
+        isCompactLayout ? "spacing-32" : "spacing-64",
+      ]}
+      $pt={[
+        isCompactLayout ? "spacing-32" : "spacing-40",
+        isCompactLayout ? "spacing-40" : "spacing-64",
+      ]}
       $color="text-primary"
     >
       <OakGrid
@@ -191,6 +198,7 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
           $flexDirection="column"
           $alignItems={["center", "flex-start"]}
           $justifyContent="center"
+          $display={isCompactLayout ? "none" : "flex"}
         >
           {heroImage && (
             <OakImage
