@@ -10,6 +10,9 @@ import {
   OakIcon,
   OakImage,
   OakIconName,
+  OakFlex,
+  OakHandDrawnCardWithIcon,
+  OakBoxProps,
 } from "@oaknational/oak-components";
 
 type HeaderProps = {
@@ -56,13 +59,14 @@ export type LargeHeaderProps = {
 export type CompactHeaderProps = {
   layoutVariant: "compact";
   /**
-   * An optional icon to display alongside the header
+   * An optional subject icon to display alongside the header
    */
-  headerIcon?: OakIconName;
+  subjectIcon?: `subject-${string}` & OakIconName;
   /**
    * The background color of the header. Defaults to transparent.
    */
   background?: Extract<OakUiRoleToken, `bg-decorative${number}-very-subdued`>;
+  backgroundContrast?: Extract<OakUiRoleToken, `bg-decorative${number}-main`>;
 } & HeaderProps;
 
 const isCompactHeaderProps = (
@@ -113,52 +117,55 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
             {headerSlot}
           </OakGridArea>
         )}
-        {/* Content area: 7 columns on desktop, full width on mobile */}
-        <OakGridArea
-          $colSpan={[12, 7]}
-          $order={[3, 2]}
-          $flexDirection="column"
-          $justifyContent="center"
-          $gap="spacing-24"
-          $textWrap="balance"
-        >
-          <OakHeading
-            tag={"h1"}
-            $font={[
-              isCompactLayout ? "heading-5" : "heading-4",
-              isCompactLayout ? "heading-4" : "heading-1",
-            ]}
-          >
-            {heading}
-          </OakHeading>
-          <OakTypography $font="body-2">{summary}</OakTypography>
-          {bullets && bullets.length > 0 && (
-            <OakUL
-              $reset
-              $display="flex"
+        {/* Content area: 7 columns on desktop for large layout, full width on mobile and compact layout*/}
+        <OakGridArea $colSpan={[12, isCompactLayout ? 12 : 7]} $order={[3, 2]}>
+          <OakFlex $gap={"spacing-32"}>
+            <HeaderSubjectIcon display={["none", "block"]} {...props} />
+            <OakFlex
+              $textWrap="balance"
               $flexDirection="column"
-              $gap="spacing-12"
+              $justifyContent="center"
+              $gap="spacing-24"
             >
-              {bullets.map((bullet) => (
-                <OakLI
-                  key={bullet}
+              <HeaderSubjectIcon display={["block", "none"]} {...props} />
+              <OakHeading
+                tag={"h1"}
+                $font={[
+                  isCompactLayout ? "heading-5" : "heading-4",
+                  isCompactLayout ? "heading-4" : "heading-1",
+                ]}
+              >
+                {heading}
+              </OakHeading>
+              <OakTypography $font="body-2">{summary}</OakTypography>
+              {bullets && bullets.length > 0 && (
+                <OakUL
+                  $reset
                   $display="flex"
-                  $alignItems="center"
-                  $gap="spacing-8"
+                  $flexDirection="column"
+                  $gap="spacing-12"
                 >
-                  <OakIcon
-                    iconName="tick"
-                    $width="spacing-20"
-                    $height="spacing-20"
-                    $colorFilter="icon-brand"
-                  />
-                  {bullet}
-                </OakLI>
-              ))}
-            </OakUL>
-          )}
+                  {bullets.map((bullet) => (
+                    <OakLI
+                      key={bullet}
+                      $display="flex"
+                      $alignItems="center"
+                      $gap="spacing-8"
+                    >
+                      <OakIcon
+                        iconName="tick"
+                        $width="spacing-20"
+                        $height="spacing-20"
+                        $colorFilter="icon-brand"
+                      />
+                      {bullet}
+                    </OakLI>
+                  ))}
+                </OakUL>
+              )}
+            </OakFlex>
+          </OakFlex>
         </OakGridArea>
-
         {footerSlot && (
           <OakGridArea
             $colSpan={[12, 12, 7]}
@@ -195,4 +202,31 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
       </OakGrid>
     </OakBox>
   );
+};
+
+const HeaderSubjectIcon = ({
+  display,
+  ...props
+}: {
+  display: OakBoxProps["$display"];
+} & (CompactHeaderProps | LargeHeaderProps)) => {
+  const isCompactLayout = isCompactHeaderProps(props);
+  const iconName = isCompactLayout ? props.subjectIcon : undefined;
+  const iconBackground = isCompactLayout ? props.backgroundContrast : undefined;
+
+  return iconName ? (
+    <OakBox
+      $width={["spacing-56", "spacing-80"]}
+      $height={["spacing-56", "spacing-80"]}
+      $display={display}
+    >
+      <OakHandDrawnCardWithIcon
+        iconName={iconName}
+        fill={iconBackground}
+        $width="100%"
+        $height="100%"
+        iconWidth={["spacing-56", "spacing-80"]}
+      />
+    </OakBox>
+  ) : null;
 };
