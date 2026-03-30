@@ -147,7 +147,11 @@ const LessonList = ({
                   layoutVariant="horizontal"
                   isHighlighted={false}
                   title={lesson.lessonTitle}
-                  subcopy={lesson.pupilLessonOutcome ?? undefined}
+                  subcopy={
+                    lesson.isUnpublished
+                      ? "Coming soon"
+                      : (lesson.pupilLessonOutcome ?? undefined)
+                  }
                   href={resolveOakHref({
                     page: "lesson-overview",
                     programmeSlug,
