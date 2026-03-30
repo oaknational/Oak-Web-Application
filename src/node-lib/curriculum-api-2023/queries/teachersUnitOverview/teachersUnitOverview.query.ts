@@ -54,6 +54,7 @@ const teachersUnitOverviewQuery =
         programmeSlug: lesson.programme_slug,
         unitTitle:
           lesson.programme_fields.optionality ?? lesson.unit_data.title,
+        unitDescription: lesson.unit_data.description,
         programmeSlugByYear: lesson.programme_slug_by_year,
         nullUnitvariantId: lesson.null_unitvariant_id,
       };
