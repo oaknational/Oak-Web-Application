@@ -72,6 +72,8 @@ describe("getTransformedUnit", () => {
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
       unitDescription: null,
+      unitOrder: 1,
+      unitCount: 4,
       unitvariantId: 1,
       yearTitle: "Year 1",
       yearSlug: "year-1",
@@ -142,6 +144,8 @@ describe("getTransformedUnit", () => {
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
       unitDescription: null,
+      unitOrder: 1,
+      unitCount: 4,
       unitvariantId: 1,
       yearTitle: "Year 1",
       yearSlug: "year-1",
@@ -161,6 +165,52 @@ describe("getTransformedUnit", () => {
       tierOptionToggles: [],
       subjectOptionToggles: [],
     });
+  });
+
+  it("sets unitCount for the current unit's year", () => {
+    const sequence = unitSequenceFixture.slice(0, 2);
+    const result = getPackagedUnit(
+      mockPackagedUnitData,
+      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
+      false,
+      false,
+      sequence,
+      unitsInOtherProgrammesFixture,
+    );
+    expect(result.unitCount).toBe(sequence.length);
+  });
+
+  it("does not include units from other years in unitCount", () => {
+    const result = getPackagedUnit(
+      { ...mockPackagedUnitData, nullUnitvariantId: 20 },
+      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
+      false,
+      false,
+      [
+        ...unitSequenceFixture,
+        {
+          unitSlug: "unit-20",
+          unitTitle: "Unit 20",
+          unitDescription: null,
+          unitOrder: 1,
+          nullUnitvariantId: 20,
+          yearOrder: 2,
+          year: "7",
+        },
+        {
+          unitSlug: "unit-21",
+          unitTitle: "Unit 21",
+          unitDescription: null,
+          unitOrder: 2,
+          nullUnitvariantId: 21,
+          yearOrder: 2,
+          year: "7",
+        },
+      ],
+      unitsInOtherProgrammesFixture,
+    );
+
+    expect(result.unitCount).toBe(2);
   });
 });
 
@@ -194,6 +244,7 @@ describe("getNeighbourUnits", () => {
         unitOrder: 5,
         nullUnitvariantId: 5,
         yearOrder: 1,
+        year: "7",
       }),
       unitsInOtherProgrammesFixture,
     );
@@ -215,6 +266,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 5,
           nullUnitvariantId: 5,
           yearOrder: 1,
+          year: "7",
         },
         {
           unitSlug: "unit-slug",
@@ -223,6 +275,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 6,
           nullUnitvariantId: 6,
           yearOrder: 1,
+          year: "7",
         },
       ],
       nullUnitvariantId: 6,
@@ -244,6 +297,7 @@ describe("getNeighbourUnits", () => {
           unitDescription: null,
           nullUnitvariantId: 6,
           yearOrder: 1,
+          year: "7",
         },
       ],
       nullUnitvariantId: 4,
@@ -264,6 +318,7 @@ describe("getNeighbourUnits", () => {
           unitDescription: null,
           nullUnitvariantId: 2,
           yearOrder: 1,
+          year: "7",
         },
         {
           unitOrder: 5,
@@ -272,6 +327,7 @@ describe("getNeighbourUnits", () => {
           unitDescription: null,
           nullUnitvariantId: 5,
           yearOrder: 1,
+          year: "7",
         },
         {
           unitOrder: 6,
@@ -280,6 +336,7 @@ describe("getNeighbourUnits", () => {
           unitDescription: null,
           nullUnitvariantId: 6,
           yearOrder: 1,
+          year: "7",
         },
       ],
       nullUnitvariantId: 5,
@@ -296,6 +353,7 @@ describe("getNeighbourUnits", () => {
           nullUnitvariantId: 1,
           yearOrder: 1,
           unitOrder: 1,
+          year: "7",
         },
         {
           unitSlug: "unit-10",
@@ -304,6 +362,7 @@ describe("getNeighbourUnits", () => {
           nullUnitvariantId: 20,
           yearOrder: 2,
           unitOrder: 2,
+          year: "7",
         },
         {
           unitSlug: "unit-2",
@@ -312,6 +371,7 @@ describe("getNeighbourUnits", () => {
           nullUnitvariantId: 2,
           yearOrder: 1,
           unitOrder: 2,
+          year: "7",
         },
       ],
       nullUnitvariantId: 1,
@@ -331,6 +391,7 @@ describe("getNeighbourUnits", () => {
           nullUnitvariantId: 2,
           yearOrder: 2,
           unitOrder: 2,
+          year: "7",
         },
         {
           unitSlug: "unit-20",
@@ -339,6 +400,7 @@ describe("getNeighbourUnits", () => {
           nullUnitvariantId: 20,
           yearOrder: 1,
           unitOrder: 2,
+          year: "7",
         },
         {
           unitSlug: "unit-3",
@@ -347,6 +409,7 @@ describe("getNeighbourUnits", () => {
           nullUnitvariantId: 3,
           yearOrder: 2,
           unitOrder: 2,
+          year: "7",
         },
       ],
       nullUnitvariantId: 3,
