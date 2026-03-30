@@ -13,19 +13,11 @@ const meta: Meta<typeof UnitHeader> = {
   component: UnitHeader,
   tags: ["autodocs"],
   argTypes: {
-    background: {
+    backgroundColorLevel: {
       control: {
         type: "select",
       },
-      options: [
-        undefined,
-        "bg-decorative1-very-subdued",
-        "bg-decorative2-very-subdued",
-        "bg-decorative3-very-subdued",
-        "bg-decorative4-very-subdued",
-        "bg-decorative5-very-subdued",
-        "bg-decorative6-very-subdued",
-      ],
+      options: [undefined, 1, 2, 3, 4, 5, 6],
     },
     summary: {
       control: {
@@ -40,7 +32,7 @@ const meta: Meta<typeof UnitHeader> = {
   },
   parameters: {
     controls: {
-      include: ["background"],
+      include: ["backgroundColorLevel"],
     },
   },
   decorators: [
@@ -72,8 +64,7 @@ export const WithSummaryAndBullets: Story = {
       "Practical, engaging lessons",
       "Responsible digital citizenship",
     ],
-    background: "bg-decorative3-very-subdued",
-    backgroundContrast: "bg-decorative3-main",
+    backgroundColorLevel: 3,
     subjectIcon: "subject-computer-science",
   },
 };
@@ -81,8 +72,7 @@ export const WithSummaryAndBullets: Story = {
 export const WithHeader: Story = {
   args: {
     heading: "IT and the world of work",
-    background: "bg-decorative3-very-subdued",
-    backgroundContrast: "bg-decorative3-main",
+    backgroundColorLevel: 3,
     subjectIcon: "subject-computer-science",
     headerSlot: (
       <OakBreadcrumbs
@@ -111,8 +101,7 @@ export const WithHeader: Story = {
 export const WithTags: Story = {
   args: {
     heading: "IT and the world of work",
-    background: "bg-decorative3-very-subdued",
-    backgroundContrast: "bg-decorative3-main",
+    backgroundColorLevel: 3,
     subjectIcon: "subject-computer-science",
     tags: ["Tag 1", "Long tag name for number 2", "T3"],
     headerSlot: (

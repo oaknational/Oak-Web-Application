@@ -64,10 +64,9 @@ export type CompactHeaderProps = {
    */
   subjectIcon?: `subject-${string}` & OakIconName;
   /**
-   * The background color of the header. Defaults to transparent.
+   * The level of the decorative background colour to be used. Defaults to transparent.
    */
-  background?: Extract<OakUiRoleToken, `bg-decorative${number}-very-subdued`>;
-  backgroundContrast?: Extract<OakUiRoleToken, `bg-decorative${number}-main`>;
+  backgroundColorLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   /**
    * Optional list of tags to display above the heading
    */
@@ -98,15 +97,18 @@ const isCompactHeaderProps = (
  * ```
  */
 export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
-  const { heading, summary, bullets, headerSlot, footerSlot, background } =
-    props;
+  const { heading, summary, bullets, headerSlot, footerSlot } = props;
 
   const isCompactLayout = isCompactHeaderProps(props);
   const heroImage = isCompactLayout ? null : props.heroImage;
 
+  const mainBackground = isCompactLayout
+    ? (`bg-decorative${props.backgroundColorLevel}-very-subdued` as OakUiRoleToken)
+    : props.background;
+
   return (
     <OakBox
-      $background={background}
+      $background={mainBackground}
       $ph={["spacing-20", "spacing-40"]}
       $pv={["spacing-40", "spacing-64"]}
       $color="text-primary"
@@ -218,7 +220,9 @@ const CompactHeaderSubjectIcon = ({
 } & (CompactHeaderProps | LargeHeaderProps)) => {
   const isCompactLayout = isCompactHeaderProps(props);
   const iconName = isCompactLayout ? props.subjectIcon : undefined;
-  const iconBackground = isCompactLayout ? props.backgroundContrast : undefined;
+  const iconBackground = isCompactLayout
+    ? (`bg-decorative${props.backgroundColorLevel}-main` as OakUiRoleToken)
+    : undefined;
 
   return iconName ? (
     <OakFlex
