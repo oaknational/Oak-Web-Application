@@ -14,7 +14,11 @@ import UnitDownloadButton, {
 
 import { CompactHeaderProps, Header } from "./Header";
 
-export type UnitHeaderProps = Omit<CompactHeaderProps, "layoutVariant"> & {
+export type UnitHeaderProps = Omit<
+  CompactHeaderProps,
+  "layoutVariant" | "backgroundColorLevel"
+> & {
+  phase: "primary" | "secondary";
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
   isGeorestrictedUnit?: boolean;
@@ -24,11 +28,13 @@ export type UnitHeaderProps = Omit<CompactHeaderProps, "layoutVariant"> & {
 
 const UnitHeader = (props: UnitHeaderProps) => {
   const {
-    backgroundColorLevel,
+    phase,
     unitDownloadFileId,
     onUnitDownloadSuccess,
     isGeorestrictedUnit,
   } = props;
+
+  const backgroundColorLevel = phase === "primary" ? 4 : 3;
 
   const {
     setShowDownloadMessage,
@@ -39,7 +45,11 @@ const UnitHeader = (props: UnitHeaderProps) => {
   } = useUnitDownloadButtonState();
   return (
     <>
-      <Header {...props} layoutVariant="compact" />
+      <Header
+        {...props}
+        layoutVariant="compact"
+        backgroundColorLevel={backgroundColorLevel}
+      />
       <OakFlex
         $background={
           `bg-decorative${backgroundColorLevel}-subdued` as OakUiRoleToken
@@ -67,7 +77,11 @@ const UnitHeader = (props: UnitHeaderProps) => {
                 `border-decorative${backgroundColorLevel}` as OakUiRoleToken
               }
             />
-            <UnitNavButtons display={["none", "flex"]} {...props} />
+            <UnitNavButtons
+              display={["none", "flex"]}
+              {...props}
+              backgroundColorLevel={backgroundColorLevel}
+            />
           </OakFlex>
           {unitDownloadFileId && onUnitDownloadSuccess && (
             <UnitDownloadButton
@@ -91,7 +105,11 @@ const UnitHeader = (props: UnitHeaderProps) => {
           }
           $width={"100%"}
         />
-        <UnitNavButtons display={["flex", "none"]} {...props} />
+        <UnitNavButtons
+          display={["flex", "none"]}
+          {...props}
+          backgroundColorLevel={backgroundColorLevel}
+        />
       </OakFlex>
     </>
   );
@@ -104,6 +122,7 @@ const UnitNavButtons = ({
   prevUnit,
 }: {
   display: OakFlexProps["$display"];
+  backgroundColorLevel: CompactHeaderProps["backgroundColorLevel"];
 } & UnitHeaderProps) => {
   const iconColor = `icon-decorative${backgroundColorLevel}` as OakUiRoleToken;
   return (

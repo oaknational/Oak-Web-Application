@@ -37,7 +37,7 @@ const meta: Meta<typeof UnitHeader> = {
       include: [
         "heading",
         "summary",
-        "backgroundColorLevel",
+        "phase",
         "subjectIcon",
         "prevUnit",
         "nextUnit",
@@ -62,7 +62,7 @@ type Story = StoryObj<typeof UnitHeader>;
 
 const coreProps: UnitHeaderProps = {
   heading: "IT and the world of work",
-  backgroundColorLevel: 3,
+  phase: "secondary",
   subjectIcon: "subject-computer-science",
   unitDownloadFileId: "1",
   onUnitDownloadSuccess: () => console.log("success"),
