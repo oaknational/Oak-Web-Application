@@ -54,6 +54,8 @@ const unitOverviewFixture: TeachersUnitOverviewData = {
   unitvariantId: 1,
   unitTitle: "Geometry",
   unitDescription: null,
+  unitOrder: 1,
+  unitCount: 1,
   subjectSlug: "maths",
   subjectTitle: "Maths",
   parentSubject: null,
