@@ -40,7 +40,14 @@ const meta: Meta<typeof Header> = {
   },
   parameters: {
     controls: {
-      include: ["background", "summary", "bullets"],
+      include: [
+        "background",
+        "backgroundColorLevel",
+        "layoutVariant",
+        "subjectIcon",
+        "summary",
+        "bullets",
+      ],
     },
   },
   decorators: [
