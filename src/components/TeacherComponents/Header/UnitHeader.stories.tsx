@@ -107,3 +107,34 @@ export const WithHeader: Story = {
     ),
   },
 };
+
+export const WithTags: Story = {
+  args: {
+    heading: "IT and the world of work",
+    background: "bg-decorative3-very-subdued",
+    backgroundContrast: "bg-decorative3-main",
+    subjectIcon: "subject-computer-science",
+    tags: ["Tag 1", "Long tag name for number 2", "T3"],
+    headerSlot: (
+      <OakBreadcrumbs
+        breadcrumbs={[
+          {
+            text: "Level 1",
+            href: "www.google.com",
+          },
+          {
+            text: "Level 2",
+            href: "www.google.com",
+          },
+          {
+            text: "Level 3",
+            href: "www.google.com",
+          },
+          {
+            text: "Level 4",
+          },
+        ]}
+      />
+    ),
+  },
+};

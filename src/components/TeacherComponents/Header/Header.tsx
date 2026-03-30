@@ -13,6 +13,7 @@ import {
   OakFlex,
   OakHandDrawnCardWithIcon,
   OakBoxProps,
+  OakTagFunctional,
 } from "@oaknational/oak-components";
 
 type HeaderProps = {
@@ -67,6 +68,10 @@ export type CompactHeaderProps = {
    */
   background?: Extract<OakUiRoleToken, `bg-decorative${number}-very-subdued`>;
   backgroundContrast?: Extract<OakUiRoleToken, `bg-decorative${number}-main`>;
+  /**
+   * Optional list of tags to display above the heading
+   */
+  tags?: Array<string>;
 } & HeaderProps;
 
 const isCompactHeaderProps = (
@@ -120,14 +125,15 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
         {/* Content area: 7 columns on desktop for large layout, full width on mobile and compact layout*/}
         <OakGridArea $colSpan={[12, isCompactLayout ? 12 : 7]} $order={[3, 2]}>
           <OakFlex $gap={"spacing-32"}>
-            <HeaderSubjectIcon display={["none", "block"]} {...props} />
+            <CompactHeaderSubjectIcon display={["none", "block"]} {...props} />
             <OakFlex
               $textWrap="balance"
               $flexDirection="column"
               $justifyContent="center"
               $gap="spacing-24"
             >
-              <HeaderSubjectIcon display={["block", "none"]} {...props} />
+              <CompactHeaderSubjectIcon display={["flex", "none"]} {...props} />
+              <CompactHeaderTags {...props} display={["none", "flex"]} />
               <OakHeading
                 tag={"h1"}
                 $font={[
@@ -204,7 +210,7 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
   );
 };
 
-const HeaderSubjectIcon = ({
+const CompactHeaderSubjectIcon = ({
   display,
   ...props
 }: {
@@ -215,18 +221,45 @@ const HeaderSubjectIcon = ({
   const iconBackground = isCompactLayout ? props.backgroundContrast : undefined;
 
   return iconName ? (
-    <OakBox
-      $width={["spacing-56", "spacing-80"]}
-      $height={["spacing-56", "spacing-80"]}
+    <OakFlex
+      $width={["100%", "spacing-80"]}
+      $height={["auto", "spacing-80"]}
       $display={display}
+      $gap={"spacing-24"}
     >
       <OakHandDrawnCardWithIcon
         iconName={iconName}
         fill={iconBackground}
-        $width="100%"
-        $height="100%"
+        $width={["auto", "100%"]}
+        $height={["auto", "100%"]}
         iconWidth={["spacing-56", "spacing-80"]}
+        iconHeight={["spacing-56", "spacing-80"]}
+        $pa={"spacing-8"}
       />
-    </OakBox>
+      <CompactHeaderTags {...props} display={["flex", "none"]} />
+    </OakFlex>
+  ) : null;
+};
+
+const CompactHeaderTags = ({
+  display,
+  ...props
+}: {
+  display: OakBoxProps["$display"];
+} & (CompactHeaderProps | LargeHeaderProps)) => {
+  const isCompactLayout = isCompactHeaderProps(props);
+  const tags = isCompactLayout ? props.tags : undefined;
+
+  return tags ? (
+    <OakFlex $display={display} $gap={"spacing-8"} $flexWrap={"wrap"}>
+      {tags.map((tag) => (
+        <OakTagFunctional
+          label={tag}
+          key={tag}
+          $background="bg-neutral"
+          $height={"max-content"}
+        />
+      ))}
+    </OakFlex>
   ) : null;
 };
