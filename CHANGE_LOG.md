@@ -1,3 +1,11 @@
+# [1.1028.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1027.1...v1.1028.0) (2026-03-30)
+
+
+### Features
+
+* **LESQ-1866:** add new unit page ([77646af](https://github.com/oaknational/Oak-Web-Application/commit/77646af0fd6c5d73da3d8564a0e745506d9f0d0c))
+* **LESQ-1866:** update unit list links to new unit page ([411a87c](https://github.com/oaknational/Oak-Web-Application/commit/411a87c3f1751f90bd966bc126e1ef36cf387b96))
+
 ## [1.1027.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1027.0...v1.1027.1) (2026-03-30)
 
 
