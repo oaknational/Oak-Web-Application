@@ -1,3 +1,10 @@
+## [1.1027.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1027.0...v1.1027.1) (2026-03-30)
+
+
+### Bug Fixes
+
+* ensure we await cookieStore init before fetching GC context ([0faaff3](https://github.com/oaknational/Oak-Web-Application/commit/0faaff3e0aca2b4fbddf6344371cd1e51917a88d))
+
 # [1.1027.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1026.0...v1.1027.0) (2026-03-27)
 
 
