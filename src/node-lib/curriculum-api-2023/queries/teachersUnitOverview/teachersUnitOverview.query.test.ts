@@ -83,6 +83,7 @@ export const unitSequenceFixture: UnitSequence = [
   {
     unitSlug: "unit-1",
     unitTitle: "Unit 1",
+    unitDescription: null,
     unitOrder: 1,
     nullUnitvariantId: 1,
     yearOrder: 1,
@@ -90,6 +91,7 @@ export const unitSequenceFixture: UnitSequence = [
   {
     unitSlug: "unit-2",
     unitTitle: "Unit 2",
+    unitDescription: null,
     unitOrder: 2,
     nullUnitvariantId: 2,
     yearOrder: 1,
@@ -97,6 +99,7 @@ export const unitSequenceFixture: UnitSequence = [
   {
     unitSlug: "unit-3",
     unitTitle: "Unit 3",
+    unitDescription: null,
     unitOrder: 3,
     nullUnitvariantId: 3,
     yearOrder: 1,
@@ -104,6 +107,7 @@ export const unitSequenceFixture: UnitSequence = [
   {
     unitSlug: "unit-4",
     unitTitle: "Unit 4",
+    unitDescription: null,
     unitOrder: 4,
     nullUnitvariantId: 4,
     yearOrder: 1,
@@ -151,6 +155,7 @@ describe("teachersUnitOverview", () => {
       subjectTitle: "Maths",
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
+      unitDescription: null,
       unitvariantId: 1,
       tierSlug: null,
       tierTitle: null,

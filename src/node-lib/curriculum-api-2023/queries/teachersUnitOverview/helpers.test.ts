@@ -22,6 +22,8 @@ const mockPackagedUnitData = {
   unitTitle:
     syntheticUnitvariantLessonsByKsFixture().programme_fields.optionality ??
     syntheticUnitvariantLessonsByKsFixture().unit_data.title,
+  unitDescription:
+    syntheticUnitvariantLessonsByKsFixture().unit_data.description,
   programmeSlugByYear:
     syntheticUnitvariantLessonsByKsFixture().programme_slug_by_year,
   nullUnitvariantId: 1,
@@ -69,6 +71,7 @@ describe("getTransformedUnit", () => {
       tierTitle: null,
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
+      unitDescription: null,
       unitvariantId: 1,
       yearTitle: "Year 1",
       yearSlug: "year-1",
@@ -138,6 +141,7 @@ describe("getTransformedUnit", () => {
       tierTitle: null,
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
+      unitDescription: null,
       unitvariantId: 1,
       yearTitle: "Year 1",
       yearSlug: "year-1",
@@ -185,6 +189,7 @@ describe("getNeighbourUnits", () => {
       unitSequenceFixture.concat({
         unitSlug: "unit-slug",
         unitTitle: "Null Title",
+        unitDescription: null,
         optionalityTitle: "Optionality title",
         unitOrder: 5,
         nullUnitvariantId: 5,
@@ -205,6 +210,7 @@ describe("getNeighbourUnits", () => {
         {
           unitSlug: "unit-slug",
           unitTitle: "Null Title",
+          unitDescription: null,
           optionalityTitle: "Optionality title",
           unitOrder: 5,
           nullUnitvariantId: 5,
@@ -213,6 +219,7 @@ describe("getNeighbourUnits", () => {
         {
           unitSlug: "unit-slug",
           unitTitle: "Unit Title",
+          unitDescription: null,
           unitOrder: 6,
           nullUnitvariantId: 6,
           yearOrder: 1,
@@ -234,6 +241,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 6,
           unitSlug: "next-slug",
           unitTitle: "Next unit",
+          unitDescription: null,
           nullUnitvariantId: 6,
           yearOrder: 1,
         },
@@ -253,6 +261,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 2,
           unitSlug: "prev-slug",
           unitTitle: "Prev unit",
+          unitDescription: null,
           nullUnitvariantId: 2,
           yearOrder: 1,
         },
@@ -260,6 +269,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 5,
           unitSlug: "current-slug",
           unitTitle: "Current unit",
+          unitDescription: null,
           nullUnitvariantId: 5,
           yearOrder: 1,
         },
@@ -267,6 +277,7 @@ describe("getNeighbourUnits", () => {
           unitOrder: 6,
           unitSlug: "next-slug",
           unitTitle: "Next unit",
+          unitDescription: null,
           nullUnitvariantId: 6,
           yearOrder: 1,
         },
@@ -281,6 +292,7 @@ describe("getNeighbourUnits", () => {
         {
           unitSlug: "unit-1",
           unitTitle: "Unit 1",
+          unitDescription: null,
           nullUnitvariantId: 1,
           yearOrder: 1,
           unitOrder: 1,
@@ -288,6 +300,7 @@ describe("getNeighbourUnits", () => {
         {
           unitSlug: "unit-10",
           unitTitle: "Unit 10",
+          unitDescription: null,
           nullUnitvariantId: 20,
           yearOrder: 2,
           unitOrder: 2,
@@ -295,6 +308,7 @@ describe("getNeighbourUnits", () => {
         {
           unitSlug: "unit-2",
           unitTitle: "Unit 2",
+          unitDescription: null,
           nullUnitvariantId: 2,
           yearOrder: 1,
           unitOrder: 2,
@@ -313,6 +327,7 @@ describe("getNeighbourUnits", () => {
         {
           unitSlug: "unit-2",
           unitTitle: "Unit 2",
+          unitDescription: null,
           nullUnitvariantId: 2,
           yearOrder: 2,
           unitOrder: 2,
@@ -320,6 +335,7 @@ describe("getNeighbourUnits", () => {
         {
           unitSlug: "unit-20",
           unitTitle: "Unit 20",
+          unitDescription: null,
           nullUnitvariantId: 20,
           yearOrder: 1,
           unitOrder: 2,
@@ -327,6 +343,7 @@ describe("getNeighbourUnits", () => {
         {
           unitSlug: "unit-3",
           unitTitle: "Unit 3",
+          unitDescription: null,
           nullUnitvariantId: 3,
           yearOrder: 2,
           unitOrder: 2,
