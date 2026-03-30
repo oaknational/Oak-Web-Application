@@ -34,6 +34,7 @@ query teachersUnitOverview($programmeSlug: String!, $unitSlug: String!) {
     unitDescription: unit_data(path: "description")
     unitOrder: supplementary_data(path: "unit_order")
     yearOrder: programme_fields(path: "year_display_order")
+    year: programme_fields(path: "year")
     optionalityTitle: programme_fields(path: "optionality")
     nullUnitvariantId: null_unitvariant_id
   }

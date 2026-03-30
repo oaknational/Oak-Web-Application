@@ -29,6 +29,12 @@ export const unitOverviewDataSchema = z.object({
   unitvariantId: z.number(),
   unitTitle: z.string(),
   unitDescription: z.string().nullable(),
+  unitOrder: z.number(),
+  unitCount: z
+    .number()
+    .describe(
+      "The number of units in the programme sequence for the current unit's year",
+    ),
   subjectSlug: programmeFieldsSchema.shape.subject_slug,
   subjectTitle: programmeFieldsSchema.shape.subject,
   parentSubject: programmeFieldsSchema.shape.subject_parent,
@@ -81,6 +87,7 @@ export const unitSequenceResponseSchema = z.array(
     optionalityTitle: z.string().nullish(),
     nullUnitvariantId: z.number(),
     yearOrder: z.number(),
+    year: programmeFieldsSchema.shape.year,
   }),
 );
 export type UnitSequence = z.infer<typeof unitSequenceResponseSchema>;

@@ -149,6 +149,13 @@ export const getPackagedUnit = (
     (actions) => actions?.isPePractical === true,
   );
 
+  const currentUnit = unitSequenceData.find(
+    (u) => u.nullUnitvariantId === nullUnitvariantId,
+  );
+  if (!currentUnit) {
+    throw new OakError({ code: "curriculum-api/not-found" });
+  }
+
   const { nextUnit, prevUnit } = getNeighbourUnits({
     unitSequenceData,
     nullUnitvariantId,
@@ -158,6 +165,9 @@ export const getPackagedUnit = (
     programmeSlug,
     unitsInOtherProgrammes,
   );
+  const unitCount = unitSequenceData.filter(
+    (u) => u.year === currentUnit.year,
+  ).length;
 
   return {
     programmeSlug,
@@ -170,6 +180,8 @@ export const getPackagedUnit = (
     unitvariantId,
     unitTitle,
     unitDescription,
+    unitOrder: currentUnit.unitOrder,
+    unitCount,
     tierSlug: modifiedProgrammeFields.tier_slug,
     tierTitle: modifiedProgrammeFields.tier_description,
     examBoardSlug: modifiedProgrammeFields.examboard_slug,
