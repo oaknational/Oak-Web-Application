@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
-import { LessonList } from "./Components/LessonList";
+import { UnitView } from "./Components/UnitView";
 
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import withPageErrorHandling, {
@@ -61,7 +61,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
   const data = await getCachedUnitData(subjectPhaseSlug, unitSlug);
 
   return (
-    <LessonList
+    <UnitView
       programmeSlug={data.programmeSlug}
       unitSlug={data.unitSlug}
       unitTitle={data.unitTitle}
@@ -69,18 +69,8 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
       subjectSlug={data.subjectSlug}
       keyStageSlug={data.keyStageSlug}
       keyStageTitle={data.keyStageTitle}
-      lessons={data.lessons.map((lesson) => ({
-        lessonSlug: lesson.lessonSlug,
-        lessonTitle: lesson.lessonTitle,
-        pupilLessonOutcome:
-          "pupilLessonOutcome" in lesson
-            ? lesson.pupilLessonOutcome
-            : undefined,
-        orderInUnit: lesson.orderInUnit,
-        isUnpublished: lesson.isUnpublished,
-      }))}
-      unitIndexLabel={data.yearTitle}
-      lessonCount={data.lessons.length}
+      lessons={data.lessons}
+      yearTitle={data.yearTitle}
     />
   );
 };
