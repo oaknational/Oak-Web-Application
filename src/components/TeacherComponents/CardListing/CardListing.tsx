@@ -122,8 +122,8 @@ const CardListingRenderLayout = (props: CardListingProps) => {
       <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
         <CardListingStyledLink {...cardLinkProps} className="styled-link">
           <OakFlex
-            $flexDirection={"row"}
-            $gap={"spacing-20"}
+            $flexDirection={["column", "column", "row"]}
+            $gap={["spacing-12", "spacing-12", "spacing-20"]}
             $width={"100%"}
             $color={defaultTextColour}
           >
