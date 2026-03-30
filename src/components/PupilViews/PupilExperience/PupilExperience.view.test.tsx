@@ -862,6 +862,43 @@ describe("lessonAccessedPupilJourney analytics", () => {
     ).not.toHaveBeenCalled();
   });
 
+  it("fires when classroom context params are missing and skips getAddOnContext", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+    (useSearchParams as jest.Mock).mockReturnValue(
+      new URLSearchParams({
+        itemType: "courseWork",
+        courseId: "course-123",
+        itemId: "item-456",
+      }),
+    );
+    defaultLessonEngineContext();
+
+    render(<PupilExperienceView {...defaultProps()} />);
+
+    await waitFor(() => {
+      expect(
+        analyticsTrackMock.lessonAccessedPupilJourney,
+      ).toHaveBeenCalledWith(
+        expect.objectContaining({
+          componentType: "page view",
+          courseId: "course-123",
+          itemId: "item-456",
+          attachmentId: null,
+          submissionId: null,
+          pupilLoginHint: null,
+          teacherLoginHint: null,
+          classroomAssignmentId: "course-123:item-456",
+          clientEnvironment: "web-browser",
+        }),
+      );
+    });
+
+    expect(googleClassroomApi.getAddOnContext).not.toHaveBeenCalled();
+  });
+
   it("fires after getAddOnContext resolves and includes the resolved classroom context", async () => {
     mockedUseAssignmentSearchParams.mockReturnValue({
       isClassroomAssignment: true,

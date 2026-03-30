@@ -285,7 +285,10 @@ const PupilExperienceLayout = ({
     const itemId = searchParams?.get("itemId");
     const attachmentId = searchParams?.get("attachmentId");
 
-    if (!courseId || !itemId || !attachmentId) return;
+    if (!courseId || !itemId || !attachmentId) {
+      setIsContextReady(true);
+      return;
+    }
 
     try {
       setIsFetchingClassroomContext(true);
