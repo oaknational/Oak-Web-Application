@@ -234,7 +234,7 @@ const CompactHeaderSubjectIcon = ({
 
   return iconName ? (
     <OakFlex
-      $width={["100%", "spacing-80"]}
+      $width={["max-content", "spacing-80"]}
       $height={["auto", "spacing-80"]}
       $display={display}
       $gap={"spacing-24"}
