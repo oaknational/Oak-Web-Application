@@ -7,10 +7,19 @@ import {
   OakLI,
   OakP,
 } from "@oaknational/oak-components";
+import { PortableTextBlockComponent } from "@portabletext/react";
+
+
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+
+const OakPStyled: PortableTextBlockComponent = (props) => {
+  return <OakP $font={["body-2", "body-1"]}>{props.children}</OakP>;
+};
 
 export type CurriculumPartnersProps = {
   title: string;
-  text: string;
+  text: string | PortableTextJSON;
   items: {
     imageUrl: string;
     alt: string;
@@ -27,7 +36,14 @@ export function CurriculumPartners({
         <OakHeading tag="h3" $font={["heading-5", "heading-4", "heading-4"]}>
           {title}
         </OakHeading>
-        <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
+          <PortableTextWithDefaults
+            value={text}
+            components={{
+              block: {
+                normal: OakPStyled,
+              },
+            }}
+          />
       </OakFlex>
       <OakBox>
         <OakGrid

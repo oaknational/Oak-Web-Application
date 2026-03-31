@@ -3080,6 +3080,7 @@ export type OaksCurriculaPageGuidingPrinciple = {
   _type?: Maybe<Scalars['String']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
   text?: Maybe<Scalars['String']['output']>;
+  text2Raw?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type OaksCurriculaPageGuidingPrincipleFilter = {
@@ -3102,6 +3103,7 @@ export type OaksCurriculaPageGuidingPrinciples = {
   _type?: Maybe<Scalars['String']['output']>;
   image?: Maybe<ImageWithAltText>;
   principles?: Maybe<Array<Maybe<OaksCurriculaPageGuidingPrinciple>>>;
+  textRaw?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type OaksCurriculaPageGuidingPrinciplesFilter = {
@@ -5943,7 +5945,7 @@ export type OaksCurriculaPageQueryVariables = Exact<{
 }>;
 
 
-export type OaksCurriculaPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksCurricula: Array<{ __typename?: 'NewAboutCorePageOaksCurricula', id?: string | null, header?: { __typename?: 'OaksCurriculaPageHeader', subtitlePortableText?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, guidingPrinciples?: { __typename?: 'OaksCurriculaPageGuidingPrinciples', image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, principles?: Array<{ __typename?: 'OaksCurriculaPageGuidingPrinciple', heading?: string | null, text?: string | null } | null> | null } | null, currentPartners?: { __typename?: 'OaksCurriculaPagePartnerSection', partners?: Array<{ __typename?: 'OaksCurriculaPagePartner', logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, legacyPartners?: { __typename?: 'OaksCurriculaPagePartnerSection', partners?: Array<{ __typename?: 'OaksCurriculaPagePartner', logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type OaksCurriculaPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageOaksCurricula: Array<{ __typename?: 'NewAboutCorePageOaksCurricula', id?: string | null, header?: { __typename?: 'OaksCurriculaPageHeader', introText?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, guidingPrinciples?: { __typename?: 'OaksCurriculaPageGuidingPrinciples', textRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, principles?: Array<{ __typename?: 'OaksCurriculaPageGuidingPrinciple', heading?: string | null, text?: string | null, text2Raw?: any | null } | null> | null } | null, currentPartners?: { __typename?: 'OaksCurriculaPagePartnerSection', textRaw?: any | null, partners?: Array<{ __typename?: 'OaksCurriculaPagePartner', logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, legacyPartners?: { __typename?: 'OaksCurriculaPagePartnerSection', textRaw?: any | null, partners?: Array<{ __typename?: 'OaksCurriculaPagePartner', logo?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type PlanALessonPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -7026,21 +7028,24 @@ export const OaksCurriculaPageDocument = gql`
   ) {
     id: _id
     header {
-      subtitlePortableText: subtitleRaw
+      introText
       image {
         ...ImageWithAltText
       }
     }
     guidingPrinciples {
+      textRaw
       image {
         ...ImageWithAltText
       }
       principles {
         heading
         text
+        text2Raw
       }
     }
     currentPartners {
+      textRaw
       partners {
         logo {
           ...ImageWithAltText
@@ -7048,6 +7053,7 @@ export const OaksCurriculaPageDocument = gql`
       }
     }
     legacyPartners {
+      textRaw
       partners {
         logo {
           ...ImageWithAltText
