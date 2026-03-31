@@ -1,56 +1,26 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
-import { ComponentProps, ReactNode } from "react";
+import { ComponentProps } from "react";
 
 import LessonList from "./LessonList";
 
-import { oakNotificationsContext } from "@/context/OakNotifications/OakNotificationsProvider";
-import { saveCountContext } from "@/context/SaveCount/SaveCountProvider";
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
+import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 import lessonListingFixture, {
   lessonsWithUnpublishedContent,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
-
-const MockSaveCountProvider = ({ children }: { children: ReactNode }) => {
-  const SaveCountProvider = saveCountContext.Provider;
-
-  const value = {
-    savedUnitsCount: 0,
-    incrementSavedUnitsCount: () => console.log("save +1"),
-    decrementSavedUnitsCount: () => console.log("save -1"),
-    setSavedUnitsCount: () => console.log("save units count"),
-  };
-
-  return <SaveCountProvider value={value}>{children}</SaveCountProvider>;
-};
-
-const MockNotificationsProvider = ({ children }: { children: ReactNode }) => {
-  const NotificationsProvider = oakNotificationsContext.Provider;
-
-  const value = {
-    currentToastProps: null,
-    setCurrentToastProps: () => console.log("set toast props"),
-    currentBannerProps: null,
-    setCurrentBannerProps: () => console.log("set banner props"),
-  };
-
-  return (
-    <NotificationsProvider value={value}>{children}</NotificationsProvider>
-  );
-};
 
 const meta: Meta<typeof LessonList> = {
   component: LessonList,
   tags: ["autodocs"],
   decorators: [
+    SaveCountDecorator,
+    NotificationsDecorator,
     (Story) => (
       <ClerkProvider>
         <OakThemeProvider theme={oakDefaultTheme}>
-          <MockSaveCountProvider>
-            <MockNotificationsProvider>
-              <Story />
-            </MockNotificationsProvider>
-          </MockSaveCountProvider>
+          <Story />
         </OakThemeProvider>
       </ClerkProvider>
     ),
