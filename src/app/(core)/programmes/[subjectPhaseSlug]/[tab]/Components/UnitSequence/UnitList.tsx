@@ -94,9 +94,9 @@ export function ProgrammeUnitList({
             isOptionalityUnit: false,
           }),
           href: resolveOakHref({
-            page: "lesson-index",
+            page: "unit-page",
             unitSlug: option.slug ?? unit.slug,
-            programmeSlug,
+            subjectPhaseSlug: programmeSlug,
           }),
           showBorder: true,
           onClickLink: () => onClick(unit, isHighlighted),
@@ -117,9 +117,9 @@ export function ProgrammeUnitList({
           isHighlighted={isHighlighted}
           tags={getTagsForUnitCard(unit)}
           href={resolveOakHref({
-            page: "lesson-index",
+            page: "unit-page",
             unitSlug: unit.slug,
-            programmeSlug,
+            subjectPhaseSlug: programmeSlug,
           })}
           onClickLink={() => onClick(unit, isHighlighted)}
           lessonCount={isOptionalityUnitCard ? undefined : unit.lessons?.length}

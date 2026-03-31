@@ -18,6 +18,10 @@ import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view"
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import {
+  isEyfsPathway,
+  redirectToEyfsPage,
+} from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
 
 export type LessonDownloadsCanonicalPageProps = {
   curriculumData: LessonDownloadsCanonical;
@@ -104,6 +108,10 @@ export const getStaticProps: GetStaticProps<
           isLesson: true,
         });
         return redirect ? { redirect } : { notFound: true };
+      }
+
+      if (isEyfsPathway(curriculumData.pathways[0])) {
+        return { redirect: redirectToEyfsPage(curriculumData.pathways[0]) };
       }
 
       const topNav = await curriculumApi2023.topNav();

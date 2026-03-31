@@ -1,6 +1,7 @@
 import {
   syntheticUnitvariantLessonsByKsFixture,
   lessonDataFixture,
+  programmeFieldsFixture,
 } from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
@@ -68,6 +69,13 @@ const unitPageFixture2 = syntheticUnitvariantLessonsByKsFixture({
   },
 });
 
+export const unitsInOtherProgrammesFixture = [
+  {
+    programme_slug: "programme-slug",
+    programme_fields: programmeFieldsFixture(),
+  },
+];
+
 export const unitSequenceFixture: UnitSequence = [
   {
     unitSlug: "unit-1",
@@ -108,6 +116,7 @@ describe("teachersUnitOverview", () => {
           Promise.resolve({
             lessons: [],
             unitSequence: unitSequenceFixture,
+            unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
           }),
         ),
       })({
@@ -123,6 +132,7 @@ describe("teachersUnitOverview", () => {
         Promise.resolve({
           lessons: [syntheticUnitvariantLessonsByKsFixture()],
           unitSequence: unitSequenceFixture,
+          unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
         }),
       ),
     })({
@@ -177,6 +187,8 @@ describe("teachersUnitOverview", () => {
         title: "Unit 2",
       },
       prevUnit: null,
+      tierOptionToggles: [],
+      subjectOptionToggles: [],
     });
   });
   it("returns lessons in the correct order", async () => {
@@ -186,6 +198,7 @@ describe("teachersUnitOverview", () => {
         Promise.resolve({
           lessons: [unitPageFixture2, unitPageFixture],
           unitSequence: unitSequenceFixture,
+          unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
         }),
       ),
     })({
@@ -216,6 +229,7 @@ describe("teachersUnitOverview", () => {
               },
             ],
             unitSequence: unitSequenceFixture,
+            unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
           }),
         ),
       })({
