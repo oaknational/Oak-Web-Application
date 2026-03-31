@@ -12,6 +12,7 @@ const defaultProps: UnitHeaderProps = {
   prevUnit: null,
   nextUnit: null,
   subjectIcon: "subject-maths",
+  subjectPhaseSlug: "maths-primary",
 };
 
 describe("UnitHeader", () => {

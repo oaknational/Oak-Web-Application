@@ -16,6 +16,7 @@ import {
   Header,
 } from "@/components/TeacherComponents/Header/Header";
 import { NeighbourUnit } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type UnitHeaderProps = Omit<
   CompactHeaderProps,
@@ -27,6 +28,7 @@ export type UnitHeaderProps = Omit<
   isGeorestrictedUnit?: boolean;
   nextUnit: NeighbourUnit;
   prevUnit: NeighbourUnit;
+  subjectPhaseSlug: string;
 };
 
 const UnitHeader = (props: UnitHeaderProps) => {
@@ -123,6 +125,7 @@ const UnitNavButtons = ({
   backgroundColorLevel,
   nextUnit,
   prevUnit,
+  subjectPhaseSlug,
 }: {
   display: OakFlexProps["$display"];
   backgroundColorLevel: CompactHeaderProps["backgroundColorLevel"];
@@ -132,6 +135,12 @@ const UnitNavButtons = ({
     <OakFlex $display={display} $gap={"spacing-16"}>
       {prevUnit && (
         <OakSmallPrimaryInvertedButton
+          element="a"
+          href={resolveOakHref({
+            page: "unit-page",
+            unitSlug: prevUnit.slug,
+            subjectPhaseSlug,
+          })}
           iconOverride={
             <OakIcon
               iconName="arrow-left"
@@ -146,6 +155,12 @@ const UnitNavButtons = ({
       )}
       {nextUnit && (
         <OakSmallPrimaryInvertedButton
+          element="a"
+          href={resolveOakHref({
+            page: "unit-page",
+            unitSlug: nextUnit.slug,
+            subjectPhaseSlug,
+          })}
           isTrailingIcon
           iconOverride={
             <OakIcon

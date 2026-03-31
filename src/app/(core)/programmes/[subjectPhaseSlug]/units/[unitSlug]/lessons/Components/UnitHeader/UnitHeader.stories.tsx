@@ -13,7 +13,6 @@ import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
 
 import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
-
 const meta: Meta<typeof UnitHeader> = {
   component: UnitHeader,
   tags: ["autodocs"],
@@ -68,8 +67,9 @@ const coreProps: UnitHeaderProps = {
   subjectIcon: "subject-computer-science",
   unitDownloadFileId: "1",
   onUnitDownloadSuccess: () => console.log("success"),
-  nextUnit: "unit 3",
-  prevUnit: "unit 1",
+  nextUnit: { title: "unit 3", slug: "unit-3" },
+  prevUnit: { title: "unit 1", slug: "unit-1" },
+  subjectPhaseSlug: "computer-science-secndary",
 };
 
 export const Default: Story = {
