@@ -7,7 +7,19 @@ import { getClientEnvironment } from "@/browser-lib/google-classroom/getClientEn
 import { getClassroomAssignmentId } from "@/browser-lib/google-classroom";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
-export function useGoogleClassroomContext() {
+export type GoogleClassroomContext = {
+  isGoogleClassroomContext: boolean;
+  isClassroomAssignment: boolean | null | undefined;
+  classroomAssignmentChecked: boolean;
+  courseId: string | null;
+  itemId: string | null;
+  attachmentId: string | null;
+  googleLoginHint: string;
+  clientEnvironment: ReturnType<typeof getClientEnvironment>;
+  classroomAssignmentId: string | null;
+};
+
+export function useGoogleClassroomContext(): GoogleClassroomContext {
   const searchParams = useSearchParams();
   const addonCourseId = useGoogleClassroomAddonStore((state) => state.courseId);
   const addonItemId = useGoogleClassroomAddonStore((state) => state.itemId);

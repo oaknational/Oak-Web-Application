@@ -44,6 +44,13 @@ jest.mock("@/browser-lib/google-classroom", () => ({
 const render = renderWithProviders();
 
 const pupilPathwayData = getPupilPathwayData(lessonBrowseDataFixture({}));
+const classroomAssignmentContext = {
+  clientEnvironment: "web-browser" as const,
+  classroomAssignmentId: null,
+  courseId: null,
+  itemId: null,
+  attachmentId: null,
+};
 
 describe("PupilAnalyticsProvider", () => {
   it("should render children", () => {
@@ -51,6 +58,7 @@ describe("PupilAnalyticsProvider", () => {
       <PupilAnalyticsProvider
         pupilPathwayData={pupilPathwayData}
         lessonContent={lessonContentFixture({})}
+        classroomAssignmentContext={classroomAssignmentContext}
       >
         <OakP>Hello World</OakP>
       </PupilAnalyticsProvider>,
@@ -82,6 +90,7 @@ describe("PupilAnalyticsProvider", () => {
               pupilPathwayData={getPupilPathwayData(
                 lessonBrowseDataFixture({}),
               )}
+              classroomAssignmentContext={classroomAssignmentContext}
             >
               {children}
             </PupilAnalyticsProvider>
@@ -124,6 +133,7 @@ describe("PupilAnalyticsProvider", () => {
       wrapper: ({ children }: { children: ReactNode }) => (
         <PupilAnalyticsProvider
           pupilPathwayData={getPupilPathwayData(lessonBrowseDataFixture({}))}
+          classroomAssignmentContext={classroomAssignmentContext}
         >
           {children}
         </PupilAnalyticsProvider>
@@ -155,6 +165,7 @@ describe("PupilAnalyticsProvider", () => {
       wrapper: ({ children }: { children: ReactNode }) => (
         <PupilAnalyticsProvider
           pupilPathwayData={getPupilPathwayData(lessonBrowseDataFixture({}))}
+          classroomAssignmentContext={classroomAssignmentContext}
         >
           {children}
         </PupilAnalyticsProvider>

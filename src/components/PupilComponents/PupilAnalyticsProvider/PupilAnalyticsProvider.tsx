@@ -23,8 +23,8 @@ import {
   LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { type ClassroomAssignmentContext } from "@/browser-lib/google-classroom/classroomAssignmentContext";
 import { unionOrNull } from "@/utils/narrowToUnion";
-import { useGoogleClassroomContext } from "@/components/GoogleClassroom/useGoogleClassroomContext";
 
 /**
  * This file is used to wrap the track function from the analytics context
@@ -194,10 +194,20 @@ export type CorePropertyArgType = {
   eventVersion: EventVersionValueType;
 };
 
+export type PupilAnalyticsProviderClassroomContext = Pick<
+  ClassroomAssignmentContext,
+  | "courseId"
+  | "itemId"
+  | "attachmentId"
+  | "clientEnvironment"
+  | "classroomAssignmentId"
+>;
+
 export const PupilAnalyticsProvider = ({
   children,
   pupilPathwayData,
   lessonContent,
+  classroomAssignmentContext,
   pupilLoginHint: pupilLoginHintProp = null,
   teacherLoginHint: teacherLoginHintProp = null,
   submissionId: submissionIdProp = null,
@@ -205,6 +215,7 @@ export const PupilAnalyticsProvider = ({
   children: React.ReactNode;
   pupilPathwayData: PupilPathwayData;
   lessonContent?: LessonContent;
+  classroomAssignmentContext: PupilAnalyticsProviderClassroomContext;
   pupilLoginHint?: string | null;
   teacherLoginHint?: string | null;
   submissionId?: string | null;
@@ -216,7 +227,7 @@ export const PupilAnalyticsProvider = ({
     attachmentId,
     clientEnvironment,
     classroomAssignmentId,
-  } = useGoogleClassroomContext();
+  } = classroomAssignmentContext;
 
   const additionalArgs: AdditionalArgType = {
     ...pupilPathwayData,

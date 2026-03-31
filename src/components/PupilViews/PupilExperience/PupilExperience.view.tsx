@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import { useSearchParams } from "next/navigation";
 import { createGlobalStyle } from "styled-components";
 import {
   OakBox,
@@ -44,7 +43,6 @@ import {
 } from "@/browser-lib/avo/Avo";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
-import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 import type { AddOnContextResponse } from "@/browser-lib/google-classroom/googleClassroomApi";
 import { type ClassroomProgressContext } from "@/browser-lib/google-classroom";
@@ -54,6 +52,10 @@ import {
   GoogleClassroomAnalyticsProvider,
   useGoogleClassroomAnalytics,
 } from "@/components/GoogleClassroom/useGoogleClassroomAnalytics";
+import {
+  type GoogleClassroomContext,
+  useGoogleClassroomContext,
+} from "@/components/GoogleClassroom/useGoogleClassroomContext";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -251,6 +253,7 @@ type ClassroomAnalyticsContext = {
 };
 
 type PupilExperienceLayoutProps = PupilExperienceViewProps & {
+  googleClassroomContext: GoogleClassroomContext;
   onClassroomContextResolved: (ctx: ClassroomAnalyticsContext) => void;
 };
 
@@ -264,16 +267,20 @@ const PupilExperienceLayout = ({
   initialSection,
   pageType,
   worksheetInfo,
+  googleClassroomContext,
   onClassroomContextResolved,
 }: PupilExperienceLayoutProps) => {
   const ageRestriction = browseData.features?.ageRestriction;
   const hasAgeRestriction = !!ageRestriction;
-  const { isClassroomAssignment, classroomAssignmentChecked } =
-    useAssignmentSearchParams();
+  const {
+    isClassroomAssignment,
+    classroomAssignmentChecked,
+    courseId,
+    itemId,
+    attachmentId,
+  } = googleClassroomContext;
   const isGoogleClassroomAssignment =
     isClassroomAssignment === true && classroomAssignmentChecked === true;
-
-  const searchParams = useSearchParams();
   const classroomContextRef = useRef<ClassroomProgressContext | null>(null);
   const [isFetchingClassroomContext, setIsFetchingClassroomContext] =
     useState(false);
@@ -283,10 +290,6 @@ const PupilExperienceLayout = ({
   const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
 
   const fetchGoogleClassroomContext = async () => {
-    const courseId = searchParams?.get("courseId");
-    const itemId = searchParams?.get("itemId");
-    const attachmentId = searchParams?.get("attachmentId");
-
     if (!courseId || !itemId || !attachmentId) {
       setIsContextReady(true);
       return;
@@ -343,7 +346,7 @@ const PupilExperienceLayout = ({
     if (!isGoogleClassroomAssignment || classroomContextRef.current) return;
     fetchGoogleClassroomContext();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isGoogleClassroomAssignment, searchParams]);
+  }, [attachmentId, courseId, isGoogleClassroomAssignment, itemId]);
 
   useEffect(() => {
     if (!classroomAssignmentChecked) return;
@@ -538,6 +541,7 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
       teacherLoginHint: null,
       submissionId: null,
     });
+  const googleClassroomContext = useGoogleClassroomContext();
 
   const { worksheetInfo } = useWorksheetInfoState(
     lessonContent.hasWorksheetAssetObject,
@@ -548,6 +552,13 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
     <PupilAnalyticsProvider
       pupilPathwayData={getPupilPathwayData(browseData)}
       lessonContent={lessonContent}
+      classroomAssignmentContext={{
+        courseId: googleClassroomContext.courseId,
+        itemId: googleClassroomContext.itemId,
+        attachmentId: googleClassroomContext.attachmentId,
+        clientEnvironment: googleClassroomContext.clientEnvironment,
+        classroomAssignmentId: googleClassroomContext.classroomAssignmentId,
+      }}
       pupilLoginHint={classroomAnalyticsContext.pupilLoginHint}
       teacherLoginHint={classroomAnalyticsContext.teacherLoginHint}
       submissionId={classroomAnalyticsContext.submissionId}
@@ -555,6 +566,7 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
       <PupilExperienceLayout
         {...props}
         worksheetInfo={worksheetInfo}
+        googleClassroomContext={googleClassroomContext}
         onClassroomContextResolved={setClassroomAnalyticsContext}
       />
     </PupilAnalyticsProvider>
