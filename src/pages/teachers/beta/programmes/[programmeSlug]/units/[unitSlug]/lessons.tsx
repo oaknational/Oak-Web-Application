@@ -231,7 +231,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             oakLinkProps: {
               page: "unit-index",
               programmeSlug:
-                subjectSlug === "maths" && !isSlugEYFS(programmeSlug)
+                subjectSlug === "maths"
                   ? removeLegacySlugSuffix(programmeSlug)
                   : programmeSlug,
             },
@@ -384,6 +384,11 @@ export const getStaticProps: GetStaticProps<
       const { programmeSlug, unitSlug } = context.params;
       if (!programmeSlug || !unitSlug) {
         throw new Error("unexpected context.params");
+      }
+
+      // EYFS now has its own area under /teachers/eyfs/
+      if (isSlugEYFS(programmeSlug)) {
+        return { notFound: true };
       }
 
       const curriculumData =

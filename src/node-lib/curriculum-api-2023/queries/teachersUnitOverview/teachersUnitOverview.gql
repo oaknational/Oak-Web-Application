@@ -20,6 +20,12 @@ query teachersUnitOverview($programmeSlug: String!, $unitSlug: String!) {
     order_in_unit
     static_lesson_list
   }
+  unitsInOtherProgrammes: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
+    where: { unit_slug: { _eq: $unitSlug } }
+  ) {
+    programme_slug
+    programme_fields
+  }
   unitSequence: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
     where: { programme_slug: { _eq: $programmeSlug } }
   ) {

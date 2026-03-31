@@ -22,6 +22,10 @@ import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import {
+  isEyfsPathway,
+  redirectToEyfsPage,
+} from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
 
 export type CanonicalLessonMediaClipsPageProps = {
   curriculumData: CanonicalLessonMediaClips;
@@ -100,6 +104,10 @@ export const getStaticProps: GetStaticProps<
         return redirect ? { redirect } : { notFound: true };
       }
 
+      if (isEyfsPathway(curriculumData.pathways[0])) {
+        return { redirect: redirectToEyfsPage(curriculumData.pathways[0]) };
+      }
+
       const mediaClipsWithTranscripts = curriculumData.mediaClips
         ? await populateMediaClipsWithTranscripts(curriculumData.mediaClips)
         : [];
@@ -108,9 +116,7 @@ export const getStaticProps: GetStaticProps<
         curriculumData.mediaClips =
           mediaClipsWithTranscripts as MediaClipListCamelCase;
       }
-
       const topNav = await curriculumApi2023.topNav();
-
       const results: GetStaticPropsResult<CanonicalLessonMediaClipsPageProps> =
         {
           props: {

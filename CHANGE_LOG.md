@@ -1,3 +1,25 @@
+# [1.1030.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1029.0...v1.1030.0) (2026-03-31)
+
+
+### Features
+
+* add fn to get tier option toggles ([7437e9e](https://github.com/oaknational/Oak-Web-Application/commit/7437e9e3c08e78bd9f523fe1de802a3e1dc9024f))
+* add isSelected prop to toggles ([91a0b77](https://github.com/oaknational/Oak-Web-Application/commit/91a0b772e677864b82eddf0ade7d54e2166f5d16))
+* get programme options in query ([126e7d1](https://github.com/oaknational/Oak-Web-Application/commit/126e7d1bb4af4a155c0725af0d48f05ecab8f2a6))
+* return subject option toggles ([fe54961](https://github.com/oaknational/Oak-Web-Application/commit/fe549614f002173e085010a7d7aa65016901cc30))
+
+# [1.1029.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1028.0...v1.1029.0) (2026-03-31)
+
+
+### Bug Fixes
+
+* **LESQ-1876:** only omit EYFS on subjects index ([c4cbdf0](https://github.com/oaknational/Oak-Web-Application/commit/c4cbdf075725de8d0348f41e0fdba4133a05fc45))
+
+
+### Features
+
+* **LESQ-1882:** redirect canonical EYFS lessons to the new pages ([ed70fed](https://github.com/oaknational/Oak-Web-Application/commit/ed70fede4a612a38b8cf09d2ffa0967ba3b85692))
+
 # [1.1028.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1027.1...v1.1028.0) (2026-03-30)
 
 
