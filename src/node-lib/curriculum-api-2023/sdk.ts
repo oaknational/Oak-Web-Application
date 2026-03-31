@@ -63,7 +63,7 @@ const withRetries = <T>(
       return action();
     });
 
-const sdk = getSdk(graphqlClient, withRetries);
+const sdk = getSdk(graphqlClient);
 
 /*
  * batched queries not currently supported with the sdk
