@@ -1,3 +1,15 @@
+# [1.1029.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1028.0...v1.1029.0) (2026-03-31)
+
+
+### Bug Fixes
+
+* **LESQ-1876:** only omit EYFS on subjects index ([c4cbdf0](https://github.com/oaknational/Oak-Web-Application/commit/c4cbdf075725de8d0348f41e0fdba4133a05fc45))
+
+
+### Features
+
+* **LESQ-1882:** redirect canonical EYFS lessons to the new pages ([ed70fed](https://github.com/oaknational/Oak-Web-Application/commit/ed70fede4a612a38b8cf09d2ffa0967ba3b85692))
+
 # [1.1028.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1027.1...v1.1028.0) (2026-03-30)
 
 

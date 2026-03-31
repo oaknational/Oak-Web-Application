@@ -2,7 +2,7 @@ import { GetStaticPropsContext, PreviewData } from "next";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import { lessonMediaClipsCanonicalFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import {
   getStaticProps,
@@ -21,32 +21,10 @@ jest.mock("@/utils/handleTranscript.ts", () => ({
   populateMediaClipsWithTranscripts: jest.fn(),
 }));
 
-const mediaClips = lessonMediaClipsFixtures().mediaClips;
-
-const fixtureData = {
-  lessonSlug: "running-as-a-team",
+const fixtureData = lessonMediaClipsCanonicalFixture({
   lessonTitle: "Running as a team",
-  subjectTitle: "Physical Education",
-  keyStageTitle: "Key stage 4",
   lessonReleaseDate: "2022-02-01T00:00:00Z",
-  loginRequired: false,
-  geoRestricted: false,
-  mediaClips,
-  pathways: [
-    {
-      programmeSlug: "physical-education-ks4",
-      lessonSlug: "running-and-jumping",
-      lessonTitle: "Running and jumping",
-      keyStageSlug: "ks4",
-      keyStageTitle: "Key stage 4",
-      unitSlug: "running-and-jumping",
-      unitTitle: "Running and jumping",
-      subjectSlug: "physical-education",
-      subjectTitle: "Physical Education",
-    },
-  ],
-  lessonOutline: [{ lessonOutline: "This lesson is about running as a team" }],
-};
+});
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
@@ -89,7 +67,15 @@ describe("LessonMediaClipsCanonicalPage", () => {
   });
 
   describe("getStaticProps", () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
     it("Should fetch the correct data", async () => {
+      jest
+        .mocked(curriculumApi2023.lessonMediaClips)
+        .mockResolvedValueOnce(lessonMediaClipsCanonicalFixture());
+
       const propsResult = (await getStaticProps({
         params: {
           lessonSlug: "running-as-a-team",
@@ -116,6 +102,37 @@ describe("LessonMediaClipsCanonicalPage", () => {
       await expect(
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
       ).rejects.toThrowError();
+    });
+
+    it("should redirect to the EYFS page when lesson pathway is EYFS", async () => {
+      jest.mocked(curriculumApi2023.lessonMediaClips).mockResolvedValueOnce(
+        lessonMediaClipsCanonicalFixture({
+          pathways: [
+            {
+              programmeSlug: "eyfs-communication-and-language",
+              unitSlug: "unit-slug",
+              unitTitle: "Unit title",
+              keyStageSlug: "early-years-foundation-stage",
+              keyStageTitle: "Early Years Foundation Stage",
+              subjectSlug: "communication-and-language",
+              subjectTitle: "Communication and language",
+            },
+          ],
+        }),
+      );
+
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "eyfs-lesson-slug",
+        },
+      });
+
+      expect(result).toEqual({
+        redirect: {
+          destination: "/teachers/eyfs/communication-and-language",
+          statusCode: 301,
+        },
+      });
     });
   });
 });

@@ -1,4 +1,7 @@
-import { LessonShareData } from "../queries/lessonShare/lessonShare.schema";
+import {
+  LessonShareCanonical,
+  LessonShareData,
+} from "../queries/lessonShare/lessonShare.schema";
 
 const lessonShareFixtures = (
   partial?: Partial<LessonShareData>,
@@ -43,6 +46,26 @@ const lessonShareFixtures = (
     lessonReleaseDate: "2025-09-29T14:00:00.000Z",
     georestricted: false,
     loginRequired: false,
+    ...partial,
+  };
+};
+
+export const lessonShareCanonicalFixture = (
+  partial?: Partial<LessonShareCanonical>,
+): LessonShareCanonical => {
+  return {
+    ...lessonShareFixtures(),
+    pathways: [
+      {
+        programmeSlug: "maths-higher-ks4-l",
+        unitSlug: "geometry",
+        unitTitle: "Geometry",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        subjectSlug: "maths",
+        subjectTitle: "Maths",
+      },
+    ],
     ...partial,
   };
 };

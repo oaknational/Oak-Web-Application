@@ -24,50 +24,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       );
     });
   });
-  it("Renders eyfs keystage", async () => {
-    renderWithProviders()(
-      <SubjectListingPage
-        {...props}
-        keyStageSlug="early-years-foundation-stage"
-        keyStageTitle="Early years foundation stage"
-      />,
-    );
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "EYFS areas of learning",
-      );
-    });
-  });
-  it("Renders maths with correct counts in EYFS", () => {
-    renderWithProviders()(
-      <SubjectListingPage
-        {...props}
-        keyStageSlug="early-years-foundation-stage"
-        keyStageTitle="Early years foundation stage"
-        subjects={[
-          [
-            {
-              slug: "maths",
-              data: {
-                subjectSlug: "maths",
-                subjectTitle: "Maths",
-                unitCount: 1,
-                lessonCount: 6,
-                programmeSlug: "maths-early-years-foundation-stage",
-                programmeCount: 2,
-                pathwaySlug: null,
-                pathwayTitle: null,
-                actions: {},
-              },
-              hasNewContent: true,
-            },
-          ],
-        ]}
-      />,
-    );
-    expect(screen.getByText("Maths")).toBeInTheDocument();
-  });
-  it("renders correct counts for non EYFS subjects", () => {
+  it("renders correct counts for subjects", () => {
     renderWithProviders()(<SubjectListingPage {...props} />);
 
     expect(screen.getByText("Biology")).toBeInTheDocument();
@@ -158,6 +115,12 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         keyStageSlug: "ks123",
       });
     });
+    it("should return notFound for early-years-foundation-stage", async () => {
+      const response = await getStaticProps({
+        params: { keyStageSlug: "early-years-foundation-stage" },
+      });
+      expect(response).toEqual({ notFound: true });
+    });
     it("should return notFound when a landing page is missing", async () => {
       (curriculumApi.subjectListingPage as jest.Mock).mockResolvedValueOnce(
         undefined,
@@ -225,43 +188,6 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       );
       expect(maths?.[0]?.hasNewContent).toBe(true);
       expect(maths?.[0]?.data.subjectSlug).toBe("maths");
-    });
-    it("should not combine counts for EYFS maths", async () => {
-      const mockEyfsMathsResponse = {
-        keyStageSlug: "early-years-foundation-stage",
-        keyStageTitle: "Early years foundation stage",
-        subjects: [
-          [
-            {
-              subjectSlug: "maths",
-              subjectTitle: "Maths",
-              unitCount: 1,
-              lessonCount: 6,
-              programmeSlug: "maths-early-years-foundation-stage-l",
-              programmeCount: 1,
-            },
-          ],
-        ],
-        keyStages: [],
-      };
-      (curriculumApi.subjectListingPage as jest.Mock).mockResolvedValueOnce(
-        mockEyfsMathsResponse,
-      );
-      (curriculumApi.subjectListingPage as jest.Mock).mockResolvedValueOnce(
-        mockEyfsMathsResponse,
-      );
-      const res = (await getStaticProps({
-        params: {
-          keyStageSlug: "early-years-foundation-stage",
-        },
-      })) as { props: SubjectListingPageProps };
-
-      const maths = res?.props.subjects.find((subjectArray) =>
-        subjectArray.some((s) => s.slug === "maths"),
-      );
-
-      expect(maths?.[0]?.data).not.toBeNull();
-      expect(maths?.[0]?.hasNewContent).toBe(false);
     });
   });
 });
