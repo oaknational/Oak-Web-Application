@@ -43,18 +43,18 @@ const withRetries = <T>(
     .waitAndRetry(retryCount)
     .executeForPromise((info) => {
       if (info.count === retryCount) {
-        console.error("GraphqlClient:MaxRetries", null, {
+        console.error("GraphqlClient:MaxRetries", {
           ...info,
           queryName: operationName,
         });
         // report timeout errors
         const timeoutError = new OakError({
           code: "graphql/timeout",
-          meta: { action: action.toString() },
+          meta: { queryName: operationName, action: action.toString() },
         });
         reportError(timeoutError);
       } else if (info.count >= 0) {
-        console.warn("GraphqlClient:RetryingCall", null, {
+        console.warn("GraphqlClient:RetryingCall", {
           ...info,
           queryName: operationName, // name of the query being retried
         });
