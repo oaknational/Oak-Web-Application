@@ -47,16 +47,36 @@ export const oaksCurriculaPageSchema = z.object({
 
 export type OaksCurriculaPage = z.infer<typeof oaksCurriculaPageSchema>;
 
-export const meetTheTeamPageSchema = z.object({
-  id: z.string(),
-  title: z.string(),
+// Meet The Team Page
+export const meetTheTeamPageHeaderSchema = z.object({
   introText: z.string(),
-  leadershipText: z.string(),
-  boardText: z.string(),
+  image: imageSchema,
+});
+
+export const meetTheTeamPageOurLeadershipSchema = z.object({
+  textRaw: portableTextSchema,
   leadershipTeam: z.array(teamMemberSchema),
+});
+
+export const meetTheTeamPageOurBoardSchema = z.object({
+  textRaw: portableTextSchema,
   boardMembers: z.array(teamMemberSchema),
-  documents: z.array(attachmentSchema).nullish(),
-  governancePortableText: portableTextSchema,
+});
+
+export const meetTheTeamPageDocumentsSchema = z.object({
+  files: z.array(attachmentSchema),
+});
+
+export const meetTheTeamPageGovernanceSchema = z.object({
+  textRaw: portableTextSchema,
+});
+
+export const meetTheTeamPageSchema = z.object({
+  header: meetTheTeamPageHeaderSchema,
+  ourLeadership: meetTheTeamPageOurLeadershipSchema,
+  ourBoard: meetTheTeamPageOurBoardSchema,
+  documents2: meetTheTeamPageDocumentsSchema,
+  governance2: meetTheTeamPageGovernanceSchema,
   seo: seoSchema.nullish(),
 });
 
@@ -87,6 +107,14 @@ export const getInvolvedPageSchema = z.object({
 export type GetInvolvedPage = z.infer<typeof getInvolvedPageSchema>;
 export const newAboutGetInvolvedPageSchema = getInvolvedPageSchema;
 export type NewAboutGetInvolvedPage = GetInvolvedPage;
+export const aboutLeadershipPageSchema = meetTheTeamPageOurLeadershipSchema;
+export type AboutLeadershipPage = z.infer<typeof meetTheTeamPageOurLeadershipSchema>;
+
+export const aboutBoardPageSchema = meetTheTeamPageOurBoardSchema;
+export type AboutBoardPage = z.infer<typeof meetTheTeamPageOurBoardSchema>;
+
+export const aboutPartnersPageSchema = oaksCurriculaPageCurriculumPartnersSchema;
+export type AboutPartnersPage = z.infer<typeof oaksCurriculaPageCurriculumPartnersSchema>;
 
 export const aboutWorkWithUsPageSchema = getInvolvedPageWorkWithUsSchema;
 export type AboutWorkWithUsPage = z.infer<typeof getInvolvedPageWorkWithUsSchema>;

@@ -63,18 +63,16 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
   topNav,
 }) => {
   const {
-    introText,
-    leadershipText,
-    boardText,
-    leadershipTeam,
-    boardMembers,
-    documents,
-    governancePortableText,
+    header,
+    ourLeadership,
+    ourBoard,
+    documents2,
+    governance2,
     seo,
   } = pageData;
 
-  const boardMembersModified = useWithCachedImage(boardMembers);
-  const leadershipTeamModified = useWithCachedImage(leadershipTeam);
+  const boardMembersModified = useWithCachedImage(ourBoard.boardMembers);
+  const leadershipTeamModified = useWithCachedImage(ourLeadership.leadershipTeam);
 
   const leadershipRef = useRef<HTMLDivElement>(null);
   const boardRef = useRef<HTMLDivElement>(null);
@@ -96,12 +94,12 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
       <AboutUsLayout>
         <AboutSharedHeader
           title={"Meet the team"}
-          content={introText}
+          content={header.introText}
           titleHighlight="bg-decorative5-main"
         >
           <AboutSharedHeaderImage
-            imageAlt=""
-            imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
+            imageAlt={header.image?.altText ?? ""}
+            imageUrl={getProxiedSanityAssetUrl(header.image?.asset?.url) ?? ""}
           />
         </AboutSharedHeader>
         <NewGutterMaxWidth>
@@ -120,7 +118,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               <MeetTheTeamContainer
                 ref={leadershipRef}
                 title={SECTION_TITLES.leadership}
-                text={leadershipText}
+                text={ourLeadership.textRaw}
                 anchor="our-leadership"
               >
                 {leadershipTeamModified.map((member) => {
@@ -143,7 +141,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
               <MeetTheTeamContainer
                 ref={boardRef}
                 title={SECTION_TITLES.board}
-                text={boardText}
+                text={ourBoard.textRaw}
                 anchor="our-board"
               >
                 {boardMembersModified.map((member) => {
@@ -163,14 +161,14 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                   );
                 })}
               </MeetTheTeamContainer>
-              {documents && documents.length > 0 && (
+              {documents2 && documents2.files.length > 0 && (
                 <MeetTheTeamContainer
                   ref={documentsRef}
                   title={SECTION_TITLES.documents}
                   text={null}
                   anchor="documents"
                 >
-                  {documents.map((doc) => {
+                  {documents2.files.map((doc) => {
                     const fileSize = convertBytesToMegabytes(
                       doc.file.asset.size,
                     );
@@ -198,7 +196,7 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
                 </OakHeading>
                 <OakTypography $font={["body-2", "body-1", "body-1"]}>
                   <PortableTextWithDefaults
-                    value={governancePortableText}
+                    value={governance2.textRaw}
                     withoutDefaultComponents
                   />
                 </OakTypography>
