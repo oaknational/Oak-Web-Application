@@ -57,12 +57,13 @@ export type LargeHeaderProps = {
   background?: Extract<OakUiRoleToken, `bg-decorative${number}-main`>;
 } & HeaderProps;
 
+export type SubjectIcon = `subject-${string}` & OakIconName;
 export type CompactHeaderProps = {
   layoutVariant: "compact";
   /**
    * An optional subject icon to display alongside the header
    */
-  subjectIcon?: `subject-${string}` & OakIconName;
+  subjectIcon?: SubjectIcon;
   /**
    * The level of the decorative background colour to be used. Defaults to transparent.
    */

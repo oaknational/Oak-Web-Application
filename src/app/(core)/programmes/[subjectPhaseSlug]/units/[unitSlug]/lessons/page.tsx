@@ -2,12 +2,16 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { cache } from "react";
 
+import UnitHeader from "./Components/UnitHeader/UnitHeader";
+
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
+import { getPhaseSlugFromKeystage } from "@/fixtures/curriculum/unit";
+import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
 
 type LessonsPageParams = { subjectPhaseSlug: string; unitSlug: string };
 
@@ -57,8 +61,18 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
 
   const { subjectPhaseSlug, unitSlug } = await props.params;
   const data = await getCachedUnitData(subjectPhaseSlug, unitSlug);
+  const subjectIconName = `subject-${data.subjectSlug}` as SubjectIcon;
 
-  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+  return (
+    <UnitHeader
+      heading={data.unitTitle}
+      phase={getPhaseSlugFromKeystage(data.keyStageSlug) ?? "secondary"}
+      subjectPhaseSlug={subjectPhaseSlug}
+      subjectIcon={subjectIconName}
+      nextUnit={data.nextUnit}
+      prevUnit={data.prevUnit}
+    />
+  );
 };
 
 const UnitPage = withPageErrorHandling(InnerUnitPage, "unit-page::app");
