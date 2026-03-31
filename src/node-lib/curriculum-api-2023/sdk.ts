@@ -38,6 +38,9 @@ const withRetries = <T>(
   polly()
     .handle((err: Error) => {
       // Retry timeout errors
+      if (err.message.includes("connect ETIMEDOUT")) {
+        console.warn("GraphQLClient:Timeout", operationName, err);
+      }
       return err.message.includes("connect ETIMEDOUT");
     })
     .waitAndRetry(retryCount)
@@ -53,7 +56,7 @@ const withRetries = <T>(
           meta: { queryName: operationName, action: action.toString() },
         });
         reportError(timeoutError);
-      } else if (info.count >= 0) {
+      } else if (info.count > 0) {
         console.warn("GraphqlClient:RetryingCall", {
           ...info,
           queryName: operationName, // name of the query being retried
