@@ -11,30 +11,19 @@ import { GetInvolvedCollaborateWithUs } from "@/components/GenericPagesComponent
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
 import CMSClient from "@/node-lib/cms";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextJSON } from "@/common-lib/cms-types";
+import { GetInvolvedPage } from "@/common-lib/cms-types/aboutPages";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
-export type GetInvolvedPage = {
-  pageData: {
-    header: {
-      textRaw: PortableTextJSON;
-    };
-    collaborate: {
-      researchPanelTextRaw: PortableTextJSON;
-      feedbackTextRaw: PortableTextJSON;
-    };
-    workWithUs: {
-      textRaw: PortableTextJSON;
-    };
-  };
+export type GetInvolvedPageProps = {
+  pageData: GetInvolvedPage;
   topNav: TopNavProps;
 };
 
-export const GetInvolved: NextPage<GetInvolvedPage> = ({
+export const GetInvolved: NextPage<GetInvolvedPageProps> = ({
   pageData,
   topNav,
-}) => {
+}: GetInvolvedPageProps) => {
   return (
     <Layout
       seoProps={getSeoProps({ title: "Get Involved" })}
@@ -44,7 +33,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
       <AboutUsLayout>
         <AboutSharedHeader
           title={"Get involved"}
-          content={pageData.header.textRaw}
+          content={pageData.header.introText}
           titleHighlight="bg-decorative3-main"
         >
           <BackgroundHeaderLoop />
@@ -91,8 +80,8 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
           text={pageData.workWithUs.textRaw}
           permanentRolesLink="https://app.beapplied.com/org/1574/oak-national-academy/"
           freelanceRolesLink="https://app.beapplied.com/org/1767/oak-national-academy-freelancers/"
-          imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1764066578/about-us/team-huddle_zivgxj.png"
-          imageAlt=""
+          imageUrl={pageData.workWithUs.image?.asset?.url ?? ""}
+          imageAlt={pageData.workWithUs.image?.altText ?? ""}
           badges={[
             {
               url: "https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg",
@@ -113,7 +102,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
   );
 };
 
-export const getStaticProps: GetStaticProps<GetInvolvedPage> = async (
+export const getStaticProps: GetStaticProps<GetInvolvedPageProps> = async (
   context,
 ) => {
   return getPageProps({
@@ -134,7 +123,7 @@ export const getStaticProps: GetStaticProps<GetInvolvedPage> = async (
         };
       }
 
-      const results: GetStaticPropsResult<GetInvolvedPage> = {
+      const results: GetStaticPropsResult<GetInvolvedPageProps> = {
         props: {
           pageData: aboutWhoWeArePage,
           topNav,

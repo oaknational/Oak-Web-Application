@@ -1758,34 +1758,40 @@ export type GetInvolvedPageHeader = {
   __typename?: 'GetInvolvedPageHeader';
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
+  introText?: Maybe<Scalars['String']['output']>;
   textRaw?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type GetInvolvedPageHeaderFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
+  introText?: InputMaybe<StringFilter>;
 };
 
 export type GetInvolvedPageHeaderSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
+  introText?: InputMaybe<SortOrder>;
 };
 
 export type GetInvolvedPageWorkWithUs = {
   __typename?: 'GetInvolvedPageWorkWithUs';
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
   textRaw?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type GetInvolvedPageWorkWithUsFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
 };
 
 export type GetInvolvedPageWorkWithUsSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
 };
 
 export type GlobalDocumentReference = {
@@ -5782,7 +5788,7 @@ export type NewAboutGetInvolvedPageQueryVariables = Exact<{
 }>;
 
 
-export type NewAboutGetInvolvedPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageGetInvolved: Array<{ __typename?: 'NewAboutCorePageGetInvolved', id?: string | null, header?: { __typename?: 'GetInvolvedPageHeader', textRaw?: any | null } | null, collaborate?: { __typename?: 'GetInvolvedPageCollab', researchPanelTextRaw?: any | null, feedbackTextRaw?: any | null } | null, workWithUs?: { __typename?: 'GetInvolvedPageWorkWithUs', textRaw?: any | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type NewAboutGetInvolvedPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageGetInvolved: Array<{ __typename?: 'NewAboutCorePageGetInvolved', id?: string | null, header?: { __typename?: 'GetInvolvedPageHeader', introText?: string | null } | null, collaborate?: { __typename?: 'GetInvolvedPageCollab', researchPanelTextRaw?: any | null, feedbackTextRaw?: any | null } | null, workWithUs?: { __typename?: 'GetInvolvedPageWorkWithUs', textRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type HomepageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6827,7 +6833,7 @@ export const NewAboutGetInvolvedPageDocument = gql`
   ) {
     id: _id
     header {
-      textRaw
+      introText
     }
     collaborate {
       researchPanelTextRaw
@@ -6835,12 +6841,16 @@ export const NewAboutGetInvolvedPageDocument = gql`
     }
     workWithUs {
       textRaw
+      image {
+        ...ImageWithAltText
+      }
     }
     seo {
       ...Seo
     }
   }
 }
+    ${ImageWithAltTextFragmentDoc}
     ${SeoFragmentDoc}`;
 export const HomepageDocument = gql`
     query homepage($isDraftFilter: Sanity_DocumentFilter) {

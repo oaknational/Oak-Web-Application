@@ -178,3 +178,27 @@ export const meetTheTeamPageSchema = z.object({
 });
 
 export type MeetTheTeamPage = z.infer<typeof meetTheTeamPageSchema>;
+
+// Get Involved Page
+export const getInvolvedPageHeaderSchema = z.object({
+  introText: z.string(),
+});
+
+export const getInvolvedPageCollabSchema = z.object({
+  researchPanelTextRaw: portableTextSchema,
+  feedbackTextRaw: portableTextSchema,
+});
+
+export const getInvolvedPageWorkWithUsSchema = z.object({
+  textRaw: portableTextSchema,
+  image: imageSchema,
+});
+
+export const getInvolvedPageSchema = z.object({
+  header: getInvolvedPageHeaderSchema,
+  collaborate: getInvolvedPageCollabSchema,
+  workWithUs: getInvolvedPageWorkWithUsSchema,
+  seo: seoSchema.nullish(),
+});
+
+export type GetInvolvedPage = z.infer<typeof getInvolvedPageSchema>;
