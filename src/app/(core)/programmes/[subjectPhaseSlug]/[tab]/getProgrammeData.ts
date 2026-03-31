@@ -40,6 +40,7 @@ export async function getProgrammeData(
       curriculumApi2023.curriculumSequence({
         ...subjectPhaseKeystageSlugs,
         includeNonCurriculum: true,
+        excludeUnitsWithNoPublishedLessons: true,
       }),
       curriculumApi2023.curriculumPhaseOptions({ includeNonCurriculum: true }),
     ],
