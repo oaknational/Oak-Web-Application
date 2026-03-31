@@ -107,11 +107,21 @@ const mockedUseAssignmentSearchParams =
   useAssignmentSearchParams as jest.MockedFunction<
     typeof useAssignmentSearchParams
   >;
+const mockedUseSearchParams = useSearchParams as jest.MockedFunction<
+  typeof useSearchParams
+>;
+const createMockSearchParams = (
+  params?: ConstructorParameters<typeof URLSearchParams>[0],
+) =>
+  new URLSearchParams(params) as NonNullable<
+    ReturnType<typeof useSearchParams>
+  >;
 
 mockedUseAssignmentSearchParams.mockReturnValue({
   isClassroomAssignment: true,
   classroomAssignmentChecked: true,
 });
+mockedUseSearchParams.mockReturnValue(null);
 
 jest.mock("@/components/PupilViews/PupilLessonOverview", () => {
   return {
@@ -811,8 +821,10 @@ describe("lessonAccessedPupilJourney analytics", () => {
   });
 
   beforeEach(() => {
-    (useSearchParams as jest.Mock).mockReturnValue(null);
+    mockedUseSearchParams.mockReturnValue(null);
+    (googleClassroomApi.getAddOnContext as jest.Mock).mockClear();
     (googleClassroomApi.getAddOnContext as jest.Mock).mockResolvedValue(null);
+    (googleClassroomApi.getPupilLessonProgress as jest.Mock).mockClear();
     (googleClassroomApi.getPupilLessonProgress as jest.Mock).mockResolvedValue(
       null,
     );
@@ -862,13 +874,13 @@ describe("lessonAccessedPupilJourney analytics", () => {
     ).not.toHaveBeenCalled();
   });
 
-  it("fires when classroom context params are missing and skips getAddOnContext", async () => {
+  it("fires when attachmentId is missing and skips getAddOnContext", async () => {
     mockedUseAssignmentSearchParams.mockReturnValue({
       isClassroomAssignment: true,
       classroomAssignmentChecked: true,
     });
-    (useSearchParams as jest.Mock).mockReturnValue(
-      new URLSearchParams({
+    mockedUseSearchParams.mockReturnValue(
+      createMockSearchParams({
         itemType: "courseWork",
         courseId: "course-123",
         itemId: "item-456",
@@ -904,8 +916,8 @@ describe("lessonAccessedPupilJourney analytics", () => {
       isClassroomAssignment: true,
       classroomAssignmentChecked: true,
     });
-    (useSearchParams as jest.Mock).mockReturnValue(
-      new URLSearchParams({
+    mockedUseSearchParams.mockReturnValue(
+      createMockSearchParams({
         courseId: "course-123",
         itemId: "item-456",
         attachmentId: "attachment-789",
@@ -944,8 +956,8 @@ describe("lessonAccessedPupilJourney analytics", () => {
       isClassroomAssignment: true,
       classroomAssignmentChecked: true,
     });
-    (useSearchParams as jest.Mock).mockReturnValue(
-      new URLSearchParams({
+    mockedUseSearchParams.mockReturnValue(
+      createMockSearchParams({
         courseId: "course-123",
         itemId: "item-456",
         attachmentId: "attachment-789",
@@ -977,8 +989,8 @@ describe("lessonAccessedPupilJourney analytics", () => {
       isClassroomAssignment: true,
       classroomAssignmentChecked: true,
     });
-    (useSearchParams as jest.Mock).mockReturnValue(
-      new URLSearchParams({
+    mockedUseSearchParams.mockReturnValue(
+      createMockSearchParams({
         courseId: "course-123",
         itemId: "item-456",
         attachmentId: "attachment-789",
