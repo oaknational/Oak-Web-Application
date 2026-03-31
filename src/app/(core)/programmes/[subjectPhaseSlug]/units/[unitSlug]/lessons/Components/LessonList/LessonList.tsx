@@ -10,31 +10,14 @@ import {
   OakTagFunctional,
 } from "@oaknational/oak-components";
 
+import type { UnitViewProps } from "../UnitView";
+
 import CardListing from "@/components/TeacherComponents/CardListing/CardListing";
 import { SaveUnitButton } from "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton";
 import { resolveOakHref } from "@/common-lib/urls";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
-type LessonListLesson = {
-  lessonSlug: string;
-  lessonTitle: string;
-  pupilLessonOutcome?: string | null;
-  orderInUnit?: number | null;
-  isUnpublished: boolean;
-};
-
-type LessonListProps = {
-  programmeSlug: string;
-  unitSlug: string;
-  unitTitle: string;
-  unitDescription?: string | null;
-  subjectTitle?: string | null;
-  subjectSlug: string;
-  keyStageSlug?: string;
-  keyStageTitle?: string | null;
-  lessons: LessonListLesson[];
-  unitOrder: number;
-  unitCount: number;
+type LessonListProps = UnitViewProps & {
   lessonCount: number;
 };
 
@@ -88,7 +71,11 @@ const LessonList = ({
         $btlr="border-radius-square"
         $dropShadow="drop-shadow-centred-standard"
       >
-        <OakFlex $flexDirection="column" $gap="spacing-16">
+        <OakFlex
+          $flexDirection="column"
+          $gap="spacing-16"
+          $ph={["spacing-0", "spacing-0", "spacing-24"]}
+        >
           <OakHeading tag="h2" $font="heading-5">
             {unitTitle}
           </OakHeading>
@@ -119,7 +106,7 @@ const LessonList = ({
               trackingProps={{
                 savedFrom: "lesson_listing_save_button",
                 keyStageTitle:
-                  (keyStageTitle as KeyStageTitleValueType | null) ?? undefined,
+                  (keyStageTitle as KeyStageTitleValueType) ?? undefined,
                 keyStageSlug,
                 subjectTitle: subjectTitle ?? "",
                 subjectSlug,

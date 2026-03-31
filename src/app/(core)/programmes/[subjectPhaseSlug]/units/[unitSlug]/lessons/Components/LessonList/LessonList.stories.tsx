@@ -7,6 +7,13 @@ import LessonList from "./LessonList";
 
 import { oakNotificationsContext } from "@/context/OakNotifications/OakNotificationsProvider";
 import { saveCountContext } from "@/context/SaveCount/SaveCountProvider";
+import type { LessonListItem } from "@/node-lib/curriculum-api-2023/shared.schema";
+
+const mockPublishedLesson = (
+  lesson: Pick<LessonListItem, "lessonSlug" | "lessonTitle"> &
+    Partial<Pick<LessonListItem, "pupilLessonOutcome" | "orderInUnit">>,
+): LessonListItem =>
+  ({ isUnpublished: false, ...lesson }) as LessonListItem;
 
 const MockSaveCountProvider = ({ children }: { children: ReactNode }) => {
   const SaveCountProvider = saveCountContext.Provider;
@@ -73,38 +80,34 @@ const defaultArgs: LessonListProps = {
   unitCount: 28,
   lessonCount: 4,
   lessons: [
-    {
+    mockPublishedLesson({
       lessonSlug: "human-nervous-system",
       lessonTitle: "The human nervous system",
       pupilLessonOutcome:
         "I can describe the parts that make up the human nervous system that enables us to sense and respond to changes.",
       orderInUnit: 1,
-      isUnpublished: false,
-    },
-    {
+    }),
+    mockPublishedLesson({
       lessonSlug: "neurones-and-synapses",
       lessonTitle: "Neurones and synapses",
       pupilLessonOutcome:
         "I can describe the structures and functions of neurones and the synapses between neurones.",
       orderInUnit: 2,
-      isUnpublished: false,
-    },
-    {
+    }),
+    mockPublishedLesson({
       lessonSlug: "human-reaction-time-practical",
       lessonTitle: "Human reaction time: practical",
       pupilLessonOutcome:
         "I can predict, plan and carry out an investigation into the effect of a factor on human reaction time, and analyse the data to draw a conclusion.",
       orderInUnit: 3,
-      isUnpublished: false,
-    },
-    {
+    }),
+    mockPublishedLesson({
       lessonSlug: "structure-and-function-reflex-arc",
       lessonTitle: "The structure and function of a reflex arc",
       pupilLessonOutcome:
         "I can describe what a reflex response is and the path a nerve impulse takes through a reflex arc in the nervous system.",
       orderInUnit: 4,
-      isUnpublished: false,
-    },
+    }),
   ],
 };
 

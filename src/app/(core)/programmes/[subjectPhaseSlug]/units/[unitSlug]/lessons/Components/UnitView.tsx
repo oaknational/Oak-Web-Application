@@ -1,29 +1,25 @@
 "use client";
-import { OakGrid, OakGridArea, OakMaxWidth } from "@oaknational/oak-components";
+import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { LessonList } from "./LessonList";
 
-type UnitViewLesson = {
-  lessonSlug: string;
-  lessonTitle: string;
-  pupilLessonOutcome?: string | null;
-  orderInUnit?: number | null;
-  isUnpublished: boolean;
-};
+import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 
-type UnitViewProps = {
-  programmeSlug: string;
-  unitSlug: string;
-  unitTitle: string;
-  unitDescription: string | null;
-  subjectTitle?: string | null;
-  subjectSlug: string;
-  keyStageSlug?: string;
-  keyStageTitle?: string | null;
-  lessons: UnitViewLesson[];
-  unitOrder: number;
-  unitCount: number;
-};
+/** Fields passed from unit lessons app routes into `UnitView` / `LessonList`. */
+export type UnitViewProps = Pick<
+  TeachersUnitOverviewData,
+  | "programmeSlug"
+  | "unitSlug"
+  | "unitTitle"
+  | "unitDescription"
+  | "subjectTitle"
+  | "subjectSlug"
+  | "keyStageSlug"
+  | "keyStageTitle"
+  | "lessons"
+  | "unitOrder"
+  | "unitCount"
+>;
 
 export const UnitView = ({
   programmeSlug,
@@ -39,13 +35,15 @@ export const UnitView = ({
   unitCount,
 }: UnitViewProps) => {
   return (
-    <OakMaxWidth
-      data-testid="programme-tabs"
-      $ph={["spacing-20", "spacing-20", "spacing-0"]}
-      $mb={["spacing-0", "spacing-48", "spacing-48"]}
-      $mt={["spacing-48", "spacing-56"]}
-    >
-      <OakGrid $cg="spacing-16">
+    <OakBox $ph="spacing-40">
+      <OakGrid
+        $cg="spacing-16"
+        $mb={["spacing-0", "spacing-48", "spacing-48"]}
+        $mh="auto"
+        $mt={["spacing-48", "spacing-56"]}
+        $width={"100%"}
+        $maxWidth={"spacing-1280"}
+      >
         <OakGridArea $colSpan={[12, 5]} />
         <OakGridArea $colSpan={[12, 7]} $gap="spacing-56">
           <LessonList
@@ -64,6 +62,6 @@ export const UnitView = ({
           />
         </OakGridArea>
       </OakGrid>
-    </OakMaxWidth>
+    </OakBox>
   );
 };
