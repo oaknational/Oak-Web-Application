@@ -46,6 +46,12 @@ const googleClassroomAnalyticsMock = {
 };
 
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
+jest.mock("next/navigation", () => ({
+  __esModule: true,
+  usePathname: jest.fn(),
+  useRouter: jest.fn(),
+  useSearchParams: jest.fn(),
+}));
 
 jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
   ...jest.requireActual("@/components/PupilComponents/LessonEngineProvider"),
@@ -821,6 +827,12 @@ describe("lessonAccessedPupilJourney analytics", () => {
   });
 
   beforeEach(() => {
+    mockedUseAssignmentSearchParams.mockReset();
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+    mockedUseSearchParams.mockReset();
     mockedUseSearchParams.mockReturnValue(null);
     (googleClassroomApi.getAddOnContext as jest.Mock).mockClear();
     (googleClassroomApi.getAddOnContext as jest.Mock).mockResolvedValue(null);
