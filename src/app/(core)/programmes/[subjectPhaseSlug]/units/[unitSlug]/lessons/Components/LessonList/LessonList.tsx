@@ -21,6 +21,27 @@ type LessonListProps = UnitViewProps & {
   lessonCount: number;
 };
 
+function renderSubCopy(lesson: UnitViewProps["lessons"][number]) {
+  if (lesson.isUnpublished) return "Coming soon";
+  if (lesson.loginRequired || lesson.geoRestricted) {
+    return (
+      <OakFlex $justifyContent="space-between" $alignItems="flex-end">
+        {lesson.pupilLessonOutcome}{" "}
+        <OakTagFunctional
+          label="Copyrighted"
+          iconName="copyright"
+          isTrailingIcon
+          useSpan
+          $background="bg-neutral"
+          $ba="border-solid-s"
+          $borderColor="border-neutral"
+        />
+      </OakFlex>
+    );
+  }
+  return lesson.pupilLessonOutcome;
+}
+
 const LessonList = ({
   programmeSlug,
   unitSlug,
@@ -134,11 +155,7 @@ const LessonList = ({
                   layoutVariant="horizontal"
                   isHighlighted={false}
                   title={lesson.lessonTitle}
-                  subcopy={
-                    lesson.isUnpublished
-                      ? "Coming soon"
-                      : (lesson.pupilLessonOutcome ?? undefined)
-                  }
+                  subcopy={renderSubCopy(lesson)}
                   href={resolveOakHref({
                     page: "lesson-overview",
                     programmeSlug,

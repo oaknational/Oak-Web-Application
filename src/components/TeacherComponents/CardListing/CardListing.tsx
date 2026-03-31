@@ -1,4 +1,5 @@
 import { OakFlex, OakIconName } from "@oaknational/oak-components";
+import { ReactNode } from "react";
 
 import { SaveUnitButton } from "../SaveUnitButton/SaveUnitButton";
 
@@ -39,7 +40,7 @@ export type CardListingTags = Array<{ label: string; icon?: OakIconName }>;
 export type CardListingProps = CardProps & {
   layoutVariant: "horizontal" | "vertical";
   index?: number;
-  subcopy?: string;
+  subcopy?: ReactNode;
   tags?: CardListingTags;
   childCards?: Array<CardProps>;
 };
