@@ -60,15 +60,17 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
     return notFound();
   }
 
-  const { subjectPhaseSlug, unitSlug } = await props.params;
-  const data = await getCachedUnitData(subjectPhaseSlug, unitSlug);
+  const { subjectPhaseSlug: programmeSlug, unitSlug } = await props.params;
+  const data = await getCachedUnitData(programmeSlug, unitSlug);
   const subjectIconName = `subject-${data.subjectSlug}` as SubjectIcon;
+  const phase = getPhaseSlugFromKeystage(data.keyStageSlug);
 
   return (
     <UnitHeader
       heading={data.unitTitle}
-      phase={getPhaseSlugFromKeystage(data.keyStageSlug) ?? "secondary"}
-      subjectPhaseSlug={subjectPhaseSlug}
+      phase={phase}
+      subjectPhaseSlug={`${data.subjectSlug}-${phase}`}
+      programmeSlug={programmeSlug}
       subjectIcon={subjectIconName}
       nextUnit={data.nextUnit}
       prevUnit={data.prevUnit}

@@ -31,6 +31,7 @@ export type UnitHeaderProps = Omit<
   nextUnit: NeighbourUnit;
   prevUnit: NeighbourUnit;
   subjectPhaseSlug: string;
+  programmeSlug: string;
   trackingProps: {
     unitName: string;
     unitSlug: string;
@@ -42,8 +43,13 @@ export type UnitHeaderProps = Omit<
 };
 
 const UnitHeader = (props: UnitHeaderProps) => {
-  const { phase, unitDownloadFileId, isGeorestrictedUnit, trackingProps } =
-    props;
+  const {
+    phase,
+    unitDownloadFileId,
+    isGeorestrictedUnit,
+    trackingProps,
+    subjectPhaseSlug,
+  } = props;
   const { track } = useAnalytics();
 
   const backgroundColorLevel = phase === "primary" ? 4 : 3;
@@ -81,7 +87,15 @@ const UnitHeader = (props: UnitHeaderProps) => {
           $maxWidth="spacing-1280"
         >
           <OakFlex $gap={"spacing-32"} $alignItems={"center"}>
-            <OakTertiaryInvertedButton iconName="list">
+            <OakTertiaryInvertedButton
+              iconName="list"
+              element="a"
+              href={resolveOakHref({
+                page: "teacher-programme",
+                subjectPhaseSlug,
+                tab: "units",
+              })}
+            >
               View all units
             </OakTertiaryInvertedButton>
             <OakBox
@@ -145,7 +159,7 @@ const UnitNavButtons = ({
   backgroundColorLevel,
   nextUnit,
   prevUnit,
-  subjectPhaseSlug,
+  programmeSlug,
 }: {
   display: OakFlexProps["$display"];
   backgroundColorLevel: CompactHeaderProps["backgroundColorLevel"];
@@ -159,7 +173,7 @@ const UnitNavButtons = ({
           href={resolveOakHref({
             page: "unit-page",
             unitSlug: prevUnit.slug,
-            subjectPhaseSlug,
+            subjectPhaseSlug: programmeSlug,
           })}
           iconOverride={
             <OakIcon
@@ -179,7 +193,7 @@ const UnitNavButtons = ({
           href={resolveOakHref({
             page: "unit-page",
             unitSlug: nextUnit.slug,
-            subjectPhaseSlug,
+            subjectPhaseSlug: programmeSlug,
           })}
           isTrailingIcon
           iconOverride={
