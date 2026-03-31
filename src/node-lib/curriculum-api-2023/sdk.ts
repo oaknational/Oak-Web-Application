@@ -36,11 +36,9 @@ const withRetries = <T>(
   operationName: string,
 ) =>
   polly()
-    .handle((err: Error) => {
-      // Retry timeout errors
-      console.warn("GraphQLClient:Error: ", err);
-      return true;
-    })
+    .logger((error: Error) =>
+      console.warn("GraphQLClient:Error", { err: error }),
+    )
     .waitAndRetry(retryCount)
     .executeForPromise((info) => {
       if (info.count === retryCount) {
