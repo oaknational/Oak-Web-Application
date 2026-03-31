@@ -31,7 +31,10 @@ const reportError = errorReporter("Graphql sdk");
 const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
 
 const retryCount = 3;
-const withRetries = <T>(action: () => Promise<T>) =>
+const withRetries = <T>(
+  action: (requestHeaders?: Record<string, string>) => Promise<T>,
+  operationName: string,
+) =>
   polly()
     .handle((err: Error) => {
       // Retry timeout errors
@@ -42,22 +45,20 @@ const withRetries = <T>(action: () => Promise<T>) =>
       if (info.count === retryCount) {
         console.error("GraphqlClient:MaxRetries", null, {
           ...info,
-          action: action.toString(),
+          queryName: operationName,
         });
-      } else if (info.count >= 0) {
-        console.warn("GraphqlClient:RetryingCall", null, {
-          ...info,
-          action: action.toString(),
-        });
-
         // report timeout errors
         const timeoutError = new OakError({
           code: "graphql/timeout",
           meta: { action: action.toString() },
         });
         reportError(timeoutError);
+      } else if (info.count >= 0) {
+        console.warn("GraphqlClient:RetryingCall", null, {
+          ...info,
+          queryName: operationName, // name of the query being retried
+        });
       }
-
       return action();
     });
 
