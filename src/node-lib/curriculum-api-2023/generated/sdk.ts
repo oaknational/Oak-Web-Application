@@ -52245,7 +52245,7 @@ export const TeachersUnitOverviewDocument = gql`
 }
     `;
 export const TopNavDocument = gql`
-    query topNav @cached(ttl: 120) {
+    query topNav @cached(ttl: 600) {
   programmes: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
     distinct_on: programme_slug
   ) {
