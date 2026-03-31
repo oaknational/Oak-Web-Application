@@ -226,7 +226,7 @@ const getPupilLessonProgress = async (
       `/api/classroom/pupil/progress?${params.toString()}`,
       "GET",
       undefined,
-      await getOakGCAuthHeaders(),
+      await getOakGCAuthHeaders(true),
     );
   } catch (error) {
     console.error("Failed to fetch pupil lesson progress:", error);

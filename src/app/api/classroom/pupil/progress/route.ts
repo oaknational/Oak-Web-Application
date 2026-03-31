@@ -2,15 +2,20 @@ import { NextRequest, NextResponse } from "next/server";
 
 import {
   getOakGoogleClassroomAddon,
-  isOakGoogleClassroomException,
   createClassroomErrorReporter,
 } from "@/node-lib/google-classroom";
+import {
+  handleClassroomError,
+  requireClassroomAuthHeaders,
+} from "@/app/api/classroom/classroomUtils";
 
 const reportError = createClassroomErrorReporter("pupil-progress");
 
 export async function GET(request: NextRequest) {
   try {
-    // add requireClassroomAuthHeaders check here
+    const auth = requireClassroomAuthHeaders(request);
+    if (auth instanceof NextResponse) return auth;
+
     const requestUrl = new URL(request.url);
     const submissionId = requestUrl.searchParams.get("submissionId");
     const attachmentId = requestUrl.searchParams.get("attachmentId");
@@ -31,11 +36,6 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(result ?? { lessonProgress: null });
   } catch (e) {
-    const errorObject = isOakGoogleClassroomException(e) ? e.toObject() : e;
-    reportError(errorObject);
-    return NextResponse.json(
-      { error: e instanceof Error ? e?.message : String(e) },
-      { status: 500 },
-    );
+    return handleClassroomError(reportError, e);
   }
 }

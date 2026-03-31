@@ -43,11 +43,9 @@ function GoogleClassroomPupilResultsPage() {
 
   const getPupilResults = async (): Promise<PupilLessonProgress | null> => {
     const submissionId = searchParams?.get("submissionId");
-    // courseId is not required to fetch pupil progress, cna it be removed?
-    const courseId = searchParams?.get("courseId");
     const itemId = searchParams?.get("itemId");
     const attachmentId = searchParams?.get("attachmentId");
-    if (!submissionId || !courseId || !itemId || !attachmentId) {
+    if (!submissionId || !itemId || !attachmentId) {
       throw new Error("Missing required query parameters");
     }
     const pupilProgress = await googleClassroomApi.getPupilLessonProgress({
