@@ -66,10 +66,17 @@ const coreProps: UnitHeaderProps = {
   phase: "secondary",
   subjectIcon: "subject-computer-science",
   unitDownloadFileId: "1",
-  onUnitDownloadSuccess: () => console.log("success"),
   nextUnit: { title: "unit 3", slug: "unit-3" },
   prevUnit: { title: "unit 1", slug: "unit-1" },
   subjectPhaseSlug: "computer-science-secndary",
+  trackingProps: {
+    unitName: "IT and the world of work",
+    unitSlug: "",
+    keyStageSlug: "",
+    keyStageTitle: "Key stage 4",
+    subjectSlug: "computer-science",
+    subjectTitle: "Computer science",
+  },
 };
 
 export const Default: Story = {

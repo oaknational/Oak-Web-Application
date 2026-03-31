@@ -18,6 +18,8 @@ import {
 } from "@/components/TeacherComponents/Header/Header";
 import { NeighbourUnit } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import { resolveOakHref } from "@/common-lib/urls";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 export type UnitHeaderProps = Omit<
   CompactHeaderProps,
@@ -25,20 +27,24 @@ export type UnitHeaderProps = Omit<
 > & {
   phase: "primary" | "secondary";
   unitDownloadFileId?: string;
-  onUnitDownloadSuccess?: () => void;
   isGeorestrictedUnit?: boolean;
   nextUnit: NeighbourUnit;
   prevUnit: NeighbourUnit;
   subjectPhaseSlug: string;
+  trackingProps: {
+    unitName: string;
+    unitSlug: string;
+    keyStageSlug: string;
+    keyStageTitle: KeyStageTitleValueType;
+    subjectSlug: string;
+    subjectTitle: string;
+  };
 };
 
 const UnitHeader = (props: UnitHeaderProps) => {
-  const {
-    phase,
-    unitDownloadFileId,
-    onUnitDownloadSuccess,
-    isGeorestrictedUnit,
-  } = props;
+  const { phase, unitDownloadFileId, isGeorestrictedUnit, trackingProps } =
+    props;
+  const { track } = useAnalytics();
 
   const backgroundColorLevel = phase === "primary" ? 4 : 3;
 
@@ -49,6 +55,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
     downloadInProgress,
     setShowIncompleteMessage,
   } = useUnitDownloadButtonState();
+
   return (
     <>
       <Header
@@ -91,7 +98,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
               backgroundColorLevel={backgroundColorLevel}
             />
           </OakFlex>
-          {unitDownloadFileId && onUnitDownloadSuccess && (
+          {unitDownloadFileId && (
             <UnitDownloadButton
               setDownloadError={setDownloadError}
               setDownloadInProgress={setDownloadInProgress}
@@ -99,7 +106,17 @@ const UnitHeader = (props: UnitHeaderProps) => {
               setShowIncompleteMessage={setShowIncompleteMessage}
               downloadInProgress={downloadInProgress}
               unitFileId={unitDownloadFileId}
-              onDownloadSuccess={onUnitDownloadSuccess}
+              onDownloadSuccess={() => {
+                track.unitDownloadInitiated({
+                  platform: "owa",
+                  product: "teacher lesson resources",
+                  engagementIntent: "use",
+                  componentType: "unit_download_button",
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  ...trackingProps,
+                });
+              }}
               showNewTag={false}
               geoRestricted={Boolean(isGeorestrictedUnit)}
             />

@@ -12,6 +12,7 @@ import withPageErrorHandling, {
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { getPhaseSlugFromKeystage } from "@/fixtures/curriculum/unit";
 import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 type LessonsPageParams = { subjectPhaseSlug: string; unitSlug: string };
 
@@ -71,6 +72,20 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
       subjectIcon={subjectIconName}
       nextUnit={data.nextUnit}
       prevUnit={data.prevUnit}
+      unitDownloadFileId={
+        unitSlug.endsWith(data.unitvariantId.toString())
+          ? unitSlug
+          : `${unitSlug}-${data.unitvariantId}`
+      }
+      isGeorestrictedUnit={data.containsGeorestrictedLessons}
+      trackingProps={{
+        unitName: data.unitTitle,
+        unitSlug: data.unitSlug,
+        keyStageSlug: data.keyStageSlug,
+        keyStageTitle: data.keyStageTitle as KeyStageTitleValueType,
+        subjectSlug: data.subjectSlug,
+        subjectTitle: data.subjectTitle,
+      }}
     />
   );
 };

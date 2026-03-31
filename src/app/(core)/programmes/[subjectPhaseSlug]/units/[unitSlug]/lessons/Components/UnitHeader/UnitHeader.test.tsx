@@ -13,6 +13,14 @@ const defaultProps: UnitHeaderProps = {
   nextUnit: null,
   subjectIcon: "subject-maths",
   subjectPhaseSlug: "maths-primary",
+  trackingProps: {
+    unitName: "IT and the world of work",
+    unitSlug: "",
+    keyStageSlug: "",
+    keyStageTitle: "Key stage 4",
+    subjectSlug: "computer-science",
+    subjectTitle: "Computer science",
+  },
 };
 
 describe("UnitHeader", () => {

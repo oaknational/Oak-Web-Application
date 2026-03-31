@@ -1,6 +1,6 @@
 import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import {
   OakFlex,
   OakLoadingSpinner,
@@ -16,17 +16,18 @@ import { resolveOakHref } from "@/common-lib/urls";
 
 // Used when a user is signed in but not onboarded
 const UnitDownloadOnboardButton = ({
-  onClick,
+  href,
   showNewTag,
 }: {
-  onClick: () => Promise<boolean>;
+  href: string;
   showNewTag: boolean;
 }) => (
   <OakPrimaryButton
     width="fit-content"
-    onClick={onClick}
     ph={["spacing-8", "spacing-20"]}
     pv={["spacing-4", "spacing-12"]}
+    element="a"
+    href={href}
   >
     <OakFlex $alignItems="center" $gap="spacing-12">
       {showNewTag && (
@@ -145,8 +146,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const { unitFileId, geoRestricted } = props;
   const { isSignedIn, isLoaded, user } = useUser();
   const auth = useAuth();
-  const router = useRouter();
-
+  const pathname = usePathname();
   const {
     onDownloadSuccess,
     setDownloadError,
@@ -197,17 +197,15 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
 
   return showOnboardButton ? (
     <UnitDownloadOnboardButton
-      onClick={() =>
-        router.push({
-          pathname: resolveOakHref({ page: "onboarding" }),
-          query: { returnTo: router.asPath },
-        })
-      }
+      href={resolveOakHref({
+        page: "onboarding",
+        query: { returnTo: pathname ?? "" },
+      })}
       showNewTag={props.showNewTag}
     />
   ) : showSignInButton ? (
     <UnitDownloadSignInButton
-      redirectUrl={`/onboarding?returnTo=${router.asPath}`}
+      redirectUrl={`/onboarding?returnTo=${pathname}`}
       showNewTag={props.showNewTag}
     />
   ) : showDownloadButton ? (
