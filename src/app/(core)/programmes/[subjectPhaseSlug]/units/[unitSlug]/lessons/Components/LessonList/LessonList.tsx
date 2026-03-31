@@ -65,16 +65,14 @@ const LessonList = ({
     <OakFlex $flexDirection="column">
       <OakFlex $justifyContent="space-between" $alignItems="flex-start">
         <OakBox
+          as="h2"
           $background="bg-decorative3-very-subdued"
           $pa="spacing-20"
           $btlr="border-radius-l"
           $btrr="border-radius-l"
           $font="body-2"
         >
-          <OakSpan as="strong" $font="body-2-bold">
-            Unit {unitOrder}
-          </OakSpan>{" "}
-          of {unitCount}
+          <OakSpan $font="body-2-bold">Unit {unitOrder}</OakSpan> of {unitCount}
         </OakBox>
         {subjectTitle ? (
           <OakTagFunctional
@@ -113,16 +111,15 @@ const LessonList = ({
         <OakBox>
           <OakFlex $justifyContent="space-between" $alignItems="flex-start">
             <OakBox
+              as="h3"
               $background="bg-decorative1-subdued"
               $pa="spacing-20"
               $btlr="border-radius-l"
               $btrr="border-radius-l"
               $font="body-2"
             >
-              <OakSpan as="strong" $font="body-2-bold">
-                {lessonCount}
-              </OakSpan>{" "}
-              lessons in unit
+              <OakSpan $font="body-2-bold">{lessonCount}</OakSpan> lessons in
+              unit
             </OakBox>
             <SaveUnitButton
               buttonVariant="default"
