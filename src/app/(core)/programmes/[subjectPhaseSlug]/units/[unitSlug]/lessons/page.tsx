@@ -70,7 +70,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
       keyStageSlug={data.keyStageSlug}
       keyStageTitle={data.keyStageTitle}
       lessons={data.lessons}
-      unitOrder={data.unitOrder}
+      unitIndex={data.unitIndex}
       unitCount={data.unitCount}
     />
   );

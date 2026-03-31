@@ -34,7 +34,7 @@ describe("UnitView", () => {
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
         lessons={lessons as UnitViewProps["lessons"]}
-        unitOrder={2}
+        unitIndex={2}
         unitCount={12}
       />,
     );
@@ -50,7 +50,7 @@ describe("UnitView", () => {
         keyStageSlug: "ks3",
         keyStageTitle: "Key Stage 3",
         lessons,
-        unitOrder: 2,
+        unitIndex: 2,
         unitCount: 12,
         lessonCount: 2,
       }),

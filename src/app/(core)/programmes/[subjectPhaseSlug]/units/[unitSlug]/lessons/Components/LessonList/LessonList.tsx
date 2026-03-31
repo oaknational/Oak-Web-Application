@@ -25,7 +25,7 @@ type LessonListProps = UnitViewProps & {
 function LessonSubcopy({
   lesson,
 }: {
-  lesson: Readonly<UnitViewProps["lessons"][number]>;
+  readonly lesson: UnitViewProps["lessons"][number];
 }) {
   const loginRequired =
     "loginRequired" in lesson ? lesson.loginRequired : false;
@@ -80,7 +80,7 @@ const LessonList = ({
   keyStageSlug,
   keyStageTitle,
   lessons,
-  unitOrder,
+  unitIndex,
   unitCount,
   lessonCount,
 }: LessonListProps) => {
@@ -95,7 +95,7 @@ const LessonList = ({
           $btrr="border-radius-l"
           $font="body-2"
         >
-          <OakSpan $font="body-2-bold">Unit {unitOrder}</OakSpan> of {unitCount}
+          <OakSpan $font="body-2-bold">Unit {unitIndex}</OakSpan> of {unitCount}
         </OakBox>
         {subjectTitle ? (
           <OakTagFunctional

@@ -8,11 +8,13 @@ import {
   getPackagedUnit,
   getProgrammeToggles,
   getTransformedLessons,
+  getUnitCounts,
 } from "./helpers";
 import {
   unitSequenceFixture,
   unitsInOtherProgrammesFixture,
 } from "./teachersUnitOverview.query.test";
+import type { UnitSequence } from "./teachersUnitOverview.schema";
 
 const mockPackagedUnitData = {
   programmeFields: syntheticUnitvariantLessonsByKsFixture().programme_fields,
@@ -72,7 +74,7 @@ describe("getTransformedUnit", () => {
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
       unitDescription: null,
-      unitOrder: 1,
+      unitIndex: 1,
       unitCount: 4,
       unitvariantId: 1,
       yearTitle: "Year 1",
@@ -144,7 +146,7 @@ describe("getTransformedUnit", () => {
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
       unitDescription: null,
-      unitOrder: 1,
+      unitIndex: 1,
       unitCount: 4,
       unitvariantId: 1,
       yearTitle: "Year 1",
@@ -211,6 +213,97 @@ describe("getTransformedUnit", () => {
     );
 
     expect(result.unitCount).toBe(2);
+  });
+});
+
+describe("getUnitCounts", () => {
+  it("returns unitCount for the current unit's year", () => {
+    const sequence = unitSequenceFixture.slice(0, 2);
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: sequence[0]!.nullUnitvariantId,
+    });
+    expect(result.unitCount).toBe(sequence.length);
+  });
+
+  it("does not include units from other years in unitCount", () => {
+    const sequence: UnitSequence = [
+      ...unitSequenceFixture,
+      {
+        unitSlug: "unit-20",
+        unitTitle: "Unit 20",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 20,
+        yearOrder: 2,
+        year: "7",
+      },
+      {
+        unitSlug: "unit-21",
+        unitTitle: "Unit 21",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 21,
+        yearOrder: 2,
+        year: "7",
+      },
+    ];
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 20,
+    });
+
+    expect(result.unitCount).toBe(2);
+  });
+
+  it("deduplicates optionality variants when counting units", () => {
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "unit-1-core",
+        unitTitle: "Unit 1",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "7",
+      },
+      {
+        unitSlug: "unit-2-core",
+        unitTitle: "Unit 2",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "7",
+      },
+      {
+        unitSlug: "unit-2-optionality",
+        unitTitle: "Unit 2",
+        unitDescription: null,
+        optionalityTitle: "Stretch",
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "7",
+      },
+      {
+        unitSlug: "unit-3-core",
+        unitTitle: "Unit 3",
+        unitDescription: null,
+        unitOrder: 3,
+        nullUnitvariantId: 3,
+        yearOrder: 1,
+        year: "7",
+      },
+    ];
+
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 2,
+    });
+
+    expect(result.unitCount).toBe(3);
+    expect(result.unitIndex).toBe(2);
   });
 });
 

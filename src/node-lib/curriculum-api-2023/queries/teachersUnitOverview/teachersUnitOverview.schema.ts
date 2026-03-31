@@ -29,7 +29,7 @@ export const unitOverviewDataSchema = z.object({
   unitvariantId: z.number(),
   unitTitle: z.string(),
   unitDescription: z.string().nullable(),
-  unitOrder: z.number(),
+  unitIndex: z.number(),
   unitCount: z
     .number()
     .describe(
