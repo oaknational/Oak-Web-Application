@@ -109,10 +109,10 @@ const LessonList = ({
 
       <OakFlex
         $flexDirection="column"
-        $gap="spacing-32"
+        $gap={["spacing-32", "spacing-32", "spacing-56"]}
         $background="bg-primary"
         $ph="spacing-20"
-        $pt="spacing-32"
+        $pt={["spacing-32", "spacing-32", "spacing-56"]}
         $pb="spacing-24"
         $borderRadius="border-radius-xl"
         $btlr="border-radius-square"
