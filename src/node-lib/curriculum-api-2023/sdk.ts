@@ -56,7 +56,7 @@ const withRetries = <T>(
           meta: { queryName: operationName, action: action.toString() },
         });
         reportError(timeoutError);
-      } else if (info.count > 0) {
+      } else if (info.count >= 0) {
         console.warn("GraphqlClient:RetryingCall", {
           ...info,
           queryName: operationName, // name of the query being retried
