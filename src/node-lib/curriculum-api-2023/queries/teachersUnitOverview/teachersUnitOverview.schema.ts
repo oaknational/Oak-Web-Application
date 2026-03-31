@@ -14,6 +14,8 @@ const neighbourUnitSchema = z
   .object({ title: z.string(), slug: z.string() })
   .nullable();
 
+export type NeighbourUnit = z.infer<typeof neighbourUnitSchema>;
+
 const programmeToggleSchema = z.array(
   z.object({
     title: z.string(),

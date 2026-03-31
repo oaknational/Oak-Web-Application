@@ -15,6 +15,7 @@ import {
   CompactHeaderProps,
   Header,
 } from "@/components/TeacherComponents/Header/Header";
+import { NeighbourUnit } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 
 export type UnitHeaderProps = Omit<
   CompactHeaderProps,
@@ -24,8 +25,8 @@ export type UnitHeaderProps = Omit<
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
   isGeorestrictedUnit?: boolean;
-  nextUnit?: string; // TODO: use type
-  prevUnit?: string;
+  nextUnit: NeighbourUnit;
+  prevUnit: NeighbourUnit;
 };
 
 const UnitHeader = (props: UnitHeaderProps) => {
