@@ -13,8 +13,17 @@ const curriculumSequenceQuery =
     phaseSlug: string;
     ks4OptionSlug: string | null;
     includeNonCurriculum?: boolean;
+    /**
+     * If true, will exclude units that have no published lessons
+     */
+    excludeUnitsWithNoPublishedLessons?: boolean;
   }) => {
-    const { subjectSlug, phaseSlug, ks4OptionSlug } = args;
+    const {
+      subjectSlug,
+      phaseSlug,
+      ks4OptionSlug,
+      excludeUnitsWithNoPublishedLessons,
+    } = args;
     if (!subjectSlug || !phaseSlug) {
       throw new OakError({ code: "curriculum-api/params-incorrect" });
     }
@@ -68,6 +77,10 @@ const curriculumSequenceQuery =
 
     if (!args.includeNonCurriculum) {
       where._and!.push({ non_curriculum: { _eq: false } });
+    }
+
+    if (excludeUnitsWithNoPublishedLessons) {
+      where._and!.push({ lessons: { _contains: [{ _state: "published" }] } });
     }
 
     const res = await sdk.curriculumSequence({
