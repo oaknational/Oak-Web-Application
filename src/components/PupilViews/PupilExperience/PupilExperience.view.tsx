@@ -289,7 +289,7 @@ const PupilExperienceLayout = ({
     useState<LessonSectionResults>();
   const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
 
-  const fetchGoogleClassroomContext = async () => {
+  const fetchGoogleClassroomContext = useCallback(async () => {
     if (!courseId || !itemId || !attachmentId) {
       setIsContextReady(true);
       return;
@@ -340,13 +340,17 @@ const PupilExperienceLayout = ({
       setIsFetchingClassroomContext(false);
       setIsContextReady(true);
     }
-  };
+  }, [attachmentId, courseId, itemId, onClassroomContextResolved]);
 
   useEffect(() => {
-    if (!isGoogleClassroomAssignment || classroomContextRef.current) return;
+    if (
+      !isGoogleClassroomAssignment ||
+      classroomContextRef.current ||
+      !globalThis.cookieStore
+    )
+      return;
     fetchGoogleClassroomContext();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [attachmentId, courseId, isGoogleClassroomAssignment, itemId]);
+  }, [fetchGoogleClassroomContext, isGoogleClassroomAssignment]);
 
   useEffect(() => {
     if (!classroomAssignmentChecked) return;

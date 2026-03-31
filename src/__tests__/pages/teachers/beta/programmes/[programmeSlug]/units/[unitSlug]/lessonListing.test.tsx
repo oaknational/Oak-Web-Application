@@ -86,6 +86,17 @@ describe("getStaticProps", () => {
     );
   });
 
+  it("should return notFound for EYFS programme slugs", async () => {
+    const response = await getStaticProps({
+      params: {
+        programmeSlug: "maths-foundation-early-years-foundation-stage-l",
+        unitSlug: "some-unit-slug",
+      },
+    });
+
+    expect(response).toEqual({ notFound: true });
+  });
+
   it("should throw error if no context params", async () => {
     await expect(
       getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
