@@ -1,8 +1,8 @@
-import { render } from "@testing-library/react";
-
 import { UnitView } from "./UnitView";
 import type { UnitViewProps } from "./UnitView";
 import { LessonList } from "./LessonList";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("./LessonList");
 
@@ -23,7 +23,7 @@ describe("UnitView", () => {
       },
     ];
 
-    render(
+    renderWithProviders()(
       <UnitView
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"

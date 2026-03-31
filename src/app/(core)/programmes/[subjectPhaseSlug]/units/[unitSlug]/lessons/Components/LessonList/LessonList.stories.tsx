@@ -3,6 +3,8 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ComponentProps } from "react";
 
+import { __setMockAuthState } from "../../../../../../../../../../.storybook/mocks/clerk";
+
 import LessonList from "./LessonList";
 
 import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
@@ -124,10 +126,30 @@ const defaultArgs: LessonListProps = {
 };
 
 export const Default: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({
+        isSignedIn: true,
+        isOnboarded: true,
+        isRegionAuthorised: true,
+      });
+      return <Story />;
+    },
+  ],
   args: defaultArgs,
 };
 
 export const LongContent: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({
+        isSignedIn: true,
+        isOnboarded: true,
+        isRegionAuthorised: true,
+      });
+      return <Story />;
+    },
+  ],
   args: {
     ...defaultArgs,
     unitTitle:
@@ -145,6 +167,15 @@ export const LongContent: Story = {
 };
 
 export const CopyrightedLesson: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({
+        isSignedIn: false,
+        isOnboarded: false,
+      });
+      return <Story />;
+    },
+  ],
   args: {
     ...defaultArgs,
     lessons: [
@@ -161,6 +192,16 @@ export const CopyrightedLesson: Story = {
 };
 
 export const ComingSoonLesson: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({
+        isSignedIn: true,
+        isOnboarded: true,
+        isRegionAuthorised: true,
+      });
+      return <Story />;
+    },
+  ],
   args: {
     ...defaultArgs,
     lessons: [
