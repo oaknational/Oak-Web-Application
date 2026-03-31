@@ -160,7 +160,7 @@ describe("teachersUnitOverview", () => {
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
       unitDescription: null,
-      unitOrder: 1,
+      unitIndex: 1,
       unitCount: 4,
       unitvariantId: 1,
       tierSlug: null,

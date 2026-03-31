@@ -77,7 +77,7 @@ const defaultProps: LessonListProps = {
   subjectSlug: fixtureData.subjectSlug,
   keyStageSlug: fixtureData.keyStageSlug,
   keyStageTitle: fixtureData.keyStageTitle,
-  unitOrder: 2,
+  unitIndex: 2,
   unitCount: 12,
   lessonCount: 3,
   lessons: fixtureData.lessons,

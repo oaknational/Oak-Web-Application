@@ -112,6 +112,38 @@ export const getNeighbourUnits = ({
   };
 };
 
+export const getUnitCounts = ({
+  unitSequenceData,
+  nullUnitvariantId,
+}: {
+  unitSequenceData: UnitSequence;
+  nullUnitvariantId: number;
+}) => {
+  const currentUnit = unitSequenceData.find(
+    (u) => u.nullUnitvariantId === nullUnitvariantId,
+  );
+  if (!currentUnit) {
+    throw new OakError({ code: "curriculum-api/not-found" });
+  }
+
+  const unitsForYear = unitSequenceData
+    .filter((u) => u.year === currentUnit.year)
+    .reduce((acc: UnitSequence, unit) => {
+      if (!acc.some((u) => u.nullUnitvariantId === unit.nullUnitvariantId)) {
+        acc.push(unit);
+      }
+      return acc;
+    }, [])
+    .sort((a, b) => a.unitOrder - b.unitOrder);
+
+  return {
+    unitCount: unitsForYear.length,
+    unitIndex:
+      unitsForYear.findIndex((u) => u.nullUnitvariantId === nullUnitvariantId) +
+      1,
+  };
+};
+
 export const getPackagedUnit = (
   packagedUnitData: PackagedUnitData,
   unitLessons: LessonListSchema,
@@ -149,13 +181,6 @@ export const getPackagedUnit = (
     (actions) => actions?.isPePractical === true,
   );
 
-  const currentUnit = unitSequenceData.find(
-    (u) => u.nullUnitvariantId === nullUnitvariantId,
-  );
-  if (!currentUnit) {
-    throw new OakError({ code: "curriculum-api/not-found" });
-  }
-
   const { nextUnit, prevUnit } = getNeighbourUnits({
     unitSequenceData,
     nullUnitvariantId,
@@ -165,9 +190,10 @@ export const getPackagedUnit = (
     programmeSlug,
     unitsInOtherProgrammes,
   );
-  const unitCount = unitSequenceData.filter(
-    (u) => u.year === currentUnit.year,
-  ).length;
+  const { unitCount, unitIndex } = getUnitCounts({
+    unitSequenceData,
+    nullUnitvariantId,
+  });
 
   return {
     programmeSlug,
@@ -180,7 +206,7 @@ export const getPackagedUnit = (
     unitvariantId,
     unitTitle,
     unitDescription,
-    unitOrder: currentUnit.unitOrder,
+    unitIndex,
     unitCount,
     tierSlug: modifiedProgrammeFields.tier_slug,
     tierTitle: modifiedProgrammeFields.tier_description,

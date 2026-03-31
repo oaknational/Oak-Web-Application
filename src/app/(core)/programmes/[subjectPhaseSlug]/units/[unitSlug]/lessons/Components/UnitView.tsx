@@ -17,7 +17,7 @@ export type UnitViewProps = Pick<
   | "keyStageSlug"
   | "keyStageTitle"
   | "lessons"
-  | "unitOrder"
+  | "unitIndex"
   | "unitCount"
 >;
 
@@ -31,7 +31,7 @@ export const UnitView = ({
   keyStageSlug,
   keyStageTitle,
   lessons,
-  unitOrder,
+  unitIndex,
   unitCount,
 }: UnitViewProps) => {
   return (
@@ -65,7 +65,7 @@ export const UnitView = ({
             keyStageSlug={keyStageSlug}
             keyStageTitle={keyStageTitle}
             lessons={lessons}
-            unitOrder={unitOrder}
+            unitIndex={unitIndex}
             unitCount={unitCount}
             lessonCount={lessons.length}
           />
