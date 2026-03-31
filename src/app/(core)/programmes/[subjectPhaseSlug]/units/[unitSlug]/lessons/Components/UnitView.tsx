@@ -5,7 +5,6 @@ import { LessonList } from "./LessonList";
 
 import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 
-/** Fields passed from unit lessons app routes into `UnitView` / `LessonList`. */
 export type UnitViewProps = Pick<
   TeachersUnitOverviewData,
   | "programmeSlug"
