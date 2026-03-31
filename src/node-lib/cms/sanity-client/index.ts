@@ -246,8 +246,8 @@ const getSanityClient = () => ({
     meetTheTeamPageSchema,
     (result) => {
       const meetTheTeamData = result?.allNewAboutCorePageMeetTheTeam?.[0];
-      if (meetTheTeamData?.documents) {
-        meetTheTeamData.documents.forEach((doc) => {
+      if (meetTheTeamData?.documents2?.files) {
+        meetTheTeamData.documents2.files.forEach((doc) => {
           const url = doc?.file?.asset?.url;
           const proxiedUrl = getProxiedSanityAssetUrl(url);
           if (doc?.file?.asset?.url) {
