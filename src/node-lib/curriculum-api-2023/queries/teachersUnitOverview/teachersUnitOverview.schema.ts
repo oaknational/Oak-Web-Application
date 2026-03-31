@@ -14,6 +14,15 @@ const neighbourUnitSchema = z
   .object({ title: z.string(), slug: z.string() })
   .nullable();
 
+const programmeToggleSchema = z.array(
+  z.object({
+    title: z.string(),
+    programmeSlug: z.string(),
+    isSelected: z.boolean(),
+  }),
+);
+export type ProgrammeToggles = z.infer<typeof programmeToggleSchema>;
+
 export const unitOverviewDataSchema = z.object({
   programmeSlug: z.string(),
   unitSlug: z.string(),
@@ -40,6 +49,8 @@ export const unitOverviewDataSchema = z.object({
   containsLoginRequiredLessons: z.boolean().optional(),
   nextUnit: neighbourUnitSchema,
   prevUnit: neighbourUnitSchema,
+  tierOptionToggles: programmeToggleSchema,
+  subjectOptionToggles: programmeToggleSchema,
 });
 
 export type TeachersUnitOverviewData = z.infer<typeof unitOverviewDataSchema>;
@@ -49,6 +60,16 @@ export const modifiedLessonsResponseSchema =
 export const modifiedLessonsResponseSchemaArray = z.array(
   modifiedLessonsResponseSchema,
 );
+
+export const unitsInOtherProgrammesResponseSchema = z.array(
+  z.object({
+    programme_slug: z.string(),
+    programme_fields: programmeFieldsSchema,
+  }),
+);
+export type UnitsInOtherProgrammes = z.infer<
+  typeof unitsInOtherProgrammesResponseSchema
+>;
 
 export const unitSequenceResponseSchema = z.array(
   z.object({
