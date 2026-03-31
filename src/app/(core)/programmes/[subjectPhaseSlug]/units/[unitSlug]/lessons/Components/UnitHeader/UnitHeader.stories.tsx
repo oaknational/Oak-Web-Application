@@ -7,8 +7,8 @@ import {
 } from "@oaknational/oak-components";
 import { mocked } from "storybook/test";
 
-import { __setMockAuthState } from "../../../../.storybook/mocks/clerk";
-import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
+import { __setMockAuthState } from "../../../../../../../../../../.storybook/mocks/clerk";
+import useUnitDownloadExistenceCheck from "../../../../../../../../../components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
 

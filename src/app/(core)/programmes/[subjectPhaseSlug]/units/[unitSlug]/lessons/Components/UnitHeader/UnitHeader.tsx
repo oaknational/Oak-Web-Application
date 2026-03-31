@@ -10,9 +10,11 @@ import {
 
 import UnitDownloadButton, {
   useUnitDownloadButtonState,
-} from "../UnitDownloadButton/UnitDownloadButton";
-
-import { CompactHeaderProps, Header } from "./Header";
+} from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
+import {
+  CompactHeaderProps,
+  Header,
+} from "@/components/TeacherComponents/Header/Header";
 
 export type UnitHeaderProps = Omit<
   CompactHeaderProps,
