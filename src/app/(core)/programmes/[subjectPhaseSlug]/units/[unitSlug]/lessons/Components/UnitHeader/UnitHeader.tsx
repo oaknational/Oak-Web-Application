@@ -61,14 +61,16 @@ const UnitHeader = (props: UnitHeaderProps) => {
         }
         $width={"100%"}
         $pv={"spacing-24"}
-        $ph={["spacing-20", "spacing-24"]}
+        $ph={["spacing-20", "spacing-40"]}
         $flexDirection={["column", "row"]}
         $gap={"spacing-24"}
+        $justifyContent="center"
       >
         <OakFlex
           $justifyContent={"space-between"}
           $width={"100%"}
           $gap={"spacing-16"}
+          $maxWidth="spacing-1280"
         >
           <OakFlex $gap={"spacing-32"} $alignItems={"center"}>
             <OakTertiaryInvertedButton iconName="list">
