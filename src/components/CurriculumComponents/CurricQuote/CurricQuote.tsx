@@ -12,22 +12,22 @@ import { PortableTextBlockComponent } from "@portabletext/react";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
+const OakPStyled: PortableTextBlockComponent = (props) => {
+  return <OakP $font={"body-1"}>{props.children}</OakP>;
+};
+
 export type CurricQuoteProps = {
   title: string;
-  children: string | PortableTextJSON;
+  text: PortableTextJSON | string | undefined;
   backgroundColor?: OakUiRoleToken;
   barColor?: OakUiRoleToken;
   headingProps?: OakHeadingProps;
   paragraphProps?: OakPProps;
 };
 
-const OakPStyled: PortableTextBlockComponent = (props) => {
-  return <OakP $mt={"spacing-16"} $mb={"spacing-12"} $font={["body-2", "body-1"]}>{props.children}</OakP>;
-};
-
 export default function CurricQuote({
   title,
-  children,
+  text,
   backgroundColor = "transparent",
   barColor = "bg-decorative1-very-subdued",
   headingProps,
@@ -54,11 +54,11 @@ export default function CurricQuote({
           >
             {title}
           </OakHeading>
-          {typeof children === "string" ? (
-            <OakP $font={["body-1"]} $color={"text-primary"} {...paragraphProps}>{children}</OakP>
+          {typeof text === "string" ? (
+            <OakP $font={["body-1"]} $color={"text-primary"} {...paragraphProps}>{text}</OakP>
           ) : (
           <PortableTextWithDefaults
-            value={children}
+            value={text}
             components={{
               block: {
                 normal: OakPStyled,

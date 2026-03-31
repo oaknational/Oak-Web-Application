@@ -9,7 +9,6 @@ import {
 } from "@oaknational/oak-components";
 import { PortableTextBlockComponent } from "@portabletext/react";
 
-
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
@@ -19,7 +18,7 @@ const OakPStyled: PortableTextBlockComponent = (props) => {
 
 export type CurriculumPartnersProps = {
   title: string;
-  text: string | PortableTextJSON;
+  text: PortableTextJSON;
   items: {
     imageUrl: string;
     alt: string;

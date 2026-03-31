@@ -157,10 +157,9 @@ export function GuidingPrinciples({
           <CurricQuote
             key={principle.heading}
             title={principle.heading}
+            text={principle.text2Raw ?? principle.text}
             barColor={accentColor}
-          >
-            {principle.text2Raw ?? principle.text}
-          </CurricQuote>
+          /> 
         ))}
       </OakFlex>
     </StyledResponsiveFlex>
