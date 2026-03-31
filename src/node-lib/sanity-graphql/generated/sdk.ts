@@ -2888,10 +2888,14 @@ export type NewAboutCorePageWhoWeAre = Document & {
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
   breakout?: Maybe<NewAboutPageBreakout>;
+  breakout2?: Maybe<WhoWeArePageBreakout>;
   header?: Maybe<NewAboutPageHeader>;
+  header2?: Maybe<WhoWeArePageHeader>;
   seo?: Maybe<Seo>;
   timeline?: Maybe<Array<Maybe<NewAboutPageTimeline>>>;
+  timeline2?: Maybe<WhoWeArePageTimeline>;
   usp?: Maybe<Array<Maybe<NewAboutPageUsp>>>;
+  weAreCards?: Maybe<WhoWeArePageCards>;
 };
 
 export type NewAboutCorePageWhoWeAreFilter = {
@@ -2904,8 +2908,12 @@ export type NewAboutCorePageWhoWeAreFilter = {
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
   breakout?: InputMaybe<NewAboutPageBreakoutFilter>;
+  breakout2?: InputMaybe<WhoWeArePageBreakoutFilter>;
   header?: InputMaybe<NewAboutPageHeaderFilter>;
+  header2?: InputMaybe<WhoWeArePageHeaderFilter>;
   seo?: InputMaybe<SeoFilter>;
+  timeline2?: InputMaybe<WhoWeArePageTimelineFilter>;
+  weAreCards?: InputMaybe<WhoWeArePageCardsFilter>;
 };
 
 export type NewAboutCorePageWhoWeAreSorting = {
@@ -2916,8 +2924,12 @@ export type NewAboutCorePageWhoWeAreSorting = {
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
   breakout?: InputMaybe<NewAboutPageBreakoutSorting>;
+  breakout2?: InputMaybe<WhoWeArePageBreakoutSorting>;
   header?: InputMaybe<NewAboutPageHeaderSorting>;
+  header2?: InputMaybe<WhoWeArePageHeaderSorting>;
   seo?: InputMaybe<SeoSorting>;
+  timeline2?: InputMaybe<WhoWeArePageTimelineSorting>;
+  weAreCards?: InputMaybe<WhoWeArePageCardsSorting>;
 };
 
 export type NewAboutPageBreakout = {
@@ -5773,6 +5785,130 @@ export type WebinarSorting = {
   title?: InputMaybe<SortOrder>;
 };
 
+export type WhoWeArePageBreakout = {
+  __typename?: 'WhoWeArePageBreakout';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+export type WhoWeArePageBreakoutFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  text?: InputMaybe<StringFilter>;
+};
+
+export type WhoWeArePageBreakoutSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  text?: InputMaybe<SortOrder>;
+};
+
+export type WhoWeArePageCard = {
+  __typename?: 'WhoWeArePageCard';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  textRaw?: Maybe<Scalars['JSON']['output']>;
+};
+
+export type WhoWeArePageCardFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+};
+
+export type WhoWeArePageCardSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+};
+
+export type WhoWeArePageCards = {
+  __typename?: 'WhoWeArePageCards';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  cards?: Maybe<Array<Maybe<WhoWeArePageCard>>>;
+};
+
+export type WhoWeArePageCardsFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+};
+
+export type WhoWeArePageCardsSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+};
+
+export type WhoWeArePageHeader = {
+  __typename?: 'WhoWeArePageHeader';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<ImageWithAltText>;
+  introText?: Maybe<Scalars['String']['output']>;
+};
+
+export type WhoWeArePageHeaderFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+  introText?: InputMaybe<StringFilter>;
+};
+
+export type WhoWeArePageHeaderSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+  introText?: InputMaybe<SortOrder>;
+};
+
+export type WhoWeArePageTimeline = {
+  __typename?: 'WhoWeArePageTimeline';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  timelineItems?: Maybe<Array<Maybe<WhoWeArePageTimelineItem>>>;
+};
+
+export type WhoWeArePageTimelineFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+};
+
+export type WhoWeArePageTimelineItem = {
+  __typename?: 'WhoWeArePageTimelineItem';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  subHeading?: Maybe<Scalars['String']['output']>;
+  textRaw?: Maybe<Scalars['JSON']['output']>;
+};
+
+export type WhoWeArePageTimelineItemFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  subHeading?: InputMaybe<StringFilter>;
+};
+
+export type WhoWeArePageTimelineItemSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  heading?: InputMaybe<SortOrder>;
+  subHeading?: InputMaybe<SortOrder>;
+};
+
+export type WhoWeArePageTimelineSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+};
+
 export type AbTestedPageBySlugQueryVariables = Exact<{
   slug?: InputMaybe<Scalars['String']['input']>;
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6042,7 +6178,7 @@ export type NewAboutWhoWeArePageQueryVariables = Exact<{
 }>;
 
 
-export type NewAboutWhoWeArePageQuery = { __typename?: 'RootQuery', allNewAboutCorePageWhoWeAre: Array<{ __typename?: 'NewAboutCorePageWhoWeAre', id?: string | null, header?: { __typename?: 'NewAboutPageHeader', title?: string | null, subTitle?: string | null } | null, breakout?: { __typename?: 'NewAboutPageBreakout', text?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, timeline?: Array<{ __typename?: 'NewAboutPageTimeline', title?: string | null, subTitle?: string | null, text?: any | null } | null> | null, usp?: Array<{ __typename?: 'NewAboutPageUsp', title?: string | null, text?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type NewAboutWhoWeArePageQuery = { __typename?: 'RootQuery', allNewAboutCorePageWhoWeAre: Array<{ __typename?: 'NewAboutCorePageWhoWeAre', id?: string | null, header2?: { __typename?: 'WhoWeArePageHeader', introText?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, breakout2?: { __typename?: 'WhoWeArePageBreakout', text?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, timeline2?: { __typename?: 'WhoWeArePageTimeline', timelineItems?: Array<{ __typename?: 'WhoWeArePageTimelineItem', heading?: string | null, subHeading?: string | null, textRaw?: any | null } | null> | null } | null, weAreCards?: { __typename?: 'WhoWeArePageCards', cards?: Array<{ __typename?: 'WhoWeArePageCard', heading?: string | null, textRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type NewsListingPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6964,7 +7100,7 @@ export const NewAboutGetInvolvedPageDocument = gql`
   }
 }
     ${ImageWithAltTextFragmentDoc}
-    ${SeoFragmentDoc}`;
+${SeoFragmentDoc}`;
 export const HomepageDocument = gql`
     query homepage($isDraftFilter: Sanity_DocumentFilter) {
   allHomepage(
@@ -7051,27 +7187,27 @@ export const MeetTheTeamPageDocument = gql`
   ) {
     id: _id
     header {
-    introText
+      introText
       image {
         ...ImageWithAltText
       }
     }
     ourLeadership {
       textRaw
-    leadershipTeam {
-      ...TeamMember
-    }
+      leadershipTeam {
+        ...TeamMember
+      }
     }
     ourBoard {
       textRaw
-    boardMembers {
-      ...TeamMember
-    }
+      boardMembers {
+        ...TeamMember
+      }
     }
     documents2 {
       files {
-      ...Attachment
-    }
+        ...Attachment
+      }
     }
     governance2 {
       textRaw
@@ -7082,7 +7218,7 @@ export const MeetTheTeamPageDocument = gql`
   }
 }
     ${ImageWithAltTextFragmentDoc}
-    ${TeamMemberFragmentDoc}
+${TeamMemberFragmentDoc}
 ${AttachmentFragmentDoc}
 ${SeoFragmentDoc}`;
 export const NewAboutWhoWeArePageDocument = gql`
@@ -7093,26 +7229,32 @@ export const NewAboutWhoWeArePageDocument = gql`
     limit: 1
   ) {
     id: _id
-    header {
-      title
-      subTitle
-    }
-    breakout {
-      text
+    header2 {
+      introText
       image {
         ...ImageWithAltText
       }
     }
-    timeline {
-      title
-      subTitle
-      text: textRaw
-    }
-    usp {
-      title
-      text
+    breakout2 {
       image {
         ...ImageWithAltText
+      }
+      text
+    }
+    timeline2 {
+      timelineItems {
+        heading
+        subHeading
+        textRaw
+      }
+    }
+    weAreCards {
+      cards {
+        heading
+        textRaw
+        image {
+          ...ImageWithAltText
+        }
       }
     }
     seo {
