@@ -8,9 +8,11 @@ import {
 import { mocked } from "storybook/test";
 
 import { __setMockAuthState } from "../../../../../../../../../../.storybook/mocks/clerk";
-import useUnitDownloadExistenceCheck from "../../../../../../../../../components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
 import UnitHeader, { UnitHeaderProps } from "./UnitHeader";
+
+import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
+
 
 const meta: Meta<typeof UnitHeader> = {
   component: UnitHeader,
