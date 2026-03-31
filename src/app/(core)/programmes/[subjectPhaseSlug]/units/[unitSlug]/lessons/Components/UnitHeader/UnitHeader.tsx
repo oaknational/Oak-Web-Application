@@ -71,7 +71,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
           $gap={"spacing-16"}
         >
           <OakFlex $gap={"spacing-32"} $alignItems={"center"}>
-            <OakTertiaryInvertedButton iconName="filter">
+            <OakTertiaryInvertedButton iconName="list">
               View all units
             </OakTertiaryInvertedButton>
             <OakBox
