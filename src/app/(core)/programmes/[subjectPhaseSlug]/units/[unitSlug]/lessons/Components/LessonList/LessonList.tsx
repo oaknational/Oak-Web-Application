@@ -16,14 +16,37 @@ import CardListing from "@/components/TeacherComponents/CardListing/CardListing"
 import { SaveUnitButton } from "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton";
 import { resolveOakHref } from "@/common-lib/urls";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 type LessonListProps = UnitViewProps & {
   lessonCount: number;
 };
 
-function renderSubCopy(lesson: UnitViewProps["lessons"][number]) {
+function LessonSubcopy({
+  lesson,
+}: {
+  lesson: Readonly<UnitViewProps["lessons"][number]>;
+}) {
+  const loginRequired =
+    "loginRequired" in lesson ? lesson.loginRequired : false;
+  const geoRestricted =
+    "geoRestricted" in lesson ? lesson.geoRestricted : false;
+
+  const {
+    showSignedOutLoginRequired,
+    showSignedOutGeoRestricted,
+    showSignedInNotOnboarded,
+    showGeoBlocked,
+  } = useComplexCopyright({ loginRequired, geoRestricted });
+
+  const showComplexCopyrightTag =
+    showSignedOutLoginRequired ||
+    showSignedOutGeoRestricted ||
+    showSignedInNotOnboarded ||
+    showGeoBlocked;
+
   if (lesson.isUnpublished) return "Coming soon";
-  if (lesson.loginRequired || lesson.geoRestricted) {
+  if (showComplexCopyrightTag) {
     return (
       <OakFlex
         $justifyContent="space-between"
@@ -157,7 +180,7 @@ const LessonList = ({
                   layoutVariant="horizontal"
                   isHighlighted={false}
                   title={lesson.lessonTitle}
-                  subcopy={renderSubCopy(lesson)}
+                  subcopy={<LessonSubcopy lesson={lesson} />}
                   href={resolveOakHref({
                     page: "lesson-overview",
                     programmeSlug,
