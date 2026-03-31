@@ -144,6 +144,10 @@ describe("Lesson Overview Canonical Page", () => {
   });
 
   describe("getStaticProps", () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
     it("Should fetch the correct data", async () => {
       (
         curriculumApi2023.specialistLessonOverviewCanonical as jest.Mock
@@ -264,6 +268,43 @@ describe("Lesson Overview Canonical Page", () => {
 
       expect((result as { notFound: boolean }).notFound).toBe(true);
     });
+
+    it("should redirect to the EYFS page when lesson pathway is EYFS", async () => {
+      jest
+        .mocked(curriculumApi2023.specialistLessonOverviewCanonical)
+        .mockRejectedValueOnce(
+          new OakError({ code: "curriculum-api/not-found" }),
+        );
+      jest.mocked(curriculumApi2023.lessonOverview).mockResolvedValueOnce(
+        lessonOverviewFixture({
+          pathways: [
+            {
+              programmeSlug: "eyfs-communication-and-language",
+              unitSlug: "unit-slug",
+              unitTitle: "Unit title",
+              keyStageSlug: "early-years-foundation-stage",
+              keyStageTitle: "Early Years Foundation Stage",
+              subjectSlug: "communication-and-language",
+              subjectTitle: "Communication and language",
+            },
+          ],
+        }),
+      );
+
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "eyfs-lesson-slug",
+        },
+      });
+
+      expect(result).toEqual({
+        redirect: {
+          destination: "/teachers/eyfs/communication-and-language",
+          statusCode: 301,
+        },
+      });
+    });
+
     it('should throw an error if 2023 api throws an error that is not "curriculum-api/not-found"', async () => {
       (curriculumApi2023.lessonOverview as jest.Mock).mockRejectedValueOnce(
         new Error("Some error"),
