@@ -4,6 +4,7 @@ import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
 import { LessonList } from "./LessonList";
 
 import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
+import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 
 export type UnitViewProps = Pick<
   TeachersUnitOverviewData,
@@ -42,9 +43,18 @@ export const UnitView = ({
         $mt={["spacing-48", "spacing-56"]}
         $width={"100%"}
         $maxWidth={"spacing-1280"}
+        $position="relative"
       >
+        <OakBox
+          $position="absolute"
+          $zIndex="in-front"
+          $top="spacing-0"
+          $left="spacing-0"
+        >
+          <SkipLink href="#lessons">Skip to lessons</SkipLink>
+        </OakBox>
         <OakGridArea $colSpan={[12, 5]} />
-        <OakGridArea $colSpan={[12, 7]} $gap="spacing-56">
+        <OakGridArea $colSpan={[12, 7]} $gap="spacing-56" id="lessons">
           <LessonList
             programmeSlug={programmeSlug}
             unitSlug={unitSlug}
