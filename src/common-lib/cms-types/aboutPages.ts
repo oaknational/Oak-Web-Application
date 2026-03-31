@@ -202,3 +202,8 @@ export const getInvolvedPageSchema = z.object({
 });
 
 export type GetInvolvedPage = z.infer<typeof getInvolvedPageSchema>;
+export const newAboutGetInvolvedPageSchema = getInvolvedPageSchema;
+export type NewAboutGetInvolvedPage = GetInvolvedPage;
+
+export const aboutWorkWithUsPageSchema = getInvolvedPageWorkWithUsSchema;
+export type AboutWorkWithUsPage = z.infer<typeof getInvolvedPageWorkWithUsSchema>;
