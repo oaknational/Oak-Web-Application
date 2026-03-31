@@ -289,68 +289,71 @@ const PupilExperienceLayout = ({
     useState<LessonSectionResults>();
   const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
 
-  const fetchGoogleClassroomContext = useCallback(async () => {
-    if (!courseId || !itemId || !attachmentId) {
-      setIsContextReady(true);
-      return;
-    }
-
-    try {
-      setIsFetchingClassroomContext(true);
-      const result: AddOnContextResponse | null =
-        await googleClassroomApi.getAddOnContext({
-          courseId,
-          itemId,
-          attachmentId,
-        });
-
-      const submissionId = result?.studentContext?.submissionId;
-      const pupilLoginHint = result?.pupilLoginHint;
-      const teacherLoginHint = result?.teacherLoginHint ?? null;
-      onClassroomContextResolved({
-        pupilLoginHint: pupilLoginHint ?? null,
-        teacherLoginHint,
-        submissionId: submissionId ?? null,
-      });
-      if (submissionId && pupilLoginHint) {
-        classroomContextRef.current = {
-          submissionId,
-          pupilLoginHint,
-          attachmentId,
-          courseId,
-          itemId,
-        };
-
-        const progressResult = await googleClassroomApi.getPupilLessonProgress({
-          submissionId,
-          itemId,
-          attachmentId,
-        });
-        if (!progressResult) return;
-        const mappedSectionResults =
-          mapPupilLessonProgressToSectionResults(progressResult);
-        if (Object.keys(mappedSectionResults).length > 0) {
-          setInitialSectionResults(mappedSectionResults);
-          setLessonEngineInstanceKey((value) => value + 1);
-        }
-      }
-    } catch {
-      // Failed to get context - progress sync will be disabled
-    } finally {
-      setIsFetchingClassroomContext(false);
-      setIsContextReady(true);
-    }
-  }, [attachmentId, courseId, itemId, onClassroomContextResolved]);
-
   useEffect(() => {
-    if (
-      !isGoogleClassroomAssignment ||
-      classroomContextRef.current ||
-      !globalThis.cookieStore
-    )
-      return;
-    fetchGoogleClassroomContext();
-  }, [fetchGoogleClassroomContext, isGoogleClassroomAssignment]);
+    if (!isGoogleClassroomAssignment || classroomContextRef.current) return;
+
+    const fetchGoogleClassroomContext = async () => {
+      if (!courseId || !itemId || !attachmentId) {
+        setIsContextReady(true);
+        return;
+      }
+
+      try {
+        setIsFetchingClassroomContext(true);
+        const result: AddOnContextResponse | null =
+          await googleClassroomApi.getAddOnContext({
+            courseId,
+            itemId,
+            attachmentId,
+          });
+
+        const submissionId = result?.studentContext?.submissionId;
+        const pupilLoginHint = result?.pupilLoginHint;
+        const teacherLoginHint = result?.teacherLoginHint ?? null;
+        onClassroomContextResolved({
+          pupilLoginHint: pupilLoginHint ?? null,
+          teacherLoginHint,
+          submissionId: submissionId ?? null,
+        });
+        if (submissionId && pupilLoginHint) {
+          classroomContextRef.current = {
+            submissionId,
+            pupilLoginHint,
+            attachmentId,
+            courseId,
+            itemId,
+          };
+
+          const progressResult =
+            await googleClassroomApi.getPupilLessonProgress({
+              submissionId,
+              itemId,
+              attachmentId,
+            });
+          if (!progressResult) return;
+          const mappedSectionResults =
+            mapPupilLessonProgressToSectionResults(progressResult);
+          if (Object.keys(mappedSectionResults).length > 0) {
+            setInitialSectionResults(mappedSectionResults);
+            setLessonEngineInstanceKey((value) => value + 1);
+          }
+        }
+      } catch {
+        // Failed to get context - progress sync will be disabled
+      } finally {
+        setIsFetchingClassroomContext(false);
+        setIsContextReady(true);
+      }
+    };
+
+    void fetchGoogleClassroomContext();
+  }, [
+    attachmentId,
+    courseId,
+    isGoogleClassroomAssignment,
+    itemId,
+    onClassroomContextResolved,
+  ]);
 
   useEffect(() => {
     if (!classroomAssignmentChecked) return;
