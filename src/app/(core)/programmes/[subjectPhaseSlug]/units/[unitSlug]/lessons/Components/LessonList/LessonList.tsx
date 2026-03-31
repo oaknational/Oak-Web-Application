@@ -25,7 +25,12 @@ function renderSubCopy(lesson: UnitViewProps["lessons"][number]) {
   if (lesson.isUnpublished) return "Coming soon";
   if (lesson.loginRequired || lesson.geoRestricted) {
     return (
-      <OakFlex $justifyContent="space-between" $alignItems="flex-end">
+      <OakFlex
+        $justifyContent="space-between"
+        $alignItems={["flex-start", "flex-start", "flex-end"]}
+        $gap="spacing-16"
+        $flexDirection={["column", "column", "row"]}
+      >
         {lesson.pupilLessonOutcome}{" "}
         <OakTagFunctional
           label="Copyrighted"
