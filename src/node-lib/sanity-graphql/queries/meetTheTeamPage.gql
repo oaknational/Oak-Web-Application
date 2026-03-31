@@ -8,7 +8,6 @@ query meetTheTeamPage($isDraftFilter: Sanity_DocumentFilter) {
     limit: 1
   ) {
     id: _id
-
     header {
       introText
       image {

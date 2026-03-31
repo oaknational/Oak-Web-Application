@@ -21,7 +21,6 @@ query oaksCurriculaPage($isDraftFilter: Sanity_DocumentFilter) {
       }
       principles {
         heading
-        text
         text2Raw
       }
     }
