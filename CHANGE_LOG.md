@@ -1,3 +1,46 @@
+# [1.1028.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1027.1...v1.1028.0) (2026-03-30)
+
+
+### Features
+
+* **LESQ-1866:** add new unit page ([77646af](https://github.com/oaknational/Oak-Web-Application/commit/77646af0fd6c5d73da3d8564a0e745506d9f0d0c))
+* **LESQ-1866:** update unit list links to new unit page ([411a87c](https://github.com/oaknational/Oak-Web-Application/commit/411a87c3f1751f90bd966bc126e1ef36cf387b96))
+
+## [1.1027.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1027.0...v1.1027.1) (2026-03-30)
+
+
+### Bug Fixes
+
+* ensure we await cookieStore init before fetching GC context ([0faaff3](https://github.com/oaknational/Oak-Web-Application/commit/0faaff3e0aca2b4fbddf6344371cd1e51917a88d))
+
+# [1.1027.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1026.0...v1.1027.0) (2026-03-27)
+
+
+### Bug Fixes
+
+* fix broken tests ([ae5361f](https://github.com/oaknational/Oak-Web-Application/commit/ae5361ffcf6cbaffb7774f9ce90a5f3a8848f509))
+* remove typeof as safe to compare directly ([75411c4](https://github.com/oaknational/Oak-Web-Application/commit/75411c4eb76e66e9b98e94ba24d7001272ef2568))
+* sort unit sequence by year as well as unit order ([f0701af](https://github.com/oaknational/Oak-Web-Application/commit/f0701af1d499d5cbb159fc7baab8e08d8980849f))
+
+
+### Features
+
+* add mock to test file ([94507cd](https://github.com/oaknational/Oak-Web-Application/commit/94507cd2be7b250405b4976a98f03510d5173e59))
+* add prev and next unit to response data ([fae9500](https://github.com/oaknational/Oak-Web-Application/commit/fae9500a4fd9f657def29349532e46fc4d9a7815))
+* add teachers unit page query ([11efe75](https://github.com/oaknational/Oak-Web-Application/commit/11efe75020fdbddd779c24338674f243912497dc))
+* adds new properties to browse refined event and updates tests ([e3dc650](https://github.com/oaknational/Oak-Web-Application/commit/e3dc65048fd98ffa2fe82215c1f756e2181d7cba))
+* adds property to avo event, iterates classroom version, tierDescription ([f899cb8](https://github.com/oaknational/Oak-Web-Application/commit/f899cb84d8212d2c8451d56cceb4444d961d5a3f))
+* adds test for anaytics components and adds mock for page files ([c424fb3](https://github.com/oaknational/Oak-Web-Application/commit/c424fb3f9b26838d2dfd7d1448d7f59a15b3daa2))
+* fire tracking event from layout page ([cda6e6b](https://github.com/oaknational/Oak-Web-Application/commit/cda6e6b9593097c8798258d5ccf0b6f2441a453d))
+* implement avo tracking on g-classroom journey ([ff3e1e1](https://github.com/oaknational/Oak-Web-Application/commit/ff3e1e17c05b67653ac3622d693a648e6a0b508f))
+* init feature branch ([194e997](https://github.com/oaknational/Oak-Web-Application/commit/194e997d0704c72d544fc429807c5e0feb60c0db))
+* pupil classroomAddOnOpened tracking event  implementation ([c0d21d2](https://github.com/oaknational/Oak-Web-Application/commit/c0d21d2e0689839fee1fb30c6ef42179e14b0a5c))
+* readonly components and remove duplicate code ([6ecb9d5](https://github.com/oaknational/Oak-Web-Application/commit/6ecb9d5ccd5f15703f6958aede37feb7c7ba57f9))
+* trigger ci:cd ([9312f26](https://github.com/oaknational/Oak-Web-Application/commit/9312f26036afe5ed669ce99d6ea750231bc5d4a1))
+* update avo branch to point at main ([af2392c](https://github.com/oaknational/Oak-Web-Application/commit/af2392ce2a2a90859be68651c2da933a1fea9610))
+* update query with unit sequence data ([1a6ab89](https://github.com/oaknational/Oak-Web-Application/commit/1a6ab89358fb5a5a2798c54d3f4a0545f6a1f61f))
+* utilise zustard and a specific analytics hooks and context for google classroom ([35f4a08](https://github.com/oaknational/Oak-Web-Application/commit/35f4a089444b101942f456177d2a88b94b937a1e))
+
 # [1.1026.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1025.0...v1.1026.0) (2026-03-26)
 
 
