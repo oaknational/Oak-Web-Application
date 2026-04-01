@@ -203,6 +203,7 @@ export const quizQuestions: NonNullable<QuizQuestion>[] = [
 
     questionType: "multiple-choice",
     order: 1,
+    _state: "published",
   },
   {
     hint: "A Horse chestnut tree grows from a conker.",
@@ -244,6 +245,7 @@ export const quizQuestions: NonNullable<QuizQuestion>[] = [
     questionStem: questionStemWithImage,
     questionType: "multiple-choice",
     order: 2,
+    _state: "published",
   },
   {
     hint: "A Horse chestnut tree grows from a conker.",
@@ -262,6 +264,7 @@ export const quizQuestions: NonNullable<QuizQuestion>[] = [
     ],
     questionType: "multiple-choice",
     order: 3,
+    _state: "published",
   },
   {
     hint: "A Horse chestnut tree grows from a conker.",
@@ -280,6 +283,7 @@ export const quizQuestions: NonNullable<QuizQuestion>[] = [
     ],
     questionType: "match",
     order: 4,
+    _state: "published",
   },
   {
     hint: "A Horse chestnut tree grows from a conker.",
@@ -299,6 +303,7 @@ export const quizQuestions: NonNullable<QuizQuestion>[] = [
 
     questionType: "order",
     order: 5,
+    _state: "published",
   },
   {
     hint: "A Horse chestnut tree grows from a conker.",
@@ -317,10 +322,11 @@ export const quizQuestions: NonNullable<QuizQuestion>[] = [
     ],
     questionType: "short-answer",
     order: 6,
+    _state: "published",
   },
 ];
 
-export const quizQuestionsNoImages: QuizQuestion[] = [
+export const quizQuestionsNoImages: NonNullable<QuizQuestion>[] = [
   {
     hint: "Main clause is the most powerful of the clauses.",
     active: false,
@@ -334,6 +340,7 @@ export const quizQuestionsNoImages: QuizQuestion[] = [
 
     questionType: "multiple-choice",
     order: 1,
+    _state: "published",
   },
   {
     hint: "A Horse chestnut tree grows from a conker.",
@@ -352,10 +359,11 @@ export const quizQuestionsNoImages: QuizQuestion[] = [
     ],
     questionType: "short-answer",
     order: 2,
+    _state: "published",
   },
 ];
 
-export const exitQuizQuestions: QuizQuestion[] = [
+export const exitQuizQuestions: NonNullable<QuizQuestion>[] = [
   {
     hint: "You need to multiply both sides of the equation by the reciprocal of $$1\\over 3$$. Check by substitution.",
     order: 1,
@@ -375,6 +383,7 @@ export const exitQuizQuestions: QuizQuestion[] = [
       },
     ],
     questionType: "short-answer",
+    _state: "published",
   },
   {
     hint: "You need to maintain equality by performing the same operation to both sides, think about which order you should do the operations in. Substitute to check your answers.",
@@ -412,6 +421,7 @@ export const exitQuizQuestions: QuizQuestion[] = [
       { text: "Match each equation to its solution.", type: "text" },
     ],
     questionType: "match",
+    _state: "published",
   },
   {
     hint: "$${1\\over 5}x$$ is equivalent to $$x\\over 5$$ because dividing by a number (e.g. 5) is the same as multiplying by its reciprocal $$ ({1\\over 5})$$. You can use numerical values to test whether expressions are equivalent.",
@@ -456,6 +466,7 @@ export const exitQuizQuestions: QuizQuestion[] = [
       },
     ],
     questionType: "match",
+    _state: "published",
   },
   {
     hint: "Multiply both sides of the equation by $$a$$ first. Then what is your final step to solve for $$a$$?",
@@ -477,6 +488,7 @@ export const exitQuizQuestions: QuizQuestion[] = [
       },
     ],
     questionType: "short-answer",
+    _state: "published",
   },
   {
     hint: "$${4\\over 5a}=6$$ multiply both sides of the equation by $$5a$$. Then think about how to solve this new equation.",
@@ -512,6 +524,7 @@ export const exitQuizQuestions: QuizQuestion[] = [
     questionUid: "QUES-RINS2-54013",
     questionStem: questionStemWithImage,
     questionType: "multiple-choice",
+    _state: "published",
   },
   {
     hint: "Start by multiplying both sides of the equation by $$(a+3)$$. Make sure you use brackets where necessary.",
@@ -547,6 +560,7 @@ export const exitQuizQuestions: QuizQuestion[] = [
     questionUid: "QUES-WNIR2-54014",
     questionStem: questionStemWithImage,
     questionType: "multiple-choice",
+    _state: "published",
   },
   {
     hint: "A Horse chestnut tree grows from a conker.",
@@ -566,5 +580,6 @@ export const exitQuizQuestions: QuizQuestion[] = [
 
     questionType: "order",
     order: 5,
+    _state: "published",
   },
 ];

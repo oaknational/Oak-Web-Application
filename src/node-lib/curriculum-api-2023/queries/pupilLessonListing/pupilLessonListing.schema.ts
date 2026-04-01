@@ -2,9 +2,8 @@ import { z } from "zod";
 import {
   syntheticUnitvariantLessonsSchema,
   syntheticProgrammesByYearSchema,
+  SyntheticUnitvariantLessonsCamel,
 } from "@oaknational/oak-curriculum-schema";
-
-import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const lessonBrowseDataSchema = z.array(
   syntheticUnitvariantLessonsSchema.omit({
@@ -19,13 +18,14 @@ export const lessonBackLintDataSchema = z.array(
   }),
 );
 
-export type LessonListingBrowseData = ConvertKeysToCamelCase<
-  z.infer<typeof lessonBrowseDataSchema>
+export type LessonListingBrowseData = Array<
+  Omit<SyntheticUnitvariantLessonsCamel, "nullUnitvariantId">
 >;
 
-export type LessonListingBackLinkData = ConvertKeysToCamelCase<
-  z.infer<typeof lessonBackLintDataSchema>
->;
+export type LessonListingBackLinkData = Array<{
+  programmeSlug: string;
+  isLegacy: boolean;
+}>;
 
 export type PupilLessonListingQueryData = {
   browseData: LessonListingBrowseData;

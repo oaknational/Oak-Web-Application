@@ -16,7 +16,6 @@ import {
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
@@ -29,6 +28,7 @@ import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementFor
 import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 import { KeyStageTitleValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
 import { getPhaseFromCategory } from "@/utils/curriculum/formatting";
+import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 export type CurriculumDownload = {
   label: string;
@@ -173,7 +173,7 @@ function CurriculumDownloads(
   };
 
   // Simplified onFormSubmit using helper functions
-  const onFormSubmit = async (data: ResourceFormProps) => {
+  const onFormSubmit = async (data: ResourceFormValues) => {
     try {
       setApiError(null);
       await onHubspotSubmit(data);

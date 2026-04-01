@@ -1,3 +1,5 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import LessonOverviewMediaClips from "./LessonOverviewMediaClips";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -5,7 +7,6 @@ import { resolveOakHref } from "@/common-lib/urls";
 import lessonMediaClipsFixtures, {
   additionalCycles,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 jest.mock("@/common-lib/urls", () => ({
   resolveOakHref: jest.fn(),

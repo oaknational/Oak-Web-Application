@@ -1,5 +1,5 @@
 import useLocalStorageForDownloads from "../../hooks/downloadAndShareHooks/useLocalStorageForDownloads";
-import { OnboardingFormProps } from "../OnboardingForm.schema";
+import { OnboardingFormValues } from "../OnboardingForm.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
 
@@ -7,7 +7,7 @@ export const reportError = errorReporter("setOnboardingLocalStorage");
 
 interface OnboardingData {
   localStorageForDownloads: ReturnType<typeof useLocalStorageForDownloads>;
-  data: OnboardingFormProps;
+  data: OnboardingFormValues;
   userEmail?: string;
 }
 

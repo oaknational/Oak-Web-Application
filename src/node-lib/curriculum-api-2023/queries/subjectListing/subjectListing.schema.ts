@@ -18,7 +18,7 @@ export const subjectSchema = z.object({
   pathwaySlug: pathwaySlugs.nullable(),
   pathwayTitle: pathways.nullable(),
   actions: actionsSchema,
-  features: z.object({}).passthrough().optional(),
+  features: z.looseObject({}).optional(),
 });
 
 const keyStageDataRaw = z.object({
@@ -48,7 +48,7 @@ export const subjectLisitingRawSchema = z.object({
   subjectFeatures: z.array(
     z.object({
       slug: z.string(),
-      features: z.object({}).passthrough(),
+      features: z.looseObject({}),
     }),
   ),
 });

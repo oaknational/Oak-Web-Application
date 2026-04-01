@@ -1,3 +1,5 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import { LessonDownloadsCanonical } from "./lessonDownloadsCanonical.schema";
 import {
   LessonDownloadsListSchema,
@@ -7,7 +9,6 @@ import { RawSyntheticUVLesson } from "./rawSyntheticUVLesson.schema";
 
 import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { constructPathwayLesson } from "@/node-lib/curriculum-api-2023/helpers";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const constructCanonicalLessonDownloads = ({
   downloads,

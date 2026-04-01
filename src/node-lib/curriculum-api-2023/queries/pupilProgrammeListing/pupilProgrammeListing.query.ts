@@ -1,3 +1,5 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import {
   PupilProgrammeListingData,
   pupilProgrammeListingSchema,
@@ -6,7 +8,6 @@ import {
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { PupilProgrammeListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 /**
  *

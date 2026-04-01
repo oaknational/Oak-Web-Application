@@ -2,13 +2,13 @@ import {
   mediaClipsFixture,
   additionalCyclesFixture,
 } from "@oaknational/oak-curriculum-schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import {
   CanonicalLessonMediaClips,
   LessonMediaClipsData,
   MediaClipListCamelCase,
 } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const lessonMediaClipsFixtures = (
   partial?: Partial<LessonMediaClipsData>,

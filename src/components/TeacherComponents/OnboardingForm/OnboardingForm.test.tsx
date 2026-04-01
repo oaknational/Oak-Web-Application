@@ -8,7 +8,10 @@ import mockRouter from "next-router-mock";
 import fetchMock from "jest-fetch-mock";
 
 import OnboardingForm from "./OnboardingForm";
-import { OnboardingFormProps } from "./OnboardingForm.schema";
+import {
+  OnboardingFormProps,
+  OnboardingFormValues,
+} from "./OnboardingForm.schema";
 import * as onboardingActions from "./onboardingActions";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -74,7 +77,7 @@ describe("Onboarding form", () => {
   });
   it("should render the Controller component and handle checkbox change", async () => {
     fetchMock.mockResponse(JSON.stringify(false));
-    renderForm({}, false);
+    const { unmount } = renderForm({}, false);
 
     const checkbox = await screen.findByRole("checkbox", {
       name: /Sign up for our latest resources and updates by email. Unsubscribe at any time/i,
@@ -84,6 +87,8 @@ describe("Onboarding form", () => {
     fireEvent.click(checkbox);
 
     expect(checkbox).toBeChecked();
+
+    unmount();
   });
 
   it.each<[string, string, boolean]>([
@@ -212,12 +217,12 @@ function renderForm(
   forceHideNewsletterSignUp: boolean = true,
 ) {
   const { result } = renderHook(() =>
-    useForm<OnboardingFormProps>({
+    useForm<OnboardingFormValues>({
       defaultValues: formState,
     }),
   );
 
-  renderWithProviders()(
+  const { unmount } = renderWithProviders()(
     <OnboardingForm
       handleSubmit={result.current.handleSubmit}
       formState={result.current.formState}
@@ -230,6 +235,7 @@ function renderForm(
       <div />
     </OnboardingForm>,
   );
+  return { unmount };
 }
 
 async function submitForm(
