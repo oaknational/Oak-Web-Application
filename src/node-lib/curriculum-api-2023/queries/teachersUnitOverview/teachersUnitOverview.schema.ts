@@ -88,6 +88,7 @@ export const unitSequenceResponseSchema = z.array(
     nullUnitvariantId: z.number(),
     yearOrder: z.number(),
     year: programmeFieldsSchema.shape.year,
+    isSwimming: z.boolean().nullish(),
   }),
 );
 export type UnitSequence = z.infer<typeof unitSequenceResponseSchema>;
