@@ -3,7 +3,6 @@
 import {
   OakBox,
   OakFlex,
-  OakHeading,
   OakLI,
   OakP,
   OakSpan,
@@ -88,12 +87,12 @@ const LessonList = ({
     <OakFlex $flexDirection="column">
       <OakFlex $justifyContent="space-between" $alignItems="flex-start">
         <OakBox
-          as="h2"
           $background="bg-decorative3-very-subdued"
           $pa="spacing-20"
           $btlr="border-radius-l"
           $btrr="border-radius-l"
           $font="body-2"
+          aria-hidden={true}
         >
           <OakSpan $font="body-2-bold">Unit {unitIndex}</OakSpan> of {unitCount}
         </OakBox>
@@ -123,9 +122,13 @@ const LessonList = ({
           $gap="spacing-16"
           $ph={["spacing-0", "spacing-0", "spacing-24"]}
         >
-          <OakHeading tag="h2" $font="heading-5">
+          <OakBox
+            as="h2"
+            $font="heading-5"
+            aria-label={`Unit ${unitIndex} of ${unitCount}: ${unitTitle}`}
+          >
             {unitTitle}
-          </OakHeading>
+          </OakBox>
           {unitDescription ? (
             <OakP $font="body-2">{unitDescription}</OakP>
           ) : null}
@@ -134,7 +137,7 @@ const LessonList = ({
         <OakBox>
           <OakFlex $justifyContent="space-between" $alignItems="flex-start">
             <OakBox
-              as="h3"
+              as="h2"
               $background="bg-decorative1-subdued"
               $pa="spacing-20"
               $btlr="border-radius-l"
