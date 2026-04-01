@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { OakTooltipProps } from "@oaknational/oak-components";
 import { useSearchParams } from "next/navigation";
 import mockRouter from "next-router-mock";
+import { PostSubmissionState } from "@oaknational/google-classroom-addon/dist/types";
 
 import {
   PupilExperienceView,
@@ -482,7 +483,7 @@ describe("PupilExperienceView", () => {
         pupilLoginHint: "pupil-1",
       });
       mockedGoogleClassroomApi.getPostSubmissionState.mockResolvedValue({
-        submissionState: "TURNED_IN",
+        submissionState: PostSubmissionState.CREATED,
       });
       mockedGoogleClassroomApi.getPupilLessonProgress.mockResolvedValue({
         submissionId: "submission-1",
@@ -563,7 +564,7 @@ describe("PupilExperienceView", () => {
         pupilLoginHint: "pupil-1",
       });
       mockedGoogleClassroomApi.getPostSubmissionState.mockResolvedValue({
-        submissionState: "CREATED",
+        submissionState: PostSubmissionState.CREATED,
       });
 
       jest
@@ -687,7 +688,7 @@ describe("PupilExperienceView", () => {
         pupilLoginHint: "pupil-1",
       });
       mockedGoogleClassroomApi.getPostSubmissionState.mockResolvedValue({
-        submissionState: "CREATED",
+        submissionState: PostSubmissionState.CREATED,
       });
       mockedGoogleClassroomApi.submitPupilProgress.mockRejectedValueOnce(
         new Error("submit failed"),
