@@ -1,3 +1,11 @@
+# [1.1033.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1032.0...v1.1033.0) (2026-04-01)
+
+
+### Features
+
+* switch to avo main branch ([26ad398](https://github.com/oaknational/Oak-Web-Application/commit/26ad398bc21e5d6fa96ecd00c8f0d30c4c16e13a))
+* trigger ci:cd ([01c6338](https://github.com/oaknational/Oak-Web-Application/commit/01c6338ea75ad075e603ef71e22af7f19a9477c9))
+
 # [1.1032.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1031.1...v1.1032.0) (2026-04-01)
 
 
