@@ -3,6 +3,7 @@
 import {
   UpsertPupilLessonProgressArgs,
   PupilLessonProgress,
+  PostSubmissionState,
 } from "@oaknational/google-classroom-addon/types";
 import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
@@ -223,7 +224,7 @@ export type GetPostSubmissionStateArgs = {
 };
 
 export type GetPostSubmissionStateResponse = {
-  submissionState: string;
+  submissionState: PostSubmissionState;
 };
 
 const getPupilLessonProgress = async (
