@@ -36,6 +36,7 @@ query teachersUnitOverview($programmeSlug: String!, $unitSlug: String!) {
     yearOrder: programme_fields(path: "year_display_order")
     year: programme_fields(path: "year")
     optionalityTitle: programme_fields(path: "optionality")
+    isSwimming: features(path: "pe_swimming")
     nullUnitvariantId: null_unitvariant_id
   }
 }

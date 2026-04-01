@@ -305,6 +305,98 @@ describe("getUnitCounts", () => {
     expect(result.unitCount).toBe(3);
     expect(result.unitIndex).toBe(2);
   });
+
+  it("filters out swimming units for non-swimming units", () => {
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "unit-1",
+        unitTitle: "Unit 1",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "7",
+      },
+      {
+        unitSlug: "swimming-and-water-safety-1",
+        unitTitle: "Swimming and water safety 1",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "7",
+        isSwimming: true,
+      },
+      {
+        unitSlug: "unit-3",
+        unitTitle: "Unit 3",
+        unitDescription: null,
+        unitOrder: 3,
+        nullUnitvariantId: 3,
+        yearOrder: 1,
+        year: "7",
+      },
+    ];
+
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 1,
+    });
+
+    expect(result.unitCount).toBe(2);
+    expect(result.unitIndex).toBe(1);
+  });
+
+  it("counts only swimming units for swimming units", () => {
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "unit-1",
+        unitTitle: "Unit 1",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "7",
+      },
+      {
+        unitSlug: "swimming-and-water-safety-1",
+        unitTitle: "Swimming and water safety 1",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "7",
+        isSwimming: true,
+      },
+      {
+        unitSlug: "swimming-and-water-safety-2",
+        unitTitle: "Swimming and water safety 2",
+        unitDescription: null,
+        unitOrder: 4,
+        nullUnitvariantId: 4,
+        yearOrder: 1,
+        year: "7",
+        isSwimming: true,
+      },
+      {
+        unitSlug: "unit-3",
+        unitTitle: "Unit 3",
+        unitDescription: null,
+        unitOrder: 3,
+        nullUnitvariantId: 3,
+        yearOrder: 1,
+        year: "7",
+      },
+    ];
+
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 4,
+    });
+
+    expect(result.unitCount).toBe(2);
+    expect(result.unitIndex).toBe(2);
+  });
 });
 
 describe("getNeighbourUnits", () => {

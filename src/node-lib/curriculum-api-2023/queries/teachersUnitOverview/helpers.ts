@@ -126,14 +126,24 @@ export const getUnitCounts = ({
     throw new OakError({ code: "curriculum-api/not-found" });
   }
 
+  const isCurrentUnitSwimming = currentUnit.isSwimming === true;
   const unitsForYear = unitSequenceData
-    .filter((u) => u.year === currentUnit.year)
     .reduce((acc: UnitSequence, unit) => {
+      // Only count optionality units once
       if (!acc.some((u) => u.nullUnitvariantId === unit.nullUnitvariantId)) {
         acc.push(unit);
       }
       return acc;
     }, [])
+    .filter((u) => {
+      // Swimming units are grouped across all years; all other units are grouped by year.
+      if (isCurrentUnitSwimming) {
+        return u.isSwimming === true;
+      }
+
+      // Exclude swimming units from all years.
+      return u.year === currentUnit.year && u.isSwimming !== true;
+    })
     .sort((a, b) => a.unitOrder - b.unitOrder);
 
   return {
