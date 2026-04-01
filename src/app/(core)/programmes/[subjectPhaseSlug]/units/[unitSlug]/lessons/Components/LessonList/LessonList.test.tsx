@@ -91,11 +91,13 @@ describe("LessonList", () => {
   it("renders unit and lesson summary content", () => {
     render(<LessonList {...defaultProps} />);
 
-    expect(screen.getByRole("heading", { name: "Cells" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Unit 2 of 12: Cells" }),
+    ).toBeInTheDocument();
     expect(screen.getByText("Learn about cells")).toBeInTheDocument();
-    expect(screen.getByText("Unit 2")).toBeInTheDocument();
-    expect(screen.getByText("of 12")).toBeInTheDocument();
-    expect(screen.getByText("lessons in unit")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "3 lessons in unit" }),
+    ).toBeInTheDocument();
   });
 
   it("renders links for published lessons and resolves hrefs", () => {
