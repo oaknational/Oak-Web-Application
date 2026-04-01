@@ -1,13 +1,14 @@
 import { MeetTheTeamContainer } from "./";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("MeetTheTeamContainer", () => {
   it("renders correctly", () => {
     const { baseElement, getByRole } = render(
-      <MeetTheTeamContainer title={"TESTING_TITLE"} text="TEST_TEXT">
+      <MeetTheTeamContainer title={"TESTING_TITLE"} text={portableTextFromString("TEST_TEXT")}>
         TEST_CONTENT
       </MeetTheTeamContainer>,
     );
