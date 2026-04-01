@@ -7,10 +7,10 @@ import renderWithProviders from "../../__helpers__/renderWithProviders";
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
 import GetInvolved, {
-  GetInvolvedPage,
+  GetInvolvedPageProps,
   getStaticProps,
 } from "@/pages/about-us/get-involved";
-import { portableTextFromString } from "@/__tests__/__helpers__/cms";
+import { portableTextFromString, mockImageAsset } from "@/__tests__/__helpers__/cms";
 import CMSClient from "@/node-lib/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 jest.mock("../../../node-lib/cms");
@@ -21,12 +21,10 @@ jest.mock("@mux/mux-player-react/lazy", () => {
   });
 });
 
-const testAboutWhoWeArePageData: GetInvolvedPage["pageData"] = {
+const testAboutWhoWeArePageData: GetInvolvedPageProps["pageData"] = {
   ...testAboutPageBaseData,
   header: {
-    textRaw: portableTextFromString(
-      "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
-    ),
+    introText: "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
   },
   collaborate: {
     researchPanelTextRaw: portableTextFromString(
@@ -40,6 +38,7 @@ const testAboutWhoWeArePageData: GetInvolvedPage["pageData"] = {
     textRaw: portableTextFromString(
       `We're a fast-paced and innovative team, working to support and inspire teachers to deliver great teaching, so every pupil benefits. All our roles are remote-first. If you want to be part of something unique that's making a difference to millions of children's lives, we'd love to hear from you.`,
     ),
+    image: mockImageAsset(),
   },
 };
 

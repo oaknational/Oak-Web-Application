@@ -10,6 +10,7 @@ import CMSClient from "../../../node-lib/cms";
 import { NewAboutWhoWeArePage } from "../../../common-lib/cms-types";
 
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import { portableTextFromString, mockImageAsset } from "@/__tests__/__helpers__/cms";
 
 jest.mock("../../../node-lib/cms");
 jest.mock("@mux/mux-player-react/lazy", () => {
@@ -21,52 +22,33 @@ jest.mock("@mux/mux-player-react/lazy", () => {
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-const mockImage = {
-  asset: {
-    _id: "image-1-300x300-png",
-    url: "https://cdn.sanity.io/images/p/d/1-300x300.png",
-  },
-  altText: "test image",
-};
-
 const mockPageData: NewAboutWhoWeArePage = {
-  header: {
-    title: "About Oak",
-    subTitle: "We create free resources for teachers.",
+  header2: {
+    introText: "We create free resources for teachers.",
+    image: mockImageAsset(),
   },
-  breakout: {
-    image: mockImage,
+  breakout2: {
+    image: mockImageAsset(),
     text: "Oak National Academy was created in response to the pandemic.",
   },
-  timeline: [
-    {
-      title: "2020",
-      subTitle: "Oak is born",
-      text: [
-        {
-          _key: "key0001",
-          _type: "block",
-          children: [
-            {
-              _key: "key0002",
-              _type: "span",
-              marks: [],
-              text: "Oak launched during lockdown.",
-            },
-          ],
-          markDefs: [],
-          style: "normal",
-        },
-      ],
-    },
-  ],
-  usp: [
-    {
-      title: "Free",
-      image: mockImage,
-      text: "All our resources are free.",
-    },
-  ],
+  timeline2: {
+    timelineItems: [
+      {
+        heading: "2020",
+        subHeading: "Oak is born",
+        textRaw: portableTextFromString("Oak launched during lockdown."),
+      },
+    ],
+  },
+  weAreCards: {
+    cards: [
+      {
+        heading: "Free",
+        image: mockImageAsset(),
+        textRaw: portableTextFromString("All our resources are free."),
+      },
+    ],
+  },
 };
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({

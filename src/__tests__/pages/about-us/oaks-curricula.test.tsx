@@ -3,7 +3,7 @@ import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
-import { portableTextFromString } from "@/__tests__/__helpers__/cms";
+import { portableTextFromString, mockImageAsset } from "@/__tests__/__helpers__/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import OaksCurricula, {
   OaksCurriculaPageProps,
@@ -13,39 +13,32 @@ import CMSClient from "@/node-lib/cms";
 
 jest.mock("../../../node-lib/cms");
 
-const mockImage = {
-  altText: "test image",
-  isPresentational: false,
-  asset: { _id: "image-123", url: "https://cdn.sanity.io/images/test.png" },
-  hotspot: null,
-};
-
 const mockPageData: OaksCurriculaPageProps["pageData"] = {
-  id: "newAboutCorePage.oaksCurricula",
   header: {
-    subtitlePortableText: portableTextFromString(
-      "Oak offers complete curriculum support for clarity and coherence in every national curriculum subject.",
-    ),
-    image: mockImage,
+    introText: "Oak offers complete curriculum support for clarity and coherence in every national curriculum subject.",
+    image: mockImageAsset(),
   },
   guidingPrinciples: {
-    image: mockImage,
+    textRaw: portableTextFromString("Our guiding principles guide our approach."),
+    image: mockImageAsset(),
     principles: [
       {
         heading: "Evidence-informed",
-        text: "Our approach enables the rigorous application of research outcomes.",
+        text2Raw: portableTextFromString("Our approach enables the rigorous application of research outcomes."),
       },
       {
         heading: "Knowledge and vocabulary rich",
-        text: "Our curriculum is knowledge and vocabulary rich.",
+        text2Raw: portableTextFromString("Our curriculum is knowledge and vocabulary rich."),
       },
     ],
   },
   currentPartners: {
-    partners: [{ logo: mockImage }],
+    textRaw: portableTextFromString("Our current partners"),
+    partners: [{ logo: mockImageAsset() }],
   },
   legacyPartners: {
-    partners: [{ logo: mockImage }],
+    textRaw: portableTextFromString("Our legacy partners"),
+    partners: [{ logo: mockImageAsset() }],
   },
   seo: null,
 };
@@ -89,7 +82,10 @@ describe("pages/about/oaks-curricula.tsx", () => {
   it("does not render current partners section when no current partners", () => {
     const pageDataWithoutCurrentPartners = {
       ...mockPageData,
-      currentPartners: { partners: null },
+      currentPartners: { 
+        textRaw: portableTextFromString("Our current partners"),
+        partners: [],
+      },
     };
     const { queryByText } = renderWithProviders()(
       <OaksCurricula
@@ -108,7 +104,10 @@ describe("pages/about/oaks-curricula.tsx", () => {
   it("does not render legacy partners section when no legacy partners", () => {
     const pageDataWithoutLegacyPartners = {
       ...mockPageData,
-      legacyPartners: { partners: null },
+      legacyPartners: { 
+        textRaw: portableTextFromString("Our legacy partners"),
+        partners: [],
+      },
     };
     const { queryByText } = renderWithProviders()(
       <OaksCurricula
@@ -127,8 +126,14 @@ describe("pages/about/oaks-curricula.tsx", () => {
   it("does not render curriculum partners section when no partners at all", () => {
     const pageDataWithoutPartners = {
       ...mockPageData,
-      currentPartners: { partners: null },
-      legacyPartners: { partners: null },
+      currentPartners: { 
+        textRaw: portableTextFromString("Our current partners"),
+        partners: [],
+      },
+      legacyPartners: { 
+        textRaw: portableTextFromString("Our legacy partners"),
+        partners: [],
+      },
     };
     const { queryByText } = renderWithProviders()(
       <OaksCurricula
