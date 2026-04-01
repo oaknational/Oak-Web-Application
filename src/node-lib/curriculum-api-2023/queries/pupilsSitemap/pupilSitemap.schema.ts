@@ -5,8 +5,6 @@ import {
   syntheticUnitvariantLessonsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
-import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
-
 export const pupilsSitemapDataSchema = z.object({
   programmes: z.array(
     syntheticProgrammesByYearSchema.pick({
@@ -28,6 +26,17 @@ export const pupilsSitemapDataSchema = z.object({
   ),
 });
 
-export type PupilsSitemapBrowseData = ConvertKeysToCamelCase<
-  z.infer<typeof pupilsSitemapDataSchema>
->;
+export type PupilsSitemapBrowseData = {
+  programmes: Array<{
+    programmeSlug: string;
+  }>;
+  units: Array<{
+    programmeSlug: string;
+    unitSlug: string;
+  }>;
+  lessons: Array<{
+    programmeSlug: string;
+    unitSlug: string;
+    lessonSlug: string;
+  }>;
+};

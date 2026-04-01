@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z, ZodError } from "zod";
 
 import {
   getLocalstorageWithSchema,
@@ -45,7 +45,16 @@ describe("localstorage", () => {
             two: z.string(),
           }),
         );
-      }).toThrow("Expected string, received number");
+      }).toThrow(
+        new ZodError([
+          {
+            expected: "string",
+            code: "invalid_type",
+            path: ["two"],
+            message: "Invalid input: expected string, received number",
+          },
+        ]),
+      );
     });
 
     it("JSON invalid", () => {

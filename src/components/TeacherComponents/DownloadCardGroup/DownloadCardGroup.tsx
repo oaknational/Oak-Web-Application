@@ -8,7 +8,7 @@ import {
   OakHeading,
 } from "@oaknational/oak-components";
 
-import type { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import type { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
@@ -18,7 +18,7 @@ type Download = LessonDownloadsPageData["downloads"][number];
 type AdditionalFile = LessonDownloadsPageData["additionalFiles"][number];
 
 type DownloadCardProps = {
-  control: Control<ResourceFormProps>;
+  control: Control<ResourceFormValues>;
   download: Download | AdditionalFile;
   downloadType: string;
   triggerForm: () => void;
@@ -78,7 +78,7 @@ const DownloadCard: FC<DownloadCardProps> = ({
 export type DownloadCardGroupProps = {
   downloads?: LessonDownloadsPageData["downloads"];
   additionalFiles?: LessonDownloadsPageData["additionalFiles"];
-  control: Control<ResourceFormProps>;
+  control: Control<ResourceFormValues>;
   hasError?: boolean;
   triggerForm: () => void;
 };

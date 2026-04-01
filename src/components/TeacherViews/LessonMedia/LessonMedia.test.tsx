@@ -1,5 +1,6 @@
 import { within } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import { LessonMedia } from "./LessonMedia.view";
 
@@ -7,7 +8,6 @@ import { resolveOakHref } from "@/common-lib/urls";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
@@ -21,7 +21,6 @@ const render = renderWithProviders();
 const lesson = {
   ...lessonMediaClipsFixtures(),
   lessonOutline: [{ lessonOutline: "Sample outline" }],
-  actions: [{ action: "Sample action" }],
 };
 const mediaClips = lesson.mediaClips;
 const firstMediaClip = mediaClips ? mediaClips["intro"] : null;
@@ -209,7 +208,6 @@ describe("LessonMedia view", () => {
         }) as MediaClipListCamelCase,
       }),
       lessonOutline: [{ lessonOutline: "Sample outline" }],
-      actions: [{ action: "Sample action" }],
     };
     const { getByTestId } = render(
       <LessonMedia lesson={lessonWithUndefinedDuration} isCanonical={false} />,
