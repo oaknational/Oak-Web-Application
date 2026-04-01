@@ -1,11 +1,9 @@
-import {
-  mapToSubmitPupilProgress,
-  ClassroomContext,
-} from "./mapToSubmitPupilProgress";
+import { type ClassroomProgressContext } from "./classroomAssignmentContext";
+import { mapToSubmitPupilProgress } from "./mapToSubmitPupilProgress";
 
 import type { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
 
-const mockContext: ClassroomContext = {
+const mockContext: ClassroomProgressContext = {
   submissionId: "submission-123",
   pupilLoginHint: "123456789",
   attachmentId: "attachment-456",
@@ -290,7 +288,7 @@ describe("mapToSubmitPupilProgress", () => {
     const missingContext = {
       ...mockContext,
       submissionId: undefined,
-    } as unknown as ClassroomContext;
+    } as unknown as ClassroomProgressContext;
 
     expect(() => mapToSubmitPupilProgress(missingContext, {})).toThrow();
   });

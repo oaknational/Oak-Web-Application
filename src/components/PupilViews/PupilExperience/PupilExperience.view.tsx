@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import { useSearchParams } from "next/navigation";
 import { createGlobalStyle } from "styled-components";
 import {
   OakBox,
@@ -44,18 +43,19 @@ import {
 } from "@/browser-lib/avo/Avo";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
-import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 import type { AddOnContextResponse } from "@/browser-lib/google-classroom/googleClassroomApi";
-import {
-  mapToSubmitPupilProgress,
-  type ClassroomContext,
-} from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
+import { type ClassroomProgressContext } from "@/browser-lib/google-classroom";
+import { mapToSubmitPupilProgress } from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
 import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
 import {
   GoogleClassroomAnalyticsProvider,
   useGoogleClassroomAnalytics,
 } from "@/components/GoogleClassroom/useGoogleClassroomAnalytics";
+import {
+  type GoogleClassroomContext,
+  useGoogleClassroomContext,
+} from "@/components/GoogleClassroom/useGoogleClassroomContext";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -246,6 +246,17 @@ const PupilExperienceClassroomAnalytics = ({
   return null;
 };
 
+type ClassroomAnalyticsContext = {
+  pupilLoginHint: string | null;
+  teacherLoginHint: string | null;
+  submissionId: string | null;
+};
+
+type PupilExperienceLayoutProps = PupilExperienceViewProps & {
+  googleClassroomContext: GoogleClassroomContext;
+  onClassroomContextResolved: (ctx: ClassroomAnalyticsContext) => void;
+};
+
 const PupilExperienceLayout = ({
   browseData,
   lessonContent,
@@ -256,79 +267,98 @@ const PupilExperienceLayout = ({
   initialSection,
   pageType,
   worksheetInfo,
-}: PupilExperienceViewProps) => {
+  googleClassroomContext,
+  onClassroomContextResolved,
+}: PupilExperienceLayoutProps) => {
   const ageRestriction = browseData.features?.ageRestriction;
   const hasAgeRestriction = !!ageRestriction;
-  const { isClassroomAssignment, classroomAssignmentChecked } =
-    useAssignmentSearchParams();
+  const {
+    isClassroomAssignment,
+    classroomAssignmentChecked,
+    courseId,
+    itemId,
+    attachmentId,
+  } = googleClassroomContext;
   const isGoogleClassroomAssignment =
     isClassroomAssignment === true && classroomAssignmentChecked === true;
-
-  const searchParams = useSearchParams();
-  const classroomContextRef = useRef<ClassroomContext | null>(null);
+  const classroomContextRef = useRef<ClassroomProgressContext | null>(null);
   const [isFetchingClassroomContext, setIsFetchingClassroomContext] =
     useState(false);
+  const [isContextReady, setIsContextReady] = useState(false);
   const [initialSectionResults, setInitialSectionResults] =
     useState<LessonSectionResults>();
   const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
 
-  const fetchGoogleClassroomContext = async () => {
-    const courseId = searchParams?.get("courseId");
-    const itemId = searchParams?.get("itemId");
-    const attachmentId = searchParams?.get("attachmentId");
+  useEffect(() => {
+    if (!isGoogleClassroomAssignment || classroomContextRef.current) return;
 
-    if (!courseId || !itemId || !attachmentId) return;
-
-    try {
-      setIsFetchingClassroomContext(true);
-      const result: AddOnContextResponse | null =
-        await googleClassroomApi.getAddOnContext({
-          courseId,
-          itemId,
-          attachmentId,
-        });
-
-      const submissionId = result?.studentContext?.submissionId;
-      const pupilLoginHint = result?.pupilLoginHint;
-      if (submissionId && pupilLoginHint) {
-        classroomContextRef.current = {
-          submissionId,
-          pupilLoginHint,
-          attachmentId,
-          courseId,
-          itemId,
-        };
-
-        const progressResult = await googleClassroomApi.getPupilLessonProgress({
-          submissionId,
-          itemId,
-          attachmentId,
-        });
-        if (!progressResult) return;
-        const mappedSectionResults =
-          mapPupilLessonProgressToSectionResults(progressResult);
-        if (Object.keys(mappedSectionResults).length > 0) {
-          setInitialSectionResults(mappedSectionResults);
-          setLessonEngineInstanceKey((value) => value + 1);
-        }
+    const fetchGoogleClassroomContext = async () => {
+      if (!courseId || !itemId || !attachmentId) {
+        setIsContextReady(true);
+        return;
       }
-    } catch {
-      // Failed to get context - progress sync will be disabled
-    } finally {
-      setIsFetchingClassroomContext(false);
-    }
-  };
+
+      try {
+        setIsFetchingClassroomContext(true);
+        const result: AddOnContextResponse | null =
+          await googleClassroomApi.getAddOnContext({
+            courseId,
+            itemId,
+            attachmentId,
+          });
+
+        const submissionId = result?.studentContext?.submissionId;
+        const pupilLoginHint = result?.pupilLoginHint;
+        const teacherLoginHint = result?.teacherLoginHint ?? null;
+        onClassroomContextResolved({
+          pupilLoginHint: pupilLoginHint ?? null,
+          teacherLoginHint,
+          submissionId: submissionId ?? null,
+        });
+        if (submissionId && pupilLoginHint) {
+          classroomContextRef.current = {
+            submissionId,
+            pupilLoginHint,
+            attachmentId,
+            courseId,
+            itemId,
+          };
+
+          const progressResult =
+            await googleClassroomApi.getPupilLessonProgress({
+              submissionId,
+              itemId,
+              attachmentId,
+            });
+          if (!progressResult) return;
+          const mappedSectionResults =
+            mapPupilLessonProgressToSectionResults(progressResult);
+          if (Object.keys(mappedSectionResults).length > 0) {
+            setInitialSectionResults(mappedSectionResults);
+            setLessonEngineInstanceKey((value) => value + 1);
+          }
+        }
+      } catch {
+        // Failed to get context - progress sync will be disabled
+      } finally {
+        setIsFetchingClassroomContext(false);
+        setIsContextReady(true);
+      }
+    };
+
+    void fetchGoogleClassroomContext();
+  }, [
+    attachmentId,
+    courseId,
+    isGoogleClassroomAssignment,
+    itemId,
+    onClassroomContextResolved,
+  ]);
 
   useEffect(() => {
-    if (
-      !isGoogleClassroomAssignment ||
-      classroomContextRef.current ||
-      !globalThis.cookieStore
-    )
-      return;
-    fetchGoogleClassroomContext();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isGoogleClassroomAssignment, searchParams, globalThis.cookieStore]);
+    if (!classroomAssignmentChecked) return;
+    if (!isGoogleClassroomAssignment) setIsContextReady(true);
+  }, [classroomAssignmentChecked, isGoogleClassroomAssignment]);
 
   const handleOnNext = useCallback(
     async (
@@ -361,7 +391,6 @@ const PupilExperienceLayout = ({
     }
   };
 
-  const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const { track } = usePupilAnalytics();
   const [isOpen, setIsOpen] = useState<boolean>(
     !!lessonContent.contentGuidance || hasAgeRestriction,
@@ -385,7 +414,7 @@ const PupilExperienceLayout = ({
   };
 
   const handleContentGuidanceDecline = () => {
-    if (isClassroomAssignment) {
+    if (isGoogleClassroomAssignment) {
       window?.parent?.postMessage(
         {
           type: "Classroom",
@@ -407,12 +436,13 @@ const PupilExperienceLayout = ({
     });
   };
 
-  if (trackingSent === false) {
-    track.lessonAccessed({
+  useEffect(() => {
+    if (!isContextReady) return;
+    track.lessonAccessedPupilJourney({
       componentType: ComponentType.PAGE_VIEW,
     });
-    setTrackingSent(true);
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isContextReady]);
 
   const declineIcon = isGoogleClassroomAssignment ? "cross" : undefined;
   const declineText = isGoogleClassroomAssignment ? "Exit lesson" : undefined;
@@ -512,6 +542,13 @@ const PupilExperienceLayout = ({
 
 export const PupilExperienceView = (props: PupilExperienceViewProps) => {
   const { browseData, lessonContent } = props;
+  const [classroomAnalyticsContext, setClassroomAnalyticsContext] =
+    useState<ClassroomAnalyticsContext>({
+      pupilLoginHint: null,
+      teacherLoginHint: null,
+      submissionId: null,
+    });
+  const googleClassroomContext = useGoogleClassroomContext();
 
   const { worksheetInfo } = useWorksheetInfoState(
     lessonContent.hasWorksheetAssetObject,
@@ -522,8 +559,23 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
     <PupilAnalyticsProvider
       pupilPathwayData={getPupilPathwayData(browseData)}
       lessonContent={lessonContent}
+      classroomAssignmentContext={{
+        courseId: googleClassroomContext.courseId,
+        itemId: googleClassroomContext.itemId,
+        attachmentId: googleClassroomContext.attachmentId,
+        clientEnvironment: googleClassroomContext.clientEnvironment,
+        classroomAssignmentId: googleClassroomContext.classroomAssignmentId,
+      }}
+      pupilLoginHint={classroomAnalyticsContext.pupilLoginHint}
+      teacherLoginHint={classroomAnalyticsContext.teacherLoginHint}
+      submissionId={classroomAnalyticsContext.submissionId}
     >
-      <PupilExperienceLayout {...props} worksheetInfo={worksheetInfo} />
+      <PupilExperienceLayout
+        {...props}
+        worksheetInfo={worksheetInfo}
+        googleClassroomContext={googleClassroomContext}
+        onClassroomContextResolved={setClassroomAnalyticsContext}
+      />
     </PupilAnalyticsProvider>
   );
 };

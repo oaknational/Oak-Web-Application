@@ -13,7 +13,7 @@ import type {
 } from "./SharedTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
+import { getClientEnvironment } from "@/browser-lib/google-classroom/getClientEnvironment";
 
 export function GoogleClassroomAnalyticsProvider({
   children,
