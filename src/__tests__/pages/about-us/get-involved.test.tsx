@@ -24,7 +24,7 @@ jest.mock("@mux/mux-player-react/lazy", () => {
   });
 });
 
-const testAboutWhoWeArePageData: GetInvolvedPageProps["pageData"] = {
+const testGetInvolvedPageData: GetInvolvedPageProps["pageData"] = {
   ...testAboutPageBaseData,
   header: {
     introText:
@@ -51,16 +51,13 @@ describe("pages/about/get-involved.tsx", () => {
     jest.clearAllMocks();
     jest.resetModules();
     (CMSClient.getInvolvedPage as jest.Mock).mockResolvedValue(
-      testAboutWhoWeArePageData,
+      testGetInvolvedPageData,
     );
   });
 
   it("renders", () => {
     const { container } = renderWithProviders()(
-      <GetInvolved
-        pageData={testAboutWhoWeArePageData}
-        topNav={topNavFixture}
-      />,
+      <GetInvolved pageData={testGetInvolvedPageData} topNav={topNavFixture} />,
     );
 
     expect(container).toMatchSnapshot();

@@ -111,13 +111,13 @@ export const getStaticProps: GetStaticProps<GetInvolvedPageProps> = async (
     getProps: async () => {
       const isPreviewMode = context.preview === true;
 
-      const aboutWhoWeArePage = await CMSClient.getInvolvedPage({
+      const getInvolvedPage = await CMSClient.getInvolvedPage({
         previewMode: isPreviewMode,
       });
 
       const topNav = await curriculumApi2023.topNav();
 
-      if (!aboutWhoWeArePage) {
+      if (!getInvolvedPage) {
         return {
           notFound: true,
         };
@@ -125,7 +125,7 @@ export const getStaticProps: GetStaticProps<GetInvolvedPageProps> = async (
 
       const results: GetStaticPropsResult<GetInvolvedPageProps> = {
         props: {
-          pageData: aboutWhoWeArePage,
+          pageData: getInvolvedPage,
           topNav,
         },
       };
