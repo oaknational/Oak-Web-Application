@@ -149,12 +149,6 @@ describe("getPageViewProps()", () => {
       analyticsUseCase: null,
     });
   });
-  it("Support your team", () => {
-    expect(getPageViewProps("/support-your-team")).toEqual({
-      pageName: "Support Your Team",
-      analyticsUseCase: null,
-    });
-  });
   /**
    * External pages will return null, as we cannot track page views for pages
    * outside of this app.

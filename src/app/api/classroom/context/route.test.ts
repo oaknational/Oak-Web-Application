@@ -7,6 +7,7 @@ import { NextResponse } from "next/server";
 import { POST } from "./route";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
+import { getPupilFirestore } from "@/node-lib/firestore";
 
 jest.mock("next/server", () => ({
   NextResponse: {
@@ -23,8 +24,14 @@ jest.mock("@/node-lib/google-classroom", () => {
     __mockReportError: reporterMock,
   };
 });
+
+jest.mock("@/node-lib/firestore", () => ({
+  getPupilFirestore: jest.fn(),
+}));
+
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
+const mockedGetPupilFirestore = getPupilFirestore as jest.Mock;
 
 const mockAccessToken = "mock-access-token";
 const mockSession = "mock-session-id";
@@ -33,6 +40,10 @@ const mockGetAddOnContext = jest.fn().mockResolvedValue({
   studentContext: { submissionId: "submission-123" },
   pupilLoginHint: "123456789",
 });
+
+const mockFirestoreGet = jest.fn();
+const mockFirestoreDoc = jest.fn(() => ({ get: mockFirestoreGet }));
+const mockFirestoreCollection = jest.fn(() => ({ doc: mockFirestoreDoc }));
 
 describe("POST /api/classroom/context", () => {
   let mockRequest: NextRequest;
@@ -49,6 +60,12 @@ describe("POST /api/classroom/context", () => {
     jest.clearAllMocks();
     mockedGetOakGoogleClassroomAddon.mockReturnValue({
       getAddOnContext: mockGetAddOnContext,
+    });
+    mockFirestoreGet.mockResolvedValue({
+      data: () => ({ teacherLoginHint: "teacher@example.com" }),
+    });
+    mockedGetPupilFirestore.mockReturnValue({
+      collection: mockFirestoreCollection,
     });
   });
 
@@ -71,10 +88,63 @@ describe("POST /api/classroom/context", () => {
       mockAccessToken,
       mockSession,
     );
+    expect(mockFirestoreCollection).toHaveBeenCalledWith(
+      "classroomAttachments",
+    );
+    expect(mockFirestoreDoc).toHaveBeenCalledWith("attachment-789");
     expect(NextResponse.json).toHaveBeenCalledWith(
       {
         studentContext: { submissionId: "submission-123" },
         pupilLoginHint: "123456789",
+        teacherLoginHint: "teacher@example.com",
+      },
+      { status: 200 },
+    );
+  });
+
+  it("should return a null teacherLoginHint if the attachment document is missing", async () => {
+    mockFirestoreGet.mockResolvedValueOnce({
+      data: () => undefined,
+    });
+    mockRequest = {
+      json: async () => ({
+        courseId: "course-123",
+        itemId: "item-456",
+        attachmentId: "attachment-789",
+      }),
+      headers: mockHeaders,
+    } as unknown as NextRequest;
+
+    await POST(mockRequest);
+
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      {
+        studentContext: { submissionId: "submission-123" },
+        pupilLoginHint: "123456789",
+        teacherLoginHint: null,
+      },
+      { status: 200 },
+    );
+  });
+
+  it("should return a null teacherLoginHint if firestore lookup fails", async () => {
+    mockFirestoreGet.mockRejectedValueOnce(new Error("Firestore unavailable"));
+    mockRequest = {
+      json: async () => ({
+        courseId: "course-123",
+        itemId: "item-456",
+        attachmentId: "attachment-789",
+      }),
+      headers: mockHeaders,
+    } as unknown as NextRequest;
+
+    await POST(mockRequest);
+
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      {
+        studentContext: { submissionId: "submission-123" },
+        pupilLoginHint: "123456789",
+        teacherLoginHint: null,
       },
       { status: 200 },
     );

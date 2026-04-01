@@ -37,7 +37,7 @@ export type SubjectPathwayArray = [SubjectPathway, ...SubjectPathway[]];
 
 export type SubjectListingPageProps = {
   subjects: [SubjectPathwayArray, ...SubjectPathwayArray[]];
-  keyStageSlug: KeyStageSlug | "early-years-foundation-stage";
+  keyStageSlug: KeyStageSlug;
   keyStageTitle: string;
   keyStages: KeyStageData[];
   topNav: TopNavProps;
@@ -46,11 +46,9 @@ export type SubjectListingPageProps = {
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const { keyStageSlug, keyStageTitle, keyStages, topNav } = props;
   const { track } = useAnalytics();
+  const filteredKeyStages = keyStages.filter((ks) => ks.shortCode !== "EYFS");
 
-  const metaDescriptionSlug =
-    keyStageSlug === "early-years-foundation-stage"
-      ? "EYFS"
-      : keyStageSlug.toUpperCase();
+  const metaDescriptionSlug = keyStageSlug.toUpperCase();
 
   return (
     <AppLayout
@@ -71,7 +69,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
           $pv="spacing-32"
         >
           <KeyStageKeypad
-            keyStages={keyStages}
+            keyStages={filteredKeyStages}
             title="Select key stage"
             trackingOnClick={(
               filterValue: string,
@@ -87,6 +85,8 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
                 filterType: "Key stage filter",
                 filterValue,
                 activeFilters,
+                googleLoginHint: null,
+                clientEnvironment: null,
               })
             }
           />
@@ -131,6 +131,11 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No keyStageSlug");
       }
       const keyStage = context.params?.keyStageSlug;
+
+      // EYFS now has its own area under /teachers/eyfs/
+      if (keyStage === "early-years-foundation-stage") {
+        return { notFound: true };
+      }
       const curriculumData = await curriculumApi2023.subjectListingPage({
         keyStageSlug: keyStage,
       });

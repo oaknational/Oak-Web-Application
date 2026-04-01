@@ -56,6 +56,8 @@ const AppHeaderBurgerMenuLink: FC<AppHeaderBurgerMenuLinkProps> = (props) => {
               filterType: "Key stage filter",
               filterValue: link.text,
               activeFilters: [],
+              googleLoginHint: null,
+              clientEnvironment: null,
             });
           }
         }}

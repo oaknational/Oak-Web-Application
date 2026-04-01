@@ -221,11 +221,6 @@ describe("urls.ts", () => {
         resolveOakHref({ page: "legal", legalSlug: "legal-page-123" }),
       ).toBe("/legal/legal-page-123");
     });
-    it("Support your team", () => {
-      expect(resolveOakHref({ page: "support-your-team" })).toBe(
-        "/support-your-team",
-      );
-    });
     it("Help", () => {
       expect(resolveOakHref({ page: "help" })).toBe(
         "https://support.thenational.academy",
@@ -306,6 +301,32 @@ describe("urls.ts", () => {
       ).toBe(
         "https://labs.thenational.academy/aila/teaching-materials?programmeSlug=science-ks3",
       );
+    });
+
+    it("EYFS page direct link", () => {
+      const props: ResolveOakHrefProps = {
+        page: "eyfs-page",
+        subjectSlug: "maths",
+      };
+      expect(resolveOakHref(props)).toBe("/teachers/eyfs/maths");
+    });
+
+    it("subject-index with EYFS keyStageSlug redirects to /teachers/eyfs/maths", () => {
+      expect(
+        resolveOakHref({
+          page: "subject-index",
+          keyStageSlug: "early-years-foundation-stage",
+        }),
+      ).toBe("/teachers/eyfs/maths");
+    });
+
+    it("subject-index with non-EYFS keyStageSlug resolves normally", () => {
+      expect(
+        resolveOakHref({
+          page: "subject-index",
+          keyStageSlug: "ks1",
+        }),
+      ).toBe("/teachers/key-stages/ks1/subjects");
     });
   });
 });

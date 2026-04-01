@@ -1,7 +1,6 @@
-import { z } from "zod";
 import { actionsSchema } from "@oaknational/oak-curriculum-schema";
-
-import { zodToCamelCase } from "@/node-lib/curriculum-api-2023/helpers/zodToCamelCase";
+import { z } from "zod";
+import zodToCamelCase from "zod-to-camel-case";
 
 const themeSchema = z.object({
   themeSlug: z.string().nullish(),
@@ -105,6 +104,9 @@ export const developmentStageSchema = z.object({
 
 export type DevelopmentStage = z.infer<typeof developmentStageSchema>;
 
+const actionsSchemaCamel = zodToCamelCase(actionsSchema, {
+  bidirectional: true,
+});
 const individualSpecialistUnitSchema = z.object({
   slug: z.string(),
   title: z.string(),
@@ -122,7 +124,7 @@ const individualSpecialistUnitSchema = z.object({
   developmentStageSlug: z.string().nullish(),
   developmentStageTitle: z.string().nullish(),
   unpublishedLessonCount: z.number(),
-  actions: zodToCamelCase(actionsSchema).nullish(),
+  actions: actionsSchemaCamel.nullish(),
 });
 const specialistUnitArray = z.array(individualSpecialistUnitSchema);
 

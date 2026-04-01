@@ -56,7 +56,12 @@ const getDownloadLink = async ({
   }
   const json = await res.json();
 
-  const data = getParsedData(json, schema, "downloads/failed-to-fetch", meta);
+  const data = getParsedData<z.infer<typeof schema>>(
+    json,
+    schema,
+    "downloads/failed-to-fetch",
+    meta,
+  );
 
   return data.url;
 };

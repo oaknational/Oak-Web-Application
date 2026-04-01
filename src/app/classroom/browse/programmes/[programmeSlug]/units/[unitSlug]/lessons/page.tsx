@@ -1,10 +1,10 @@
-import { LessonListingView } from "@oaknational/google-classroom-addon/ui";
 import { notFound } from "next/navigation";
 import React from "react";
 
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/GoogleClassroomSubjectIconHeader";
+import { GoogleClassroomLessonListing } from "@/components/GoogleClassroom/GoogleClassroomLessonListing";
 
 async function getLessonsData(programmeSlug: string, unitSlug: string) {
   try {
@@ -47,9 +47,9 @@ async function GoogleClassroomLessonsListPage({
   }
 
   return (
-    <LessonListingView
+    <GoogleClassroomLessonListing
       unitData={unitData}
-      browseData={orderedBrowseData as never}
+      browseData={orderedBrowseData}
       programmeFields={programmeFields}
       programmeSlug={programmeSlug}
       pupilLessonUrlTemplate={

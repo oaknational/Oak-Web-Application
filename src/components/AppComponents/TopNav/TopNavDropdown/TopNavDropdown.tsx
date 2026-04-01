@@ -80,6 +80,8 @@ const TeachersPhaseSection = ({
       filterType: "Key stage filter",
       filterValue: keystageSlug,
       activeFilters: {},
+      googleLoginHint: null,
+      clientEnvironment: null,
     });
     setSelectedKeystage(keystageSlug);
   };
@@ -331,6 +333,8 @@ const TopNavDropdown = (props: TopNavDropdownProps) => {
                 filterType: "Subject filter",
                 filterValue: subject,
                 activeFilters: { keystage: [keystage] },
+                googleLoginHint: null,
+                clientEnvironment: null,
               });
               props.onClose();
             }}

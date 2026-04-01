@@ -1,6 +1,6 @@
 import { useUser } from "@clerk/nextjs";
 
-import { OnboardingFormProps } from "../OnboardingForm.schema";
+import { OnboardingFormValues } from "../OnboardingForm.schema";
 import { extractUrnAndSchool } from "../../helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 
 import {
@@ -27,7 +27,7 @@ const DUMMY_URN = "000000";
 export function collectOnboardingTrackingProps(
   distinctUserId: string,
   user: NonNullable<ReturnType<typeof useUser>["user"]>,
-  data: OnboardingFormProps,
+  data: OnboardingFormValues,
   nativeEvent: object | undefined,
 ): UserOnboardingCompletedProperties & UserOnboardingProgressedProperties {
   const signUpDate = (user.createdAt ?? new Date())?.toISOString().slice(0, 10);
@@ -65,7 +65,9 @@ function isValidRoleOption(value: unknown): value is OnboardingRoleValue {
   );
 }
 
-function pickUserRole(data: OnboardingFormProps): UserRoleTypeValueType | null {
+function pickUserRole(
+  data: OnboardingFormValues,
+): UserRoleTypeValueType | null {
   if ("role" in data && isValidRoleOption(data.role)) {
     return mapOnboardingUserRole(data.role);
   }
@@ -115,7 +117,7 @@ function mapOnboardingUserRole(
   }
 }
 
-function pickUserDefinedRole(data: OnboardingFormProps) {
+function pickUserDefinedRole(data: OnboardingFormValues) {
   if ("role" in data && data.role === onboardingRoleOptions.other) {
     return data.other ?? null;
   }
@@ -123,7 +125,7 @@ function pickUserDefinedRole(data: OnboardingFormProps) {
   return null;
 }
 
-function pickSchoolUrn(data: OnboardingFormProps) {
+function pickSchoolUrn(data: OnboardingFormValues) {
   if ("school" in data) {
     return extractUrnAndSchool(data.school).urn ?? DUMMY_URN;
   }

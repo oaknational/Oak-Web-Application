@@ -1,3 +1,6 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+import { ProgrammeFieldsCamel } from "@oaknational/oak-curriculum-schema";
+
 import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 import { reshapeUnitData } from "@/node-lib/curriculum-api-2023/queries/unitListing/helpers/reshapeUnitData";
 import { getAllLearningThemes } from "@/node-lib/curriculum-api-2023/queries/unitListing/helpers/getAllLearningThemes";
@@ -7,12 +10,11 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/unitListing/helpers/getAllCategories";
 import { getAllYearGroups } from "@/node-lib/curriculum-api-2023/queries/unitListing/helpers/getAllYearGroups";
 import {
-  ProgrammeFieldsCamel,
   rawQuerySchema,
   UnitListingData,
+  UnitsCamel,
 } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { NEW_COHORT } from "@/config/cohort";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import {
   TeachersPreviewUnitListingQuery,
@@ -61,7 +63,7 @@ const teachersPreviewUnitListingQuery =
       });
     }
 
-    const unitsCamel = keysToCamelCase(parsedUnits);
+    const unitsCamel: UnitsCamel = keysToCamelCase(parsedUnits);
 
     const programmeFields = unitsCamel.reduce(
       (acc, val) => ({ ...acc, ...val.programmeFields }),

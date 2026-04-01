@@ -6,20 +6,20 @@ import TermsAgreementForm, {
   TermsAgreementFormProps,
 } from "./TermsAgreementForm";
 
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 type TermsAgreementFormPropsOptionalForm = Omit<
   TermsAgreementFormProps,
   "form" | "copyrightYear"
 > & {
-  errors?: FieldErrors<ResourceFormProps>;
+  errors?: FieldErrors<ResourceFormValues>;
 };
 
 const render = renderWithProviders();
 
 const Wrapper = (props: Partial<TermsAgreementFormPropsOptionalForm>) => {
-  const { control, register, trigger } = useForm<ResourceFormProps>();
+  const { control, register, trigger } = useForm<ResourceFormValues>();
 
   return (
     <TermsAgreementForm
@@ -33,7 +33,7 @@ const Wrapper = (props: Partial<TermsAgreementFormPropsOptionalForm>) => {
 describe("TermsAgreementForm (School, email and terms form within the teacher and curriculum journey)", () => {
   it("Shows school error message when error object is passed in", async () => {
     const errorMessage = `Select school, type 'homeschool' or tick 'My school isn't listed'`;
-    const errors: FieldErrors<ResourceFormProps> = {
+    const errors: FieldErrors<ResourceFormValues> = {
       school: {
         message: errorMessage,
         type: "too_small",
