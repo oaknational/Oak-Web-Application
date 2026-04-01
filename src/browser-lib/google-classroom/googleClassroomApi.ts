@@ -174,6 +174,7 @@ export type AddOnContextResponse = {
     submissionId: string;
   };
   pupilLoginHint: string;
+  teacherLoginHint?: string | null;
 };
 export type AddOnContextArgs = {
   courseId: string;

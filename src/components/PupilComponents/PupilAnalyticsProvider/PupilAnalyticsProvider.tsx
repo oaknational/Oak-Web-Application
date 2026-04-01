@@ -5,6 +5,7 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   AnalyticsUseCaseValueType,
+  ClientEnvironmentValueType,
   EngagementIntentValueType,
   EventVersionValueType,
   ExamBoardValueType,
@@ -22,8 +23,8 @@ import {
   LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { type ClassroomAssignmentContext } from "@/browser-lib/google-classroom/classroomAssignmentContext";
 import { unionOrNull } from "@/utils/narrowToUnion";
-import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
 
 /**
  * This file is used to wrap the track function from the analytics context
@@ -59,6 +60,16 @@ type CorePropertyEventProps =
   | "product"
   | "engagementIntent"
   | "eventVersion";
+
+type ClassroomEventProps =
+  | "clientEnvironment"
+  | "classroomAssignmentId"
+  | "courseId"
+  | "itemId"
+  | "attachmentId"
+  | "submissionId"
+  | "teacherLoginHint"
+  | "pupilLoginHint";
 
 type VideoDataProps =
   | "videoTitle"
@@ -98,7 +109,7 @@ export const trackingEvents = [
   "contentGuidanceDeclined",
   "activityResultsShared",
   "lessonSummaryReviewed",
-  "lessonAccessed",
+  "lessonAccessedPupilJourney",
   "lessonAbandoned",
   "questionAttemptSubmitted",
 ] as const;
@@ -113,6 +124,7 @@ export type PupilAnalyticsTrack = {
       | VideoDataProps
       | AudioDataProps
       | CorePropertyEventProps
+      | ClassroomEventProps
     >,
   ) => void;
 };
@@ -165,6 +177,14 @@ export type PupilAudioData = {
 
 export type AdditionalArgType = PupilPathwayData & {
   analyticsUseCase: AnalyticsUseCaseValueType;
+  clientEnvironment: ClientEnvironmentValueType;
+  classroomAssignmentId: string | null;
+  courseId: string | null;
+  itemId: string | null;
+  attachmentId: string | null;
+  submissionId: string | null;
+  teacherLoginHint: string | null;
+  pupilLoginHint: string | null;
 };
 
 export type CorePropertyArgType = {
@@ -174,22 +194,53 @@ export type CorePropertyArgType = {
   eventVersion: EventVersionValueType;
 };
 
+export type PupilAnalyticsProviderClassroomContext = Pick<
+  ClassroomAssignmentContext,
+  | "courseId"
+  | "itemId"
+  | "attachmentId"
+  | "clientEnvironment"
+  | "classroomAssignmentId"
+>;
+
 export const PupilAnalyticsProvider = ({
   children,
   pupilPathwayData,
   lessonContent,
+  classroomAssignmentContext,
+  pupilLoginHint: pupilLoginHintProp = null,
+  teacherLoginHint: teacherLoginHintProp = null,
+  submissionId: submissionIdProp = null,
 }: {
   children: React.ReactNode;
   pupilPathwayData: PupilPathwayData;
   lessonContent?: LessonContent;
+  classroomAssignmentContext: PupilAnalyticsProviderClassroomContext;
+  pupilLoginHint?: string | null;
+  teacherLoginHint?: string | null;
+  submissionId?: string | null;
 }) => {
   const { track } = useAnalytics();
+  const {
+    courseId,
+    itemId,
+    attachmentId,
+    clientEnvironment,
+    classroomAssignmentId,
+  } = classroomAssignmentContext;
 
   const additionalArgs: AdditionalArgType = {
     ...pupilPathwayData,
     analyticsUseCase: "Pupil",
+    clientEnvironment,
+    classroomAssignmentId,
+    courseId,
+    itemId,
+    attachmentId,
+    submissionId: submissionIdProp,
+    teacherLoginHint: teacherLoginHintProp,
+    pupilLoginHint: pupilLoginHintProp,
   };
-  const clientEnvironment = getClientEnvironment();
   const corePropertyArgs: CorePropertyArgType = {
     platform:
       clientEnvironment === "iframe" ? Platform.GOOGLE_CLASSROOM : Platform.OWA,
@@ -233,11 +284,12 @@ export const PupilAnalyticsProvider = ({
         ...args,
         ...additionalArgs,
       }),
-    lessonActivityCompletedStarterQuiz: (args) =>
+    lessonActivityCompletedStarterQuiz: (args) => {
       track.lessonActivityCompletedStarterQuiz({
         ...args,
         ...additionalArgs,
-      }),
+      });
+    },
     lessonActivityCompletedLessonVideo: (args) => {
       if (!videoData) {
         reportNoVideo();
@@ -368,8 +420,8 @@ export const PupilAnalyticsProvider = ({
         ...audioData,
         ...args,
       }),
-    lessonAccessed: (args) =>
-      track.lessonAccessed({
+    lessonAccessedPupilJourney: (args) =>
+      track.lessonAccessedPupilJourney({
         ...additionalArgs,
         ...corePropertyArgs,
         ...args,
