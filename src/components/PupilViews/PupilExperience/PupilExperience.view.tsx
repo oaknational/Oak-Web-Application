@@ -291,54 +291,60 @@ const PupilExperienceLayout = ({
   const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
   const [isReadOnlyState, setIsReadOnlyState] = useState(false);
 
+  const fetchAddonContext = useCallback(
+    async (args: {
+      courseId: string;
+      itemId: string;
+      attachmentId: string;
+    }): Promise<AddOnContextResponse | null> => {
+      return googleClassroomApi.getAddOnContext(args);
+    },
+    [],
+  );
+
+  const fetchPupilProgress = useCallback(
+    async (args: {
+      submissionId: string;
+      itemId: string;
+      attachmentId: string;
+    }): Promise<LessonSectionResults> => {
+      const progressResult =
+        await googleClassroomApi.getPupilLessonProgress(args);
+
+      if (!progressResult) {
+        return {};
+      }
+
+      return mapPupilLessonProgressToSectionResults(progressResult);
+    },
+    [],
+  );
+
+  const isSubmissionStateReadOnly = useCallback(
+    async (args: {
+      courseId: string;
+      itemId: string;
+      attachmentId: string;
+      submissionId: string;
+    }): Promise<boolean | null> => {
+      const submissionState =
+        await googleClassroomApi.getPostSubmissionState(args);
+
+      if (!submissionState) {
+        return null;
+      }
+
+      return (
+        submissionState.submissionState === "RETURNED" ||
+        submissionState.submissionState === "TURNED_IN"
+      );
+    },
+    [],
+  );
+
   useEffect(() => {
     if (!isGoogleClassroomAssignment || classroomContextRef.current) return;
-    const fetchGoogleClassroomSubmissionState = async () => {
-      if (!courseId || !itemId || !attachmentId) {
-        setIsContextReady(true);
-        return;
-      }
-
-      try {
-        const result: AddOnContextResponse | null =
-          await googleClassroomApi.getAddOnContext({
-            courseId,
-            itemId,
-            attachmentId,
-          });
-
-        const submissionId = result?.studentContext?.submissionId;
-        const pupilLoginHint = result?.pupilLoginHint;
-        if (submissionId && pupilLoginHint) {
-          classroomContextRef.current = {
-            submissionId,
-            pupilLoginHint,
-            attachmentId,
-            courseId,
-            itemId,
-          };
-          const submissionState =
-            await googleClassroomApi.getPostSubmissionState({
-              courseId,
-              itemId,
-              attachmentId,
-              submissionId,
-            });
-          if (!submissionState) return;
-          if (
-            submissionState.submissionState === "RETURNED" ||
-            submissionState.submissionState === "TURNED_IN"
-          ) {
-            setIsReadOnlyState(true);
-          } else {
-            setIsReadOnlyState(false);
-          }
-        }
-      } catch {
-        // Failed to get context - progress sync will be disabled
-      }
-    };
-    const fetchGoogleClassroomContext = async () => {
+    const hydrateGoogleClassroomContext = async () => {
       if (!courseId || !itemId || !attachmentId) {
         setIsContextReady(true);
         return;
@@ -346,21 +352,21 @@ const PupilExperienceLayout = ({
 
       try {
         setIsFetchingClassroomContext(true);
-        const result: AddOnContextResponse | null =
-          await googleClassroomApi.getAddOnContext({
-            courseId,
-            itemId,
-            attachmentId,
-          });
+        const addonContext = await fetchAddonContext({
+          courseId,
+          itemId,
+          attachmentId,
+        });
 
-        const submissionId = result?.studentContext?.submissionId;
-        const pupilLoginHint = result?.pupilLoginHint;
-        const teacherLoginHint = result?.teacherLoginHint ?? null;
+        const submissionId = addonContext?.studentContext?.submissionId;
+        const pupilLoginHint = addonContext?.pupilLoginHint;
+        const teacherLoginHint = addonContext?.teacherLoginHint ?? null;
         onClassroomContextResolved({
           pupilLoginHint: pupilLoginHint ?? null,
           teacherLoginHint,
           submissionId: submissionId ?? null,
         });
+
         if (submissionId && pupilLoginHint) {
           classroomContextRef.current = {
             submissionId,
@@ -370,18 +376,25 @@ const PupilExperienceLayout = ({
             itemId,
           };
 
-          const progressResult =
-            await googleClassroomApi.getPupilLessonProgress({
-              submissionId,
-              itemId,
-              attachmentId,
-            });
-          if (!progressResult) return;
-          const mappedSectionResults =
-            mapPupilLessonProgressToSectionResults(progressResult);
+          const mappedSectionResults = await fetchPupilProgress({
+            submissionId,
+            itemId,
+            attachmentId,
+          });
           if (Object.keys(mappedSectionResults).length > 0) {
             setInitialSectionResults(mappedSectionResults);
             setLessonEngineInstanceKey((value) => value + 1);
+          }
+
+          const readOnlyState = await isSubmissionStateReadOnly({
+            courseId,
+            itemId,
+            attachmentId,
+            submissionId,
+          });
+
+          if (readOnlyState !== null) {
+            setIsReadOnlyState(readOnlyState);
           }
         }
       } catch {
@@ -392,11 +405,51 @@ const PupilExperienceLayout = ({
       }
     };
 
-    void fetchGoogleClassroomSubmissionState();
-    void fetchGoogleClassroomContext();
+    const refreshReadOnlyState = async () => {
+      if (!courseId || !itemId || !attachmentId) {
+        setIsContextReady(true);
+        return;
+      }
+
+      try {
+        const addonContext = await fetchAddonContext({
+          courseId,
+          itemId,
+          attachmentId,
+        });
+        const submissionId = addonContext?.studentContext?.submissionId;
+        const pupilLoginHint = addonContext?.pupilLoginHint;
+        if (!submissionId || !pupilLoginHint) {
+          return;
+        }
+
+        classroomContextRef.current = {
+          submissionId,
+          pupilLoginHint,
+          attachmentId,
+          courseId,
+          itemId,
+        };
+
+        const readOnlyState = await isSubmissionStateReadOnly({
+          courseId,
+          itemId,
+          attachmentId,
+          submissionId,
+        });
+
+        if (readOnlyState !== null) {
+          setIsReadOnlyState(readOnlyState);
+        }
+      } catch {
+        // Failed to get context - progress sync will be disabled
+      }
+    };
+
+    void hydrateGoogleClassroomContext();
 
     const handleWindowFocus = async () => {
-      await fetchGoogleClassroomSubmissionState();
+      await refreshReadOnlyState();
     };
 
     window.addEventListener("focus", handleWindowFocus);
@@ -406,7 +459,10 @@ const PupilExperienceLayout = ({
   }, [
     attachmentId,
     courseId,
+    fetchAddonContext,
+    fetchPupilProgress,
     isGoogleClassroomAssignment,
+    isSubmissionStateReadOnly,
     itemId,
     onClassroomContextResolved,
   ]);
