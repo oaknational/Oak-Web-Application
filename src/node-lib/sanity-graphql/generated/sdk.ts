@@ -6228,13 +6228,6 @@ export type QuoteFragment = { __typename?: 'Quote', text?: string | null, role?:
 
 export type SeoFragment = { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null };
 
-export type SupportCorePageQueryVariables = Exact<{
-  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
-}>;
-
-
-export type SupportCorePageQuery = { __typename?: 'RootQuery', allSupportCorePage: Array<{ __typename?: 'SupportCorePage', title?: string | null, heading?: string | null, id?: string | null, summaryPortableText?: any | null, summaryCardImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, cover?: { __typename?: 'SupportPageCover', title?: string | null, bodyPortableText?: any | null, quote?: { __typename?: 'Quote', text?: string | null, role?: string | null, organisation?: string | null, attribution?: string | null } | null } | null, curriculum?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null } | null, development?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null } | null, planning?: { __typename?: 'TextBlock', title?: string | null, bodyPortableText?: any | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
-
 export type TeamMemberFragment = { __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null };
 
 export type TeamMemberBySlugQueryVariables = Exact<{
@@ -7456,51 +7449,6 @@ export const ProgrammePageBySlugDocument = gql`
   }
 }
     `;
-export const SupportCorePageDocument = gql`
-    query supportCorePage($isDraftFilter: Sanity_DocumentFilter) {
-  allSupportCorePage(
-    sort: {_updatedAt: DESC}
-    limit: 1
-    where: {_: $isDraftFilter, _id: {matches: "*supportCorePage"}}
-  ) {
-    id: _id
-    title
-    heading
-    summaryPortableText: summaryRaw
-    summaryCardImage {
-      ...Image
-    }
-    cover {
-      title
-      bodyPortableText: bodyRaw
-      quote {
-        ...Quote
-      }
-    }
-    curriculum {
-      title
-      bodyPortableText: bodyRaw
-      cta {
-        ...CTA
-      }
-    }
-    development {
-      title
-      bodyPortableText: bodyRaw
-    }
-    planning {
-      title
-      bodyPortableText: bodyRaw
-    }
-    seo {
-      ...Seo
-    }
-  }
-}
-    ${ImageFragmentDoc}
-${QuoteFragmentDoc}
-${CtaFragmentDoc}
-${SeoFragmentDoc}`;
 export const TeamMemberBySlugDocument = gql`
     query teamMemberBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
   allTeamMember(
@@ -7700,9 +7648,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     programmePageBySlug(variables?: ProgrammePageBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ProgrammePageBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ProgrammePageBySlugQuery>({ document: ProgrammePageBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'programmePageBySlug', 'query', variables);
-    },
-    supportCorePage(variables?: SupportCorePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SupportCorePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SupportCorePageQuery>({ document: SupportCorePageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'supportCorePage', 'query', variables);
     },
     teamMemberBySlug(variables?: TeamMemberBySlugQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeamMemberBySlugQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeamMemberBySlugQuery>({ document: TeamMemberBySlugDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teamMemberBySlug', 'query', variables);
