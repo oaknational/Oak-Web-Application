@@ -273,8 +273,8 @@ export const getServerSideProps: GetServerSideProps<
     return { notFound: true };
   }
 
-  const leadershipTeam = meetTheTeamPage?.leadershipTeam ?? [];
-  const boardMembers = meetTheTeamPage?.boardMembers ?? [];
+  const leadershipTeam = meetTheTeamPage?.ourLeadership?.leadershipTeam ?? [];
+  const boardMembers = meetTheTeamPage?.ourBoard?.boardMembers ?? [];
 
   // Get section from query param (if provided)
   const requestedSection =
