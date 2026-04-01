@@ -6,6 +6,7 @@ import {
   OakInlineBanner,
   OakPupilJourneyContentGuidance,
 } from "@oaknational/oak-components";
+import { PostSubmissionState } from "@oaknational/google-classroom-addon/types";
 
 import {
   LessonEngineProvider,
@@ -335,8 +336,8 @@ const PupilExperienceLayout = ({
       }
 
       return (
-        submissionState.submissionState === "RETURNED" ||
-        submissionState.submissionState === "TURNED_IN"
+        submissionState.submissionState === PostSubmissionState.RETURNED ||
+        submissionState.submissionState === PostSubmissionState.TURNED_IN
       );
     },
     [],
