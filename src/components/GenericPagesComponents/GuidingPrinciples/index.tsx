@@ -24,7 +24,11 @@ const StyledResponsiveFlex = styled(OakFlex)`
 `;
 
 const OakPStyled: PortableTextBlockComponent = (props) => {
-  return <OakP $mt={"spacing-16"} $mb={"spacing-12"} $font={["body-2", "body-1"]}>{props.children}</OakP>;
+  return (
+    <OakP $mt={"spacing-16"} $mb={"spacing-12"} $font={["body-2", "body-1"]}>
+      {props.children}
+    </OakP>
+  );
 };
 
 export type GuidingPrincipleItem = {
@@ -103,18 +107,22 @@ export function GuidingPrinciples({
             {title}
           </OakHeading>
           {typeof text === "string" ? (
-            <OakP $mt={"spacing-16"} $mb={"spacing-12"} $font={["body-2", "body-1"]}>
+            <OakP
+              $mt={"spacing-16"}
+              $mb={"spacing-12"}
+              $font={["body-2", "body-1"]}
+            >
               {text}
-          </OakP>
+            </OakP>
           ) : (
-          <PortableTextWithDefaults
-            value={text}
-            components={{
-              block: {
-                normal: OakPStyled,
-              },
-            }}
-          />
+            <PortableTextWithDefaults
+              value={text}
+              components={{
+                block: {
+                  normal: OakPStyled,
+                },
+              }}
+            />
           )}
         </OakFlex>
 
@@ -159,7 +167,7 @@ export function GuidingPrinciples({
             title={principle.heading}
             text={principle.text2Raw ?? principle.text}
             barColor={accentColor}
-          /> 
+          />
         ))}
       </OakFlex>
     </StyledResponsiveFlex>

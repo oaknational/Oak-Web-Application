@@ -55,16 +55,22 @@ export default function CurricQuote({
             {title}
           </OakHeading>
           {typeof text === "string" ? (
-            <OakP $font={["body-1"]} $color={"text-primary"} {...paragraphProps}>{text}</OakP>
+            <OakP
+              $font={["body-1"]}
+              $color={"text-primary"}
+              {...paragraphProps}
+            >
+              {text}
+            </OakP>
           ) : (
-          <PortableTextWithDefaults
-            value={text}
-            components={{
-              block: {
-                normal: OakPStyled,
-              },
-            }}
-          />
+            <PortableTextWithDefaults
+              value={text}
+              components={{
+                block: {
+                  normal: OakPStyled,
+                },
+              }}
+            />
           )}
         </OakFlex>
       </OakFlex>

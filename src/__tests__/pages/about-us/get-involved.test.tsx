@@ -10,7 +10,10 @@ import GetInvolved, {
   GetInvolvedPageProps,
   getStaticProps,
 } from "@/pages/about-us/get-involved";
-import { portableTextFromString, mockImageAsset } from "@/__tests__/__helpers__/cms";
+import {
+  portableTextFromString,
+  mockImageAsset,
+} from "@/__tests__/__helpers__/cms";
 import CMSClient from "@/node-lib/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 jest.mock("../../../node-lib/cms");
@@ -24,7 +27,8 @@ jest.mock("@mux/mux-player-react/lazy", () => {
 const testAboutWhoWeArePageData: GetInvolvedPageProps["pageData"] = {
   ...testAboutPageBaseData,
   header: {
-    introText: "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
+    introText:
+      "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
   },
   collaborate: {
     researchPanelTextRaw: portableTextFromString(

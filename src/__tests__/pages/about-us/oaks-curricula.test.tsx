@@ -3,7 +3,10 @@ import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
-import { portableTextFromString, mockImageAsset } from "@/__tests__/__helpers__/cms";
+import {
+  portableTextFromString,
+  mockImageAsset,
+} from "@/__tests__/__helpers__/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import OaksCurricula, {
   OaksCurriculaPageProps,
@@ -15,20 +18,27 @@ jest.mock("../../../node-lib/cms");
 
 const mockPageData: OaksCurriculaPageProps["pageData"] = {
   header: {
-    introText: "Oak offers complete curriculum support for clarity and coherence in every national curriculum subject.",
+    introText:
+      "Oak offers complete curriculum support for clarity and coherence in every national curriculum subject.",
     image: mockImageAsset(),
   },
   guidingPrinciples: {
-    textRaw: portableTextFromString("Our guiding principles guide our approach."),
+    textRaw: portableTextFromString(
+      "Our guiding principles guide our approach.",
+    ),
     image: mockImageAsset(),
     principles: [
       {
         heading: "Evidence-informed",
-        text2Raw: portableTextFromString("Our approach enables the rigorous application of research outcomes."),
+        text2Raw: portableTextFromString(
+          "Our approach enables the rigorous application of research outcomes.",
+        ),
       },
       {
         heading: "Knowledge and vocabulary rich",
-        text2Raw: portableTextFromString("Our curriculum is knowledge and vocabulary rich."),
+        text2Raw: portableTextFromString(
+          "Our curriculum is knowledge and vocabulary rich.",
+        ),
       },
     ],
   },
@@ -82,7 +92,7 @@ describe("pages/about/oaks-curricula.tsx", () => {
   it("does not render current partners section when no current partners", () => {
     const pageDataWithoutCurrentPartners = {
       ...mockPageData,
-      currentPartners: { 
+      currentPartners: {
         textRaw: portableTextFromString("Our current partners"),
         partners: [],
       },
@@ -104,7 +114,7 @@ describe("pages/about/oaks-curricula.tsx", () => {
   it("does not render legacy partners section when no legacy partners", () => {
     const pageDataWithoutLegacyPartners = {
       ...mockPageData,
-      legacyPartners: { 
+      legacyPartners: {
         textRaw: portableTextFromString("Our legacy partners"),
         partners: [],
       },
@@ -126,11 +136,11 @@ describe("pages/about/oaks-curricula.tsx", () => {
   it("does not render curriculum partners section when no partners at all", () => {
     const pageDataWithoutPartners = {
       ...mockPageData,
-      currentPartners: { 
+      currentPartners: {
         textRaw: portableTextFromString("Our current partners"),
         partners: [],
       },
-      legacyPartners: { 
+      legacyPartners: {
         textRaw: portableTextFromString("Our legacy partners"),
         partners: [],
       },

@@ -17,8 +17,8 @@ import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 
 export type WhoWeArePageProps = {
-  pageData: WhoWeArePage,
-  topNav: TopNavProps,
+  pageData: WhoWeArePage;
+  topNav: TopNavProps;
 };
 
 const WhoWeAre: NextPage<WhoWeArePageProps> = ({ pageData, topNav }) => {

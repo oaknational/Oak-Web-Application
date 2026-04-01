@@ -62,17 +62,13 @@ const AboutUsMeetTheTeam: NextPage<AboutUsMeetTheTeamPageProps> = ({
   pageData,
   topNav,
 }) => {
-  const {
-    header,
-    ourLeadership,
-    ourBoard,
-    documents2,
-    governance2,
-    seo,
-  } = pageData;
+  const { header, ourLeadership, ourBoard, documents2, governance2, seo } =
+    pageData;
 
   const boardMembersModified = useWithCachedImage(ourBoard.boardMembers);
-  const leadershipTeamModified = useWithCachedImage(ourLeadership.leadershipTeam);
+  const leadershipTeamModified = useWithCachedImage(
+    ourLeadership.leadershipTeam,
+  );
 
   const leadershipRef = useRef<HTMLDivElement>(null);
   const boardRef = useRef<HTMLDivElement>(null);

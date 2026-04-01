@@ -1,10 +1,6 @@
 import * as z from "zod";
 
-import {
-  attachmentSchema,
-  imageSchema,
-  seoSchema,
-} from "./base";
+import { attachmentSchema, imageSchema, seoSchema } from "./base";
 import { portableTextSchema } from "./portableText";
 import { teamMemberSchema } from "./teamMember";
 
@@ -155,13 +151,20 @@ export const aboutWhoWeArePageSchema = whoWeArePageSchema;
 export type AboutWhoWeArePage = WhoWeArePage;
 
 export const aboutLeadershipPageSchema = meetTheTeamPageOurLeadershipSchema;
-export type AboutLeadershipPage = z.infer<typeof meetTheTeamPageOurLeadershipSchema>;
+export type AboutLeadershipPage = z.infer<
+  typeof meetTheTeamPageOurLeadershipSchema
+>;
 
 export const aboutBoardPageSchema = meetTheTeamPageOurBoardSchema;
 export type AboutBoardPage = z.infer<typeof meetTheTeamPageOurBoardSchema>;
 
-export const aboutPartnersPageSchema = oaksCurriculaPageCurriculumPartnersSchema;
-export type AboutPartnersPage = z.infer<typeof oaksCurriculaPageCurriculumPartnersSchema>;
+export const aboutPartnersPageSchema =
+  oaksCurriculaPageCurriculumPartnersSchema;
+export type AboutPartnersPage = z.infer<
+  typeof oaksCurriculaPageCurriculumPartnersSchema
+>;
 
 export const aboutWorkWithUsPageSchema = getInvolvedPageWorkWithUsSchema;
-export type AboutWorkWithUsPage = z.infer<typeof getInvolvedPageWorkWithUsSchema>;
+export type AboutWorkWithUsPage = z.infer<
+  typeof getInvolvedPageWorkWithUsSchema
+>;

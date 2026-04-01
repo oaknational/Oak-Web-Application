@@ -10,7 +10,10 @@ import CMSClient from "../../../node-lib/cms";
 import { NewAboutWhoWeArePage } from "../../../common-lib/cms-types";
 
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-import { portableTextFromString, mockImageAsset } from "@/__tests__/__helpers__/cms";
+import {
+  portableTextFromString,
+  mockImageAsset,
+} from "@/__tests__/__helpers__/cms";
 
 jest.mock("../../../node-lib/cms");
 jest.mock("@mux/mux-player-react/lazy", () => {

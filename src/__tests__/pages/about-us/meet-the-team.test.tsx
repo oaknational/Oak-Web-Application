@@ -9,7 +9,10 @@ import AboutUsMeetTheTeam, {
 } from "@/pages/about-us/meet-the-team";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import CMSClient from "@/node-lib/cms";
-import { portableTextFromString, mockImageAsset } from "@/__tests__/__helpers__/cms";
+import {
+  portableTextFromString,
+  mockImageAsset,
+} from "@/__tests__/__helpers__/cms";
 
 jest.mock("../../../node-lib/cms");
 
@@ -26,15 +29,20 @@ const mockTeamMember = {
 
 const mockPageData: AboutUsMeetTheTeamPageProps["pageData"] = {
   header: {
-    introText: "Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.",
+    introText:
+      "Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.",
     image: mockImageAsset(),
   },
   ourLeadership: {
-    textRaw: portableTextFromString("Our leadership team brings together experts to deliver the best support to teachers and value for money for the public."),
+    textRaw: portableTextFromString(
+      "Our leadership team brings together experts to deliver the best support to teachers and value for money for the public.",
+    ),
     leadershipTeam: [mockTeamMember],
   },
   ourBoard: {
-    textRaw: portableTextFromString("Our Board oversees all of our work at Oak National Academy. They provide strategic direction and safeguard our independence."),
+    textRaw: portableTextFromString(
+      "Our Board oversees all of our work at Oak National Academy. They provide strategic direction and safeguard our independence.",
+    ),
     boardMembers: [mockTeamMember],
   },
   documents2: {

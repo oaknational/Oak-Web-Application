@@ -35,14 +35,14 @@ export function CurriculumPartners({
         <OakHeading tag="h3" $font={["heading-5", "heading-4", "heading-4"]}>
           {title}
         </OakHeading>
-          <PortableTextWithDefaults
-            value={text}
-            components={{
-              block: {
-                normal: OakPStyled,
-              },
-            }}
-          />
+        <PortableTextWithDefaults
+          value={text}
+          components={{
+            block: {
+              normal: OakPStyled,
+            },
+          }}
+        />
       </OakFlex>
       <OakBox>
         <OakGrid

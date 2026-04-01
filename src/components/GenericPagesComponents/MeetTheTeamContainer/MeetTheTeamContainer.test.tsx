@@ -8,7 +8,10 @@ const render = renderWithProvidersByName(["oakTheme"]);
 describe("MeetTheTeamContainer", () => {
   it("renders correctly", () => {
     const { baseElement, getByRole } = render(
-      <MeetTheTeamContainer title={"TESTING_TITLE"} text={portableTextFromString("TEST_TEXT")}>
+      <MeetTheTeamContainer
+        title={"TESTING_TITLE"}
+        text={portableTextFromString("TEST_TEXT")}
+      >
         TEST_CONTENT
       </MeetTheTeamContainer>,
     );
