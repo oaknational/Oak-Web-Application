@@ -6032,12 +6032,12 @@ export type CurriculumOverviewQueryVariables = Exact<{
 
 export type CurriculumOverviewQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', subjectPrinciples?: Array<string | null> | null, partnerBio?: string | null, videoAuthor?: string | null, videoExplainer?: string | null, curriculumSeoTextRaw?: any | null, id?: string | null, curriculumExplainer?: { __typename?: 'CurriculumExplainer', explainerRaw?: any | null } | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, curriculumPartnerOverviews?: Array<{ __typename?: 'CurriculumPartnerOverview', partnerBio?: string | null, partnerBioPortableTextRaw?: any | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null } | null> | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
 
-export type NewAboutGetInvolvedPageQueryVariables = Exact<{
+export type GetInvolvedPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
 }>;
 
 
-export type NewAboutGetInvolvedPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageGetInvolved: Array<{ __typename?: 'NewAboutCorePageGetInvolved', id?: string | null, header?: { __typename?: 'GetInvolvedPageHeader', introText?: string | null } | null, collaborate?: { __typename?: 'GetInvolvedPageCollab', researchPanelTextRaw?: any | null, feedbackTextRaw?: any | null } | null, workWithUs?: { __typename?: 'GetInvolvedPageWorkWithUs', textRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type GetInvolvedPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageGetInvolved: Array<{ __typename?: 'NewAboutCorePageGetInvolved', id?: string | null, header?: { __typename?: 'GetInvolvedPageHeader', introText?: string | null } | null, collaborate?: { __typename?: 'GetInvolvedPageCollab', researchPanelTextRaw?: any | null, feedbackTextRaw?: any | null } | null, workWithUs?: { __typename?: 'GetInvolvedPageWorkWithUs', textRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type HomepageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -6173,13 +6173,6 @@ export type MeetTheTeamPageQueryVariables = Exact<{
 
 export type MeetTheTeamPageQuery = { __typename?: 'RootQuery', allNewAboutCorePageMeetTheTeam: Array<{ __typename?: 'NewAboutCorePageMeetTheTeam', id?: string | null, header?: { __typename?: 'MeetTheTeamPageHeader', introText?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, ourLeadership?: { __typename?: 'MeetTheTeamPageOurLeadership', textRaw?: any | null, leadershipTeam?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null } | null, ourBoard?: { __typename?: 'MeetTheTeamPageOurBoard', textRaw?: any | null, boardMembers?: Array<{ __typename?: 'TeamMember', name?: string | null, role?: string | null, id?: string | null, bioPortableText?: any | null, slug?: { __typename?: 'Slug', current?: string | null } | null, image?: { __typename?: 'Image', hotspot?: { __typename?: 'SanityImageHotspot', height?: number | null, width?: number | null, x?: number | null, y?: number | null } | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, socials?: { __typename?: 'TeamMemberSocials', twitterUsername?: string | null, linkedinUrl?: string | null } | null } | null> | null } | null, documents2?: { __typename?: 'MeetTheTeamPageDocuments', files?: Array<{ __typename?: 'Attachment', title?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | null> | null } | null, governance2?: { __typename?: 'MeetTheTeamPageGovernance', textRaw?: any | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
-export type NewAboutWhoWeArePageQueryVariables = Exact<{
-  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
-}>;
-
-
-export type NewAboutWhoWeArePageQuery = { __typename?: 'RootQuery', allNewAboutCorePageWhoWeAre: Array<{ __typename?: 'NewAboutCorePageWhoWeAre', id?: string | null, header2?: { __typename?: 'WhoWeArePageHeader', introText?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, breakout2?: { __typename?: 'WhoWeArePageBreakout', text?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, timeline2?: { __typename?: 'WhoWeArePageTimeline', timelineItems?: Array<{ __typename?: 'WhoWeArePageTimelineItem', heading?: string | null, subHeading?: string | null, textRaw?: any | null } | null> | null } | null, weAreCards?: { __typename?: 'WhoWeArePageCards', cards?: Array<{ __typename?: 'WhoWeArePageCard', heading?: string | null, textRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
-
 export type NewsListingPageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
 }>;
@@ -6276,6 +6269,13 @@ export type WebinarsListingPageQueryVariables = Exact<{
 
 
 export type WebinarsListingPageQuery = { __typename?: 'RootQuery', allWebinarListingPage: Array<{ __typename?: 'WebinarListingPage', title?: string | null, heading?: string | null, id?: string | null, summaryPortableText?: any | null, summaryCardImage?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+
+export type WhoWeArePageQueryVariables = Exact<{
+  isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
+}>;
+
+
+export type WhoWeArePageQuery = { __typename?: 'RootQuery', allNewAboutCorePageWhoWeAre: Array<{ __typename?: 'NewAboutCorePageWhoWeAre', id?: string | null, header2?: { __typename?: 'WhoWeArePageHeader', introText?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, breakout2?: { __typename?: 'WhoWeArePageBreakout', text?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, timeline2?: { __typename?: 'WhoWeArePageTimeline', timelineItems?: Array<{ __typename?: 'WhoWeArePageTimelineItem', heading?: string | null, subHeading?: string | null, textRaw?: any | null } | null> | null } | null, weAreCards?: { __typename?: 'WhoWeArePageCards', cards?: Array<{ __typename?: 'WhoWeArePageCard', heading?: string | null, textRaw?: any | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null> | null } | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export const ImageFragmentDoc = gql`
     fragment Image on Image {
@@ -7073,8 +7073,8 @@ export const CurriculumOverviewDocument = gql`
 }
     ${ImageFragmentDoc}
 ${VideoFragmentDoc}`;
-export const NewAboutGetInvolvedPageDocument = gql`
-    query newAboutGetInvolvedPage($isDraftFilter: Sanity_DocumentFilter) {
+export const GetInvolvedPageDocument = gql`
+    query getInvolvedPage($isDraftFilter: Sanity_DocumentFilter) {
   allNewAboutCorePageGetInvolved(
     where: {_: $isDraftFilter, _id: {matches: "*newAboutCorePage.getInvolved"}}
     sort: {_updatedAt: DESC}
@@ -7220,49 +7220,6 @@ export const MeetTheTeamPageDocument = gql`
     ${ImageWithAltTextFragmentDoc}
 ${TeamMemberFragmentDoc}
 ${AttachmentFragmentDoc}
-${SeoFragmentDoc}`;
-export const NewAboutWhoWeArePageDocument = gql`
-    query newAboutWhoWeArePage($isDraftFilter: Sanity_DocumentFilter) {
-  allNewAboutCorePageWhoWeAre(
-    where: {_: $isDraftFilter, _id: {matches: "*newAboutCorePage.whoWeAre"}}
-    sort: {_updatedAt: DESC}
-    limit: 1
-  ) {
-    id: _id
-    header2 {
-      introText
-      image {
-        ...ImageWithAltText
-      }
-    }
-    breakout2 {
-      image {
-        ...ImageWithAltText
-      }
-      text
-    }
-    timeline2 {
-      timelineItems {
-        heading
-        subHeading
-        textRaw
-      }
-    }
-    weAreCards {
-      cards {
-        heading
-        textRaw
-        image {
-          ...ImageWithAltText
-        }
-      }
-    }
-    seo {
-      ...Seo
-    }
-  }
-}
-    ${ImageWithAltTextFragmentDoc}
 ${SeoFragmentDoc}`;
 export const NewsListingPageDocument = gql`
     query newsListingPage($isDraftFilter: Sanity_DocumentFilter) {
@@ -7615,6 +7572,49 @@ export const WebinarsListingPageDocument = gql`
 }
     ${ImageFragmentDoc}
 ${SeoFragmentDoc}`;
+export const WhoWeArePageDocument = gql`
+    query whoWeArePage($isDraftFilter: Sanity_DocumentFilter) {
+  allNewAboutCorePageWhoWeAre(
+    where: {_: $isDraftFilter, _id: {matches: "*newAboutCorePage.whoWeAre"}}
+    sort: {_updatedAt: DESC}
+    limit: 1
+  ) {
+    id: _id
+    header2 {
+      introText
+      image {
+        ...ImageWithAltText
+      }
+    }
+    breakout2 {
+      image {
+        ...ImageWithAltText
+      }
+      text
+    }
+    timeline2 {
+      timelineItems {
+        heading
+        subHeading
+        textRaw
+      }
+    }
+    weAreCards {
+      cards {
+        heading
+        textRaw
+        image {
+          ...ImageWithAltText
+        }
+      }
+    }
+    seo {
+      ...Seo
+    }
+  }
+}
+    ${ImageWithAltTextFragmentDoc}
+${SeoFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -7668,8 +7668,8 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     curriculumOverview(variables?: CurriculumOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CurriculumOverviewQuery>({ document: CurriculumOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumOverview', 'query', variables);
     },
-    newAboutGetInvolvedPage(variables?: NewAboutGetInvolvedPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<NewAboutGetInvolvedPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<NewAboutGetInvolvedPageQuery>({ document: NewAboutGetInvolvedPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'newAboutGetInvolvedPage', 'query', variables);
+    getInvolvedPage(variables?: GetInvolvedPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<GetInvolvedPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetInvolvedPageQuery>({ document: GetInvolvedPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getInvolvedPage', 'query', variables);
     },
     homepage(variables?: HomepageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<HomepageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<HomepageQuery>({ document: HomepageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'homepage', 'query', variables);
@@ -7679,9 +7679,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     meetTheTeamPage(variables?: MeetTheTeamPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<MeetTheTeamPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<MeetTheTeamPageQuery>({ document: MeetTheTeamPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'meetTheTeamPage', 'query', variables);
-    },
-    newAboutWhoWeArePage(variables?: NewAboutWhoWeArePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<NewAboutWhoWeArePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<NewAboutWhoWeArePageQuery>({ document: NewAboutWhoWeArePageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'newAboutWhoWeArePage', 'query', variables);
     },
     newsListingPage(variables?: NewsListingPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<NewsListingPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<NewsListingPageQuery>({ document: NewsListingPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'newsListingPage', 'query', variables);
@@ -7715,6 +7712,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     webinarsListingPage(variables?: WebinarsListingPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<WebinarsListingPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<WebinarsListingPageQuery>({ document: WebinarsListingPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'webinarsListingPage', 'query', variables);
+    },
+    whoWeArePage(variables?: WhoWeArePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<WhoWeArePageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<WhoWeArePageQuery>({ document: WhoWeArePageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'whoWeArePage', 'query', variables);
     }
   };
 }

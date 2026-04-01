@@ -62,7 +62,7 @@ export const getStaticProps: GetStaticProps<WhoWeArePageProps> = async (
     getProps: async () => {
       const isPreviewMode = context.preview === true;
 
-      const pageData = await CMSClient.newAboutWhoWeArePage({
+      const pageData = await CMSClient.whoWeArePage({
         previewMode: isPreviewMode,
       });
 

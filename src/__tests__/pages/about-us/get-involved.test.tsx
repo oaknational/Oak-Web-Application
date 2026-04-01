@@ -50,7 +50,7 @@ describe("pages/about/get-involved.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
-    (CMSClient.newAboutGetInvolvedPage as jest.Mock).mockResolvedValue(
+    (CMSClient.getInvolvedPage as jest.Mock).mockResolvedValue(
       testAboutWhoWeArePageData,
     );
   });
@@ -68,7 +68,7 @@ describe("pages/about/get-involved.tsx", () => {
 
   describe("getStaticProps", () => {
     it("should 404 when no data returned from CMS", async () => {
-      (CMSClient.newAboutGetInvolvedPage as jest.Mock).mockResolvedValue(null);
+      (CMSClient.getInvolvedPage as jest.Mock).mockResolvedValue(null);
 
       const propsResult = await getStaticProps({
         params: {},

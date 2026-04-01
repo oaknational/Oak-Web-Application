@@ -7,7 +7,7 @@ import AboutWhoWeAre, {
   getStaticProps,
 } from "../../../pages/about-us/who-we-are";
 import CMSClient from "../../../node-lib/cms";
-import { NewAboutWhoWeArePage } from "../../../common-lib/cms-types";
+import { WhoWeArePage } from "../../../common-lib/cms-types";
 
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
 import {
@@ -25,7 +25,7 @@ jest.mock("@mux/mux-player-react/lazy", () => {
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-const mockPageData: NewAboutWhoWeArePage = {
+const mockPageData: WhoWeArePage = {
   header2: {
     introText: "We create free resources for teachers.",
     image: mockImageAsset(),
@@ -65,7 +65,7 @@ describe("pages/about/who-we-are.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
-    mockCMSClient.newAboutWhoWeArePage.mockResolvedValue(mockPageData);
+    mockCMSClient.whoWeArePage.mockResolvedValue(mockPageData);
   });
 
   it("renders", () => {
@@ -78,7 +78,7 @@ describe("pages/about/who-we-are.tsx", () => {
 
   describe("getStaticProps", () => {
     it("should return notFound when CMS returns null", async () => {
-      mockCMSClient.newAboutWhoWeArePage.mockResolvedValueOnce(null);
+      mockCMSClient.whoWeArePage.mockResolvedValueOnce(null);
 
       const propsResult = await getStaticProps({
         params: {},

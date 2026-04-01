@@ -111,7 +111,7 @@ export const getStaticProps: GetStaticProps<GetInvolvedPageProps> = async (
     getProps: async () => {
       const isPreviewMode = context.preview === true;
 
-      const aboutWhoWeArePage = await CMSClient.newAboutGetInvolvedPage({
+      const aboutWhoWeArePage = await CMSClient.getInvolvedPage({
         previewMode: isPreviewMode,
       });
 

@@ -21,8 +21,8 @@ import {
   supportPageSchema,
   blogListingPageSchema,
   curriculumOverviewCMSSchema,
-  newAboutGetInvolvedPageSchema,
-  newAboutWhoWeArePageSchema,
+  getInvolvedPageSchema,
+  whoWeArePageSchema,
   meetTheTeamPageSchema,
   oaksCurriculaPageSchema,
   teamMemberSchema,
@@ -98,9 +98,9 @@ const getSanityClient = () => ({
         : undefined;
     },
   ),
-  newAboutWhoWeArePage: getSingleton(
-    sanityGraphqlApi.newAboutWhoWeArePage,
-    newAboutWhoWeArePageSchema,
+  whoWeArePage: getSingleton(
+    sanityGraphqlApi.whoWeArePage,
+    whoWeArePageSchema,
     (result) => {
       console.log({ result });
       const whoWeArePageData = result?.allNewAboutCorePageWhoWeAre?.[0];
@@ -178,9 +178,9 @@ const getSanityClient = () => ({
         : undefined;
     },
   ),
-  newAboutGetInvolvedPage: getSingleton(
-    sanityGraphqlApi.newAboutGetInvolvedPage,
-    newAboutGetInvolvedPageSchema,
+  getInvolvedPage: getSingleton(
+    sanityGraphqlApi.getInvolvedPage,
+    getInvolvedPageSchema,
     (result) => {
       const whoWeArePageData = result?.allNewAboutCorePageGetInvolved?.[0];
       return whoWeArePageData;

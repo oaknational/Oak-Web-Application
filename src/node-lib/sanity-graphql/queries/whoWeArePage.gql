@@ -1,4 +1,4 @@
-query newAboutWhoWeArePage($isDraftFilter: Sanity_DocumentFilter) {
+query whoWeArePage($isDraftFilter: Sanity_DocumentFilter) {
   allNewAboutCorePageWhoWeAre(
     where: { _: $isDraftFilter, _id: { matches: "*newAboutCorePage.whoWeAre" } }
     sort: { _updatedAt: DESC }

@@ -1,4 +1,4 @@
-query newAboutGetInvolvedPage($isDraftFilter: Sanity_DocumentFilter) {
+query getInvolvedPage($isDraftFilter: Sanity_DocumentFilter) {
   allNewAboutCorePageGetInvolved(
     where: {
       _: $isDraftFilter

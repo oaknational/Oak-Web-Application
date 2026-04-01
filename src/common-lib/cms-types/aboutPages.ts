@@ -139,12 +139,6 @@ export const getInvolvedPageSchema = z.object({
 });
 
 export type GetInvolvedPage = z.infer<typeof getInvolvedPageSchema>;
-// Aliases for about pages (new naming convention)
-export const newAboutWhoWeArePageSchema = whoWeArePageSchema;
-export type NewAboutWhoWeArePage = WhoWeArePage;
-
-export const newAboutGetInvolvedPageSchema = getInvolvedPageSchema;
-export type NewAboutGetInvolvedPage = GetInvolvedPage;
 
 // Aliases for about pages (old naming convention - mapping new queries to existing schemas)
 export const aboutWhoWeArePageSchema = whoWeArePageSchema;
