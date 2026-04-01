@@ -1,3 +1,33 @@
+# [1.1031.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1030.0...v1.1031.0) (2026-03-31)
+
+
+### Bug Fixes
+
+* comment out unused vars ([02b8436](https://github.com/oaknational/Oak-Web-Application/commit/02b84364423d44756b4e0eae30cc326c3097fbf5))
+* only retry when count > 0 ([d116515](https://github.com/oaknational/Oak-Web-Application/commit/d1165156368027c355cdcfa81a1fd7b6eda7f01e))
+* revert count comparison change ([bcb12eb](https://github.com/oaknational/Oak-Web-Application/commit/bcb12eb7f34d697ab3dbd8865e08e06e464d312e))
+
+
+### Features
+
+* add cache directive to topnav query ([89a6d39](https://github.com/oaknational/Oak-Web-Application/commit/89a6d39d232f0a3da7b82a20ea7cc13f5f872ba5))
+* add logger ([97d911d](https://github.com/oaknational/Oak-Web-Application/commit/97d911deb864434b0ca2f87742faf90943e13354))
+* get query name from fn args for logging ([c010384](https://github.com/oaknational/Oak-Web-Application/commit/c010384aa4bbb300ab1edcbe83ccc41cbda0c315))
+* remove handler and just log errors ([58810bd](https://github.com/oaknational/Oak-Web-Application/commit/58810bdde87d0345934cd87178a077d2fb25da19))
+* try handling all errors and log in handle ([8e5e89f](https://github.com/oaknational/Oak-Web-Application/commit/8e5e89f141ea35ae24138465081f97a09744b017))
+* try removing with retries method ([a28731a](https://github.com/oaknational/Oak-Web-Application/commit/a28731a463b734c61836f297fd4ee49818eef2c0))
+* update retry method to try and get more info logged out ([becb5f6](https://github.com/oaknational/Oak-Web-Application/commit/becb5f6c1bed4650a6776e91197124480277a2ad))
+
+# [1.1030.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1029.0...v1.1030.0) (2026-03-31)
+
+
+### Features
+
+* add fn to get tier option toggles ([7437e9e](https://github.com/oaknational/Oak-Web-Application/commit/7437e9e3c08e78bd9f523fe1de802a3e1dc9024f))
+* add isSelected prop to toggles ([91a0b77](https://github.com/oaknational/Oak-Web-Application/commit/91a0b772e677864b82eddf0ade7d54e2166f5d16))
+* get programme options in query ([126e7d1](https://github.com/oaknational/Oak-Web-Application/commit/126e7d1bb4af4a155c0725af0d48f05ecab8f2a6))
+* return subject option toggles ([fe54961](https://github.com/oaknational/Oak-Web-Application/commit/fe549614f002173e085010a7d7aa65016901cc30))
+
 # [1.1029.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1028.0...v1.1029.0) (2026-03-31)
 
 

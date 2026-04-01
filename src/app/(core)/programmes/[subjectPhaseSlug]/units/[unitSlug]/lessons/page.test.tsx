@@ -74,6 +74,8 @@ const unitOverviewFixture: TeachersUnitOverviewData = {
   containsLoginRequiredLessons: false,
   nextUnit: null,
   prevUnit: null,
+  subjectOptionToggles: [],
+  tierOptionToggles: [],
 };
 
 const defaultParams = {
