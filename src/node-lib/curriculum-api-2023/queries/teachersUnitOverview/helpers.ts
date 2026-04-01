@@ -1,18 +1,20 @@
-import { StaticLesson } from "@oaknational/oak-curriculum-schema";
+import { ActionsCamel, StaticLesson } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import { getCorrectYear } from "../../helpers/getCorrectYear";
-import { LessonListSchema, LessonListItem, Actions } from "../../shared.schema";
+import { LessonListSchema, LessonListItem } from "../../shared.schema";
 
 import {
   modifiedLessonsResponseSchema,
   modifiedLessonsResponseSchemaArray,
   PackagedUnitData,
+  ProgrammeToggles,
   TeachersUnitOverviewData,
   UnitSequence,
+  UnitsInOtherProgrammes,
 } from "./teachersUnitOverview.schema";
 
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import OakError from "@/errors/OakError";
 import { getIntersection } from "@/utils/getIntersection";
 
@@ -44,9 +46,9 @@ export const getTransformedLessons = (
           presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
           worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
           orderInUnit: lesson.order_in_unit,
-          actions: (keysToCamelCase(lesson.actions) || null) as Actions,
-          isUnpublished: false,
-          lessonReleaseDate: lesson.lesson_data.lesson_release_date,
+          actions: (keysToCamelCase(lesson.actions) || null) as ActionsCamel,
+          isUnpublished: false as const,
+          lessonReleaseDate: lesson.lesson_data.lesson_release_date ?? null,
           geoRestricted: lesson.features?.agf__geo_restricted ?? false,
           loginRequired: lesson.features?.agf__login_required ?? false,
         };
@@ -116,6 +118,7 @@ export const getPackagedUnit = (
   containsGeorestrictedLessons: boolean,
   containsLoginRequiredLessons: boolean,
   unitSequenceData: UnitSequence,
+  unitsInOtherProgrammes: UnitsInOtherProgrammes,
 ): TeachersUnitOverviewData => {
   const {
     programmeFields,
@@ -138,7 +141,7 @@ export const getPackagedUnit = (
 
   const combinedActions = getIntersection<LessonListItem["actions"]>(
     publishedLessonActions,
-  ) as Actions;
+  ) as ActionsCamel;
 
   // Set `isPePractical` to true if any lesson is practical
   combinedActions.isPePractical = publishedLessonActions.some(
@@ -149,6 +152,11 @@ export const getPackagedUnit = (
     unitSequenceData,
     nullUnitvariantId,
   });
+
+  const { tierOptionToggles, subjectOptionToggles } = getProgrammeToggles(
+    programmeSlug,
+    unitsInOtherProgrammes,
+  );
 
   return {
     programmeSlug,
@@ -176,5 +184,62 @@ export const getPackagedUnit = (
     containsLoginRequiredLessons,
     nextUnit,
     prevUnit,
+    tierOptionToggles,
+    subjectOptionToggles,
+  };
+};
+
+export const getProgrammeToggles = (
+  programmeSlug: string,
+  allProgrammes: UnitsInOtherProgrammes,
+) => {
+  const currentProgramme = allProgrammes.find(
+    (programme) => programme.programme_slug === programmeSlug,
+  );
+  if (!currentProgramme) {
+    throw new OakError({ code: "curriculum-api/not-found" });
+  }
+
+  let tierOptionToggles: ProgrammeToggles = [];
+  if (currentProgramme.programme_fields.tier_description) {
+    // Reduce to programmes that only differ on tier
+    tierOptionToggles = allProgrammes
+      .filter(
+        (programme) =>
+          programme.programme_fields.subject_slug ===
+            currentProgramme.programme_fields.subject_slug &&
+          programme.programme_fields.examboard_slug ===
+            currentProgramme.programme_fields.examboard_slug &&
+          programme.programme_fields.tier_description !== null,
+      )
+      .map((programme) => ({
+        title: programme.programme_fields.tier_description,
+        programmeSlug: programme.programme_slug,
+        isSelected: programme.programme_slug === programmeSlug,
+      })) as ProgrammeToggles;
+  }
+
+  let subjectOptionToggles: ProgrammeToggles = allProgrammes
+    .filter(
+      (programme) =>
+        programme.programme_fields.examboard_slug ===
+          currentProgramme.programme_fields.examboard_slug &&
+        programme.programme_fields.tier_slug ===
+          currentProgramme.programme_fields.tier_slug,
+    )
+    .map((programme) => ({
+      title: programme.programme_fields.subject,
+      programmeSlug: programme.programme_slug,
+      isSelected: programme.programme_slug === programmeSlug,
+    }));
+
+  if (subjectOptionToggles.length === 1) {
+    // clear the array, we don't need to return the current subject as a single toggle
+    subjectOptionToggles = [];
+  }
+
+  return {
+    tierOptionToggles,
+    subjectOptionToggles,
   };
 };

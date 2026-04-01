@@ -6,7 +6,7 @@ import DownloadPageWithAccordion, {
   DownloadWrapperProps,
 } from "./DownloadPageWithAccordion";
 
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import {
   defaultCopyrightRequirements,
@@ -49,7 +49,7 @@ jest.mock("@/hooks/useComplexCopyright", () => ({
 }));
 
 const ComponentWrapper = (props: PropsWithoutForm) => {
-  const { control, register, trigger } = useForm<ResourceFormProps>();
+  const { control, register, trigger } = useForm<ResourceFormValues>();
 
   return (
     <DownloadPageWithAccordion

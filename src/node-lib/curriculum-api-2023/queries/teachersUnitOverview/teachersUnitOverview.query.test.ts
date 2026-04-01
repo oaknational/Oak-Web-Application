@@ -1,6 +1,8 @@
 import {
   syntheticUnitvariantLessonsByKsFixture,
   lessonDataFixture,
+  programmeFieldsFixture,
+  lessonFixture,
 } from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
@@ -35,38 +37,47 @@ const unitPageFixture2 = syntheticUnitvariantLessonsByKsFixture({
       { slug: "lesson-slug", title: "lesson-title", order: 1 },
     ],
     lesson_slug: "lesson-slug-2",
-    lesson_data: {
-      lesson_id: 1,
-      lesson_uid: "lesson-uid",
-      title: "lesson-title-2",
-      description: "lesson-description-2",
-      slug: "lesson-slug-2",
-      pupil_lesson_outcome: "pupil-lesson-outcome",
-      key_learning_points: [{}],
-      equipment_and_resources: null,
-      content_guidance_details: null,
-      phonics_outcome: null,
-      content_guidance: null,
-      supervision_level: null,
-      thirdpartycontent_list: null,
-      misconceptions_and_common_mistakes: null,
-      keywords: null,
-      video_id: null,
-      sign_language_video_id: null,
-      quiz_id_starter: null,
-      quiz_id_exit: null,
-      asset_id_slidedeck: null,
-      asset_id_worksheet: null,
-      copyright_content: null,
-      _state: "published",
-      _cohort: "2023-2024",
-      updated_at: "2023-01-01T00:00:00.000Z",
-      deprecated_fields: null,
-      expiration_date: null,
-      lesson_release_date: "2023-01-01T00:00:00.000Z",
-    },
+    lesson_data: lessonFixture({
+      overrides: {
+        lesson_id: 1,
+        lesson_uid: "lesson-uid",
+        title: "lesson-title-2",
+        description: "lesson-description-2",
+        slug: "lesson-slug-2",
+        pupil_lesson_outcome: "pupil-lesson-outcome",
+        key_learning_points: [{ key_learning_point: "" }],
+        equipment_and_resources: null,
+        content_guidance_details: null,
+        phonics_outcome: null,
+        content_guidance: null,
+        supervision_level: null,
+        thirdpartycontent_list: null,
+        misconceptions_and_common_mistakes: null,
+        keywords: null,
+        video_id: null,
+        sign_language_video_id: null,
+        quiz_id_starter: null,
+        quiz_id_exit: null,
+        asset_id_slidedeck: null,
+        asset_id_worksheet: null,
+        copyright_content: null,
+        _state: "published",
+        _cohort: "2023-2024",
+        updated_at: "2023-01-01T00:00:00.000Z",
+        deprecated_fields: null,
+        expiration_date: null,
+        lesson_release_date: "2023-01-01T00:00:00.000Z",
+      },
+    }),
   },
 });
+
+export const unitsInOtherProgrammesFixture = [
+  {
+    programme_slug: "programme-slug",
+    programme_fields: programmeFieldsFixture(),
+  },
+];
 
 export const unitSequenceFixture: UnitSequence = [
   {
@@ -108,6 +119,7 @@ describe("teachersUnitOverview", () => {
           Promise.resolve({
             lessons: [],
             unitSequence: unitSequenceFixture,
+            unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
           }),
         ),
       })({
@@ -123,6 +135,7 @@ describe("teachersUnitOverview", () => {
         Promise.resolve({
           lessons: [syntheticUnitvariantLessonsByKsFixture()],
           unitSequence: unitSequenceFixture,
+          unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
         }),
       ),
     })({
@@ -177,6 +190,8 @@ describe("teachersUnitOverview", () => {
         title: "Unit 2",
       },
       prevUnit: null,
+      tierOptionToggles: [],
+      subjectOptionToggles: [],
     });
   });
   it("returns lessons in the correct order", async () => {
@@ -186,6 +201,7 @@ describe("teachersUnitOverview", () => {
         Promise.resolve({
           lessons: [unitPageFixture2, unitPageFixture],
           unitSequence: unitSequenceFixture,
+          unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
         }),
       ),
     })({
@@ -216,6 +232,7 @@ describe("teachersUnitOverview", () => {
               },
             ],
             unitSequence: unitSequenceFixture,
+            unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
           }),
         ),
       })({

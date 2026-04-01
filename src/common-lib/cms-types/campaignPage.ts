@@ -35,7 +35,7 @@ export const campaignPromoBannerSchema = z.object({
   bodyPortableTextWithPromo: portableTextSchema.nullish(),
   buttonCta: z.string().nullish(),
   buttonUrl: z.string().nullish(),
-  media: z.array(imageSchema.nullish(), videoSchema.nullish()),
+  media: z.array(z.union([imageSchema.nullish(), videoSchema.nullish()])),
 });
 
 const campaignVideoBannerSchema = z.object({
@@ -74,6 +74,6 @@ export const campaignPageSchema = z
     content: z.array(campaignContentTypeSchema),
     seo: seoSchema.nullish(),
   })
-  .merge(documentSchema);
+  .extend(documentSchema.shape);
 
 export type CampaignPage = z.infer<typeof campaignPageSchema>;

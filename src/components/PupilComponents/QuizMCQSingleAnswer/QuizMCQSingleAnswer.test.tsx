@@ -87,6 +87,7 @@ describe("QuizMCQSingleAnswer", () => {
         feedback: "",
         hint: "",
         active: true,
+        _state: "published",
       },
 
       currentQuestionIndex: 0,

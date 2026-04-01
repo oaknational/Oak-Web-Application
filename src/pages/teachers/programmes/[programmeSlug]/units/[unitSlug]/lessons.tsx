@@ -262,7 +262,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             oakLinkProps: {
               page: "unit-index",
               programmeSlug:
-                subjectSlug === "maths" && !isSlugEYFS(programmeSlug)
+                subjectSlug === "maths"
                   ? removeLegacySlugSuffix(programmeSlug)
                   : programmeSlug,
             },
@@ -371,7 +371,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               expiringBanner={
                 <TakedownBanner
                   titleTag="h3"
-                  isExpiring={actions?.displayExpiringBanner}
+                  isExpiring={!!actions?.displayExpiringBanner}
                   isLegacy={isSlugLegacy(programmeSlug)}
                   hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug)}
                   subjectSlug={subjectSlug}
@@ -429,6 +429,12 @@ export const getStaticProps: GetStaticProps<
       if (!programmeSlug || !unitSlug) {
         throw new Error("unexpected context.params");
       }
+
+      // EYFS now has its own area under /teachers/eyfs/
+      if (isSlugEYFS(programmeSlug)) {
+        return { notFound: true };
+      }
+
       let curriculumData: LessonListingPageData | undefined;
       try {
         curriculumData = await curriculumApi2023.lessonListing({

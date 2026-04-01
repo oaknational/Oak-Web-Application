@@ -23,6 +23,7 @@ import useLocalStorageForDownloads from "../hooks/downloadAndShareHooks/useLocal
 
 import {
   OnboardingFormProps,
+  OnboardingFormValues,
   isSchoolSelectData,
 } from "./OnboardingForm.schema";
 import {
@@ -49,15 +50,15 @@ const OnboardingForm = ({
   ...props
 }: {
   children: React.ReactNode;
-  handleSubmit: UseFormHandleSubmit<OnboardingFormProps>;
+  handleSubmit: UseFormHandleSubmit<OnboardingFormValues>;
   formState: UseFormStateReturn<OnboardingFormProps>;
   heading: string;
   subheading?: string;
   secondaryButton?: (isSubmitting: boolean) => React.ReactNode;
   canSubmit: boolean;
   onSubmit?: () => void;
-  control: Control<OnboardingFormProps>;
-  trigger: UseFormTrigger<OnboardingFormProps>;
+  control: Control<OnboardingFormValues>;
+  trigger: UseFormTrigger<OnboardingFormValues>;
   forceHideNewsletterSignUp?: boolean;
   continueButtonDescription?: string;
 }) => {
@@ -88,7 +89,7 @@ const OnboardingForm = ({
     userSubscribedInHubspot === false && forceHideNewsletterSignUp !== true;
 
   const onFormSubmit = async (
-    data: OnboardingFormProps,
+    data: OnboardingFormValues,
     event?: BaseSyntheticEvent,
   ) => {
     if (isSubmitting && !props.canSubmit) {

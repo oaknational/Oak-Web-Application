@@ -8,7 +8,7 @@ import LessonDownloadsCanonicalPage, {
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
+import { lessonDownloadsCanonicalFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
@@ -18,14 +18,14 @@ import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fi
 
 const render = renderWithProviders();
 
-const lesson = lessonDownloadsFixture({
+const lesson = lessonDownloadsCanonicalFixture({
   lessonTitle: "The meaning of time",
 });
 describe("LessonDownloadsCanonicalPage", () => {
   it("Renders title from the props", async () => {
     const result = render(
       <LessonDownloadsCanonicalPage
-        curriculumData={{ ...lesson, pathways: [] }}
+        curriculumData={lesson}
         topNav={topNavFixture}
       />,
     );
@@ -37,7 +37,6 @@ describe("LessonDownloadsCanonicalPage", () => {
     const curriculumData = {
       ...lesson,
       geoRestricted: true,
-      pathways: [],
     };
 
     describe("and the user has access", () => {

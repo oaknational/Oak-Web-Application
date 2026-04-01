@@ -1,3 +1,5 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import lessonDownloadsSchema, {
   downloadsAssetDataSchema,
   LessonAdditionalFilesListSchema,
@@ -11,7 +13,6 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { constructLessonBrowseQuery } from "@/node-lib/curriculum-api-2023/helpers";
 import lessonDownloadsCanonicalSchema from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloadsCanonical.schema";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 
 const teachersPreviewLessonDownloadQuery =

@@ -1,12 +1,12 @@
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
   OakBoxProps,
   OakP,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import Input from "@/components/SharedComponents/Input";
 import OakError from "@/errors/OakError";
@@ -20,19 +20,24 @@ import {
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
+const emailSchema = (() => {
+  const minLengthSchema = z.string().min(1, {
+    error: "Enter an email",
+  });
+  const emailFormatSchema = z.email({
+    error: "Enter a valid email",
+  });
+  return z.intersection(minLengthSchema, emailFormatSchema);
+})();
+
 const schema = z.object({
   name: z
     .string()
-    .min(1, { message: "Enter a name" })
-    .max(60, "Name must contain fewer than 60 charaters"),
-  email: z
-    .string()
     .min(1, {
-      message: "Enter an email",
+      error: "Enter a name",
     })
-    .email({
-      message: "Enter a valid email",
-    }),
+    .max(60, "Name must contain fewer than 60 charaters"),
+  email: emailSchema,
   userRole: z.union([z.enum(USER_ROLES), z.literal("")]),
 });
 

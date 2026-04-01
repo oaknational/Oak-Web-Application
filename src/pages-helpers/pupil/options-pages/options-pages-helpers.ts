@@ -115,11 +115,13 @@ export const getYearSlug = ({
 };
 
 export const isExamboardSlug = (
-  examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
-): examboardSlug is ProgrammeFields["examboard_slug"] =>
-  Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
+  examboardSlug: unknown,
+): examboardSlug is ProgrammeFields["examboard_slug"] => {
+  const parsedSlug = examboardSlugs.safeParse(examboardSlug);
+  return parsedSlug.success;
+};
 
 export const isPathwaySlug = (
   pathwaySlug: ProgrammeFields["pathway_slug"] | string | null,
 ): pathwaySlug is ProgrammeFields["pathway_slug"] =>
-  Object.keys(pathwaySlugs.Values).includes(pathwaySlug ?? "");
+  (pathwaySlugs.options as readonly string[]).includes(pathwaySlug ?? "");

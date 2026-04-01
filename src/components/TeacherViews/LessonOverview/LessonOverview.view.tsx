@@ -130,6 +130,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     loginRequired,
     geoRestricted,
   } = lesson;
+
   const {
     showSignedOutGeoRestricted,
     showSignedOutLoginRequired,
@@ -312,10 +313,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const showDownloadAll = hasDownloadableAssets && !contentRestricted;
   const showShare =
-    !isSpecialist &&
-    keyStageSlug !== "early-years-foundation-stage" &&
-    !actions?.disablePupilShare &&
-    !contentRestricted;
+    !isSpecialist && !actions?.disablePupilShare && !contentRestricted;
 
   const pageLinks = getPageLinksWithSubheadingsForLesson(
     lesson,
@@ -422,7 +420,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
               <OakFlex $flexDirection={"column"} $position={"relative"}>
                 <OakBox $pb={"spacing-16"}>
                   <TakedownBanner
-                    isExpiring={actions?.displayExpiringBanner}
+                    isExpiring={!!actions?.displayExpiringBanner}
                     isLegacy={isSlugLegacy(programmeSlug ?? "") || isSpecialist}
                     hasNewUnits={
                       getDoesSubjectHaveNewUnits(subjectSlug ?? "") &&
@@ -532,8 +530,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
                         lessonOutline={lessonOutline}
-                        isPELesson={actions?.displayPETitle}
-                        isMFL={actions?.displayVocabButton}
+                        isPELesson={!!actions?.displayPETitle}
+                        isMFL={!!actions?.displayVocabButton}
                         onTrackingCallback={trackMediaClipsButtonClicked}
                       />
                     </LessonItemContainer>
@@ -564,7 +562,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     isLegacyLicense={isLegacyLicense}
                     isMathJaxLesson={isMathJaxLesson}
                     hasVocabAndTranscripts={Boolean(additionalMaterialUrl)}
-                    displayVocab={actions?.displayVocabButton}
+                    displayVocab={!!actions?.displayVocabButton}
                     updatedAt={updatedAt}
                     additionalFiles={additionalFiles}
                     year={yearTitle}
