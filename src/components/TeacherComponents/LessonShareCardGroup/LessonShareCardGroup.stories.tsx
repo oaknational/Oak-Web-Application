@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/nextjs";
-import { Control, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
-import { ResourceFormProps } from "../types/downloadAndShare.types";
+import { ResourceFormValues } from "../types/downloadAndShare.types";
 
 import Component, { LessonShareCardGroupProps } from "./LessonShareCardGroup";
 
@@ -27,15 +27,11 @@ export default meta;
 type Story = StoryObj<typeof Component>;
 
 const Wrapper = (args: LessonShareCardGroupProps) => {
-  const { control } = useForm({
+  const { control } = useForm<ResourceFormValues>({
     mode: "onBlur",
   });
   return (
-    <Component
-      {...args}
-      control={control as unknown as Control<ResourceFormProps>}
-      shareLink="https://example.com"
-    />
+    <Component {...args} control={control} shareLink="https://example.com" />
   );
 };
 

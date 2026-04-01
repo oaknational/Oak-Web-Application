@@ -4,7 +4,7 @@ import { OakFlex } from "@oaknational/oak-components";
 
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { sortShareResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import {
   LessonShareData,
@@ -13,7 +13,7 @@ import {
 
 export type LessonShareCardGroupProps = {
   shareableResources: LessonShareData["shareableResources"];
-  control: Control<ResourceFormProps>;
+  control: Control<ResourceFormValues>;
   triggerForm: () => void;
   hasError?: boolean;
   shareLink: string;

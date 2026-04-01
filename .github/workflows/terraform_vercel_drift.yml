@@ -23,9 +23,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Drift Detection - ${{ matrix.workspace }}
-        uses: oaknational/oak-terraform-actions/actions/terraform-vercel-drift@42682cc06818ab142a4c8667643a44f68ae07e62
+        uses: oaknational/oak-terraform-actions/actions/terraform-vercel-drift@71eb47056a966a42753f8748ae2679faf83a692f
         with:
           TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
           TF_CLOUD_ORGANIZATION: ${{ vars.TF_CLOUD_ORGANIZATION }}
           TF_WORKSPACE: ${{ matrix.workspace }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          VERCEL_DRIFT_DETECTION_SLACK_TOKEN: ${{ secrets.VERCEL_DRIFT_DETECTION_SLACK_TOKEN }}
+          VERCEL_DRIFT_DETECTION_SLACK_CHANNEL_ID: ${{ secrets.VERCEL_DRIFT_DETECTION_SLACK_CHANNEL_ID }}

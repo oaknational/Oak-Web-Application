@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import ResourcePageLayoutB, { SharePageLayoutProps } from "./SharePageLayout";
 
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { defaultCopyrightRequirements } from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
@@ -32,7 +32,7 @@ jest.mock("@/hooks/useComplexCopyright", () => ({
   useComplexCopyright: () => mockUseComplexCopyright,
 }));
 const ComponentWrapper = (props: PropsWithoutForm) => {
-  const { control, register, trigger } = useForm<ResourceFormProps>();
+  const { control, register, trigger } = useForm<ResourceFormValues>();
 
   return (
     <ResourcePageLayoutB

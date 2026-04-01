@@ -15,6 +15,7 @@ import OakError from "@/errors/OakError";
 
 const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
   const res = await sdk.topNav();
+
   const parsed = topNavResponseSchema.safeParse(res);
 
   if (!parsed?.success) {
@@ -49,11 +50,6 @@ const topNavQuery = (sdk: Sdk) => async (): Promise<TopNavProps> => {
           title: "Plan a lesson",
           slug: "lesson-planning",
           href: resolveOakHref({ page: "lesson-planning" }),
-        },
-        {
-          title: "Support your team",
-          slug: "support-your-team",
-          href: resolveOakHref({ page: "support-your-team" }),
         },
         {
           title: "Blogs",

@@ -3749,7 +3749,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                       >
                         <a
                           class="c76 "
-                          href="/teachers/key-stages/early-years-foundation-stage/subjects"
+                          href="/teachers/eyfs/maths"
                         >
                           <span
                             class="c29"
@@ -3839,20 +3839,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             class="c29"
                           >
                             Plan a lesson
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c112"
-                      >
-                        <a
-                          class="c76 "
-                          href="/support-your-team"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Support your team
                           </span>
                         </a>
                       </li>

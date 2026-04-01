@@ -18,7 +18,6 @@ import {
   webinarSchema,
   landingPagePreviewSchema,
   landingPageSchema,
-  supportPageSchema,
   blogListingPageSchema,
   curriculumOverviewCMSSchema,
   getInvolvedPageSchema,
@@ -185,11 +184,6 @@ const getSanityClient = () => ({
       const whoWeArePageData = result?.allNewAboutCorePageGetInvolved?.[0];
       return whoWeArePageData;
     },
-  ),
-  supportPage: getSingleton(
-    sanityGraphqlApi.supportCorePage,
-    supportPageSchema,
-    (result) => result?.allSupportCorePage?.[0],
   ),
   contactPage: getSingleton(
     sanityGraphqlApi.contactCorePage,

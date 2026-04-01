@@ -9,6 +9,23 @@ const useRouterMock = jest.fn();
 const useSearchParamsMock = jest.fn();
 const googleSignInViewMock = jest.fn();
 const getGoogleSignInUrlMock = jest.fn();
+const trackSignInStartedMock = jest.fn();
+const trackSignInCompletedMock = jest.fn();
+
+const googleClassroomAnalyticsMock = {
+  trackSignInStarted: trackSignInStartedMock,
+  trackSignInCompleted: trackSignInCompletedMock,
+};
+
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
+  __esModule: true,
+  useGoogleClassroomAnalytics: (
+    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
+  ) =>
+    selector
+      ? selector(googleClassroomAnalyticsMock)
+      : googleClassroomAnalyticsMock,
+}));
 
 jest.mock("next/navigation", () => ({
   __esModule: true,
@@ -50,8 +67,15 @@ describe("src/app/classroom/sign-in/page", () => {
 
     await viewProps.getGoogleSignInLink();
     expect(getGoogleSignInUrlMock).toHaveBeenCalledWith("123456789", undefined);
+    expect(trackSignInStartedMock).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+    });
 
     viewProps.onSuccessfulSignIn();
+    expect(trackSignInCompletedMock).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+      subscribeToNewsletter: false,
+    });
     expect(routerPush).toHaveBeenCalledWith(
       "/classroom/browse?login_hint=123456789&courseId=gc-1",
     );
@@ -83,6 +107,9 @@ describe("src/app/classroom/sign-in/page", () => {
     const viewProps = googleSignInViewMock.mock.calls[0][0];
     await viewProps.getGoogleSignInLink();
     expect(getGoogleSignInUrlMock).toHaveBeenCalledWith(null, undefined);
+    expect(trackSignInStartedMock).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+    });
 
     viewProps.onSuccessfulSignIn();
     expect(routerPush).toHaveBeenCalledWith("/classroom/browse?");

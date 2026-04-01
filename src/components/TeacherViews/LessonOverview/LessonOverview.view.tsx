@@ -29,20 +29,16 @@ import {
   getPageLinksWithSubheadingsForLesson,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
-  AnalyticsBrowseData,
   LessonOverviewAll,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
+import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {
-  KeyStageTitleValueType,
   DownloadResourceButtonNameValueType,
-  PathwayValueType,
-  ExamBoardValueType,
-  TierNameValueType,
   TeachingMaterialTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -134,6 +130,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     loginRequired,
     geoRestricted,
   } = lesson;
+
   const {
     showSignedOutGeoRestricted,
     showSignedOutLoginRequired,
@@ -190,35 +187,23 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
 
-  const getPhaseSlug = (keyStageSlug?: string | null) => {
-    if (!keyStageSlug) {
-      return null;
-    } else if (["ks4", "ks3"].includes(keyStageSlug)) {
-      return "secondary";
-    } else {
-      return "primary";
-    }
-  };
-
-  const browsePathwayData: AnalyticsBrowseData = {
-    keyStageSlug: keyStageSlug ?? "",
-    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-    subjectSlug: subjectSlug ?? "",
-    subjectTitle: subjectTitle ?? "",
-    unitSlug: unitSlug ?? "",
-    unitName: unitTitle ?? "",
+  const browsePathwayData = getAnalyticsBrowseData({
+    keyStageSlug,
+    keyStageTitle,
+    subjectSlug,
+    subjectTitle,
+    unitSlug,
+    unitTitle,
+    year,
+    yearTitle,
+    examBoardTitle,
+    tierTitle,
+    pathwayTitle,
     lessonSlug,
     lessonName: lessonTitle,
-    pathway: pathwayTitle as PathwayValueType,
-    tierName: tierTitle as TierNameValueType,
-    yearGroupName: yearTitle ?? "",
-    yearGroupSlug: year ? `year-${year}` : "",
-    examBoard: examBoardTitle as ExamBoardValueType,
-    releaseGroup: lesson.isLegacy ? "legacy" : "2023",
-    phase: getPhaseSlug(keyStageSlug),
-    lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-    lessonReleaseDate: lessonReleaseDate ?? "unreleased",
-  };
+    lessonReleaseDate,
+    isLegacy: lesson.isLegacy,
+  });
 
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
@@ -328,10 +313,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const showDownloadAll = hasDownloadableAssets && !contentRestricted;
   const showShare =
-    !isSpecialist &&
-    keyStageSlug !== "early-years-foundation-stage" &&
-    !actions?.disablePupilShare &&
-    !contentRestricted;
+    !isSpecialist && !actions?.disablePupilShare && !contentRestricted;
 
   const pageLinks = getPageLinksWithSubheadingsForLesson(
     lesson,
@@ -438,7 +420,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
               <OakFlex $flexDirection={"column"} $position={"relative"}>
                 <OakBox $pb={"spacing-16"}>
                   <TakedownBanner
-                    isExpiring={actions?.displayExpiringBanner}
+                    isExpiring={!!actions?.displayExpiringBanner}
                     isLegacy={isSlugLegacy(programmeSlug ?? "") || isSpecialist}
                     hasNewUnits={
                       getDoesSubjectHaveNewUnits(subjectSlug ?? "") &&
@@ -548,8 +530,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
                         lessonOutline={lessonOutline}
-                        isPELesson={actions?.displayPETitle}
-                        isMFL={actions?.displayVocabButton}
+                        isPELesson={!!actions?.displayPETitle}
+                        isMFL={!!actions?.displayVocabButton}
                         onTrackingCallback={trackMediaClipsButtonClicked}
                       />
                     </LessonItemContainer>
@@ -580,7 +562,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     isLegacyLicense={isLegacyLicense}
                     isMathJaxLesson={isMathJaxLesson}
                     hasVocabAndTranscripts={Boolean(additionalMaterialUrl)}
-                    displayVocab={actions?.displayVocabButton}
+                    displayVocab={!!actions?.displayVocabButton}
                     updatedAt={updatedAt}
                     additionalFiles={additionalFiles}
                     year={yearTitle}

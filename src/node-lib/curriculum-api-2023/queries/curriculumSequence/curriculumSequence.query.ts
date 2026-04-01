@@ -1,3 +1,5 @@
+import { Published_Mv_Curriculum_Sequence_B_13_0_21_Bool_Exp } from "../../generated/sdk";
+
 import CurriculumSequenceSchema from "./curriculumSequence.schema";
 
 import OakError from "@/errors/OakError";
@@ -10,6 +12,7 @@ const curriculumSequenceQuery =
     subjectSlug: string;
     phaseSlug: string;
     ks4OptionSlug: string | null;
+    includeNonCurriculum?: boolean;
   }) => {
     const { subjectSlug, phaseSlug, ks4OptionSlug } = args;
     if (!subjectSlug || !phaseSlug) {
@@ -55,14 +58,17 @@ const curriculumSequenceQuery =
         }
       : { pathway_slug: { _is_null: true } };
 
-    const where = {
+    const where: Published_Mv_Curriculum_Sequence_B_13_0_21_Bool_Exp = {
       ...baseWhere,
       _and: [
         ...baseWhere._and,
         isExamboard ? examboardCondition : pathwayCondition,
-        { non_curriculum: { _eq: false } },
       ],
     };
+
+    if (!args.includeNonCurriculum) {
+      where._and!.push({ non_curriculum: { _eq: false } });
+    }
 
     const res = await sdk.curriculumSequence({
       where: where,

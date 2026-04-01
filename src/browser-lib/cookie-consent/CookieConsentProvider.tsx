@@ -6,14 +6,12 @@
  */
 
 import { PropsWithChildren, useEffect, useState } from "react";
-// eslint-disable-next-line import/order
 import {
   MockOakConsentClient,
   OakConsentClient,
   OakConsentProvider,
   useOakConsent,
 } from "@oaknational/oak-consent-client";
-
 import {
   OakBox,
   OakCookieConsent,

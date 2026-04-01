@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import { useForm } from "react-hook-form";
 import userEvent from "@testing-library/user-event";
 
-import { ResourceFormProps } from "../types/downloadAndShare.types";
+import { ResourceFormValues } from "../types/downloadAndShare.types";
 
 import LessonShareCardGroup from "./LessonShareCardGroup";
 
@@ -13,7 +13,7 @@ const ComponentWrapper = (props: {
   shareableResources: LessonShareData["shareableResources"];
   shareLink: string;
 }) => {
-  const { control, trigger } = useForm<ResourceFormProps>();
+  const { control, trigger } = useForm<ResourceFormValues>();
 
   return (
     <LessonShareCardGroup

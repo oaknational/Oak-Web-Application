@@ -140,7 +140,7 @@ describe("ClassroomDownloadPage", () => {
   });
 
   it("shows error message when createLessonDownloadLink returns falsy", async () => {
-    mockCreateLessonDownloadLink.mockResolvedValue(undefined);
+    mockCreateLessonDownloadLink.mockResolvedValue(undefined as never);
 
     renderWithTheme(<Page />);
 

@@ -12,7 +12,7 @@ import { landingPageSchema } from "./landingPage";
  * @example
  *   getABTestSchema(landingPageSchema)
  */
-export function getABTestSchema<PageSchema extends z.ZodTypeAny>(
+export function getABTestSchema<PageSchema extends z.ZodType>(
   pageSchema: PageSchema,
 ) {
   return z
@@ -27,7 +27,7 @@ export function getABTestSchema<PageSchema extends z.ZodTypeAny>(
         }),
       ),
     })
-    .merge(documentSchema);
+    .extend(documentSchema.shape);
 }
 
 // A loose type where the control/variants are typed as any - use ABTestForPage where possible
@@ -40,7 +40,7 @@ export type ABTest = z.infer<ReturnType<typeof getABTestSchema>>;
  * @example
  *  ABTestForPage<typeof landingPageSchema>
  */
-type ABTestForPage<PageSchema extends z.ZodTypeAny> = z.infer<
+type ABTestForPage<PageSchema extends z.ZodType> = z.infer<
   ReturnType<typeof getABTestSchema<PageSchema>>
 >;
 

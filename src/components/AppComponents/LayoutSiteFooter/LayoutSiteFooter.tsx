@@ -53,8 +53,8 @@ const footerSections: FooterSections = {
         text: "EYFS",
         type: "link",
         href: resolveOakHref({
-          page: "subject-index",
-          keyStageSlug: "early-years-foundation-stage",
+          page: "eyfs-page",
+          subjectSlug: "maths",
         }),
       },
       {
@@ -86,11 +86,6 @@ const footerSections: FooterSections = {
         text: "Plan a lesson",
         type: "link",
         href: resolveOakHref({ page: "lesson-planning" }),
-      },
-      {
-        text: "Support your team",
-        type: "link",
-        href: resolveOakHref({ page: "support-your-team" }),
       },
     ],
   },
@@ -255,6 +250,8 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
             filterType: "Key stage filter",
             filterValue: props.text,
             activeFilters: [],
+            googleLoginHint: null,
+            clientEnvironment: null,
           });
         }
 

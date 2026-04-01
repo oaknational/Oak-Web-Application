@@ -6221,7 +6221,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       >
                         <a
                           class="c184 "
-                          href="/teachers/key-stages/early-years-foundation-stage/subjects"
+                          href="/teachers/eyfs/maths"
                         >
                           <span
                             class="c29"
@@ -6311,20 +6311,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             class="c29"
                           >
                             Plan a lesson
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c183"
-                      >
-                        <a
-                          class="c184 "
-                          href="/support-your-team"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Support your team
                           </span>
                         </a>
                       </li>
