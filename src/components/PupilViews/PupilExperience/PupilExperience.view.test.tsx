@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { OakTooltipProps } from "@oaknational/oak-components";
 import { useSearchParams } from "next/navigation";
 import mockRouter from "next-router-mock";
-import { PostSubmissionState } from "@oaknational/google-classroom-addon/dist/types";
+import { PostSubmissionState } from "@oaknational/google-classroom-addon/types";
 
 import {
   PupilExperienceView,
@@ -483,7 +483,7 @@ describe("PupilExperienceView", () => {
         pupilLoginHint: "pupil-1",
       });
       mockedGoogleClassroomApi.getPostSubmissionState.mockResolvedValue({
-        submissionState: PostSubmissionState.CREATED,
+        submissionState: PostSubmissionState.TURNED_IN,
       });
       mockedGoogleClassroomApi.getPupilLessonProgress.mockResolvedValue({
         submissionId: "submission-1",
