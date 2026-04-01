@@ -5,6 +5,10 @@ jest.mock("@/common-lib/error-reporter/errorReporter", () => ({
   default: () => jest.fn(),
 }));
 
+jest.mock("openai/helpers/zod", () => ({
+  zodResponseFormat: jest.fn(() => ({ type: "json_schema" })),
+}));
+
 const mockParse = jest.fn();
 const setMockedAiResponse = (response: unknown) => {
   mockParse.mockResolvedValue({

@@ -7,7 +7,7 @@ import {
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 type CombinedSubject = KeyStageSubjectData & { isNew: boolean };
-const pathwaySlugsArray = Object.keys(pathwaySlugs.Values);
+const pathwaySlugsArray = pathwaySlugs.options;
 
 export const getCombinedSubjects = (
   curriculumData: SubjectListingPageData,

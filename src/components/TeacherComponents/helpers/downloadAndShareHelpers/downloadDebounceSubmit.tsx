@@ -1,17 +1,18 @@
 import { debounce } from "lodash";
 
+import { ResourceFormValues } from "../../types/downloadAndShare.types";
+
 import OakError from "@/errors/OakError";
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import errorReporter from "@/common-lib/error-reporter";
 
 const reportError = errorReporter("downloadDebouncedSubmit");
 
 export type DownloadDebouncedSubmitProps = {
-  data: ResourceFormProps;
+  data: ResourceFormValues;
   lessonSlug: string;
   setIsAttemptingDownload: React.Dispatch<React.SetStateAction<boolean>>;
   setEditDetailsClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  onSubmit: (data: ResourceFormProps, lessonSlug: string) => Promise<void>;
+  onSubmit: (data: ResourceFormValues, lessonSlug: string) => Promise<void>;
 };
 
 const downloadDebouncedSubmit = async (

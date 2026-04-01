@@ -1,8 +1,9 @@
-import { StaticLesson } from "@oaknational/oak-curriculum-schema";
+import { ActionsCamel, StaticLesson } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import { getCorrectYear } from "../../helpers/getCorrectYear";
-import { LessonListSchema, LessonListItem, Actions } from "../../shared.schema";
+import { LessonListSchema, LessonListItem } from "../../shared.schema";
 
 import {
   modifiedLessonsResponseSchema,
@@ -14,7 +15,6 @@ import {
   UnitsInOtherProgrammes,
 } from "./teachersUnitOverview.schema";
 
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import OakError from "@/errors/OakError";
 import { getIntersection } from "@/utils/getIntersection";
 
@@ -46,9 +46,9 @@ export const getTransformedLessons = (
           presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
           worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
           orderInUnit: lesson.order_in_unit,
-          actions: (keysToCamelCase(lesson.actions) || null) as Actions,
-          isUnpublished: false,
-          lessonReleaseDate: lesson.lesson_data.lesson_release_date,
+          actions: (keysToCamelCase(lesson.actions) || null) as ActionsCamel,
+          isUnpublished: false as const,
+          lessonReleaseDate: lesson.lesson_data.lesson_release_date ?? null,
           geoRestricted: lesson.features?.agf__geo_restricted ?? false,
           loginRequired: lesson.features?.agf__login_required ?? false,
         };
@@ -141,7 +141,7 @@ export const getPackagedUnit = (
 
   const combinedActions = getIntersection<LessonListItem["actions"]>(
     publishedLessonActions,
-  ) as Actions;
+  ) as ActionsCamel;
 
   // Set `isPePractical` to true if any lesson is practical
   combinedActions.isPePractical = publishedLessonActions.some(

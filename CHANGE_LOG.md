@@ -1,3 +1,69 @@
+## [1.1031.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1031.0...v1.1031.1) (2026-04-01)
+
+
+### Bug Fixes
+
+* act warnings and commented out test for onboarding ([22c17e3](https://github.com/oaknational/Oak-Web-Application/commit/22c17e30cc9e1b79284d2a74d270d07f92f7c089))
+* added back eslint disable line that was causing eslint error ([616c2d4](https://github.com/oaknational/Oak-Web-Application/commit/616c2d48f28f8c2c31438a5408304bef9b3c567e))
+* check if vals undefined not null ([3b8609e](https://github.com/oaknational/Oak-Web-Application/commit/3b8609ebc12ca49d8082ba3aaf37718dba2e9446))
+* combine email()/min() in intersection schema so min() runs first ([1672b01](https://github.com/oaknational/Oak-Web-Application/commit/1672b0102ae8220f5cfb3589c3480ab5a443ed15))
+* convert actions keys with ConvertKeysToCamelCase<...> (thanks [@charsville](https://github.com/charsville)) ([49d79cc](https://github.com/oaknational/Oak-Web-Application/commit/49d79cc5f3f3aad2e7c5caf689c9be7cc5895934))
+* copyright_content type fixes, includes update to @oaknational/oak-curriculum-schema to fix type ([db05477](https://github.com/oaknational/Oak-Web-Application/commit/db05477afbaa30f298031be4c59f3cf0a6c2ccd5))
+* esm issue with package imports ([367a633](https://github.com/oaknational/Oak-Web-Application/commit/367a6334d8bd9e526447c85f5c6f749df8d2f764))
+* fix eslint formatting errors ([22a099a](https://github.com/oaknational/Oak-Web-Application/commit/22a099a192c06e9d8350c384b748793cae15754b))
+* fix type error in test ([3d81857](https://github.com/oaknational/Oak-Web-Application/commit/3d81857f872bf5ea02bac9d1c4897ef5ffa92600))
+* fixed issues with failing tests after zod 4 updates ([2746db6](https://github.com/oaknational/Oak-Web-Application/commit/2746db6ec3dd94e68774d7ccb1561577a8d0f4e4))
+* fixed sonarcloud issues ([ff46955](https://github.com/oaknational/Oak-Web-Application/commit/ff46955d5560c23614f906c1b64962da128c2859))
+* fixed tsc errors after running codemod and package updates ([cea968b](https://github.com/oaknational/Oak-Web-Application/commit/cea968b6caa01fc58b1b38dfb67db86db3345a5b))
+* ignore ts error on zod-to-camel-case import ([050c968](https://github.com/oaknational/Oak-Web-Application/commit/050c968287483a952f17644e8672e3e23756f71b))
+* made fixes to support v2 of curric schema ([aba5367](https://github.com/oaknational/Oak-Web-Application/commit/aba5367a550dcdf3a041ffebd2f590006823c1fe))
+* mismatch between schema and types in pupil results ([d6fc2a5](https://github.com/oaknational/Oak-Web-Application/commit/d6fc2a5b3d2250a9e67583da59d1aaa94803bc65))
+* re-add removed eslint disable line ([31a0824](https://github.com/oaknational/Oak-Web-Application/commit/31a0824e07fad1a88b8065e77c5301891cff5054))
+* reinstate underscore for state and cohort ([3326e99](https://github.com/oaknational/Oak-Web-Application/commit/3326e99ca3c1eabc3d25dd1ec7887253bcbdf461))
+* remove `actions: { displayExpiringBanner: false }` as of invalid type and not required ([3865c6f](https://github.com/oaknational/Oak-Web-Application/commit/3865c6f8f0ece52f68e59fd19b4cbfe735e8e39f))
+* remove custom zod resolver and import from zod resolver package ([56eef79](https://github.com/oaknational/Oak-Web-Application/commit/56eef79e5dce582961ea74e993e44eab1a152b58))
+* remove duplicate action types in shared schema ([32e9192](https://github.com/oaknational/Oak-Web-Application/commit/32e919235a41b6266851ee1eff2165714b24c1d1))
+* remove redundant parse ([0d289d3](https://github.com/oaknational/Oak-Web-Application/commit/0d289d37b64ccab24e08ab29391c90fe8f3ccf12))
+* remove strict object declaration from curriculum sequence schema ([9b741ae](https://github.com/oaknational/Oak-Web-Application/commit/9b741ae73959ad932939b04552f51f13084b0b55))
+* remove use/remove-local-oak-consent-client incorrectly added in base PR ([ea1d381](https://github.com/oaknational/Oak-Web-Application/commit/ea1d3810a3f74d0ba0d6fce9f480a396cc4c4e32))
+* removed old tests for copyright_content no longer required on fields is copyright_info ([da09715](https://github.com/oaknational/Oak-Web-Application/commit/da0971585479820bac056275e42193e875670ed1))
+* replace createTestUnit(...) with createUnit(...) ([3bab422](https://github.com/oaknational/Oak-Web-Application/commit/3bab422179afd41aa0a6debb390cdcb9c819f6b8))
+* revert camel caseification of quizzes (kebab case they will remain) ([02779d2](https://github.com/oaknational/Oak-Web-Application/commit/02779d2173aa251c9eb2578d6a994290475c82f6))
+* simplified quiz attribution function ([1fd2576](https://github.com/oaknational/Oak-Web-Application/commit/1fd2576f89d2d79fe24d3ab850cb597b51dcafdf))
+* switch back `emailRequiredSchema` to `z.email()` type ([20dcc46](https://github.com/oaknational/Oak-Web-Application/commit/20dcc4692fcb90d54381beadb0e9f6a734ac2d8e))
+* update changes from main ([0830890](https://github.com/oaknational/Oak-Web-Application/commit/083089018d8728b5be480fe918928e437990a02b))
+* update deprecated fixture ([448b450](https://github.com/oaknational/Oak-Web-Application/commit/448b4506f38a207a09e3564d758713062abe1038))
+* update downloads form types ([7950079](https://github.com/oaknational/Oak-Web-Application/commit/7950079a67801c1d32a27aaf4dc4014a55ecc993))
+* update isExamboardSlug to parse schema value ([ce5d777](https://github.com/oaknational/Oak-Web-Application/commit/ce5d77731f1ac549df8c263a03b6221345c83d48))
+* update types in tests and stories ([7a87e37](https://github.com/oaknational/Oak-Web-Application/commit/7a87e373f7c6090b9bd397152938f3065b55e016))
+* update useForms to v5 of hook form ([964e01d](https://github.com/oaknational/Oak-Web-Application/commit/964e01d8b826962cd821c1da2ea6404e424793aa))
+* updated consent client package version to use 2.4.0 with zod 4 ([17abe36](https://github.com/oaknational/Oak-Web-Application/commit/17abe36dc6f00f135474efab658669b2be5cbc9c))
+* updated zod-to-camel-case and matched OWA convert keys functions behaviour ([a90415b](https://github.com/oaknational/Oak-Web-Application/commit/a90415b3199f88fc5c0d43df4b5ebd438fe51a8a))
+* use actionSchemaCamel to get correct action type in takedown banner ([c07e3b5](https://github.com/oaknational/Oak-Web-Application/commit/c07e3b5ce4e20d55cb9d19906c4bc8dd47bc9673))
+* use bidirectional flag for actions camel schema ([7eee02a](https://github.com/oaknational/Oak-Web-Application/commit/7eee02a5a69223778950047fe4e28fa3d96add6d))
+* use camel actions in specialist schema and remove casts to Actions ([40f7e6e](https://github.com/oaknational/Oak-Web-Application/commit/40f7e6eb949a92da2f635a10c69a20a13683e959))
+* use ZodError instead of regexp matching ([685c257](https://github.com/oaknational/Oak-Web-Application/commit/685c257caafde4b3074aa704670eea9ac7d3d925))
+
+# [1.1031.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1030.0...v1.1031.0) (2026-03-31)
+
+
+### Bug Fixes
+
+* comment out unused vars ([02b8436](https://github.com/oaknational/Oak-Web-Application/commit/02b84364423d44756b4e0eae30cc326c3097fbf5))
+* only retry when count > 0 ([d116515](https://github.com/oaknational/Oak-Web-Application/commit/d1165156368027c355cdcfa81a1fd7b6eda7f01e))
+* revert count comparison change ([bcb12eb](https://github.com/oaknational/Oak-Web-Application/commit/bcb12eb7f34d697ab3dbd8865e08e06e464d312e))
+
+
+### Features
+
+* add cache directive to topnav query ([89a6d39](https://github.com/oaknational/Oak-Web-Application/commit/89a6d39d232f0a3da7b82a20ea7cc13f5f872ba5))
+* add logger ([97d911d](https://github.com/oaknational/Oak-Web-Application/commit/97d911deb864434b0ca2f87742faf90943e13354))
+* get query name from fn args for logging ([c010384](https://github.com/oaknational/Oak-Web-Application/commit/c010384aa4bbb300ab1edcbe83ccc41cbda0c315))
+* remove handler and just log errors ([58810bd](https://github.com/oaknational/Oak-Web-Application/commit/58810bdde87d0345934cd87178a077d2fb25da19))
+* try handling all errors and log in handle ([8e5e89f](https://github.com/oaknational/Oak-Web-Application/commit/8e5e89f141ea35ae24138465081f97a09744b017))
+* try removing with retries method ([a28731a](https://github.com/oaknational/Oak-Web-Application/commit/a28731a463b734c61836f297fd4ee49818eef2c0))
+* update retry method to try and get more info logged out ([becb5f6](https://github.com/oaknational/Oak-Web-Application/commit/becb5f6c1bed4650a6776e91197124480277a2ad))
+
 # [1.1030.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1029.0...v1.1030.0) (2026-03-31)
 
 

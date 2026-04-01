@@ -15,7 +15,7 @@ export class ErrorNoData extends Error {
 export type getLocalstorageWithSchemaOpts = {
   disableLogging?: boolean;
 };
-export function getLocalstorageWithSchema<Schema extends z.ZodTypeAny>(
+export function getLocalstorageWithSchema<Schema extends z.ZodType>(
   key: string,
   schema: Schema,
 ): z.infer<Schema> {
@@ -39,7 +39,7 @@ export function getLocalstorageWithSchema<Schema extends z.ZodTypeAny>(
   return out!;
 }
 
-export function getNullableLocalstorageWithSchema<Schema extends z.ZodTypeAny>(
+export function getNullableLocalstorageWithSchema<Schema extends z.ZodType>(
   key: string,
   schema: Schema,
 ): z.infer<Schema> | undefined {
@@ -64,7 +64,7 @@ export function getNullableLocalstorageWithSchema<Schema extends z.ZodTypeAny>(
 }
 
 export function setLocalstorageWithSchema<
-  Schema extends z.ZodTypeAny,
+  Schema extends z.ZodType,
   DataType extends z.infer<Schema> | undefined,
 >(key: string, schema: Schema, data: DataType) {
   const results = schema.safeParse(data);

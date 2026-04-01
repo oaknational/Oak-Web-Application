@@ -31,10 +31,8 @@ export const preselectedResourceType = z.union([
 export const resourceFormValuesSchema = z.object({
   school: z
     .string({
-      errorMap: () => ({
-        message:
-          "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
-      }),
+      error: () =>
+        "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
     })
     .min(
       1,
@@ -42,22 +40,17 @@ export const resourceFormValuesSchema = z.object({
     ),
   schoolName: z.string().optional(),
   email: z
-    .string()
     .email({
-      message: "Please enter a valid email address",
+      error: "Please enter a valid email address",
     })
     .optional()
     .or(z.literal("")),
   terms: z.literal(true, {
-    errorMap: () => ({
-      message: "Accept terms and conditions to continue",
-    }),
+    error: () => "Accept terms and conditions to continue",
   }),
   resources: z
     .array(z.string(), {
-      errorMap: () => ({
-        message: "Select at least one lesson resource to continue",
-      }),
+      error: () => "Select at least one lesson resource to continue",
     })
     .min(1),
 });
