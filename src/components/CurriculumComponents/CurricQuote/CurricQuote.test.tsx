@@ -20,7 +20,7 @@ describe("CurricQuote", () => {
       <CurricQuote title="My title" text="This is test text." barColor={"bg-error"} />,
     );
     expect(
-      screen.getByText("This is the test children content."),
+      screen.getByText("This is test text."),
     ).toBeInTheDocument();
   });
 
