@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { postSubmissionStateSchema } from "@oaknational/google-classroom-addon/dist/types";
+import { postSubmissionStateSchema } from "@oaknational/google-classroom-addon/types";
 
 import {
   createClassroomErrorReporter,
@@ -47,7 +47,10 @@ export async function GET(request: NextRequest) {
 
     const parsedState = postSubmissionStateSchema.safeParse(submissionState);
 
-    return NextResponse.json({ parsedState }, { status: 200 });
+    return NextResponse.json(
+      { submissionState: parsedState.data },
+      { status: 200 },
+    );
   } catch (e) {
     const errorObject = isOakGoogleClassroomException(e) ? e.toObject() : e;
     reportError(errorObject);
