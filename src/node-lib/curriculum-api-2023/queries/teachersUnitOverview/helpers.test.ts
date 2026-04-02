@@ -29,6 +29,7 @@ const mockPackagedUnitData = {
   programmeSlugByYear:
     syntheticUnitvariantLessonsByKsFixture().programme_slug_by_year,
   nullUnitvariantId: 1,
+  subjectCategories: [],
 };
 
 describe("getTransformedUnit", () => {

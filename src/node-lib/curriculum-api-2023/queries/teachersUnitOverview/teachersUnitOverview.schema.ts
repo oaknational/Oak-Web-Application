@@ -84,6 +84,7 @@ export const unitSequenceResponseSchema = z.array(
     unitTitle: z.string(),
     unitDescription: z.string().nullable(),
     unitOrder: z.number(),
+    subjectCategories: z.array(z.string()).nullish(),
     optionalityTitle: z.string().nullish(),
     nullUnitvariantId: z.number(),
     yearOrder: z.number(),
@@ -102,4 +103,17 @@ export type PackagedUnitData = {
   unitDescription: string | null;
   programmeSlugByYear: string[];
   nullUnitvariantId: number;
+  subjectCategories: string[] | null | undefined;
 };
+
+export const subjectCategoriesSchema = z
+  .array(
+    z.object({
+      id: z.number(),
+      title: z.string(),
+      category: z.string().optional(),
+      slug: z.string(),
+    }),
+  )
+  .nullish();
+export type SubjectCategories = z.infer<typeof subjectCategoriesSchema>;
