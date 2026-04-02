@@ -16,6 +16,7 @@ import lessonListingFixture, {
 const meta: Meta<typeof LessonList> = {
   component: LessonList,
   tags: ["autodocs"],
+  title: "App/Programmes/Units/LessonList",
   decorators: [
     SaveCountDecorator,
     NotificationsDecorator,
