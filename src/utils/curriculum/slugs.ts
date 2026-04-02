@@ -142,11 +142,13 @@ export function getTeacherSubjectPhaseSlug({
   subjectSlug,
   phaseSlug,
   examboardSlug,
+  pathwaySlug,
   subjectParentTitle,
 }: {
   subjectSlug: string;
   phaseSlug: string;
   examboardSlug?: string | null;
+  pathwaySlug?: string | null;
   subjectParentTitle?: string | null;
 }) {
   // TODO: add parent subject slug to data
@@ -156,5 +158,7 @@ export function getTeacherSubjectPhaseSlug({
 
   const examboardSegment = examboardSlug ? `-${examboardSlug}` : "";
 
-  return `${subjectSegment}-${phaseSlug}${examboardSegment}`;
+  const pathwaySegment = pathwaySlug ? `-${pathwaySlug}` : "";
+
+  return `${subjectSegment}-${phaseSlug}${examboardSegment}${pathwaySegment}`;
 }
