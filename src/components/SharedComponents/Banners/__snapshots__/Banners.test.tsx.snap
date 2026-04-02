@@ -3,17 +3,17 @@
 exports[`Banners shows mythbusting banner 1`] = `
 <div>
   <div
-    class="sc-aXZVg hdseiA"
+    class="sc-aXZVg hkJkIR"
     role="banner"
   >
     <div
-      class="sc-aXZVg sc-gEvEer fWVRat jMLdOa"
+      class="sc-aXZVg sc-gEvEer gOchNo jMLdOa"
     >
       <div
-        class="sc-aXZVg sc-gEvEer fnaVYg cACqPs"
+        class="sc-aXZVg sc-gEvEer kqEqNl jUblXJ"
       >
         <div
-          class="sc-aXZVg sc-gEvEer cPJSoT jVmVJV"
+          class="sc-aXZVg sc-gEvEer iQMMTO jVmVJV"
         >
           <p
             class="sc-ikkxIA jTavWX"
@@ -22,7 +22,7 @@ exports[`Banners shows mythbusting banner 1`] = `
               style="display: inline-block; transform: rotate(-1.5deg); padding: 4px 8px;"
             >
               <span
-                class="sc-eqUAAy hQoPqw"
+                class="sc-eqUAAy fTRfmp"
               >
                 Myths
               </span>
@@ -34,41 +34,95 @@ exports[`Banners shows mythbusting banner 1`] = `
             </b>
           </p>
         </div>
-        <div
-          class="sc-aXZVg jXEGcz"
+        <a
+          class="sc-88d86f2f-0 hBwiyZ"
+          href="/campaigns/mythbusting"
+          role="link"
+          title="Learn why"
         >
-          <a
-            class="sc-hzhJZQ hCUlEv sc-fHjqPf"
-            href="/campaigns/mythbusting"
-            title="Learn why"
+          <div
+            class="sc-aXZVg sc-gEvEer eWWTEV bRncHa"
           >
             <span
-              class="sc-eqUAAy dtaNGQ"
+              aria-hidden="true"
+              class="sc-3a85db58-0 gFtgPt"
+              data-testid="button-icon"
             >
-              Learn why
+              <svg
+                aria-hidden="true"
+                class="sc-2c4cc93e-0 dsodAn sc-3a85db58-2 jeFJfk"
+                height="100%"
+                name="icon-background"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <use
+                  xlink:href="/images/sprite/sprite.svg#icon-background"
+                />
+              </svg>
+              <span
+                class="sc-3a85db58-1 iNrkJz"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="sc-2c4cc93e-0 kRWVVU"
+                  height="100%"
+                  name="chevron-right"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use
+                    xlink:href="/images/sprite/sprite.svg#chevron-right"
+                  />
+                </svg>
+              </span>
             </span>
-            <span
-              class="sc-aXZVg iUEruK sc-fUnMCh"
+          </div>
+          <div
+            class="sc-aXZVg eTmbhz"
+          >
+            <div
+              class="sc-aXZVg hkJkIR"
             >
-              <img
-                alt=""
-                class="sc-iGgWBj cMzyFO"
-                data-nimg="fill"
-                decoding="async"
-                loading="lazy"
-                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
-                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-              />
-            </span>
-          </a>
-        </div>
+              <span
+                class="sc-eqUAAy sc-ca3376e3-0 iuxBUE eEriKr"
+              >
+                Learn why
+              </span>
+            </div>
+          </div>
+          <svg
+            aria-hidden="true"
+            class="sc-2c4cc93e-0 dsodAn sc-d8d24eba-0 giCBMq"
+            height="100%"
+            name="underline-1"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <use
+              xlink:href="/images/sprite/sprite.svg#underline-1"
+            />
+          </svg>
+          <svg
+            aria-hidden="true"
+            class="sc-2c4cc93e-0 dsodAn sc-d8d24eba-2 eZdcMI"
+            height="100%"
+            name="underline-1"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <use
+              xlink:href="/images/sprite/sprite.svg#underline-1"
+            />
+          </svg>
+        </a>
       </div>
     </div>
     <div
-      class="sc-aXZVg cPLGjM"
+      class="sc-aXZVg fajpgl"
     >
       <div
-        class="sc-aXZVg sc-gEvEer sc-fMMURN cleqNB iDBIXi"
+        class="sc-aXZVg sc-gEvEer sc-fMMURN erYAFI iDBIXi"
         focusable="false"
       >
         <svg

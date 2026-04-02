@@ -17,7 +17,6 @@ const mockQuestionResult: z.infer<typeof questionResultSchema> = {
 };
 
 const mockPupilProgress: PupilLessonProgress = {
-  postSubmissionState: "NEW",
   submissionId: "sub-1",
   attachmentId: "att-1",
   courseId: "course-1",

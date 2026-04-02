@@ -7,7 +7,6 @@ import {
   OakBox,
   OakHandDrawnHR,
   OakMaxWidth,
-  OakPrimaryButton,
 } from "@oaknational/oak-components";
 
 import { getResourcesWithoutLegacyCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
@@ -42,6 +41,7 @@ import {
   LessonPathway,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
+import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadPageWithAccordion from "@/components/TeacherComponents/DownloadPageWithAccordion";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
 import {
@@ -238,13 +238,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const [isDownloadSuccessful, setIsDownloadSuccessful] =
     useState<boolean>(false);
-
-  let downloadButtonText = "Download .zip";
-  if (isAttemptingDownload) {
-    downloadButtonText = "Downloading...";
-  } else if (!hubspotLoaded) {
-    downloadButtonText = "Loading...";
-  }
 
   const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
     setApiError(null);
@@ -466,12 +459,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               )
             }
             cta={
-              <OakPrimaryButton
+              <LoadingButton
                 type="button"
                 onClick={
                   (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
                 }
-                iconName={"download"}
+                text={"Download .zip"}
+                icon={"download"}
                 isLoading={
                   isAttemptingDownload || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
                 }
@@ -482,9 +476,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     (!form.formState.isValid && !localStorageDetails)) &&
                   hubspotLoaded
                 }
-              >
-                {downloadButtonText}
-              </OakPrimaryButton>
+                loadingText={
+                  isAttemptingDownload ? "Downloading..." : "Loading..."
+                }
+              />
             }
             showRiskAssessmentBanner={showRiskAssessmentBanner}
             downloads={downloadsFilteredByCopyright}

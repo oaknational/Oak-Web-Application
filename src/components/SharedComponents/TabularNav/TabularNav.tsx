@@ -1,13 +1,8 @@
-import type { MouseEventHandler } from "react";
-import styled from "styled-components";
-import {
-  OakFlex,
-  OakFlexProps,
-  OakSecondaryLink,
-  OakTypography,
-} from "@oaknational/oak-components";
+import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
 
-import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
+import ButtonAsLink, {
+  ButtonAsLinkProps,
+} from "@/components/SharedComponents/Button/ButtonAsLink";
 
 /**
  * TabularNav is a 'nav' component which renders 'minimal' (text-link) link
@@ -19,37 +14,26 @@ import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
  * Used for example in the 'unit listing' page to filter by 'tier' (where
  * tiers are available).
  */
-type TabularNavLink = ResolveOakHrefProps & {
-  label: string;
-  onClick?: MouseEventHandler<HTMLAnchorElement>;
-  isCurrent?: boolean;
-};
-
 const TabularNav = ({
   label,
   links,
   ...flexProps
 }: OakFlexProps & {
   label: string;
-  links: TabularNavLink[];
+  links: ButtonAsLinkProps[];
 }) => {
   return (
     <OakFlex as="nav" aria-label={label} $pv={"spacing-4"} {...flexProps}>
       {links.map((link, i) => {
-        const { label: linkLabel, onClick, isCurrent, ...hrefProps } = link;
-        const href = resolveOakHref(hrefProps);
         return (
-          <StyledTabularLink
-            href={href}
-            onClick={onClick}
-            aria-current={isCurrent ? "page" : undefined}
-            $mr={"spacing-24"}
+          <ButtonAsLink
+            {...link}
+            size="small"
+            variant="minimal"
+            aria-current={link.isCurrent ? "page" : undefined}
             key={`TabularNav-${link.page}-${i}`}
-          >
-            <OakTypography $font={"heading-7"} as="span">
-              {linkLabel}
-            </OakTypography>
-          </StyledTabularLink>
+            $mr={[24, 24]}
+          />
         );
       })}
     </OakFlex>
@@ -57,11 +41,3 @@ const TabularNav = ({
 };
 
 export default TabularNav;
-
-const StyledTabularLink = styled(OakSecondaryLink)`
-  text-decoration: none;
-
-  &[aria-current="page"] {
-    text-decoration: underline;
-  }
-`;

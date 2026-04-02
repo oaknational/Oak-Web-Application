@@ -15,32 +15,32 @@ import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
 import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import ButtonBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/ButtonBorders";
-import Svg from "@/components/SharedComponents/Svg";
+import { LegacySvg } from "@/components/SharedComponents/Svg";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OakColorName } from "@/styles/theme";
 import { FontVariant } from "@/styles/utils/typography";
 import { ResponsiveValues } from "@/styles/utils/responsive";
 
-export const ButtonFocusUnderline = styled(Svg)<{
+export const ButtonFocusUnderline = styled(LegacySvg)<{
   $color: OakColorName;
 }>`
   color: ${(props) => getColorByName(props.$color)};
   position: absolute;
 `;
-export const ButtonMinimalFocusUnderline = styled(Svg)<{
+export const ButtonMinimalFocusUnderline = styled(LegacySvg)<{
   $color: OakColorName;
 }>`
   color: ${(props) => getColorByName(props.$color)};
   position: absolute;
 `;
-export const ButtonStyledAsLinkFocusUnderline = styled(Svg)<{
+export const ButtonStyledAsLinkFocusUnderline = styled(LegacySvg)<{
   $color: OakColorName;
 }>`
   color: ${(props) => getColorByName(props.$color)};
   position: absolute;
 `;
-const BrushUnderline = styled(Svg)`
+const BrushUnderline = styled(LegacySvg)`
   position: absolute;
   mask-position: center;
   height: 8px;
