@@ -8,7 +8,7 @@ import color, { ColorProps } from "@/styles/utils/color";
 import size, { SizeProps } from "@/styles/utils/size";
 import { ResponsiveValues } from "@/styles/utils/responsive";
 import { UiIconName } from "@/image-data";
-import { LegacySvg, LegacySvgProps } from "@/components/SharedComponents/Svg";
+import Svg, { SvgProps } from "@/components/SharedComponents/Svg";
 import { box, BoxProps } from "@/components/SharedComponents/Box";
 
 export type IconName = UiIconName;
@@ -53,7 +53,7 @@ const IconWrapper = styled.span<BoxProps>`
   ${box}
 `;
 
-export const BackgroundIcon = styled(LegacySvg)<ColorProps>`
+export const BackgroundIcon = styled(Svg)<ColorProps>`
   position: absolute;
   top: 0;
   right: 0;
@@ -62,7 +62,7 @@ export const BackgroundIcon = styled(LegacySvg)<ColorProps>`
   ${color}
 `;
 
-const SPECIAL_ICON_SVG_PROPS: Partial<Record<IconName, LegacySvgProps>> = {
+const SPECIAL_ICON_SVG_PROPS: Partial<Record<IconName, SvgProps>> = {
   "chevron-down": {
     name: "chevron-up",
     $transform: "rotate(-180deg)",
@@ -152,7 +152,7 @@ const Icon: FC<IconProps> = (props) => {
         $transition="transform 0.8s ease-in-out"
         $transform={rotate}
       >
-        <LegacySvg
+        <Svg
           {...svgProps}
           $transition="transform 0.4s ease-out"
           $transform={svgProps.$transform || scale}

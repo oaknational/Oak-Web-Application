@@ -10,11 +10,11 @@ import {
 import IconButtonWrapper from "./IconButtonWrapper";
 import { IconFocusUnderline } from "./IconFocusUnderline";
 
+import { OakColorName } from "@/styles/theme";
 import Icon, {
   IconName,
   isIconVariant,
 } from "@/components/SharedComponents/Icon.deprecated";
-import { OakColorName } from "@/styles/theme";
 
 export type IconButtonInnerProps = {
   variant: ButtonVariant;

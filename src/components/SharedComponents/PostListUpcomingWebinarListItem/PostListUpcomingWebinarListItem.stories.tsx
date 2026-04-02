@@ -1,15 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
-import { OakBox } from "@oaknational/oak-components";
 
 import Component from ".";
+
+import Box from "@/components/SharedComponents/Box";
 
 const meta: Meta<typeof Component> = {
   component: Component,
   decorators: [
     (Story) => (
-      <OakBox $position="relative" $maxWidth={"spacing-640"} $ma="auto">
+      <Box $position="relative" $maxWidth={720} $ma="auto">
         <Story />
-      </OakBox>
+      </Box>
     ),
   ],
   argTypes: { signUpOnClick: { action: "clicked" } },

@@ -3,17 +3,17 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
-  OakFlexProps,
-  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import Card from "./Card";
 
 import { PortableTextJSON, Image } from "@/common-lib/cms-types";
+import { OakColorName } from "@/styles/theme/types";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import Cover from "@/components/SharedComponents/Cover";
 import CMSImage from "@/components/SharedComponents/CMSImage";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 export type SummaryCardProps = {
   children?: React.ReactNode;
@@ -21,8 +21,8 @@ export type SummaryCardProps = {
   heading: string;
   summaryPortableText: PortableTextJSON | string;
   summaryCardImage?: Image | null;
-  background?: OakUiRoleToken;
-  imageContainerProps?: OakFlexProps;
+  background?: OakColorName;
+  imageContainerProps?: FlexProps;
 };
 
 /**
@@ -38,22 +38,22 @@ const SummaryCard: FC<SummaryCardProps> = ({
   heading,
   summaryPortableText,
   summaryCardImage,
-  background = "bg-decorative5-subdued",
+  background = "lemon50",
   imageContainerProps,
   children,
 }) => {
   return (
     <Card
-      $pa={"spacing-0"}
+      $pa={0}
       $background={background}
       $flexDirection={"row"}
       $justifyContent={"space-between"}
       $width="100%"
-      $pv={["spacing-24"]}
-      $ph={["spacing-16", "spacing-24"]}
+      $pv={[24]}
+      $ph={[16, 24]}
     >
       <OakFlex $flexDirection={"column"} $width="100%">
-        <OakFlex $justifyContent={"space-between"}>
+        <OakFlex>
           <OakFlex
             $justifyContent={"center"}
             $flexDirection={"column"}
@@ -83,14 +83,14 @@ const SummaryCard: FC<SummaryCardProps> = ({
             </OakTypography>
           </OakFlex>
           {summaryCardImage && (
-            <OakFlex
+            <Flex
               $display={["none", "flex"]}
               $position="relative"
-              $minWidth={["spacing-180", "spacing-240", "spacing-360"]}
+              $minWidth={"30%"}
               $justifyContent={["center", "flex-end"]}
               $alignItems={["flex-end"]}
-              $pr={["spacing-0", "spacing-24"]}
-              $pb={"spacing-24"}
+              $pr={[0, 24]}
+              $pb={24}
               {...imageContainerProps}
             >
               <Cover>
@@ -106,7 +106,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
                   priority
                 />
               </Cover>
-            </OakFlex>
+            </Flex>
           )}
         </OakFlex>
         {children}

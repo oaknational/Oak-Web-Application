@@ -10,9 +10,8 @@ import {
 } from "@/components/HooksAndUtils/sanityImageBuilder";
 import { Image } from "@/common-lib/cms-types";
 import { SizeValues } from "@/styles/utils/size";
-import {
-  LegacyOwaImage,
-  LegacyOwaImageProps,
+import OwaImage, {
+  OwaImageProps,
 } from "@/components/SharedComponents/OwaImage";
 
 function getAspectRatio({
@@ -37,7 +36,7 @@ function getAspectRatio({
   return null;
 }
 
-export type CMSImageProps = Omit<LegacyOwaImageProps, "src" | "alt"> & {
+export type CMSImageProps = Omit<OwaImageProps, "src" | "alt"> & {
   /**
    * Sanity image asset
    */
@@ -194,7 +193,7 @@ const CMSImage: FC<CMSImageProps> = (props) => {
   };
 
   return (
-    <LegacyOwaImage
+    <OwaImage
       {...rest}
       {...styleDimensions}
       {...nextImageDimensions}

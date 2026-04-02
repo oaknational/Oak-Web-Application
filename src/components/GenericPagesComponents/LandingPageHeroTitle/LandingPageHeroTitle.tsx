@@ -1,9 +1,10 @@
 import { FC } from "react";
-import { OakFlex, OakHeading } from "@oaknational/oak-components";
+import { OakHeading } from "@oaknational/oak-components";
 
 import { CTA } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export const LandingPageHeroTitle: FC<{
   title: string;
@@ -12,12 +13,12 @@ export const LandingPageHeroTitle: FC<{
   leftAlign?: boolean;
 }> = ({ cta, heading, title, leftAlign }) => {
   return (
-    <OakFlex
-      $maxWidth={"spacing-960"}
-      $mb={"spacing-80"}
+    <Flex
+      $maxWidth={840}
+      $mb={[92]}
       $flexDirection={"column"}
       $alignItems={["flex-start", leftAlign ? "flex-start" : "center"]}
-      $ph={"spacing-16"}
+      $ph={16}
     >
       <OakHeading
         $mb={["spacing-8"]}
@@ -47,7 +48,7 @@ export const LandingPageHeroTitle: FC<{
           href={getLinkHref(cta)}
         />
       )}
-    </OakFlex>
+    </Flex>
   );
 };
 

@@ -50,7 +50,7 @@ const LayoutPreviewControls: FC = () => {
         $mr={24}
       />
       {secretParam && <CopyLinkButton href={previewURL} />}
-      <BrushBorders color="bg-primary" />
+      <BrushBorders color="white" />
     </OakFlex>
   );
 };

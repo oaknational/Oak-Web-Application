@@ -9,6 +9,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Card from "@/components/SharedComponents/Card";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
@@ -40,18 +41,18 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
   return (
     <Card
       $flexDirection={["column", "row"]}
-      $background={"bg-decorative5-subdued"}
+      $background={"lemon50"}
       $width={"100%"}
-      $mb={["spacing-56", "spacing-80"]}
-      $pb={"spacing-24"}
-      $ph={["spacing-16", "spacing-56"]}
+      $mb={[56, 92]}
+      $pb={24}
+      $ph={[16, 56]}
     >
-      <BrushBorders hideOnMobileH color={"bg-decorative5-subdued"} />
-      <OakFlex
-        $minHeight={"spacing-240"}
+      <BrushBorders hideOnMobileH color={"lemon50"} />
+      <Flex
+        $minHeight={200}
         $position="relative"
         $minWidth={["100%", "50%"]}
-        $mb={["spacing-48", "spacing-0"]}
+        $mb={[40, 0]}
       >
         {props.mediaType == "image" && (
           <CMSImage
@@ -69,8 +70,8 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
             <CMSVideo video={props.video} location="marketing" />
           </OakFlex>
         )}
-      </OakFlex>
-      <OakFlex
+      </Flex>
+      <Flex
         $minWidth={["100%", "50%"]}
         $justifyContent={"center"}
         $flexDirection={"column"}
@@ -79,6 +80,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
           components={landingPortableTextComponent}
           value={props.bodyPortableText}
         />
+
         <div>
           {props.cta && (
             <ButtonAsLink
@@ -91,7 +93,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
             />
           )}
         </div>
-      </OakFlex>
+      </Flex>
     </Card>
   );
 };

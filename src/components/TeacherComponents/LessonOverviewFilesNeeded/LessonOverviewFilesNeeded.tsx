@@ -89,7 +89,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           }}
         />
       </OakFlex>
-      <BrushBorders color="bg-decorative2-subdued" />
+      <BrushBorders color="aqua50" />
     </OakBox>
   );
 };

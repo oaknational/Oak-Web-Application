@@ -28,11 +28,11 @@ const SpecialistProgrammeListItem: FC<SpecialistProgrammeListItemProps> = (
     <Card
       $overflow={"hidden"}
       {...containerProps}
-      $pa={"spacing-0"}
+      $pa={0}
       data-testid={"programme-list-item"}
-      $background={isHovered ? "bg-neutral" : "bg-primary"}
-      $transition={"standard-ease"}
-      $width={["100%", "100%", "spacing-360"]}
+      $background={isHovered ? "grey20" : "white"}
+      $transition={"all 0.4s ease-out"}
+      $width={["100%", "100%", 400]}
       $flexGrow={0}
     >
       <OakFlex $pa="spacing-16">

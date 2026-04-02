@@ -17,10 +17,10 @@ export const LandingPageSignUpForm: FC<{
   return (
     <Card
       $width={["100%"]}
-      $pv={"spacing-40"}
-      $ph={["spacing-16", "spacing-24"]}
-      $background={"bg-primary"}
-      $dropShadow={"drop-shadow-standard"}
+      $pv={40}
+      $ph={[16, 24]}
+      $background={"white"}
+      $dropShadow={"notificationCard"}
     >
       {/**
        * We previously constrained editors to a pre-set list of possible anchors
