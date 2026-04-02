@@ -90,7 +90,7 @@ const mockLessonsWithLongTitles: EYFSLesson[] = [
 
 const meta: Meta<typeof EYFSLessonCard> = {
   component: EYFSLessonCard,
-  title: "App/Core/Teachers/Eyfs/EyfsLessonCard",
+  title: "App/Teachers/Eyfs/EyfsLessonCard",
   decorators: [
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>

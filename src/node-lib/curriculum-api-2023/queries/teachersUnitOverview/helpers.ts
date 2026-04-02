@@ -179,6 +179,8 @@ export const getPackagedUnit = (
     pathwaySlug: modifiedProgrammeFields.pathway_slug,
     pathwayTitle: modifiedProgrammeFields.pathway,
     pathwayDisplayOrder: modifiedProgrammeFields.pathway_display_order,
+    phaseSlug: modifiedProgrammeFields.phase_slug,
+    phaseTitle: modifiedProgrammeFields.phase_description,
     actions: combinedActions,
     containsGeorestrictedLessons,
     containsLoginRequiredLessons,

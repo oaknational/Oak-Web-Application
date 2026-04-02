@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { cache } from "react";
 
 import UnitHeader from "./Components/UnitHeader/UnitHeader";
+import { UnitBreadCrumbs } from "./Components/UnitBreadcrumbs/UnitBreadcrumbs";
 
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -10,7 +11,6 @@ import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
-import { getPhaseSlugFromKeystage } from "@/fixtures/curriculum/unit";
 import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
@@ -63,13 +63,12 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
   const { subjectPhaseSlug: programmeSlug, unitSlug } = await props.params;
   const data = await getCachedUnitData(programmeSlug, unitSlug);
   const subjectIconName = `subject-${data.subjectSlug}` as SubjectIcon;
-  const phase = getPhaseSlugFromKeystage(data.keyStageSlug);
 
   return (
     <UnitHeader
       heading={data.unitTitle}
-      phase={phase}
-      subjectPhaseSlug={`${data.subjectSlug}-${phase}`}
+      phase={data.phaseSlug}
+      subjectPhaseSlug={`${data.subjectSlug}-${data.phaseSlug}`}
       programmeSlug={programmeSlug}
       subjectIcon={subjectIconName}
       nextUnit={data.nextUnit}
@@ -88,6 +87,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
         subjectSlug: data.subjectSlug,
         subjectTitle: data.subjectTitle,
       }}
+      headerSlot={<UnitBreadCrumbs data={data} />}
     />
   );
 };

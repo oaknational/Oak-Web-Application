@@ -25,7 +25,7 @@ export type UnitHeaderProps = Omit<
   CompactHeaderProps,
   "layoutVariant" | "backgroundColorLevel"
 > & {
-  phase: "primary" | "secondary";
+  phase: "primary" | "secondary" | "foundation";
   unitDownloadFileId?: string;
   isGeorestrictedUnit?: boolean;
   nextUnit: NeighbourUnit;

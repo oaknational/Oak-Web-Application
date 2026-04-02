@@ -45,6 +45,8 @@ export const unitOverviewDataSchema = z.object({
   pathwaySlug: programmeFieldsSchema.shape.pathway_slug,
   pathwayTitle: programmeFieldsSchema.shape.pathway,
   pathwayDisplayOrder: programmeFieldsSchema.shape.pathway_display_order,
+  phaseSlug: programmeFieldsSchema.shape.phase_slug,
+  phaseTitle: programmeFieldsSchema.shape.phase_description,
   lessons: lessonListSchema,
   actions: lessonListItemSchema.shape.actions.nullable(),
   containsGeorestrictedLessons: z.boolean().optional(),
