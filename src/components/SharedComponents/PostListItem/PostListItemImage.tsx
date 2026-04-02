@@ -45,7 +45,7 @@ const PostListItemImage: FC<PostListItemProps> = (props) => {
           fill
           $objectFit="contain"
           $objectPosition="center center"
-          $background={"bg-inverted"}
+          $background={"black"}
           alt={""}
           src={props.thumbnailUrl}
         />

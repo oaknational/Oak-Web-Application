@@ -48,11 +48,7 @@ describe("LessonItemContainer", () => {
         isSpecialist={false}
         pageLinks={[]}
       >
-        <Card
-          $background={"bg-primary"}
-          $ba={"border-solid-l"}
-          $borderColor={"bg-neutral-stronger"}
-        >
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -68,11 +64,7 @@ describe("LessonItemContainer", () => {
         isSpecialist={false}
         pageLinks={[]}
       >
-        <Card
-          $background={"bg-primary"}
-          $ba={"border-solid-l"}
-          $borderColor={"bg-neutral-stronger"}
-        >
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -90,11 +82,7 @@ describe("LessonItemContainer", () => {
         slugs={lessonOverview}
         pageLinks={[]}
       >
-        <Card
-          $background={"bg-primary"}
-          $ba={"border-solid-l"}
-          $borderColor={"bg-neutral-stronger"}
-        >
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -111,11 +99,7 @@ describe("LessonItemContainer", () => {
         anchorId="slide-deck"
         pageLinks={[]}
       >
-        <Card
-          $background={"bg-primary"}
-          $ba={"border-solid-l"}
-          $borderColor={"bg-neutral-stronger"}
-        >
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -133,11 +117,7 @@ describe("LessonItemContainer", () => {
         isFinalElement={true}
         pageLinks={[]}
       >
-        <Card
-          $background={"bg-primary"}
-          $ba={"border-solid-l"}
-          $borderColor={"bg-neutral-stronger"}
-        >
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -155,11 +135,7 @@ describe("LessonItemContainer", () => {
         isFinalElement={false}
         pageLinks={[]}
       >
-        <Card
-          $background={"bg-primary"}
-          $ba={"border-solid-l"}
-          $borderColor={"bg-neutral-stronger"}
-        >
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -181,11 +157,7 @@ describe("LessonItemContainer", () => {
         onDownloadButtonClick={onDownloadButtonClick}
         pageLinks={[]}
       >
-        <Card
-          $background={"bg-primary"}
-          $ba={"border-solid-l"}
-          $borderColor={"bg-neutral-stronger"}
-        >
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </LessonItemContainer>,
@@ -210,11 +182,7 @@ describe("LessonItemContainer", () => {
         slugs={lessonOverview}
         pageLinks={[]}
       >
-        <Card
-          $background={"bg-primary"}
-          $ba={"border-solid-l"}
-          $borderColor={"bg-neutral-stronger"}
-        >
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </LessonItemContainer>,
@@ -241,11 +209,7 @@ describe("LessonItemContainer", () => {
             { anchorId: "video", label: "Video" },
           ]}
         >
-          <Card
-            $background={"bg-primary"}
-            $ba={"border-solid-l"}
-            $borderColor={"bg-neutral-stronger"}
-          >
+          <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
             Grid box
           </Card>
         </LessonItemContainer>
@@ -260,11 +224,7 @@ describe("LessonItemContainer", () => {
             { anchorId: "video", label: "Video" },
           ]}
         >
-          <Card
-            $background={"bg-primary"}
-            $ba={"border-solid-l"}
-            $borderColor={"bg-neutral-stronger"}
-          >
+          <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
             Grid box
           </Card>
         </LessonItemContainer>
@@ -301,11 +261,7 @@ describe("LessonItemContainer", () => {
         slugs={lessonOverview}
         pageLinks={[]}
       >
-        <Card
-          $background={"bg-primary"}
-          $ba={"border-solid-l"}
-          $borderColor={"bg-neutral-stronger"}
-        >
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,

@@ -1,39 +1,34 @@
-import {
-  OakBoxProps,
-  oakBoxCss,
-  OakUiRoleToken,
-} from "@oaknational/oak-components";
 import { FC } from "react";
 import styled from "styled-components";
 
 import getSvgId, {
   SvgName,
 } from "@/components/SharedComponents/SpriteSheet/getSvgId";
-const StyledSvg = styled.svg<OakBoxProps>`
-  ${oakBoxCss}
+import { OakColorName } from "@/styles/theme/types";
+import { box, BoxProps } from "@/components/SharedComponents/Box";
+
+const StyledSvg = styled.svg<BoxProps>`
+  ${box};
+  transition: all 0.3s ease;
 `;
-export type SvgProps = OakBoxProps & {
+export type SvgProps = BoxProps & {
   name: SvgName;
   className?: string;
   hideOnMobileH?: boolean;
   hideOnMobileV?: boolean;
-  color?: OakUiRoleToken;
+  color?: OakColorName;
   filter?: string;
 };
 const Svg: FC<SvgProps> = (props) => {
-  const { color, $color = color, ...rest } = props;
-
   return (
     <StyledSvg
       aria-hidden={true}
       xmlns="http://www.w3.org/2000/svg"
       width="100%"
       height="100%"
-      $transition={"standard-ease"}
-      $color={$color}
-      {...rest}
+      {...props}
     >
-      <use xlinkHref={`/images/sprite/sprite.svg#${getSvgId(rest)}`} />
+      <use xlinkHref={`/images/sprite/sprite.svg#${getSvgId(props)}`} />
     </StyledSvg>
   );
 };

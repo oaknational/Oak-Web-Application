@@ -3,7 +3,7 @@
 exports[`CurricModalErrorContent should render additional when supplied 1`] = `
 <div>
   <div
-    class="sc-aXZVg sc-gEvEer cuaHqh fVNIMq"
+    class="sc-aXZVg sc-gEvEer iXSzFI fVNIMq"
   >
     <h1
       class="sc-eldPxv sc-fbfc102a-0 ioPmOs jTTcqg"
@@ -27,7 +27,7 @@ exports[`CurricModalErrorContent should render additional when supplied 1`] = `
 exports[`CurricModalErrorContent should render correctly 1`] = `
 <div>
   <div
-    class="sc-aXZVg sc-gEvEer cuaHqh fVNIMq"
+    class="sc-aXZVg sc-gEvEer iXSzFI fVNIMq"
   >
     <h1
       class="sc-eldPxv sc-fbfc102a-0 ioPmOs jTTcqg"

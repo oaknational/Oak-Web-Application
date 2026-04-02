@@ -4,7 +4,6 @@ import {
   OakFlex,
   OakIcon,
   OakSecondaryLink,
-  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import Card from "@/components/SharedComponents/Card";
@@ -14,6 +13,7 @@ import {
   SpecialistProgrammeListingLinkProps,
   SpecialistUnitListingLinkProps,
 } from "@/common-lib/urls";
+import { OakColorName } from "@/styles/theme";
 import { SpecialistSubject } from "@/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.schema";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
@@ -43,13 +43,13 @@ const getSentenceCase = (str: string) =>
 
 const SpecialistSubjectCard = (props: {
   subject: SpecialistSubject;
-  backgroundColour: OakUiRoleToken;
+  backgroundColour: OakColorName;
 }) => {
   return (
     <Card
       $background={props.backgroundColour}
-      $borderRadius={"border-radius-s"}
-      $pa={"spacing-16"}
+      $borderRadius={4}
+      $pa={16}
       $height="100%"
     >
       <OakFlex

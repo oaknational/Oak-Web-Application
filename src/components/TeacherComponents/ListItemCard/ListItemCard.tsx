@@ -1,16 +1,17 @@
 import { DOMAttributes, FC, MouseEventHandler } from "react";
 import { FocusableElement } from "@react-types/shared";
-import { OakFlex, OakUiRoleToken } from "@oaknational/oak-components";
 
 import Card from "@/components/SharedComponents/Card";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
+import { OakColorName } from "@/styles/theme/types";
 
 export type ListItemCardProps = {
   title: string;
   subjectSlug: string;
   isHovered: boolean;
   children: React.ReactNode;
-  background: OakUiRoleToken;
+  background: OakColorName;
   disabled: boolean | null;
   index: number;
   containerProps: {
@@ -40,24 +41,25 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       role="listitem"
       $justifyContent={"space-between"}
       $flexDirection={"row"}
-      $mb={"spacing-16"}
-      $minHeight={"spacing-80"}
+      $mb={16}
+      $minHeight={80}
       $overflow={"hidden"}
-      $pa={"spacing-0"}
+      $pa={0}
       {...(!expired ? containerProps : null)}
     >
-      <OakFlex
-        $transition={"standard-ease"}
+      <Flex
+        $transition={"all 0.4s ease-out"}
         $width={"100%"}
         $position={"relative"}
         $flexDirection={"row"}
         $justifyContent={"space-between"}
+        $dropShadow={"subjectCard"}
         $alignItems={"start"}
-        $background={applyHoverStyles ? "bg-neutral" : background}
+        $background={applyHoverStyles ? "grey20" : background}
         data-testid="list-item-card-container"
       >
         {children}
-      </OakFlex>
+      </Flex>
 
       <BoxBorders
         $color={expired ? "bg-neutral-stronger" : "bg-inverted"}

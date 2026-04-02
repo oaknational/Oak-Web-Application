@@ -2,6 +2,8 @@ import { FC } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { OakP, OakFlex, OakBox } from "@oaknational/oak-components";
 
+import Flex from "@/components/SharedComponents/Flex.deprecated";
+
 export interface TranscriptViewerProps {
   transcriptSentences: string[] | null;
 }
@@ -15,17 +17,16 @@ export const TranscriptViewer: FC<TranscriptViewerProps> = ({
       aria-label="The video transcript"
       $width={["100%"]}
       $maxHeight={["spacing-360", "spacing-640", "spacing-640"]}
-      $overflow={"clip"}
       $background="bg-neutral-stronger"
       $ph="spacing-16"
       $pv="spacing-32"
       $borderRadius={["border-radius-m2", "border-radius-s", "border-radius-s"]}
     >
-      <OakFlex
-        $maxHeight={["spacing-360", "spacing-640", "spacing-640"]}
+      <Flex
+        $maxHeight={[320, 580, 580]}
         $overflowY={"scroll"}
         $width={"100%"}
-        $pr={"spacing-32"}
+        $pr={32}
         tabIndex={0}
         $flexDirection={"column"}
         $alignItems={"start"}
@@ -41,7 +42,7 @@ export const TranscriptViewer: FC<TranscriptViewerProps> = ({
             </OakP>
           ))}
         </OakBox>
-      </OakFlex>
+      </Flex>
     </OakBox>
   </OakFlex>
 );

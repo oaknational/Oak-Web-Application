@@ -4,6 +4,7 @@ import { OakFlex } from "@oaknational/oak-components";
 import { LandingPage } from "@/common-lib/cms-types";
 import LandingPageHeroTitle from "@/components/GenericPagesComponents/LandingPageHeroTitle";
 import CMSImage from "@/components/SharedComponents/CMSImage";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type LandingPageHeroProps = Pick<LandingPage, "hero">;
 
@@ -13,10 +14,10 @@ export type LandingPageHeroProps = Pick<LandingPage, "hero">;
  */
 const LandingPageHero: FC<LandingPageHeroProps> = (props) => {
   return (
-    <OakFlex $flexDirection={["column", "row"]} $mt={["spacing-80"]}>
+    <Flex $flexDirection={["column", "row"]} $mt={[92]}>
       <OakFlex $justifyContent={"center"} $width={"100%"}>
         <LandingPageHeroTitle
-          leftAlign={!!props.hero.image}
+          leftAlign={props.hero.image ? true : false}
           heading={props.hero.heading}
           title={props.hero.title}
           cta={props.hero.cta}
@@ -24,11 +25,11 @@ const LandingPageHero: FC<LandingPageHeroProps> = (props) => {
       </OakFlex>
 
       {props.hero.image && (
-        <OakFlex $ph={["spacing-16", "spacing-56"]} $minWidth={["100%", "50%"]}>
+        <Flex $ph={[16, 56]} $minWidth={["100%", "50%"]}>
           <CMSImage image={props.hero.image} />
-        </OakFlex>
+        </Flex>
       )}
-    </OakFlex>
+    </Flex>
   );
 };
 

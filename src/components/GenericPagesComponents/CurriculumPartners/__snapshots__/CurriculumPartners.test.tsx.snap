@@ -4,10 +4,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer hkJkIR daEtut"
+      class="sc-aXZVg sc-gEvEer hdseiA daEtut"
     >
       <div
-        class="sc-aXZVg sc-gEvEer hkJkIR gWBhKY"
+        class="sc-aXZVg sc-gEvEer hdseiA gWBhKY"
       >
         <h3
           class="sc-eldPxv dZzbTI"
@@ -21,16 +21,16 @@ exports[`CurriculumPartners renders correctly 1`] = `
         </p>
       </div>
       <div
-        class="sc-aXZVg hkJkIR"
+        class="sc-aXZVg hdseiA"
       >
         <ul
-          class="sc-aXZVg sc-tagGq hwYrLi hDvzcX"
+          class="sc-aXZVg sc-tagGq NyjaL hDvzcX"
         >
           <li
-            class="sc-fPXMVe bANRkk"
+            class="sc-fPXMVe jJBTEh"
           >
             <span
-              class="sc-aXZVg hOLzMm"
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 0"
@@ -46,10 +46,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe bANRkk"
+            class="sc-fPXMVe jJBTEh"
           >
             <span
-              class="sc-aXZVg hOLzMm"
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 1"
@@ -65,10 +65,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe bANRkk"
+            class="sc-fPXMVe jJBTEh"
           >
             <span
-              class="sc-aXZVg hOLzMm"
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 2"
@@ -84,10 +84,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe bANRkk"
+            class="sc-fPXMVe jJBTEh"
           >
             <span
-              class="sc-aXZVg hOLzMm"
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 3"
@@ -103,10 +103,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe bANRkk"
+            class="sc-fPXMVe jJBTEh"
           >
             <span
-              class="sc-aXZVg hOLzMm"
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 4"
@@ -122,10 +122,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe bANRkk"
+            class="sc-fPXMVe jJBTEh"
           >
             <span
-              class="sc-aXZVg hOLzMm"
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 5"
@@ -141,10 +141,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe bANRkk"
+            class="sc-fPXMVe jJBTEh"
           >
             <span
-              class="sc-aXZVg hOLzMm"
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 6"
@@ -160,10 +160,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe bANRkk"
+            class="sc-fPXMVe jJBTEh"
           >
             <span
-              class="sc-aXZVg hOLzMm"
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 7"
@@ -179,10 +179,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe bANRkk"
+            class="sc-fPXMVe jJBTEh"
           >
             <span
-              class="sc-aXZVg hOLzMm"
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 8"
@@ -198,10 +198,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe bANRkk"
+            class="sc-fPXMVe jJBTEh"
           >
             <span
-              class="sc-aXZVg hOLzMm"
+              class="sc-aXZVg jDYuWD"
             >
               <img
                 alt="item 9"

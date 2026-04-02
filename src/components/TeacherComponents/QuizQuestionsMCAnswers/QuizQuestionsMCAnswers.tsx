@@ -10,6 +10,7 @@ import {
 import QuizImage from "@/components/TeacherComponents/QuizImage";
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import QuizImageAnswer from "@/components/TeacherComponents/QuizImageAnswer";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizQuestionsMCAnswers = (props: {
@@ -41,23 +42,19 @@ export const QuizQuestionsMCAnswers = (props: {
           choice.answer.length === 1 && imageAnswers.length === 1;
 
         return (
-          <OakFlex
+          <Flex
             key={`q-${questionNumber}-answer-${i}`}
             $flexDirection={"column"}
-            $gap={"spacing-8"}
+            $gap={8}
             $alignItems={encloseAnswer ? "center" : "flex-start"}
             $borderStyle="solid"
-            $borderColor="border-primary"
-            $borderRadius={"border-radius-m2"}
+            $borderColor="black"
+            $borderRadius={8}
             role="listitem"
-            $ph={encloseAnswer && !imageAnswer ? "spacing-12" : "spacing-0"}
-            $pv={encloseAnswer && !imageAnswer ? "spacing-16" : "spacing-0"}
-            $ba={
-              encloseAnswer && !imageAnswer
-                ? "border-solid-s"
-                : "border-solid-none"
-            }
-            $maxWidth={encloseAnswer ? "spacing-480" : "100%"}
+            $ph={encloseAnswer && !imageAnswer ? 10 : 0}
+            $pv={encloseAnswer && !imageAnswer ? 16 : 0}
+            $ba={encloseAnswer && !imageAnswer ? 1 : 0}
+            $maxWidth={encloseAnswer ? 450 : "100%"}
           >
             {choice.answer.map((answerItem, j) => {
               if (answerItem.type === "text" && !choice.answerIsCorrect) {
@@ -118,7 +115,7 @@ export const QuizQuestionsMCAnswers = (props: {
                 );
               }
             })}
-          </OakFlex>
+          </Flex>
         );
       })}
     </OakFlex>

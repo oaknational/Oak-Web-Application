@@ -8,7 +8,6 @@ import {
   OakBox,
   OakMaxWidth,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import SearchForm from "@/components/SharedComponents/SearchForm";
@@ -18,19 +17,6 @@ import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypa
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-
-type PositionedProps = {
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-const PositionedTeachersTabResourceSelectorCard = styled(
-  TeachersTabResourceSelectorCard,
-)<PositionedProps>`
-  ${({ bottom }) => bottom && `bottom: ${bottom}px;`}
-  ${({ left }) => left && `left: ${left}px;`}
-  ${({ right }) => right && `right: ${right}px;`}
-`;
 
 type TeacherTabProps = {
   keyStages: KeyStageKeypadProps["keyStages"];
@@ -127,28 +113,28 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
               height={313}
               sizes={getSizes([100, 518])}
             >
-              <PositionedTeachersTabResourceSelectorCard
+              <TeachersTabResourceSelectorCard
                 icon={"worksheet"}
                 title="Worksheets"
                 angle={-4}
-                bottom={30}
-                left={166}
+                $bottom={30}
+                $left={166}
                 $display={["none", "none", "flex"]}
               />
-              <PositionedTeachersTabResourceSelectorCard
+              <TeachersTabResourceSelectorCard
                 icon={"slide-deck"}
                 title="Slide decks"
                 angle={2}
-                bottom={110}
-                left={-72}
+                $bottom={110}
+                $left={-72}
                 $display={["none", "none", "flex"]}
               />
-              <PositionedTeachersTabResourceSelectorCard
+              <TeachersTabResourceSelectorCard
                 icon={"quiz"}
                 title="Quizzes"
                 angle={4}
-                bottom={60}
-                right={-54}
+                $bottom={60}
+                $right={-54}
                 $display={["none", "none", "flex"]}
               />
             </ImageContainer>

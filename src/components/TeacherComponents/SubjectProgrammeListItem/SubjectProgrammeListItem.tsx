@@ -26,10 +26,10 @@ const SubjectProgrammeListItem: FC<SubjectProgrammeListItemProps> = (props) => {
     <Card
       $overflow={"hidden"}
       {...containerProps}
-      $pa={"spacing-0"}
+      $pa={0}
       data-testid={"programme-list-item"}
-      $background={isHovered ? "bg-neutral" : "bg-primary"}
-      $transition={"standard-ease"}
+      $background={isHovered ? "grey20" : "white"}
+      $transition={"all 0.4s ease-out"}
     >
       <OakFlex $pa="spacing-16">
         <OakSecondaryLink

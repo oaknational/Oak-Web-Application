@@ -29,7 +29,7 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
       $mb="spacing-24"
       data-testid="termsCheckbox"
     >
-      <BrushBorders hideOnMobileH hideOnMobileV color={"bg-neutral-stronger"} />
+      <BrushBorders hideOnMobileH hideOnMobileV color={"grey30"} />
       <Checkbox
         labelText={"I accept terms and conditions (required)"}
         checked={checked}

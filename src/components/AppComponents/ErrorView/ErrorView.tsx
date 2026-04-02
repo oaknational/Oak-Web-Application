@@ -1,11 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
-import {
-  OakP,
-  OakHeading,
-  OakMaxWidth,
-  OakFlex,
-} from "@oaknational/oak-components";
+import { OakP, OakHeading, OakMaxWidth } from "@oaknational/oak-components";
 
 import { TopNavProps } from "../TopNav/TopNav";
 
@@ -18,6 +13,7 @@ import Layout from "@/components/AppComponents/Layout";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import Button from "@/components/SharedComponents/Button";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 const shadow =
   "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000";
@@ -47,13 +43,13 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
       topNavProps={topNav}
     >
       <OakMaxWidth $alignItems={"flex-end"}>
-        <OakFlex
-          $mv={"spacing-80"}
+        <Flex
+          $mv={80}
           $flexDirection={"column"}
           $width={["100%", "50%"]}
-          $ph={"spacing-16"}
+          $ph={16}
         >
-          <OakFlex
+          <Flex
             data-testid="errorStatus"
             $justifyContent={["flex-end", "flex-start"]}
           >
@@ -64,7 +60,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
                 An error occurred
               </OakHeading>
             )}
-          </OakFlex>
+          </Flex>
 
           <OakHeading
             $mb="spacing-48"
@@ -98,7 +94,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
               page={"home"}
             />
           </ButtonGroup>
-        </OakFlex>
+        </Flex>
       </OakMaxWidth>
     </Layout>
   );

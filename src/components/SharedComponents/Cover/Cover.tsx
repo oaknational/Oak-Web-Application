@@ -1,14 +1,15 @@
-import { OakFlexProps, OakFlex } from "@oaknational/oak-components";
 import { FC } from "react";
 
-const Cover: FC<OakFlexProps> = (props) => {
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
+
+const Cover: FC<FlexProps> = (props) => {
   return (
-    <OakFlex
+    <Flex
       $position="absolute"
-      $top={"spacing-0"}
-      $right={"spacing-0"}
-      $bottom={"spacing-0"}
-      $left={"spacing-0"}
+      $top={0}
+      $right={0}
+      $bottom={0}
+      $left={0}
       {...props}
     />
   );

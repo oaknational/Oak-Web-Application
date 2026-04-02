@@ -4,7 +4,6 @@ import {
   OakHeading,
   OakHeadingTag,
   OakIcon,
-  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import { SubjectPathwayArray } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
@@ -12,6 +11,7 @@ import SubjectListingCardDoubleCountCard from "@/components/TeacherComponents/Su
 import SubjectListingCardCountCardWithPathways from "@/components/TeacherComponents/SubjectListingCardCountCardWithPathways";
 import Card from "@/components/SharedComponents/Card";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import { OakColorName } from "@/styles/theme";
 
 export type SubjectListingCardProps = {
   titleTag?: OakHeadingTag;
@@ -19,7 +19,7 @@ export type SubjectListingCardProps = {
   subjectSlug: string;
   keyStageSlug: string;
   keyStageTitle: string;
-  $background?: OakUiRoleToken;
+  $background?: OakColorName;
 };
 
 const SubjectListingCard: FC<SubjectListingCardProps> = ({
@@ -28,7 +28,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
   keyStageSlug,
   keyStageTitle,
   subjectSlug,
-  $background = "bg-decorative3-subdued",
+  $background = "lavender50",
 }) => {
   const hasPathways = (subject: SubjectPathwayArray) =>
     !!subject?.[0]?.data.pathwaySlug;
@@ -38,8 +38,8 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
       $flexDirection={"column"}
       $alignItems="stretch"
       $background={$background}
-      $pa={["spacing-0", "spacing-0"]}
-      $borderRadius={"border-radius-s"}
+      $pa={[0, 0]}
+      $borderRadius={4}
     >
       <OakFlex
         $position={"relative"}
