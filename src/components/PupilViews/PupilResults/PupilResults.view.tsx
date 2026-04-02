@@ -48,7 +48,6 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
   const percentageVideoWatched = getPercentageWatched();
 
   const iconSlug = `subject-${subjectSlug}`;
-  let questionIndex = 1;
 
   return (
     <MathJaxWrap>
@@ -75,13 +74,11 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
             quiz={starterQuiz}
             quizQuestionsArray={starterQuizQuestionsArray}
             quizType={"starter"}
-            incrementQuestionIndex={() => questionIndex++}
           />
           <QuizQuestionResultsSection
             quiz={exitQuiz}
             quizQuestionsArray={exitQuizQuestionsArray}
             quizType={"exit"}
-            incrementQuestionIndex={() => questionIndex++}
           />
           <CopyrightNotice isLegacyLicense={isLegacy} />
         </OakFlex>
