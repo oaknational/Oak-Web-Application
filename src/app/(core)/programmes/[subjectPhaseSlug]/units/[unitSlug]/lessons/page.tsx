@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 
 import UnitHeader from "./Components/UnitHeader/UnitHeader";
-import { UnitBreadCrumbs } from "./Components/UnitBreadcrumbs/UnitBreadcrumbs";
+import { UnitBreadcrumbs } from "./Components/UnitBreadcrumbs/UnitBreadcrumbs";
 import { UnitView } from "./Components/UnitView";
 
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
@@ -111,7 +111,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
           subjectTitle: data.subjectTitle,
         }}
         headerSlot={
-          <UnitBreadCrumbs data={data} subjectPhaseSlug={subjectPhaseSlug} />
+          <UnitBreadcrumbs data={data} subjectPhaseSlug={subjectPhaseSlug} />
         }
       />
       <UnitView

@@ -5,7 +5,7 @@ import { OakBreadcrumbs } from "@oaknational/oak-components";
 import { resolveOakHref } from "@/common-lib/urls";
 import { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 
-export const UnitBreadCrumbs = ({
+export const UnitBreadcrumbs = ({
   data,
   subjectPhaseSlug,
 }: {
