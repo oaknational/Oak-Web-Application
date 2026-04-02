@@ -8,11 +8,13 @@ import {
   getPackagedUnit,
   getProgrammeToggles,
   getTransformedLessons,
+  getUnitCounts,
 } from "./helpers";
 import {
   unitSequenceFixture,
   unitsInOtherProgrammesFixture,
 } from "./teachersUnitOverview.query.test";
+import type { UnitSequence } from "./teachersUnitOverview.schema";
 
 const mockPackagedUnitData = {
   programmeFields: syntheticUnitvariantLessonsByKsFixture().programme_fields,
@@ -22,9 +24,12 @@ const mockPackagedUnitData = {
   unitTitle:
     syntheticUnitvariantLessonsByKsFixture().programme_fields.optionality ??
     syntheticUnitvariantLessonsByKsFixture().unit_data.title,
+  unitDescription:
+    syntheticUnitvariantLessonsByKsFixture().unit_data.description,
   programmeSlugByYear:
     syntheticUnitvariantLessonsByKsFixture().programme_slug_by_year,
   nullUnitvariantId: 1,
+  subjectCategories: [],
 };
 
 describe("getTransformedUnit", () => {
@@ -69,6 +74,9 @@ describe("getTransformedUnit", () => {
       tierTitle: null,
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
+      unitDescription: null,
+      unitIndex: 1,
+      unitCount: 4,
       unitvariantId: 1,
       yearTitle: "Year 1",
       yearSlug: "year-1",
@@ -138,6 +146,9 @@ describe("getTransformedUnit", () => {
       tierTitle: null,
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
+      unitDescription: null,
+      unitIndex: 1,
+      unitCount: 4,
       unitvariantId: 1,
       yearTitle: "Year 1",
       yearSlug: "year-1",
@@ -157,6 +168,235 @@ describe("getTransformedUnit", () => {
       tierOptionToggles: [],
       subjectOptionToggles: [],
     });
+  });
+
+  it("sets unitCount for the current unit's year", () => {
+    const sequence = unitSequenceFixture.slice(0, 2);
+    const result = getPackagedUnit(
+      mockPackagedUnitData,
+      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
+      false,
+      false,
+      sequence,
+      unitsInOtherProgrammesFixture,
+    );
+    expect(result.unitCount).toBe(sequence.length);
+  });
+
+  it("does not include units from other years in unitCount", () => {
+    const result = getPackagedUnit(
+      { ...mockPackagedUnitData, nullUnitvariantId: 20 },
+      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
+      false,
+      false,
+      [
+        ...unitSequenceFixture,
+        {
+          unitSlug: "unit-20",
+          unitTitle: "Unit 20",
+          unitDescription: null,
+          unitOrder: 1,
+          nullUnitvariantId: 20,
+          yearOrder: 2,
+          year: "7",
+        },
+        {
+          unitSlug: "unit-21",
+          unitTitle: "Unit 21",
+          unitDescription: null,
+          unitOrder: 2,
+          nullUnitvariantId: 21,
+          yearOrder: 2,
+          year: "7",
+        },
+      ],
+      unitsInOtherProgrammesFixture,
+    );
+
+    expect(result.unitCount).toBe(2);
+  });
+});
+
+describe("getUnitCounts", () => {
+  it("returns unitCount for the current unit's year", () => {
+    const sequence = unitSequenceFixture.slice(0, 2);
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: sequence[0]!.nullUnitvariantId,
+    });
+    expect(result.unitCount).toBe(sequence.length);
+  });
+
+  it("does not include units from other years in unitCount", () => {
+    const sequence: UnitSequence = [
+      ...unitSequenceFixture,
+      {
+        unitSlug: "unit-20",
+        unitTitle: "Unit 20",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 20,
+        yearOrder: 2,
+        year: "7",
+      },
+      {
+        unitSlug: "unit-21",
+        unitTitle: "Unit 21",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 21,
+        yearOrder: 2,
+        year: "7",
+      },
+    ];
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 20,
+    });
+
+    expect(result.unitCount).toBe(2);
+  });
+
+  it("deduplicates optionality variants when counting units", () => {
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "unit-1-core",
+        unitTitle: "Unit 1",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "7",
+      },
+      {
+        unitSlug: "unit-2-core",
+        unitTitle: "Unit 2",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "7",
+      },
+      {
+        unitSlug: "unit-2-optionality",
+        unitTitle: "Unit 2",
+        unitDescription: null,
+        optionalityTitle: "Stretch",
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "7",
+      },
+      {
+        unitSlug: "unit-3-core",
+        unitTitle: "Unit 3",
+        unitDescription: null,
+        unitOrder: 3,
+        nullUnitvariantId: 3,
+        yearOrder: 1,
+        year: "7",
+      },
+    ];
+
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 2,
+    });
+
+    expect(result.unitCount).toBe(3);
+    expect(result.unitIndex).toBe(2);
+  });
+
+  it("filters out swimming units for non-swimming units", () => {
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "unit-1",
+        unitTitle: "Unit 1",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "7",
+      },
+      {
+        unitSlug: "swimming-and-water-safety-1",
+        unitTitle: "Swimming and water safety 1",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "7",
+        isSwimming: true,
+      },
+      {
+        unitSlug: "unit-3",
+        unitTitle: "Unit 3",
+        unitDescription: null,
+        unitOrder: 3,
+        nullUnitvariantId: 3,
+        yearOrder: 1,
+        year: "7",
+      },
+    ];
+
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 1,
+    });
+
+    expect(result.unitCount).toBe(2);
+    expect(result.unitIndex).toBe(1);
+  });
+
+  it("counts only swimming units for swimming units", () => {
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "unit-1",
+        unitTitle: "Unit 1",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "7",
+      },
+      {
+        unitSlug: "swimming-and-water-safety-1",
+        unitTitle: "Swimming and water safety 1",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "7",
+        isSwimming: true,
+      },
+      {
+        unitSlug: "swimming-and-water-safety-2",
+        unitTitle: "Swimming and water safety 2",
+        unitDescription: null,
+        unitOrder: 4,
+        nullUnitvariantId: 4,
+        yearOrder: 1,
+        year: "7",
+        isSwimming: true,
+      },
+      {
+        unitSlug: "unit-3",
+        unitTitle: "Unit 3",
+        unitDescription: null,
+        unitOrder: 3,
+        nullUnitvariantId: 3,
+        yearOrder: 1,
+        year: "7",
+      },
+    ];
+
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 4,
+    });
+
+    expect(result.unitCount).toBe(2);
+    expect(result.unitIndex).toBe(2);
   });
 });
 
@@ -185,10 +425,12 @@ describe("getNeighbourUnits", () => {
       unitSequenceFixture.concat({
         unitSlug: "unit-slug",
         unitTitle: "Null Title",
+        unitDescription: null,
         optionalityTitle: "Optionality title",
         unitOrder: 5,
         nullUnitvariantId: 5,
         yearOrder: 1,
+        year: "7",
       }),
       unitsInOtherProgrammesFixture,
     );
@@ -205,17 +447,21 @@ describe("getNeighbourUnits", () => {
         {
           unitSlug: "unit-slug",
           unitTitle: "Null Title",
+          unitDescription: null,
           optionalityTitle: "Optionality title",
           unitOrder: 5,
           nullUnitvariantId: 5,
           yearOrder: 1,
+          year: "7",
         },
         {
           unitSlug: "unit-slug",
           unitTitle: "Unit Title",
+          unitDescription: null,
           unitOrder: 6,
           nullUnitvariantId: 6,
           yearOrder: 1,
+          year: "7",
         },
       ],
       nullUnitvariantId: 6,
@@ -234,8 +480,10 @@ describe("getNeighbourUnits", () => {
           unitOrder: 6,
           unitSlug: "next-slug",
           unitTitle: "Next unit",
+          unitDescription: null,
           nullUnitvariantId: 6,
           yearOrder: 1,
+          year: "7",
         },
       ],
       nullUnitvariantId: 4,
@@ -253,22 +501,28 @@ describe("getNeighbourUnits", () => {
           unitOrder: 2,
           unitSlug: "prev-slug",
           unitTitle: "Prev unit",
+          unitDescription: null,
           nullUnitvariantId: 2,
           yearOrder: 1,
+          year: "7",
         },
         {
           unitOrder: 5,
           unitSlug: "current-slug",
           unitTitle: "Current unit",
+          unitDescription: null,
           nullUnitvariantId: 5,
           yearOrder: 1,
+          year: "7",
         },
         {
           unitOrder: 6,
           unitSlug: "next-slug",
           unitTitle: "Next unit",
+          unitDescription: null,
           nullUnitvariantId: 6,
           yearOrder: 1,
+          year: "7",
         },
       ],
       nullUnitvariantId: 5,
@@ -281,23 +535,29 @@ describe("getNeighbourUnits", () => {
         {
           unitSlug: "unit-1",
           unitTitle: "Unit 1",
+          unitDescription: null,
           nullUnitvariantId: 1,
           yearOrder: 1,
           unitOrder: 1,
+          year: "7",
         },
         {
           unitSlug: "unit-10",
           unitTitle: "Unit 10",
+          unitDescription: null,
           nullUnitvariantId: 20,
           yearOrder: 2,
           unitOrder: 2,
+          year: "7",
         },
         {
           unitSlug: "unit-2",
           unitTitle: "Unit 2",
+          unitDescription: null,
           nullUnitvariantId: 2,
           yearOrder: 1,
           unitOrder: 2,
+          year: "7",
         },
       ],
       nullUnitvariantId: 1,
@@ -313,23 +573,29 @@ describe("getNeighbourUnits", () => {
         {
           unitSlug: "unit-2",
           unitTitle: "Unit 2",
+          unitDescription: null,
           nullUnitvariantId: 2,
           yearOrder: 2,
           unitOrder: 2,
+          year: "7",
         },
         {
           unitSlug: "unit-20",
           unitTitle: "Unit 20",
+          unitDescription: null,
           nullUnitvariantId: 20,
           yearOrder: 1,
           unitOrder: 2,
+          year: "7",
         },
         {
           unitSlug: "unit-3",
           unitTitle: "Unit 3",
+          unitDescription: null,
           nullUnitvariantId: 3,
           yearOrder: 2,
           unitOrder: 2,
+          year: "7",
         },
       ],
       nullUnitvariantId: 3,

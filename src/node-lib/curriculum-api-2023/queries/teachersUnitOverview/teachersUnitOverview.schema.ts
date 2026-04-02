@@ -28,6 +28,13 @@ export const unitOverviewDataSchema = z.object({
   unitSlug: z.string(),
   unitvariantId: z.number(),
   unitTitle: z.string(),
+  unitDescription: z.string().nullable(),
+  unitIndex: z.number(),
+  unitCount: z
+    .number()
+    .describe(
+      "The number of units in the programme sequence for the current unit's year",
+    ),
   subjectSlug: programmeFieldsSchema.shape.subject_slug,
   subjectTitle: programmeFieldsSchema.shape.subject,
   parentSubject: programmeFieldsSchema.shape.subject_parent,
@@ -75,10 +82,14 @@ export const unitSequenceResponseSchema = z.array(
   z.object({
     unitSlug: z.string(),
     unitTitle: z.string(),
+    unitDescription: z.string().nullable(),
     unitOrder: z.number(),
+    subjectCategories: z.array(z.string()).nullish(),
     optionalityTitle: z.string().nullish(),
     nullUnitvariantId: z.number(),
     yearOrder: z.number(),
+    year: programmeFieldsSchema.shape.year,
+    isSwimming: z.boolean().nullish(),
   }),
 );
 export type UnitSequence = z.infer<typeof unitSequenceResponseSchema>;
@@ -89,6 +100,20 @@ export type PackagedUnitData = {
   unitvariantId: number;
   programmeSlug: string;
   unitTitle: string;
+  unitDescription: string | null;
   programmeSlugByYear: string[];
   nullUnitvariantId: number;
+  subjectCategories: string[] | null | undefined;
 };
+
+export const subjectCategoriesSchema = z
+  .array(
+    z.object({
+      id: z.number(),
+      title: z.string(),
+      category: z.string().optional(),
+      slug: z.string(),
+    }),
+  )
+  .nullish();
+export type SubjectCategories = z.infer<typeof subjectCategoriesSchema>;
