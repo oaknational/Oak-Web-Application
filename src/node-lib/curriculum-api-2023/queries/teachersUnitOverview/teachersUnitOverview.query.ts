@@ -20,19 +20,13 @@ type TeachersUnitOverviewQueryArgs = {
 };
 
 const teachersUnitOverviewQuery =
-  (sdk: Sdk) =>
-  async ({
-    programmeSlug,
-    unitSlug,
-    subjectCategorySlug,
-  }: TeachersUnitOverviewQueryArgs) => {
+  (sdk: Sdk) => async (args: TeachersUnitOverviewQueryArgs) => {
     const {
       lessons,
       unitSequence,
       unitsInOtherProgrammes,
-      currentUnitSubjectCategories,
-    } = await sdk.teachersUnitOverview({ programmeSlug, unitSlug });
-
+      matchingSubjectCategories,
+    } = await sdk.teachersUnitOverview(args);
     const parsedUnitSequence = unitSequenceResponseSchema.parse(unitSequence);
     const parsedUnitsInOtherProgrammes =
       unitsInOtherProgrammesResponseSchema.parse(unitsInOtherProgrammes);
@@ -45,11 +39,7 @@ const teachersUnitOverviewQuery =
       browseData: lessons,
     });
 
-    if (
-      modifiedLessons.length === 0 ||
-      parsedUnitSequence.length === 0 ||
-      currentUnitSubjectCategories.length === 0
-    ) {
+    if (modifiedLessons.length === 0 || parsedUnitSequence.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
@@ -59,16 +49,15 @@ const teachersUnitOverviewQuery =
     const containsLoginRequiredLessons = modifiedLessons.some(
       (lesson) => lesson.features?.agf__login_required === true,
     );
-    const parsedCurrentUnitSubjectCategories = subjectCategoriesSchema.parse(
-      currentUnitSubjectCategories[0]!.subjectCategories,
+    const parsedMatchingSubjectCategories = subjectCategoriesSchema.parse(
+      matchingSubjectCategories?.[0]?.subjectCategories,
     );
 
     // We receive the subject category slug, but need to map it to the subject category title
     // to be able to intersect with the subject categories on the unit sequence 😮‍💨
-    const currentSubjectCategoryTitle =
-      parsedCurrentUnitSubjectCategories?.find(
-        (category) => category.slug === subjectCategorySlug,
-      )?.title;
+    const currentSubjectCategoryTitle = parsedMatchingSubjectCategories?.find(
+      (category) => category.slug === args.subjectCategorySlug,
+    )?.title;
 
     const parsedModifiedLessons =
       modifiedLessonsResponseSchemaArray.parse(modifiedLessons);

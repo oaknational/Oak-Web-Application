@@ -51067,10 +51067,11 @@ export type TeachersSitemapQuery = { __typename?: 'query_root', keyStages: Array
 export type TeachersUnitOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
   unitSlug: Scalars['String']['input'];
+  subjectCategorySlug?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type TeachersUnitOverviewQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, programme_slug_by_year?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unitvariant_id?: number | null, unit_data?: any | null, programme_slug?: string | null, actions?: any | null, features?: any | null, order_in_unit?: number | null, static_lesson_list?: any | null }>, unitsInOtherProgrammes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', programme_slug?: string | null, programme_fields?: any | null }>, unitSequence: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', unitSlug?: string | null, unitTitle?: any | null, unitDescription?: any | null, unitOrder?: any | null, yearOrder?: any | null, year?: any | null, subjectCategories?: any | null, optionalityTitle?: any | null, isSwimming?: any | null, nullUnitvariantId?: number | null }>, currentUnitSubjectCategories: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_21', subjectCategories?: any | null }> };
+export type TeachersUnitOverviewQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, programme_slug_by_year?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unitvariant_id?: number | null, unit_data?: any | null, programme_slug?: string | null, actions?: any | null, features?: any | null, order_in_unit?: number | null, static_lesson_list?: any | null }>, unitsInOtherProgrammes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', programme_slug?: string | null, programme_fields?: any | null }>, unitSequence: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', unitSlug?: string | null, unitTitle?: any | null, unitDescription?: any | null, unitOrder?: any | null, yearOrder?: any | null, year?: any | null, subjectCategories?: any | null, optionalityTitle?: any | null, isSwimming?: any | null, nullUnitvariantId?: number | null }>, matchingSubjectCategories: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_21', subjectCategories?: any | null }> };
 
 export type TopNavQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -52208,7 +52209,7 @@ export const TeachersSitemapDocument = gql`
 }
     `;
 export const TeachersUnitOverviewDocument = gql`
-    query teachersUnitOverview($programmeSlug: String!, $unitSlug: String!) {
+    query teachersUnitOverview($programmeSlug: String!, $unitSlug: String!, $subjectCategorySlug: String) {
   lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
     where: {unit_slug: {_eq: $unitSlug}, programme_slug: {_eq: $programmeSlug}, is_legacy: {_eq: false}}
   ) {
@@ -52246,8 +52247,9 @@ export const TeachersUnitOverviewDocument = gql`
     isSwimming: features(path: "pe_swimming")
     nullUnitvariantId: null_unitvariant_id
   }
-  currentUnitSubjectCategories: published_mv_curriculum_sequence_b_13_0_21(
-    where: {slug: {_eq: $unitSlug}}
+  matchingSubjectCategories: published_mv_curriculum_sequence_b_13_0_21(
+    where: {subjectcategories: {_contains: [{slug: $subjectCategorySlug}]}}
+    limit: 1
   ) {
     subjectCategories: subjectcategories
   }
