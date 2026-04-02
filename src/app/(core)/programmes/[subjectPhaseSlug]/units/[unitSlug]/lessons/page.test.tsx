@@ -95,16 +95,44 @@ describe("UnitPage", () => {
     featureFlagMock.mockResolvedValue(false);
 
     await expect(
-      UnitPage({ params: Promise.resolve(defaultParams) }),
+      UnitPage({
+        params: Promise.resolve(defaultParams),
+        searchParams: Promise.resolve({}),
+      }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
 
   it("renders when the feature flag is enabled", async () => {
     featureFlagMock.mockResolvedValue(true);
 
-    const result = await UnitPage({ params: Promise.resolve(defaultParams) });
+    const result = await UnitPage({
+      params: Promise.resolve(defaultParams),
+      searchParams: Promise.resolve({}),
+    });
 
     expect(result).toBeDefined();
+    expect(mockTeachersUnitOverview).toHaveBeenCalledWith({
+      programmeSlug: defaultParams.subjectPhaseSlug,
+      unitSlug: defaultParams.unitSlug,
+      subjectCategorySlug: undefined,
+    });
+  });
+
+  it("passes subject category from query params to data fetch", async () => {
+    featureFlagMock.mockResolvedValue(true);
+
+    await UnitPage({
+      params: Promise.resolve(defaultParams),
+      searchParams: Promise.resolve({
+        subject_category: "number-and-place-value",
+      }),
+    });
+
+    expect(mockTeachersUnitOverview).toHaveBeenCalledWith({
+      programmeSlug: defaultParams.subjectPhaseSlug,
+      unitSlug: defaultParams.unitSlug,
+      subjectCategorySlug: "number-and-place-value",
+    });
   });
 
   it("renders 404 when data is not found", async () => {
@@ -114,7 +142,10 @@ describe("UnitPage", () => {
     );
 
     await expect(
-      UnitPage({ params: Promise.resolve(defaultParams) }),
+      UnitPage({
+        params: Promise.resolve(defaultParams),
+        searchParams: Promise.resolve({}),
+      }),
     ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
 });
@@ -125,6 +156,7 @@ describe("generateMetadata", () => {
 
     const result = await generateMetadata({
       params: Promise.resolve(defaultParams),
+      searchParams: Promise.resolve({}),
     });
 
     expect(result).toEqual({});
@@ -135,6 +167,7 @@ describe("generateMetadata", () => {
 
     const result = await generateMetadata({
       params: Promise.resolve(defaultParams),
+      searchParams: Promise.resolve({}),
     });
 
     expect(result.title).toBe("Geometry KS2 | Y4 Maths Lesson Resources");
@@ -147,5 +180,20 @@ describe("generateMetadata", () => {
     expect(result.twitter?.title).toBe(
       "Geometry KS2 | Y4 Maths Lesson Resources",
     );
+  });
+
+  it("passes subject category query param to metadata data fetch", async () => {
+    mockTeachersUnitOverview.mockResolvedValue(unitOverviewFixture);
+
+    await generateMetadata({
+      params: Promise.resolve(defaultParams),
+      searchParams: Promise.resolve({ subject_category: "statistics" }),
+    });
+
+    expect(mockTeachersUnitOverview).toHaveBeenCalledWith({
+      programmeSlug: defaultParams.subjectPhaseSlug,
+      unitSlug: defaultParams.unitSlug,
+      subjectCategorySlug: "statistics",
+    });
   });
 });

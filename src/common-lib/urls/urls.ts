@@ -122,6 +122,9 @@ export type UnitPageLinkProps = {
   page: "unit-page";
   subjectPhaseSlug: string;
   unitSlug: string;
+  query?: {
+    subject_category?: string;
+  };
 };
 export type SpecialistLessonListingLinkProps = Omit<
   LessonListingLinkProps,
