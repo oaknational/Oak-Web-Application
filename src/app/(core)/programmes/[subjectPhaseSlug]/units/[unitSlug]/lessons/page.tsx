@@ -71,7 +71,12 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
   }
 
   const { subjectPhaseSlug: programmeSlug, unitSlug } = await props.params;
-  const data = await getCachedUnitData(programmeSlug, unitSlug);
+  const searchParams = await props.searchParams;
+  const data = await getCachedUnitData(
+    programmeSlug,
+    unitSlug,
+    searchParams?.subject_category?.toString(),
+  );
   const subjectIconName = `subject-${data.subjectSlug}` as SubjectIcon;
 
   const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
