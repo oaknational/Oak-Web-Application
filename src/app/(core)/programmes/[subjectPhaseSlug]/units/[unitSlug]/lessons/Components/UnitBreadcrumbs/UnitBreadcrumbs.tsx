@@ -32,7 +32,7 @@ export const UnitBreadCrumbs = ({
           }),
         },
         {
-          text: data.unitTitle,
+          text: `Unit ${data.unitIndex} of ${data.unitCount}`,
         },
       ]}
     />
