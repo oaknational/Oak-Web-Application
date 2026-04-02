@@ -4,6 +4,7 @@ import {
   unitSequenceResponseSchema,
   PackagedUnitData,
   unitsInOtherProgrammesResponseSchema,
+  subjectCategoriesSchema,
 } from "./teachersUnitOverview.schema";
 import { getPackagedUnit, getTransformedLessons } from "./helpers";
 
@@ -12,10 +13,25 @@ import OakError from "@/errors/OakError";
 import { TeachersUnitOverviewQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 
+type TeachersUnitOverviewQueryArgs = {
+  programmeSlug: string;
+  unitSlug: string;
+  subjectCategorySlug?: string;
+};
+
 const teachersUnitOverviewQuery =
-  (sdk: Sdk) => async (args: { programmeSlug: string; unitSlug: string }) => {
-    const { lessons, unitSequence, unitsInOtherProgrammes } =
-      await sdk.teachersUnitOverview(args);
+  (sdk: Sdk) =>
+  async ({
+    programmeSlug,
+    unitSlug,
+    subjectCategorySlug,
+  }: TeachersUnitOverviewQueryArgs) => {
+    const {
+      lessons,
+      unitSequence,
+      unitsInOtherProgrammes,
+      currentUnitSubjectCategories,
+    } = await sdk.teachersUnitOverview({ programmeSlug, unitSlug });
 
     const parsedUnitSequence = unitSequenceResponseSchema.parse(unitSequence);
     const parsedUnitsInOtherProgrammes =
@@ -29,7 +45,11 @@ const teachersUnitOverviewQuery =
       browseData: lessons,
     });
 
-    if (modifiedLessons.length === 0 || parsedUnitSequence.length === 0) {
+    if (
+      modifiedLessons.length === 0 ||
+      parsedUnitSequence.length === 0 ||
+      currentUnitSubjectCategories.length === 0
+    ) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
@@ -39,6 +59,16 @@ const teachersUnitOverviewQuery =
     const containsLoginRequiredLessons = modifiedLessons.some(
       (lesson) => lesson.features?.agf__login_required === true,
     );
+    const parsedCurrentUnitSubjectCategories = subjectCategoriesSchema.parse(
+      currentUnitSubjectCategories[0]!.subjectCategories,
+    );
+
+    // We receive the subject category slug, but need to map it to the subject category title
+    // to be able to intersect with the subject categories on the unit sequence 😮‍💨
+    const currentSubjectCategoryTitle =
+      parsedCurrentUnitSubjectCategories?.find(
+        (category) => category.slug === subjectCategorySlug,
+      )?.title;
 
     const parsedModifiedLessons =
       modifiedLessonsResponseSchemaArray.parse(modifiedLessons);
@@ -67,6 +97,7 @@ const teachersUnitOverviewQuery =
       containsLoginRequiredLessons,
       parsedUnitSequence,
       parsedUnitsInOtherProgrammes,
+      currentSubjectCategoryTitle,
     );
 
     return unitOverviewDataSchema.parse(packagedUnit);

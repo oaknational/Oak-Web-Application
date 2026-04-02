@@ -115,9 +115,11 @@ export const getNeighbourUnits = ({
 export const getUnitCounts = ({
   unitSequenceData,
   nullUnitvariantId,
+  currentSubjectCategoryTitle,
 }: {
   unitSequenceData: UnitSequence;
   nullUnitvariantId: number;
+  currentSubjectCategoryTitle?: string;
 }) => {
   const currentUnit = unitSequenceData.find(
     (u) => u.nullUnitvariantId === nullUnitvariantId,
@@ -127,6 +129,14 @@ export const getUnitCounts = ({
   }
 
   const isCurrentUnitSwimming = currentUnit.isSwimming === true;
+
+  // Units can belong to multiple subject categories. We pass that down through
+  // the query so that we can filter accordingly
+  const currentSubjectCategory = currentUnit.subjectCategories?.find(
+    (subjectCategoryTitle) =>
+      subjectCategoryTitle === currentSubjectCategoryTitle,
+  );
+
   const unitsForYear = unitSequenceData
     .reduce((acc: UnitSequence, unit) => {
       // Only count optionality units once
@@ -139,6 +149,14 @@ export const getUnitCounts = ({
       // Swimming units are grouped across all years; all other units are grouped by year.
       if (isCurrentUnitSwimming) {
         return u.isSwimming === true;
+      }
+
+      // Exclude units that don't belong to the current subject category.
+      if (
+        currentSubjectCategory &&
+        !u.subjectCategories?.includes(currentSubjectCategory)
+      ) {
+        return false;
       }
 
       // Exclude swimming units from all years.
@@ -161,6 +179,7 @@ export const getPackagedUnit = (
   containsLoginRequiredLessons: boolean,
   unitSequenceData: UnitSequence,
   unitsInOtherProgrammes: UnitsInOtherProgrammes,
+  currentSubjectCategoryTitle?: string,
 ): TeachersUnitOverviewData => {
   const {
     programmeFields,
@@ -203,6 +222,7 @@ export const getPackagedUnit = (
   const { unitCount, unitIndex } = getUnitCounts({
     unitSequenceData,
     nullUnitvariantId,
+    currentSubjectCategoryTitle,
   });
 
   return {

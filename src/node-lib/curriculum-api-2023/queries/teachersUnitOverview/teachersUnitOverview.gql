@@ -35,8 +35,14 @@ query teachersUnitOverview($programmeSlug: String!, $unitSlug: String!) {
     unitOrder: supplementary_data(path: "unit_order")
     yearOrder: programme_fields(path: "year_display_order")
     year: programme_fields(path: "year")
+    subjectCategories: unit_data(path: "subjectcategories")
     optionalityTitle: programme_fields(path: "optionality")
     isSwimming: features(path: "pe_swimming")
     nullUnitvariantId: null_unitvariant_id
+  }
+  currentUnitSubjectCategories: published_mv_curriculum_sequence_b_13_0_21(
+    where: { slug: { _eq: $unitSlug } }
+  ) {
+    subjectCategories: subjectcategories
   }
 }
