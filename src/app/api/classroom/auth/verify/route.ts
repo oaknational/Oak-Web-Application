@@ -38,21 +38,16 @@ export async function GET(request: NextRequest) {
       { status: authenticated ? 200 : 401 },
     );
   } catch (error) {
+    // OakGoogleClassroomException from verifyAuthSession means the token/session
+    // is invalid or expired — treat as unauthenticated, not an unexpected error.
     if (isOakGoogleClassroomException(error)) {
-      const errorObject = error.toObject();
-      reportError(errorObject);
-      return NextResponse.json(errorObject, { status: 401 });
+      return NextResponse.json({ authenticated: false }, { status: 401 });
     }
 
-    reportError(error, {
-      severity: "error",
-    });
+    reportError(error, { severity: "error" });
 
     return NextResponse.json(
-      {
-        authenticated: false,
-        error: "Session verification failed",
-      },
+      { authenticated: false, error: "Session verification failed" },
       { status: 401 },
     );
   }

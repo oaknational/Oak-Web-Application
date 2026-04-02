@@ -8,6 +8,7 @@ import { ResourceType } from "@/components/TeacherComponents/types/downloadAndSh
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import { ShareMediumValueType } from "@/browser-lib/avo/Avo";
 import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
+import AssignToClassroomButton from "@/components/TeacherComponents/AssignToClassroom/AssignToClassroomButton";
 
 const copyToClipboard = (textToCopy: string, callback: () => void) => {
   if (navigator.clipboard) {
@@ -21,6 +22,10 @@ const copyToClipboard = (textToCopy: string, callback: () => void) => {
 const LessonShareLinks: FC<{
   disabled: boolean;
   lessonSlug: string;
+  programmeSlug: string;
+  unitSlug: string;
+  lessonTitle: string;
+  exitQuizNumQuestions?: number;
   selectedActivities?: Array<ResourceType>;
   schoolUrn?: string;
   onSubmit: (shareMedium: ShareMediumValueType) => void;
@@ -79,11 +84,16 @@ const LessonShareLinks: FC<{
           disabled={props.disabled}
         />
 
-        {[
-          shareLinkConfig.googleClassroom,
-          shareLinkConfig.microsoftTeams,
-          shareLinkConfig.email,
-        ].map((link) => (
+        <AssignToClassroomButton
+          lessonSlug={props.lessonSlug}
+          programmeSlug={props.programmeSlug}
+          unitSlug={props.unitSlug}
+          lessonTitle={props.lessonTitle}
+          exitQuizNumQuestions={props.exitQuizNumQuestions}
+          disabled={props.disabled}
+          onAssigned={() => props.onSubmit("google-classroom")}
+        />
+        {[shareLinkConfig.microsoftTeams, shareLinkConfig.email].map((link) => (
           <LoadingButton
             text={link.name}
             icon={link.icon}

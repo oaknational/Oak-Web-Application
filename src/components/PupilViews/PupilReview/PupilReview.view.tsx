@@ -35,6 +35,8 @@ import {
   AttemptDataCamelCase,
 } from "@/node-lib/pupil-api/types";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import { useGoogleClassroomContext } from "@/components/GoogleClassroom/useGoogleClassroomContext";
+import { PupilHandInButton } from "@/components/PupilComponents/PupilHandInButton/PupilHandInButton";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -57,6 +59,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   } = props;
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
+  const { assignmentToken, googleLoginHint } = useGoogleClassroomContext();
   const { phase = "primary", yearDescription, subject } = programmeFields;
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {
@@ -109,7 +112,8 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   }
 
   const bottomNavSlot = classroomAssignmentChecked &&
-    !isClassroomAssignment && (
+    !isClassroomAssignment &&
+    !assignmentToken && (
       <OakLessonBottomNav>
         <OakPrimaryButton
           element="a"
@@ -269,9 +273,16 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                 $gap={"spacing-16"}
                 $minHeight={"spacing-92"}
               >
+                {assignmentToken && (
+                  <PupilHandInButton
+                    assignmentToken={assignmentToken}
+                    googleLoginHint={googleLoginHint}
+                  />
+                )}
                 {hasQuiz &&
                   classroomAssignmentChecked &&
-                  !isClassroomAssignment && (
+                  !isClassroomAssignment &&
+                  !assignmentToken && (
                     <>
                       <OakHeading tag="h2" $font={"body-2-bold"}>
                         Share options:

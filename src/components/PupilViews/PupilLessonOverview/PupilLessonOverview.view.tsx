@@ -35,6 +35,7 @@ import {
   getDoesSubjectHaveNewUnits,
   TakedownBanner,
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
+import { useGoogleClassroomContext } from "@/components/GoogleClassroom/useGoogleClassroomContext";
 
 type PupilViewsLessonOverviewProps = {
   browseData: LessonBrowseData;
@@ -61,6 +62,7 @@ export const PupilViewsLessonOverview = ({
 }: PupilViewsLessonOverviewProps) => {
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
+  const { assignmentToken } = useGoogleClassroomContext();
   const { programmeFields, lessonData, programmeSlug } = browseData;
   const {
     subjectSlug,
@@ -142,240 +144,249 @@ export const PupilViewsLessonOverview = ({
   );
 
   return (
-    <OakLessonLayout
-      lessonSectionName={"overview"}
-      phase={phase as "primary" | "secondary"}
-      topNavSlot={null}
-      bottomNavSlot={
-        <OakLessonBottomNav>
-          <OakPrimaryButton
-            onClick={handleProceedToNextSectionClick}
-            width={["100%", "max-content"]}
-            iconName="arrow-right"
-            isTrailingIcon
-            data-testid="proceed-to-next-section"
-            disabled={!isMounted}
-          >
-            {pickProceedToNextSectionLabel(
-              lessonStarted,
-              isLessonComplete,
-              sectionResults,
-            )}
-          </OakPrimaryButton>
-        </OakLessonBottomNav>
-      }
-    >
-      <OakGrid
-        $maxWidth={["100%", "spacing-960", "100%"]}
-        $mt="spacing-24"
-        $mb={["spacing-0", "spacing-16"]}
-        $mh="auto"
-        $ph={["spacing-16", "spacing-24", "spacing-0"]}
+    <>
+      <OakLessonLayout
+        lessonSectionName={"overview"}
+        phase={phase as "primary" | "secondary"}
+        topNavSlot={null}
+        bottomNavSlot={
+          <OakLessonBottomNav>
+            <OakPrimaryButton
+              onClick={handleProceedToNextSectionClick}
+              width={["100%", "max-content"]}
+              iconName="arrow-right"
+              isTrailingIcon
+              data-testid="proceed-to-next-section"
+              disabled={!isMounted}
+            >
+              {pickProceedToNextSectionLabel(
+                lessonStarted,
+                isLessonComplete,
+                sectionResults,
+              )}
+            </OakPrimaryButton>
+          </OakLessonBottomNav>
+        }
       >
-        <OakGridArea
-          $colStart={[1, 1, 2]}
-          $colSpan={[12, 12, 10]}
-          $minHeight={"spacing-32"}
+        <OakGrid
+          $maxWidth={["100%", "spacing-960", "100%"]}
+          $mt="spacing-24"
+          $mb={["spacing-0", "spacing-16"]}
+          $mh="auto"
+          $ph={["spacing-16", "spacing-24", "spacing-0"]}
         >
-          {classroomAssignmentChecked && !isClassroomAssignment && (
-            <ViewAllLessonsButton
-              href={backUrl}
-              onClick={() => {
-                if (isLessonComplete === false) {
-                  track.lessonAbandoned({});
-                }
-              }}
-            />
-          )}
-        </OakGridArea>
-        <OakGridArea
-          $colStart={[1, 1, 2]}
-          $colSpan={[12, 12, 10]}
-          $pt="spacing-24"
-          $display={["none", "block"]}
-        >
-          {expiringBanner}
-        </OakGridArea>
-      </OakGrid>
-      <OakFlex
-        $alignItems={["flex-start", "flex-start", "center"]}
-        $pv="spacing-24"
-        $ph={["spacing-0", "spacing-24", "spacing-0"]}
-        $width="100%"
-        $maxWidth={["100%", "spacing-960", "100%"]}
-        $mh="auto"
-      >
-        <OakGrid $cg="spacing-16">
           <OakGridArea
             $colStart={[1, 1, 2]}
-            $colSpan={[12, 12, 5]}
-            $mb={["spacing-56", "spacing-56", "spacing-0"]}
+            $colSpan={[12, 12, 10]}
+            $minHeight={"spacing-32"}
           >
-            <OakFlex
-              $flexDirection={["row", "row", "column"]}
-              $alignItems={["center", "center", "flex-start"]}
-              $gap={["spacing-16", "spacing-24", "spacing-0"]}
-              $borderColor="bg-decorative1-main"
-              $pb={["spacing-20", "spacing-0"]}
-              $ph={["spacing-16", "spacing-0"]}
-              $bb={["border-solid-l", "border-solid-none", "border-solid-none"]}
-            >
-              {isValidIconName(subjectIconName) && (
-                <OakBox $mb={["spacing-0", "spacing-0", "spacing-24"]}>
-                  <OakSubjectIcon
-                    iconName={subjectIconName}
-                    alt=""
-                    fill={
-                      phase === "primary"
-                        ? "bg-decorative4-main"
-                        : "bg-decorative3-main"
+            {classroomAssignmentChecked &&
+              !isClassroomAssignment &&
+              !assignmentToken && (
+                <ViewAllLessonsButton
+                  href={backUrl}
+                  onClick={() => {
+                    if (isLessonComplete === false) {
+                      track.lessonAbandoned({});
                     }
-                  />
-                </OakBox>
+                  }}
+                />
               )}
-              <OakBox>
-                <OakBox $mb="spacing-16" $display={["none", "block"]}>
-                  <OakBulletList
-                    listItems={[yearDescription, subject].filter(isString)}
-                    $color="text-subdued"
-                  />
-                </OakBox>
-                <OakHeading
-                  tag="h1"
-                  $font={["heading-7", "heading-5", "heading-3"]}
-                >
-                  {lessonTitle}
-                </OakHeading>
-              </OakBox>
-            </OakFlex>
-            {lessonOutcomes && (
-              <OakBox $display={["none", "block"]} $mt="spacing-56">
-                <OakHeading tag="h2" $font="heading-7" $mb="spacing-16">
-                  Lesson outcome
-                </OakHeading>
-                {lessonOutcomes}
-              </OakBox>
-            )}
-
-            {contentGuidance && (
-              <OakBox
-                $display={["none", "block"]}
-                $mt="spacing-56"
-                data-testid="content-guidance-info"
-              >
-                <OakFlex
-                  $gap="spacing-8"
-                  $flexDirection="row"
-                  $alignItems="center"
-                  $mb="spacing-16"
-                >
-                  <OakIcon iconName="warning" $colorFilter="icon-warning" />
-                  <OakHeading tag="h2" $font="heading-7">
-                    Content guidance
-                  </OakHeading>
-                </OakFlex>
-                <OakSpan $font="body-1">
-                  {contentGuidance.map((item) => {
-                    const contentGuidanceLabel = item.contentguidanceLabel;
-                    const hasFullStop = contentGuidanceLabel?.slice(-1) === ".";
-                    return contentGuidanceLabel && hasFullStop
-                      ? contentGuidanceLabel + " "
-                      : contentGuidanceLabel + ". ";
-                  })}
-                  {supervisionLevel + "."}
-                </OakSpan>
-              </OakBox>
-            )}
           </OakGridArea>
-
           <OakGridArea
-            $display={["block", "none"]}
-            $colStart={[1, 1, 7]}
-            $colSpan={[12, 12, 5]}
-            $ph={["spacing-16", "spacing-0"]}
-            $pb={"spacing-16"}
+            $colStart={[1, 1, 2]}
+            $colSpan={[12, 12, 10]}
+            $pt="spacing-24"
+            $display={["none", "block"]}
           >
             {expiringBanner}
           </OakGridArea>
-          <OakGridArea
-            $colStart={[1, 1, 7]}
-            $colSpan={[12, 12, 5]}
-            $ph={["spacing-16", "spacing-0"]}
-          >
-            <OakFlex
-              as="ul"
-              $ma={"spacing-0"}
-              $pa={"spacing-0"}
-              $gap="spacing-16"
-              $flexDirection="column"
-            >
-              {lessonReviewSections.includes("intro") && (
-                <OakLI $listStyle="none">
-                  <OakLessonNavItem
-                    {...getSectionLinkProps("intro", () => {
-                      trackSectionStarted("intro");
-                      updateCurrentSection("intro");
-                    })}
-                    lessonSectionName="intro"
-                    progress={pickProgressForSection("intro")}
-                    isLoading={isHydratingInitialProgress}
-                  />
-                </OakLI>
-              )}
-              {lessonReviewSections.includes("starter-quiz") && (
-                <OakLI $listStyle="none">
-                  <OakLessonNavItem
-                    {...getSectionLinkProps("starter-quiz", () => {
-                      trackSectionStarted("starter-quiz");
-                      updateCurrentSection("starter-quiz");
-                    })}
-                    lessonSectionName="starter-quiz"
-                    progress={pickProgressForSection("starter-quiz")}
-                    numQuestions={starterQuizNumQuestions}
-                    grade={sectionResults["starter-quiz"]?.grade ?? 0}
-                    data-testid="starter-quiz"
-                    disabled={sectionResults["starter-quiz"]?.isComplete}
-                    isLoading={isHydratingInitialProgress}
-                  />
-                </OakLI>
-              )}
-              {lessonReviewSections.includes("video") && (
-                <OakLI $listStyle="none">
-                  <OakLessonNavItem
-                    {...getSectionLinkProps("video", () => {
-                      trackSectionStarted("video");
-                      updateCurrentSection("video");
-                    })}
-                    lessonSectionName="video"
-                    progress={pickProgressForSection("video")}
-                    isLoading={isHydratingInitialProgress}
-                  />
-                </OakLI>
-              )}
-              {lessonReviewSections.includes("exit-quiz") && (
-                <OakLI $listStyle="none">
-                  <OakLessonNavItem
-                    {...getSectionLinkProps("exit-quiz", () => {
-                      trackSectionStarted("exit-quiz");
-                      updateCurrentSection("exit-quiz");
-                    })}
-                    lessonSectionName="exit-quiz"
-                    progress={pickProgressForSection("exit-quiz")}
-                    numQuestions={exitQuizNumQuestions}
-                    grade={sectionResults["exit-quiz"]?.grade ?? 0}
-                    data-testid="exit-quiz"
-                    disabled={
-                      sectionResults["exit-quiz"]?.isComplete || isReadOnly
-                    }
-                    isLoading={isHydratingInitialProgress}
-                  />
-                </OakLI>
-              )}
-            </OakFlex>
-          </OakGridArea>
         </OakGrid>
-      </OakFlex>
-    </OakLessonLayout>
+        <OakFlex
+          $alignItems={["flex-start", "flex-start", "center"]}
+          $pv="spacing-24"
+          $ph={["spacing-0", "spacing-24", "spacing-0"]}
+          $width="100%"
+          $maxWidth={["100%", "spacing-960", "100%"]}
+          $mh="auto"
+        >
+          <OakGrid $cg="spacing-16">
+            <OakGridArea
+              $colStart={[1, 1, 2]}
+              $colSpan={[12, 12, 5]}
+              $mb={["spacing-56", "spacing-56", "spacing-0"]}
+            >
+              <OakFlex
+                $flexDirection={["row", "row", "column"]}
+                $alignItems={["center", "center", "flex-start"]}
+                $gap={["spacing-16", "spacing-24", "spacing-0"]}
+                $borderColor="bg-decorative1-main"
+                $pb={["spacing-20", "spacing-0"]}
+                $ph={["spacing-16", "spacing-0"]}
+                $bb={[
+                  "border-solid-l",
+                  "border-solid-none",
+                  "border-solid-none",
+                ]}
+              >
+                {isValidIconName(subjectIconName) && (
+                  <OakBox $mb={["spacing-0", "spacing-0", "spacing-24"]}>
+                    <OakSubjectIcon
+                      iconName={subjectIconName}
+                      alt=""
+                      fill={
+                        phase === "primary"
+                          ? "bg-decorative4-main"
+                          : "bg-decorative3-main"
+                      }
+                    />
+                  </OakBox>
+                )}
+                <OakBox>
+                  <OakBox $mb="spacing-16" $display={["none", "block"]}>
+                    <OakBulletList
+                      listItems={[yearDescription, subject].filter(isString)}
+                      $color="text-subdued"
+                    />
+                  </OakBox>
+                  <OakHeading
+                    tag="h1"
+                    $font={["heading-7", "heading-5", "heading-3"]}
+                  >
+                    {lessonTitle}
+                  </OakHeading>
+                </OakBox>
+              </OakFlex>
+              {lessonOutcomes && (
+                <OakBox $display={["none", "block"]} $mt="spacing-56">
+                  <OakHeading tag="h2" $font="heading-7" $mb="spacing-16">
+                    Lesson outcome
+                  </OakHeading>
+                  {lessonOutcomes}
+                </OakBox>
+              )}
+
+              {contentGuidance && (
+                <OakBox
+                  $display={["none", "block"]}
+                  $mt="spacing-56"
+                  data-testid="content-guidance-info"
+                >
+                  <OakFlex
+                    $gap="spacing-8"
+                    $flexDirection="row"
+                    $alignItems="center"
+                    $mb="spacing-16"
+                  >
+                    <OakIcon iconName="warning" $colorFilter="icon-warning" />
+                    <OakHeading tag="h2" $font="heading-7">
+                      Content guidance
+                    </OakHeading>
+                  </OakFlex>
+                  <OakSpan $font="body-1">
+                    {contentGuidance.map((item) => {
+                      const contentGuidanceLabel = item.contentguidanceLabel;
+                      const hasFullStop =
+                        contentGuidanceLabel?.slice(-1) === ".";
+                      return contentGuidanceLabel && hasFullStop
+                        ? contentGuidanceLabel + " "
+                        : contentGuidanceLabel + ". ";
+                    })}
+                    {supervisionLevel + "."}
+                  </OakSpan>
+                </OakBox>
+              )}
+            </OakGridArea>
+
+            <OakGridArea
+              $display={["block", "none"]}
+              $colStart={[1, 1, 7]}
+              $colSpan={[12, 12, 5]}
+              $ph={["spacing-16", "spacing-0"]}
+              $pb={"spacing-16"}
+            >
+              {expiringBanner}
+            </OakGridArea>
+            <OakGridArea
+              $colStart={[1, 1, 7]}
+              $colSpan={[12, 12, 5]}
+              $ph={["spacing-16", "spacing-0"]}
+            >
+              <OakFlex
+                as="ul"
+                $ma={"spacing-0"}
+                $pa={"spacing-0"}
+                $gap="spacing-16"
+                $flexDirection="column"
+              >
+                {lessonReviewSections.includes("intro") && (
+                  <OakLI $listStyle="none">
+                    <OakLessonNavItem
+                      {...getSectionLinkProps("intro", () => {
+                        trackSectionStarted("intro");
+                        updateCurrentSection("intro");
+                      })}
+                      lessonSectionName="intro"
+                      progress={pickProgressForSection("intro")}
+                      isLoading={isHydratingInitialProgress}
+                    />
+                  </OakLI>
+                )}
+                {lessonReviewSections.includes("starter-quiz") && (
+                  <OakLI $listStyle="none">
+                    <OakLessonNavItem
+                      {...getSectionLinkProps("starter-quiz", () => {
+                        trackSectionStarted("starter-quiz");
+                        updateCurrentSection("starter-quiz");
+                      })}
+                      lessonSectionName="starter-quiz"
+                      progress={pickProgressForSection("starter-quiz")}
+                      numQuestions={starterQuizNumQuestions}
+                      grade={sectionResults["starter-quiz"]?.grade ?? 0}
+                      data-testid="starter-quiz"
+                      disabled={sectionResults["starter-quiz"]?.isComplete}
+                      isLoading={isHydratingInitialProgress}
+                    />
+                  </OakLI>
+                )}
+                {lessonReviewSections.includes("video") && (
+                  <OakLI $listStyle="none">
+                    <OakLessonNavItem
+                      {...getSectionLinkProps("video", () => {
+                        trackSectionStarted("video");
+                        updateCurrentSection("video");
+                      })}
+                      lessonSectionName="video"
+                      progress={pickProgressForSection("video")}
+                      isLoading={isHydratingInitialProgress}
+                    />
+                  </OakLI>
+                )}
+                {lessonReviewSections.includes("exit-quiz") && (
+                  <OakLI $listStyle="none">
+                    <OakLessonNavItem
+                      {...getSectionLinkProps("exit-quiz", () => {
+                        trackSectionStarted("exit-quiz");
+                        updateCurrentSection("exit-quiz");
+                      })}
+                      lessonSectionName="exit-quiz"
+                      progress={pickProgressForSection("exit-quiz")}
+                      numQuestions={exitQuizNumQuestions}
+                      grade={sectionResults["exit-quiz"]?.grade ?? 0}
+                      data-testid="exit-quiz"
+                      disabled={
+                        sectionResults["exit-quiz"]?.isComplete || isReadOnly
+                      }
+                      isLoading={isHydratingInitialProgress}
+                    />
+                  </OakLI>
+                )}
+              </OakFlex>
+            </OakGridArea>
+          </OakGrid>
+        </OakFlex>
+      </OakLessonLayout>
+    </>
   );
 };
 

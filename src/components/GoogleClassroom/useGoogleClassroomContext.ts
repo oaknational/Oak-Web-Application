@@ -17,6 +17,8 @@ export type GoogleClassroomContext = {
   googleLoginHint: string;
   clientEnvironment: ReturnType<typeof getClientEnvironment>;
   classroomAssignmentId: string | null;
+  /** Present when lesson was opened via the third-party first CourseWork flow. */
+  assignmentToken: string | null;
 };
 
 export function useGoogleClassroomContext(): GoogleClassroomContext {
@@ -35,6 +37,7 @@ export function useGoogleClassroomContext(): GoogleClassroomContext {
   const attachmentId = searchParams?.get("attachmentId") ?? null;
   const googleLoginHint =
     addonGoogleLoginHint ?? searchParams?.get("login_hint") ?? "";
+  const assignmentToken = searchParams?.get("assignmentToken") ?? null;
   const clientEnvironment = getClientEnvironment();
   const classroomAssignmentId = getClassroomAssignmentId(courseId, itemId);
 
@@ -43,6 +46,7 @@ export function useGoogleClassroomContext(): GoogleClassroomContext {
     Boolean(itemId) ||
     Boolean(attachmentId) ||
     Boolean(googleLoginHint) ||
+    Boolean(assignmentToken) ||
     (isClassroomAssignment === true && classroomAssignmentChecked);
 
   return {
@@ -55,5 +59,6 @@ export function useGoogleClassroomContext(): GoogleClassroomContext {
     googleLoginHint: googleLoginHint ?? "",
     clientEnvironment,
     classroomAssignmentId,
+    assignmentToken,
   };
 }

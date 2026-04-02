@@ -1,10 +1,21 @@
 "use client";
 
 import {
+  CourseListItem,
+  CourseWorkCreatedResult,
+  CourseWorkPupilProgress,
+  UpsertCourseWorkPupilProgressArgs,
   UpsertPupilLessonProgressArgs,
   PupilLessonProgress,
 } from "@oaknational/google-classroom-addon/types";
 import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
+
+import {
+  ScopeInsufficientError,
+  handleCourseWorkApiError,
+} from "./errorHandling";
+
+export { ScopeInsufficientError };
 
 const getOakGCAuthHeaders = async (
   isPupil?: boolean,
@@ -235,6 +246,135 @@ const getPupilLessonProgress = async (
   }
 };
 
+export type CourseWorkContextResponse = {
+  submissionId: string;
+  courseId: string;
+  courseWorkId: string;
+  assignmentToken: string;
+};
+
+export type CreateCourseWorkRequest = {
+  courseId: string;
+  title: string;
+  description?: string;
+  lessonSlug: string;
+  programmeSlug: string;
+  unitSlug: string;
+  maxPoints?: number;
+};
+
+const listCourses = async (): Promise<CourseListItem[]> => {
+  try {
+    const headers = await getOakGCAuthHeaders();
+    const data = await sendRequest<{ courses: CourseListItem[] }>(
+      "/api/classroom/courses",
+      "GET",
+      undefined,
+      headers,
+    );
+    return data.courses;
+  } catch (error) {
+    return handleCourseWorkApiError(error);
+  }
+};
+
+const createCourseWork = async (
+  args: CreateCourseWorkRequest,
+): Promise<CourseWorkCreatedResult & { assignmentToken: string }> => {
+  try {
+    const headers = await getOakGCAuthHeaders();
+    return await sendRequest<
+      CourseWorkCreatedResult & { assignmentToken: string },
+      CreateCourseWorkRequest
+    >("/api/classroom/coursework/create", "POST", args, headers);
+  } catch (error) {
+    return handleCourseWorkApiError(error);
+  }
+};
+
+const getCourseWorkContext = async (
+  assignmentToken: string,
+): Promise<CourseWorkContextResponse | null> => {
+  try {
+    const headers = await getOakGCAuthHeaders(true);
+    const params = new URLSearchParams({ assignmentToken });
+    return await sendRequest<CourseWorkContextResponse>(
+      `/api/classroom/coursework/context?${params.toString()}`,
+      "GET",
+      undefined,
+      headers,
+    );
+  } catch (error) {
+    console.error("Failed to get coursework context:", error);
+    return null;
+  }
+};
+
+const upsertCourseWorkPupilProgress = async (
+  args: UpsertCourseWorkPupilProgressArgs,
+): Promise<void> => {
+  const headers = await getOakGCAuthHeaders(true);
+  await sendRequest<void, UpsertCourseWorkPupilProgressArgs>(
+    "/api/classroom/coursework/pupil/progress",
+    "POST",
+    args,
+    headers,
+  );
+};
+
+const getCourseWorkPupilProgress = async (
+  submissionId: string,
+): Promise<CourseWorkPupilProgress | null> => {
+  try {
+    const params = new URLSearchParams({ submissionId });
+    return await sendRequest<CourseWorkPupilProgress | null>(
+      `/api/classroom/coursework/pupil/progress?${params.toString()}`,
+    );
+  } catch (error) {
+    console.error("Failed to fetch coursework pupil progress:", error);
+    return null;
+  }
+};
+
+type TurnInCourseWorkSubmissionArgs = {
+  courseId: string;
+  courseWorkId: string;
+  submissionId: string;
+  assignmentToken: string;
+};
+
+const turnInCourseWorkSubmission = async (
+  args: TurnInCourseWorkSubmissionArgs,
+): Promise<void> => {
+  const headers = await getOakGCAuthHeaders(true);
+  await sendRequest<void, TurnInCourseWorkSubmissionArgs>(
+    "/api/classroom/coursework/pupil/turnin",
+    "POST",
+    args,
+    headers,
+  );
+};
+
+type CourseWorkLessonInfo = {
+  lessonSlug: string;
+  programmeSlug: string;
+  unitSlug: string;
+};
+
+const getCourseWorkLessonInfo = async (
+  assignmentToken: string,
+): Promise<CourseWorkLessonInfo | null> => {
+  try {
+    const params = new URLSearchParams({ assignmentToken });
+    return await sendRequest<CourseWorkLessonInfo>(
+      `/api/classroom/coursework/lesson-info?${params.toString()}`,
+    );
+  } catch (error) {
+    console.error("Failed to fetch coursework lesson info:", error);
+    return null;
+  }
+};
+
 export default {
   getGoogleSignInUrl,
   verifySession,
@@ -242,4 +382,11 @@ export default {
   getAddOnContext,
   submitPupilProgress,
   getPupilLessonProgress,
+  listCourses,
+  createCourseWork,
+  getCourseWorkContext,
+  upsertCourseWorkPupilProgress,
+  getCourseWorkPupilProgress,
+  turnInCourseWorkSubmission,
+  getCourseWorkLessonInfo,
 };

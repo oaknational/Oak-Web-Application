@@ -114,6 +114,12 @@ export function LessonShare(props: LessonShareProps) {
         );
   const { programmeSlug, unitSlug } = commonPathway;
 
+  const exitQuizNumQuestions =
+    parseInt(
+      shareableResources.find((r) => r.type === "exit-quiz-questions")
+        ?.metadata ?? "0",
+    ) || 0;
+
   const { track } = useAnalytics();
   const { lessonShared } = track;
 
@@ -269,6 +275,10 @@ export function LessonShare(props: LessonShareProps) {
                 (!form.formState.isValid && !localStorageDetails)
               }
               lessonSlug={lessonSlug}
+              programmeSlug={programmeSlug ?? ""}
+              unitSlug={unitSlug ?? ""}
+              lessonTitle={lessonTitle}
+              exitQuizNumQuestions={exitQuizNumQuestions}
               selectedActivities={selectedResources}
               schoolUrn={schoolUrn}
               onSubmit={

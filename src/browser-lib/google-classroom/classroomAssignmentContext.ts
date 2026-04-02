@@ -9,6 +9,7 @@ export type ClassroomAssignmentContext = {
   pupilLoginHint: string | null;
   classroomAssignmentId: string | null;
   clientEnvironment: ClientEnvironmentValueType;
+  assignmentToken: string | null;
 };
 
 export const getClassroomAssignmentId = (
@@ -26,4 +27,13 @@ export type ClassroomProgressContext = {
     | "attachmentId"
     | "courseId"
     | "itemId"]-?: NonNullable<ClassroomAssignmentContext[Key]>;
+};
+
+/** Progress context for the third-party first CourseWork flow (free tier). */
+export type CourseWorkProgressContext = {
+  submissionId: string;
+  pupilLoginHint: string;
+  assignmentToken: string;
+  courseWorkId: string;
+  courseId: string;
 };

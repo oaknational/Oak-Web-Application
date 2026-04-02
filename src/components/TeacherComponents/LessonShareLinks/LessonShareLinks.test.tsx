@@ -14,6 +14,9 @@ describe("LessonShareLinks", () => {
       <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
+        programmeSlug="test-programme"
+        unitSlug="test-unit"
+        lessonTitle="Test Lesson"
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={jest.fn}
       />,
@@ -27,6 +30,9 @@ describe("LessonShareLinks", () => {
       <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
+        programmeSlug="test-programme"
+        unitSlug="test-unit"
+        lessonTitle="Test Lesson"
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={jest.fn}
       />,
@@ -44,6 +50,9 @@ describe("LessonShareLinks", () => {
       <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
+        programmeSlug="test-programme"
+        unitSlug="test-unit"
+        lessonTitle="Test Lesson"
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={jest.fn}
       />,
@@ -62,6 +71,9 @@ describe("LessonShareLinks", () => {
       <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
+        programmeSlug="test-programme"
+        unitSlug="test-unit"
+        lessonTitle="Test Lesson"
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={onSubmit}
       />,
@@ -75,24 +87,27 @@ describe("LessonShareLinks", () => {
     expect(onSubmit).toHaveBeenCalledWith("copy-link");
   });
 
-  it("should call onSubmit with correct avoMedium", async () => {
+  it("should call onSubmit with correct avoMedium when google classroom button clicked", async () => {
     const onSubmit = jest.fn();
     const { getByRole } = renderWithProviders()(
       <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
+        programmeSlug="test-programme"
+        unitSlug="test-unit"
+        lessonTitle="Test Lesson"
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={onSubmit}
       />,
     );
 
-    const copyLinkButton = getByRole("link", {
-      name: "Share to Google Classroom",
+    const classroomButton = getByRole("button", {
+      name: "Assign to Google Classroom",
     });
 
-    expect(copyLinkButton).toBeInTheDocument();
+    expect(classroomButton).toBeInTheDocument();
     const user = userEvent.setup();
-    await user.click(copyLinkButton);
+    await user.click(classroomButton);
     expect(onSubmit).toHaveBeenCalledWith("google-classroom");
   });
 });

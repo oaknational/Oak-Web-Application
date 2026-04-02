@@ -5,6 +5,10 @@ import {
   OakBox,
   OakPupilJourneyContentGuidance,
 } from "@oaknational/oak-components";
+import {
+  GoogleSignInView,
+  AuthCookieKeys,
+} from "@oaknational/google-classroom-addon/ui";
 
 import {
   LessonEngineProvider,
@@ -45,8 +49,12 @@ import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedire
 import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 import type { AddOnContextResponse } from "@/browser-lib/google-classroom/googleClassroomApi";
-import { type ClassroomProgressContext } from "@/browser-lib/google-classroom";
+import {
+  type ClassroomProgressContext,
+  type CourseWorkProgressContext,
+} from "@/browser-lib/google-classroom";
 import { mapToSubmitPupilProgress } from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
+import { mapToCourseWorkPupilProgress } from "@/browser-lib/google-classroom/mapToCourseWorkPupilProgress";
 import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
 import {
   GoogleClassroomAnalyticsProvider,
@@ -278,13 +286,16 @@ const PupilExperienceLayout = ({
     courseId,
     itemId,
     attachmentId,
+    assignmentToken,
   } = googleClassroomContext;
   const isGoogleClassroomAssignment =
     isClassroomAssignment === true && classroomAssignmentChecked === true;
   const classroomContextRef = useRef<ClassroomProgressContext | null>(null);
+  const courseWorkContextRef = useRef<CourseWorkProgressContext | null>(null);
   const [isFetchingClassroomContext, setIsFetchingClassroomContext] =
     useState(false);
   const [isContextReady, setIsContextReady] = useState(false);
+  const [isSignInRequired, setIsSignInRequired] = useState(false);
   const [initialSectionResults, setInitialSectionResults] =
     useState<LessonSectionResults>();
   const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
@@ -360,19 +371,91 @@ const PupilExperienceLayout = ({
     if (!isGoogleClassroomAssignment) setIsContextReady(true);
   }, [classroomAssignmentChecked, isGoogleClassroomAssignment]);
 
+  // Silently resolve CourseWork context if the pupil is already signed in.
+  // If not signed in, courseWorkContextRef stays null and background sync is
+  // skipped — the PupilHandInButton on the review page handles that case.
+  useEffect(() => {
+    if (!assignmentToken || courseWorkContextRef.current) return;
+
+    const fetchCourseWorkContext = async () => {
+      try {
+        setIsFetchingClassroomContext(true);
+        const session = await googleClassroomApi.verifySession(true)();
+        console.log("[CourseWork] verifySession result:", {
+          authenticated: session.authenticated,
+          loginHint: session.loginHint,
+        });
+        if (!session.authenticated || !session.loginHint) {
+          setIsSignInRequired(true);
+          return;
+        }
+
+        const ctx =
+          await googleClassroomApi.getCourseWorkContext(assignmentToken);
+        console.log("[CourseWork] getCourseWorkContext result:", ctx);
+        if (!ctx) return;
+
+        courseWorkContextRef.current = {
+          submissionId: ctx.submissionId,
+          assignmentToken: ctx.assignmentToken,
+          courseWorkId: ctx.courseWorkId,
+          courseId: ctx.courseId,
+          pupilLoginHint: session.loginHint,
+        };
+
+        const progressResult =
+          await googleClassroomApi.getCourseWorkPupilProgress(ctx.submissionId);
+        console.log("[CourseWork] existing progress on load:", progressResult);
+        if (progressResult) {
+          const mappedSectionResults =
+            mapPupilLessonProgressToSectionResults(progressResult);
+          if (Object.keys(mappedSectionResults).length > 0) {
+            setInitialSectionResults(mappedSectionResults);
+            setLessonEngineInstanceKey((k) => k + 1);
+          }
+        }
+      } catch {
+        // Silent fail — background sync disabled, pupil can still hand in manually
+      } finally {
+        setIsFetchingClassroomContext(false);
+      }
+    };
+
+    void fetchCourseWorkContext();
+  }, [assignmentToken]);
+
   const handleOnNext = useCallback(
     async (
       sectionResults: LessonSectionResults,
       _completedSection: LessonReviewSection,
     ) => {
       const ctx = classroomContextRef.current;
-      if (!ctx) return;
+      if (ctx) {
+        try {
+          const payload = mapToSubmitPupilProgress(ctx, sectionResults);
+          await googleClassroomApi.submitPupilProgress(payload);
+        } catch (error) {
+          console.error(error);
+        }
+      }
 
-      try {
-        const payload = mapToSubmitPupilProgress(ctx, sectionResults);
-        await googleClassroomApi.submitPupilProgress(payload);
-      } catch (error) {
-        console.error(error);
+      const cwCtx = courseWorkContextRef.current;
+      console.log("[CourseWork] handleOnNext - courseWorkContextRef:", cwCtx);
+      if (cwCtx) {
+        try {
+          const payload = mapToCourseWorkPupilProgress(cwCtx, sectionResults);
+          console.log(
+            "[CourseWork] upsertCourseWorkPupilProgress payload:",
+            payload,
+          );
+          await googleClassroomApi.upsertCourseWorkPupilProgress(payload);
+          const progress = await googleClassroomApi.getCourseWorkPupilProgress(
+            cwCtx.submissionId,
+          );
+          console.log("[CourseWork] progress after section:", progress);
+        } catch (error) {
+          console.error(error);
+        }
       }
     },
     [],
@@ -446,6 +529,38 @@ const PupilExperienceLayout = ({
 
   const declineIcon = isGoogleClassroomAssignment ? "cross" : undefined;
   const declineText = isGoogleClassroomAssignment ? "Exit lesson" : undefined;
+
+  if (isSignInRequired) {
+    return (
+      <PupilLayout
+        seoProps={{
+          ...getSeoProps({
+            title: browseData.lessonData.title,
+            description: browseData.lessonData.pupilLessonOutcome,
+          }),
+          noIndex: true,
+        }}
+      >
+        <GoogleSignInView
+          getGoogleSignInLink={() =>
+            googleClassroomApi.getGoogleSignInUrl(
+              googleClassroomContext.googleLoginHint || null,
+              false,
+              true,
+            )
+          }
+          onSuccessfulSignIn={() => setIsSignInRequired(false)}
+          privacyPolicyUrl="/legal/privacy-policy"
+          showMailingListOption={false}
+          cookieKeys={[
+            AuthCookieKeys.PupilAccessToken,
+            AuthCookieKeys.PupilSession,
+          ]}
+        />
+      </PupilLayout>
+    );
+  }
+
   return (
     <GoogleClassroomAnalyticsProvider>
       <PupilExperienceClassroomAnalytics
@@ -467,9 +582,15 @@ const PupilExperienceLayout = ({
           initialLessonReviewSections={availableSections}
           initialSection={initialSection}
           initialSectionResults={initialSectionResults}
-          onNext={isGoogleClassroomAssignment ? handleOnNext : undefined}
+          onNext={
+            isGoogleClassroomAssignment || !!assignmentToken
+              ? handleOnNext
+              : undefined
+          }
           onSectionResultUpdate={
-            isGoogleClassroomAssignment ? handleOnNext : undefined
+            isGoogleClassroomAssignment || !!assignmentToken
+              ? handleOnNext
+              : undefined
           }
           isHydratingInitialProgress={isFetchingClassroomContext}
         >
