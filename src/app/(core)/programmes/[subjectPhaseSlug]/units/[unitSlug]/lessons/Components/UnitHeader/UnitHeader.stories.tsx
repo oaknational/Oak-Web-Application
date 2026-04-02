@@ -16,6 +16,7 @@ import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/
 const meta: Meta<typeof UnitHeader> = {
   component: UnitHeader,
   tags: ["autodocs"],
+  title: "App/Programmes/Units/UnitHeader",
   beforeEach: () => {
     mocked(useUnitDownloadExistenceCheck).mockReturnValue({
       exists: true,

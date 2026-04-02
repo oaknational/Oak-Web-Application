@@ -8,6 +8,7 @@ import { ProgrammeHeader } from "./ProgrammeHeader";
 const meta: Meta<typeof ProgrammeHeader> = {
   component: ProgrammeHeader,
   tags: ["autodocs"],
+  title: "App/Programmes/ProgrammeHeader",
   argTypes: {
     subject: {
       control: {
