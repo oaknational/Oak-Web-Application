@@ -13,6 +13,7 @@ import withPageErrorHandling, {
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 type LessonsPageParams = { subjectPhaseSlug: string; unitSlug: string };
 
@@ -64,11 +65,18 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
   const data = await getCachedUnitData(programmeSlug, unitSlug);
   const subjectIconName = `subject-${data.subjectSlug}` as SubjectIcon;
 
+  const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
+    subjectSlug: data.subjectSlug,
+    phaseSlug: data.phaseSlug,
+    subjectParentTitle: data.parentSubject,
+    examboardSlug: data.examBoardSlug,
+  });
+
   return (
     <UnitHeader
       heading={data.unitTitle}
       phase={data.phaseSlug}
-      subjectPhaseSlug={`${data.subjectSlug}-${data.phaseSlug}`}
+      subjectPhaseSlug={subjectPhaseSlug}
       programmeSlug={programmeSlug}
       subjectIcon={subjectIconName}
       nextUnit={data.nextUnit}
@@ -87,7 +95,9 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
         subjectSlug: data.subjectSlug,
         subjectTitle: data.subjectTitle,
       }}
-      headerSlot={<UnitBreadCrumbs data={data} />}
+      headerSlot={
+        <UnitBreadCrumbs data={data} subjectPhaseSlug={subjectPhaseSlug} />
+      }
     />
   );
 };

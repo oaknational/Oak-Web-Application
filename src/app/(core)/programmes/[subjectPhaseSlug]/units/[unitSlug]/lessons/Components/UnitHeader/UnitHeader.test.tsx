@@ -12,8 +12,8 @@ const defaultProps: UnitHeaderProps = {
   prevUnit: null,
   nextUnit: null,
   subjectIcon: "subject-maths",
-  programmeSlug: "maths-secondary",
-  subjectPhaseSlug: "maths",
+  programmeSlug: "maths-ks4-higher",
+  subjectPhaseSlug: "maths-secondary",
   trackingProps: {
     unitName: "IT and the world of work",
     unitSlug: "",

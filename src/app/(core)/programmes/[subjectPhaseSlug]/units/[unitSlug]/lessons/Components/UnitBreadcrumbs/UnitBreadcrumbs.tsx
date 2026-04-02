@@ -7,8 +7,10 @@ import { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries
 
 export const UnitBreadCrumbs = ({
   data,
+  subjectPhaseSlug,
 }: {
   data: TeachersUnitOverviewData;
+  subjectPhaseSlug: string;
 }) => {
   let optionalPfs = "";
   if (data.tierTitle) {
@@ -25,7 +27,7 @@ export const UnitBreadCrumbs = ({
           text: `${data.subjectTitle}, ${data.phaseTitle}, ${data.keyStageTitle}, ${data.yearTitle}${optionalPfs}`,
           href: resolveOakHref({
             page: "teacher-programme",
-            subjectPhaseSlug: `${data.subjectSlug}-${data.phaseSlug}`,
+            subjectPhaseSlug,
             tab: "units",
           }),
         },

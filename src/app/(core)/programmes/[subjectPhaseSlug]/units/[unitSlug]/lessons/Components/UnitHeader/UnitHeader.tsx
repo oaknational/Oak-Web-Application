@@ -44,11 +44,11 @@ export type UnitHeaderProps = Omit<
 
 const UnitHeader = (props: UnitHeaderProps) => {
   const {
+    subjectPhaseSlug,
     phase,
     unitDownloadFileId,
     isGeorestrictedUnit,
     trackingProps,
-    subjectPhaseSlug,
   } = props;
   const { track } = useAnalytics();
 

@@ -69,8 +69,8 @@ const coreProps: UnitHeaderProps = {
   unitDownloadFileId: "1",
   nextUnit: { title: "unit 3", slug: "unit-3" },
   prevUnit: { title: "unit 1", slug: "unit-1" },
-  programmeSlug: "computer-science-secondary",
-  subjectPhaseSlug: "computer-science",
+  programmeSlug: "computer-science-ks4-aqa",
+  subjectPhaseSlug: "computer-science-secondary-aqa",
   trackingProps: {
     unitName: "IT and the world of work",
     unitSlug: "",
