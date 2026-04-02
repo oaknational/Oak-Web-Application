@@ -112,6 +112,48 @@ export const getNeighbourUnits = ({
   };
 };
 
+export const getUnitCounts = ({
+  unitSequenceData,
+  nullUnitvariantId,
+}: {
+  unitSequenceData: UnitSequence;
+  nullUnitvariantId: number;
+}) => {
+  const currentUnit = unitSequenceData.find(
+    (u) => u.nullUnitvariantId === nullUnitvariantId,
+  );
+  if (!currentUnit) {
+    throw new OakError({ code: "curriculum-api/not-found" });
+  }
+
+  const isCurrentUnitSwimming = currentUnit.isSwimming === true;
+  const unitsForYear = unitSequenceData
+    .reduce((acc: UnitSequence, unit) => {
+      // Only count optionality units once
+      if (!acc.some((u) => u.nullUnitvariantId === unit.nullUnitvariantId)) {
+        acc.push(unit);
+      }
+      return acc;
+    }, [])
+    .filter((u) => {
+      // Swimming units are grouped across all years; all other units are grouped by year.
+      if (isCurrentUnitSwimming) {
+        return u.isSwimming === true;
+      }
+
+      // Exclude swimming units from all years.
+      return u.year === currentUnit.year && u.isSwimming !== true;
+    })
+    .sort((a, b) => a.unitOrder - b.unitOrder);
+
+  return {
+    unitCount: unitsForYear.length,
+    unitIndex:
+      unitsForYear.findIndex((u) => u.nullUnitvariantId === nullUnitvariantId) +
+      1,
+  };
+};
+
 export const getPackagedUnit = (
   packagedUnitData: PackagedUnitData,
   unitLessons: LessonListSchema,
@@ -125,6 +167,7 @@ export const getPackagedUnit = (
     unitSlug,
     unitvariantId,
     unitTitle,
+    unitDescription,
     programmeSlug,
     programmeSlugByYear,
     nullUnitvariantId,
@@ -157,6 +200,10 @@ export const getPackagedUnit = (
     programmeSlug,
     unitsInOtherProgrammes,
   );
+  const { unitCount, unitIndex } = getUnitCounts({
+    unitSequenceData,
+    nullUnitvariantId,
+  });
 
   return {
     programmeSlug,
@@ -168,6 +215,9 @@ export const getPackagedUnit = (
     unitSlug,
     unitvariantId,
     unitTitle,
+    unitDescription,
+    unitIndex,
+    unitCount,
     tierSlug: modifiedProgrammeFields.tier_slug,
     tierTitle: modifiedProgrammeFields.tier_description,
     examBoardSlug: modifiedProgrammeFields.examboard_slug,

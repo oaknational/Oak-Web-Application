@@ -1,4 +1,5 @@
 import { OakFlex, OakIconName } from "@oaknational/oak-components";
+import { ReactNode } from "react";
 
 import { SaveUnitButton } from "../SaveUnitButton/SaveUnitButton";
 
@@ -39,7 +40,7 @@ export type CardListingTags = Array<{ label: string; icon?: OakIconName }>;
 export type CardListingProps = CardProps & {
   layoutVariant: "horizontal" | "vertical";
   index?: number;
-  subcopy?: string;
+  subcopy?: ReactNode;
   tags?: CardListingTags;
   childCards?: Array<CardProps>;
 };
@@ -122,8 +123,8 @@ const CardListingRenderLayout = (props: CardListingProps) => {
       <OakFlex $flexDirection={"row"} $gap={"spacing-20"} $width={"100%"}>
         <CardListingStyledLink {...cardLinkProps} className="styled-link">
           <OakFlex
-            $flexDirection={"row"}
-            $gap={"spacing-20"}
+            $flexDirection={["column", "column", "row"]}
+            $gap={["spacing-12", "spacing-12", "spacing-20"]}
             $width={"100%"}
             $color={defaultTextColour}
           >

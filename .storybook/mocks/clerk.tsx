@@ -8,6 +8,8 @@ let mockAuthState = {
   isSignedIn: true,
   isLoaded: true,
   userId: "user_123",
+  isOnboarded: true,
+  isRegionAuthorised: true,
 };
 
 export const __setMockAuthState = (state: Partial<typeof mockAuthState>) => {
@@ -49,7 +51,8 @@ export const useUser = () => ({
         },
         publicMetadata: {
           owa: {
-            isOnboarded: true,
+            isOnboarded: mockAuthState.isOnboarded,
+            isRegionAuthorised: mockAuthState.isRegionAuthorised,
           },
         },
       }

@@ -1,15 +1,16 @@
-import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { cache } from "react";
 
 import UnitHeader from "./Components/UnitHeader/UnitHeader";
 import { UnitBreadCrumbs } from "./Components/UnitBreadcrumbs/UnitBreadcrumbs";
+import { UnitView } from "./Components/UnitView";
 
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import withPageErrorHandling, {
   AppPageProps,
 } from "@/hocs/withPageErrorHandling";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
@@ -73,32 +74,47 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
   });
 
   return (
-    <UnitHeader
-      heading={data.unitTitle}
-      phase={data.phaseSlug}
-      subjectPhaseSlug={subjectPhaseSlug}
-      programmeSlug={programmeSlug}
-      subjectIcon={subjectIconName}
-      nextUnit={data.nextUnit}
-      prevUnit={data.prevUnit}
-      unitDownloadFileId={
-        unitSlug.endsWith(data.unitvariantId.toString())
-          ? unitSlug
-          : `${unitSlug}-${data.unitvariantId}`
-      }
-      isGeorestrictedUnit={data.containsGeorestrictedLessons}
-      trackingProps={{
-        unitName: data.unitTitle,
-        unitSlug: data.unitSlug,
-        keyStageSlug: data.keyStageSlug,
-        keyStageTitle: data.keyStageTitle as KeyStageTitleValueType,
-        subjectSlug: data.subjectSlug,
-        subjectTitle: data.subjectTitle,
-      }}
-      headerSlot={
-        <UnitBreadCrumbs data={data} subjectPhaseSlug={subjectPhaseSlug} />
-      }
-    />
+    <>
+      <UnitHeader
+        heading={data.unitTitle}
+        phase={data.phaseSlug}
+        subjectPhaseSlug={subjectPhaseSlug}
+        programmeSlug={programmeSlug}
+        subjectIcon={subjectIconName}
+        nextUnit={data.nextUnit}
+        prevUnit={data.prevUnit}
+        unitDownloadFileId={
+          unitSlug.endsWith(data.unitvariantId.toString())
+            ? unitSlug
+            : `${unitSlug}-${data.unitvariantId}`
+        }
+        isGeorestrictedUnit={data.containsGeorestrictedLessons}
+        trackingProps={{
+          unitName: data.unitTitle,
+          unitSlug: data.unitSlug,
+          keyStageSlug: data.keyStageSlug,
+          keyStageTitle: data.keyStageTitle as KeyStageTitleValueType,
+          subjectSlug: data.subjectSlug,
+          subjectTitle: data.subjectTitle,
+        }}
+        headerSlot={
+          <UnitBreadCrumbs data={data} subjectPhaseSlug={subjectPhaseSlug} />
+        }
+      />
+      <UnitView
+        programmeSlug={data.programmeSlug}
+        unitSlug={data.unitSlug}
+        unitTitle={data.unitTitle}
+        unitDescription={data.unitDescription}
+        subjectTitle={data.subjectTitle}
+        subjectSlug={data.subjectSlug}
+        keyStageSlug={data.keyStageSlug}
+        keyStageTitle={data.keyStageTitle}
+        lessons={data.lessons}
+        unitIndex={data.unitIndex}
+        unitCount={data.unitCount}
+      />
+    </>
   );
 };
 
