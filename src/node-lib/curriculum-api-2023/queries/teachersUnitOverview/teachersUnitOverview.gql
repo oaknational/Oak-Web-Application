@@ -1,4 +1,8 @@
-query teachersUnitOverview($programmeSlug: String!, $unitSlug: String!) {
+query teachersUnitOverview(
+  $programmeSlug: String!
+  $unitSlug: String!
+  $subjectCategorySlug: String
+) {
   lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
     where: {
       unit_slug: { _eq: $unitSlug }
@@ -40,8 +44,11 @@ query teachersUnitOverview($programmeSlug: String!, $unitSlug: String!) {
     isSwimming: features(path: "pe_swimming")
     nullUnitvariantId: null_unitvariant_id
   }
-  currentUnitSubjectCategories: published_mv_curriculum_sequence_b_13_0_21(
-    where: { slug: { _eq: $unitSlug } }
+  matchingSubjectCategories: published_mv_curriculum_sequence_b_13_0_21(
+    where: {
+      subjectcategories: { _contains: [{ slug: $subjectCategorySlug }] }
+    }
+    limit: 1
   ) {
     subjectCategories: subjectcategories
   }

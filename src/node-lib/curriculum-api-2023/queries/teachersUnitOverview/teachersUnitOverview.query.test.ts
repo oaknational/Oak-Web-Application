@@ -79,7 +79,7 @@ export const unitsInOtherProgrammesFixture = [
   },
 ];
 
-const currentUnitSubjectCategoriesFixture = [
+const matchingSubjectCategoriesFixture = [
   {
     subjectCategories: [
       {
@@ -145,7 +145,7 @@ describe("teachersUnitOverview", () => {
             lessons: [],
             unitSequence: unitSequenceFixture,
             unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
-            currentUnitSubjectCategories: currentUnitSubjectCategoriesFixture,
+            matchingSubjectCategories: matchingSubjectCategoriesFixture,
           }),
         ),
       })({
@@ -162,7 +162,7 @@ describe("teachersUnitOverview", () => {
           lessons: [syntheticUnitvariantLessonsByKsFixture()],
           unitSequence: unitSequenceFixture,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
-          currentUnitSubjectCategories: currentUnitSubjectCategoriesFixture,
+          matchingSubjectCategories: matchingSubjectCategoriesFixture,
         }),
       ),
     })({
@@ -234,7 +234,7 @@ describe("teachersUnitOverview", () => {
           lessons: [unitPageFixture2, unitPageFixture],
           unitSequence: unitSequenceFixture,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
-          currentUnitSubjectCategories: currentUnitSubjectCategoriesFixture,
+          matchingSubjectCategories: matchingSubjectCategoriesFixture,
         }),
       ),
     })({
@@ -266,7 +266,7 @@ describe("teachersUnitOverview", () => {
             ],
             unitSequence: unitSequenceFixture,
             unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
-            currentUnitSubjectCategories: currentUnitSubjectCategoriesFixture,
+            matchingSubjectCategories: matchingSubjectCategoriesFixture,
           }),
         ),
       })({
@@ -297,7 +297,7 @@ describe("teachersUnitOverview", () => {
             },
           ],
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
-          currentUnitSubjectCategories: currentUnitSubjectCategoriesFixture,
+          matchingSubjectCategories: matchingSubjectCategoriesFixture,
         }),
       ),
     })({
@@ -307,6 +307,42 @@ describe("teachersUnitOverview", () => {
     });
 
     expect(res.unitCount).toBe(2);
+    expect(res.unitIndex).toBe(1);
+  });
+
+  it("does not filter unit counts by subject category when matchingSubjectCategories is empty", async () => {
+    const unitSequenceWithCategories = [
+      {
+        ...unitSequenceFixture[0]!,
+        subjectCategories: ["Theology"],
+      },
+      {
+        ...unitSequenceFixture[1]!,
+        subjectCategories: ["Theology"],
+      },
+      {
+        ...unitSequenceFixture[2]!,
+        subjectCategories: ["Philosophy"],
+      },
+    ];
+
+    const res = await teachersUnitOverviewQuery({
+      ...sdk,
+      teachersUnitOverview: jest.fn(() =>
+        Promise.resolve({
+          lessons: [syntheticUnitvariantLessonsByKsFixture()],
+          unitSequence: unitSequenceWithCategories,
+          unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+          matchingSubjectCategories: [],
+        }),
+      ),
+    })({
+      programmeSlug: "programme-slug",
+      unitSlug: "unit-slug",
+      subjectCategorySlug: "theology",
+    });
+
+    expect(res.unitCount).toBe(3);
     expect(res.unitIndex).toBe(1);
   });
 });
