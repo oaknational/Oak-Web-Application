@@ -8,14 +8,14 @@ import Link from "next/link";
 
 import { DropdownFocusManager } from "../DropdownFocusManager/DropdownFocusManager";
 
-import { resolveOakHref } from "@/common-lib/urls";
+import { resolveOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import {
   TeachersSubNavData,
   TeachersSubNavData as TeachersData,
 } from "@/node-lib/curriculum-api-2023/queries/topNav/topNav.schema";
 
-export const getSubjectLinkHref = ({
+export const getSubjectLinkProps = ({
   programmeCount,
   subjectSlug,
   programmeSlug,
@@ -25,19 +25,19 @@ export const getSubjectLinkHref = ({
   subjectSlug: string;
   programmeSlug: string | null;
   keyStageSlug?: string;
-}): string => {
+}): ResolveOakHrefProps => {
   return programmeCount > 1 && keyStageSlug
     ? // If there are multiple programmes, link to the programme listing page
-      resolveOakHref({
+      {
         page: "programme-index",
         subjectSlug,
         keyStageSlug,
-      })
+      }
     : // If there is only one programme, link to the unit listing page for that programme
-      resolveOakHref({
+      {
         page: "unit-index",
         programmeSlug: programmeSlug!,
-      });
+      };
 };
 
 const TopNavSubjectButtons = ({
@@ -85,12 +85,14 @@ const TopNavSubjectButtons = ({
                 variant={"horizontal"}
                 element={Link}
                 subjectIconName={getValidSubjectIconName(slug)}
-                href={getSubjectLinkHref({
-                  programmeCount,
-                  subjectSlug: slug,
-                  programmeSlug,
-                  keyStageSlug,
-                })}
+                href={resolveOakHref(
+                  getSubjectLinkProps({
+                    programmeCount,
+                    subjectSlug: slug,
+                    programmeSlug,
+                    keyStageSlug,
+                  }),
+                )}
                 onClick={() => handleClick(slug, keyStageSlug)}
                 onKeyDown={(e) =>
                   buttonId && focusManager?.handleKeyDown(e, buttonId)
@@ -120,12 +122,14 @@ const TopNavSubjectButtons = ({
                 key={subject.slug}
                 element={Link}
                 subjectIconName={getValidSubjectIconName(subject.slug)}
-                href={getSubjectLinkHref({
-                  programmeCount,
-                  subjectSlug: subject.slug,
-                  programmeSlug,
-                  keyStageSlug,
-                })}
+                href={resolveOakHref(
+                  getSubjectLinkProps({
+                    programmeCount,
+                    subjectSlug: subject.slug,
+                    programmeSlug,
+                    keyStageSlug,
+                  }),
+                )}
                 onClick={() => handleClick(subject.slug, keyStageSlug)}
                 onKeyDown={(e) =>
                   buttonId && focusManager?.handleKeyDown(e, buttonId)

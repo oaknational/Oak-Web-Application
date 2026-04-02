@@ -154,8 +154,6 @@ export function SubmenuContent(
                 filterType: "Subject filter",
                 filterValue: subjectSlug,
                 activeFilters: { keystages: [keystageSlug] },
-                googleLoginHint: null,
-                clientEnvironment: null,
               });
               handleCloseHamburger();
             }}

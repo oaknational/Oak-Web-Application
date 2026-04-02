@@ -217,8 +217,6 @@ describe("PublicProgrammeListing", () => {
       filterValue: "",
       platform: "owa",
       product: "pupil lesson activities",
-      googleLoginHint: null,
-      clientEnvironment: null,
     });
   });
 

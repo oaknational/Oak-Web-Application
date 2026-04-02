@@ -27,13 +27,6 @@ const saveProps = {
   },
 };
 
-const childCardProps = {
-  isHighlighted: false,
-  href: "testUrl",
-  lessonCount: 10,
-  saveProps,
-};
-
 describe("CardListing", () => {
   it("renders a title and an index", () => {
     render(<CardListing {...defaultProps} />);
@@ -130,50 +123,5 @@ describe("CardListing", () => {
       name: "Save this unit: Unit title",
     });
     expect(rerenderedSaveButton).toHaveStyle({ background: "none" });
-  });
-  it("should render an options tag when child cards are passed in", () => {
-    render(
-      <CardListing
-        {...defaultProps}
-        childCards={[
-          { ...childCardProps, title: "Optionality 1" },
-          { ...childCardProps, title: "Optionality 2" },
-          { ...childCardProps, title: "Optionality 3" },
-        ]}
-      />,
-    );
-
-    const optionsTag = screen.getByText("3 options");
-    expect(optionsTag).toBeInTheDocument();
-  });
-  it("does not show the footer when child cards are passed in", () => {
-    render(
-      <CardListing
-        {...defaultProps}
-        lessonCount={22}
-        childCards={[
-          { ...childCardProps, title: "Optionality 1" },
-          { ...childCardProps, title: "Optionality 2" },
-          { ...childCardProps, title: "Optionality 3" },
-        ]}
-      />,
-    );
-
-    const lessonCount = screen.queryByText("22 lessons");
-    expect(lessonCount).not.toBeInTheDocument();
-  });
-  it("does not render the card as a link when child cards are passed in", () => {
-    render(
-      <CardListing
-        {...defaultProps}
-        childCards={[
-          { ...childCardProps, title: "Optionality 1" },
-          { ...childCardProps, title: "Optionality 2" },
-          { ...childCardProps, title: "Optionality 3" },
-        ]}
-      />,
-    );
-    const links = screen.getAllByRole("link");
-    links.forEach((link) => expect(link).not.toHaveTextContent("Card title"));
   });
 });

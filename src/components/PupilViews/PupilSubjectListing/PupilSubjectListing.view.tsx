@@ -121,8 +121,6 @@ export const PupilViewsSubjectListing = ({
                 filterType: "Subject filter",
                 filterValue: subject.programmeFields.subject,
                 activeFilters: { yearDescriptions },
-                googleLoginHint: null,
-                clientEnvironment: null,
               });
             }}
           >

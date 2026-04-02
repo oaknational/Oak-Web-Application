@@ -145,8 +145,6 @@ const YearListingPage = ({ topNav }: YearListingPageProps) => {
                             filterType: "Year filter",
                             filterValue: year.yearDescription,
                             activeFilters: {},
-                            googleLoginHint: null,
-                            clientEnvironment: null,
                           });
                         }}
                         width={"100%"}

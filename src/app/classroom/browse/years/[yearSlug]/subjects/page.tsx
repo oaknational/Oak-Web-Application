@@ -1,8 +1,8 @@
+import { SubjectsPageView } from "@oaknational/google-classroom-addon/ui";
 import { notFound } from "next/navigation";
 
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { GoogleClassroomSubjects } from "@/components/GoogleClassroom/GoogleClassroomSubjects";
 
 async function getSubjectsData(yearSlug: string) {
   try {
@@ -32,7 +32,7 @@ async function GoogleClassroomSubjectsPage({
   }
 
   return (
-    <GoogleClassroomSubjects
+    <SubjectsPageView
       subjects={curriculumData}
       unitsUrlTemplate={"/classroom/browse/programmes/:programmeSlug/units"}
       optionsUrlTemplate={"/classroom/browse/programmes/:programmeSlug/options"}

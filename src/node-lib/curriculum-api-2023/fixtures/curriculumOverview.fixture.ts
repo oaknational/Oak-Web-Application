@@ -126,7 +126,6 @@ export const curriculumOverviewMVFixture = (
     subjectTitle: "Maths",
     phaseTitle: "Secondary",
     examboardTitle: null,
-    nonCurriculum: false,
     ...partial,
   };
 };

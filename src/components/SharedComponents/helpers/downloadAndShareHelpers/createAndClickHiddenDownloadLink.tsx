@@ -1,5 +1,3 @@
-import { isInIframe } from "@/utils/iframe";
-
 export const createLink = () => {
   const a = document.createElement("a");
   return a;
@@ -11,6 +9,14 @@ export const hideAndClickDownloadLink = (url: string, a: HTMLAnchorElement) => {
   a.setAttribute("download", "download.zip");
   document.body.appendChild(a);
   a.click();
+};
+
+export const isInIframe = () => {
+  try {
+    return globalThis.self !== globalThis.top;
+  } catch {
+    return true;
+  }
 };
 
 const createAndClickHiddenDownloadLink = (url: string) => {

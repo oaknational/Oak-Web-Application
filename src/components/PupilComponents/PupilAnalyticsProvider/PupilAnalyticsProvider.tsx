@@ -12,7 +12,6 @@ import {
   LessonReleaseCohortValueType,
   PathwayValueType,
   PhaseValueType,
-  Platform,
   PlatformValueType,
   ProductValueType,
   TierNameValueType,
@@ -23,7 +22,6 @@ import {
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { unionOrNull } from "@/utils/narrowToUnion";
-import { getClientEnvironment } from "@/components/GoogleClassroom/getClientEnvironment";
 
 /**
  * This file is used to wrap the track function from the analytics context
@@ -189,10 +187,9 @@ export const PupilAnalyticsProvider = ({
     ...pupilPathwayData,
     analyticsUseCase: "Pupil",
   };
-  const clientEnvironment = getClientEnvironment();
+
   const corePropertyArgs: CorePropertyArgType = {
-    platform:
-      clientEnvironment === "iframe" ? Platform.GOOGLE_CLASSROOM : Platform.OWA,
+    platform: "owa",
     product: "pupil lesson activities",
     engagementIntent: "use",
     eventVersion: "2.0.0",

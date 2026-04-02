@@ -25,7 +25,6 @@ const curriculumOverviewMock = jest.fn<
     subjectTitle: "English",
     phaseTitle: "Secondary",
     examboardTitle: null,
-    nonCurriculum: false,
   };
 });
 const refreshedMVTimeMock = jest.fn<

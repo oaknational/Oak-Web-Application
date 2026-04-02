@@ -19,30 +19,6 @@ import "@/__tests__/__helpers__/IntersectionObserverMock";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
-const classroomAddOnOpenedMock = jest.fn();
-const clearAddOnOpenedFlagMock = jest.fn();
-const analyticsTrackMock = new Proxy(
-  {
-    classroomAddOnOpened: classroomAddOnOpenedMock,
-  } as Record<string, jest.Mock>,
-  {
-    get: (target, property) => {
-      const key = String(property);
-
-      if (!(key in target)) {
-        target[key] = jest.fn();
-      }
-
-      return target[key];
-    },
-  },
-);
-
-const googleClassroomAnalyticsMock = {
-  trackAddOnOpenedOnce: classroomAddOnOpenedMock,
-  clearAddOnOpenedFlag: clearAddOnOpenedFlagMock,
-};
-
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
 jest.mock("next/navigation", () => ({
@@ -75,13 +51,6 @@ jest.mock("@/hooks/useAssignmentSearchParams", () => ({
   useAssignmentSearchParams: jest.fn(),
 }));
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: analyticsTrackMock,
-  }),
-}));
-
 jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
   __esModule: true,
   default: {
@@ -89,21 +58,6 @@ jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
     getPupilLessonProgress: jest.fn(),
     submitPupilProgress: jest.fn(),
   },
-}));
-
-jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
-  __esModule: true,
-  GoogleClassroomAnalyticsProvider: ({
-    children,
-  }: {
-    children: React.ReactNode;
-  }) => children,
-  useGoogleClassroomAnalytics: (
-    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
-  ) =>
-    selector
-      ? selector(googleClassroomAnalyticsMock)
-      : googleClassroomAnalyticsMock,
 }));
 
 const mockedUseAssignmentSearchParams =
@@ -150,16 +104,6 @@ jest.mock("@oaknational/oak-components", () => {
 const render = renderWithProviders();
 
 describe("PupilExperienceView", () => {
-  beforeEach(() => {
-    classroomAddOnOpenedMock.mockClear();
-    clearAddOnOpenedFlagMock.mockClear();
-    classroomAddOnOpenedMock.mockReturnValue(true);
-    mockedUseAssignmentSearchParams.mockReturnValue({
-      isClassroomAssignment: true,
-      classroomAssignmentChecked: true,
-    });
-  });
-
   describe("pickAvailableSectionsForLesson", () => {
     it("returns all sections if all are available", () => {
       const sections = pickAvailableSectionsForLesson(
@@ -190,72 +134,6 @@ describe("PupilExperienceView", () => {
       expect(withoutStarterQuiz).not.toContain("starter-quiz");
       expect(withoutExitQuiz).not.toContain("exit-quiz");
       expect(withoutVideo).not.toContain("video");
-    });
-  });
-
-  describe("classroom add-on tracking", () => {
-    it("tracks classroomAddOnOpened for a direct classroom pupil landing", async () => {
-      const lessonContent = lessonContentFixture({});
-      const lessonBrowseData = lessonBrowseDataFixture({});
-
-      jest
-        .spyOn(LessonEngineProvider, "useLessonEngineContext")
-        .mockReturnValue(
-          createLessonEngineContext({
-            currentSection: "overview",
-          }),
-        );
-
-      render(
-        <PupilExperienceView
-          lessonContent={lessonContent}
-          browseData={lessonBrowseData}
-          hasWorksheet={false}
-          hasAdditionalFiles={false}
-          additionalFiles={null}
-          worksheetInfo={null}
-          initialSection="overview"
-          pageType="browse"
-        />,
-      );
-
-      await waitFor(() => {
-        expect(classroomAddOnOpenedMock).toHaveBeenCalledTimes(1);
-      });
-      expect(classroomAddOnOpenedMock).toHaveBeenCalledWith({
-        analyticsUseCase: "Pupil",
-      });
-    });
-
-    it("does not retrack classroomAddOnOpened when sign-in already marked it", async () => {
-      const lessonContent = lessonContentFixture({});
-      const lessonBrowseData = lessonBrowseDataFixture({});
-
-      classroomAddOnOpenedMock.mockReturnValue(false);
-      jest
-        .spyOn(LessonEngineProvider, "useLessonEngineContext")
-        .mockReturnValue(
-          createLessonEngineContext({
-            currentSection: "overview",
-          }),
-        );
-
-      render(
-        <PupilExperienceView
-          lessonContent={lessonContent}
-          browseData={lessonBrowseData}
-          hasWorksheet={false}
-          hasAdditionalFiles={false}
-          additionalFiles={null}
-          worksheetInfo={null}
-          initialSection="overview"
-          pageType="browse"
-        />,
-      );
-
-      await waitFor(() => {
-        expect(classroomAddOnOpenedMock).toHaveBeenCalledTimes(1);
-      });
     });
   });
 

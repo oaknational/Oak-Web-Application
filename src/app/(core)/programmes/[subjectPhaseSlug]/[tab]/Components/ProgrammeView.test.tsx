@@ -23,9 +23,6 @@ jest.mock("next/navigation", () => {
     usePathname: () => usePathnameMock(),
     useSearchParams: jest.fn(),
     useRouter: () => useRouterMock,
-    notFound: () => {
-      throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
-    },
   };
 });
 
@@ -133,24 +130,5 @@ describe("ProgrammeView", () => {
     const user = userEvent.setup();
     await user.click(overviewTabButton);
     expect(pushSpy).toHaveBeenCalledWith(null, "", "overview");
-  });
-
-  describe("non-curriculum subjects", () => {
-    const nonCurriculumProps = {
-      ...defaultProps,
-      curriculumInfo: curriculumOverviewMVFixture({ nonCurriculum: true }),
-      curriculumCMSInfo: null,
-    };
-
-    it("does not render tabs", () => {
-      render(<ProgrammeView {...nonCurriculumProps} />);
-      expect(screen.queryByTestId("programme-tabs")).not.toBeInTheDocument();
-    });
-
-    it("calls notFound when the overview tab is active", () => {
-      expect(() =>
-        render(<ProgrammeView {...nonCurriculumProps} tabSlug="overview" />),
-      ).toThrow("NEXT_HTTP_ERROR_FALLBACK;404");
-    });
   });
 });

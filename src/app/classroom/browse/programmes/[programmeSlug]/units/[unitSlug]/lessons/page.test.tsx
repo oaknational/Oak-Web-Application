@@ -8,26 +8,11 @@ import OakError from "@/errors/OakError";
 
 const lessonListingViewMock = jest.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
-      classroomLessonSelected: jest.fn(),
-      classroomLessonPreviewed: jest.fn(),
-    },
-  }),
-}));
-
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   LessonListingView: (props: never) => {
     lessonListingViewMock(props);
     return <div data-testid="lessons-view">Lessons</div>;
   },
-  useGoogleClassroomAddonStore: jest.fn().mockReturnValue(null),
-}));
-
-jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
-  useGoogleClassroomAnalytics: jest.fn().mockReturnValue(jest.fn()),
 }));
 
 jest.mock("@/node-lib/curriculum-api-2023");

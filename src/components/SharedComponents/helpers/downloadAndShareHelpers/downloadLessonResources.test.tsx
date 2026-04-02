@@ -1,7 +1,7 @@
 import { createLessonDownloadLink } from "./createDownloadLink";
+import { isInIframe } from "./createAndClickHiddenDownloadLink";
 import downloadLessonResources from "./downloadLessonResources";
 
-import { isInIframe } from "@/utils/iframe";
 import type { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 jest.mock("./createDownloadLink", () => ({
@@ -13,9 +13,6 @@ jest.mock("./createAndClickHiddenDownloadLink", () => ({
   isInIframe: jest.fn(),
   createLink: jest.fn(),
   hideAndClickDownloadLink: jest.fn(),
-}));
-jest.mock("@/utils/iframe", () => ({
-  isInIframe: jest.fn(),
 }));
 
 const mockIsInIframe = isInIframe as jest.MockedFunction<typeof isInIframe>;

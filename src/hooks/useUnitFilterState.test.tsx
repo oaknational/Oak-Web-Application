@@ -143,8 +143,6 @@ describe("useUnitFilterState", () => {
       filterValue: "algebra",
       platform: "owa",
       product: "teacher lesson resources",
-      googleLoginHint: null,
-      clientEnvironment: null,
     });
   });
   it("does not call browse refined on update if isUnitListing is false", () => {

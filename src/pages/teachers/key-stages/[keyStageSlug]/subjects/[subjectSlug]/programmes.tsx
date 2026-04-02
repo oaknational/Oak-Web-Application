@@ -67,8 +67,6 @@ const ProgrammesListingPage: NextPage<
         filterType,
         filterValue,
         activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
-        googleLoginHint: null,
-        clientEnvironment: null,
       });
   };
 

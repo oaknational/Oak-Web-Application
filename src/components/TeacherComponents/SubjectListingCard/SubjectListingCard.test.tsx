@@ -120,8 +120,6 @@ describe("SubjectListingCardDouble", () => {
       filterType: "Subject filter",
       filterValue: "biology",
       activeFilters: { keyStage: ["ks4"] },
-      googleLoginHint: null,
-      clientEnvironment: null,
     });
     expect(mockLinkClick).toHaveBeenCalledWith(
       "http://localhost/teachers/key-stages/ks4/subjects/biology/programmes",

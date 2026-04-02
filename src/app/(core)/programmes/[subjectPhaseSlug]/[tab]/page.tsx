@@ -167,20 +167,18 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
 
   const [curriculumCMSInfo, subjectPhaseSanityData, mvRefreshTime] =
     await Promise.all([
-      programmeUnitsData.nonCurriculum
-        ? null
-        : CMSClient.curriculumOverviewPage({
-            previewMode: false, // TD: [integrated-journey] preview mode
-            subjectTitle: programmeUnitsData.subjectTitle,
-            phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-          }),
+      CMSClient.curriculumOverviewPage({
+        previewMode: false, // TD: [integrated-journey] preview mode
+        subjectTitle: programmeUnitsData.subjectTitle,
+        phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
+      }),
       CMSClient.programmePageBySlug(
         `${subjectPhaseKeystageSlugs.subjectSlug}-${subjectPhaseKeystageSlugs.phaseSlug}`,
       ),
       getMvRefreshTime(),
     ]);
 
-  if (!curriculumCMSInfo && !programmeUnitsData.nonCurriculum) {
+  if (!curriculumCMSInfo) {
     return notFound();
   }
 

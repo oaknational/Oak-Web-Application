@@ -1,7 +1,8 @@
 import { createLessonDownloadLink } from "./createDownloadLink";
-import createAndClickHiddenDownloadLink from "./createAndClickHiddenDownloadLink";
+import createAndClickHiddenDownloadLink, {
+  isInIframe,
+} from "./createAndClickHiddenDownloadLink";
 
-import { isInIframe } from "@/utils/iframe";
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 function buildClassroomDownloadPageUrl({

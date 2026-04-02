@@ -27,15 +27,6 @@ jest.mock("next/navigation", () => ({
   },
 }));
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
-      browseRefined: jest.fn(),
-    },
-  }),
-}));
-
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   UnitsListingView: (props: never) => {
     unitsListingViewMock(props);

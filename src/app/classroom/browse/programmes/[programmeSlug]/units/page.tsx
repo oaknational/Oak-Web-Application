@@ -1,5 +1,8 @@
 import { groupBy } from "lodash";
-import { UnitsListingView } from "@oaknational/google-classroom-addon/ui";
+import {
+  UnitsListingView,
+  UnitCards,
+} from "@oaknational/google-classroom-addon/ui";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -10,7 +13,6 @@ import { checkAndExcludeUnitsWithAgeRestrictedLessons } from "@/pages-helpers/pu
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import { GoogleClassroomSubjectIconHeader } from "@/components/GoogleClassroom/GoogleClassroomSubjectIconHeader";
 import { UnitsContainer } from "@/components/TeacherComponents/UnitsContainer";
-import { GoogleClassroomUnitCards } from "@/components/GoogleClassroom/GoogleClassroomUnitCards";
 
 async function getUnitsData(baseSlug: string) {
   try {
@@ -93,7 +95,7 @@ async function GoogleClassroomUnitsListingPage({
         phase={programmeFields.phase}
         subject={programmeFields.subject ?? ""}
         unitCards={[
-          <GoogleClassroomUnitCards
+          <UnitCards
             key={programmeSlug}
             units={optionalityUnits}
             programmeSlug={programmeSlug}

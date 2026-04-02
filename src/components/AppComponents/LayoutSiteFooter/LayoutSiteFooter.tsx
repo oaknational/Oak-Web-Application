@@ -51,8 +51,8 @@ const footerSections: FooterSections = {
         text: "EYFS",
         type: "link",
         href: resolveOakHref({
-          page: "eyfs-page",
-          subjectSlug: "maths",
+          page: "subject-index",
+          keyStageSlug: "early-years-foundation-stage",
         }),
       },
       {
@@ -248,8 +248,6 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
             filterType: "Key stage filter",
             filterValue: props.text,
             activeFilters: [],
-            googleLoginHint: null,
-            clientEnvironment: null,
           });
         }
 

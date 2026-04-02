@@ -35,13 +35,9 @@ export async function getProgrammeData(
       curriculumApi2023.curriculumOverview({
         subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
         phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
-        includeNonCurriculum: true,
       }),
-      curriculumApi2023.curriculumSequence({
-        ...subjectPhaseKeystageSlugs,
-        includeNonCurriculum: true,
-      }),
-      curriculumApi2023.curriculumPhaseOptions({ includeNonCurriculum: true }),
+      curriculumApi2023.curriculumSequence(subjectPhaseKeystageSlugs),
+      curriculumApi2023.curriculumPhaseOptions(),
     ],
   );
 

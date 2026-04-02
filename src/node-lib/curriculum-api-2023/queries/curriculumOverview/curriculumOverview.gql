@@ -1,15 +1,15 @@
-query curriculumOverview(
-  $where: published_mv_curriculum_overview_0_9_bool_exp
-) {
-  curriculumOverview: published_mv_curriculum_overview_0_9(
-    where: $where
+query curriculumOverview($phaseSlug: String, $subjectSlug: String) {
+  curriculumOverview: published_mv_curriculum_overview_0_9 (
+    where: {
+      phase_slug: { _eq: $phaseSlug }
+      subject_slug: { _eq: $subjectSlug }
+      non_curriculum: {_eq: false}
+    }
     limit: 1
-    order_by: { non_curriculum: desc }
   ) {
     curriculaDesc: curriculum_intent
     subjectTitle: subject
     phaseTitle: phase
     examboardTitle: examboard
-    nonCurriculum: non_curriculum
   }
 }

@@ -125,8 +125,6 @@ export const useUnitFilterState = ({
           filterValue,
           filterType,
           activeFilters,
-          googleLoginHint: null,
-          clientEnvironment: null,
         });
       }
       setIsMobileFilterDrawerOpen(false);

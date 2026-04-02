@@ -127,7 +127,6 @@ describe("Component Curriculum Download Tab", () => {
         subjectTitle: "English",
         phaseTitle: "Secondary",
         examboardTitle: null,
-        nonCurriculum: false,
       },
       ...overrides,
     };

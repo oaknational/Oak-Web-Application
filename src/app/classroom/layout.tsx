@@ -1,14 +1,8 @@
 "use client";
 
-import { useEffect, Suspense } from "react";
-import { useSearchParams, usePathname } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { OakGoogleClassroomProvider } from "@oaknational/google-classroom-addon/ui";
-
-import { AnalyticsUseCase } from "@/browser-lib/avo/Avo";
-import {
-  GoogleClassroomAnalyticsProvider,
-  useGoogleClassroomAnalytics,
-} from "@/components/GoogleClassroom/useGoogleClassroomAnalytics";
+import { Suspense } from "react";
 
 function GoogleClassroomProviderWrapper({
   children,
@@ -31,35 +25,13 @@ function GoogleClassroomProviderWrapper({
   );
 }
 
-function ClassroomLayoutAnalytics({ isPupilRoute }: { isPupilRoute: boolean }) {
-  const trackAddOnOpened = useGoogleClassroomAnalytics(
-    (state) => state.trackAddOnOpened,
-  );
-
-  useEffect(() => {
-    if (isPupilRoute) return;
-
-    trackAddOnOpened({
-      analyticsUseCase: AnalyticsUseCase.TEACHER,
-    });
-  }, [isPupilRoute, trackAddOnOpened]);
-
-  return null;
-}
-
 export default function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const pathname = usePathname();
-  const isPupilRoute = pathname?.includes("/classroom/pupil/") ?? false;
-
   return (
     <Suspense fallback={null}>
       <GoogleClassroomProviderWrapper>
-        <GoogleClassroomAnalyticsProvider>
-          <ClassroomLayoutAnalytics isPupilRoute={isPupilRoute} />
-          {children}
-        </GoogleClassroomAnalyticsProvider>
+        {children}
       </GoogleClassroomProviderWrapper>
     </Suspense>
   );
