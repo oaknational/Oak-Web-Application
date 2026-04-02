@@ -84,6 +84,8 @@ describe("getTransformedUnit", () => {
       pathwayTitle: null,
       pathwayDisplayOrder: null,
       actions: { isPePractical: false },
+      phaseSlug: "primary",
+      phaseTitle: "Primary",
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
       nextUnit: {
@@ -155,6 +157,8 @@ describe("getTransformedUnit", () => {
       pathwaySlug: null,
       pathwayTitle: null,
       pathwayDisplayOrder: null,
+      phaseSlug: "primary",
+      phaseTitle: "Primary",
       actions: { isPePractical: false },
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
