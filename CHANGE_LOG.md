@@ -1,3 +1,29 @@
+# [1.1033.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1032.0...v1.1033.0) (2026-04-01)
+
+
+### Features
+
+* switch to avo main branch ([26ad398](https://github.com/oaknational/Oak-Web-Application/commit/26ad398bc21e5d6fa96ecd00c8f0d30c4c16e13a))
+* trigger ci:cd ([01c6338](https://github.com/oaknational/Oak-Web-Application/commit/01c6338ea75ad075e603ef71e22af7f19a9477c9))
+
+# [1.1032.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1031.1...v1.1032.0) (2026-04-01)
+
+
+### Bug Fixes
+
+* add hooks to to stop console.error being triggered ([f74df88](https://github.com/oaknational/Oak-Web-Application/commit/f74df883652a78a433b217683ec065ac36c577ac))
+* hardened test files ([4500407](https://github.com/oaknational/Oak-Web-Application/commit/4500407dec61ce2cfc456c3445887ecb96b4f89d))
+* memory leak ([61ad83b](https://github.com/oaknational/Oak-Web-Application/commit/61ad83b47e114846d8d7069d3978118226cb6df7))
+* merge conflicts and refactor test ([9032fa5](https://github.com/oaknational/Oak-Web-Application/commit/9032fa5cfbae3b8b0c8a3e25bead29200bb8b918))
+* remove unused type ([fff66ab](https://github.com/oaknational/Oak-Web-Application/commit/fff66ab82f9eb8203eca3d227ab7c8b73131a339))
+
+
+### Features
+
+* add tests files ([d73f6f8](https://github.com/oaknational/Oak-Web-Application/commit/d73f6f8854a53ad8dfeda0f3688024e38809a518))
+* implement pupil analytics ([945c020](https://github.com/oaknational/Oak-Web-Application/commit/945c0201004565be171fff5e0c43881db13f35a9))
+* trigger ci:cd ([d4ca33f](https://github.com/oaknational/Oak-Web-Application/commit/d4ca33fe30f365a1c81613128680b3b037ee1998))
+
 ## [1.1031.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1031.0...v1.1031.1) (2026-04-01)
 
 
