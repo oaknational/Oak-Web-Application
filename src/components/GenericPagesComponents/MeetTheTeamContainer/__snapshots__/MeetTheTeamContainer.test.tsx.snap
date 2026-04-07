@@ -4,13 +4,13 @@ exports[`MeetTheTeamContainer renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg lcVwpz"
+      class="sc-aXZVg ggkHvy"
     >
       <div
-        class="sc-aXZVg sc-gEvEer hkJkIR iwFTtF"
+        class="sc-aXZVg sc-gEvEer hdseiA iwFTtF"
       >
         <div
-          class="sc-aXZVg sc-gEvEer hkJkIR fVNIMq"
+          class="sc-aXZVg sc-gEvEer hdseiA fVNIMq"
         >
           <h2
             class="sc-eldPxv iiNDPs"
@@ -24,7 +24,7 @@ exports[`MeetTheTeamContainer renders correctly 1`] = `
           </p>
         </div>
         <ul
-          class="sc-aXZVg sc-tagGq hwYrLi fugleq"
+          class="sc-aXZVg sc-tagGq NyjaL fugleq"
         >
           TEST_CONTENT
         </ul>
