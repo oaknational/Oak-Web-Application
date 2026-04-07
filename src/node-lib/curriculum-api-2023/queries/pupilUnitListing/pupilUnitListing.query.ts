@@ -19,7 +19,12 @@ export const pupilUnitListingQuery =
       baseSlug,
     });
     res.browseData.forEach((item) => {
-      item.actions = { ...item.actions, programme_field_overrides: {} };
+      if (item.programme_fields.subject_slug == "rule-of-law") {
+        item.actions = {
+          ...item.actions,
+          programme_field_overrides: {},
+        };
+      }
     });
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       PupilUnitListingQuery["browseData"][number]
