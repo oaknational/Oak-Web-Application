@@ -76,6 +76,9 @@ const teachersUnitOverviewQuery =
         unitDescription: lesson.unit_data.description,
         programmeSlugByYear: lesson.programme_slug_by_year,
         nullUnitvariantId: lesson.null_unitvariant_id,
+        whyThisWhyNow: lesson.unit_data.why_this_why_now,
+        priorKnowledgeRequirements:
+          lesson.unit_data.prior_knowledge_requirements,
       };
     }, {} as PackagedUnitData);
 

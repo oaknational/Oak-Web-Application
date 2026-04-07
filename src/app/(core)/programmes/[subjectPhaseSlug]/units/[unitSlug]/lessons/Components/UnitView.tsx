@@ -1,5 +1,11 @@
 "use client";
-import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakGrid,
+  OakGridArea,
+  OakTypography,
+} from "@oaknational/oak-components";
 
 import { LessonList } from "./LessonList";
 
@@ -19,6 +25,8 @@ export type UnitViewProps = Pick<
   | "lessons"
   | "unitIndex"
   | "unitCount"
+  | "whyThisWhyNow"
+  | "priorKnowledgeRequirements"
 >;
 
 export const UnitView = ({
@@ -33,6 +41,8 @@ export const UnitView = ({
   lessons,
   unitIndex,
   unitCount,
+  whyThisWhyNow,
+  priorKnowledgeRequirements,
 }: UnitViewProps) => {
   return (
     <OakBox $ph="spacing-40">
@@ -53,8 +63,28 @@ export const UnitView = ({
         >
           <SkipLink href="#lessons">Skip to lessons</SkipLink>
         </OakBox>
-        <OakGridArea $colSpan={[12, 5]} />
-        <OakGridArea $colSpan={[12, 7]} $gap="spacing-56" id="lessons">
+        <OakGridArea
+          $colSpan={[12, 4]}
+          $gap="spacing-56"
+          $flexDirection={"column"}
+        >
+          <OakFlex $flexDirection={"column"} $gap={"spacing-20"}>
+            <OakTypography $font={"heading-7"}>Why this why now</OakTypography>
+            <OakTypography>{whyThisWhyNow}</OakTypography>
+          </OakFlex>
+          <OakFlex $flexDirection={"column"} $gap={"spacing-20"}>
+            <OakTypography $font={"heading-7"}>
+              Prior knowledge requirements
+            </OakTypography>
+            <OakTypography>{priorKnowledgeRequirements}</OakTypography>
+          </OakFlex>
+        </OakGridArea>
+        <OakGridArea
+          $colSpan={[12, 7]}
+          $colStart={[1, 6]}
+          $gap="spacing-56"
+          id="lessons"
+        >
           <LessonList
             programmeSlug={programmeSlug}
             unitSlug={unitSlug}

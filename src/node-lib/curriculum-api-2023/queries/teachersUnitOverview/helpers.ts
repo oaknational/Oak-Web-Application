@@ -190,6 +190,8 @@ export const getPackagedUnit = (
     programmeSlug,
     programmeSlugByYear,
     nullUnitvariantId,
+    whyThisWhyNow,
+    priorKnowledgeRequirements,
   } = packagedUnitData;
 
   const modifiedProgrammeFields = getCorrectYear({
@@ -252,6 +254,8 @@ export const getPackagedUnit = (
     phaseSlug: modifiedProgrammeFields.phase_slug,
     phaseTitle: modifiedProgrammeFields.phase_description,
     actions: combinedActions,
+    whyThisWhyNow,
+    priorKnowledgeRequirements,
     containsGeorestrictedLessons,
     containsLoginRequiredLessons,
     nextUnit,
