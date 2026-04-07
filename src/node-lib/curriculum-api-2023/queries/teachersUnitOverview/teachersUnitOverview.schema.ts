@@ -65,7 +65,12 @@ export const unitSequenceResponseSchema = z.array(
 );
 export type UnitSequence = z.infer<typeof unitSequenceResponseSchema>;
 
-export const threadsResponseSchema = z.array(threadSchema).nullable();
+export const threadsResponseSchema = z.array(
+  z.object({
+    threads: z.array(threadSchema).nullable(),
+  }),
+);
+export type Threads = z.infer<typeof threadsResponseSchema>;
 
 export type PackagedUnitData = {
   programmeFields: ProgrammeFields;
