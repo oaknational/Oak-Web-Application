@@ -156,9 +156,10 @@ const UnitNavButtons = ({
   programmeSlug,
 }: {
   display: OakFlexProps["$display"];
-  backgroundColorLevel: CompactHeaderProps["backgroundColorLevel"];
+  backgroundColorLevel: 3 | 4;
 } & UnitHeaderProps) => {
-  const iconColor = `icon-decorative${backgroundColorLevel}` as OakUiRoleToken;
+  const iconColor =
+    `icon-decorative${backgroundColorLevel}` satisfies OakUiRoleToken;
   return (
     <OakFlex $display={display} $gap={"spacing-16"}>
       {prevUnit && (
