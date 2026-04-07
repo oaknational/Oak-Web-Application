@@ -6,6 +6,7 @@ import {
   OakGrid,
   OakGridArea,
   OakLI,
+  OakTagFunctional,
   OakTypography,
   OakUL,
 } from "@oaknational/oak-components";
@@ -30,6 +31,8 @@ export type UnitViewProps = Pick<
   | "unitCount"
   | "whyThisWhyNow"
   | "priorKnowledgeRequirements"
+  | "threads"
+  | "phaseSlug"
 >;
 
 export const UnitView = ({
@@ -46,6 +49,8 @@ export const UnitView = ({
   unitCount,
   whyThisWhyNow,
   priorKnowledgeRequirements,
+  threads,
+  phaseSlug,
 }: UnitViewProps) => {
   return (
     <OakBox $ph="spacing-40">
@@ -67,11 +72,21 @@ export const UnitView = ({
         >
           <SkipLink href="#lessons">Skip to lessons</SkipLink>
         </OakBox>
-        <OakGridArea $colSpan={[12, 4]}>
+        <OakGridArea $colSpan={[12, 4]} $gap={"spacing-56"}>
+          <UnitThreads
+            threads={threads}
+            $display={["flex", "flex", "none"]}
+            phaseSlug={phaseSlug}
+          />
           <UnitInfo
             whyThisWhyNow={whyThisWhyNow}
             priorKnowledgeRequirements={priorKnowledgeRequirements}
             $display={["flex", "none", "flex"]}
+          />
+          <UnitThreads
+            threads={threads}
+            $display={["none", "none", "flex"]}
+            phaseSlug={phaseSlug}
           />
         </OakGridArea>
         <OakGridArea
@@ -142,4 +157,39 @@ const UnitInfo = ({
       </OakFlex>
     </OakFlex>
   );
+};
+
+const UnitThreads = ({
+  threads,
+  $display,
+  phaseSlug,
+}: {
+  threads: UnitViewProps["threads"];
+  $display: OakFlexProps["$display"];
+  phaseSlug: UnitViewProps["phaseSlug"];
+}) => {
+  const backgroundColorLevel = phaseSlug === "primary" ? 4 : 3;
+  if (threads) {
+    return (
+      <OakFlex
+        $flexDirection={"column"}
+        $display={$display}
+        $gap={"spacing-20"}
+      >
+        <OakTypography $font={"heading-7"}>Threads</OakTypography>
+        <OakFlex $gap={"spacing-8"} $flexWrap={"wrap"}>
+          {threads.map((thread) => (
+            <OakTagFunctional
+              key={thread}
+              label={thread}
+              $background={`bg-decorative${backgroundColorLevel}-very-subdued`}
+              $borderColor={`border-decorative${backgroundColorLevel}`}
+              $ba={"border-solid-s"}
+            />
+          ))}
+        </OakFlex>
+      </OakFlex>
+    );
+  }
+  return null;
 };

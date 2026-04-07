@@ -140,7 +140,7 @@ export const unitOverviewDataSchema = z.object({
   prevUnit: neighbourUnitSchema,
   tierOptionToggles: programmeToggleSchema,
   subjectOptionToggles: programmeToggleSchema,
-  threads: z.array(z.string()).optional(),
+  threads: z.array(z.string()),
 });
 
 export type TeachersUnitOverviewData = z.infer<typeof unitOverviewDataSchema>;
