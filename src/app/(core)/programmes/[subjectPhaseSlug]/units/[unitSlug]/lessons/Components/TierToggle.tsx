@@ -24,8 +24,8 @@ type TierToggleOptionProps = {
 const TierToggleOption = ({
   programmeSlug,
   unitSlug,
-  isActive,
   tierSlug,
+  isActive,
 }: TierToggleOptionProps) => {
   const Button = isActive ? OakPrimaryButton : OakSecondaryButton;
   const label = tierSlug === "foundation" ? "Foundation" : "Higher";
@@ -65,6 +65,7 @@ export const TierToggle = ({
       aria-labelledby="tier-toggle-heading"
       $flexDirection="column"
       $gap="spacing-24"
+      $pb="spacing-32"
     >
       <OakHeading tag="h3" id="tier-toggle-heading" $font="heading-7">
         Learning tier (KS4)

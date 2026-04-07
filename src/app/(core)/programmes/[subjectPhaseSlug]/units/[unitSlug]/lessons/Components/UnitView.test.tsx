@@ -1,10 +1,12 @@
 import { UnitView } from "./UnitView";
 import type { UnitViewProps } from "./UnitView";
 import { LessonList } from "./LessonList";
+import { TierToggle } from "./TierToggle";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("./LessonList");
+jest.mock("./TierToggle");
 
 describe("UnitView", () => {
   beforeEach(() => {
@@ -25,30 +27,40 @@ describe("UnitView", () => {
 
     renderWithProviders()(
       <UnitView
-        programmeSlug="biology-secondary-ks3"
+        programmeSlug="biology-secondary-ks4-foundation-aqa"
         unitSlug="cells"
         unitTitle="Cells"
         unitDescription="Learn about cells"
         subjectTitle="Biology"
         subjectSlug="biology"
-        keyStageSlug="ks3"
-        keyStageTitle="Key Stage 3"
+        keyStageSlug="ks4"
+        keyStageTitle="Key Stage 4"
         lessons={lessons as UnitViewProps["lessons"]}
         unitIndex={2}
         unitCount={12}
+        tierSlug="foundation"
       />,
+    );
+
+    expect(TierToggle).toHaveBeenCalledWith(
+      expect.objectContaining({
+        programmeSlug: "biology-secondary-ks4-foundation-aqa",
+        unitSlug: "cells",
+        tierSlug: "foundation",
+      }),
+      {},
     );
 
     expect(LessonList).toHaveBeenCalledWith(
       expect.objectContaining({
-        programmeSlug: "biology-secondary-ks3",
+        programmeSlug: "biology-secondary-ks4-foundation-aqa",
         unitSlug: "cells",
         unitTitle: "Cells",
         unitDescription: "Learn about cells",
         subjectTitle: "Biology",
         subjectSlug: "biology",
-        keyStageSlug: "ks3",
-        keyStageTitle: "Key Stage 3",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key Stage 4",
         lessons,
         unitIndex: 2,
         unitCount: 12,
