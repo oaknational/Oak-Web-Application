@@ -192,6 +192,8 @@ describe("teachersUnitOverview", () => {
       pathwaySlug: null,
       pathwayTitle: null,
       pathwayDisplayOrder: null,
+      phaseSlug: "primary",
+      phaseTitle: "Primary",
       parentSubject: "Maths",
       actions: { isPePractical: false },
       containsGeorestrictedLessons: false,

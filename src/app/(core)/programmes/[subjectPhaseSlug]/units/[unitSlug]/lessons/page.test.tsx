@@ -71,6 +71,8 @@ const unitOverviewFixture: TeachersUnitOverviewData = {
   pathwaySlug: null,
   pathwayTitle: null,
   pathwayDisplayOrder: null,
+  phaseSlug: "primary",
+  phaseTitle: "Primary",
   lessons: [],
   actions: null,
   containsGeorestrictedLessons: false,

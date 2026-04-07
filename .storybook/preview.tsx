@@ -2,7 +2,7 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import * as NextImage from "next/image";
 import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
-import { fn } from "storybook/test";
+import { fn, sb } from "storybook/test";
 import { Lexend } from "next/font/google";
 
 import "../src/browser-lib/oak-globals/oakGlobals";
@@ -99,3 +99,11 @@ export const globalTypes = {
   },
 };
 export const tags = ["autodocs", "autodocs", "autodocs"];
+
+// spy on useUnitDownloadExistence check in stories so the return value can be mocked
+sb.mock(
+  import(
+    "../src/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck.tsx"
+  ),
+  { spy: true },
+);

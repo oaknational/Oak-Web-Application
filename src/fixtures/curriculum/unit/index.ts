@@ -53,16 +53,10 @@ export function getPhaseSlug(year: string) {
 }
 
 export function getPhaseSlugFromKeystage(keystage: KeystageSlug) {
-  if (
-    keystage === "early-years-foundation-stage" ||
-    keystage === "ks1" ||
-    keystage === "ks2"
-  ) {
-    return "primary";
-  } else if (keystage === "ks3" || keystage === "ks4") {
+  if (keystage === "ks3" || keystage === "ks4") {
     return "secondary";
   } else {
-    return null;
+    return "primary";
   }
 }
 

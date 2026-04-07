@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
+import UnitHeader from "./Components/UnitHeader/UnitHeader";
+import { UnitBreadcrumbs } from "./Components/UnitBreadcrumbs/UnitBreadcrumbs";
 import { UnitView } from "./Components/UnitView";
 
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
@@ -10,6 +12,9 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
+import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 type LessonsPageParams = { subjectPhaseSlug: string; unitSlug: string };
 
@@ -65,27 +70,65 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
     return notFound();
   }
 
-  const { subjectPhaseSlug, unitSlug } = await props.params;
+  const { subjectPhaseSlug: programmeSlug, unitSlug } = await props.params;
   const searchParams = await props.searchParams;
   const data = await getCachedUnitData(
-    subjectPhaseSlug,
+    programmeSlug,
     unitSlug,
     searchParams?.subject_category?.toString(),
   );
+  const subjectIconName = `subject-${data.subjectSlug}` as SubjectIcon;
+
+  const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
+    subjectSlug: data.subjectSlug,
+    phaseSlug: data.phaseSlug,
+    subjectParentTitle: data.parentSubject,
+    examboardSlug: data.examBoardSlug,
+    pathwaySlug: data.pathwaySlug,
+  });
+
   return (
-    <UnitView
-      programmeSlug={data.programmeSlug}
-      unitSlug={data.unitSlug}
-      unitTitle={data.unitTitle}
-      unitDescription={data.unitDescription}
-      subjectTitle={data.subjectTitle}
-      subjectSlug={data.subjectSlug}
-      keyStageSlug={data.keyStageSlug}
-      keyStageTitle={data.keyStageTitle}
-      lessons={data.lessons}
-      unitIndex={data.unitIndex}
-      unitCount={data.unitCount}
-    />
+    <>
+      <UnitHeader
+        heading={data.unitTitle}
+        phase={data.phaseSlug}
+        subjectPhaseSlug={subjectPhaseSlug}
+        programmeSlug={programmeSlug}
+        subjectIcon={subjectIconName}
+        nextUnit={data.nextUnit}
+        prevUnit={data.prevUnit}
+        unitDownloadFileId={
+          unitSlug.endsWith(data.unitvariantId.toString())
+            ? unitSlug
+            : `${unitSlug}-${data.unitvariantId}`
+        }
+        isGeorestrictedUnit={data.containsGeorestrictedLessons}
+        trackingProps={{
+          unitName: data.unitTitle,
+          unitSlug: data.unitSlug,
+          keyStageSlug: data.keyStageSlug,
+          keyStageTitle: data.keyStageTitle as KeyStageTitleValueType,
+          subjectSlug: data.subjectSlug,
+          subjectTitle: data.subjectTitle,
+        }}
+        headerSlot={
+          <UnitBreadcrumbs data={data} subjectPhaseSlug={subjectPhaseSlug} />
+        }
+      />
+      <UnitView
+        programmeSlug={data.programmeSlug}
+        unitSlug={data.unitSlug}
+        unitTitle={data.unitTitle}
+        unitDescription={data.unitDescription}
+        subjectTitle={data.subjectTitle}
+        subjectSlug={data.subjectSlug}
+        keyStageSlug={data.keyStageSlug}
+        keyStageTitle={data.keyStageTitle}
+        lessons={data.lessons}
+        unitIndex={data.unitIndex}
+        unitCount={data.unitCount}
+      />
+    </>
   );
 };
 
