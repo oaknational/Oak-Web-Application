@@ -69,6 +69,7 @@ export const PupilViewsVideo = ({
     lessonReviewSections,
     updateAdditionalFilesDownloaded,
     currentSection,
+    isReadOnly,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
   const additionalFilesAssetIds = additionalFiles
@@ -128,6 +129,11 @@ export const PupilViewsVideo = ({
         lessonReviewSections.find(
           (section) => !sectionResults[section]?.isComplete,
         ) ?? "review";
+      if (isReadOnly) {
+        updateCurrentSection("review");
+        trackSectionStarted("review");
+        return;
+      }
       trackSectionStarted(nextSection);
       proceedToNextSection();
     } else {

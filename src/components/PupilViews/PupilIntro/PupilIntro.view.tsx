@@ -76,6 +76,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     proceedToNextSection,
     lessonReviewSections,
     updateAdditionalFilesDownloaded,
+    isReadOnly,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
   const { trackSectionStarted } = useTrackSectionStarted();
@@ -162,6 +163,11 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
         lessonReviewSections.find(
           (section) => !sectionResults[section]?.isComplete,
         ) ?? "review";
+      if (isReadOnly) {
+        updateCurrentSection("review");
+        trackSectionStarted("review");
+        return;
+      }
       trackSectionStarted(nextSection);
       proceedToNextSection();
     } else {

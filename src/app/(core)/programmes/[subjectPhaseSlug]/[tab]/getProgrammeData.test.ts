@@ -79,6 +79,7 @@ describe("getProgrammeData", () => {
         phaseSlug: "primary",
         ks4OptionSlug: null,
         includeNonCurriculum: true,
+        excludeUnitsWithNoPublishedLessons: true,
       });
       expect(mockApi.curriculumPhaseOptions).toHaveBeenCalled();
     });
@@ -221,6 +222,7 @@ describe("getProgrammeData", () => {
         phaseSlug: "secondary",
         ks4OptionSlug: "aqa",
         includeNonCurriculum: true,
+        excludeUnitsWithNoPublishedLessons: true,
       });
     });
   });

@@ -6,52 +6,21 @@ import {
   OakTypography,
 } from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
-import { ReactNode } from "react";
 
 import CardListing from "./CardListing";
 
-import { saveCountContext } from "@/context/SaveCount/SaveCountProvider";
-import { oakNotificationsContext } from "@/context/OakNotifications/OakNotificationsProvider";
-
-const MockSaveCountProvider = ({ children }: { children: ReactNode }) => {
-  const SaveCountProvider = saveCountContext.Provider;
-
-  const value = {
-    savedUnitsCount: 0,
-    incrementSavedUnitsCount: () => console.log("save +1"),
-    decrementSavedUnitsCount: () => console.log("save -1"),
-    setSavedUnitsCount: () => console.log("save units count"),
-  };
-
-  return <SaveCountProvider value={value}>{children}</SaveCountProvider>;
-};
-
-const MockNotificationsProvider = ({ children }: { children: ReactNode }) => {
-  const NotificationsProvider = oakNotificationsContext.Provider;
-
-  const value = {
-    currentToastProps: null,
-    setCurrentToastProps: () => console.log("set toast props"),
-    currentBannerProps: null,
-    setCurrentBannerProps: () => console.log("set banner props"),
-  };
-
-  return (
-    <NotificationsProvider value={value}>{children}</NotificationsProvider>
-  );
-};
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
+import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 
 const meta: Meta<typeof CardListing> = {
   component: CardListing,
   decorators: [
+    SaveCountDecorator,
+    NotificationsDecorator,
     (Story) => (
       <ClerkProvider>
         <OakThemeProvider theme={oakDefaultTheme}>
-          <MockSaveCountProvider>
-            <MockNotificationsProvider>
-              <Story />
-            </MockNotificationsProvider>
-          </MockSaveCountProvider>
+          <Story />
         </OakThemeProvider>
       </ClerkProvider>
     ),

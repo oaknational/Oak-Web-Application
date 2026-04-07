@@ -112,6 +112,66 @@ export const getNeighbourUnits = ({
   };
 };
 
+export const getUnitCounts = ({
+  unitSequenceData,
+  nullUnitvariantId,
+  currentSubjectCategoryTitle,
+}: {
+  unitSequenceData: UnitSequence;
+  nullUnitvariantId: number;
+  currentSubjectCategoryTitle?: string;
+}) => {
+  const currentUnit = unitSequenceData.find(
+    (u) => u.nullUnitvariantId === nullUnitvariantId,
+  );
+  if (!currentUnit) {
+    throw new OakError({ code: "curriculum-api/not-found" });
+  }
+
+  const isCurrentUnitSwimming = currentUnit.isSwimming === true;
+
+  // Units can belong to multiple subject categories. We pass that down through
+  // the query so that we can filter accordingly
+  const currentSubjectCategory = currentUnit.subjectCategories?.find(
+    (subjectCategoryTitle) =>
+      subjectCategoryTitle === currentSubjectCategoryTitle,
+  );
+
+  const unitsForYear = unitSequenceData
+    .reduce((acc: UnitSequence, unit) => {
+      // Only count optionality units once
+      if (!acc.some((u) => u.nullUnitvariantId === unit.nullUnitvariantId)) {
+        acc.push(unit);
+      }
+      return acc;
+    }, [])
+    .filter((u) => {
+      // Swimming units are grouped across all years; all other units are grouped by year.
+      if (isCurrentUnitSwimming) {
+        return u.isSwimming === true;
+      }
+
+      // Exclude units that don't belong to the current subject category.
+      if (
+        currentSubjectCategory &&
+        !u.subjectCategories?.includes(currentSubjectCategory)
+      ) {
+        return false;
+      }
+
+      // Exclude swimming units from all years.
+      return u.year === currentUnit.year && u.isSwimming !== true;
+    })
+    .sort((a, b) => a.unitOrder - b.unitOrder);
+
+  return {
+    unitCount: unitsForYear.length,
+    unitIndex:
+      unitsForYear.findIndex((u) => u.nullUnitvariantId === nullUnitvariantId) +
+      1,
+  };
+};
+
 export const getPackagedUnit = (
   packagedUnitData: PackagedUnitData,
   unitLessons: LessonListSchema,
@@ -119,12 +179,14 @@ export const getPackagedUnit = (
   containsLoginRequiredLessons: boolean,
   unitSequenceData: UnitSequence,
   unitsInOtherProgrammes: UnitsInOtherProgrammes,
+  currentSubjectCategoryTitle?: string,
 ): TeachersUnitOverviewData => {
   const {
     programmeFields,
     unitSlug,
     unitvariantId,
     unitTitle,
+    unitDescription,
     programmeSlug,
     programmeSlugByYear,
     nullUnitvariantId,
@@ -157,6 +219,11 @@ export const getPackagedUnit = (
     programmeSlug,
     unitsInOtherProgrammes,
   );
+  const { unitCount, unitIndex } = getUnitCounts({
+    unitSequenceData,
+    nullUnitvariantId,
+    currentSubjectCategoryTitle,
+  });
 
   return {
     programmeSlug,
@@ -168,6 +235,9 @@ export const getPackagedUnit = (
     unitSlug,
     unitvariantId,
     unitTitle,
+    unitDescription,
+    unitIndex,
+    unitCount,
     tierSlug: modifiedProgrammeFields.tier_slug,
     tierTitle: modifiedProgrammeFields.tier_description,
     examBoardSlug: modifiedProgrammeFields.examboard_slug,
@@ -179,6 +249,8 @@ export const getPackagedUnit = (
     pathwaySlug: modifiedProgrammeFields.pathway_slug,
     pathwayTitle: modifiedProgrammeFields.pathway,
     pathwayDisplayOrder: modifiedProgrammeFields.pathway_display_order,
+    phaseSlug: modifiedProgrammeFields.phase_slug,
+    phaseTitle: modifiedProgrammeFields.phase_description,
     actions: combinedActions,
     containsGeorestrictedLessons,
     containsLoginRequiredLessons,

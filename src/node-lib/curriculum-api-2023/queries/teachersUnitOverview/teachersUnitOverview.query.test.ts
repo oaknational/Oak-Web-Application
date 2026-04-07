@@ -79,34 +79,59 @@ export const unitsInOtherProgrammesFixture = [
   },
 ];
 
+const matchingSubjectCategoriesFixture = [
+  {
+    subjectCategories: [
+      {
+        id: 1,
+        title: "Theology",
+        slug: "theology",
+      },
+      {
+        id: 2,
+        title: "Philosophy",
+        slug: "philosophy",
+      },
+    ],
+  },
+];
+
 export const unitSequenceFixture: UnitSequence = [
   {
     unitSlug: "unit-1",
     unitTitle: "Unit 1",
+    unitDescription: null,
     unitOrder: 1,
     nullUnitvariantId: 1,
     yearOrder: 1,
+    year: "1",
   },
   {
     unitSlug: "unit-2",
     unitTitle: "Unit 2",
+    unitDescription: null,
     unitOrder: 2,
     nullUnitvariantId: 2,
     yearOrder: 1,
+    year: "1",
   },
   {
     unitSlug: "unit-3",
     unitTitle: "Unit 3",
+    unitDescription: null,
     unitOrder: 3,
     nullUnitvariantId: 3,
     yearOrder: 1,
+    year: "1",
   },
   {
     unitSlug: "unit-4",
     unitTitle: "Unit 4",
+    unitDescription: null,
     unitOrder: 4,
     nullUnitvariantId: 4,
     yearOrder: 1,
+    year: "1",
   },
 ];
 
@@ -120,6 +145,7 @@ describe("teachersUnitOverview", () => {
             lessons: [],
             unitSequence: unitSequenceFixture,
             unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+            matchingSubjectCategories: matchingSubjectCategoriesFixture,
           }),
         ),
       })({
@@ -136,6 +162,7 @@ describe("teachersUnitOverview", () => {
           lessons: [syntheticUnitvariantLessonsByKsFixture()],
           unitSequence: unitSequenceFixture,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+          matchingSubjectCategories: matchingSubjectCategoriesFixture,
         }),
       ),
     })({
@@ -151,6 +178,9 @@ describe("teachersUnitOverview", () => {
       subjectTitle: "Maths",
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
+      unitDescription: null,
+      unitIndex: 1,
+      unitCount: 4,
       unitvariantId: 1,
       tierSlug: null,
       tierTitle: null,
@@ -162,6 +192,8 @@ describe("teachersUnitOverview", () => {
       pathwaySlug: null,
       pathwayTitle: null,
       pathwayDisplayOrder: null,
+      phaseSlug: "primary",
+      phaseTitle: "Primary",
       parentSubject: "Maths",
       actions: { isPePractical: false },
       containsGeorestrictedLessons: false,
@@ -202,6 +234,7 @@ describe("teachersUnitOverview", () => {
           lessons: [unitPageFixture2, unitPageFixture],
           unitSequence: unitSequenceFixture,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+          matchingSubjectCategories: matchingSubjectCategoriesFixture,
         }),
       ),
     })({
@@ -233,6 +266,7 @@ describe("teachersUnitOverview", () => {
             ],
             unitSequence: unitSequenceFixture,
             unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+            matchingSubjectCategories: matchingSubjectCategoriesFixture,
           }),
         ),
       })({
@@ -240,5 +274,75 @@ describe("teachersUnitOverview", () => {
         unitSlug: "unit-slug",
       });
     }).rejects.toThrow(`lesson_slug`);
+  });
+
+  it("filters unit counts when subjectCategorySlug is provided", async () => {
+    const res = await teachersUnitOverviewQuery({
+      ...sdk,
+      teachersUnitOverview: jest.fn(() =>
+        Promise.resolve({
+          lessons: [syntheticUnitvariantLessonsByKsFixture()],
+          unitSequence: [
+            {
+              ...unitSequenceFixture[0]!,
+              subjectCategories: ["Theology"],
+            },
+            {
+              ...unitSequenceFixture[1]!,
+              subjectCategories: ["Theology"],
+            },
+            {
+              ...unitSequenceFixture[2]!,
+              subjectCategories: ["Philosophy"],
+            },
+          ],
+          unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+          matchingSubjectCategories: matchingSubjectCategoriesFixture,
+        }),
+      ),
+    })({
+      programmeSlug: "programme-slug",
+      unitSlug: "unit-slug",
+      subjectCategorySlug: "theology",
+    });
+
+    expect(res.unitCount).toBe(2);
+    expect(res.unitIndex).toBe(1);
+  });
+
+  it("does not filter unit counts by subject category when matchingSubjectCategories is empty", async () => {
+    const unitSequenceWithCategories = [
+      {
+        ...unitSequenceFixture[0]!,
+        subjectCategories: ["Theology"],
+      },
+      {
+        ...unitSequenceFixture[1]!,
+        subjectCategories: ["Theology"],
+      },
+      {
+        ...unitSequenceFixture[2]!,
+        subjectCategories: ["Philosophy"],
+      },
+    ];
+
+    const res = await teachersUnitOverviewQuery({
+      ...sdk,
+      teachersUnitOverview: jest.fn(() =>
+        Promise.resolve({
+          lessons: [syntheticUnitvariantLessonsByKsFixture()],
+          unitSequence: unitSequenceWithCategories,
+          unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+          matchingSubjectCategories: [],
+        }),
+      ),
+    })({
+      programmeSlug: "programme-slug",
+      unitSlug: "unit-slug",
+      subjectCategorySlug: "theology",
+    });
+
+    expect(res.unitCount).toBe(3);
+    expect(res.unitIndex).toBe(1);
   });
 });

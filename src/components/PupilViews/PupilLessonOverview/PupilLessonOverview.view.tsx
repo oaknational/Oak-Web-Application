@@ -88,6 +88,12 @@ export const PupilViewsLessonOverview = ({
   useEffect(() => {
     setIsMounted(true);
   }, []);
+  useEffect(() => {
+    if (isReadOnly) {
+      updateCurrentSection("review");
+      trackSectionStarted("review");
+    }
+  }, [isReadOnly, updateCurrentSection, trackSectionStarted]);
 
   const baseSlug = `${browseData.programmeFields.subjectSlug}-${browseData.programmeFields.phaseSlug}-${browseData.programmeFields.yearSlug}`;
   const unitListingHref = `/pupils/programmes/${baseSlug}/options`; // NB. options will forward to units if no options available
@@ -109,7 +115,7 @@ export const PupilViewsLessonOverview = ({
       lessonReviewSections.find(
         (section) => !sectionResults[section]?.isComplete,
       ) ?? "review";
-    if (isReadOnly && nextSection === "exit-quiz") {
+    if (isReadOnly) {
       updateCurrentSection("review");
       trackSectionStarted("review");
       return;
@@ -334,7 +340,9 @@ export const PupilViewsLessonOverview = ({
                     numQuestions={starterQuizNumQuestions}
                     grade={sectionResults["starter-quiz"]?.grade ?? 0}
                     data-testid="starter-quiz"
-                    disabled={sectionResults["starter-quiz"]?.isComplete}
+                    disabled={
+                      sectionResults["starter-quiz"]?.isComplete || isReadOnly
+                    }
                     isLoading={isHydratingInitialProgress}
                   />
                 </OakLI>

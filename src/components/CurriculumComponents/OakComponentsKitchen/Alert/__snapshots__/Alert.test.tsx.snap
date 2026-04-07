@@ -4,14 +4,14 @@ exports[`Fieldset all options 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer eZuyPB hwFdrX"
+      class="sc-aXZVg sc-gEvEer itWQoU hwFdrX"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-aXZVg hdseiA"
+        class="sc-aXZVg hkJkIR"
       >
         <span
-          class="sc-aXZVg gRUGli"
+          class="sc-aXZVg jcHcan"
           data-testid="inline-banner-icon"
         >
           <img
@@ -26,21 +26,21 @@ exports[`Fieldset all options 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg jScGbX"
+        class="sc-aXZVg kjlEvO"
         data-testid="inline-banner-message"
       >
         Info example
       </div>
     </div>
     <div
-      class="sc-aXZVg sc-gEvEer bAGJSg hwFdrX"
+      class="sc-aXZVg sc-gEvEer jziqip hwFdrX"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-aXZVg hdseiA"
+        class="sc-aXZVg hkJkIR"
       >
         <span
-          class="sc-aXZVg gRUGli"
+          class="sc-aXZVg jcHcan"
           data-testid="inline-banner-icon"
         >
           <img
@@ -55,21 +55,21 @@ exports[`Fieldset all options 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg jScGbX"
+        class="sc-aXZVg kjlEvO"
         data-testid="inline-banner-message"
       >
         Neutral example
       </div>
     </div>
     <div
-      class="sc-aXZVg sc-gEvEer kGVKBS hwFdrX"
+      class="sc-aXZVg sc-gEvEer dbACbT hwFdrX"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-aXZVg hdseiA"
+        class="sc-aXZVg hkJkIR"
       >
         <span
-          class="sc-aXZVg gRUGli"
+          class="sc-aXZVg jcHcan"
           data-testid="inline-banner-icon"
         >
           <img
@@ -84,21 +84,21 @@ exports[`Fieldset all options 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg jScGbX"
+        class="sc-aXZVg kjlEvO"
         data-testid="inline-banner-message"
       >
         Success example
       </div>
     </div>
     <div
-      class="sc-aXZVg sc-gEvEer djVZYk hwFdrX"
+      class="sc-aXZVg sc-gEvEer jdxTcZ hwFdrX"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-aXZVg hdseiA"
+        class="sc-aXZVg hkJkIR"
       >
         <span
-          class="sc-aXZVg gRUGli"
+          class="sc-aXZVg jcHcan"
           data-testid="inline-banner-icon"
         >
           <img
@@ -113,21 +113,21 @@ exports[`Fieldset all options 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg jScGbX"
+        class="sc-aXZVg kjlEvO"
         data-testid="inline-banner-message"
       >
         Alert example
       </div>
     </div>
     <div
-      class="sc-aXZVg sc-gEvEer dzjgkz hwFdrX"
+      class="sc-aXZVg sc-gEvEer cnRABS hwFdrX"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-aXZVg hdseiA"
+        class="sc-aXZVg hkJkIR"
       >
         <span
-          class="sc-aXZVg gRUGli"
+          class="sc-aXZVg jcHcan"
           data-testid="inline-banner-icon"
         >
           <img
@@ -142,7 +142,7 @@ exports[`Fieldset all options 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg jScGbX"
+        class="sc-aXZVg kjlEvO"
         data-testid="inline-banner-message"
       >
         Error example
@@ -156,14 +156,14 @@ exports[`Fieldset default options 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer eZuyPB hwFdrX"
+      class="sc-aXZVg sc-gEvEer itWQoU hwFdrX"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-aXZVg hdseiA"
+        class="sc-aXZVg hkJkIR"
       >
         <span
-          class="sc-aXZVg gRUGli"
+          class="sc-aXZVg jcHcan"
           data-testid="inline-banner-icon"
         >
           <img
@@ -178,7 +178,7 @@ exports[`Fieldset default options 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg jScGbX"
+        class="sc-aXZVg kjlEvO"
         data-testid="inline-banner-message"
       >
         Default example

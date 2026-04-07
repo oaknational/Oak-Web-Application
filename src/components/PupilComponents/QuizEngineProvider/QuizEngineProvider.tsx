@@ -78,6 +78,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     currentSection,
     sectionResults,
     isReadOnly,
+    updateCurrentSection,
   } = useLessonEngineContext();
   const { track } = usePupilAnalytics();
 
@@ -136,7 +137,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
 
   const updateCurrentQuestion = useCallback(
     (incomingQuestionState: Partial<QuestionState>) => {
-      if (isExitQuizReadOnly) return;
+      if (isReadOnly) updateCurrentSection("review");
       if (
         (currentSection === "starter-quiz" || currentSection === "exit-quiz") &&
         incomingQuestionState.mode === "feedback"
@@ -176,6 +177,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         return newState;
       });
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       currentQuestionIndex,
       numInteractiveQuestions,
@@ -185,6 +187,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       questionState,
       track,
       isExitQuizReadOnly,
+      isReadOnly,
     ],
   );
 
