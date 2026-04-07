@@ -151,7 +151,6 @@ export function getTeacherSubjectPhaseSlug({
   pathwaySlug?: string | null;
   subjectParentTitle?: string | null;
 }) {
-  // TODO: add parent subject slug to data
   const subjectSegment = subjectParentTitle
     ? slugify(subjectParentTitle).toLocaleLowerCase()
     : subjectSlug;
