@@ -18,7 +18,9 @@ export const pupilUnitListingQuery =
     const res = await sdk.pupilUnitListing({
       baseSlug,
     });
-
+    res.browseData.forEach((item) => {
+      item.actions = { ...item.actions, programme_field_overrides: {} };
+    });
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       PupilUnitListingQuery["browseData"][number]
     >({
