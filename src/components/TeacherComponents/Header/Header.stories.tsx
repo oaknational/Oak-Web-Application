@@ -13,19 +13,11 @@ const meta: Meta<typeof Header> = {
   component: Header,
   tags: ["autodocs"],
   argTypes: {
-    background: {
+    backgroundColorLevel: {
       control: {
         type: "select",
       },
-      options: [
-        undefined,
-        "bg-decorative1-main",
-        "bg-decorative2-main",
-        "bg-decorative3-main",
-        "bg-decorative4-main",
-        "bg-decorative5-main",
-        "bg-decorative6-main",
-      ],
+      options: [undefined, 1, 2, 3, 4, 5, 6],
     },
     summary: {
       control: {
@@ -87,7 +79,7 @@ export const RealisticExample: Story = {
 
 export const WithBackgroundColour: Story = {
   args: {
-    background: "bg-decorative1-main",
+    backgroundColorLevel: 1,
     heading: "History Secondary",
     summary:
       "This example shows the component with a decorative background color.",
@@ -97,7 +89,7 @@ export const WithBackgroundColour: Story = {
 
 export const WithLongContent: Story = {
   args: {
-    background: "bg-decorative5-main",
+    backgroundColorLevel: 5,
     heading: "Geography Secondary",
     summary:
       "This example demonstrates how the component handles longer content. The layout remains responsive and maintains proper spacing across different screen sizes. The subject illustration should always be prominently displayed. This is a programme header component that displays content alongside a large subject illustration. On mobile, the image appears above the content, and on desktop, the image is displayed to the right. Text should wrap with balance for better readability.",
@@ -133,7 +125,7 @@ export const WithHeaderAndFooterSlots: Story = {
     />
   ),
   args: {
-    background: "bg-decorative5-main",
+    backgroundColorLevel: 5,
     heading: "Geography Secondary",
     summary:
       "This example demonstrates the `headerSlot` and `footerSlot` props. The headerSlot appears above the main content and is ideal for breadcrumbs. The footerSlot appears below the main content and is perfect for action buttons.",
