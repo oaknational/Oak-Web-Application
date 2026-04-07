@@ -5,6 +5,7 @@ import {
   PackagedUnitData,
   unitsInOtherProgrammesResponseSchema,
   subjectCategoriesSchema,
+  threadsResponseSchema,
 } from "./teachersUnitOverview.schema";
 import { getPackagedUnit, getTransformedLessons } from "./helpers";
 
@@ -26,10 +27,13 @@ const teachersUnitOverviewQuery =
       unitSequence,
       unitsInOtherProgrammes,
       matchingSubjectCategories,
+      threads,
     } = await sdk.teachersUnitOverview(args);
+
     const parsedUnitSequence = unitSequenceResponseSchema.parse(unitSequence);
     const parsedUnitsInOtherProgrammes =
       unitsInOtherProgrammesResponseSchema.parse(unitsInOtherProgrammes);
+    const parsedThreads = threadsResponseSchema.parse(threads);
 
     const modifiedLessons = applyGenericOverridesAndExceptions<
       TeachersUnitOverviewQuery["lessons"][number]
@@ -89,6 +93,7 @@ const teachersUnitOverviewQuery =
       containsLoginRequiredLessons,
       parsedUnitSequence,
       parsedUnitsInOtherProgrammes,
+      parsedThreads,
       currentSubjectCategoryTitle,
     );
 

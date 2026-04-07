@@ -1,4 +1,8 @@
-import { ActionsCamel, StaticLesson } from "@oaknational/oak-curriculum-schema";
+import {
+  ActionsCamel,
+  StaticLesson,
+  Thread,
+} from "@oaknational/oak-curriculum-schema";
 import z from "zod";
 import { keysToCamelCase } from "zod-to-camel-case";
 
@@ -179,6 +183,7 @@ export const getPackagedUnit = (
   containsLoginRequiredLessons: boolean,
   unitSequenceData: UnitSequence,
   unitsInOtherProgrammes: UnitsInOtherProgrammes,
+  threads: Thread[] | null,
   currentSubjectCategoryTitle?: string,
 ): TeachersUnitOverviewData => {
   const {
@@ -227,6 +232,8 @@ export const getPackagedUnit = (
     currentSubjectCategoryTitle,
   });
 
+  const threadItems = threads?.map((t) => t.thread_title);
+
   return {
     programmeSlug,
     keyStageSlug: modifiedProgrammeFields.keystage_slug,
@@ -262,6 +269,7 @@ export const getPackagedUnit = (
     prevUnit,
     tierOptionToggles,
     subjectOptionToggles,
+    threads: threadItems,
   };
 };
 

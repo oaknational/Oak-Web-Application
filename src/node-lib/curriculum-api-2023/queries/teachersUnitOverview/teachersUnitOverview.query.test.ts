@@ -146,6 +146,7 @@ describe("teachersUnitOverview", () => {
             unitSequence: unitSequenceFixture,
             unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
             matchingSubjectCategories: matchingSubjectCategoriesFixture,
+            threads: [],
           }),
         ),
       })({
@@ -163,6 +164,7 @@ describe("teachersUnitOverview", () => {
           unitSequence: unitSequenceFixture,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
           matchingSubjectCategories: matchingSubjectCategoriesFixture,
+          threads: [],
         }),
       ),
     })({
@@ -235,6 +237,7 @@ describe("teachersUnitOverview", () => {
           unitSequence: unitSequenceFixture,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
           matchingSubjectCategories: matchingSubjectCategoriesFixture,
+          threads: [],
         }),
       ),
     })({
@@ -298,6 +301,7 @@ describe("teachersUnitOverview", () => {
           ],
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
           matchingSubjectCategories: matchingSubjectCategoriesFixture,
+          threads: [],
         }),
       ),
     })({
@@ -334,6 +338,7 @@ describe("teachersUnitOverview", () => {
           unitSequence: unitSequenceWithCategories,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
           matchingSubjectCategories: [],
+          threads: [],
         }),
       ),
     })({

@@ -3,6 +3,7 @@ import {
   ProgrammeFields,
   programmeFieldsSchema,
   syntheticUnitvariantLessonsByKsSchema,
+  threadSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 import {
@@ -63,6 +64,8 @@ export const unitSequenceResponseSchema = z.array(
   }),
 );
 export type UnitSequence = z.infer<typeof unitSequenceResponseSchema>;
+
+export const threadsResponseSchema = z.array(threadSchema).nullable();
 
 export type PackagedUnitData = {
   programmeFields: ProgrammeFields;
@@ -132,6 +135,7 @@ export const unitOverviewDataSchema = z.object({
   prevUnit: neighbourUnitSchema,
   tierOptionToggles: programmeToggleSchema,
   subjectOptionToggles: programmeToggleSchema,
+  threads: z.array(z.string()).optional(),
 });
 
 export type TeachersUnitOverviewData = z.infer<typeof unitOverviewDataSchema>;
