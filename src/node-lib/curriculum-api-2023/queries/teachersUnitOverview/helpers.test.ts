@@ -635,6 +635,166 @@ describe("getNeighbourUnits", () => {
       title: "Unit 2",
     });
   });
+
+  it("gets swimming neighbours only for swimming units", () => {
+    const result = getNeighbourUnits({
+      unitSequenceData: [
+        {
+          unitSlug: "unit-1",
+          unitTitle: "Unit 1",
+          unitDescription: null,
+          nullUnitvariantId: 1,
+          yearOrder: 1,
+          unitOrder: 1,
+          year: "1",
+        },
+        {
+          unitSlug: "swimming-1",
+          unitTitle: "Swimming 1",
+          unitDescription: null,
+          nullUnitvariantId: 2,
+          yearOrder: 1,
+          unitOrder: 2,
+          year: "1",
+          isSwimming: true,
+        },
+        {
+          unitSlug: "unit-2",
+          unitTitle: "Unit 2",
+          unitDescription: null,
+          nullUnitvariantId: 3,
+          yearOrder: 1,
+          unitOrder: 3,
+          year: "1",
+        },
+        {
+          unitSlug: "swimming-2",
+          unitTitle: "Swimming 2",
+          unitDescription: null,
+          nullUnitvariantId: 4,
+          yearOrder: 2,
+          unitOrder: 1,
+          year: "2",
+          isSwimming: true,
+        },
+        {
+          unitSlug: "unit-3",
+          unitTitle: "Unit 3",
+          unitDescription: null,
+          nullUnitvariantId: 5,
+          yearOrder: 2,
+          unitOrder: 2,
+          year: "2",
+        },
+        {
+          unitSlug: "swimming-3",
+          unitTitle: "Swimming 3",
+          unitDescription: null,
+          nullUnitvariantId: 6,
+          yearOrder: 3,
+          unitOrder: 1,
+          year: "3",
+          isSwimming: true,
+        },
+      ],
+      nullUnitvariantId: 4,
+    });
+
+    expect(result.prevUnit).toEqual({
+      slug: "swimming-1",
+      title: "Swimming 1",
+    });
+    expect(result.nextUnit).toEqual({
+      slug: "swimming-3",
+      title: "Swimming 3",
+    });
+  });
+
+  it("returns no previous unit for the first swimming unit", () => {
+    const result = getNeighbourUnits({
+      unitSequenceData: [
+        {
+          unitSlug: "swimming-1",
+          unitTitle: "Swimming 1",
+          unitDescription: null,
+          nullUnitvariantId: 1,
+          yearOrder: 1,
+          unitOrder: 1,
+          year: "1",
+          isSwimming: true,
+        },
+        {
+          unitSlug: "unit-2",
+          unitTitle: "Unit 2",
+          unitDescription: null,
+          nullUnitvariantId: 2,
+          yearOrder: 1,
+          unitOrder: 2,
+          year: "1",
+        },
+        {
+          unitSlug: "swimming-2",
+          unitTitle: "Swimming 2",
+          unitDescription: null,
+          nullUnitvariantId: 3,
+          yearOrder: 2,
+          unitOrder: 1,
+          year: "2",
+          isSwimming: true,
+        },
+      ],
+      nullUnitvariantId: 1,
+    });
+
+    expect(result.prevUnit).toBeNull();
+    expect(result.nextUnit).toEqual({
+      slug: "swimming-2",
+      title: "Swimming 2",
+    });
+  });
+
+  it("returns no next unit for the last swimming unit", () => {
+    const result = getNeighbourUnits({
+      unitSequenceData: [
+        {
+          unitSlug: "swimming-1",
+          unitTitle: "Swimming 1",
+          unitDescription: null,
+          nullUnitvariantId: 1,
+          yearOrder: 1,
+          unitOrder: 1,
+          year: "1",
+          isSwimming: true,
+        },
+        {
+          unitSlug: "unit-2",
+          unitTitle: "Unit 2",
+          unitDescription: null,
+          nullUnitvariantId: 2,
+          yearOrder: 2,
+          unitOrder: 1,
+          year: "2",
+        },
+        {
+          unitSlug: "swimming-2",
+          unitTitle: "Swimming 2",
+          unitDescription: null,
+          nullUnitvariantId: 3,
+          yearOrder: 3,
+          unitOrder: 1,
+          year: "3",
+          isSwimming: true,
+        },
+      ],
+      nullUnitvariantId: 3,
+    });
+
+    expect(result.prevUnit).toEqual({
+      slug: "swimming-1",
+      title: "Swimming 1",
+    });
+    expect(result.nextUnit).toBeNull();
+  });
 });
 
 describe("getTransformedLesons", () => {
