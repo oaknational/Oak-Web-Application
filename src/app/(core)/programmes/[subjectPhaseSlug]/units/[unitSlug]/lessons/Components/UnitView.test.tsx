@@ -1,14 +1,12 @@
 import { UnitView } from "./UnitView";
 import type { UnitViewProps } from "./UnitView";
 import { LessonList } from "./LessonList";
-import { SubjectToggle } from "./SubjectToggle";
-import { TierToggle } from "./TierToggle";
+import { ProgrammeToggles } from "./ProgrammeToggles";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("./LessonList");
-jest.mock("./SubjectToggle");
-jest.mock("./TierToggle");
+jest.mock("./ProgrammeToggles");
 
 describe("UnitView", () => {
   beforeEach(() => {
@@ -67,10 +65,13 @@ describe("UnitView", () => {
       />,
     );
 
-    expect(TierToggle).toHaveBeenCalledWith(
+    expect(ProgrammeToggles).toHaveBeenNthCalledWith(
+      1,
       expect.objectContaining({
+        heading: "Learning tier (KS4)",
+        headingId: "tier-toggle-heading",
         unitSlug: "cells",
-        tierOptionToggles: [
+        programmeToggles: [
           {
             title: "Foundation",
             programmeSlug: "biology-secondary-ks4-foundation-aqa",
@@ -104,10 +105,13 @@ describe("UnitView", () => {
       {},
     );
 
-    expect(SubjectToggle).toHaveBeenCalledWith(
+    expect(ProgrammeToggles).toHaveBeenNthCalledWith(
+      2,
       expect.objectContaining({
+        heading: "Exam subject (KS4)",
+        headingId: "subject-toggle-heading",
         unitSlug: "cells",
-        subjectOptionToggles: [
+        programmeToggles: [
           {
             title: "Biology",
             programmeSlug: "biology-secondary-ks4-foundation-aqa",
