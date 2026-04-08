@@ -40,12 +40,8 @@ describe("TeachersTab", () => {
   });
   it("calls tracking on keystage selection", async () => {
     renderWithProviders()(<TeachersTab keyStages={keyStageKeypad.keyStages} />);
-    const eyfsLabels = await screen.findAllByText("EYFS");
-    const keyStageButton = eyfsLabels[0]?.closest("a");
-    if (!keyStageButton) {
-      throw new Error("Key stage button not found");
-    }
-    await userEvent.click(keyStageButton);
+    const ks1Button = await screen.findByText("KS1");
+    await userEvent.click(ks1Button);
     expect(browseRefined).toHaveBeenCalledWith({
       platform: "owa",
       product: "teacher lesson resources",
@@ -54,8 +50,10 @@ describe("TeachersTab", () => {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       filterType: "Key stage filter",
-      filterValue: "eyfs",
+      filterValue: "ks1",
       activeFilters: {},
+      googleLoginHint: null,
+      clientEnvironment: null,
     });
   });
 

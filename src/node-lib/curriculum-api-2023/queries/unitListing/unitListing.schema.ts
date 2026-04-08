@@ -11,16 +11,13 @@ import {
   yearDescriptions,
   yearSlugs,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
-  ProgrammeFields,
   tierDescriptions,
   pathways,
-  actionsSchema,
   years,
   pathwaySlugs,
+  actionsSchema,
 } from "@oaknational/oak-curriculum-schema";
-
-import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
-import { zodToCamelCase } from "@/node-lib/curriculum-api-2023/helpers/zodToCamelCase";
+import zodToCamelCase from "zod-to-camel-case";
 
 export const learningThemesSchema = z.object({
   themeTitle: z.string(),
@@ -41,6 +38,9 @@ const yearGroupsSchema = z.array(
 );
 export type YearGroups = z.infer<typeof yearGroupsSchema>;
 
+const actionsSchemaCamel = zodToCamelCase(actionsSchema, {
+  bidirectional: true,
+});
 const reshapedUnitData = z.object({
   slug: z.string(),
   title: z.string(),
@@ -63,26 +63,28 @@ const reshapedUnitData = z.object({
   learningThemes: z.array(learningThemesSchema).nullable(),
   subjectCategories: z.array(subjectCategorySchema).nullish(),
   groupUnitsAs: z.string().nullish(),
-  actions: zodToCamelCase(actionsSchema).nullish(),
+  actions: actionsSchemaCamel.nullish(),
 });
 
 export type ReshapedUnitData = z.infer<typeof reshapedUnitData>;
 export const groupedUnitsSchema = z.array(z.array(reshapedUnitData));
 export type GroupedUnitsSchema = z.infer<typeof groupedUnitsSchema>;
 
-export const rawQuerySchema = syntheticUnitvariantsWithLessonIdsByKsSchema
-  .omit({
-    null_unitvariant_id: true,
-    programme_slug_by_year: true,
-    base_slug: true,
-    lesson_ids: true,
-  })
-  .array();
+const rawQueryUnitSchema = syntheticUnitvariantsWithLessonIdsByKsSchema.omit({
+  null_unitvariant_id: true,
+  programme_slug_by_year: true,
+  base_slug: true,
+  lesson_ids: true,
+});
+
+export const rawQuerySchema = rawQueryUnitSchema.array();
+export const rawQuerySchemaCamel = zodToCamelCase(rawQuerySchema, {
+  bidirectional: true,
+});
 
 export type UnitsSnake = z.infer<typeof rawQuerySchema>;
-export type UnitSnake = z.infer<typeof rawQuerySchema>[0];
-export type UnitsCamel = ConvertKeysToCamelCase<UnitsSnake>;
-export type ProgrammeFieldsCamel = ConvertKeysToCamelCase<ProgrammeFields>;
+export type UnitSnake = z.infer<typeof rawQueryUnitSchema>;
+export type UnitsCamel = z.infer<typeof rawQuerySchemaCamel>;
 
 const tierSchema = z.array(
   z.object({

@@ -95,6 +95,8 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                       filterType: "Key stage filter",
                       filterValue,
                       activeFilters,
+                      googleLoginHint: null,
+                      clientEnvironment: null,
                     })
                   }
                 />

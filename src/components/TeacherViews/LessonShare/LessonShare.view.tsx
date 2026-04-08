@@ -26,7 +26,7 @@ import { shareLinkConfig } from "@/components/TeacherComponents/LessonShareLinks
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import {
-  ResourceFormProps,
+  ResourceFormValues,
   ResourceType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -145,7 +145,7 @@ export function LessonShare(props: LessonShareProps) {
   const { onHubspotSubmit } = useHubspotSubmit();
 
   const onFormSubmit = async (
-    data: ResourceFormProps,
+    data: ResourceFormValues,
     shareMedium: ShareMediumValueType,
   ): Promise<void> => {
     await onSubmit(data, props.lesson.lessonSlug);

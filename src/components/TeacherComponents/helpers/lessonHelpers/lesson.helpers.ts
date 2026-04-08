@@ -18,7 +18,6 @@ import {
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
-import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
 import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -376,10 +375,8 @@ export const getBreadcrumbsForLessonPathway = (
 
   let programmeSlugForMathsUnits = programmeSlug;
 
-  if (subjectTitle === "Maths") {
-    if (programmeSlug && !isSlugEYFS(programmeSlug)) {
-      programmeSlugForMathsUnits = removeLegacySlugSuffix(programmeSlug);
-    }
+  if (subjectTitle === "Maths" && programmeSlug) {
+    programmeSlugForMathsUnits = removeLegacySlugSuffix(programmeSlug);
   }
 
   const nullableBreadcrumbs: (Breadcrumb | null)[] = [

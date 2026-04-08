@@ -6,52 +6,21 @@ import {
   OakTypography,
 } from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
-import { ReactNode } from "react";
 
 import CardListing from "./CardListing";
 
-import { saveCountContext } from "@/context/SaveCount/SaveCountProvider";
-import { oakNotificationsContext } from "@/context/OakNotifications/OakNotificationsProvider";
-
-const MockSaveCountProvider = ({ children }: { children: ReactNode }) => {
-  const SaveCountProvider = saveCountContext.Provider;
-
-  const value = {
-    savedUnitsCount: 0,
-    incrementSavedUnitsCount: () => console.log("save +1"),
-    decrementSavedUnitsCount: () => console.log("save -1"),
-    setSavedUnitsCount: () => console.log("save units count"),
-  };
-
-  return <SaveCountProvider value={value}>{children}</SaveCountProvider>;
-};
-
-const MockNotificationsProvider = ({ children }: { children: ReactNode }) => {
-  const NotificationsProvider = oakNotificationsContext.Provider;
-
-  const value = {
-    currentToastProps: null,
-    setCurrentToastProps: () => console.log("set toast props"),
-    currentBannerProps: null,
-    setCurrentBannerProps: () => console.log("set banner props"),
-  };
-
-  return (
-    <NotificationsProvider value={value}>{children}</NotificationsProvider>
-  );
-};
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
+import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 
 const meta: Meta<typeof CardListing> = {
   component: CardListing,
   decorators: [
+    SaveCountDecorator,
+    NotificationsDecorator,
     (Story) => (
       <ClerkProvider>
         <OakThemeProvider theme={oakDefaultTheme}>
-          <MockSaveCountProvider>
-            <MockNotificationsProvider>
-              <Story />
-            </MockNotificationsProvider>
-          </MockSaveCountProvider>
+          <Story />
         </OakThemeProvider>
       </ClerkProvider>
     ),
@@ -77,7 +46,6 @@ const defaultArgs = {
     { label: "Tag 5" },
     { label: "Tag 6" },
   ],
-  showSave: true,
   lessonCount: 10,
   title:
     "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
@@ -302,4 +270,134 @@ export const Horizontal: Story = {
     </OakFlex>
   ),
   args: defaultArgs,
+};
+const cardProps = {
+  isHighlighted: false,
+  lessonCount: 10,
+  title:
+    "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
+  saveProps: {
+    unitSlug: "unit-slug",
+    unitTitle: "Unit title",
+    programmeSlug: "programme-slug",
+    trackingProps: {
+      savedFrom: "unit_listing_save_button" as const,
+      keyStageSlug: "ks1" as const,
+      keyStageTitle: "Key stage 1" as const,
+      subjectSlug: "maths",
+      subjectTitle: "Maths",
+    },
+  },
+  href: "fakeurl.com",
+};
+export const Optionality: Story = {
+  render: (args) => (
+    <OakFlex
+      $flexDirection={"column"}
+      $gap={"spacing-20"}
+      $width={args.layoutVariant === "vertical" ? "spacing-360" : "100%"}
+    >
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>With all props</OakTypography>
+        <CardListing {...args} />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>
+          With no optional props
+        </OakTypography>
+        <CardListing
+          {...args}
+          subcopy={undefined}
+          saveProps={undefined}
+          lessonCount={undefined}
+          tags={undefined}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>With no subcopy</OakTypography>
+        <CardListing {...args} subcopy={undefined} />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Highlighted</OakTypography>
+        <CardListing
+          {...args}
+          childCards={[
+            { ...cardProps, title: "Optionality 1" },
+            { ...cardProps, title: "Optionality 2", isHighlighted: true },
+            { ...cardProps, title: "Optionality 3" },
+          ]}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Without save button</OakTypography>
+        <CardListing
+          {...args}
+          saveProps={undefined}
+          childCards={[
+            { ...cardProps, title: "Optionality 1", saveProps: undefined },
+            { ...cardProps, title: "Optionality 2", saveProps: undefined },
+            { ...cardProps, title: "Optionality 3", saveProps: undefined },
+          ]}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Disabled</OakTypography>
+        <CardListing {...args} disabled />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>
+          Visited link (google.com)
+        </OakTypography>
+        <CardListing {...args} href="https://google.com" />
+      </OakFlex>
+    </OakFlex>
+  ),
+  args: {
+    ...defaultArgs,
+    childCards: [
+      {
+        ...cardProps,
+        title:
+          "Optionality 1 really long title with lots of words in it to fill out the space on the page",
+      },
+      { ...cardProps, title: "Optionality 2" },
+      { ...cardProps, title: "Optionality 3" },
+    ],
+  },
+  argTypes: {
+    childCards: {
+      control: {
+        type: "select",
+      },
+      options: ["1", "3", "5"],
+      mapping: {
+        1: [{ ...cardProps, title: "Optionality 1" }],
+        3: [
+          {
+            ...cardProps,
+            title:
+              "Optionality 1 really long title with lots of words in it to fill out the space on the page",
+          },
+          { ...cardProps, title: "Optionality 2" },
+          { ...cardProps, title: "Optionality 3" },
+        ],
+        5: [
+          {
+            ...cardProps,
+            title:
+              "Optionality 1 really long title with lots of words in it to fill out the space on the page",
+          },
+          { ...cardProps, title: "Optionality 2" },
+          { ...cardProps, title: "Optionality 3" },
+          { ...cardProps, title: "Optionality 4" },
+          { ...cardProps, title: "Optionality 5" },
+        ],
+      },
+    },
+  },
+  parameters: {
+    controls: {
+      include: ["layoutVariant", "childCards"],
+    },
+  },
 };

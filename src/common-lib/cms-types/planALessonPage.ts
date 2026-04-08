@@ -31,6 +31,6 @@ export const planALessonPageSchema = z
 
     seo: seoSchema.nullish(),
   })
-  .merge(documentSchema);
+  .extend(documentSchema.shape);
 
 export type PlanALessonPage = z.infer<typeof planALessonPageSchema>;

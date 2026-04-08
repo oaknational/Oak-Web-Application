@@ -7558,6 +7558,7 @@ export const data: CombinedCurriculumData = {
   subjectTitle: "English",
   phaseTitle: "Secondary",
   examboardTitle: "AQA",
+  nonCurriculum: false,
   id: "5c9bf0e6-6627-4621-9f1f-d92853fe803e",
   curriculumExplainer: {
     explainerRaw: [

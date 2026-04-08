@@ -1,3 +1,5 @@
+import slugify from "slugify";
+
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 
@@ -134,4 +136,28 @@ export function createTeacherProgrammeSlug(
     ].join("-");
   }
   return "";
+}
+
+export function getTeacherSubjectPhaseSlug({
+  subjectSlug,
+  phaseSlug,
+  examboardSlug,
+  pathwaySlug,
+  subjectParentTitle,
+}: {
+  subjectSlug: string;
+  phaseSlug: string;
+  examboardSlug?: string | null;
+  pathwaySlug?: string | null;
+  subjectParentTitle?: string | null;
+}) {
+  const subjectSegment = subjectParentTitle
+    ? slugify(subjectParentTitle).toLocaleLowerCase()
+    : subjectSlug;
+
+  const examboardSegment = examboardSlug ? `-${examboardSlug}` : "";
+
+  const pathwaySegment = pathwaySlug ? `-${pathwaySlug}` : "";
+
+  return `${subjectSegment}-${phaseSlug}${examboardSegment}${pathwaySegment}`;
 }

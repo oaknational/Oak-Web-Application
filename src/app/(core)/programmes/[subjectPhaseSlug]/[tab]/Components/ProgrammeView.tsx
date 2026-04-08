@@ -57,7 +57,7 @@ type ProgrammePageProps = {
   curriculumSelectionTitles: CurriculumSelectionTitles;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   subjectPhaseSanityData: ProgrammePageHeaderCMS | null;
-  curriculumCMSInfo: CurriculumOverviewSanityData;
+  curriculumCMSInfo: CurriculumOverviewSanityData | null;
   curriculumInfo: CurriculumOverviewMVData;
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
   mvRefreshTime: number;
@@ -130,6 +130,7 @@ export const ProgrammeView = ({
   return (
     <>
       <ProgrammeHeader
+        layoutVariant="large"
         subject={subjectSlug as SubjectHeroImageName}
         subjectTitle={
           pickSubjectTitleFromFilters(curriculumUnitsFormattedData, filters) ??
@@ -142,28 +143,34 @@ export const ProgrammeView = ({
         summary={subjectPhaseSanityData?.bodyCopy}
         bullets={subjectPhaseSanityData?.bullets}
       />
-      <OakMaxWidth $ph={["spacing-20", "spacing-20", "spacing-0"]}>
-        <OakTabs<TabName>
-          sizeVariant={["compact", "default"]}
-          colorVariant="black"
-          activeTab={tabSlugToName[activeTab]}
-          onTabClick={(tabName, event) => {
-            const tabSlug = tabNameToSlug[tabName];
-            // Prevents a full page reload using client side nav
-            event.preventDefault();
-            globalThis.history.pushState(null, "", tabSlug);
-          }}
-          tabs={TAB_NAMES.map((tab) => ({
-            label: tab,
-            type: "link",
-            href: resolveOakHref({
-              page: "teacher-programme",
-              subjectPhaseSlug,
-              tab: tabNameToSlug[tab],
-            }),
-          }))}
-        />
-      </OakMaxWidth>
+      {curriculumInfo.nonCurriculum ? null : (
+        <OakMaxWidth
+          data-testid="programme-tabs"
+          $ph={["spacing-20", "spacing-20", "spacing-0"]}
+          $mb={["spacing-0", "spacing-48", "spacing-48"]}
+        >
+          <OakTabs<TabName>
+            sizeVariant={["compact", "default"]}
+            colorVariant="black"
+            activeTab={tabSlugToName[activeTab]}
+            onTabClick={(tabName, event) => {
+              const tabSlug = tabNameToSlug[tabName];
+              // Prevents a full page reload using client side nav
+              event.preventDefault();
+              globalThis.history.pushState(null, "", tabSlug);
+            }}
+            tabs={TAB_NAMES.map((tab) => ({
+              label: tab,
+              type: "link",
+              href: resolveOakHref({
+                page: "teacher-programme",
+                subjectPhaseSlug,
+                tab: tabNameToSlug[tab],
+              }),
+            }))}
+          />
+        </OakMaxWidth>
+      )}
       <TabContent
         tabSlug={activeTab}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
@@ -194,8 +201,9 @@ const TabContent = ({
   setFilters,
   ks4Options,
 }: { tabSlug: TabSlug } & UnitSequenceViewProps &
-  ProgrammeOverviewProps &
-  ProgrammeDownloadsProps) => {
+  Omit<ProgrammeOverviewProps, "curriculumCMSInfo"> & {
+    curriculumCMSInfo: CurriculumOverviewSanityData | null;
+  } & ProgrammeDownloadsProps) => {
   if (tabSlug === "units") {
     return (
       <UnitSequenceView
@@ -207,6 +215,9 @@ const TabContent = ({
       />
     );
   } else if (tabSlug === "overview") {
+    if (!curriculumCMSInfo) {
+      notFound();
+    }
     return (
       <ProgrammeOverview
         subjectTitle={subjectTitle}

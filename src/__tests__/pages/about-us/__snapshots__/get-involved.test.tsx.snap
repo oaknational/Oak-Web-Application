@@ -4734,6 +4734,9 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                 class="c8 yellow-shadow"
               />
               <button
+                aria-controls="teachers-top-nav-hamburger"
+                aria-expanded="false"
+                aria-label="Open navigation menu"
                 class="c69 c10 internal-button"
                 data-testid="top-nav-hamburger-button"
               >
@@ -6147,7 +6150,7 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       >
                         <a
                           class="c182 "
-                          href="/teachers/key-stages/early-years-foundation-stage/subjects"
+                          href="/teachers/eyfs/maths"
                         >
                           <span
                             class="c29"

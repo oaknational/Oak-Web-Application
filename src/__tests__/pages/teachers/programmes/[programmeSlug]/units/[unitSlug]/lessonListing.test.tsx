@@ -299,6 +299,18 @@ describe("getStaticProps", () => {
     const response = await getStaticProps(context);
     expect(response).toEqual({ notFound: true });
   });
+
+  it("should return notFound for EYFS programme slugs", async () => {
+    const response = await getStaticProps({
+      params: {
+        programmeSlug: "maths-foundation-early-years-foundation-stage-l",
+        unitSlug: "some-unit-slug",
+      },
+    });
+
+    expect(response).toEqual({ notFound: true });
+  });
+
   it("should throw error when params are missing", async () => {
     const context = {
       params: {

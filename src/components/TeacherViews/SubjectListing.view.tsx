@@ -4,10 +4,8 @@ import {
   OakFlex,
   OakGrid,
   OakGridArea,
-  OakP,
   OakHandDrawnHR,
   OakMaxWidth,
-  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
 import { SubjectKeystageSeoText } from "../TeacherComponents/SubjectKeystageSEO/SubjectKeystageSeoText";
@@ -16,19 +14,15 @@ import { getSubjectKeystageSeoLinks } from "../TeacherComponents/SubjectKeystage
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCard";
-import { resolveOakHref } from "@/common-lib/urls";
 
 const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
   const { subjects, keyStageSlug, keyStageTitle } = props;
 
-  const isEyfs = keyStageSlug === "early-years-foundation-stage";
   const sentenceCaseKeyStageTitle =
     keyStageTitle.charAt(0).toUpperCase() +
     keyStageTitle.slice(1).toLowerCase();
 
-  const title = isEyfs
-    ? `EYFS areas of learning`
-    : `${sentenceCaseKeyStageTitle} subjects`;
+  const title = `${sentenceCaseKeyStageTitle} subjects`;
 
   const furtherLessons = subjects.filter(
     (subject) => subject[0]?.data?.features?.non_curriculum,
@@ -43,7 +37,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
         <OakFlex
           $flexDirection="column"
           $gap={"spacing-16"}
-          $mb={isEyfs ? "spacing-24" : "spacing-32"}
+          $mb={"spacing-32"}
           $maxWidth={"spacing-960"}
         >
           <OakHeading
@@ -53,27 +47,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
           >
             {title}
           </OakHeading>
-          {isEyfs ? (
-            <OakP $font="heading-light-7">
-              These teaching resources were made during the pandemic for parents
-              to use at home with their children. Now they are used by teachers
-              as inspiration for their own lesson planning. Learn about the
-              evolution of our EYFS curriculum and how to use it in your
-              classroom. Visit our blog to learn more{" "}
-              <OakSecondaryLink
-                href={resolveOakHref({
-                  page: "blog-single",
-                  blogSlug: "oaks-approach-to-eyfs",
-                })}
-                aria-label="eyfs-at-oak-blog"
-              >
-                here
-              </OakSecondaryLink>
-              .
-            </OakP>
-          ) : (
-            <SubjectKeystageSeoText keystageSlug={keyStageSlug} />
-          )}
+          <SubjectKeystageSeoText keystageSlug={keyStageSlug} />
         </OakFlex>
         <OakGrid
           $rg={"spacing-16"}
@@ -135,16 +109,14 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
             </OakGrid>
           </>
         )}
-        {!isEyfs && (
-          <OakGrid>
-            <OakGridArea $colSpan={[12, 12, 9]} $mb="spacing-80">
-              <SubjectKeystageSeoAccordion
-                keystageSlug={keyStageSlug}
-                links={getSubjectKeystageSeoLinks(subjects, keyStageSlug)}
-              />
-            </OakGridArea>
-          </OakGrid>
-        )}
+        <OakGrid>
+          <OakGridArea $colSpan={[12, 12, 9]} $mb="spacing-80">
+            <SubjectKeystageSeoAccordion
+              keystageSlug={keyStageSlug}
+              links={getSubjectKeystageSeoLinks(subjects, keyStageSlug)}
+            />
+          </OakGridArea>
+        </OakGrid>
       </OakMaxWidth>
     </OakFlex>
   );

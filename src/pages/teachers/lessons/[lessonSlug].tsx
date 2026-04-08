@@ -25,6 +25,10 @@ import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import {
+  isEyfsPathway,
+  redirectToEyfsPage,
+} from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -172,6 +176,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           }
         }
       }
+
       if (!lesson) {
         const redirect = await getRedirect({
           isCanonical: true,
@@ -180,6 +185,10 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           isLesson: true,
         });
         return redirect ? { redirect } : { notFound: true };
+      }
+
+      if (isEyfsPathway(lesson.pathways[0])) {
+        return { redirect: redirectToEyfsPage(lesson.pathways[0]) };
       }
 
       const topNav = await curriculumApi2023.topNav();

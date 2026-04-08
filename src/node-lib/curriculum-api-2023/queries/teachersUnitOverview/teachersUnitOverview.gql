@@ -1,0 +1,55 @@
+query teachersUnitOverview(
+  $programmeSlug: String!
+  $unitSlug: String!
+  $subjectCategorySlug: String
+) {
+  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
+    where: {
+      unit_slug: { _eq: $unitSlug }
+      programme_slug: { _eq: $programmeSlug }
+      is_legacy: { _eq: false }
+    }
+  ) {
+    lesson_data
+    lesson_slug
+    programme_fields
+    programme_slug_by_year
+    null_unitvariant_id
+    unit_slug
+    unitvariant_id
+    unit_data
+    programme_slug
+    actions
+    features
+    order_in_unit
+    static_lesson_list
+  }
+  unitsInOtherProgrammes: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
+    where: { unit_slug: { _eq: $unitSlug } }
+  ) {
+    programme_slug
+    programme_fields
+  }
+  unitSequence: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
+    where: { programme_slug: { _eq: $programmeSlug } }
+  ) {
+    unitSlug: unit_slug
+    unitTitle: unit_data(path: "title")
+    unitDescription: unit_data(path: "description")
+    unitOrder: supplementary_data(path: "unit_order")
+    yearOrder: programme_fields(path: "year_display_order")
+    year: programme_fields(path: "year")
+    subjectCategories: unit_data(path: "subjectcategories")
+    optionalityTitle: programme_fields(path: "optionality")
+    isSwimming: features(path: "pe_swimming")
+    nullUnitvariantId: null_unitvariant_id
+  }
+  matchingSubjectCategories: published_mv_curriculum_sequence_b_13_0_21(
+    where: {
+      subjectcategories: { _contains: [{ slug: $subjectCategorySlug }] }
+    }
+    limit: 1
+  ) {
+    subjectCategories: subjectcategories
+  }
+}

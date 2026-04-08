@@ -8,7 +8,7 @@ import LessonDownloadsCanonicalPage, {
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
+import { lessonDownloadsCanonicalFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
@@ -18,7 +18,7 @@ import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fi
 
 const render = renderWithProviders();
 
-const lesson = lessonDownloadsFixture({
+const lesson = lessonDownloadsCanonicalFixture({
   lessonTitle: "The meaning of time",
 });
 describe("LessonDownloadsCanonicalPage", () => {
@@ -26,7 +26,7 @@ describe("LessonDownloadsCanonicalPage", () => {
     const result = render(
       <LessonDownloadsCanonicalPage
         topNav={topNavFixture}
-        curriculumData={{ ...lesson, pathways: [] }}
+        curriculumData={lesson}
       />,
     );
 
@@ -37,7 +37,6 @@ describe("LessonDownloadsCanonicalPage", () => {
     const curriculumData = {
       ...lesson,
       geoRestricted: true,
-      pathways: [],
     };
 
     describe("and the user has access", () => {
@@ -66,7 +65,15 @@ describe("LessonDownloadsCanonicalPage", () => {
   });
 
   describe("getStaticProps", () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
     it("Should fetch the correct data", async () => {
+      jest
+        .mocked(curriculumApi2023.lessonDownloads)
+        .mockResolvedValueOnce(lessonDownloadsCanonicalFixture());
+
       const propsResult = (await getStaticProps({
         params: {
           lessonSlug: "transverse-waves",
@@ -96,6 +103,39 @@ describe("LessonDownloadsCanonicalPage", () => {
       await expect(
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
       ).rejects.toThrowError();
+    });
+
+    it("should redirect to the EYFS page when lesson pathway is EYFS", async () => {
+      jest.mocked(curriculumApi2023.lessonDownloads).mockResolvedValueOnce(
+        lessonDownloadsCanonicalFixture({
+          pathways: [
+            {
+              programmeSlug: "eyfs-communication-and-language",
+              unitSlug: "unit-slug",
+              unitTitle: "Unit title",
+              keyStageSlug: "early-years-foundation-stage",
+              keyStageTitle: "Early Years Foundation Stage",
+              subjectSlug: "communication-and-language",
+              subjectTitle: "Communication and language",
+            },
+          ],
+        }),
+      );
+
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "eyfs-lesson-slug",
+          programmeSlug: "eyfs-programme",
+          unitSlug: "eyfs-unit",
+        },
+      });
+
+      expect(result).toEqual({
+        redirect: {
+          destination: "/teachers/eyfs/communication-and-language",
+          statusCode: 301,
+        },
+      });
     });
   });
 });

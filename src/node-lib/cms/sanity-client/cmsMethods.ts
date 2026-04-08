@@ -29,7 +29,7 @@ export const getBySlug = <
   Method extends GQLMethod,
   Response extends Awaited<ReturnType<Method>>,
   Data extends Record<string, unknown> | undefined,
-  Schema extends z.ZodTypeAny,
+  Schema extends z.ZodType,
 >(
   graphqlMethod: Method,
   schema: Schema,
@@ -70,7 +70,7 @@ export const getSingleton = <
   Method extends GQLMethod,
   Response extends Awaited<ReturnType<Method>>,
   Data extends Record<string, unknown> | undefined,
-  Schema extends z.ZodTypeAny,
+  Schema extends z.ZodType,
 >(
   graphqlMethod: Method,
   schema: Schema,
@@ -102,7 +102,7 @@ export const getList = <
   Method extends GQLMethod,
   Response extends Awaited<ReturnType<Method>>,
   Data extends Array<Record<string, unknown>>,
-  Schema extends z.ZodTypeAny,
+  Schema extends z.ZodType,
 >(
   graphqlMethod: Method,
   schema: Schema,

@@ -72,11 +72,14 @@ describe("getProgrammeData", () => {
       expect(mockApi.curriculumOverview).toHaveBeenCalledWith({
         subjectSlug: "maths",
         phaseSlug: "primary",
+        includeNonCurriculum: true,
       });
       expect(mockApi.curriculumSequence).toHaveBeenCalledWith({
         subjectSlug: "maths",
         phaseSlug: "primary",
         ks4OptionSlug: null,
+        includeNonCurriculum: true,
+        excludeUnitsWithNoPublishedLessons: true,
       });
       expect(mockApi.curriculumPhaseOptions).toHaveBeenCalled();
     });
@@ -218,6 +221,8 @@ describe("getProgrammeData", () => {
         subjectSlug: "maths",
         phaseSlug: "secondary",
         ks4OptionSlug: "aqa",
+        includeNonCurriculum: true,
+        excludeUnitsWithNoPublishedLessons: true,
       });
     });
   });

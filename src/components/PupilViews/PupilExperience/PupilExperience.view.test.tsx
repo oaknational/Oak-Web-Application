@@ -1,7 +1,9 @@
-import { waitFor } from "@testing-library/react";
+import { act, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { OakTooltipProps } from "@oaknational/oak-components";
+import { useSearchParams } from "next/navigation";
 import mockRouter from "next-router-mock";
+import { PostSubmissionState } from "@oaknational/google-classroom-addon/types";
 
 import {
   PupilExperienceView,
@@ -18,17 +20,54 @@ import { createLessonEngineContext } from "@/components/PupilComponents/pupilTes
 import "@/__tests__/__helpers__/IntersectionObserverMock";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
+import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
+
+const classroomAddOnOpenedMock = jest.fn();
+const clearAddOnOpenedFlagMock = jest.fn();
+const lessonEngineProviderMock = jest.fn();
+const pupilViewsVideoMock = jest.fn();
+const analyticsTrackMock = new Proxy(
+  {
+    classroomAddOnOpened: classroomAddOnOpenedMock,
+  } as Record<string, jest.Mock>,
+  {
+    get: (target, property) => {
+      const key = String(property);
+
+      if (!(key in target)) {
+        target[key] = jest.fn();
+      }
+
+      return target[key];
+    },
+  },
+);
+
+const googleClassroomAnalyticsMock = {
+  trackAddOnOpenedOnce: classroomAddOnOpenedMock,
+  clearAddOnOpenedFlag: clearAddOnOpenedFlagMock,
+};
 
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
 jest.mock("next/navigation", () => ({
+  ...jest.requireActual("next/navigation"),
+  __esModule: true,
   usePathname: jest.fn(() => "/"),
+  useRouter: jest.fn(),
   useSearchParams: jest.fn(() => new URLSearchParams()),
 }));
 
 jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
   ...jest.requireActual("@/components/PupilComponents/LessonEngineProvider"),
   useLessonEngineContext: jest.fn(),
+  LessonEngineProvider: jest.fn(
+    ({ children, ...props }: { children: React.ReactNode }) => {
+      lessonEngineProviderMock(props);
+      return children;
+    },
+  ),
 }));
 
 jest.mock("@/components/PupilViews/PupilExpired/PupilExpired.view", () => ({
@@ -51,24 +90,69 @@ jest.mock("@/hooks/useAssignmentSearchParams", () => ({
   useAssignmentSearchParams: jest.fn(),
 }));
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: analyticsTrackMock,
+  }),
+}));
+
 jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
   __esModule: true,
   default: {
     getAddOnContext: jest.fn().mockResolvedValue(null),
+    getPostSubmissionState: jest.fn(),
     getPupilLessonProgress: jest.fn(),
     submitPupilProgress: jest.fn(),
   },
+}));
+
+jest.mock(
+  "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults",
+  () => ({
+    mapPupilLessonProgressToSectionResults: jest.fn(),
+  }),
+);
+
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
+  __esModule: true,
+  GoogleClassroomAnalyticsProvider: ({
+    children,
+  }: {
+    children: React.ReactNode;
+  }) => children,
+  useGoogleClassroomAnalytics: (
+    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
+  ) =>
+    selector
+      ? selector(googleClassroomAnalyticsMock)
+      : googleClassroomAnalyticsMock,
 }));
 
 const mockedUseAssignmentSearchParams =
   useAssignmentSearchParams as jest.MockedFunction<
     typeof useAssignmentSearchParams
   >;
+const mockedUseSearchParams = useSearchParams as jest.Mock;
+const mockedGoogleClassroomApi = googleClassroomApi as jest.Mocked<
+  typeof googleClassroomApi
+>;
+const mockedMapPupilLessonProgressToSectionResults =
+  mapPupilLessonProgressToSectionResults as jest.MockedFunction<
+    typeof mapPupilLessonProgressToSectionResults
+  >;
+const createMockSearchParams = (
+  params?: ConstructorParameters<typeof URLSearchParams>[0],
+) =>
+  new URLSearchParams(params) as NonNullable<
+    ReturnType<typeof useSearchParams>
+  >;
 
 mockedUseAssignmentSearchParams.mockReturnValue({
-  isClassroomAssignment: true,
+  isClassroomAssignment: false,
   classroomAssignmentChecked: true,
 });
+mockedUseSearchParams.mockReturnValue(null);
 
 jest.mock("@/components/PupilViews/PupilLessonOverview", () => {
   return {
@@ -81,6 +165,13 @@ jest.mock("@/components/PupilViews/PupilLessonOverview", () => {
     ),
   };
 });
+
+jest.mock("@/components/PupilViews/PupilVideo", () => ({
+  PupilViewsVideo: (props: unknown) => {
+    pupilViewsVideoMock(props);
+    return <div data-testid="pupil-video">Video</div>;
+  },
+}));
 
 jest.mock(
   "@/components/PupilComponents/pupilUtils/useWorksheetInfoState",
@@ -103,7 +194,44 @@ jest.mock("@oaknational/oak-components", () => {
 
 const render = renderWithProviders();
 
+beforeAll(() => {
+  jest.spyOn(console, "error").mockImplementation(() => {});
+  jest.spyOn(console, "warn").mockImplementation(() => {});
+});
+
+afterAll(() => {
+  jest.restoreAllMocks();
+});
+
 describe("PupilExperienceView", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    classroomAddOnOpenedMock.mockClear();
+    clearAddOnOpenedFlagMock.mockClear();
+    classroomAddOnOpenedMock.mockReturnValue(true);
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: false,
+      classroomAssignmentChecked: true,
+    });
+    mockedUseSearchParams.mockReturnValue(
+      new URLSearchParams({
+        courseId: "course-1",
+        itemId: "item-1",
+        attachmentId: "attachment-1",
+      }),
+    );
+    mockedGoogleClassroomApi.getAddOnContext.mockResolvedValue(null);
+    mockedGoogleClassroomApi.getPostSubmissionState.mockResolvedValue(null);
+    mockedGoogleClassroomApi.getPupilLessonProgress.mockResolvedValue(null);
+    mockedGoogleClassroomApi.submitPupilProgress.mockResolvedValue(undefined);
+    mockedMapPupilLessonProgressToSectionResults.mockReturnValue({});
+    Object.defineProperty(globalThis, "cookieStore", {
+      value: { get: jest.fn() },
+      writable: true,
+    });
+    mockRouter.setCurrentUrl("/");
+  });
+
   describe("pickAvailableSectionsForLesson", () => {
     it("returns all sections if all are available", () => {
       const sections = pickAvailableSectionsForLesson(
@@ -134,6 +262,80 @@ describe("PupilExperienceView", () => {
       expect(withoutStarterQuiz).not.toContain("starter-quiz");
       expect(withoutExitQuiz).not.toContain("exit-quiz");
       expect(withoutVideo).not.toContain("video");
+    });
+  });
+
+  describe("classroom add-on tracking", () => {
+    it("tracks classroomAddOnOpened for a direct classroom pupil landing", async () => {
+      mockedUseAssignmentSearchParams.mockReturnValue({
+        isClassroomAssignment: true,
+        classroomAssignmentChecked: true,
+      });
+      const lessonContent = lessonContentFixture({});
+      const lessonBrowseData = lessonBrowseDataFixture({});
+
+      jest
+        .spyOn(LessonEngineProvider, "useLessonEngineContext")
+        .mockReturnValue(
+          createLessonEngineContext({
+            currentSection: "overview",
+          }),
+        );
+
+      render(
+        <PupilExperienceView
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
+          initialSection="overview"
+          pageType="browse"
+        />,
+      );
+
+      await waitFor(() => {
+        expect(classroomAddOnOpenedMock).toHaveBeenCalledTimes(1);
+      });
+      expect(classroomAddOnOpenedMock).toHaveBeenCalledWith({
+        analyticsUseCase: "Pupil",
+      });
+    });
+
+    it("does not retrack classroomAddOnOpened when sign-in already marked it", async () => {
+      mockedUseAssignmentSearchParams.mockReturnValue({
+        isClassroomAssignment: true,
+        classroomAssignmentChecked: true,
+      });
+      const lessonContent = lessonContentFixture({});
+      const lessonBrowseData = lessonBrowseDataFixture({});
+
+      classroomAddOnOpenedMock.mockReturnValue(false);
+      jest
+        .spyOn(LessonEngineProvider, "useLessonEngineContext")
+        .mockReturnValue(
+          createLessonEngineContext({
+            currentSection: "overview",
+          }),
+        );
+
+      render(
+        <PupilExperienceView
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
+          initialSection="overview"
+          pageType="browse"
+        />,
+      );
+
+      await waitFor(() => {
+        expect(classroomAddOnOpenedMock).toHaveBeenCalledTimes(1);
+      });
     });
   });
 
@@ -208,6 +410,330 @@ describe("PupilExperienceView", () => {
 
         expect(getByText(name as RegExp)).toBeInTheDocument();
       });
+    });
+
+    it("passes transcript arrays to the video view and renders video after section changes to video", async () => {
+      const lessonContent = lessonContentFixture({
+        videoMuxPlaybackId: "mux-id",
+        transcriptSentences: ["One", "Two"],
+      });
+      const lessonBrowseData = lessonBrowseDataFixture({});
+
+      const contextSpy = jest
+        .spyOn(LessonEngineProvider, "useLessonEngineContext")
+        .mockReturnValue(
+          createLessonEngineContext({
+            currentSection: "overview",
+          }),
+        );
+
+      const { rerender, queryByTestId, getByTestId } = render(
+        <PupilExperienceView
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
+          initialSection="overview"
+          pageType="browse"
+        />,
+      );
+
+      expect(queryByTestId("pupil-video")).not.toBeInTheDocument();
+
+      contextSpy.mockReturnValue(
+        createLessonEngineContext({
+          currentSection: "video",
+        }),
+      );
+
+      rerender(
+        <PupilExperienceView
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
+          initialSection="overview"
+          pageType="browse"
+        />,
+      );
+
+      await waitFor(() => {
+        expect(getByTestId("pupil-video")).toBeInTheDocument();
+      });
+
+      expect(pupilViewsVideoMock).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          transcriptSentences: ["One", "Two"],
+        }),
+      );
+    });
+  });
+
+  describe("Google Classroom state handling", () => {
+    it("hydrates progress and sets review/read-only when submission is turned in", async () => {
+      mockedUseAssignmentSearchParams.mockReturnValue({
+        isClassroomAssignment: true,
+        classroomAssignmentChecked: true,
+      });
+      mockedGoogleClassroomApi.getAddOnContext.mockResolvedValue({
+        studentContext: { submissionId: "submission-1" },
+        pupilLoginHint: "pupil-1",
+      });
+      mockedGoogleClassroomApi.getPostSubmissionState.mockResolvedValue({
+        submissionState: PostSubmissionState.TURNED_IN,
+      });
+      mockedGoogleClassroomApi.getPupilLessonProgress.mockResolvedValue({
+        submissionId: "submission-1",
+      } as never);
+      mockedMapPupilLessonProgressToSectionResults.mockReturnValue({
+        intro: { isComplete: true },
+      } as never);
+
+      jest
+        .spyOn(LessonEngineProvider, "useLessonEngineContext")
+        .mockReturnValue(
+          createLessonEngineContext({
+            currentSection: "overview",
+          }),
+        );
+
+      render(
+        <PupilExperienceView
+          lessonContent={lessonContentFixture({ lessonTitle: "Lesson Title" })}
+          browseData={lessonBrowseDataFixture({})}
+          hasWorksheet={false}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
+          initialSection="overview"
+          pageType="browse"
+        />,
+      );
+
+      await waitFor(() => {
+        expect(mockedGoogleClassroomApi.getAddOnContext).toHaveBeenCalledWith({
+          courseId: "course-1",
+          itemId: "item-1",
+          attachmentId: "attachment-1",
+        });
+        expect(
+          mockedGoogleClassroomApi.getPostSubmissionState,
+        ).toHaveBeenCalledWith({
+          courseId: "course-1",
+          itemId: "item-1",
+          attachmentId: "attachment-1",
+          submissionId: "submission-1",
+        });
+        expect(
+          mockedGoogleClassroomApi.getPupilLessonProgress,
+        ).toHaveBeenCalledWith({
+          submissionId: "submission-1",
+          itemId: "item-1",
+          attachmentId: "attachment-1",
+        });
+      });
+
+      expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          initialSection: "review",
+          isReadOnly: true,
+          initialSectionResults: expect.objectContaining({
+            intro: { isComplete: true },
+          }),
+          isHydratingInitialProgress: false,
+        }),
+      );
+
+      expect(
+        screen.getByText(
+          "You have turned-in this assignment. You can review the lesson and see your previous answers.",
+        ),
+      ).toBeInTheDocument();
+    });
+
+    it("re-fetches submission state when the window regains focus", async () => {
+      mockedUseAssignmentSearchParams.mockReturnValue({
+        isClassroomAssignment: true,
+        classroomAssignmentChecked: true,
+      });
+      mockedGoogleClassroomApi.getAddOnContext.mockResolvedValue({
+        studentContext: { submissionId: "submission-1" },
+        pupilLoginHint: "pupil-1",
+      });
+      mockedGoogleClassroomApi.getPostSubmissionState.mockResolvedValue({
+        submissionState: PostSubmissionState.CREATED,
+      });
+
+      jest
+        .spyOn(LessonEngineProvider, "useLessonEngineContext")
+        .mockReturnValue(
+          createLessonEngineContext({
+            currentSection: "overview",
+          }),
+        );
+
+      render(
+        <PupilExperienceView
+          lessonContent={lessonContentFixture({})}
+          browseData={lessonBrowseDataFixture({})}
+          hasWorksheet={false}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
+          initialSection="overview"
+          pageType="browse"
+        />,
+      );
+
+      await waitFor(() => {
+        expect(
+          mockedGoogleClassroomApi.getPostSubmissionState,
+        ).toHaveBeenCalledTimes(1);
+      });
+
+      await act(async () => {
+        window.dispatchEvent(new Event("focus"));
+      });
+
+      await waitFor(() => {
+        expect(
+          mockedGoogleClassroomApi.getPostSubmissionState,
+        ).toHaveBeenCalledTimes(2);
+      });
+    });
+
+    it("does not fetch classroom state without required params", async () => {
+      mockedUseAssignmentSearchParams.mockReturnValue({
+        isClassroomAssignment: true,
+        classroomAssignmentChecked: true,
+      });
+      mockedUseSearchParams.mockReturnValue(new URLSearchParams());
+
+      jest
+        .spyOn(LessonEngineProvider, "useLessonEngineContext")
+        .mockReturnValue(
+          createLessonEngineContext({
+            currentSection: "overview",
+          }),
+        );
+
+      render(
+        <PupilExperienceView
+          lessonContent={lessonContentFixture({})}
+          browseData={lessonBrowseDataFixture({})}
+          hasWorksheet={false}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
+          initialSection="overview"
+          pageType="browse"
+        />,
+      );
+
+      await waitFor(() => {
+        expect(mockedGoogleClassroomApi.getAddOnContext).not.toHaveBeenCalled();
+      });
+    });
+
+    it("does not fetch classroom state when cookieStore is unavailable", async () => {
+      mockedUseAssignmentSearchParams.mockReturnValue({
+        isClassroomAssignment: true,
+        classroomAssignmentChecked: true,
+      });
+      Object.defineProperty(globalThis, "cookieStore", {
+        value: undefined,
+        writable: true,
+      });
+
+      jest
+        .spyOn(LessonEngineProvider, "useLessonEngineContext")
+        .mockReturnValue(
+          createLessonEngineContext({
+            currentSection: "overview",
+          }),
+        );
+
+      render(
+        <PupilExperienceView
+          lessonContent={lessonContentFixture({})}
+          browseData={lessonBrowseDataFixture({})}
+          hasWorksheet={false}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
+          initialSection="overview"
+          pageType="browse"
+        />,
+      );
+
+      expect(
+        mockedGoogleClassroomApi.getPostSubmissionState,
+      ).not.toHaveBeenCalled();
+      expect(
+        mockedGoogleClassroomApi.getPupilLessonProgress,
+      ).not.toHaveBeenCalled();
+    });
+
+    it("submits mapped progress when onNext is triggered and logs submission errors", async () => {
+      mockedUseAssignmentSearchParams.mockReturnValue({
+        isClassroomAssignment: true,
+        classroomAssignmentChecked: true,
+      });
+      const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
+      mockedGoogleClassroomApi.getAddOnContext.mockResolvedValue({
+        studentContext: { submissionId: "submission-1" },
+        pupilLoginHint: "pupil-1",
+      });
+      mockedGoogleClassroomApi.getPostSubmissionState.mockResolvedValue({
+        submissionState: PostSubmissionState.CREATED,
+      });
+      mockedGoogleClassroomApi.submitPupilProgress.mockRejectedValueOnce(
+        new Error("submit failed"),
+      );
+
+      jest
+        .spyOn(LessonEngineProvider, "useLessonEngineContext")
+        .mockReturnValue(
+          createLessonEngineContext({
+            currentSection: "overview",
+          }),
+        );
+
+      render(
+        <PupilExperienceView
+          lessonContent={lessonContentFixture({})}
+          browseData={lessonBrowseDataFixture({})}
+          hasWorksheet={false}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
+          initialSection="overview"
+          pageType="browse"
+        />,
+      );
+
+      await waitFor(() => {
+        expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
+          expect.objectContaining({
+            onNext: expect.any(Function),
+          }),
+        );
+      });
+
+      const onNext = lessonEngineProviderMock.mock.calls.at(-1)?.[0].onNext;
+      await act(async () => {
+        await onNext?.({ intro: { isComplete: true } }, "intro");
+      });
+
+      expect(
+        mockedGoogleClassroomApi.submitPupilProgress,
+      ).toHaveBeenCalledTimes(1);
+      expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(Error));
+      consoleErrorSpy.mockRestore();
     });
   });
 
@@ -422,6 +948,47 @@ describe("PupilExperienceView", () => {
     });
   });
 
+  it("should call router.back if not isClassroom and no backUrl is provided", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: false,
+      classroomAssignmentChecked: true,
+    });
+    const backSpy = jest.spyOn(mockRouter, "back");
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+
+    const { getByTestId } = render(
+      <PupilExperienceView
+        lessonContent={lessonContentFixture({
+          lessonTitle: "Lesson Title",
+          contentGuidance: [
+            {
+              contentguidanceLabel: "Guidance Title",
+              contentguidanceArea: "Guidance Area",
+              contentguidanceDescription: "Guidance Description",
+            },
+          ],
+          supervisionLevel: "Supervision Level",
+        })}
+        browseData={lessonBrowseDataFixture({})}
+        hasWorksheet={false}
+        hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
+        initialSection="overview"
+        pageType="browse"
+      />,
+    );
+
+    await userEvent.click(getByTestId("declineButton"));
+
+    expect(backSpy).toHaveBeenCalled();
+  });
+
   it("should render the default message on lessons that age restriction and no content guidance", () => {
     const lessonContent = lessonContentFixture({
       lessonTitle: "Lesson Title",
@@ -512,6 +1079,37 @@ describe("PupilExperienceView", () => {
     );
     expect(getByTestId("suervision-level-info")).toHaveTextContent(
       supervisionLevel,
+    );
+  });
+
+  it("should render the default age restriction message for unknown values", () => {
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    const { getByRole } = render(
+      <PupilExperienceView
+        lessonContent={lessonContentFixture({
+          contentGuidance: null,
+          supervisionLevel: null,
+        })}
+        browseData={lessonBrowseDataFixture({
+          features: {
+            ageRestriction: "unknown" as never,
+          },
+        })}
+        hasWorksheet={false}
+        hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
+        initialSection="overview"
+        pageType="browse"
+      />,
+    );
+
+    expect(getByRole("alertdialog")).toHaveTextContent(
+      "This lesson is age restricted.",
     );
   });
   it("should have robots meta tag with index & follow", async () => {
@@ -663,9 +1261,229 @@ describe("PupilExperienceView", () => {
     expect(queryByText("Lesson Title")).toBeNull();
   });
 });
+describe("lessonAccessedPupilJourney analytics", () => {
+  const defaultLessonEngineContext = () =>
+    jest
+      .spyOn(LessonEngineProvider, "useLessonEngineContext")
+      .mockReturnValue(
+        createLessonEngineContext({ currentSection: "overview" }),
+      );
+
+  const defaultProps = () => ({
+    lessonContent: lessonContentFixture({
+      contentGuidance: null,
+      supervisionLevel: null,
+    }),
+    browseData: lessonBrowseDataFixture({}),
+    hasWorksheet: false as const,
+    hasAdditionalFiles: false as const,
+    additionalFiles: null,
+    worksheetInfo: null,
+    initialSection: "overview" as const,
+    pageType: "browse" as const,
+  });
+
+  beforeEach(() => {
+    mockedUseAssignmentSearchParams.mockReset();
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+    mockedUseSearchParams.mockReset();
+    mockedUseSearchParams.mockReturnValue(null);
+    (googleClassroomApi.getAddOnContext as jest.Mock).mockClear();
+    (googleClassroomApi.getAddOnContext as jest.Mock).mockResolvedValue(null);
+    (googleClassroomApi.getPupilLessonProgress as jest.Mock).mockClear();
+    (googleClassroomApi.getPupilLessonProgress as jest.Mock).mockResolvedValue(
+      null,
+    );
+    analyticsTrackMock.lessonAccessedPupilJourney?.mockClear();
+  });
+
+  it("fires immediately for a non-classroom lesson once the assignment check is complete", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: false,
+      classroomAssignmentChecked: true,
+    });
+    defaultLessonEngineContext();
+
+    render(<PupilExperienceView {...defaultProps()} />);
+
+    await waitFor(() => {
+      expect(
+        analyticsTrackMock.lessonAccessedPupilJourney,
+      ).toHaveBeenCalledWith(
+        expect.objectContaining({
+          componentType: "page view",
+          clientEnvironment: "web-browser",
+          courseId: null,
+          itemId: null,
+          attachmentId: null,
+          submissionId: null,
+          pupilLoginHint: null,
+          teacherLoginHint: null,
+          classroomAssignmentId: null,
+        }),
+      );
+    });
+  });
+
+  it("does not fire before the assignment check is complete", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: false,
+      classroomAssignmentChecked: false,
+    });
+    defaultLessonEngineContext();
+
+    render(<PupilExperienceView {...defaultProps()} />);
+
+    expect(
+      analyticsTrackMock.lessonAccessedPupilJourney,
+    ).not.toHaveBeenCalled();
+  });
+
+  it("fires when attachmentId is missing and skips getAddOnContext", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+    mockedUseSearchParams.mockReturnValue(
+      createMockSearchParams({
+        itemType: "courseWork",
+        courseId: "course-123",
+        itemId: "item-456",
+      }),
+    );
+    defaultLessonEngineContext();
+
+    render(<PupilExperienceView {...defaultProps()} />);
+
+    await waitFor(() => {
+      expect(
+        analyticsTrackMock.lessonAccessedPupilJourney,
+      ).toHaveBeenCalledWith(
+        expect.objectContaining({
+          componentType: "page view",
+          courseId: "course-123",
+          itemId: "item-456",
+          attachmentId: null,
+          submissionId: null,
+          pupilLoginHint: null,
+          teacherLoginHint: null,
+          classroomAssignmentId: "course-123:item-456",
+          clientEnvironment: "web-browser",
+        }),
+      );
+    });
+
+    expect(googleClassroomApi.getAddOnContext).not.toHaveBeenCalled();
+  });
+
+  it("fires after getAddOnContext resolves and includes the resolved classroom context", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+    mockedUseSearchParams.mockReturnValue(
+      createMockSearchParams({
+        courseId: "course-123",
+        itemId: "item-456",
+        attachmentId: "attachment-789",
+      }),
+    );
+    (googleClassroomApi.getAddOnContext as jest.Mock).mockResolvedValue({
+      studentContext: { submissionId: "sub-101" },
+      pupilLoginHint: "pupil@example.com",
+      teacherLoginHint: "teacher@example.com",
+    });
+    defaultLessonEngineContext();
+
+    render(<PupilExperienceView {...defaultProps()} />);
+
+    await waitFor(() => {
+      expect(
+        analyticsTrackMock.lessonAccessedPupilJourney,
+      ).toHaveBeenCalledWith(
+        expect.objectContaining({
+          componentType: "page view",
+          courseId: "course-123",
+          itemId: "item-456",
+          attachmentId: "attachment-789",
+          submissionId: "sub-101",
+          pupilLoginHint: "pupil@example.com",
+          teacherLoginHint: "teacher@example.com",
+          classroomAssignmentId: "course-123:item-456",
+          clientEnvironment: "web-browser",
+        }),
+      );
+    });
+  });
+
+  it("fires with null classroom context when getAddOnContext returns no student context", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+    mockedUseSearchParams.mockReturnValue(
+      createMockSearchParams({
+        courseId: "course-123",
+        itemId: "item-456",
+        attachmentId: "attachment-789",
+      }),
+    );
+    (googleClassroomApi.getAddOnContext as jest.Mock).mockResolvedValue({
+      pupilLoginHint: "pupil@example.com",
+      teacherLoginHint: null,
+    });
+    defaultLessonEngineContext();
+
+    render(<PupilExperienceView {...defaultProps()} />);
+
+    await waitFor(() => {
+      expect(
+        analyticsTrackMock.lessonAccessedPupilJourney,
+      ).toHaveBeenCalledWith(
+        expect.objectContaining({
+          submissionId: null,
+          teacherLoginHint: null,
+          pupilLoginHint: "pupil@example.com",
+        }),
+      );
+    });
+  });
+
+  it("fires even when getAddOnContext throws", async () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+    mockedUseSearchParams.mockReturnValue(
+      createMockSearchParams({
+        courseId: "course-123",
+        itemId: "item-456",
+        attachmentId: "attachment-789",
+      }),
+    );
+    (googleClassroomApi.getAddOnContext as jest.Mock).mockRejectedValue(
+      new Error("Network error"),
+    );
+    defaultLessonEngineContext();
+
+    render(<PupilExperienceView {...defaultProps()} />);
+
+    await waitFor(() => {
+      expect(analyticsTrackMock.lessonAccessedPupilJourney).toHaveBeenCalled();
+    });
+  });
+});
+
 describe("redirected overlay", () => {
   beforeEach(() => {
     mockRouter.setCurrentUrl("/?redirected=true");
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: false,
+      classroomAssignmentChecked: true,
+    });
   });
   it("Should show redirect modal when redirected query param is present", () => {
     mockRouter.setCurrentUrl("/?redirected=true");
@@ -696,5 +1514,44 @@ describe("redirected overlay", () => {
       />,
     );
     expect(getByTestId("pupil-redirected-overlay-btn")).toBeInTheDocument();
+  });
+
+  it("shows content guidance after the redirected overlay is closed", async () => {
+    mockRouter.setCurrentUrl("/?redirected=true");
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+
+    const { getByTestId, queryByTestId } = render(
+      <PupilExperienceView
+        lessonContent={lessonContentFixture({
+          contentGuidance: [
+            {
+              contentguidanceLabel: "Guidance Title",
+              contentguidanceArea: "Guidance Area",
+              contentguidanceDescription: "Guidance Description",
+            },
+          ],
+          supervisionLevel: "Supervision Level",
+        })}
+        browseData={lessonBrowseDataFixture({})}
+        hasWorksheet={false}
+        hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
+        initialSection="overview"
+        pageType="browse"
+      />,
+    );
+
+    expect(queryByTestId("acceptButton")).not.toBeInTheDocument();
+
+    await userEvent.click(getByTestId("pupil-redirected-overlay-btn"));
+
+    await waitFor(() => {
+      expect(getByTestId("acceptButton")).toBeInTheDocument();
+    });
   });
 });
