@@ -11,6 +11,7 @@ import {
   getUnitCounts,
 } from "./helpers";
 import {
+  threadsFixture,
   unitSequenceFixture,
   unitsInOtherProgrammesFixture,
 } from "./teachersUnitOverview.query.test";
@@ -30,6 +31,8 @@ const mockPackagedUnitData = {
     syntheticUnitvariantLessonsByKsFixture().programme_slug_by_year,
   nullUnitvariantId: 1,
   subjectCategories: [],
+  whyThisWhyNow: "why this why now",
+  priorKnowledgeRequirements: ["prior", "knowledge", "requirements"],
 };
 
 describe("getTransformedUnit", () => {
@@ -41,6 +44,7 @@ describe("getTransformedUnit", () => {
       false,
       unitSequenceFixture,
       unitsInOtherProgrammesFixture,
+      threadsFixture,
     );
     expect(transformedLessons).toEqual({
       examBoardSlug: null,
@@ -87,6 +91,9 @@ describe("getTransformedUnit", () => {
       actions: { isPePractical: false },
       phaseSlug: "primary",
       phaseTitle: "Primary",
+      threads: ["Thread 1", "Thread 2", "Thread 3"],
+      whyThisWhyNow: "why this why now",
+      priorKnowledgeRequirements: ["prior", "knowledge", "requirements"],
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
       nextUnit: {
@@ -116,6 +123,7 @@ describe("getTransformedUnit", () => {
       false,
       unitSequenceFixture,
       unitsInOtherProgrammesFixture,
+      threadsFixture,
     );
     expect(transformedLessons).toEqual({
       examBoardSlug: null,
@@ -163,6 +171,9 @@ describe("getTransformedUnit", () => {
       actions: { isPePractical: false },
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      threads: ["Thread 1", "Thread 2", "Thread 3"],
+      whyThisWhyNow: "why this why now",
+      priorKnowledgeRequirements: ["prior", "knowledge", "requirements"],
       parentSubject: "Maths",
       nextUnit: {
         slug: "unit-2",
@@ -183,6 +194,7 @@ describe("getTransformedUnit", () => {
       false,
       sequence,
       unitsInOtherProgrammesFixture,
+      threadsFixture,
     );
     expect(result.unitCount).toBe(sequence.length);
   });
@@ -215,6 +227,7 @@ describe("getTransformedUnit", () => {
         },
       ],
       unitsInOtherProgrammesFixture,
+      threadsFixture,
     );
 
     expect(result.unitCount).toBe(2);
@@ -413,6 +426,7 @@ describe("getNeighbourUnits", () => {
       false,
       unitSequenceFixture,
       unitsInOtherProgrammesFixture,
+      threadsFixture,
     );
 
     expect(transformedLessons.prevUnit).toEqual({
@@ -437,6 +451,7 @@ describe("getNeighbourUnits", () => {
         year: "7",
       }),
       unitsInOtherProgrammesFixture,
+      threadsFixture,
     );
 
     expect(transformedLessons.nextUnit).toEqual({
@@ -671,6 +686,7 @@ describe("isPePractical", () => {
       false,
       unitSequenceFixture,
       unitsInOtherProgrammesFixture,
+      threadsFixture,
     );
     expect(result.actions?.isPePractical).toBe(true);
   });
@@ -686,6 +702,7 @@ describe("isPePractical", () => {
       false,
       unitSequenceFixture,
       unitsInOtherProgrammesFixture,
+      threadsFixture,
     );
     expect(result.actions?.isPePractical).toBe(false);
   });
@@ -708,6 +725,7 @@ describe("isPePractical", () => {
       false,
       unitSequenceFixture,
       unitsInOtherProgrammesFixture,
+      threadsFixture,
     );
     expect(result.actions?.isPePractical).toBe(false);
   });

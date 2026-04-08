@@ -36,6 +36,8 @@ describe("UnitView", () => {
         lessons={lessons as UnitViewProps["lessons"]}
         unitIndex={2}
         unitCount={12}
+        threads={[]}
+        phaseSlug="secondary"
       />,
     );
 
