@@ -2248,8 +2248,8 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 .c100 {
   font-family: --var(google-font),Lexend,sans-serif;
   font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
   -webkit-letter-spacing: -0.005rem;
   -moz-letter-spacing: -0.005rem;
   -ms-letter-spacing: -0.005rem;
@@ -4238,60 +4238,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
     -moz-letter-spacing: 0.0115rem;
     -ms-letter-spacing: 0.0115rem;
     letter-spacing: 0.0115rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c100 {
-    font-weight: 300;
-  }
-}
-
-@media (min-width:1280px) {
-  .c100 {
-    font-weight: 300;
-  }
-}
-
-@media (min-width:750px) {
-  .c100 {
-    font-size: 1.125rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c100 {
-    font-size: 1.125rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c100 {
-    line-height: 1.75rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c100 {
-    line-height: 1.75rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c100 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
-    letter-spacing: -0.005rem;
-  }
-}
-
-@media (min-width:1280px) {
-  .c100 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
-    letter-spacing: -0.005rem;
   }
 }
 
