@@ -25,7 +25,11 @@ const StyledResponsiveFlex = styled(OakFlex)`
 
 const OakPStyled: PortableTextBlockComponent = (props) => {
   return (
-    <OakP $mt={"spacing-16"} $mb={"spacing-12"} $font={["body-2", "body-1"]}>
+    <OakP
+      $mt={"spacing-16"}
+      $mb={"spacing-12"}
+      $font={["body-2", "body-1", "body-1"]}
+    >
       {props.children}
     </OakP>
   );
