@@ -150,6 +150,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  curriculumApi2026AuthKey: {
+    value: process.env.CURRICULUM_API_2026_AUTH_KEY,
+    envName: "CURRICULUM_API_2026_AUTH_KEY",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   educatorApiUrl: {
     value: process.env.EDUCATOR_API_URL,
     envName: "EDUCATOR_API_URL",

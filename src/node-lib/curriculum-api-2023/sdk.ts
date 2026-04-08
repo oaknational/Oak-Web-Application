@@ -10,26 +10,20 @@ import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 
 const curriculumApiUrl = getServerConfig("curriculumApi2023Url");
-const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
-const curriculumApiAuthKey = getServerConfig("curriculumApi2023AuthKey");
+const curriculumApiAuthKey = getServerConfig("curriculumApi2026AuthKey");
 
 /**
  * TS complaining when Headers in not typed.
  */
 type Headers = {
-  "x-oak-auth-type": string;
-  "x-oak-auth-key": string;
-  "user-agent": string;
+  Authorization: string;
 };
 const headers: Headers = {
-  "x-oak-auth-type": curriculumApiAuthType,
-  "x-oak-auth-key": curriculumApiAuthKey,
-  "user-agent": "OWA Curriculum API Client",
+  Authorization: `Bearer ${curriculumApiAuthKey}`,
 };
-
 const reportError = errorReporter("Graphql sdk");
+console.log("Curriculum API auth key in sdk", curriculumApiAuthKey, headers); // Log the auth key to verify it's being read correctly
 const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
-
 const retryCount = 3;
 const withRetries = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,
