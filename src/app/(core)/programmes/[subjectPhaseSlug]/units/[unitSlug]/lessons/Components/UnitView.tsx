@@ -169,7 +169,7 @@ const UnitThreads = ({
   phaseSlug: UnitViewProps["phaseSlug"];
 }) => {
   const backgroundColorLevel = phaseSlug === "primary" ? 4 : 3;
-  if (threads) {
+  if (threads.length) {
     return (
       <OakFlex
         $flexDirection={"column"}
