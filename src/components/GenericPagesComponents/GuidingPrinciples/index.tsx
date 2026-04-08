@@ -107,11 +107,7 @@ export function GuidingPrinciples({
             {title}
           </OakHeading>
           {typeof text === "string" ? (
-            <OakP
-              $mt={"spacing-16"}
-              $mb={"spacing-12"}
-              $font={["body-2", "body-1"]}
-            >
+            <OakP $mt={"spacing-16"} $mb={"spacing-12"} $font={"body-1"}>
               {text}
             </OakP>
           ) : (
