@@ -14,6 +14,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import { GetInvolvedPage } from "@/common-lib/cms-types/aboutPages";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
 export type GetInvolvedPageProps = {
   pageData: GetInvolvedPage;
@@ -80,7 +81,10 @@ export const GetInvolved: NextPage<GetInvolvedPageProps> = ({
           text={pageData.workWithUs.textRaw}
           permanentRolesLink="https://app.beapplied.com/org/1574/oak-national-academy/"
           freelanceRolesLink="https://app.beapplied.com/org/1767/oak-national-academy-freelancers/"
-          imageUrl={pageData.workWithUs.image?.asset?.url ?? ""}
+          imageUrl={
+            getProxiedSanityAssetUrl(pageData.workWithUs.image?.asset?.url) ??
+            ""
+          }
           imageAlt={pageData.workWithUs.image?.altText ?? ""}
           badges={[
             {
