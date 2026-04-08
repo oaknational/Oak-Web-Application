@@ -1,9 +1,12 @@
-import { PupilLessonProgress } from "@oaknational/google-classroom-addon/types";
+import {
+  CourseWorkPupilProgress,
+  PupilLessonProgress,
+} from "@oaknational/google-classroom-addon/types";
 
 import { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
 
 export const mapPupilLessonProgressToSectionResults = (
-  lessonProgress: PupilLessonProgress,
+  lessonProgress: PupilLessonProgress | CourseWorkPupilProgress,
 ): LessonSectionResults => {
   if (!lessonProgress || typeof lessonProgress !== "object") {
     return {};

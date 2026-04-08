@@ -404,7 +404,10 @@ const PupilExperienceLayout = ({
         };
 
         const progressResult =
-          await googleClassroomApi.getCourseWorkPupilProgress(ctx.submissionId);
+          await googleClassroomApi.getCourseWorkPupilProgress(
+            ctx.submissionId,
+            ctx.assignmentToken,
+          );
         console.log("[CourseWork] existing progress on load:", progressResult);
         if (progressResult) {
           const mappedSectionResults =
@@ -451,6 +454,7 @@ const PupilExperienceLayout = ({
           await googleClassroomApi.upsertCourseWorkPupilProgress(payload);
           const progress = await googleClassroomApi.getCourseWorkPupilProgress(
             cwCtx.submissionId,
+            cwCtx.assignmentToken,
           );
           console.log("[CourseWork] progress after section:", progress);
         } catch (error) {

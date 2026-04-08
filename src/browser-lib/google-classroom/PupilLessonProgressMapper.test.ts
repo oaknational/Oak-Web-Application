@@ -1,4 +1,5 @@
 import {
+  PostSubmissionState,
   PupilLessonProgress,
   questionResultSchema,
 } from "@oaknational/google-classroom-addon/types";
@@ -24,6 +25,7 @@ const mockPupilProgress: PupilLessonProgress = {
   pupilLoginHint: "hint-1",
   createdAt: "2024-01-01T00:00:00.000Z",
   updatedAt: "2024-01-01T00:00:00.000Z",
+  postSubmissionState: PostSubmissionState.CREATED,
   intro: {
     worksheetDownloaded: true,
     worksheetAvailable: true,

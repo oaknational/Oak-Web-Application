@@ -324,9 +324,10 @@ const upsertCourseWorkPupilProgress = async (
 
 const getCourseWorkPupilProgress = async (
   submissionId: string,
+  assignmentToken: string,
 ): Promise<CourseWorkPupilProgress | null> => {
   try {
-    const params = new URLSearchParams({ submissionId });
+    const params = new URLSearchParams({ submissionId, assignmentToken });
     return await sendRequest<CourseWorkPupilProgress | null>(
       `/api/classroom/coursework/pupil/progress?${params.toString()}`,
     );

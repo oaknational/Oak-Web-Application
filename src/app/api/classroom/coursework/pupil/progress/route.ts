@@ -13,17 +13,23 @@ export async function GET(request: NextRequest) {
   try {
     const requestUrl = new URL(request.url);
     const submissionId = requestUrl.searchParams.get("submissionId");
+    const assignmentToken = requestUrl.searchParams.get("assignmentToken");
 
-    if (!submissionId) {
+    if (!submissionId || !assignmentToken) {
       return NextResponse.json(
-        { error: "submissionId query parameter is required" },
+        {
+          error:
+            "submissionId and assignmentToken query parameters are required",
+        },
         { status: 400 },
       );
     }
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
-    const result =
-      await oakClassroomClient.getCourseWorkPupilProgress(submissionId);
+    const result = await oakClassroomClient.getCourseWorkPupilProgress(
+      submissionId,
+      assignmentToken,
+    );
 
     return NextResponse.json(result ?? { progress: null }, { status: 200 });
   } catch (e) {
