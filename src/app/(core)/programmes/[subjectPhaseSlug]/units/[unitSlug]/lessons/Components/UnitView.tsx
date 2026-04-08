@@ -20,7 +20,7 @@ export type UnitViewProps = Pick<
   | "lessons"
   | "unitIndex"
   | "unitCount"
-  | "tierSlug"
+  | "tierOptionToggles"
 >;
 
 export const UnitView = ({
@@ -35,7 +35,7 @@ export const UnitView = ({
   lessons,
   unitIndex,
   unitCount,
-  tierSlug,
+  tierOptionToggles,
 }: UnitViewProps) => {
   return (
     <OakBox $ph="spacing-40">
@@ -58,9 +58,8 @@ export const UnitView = ({
         </OakBox>
         <OakGridArea $colSpan={[12, 5]}>
           <TierToggle
-            programmeSlug={programmeSlug}
             unitSlug={unitSlug}
-            tierSlug={tierSlug}
+            tierOptionToggles={tierOptionToggles}
           />
         </OakGridArea>
         <OakGridArea $colSpan={[12, 7]} $gap="spacing-56" id="lessons">

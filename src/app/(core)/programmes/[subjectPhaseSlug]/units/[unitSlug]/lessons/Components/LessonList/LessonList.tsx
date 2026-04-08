@@ -17,7 +17,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
-type LessonListProps = Omit<UnitViewProps, "tierSlug"> & {
+type LessonListProps = Omit<UnitViewProps, "tierOptionToggles"> & {
   lessonCount: number;
 };
 

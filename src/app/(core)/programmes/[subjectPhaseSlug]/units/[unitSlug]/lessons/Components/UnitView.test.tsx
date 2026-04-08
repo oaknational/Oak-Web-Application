@@ -38,15 +38,36 @@ describe("UnitView", () => {
         lessons={lessons as UnitViewProps["lessons"]}
         unitIndex={2}
         unitCount={12}
-        tierSlug="foundation"
+        tierOptionToggles={[
+          {
+            title: "Foundation",
+            programmeSlug: "biology-secondary-ks4-foundation-aqa",
+            isSelected: true,
+          },
+          {
+            title: "Higher",
+            programmeSlug: "biology-secondary-ks4-higher-aqa",
+            isSelected: false,
+          },
+        ]}
       />,
     );
 
     expect(TierToggle).toHaveBeenCalledWith(
       expect.objectContaining({
-        programmeSlug: "biology-secondary-ks4-foundation-aqa",
         unitSlug: "cells",
-        tierSlug: "foundation",
+        tierOptionToggles: [
+          {
+            title: "Foundation",
+            programmeSlug: "biology-secondary-ks4-foundation-aqa",
+            isSelected: true,
+          },
+          {
+            title: "Higher",
+            programmeSlug: "biology-secondary-ks4-higher-aqa",
+            isSelected: false,
+          },
+        ],
       }),
       {},
     );
