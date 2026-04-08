@@ -83,6 +83,8 @@ const SubjectListingCardCountCard: FC<SubjectListingCardCountCardProps> = ({
             filterType: "Subject filter",
             filterValue: subjectSlug,
             activeFilters: { keyStage: [keyStageSlug] },
+            googleLoginHint: null,
+            clientEnvironment: null,
           });
         }}
       >

@@ -8,8 +8,8 @@ import {
   useState,
 } from "react";
 import { usePostHog } from "posthog-js/react";
-import { useOakConsent } from "@oaknational/oak-consent-client";
 import { usePathname } from "next/navigation";
+import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";

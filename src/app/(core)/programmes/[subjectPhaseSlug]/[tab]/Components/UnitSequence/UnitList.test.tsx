@@ -65,6 +65,21 @@ describe("ProgrammeUnitList", () => {
     expect(screen.getByRole("link", { name: /Unit Two/i })).toBeInTheDocument();
   });
 
+  it("adds subject_category to unit links when a category is selected", () => {
+    render(
+      <ProgrammeUnitList
+        {...defaultProps}
+        filters={createFilter({ subjectCategories: ["humanities"] })}
+      />,
+    );
+
+    const unitOneLink = screen.getByRole("link", { name: /Unit One/i });
+    expect(unitOneLink).toHaveAttribute(
+      "href",
+      expect.stringContaining("subject_category=humanities"),
+    );
+  });
+
   it("renders getSubjectCategoryMessage when units array is empty", () => {
     render(<ProgrammeUnitList {...defaultProps} units={[]} />);
 

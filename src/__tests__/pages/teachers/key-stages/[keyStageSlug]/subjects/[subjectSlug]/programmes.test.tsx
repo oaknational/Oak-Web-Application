@@ -299,6 +299,8 @@ describe("programmes listing page", () => {
         filterValue: "Foundation",
         platform: "owa",
         product: "teacher lesson resources",
+        googleLoginHint: null,
+        clientEnvironment: null,
       });
     });
     it("should track a browse refined event when programme with examboards is selected", async () => {
@@ -329,6 +331,8 @@ describe("programmes listing page", () => {
         filterValue: "AQA",
         platform: "owa",
         product: "teacher lesson resources",
+        googleLoginHint: null,
+        clientEnvironment: null,
       });
     });
     it("should track a browse refined event when programme with tiers and examboards is selected", async () => {
@@ -361,6 +365,8 @@ describe("programmes listing page", () => {
         filterValue: "AQA, Foundation",
         platform: "owa",
         product: "teacher lesson resources",
+        googleLoginHint: null,
+        clientEnvironment: null,
       });
     });
   });

@@ -1,5 +1,6 @@
 import { lessonContentFixture } from "@oaknational/oak-curriculum-schema";
 import { GetServerSidePropsContext } from "next";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
@@ -7,7 +8,6 @@ import CanonicalResultsPage, {
   CanonicalResultsSharePageProps,
   getServerSideProps,
 } from "@/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/share";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { LessonAttemptFixture } from "@/node-lib/pupil-api/__mocks__/fixtures/lesson-attempt.fixture";
 
 jest.mock("@/node-lib/pupil-api/pupilDataStore", () => ({

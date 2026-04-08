@@ -6,6 +6,7 @@ import {
   getOakGoogleClassroomAddon,
   isOakGoogleClassroomException,
 } from "@/node-lib/google-classroom";
+import { getPupilFirestore } from "@/node-lib/firestore";
 
 const getAddOnContextSchema = z.object({
   courseId: z.string(),
@@ -14,6 +15,20 @@ const getAddOnContextSchema = z.object({
 });
 
 const reportError = createClassroomErrorReporter("addon-context");
+
+const getTeacherLoginHint = async (attachmentId: string) => {
+  try {
+    const firestore = getPupilFirestore();
+    const attachmentSnapshot = await firestore
+      .collection("classroomAttachments")
+      .doc(attachmentId)
+      .get();
+
+    return attachmentSnapshot.data()?.teacherLoginHint ?? null;
+  } catch {
+    return null;
+  }
+};
 
 export async function POST(request: NextRequest) {
   try {
@@ -46,7 +61,10 @@ export async function POST(request: NextRequest) {
       session,
     );
 
-    return NextResponse.json(context, { status: 200 });
+    const teacherLoginHint = await getTeacherLoginHint(
+      parsed.data.attachmentId,
+    );
+    return NextResponse.json({ ...context, teacherLoginHint }, { status: 200 });
   } catch (e) {
     const errorObject = isOakGoogleClassroomException(e) ? e.toObject() : e;
     reportError(errorObject);

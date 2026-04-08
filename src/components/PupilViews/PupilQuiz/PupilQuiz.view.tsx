@@ -37,6 +37,7 @@ import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsPr
 import { useGetQuizTrackingData } from "@/hooks/useGetQuizTrackingData";
 import { shortAnswerInputId } from "@/components/PupilComponents/QuizShortAnswer";
 import { multipleChoiceAnswerId } from "@/components/PupilComponents/QuizMCQMultiAnswer";
+import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -65,6 +66,7 @@ const QuizInner = () => {
 
   const getSectionLinkProps = useGetSectionLinkProps();
   const { track } = usePupilAnalytics();
+  const { trackSectionStarted } = useTrackSectionStarted();
   const { getQuizTrackingData } = useGetQuizTrackingData();
   const [firstTabPressed, setFirstTabPressed] = useState<{
     questionIndex: number;
@@ -137,6 +139,11 @@ const QuizInner = () => {
       }
       completeActivity(currentSection);
     } else {
+      if (isReadOnly) {
+        updateCurrentSection("review");
+        trackSectionStarted("review");
+        return;
+      }
       handleNextQuestion();
     }
   };

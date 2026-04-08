@@ -166,11 +166,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
             {keyStageFilters.map((keyStageFilter) => (
               <OakSearchFilterCheckBox
                 name={"keyStageFilters"}
-                displayValue={
-                  keyStageFilter.shortCode === "EYFS"
-                    ? keyStageFilter.shortCode
-                    : toSentenceCase(keyStageFilter.title)
-                }
+                displayValue={toSentenceCase(keyStageFilter.title)}
                 key={`search-filters-keyStage-${keyStageFilter.slug}`}
                 aria-label={`${keyStageFilter.title} filter`}
                 id={`search-filters-keyStage-${keyStageFilter.slug}:mobile:${isMobileFilter}`}

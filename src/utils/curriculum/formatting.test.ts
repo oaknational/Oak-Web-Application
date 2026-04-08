@@ -378,7 +378,7 @@ describe("getYearSubheadingText", () => {
   it("displays subject from programme_field_overrides when it exists", () => {
     const actions = {
       programme_field_overrides: {
-        subject: "Overridden Subject",
+        subject: "Religious education" as const,
       },
     };
 
@@ -392,13 +392,13 @@ describe("getYearSubheadingText", () => {
       actions,
     );
 
-    expect(result).toEqual("Overridden Subject");
+    expect(result).toEqual("Religious education");
   });
 
   it("combines programme_field_overrides subject with other filters", () => {
     const actions = {
       programme_field_overrides: {
-        subject: "Overridden Subject",
+        subject: "Religious education" as const,
       },
     };
 
@@ -416,7 +416,7 @@ describe("getYearSubheadingText", () => {
     );
 
     expect(result).toEqual(
-      "Overridden Subject, SUB_CAT_1, CHILD_SUBJECT_1, TIER_1",
+      "Religious education, SUB_CAT_1, CHILD_SUBJECT_1, TIER_1",
     );
   });
 

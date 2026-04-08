@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const curriculumSequenceSchema = z.object({
   units: z
-    .object({
+    .strictObject({
       connection_prior_unit_description: z.string().nullable(),
       connection_future_unit_description: z.string().nullable(),
       connection_future_unit_title: z.string().nullable(),
@@ -53,9 +53,9 @@ const curriculumSequenceSchema = z.object({
       description: z.string().nullable(),
       why_this_why_now: z.string().nullable(),
       cycle: z.string(),
-      features: z.any(),
-      parent_programme_features: z.any().nullable(),
-      actions: z.any(),
+      features: z.any().optional(),
+      parent_programme_features: z.any().nullable().optional(),
+      actions: z.any().optional(),
       unit_options: z.array(
         z.object({
           connection_prior_unit_description: z.string().nullable(),
@@ -89,7 +89,6 @@ const curriculumSequenceSchema = z.object({
         .nullable(),
       prior_knowledge_requirements: z.array(z.string()).nullable(),
     })
-    .strict()
     .array(),
 });
 

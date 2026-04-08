@@ -2,7 +2,6 @@ import { Editor, useEditor, UseEditorOptions } from "@tiptap/react";
 import { act, waitFor } from "@testing-library/react";
 import { OakTeacherNotesModal } from "@oaknational/oak-components";
 import { Transaction } from "@tiptap/pm/state";
-import { TeacherNoteCamelCase } from "@oaknational/oak-pupil-client";
 
 import {
   isAllowedUri,
@@ -10,8 +9,12 @@ import {
   TeacherNotesModal,
 } from "./TeacherNotesModal";
 
+import {
+  TeacherNoteCamelCase,
+  TeacherNote,
+  TeacherNoteError,
+} from "@/node-lib/pupil-api/types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { TeacherNote, TeacherNoteError } from "@/node-lib/pupil-api/types";
 
 const render = renderWithProviders();
 

@@ -15,8 +15,8 @@ describe("extendedUseOfOakSchema", () => {
       new ZodError([
         {
           code: "custom",
-          message: "Please select the ways Oak can support you",
           path: ["root"],
+          message: "Please select the ways Oak can support you",
         },
       ]),
     );

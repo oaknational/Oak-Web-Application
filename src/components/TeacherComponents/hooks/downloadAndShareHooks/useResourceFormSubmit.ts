@@ -4,7 +4,7 @@ import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
 import type {
   DownloadResourceType,
-  ResourceFormProps,
+  ResourceFormValues,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 
@@ -21,7 +21,7 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
 
   const auth = useAuth();
 
-  const onSubmit = async (data: ResourceFormProps, slug: string) => {
+  const onSubmit = async (data: ResourceFormValues, slug: string) => {
     if (props.onSubmit) {
       props.onSubmit();
     }

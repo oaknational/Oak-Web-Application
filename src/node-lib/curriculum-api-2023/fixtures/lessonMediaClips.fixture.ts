@@ -2,12 +2,13 @@ import {
   mediaClipsFixture,
   additionalCyclesFixture,
 } from "@oaknational/oak-curriculum-schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import {
+  CanonicalLessonMediaClips,
   LessonMediaClipsData,
   MediaClipListCamelCase,
 } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const lessonMediaClipsFixtures = (
   partial?: Partial<LessonMediaClipsData>,
@@ -35,6 +36,26 @@ const lessonMediaClipsFixtures = (
       { lessonOutline: "This lesson is about running as a team" },
     ],
     lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+    ...partial,
+  };
+};
+
+export const lessonMediaClipsCanonicalFixture = (
+  partial?: Partial<CanonicalLessonMediaClips>,
+): CanonicalLessonMediaClips => {
+  return {
+    ...lessonMediaClipsFixtures(),
+    pathways: [
+      {
+        programmeSlug: "physical-education-ks4",
+        unitSlug: "running-and-jumping",
+        unitTitle: "Running and jumping",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        subjectSlug: "physical-education",
+        subjectTitle: "Physical Education",
+      },
+    ],
     ...partial,
   };
 };

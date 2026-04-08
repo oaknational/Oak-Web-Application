@@ -80,6 +80,9 @@ export function TeachersTopNavHamburger(props: Readonly<TeachersSubNavData>) {
         data-testid="top-nav-hamburger-button"
         $borderStyle={"none"}
         iconName="hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded={hamburgerIsOpen}
+        aria-controls="teachers-top-nav-hamburger"
         onClick={handleOpen}
       />
       <OakInformativeModal
@@ -100,7 +103,7 @@ function Content(
   const { hamburgerMenu, ...navData } = props;
   const { submenuOpen } = hamburgerMenu;
   return (
-    <OakBox $width={"100%"} $height={"100%"}>
+    <OakBox $width={"100%"} $height={"100%"} id="teachers-top-nav-hamburger">
       {submenuOpen ? (
         <SubmenuContent {...navData} hamburgerMenu={hamburgerMenu} />
       ) : (

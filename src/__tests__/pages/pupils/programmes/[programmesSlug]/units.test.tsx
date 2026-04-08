@@ -1,7 +1,7 @@
 import { OakInfoProps } from "@oaknational/oak-components";
 import { programmeFieldsFixture } from "@oaknational/oak-curriculum-schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import PupilUnitListingPage, {
   getStaticProps,
 } from "@/pages/pupils/programmes/[programmeSlug]/units";
