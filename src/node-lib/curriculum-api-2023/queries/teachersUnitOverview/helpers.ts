@@ -308,6 +308,7 @@ export const getProgrammeToggles = (
       title: programme.programme_fields.subject,
       programmeSlug: programme.programme_slug,
       isSelected: programme.programme_slug === programmeSlug,
+      subjectSlug: programme.programme_fields.subject_slug,
     }));
 
   if (subjectOptionToggles.length === 1) {

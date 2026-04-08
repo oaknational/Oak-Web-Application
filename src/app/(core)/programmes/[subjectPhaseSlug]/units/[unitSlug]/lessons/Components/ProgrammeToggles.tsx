@@ -1,13 +1,18 @@
 import {
   OakFlex,
   OakHeading,
+  OakIcon,
   OakPrimaryButton,
   OakSecondaryButton,
+  parseColorFilter,
+  parseSpacing,
 } from "@oaknational/oak-components";
 import Link from "next/link";
+import styled, { css } from "styled-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { ProgrammeToggles as ProgrammeTogglesData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type ProgrammeToggleOptions = ProgrammeTogglesData;
 
@@ -23,12 +28,26 @@ type ProgrammeToggleOptionProps = {
   programmeToggle: ProgrammeToggleOptions[number];
 };
 
+const StyledIcon = styled(OakIcon)<{ $isSelected: boolean }>`
+  margin-block: -${parseSpacing("spacing-8")};
+  margin-left: -${parseSpacing("spacing-8")};
+
+  ${(props) =>
+    props.$isSelected &&
+    css`
+      filter: ${parseColorFilter("text-inverted")};
+    `}
+`;
+
 const ProgrammeToggleOption = ({
   unitSlug,
   programmeToggle,
 }: ProgrammeToggleOptionProps) => {
   const { isSelected, programmeSlug, title } = programmeToggle;
   const Button = isSelected ? OakPrimaryButton : OakSecondaryButton;
+  const subjectIconName = programmeToggle.subjectSlug
+    ? getValidSubjectIconName(programmeToggle.subjectSlug)
+    : undefined;
 
   const href = resolveOakHref({
     page: "unit-page",
@@ -41,6 +60,15 @@ const ProgrammeToggleOption = ({
       element={Link}
       href={href}
       aria-current={isSelected ? "page" : undefined}
+      iconOverride={
+        subjectIconName ? (
+          <StyledIcon
+            iconName={subjectIconName}
+            aria-hidden="true"
+            $isSelected={isSelected}
+          />
+        ) : undefined
+      }
     >
       {title}
     </Button>
