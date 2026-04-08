@@ -36,6 +36,9 @@ export function PupilsTopNavHamburger(props: Readonly<PupilsSubNavData>) {
         $borderStyle={"none"}
         isTrailingIcon
         iconName="hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded={isOpen}
+        aria-controls="pupils-top-nav-hamburger"
         onClick={() => handleOpen()}
       >
         Menu
@@ -63,6 +66,7 @@ function MainMenuContent(
       $flexDirection={"column"}
       $pa={"spacing-40"}
       $gap={"spacing-40"}
+      id="pupils-top-nav-hamburger"
     >
       <YearSection {...props.primary} onClick={props.onClick} />
       <YearSection {...props.secondary} onClick={props.onClick} />
