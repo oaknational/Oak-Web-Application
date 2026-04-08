@@ -109,6 +109,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       hostname: "image.mux.com",
       pathname: "/**",
     },
+    {
+      protocol: "https" as const,
+      hostname: "cdn.sanity.io",
+      pathname: "/**",
+    },
   ];
   // If the SANITY_ASSET_CDN_HOST is set, add it to the imageRemotePatterns
   if (SANITY_ASSET_CDN_HOST) {
