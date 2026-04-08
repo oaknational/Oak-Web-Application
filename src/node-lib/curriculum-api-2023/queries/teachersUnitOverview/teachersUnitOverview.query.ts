@@ -86,16 +86,16 @@ const teachersUnitOverviewQuery =
       };
     }, {} as PackagedUnitData);
 
-    const packagedUnit = getPackagedUnit(
+    const packagedUnit = getPackagedUnit({
       packagedUnitData,
       unitLessons,
       containsGeorestrictedLessons,
       containsLoginRequiredLessons,
-      parsedUnitSequence,
-      parsedUnitsInOtherProgrammes,
-      parsedThreads,
+      unitSequenceData: parsedUnitSequence,
+      unitsInOtherProgrammes: parsedUnitsInOtherProgrammes,
+      threads: parsedThreads,
       currentSubjectCategoryTitle,
-    );
+    });
 
     return unitOverviewDataSchema.parse(packagedUnit);
   };

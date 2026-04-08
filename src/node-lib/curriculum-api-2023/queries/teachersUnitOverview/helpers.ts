@@ -173,16 +173,25 @@ export const getUnitCounts = ({
   };
 };
 
-export const getPackagedUnit = (
-  packagedUnitData: PackagedUnitData,
-  unitLessons: LessonListSchema,
-  containsGeorestrictedLessons: boolean,
-  containsLoginRequiredLessons: boolean,
-  unitSequenceData: UnitSequence,
-  unitsInOtherProgrammes: UnitsInOtherProgrammes,
-  threads: Threads,
-  currentSubjectCategoryTitle?: string,
-): TeachersUnitOverviewData => {
+export const getPackagedUnit = ({
+  packagedUnitData,
+  unitLessons,
+  containsGeorestrictedLessons,
+  containsLoginRequiredLessons,
+  unitSequenceData,
+  unitsInOtherProgrammes,
+  threads,
+  currentSubjectCategoryTitle,
+}: {
+  packagedUnitData: PackagedUnitData;
+  unitLessons: LessonListSchema;
+  containsGeorestrictedLessons: boolean;
+  containsLoginRequiredLessons: boolean;
+  unitSequenceData: UnitSequence;
+  unitsInOtherProgrammes: UnitsInOtherProgrammes;
+  threads: Threads;
+  currentSubjectCategoryTitle?: string;
+}): TeachersUnitOverviewData => {
   const {
     programmeFields,
     unitSlug,

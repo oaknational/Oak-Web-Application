@@ -37,15 +37,17 @@ const mockPackagedUnitData = {
 
 describe("getTransformedUnit", () => {
   it("getTransformedUnit returns the correct data", async () => {
-    const transformedLessons = getPackagedUnit(
-      mockPackagedUnitData,
-      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
-      false,
-      false,
-      unitSequenceFixture,
-      unitsInOtherProgrammesFixture,
-      threadsFixture,
-    );
+    const transformedLessons = getPackagedUnit({
+      packagedUnitData: mockPackagedUnitData,
+      unitLessons: getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture({}),
+      ]),
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
     expect(transformedLessons).toEqual({
       examBoardSlug: null,
       examBoardTitle: null,
@@ -107,9 +109,10 @@ describe("getTransformedUnit", () => {
   });
   it("getTransformedUnit returns the correct data for optionality units", () => {
     const pfs = syntheticUnitvariantLessonsByKsFixture().programme_fields;
-    const transformedLessons = getPackagedUnit(
-      mockPackagedUnitData,
-      getTransformedLessons([
+
+    const transformedLessons = getPackagedUnit({
+      packagedUnitData: mockPackagedUnitData,
+      unitLessons: getTransformedLessons([
         syntheticUnitvariantLessonsByKsFixture({
           overrides: {
             programme_fields: {
@@ -119,12 +122,12 @@ describe("getTransformedUnit", () => {
           },
         }),
       ]),
-      false,
-      false,
-      unitSequenceFixture,
-      unitsInOtherProgrammesFixture,
-      threadsFixture,
-    );
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
     expect(transformedLessons).toEqual({
       examBoardSlug: null,
       examBoardTitle: null,
@@ -187,25 +190,29 @@ describe("getTransformedUnit", () => {
 
   it("sets unitCount for the current unit's year", () => {
     const sequence = unitSequenceFixture.slice(0, 2);
-    const result = getPackagedUnit(
-      mockPackagedUnitData,
-      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
-      false,
-      false,
-      sequence,
-      unitsInOtherProgrammesFixture,
-      threadsFixture,
-    );
+    const result = getPackagedUnit({
+      packagedUnitData: mockPackagedUnitData,
+      unitLessons: getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture({}),
+      ]),
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: sequence,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
     expect(result.unitCount).toBe(sequence.length);
   });
 
   it("does not include units from other years in unitCount", () => {
-    const result = getPackagedUnit(
-      { ...mockPackagedUnitData, nullUnitvariantId: 20 },
-      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
-      false,
-      false,
-      [
+    const result = getPackagedUnit({
+      packagedUnitData: { ...mockPackagedUnitData, nullUnitvariantId: 20 },
+      unitLessons: getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture({}),
+      ]),
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: [
         ...unitSequenceFixture,
         {
           unitSlug: "unit-20",
@@ -226,9 +233,9 @@ describe("getTransformedUnit", () => {
           year: "7",
         },
       ],
-      unitsInOtherProgrammesFixture,
-      threadsFixture,
-    );
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
 
     expect(result.unitCount).toBe(2);
   });
@@ -419,15 +426,17 @@ describe("getUnitCounts", () => {
 
 describe("getNeighbourUnits", () => {
   it("gets the previous unit", () => {
-    const transformedLessons = getPackagedUnit(
-      { ...mockPackagedUnitData, nullUnitvariantId: 3 },
-      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
-      false,
-      false,
-      unitSequenceFixture,
-      unitsInOtherProgrammesFixture,
-      threadsFixture,
-    );
+    const transformedLessons = getPackagedUnit({
+      packagedUnitData: { ...mockPackagedUnitData, nullUnitvariantId: 3 },
+      unitLessons: getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture({}),
+      ]),
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
 
     expect(transformedLessons.prevUnit).toEqual({
       slug: "unit-2",
@@ -435,12 +444,14 @@ describe("getNeighbourUnits", () => {
     });
   });
   it("gets the next optionality unit", () => {
-    const transformedLessons = getPackagedUnit(
-      { ...mockPackagedUnitData, nullUnitvariantId: 4 },
-      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
-      false,
-      false,
-      unitSequenceFixture.concat({
+    const transformedLessons = getPackagedUnit({
+      packagedUnitData: { ...mockPackagedUnitData, nullUnitvariantId: 4 },
+      unitLessons: getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture({}),
+      ]),
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture.concat({
         unitSlug: "unit-slug",
         unitTitle: "Null Title",
         unitDescription: null,
@@ -450,9 +461,9 @@ describe("getNeighbourUnits", () => {
         yearOrder: 1,
         year: "7",
       }),
-      unitsInOtherProgrammesFixture,
-      threadsFixture,
-    );
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
 
     expect(transformedLessons.nextUnit).toEqual({
       title: "Optionality title",
@@ -672,9 +683,9 @@ describe("isPePractical", () => {
   };
 
   it("sets isPePractical true when at least one lesson is practical", () => {
-    const result = getPackagedUnit(
-      mockPackagedUnitData,
-      [
+    const result = getPackagedUnit({
+      packagedUnitData: mockPackagedUnitData,
+      unitLessons: [
         { ...baseLesson, actions: { isPePractical: true } },
         {
           ...baseLesson,
@@ -682,35 +693,35 @@ describe("isPePractical", () => {
           actions: {},
         },
       ],
-      false,
-      false,
-      unitSequenceFixture,
-      unitsInOtherProgrammesFixture,
-      threadsFixture,
-    );
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
     expect(result.actions?.isPePractical).toBe(true);
   });
 
   it("sets isPePractical false when no lessons are practical", () => {
-    const result = getPackagedUnit(
-      mockPackagedUnitData,
-      [
+    const result = getPackagedUnit({
+      packagedUnitData: mockPackagedUnitData,
+      unitLessons: [
         { ...baseLesson, actions: {} },
         { ...baseLesson, lessonSlug: "lesson-2", actions: null },
       ],
-      false,
-      false,
-      unitSequenceFixture,
-      unitsInOtherProgrammesFixture,
-      threadsFixture,
-    );
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
     expect(result.actions?.isPePractical).toBe(false);
   });
 
   it("excludes unpublished lessons when determining isPePractical", () => {
-    const result = getPackagedUnit(
-      mockPackagedUnitData,
-      [
+    const result = getPackagedUnit({
+      packagedUnitData: mockPackagedUnitData,
+      unitLessons: [
         { ...baseLesson, actions: {} },
         {
           lessonSlug: "lesson-2",
@@ -721,12 +732,12 @@ describe("isPePractical", () => {
           expired: false,
         },
       ],
-      false,
-      false,
-      unitSequenceFixture,
-      unitsInOtherProgrammesFixture,
-      threadsFixture,
-    );
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
     expect(result.actions?.isPePractical).toBe(false);
   });
 });
