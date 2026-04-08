@@ -139,26 +139,3 @@ export const getInvolvedPageSchema = z.object({
 });
 
 export type GetInvolvedPage = z.infer<typeof getInvolvedPageSchema>;
-
-// Aliases for about pages (old naming convention - mapping new queries to existing schemas)
-export const aboutWhoWeArePageSchema = whoWeArePageSchema;
-export type AboutWhoWeArePage = WhoWeArePage;
-
-export const aboutLeadershipPageSchema = meetTheTeamPageOurLeadershipSchema;
-export type AboutLeadershipPage = z.infer<
-  typeof meetTheTeamPageOurLeadershipSchema
->;
-
-export const aboutBoardPageSchema = meetTheTeamPageOurBoardSchema;
-export type AboutBoardPage = z.infer<typeof meetTheTeamPageOurBoardSchema>;
-
-export const aboutPartnersPageSchema =
-  oaksCurriculaPageCurriculumPartnersSchema;
-export type AboutPartnersPage = z.infer<
-  typeof oaksCurriculaPageCurriculumPartnersSchema
->;
-
-export const aboutWorkWithUsPageSchema = getInvolvedPageWorkWithUsSchema;
-export type AboutWorkWithUsPage = z.infer<
-  typeof getInvolvedPageWorkWithUsSchema
->;
