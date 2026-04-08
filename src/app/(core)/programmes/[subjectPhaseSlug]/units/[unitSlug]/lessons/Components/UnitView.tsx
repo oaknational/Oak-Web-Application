@@ -2,6 +2,7 @@
 import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import { LessonList } from "./LessonList";
+import { SubjectToggle } from "./SubjectToggle";
 import { TierToggle } from "./TierToggle";
 
 import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
@@ -21,6 +22,7 @@ export type UnitViewProps = Pick<
   | "unitIndex"
   | "unitCount"
   | "tierOptionToggles"
+  | "subjectOptionToggles"
 >;
 
 export const UnitView = ({
@@ -36,6 +38,7 @@ export const UnitView = ({
   unitIndex,
   unitCount,
   tierOptionToggles,
+  subjectOptionToggles,
 }: UnitViewProps) => {
   return (
     <OakBox $ph="spacing-40">
@@ -60,6 +63,10 @@ export const UnitView = ({
           <TierToggle
             unitSlug={unitSlug}
             tierOptionToggles={tierOptionToggles}
+          />
+          <SubjectToggle
+            unitSlug={unitSlug}
+            subjectOptionToggles={subjectOptionToggles}
           />
         </OakGridArea>
         <OakGridArea $colSpan={[12, 7]} $gap="spacing-56" id="lessons">

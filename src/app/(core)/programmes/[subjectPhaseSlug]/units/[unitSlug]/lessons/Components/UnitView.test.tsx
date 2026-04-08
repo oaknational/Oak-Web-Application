@@ -1,11 +1,13 @@
 import { UnitView } from "./UnitView";
 import type { UnitViewProps } from "./UnitView";
 import { LessonList } from "./LessonList";
+import { SubjectToggle } from "./SubjectToggle";
 import { TierToggle } from "./TierToggle";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("./LessonList");
+jest.mock("./SubjectToggle");
 jest.mock("./TierToggle");
 
 describe("UnitView", () => {
@@ -50,6 +52,18 @@ describe("UnitView", () => {
             isSelected: false,
           },
         ]}
+        subjectOptionToggles={[
+          {
+            title: "Biology",
+            programmeSlug: "biology-secondary-ks4-foundation-aqa",
+            isSelected: true,
+          },
+          {
+            title: "Combined science",
+            programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
+            isSelected: false,
+          },
+        ]}
       />,
     );
 
@@ -86,6 +100,25 @@ describe("UnitView", () => {
         unitIndex: 2,
         unitCount: 12,
         lessonCount: 2,
+      }),
+      {},
+    );
+
+    expect(SubjectToggle).toHaveBeenCalledWith(
+      expect.objectContaining({
+        unitSlug: "cells",
+        subjectOptionToggles: [
+          {
+            title: "Biology",
+            programmeSlug: "biology-secondary-ks4-foundation-aqa",
+            isSelected: true,
+          },
+          {
+            title: "Combined science",
+            programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
+            isSelected: false,
+          },
+        ],
       }),
       {},
     );
