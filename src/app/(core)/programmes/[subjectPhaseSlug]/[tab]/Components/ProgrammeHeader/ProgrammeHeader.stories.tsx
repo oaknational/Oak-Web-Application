@@ -16,19 +16,11 @@ const meta: Meta<typeof ProgrammeHeader> = {
       },
       options: Object.keys(subjectHeroImages),
     },
-    background: {
+    backgroundColorLevel: {
       control: {
         type: "select",
       },
-      options: [
-        undefined,
-        "bg-decorative1-main",
-        "bg-decorative2-main",
-        "bg-decorative3-main",
-        "bg-decorative4-main",
-        "bg-decorative5-main",
-        "bg-decorative6-main",
-      ],
+      options: [undefined, 1, 2, 3, 4, 5, 6],
     },
     subjectTitle: {
       control: {

@@ -70,9 +70,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
         backgroundColorLevel={backgroundColorLevel}
       />
       <OakFlex
-        $background={
-          `bg-decorative${backgroundColorLevel}-subdued` as OakUiRoleToken
-        }
+        $background={`bg-decorative${backgroundColorLevel}-subdued`}
         $width={"100%"}
         $pv={"spacing-24"}
         $ph={["spacing-20", "spacing-40"]}
@@ -102,9 +100,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
               $bl={"border-solid-m"}
               $display={["none", "flex"]}
               $height={"spacing-24"}
-              $borderColor={
-                `border-decorative${backgroundColorLevel}` as OakUiRoleToken
-              }
+              $borderColor={`border-decorative${backgroundColorLevel}`}
             />
             <UnitNavButtons
               display={["none", "flex"]}
@@ -139,9 +135,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
         <OakBox
           $display={["block", "none"]}
           $bt={"border-solid-m"}
-          $borderColor={
-            `border-decorative${backgroundColorLevel}` as OakUiRoleToken
-          }
+          $borderColor={`border-decorative${backgroundColorLevel}`}
           $width={"100%"}
         />
         <UnitNavButtons
@@ -162,9 +156,10 @@ const UnitNavButtons = ({
   programmeSlug,
 }: {
   display: OakFlexProps["$display"];
-  backgroundColorLevel: CompactHeaderProps["backgroundColorLevel"];
+  backgroundColorLevel: 3 | 4;
 } & UnitHeaderProps) => {
-  const iconColor = `icon-decorative${backgroundColorLevel}` as OakUiRoleToken;
+  const iconColor =
+    `icon-decorative${backgroundColorLevel}` satisfies OakUiRoleToken;
   return (
     <OakFlex $display={display} $gap={"spacing-16"}>
       {prevUnit && (

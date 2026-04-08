@@ -43,6 +43,10 @@ type HeaderProps = {
    * Ideal for action buttons and links.
    */
   footerSlot?: React.ReactNode;
+  /**
+   * The level of the decorative background colour to be used. Defaults to transparent.
+   */
+  backgroundColorLevel?: 1 | 2 | 3 | 4 | 5 | 6;
 };
 
 export type LargeHeaderProps = {
@@ -51,10 +55,6 @@ export type LargeHeaderProps = {
    * A hero image for the header;
    */
   heroImage: string | null;
-  /**
-   * The background color of the header. Defaults to transparent.
-   */
-  background?: Extract<OakUiRoleToken, `bg-decorative${number}-main`>;
 } & HeaderProps;
 
 export type SubjectIcon = `subject-${string}` & OakIconName;
@@ -64,10 +64,6 @@ export type CompactHeaderProps = {
    * An optional subject icon to display alongside the header
    */
   subjectIcon?: SubjectIcon;
-  /**
-   * The level of the decorative background colour to be used. Defaults to transparent.
-   */
-  backgroundColorLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   /**
    * Optional list of tags to display above the heading
    */
@@ -103,9 +99,13 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
   const isCompactLayout = isCompactHeaderProps(props);
   const heroImage = isCompactLayout ? null : props.heroImage;
 
-  const mainBackground = isCompactLayout
-    ? (`bg-decorative${props.backgroundColorLevel}-very-subdued` as OakUiRoleToken)
-    : props.background;
+  let mainBackground: OakUiRoleToken | undefined;
+
+  if (props.backgroundColorLevel) {
+    mainBackground = isCompactLayout
+      ? `bg-decorative${props.backgroundColorLevel}-very-subdued`
+      : `bg-decorative${props.backgroundColorLevel}-main`;
+  }
 
   return (
     <OakBox
