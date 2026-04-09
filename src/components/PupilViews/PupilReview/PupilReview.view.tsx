@@ -67,12 +67,10 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const [handInState, setHandInState] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
-  const handInButtonLabel =
-    handInState === "loading"
-      ? "Handing in…"
-      : handInState === "success"
-        ? "Handed in"
-        : "Hand in";
+  let handInButtonLabel = "Hand in";
+  if (handInState === "loading") handInButtonLabel = "Handing in…";
+  if (handInState === "success") handInButtonLabel = "Handed in";
+
   const { phase = "primary", yearDescription, subject } = programmeFields;
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {

@@ -107,14 +107,14 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
       popupRef.current = null;
       setIsSigningIn(false);
       if (event.data.success && event.data.session && event.data.accessToken) {
-        window.cookieStore?.set({
+        globalThis.window.cookieStore?.set({
           name: TEACHER_SESSION_COOKIE,
           value: event.data.session as string,
           partitioned: true,
           sameSite: "none",
           path: "/",
         });
-        window.cookieStore?.set({
+        globalThis.window.cookieStore?.set({
           name: TEACHER_TOKEN_COOKIE,
           value: event.data.accessToken as string,
           partitioned: true,
@@ -124,8 +124,9 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
         checkSessionAndLoadCourses();
       }
     };
-    window.addEventListener("message", handleAuthMessage);
-    return () => window.removeEventListener("message", handleAuthMessage);
+    globalThis.window.addEventListener("message", handleAuthMessage);
+    return () =>
+      globalThis.window.removeEventListener("message", handleAuthMessage);
   }, [checkSessionAndLoadCourses]);
 
   const handleSignIn = async () => {
@@ -135,7 +136,7 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
       setIsSigningIn(false);
       return;
     }
-    popupRef.current = window.open(
+    popupRef.current = globalThis.window.open(
       url,
       "googleSignIn",
       "height=500,width=500,left=100,top=100,resizable=no,scrollbars=yes",
@@ -152,7 +153,7 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
         lessonSlug,
         programmeSlug,
         unitSlug,
-        maxPoints: exitQuizNumQuestions ?? 0,
+        maxPoints: exitQuizNumQuestions || 10,
       });
       setState({
         type: "success",

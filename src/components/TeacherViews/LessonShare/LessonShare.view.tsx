@@ -121,7 +121,7 @@ export function LessonShare(props: LessonShareProps) {
       (r) => r.type === "exit-quiz-questions",
     );
     const parsed = exitQuizResource
-      ? Number.parseInt(exitQuizResource.metadata ?? "", 6)
+      ? Number.parseInt(exitQuizResource.metadata ?? "", 10)
       : Number.NaN;
     return Number.isNaN(parsed) ? undefined : parsed;
   })();

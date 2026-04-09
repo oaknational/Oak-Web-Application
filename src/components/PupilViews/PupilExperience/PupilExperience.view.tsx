@@ -866,7 +866,7 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
 
   // Read assignmentToken from the URL for the CourseWork flow
   const searchParams =
-    typeof globalThis.window === "undefined"
+    globalThis.window === undefined
       ? null
       : new URLSearchParams(globalThis.window.location.search);
   const assignmentToken = searchParams?.get("assignmentToken") ?? null;
