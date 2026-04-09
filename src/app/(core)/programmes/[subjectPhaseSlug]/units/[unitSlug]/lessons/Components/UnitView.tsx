@@ -216,6 +216,7 @@ const HelpLinkCard = ({ $display }: { $display: OakBoxProps["$display"] }) => {
         imageSrc={getCloudinaryImageUrl(
           "v1734018546/OWA/illustrations/hero-aila_wgpmas.jpg",
         )}
+        aspectRatio="4/3"
       />
     </OakBox>
   );
