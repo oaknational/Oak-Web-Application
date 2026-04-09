@@ -23,19 +23,19 @@ describe("WhoAreWeTimeline", () => {
         subTitle={"TEST_SUBTITLE"}
         items={[
           {
-            title: "ITEM_TITLE_1",
-            subTitle: "ITEM_SUBTITLE_1",
-            text: genPortableText("ITEM_TEXT_1"),
+            heading: "ITEM_TITLE_1",
+            subHeading: "ITEM_SUBTITLE_1",
+            textRaw: genPortableText("ITEM_TEXT_1"),
           },
           {
-            title: "ITEM_TITLE_2",
-            subTitle: "ITEM_SUBTITLE_2",
-            text: genPortableText("ITEM_TEXT_2"),
+            heading: "ITEM_TITLE_2",
+            subHeading: "ITEM_SUBTITLE_2",
+            textRaw: genPortableText("ITEM_TEXT_2"),
           },
           {
-            title: "ITEM_TITLE_3",
-            subTitle: "ITEM_SUBTITLE_3",
-            text: [
+            heading: "ITEM_TITLE_3",
+            subHeading: "ITEM_SUBTITLE_3",
+            textRaw: [
               {
                 markDefs: [
                   {

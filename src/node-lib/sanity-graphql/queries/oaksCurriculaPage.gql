@@ -1,26 +1,31 @@
 query oaksCurriculaPage($isDraftFilter: Sanity_DocumentFilter) {
   allNewAboutCorePageOaksCurricula(
-    where: { _: $isDraftFilter, _id: { matches: "*newAboutCorePage.oaksCurricula" } }
+    where: {
+      _: $isDraftFilter
+      _id: { matches: "*newAboutCorePage.oaksCurricula" }
+    }
     sort: { _updatedAt: DESC }
     limit: 1
   ) {
     id: _id
     header {
-      subtitlePortableText: subtitleRaw
+      introText
       image {
         ...ImageWithAltText
       }
     }
     guidingPrinciples {
+      textRaw
       image {
         ...ImageWithAltText
       }
       principles {
         heading
-        text
+        text2Raw
       }
     }
     currentPartners {
+      textRaw
       partners {
         logo {
           ...ImageWithAltText
@@ -28,6 +33,7 @@ query oaksCurriculaPage($isDraftFilter: Sanity_DocumentFilter) {
       }
     }
     legacyPartners {
+      textRaw
       partners {
         logo {
           ...ImageWithAltText
