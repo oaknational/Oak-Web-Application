@@ -9,6 +9,7 @@ import sdk from "../../sdk";
 
 import teachersUnitOverviewQuery from "./teachersUnitOverview.query";
 import {
+  Threads,
   unitOverviewDataSchema,
   UnitSequence,
 } from "./teachersUnitOverview.schema";
@@ -96,6 +97,28 @@ const matchingSubjectCategoriesFixture = [
   },
 ];
 
+export const threadsFixture: Threads = [
+  {
+    threads: [
+      {
+        thread_id: 1,
+        thread_slug: "thread-1",
+        thread_title: "Thread 1",
+      },
+      {
+        thread_id: 2,
+        thread_slug: "thread-2",
+        thread_title: "Thread 2",
+      },
+      {
+        thread_id: 3,
+        thread_slug: "thread-3",
+        thread_title: "Thread 3",
+      },
+    ],
+  },
+];
+
 export const unitSequenceFixture: UnitSequence = [
   {
     unitSlug: "unit-1",
@@ -146,6 +169,7 @@ describe("teachersUnitOverview", () => {
             unitSequence: unitSequenceFixture,
             unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
             matchingSubjectCategories: matchingSubjectCategoriesFixture,
+            threads: [],
           }),
         ),
       })({
@@ -163,6 +187,7 @@ describe("teachersUnitOverview", () => {
           unitSequence: unitSequenceFixture,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
           matchingSubjectCategories: matchingSubjectCategoriesFixture,
+          threads: [],
         }),
       ),
     })({
@@ -195,6 +220,9 @@ describe("teachersUnitOverview", () => {
       phaseSlug: "primary",
       phaseTitle: "Primary",
       parentSubject: "Maths",
+      threads: [],
+      whyThisWhyNow: undefined,
+      priorKnowledgeRequirements: ["requirement 1", "requirement 2"],
       actions: { isPePractical: false },
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
@@ -235,6 +263,7 @@ describe("teachersUnitOverview", () => {
           unitSequence: unitSequenceFixture,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
           matchingSubjectCategories: matchingSubjectCategoriesFixture,
+          threads: [],
         }),
       ),
     })({
@@ -267,6 +296,7 @@ describe("teachersUnitOverview", () => {
             unitSequence: unitSequenceFixture,
             unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
             matchingSubjectCategories: matchingSubjectCategoriesFixture,
+            threads: threadsFixture,
           }),
         ),
       })({
@@ -298,6 +328,7 @@ describe("teachersUnitOverview", () => {
           ],
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
           matchingSubjectCategories: matchingSubjectCategoriesFixture,
+          threads: [],
         }),
       ),
     })({
@@ -334,6 +365,7 @@ describe("teachersUnitOverview", () => {
           unitSequence: unitSequenceWithCategories,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
           matchingSubjectCategories: [],
+          threads: [],
         }),
       ),
     })({

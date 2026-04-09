@@ -1,3 +1,20 @@
+# [1.1037.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1036.0...v1.1037.0) (2026-04-09)
+
+
+### Bug Fixes
+
+* only show threads header when there are threads ([d887a39](https://github.com/oaknational/Oak-Web-Application/commit/d887a399ad008c710b09faf41c1c9bacc0d6c343))
+* threads response data structure ([d234699](https://github.com/oaknational/Oak-Web-Application/commit/d234699849bbe6d7eb18c47351e2a2cee5b9a54a))
+
+
+### Features
+
+* add unit details to query and pass to page ([1b9e2ad](https://github.com/oaknational/Oak-Web-Application/commit/1b9e2ad783a1b5b214f567cfa9c69f836525a405))
+* get threads from unit overview query ([3cc93de](https://github.com/oaknational/Oak-Web-Application/commit/3cc93defee6b4156dc51555171241e496ba06209))
+* merge in main ([4de6820](https://github.com/oaknational/Oak-Web-Application/commit/4de6820c433c803afb7e7b9b53976769a57de39f))
+* render threads on unit overview ([108cae2](https://github.com/oaknational/Oak-Web-Application/commit/108cae29260c780cc3712bc7fd044c4eef5ab48b))
+* style unit info section ([46a844c](https://github.com/oaknational/Oak-Web-Application/commit/46a844c1f49ceed155190ce4dfe1482b12e26d7b))
+
 # [1.1036.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1035.0...v1.1036.0) (2026-04-09)
 
 
