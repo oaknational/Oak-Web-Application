@@ -16,6 +16,8 @@ import { ProgrammeToggles } from "./ProgrammeToggles";
 
 import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
+import BrowseNavItem from "@/components/TeacherComponents/BrowseNavItem/BrowseNavItem";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type UnitViewProps = Pick<
   TeachersUnitOverviewData,
@@ -36,6 +38,8 @@ export type UnitViewProps = Pick<
   | "phaseSlug"
   | "tierOptionToggles"
   | "subjectOptionToggles"
+  | "prevUnit"
+  | "nextUnit"
 >;
 
 export const UnitView = ({
@@ -56,6 +60,8 @@ export const UnitView = ({
   phaseSlug,
   tierOptionToggles,
   subjectOptionToggles,
+  nextUnit,
+  prevUnit,
 }: UnitViewProps) => {
   const hasToggles =
     tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
@@ -138,9 +144,49 @@ export const UnitView = ({
             lessonCount={lessons.length}
           />
         </OakGridArea>
+        <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
+          <OakGrid $rg={"spacing-24"}>
+            {prevUnit && (
+              <OakGridArea $colSpan={[12, 4, 3]}>
+                <BrowseNavItem
+                  navDirection="prev"
+                  browseItem="unit"
+                  linkHref={resolveOakHref({
+                    page: "unit-page",
+                    unitSlug: prevUnit.slug,
+                    subjectPhaseSlug: programmeSlug,
+                  })}
+                  backgroundColorLevel={getBackgroundColorLevel(phaseSlug)}
+                  title={prevUnit.title}
+                  index={unitIndex - 1}
+                />
+              </OakGridArea>
+            )}
+            {nextUnit && (
+              <OakGridArea $colSpan={[12, 4, 3]} $colStart={[1, 9, 10]}>
+                <BrowseNavItem
+                  navDirection="next"
+                  browseItem="unit"
+                  linkHref={resolveOakHref({
+                    page: "unit-page",
+                    unitSlug: nextUnit.slug,
+                    subjectPhaseSlug: programmeSlug,
+                  })}
+                  backgroundColorLevel={getBackgroundColorLevel(phaseSlug)}
+                  title={nextUnit.title}
+                  index={unitIndex + 1}
+                />
+              </OakGridArea>
+            )}
+          </OakGrid>
+        </OakGridArea>
       </OakGrid>
     </OakBox>
   );
+};
+
+const getBackgroundColorLevel = (phaseSlug: UnitViewProps["phaseSlug"]) => {
+  return phaseSlug === "primary" ? 4 : 3;
 };
 
 const UnitInfo = ({
@@ -191,7 +237,6 @@ const UnitThreads = ({
   $display: OakFlexProps["$display"];
   phaseSlug: UnitViewProps["phaseSlug"];
 }) => {
-  const backgroundColorLevel = phaseSlug === "primary" ? 4 : 3;
   if (threads.length) {
     return (
       <OakFlex
@@ -205,8 +250,8 @@ const UnitThreads = ({
             <OakTagFunctional
               key={thread}
               label={thread}
-              $background={`bg-decorative${backgroundColorLevel}-very-subdued`}
-              $borderColor={`border-decorative${backgroundColorLevel}`}
+              $background={`bg-decorative${getBackgroundColorLevel(phaseSlug)}-very-subdued`}
+              $borderColor={`border-decorative${getBackgroundColorLevel(phaseSlug)}`}
               $ba={"border-solid-s"}
             />
           ))}

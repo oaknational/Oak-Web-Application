@@ -15,7 +15,7 @@ const meta: Meta<typeof BrowseNavItem> = {
     ),
   ],
   args: {
-    index: "1",
+    index: 1,
     backgroundColorLevel: 3,
     title:
       "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",

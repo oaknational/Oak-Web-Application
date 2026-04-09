@@ -32,7 +32,7 @@ type BrowseNavItemProps = {
   /**
    * Optional index of the browse item to be displayed along with the title
    */
-  index?: string;
+  index?: number;
 };
 
 const StyledFlexContainer = styled(OakFlex)<
@@ -57,7 +57,7 @@ export default function BrowseNavItem({
   backgroundColorLevel,
 }: Readonly<BrowseNavItemProps>) {
   return (
-    <OakFocusIndicator $width={"spacing-360"} $borderRadius={"border-radius-l"}>
+    <OakFocusIndicator $borderRadius={"border-radius-l"}>
       <StyledFlexContainer
         $borderRadius={"border-radius-l"}
         $borderColor={"border-neutral-lighter"}
@@ -65,10 +65,9 @@ export default function BrowseNavItem({
         $flexDirection={"column"}
         $pa={"spacing-24"}
         $gap={"spacing-12"}
-        $width={"spacing-360"}
         backgroundColorLevel={backgroundColorLevel}
       >
-        {index && (
+        {Boolean(index) && (
           <OakFlex
             $borderRadius={"border-radius-circle"}
             $font={"heading-7"}
@@ -82,7 +81,7 @@ export default function BrowseNavItem({
             {index}
           </OakFlex>
         )}
-        <OakTypography $font={"body-3"} $color={"text-primary"}>
+        <OakTypography $font={"body-3-bold"} $color={"text-primary"}>
           {title}
         </OakTypography>
         <OakFlex
