@@ -86,13 +86,13 @@ describe("LessonShareLinks", () => {
       />,
     );
 
-    const copyLinkButton = getByRole("link", {
-      name: "Share to Google Classroom",
+    const googleClassroomButton = getByRole("button", {
+      name: "Assign to Google Classroom",
     });
 
-    expect(copyLinkButton).toBeInTheDocument();
+    expect(googleClassroomButton).toBeInTheDocument();
     const user = userEvent.setup();
-    await user.click(copyLinkButton);
+    await user.click(googleClassroomButton);
     expect(onSubmit).toHaveBeenCalledWith("google-classroom");
   });
 });

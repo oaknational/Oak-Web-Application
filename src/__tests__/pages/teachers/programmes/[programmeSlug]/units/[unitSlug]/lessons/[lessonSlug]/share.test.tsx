@@ -178,8 +178,8 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
         name: "Copy link to clipboard",
       });
       expect(shareButtonCopy).toBeInTheDocument();
-      const shareButtonGoogle = screen.getByRole("link", {
-        name: "Share to Google Classroom",
+      const shareButtonGoogle = screen.getByRole("button", {
+        name: "Assign to Google Classroom",
       });
       expect(shareButtonGoogle).toBeInTheDocument();
       const shareButtonMicrosoft = screen.getByRole("link", {
