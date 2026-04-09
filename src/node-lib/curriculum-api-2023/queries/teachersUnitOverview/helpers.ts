@@ -11,11 +11,13 @@ import {
   PackagedUnitData,
   ProgrammeToggles,
   TeachersUnitOverviewData,
+  Threads,
   UnitSequence,
   UnitsInOtherProgrammes,
 } from "./teachersUnitOverview.schema";
 
 import OakError from "@/errors/OakError";
+import { sortChildSubjects, sortTiers } from "@/utils/curriculum/sorting";
 import { getIntersection } from "@/utils/getIntersection";
 
 export const getTransformedLessons = (
@@ -172,15 +174,25 @@ export const getUnitCounts = ({
   };
 };
 
-export const getPackagedUnit = (
-  packagedUnitData: PackagedUnitData,
-  unitLessons: LessonListSchema,
-  containsGeorestrictedLessons: boolean,
-  containsLoginRequiredLessons: boolean,
-  unitSequenceData: UnitSequence,
-  unitsInOtherProgrammes: UnitsInOtherProgrammes,
-  currentSubjectCategoryTitle?: string,
-): TeachersUnitOverviewData => {
+export const getPackagedUnit = ({
+  packagedUnitData,
+  unitLessons,
+  containsGeorestrictedLessons,
+  containsLoginRequiredLessons,
+  unitSequenceData,
+  unitsInOtherProgrammes,
+  threads,
+  currentSubjectCategoryTitle,
+}: {
+  packagedUnitData: PackagedUnitData;
+  unitLessons: LessonListSchema;
+  containsGeorestrictedLessons: boolean;
+  containsLoginRequiredLessons: boolean;
+  unitSequenceData: UnitSequence;
+  unitsInOtherProgrammes: UnitsInOtherProgrammes;
+  threads: Threads;
+  currentSubjectCategoryTitle?: string;
+}): TeachersUnitOverviewData => {
   const {
     programmeFields,
     unitSlug,
@@ -190,6 +202,8 @@ export const getPackagedUnit = (
     programmeSlug,
     programmeSlugByYear,
     nullUnitvariantId,
+    whyThisWhyNow,
+    priorKnowledgeRequirements,
   } = packagedUnitData;
 
   const modifiedProgrammeFields = getCorrectYear({
@@ -225,6 +239,10 @@ export const getPackagedUnit = (
     currentSubjectCategoryTitle,
   });
 
+  const threadItems = threads
+    .flatMap((thread) => thread.threads?.map((t) => t.thread_title))
+    .filter((thread) => thread !== undefined);
+
   return {
     programmeSlug,
     keyStageSlug: modifiedProgrammeFields.keystage_slug,
@@ -252,12 +270,15 @@ export const getPackagedUnit = (
     phaseSlug: modifiedProgrammeFields.phase_slug,
     phaseTitle: modifiedProgrammeFields.phase_description,
     actions: combinedActions,
+    whyThisWhyNow,
+    priorKnowledgeRequirements,
     containsGeorestrictedLessons,
     containsLoginRequiredLessons,
     nextUnit,
     prevUnit,
     tierOptionToggles,
     subjectOptionToggles,
+    threads: threadItems,
   };
 };
 
@@ -281,9 +302,10 @@ export const getProgrammeToggles = (
           programme.programme_fields.subject_slug ===
             currentProgramme.programme_fields.subject_slug &&
           programme.programme_fields.examboard_slug ===
-            currentProgramme.programme_fields.examboard_slug &&
-          programme.programme_fields.tier_description !== null,
+            currentProgramme.programme_fields.examboard_slug,
       )
+      .filter(hasTierFields)
+      .toSorted((a, b) => sortTiers(a.programme_fields, b.programme_fields))
       .map((programme) => ({
         title: programme.programme_fields.tier_description,
         programmeSlug: programme.programme_slug,
@@ -299,10 +321,14 @@ export const getProgrammeToggles = (
         programme.programme_fields.tier_slug ===
           currentProgramme.programme_fields.tier_slug,
     )
+    .toSorted((a, b) =>
+      sortChildSubjects(a.programme_fields, b.programme_fields),
+    )
     .map((programme) => ({
       title: programme.programme_fields.subject,
       programmeSlug: programme.programme_slug,
       isSelected: programme.programme_slug === programmeSlug,
+      subjectSlug: programme.programme_fields.subject_slug,
     }));
 
   if (subjectOptionToggles.length === 1) {
@@ -315,3 +341,17 @@ export const getProgrammeToggles = (
     subjectOptionToggles,
   };
 };
+
+function hasTierFields<T extends UnitsInOtherProgrammes[number]>(
+  programme: T,
+): programme is T & {
+  programme_fields: T["programme_fields"] & {
+    tier_slug: string;
+    tier_description: string;
+  };
+} {
+  return (
+    programme.programme_fields.tier_description !== null &&
+    programme.programme_fields.tier_slug !== null
+  );
+}

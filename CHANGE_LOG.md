@@ -1,3 +1,36 @@
+# [1.1037.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1036.0...v1.1037.0) (2026-04-09)
+
+
+### Bug Fixes
+
+* only show threads header when there are threads ([d887a39](https://github.com/oaknational/Oak-Web-Application/commit/d887a399ad008c710b09faf41c1c9bacc0d6c343))
+* threads response data structure ([d234699](https://github.com/oaknational/Oak-Web-Application/commit/d234699849bbe6d7eb18c47351e2a2cee5b9a54a))
+
+
+### Features
+
+* add unit details to query and pass to page ([1b9e2ad](https://github.com/oaknational/Oak-Web-Application/commit/1b9e2ad783a1b5b214f567cfa9c69f836525a405))
+* get threads from unit overview query ([3cc93de](https://github.com/oaknational/Oak-Web-Application/commit/3cc93defee6b4156dc51555171241e496ba06209))
+* merge in main ([4de6820](https://github.com/oaknational/Oak-Web-Application/commit/4de6820c433c803afb7e7b9b53976769a57de39f))
+* render threads on unit overview ([108cae2](https://github.com/oaknational/Oak-Web-Application/commit/108cae29260c780cc3712bc7fd044c4eef5ab48b))
+* style unit info section ([46a844c](https://github.com/oaknational/Oak-Web-Application/commit/46a844c1f49ceed155190ce4dfe1482b12e26d7b))
+
+# [1.1036.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1035.0...v1.1036.0) (2026-04-09)
+
+
+### Bug Fixes
+
+* download button causing page height to increase ([800472e](https://github.com/oaknational/Oak-Web-Application/commit/800472e97b3410210dc53f6cb955383842be4a84))
+* **LESQ-1858:** sort programme toggles for consistency with programme page ([0adf6de](https://github.com/oaknational/Oak-Web-Application/commit/0adf6deb4933d1f04161100321a79d50d4728627))
+
+
+### Features
+
+* **LESQ-1858:** add a component to navigate between tiers ([5072d63](https://github.com/oaknational/Oak-Web-Application/commit/5072d63356a20e135de7a89c395af3b20a4cdc94))
+* **LESQ-1858:** add subject icons to subject programme toggles ([ca4b148](https://github.com/oaknational/Oak-Web-Application/commit/ca4b1482ffdadbfc553a2e2059975d76d370cc68))
+* **LESQ-1858:** add subject option toggles ([8e7e395](https://github.com/oaknational/Oak-Web-Application/commit/8e7e39581a3951082fc150c4ba7793cd92071003))
+* **LESQ-1858:** wire up the tier toggle UI ([883f04d](https://github.com/oaknational/Oak-Web-Application/commit/883f04d71ac1759239ba2505b1a4ab3cf8731828))
+
 # [1.1035.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1034.0...v1.1035.0) (2026-04-08)
 
 
