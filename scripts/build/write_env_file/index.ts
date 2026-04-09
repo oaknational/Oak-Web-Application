@@ -34,24 +34,18 @@ async function main() {
   let appVersion: string;
   let isProductionBuild = false;
 
-  function getCurriculumApi2026AuthKey(
-    secretsFromNetwork: Record<string, string>,
-  ) {
+  function getCurriculumApiAuthKey(secretsFromNetwork: Record<string, string>) {
     const VERCEL_ENV = process.env.VERCEL_ENV || "development";
-    console.log(
-      "Determining curriculum api 2026 auth key for VERCEL_ENV",
-      VERCEL_ENV,
-      secretsFromNetwork,
-    );
+
     switch (VERCEL_ENV) {
       // These all query the production database, so should use the production auth key
       case "production":
       case "development":
       case "preview":
-        return secretsFromNetwork.CURRICULUM_API_2026_AUTH_KEY_PRODUCTION;
-      // This queries the development database, so should use the development auth key
+        return secretsFromNetwork.CURRICULUM_API_AUTH_KEY_V2_PRODUCTION;
+      // This queries the staging database, so should use the staging auth key
       case "staging":
-        return secretsFromNetwork.CURRICULUM_API_2026_AUTH_KEY_STAGING;
+        return secretsFromNetwork.CURRICULUM_API_AUTH_KEY_V2_STAGING;
       case "test":
         return "very secret";
       default:
@@ -164,9 +158,9 @@ async function main() {
     CURRICULUM_API_2023_AUTH_KEY:
       process.env.CURRICULUM_API_2023_AUTH_KEY ||
       secretsFromNetwork.CURRICULUM_API_2023_AUTH_KEY,
-    CURRICULUM_API_2026_AUTH_KEY:
-      process.env.CURRICULUM_API_2026_AUTH_KEY ||
-      getCurriculumApi2026AuthKey(secretsFromNetwork),
+    CURRICULUM_API_AUTH_KEY_V2:
+      process.env.CURRICULUM_API_AUTH_KEY_V2 ||
+      getCurriculumApiAuthKey(secretsFromNetwork),
     NEXT_PUBLIC_VERCEL_API_URL:
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
     NEXT_PUBLIC_DOWNLOAD_API_URL:
@@ -340,7 +334,7 @@ async function main() {
       process.env.GOOGLE_CLASSROOM_SESSION_SECRET ||
       secretsFromNetwork.GOOGLE_CLASSROOM_SESSION_SECRET,
   };
-  console.log("value in env file", env.CURRICULUM_API_2026_AUTH_KEY);
+
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
     return `${acc}${key}=${value}\n`;
   }, "");

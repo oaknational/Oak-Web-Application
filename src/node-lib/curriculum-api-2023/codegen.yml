@@ -2,7 +2,7 @@ overwrite: true
 schema:
   - ${CURRICULUM_API_2023_URL}:
       headers:
-        Authorization: "Bearer ${CURRICULUM_API_2026_AUTH_KEY_PRODUCTION}"
+        Authorization: "Bearer ${CURRICULUM_API_AUTH_KEY_V2}"
 
 documents: "src/node-lib/curriculum-api-2023/**/*.{graphql,gql}"
 generates:

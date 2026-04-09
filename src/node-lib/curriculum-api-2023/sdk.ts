@@ -10,7 +10,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 
 const curriculumApiUrl = getServerConfig("curriculumApi2023Url");
-const curriculumApiAuthKey = getServerConfig("curriculumApi2026AuthKey");
+const curriculumApiAuthKey = getServerConfig("curriculumApiAuthKeyV2");
 
 /**
  * TS complaining when Headers in not typed.
@@ -22,7 +22,6 @@ const headers: Headers = {
   Authorization: `Bearer ${curriculumApiAuthKey}`,
 };
 const reportError = errorReporter("Graphql sdk");
-console.log("Curriculum API auth key in sdk", curriculumApiAuthKey, headers); // Log the auth key to verify it's being read correctly
 const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
 const retryCount = 3;
 const withRetries = <T>(
