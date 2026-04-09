@@ -73,7 +73,6 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
   curriculumPhaseOptions,
   topNav,
 }) => {
-  // to do: what was the trimTrailingEmptyBlocks doing here?
   const headerImageUrl = getProxiedSanityAssetUrl(
     pageData.header.image?.asset?.url,
   );
