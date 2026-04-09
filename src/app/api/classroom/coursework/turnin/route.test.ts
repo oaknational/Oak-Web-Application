@@ -48,7 +48,7 @@ const mockGetStudentSubmissionId = jest
 const mockTurnInCourseWorkSubmission = jest.fn().mockResolvedValue(undefined);
 
 describe("POST /api/classroom/coursework/turnin", () => {
-  let mockRequest: Partial<NextRequest>;
+  let mockRequest: NextRequest;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -63,9 +63,9 @@ describe("POST /api/classroom/coursework/turnin", () => {
     mockRequest = {
       json: async () => ({ assignmentToken: "token-abc" }),
       headers: mockAuthHeaders,
-    };
+    } as unknown as NextRequest;
 
-    await POST(mockRequest as NextRequest);
+    await POST(mockRequest);
 
     expect(mockGetClassroomCourseWork).toHaveBeenCalledWith("token-abc");
     expect(mockGetStudentSubmissionId).toHaveBeenCalledWith(
@@ -94,9 +94,9 @@ describe("POST /api/classroom/coursework/turnin", () => {
     mockRequest = {
       json: async () => ({ assignmentToken: "token-abc" }),
       headers: mockAuthHeaders,
-    };
+    } as unknown as NextRequest;
 
-    await POST(mockRequest as NextRequest);
+    await POST(mockRequest);
 
     expect(mockGetStudentSubmissionId).not.toHaveBeenCalled();
     expect(mockTurnInCourseWorkSubmission).not.toHaveBeenCalled();
@@ -110,9 +110,9 @@ describe("POST /api/classroom/coursework/turnin", () => {
     mockRequest = {
       json: async () => ({ assignmentToken: "token-abc" }),
       headers: { get: jest.fn(() => null) },
-    };
+    } as unknown as NextRequest;
 
-    await POST(mockRequest as NextRequest);
+    await POST(mockRequest);
 
     expect(mockGetClassroomCourseWork).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
@@ -125,9 +125,9 @@ describe("POST /api/classroom/coursework/turnin", () => {
     mockRequest = {
       json: async () => ({}),
       headers: mockAuthHeaders,
-    };
+    } as unknown as NextRequest;
 
-    await POST(mockRequest as NextRequest);
+    await POST(mockRequest);
 
     expect(mockGetClassroomCourseWork).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
@@ -142,9 +142,9 @@ describe("POST /api/classroom/coursework/turnin", () => {
     mockRequest = {
       json: async () => ({ assignmentToken: "token-abc" }),
       headers: mockAuthHeaders,
-    };
+    } as unknown as NextRequest;
 
-    await POST(mockRequest as NextRequest);
+    await POST(mockRequest);
 
     expect(NextResponse.json).toHaveBeenCalledWith(
       { error: "Failed to turn in assignment", details: "API failure" },

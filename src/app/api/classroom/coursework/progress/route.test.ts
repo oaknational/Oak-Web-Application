@@ -57,7 +57,7 @@ const mockGetCourseWorkPupilProgress = jest
   .mockResolvedValue(mockGetProgressResult);
 
 describe("GET /api/classroom/coursework/progress", () => {
-  let mockRequest: Partial<NextRequest>;
+  let mockRequest: NextRequest;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -75,9 +75,9 @@ describe("GET /api/classroom/coursework/progress", () => {
           assignmentToken: "token-abc",
         }),
       } as NextRequest["nextUrl"],
-    };
+    } as unknown as NextRequest;
 
-    await GET(mockRequest as NextRequest);
+    await GET(mockRequest);
 
     expect(mockGetCourseWorkPupilProgress).toHaveBeenCalledWith(
       "submission-123",
@@ -93,9 +93,9 @@ describe("GET /api/classroom/coursework/progress", () => {
       nextUrl: {
         searchParams: new URLSearchParams({ assignmentToken: "token-abc" }),
       } as NextRequest["nextUrl"],
-    };
+    } as unknown as NextRequest;
 
-    await GET(mockRequest as NextRequest);
+    await GET(mockRequest);
 
     expect(mockGetCourseWorkPupilProgress).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
@@ -111,9 +111,9 @@ describe("GET /api/classroom/coursework/progress", () => {
       nextUrl: {
         searchParams: new URLSearchParams({ submissionId: "submission-123" }),
       } as NextRequest["nextUrl"],
-    };
+    } as unknown as NextRequest;
 
-    await GET(mockRequest as NextRequest);
+    await GET(mockRequest);
 
     expect(mockGetCourseWorkPupilProgress).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
@@ -134,9 +134,9 @@ describe("GET /api/classroom/coursework/progress", () => {
           assignmentToken: "token-abc",
         }),
       } as NextRequest["nextUrl"],
-    };
+    } as unknown as NextRequest;
 
-    await GET(mockRequest as NextRequest);
+    await GET(mockRequest);
 
     expect(NextResponse.json).toHaveBeenCalledWith(
       {
@@ -149,7 +149,7 @@ describe("GET /api/classroom/coursework/progress", () => {
 });
 
 describe("POST /api/classroom/coursework/progress", () => {
-  let mockRequest: Partial<NextRequest>;
+  let mockRequest: NextRequest;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -163,9 +163,9 @@ describe("POST /api/classroom/coursework/progress", () => {
     mockRequest = {
       json: async () => mockProgressBody,
       headers: mockAuthHeaders,
-    };
+    } as unknown as NextRequest;
 
-    await POST(mockRequest as NextRequest);
+    await POST(mockRequest);
 
     expect(mockUpsertCourseWorkPupilProgress).toHaveBeenCalledWith(
       mockProgressBody,
@@ -194,9 +194,9 @@ describe("POST /api/classroom/coursework/progress", () => {
     mockRequest = {
       json: async () => bodyWithQuiz,
       headers: mockAuthHeaders,
-    };
+    } as unknown as NextRequest;
 
-    await POST(mockRequest as NextRequest);
+    await POST(mockRequest);
 
     expect(mockUpsertCourseWorkPupilProgress).toHaveBeenCalledWith(
       bodyWithQuiz,
@@ -212,9 +212,9 @@ describe("POST /api/classroom/coursework/progress", () => {
     mockRequest = {
       json: async () => mockProgressBody,
       headers: { get: jest.fn(() => null) },
-    };
+    } as unknown as NextRequest;
 
-    await POST(mockRequest as NextRequest);
+    await POST(mockRequest);
 
     expect(mockUpsertCourseWorkPupilProgress).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
@@ -227,9 +227,9 @@ describe("POST /api/classroom/coursework/progress", () => {
     mockRequest = {
       json: async () => ({ submissionId: "submission-123" }),
       headers: mockAuthHeaders,
-    };
+    } as unknown as NextRequest;
 
-    await POST(mockRequest as NextRequest);
+    await POST(mockRequest);
 
     expect(mockUpsertCourseWorkPupilProgress).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
@@ -246,9 +246,9 @@ describe("POST /api/classroom/coursework/progress", () => {
     mockRequest = {
       json: async () => mockProgressBody,
       headers: mockAuthHeaders,
-    };
+    } as unknown as NextRequest;
 
-    await POST(mockRequest as NextRequest);
+    await POST(mockRequest);
 
     expect(NextResponse.json).toHaveBeenCalledWith(
       { error: "Failed to upsert progress", details: "Database error" },

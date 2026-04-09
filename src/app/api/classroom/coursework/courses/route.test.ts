@@ -46,7 +46,7 @@ const mockAuthHeaders = {
 };
 
 describe("GET /api/classroom/coursework/courses", () => {
-  let mockRequest: Partial<NextRequest>;
+  let mockRequest: NextRequest;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -56,9 +56,9 @@ describe("GET /api/classroom/coursework/courses", () => {
   });
 
   it("returns the list of courses", async () => {
-    mockRequest = { headers: mockAuthHeaders };
+    mockRequest = { headers: mockAuthHeaders } as unknown as NextRequest;
 
-    await GET(mockRequest as NextRequest);
+    await GET(mockRequest);
 
     expect(mockListCourses).toHaveBeenCalledWith(mockAccessToken, mockSession);
     expect(NextResponse.json).toHaveBeenCalledWith(
@@ -68,9 +68,11 @@ describe("GET /api/classroom/coursework/courses", () => {
   });
 
   it("returns 401 when auth headers are missing", async () => {
-    mockRequest = { headers: { get: jest.fn(() => null) } };
+    mockRequest = {
+      headers: { get: jest.fn(() => null) },
+    } as unknown as NextRequest;
 
-    await GET(mockRequest as NextRequest);
+    await GET(mockRequest);
 
     expect(mockListCourses).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
@@ -86,9 +88,9 @@ describe("GET /api/classroom/coursework/courses", () => {
           name === "Authorization" ? mockAccessToken : null,
         ),
       },
-    };
+    } as unknown as NextRequest;
 
-    await GET(mockRequest as NextRequest);
+    await GET(mockRequest);
 
     expect(mockListCourses).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
@@ -99,9 +101,9 @@ describe("GET /api/classroom/coursework/courses", () => {
 
   it("returns 500 on unexpected errors", async () => {
     mockListCourses.mockRejectedValueOnce(new Error("Classroom API down"));
-    mockRequest = { headers: mockAuthHeaders };
+    mockRequest = { headers: mockAuthHeaders } as unknown as NextRequest;
 
-    await GET(mockRequest as NextRequest);
+    await GET(mockRequest);
 
     expect(NextResponse.json).toHaveBeenCalledWith(
       { error: "Failed to list courses", details: "Classroom API down" },

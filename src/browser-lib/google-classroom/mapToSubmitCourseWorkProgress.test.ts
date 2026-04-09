@@ -215,6 +215,9 @@ describe("mapToSubmitCourseWorkProgress", () => {
           played: true,
           duration: 300,
           timeElapsed: 240,
+          muted: false,
+          signedOpened: false,
+          transcriptOpened: false,
           isComplete: false,
         },
       };
@@ -268,6 +271,9 @@ describe("mapToSubmitCourseWorkProgress", () => {
         played: true,
         duration: 120,
         timeElapsed: 120,
+        muted: false,
+        signedOpened: false,
+        transcriptOpened: false,
         isComplete: true,
       },
       intro: {
