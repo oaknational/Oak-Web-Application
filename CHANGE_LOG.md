@@ -1,3 +1,15 @@
+# [1.1038.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1037.1...v1.1038.0) (2026-04-09)
+
+
+### Bug Fixes
+
+* image aspect ratio ([16d23d6](https://github.com/oaknational/Oak-Web-Application/commit/16d23d68f8409d6bf77d668d4601ccce84eebecd))
+
+
+### Features
+
+* add card component to unit view ([893d85d](https://github.com/oaknational/Oak-Web-Application/commit/893d85d1b650f8b2def97dbd7951034f75e864aa))
+
 ## [1.1037.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1037.0...v1.1037.1) (2026-04-09)
 
 
