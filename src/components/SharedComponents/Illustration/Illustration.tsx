@@ -1,10 +1,10 @@
+import { OakBox, OakBoxProps } from "@oaknational/oak-components";
 import { FC } from "react";
 
 import { getIllustrationAsset, IllustrationSlug } from "@/image-data";
-import { CMSImageProps } from "@/components/SharedComponents/CMSImage/CMSImage";
-import CMSImage from "@/components/SharedComponents/CMSImage";
-import Box from "@/components/SharedComponents/Box";
-
+import CMSImage, {
+  CMSImageProps,
+} from "@/components/SharedComponents/CMSImage";
 type IllustrationProps = Omit<CMSImageProps, "image"> & {
   slug: IllustrationSlug;
 };
@@ -14,9 +14,9 @@ const Illustration: FC<IllustrationProps> = ({ slug, ...cmsImageProps }) => {
 
   if (!asset) {
     return (
-      <Box
+      <OakBox
         style={{ width: cmsImageProps.width, height: cmsImageProps.height }}
-        {...cmsImageProps}
+        {...(cmsImageProps as OakBoxProps)}
       />
     );
   }

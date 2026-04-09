@@ -7,6 +7,7 @@ import HeaderListing from "@/components/TeacherComponents/HeaderListing";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import { SpecialistLessonListingData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 import { TakedownBanner } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type SpecialistLessonListingProps = {
   curriculumData: SpecialistLessonListingData;
@@ -47,28 +48,28 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
       <HeaderListing
         breadcrumbs={[
           {
-            oakLinkProps: { page: "home" },
+            href: resolveOakHref({ page: "home" }),
             label: "Home",
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "specialist-subject-index",
-            },
+            }),
             label: "Specialist and therapies",
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "specialist-unit-index",
               programmeSlug,
-            },
+            }),
             label: programmeTitle,
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "specialist-lesson-index",
               programmeSlug,
               unitSlug,
-            },
+            }),
             label: unitTitle,
             disabled: true,
           },

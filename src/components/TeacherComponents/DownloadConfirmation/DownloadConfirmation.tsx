@@ -9,10 +9,10 @@ import {
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 import { useOakConsent } from "@oaknational/oak-consent-client";
+import styled from "styled-components";
 
 import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
 
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { useShare } from "@/pages-helpers/teacher/share/useShare";
@@ -20,6 +20,17 @@ import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareB
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareTypes";
 import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
+import { getBreakpoint } from "@/styles/utils/responsive";
+
+const StyledFlex = styled(OakFlex)`
+  width: 140px;
+  height: 140px;
+
+  @media (min-width: ${getBreakpoint("small")}px) {
+    width: 400px;
+    height: 400px;
+  }
+`;
 
 type DownloadConfirmationProps = {
   lessonSlug: string | null;
@@ -132,11 +143,9 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
         $gap={["spacing-24", "spacing-24", "spacing-120"]}
         $mb={["spacing-56", "spacing-0"]}
       >
-        <Flex
+        <StyledFlex
           $alignItems={"center"}
           $justifyContent={"center"}
-          $height={[140, 400]}
-          $width={[140, 400]}
           $position={"relative"}
         >
           <OakIcon
@@ -144,13 +153,13 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             $height={"100%"}
             $width={"100%"}
           />
-        </Flex>
+        </StyledFlex>
 
-        <Flex
+        <OakFlex
           $flexDirection={"column"}
-          $gap={24}
+          $gap={"spacing-24"}
           $alignItems={"flex-start"}
-          $maxWidth={600}
+          $maxWidth={"spacing-640"}
         >
           {unitSlug && unitTitle && programmeSlug ? (
             <OakTertiaryButton
@@ -232,7 +241,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             </OakSpan>
           </OakBox>
           {teacherShareButton}
-        </Flex>
+        </OakFlex>
       </OakFlex>
       {displayNextLessonContainer && isNextLessonsAvailable && (
         <DownloadConfirmationNextLessonContainer

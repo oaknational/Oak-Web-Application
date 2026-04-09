@@ -29,7 +29,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
               >
                 <img
                   alt="ITEM_ALT_0"
-                  class="sc-6170517-0 enHtaO"
+                  class="sc-ba397cd3-0 cYPPcj"
                   data-nimg="1"
                   decoding="async"
                   height="300"
@@ -68,7 +68,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
               >
                 <img
                   alt="ITEM_ALT_1"
-                  class="sc-6170517-0 enHtaO"
+                  class="sc-ba397cd3-0 cYPPcj"
                   data-nimg="1"
                   decoding="async"
                   height="300"
@@ -107,7 +107,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
               >
                 <img
                   alt="ITEM_ALT_2"
-                  class="sc-6170517-0 enHtaO"
+                  class="sc-ba397cd3-0 cYPPcj"
                   data-nimg="1"
                   decoding="async"
                   height="300"
@@ -146,7 +146,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
               >
                 <img
                   alt="ITEM_ALT_3"
-                  class="sc-6170517-0 enHtaO"
+                  class="sc-ba397cd3-0 cYPPcj"
                   data-nimg="1"
                   decoding="async"
                   height="300"

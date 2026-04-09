@@ -3,8 +3,8 @@ import { YearData } from "./types";
 import { findUnitOrOptionBySlug } from "./units";
 import { areLessonsAvailable } from "./lessons";
 
-import { transformOwaLinkProps } from "@/components/SharedComponents/OwaLink";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export function getUnitSeoFromYearData({
   yearData,
@@ -33,18 +33,18 @@ export function getUnitSeoFromYearData({
       unitData?.lessons ?? unitData?.lessons ?? [],
     );
 
-    const lessonPageProps =
+    const href =
       lessonsAvailable && programmeSlug && slug
-        ? transformOwaLinkProps({
+        ? resolveOakHref({
             page: "lesson-index",
             unitSlug: slug,
             programmeSlug,
           })
         : null;
 
-    if (lessonPageProps?.nextLinkProps?.href) {
+    if (href) {
       return {
-        canonicalURL: `${getBrowserConfig("seoAppUrl")}${lessonPageProps?.nextLinkProps?.href}`,
+        canonicalURL: `${getBrowserConfig("seoAppUrl")}${href}`,
         noIndex: true,
       };
     }
