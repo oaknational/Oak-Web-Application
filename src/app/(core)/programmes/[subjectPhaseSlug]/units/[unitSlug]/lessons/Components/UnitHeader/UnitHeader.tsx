@@ -7,7 +7,9 @@ import {
   OakSmallPrimaryInvertedButton,
   OakTertiaryInvertedButton,
   OakUiRoleToken,
+  parseSpacing,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import UnitDownloadButton, {
   useUnitDownloadButtonState,
@@ -41,6 +43,13 @@ export type UnitHeaderProps = Omit<
     subjectTitle: string;
   };
 };
+
+/**
+ * Compensates for the additional height introduced by the icon in the button
+ */
+const NegativeBorderBox = styled(OakBox)`
+  margin-block: -${parseSpacing("spacing-8")};
+`;
 
 const UnitHeader = (props: UnitHeaderProps) => {
   const {
@@ -109,27 +118,29 @@ const UnitHeader = (props: UnitHeaderProps) => {
             />
           </OakFlex>
           {unitDownloadFileId && (
-            <UnitDownloadButton
-              setDownloadError={setDownloadError}
-              setDownloadInProgress={setDownloadInProgress}
-              setShowDownloadMessage={setShowDownloadMessage}
-              setShowIncompleteMessage={setShowIncompleteMessage}
-              downloadInProgress={downloadInProgress}
-              unitFileId={unitDownloadFileId}
-              onDownloadSuccess={() => {
-                track.unitDownloadInitiated({
-                  platform: "owa",
-                  product: "teacher lesson resources",
-                  engagementIntent: "use",
-                  componentType: "unit_download_button",
-                  eventVersion: "2.0.0",
-                  analyticsUseCase: "Teacher",
-                  ...trackingProps,
-                });
-              }}
-              showNewTag={false}
-              geoRestricted={Boolean(isGeorestrictedUnit)}
-            />
+            <NegativeBorderBox>
+              <UnitDownloadButton
+                setDownloadError={setDownloadError}
+                setDownloadInProgress={setDownloadInProgress}
+                setShowDownloadMessage={setShowDownloadMessage}
+                setShowIncompleteMessage={setShowIncompleteMessage}
+                downloadInProgress={downloadInProgress}
+                unitFileId={unitDownloadFileId}
+                onDownloadSuccess={() => {
+                  track.unitDownloadInitiated({
+                    platform: "owa",
+                    product: "teacher lesson resources",
+                    engagementIntent: "use",
+                    componentType: "unit_download_button",
+                    eventVersion: "2.0.0",
+                    analyticsUseCase: "Teacher",
+                    ...trackingProps,
+                  });
+                }}
+                showNewTag={false}
+                geoRestricted={Boolean(isGeorestrictedUnit)}
+              />
+            </NegativeBorderBox>
           )}
         </OakFlex>
         <OakBox

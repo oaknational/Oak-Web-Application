@@ -798,14 +798,16 @@ describe("getProgrammeToggles", () => {
     );
     expect(result.subjectOptionToggles).toEqual([
       {
-        title: "Biology",
-        programmeSlug: "biology-secondary-ks4-aqa",
-        isSelected: false,
-      },
-      {
         title: "Combined science",
         programmeSlug: "combined-science-secondary-ks4-aqa",
         isSelected: true,
+        subjectSlug: "combined-science",
+      },
+      {
+        title: "Biology",
+        programmeSlug: "biology-secondary-ks4-aqa",
+        isSelected: false,
+        subjectSlug: "biology",
       },
     ]);
   });
@@ -871,26 +873,28 @@ describe("getProgrammeToggles", () => {
     );
     expect(result.subjectOptionToggles).toEqual([
       {
-        title: "Biology",
-        programmeSlug: "biology-secondary-ks4-higher-aqa",
-        isSelected: false,
-      },
-      {
         title: "Combined science",
         programmeSlug: "combined-science-secondary-ks4-higher-aqa",
         isSelected: true,
+        subjectSlug: "combined-science",
+      },
+      {
+        title: "Biology",
+        programmeSlug: "biology-secondary-ks4-higher-aqa",
+        isSelected: false,
+        subjectSlug: "biology",
       },
     ]);
     expect(result.tierOptionToggles).toEqual([
       {
-        title: "Higher",
-        programmeSlug: "combined-science-secondary-ks4-higher-aqa",
-        isSelected: true,
-      },
-      {
         title: "Foundation",
         programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
         isSelected: false,
+      },
+      {
+        title: "Higher",
+        programmeSlug: "combined-science-secondary-ks4-higher-aqa",
+        isSelected: true,
       },
     ]);
   });
@@ -936,15 +940,111 @@ describe("getProgrammeToggles", () => {
     );
     expect(result.subjectOptionToggles).toEqual([
       {
-        title: "Biology",
-        programmeSlug: "biology-secondary-ks4-aqa",
-        isSelected: false,
-      },
-      {
         title: "Combined science",
         programmeSlug: "combined-science-secondary-ks4-aqa",
         isSelected: true,
+        subjectSlug: "combined-science",
       },
+      {
+        title: "Biology",
+        programmeSlug: "biology-secondary-ks4-aqa",
+        isSelected: false,
+        subjectSlug: "biology",
+      },
+    ]);
+  });
+
+  it("sorts subject toggles", () => {
+    const allProgrammes = [
+      {
+        programme_slug: "chemistry-secondary-ks4-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Chemistry",
+            subject_slug: "chemistry",
+            examboard_slug: "aqa",
+            subject_display_order: 30,
+          },
+        }),
+      },
+      {
+        programme_slug: "biology-secondary-ks4-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Biology",
+            subject_slug: "biology",
+            examboard_slug: "aqa",
+            subject_display_order: 10,
+          },
+        }),
+      },
+      {
+        programme_slug: "combined-science-secondary-ks4-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Combined science",
+            subject_slug: "combined-science",
+            examboard_slug: "aqa",
+            subject_display_order: 20,
+          },
+        }),
+      },
+    ];
+
+    const result = getProgrammeToggles(
+      "combined-science-secondary-ks4-aqa",
+      allProgrammes,
+    );
+
+    expect(
+      result.subjectOptionToggles.map((toggle) => toggle.programmeSlug),
+    ).toEqual([
+      "combined-science-secondary-ks4-aqa",
+      "biology-secondary-ks4-aqa",
+      "chemistry-secondary-ks4-aqa",
+    ]);
+  });
+
+  it("sorts tiers", () => {
+    const allProgrammes = [
+      {
+        programme_slug: "combined-science-secondary-ks4-higher-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Combined science",
+            subject_slug: "combined-science",
+            examboard_slug: "aqa",
+            tier_slug: "higher",
+            tier_description: "Higher",
+            tier_display_order: 20,
+          },
+        }),
+      },
+      {
+        programme_slug: "combined-science-secondary-ks4-foundation-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Combined science",
+            subject_slug: "combined-science",
+            examboard_slug: "aqa",
+            tier_slug: "foundation",
+            tier_description: "Foundation",
+            tier_display_order: 10,
+          },
+        }),
+      },
+    ];
+
+    const result = getProgrammeToggles(
+      "combined-science-secondary-ks4-higher-aqa",
+      allProgrammes,
+    );
+
+    expect(
+      result.tierOptionToggles.map((toggle) => toggle.programmeSlug),
+    ).toEqual([
+      "combined-science-secondary-ks4-foundation-aqa",
+      "combined-science-secondary-ks4-higher-aqa",
     ]);
   });
 });
