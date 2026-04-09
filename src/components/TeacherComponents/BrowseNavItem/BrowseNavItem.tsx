@@ -1,6 +1,7 @@
 import {
   OakFlex,
   OakFlexProps,
+  OakFocusIndicator,
   OakTertiaryInvertedButton,
   OakTypography,
   parseColor,
@@ -56,46 +57,48 @@ export default function BrowseNavItem({
   backgroundColorLevel,
 }: Readonly<BrowseNavItemProps>) {
   return (
-    <StyledFlexContainer
-      $borderRadius={"border-radius-l"}
-      $borderColor={"border-neutral-lighter"}
-      $ba={"border-solid-m"}
-      $flexDirection={"column"}
-      $pa={"spacing-24"}
-      $gap={"spacing-12"}
-      $width={"spacing-360"}
-      backgroundColorLevel={backgroundColorLevel}
-    >
-      {index && (
-        <OakFlex
-          $borderRadius={"border-radius-circle"}
-          $font={"heading-7"}
-          $pa={"spacing-12"}
-          $background={`bg-decorative${backgroundColorLevel}-subdued`}
-          $justifyContent={"center"}
-          $alignItems={"center"}
-          $width={"spacing-32"}
-          $height={"spacing-32"}
-        >
-          {index}
-        </OakFlex>
-      )}
-      <OakTypography $font={"body-3"} $color={"text-primary"}>
-        {title}
-      </OakTypography>
-      <OakFlex
-        $mt={"spacing-12"}
-        $justifyContent={navDirection === "next" ? "flex-end" : "flex-start"}
+    <OakFocusIndicator $width={"spacing-360"} $borderRadius={"border-radius-l"}>
+      <StyledFlexContainer
+        $borderRadius={"border-radius-l"}
+        $borderColor={"border-neutral-lighter"}
+        $ba={"border-solid-m"}
+        $flexDirection={"column"}
+        $pa={"spacing-24"}
+        $gap={"spacing-12"}
+        $width={"spacing-360"}
+        backgroundColorLevel={backgroundColorLevel}
       >
-        <OakTertiaryInvertedButton
-          element="a"
-          href={linkHref}
-          iconName={navDirection === "next" ? "arrow-right" : "arrow-left"}
-          isTrailingIcon={navDirection === "next"}
+        {index && (
+          <OakFlex
+            $borderRadius={"border-radius-circle"}
+            $font={"heading-7"}
+            $pa={"spacing-12"}
+            $background={`bg-decorative${backgroundColorLevel}-subdued`}
+            $justifyContent={"center"}
+            $alignItems={"center"}
+            $width={"spacing-32"}
+            $height={"spacing-32"}
+          >
+            {index}
+          </OakFlex>
+        )}
+        <OakTypography $font={"body-3"} $color={"text-primary"}>
+          {title}
+        </OakTypography>
+        <OakFlex
+          $mt={"spacing-12"}
+          $justifyContent={navDirection === "next" ? "flex-end" : "flex-start"}
         >
-          {navDirection === "prev" ? "Previous" : "Next"} {browseItem}
-        </OakTertiaryInvertedButton>
-      </OakFlex>
-    </StyledFlexContainer>
+          <OakTertiaryInvertedButton
+            element="a"
+            href={linkHref}
+            iconName={navDirection === "next" ? "arrow-right" : "arrow-left"}
+            isTrailingIcon={navDirection === "next"}
+          >
+            {navDirection === "prev" ? "Previous" : "Next"} {browseItem}
+          </OakTertiaryInvertedButton>
+        </OakFlex>
+      </StyledFlexContainer>
+    </OakFocusIndicator>
   );
 }

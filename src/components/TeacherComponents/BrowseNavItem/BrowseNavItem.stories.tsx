@@ -21,6 +21,7 @@ const meta: Meta<typeof BrowseNavItem> = {
       "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
     navDirection: "prev",
     browseItem: "unit",
+    linkHref: "www.google.com",
   },
 };
 export default meta;
