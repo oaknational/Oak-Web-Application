@@ -16,8 +16,8 @@ import { ProgrammeToggles } from "./ProgrammeToggles";
 
 import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
-import BrowseNavItem from "@/components/TeacherComponents/BrowseNavItem/BrowseNavItem";
 import { resolveOakHref } from "@/common-lib/urls";
+import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 
 export type UnitViewProps = Pick<
   TeachersUnitOverviewData,
@@ -145,40 +145,35 @@ export const UnitView = ({
           />
         </OakGridArea>
         <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
-          <OakGrid $rg={"spacing-24"}>
-            {prevUnit && (
-              <OakGridArea $colSpan={[12, 4, 3]}>
-                <BrowseNavItem
-                  navDirection="prev"
-                  browseItem="unit"
-                  linkHref={resolveOakHref({
-                    page: "unit-page",
-                    unitSlug: prevUnit.slug,
-                    subjectPhaseSlug: programmeSlug,
-                  })}
-                  backgroundColorLevel={getBackgroundColorLevel(phaseSlug)}
-                  title={prevUnit.title}
-                  index={unitIndex - 1}
-                />
-              </OakGridArea>
-            )}
-            {nextUnit && (
-              <OakGridArea $colSpan={[12, 4, 3]} $colStart={[1, 9, 10]}>
-                <BrowseNavItem
-                  navDirection="next"
-                  browseItem="unit"
-                  linkHref={resolveOakHref({
-                    page: "unit-page",
-                    unitSlug: nextUnit.slug,
-                    subjectPhaseSlug: programmeSlug,
-                  })}
-                  backgroundColorLevel={getBackgroundColorLevel(phaseSlug)}
-                  title={nextUnit.title}
-                  index={unitIndex + 1}
-                />
-              </OakGridArea>
-            )}
-          </OakGrid>
+          <PreviousNextNav
+            backgroundColorLevel={getBackgroundColorLevel(phaseSlug)}
+            currentIndex={unitIndex}
+            browseItem="unit"
+            previous={
+              prevUnit
+                ? {
+                    href: resolveOakHref({
+                      page: "unit-page",
+                      subjectPhaseSlug: programmeSlug,
+                      unitSlug: prevUnit.slug,
+                    }),
+                    title: prevUnit.title,
+                  }
+                : undefined
+            }
+            next={
+              nextUnit
+                ? {
+                    href: resolveOakHref({
+                      page: "unit-page",
+                      subjectPhaseSlug: programmeSlug,
+                      unitSlug: nextUnit.slug,
+                    }),
+                    title: nextUnit.title,
+                  }
+                : undefined
+            }
+          />
         </OakGridArea>
       </OakGrid>
     </OakBox>

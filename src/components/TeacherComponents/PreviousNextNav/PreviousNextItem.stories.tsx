@@ -2,10 +2,10 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import BrowseNavItem from "./BrowseNavItem";
+import PreviousNextItem from "./PreviousNextItem";
 
-const meta: Meta<typeof BrowseNavItem> = {
-  component: BrowseNavItem,
+const meta: Meta<typeof PreviousNextItem> = {
+  component: PreviousNextItem,
   tags: ["autodocs"],
   decorators: [
     (Story) => (
@@ -21,11 +21,11 @@ const meta: Meta<typeof BrowseNavItem> = {
       "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
     navDirection: "prev",
     browseItem: "unit",
-    linkHref: "www.google.com",
+    href: "www.google.com",
   },
 };
 export default meta;
 
-type Story = StoryObj<typeof BrowseNavItem>;
+type Story = StoryObj<typeof PreviousNextItem>;
 
 export const Default: Story = {};

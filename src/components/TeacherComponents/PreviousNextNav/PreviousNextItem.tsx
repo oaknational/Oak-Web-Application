@@ -8,15 +8,12 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-type BrowseNavItemProps = {
-  /**
-   * The level of the decorative background colour to be used. Defaults to transparent.
-   */
-  backgroundColorLevel: 1 | 2 | 3 | 4 | 5 | 6;
-  /**
-   * The type of resource to be navigated
-   */
-  browseItem: "lesson" | "unit";
+import { PreviousNextNavProps } from "./PreviousNextNav";
+
+type PreviousNextItemProps = Pick<
+  PreviousNextNavProps,
+  "backgroundColorLevel" | "browseItem"
+> & {
   /**
    * Whether the browse item is previous or next in the current sequence
    */
@@ -28,7 +25,7 @@ type BrowseNavItemProps = {
   /**
    * Link for the browse item to navigate to
    */
-  linkHref: string;
+  href: string;
   /**
    * Optional index of the browse item to be displayed along with the title
    */
@@ -37,7 +34,7 @@ type BrowseNavItemProps = {
 
 const StyledFlexContainer = styled(OakFlex)<
   OakFlexProps & {
-    backgroundColorLevel: BrowseNavItemProps["backgroundColorLevel"];
+    backgroundColorLevel: PreviousNextItemProps["backgroundColorLevel"];
   }
 >`
   &:hover {
@@ -48,14 +45,14 @@ const StyledFlexContainer = styled(OakFlex)<
   }
 `;
 
-export default function BrowseNavItem({
+export default function PreviousNextItem({
   index,
   title,
   browseItem,
-  linkHref,
+  href,
   navDirection,
   backgroundColorLevel,
-}: Readonly<BrowseNavItemProps>) {
+}: Readonly<PreviousNextItemProps>) {
   return (
     <OakFocusIndicator $borderRadius={"border-radius-l"}>
       <StyledFlexContainer
@@ -90,7 +87,7 @@ export default function BrowseNavItem({
         >
           <OakTertiaryInvertedButton
             element="a"
-            href={linkHref}
+            href={href}
             iconName={navDirection === "next" ? "arrow-right" : "arrow-left"}
             isTrailingIcon={navDirection === "next"}
           >
