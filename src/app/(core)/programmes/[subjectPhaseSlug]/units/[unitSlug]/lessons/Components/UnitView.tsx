@@ -12,6 +12,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { LessonList } from "./LessonList";
+import { ProgrammeToggles } from "./ProgrammeToggles";
 
 import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
@@ -33,6 +34,8 @@ export type UnitViewProps = Pick<
   | "priorKnowledgeRequirements"
   | "threads"
   | "phaseSlug"
+  | "tierOptionToggles"
+  | "subjectOptionToggles"
 >;
 
 export const UnitView = ({
@@ -51,7 +54,11 @@ export const UnitView = ({
   priorKnowledgeRequirements,
   threads,
   phaseSlug,
+  tierOptionToggles,
+  subjectOptionToggles,
 }: UnitViewProps) => {
+  const hasToggles =
+    tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
   return (
     <OakBox $ph="spacing-40">
       <OakGrid
@@ -73,6 +80,22 @@ export const UnitView = ({
           <SkipLink href="#lessons">Skip to lessons</SkipLink>
         </OakBox>
         <OakGridArea $colSpan={[12, 4]} $gap={"spacing-56"}>
+          {hasToggles && (
+            <OakFlex $flexDirection="column" $gap="spacing-32">
+              <ProgrammeToggles
+                heading="Learning tier (KS4)"
+                headingId="tier-toggle-heading"
+                unitSlug={unitSlug}
+                programmeToggles={tierOptionToggles}
+              />
+              <ProgrammeToggles
+                heading="Exam subject (KS4)"
+                headingId="subject-toggle-heading"
+                unitSlug={unitSlug}
+                programmeToggles={subjectOptionToggles}
+              />
+            </OakFlex>
+          )}
           <UnitThreads
             threads={threads}
             $display={["flex", "flex", "none"]}

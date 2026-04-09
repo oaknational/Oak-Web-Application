@@ -17,6 +17,7 @@ import {
 } from "./teachersUnitOverview.schema";
 
 import OakError from "@/errors/OakError";
+import { sortChildSubjects, sortTiers } from "@/utils/curriculum/sorting";
 import { getIntersection } from "@/utils/getIntersection";
 
 export const getTransformedLessons = (
@@ -301,9 +302,10 @@ export const getProgrammeToggles = (
           programme.programme_fields.subject_slug ===
             currentProgramme.programme_fields.subject_slug &&
           programme.programme_fields.examboard_slug ===
-            currentProgramme.programme_fields.examboard_slug &&
-          programme.programme_fields.tier_description !== null,
+            currentProgramme.programme_fields.examboard_slug,
       )
+      .filter(hasTierFields)
+      .toSorted((a, b) => sortTiers(a.programme_fields, b.programme_fields))
       .map((programme) => ({
         title: programme.programme_fields.tier_description,
         programmeSlug: programme.programme_slug,
@@ -319,10 +321,14 @@ export const getProgrammeToggles = (
         programme.programme_fields.tier_slug ===
           currentProgramme.programme_fields.tier_slug,
     )
+    .toSorted((a, b) =>
+      sortChildSubjects(a.programme_fields, b.programme_fields),
+    )
     .map((programme) => ({
       title: programme.programme_fields.subject,
       programmeSlug: programme.programme_slug,
       isSelected: programme.programme_slug === programmeSlug,
+      subjectSlug: programme.programme_fields.subject_slug,
     }));
 
   if (subjectOptionToggles.length === 1) {
@@ -335,3 +341,17 @@ export const getProgrammeToggles = (
     subjectOptionToggles,
   };
 };
+
+function hasTierFields<T extends UnitsInOtherProgrammes[number]>(
+  programme: T,
+): programme is T & {
+  programme_fields: T["programme_fields"] & {
+    tier_slug: string;
+    tier_description: string;
+  };
+} {
+  return (
+    programme.programme_fields.tier_description !== null &&
+    programme.programme_fields.tier_slug !== null
+  );
+}

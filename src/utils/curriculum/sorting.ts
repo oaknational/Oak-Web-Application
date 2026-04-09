@@ -15,13 +15,16 @@ export function sortYears(a: string, b: string) {
   return Number.parseInt(a) - Number.parseInt(b);
 }
 
-type sortSubjectCategoriesOnFeaturesReturn = (
+type SortSubjectCategoriesOnFeaturesReturn = (
   a: Pick<SubjectCategory, "id">,
   b: Pick<SubjectCategory, "id">,
 ) => number;
+type TierSortable = Pick<Tier, "tier_slug">;
+type ChildSubjectSortable = Pick<Subject, "subject_slug">;
+
 export function sortSubjectCategoriesOnFeatures(
   actions: (Actions & SubjectCategoryActions) | null,
-): sortSubjectCategoriesOnFeaturesReturn {
+): SortSubjectCategoriesOnFeaturesReturn {
   const default_category_id =
     actions?.subject_category_actions?.default_category_id ?? -1;
   if (default_category_id > -1) {
@@ -36,7 +39,7 @@ export function sortSubjectCategoriesOnFeatures(
   return (a, b) => a.id - b.id;
 }
 
-export function sortTiers(a: Tier, b: Tier) {
+export function sortTiers(a: TierSortable, b: TierSortable) {
   if (a.tier_slug < b.tier_slug) {
     return -1;
   } else if (a.tier_slug > b.tier_slug) {
@@ -46,7 +49,10 @@ export function sortTiers(a: Tier, b: Tier) {
   }
 }
 
-export function sortChildSubjects(a: Subject, b: Subject) {
+export function sortChildSubjects(
+  a: ChildSubjectSortable,
+  b: ChildSubjectSortable,
+) {
   // Special logic we always want combined-science first.
   if (a.subject_slug === "combined-science") return -10;
   if (b.subject_slug === "combined-science") return 10;
