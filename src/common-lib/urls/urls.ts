@@ -311,6 +311,7 @@ type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
 type HelpLinkProps = { page: "help" };
 type PupilHelpLinkProps = { page: "pupil-help" };
+type GuideToOakLinkProps = { page: "guide-to-oak" };
 type HomeLinkProps = { page: "home" };
 type LessonPlanningLinkProps = { page: "lesson-planning" };
 type LegalLinkProps = {
@@ -498,7 +499,8 @@ export type OakLinkProps =
   | ClassroomLessonsLinkProps
   | ClassroomAuthSuccessLinkProps
   | ClassroomPupilSignInLinkProps
-  | EyfsPageLinkProps;
+  | EyfsPageLinkProps
+  | GuideToOakLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -738,6 +740,12 @@ export const OAK_PAGES: {
     analyticsPageName: "[external] Help",
     configType: "external",
     pageType: "pupil-help",
+  }),
+  "guide-to-oak": createOakPageConfig({
+    url: "https://support.thenational.academy/guide-how-to-use-oak",
+    analyticsPageName: "[external] Help",
+    configType: "external",
+    pageType: "guide-to-oak",
   }),
   home: createOakPageConfig({
     pathPattern: "/",

@@ -83,6 +83,8 @@ export const getNeighbourUnits = ({
     throw new OakError({ code: "curriculum-api/not-found" });
   }
 
+  const isCurrentUnitSwimming = currentUnit.isSwimming === true;
+
   const sortedUniqueUnits = unitSequenceData
     .toSorted((a, b) => {
       // Sort units first by year and then by unit order
@@ -92,6 +94,15 @@ export const getNeighbourUnits = ({
     .filter((unit, i, a) => {
       const uv = a.find((u) => u.nullUnitvariantId === unit.nullUnitvariantId);
       return a.indexOf(uv!) === i;
+    })
+    .filter((unit) => {
+      // Swimming units are grouped across all years.
+      if (isCurrentUnitSwimming) {
+        return unit.isSwimming === true;
+      }
+
+      // Exclude swimming units from non-swimming navigation.
+      return unit.isSwimming !== true;
     });
 
   const currentUnitIndex = sortedUniqueUnits.indexOf(currentUnit);

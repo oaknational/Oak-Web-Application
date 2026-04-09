@@ -26,12 +26,11 @@ import { GuidingPrinciples } from "@/components/GenericPagesComponents/GuidingPr
 import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
 import CMSClient from "@/node-lib/cms";
 import getPageProps from "@/node-lib/getPageProps";
-import { OaksCurriculaPage as OaksCurriculaPageData } from "@/common-lib/cms-types/aboutPages";
+import { OaksCurriculaPage } from "@/common-lib/cms-types/aboutPages";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
-import { trimTrailingEmptyBlocks } from "@/utils/portableText/trimEmptyBlocks";
 
 export type OaksCurriculaPageProps = {
-  pageData: OaksCurriculaPageData;
+  pageData: OaksCurriculaPage;
   curriculumPhaseOptions: SubjectPhasePickerData;
   topNav: TopNavProps;
 };
@@ -74,10 +73,6 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
   curriculumPhaseOptions,
   topNav,
 }) => {
-  const trimmedSubtitle = trimTrailingEmptyBlocks(
-    pageData.header.subtitlePortableText,
-  );
-
   const headerImageUrl = getProxiedSanityAssetUrl(
     pageData.header.image?.asset?.url,
   );
@@ -112,7 +107,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
       <AboutUsLayout>
         <AboutSharedHeader
           title={"Oak's curricula"}
-          content={trimmedSubtitle ?? pageData.header.subtitlePortableText}
+          content={pageData.header.introText}
           titleHighlight="bg-decorative4-main"
         >
           {headerImageUrl && (
@@ -154,6 +149,7 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
               <GuidingPrinciples
                 $background="bg-primary"
                 accentColor="border-decorative4"
+                text={pageData.guidingPrinciples.textRaw}
                 imageUrl={guidingPrinciplesImageUrl}
                 imageAlt={guidingPrinciplesImageAlt}
                 principles={pageData.guidingPrinciples.principles}
@@ -190,14 +186,14 @@ export const OaksCurricula: NextPage<OaksCurriculaPageProps> = ({
               {currentPartnerItems.length > 0 && (
                 <CurriculumPartners
                   title="Current"
-                  text="Partners involved in the creation of our new curricula (published after September 2022)."
+                  text={pageData.currentPartners.textRaw}
                   items={currentPartnerItems}
                 />
               )}
               {legacyPartnerItems.length > 0 && (
                 <CurriculumPartners
                   title="Legacy"
-                  text="Partners involved in the creation of our previous curricula (published before September 2022)."
+                  text={pageData.legacyPartners.textRaw}
                   items={legacyPartnerItems}
                 />
               )}
