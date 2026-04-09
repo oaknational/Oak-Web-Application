@@ -116,7 +116,6 @@ export default function WhoAreWeTimeline({
                         <OakFlex
                           $font={["body-2", "body-1"]}
                           $flexDirection={"column"}
-                          $gap={["spacing-20", "spacing-24"]}
                         >
                           <PortableTextWithDefaults
                             value={item.textRaw}

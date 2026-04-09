@@ -1759,7 +1759,6 @@ export type GetInvolvedPageHeader = {
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
   introText?: Maybe<Scalars['String']['output']>;
-  textRaw?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type GetInvolvedPageHeaderFilter = {
@@ -2755,23 +2754,12 @@ export type NewAboutCorePageMeetTheTeam = Document & {
   _type?: Maybe<Scalars['String']['output']>;
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  boardMembers?: Maybe<Array<Maybe<TeamMember>>>;
-  /** Body text displayed below the 'Our board' heading */
-  boardText?: Maybe<Scalars['String']['output']>;
-  documents?: Maybe<Array<Maybe<Attachment>>>;
   documents2?: Maybe<MeetTheTeamPageDocuments>;
   governance2?: Maybe<MeetTheTeamPageGovernance>;
-  governanceRaw?: Maybe<Scalars['JSON']['output']>;
   header?: Maybe<MeetTheTeamPageHeader>;
-  /** Introductory text displayed below the page title */
-  introText?: Maybe<Scalars['String']['output']>;
-  leadershipTeam?: Maybe<Array<Maybe<TeamMember>>>;
-  /** Body text displayed below the 'Our leadership' heading */
-  leadershipText?: Maybe<Scalars['String']['output']>;
   ourBoard?: Maybe<MeetTheTeamPageOurBoard>;
   ourLeadership?: Maybe<MeetTheTeamPageOurLeadership>;
   seo?: Maybe<Seo>;
-  title?: Maybe<Scalars['String']['output']>;
 };
 
 export type NewAboutCorePageMeetTheTeamFilter = {
@@ -2783,16 +2771,12 @@ export type NewAboutCorePageMeetTheTeamFilter = {
   _rev?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
-  boardText?: InputMaybe<StringFilter>;
   documents2?: InputMaybe<MeetTheTeamPageDocumentsFilter>;
   governance2?: InputMaybe<MeetTheTeamPageGovernanceFilter>;
   header?: InputMaybe<MeetTheTeamPageHeaderFilter>;
-  introText?: InputMaybe<StringFilter>;
-  leadershipText?: InputMaybe<StringFilter>;
   ourBoard?: InputMaybe<MeetTheTeamPageOurBoardFilter>;
   ourLeadership?: InputMaybe<MeetTheTeamPageOurLeadershipFilter>;
   seo?: InputMaybe<SeoFilter>;
-  title?: InputMaybe<StringFilter>;
 };
 
 export type NewAboutCorePageMeetTheTeamSorting = {
@@ -2802,16 +2786,12 @@ export type NewAboutCorePageMeetTheTeamSorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
-  boardText?: InputMaybe<SortOrder>;
   documents2?: InputMaybe<MeetTheTeamPageDocumentsSorting>;
   governance2?: InputMaybe<MeetTheTeamPageGovernanceSorting>;
   header?: InputMaybe<MeetTheTeamPageHeaderSorting>;
-  introText?: InputMaybe<SortOrder>;
-  leadershipText?: InputMaybe<SortOrder>;
   ourBoard?: InputMaybe<MeetTheTeamPageOurBoardSorting>;
   ourLeadership?: InputMaybe<MeetTheTeamPageOurLeadershipSorting>;
   seo?: InputMaybe<SeoSorting>;
-  title?: InputMaybe<SortOrder>;
 };
 
 export type NewAboutCorePageOaksCurricula = Document & {
@@ -2887,14 +2867,10 @@ export type NewAboutCorePageWhoWeAre = Document & {
   _type?: Maybe<Scalars['String']['output']>;
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  breakout?: Maybe<NewAboutPageBreakout>;
   breakout2?: Maybe<WhoWeArePageBreakout>;
-  header?: Maybe<NewAboutPageHeader>;
   header2?: Maybe<WhoWeArePageHeader>;
   seo?: Maybe<Seo>;
-  timeline?: Maybe<Array<Maybe<NewAboutPageTimeline>>>;
   timeline2?: Maybe<WhoWeArePageTimeline>;
-  usp?: Maybe<Array<Maybe<NewAboutPageUsp>>>;
   weAreCards?: Maybe<WhoWeArePageCards>;
 };
 
@@ -2907,9 +2883,7 @@ export type NewAboutCorePageWhoWeAreFilter = {
   _rev?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
-  breakout?: InputMaybe<NewAboutPageBreakoutFilter>;
   breakout2?: InputMaybe<WhoWeArePageBreakoutFilter>;
-  header?: InputMaybe<NewAboutPageHeaderFilter>;
   header2?: InputMaybe<WhoWeArePageHeaderFilter>;
   seo?: InputMaybe<SeoFilter>;
   timeline2?: InputMaybe<WhoWeArePageTimelineFilter>;
@@ -2923,105 +2897,11 @@ export type NewAboutCorePageWhoWeAreSorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
-  breakout?: InputMaybe<NewAboutPageBreakoutSorting>;
   breakout2?: InputMaybe<WhoWeArePageBreakoutSorting>;
-  header?: InputMaybe<NewAboutPageHeaderSorting>;
   header2?: InputMaybe<WhoWeArePageHeaderSorting>;
   seo?: InputMaybe<SeoSorting>;
   timeline2?: InputMaybe<WhoWeArePageTimelineSorting>;
   weAreCards?: InputMaybe<WhoWeArePageCardsSorting>;
-};
-
-export type NewAboutPageBreakout = {
-  __typename?: 'NewAboutPageBreakout';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<ImageWithAltText>;
-  text?: Maybe<Scalars['String']['output']>;
-};
-
-export type NewAboutPageBreakoutFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageWithAltTextFilter>;
-  text?: InputMaybe<StringFilter>;
-};
-
-export type NewAboutPageBreakoutSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  image?: InputMaybe<ImageWithAltTextSorting>;
-  text?: InputMaybe<SortOrder>;
-};
-
-export type NewAboutPageHeader = {
-  __typename?: 'NewAboutPageHeader';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  subTitle?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type NewAboutPageHeaderFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  subTitle?: InputMaybe<StringFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type NewAboutPageHeaderSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  subTitle?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
-};
-
-export type NewAboutPageTimeline = {
-  __typename?: 'NewAboutPageTimeline';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  subTitle?: Maybe<Scalars['String']['output']>;
-  textRaw?: Maybe<Scalars['JSON']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type NewAboutPageTimelineFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  subTitle?: InputMaybe<StringFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type NewAboutPageTimelineSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  subTitle?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
-};
-
-export type NewAboutPageUsp = {
-  __typename?: 'NewAboutPageUsp';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<ImageWithAltText>;
-  text?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type NewAboutPageUspFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageWithAltTextFilter>;
-  text?: InputMaybe<StringFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type NewAboutPageUspSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  image?: InputMaybe<ImageWithAltTextSorting>;
-  text?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
 };
 
 export type NewsListingPage = Document & {
@@ -3198,7 +3078,6 @@ export type OaksCurriculaPageGuidingPrinciple = {
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
   text2Raw?: Maybe<Scalars['JSON']['output']>;
 };
 
@@ -3206,14 +3085,12 @@ export type OaksCurriculaPageGuidingPrincipleFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
 };
 
 export type OaksCurriculaPageGuidingPrincipleSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   heading?: InputMaybe<SortOrder>;
-  text?: InputMaybe<SortOrder>;
 };
 
 export type OaksCurriculaPageGuidingPrinciples = {
@@ -3243,7 +3120,6 @@ export type OaksCurriculaPageHeader = {
   _type?: Maybe<Scalars['String']['output']>;
   image?: Maybe<ImageWithAltText>;
   introText?: Maybe<Scalars['String']['output']>;
-  subtitleRaw?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type OaksCurriculaPageHeaderFilter = {

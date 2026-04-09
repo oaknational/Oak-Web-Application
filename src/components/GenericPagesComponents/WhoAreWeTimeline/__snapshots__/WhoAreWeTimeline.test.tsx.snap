@@ -79,7 +79,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       ITEM_TITLE_1
                     </h3>
                     <div
-                      class="sc-aXZVg sc-gEvEer NnHqS cofRDW"
+                      class="sc-aXZVg sc-gEvEer NnHqS bktafW"
                     >
                       <p
                         class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
@@ -121,7 +121,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       ITEM_TITLE_2
                     </h3>
                     <div
-                      class="sc-aXZVg sc-gEvEer NnHqS cofRDW"
+                      class="sc-aXZVg sc-gEvEer NnHqS bktafW"
                     >
                       <p
                         class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
@@ -163,7 +163,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       ITEM_TITLE_3
                     </h3>
                     <div
-                      class="sc-aXZVg sc-gEvEer NnHqS cofRDW"
+                      class="sc-aXZVg sc-gEvEer NnHqS bktafW"
                     >
                       <p
                         class="sc-ikkxIA sc-ff4f593d-0 iidje imPMXG"
