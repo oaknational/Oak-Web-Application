@@ -7,6 +7,10 @@ import {
   OakPupilJourneyContentGuidance,
 } from "@oaknational/oak-components";
 import { PostSubmissionState } from "@oaknational/google-classroom-addon/types";
+import {
+  AuthCookieKeys,
+  GoogleSignInView,
+} from "@oaknational/google-classroom-addon/ui";
 
 import {
   LessonEngineProvider,
@@ -50,6 +54,10 @@ import type { AddOnContextResponse } from "@/browser-lib/google-classroom/google
 import { type ClassroomProgressContext } from "@/browser-lib/google-classroom";
 import { mapToSubmitPupilProgress } from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
 import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
+import {
+  mapToSubmitCourseWorkProgress,
+  type CourseWorkProgressContext,
+} from "@/browser-lib/google-classroom/mapToSubmitCourseWorkProgress";
 import {
   GoogleClassroomAnalyticsProvider,
   useGoogleClassroomAnalytics,
@@ -257,6 +265,8 @@ type ClassroomAnalyticsContext = {
 type PupilExperienceLayoutProps = PupilExperienceViewProps & {
   googleClassroomContext: GoogleClassroomContext;
   onClassroomContextResolved: (ctx: ClassroomAnalyticsContext) => void;
+  /** When set, the pupil arrived via a CourseWork link (teacher-assigned). */
+  assignmentToken?: string | null;
 };
 
 const PupilExperienceLayout = ({
@@ -271,6 +281,7 @@ const PupilExperienceLayout = ({
   worksheetInfo,
   googleClassroomContext,
   onClassroomContextResolved,
+  assignmentToken,
 }: PupilExperienceLayoutProps) => {
   const ageRestriction = browseData.features?.ageRestriction;
   const hasAgeRestriction = !!ageRestriction;
@@ -291,6 +302,18 @@ const PupilExperienceLayout = ({
     useState<LessonSectionResults>();
   const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
   const [isReadOnlyState, setIsReadOnlyState] = useState(false);
+
+  // ── CourseWork flow (teacher-assigned link with assignmentToken) ──────────
+  const courseWorkContextRef = useRef<CourseWorkProgressContext | null>(null);
+  const [isPupilSignInRequired, setIsPupilSignInRequired] = useState(false);
+  const isCourseWorkFlow = Boolean(
+    assignmentToken && !isGoogleClassroomAssignment,
+  );
+  // Queue: holds the latest sectionResults that arrived before context was ready.
+  // Only the most-recent call matters — earlier partial saves are superseded.
+  const pendingCourseWorkSaveRef = useRef<LessonSectionResults | null>(null);
+  // Guard against concurrent saves so the read-merge-write in the addon is safe.
+  const courseWorkSaveInFlightRef = useRef(false);
 
   const fetchAddonContext = useCallback(
     async (args: {
@@ -473,11 +496,128 @@ const PupilExperienceLayout = ({
     if (!isGoogleClassroomAssignment) setIsContextReady(true);
   }, [classroomAssignmentChecked, isGoogleClassroomAssignment]);
 
+  // ── CourseWork: hydrate pupil context when assignmentToken is present ──────
+  useEffect(() => {
+    if (!isCourseWorkFlow || !assignmentToken) return;
+    if (courseWorkContextRef.current) return;
+
+    const hydrateCourseWorkContext = async () => {
+      setIsFetchingClassroomContext(true);
+
+      // Check if pupil is authenticated
+      const session = await googleClassroomApi.verifySession(true)();
+      if (!session.authenticated) {
+        setIsPupilSignInRequired(true);
+        setIsFetchingClassroomContext(false);
+        setIsContextReady(true);
+        return;
+      }
+
+      try {
+        const ctx =
+          await googleClassroomApi.getCourseWorkContext(assignmentToken);
+
+        if (!ctx?.submissionId || !session.loginHint) {
+          // Can't track progress without a submission – render lesson normally.
+          setIsContextReady(true);
+          return;
+        }
+
+        courseWorkContextRef.current = {
+          submissionId: ctx.submissionId,
+          assignmentToken,
+          courseWorkId: ctx.courseWorkId,
+          courseId: ctx.courseId,
+          pupilLoginHint: session.loginHint,
+        };
+
+        // Restore saved progress
+        const savedProgress = await googleClassroomApi.getCourseWorkProgress(
+          ctx.submissionId,
+          assignmentToken,
+        );
+        if (savedProgress) {
+          const p = savedProgress as Record<string, unknown>;
+          const mapped: LessonSectionResults = {};
+          if (p.starterQuiz)
+            mapped["starter-quiz"] =
+              p.starterQuiz as LessonSectionResults["starter-quiz"];
+          if (p.exitQuiz)
+            mapped["exit-quiz"] =
+              p.exitQuiz as LessonSectionResults["exit-quiz"];
+          if (p.video) mapped.video = p.video as LessonSectionResults["video"];
+          if (p.intro) mapped.intro = p.intro as LessonSectionResults["intro"];
+
+          if (Object.keys(mapped).length > 0) {
+            setInitialSectionResults(mapped);
+            setLessonEngineInstanceKey((k) => k + 1);
+          }
+        }
+      } catch {
+        // Failed to load context — lesson will render without progress tracking
+      } finally {
+        setIsFetchingClassroomContext(false);
+        setIsContextReady(true);
+      }
+    };
+
+    void hydrateCourseWorkContext();
+  }, [isCourseWorkFlow, assignmentToken]);
+
+  const saveCourseWorkProgressNow = useCallback(
+    async (sectionResults: LessonSectionResults) => {
+      const cwCtx = courseWorkContextRef.current;
+      if (!cwCtx) return;
+      if (courseWorkSaveInFlightRef.current) {
+        // Another save is running — queue this one; it will be flushed on completion.
+        pendingCourseWorkSaveRef.current = sectionResults;
+        return;
+      }
+      courseWorkSaveInFlightRef.current = true;
+      try {
+        const payload = mapToSubmitCourseWorkProgress(cwCtx, sectionResults);
+        await googleClassroomApi.upsertCourseWorkProgress(payload);
+      } catch (error) {
+        console.error("Failed to save CourseWork progress:", error);
+      } finally {
+        courseWorkSaveInFlightRef.current = false;
+        // Flush any save that queued while this one was in flight.
+        const pending = pendingCourseWorkSaveRef.current;
+        if (pending) {
+          pendingCourseWorkSaveRef.current = null;
+          void saveCourseWorkProgressNow(pending);
+        }
+      }
+    },
+    [],
+  );
+
+  // Flush any progress that was queued before the CourseWork context was ready.
+  useEffect(() => {
+    if (!isContextReady || !courseWorkContextRef.current) return;
+    const pending = pendingCourseWorkSaveRef.current;
+    if (!pending) return;
+    pendingCourseWorkSaveRef.current = null;
+    void saveCourseWorkProgressNow(pending);
+  }, [isContextReady, saveCourseWorkProgressNow]);
+
   const handleOnNext = useCallback(
     async (
       sectionResults: LessonSectionResults,
       _completedSection: LessonReviewSection,
     ) => {
+      // CourseWork flow
+      if (isCourseWorkFlow) {
+        if (courseWorkContextRef.current) {
+          await saveCourseWorkProgressNow(sectionResults);
+        } else {
+          // Context not ready yet — queue so it's flushed once hydration completes.
+          pendingCourseWorkSaveRef.current = sectionResults;
+        }
+        return;
+      }
+
+      // Add-on flow
       const ctx = classroomContextRef.current;
       if (!ctx) return;
 
@@ -488,7 +628,7 @@ const PupilExperienceLayout = ({
         console.error(error);
       }
     },
-    [],
+    [isCourseWorkFlow, saveCourseWorkProgressNow],
   );
 
   const getAgeRestrictionString = (
@@ -575,14 +715,67 @@ const PupilExperienceLayout = ({
         }}
       >
         <CookieConsentStyles />
+        {isPupilSignInRequired && (
+          <OakBox
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 1000,
+              background: "rgba(255,255,255,0.95)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <OakBox $maxWidth="spacing-480" $width="100%" $pa="spacing-8">
+              <GoogleSignInView
+                getGoogleSignInLink={() =>
+                  googleClassroomApi.getGoogleSignInUrl(null, false, true)
+                }
+                onSuccessfulSignIn={async () => {
+                  setIsPupilSignInRequired(false);
+                  // Re-hydrate context now that the pupil is signed in
+                  if (!assignmentToken) return;
+                  const session =
+                    await googleClassroomApi.verifySession(true)();
+                  const ctx =
+                    await googleClassroomApi.getCourseWorkContext(
+                      assignmentToken,
+                    );
+                  if (ctx?.submissionId && session.loginHint) {
+                    courseWorkContextRef.current = {
+                      submissionId: ctx.submissionId,
+                      assignmentToken,
+                      courseWorkId: ctx.courseWorkId,
+                      courseId: ctx.courseId,
+                      pupilLoginHint: session.loginHint,
+                    };
+                  }
+                }}
+                privacyPolicyUrl="/legal/privacy-policy"
+                showMailingListOption={false}
+                cookieKeys={[
+                  AuthCookieKeys.PupilAccessToken,
+                  AuthCookieKeys.PupilSession,
+                ]}
+              />
+            </OakBox>
+          </OakBox>
+        )}
         <LessonEngineProvider
           key={lessonEngineInstanceKey}
           initialLessonReviewSections={availableSections}
           initialSection={isReadOnlyState ? "review" : initialSection}
           initialSectionResults={initialSectionResults}
-          onNext={isGoogleClassroomAssignment ? handleOnNext : undefined}
+          onNext={
+            isGoogleClassroomAssignment || isCourseWorkFlow
+              ? handleOnNext
+              : undefined
+          }
           onSectionResultUpdate={
-            isGoogleClassroomAssignment ? handleOnNext : undefined
+            isGoogleClassroomAssignment || isCourseWorkFlow
+              ? handleOnNext
+              : undefined
           }
           isHydratingInitialProgress={isFetchingClassroomContext}
           isReadOnly={isReadOnlyState}
@@ -670,6 +863,13 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
     });
   const googleClassroomContext = useGoogleClassroomContext();
 
+  // Read assignmentToken from the URL for the CourseWork flow
+  const searchParams =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search)
+      : null;
+  const assignmentToken = searchParams?.get("assignmentToken") ?? null;
+
   const { worksheetInfo } = useWorksheetInfoState(
     lessonContent.hasWorksheetAssetObject,
     lessonContent.lessonSlug,
@@ -695,6 +895,7 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
         worksheetInfo={worksheetInfo}
         googleClassroomContext={googleClassroomContext}
         onClassroomContextResolved={setClassroomAnalyticsContext}
+        assignmentToken={assignmentToken}
       />
     </PupilAnalyticsProvider>
   );

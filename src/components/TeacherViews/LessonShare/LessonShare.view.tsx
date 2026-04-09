@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   OakBox,
   OakHandDrawnHR,
@@ -42,6 +43,7 @@ import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadA
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
 import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
+import { AssignToClassroomModal } from "@/components/TeacherComponents/AssignToClassroomModal/AssignToClassroomModal";
 
 export type LessonShareProps =
   | {
@@ -113,6 +115,18 @@ export function LessonShare(props: LessonShareProps) {
           props.isCanonical ? props.lesson.pathways : [props.lesson],
         );
   const { programmeSlug, unitSlug } = commonPathway;
+
+  const exitQuizNumQuestions = (() => {
+    const exitQuizResource = shareableResources.find(
+      (r) => r.type === "exit-quiz-questions",
+    );
+    const parsed = exitQuizResource
+      ? parseInt(exitQuizResource.metadata ?? "", 10)
+      : NaN;
+    return isNaN(parsed) ? undefined : parsed;
+  })();
+
+  const [isClassroomModalOpen, setIsClassroomModalOpen] = useState(false);
 
   const { track } = useAnalytics();
   const { lessonShared } = track;
@@ -262,22 +276,36 @@ export function LessonShare(props: LessonShareProps) {
             />
           }
           cta={
-            <LessonShareLinks
-              disabled={
-                hasFormErrors ||
-                expired ||
-                (!form.formState.isValid && !localStorageDetails)
-              }
-              lessonSlug={lessonSlug}
-              selectedActivities={selectedResources}
-              schoolUrn={schoolUrn}
-              onSubmit={
-                (shareMedium: ShareMediumValueType) =>
-                  void form.handleSubmit((data) => {
-                    onFormSubmit(data, shareMedium);
-                  })() // https://github.com/orgs/react-hook-form/discussions/8622
-              }
-            />
+            <>
+              <LessonShareLinks
+                disabled={
+                  hasFormErrors ||
+                  expired ||
+                  (!form.formState.isValid && !localStorageDetails)
+                }
+                lessonSlug={lessonSlug}
+                selectedActivities={selectedResources}
+                schoolUrn={schoolUrn}
+                onSubmit={
+                  (shareMedium: ShareMediumValueType) =>
+                    void form.handleSubmit((data) => {
+                      onFormSubmit(data, shareMedium);
+                    })() // https://github.com/orgs/react-hook-form/discussions/8622
+                }
+                onGoogleClassroomClick={() => setIsClassroomModalOpen(true)}
+              />
+              {!isSpecialist && programmeSlug && unitSlug && (
+                <AssignToClassroomModal
+                  isOpen={isClassroomModalOpen}
+                  onClose={() => setIsClassroomModalOpen(false)}
+                  lessonTitle={lessonTitle}
+                  lessonSlug={lessonSlug}
+                  programmeSlug={programmeSlug}
+                  unitSlug={unitSlug}
+                  exitQuizNumQuestions={exitQuizNumQuestions}
+                />
+              )}
+            </>
           }
         />
       </OakMaxWidth>
