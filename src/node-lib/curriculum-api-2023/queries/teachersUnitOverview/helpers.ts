@@ -11,6 +11,7 @@ import {
   PackagedUnitData,
   ProgrammeToggles,
   TeachersUnitOverviewData,
+  Threads,
   UnitSequence,
   UnitsInOtherProgrammes,
 } from "./teachersUnitOverview.schema";
@@ -173,15 +174,25 @@ export const getUnitCounts = ({
   };
 };
 
-export const getPackagedUnit = (
-  packagedUnitData: PackagedUnitData,
-  unitLessons: LessonListSchema,
-  containsGeorestrictedLessons: boolean,
-  containsLoginRequiredLessons: boolean,
-  unitSequenceData: UnitSequence,
-  unitsInOtherProgrammes: UnitsInOtherProgrammes,
-  currentSubjectCategoryTitle?: string,
-): TeachersUnitOverviewData => {
+export const getPackagedUnit = ({
+  packagedUnitData,
+  unitLessons,
+  containsGeorestrictedLessons,
+  containsLoginRequiredLessons,
+  unitSequenceData,
+  unitsInOtherProgrammes,
+  threads,
+  currentSubjectCategoryTitle,
+}: {
+  packagedUnitData: PackagedUnitData;
+  unitLessons: LessonListSchema;
+  containsGeorestrictedLessons: boolean;
+  containsLoginRequiredLessons: boolean;
+  unitSequenceData: UnitSequence;
+  unitsInOtherProgrammes: UnitsInOtherProgrammes;
+  threads: Threads;
+  currentSubjectCategoryTitle?: string;
+}): TeachersUnitOverviewData => {
   const {
     programmeFields,
     unitSlug,
@@ -191,6 +202,8 @@ export const getPackagedUnit = (
     programmeSlug,
     programmeSlugByYear,
     nullUnitvariantId,
+    whyThisWhyNow,
+    priorKnowledgeRequirements,
   } = packagedUnitData;
 
   const modifiedProgrammeFields = getCorrectYear({
@@ -226,6 +239,10 @@ export const getPackagedUnit = (
     currentSubjectCategoryTitle,
   });
 
+  const threadItems = threads
+    .flatMap((thread) => thread.threads?.map((t) => t.thread_title))
+    .filter((thread) => thread !== undefined);
+
   return {
     programmeSlug,
     keyStageSlug: modifiedProgrammeFields.keystage_slug,
@@ -253,12 +270,15 @@ export const getPackagedUnit = (
     phaseSlug: modifiedProgrammeFields.phase_slug,
     phaseTitle: modifiedProgrammeFields.phase_description,
     actions: combinedActions,
+    whyThisWhyNow,
+    priorKnowledgeRequirements,
     containsGeorestrictedLessons,
     containsLoginRequiredLessons,
     nextUnit,
     prevUnit,
     tierOptionToggles,
     subjectOptionToggles,
+    threads: threadItems,
   };
 };
 

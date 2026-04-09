@@ -19,7 +19,7 @@ import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 type LessonListProps = Omit<
   UnitViewProps,
-  "tierOptionToggles" | "subjectOptionToggles"
+  "threads" | "phaseSlug" | "tierOptionToggles" | "subjectOptionToggles"
 > & {
   lessonCount: number;
 };

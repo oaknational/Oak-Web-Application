@@ -52,4 +52,13 @@ query teachersUnitOverview(
   ) {
     subjectCategories: subjectcategories
   }
+  threads: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
+    where: {
+      unit_slug: { _eq: $unitSlug }
+      programme_slug: { _eq: $programmeSlug }
+      is_legacy: { _eq: false }
+    }
+  ) {
+    threads
+  }
 }

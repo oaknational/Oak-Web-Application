@@ -5,6 +5,7 @@ import {
   PackagedUnitData,
   unitsInOtherProgrammesResponseSchema,
   subjectCategoriesSchema,
+  threadsResponseSchema,
 } from "./teachersUnitOverview.schema";
 import { getPackagedUnit, getTransformedLessons } from "./helpers";
 
@@ -26,10 +27,13 @@ const teachersUnitOverviewQuery =
       unitSequence,
       unitsInOtherProgrammes,
       matchingSubjectCategories,
+      threads,
     } = await sdk.teachersUnitOverview(args);
+
     const parsedUnitSequence = unitSequenceResponseSchema.parse(unitSequence);
     const parsedUnitsInOtherProgrammes =
       unitsInOtherProgrammesResponseSchema.parse(unitsInOtherProgrammes);
+    const parsedThreads = threadsResponseSchema.parse(threads);
 
     const modifiedLessons = applyGenericOverridesAndExceptions<
       TeachersUnitOverviewQuery["lessons"][number]
@@ -76,18 +80,22 @@ const teachersUnitOverviewQuery =
         unitDescription: lesson.unit_data.description,
         programmeSlugByYear: lesson.programme_slug_by_year,
         nullUnitvariantId: lesson.null_unitvariant_id,
+        whyThisWhyNow: lesson.unit_data.why_this_why_now,
+        priorKnowledgeRequirements:
+          lesson.unit_data.prior_knowledge_requirements,
       };
     }, {} as PackagedUnitData);
 
-    const packagedUnit = getPackagedUnit(
+    const packagedUnit = getPackagedUnit({
       packagedUnitData,
       unitLessons,
       containsGeorestrictedLessons,
       containsLoginRequiredLessons,
-      parsedUnitSequence,
-      parsedUnitsInOtherProgrammes,
+      unitSequenceData: parsedUnitSequence,
+      unitsInOtherProgrammes: parsedUnitsInOtherProgrammes,
+      threads: parsedThreads,
       currentSubjectCategoryTitle,
-    );
+    });
 
     return unitOverviewDataSchema.parse(packagedUnit);
   };
