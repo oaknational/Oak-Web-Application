@@ -18,7 +18,14 @@ export const pupilUnitListingQuery =
     const res = await sdk.pupilUnitListing({
       baseSlug,
     });
-
+    res.browseData.forEach((item) => {
+      if (item.programme_fields.subject_slug == "rule-of-law") {
+        item.actions = {
+          ...item.actions,
+          programme_field_overrides: {},
+        };
+      }
+    });
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       PupilUnitListingQuery["browseData"][number]
     >({
