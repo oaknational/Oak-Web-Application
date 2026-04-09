@@ -121,9 +121,9 @@ export function LessonShare(props: LessonShareProps) {
       (r) => r.type === "exit-quiz-questions",
     );
     const parsed = exitQuizResource
-      ? parseInt(exitQuizResource.metadata ?? "", 10)
-      : NaN;
-    return isNaN(parsed) ? undefined : parsed;
+      ? Number.parseInt(exitQuizResource.metadata ?? "", 6)
+      : Number.NaN;
+    return Number.isNaN(parsed) ? undefined : parsed;
   })();
 
   const [isClassroomModalOpen, setIsClassroomModalOpen] = useState(false);

@@ -241,8 +241,9 @@ const PupilExperienceClassroomAnalytics = ({
   );
 
   useEffect(() => {
-    window.addEventListener("pagehide", clearAddOnOpenedFlag);
-    return () => window.removeEventListener("pagehide", clearAddOnOpenedFlag);
+    globalThis.window.addEventListener("pagehide", clearAddOnOpenedFlag);
+    return () =>
+      globalThis.window.removeEventListener("pagehide", clearAddOnOpenedFlag);
   }, [clearAddOnOpenedFlag]);
 
   useEffect(() => {
@@ -476,9 +477,9 @@ const PupilExperienceLayout = ({
       await refreshReadOnlyState();
     };
 
-    window.addEventListener("focus", handleWindowFocus);
+    globalThis.window.addEventListener("focus", handleWindowFocus);
     return () => {
-      window.removeEventListener("focus", handleWindowFocus);
+      globalThis.window.removeEventListener("focus", handleWindowFocus);
     };
   }, [
     attachmentId,
@@ -668,7 +669,7 @@ const PupilExperienceLayout = ({
 
   const handleContentGuidanceDecline = () => {
     if (isGoogleClassroomAssignment) {
-      window?.parent?.postMessage(
+      globalThis.window?.parent?.postMessage(
         {
           type: "Classroom",
           action: "closeIframe",
@@ -818,7 +819,7 @@ const PupilExperienceLayout = ({
             />
           )}
 
-          <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
+          <OakBox style={{ pointerEvents: isOpen ? "none" : "all" }}>
             <OakBox $height={"100vh"}>
               {browseData.lessonData.deprecatedFields?.expired ? (
                 <PupilExpiredView lessonTitle={browseData.lessonData.title} />
@@ -865,9 +866,9 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
 
   // Read assignmentToken from the URL for the CourseWork flow
   const searchParams =
-    typeof window !== "undefined"
-      ? new URLSearchParams(window.location.search)
-      : null;
+    typeof globalThis.window === "undefined"
+      ? null
+      : new URLSearchParams(globalThis.window.location.search);
   const assignmentToken = searchParams?.get("assignmentToken") ?? null;
 
   const { worksheetInfo } = useWorksheetInfoState(

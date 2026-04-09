@@ -67,6 +67,12 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const [handInState, setHandInState] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
+  const handInButtonLabel =
+    handInState === "loading"
+      ? "Handing in…"
+      : handInState === "success"
+        ? "Handed in"
+        : "Hand in";
   const { phase = "primary", yearDescription, subject } = programmeFields;
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {
@@ -306,11 +312,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                       }
                       isTrailingIcon
                     >
-                      {handInState === "loading"
-                        ? "Handing in…"
-                        : handInState === "success"
-                          ? "Handed in"
-                          : "Hand in"}
+                      {handInButtonLabel}
                     </OakPrimaryButton>
                     {handInState === "loading" && (
                       <OakLoadingSpinner

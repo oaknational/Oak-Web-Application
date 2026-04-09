@@ -1,313 +1,350 @@
 "use client";
 
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
 import {
-  OakBox,
+  OakModalCenter,
   OakFlex,
   OakHeading,
   OakP,
   OakPrimaryButton,
-  OakSecondaryButton,
-  OakModalCenter,
-  OakModalCenterBody,
-  OakSpan,
-  OakIcon,
+  OakSmallSecondaryButton,
+  OakLoadingSpinner,
+  OakRadioButton,
+  OakRadioGroup,
+  OakTextInput,
 } from "@oaknational/oak-components";
-import {
-  AuthCookieKeys,
-  GoogleSignInView,
-} from "@oaknational/google-classroom-addon/ui";
 import { CourseListItem } from "@oaknational/google-classroom-addon/types";
 
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 
-type Step = "sign-in" | "select-course" | "success";
+/**
+ * Thrown when the Google Classroom API returns a 403 scope_insufficient error.
+ * The teacher needs to re-authenticate to grant the classroom.coursework.students scope.
+ */
+export class ScopeInsufficientError extends Error {
+  constructor() {
+    super("scope_insufficient");
+    this.name = "ScopeInsufficientError";
+  }
+}
 
-export type AssignToClassroomModalProps = {
+const TEACHER_SESSION_COOKIE = "oak-gclassroom-session";
+const TEACHER_TOKEN_COOKIE = "oak-gclassroom-token";
+
+type ModalState =
+  | { type: "loading" }
+  | { type: "unauthenticated" }
+  | { type: "scope_insufficient" }
+  | { type: "course_picker"; courses: CourseListItem[] }
+  | { type: "success"; title: string }
+  | { type: "error"; message: string };
+
+type AssignToClassroomModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  lessonTitle: string;
   lessonSlug: string;
   programmeSlug: string;
   unitSlug: string;
+  lessonTitle: string;
   exitQuizNumQuestions?: number;
 };
 
-/**
- * Multi-step modal for assigning an Oak lesson to Google Classroom via the
- * CourseWork API.
- *
- * Step 1 – Sign in:      Teacher authenticates with Google (teacher scopes).
- * Step 2 – Select course: Choose a course, optionally edit the assignment title.
- * Step 3 – Success:       Confirmation + link to Google Classroom.
- */
-export const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
+const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
   isOpen,
   onClose,
-  lessonTitle,
   lessonSlug,
   programmeSlug,
   unitSlug,
+  lessonTitle,
   exitQuizNumQuestions,
 }) => {
-  const [step, setStep] = useState<Step>("sign-in");
-  const [courses, setCourses] = useState<CourseListItem[]>([]);
-  const [selectedCourseId, setSelectedCourseId] = useState("");
-  const [assignmentTitle, setAssignmentTitle] = useState(lessonTitle);
-  const [maxPoints, setMaxPoints] = useState(exitQuizNumQuestions ?? 0);
+  const [state, setState] = useState<ModalState>({ type: "loading" });
+  const [selectedCourseId, setSelectedCourseId] = useState<string>("");
+  const [title, setTitle] = useState(lessonTitle);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [classroomUrl, setClassroomUrl] = useState<string | null>(null);
-  const [isLoadingCourses, setIsLoadingCourses] = useState(false);
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const popupRef = useRef<Window | null>(null);
 
-  const loadCourses = useCallback(async () => {
-    setIsLoadingCourses(true);
-    setError(null);
+  const checkSessionAndLoadCourses = useCallback(async () => {
+    setState({ type: "loading" });
     try {
-      const list = await googleClassroomApi.listCourses();
-      setCourses(list);
-      if (list.length > 0 && list[0]) {
-        setSelectedCourseId(list[0].id);
+      const session = await googleClassroomApi.verifySession()();
+      if (!session.authenticated) {
+        setState({ type: "unauthenticated" });
+        return;
       }
-    } catch {
-      setError(
-        "Could not load your Google Classroom courses. Please try again.",
-      );
-    } finally {
-      setIsLoadingCourses(false);
+      const courses = await googleClassroomApi.listCourses();
+      setState({ type: "course_picker", courses });
+      if (courses.length > 0) {
+        setSelectedCourseId(courses[0]!.id);
+      }
+    } catch (error) {
+      if (error instanceof ScopeInsufficientError) {
+        setState({ type: "scope_insufficient" });
+      } else {
+        setState({
+          type: "error",
+          message: error instanceof Error ? error.message : "An error occurred",
+        });
+      }
     }
   }, []);
 
-  // When the modal opens, check if already authenticated
   useEffect(() => {
-    if (!isOpen) return;
+    if (isOpen) {
+      setTitle(lessonTitle);
+      checkSessionAndLoadCourses();
+    } else {
+      setState({ type: "loading" });
+      setIsSigningIn(false);
+    }
+  }, [isOpen, lessonTitle, checkSessionAndLoadCourses]);
 
-    const checkAuth = async () => {
-      const session = await googleClassroomApi.verifySession(false)();
-      if (session.authenticated) {
-        setStep("select-course");
-        await loadCourses();
-      } else {
-        setStep("sign-in");
+  useEffect(() => {
+    const handleAuthMessage = (event: MessageEvent) => {
+      if (event.data?.type !== "oak-google-classroom-auth-complete") return;
+      popupRef.current?.close();
+      popupRef.current = null;
+      setIsSigningIn(false);
+      if (event.data.success && event.data.session && event.data.accessToken) {
+        window.cookieStore?.set({
+          name: TEACHER_SESSION_COOKIE,
+          value: event.data.session as string,
+          partitioned: true,
+          sameSite: "none",
+          path: "/",
+        });
+        window.cookieStore?.set({
+          name: TEACHER_TOKEN_COOKIE,
+          value: event.data.accessToken as string,
+          partitioned: true,
+          sameSite: "none",
+          path: "/",
+        });
+        checkSessionAndLoadCourses();
       }
     };
+    window.addEventListener("message", handleAuthMessage);
+    return () => window.removeEventListener("message", handleAuthMessage);
+  }, [checkSessionAndLoadCourses]);
 
-    void checkAuth();
-  }, [isOpen, loadCourses]);
-
-  // Reset state when the modal is closed
-  const handleClose = () => {
-    setError(null);
-    setIsSubmitting(false);
-    setClassroomUrl(null);
-    setStep("sign-in");
-    onClose();
-  };
-
-  const handleSignedIn = async () => {
-    setStep("select-course");
-    await loadCourses();
+  const handleSignIn = async () => {
+    setIsSigningIn(true);
+    const url = await googleClassroomApi.getGoogleSignInUrl(null);
+    if (!url) {
+      setIsSigningIn(false);
+      return;
+    }
+    popupRef.current = window.open(
+      url,
+      "googleSignIn",
+      "height=500,width=500,left=100,top=100,resizable=no,scrollbars=yes",
+    );
   };
 
   const handleAssign = async () => {
-    if (!selectedCourseId) return;
+    if (!selectedCourseId || isSubmitting) return;
     setIsSubmitting(true);
-    setError(null);
-
     try {
       const result = await googleClassroomApi.createCourseWork({
         courseId: selectedCourseId,
-        title: assignmentTitle,
+        title,
         lessonSlug,
         programmeSlug,
         unitSlug,
-        maxPoints,
+        maxPoints: exitQuizNumQuestions ?? 0,
       });
-
-      // Google Classroom doesn't give a direct deep-link to a draft assignment,
-      // so we link to the teacher's course stream instead.
-      setClassroomUrl(`https://classroom.google.com/c/${result.courseId}`);
-      setStep("success");
-    } catch {
-      setError(
-        "Failed to create the assignment. Please check your connection and try again.",
-      );
+      setState({
+        type: "success",
+        title: result.title,
+      });
+    } catch (error) {
+      if (error instanceof ScopeInsufficientError) {
+        setState({ type: "scope_insufficient" });
+      } else {
+        setState({
+          type: "error",
+          message:
+            error instanceof Error ? error.message : "Failed to assign lesson",
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const selectedCourse = courses.find((c) => c.id === selectedCourseId);
+  const renderContent = () => {
+    switch (state.type) {
+      case "loading":
+        return (
+          <OakFlex
+            $justifyContent="center"
+            $alignItems="center"
+            $minHeight="spacing-16"
+          >
+            <OakLoadingSpinner />
+          </OakFlex>
+        );
 
-  return (
-    <OakModalCenter isOpen={isOpen} onClose={handleClose}>
-      <OakModalCenterBody
-        title="Assign to Google Classroom"
-        iconName="google-classroom"
-      >
-        {step === "sign-in" && (
-          <OakBox $pa="spacing-4">
-            <GoogleSignInView
-              getGoogleSignInLink={() =>
-                googleClassroomApi.getGoogleSignInUrl(null, false, false)
-              }
-              onSuccessfulSignIn={handleSignedIn}
-              privacyPolicyUrl="/legal/privacy-policy"
-              showMailingListOption={false}
-              cookieKeys={[AuthCookieKeys.AccessToken, AuthCookieKeys.Session]}
-            />
-          </OakBox>
-        )}
+      case "unauthenticated":
+        return (
+          <OakFlex $flexDirection="column" $gap="spacing-24">
+            <OakHeading tag="h2" $font="heading-5" id="assign-modal-heading">
+              Save to Google Classroom
+            </OakHeading>
+            <OakP id="assign-modal-description">
+              Sign in with Google to save this assignment as a draft in your
+              Google Classroom.
+            </OakP>
+            <OakPrimaryButton
+              onClick={handleSignIn}
+              disabled={isSigningIn}
+              isLoading={isSigningIn}
+            >
+              Sign in with Google
+            </OakPrimaryButton>
+          </OakFlex>
+        );
 
-        {step === "select-course" && (
-          <OakFlex $flexDirection="column" $gap="spacing-4" $pa="spacing-4">
-            {isLoadingCourses ? (
-              <OakP>Loading your classes…</OakP>
+      case "scope_insufficient":
+        return (
+          <OakFlex $flexDirection="column" $gap="spacing-24">
+            <OakHeading tag="h2" $font="heading-5" id="assign-modal-heading">
+              Reconnect Google account
+            </OakHeading>
+            <OakP id="assign-modal-description">
+              To create assignments from Oak, you need to grant an additional
+              permission. Please reconnect your Google account to continue.
+            </OakP>
+            <OakPrimaryButton onClick={handleSignIn}>
+              Reconnect Google account
+            </OakPrimaryButton>
+          </OakFlex>
+        );
+
+      case "course_picker":
+        return (
+          <OakFlex $flexDirection="column" $gap="spacing-24">
+            <OakHeading tag="h2" $font="heading-5" id="assign-modal-heading">
+              Save to Google Classroom
+            </OakHeading>
+            {state.courses.length === 0 ? (
+              <OakP>No active classes found in your Google Classroom.</OakP>
             ) : (
               <>
-                <OakFlex $flexDirection="column" $gap="spacing-4">
-                  <label htmlFor="gc-course-select">
-                    <OakSpan $font="body-2-bold">
-                      Google Classroom class
-                    </OakSpan>
-                  </label>
-                  <select
-                    id="gc-course-select"
+                <OakFlex $flexDirection="column" $gap="spacing-8">
+                  <OakP $font="body-2-bold">Assignment title</OakP>
+                  <OakTextInput
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    aria-label="Assignment title"
+                  />
+                </OakFlex>
+                <OakFlex $flexDirection="column" $gap="spacing-8">
+                  <OakP $font="body-2-bold">Select a class</OakP>
+                  <OakRadioGroup
+                    name="course"
                     value={selectedCourseId}
                     onChange={(e) => setSelectedCourseId(e.target.value)}
-                    style={{
-                      padding: "8px 12px",
-                      borderRadius: "4px",
-                      border: "1px solid #ccc",
-                      fontSize: "16px",
-                      width: "100%",
-                    }}
                   >
-                    {courses.map((course) => (
-                      <option key={course.id} value={course.id}>
-                        {course.name}
-                        {course.section ? ` – ${course.section}` : ""}
-                      </option>
+                    {state.courses.map((course) => (
+                      <OakRadioButton
+                        key={course.id}
+                        value={course.id}
+                        label={
+                          course.section
+                            ? `${course.name} — ${course.section}`
+                            : course.name
+                        }
+                        id={`course-${course.id}`}
+                      />
                     ))}
-                  </select>
+                  </OakRadioGroup>
                 </OakFlex>
-
-                <OakFlex $flexDirection="column" $gap="spacing-4">
-                  <label htmlFor="gc-assignment-title">
-                    <OakSpan $font="body-2-bold">Assignment title</OakSpan>
-                  </label>
-                  <input
-                    id="gc-assignment-title"
-                    type="text"
-                    value={assignmentTitle}
-                    onChange={(e) => setAssignmentTitle(e.target.value)}
-                    style={{
-                      padding: "8px 12px",
-                      borderRadius: "4px",
-                      border: "1px solid #ccc",
-                      fontSize: "16px",
-                      width: "100%",
-                    }}
-                  />
-                </OakFlex>
-
-                <OakFlex $flexDirection="column" $gap="spacing-4">
-                  <label htmlFor="gc-max-points">
-                    <OakSpan $font="body-2-bold">Points</OakSpan>
-                  </label>
-                  <input
-                    id="gc-max-points"
-                    type="number"
-                    min={0}
-                    value={maxPoints}
-                    onChange={(e) =>
-                      setMaxPoints(
-                        Math.max(0, parseInt(e.target.value, 10) || 0),
-                      )
-                    }
-                    style={{
-                      padding: "8px 12px",
-                      borderRadius: "4px",
-                      border: "1px solid #ccc",
-                      fontSize: "16px",
-                      width: "120px",
-                    }}
-                  />
-                </OakFlex>
-
-                {error && (
-                  <OakFlex $alignItems="center" $gap="spacing-4">
-                    <OakIcon iconName="error" $colorFilter="icon-error" />
-                    <OakSpan $color="icon-error" $font="body-3">
-                      {error}
-                    </OakSpan>
-                  </OakFlex>
-                )}
-
-                <OakP $font="body-3" $color="text-subdued">
-                  The assignment will be saved as a <strong>draft</strong> in
-                  Google Classroom. Pupils will not see it until you publish it.
-                </OakP>
-
-                <OakFlex
-                  $gap="spacing-4"
-                  $justifyContent="flex-end"
-                  $mt="spacing-4"
-                >
-                  <OakSecondaryButton onClick={handleClose}>
-                    Cancel
-                  </OakSecondaryButton>
+                <OakFlex $gap="spacing-12">
                   <OakPrimaryButton
                     onClick={handleAssign}
-                    disabled={
-                      isSubmitting ||
-                      !selectedCourseId ||
-                      !assignmentTitle.trim()
-                    }
+                    disabled={!selectedCourseId || isSubmitting || !title}
+                    isLoading={isSubmitting}
                   >
-                    {isSubmitting ? "Assigning…" : "Assign"}
+                    Share assignment
                   </OakPrimaryButton>
+                  <OakSmallSecondaryButton onClick={onClose}>
+                    Cancel
+                  </OakSmallSecondaryButton>
                 </OakFlex>
               </>
             )}
           </OakFlex>
-        )}
+        );
 
-        {step === "success" && (
-          <OakFlex
-            $flexDirection="column"
-            $gap="spacing-4"
-            $pa="spacing-4"
-            $alignItems="center"
-          >
-            <OakIcon iconName="tick" $colorFilter="icon-success" />
-            <OakHeading tag="h3" $font="heading-5">
-              Assignment created!
+      case "success":
+        return (
+          <OakFlex $flexDirection="column" $gap="spacing-24">
+            <OakHeading tag="h2" $font="heading-5" id="assign-modal-heading">
+              Assignment saved
             </OakHeading>
-            <OakP $textAlign="center">
-              <strong>{assignmentTitle}</strong> has been added as a draft to{" "}
-              <strong>{selectedCourse?.name ?? "your class"}</strong>. Open
-              Google Classroom to review and publish it.
+            <OakP id="assign-modal-description">
+              &ldquo;{state.title}&rdquo; has been saved to your Google
+              Classroom as a draft assignment. Open it in Google Classroom to
+              publish it for your students.
             </OakP>
-
-            {classroomUrl && (
+            <OakFlex $gap="spacing-12">
               <OakPrimaryButton
-                onClick={() =>
-                  window.open(classroomUrl, "_blank", "noopener,noreferrer")
-                }
-                iconName="external"
-                isTrailingIcon
+                element="a"
+                href="https://classroom.google.com"
+                target="_blank"
+                rel="noreferrer"
               >
-                Open Google Classroom
+                View draft
               </OakPrimaryButton>
-            )}
-
-            <OakSecondaryButton onClick={handleClose}>Close</OakSecondaryButton>
+              <OakSmallSecondaryButton onClick={onClose}>
+                Close
+              </OakSmallSecondaryButton>
+            </OakFlex>
           </OakFlex>
-        )}
-      </OakModalCenterBody>
+        );
+
+      case "error":
+        return (
+          <OakFlex $flexDirection="column" $gap="spacing-24">
+            <OakHeading tag="h2" $font="heading-5" id="assign-modal-heading">
+              Something went wrong
+            </OakHeading>
+            <OakP id="assign-modal-description">{state.message}</OakP>
+            <OakFlex $gap="spacing-12">
+              <OakPrimaryButton onClick={checkSessionAndLoadCourses}>
+                Try again
+              </OakPrimaryButton>
+              <OakSmallSecondaryButton onClick={onClose}>
+                Cancel
+              </OakSmallSecondaryButton>
+            </OakFlex>
+          </OakFlex>
+        );
+    }
+  };
+
+  return (
+    <OakModalCenter
+      isOpen={isOpen}
+      onClose={onClose}
+      modalFlexProps={{
+        $pa: ["spacing-32", "spacing-56"],
+        $mh: "auto",
+        "aria-modal": true,
+        "aria-labelledby": "assign-modal-heading",
+        "aria-describedby": "assign-modal-description",
+      }}
+      modalOuterFlexProps={{
+        $maxWidth: "spacing-640",
+        $pa: "spacing-16",
+      }}
+    >
+      {renderContent()}
     </OakModalCenter>
   );
 };
 
+export { AssignToClassroomModal };
 export default AssignToClassroomModal;
