@@ -12,7 +12,7 @@ import { PreviousNextNavProps } from "./PreviousNextNav";
 
 type PreviousNextItemProps = Pick<
   PreviousNextNavProps,
-  "backgroundColorLevel" | "browseItem"
+  "backgroundColorLevel" | "navItemType"
 > & {
   /**
    * Whether the browse item is previous or next in the current sequence
@@ -48,7 +48,7 @@ const StyledFlexContainer = styled(OakFlex)<
 export default function PreviousNextItem({
   index,
   title,
-  browseItem,
+  navItemType,
   href,
   navDirection,
   backgroundColorLevel,
@@ -74,6 +74,7 @@ export default function PreviousNextItem({
             $alignItems={"center"}
             $width={"spacing-32"}
             $height={"spacing-32"}
+            data-testid="nav-item-index"
           >
             {index}
           </OakFlex>
@@ -91,7 +92,7 @@ export default function PreviousNextItem({
             iconName={navDirection === "next" ? "arrow-right" : "arrow-left"}
             isTrailingIcon={navDirection === "next"}
           >
-            {navDirection === "prev" ? "Previous" : "Next"} {browseItem}
+            {navDirection === "prev" ? "Previous" : "Next"} {navItemType}
           </OakTertiaryInvertedButton>
         </OakFlex>
       </StyledFlexContainer>

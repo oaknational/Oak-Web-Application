@@ -148,7 +148,7 @@ export const UnitView = ({
           <PreviousNextNav
             backgroundColorLevel={getBackgroundColorLevel(phaseSlug)}
             currentIndex={unitIndex}
-            browseItem="unit"
+            navItemType="unit"
             previous={
               prevUnit
                 ? {

@@ -6,7 +6,7 @@ export type PreviousNextNavProps = {
   /**
    * The type of resource to be navigated
    */
-  browseItem: "unit" | "lesson";
+  navItemType: "unit" | "lesson";
   /**
    * The level of the decorative background colour to be used. Defaults to transparent.
    */
@@ -32,7 +32,7 @@ export type PreviousNextNavProps = {
 };
 
 export default function PreviousNextNav(props: Readonly<PreviousNextNavProps>) {
-  const { backgroundColorLevel, previous, next, currentIndex, browseItem } =
+  const { backgroundColorLevel, previous, next, currentIndex, navItemType } =
     props;
   return (
     <OakGrid $rg={"spacing-24"}>
@@ -40,7 +40,7 @@ export default function PreviousNextNav(props: Readonly<PreviousNextNavProps>) {
         <OakGridArea $colSpan={[12, 4, 3]}>
           <PreviousNextItem
             navDirection="prev"
-            browseItem={browseItem}
+            navItemType={navItemType}
             href={previous.href}
             backgroundColorLevel={backgroundColorLevel}
             title={previous.title}
@@ -52,7 +52,7 @@ export default function PreviousNextNav(props: Readonly<PreviousNextNavProps>) {
         <OakGridArea $colSpan={[12, 4, 3]} $colStart={[1, 9, 10]}>
           <PreviousNextItem
             navDirection="next"
-            browseItem={browseItem}
+            navItemType={navItemType}
             href={next.href}
             backgroundColorLevel={backgroundColorLevel}
             title={next.title}

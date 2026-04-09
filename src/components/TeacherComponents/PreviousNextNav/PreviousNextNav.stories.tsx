@@ -17,7 +17,7 @@ const meta: Meta<typeof PreviousNextNav> = {
   args: {
     currentIndex: 3,
     backgroundColorLevel: 3,
-    browseItem: "unit",
+    navItemType: "unit",
     previous: {
       title:
         "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",

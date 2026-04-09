@@ -20,7 +20,7 @@ const meta: Meta<typeof PreviousNextItem> = {
     title:
       "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
     navDirection: "prev",
-    browseItem: "unit",
+    navItemType: "unit",
     href: "www.google.com",
   },
 };
