@@ -1,3 +1,16 @@
+## [1.1038.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1038.1...v1.1038.2) (2026-04-09)
+
+
+### Bug Fixes
+
+* assets ([be2dda0](https://github.com/oaknational/Oak-Web-Application/commit/be2dda090f3e45b3184d833edf56a6854c372ff4))
+* assets ([2e70c17](https://github.com/oaknational/Oak-Web-Application/commit/2e70c1734b0b828962ecd817599bd41e7da9cb09))
+* remove gap in who we are timeline ([83c8ff4](https://github.com/oaknational/Oak-Web-Application/commit/83c8ff4899862b797f7e7356b440aabf00ad7700))
+* remove to do comment ([dd4cce6](https://github.com/oaknational/Oak-Web-Application/commit/dd4cce6047f7afa4d7ae4716789d9d4bfa8f6eff))
+* sdk ([dc52278](https://github.com/oaknational/Oak-Web-Application/commit/dc52278d42534e2b81a8638a3fe670b642a960c9))
+* snaps ([0453c8c](https://github.com/oaknational/Oak-Web-Application/commit/0453c8ca28d137341cb8d92fd4ae121627415d05))
+* snaps ([e1806bb](https://github.com/oaknational/Oak-Web-Application/commit/e1806bb9a7f1658d5856a5b2c9f6f0413fd7e9e7))
+
 ## [1.1038.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1038.0...v1.1038.1) (2026-04-09)
 
 
