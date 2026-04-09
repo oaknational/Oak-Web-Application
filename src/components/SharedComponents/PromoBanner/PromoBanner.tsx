@@ -46,16 +46,14 @@ const PromoBanner: FC<PromoBannerProps> = ({
           >
             {message}
           </OakFlex>
-          <OakBox $mh={"spacing-0"}>
-            <OakSecondaryLink
-              href={href}
-              title={ctaText}
-              iconName="chevron-right"
-              isTrailingIcon
-            >
-              {ctaText}
-            </OakSecondaryLink>
-          </OakBox>
+          <OakSecondaryLink
+            href={href}
+            title={ctaText}
+            iconName="chevron-right"
+            isTrailingIcon={true}
+          >
+            {ctaText}
+          </OakSecondaryLink>
         </OakFlex>
       </OakFlex>
       <OakBox $background={background} $height={"spacing-4"}>

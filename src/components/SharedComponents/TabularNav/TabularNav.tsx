@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {
   OakFlex,
   OakFlexProps,
-  OakSecondaryLink,
+  OakSmallPrimaryInvertedButton,
   OakTypography,
 } from "@oaknational/oak-components";
 
@@ -40,8 +40,10 @@ const TabularNav = ({
         const href = resolveOakHref(hrefProps);
         return (
           <StyledTabularLink
+            element={"a"}
             href={href}
             onClick={onClick}
+            selected={isCurrent}
             aria-current={isCurrent ? "page" : undefined}
             $mr={"spacing-24"}
             key={`TabularNav-${link.page}-${i}`}
@@ -58,10 +60,27 @@ const TabularNav = ({
 
 export default TabularNav;
 
-const StyledTabularLink = styled(OakSecondaryLink)`
-  text-decoration: none;
+/**
+ * This could potentially be replaced with Tabs in the Oak Design Kit once implemented
+ * https://www.figma.com/design/YcWQMMhHPVVmc47cHHEEAl/Oak-Design-Kit?node-id=8866-11234&p=f&m=dev
+ */
+const StyledTabularLink = styled(OakSmallPrimaryInvertedButton)`
+  a,
+  a:hover {
+    border-color: transparent;
+    background: transparent;
+  }
 
-  &[aria-current="page"] {
-    text-decoration: underline;
+  a[aria-current="page"] {
+    padding-top: 0.05rem;
+  }
+
+  a[aria-current="page"]:hover div svg {
+    display: block;
+  }
+
+  svg {
+    color: var(--Tokens-Border-border-primary, #222);
+    bottom: -10px;
   }
 `;
