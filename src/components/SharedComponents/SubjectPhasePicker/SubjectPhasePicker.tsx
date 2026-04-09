@@ -15,6 +15,7 @@ import {
   OakHandDrawnHR,
   OakFocusIndicator,
   OakSecondaryLink,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 import { sortBy } from "lodash";
 import { flushSync } from "react-dom";
@@ -35,7 +36,6 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/FocusWrap";
-import Button from "@/components/SharedComponents/Button";
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
@@ -1223,19 +1223,16 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           $alignItems="center"
                           $justifyContent="space-between"
                         >
-                          <Button
-                            $ml={-8}
-                            size="large"
-                            label="Back"
+                          <OakTertiaryButton
                             data-testid="mobile-phase-picker-back-to-subject-button"
-                            icon="chevron-left"
-                            $iconPosition="leading"
-                            variant="minimal"
+                            iconName="chevron-left"
                             onClick={() => {
                               setShowPhases(false);
                               setIsMobileLotPickerModalOpen(true);
                             }}
-                          />
+                          >
+                            Back
+                          </OakTertiaryButton>
                           <CurriculumModalCloseButton
                             ariaLabel="Close phase picker modal"
                             onClose={() => setShowPhases(false)}
