@@ -21,6 +21,7 @@ const programmeToggleSchema = z.array(
     title: z.string(),
     programmeSlug: z.string(),
     isSelected: z.boolean(),
+    subjectSlug: z.string().optional(),
   }),
 );
 export type ProgrammeToggles = z.infer<typeof programmeToggleSchema>;
