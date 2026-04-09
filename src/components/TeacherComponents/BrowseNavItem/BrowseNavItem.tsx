@@ -1,8 +1,11 @@
 import {
   OakFlex,
+  OakFlexProps,
   OakTertiaryInvertedButton,
   OakTypography,
+  parseColor,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 type BrowseNavItemProps = {
   /**
@@ -31,6 +34,19 @@ type BrowseNavItemProps = {
   index?: string;
 };
 
+const StyledFlexContainer = styled(OakFlex)<
+  OakFlexProps & {
+    backgroundColorLevel: BrowseNavItemProps["backgroundColorLevel"];
+  }
+>`
+  &:hover {
+    background: ${(props) =>
+      parseColor(`bg-decorative${props.backgroundColorLevel}-very-subdued`)};
+    border-color: ${(props) =>
+      parseColor(`border-decorative${props.backgroundColorLevel}-stronger`)};
+  }
+`;
+
 export default function BrowseNavItem({
   index,
   title,
@@ -40,7 +56,7 @@ export default function BrowseNavItem({
   backgroundColorLevel,
 }: Readonly<BrowseNavItemProps>) {
   return (
-    <OakFlex
+    <StyledFlexContainer
       $borderRadius={"border-radius-l"}
       $borderColor={"border-neutral-lighter"}
       $ba={"border-solid-m"}
@@ -48,6 +64,7 @@ export default function BrowseNavItem({
       $pa={"spacing-24"}
       $gap={"spacing-12"}
       $width={"spacing-360"}
+      backgroundColorLevel={backgroundColorLevel}
     >
       {index && (
         <OakFlex
@@ -79,6 +96,6 @@ export default function BrowseNavItem({
           {navDirection === "prev" ? "Previous" : "Next"} {browseItem}
         </OakTertiaryInvertedButton>
       </OakFlex>
-    </OakFlex>
+    </StyledFlexContainer>
   );
 }
