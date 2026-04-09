@@ -1,3 +1,10 @@
+## [1.1038.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1038.0...v1.1038.1) (2026-04-09)
+
+
+### Bug Fixes
+
+* **LESQ-1896:** handle next+prev across swimming lessons ([de84a06](https://github.com/oaknational/Oak-Web-Application/commit/de84a06954a65dee1b69930185f548b8a1e82fc3))
+
 # [1.1038.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1037.1...v1.1038.0) (2026-04-09)
 
 
