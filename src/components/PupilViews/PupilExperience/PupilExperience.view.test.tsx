@@ -1450,10 +1450,14 @@ describe("PupilExperienceView", () => {
       renderWithCourseWork();
 
       await waitFor(() => {
+        expect(
+          mockedGoogleClassroomApi.getCourseWorkContext,
+        ).toHaveBeenCalled();
         expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
           expect.objectContaining({
             onNext: expect.any(Function),
             onSectionResultUpdate: expect.any(Function),
+            isHydratingInitialProgress: false,
           }),
         );
       });
@@ -1481,9 +1485,16 @@ describe("PupilExperienceView", () => {
 
       renderWithCourseWork();
 
+      // Wait for hydration to complete so courseWorkContextRef is populated
       await waitFor(() => {
+        expect(
+          mockedGoogleClassroomApi.getCourseWorkContext,
+        ).toHaveBeenCalled();
         expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
-          expect.objectContaining({ onNext: expect.any(Function) }),
+          expect.objectContaining({
+            onNext: expect.any(Function),
+            isHydratingInitialProgress: false,
+          }),
         );
       });
 
