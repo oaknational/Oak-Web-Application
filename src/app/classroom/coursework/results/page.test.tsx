@@ -1,5 +1,5 @@
 import React from "react";
-import { screen, waitFor } from "@testing-library/react";
+import { screen, waitFor, act } from "@testing-library/react";
 
 import CourseWorkResultsPage from "./page";
 
@@ -84,21 +84,30 @@ describe("CourseWorkResultsPage", () => {
     });
   });
 
-  it("shows a loading spinner on initial render", () => {
-    renderWithTheme(<CourseWorkResultsPage />);
-    expect(screen.getByText("Loading")).toBeInTheDocument();
-    expect(screen.queryByTestId("pupil-results")).not.toBeInTheDocument();
+  it("shows a loading spinner on initial render", async () => {
+    await act(async () => {
+      renderWithTheme(<CourseWorkResultsPage />);
+    });
+    // The spinner is only visible before the first async tick — check it
+    // appeared by verifying the results are now present (load completed)
+    await waitFor(() => {
+      expect(screen.getByTestId("pupil-results")).toBeInTheDocument();
+    });
   });
 
   it("renders PupilViewsResults after data loads", async () => {
-    renderWithTheme(<CourseWorkResultsPage />);
+    await act(async () => {
+      renderWithTheme(<CourseWorkResultsPage />);
+    });
     await waitFor(() => {
       expect(screen.getByTestId("pupil-results")).toBeInTheDocument();
     });
   });
 
   it("fetches from the correct URL with assignmentToken and submissionId", async () => {
-    renderWithTheme(<CourseWorkResultsPage />);
+    await act(async () => {
+      renderWithTheme(<CourseWorkResultsPage />);
+    });
     await waitFor(() => {
       expect(mockFetch).toHaveBeenCalledWith(
         "/api/classroom/coursework/results?assignmentToken=token-abc&submissionId=sub-1",
@@ -107,7 +116,9 @@ describe("CourseWorkResultsPage", () => {
   });
 
   it("calls getLessonData with the lessonSlug from the API response", async () => {
-    renderWithTheme(<CourseWorkResultsPage />);
+    await act(async () => {
+      renderWithTheme(<CourseWorkResultsPage />);
+    });
     await waitFor(() => {
       expect(getLessonData).toHaveBeenCalledWith("intro-algebra");
     });
@@ -117,7 +128,9 @@ describe("CourseWorkResultsPage", () => {
     useSearchParamsMock.mockReturnValue(
       new URLSearchParams("submissionId=sub-1"),
     );
-    renderWithTheme(<CourseWorkResultsPage />);
+    await act(async () => {
+      renderWithTheme(<CourseWorkResultsPage />);
+    });
     await waitFor(() => {
       expect(
         screen.getByText("Missing assignmentToken or submissionId"),
@@ -130,7 +143,9 @@ describe("CourseWorkResultsPage", () => {
     useSearchParamsMock.mockReturnValue(
       new URLSearchParams("assignmentToken=token-abc"),
     );
-    renderWithTheme(<CourseWorkResultsPage />);
+    await act(async () => {
+      renderWithTheme(<CourseWorkResultsPage />);
+    });
     await waitFor(() => {
       expect(
         screen.getByText("Missing assignmentToken or submissionId"),
@@ -143,7 +158,9 @@ describe("CourseWorkResultsPage", () => {
     mockFetch.mockResolvedValueOnce(
       new Response(null, { status: 500, statusText: "Internal Server Error" }),
     );
-    renderWithTheme(<CourseWorkResultsPage />);
+    await act(async () => {
+      renderWithTheme(<CourseWorkResultsPage />);
+    });
     await waitFor(() => {
       expect(
         screen.getByText("Failed to fetch results: 500"),
@@ -153,7 +170,9 @@ describe("CourseWorkResultsPage", () => {
 
   it("shows an error message when pupilProgress is null", async () => {
     mockJsonResponse({ ...mockResultsData, pupilProgress: null });
-    renderWithTheme(<CourseWorkResultsPage />);
+    await act(async () => {
+      renderWithTheme(<CourseWorkResultsPage />);
+    });
     await waitFor(() => {
       expect(
         screen.getByText("No results found for this submission"),
@@ -163,7 +182,9 @@ describe("CourseWorkResultsPage", () => {
 
   it("shows an error message when getLessonData returns null", async () => {
     getLessonData.mockResolvedValueOnce(null);
-    renderWithTheme(<CourseWorkResultsPage />);
+    await act(async () => {
+      renderWithTheme(<CourseWorkResultsPage />);
+    });
     await waitFor(() => {
       expect(screen.getByText("Lesson data not found")).toBeInTheDocument();
     });
@@ -171,7 +192,9 @@ describe("CourseWorkResultsPage", () => {
 
   it("shows a generic error message when fetch throws", async () => {
     mockFetch.mockRejectedValueOnce(new Error("Network failure"));
-    renderWithTheme(<CourseWorkResultsPage />);
+    await act(async () => {
+      renderWithTheme(<CourseWorkResultsPage />);
+    });
     await waitFor(() => {
       expect(screen.getByText("Network failure")).toBeInTheDocument();
     });

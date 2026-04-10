@@ -39,12 +39,10 @@ const mockBody = {
   maxPoints: 10,
 };
 
-const mockCreateCourseWork = jest
-  .fn()
-  .mockResolvedValue({
-    courseId: "course-123",
-    title: "Introduction to Algebra",
-  });
+const mockCreateCourseWork = jest.fn().mockResolvedValue({
+  courseId: "course-123",
+  title: "Introduction to Algebra",
+});
 
 const mockHeaders = {
   get: jest.fn((headerName: string) => {
