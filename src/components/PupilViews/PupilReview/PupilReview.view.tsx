@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   OakFlex,
   OakGrid,
@@ -11,6 +12,7 @@ import {
   OakLessonLayout,
   OakLessonReviewIntroVideo,
   OakLessonReviewQuiz,
+  OakLoadingSpinner,
   OakPrimaryButton,
   OakTertiaryButton,
   OakSecondaryButton,
@@ -21,6 +23,7 @@ import { PupilExperienceViewProps } from "../PupilExperience";
 
 import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
 
+import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
@@ -57,6 +60,17 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   } = props;
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
+  const searchParams = useSearchParams();
+  const assignmentToken = searchParams?.get("assignmentToken") ?? null;
+  const isCourseWorkAssignment = Boolean(assignmentToken);
+
+  const [handInState, setHandInState] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  let handInButtonLabel = "Hand in";
+  if (handInState === "loading") handInButtonLabel = "Handing in…";
+  if (handInState === "success") handInButtonLabel = "Handed in";
+
   const { phase = "primary", yearDescription, subject } = programmeFields;
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {
@@ -109,8 +123,20 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     storeResultsInLocalStorage();
   }
 
+  const handleHandIn = async () => {
+    if (!assignmentToken) return;
+    setHandInState("loading");
+    try {
+      await googleClassroomApi.turnInCourseWork(assignmentToken);
+      setHandInState("success");
+    } catch {
+      setHandInState("error");
+    }
+  };
+
   const bottomNavSlot = classroomAssignmentChecked &&
-    !isClassroomAssignment && (
+    !isClassroomAssignment &&
+    !isCourseWorkAssignment && (
       <OakLessonBottomNav>
         <OakPrimaryButton
           element="a"
@@ -272,9 +298,56 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                 $gap={"spacing-16"}
                 $minHeight={"spacing-92"}
               >
-                {hasQuiz &&
-                  classroomAssignmentChecked &&
-                  !isClassroomAssignment && (
+                {isCourseWorkAssignment && (
+                  <OakFlex $flexDirection="column" $gap="spacing-4">
+                    <OakPrimaryButton
+                      onClick={handleHandIn}
+                      disabled={
+                        handInState === "loading" || handInState === "success"
+                      }
+                      iconName={
+                        handInState === "success" ? "tick" : "arrow-right"
+                      }
+                      isTrailingIcon
+                    >
+                      {handInButtonLabel}
+                    </OakPrimaryButton>
+                    {handInState === "loading" && (
+                      <OakLoadingSpinner
+                        $width="spacing-48"
+                        $color="icon-brand"
+                      />
+                    )}
+                    {handInState === "success" && (
+                      <OakFlex $gap="spacing-4" $alignItems="center">
+                        <OakIcon iconName="tick" $colorFilter="text-success" />
+                        <OakHeading
+                          tag="h2"
+                          $font="heading-light-7"
+                          $color="text-success"
+                        >
+                          Assignment handed in successfully!
+                        </OakHeading>
+                      </OakFlex>
+                    )}
+                    {handInState === "error" && (
+                      <OakFlex $gap="spacing-4" $alignItems="center">
+                        <OakIcon iconName="cross" $colorFilter="text-error" />
+                        <OakHeading
+                          tag="h2"
+                          $font="heading-light-7"
+                          $color="text-error"
+                        >
+                          Failed to hand in. Please try again.
+                        </OakHeading>
+                      </OakFlex>
+                    )}
+                  </OakFlex>
+                )}
+                {classroomAssignmentChecked &&
+                  !isClassroomAssignment &&
+                  !isCourseWorkAssignment &&
+                  hasQuiz && (
                     <>
                       <OakHeading tag="h2" $font={"body-2-bold"}>
                         Share options:

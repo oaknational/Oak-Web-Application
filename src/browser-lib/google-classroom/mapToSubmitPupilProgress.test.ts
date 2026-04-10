@@ -238,7 +238,7 @@ describe("mapToSubmitPupilProgress", () => {
     expect(qr?.correctAnswer).toEqual(["first"]);
   });
 
-  it("should default missing quiz metrics to keep submission valid", () => {
+  it("should omit quiz section when numQuestions is missing (schema requires > 0)", () => {
     const sectionResults = {
       "starter-quiz": {
         isComplete: true,
@@ -247,12 +247,7 @@ describe("mapToSubmitPupilProgress", () => {
 
     const result = mapToSubmitPupilProgress(mockContext, sectionResults);
 
-    expect(result.starterQuiz).toEqual({
-      grade: 0,
-      numQuestions: 0,
-      isComplete: true,
-      questionResults: undefined,
-    });
+    expect(result.starterQuiz).toBeUndefined();
   });
 
   it("should include intro progress when present", () => {

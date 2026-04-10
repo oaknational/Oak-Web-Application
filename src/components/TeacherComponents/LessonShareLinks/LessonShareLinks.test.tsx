@@ -86,13 +86,33 @@ describe("LessonShareLinks", () => {
       />,
     );
 
-    const copyLinkButton = getByRole("link", {
-      name: "Share to Google Classroom",
+    const googleClassroomButton = getByRole("button", {
+      name: "Assign to Google Classroom",
     });
 
-    expect(copyLinkButton).toBeInTheDocument();
+    expect(googleClassroomButton).toBeInTheDocument();
     const user = userEvent.setup();
-    await user.click(copyLinkButton);
+    await user.click(googleClassroomButton);
     expect(onSubmit).toHaveBeenCalledWith("google-classroom");
   });
 });
+
+/**
+ * ! - 1. Fix Modal so it matches previously made modal with copy update
+ * Step :one: - copy changes on heading + text
+
+Save to Google Classroom
+Sign in with Google to save this assignment as a draft in your Google Classroom
+
+Step :two: - copy changes on heading + button
+Save to Google Classroom
+[Input field + radio buttons go here]
+Button: Share assignment
+
+Step :three: - copy changes heading + text + button
+Assignment saved
+"[name of assignment]" has been saved to your Google Classroom as a draft assignment. Open it in Google Classroom to publish it for your students.
+Button: View draft
+ * ! - 2. Fix the sonarcloud and add tests
+ * ! - 3. Record video
+ */

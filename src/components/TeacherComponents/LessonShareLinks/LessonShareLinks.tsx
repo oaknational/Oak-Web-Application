@@ -24,6 +24,9 @@ const LessonShareLinks: FC<{
   selectedActivities?: Array<ResourceType>;
   schoolUrn?: string;
   onSubmit: (shareMedium: ShareMediumValueType) => void;
+  /** When provided, clicking "Assign to Google Classroom" opens the CourseWork
+   *  modal instead of navigating to the generic Classroom share URL. */
+  onGoogleClassroomClick?: () => void;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
   const { setCurrentToastProps } = useOakNotificationsContext();
@@ -31,6 +34,11 @@ const LessonShareLinks: FC<{
   useEffect(() => {
     setIsShareSuccessful(false);
   }, [props.selectedActivities]);
+
+  const nonClassroomLinks = [
+    shareLinkConfig.microsoftTeams,
+    shareLinkConfig.email,
+  ];
 
   return (
     <>
@@ -79,11 +87,23 @@ const LessonShareLinks: FC<{
           disabled={props.disabled}
         />
 
-        {[
-          shareLinkConfig.googleClassroom,
-          shareLinkConfig.microsoftTeams,
-          shareLinkConfig.email,
-        ].map((link) => (
+        {/* Google Classroom – opens the CourseWork modal when a handler is provided */}
+        <LoadingButton
+          text={shareLinkConfig.googleClassroom.name}
+          icon={shareLinkConfig.googleClassroom.icon}
+          isLoading={false}
+          disabled={props.disabled}
+          type="button"
+          key={shareLinkConfig.googleClassroom.name}
+          onClick={() => {
+            props.onSubmit(shareLinkConfig.googleClassroom.avoMedium);
+            props.onGoogleClassroomClick?.();
+          }}
+          ariaLabel="Assign to Google Classroom"
+          ariaLive={"polite"}
+        />
+
+        {nonClassroomLinks.map((link) => (
           <LoadingButton
             text={link.name}
             icon={link.icon}
