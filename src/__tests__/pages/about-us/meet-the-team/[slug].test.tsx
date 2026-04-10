@@ -38,24 +38,37 @@ const mockNavigation: AboutUsMeetTheTeamPersonPageProps["navigation"] = {
 };
 
 const mockMeetTheTeamPage = {
-  id: "page-id",
-  title: "Meet the Team",
-  introText: null,
-  leadershipText: null,
-  boardText: null,
-  leadershipTeam: [
-    {
-      id: "prev-id",
-      name: "Previous Member",
-      slug: { current: "previous-member" },
-    },
-    mockTeamMember,
-  ],
-  boardMembers: [
-    { id: "next-id", name: "Next Member", slug: { current: "next-member" } },
-  ],
-  documents: null,
-  governancePortableText: [],
+  introText:
+    "Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.",
+  ourLeadership: {
+    leadershipText:
+      "Our leadership team brings together experts to deliver the best support to teachers and value for money for the public. Learn more about them below.",
+    leadershipTeam: [
+      {
+        id: "prev-id",
+        name: "Previous Member",
+        slug: { current: "previous-member" },
+      },
+      mockTeamMember,
+    ],
+  },
+  ourBoard: {
+    boardText:
+      "Our Board oversees all of our work at Oak National Academy. They provide strategic direction, enable us to deliver on our plans, scrutinise our work and safeguard our independence.",
+    boardMembers: [
+      {
+        id: "next-id",
+        name: "Next Member",
+        slug: { current: "next-member" },
+      },
+    ],
+  },
+  documents2: {
+    files: [],
+  },
+  governance2: {
+    textRaw: [],
+  },
   seo: null,
 };
 
@@ -505,14 +518,22 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
       };
       const pageWithDuplicateMember = {
         ...mockMeetTheTeamPage,
-        leadershipTeam: [
-          duplicateMember,
-          { id: "leader-2", name: "Leader Two", slug: { current: "leader-2" } },
-        ],
-        boardMembers: [
-          duplicateMember, // Same member appears in board
-          { id: "board-2", name: "Board Two", slug: { current: "board-2" } },
-        ],
+        ourLeadership: {
+          leadershipTeam: [
+            duplicateMember,
+            {
+              id: "leader-2",
+              name: "Leader Two",
+              slug: { current: "leader-2" },
+            },
+          ],
+        },
+        ourBoard: {
+          boardMembers: [
+            duplicateMember, // Same member appears in board
+            { id: "board-2", name: "Board Two", slug: { current: "board-2" } },
+          ],
+        },
       };
       (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(
         pageWithDuplicateMember,
@@ -550,8 +571,12 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
       };
       const pageWithDuplicateMember = {
         ...mockMeetTheTeamPage,
-        leadershipTeam: [duplicateMember],
-        boardMembers: [duplicateMember],
+        ourLeadership: {
+          leadershipTeam: [duplicateMember],
+        },
+        ourBoard: {
+          boardMembers: [duplicateMember],
+        },
       };
       (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(
         pageWithDuplicateMember,
@@ -585,12 +610,20 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     it("should wrap within board only when leadership is empty", async () => {
       const pageWithBoardOnly = {
         ...mockMeetTheTeamPage,
-        leadershipTeam: [],
-        boardMembers: [
-          { id: "board-1", name: "Board One", slug: { current: "board-1" } },
-          { id: "board-2", name: "Board Two", slug: { current: "board-2" } },
-          { id: "board-3", name: "Board Three", slug: { current: "board-3" } },
-        ],
+        ourLeadership: {
+          leadershipTeam: [],
+        },
+        ourBoard: {
+          boardMembers: [
+            { id: "board-1", name: "Board One", slug: { current: "board-1" } },
+            { id: "board-2", name: "Board Two", slug: { current: "board-2" } },
+            {
+              id: "board-3",
+              name: "Board Three",
+              slug: { current: "board-3" },
+            },
+          ],
+        },
       };
       (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(
         pageWithBoardOnly,
@@ -634,16 +667,28 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     it("should wrap within leadership only when board is empty", async () => {
       const pageWithLeadershipOnly = {
         ...mockMeetTheTeamPage,
-        leadershipTeam: [
-          { id: "leader-1", name: "Leader One", slug: { current: "leader-1" } },
-          { id: "leader-2", name: "Leader Two", slug: { current: "leader-2" } },
-          {
-            id: "leader-3",
-            name: "Leader Three",
-            slug: { current: "leader-3" },
-          },
-        ],
-        boardMembers: [],
+        ourLeadership: {
+          leadershipTeam: [
+            {
+              id: "leader-1",
+              name: "Leader One",
+              slug: { current: "leader-1" },
+            },
+            {
+              id: "leader-2",
+              name: "Leader Two",
+              slug: { current: "leader-2" },
+            },
+            {
+              id: "leader-3",
+              name: "Leader Three",
+              slug: { current: "leader-3" },
+            },
+          ],
+        },
+        ourBoard: {
+          boardMembers: [],
+        },
       };
       (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(
         pageWithLeadershipOnly,
@@ -687,10 +732,14 @@ describe("pages/about/meet-the-team/[slug].tsx", () => {
     it("should return no navigation for single member in section", async () => {
       const pageWithSingleMember = {
         ...mockMeetTheTeamPage,
-        leadershipTeam: [
-          { id: "solo", name: "Solo Leader", slug: { current: "solo" } },
-        ],
-        boardMembers: [],
+        ourLeadership: {
+          leadershipTeam: [
+            { id: "solo", name: "Solo Leader", slug: { current: "solo" } },
+          ],
+        },
+        ourBoard: {
+          boardMembers: [],
+        },
       };
       (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(
         pageWithSingleMember,

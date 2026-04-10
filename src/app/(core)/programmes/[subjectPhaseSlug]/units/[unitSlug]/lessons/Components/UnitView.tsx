@@ -1,6 +1,8 @@
 "use client";
 import {
   OakBox,
+  OakBoxProps,
+  OakCard,
   OakFlex,
   OakFlexProps,
   OakGrid,
@@ -17,6 +19,7 @@ import { ProgrammeToggles } from "./ProgrammeToggles";
 import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import { resolveOakHref } from "@/common-lib/urls";
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 
 export type UnitViewProps = Pick<
@@ -117,6 +120,7 @@ export const UnitView = ({
             $display={["none", "none", "flex"]}
             phaseSlug={phaseSlug}
           />
+          <HelpLinkCard $display={["none", "block"]} />
         </OakGridArea>
         <OakGridArea
           $colSpan={[12, 7]}
@@ -143,6 +147,7 @@ export const UnitView = ({
             unitCount={unitCount}
             lessonCount={lessons.length}
           />
+          <HelpLinkCard $display={["block", "none"]} />
         </OakGridArea>
         <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
           <PreviousNextNav
@@ -255,4 +260,26 @@ const UnitThreads = ({
     );
   }
   return null;
+};
+
+const HelpLinkCard = ({ $display }: { $display: OakBoxProps["$display"] }) => {
+  return (
+    <OakBox
+      $dropShadow={"drop-shadow-centred-standard"}
+      $borderRadius={"border-radius-m2"}
+      $display={$display}
+    >
+      <OakCard
+        heading="Learn how you can can make the best use of Oak resources"
+        href={resolveOakHref({ page: "guide-to-oak" })}
+        subCopy="A step-by-step guide to getting started"
+        linkText="Get more out of Oak"
+        linkIconName="arrow-right"
+        imageSrc={getCloudinaryImageUrl(
+          "v1734018546/OWA/illustrations/hero-aila_wgpmas.jpg",
+        )}
+        aspectRatio="4/3"
+      />
+    </OakBox>
+  );
 };

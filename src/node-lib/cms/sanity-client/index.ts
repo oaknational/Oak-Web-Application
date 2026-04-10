@@ -20,8 +20,8 @@ import {
   landingPageSchema,
   blogListingPageSchema,
   curriculumOverviewCMSSchema,
-  newAboutGetInvolvedPageSchema,
-  newAboutWhoWeArePageSchema,
+  getInvolvedPageSchema,
+  whoWeArePageSchema,
   meetTheTeamPageSchema,
   oaksCurriculaPageSchema,
   teamMemberSchema,
@@ -97,9 +97,9 @@ const getSanityClient = () => ({
         : undefined;
     },
   ),
-  newAboutWhoWeArePage: getSingleton(
-    sanityGraphqlApi.newAboutWhoWeArePage,
-    newAboutWhoWeArePageSchema,
+  whoWeArePage: getSingleton(
+    sanityGraphqlApi.whoWeArePage,
+    whoWeArePageSchema,
     (result) => {
       console.log({ result });
       const whoWeArePageData = result?.allNewAboutCorePageWhoWeAre?.[0];
@@ -177,9 +177,9 @@ const getSanityClient = () => ({
         : undefined;
     },
   ),
-  newAboutGetInvolvedPage: getSingleton(
-    sanityGraphqlApi.newAboutGetInvolvedPage,
-    newAboutGetInvolvedPageSchema,
+  getInvolvedPage: getSingleton(
+    sanityGraphqlApi.getInvolvedPage,
+    getInvolvedPageSchema,
     (result) => {
       const whoWeArePageData = result?.allNewAboutCorePageGetInvolved?.[0];
       return whoWeArePageData;
@@ -240,8 +240,8 @@ const getSanityClient = () => ({
     meetTheTeamPageSchema,
     (result) => {
       const meetTheTeamData = result?.allNewAboutCorePageMeetTheTeam?.[0];
-      if (meetTheTeamData?.documents) {
-        meetTheTeamData.documents.forEach((doc) => {
+      if (meetTheTeamData?.documents2?.files) {
+        meetTheTeamData.documents2.files.forEach((doc) => {
           const url = doc?.file?.asset?.url;
           const proxiedUrl = getProxiedSanityAssetUrl(url);
           if (doc?.file?.asset?.url) {

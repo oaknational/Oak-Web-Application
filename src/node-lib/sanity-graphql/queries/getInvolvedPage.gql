@@ -1,12 +1,15 @@
-query newAboutGetInvolvedPage($isDraftFilter: Sanity_DocumentFilter) {
+query getInvolvedPage($isDraftFilter: Sanity_DocumentFilter) {
   allNewAboutCorePageGetInvolved(
-    where: { _: $isDraftFilter, _id: { matches: "*newAboutCorePage.getInvolved" } }
+    where: {
+      _: $isDraftFilter
+      _id: { matches: "*newAboutCorePage.getInvolved" }
+    }
     sort: { _updatedAt: DESC }
     limit: 1
   ) {
     id: _id
     header {
-      textRaw
+      introText
     }
     collaborate {
       researchPanelTextRaw
@@ -14,6 +17,9 @@ query newAboutGetInvolvedPage($isDraftFilter: Sanity_DocumentFilter) {
     }
     workWithUs {
       textRaw
+      image {
+        ...ImageWithAltText
+      }
     }
     seo {
       ...Seo

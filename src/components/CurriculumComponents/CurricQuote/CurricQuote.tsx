@@ -7,10 +7,18 @@ import {
   OakHeadingProps,
   OakPProps,
 } from "@oaknational/oak-components";
+import { PortableTextBlockComponent } from "@portabletext/react";
+
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+
+const OakPStyled: PortableTextBlockComponent = (props) => {
+  return <OakP $font={"body-1"}>{props.children}</OakP>;
+};
 
 export type CurricQuoteProps = {
   title: string;
-  children: string;
+  text: PortableTextJSON | string | undefined;
   backgroundColor?: OakUiRoleToken;
   barColor?: OakUiRoleToken;
   headingProps?: OakHeadingProps;
@@ -19,7 +27,7 @@ export type CurricQuoteProps = {
 
 export default function CurricQuote({
   title,
-  children,
+  text,
   backgroundColor = "transparent",
   barColor = "bg-decorative1-very-subdued",
   headingProps,
@@ -46,9 +54,24 @@ export default function CurricQuote({
           >
             {title}
           </OakHeading>
-          <OakP $font={["body-1"]} $color={"text-primary"} {...paragraphProps}>
-            {children}
-          </OakP>
+          {typeof text === "string" ? (
+            <OakP
+              $font={["body-1"]}
+              $color={"text-primary"}
+              {...paragraphProps}
+            >
+              {text}
+            </OakP>
+          ) : (
+            <PortableTextWithDefaults
+              value={text}
+              components={{
+                block: {
+                  normal: OakPStyled,
+                },
+              }}
+            />
+          )}
         </OakFlex>
       </OakFlex>
     </OakBox>
