@@ -170,6 +170,13 @@ const createMockSearchParams = (
   new URLSearchParams(params) as NonNullable<
     ReturnType<typeof useSearchParams>
   >;
+const setWindowLocationSearch = (search: string) => {
+  Object.defineProperty(window, "location", {
+    configurable: true,
+    writable: true,
+    value: { search },
+  });
+};
 
 mockedUseAssignmentSearchParams.mockReturnValue({
   isClassroomAssignment: false,
@@ -261,11 +268,7 @@ describe("PupilExperienceView", () => {
     );
     mockedMapPupilLessonProgressToSectionResults.mockReturnValue({});
     mockedMapToSubmitCourseWorkProgress.mockReturnValue({} as never);
-    Object.defineProperty(window, "location", {
-      configurable: true,
-      writable: true,
-      value: { search: "" },
-    });
+    setWindowLocationSearch("");
     Object.defineProperty(globalThis, "cookieStore", {
       value: { get: jest.fn() },
       writable: true,
@@ -1304,11 +1307,7 @@ describe("PupilExperienceView", () => {
 
   describe("CourseWork flow", () => {
     const setAssignmentToken = (token: string | null) => {
-      Object.defineProperty(window, "location", {
-        configurable: true,
-        writable: true,
-        value: { search: token ? `?assignmentToken=${token}` : "" },
-      });
+      setWindowLocationSearch(token ? `?assignmentToken=${token}` : "");
     };
 
     const renderWithCourseWork = () =>
@@ -1332,6 +1331,10 @@ describe("PupilExperienceView", () => {
         .mockReturnValue(
           createLessonEngineContext({ currentSection: "overview" }),
         );
+    });
+
+    afterEach(() => {
+      setAssignmentToken(null);
     });
 
     it("shows the sign-in overlay when the pupil is not authenticated", async () => {
@@ -1589,6 +1592,7 @@ describe("lessonAccessedPupilJourney analytics", () => {
   });
 
   beforeEach(() => {
+    setWindowLocationSearch("");
     mockedUseAssignmentSearchParams.mockReset();
     mockedUseAssignmentSearchParams.mockReturnValue({
       isClassroomAssignment: true,
@@ -1784,6 +1788,7 @@ describe("lessonAccessedPupilJourney analytics", () => {
 
 describe("redirected overlay", () => {
   beforeEach(() => {
+    setWindowLocationSearch("");
     mockRouter.setCurrentUrl("/?redirected=true");
     mockedUseAssignmentSearchParams.mockReturnValue({
       isClassroomAssignment: false,
