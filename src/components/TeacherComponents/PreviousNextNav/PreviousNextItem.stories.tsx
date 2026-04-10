@@ -22,6 +22,7 @@ const meta: Meta<typeof PreviousNextItem> = {
     navDirection: "prev",
     navItemType: "unit",
     href: "www.google.com",
+    disabled: false,
   },
 };
 export default meta;

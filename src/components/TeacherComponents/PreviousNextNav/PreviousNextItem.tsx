@@ -33,6 +33,10 @@ type PreviousNextItemProps = Pick<
    * Optional index of the browse item to be displayed along with the title
    */
   index?: number;
+  /**
+   * Whether the card should be disabled
+   */
+  disabled?: boolean;
 };
 
 const StyledFlexContainer = styled(OakFlex)<
@@ -62,6 +66,7 @@ export default function PreviousNextItem({
   href,
   navDirection,
   backgroundColorLevel,
+  disabled,
 }: Readonly<PreviousNextItemProps>) {
   return (
     <OakFocusIndicator $borderRadius={"border-radius-l"}>
@@ -73,15 +78,20 @@ export default function PreviousNextItem({
         $pa={"spacing-24"}
         $gap={"spacing-12"}
         backgroundColorLevel={backgroundColorLevel}
-        as={Link}
+        as={disabled ? OakFlex : Link}
         href={href}
+        $color={disabled ? "text-disabled" : "text-primary"}
       >
         {Boolean(index) && (
           <OakFlex
             $borderRadius={"border-radius-circle"}
             $font={"heading-7"}
             $pa={"spacing-12"}
-            $background={`bg-decorative${backgroundColorLevel}-subdued`}
+            $background={
+              disabled
+                ? "bg-neutral"
+                : `bg-decorative${backgroundColorLevel}-subdued`
+            }
             $justifyContent={"center"}
             $alignItems={"center"}
             $width={"spacing-32"}
@@ -91,33 +101,41 @@ export default function PreviousNextItem({
             {index}
           </OakFlex>
         )}
-        <OakTypography $font={"body-3-bold"} $color={"text-primary"}>
-          {title}
-        </OakTypography>
+        <OakTypography $font={"body-3-bold"}>{title}</OakTypography>
         <OakFlex
           $mt={"spacing-12"}
           $justifyContent={navDirection === "next" ? "flex-end" : "flex-start"}
           $alignItems={"center"}
           $gap={"spacing-12"}
         >
-          {navDirection === "prev" && <ItemIcon iconName="arrow-left" />}
+          {navDirection === "prev" && (
+            <ItemIcon iconName="arrow-left" disabled={disabled} />
+          )}
           <OakTypography
             className="previous-next-item-link"
             $font={"heading-7"}
           >
             {navDirection === "prev" ? "Previous" : "Next"} {navItemType}
           </OakTypography>
-          {navDirection === "next" && <ItemIcon iconName="arrow-right" />}
+          {navDirection === "next" && (
+            <ItemIcon iconName="arrow-right" disabled={disabled} />
+          )}
         </OakFlex>
       </StyledFlexContainer>
     </OakFocusIndicator>
   );
 }
 
-const ItemIcon = ({ iconName }: { iconName: OakIconName }) => {
+const ItemIcon = ({
+  iconName,
+  disabled,
+}: {
+  iconName: OakIconName;
+  disabled?: boolean;
+}) => {
   return (
     <OakBox
-      $borderColor={"border-primary"}
+      $borderColor={disabled ? "border-neutral" : "border-primary"}
       $borderRadius={"border-radius-circle"}
       $ba="border-solid-l"
     >
@@ -128,6 +146,7 @@ const ItemIcon = ({ iconName }: { iconName: OakIconName }) => {
         $background={"bg-primary"}
         $borderRadius={"border-radius-circle"}
         className="item-icon"
+        $colorFilter={disabled ? "icon-disabled" : undefined}
       />
     </OakBox>
   );
