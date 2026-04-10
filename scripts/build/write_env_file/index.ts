@@ -34,6 +34,24 @@ async function main() {
   let appVersion: string;
   let isProductionBuild = false;
 
+  function getCurriculumApiAuthKey(secretsFromNetwork: Record<string, string>) {
+    const VERCEL_ENV = process.env.VERCEL_ENV || "development";
+
+    switch (VERCEL_ENV) {
+      // These all query the production database, so should use the production auth key
+      case "production":
+      case "development":
+      case "preview":
+        return secretsFromNetwork.CURRICULUM_API_AUTH_KEY_V2_PRODUCTION;
+      // This queries the staging database, so should use the staging auth key
+      case "staging":
+        return secretsFromNetwork.CURRICULUM_API_AUTH_KEY_V2_STAGING;
+      case "test":
+        return "very secret";
+      default:
+        throw new Error(`Unknown VERCEL_ENV: ${VERCEL_ENV}`);
+    }
+  }
   // If we are in a test phase (or have explicitly declared a this is a test)
   // then use the fake test config values.
   if (NODE_ENV === "test") {
@@ -140,6 +158,9 @@ async function main() {
     CURRICULUM_API_2023_AUTH_KEY:
       process.env.CURRICULUM_API_2023_AUTH_KEY ||
       secretsFromNetwork.CURRICULUM_API_2023_AUTH_KEY,
+    CURRICULUM_API_AUTH_KEY_V2:
+      process.env.CURRICULUM_API_AUTH_KEY_V2 ||
+      getCurriculumApiAuthKey(secretsFromNetwork),
     NEXT_PUBLIC_VERCEL_API_URL:
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
     NEXT_PUBLIC_DOWNLOAD_API_URL:
