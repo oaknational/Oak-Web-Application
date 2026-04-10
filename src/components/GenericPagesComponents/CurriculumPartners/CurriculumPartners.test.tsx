@@ -1,6 +1,7 @@
 import { CurriculumPartners } from "./";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
@@ -16,7 +17,7 @@ describe("CurriculumPartners", () => {
     const { baseElement, getByRole, getAllByRole } = render(
       <CurriculumPartners
         title={"TEST_TITLE"}
-        text={"TEST_TEXT"}
+        text={portableTextFromString("TEST_TEXT")}
         items={items}
       />,
     );

@@ -20086,7 +20086,7 @@ export type TeachersUnitOverviewQueryVariables = Exact<{
 }>;
 
 
-export type TeachersUnitOverviewQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, programme_slug_by_year?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unitvariant_id?: number | null, unit_data?: any | null, programme_slug?: string | null, actions?: any | null, features?: any | null, order_in_unit?: number | null, static_lesson_list?: any | null }>, unitsInOtherProgrammes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', programme_slug?: string | null, programme_fields?: any | null }>, unitSequence: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', unitSlug?: string | null, unitTitle?: any | null, unitDescription?: any | null, unitOrder?: any | null, yearOrder?: any | null, year?: any | null, subjectCategories?: any | null, optionalityTitle?: any | null, isSwimming?: any | null, nullUnitvariantId?: number | null }>, matchingSubjectCategories: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_21', subjectCategories?: any | null }> };
+export type TeachersUnitOverviewQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, programme_slug_by_year?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unitvariant_id?: number | null, unit_data?: any | null, programme_slug?: string | null, actions?: any | null, features?: any | null, order_in_unit?: number | null, static_lesson_list?: any | null }>, unitsInOtherProgrammes: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', programme_slug?: string | null, programme_fields?: any | null }>, unitSequence: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', unitSlug?: string | null, unitTitle?: any | null, unitDescription?: any | null, unitOrder?: any | null, yearOrder?: any | null, year?: any | null, subjectCategories?: any | null, optionalityTitle?: any | null, isSwimming?: any | null, nullUnitvariantId?: number | null }>, matchingSubjectCategories: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_21', subjectCategories?: any | null }>, threads: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', threads?: any | null }> };
 
 export type TopNavQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -21267,6 +21267,11 @@ export const TeachersUnitOverviewDocument = gql`
     limit: 1
   ) {
     subjectCategories: subjectcategories
+  }
+  threads: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
+    where: {unit_slug: {_eq: $unitSlug}, programme_slug: {_eq: $programmeSlug}, is_legacy: {_eq: false}}
+  ) {
+    threads
   }
 }
     `;

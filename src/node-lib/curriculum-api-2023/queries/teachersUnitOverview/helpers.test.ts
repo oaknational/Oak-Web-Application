@@ -11,6 +11,7 @@ import {
   getUnitCounts,
 } from "./helpers";
 import {
+  threadsFixture,
   unitSequenceFixture,
   unitsInOtherProgrammesFixture,
 } from "./teachersUnitOverview.query.test";
@@ -30,18 +31,23 @@ const mockPackagedUnitData = {
     syntheticUnitvariantLessonsByKsFixture().programme_slug_by_year,
   nullUnitvariantId: 1,
   subjectCategories: [],
+  whyThisWhyNow: "why this why now",
+  priorKnowledgeRequirements: ["prior", "knowledge", "requirements"],
 };
 
 describe("getTransformedUnit", () => {
   it("getTransformedUnit returns the correct data", async () => {
-    const transformedLessons = getPackagedUnit(
-      mockPackagedUnitData,
-      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
-      false,
-      false,
-      unitSequenceFixture,
-      unitsInOtherProgrammesFixture,
-    );
+    const transformedLessons = getPackagedUnit({
+      packagedUnitData: mockPackagedUnitData,
+      unitLessons: getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture({}),
+      ]),
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
     expect(transformedLessons).toEqual({
       examBoardSlug: null,
       examBoardTitle: null,
@@ -87,6 +93,9 @@ describe("getTransformedUnit", () => {
       actions: { isPePractical: false },
       phaseSlug: "primary",
       phaseTitle: "Primary",
+      threads: ["Thread 1", "Thread 2", "Thread 3"],
+      whyThisWhyNow: "why this why now",
+      priorKnowledgeRequirements: ["prior", "knowledge", "requirements"],
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
       nextUnit: {
@@ -100,9 +109,10 @@ describe("getTransformedUnit", () => {
   });
   it("getTransformedUnit returns the correct data for optionality units", () => {
     const pfs = syntheticUnitvariantLessonsByKsFixture().programme_fields;
-    const transformedLessons = getPackagedUnit(
-      mockPackagedUnitData,
-      getTransformedLessons([
+
+    const transformedLessons = getPackagedUnit({
+      packagedUnitData: mockPackagedUnitData,
+      unitLessons: getTransformedLessons([
         syntheticUnitvariantLessonsByKsFixture({
           overrides: {
             programme_fields: {
@@ -112,11 +122,12 @@ describe("getTransformedUnit", () => {
           },
         }),
       ]),
-      false,
-      false,
-      unitSequenceFixture,
-      unitsInOtherProgrammesFixture,
-    );
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
     expect(transformedLessons).toEqual({
       examBoardSlug: null,
       examBoardTitle: null,
@@ -163,6 +174,9 @@ describe("getTransformedUnit", () => {
       actions: { isPePractical: false },
       containsGeorestrictedLessons: false,
       containsLoginRequiredLessons: false,
+      threads: ["Thread 1", "Thread 2", "Thread 3"],
+      whyThisWhyNow: "why this why now",
+      priorKnowledgeRequirements: ["prior", "knowledge", "requirements"],
       parentSubject: "Maths",
       nextUnit: {
         slug: "unit-2",
@@ -176,24 +190,29 @@ describe("getTransformedUnit", () => {
 
   it("sets unitCount for the current unit's year", () => {
     const sequence = unitSequenceFixture.slice(0, 2);
-    const result = getPackagedUnit(
-      mockPackagedUnitData,
-      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
-      false,
-      false,
-      sequence,
-      unitsInOtherProgrammesFixture,
-    );
+    const result = getPackagedUnit({
+      packagedUnitData: mockPackagedUnitData,
+      unitLessons: getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture({}),
+      ]),
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: sequence,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
     expect(result.unitCount).toBe(sequence.length);
   });
 
   it("does not include units from other years in unitCount", () => {
-    const result = getPackagedUnit(
-      { ...mockPackagedUnitData, nullUnitvariantId: 20 },
-      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
-      false,
-      false,
-      [
+    const result = getPackagedUnit({
+      packagedUnitData: { ...mockPackagedUnitData, nullUnitvariantId: 20 },
+      unitLessons: getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture({}),
+      ]),
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: [
         ...unitSequenceFixture,
         {
           unitSlug: "unit-20",
@@ -214,8 +233,9 @@ describe("getTransformedUnit", () => {
           year: "7",
         },
       ],
-      unitsInOtherProgrammesFixture,
-    );
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
 
     expect(result.unitCount).toBe(2);
   });
@@ -406,14 +426,17 @@ describe("getUnitCounts", () => {
 
 describe("getNeighbourUnits", () => {
   it("gets the previous unit", () => {
-    const transformedLessons = getPackagedUnit(
-      { ...mockPackagedUnitData, nullUnitvariantId: 3 },
-      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
-      false,
-      false,
-      unitSequenceFixture,
-      unitsInOtherProgrammesFixture,
-    );
+    const transformedLessons = getPackagedUnit({
+      packagedUnitData: { ...mockPackagedUnitData, nullUnitvariantId: 3 },
+      unitLessons: getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture({}),
+      ]),
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
 
     expect(transformedLessons.prevUnit).toEqual({
       slug: "unit-2",
@@ -421,12 +444,14 @@ describe("getNeighbourUnits", () => {
     });
   });
   it("gets the next optionality unit", () => {
-    const transformedLessons = getPackagedUnit(
-      { ...mockPackagedUnitData, nullUnitvariantId: 4 },
-      getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
-      false,
-      false,
-      unitSequenceFixture.concat({
+    const transformedLessons = getPackagedUnit({
+      packagedUnitData: { ...mockPackagedUnitData, nullUnitvariantId: 4 },
+      unitLessons: getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture({}),
+      ]),
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture.concat({
         unitSlug: "unit-slug",
         unitTitle: "Null Title",
         unitDescription: null,
@@ -436,8 +461,9 @@ describe("getNeighbourUnits", () => {
         yearOrder: 1,
         year: "7",
       }),
-      unitsInOtherProgrammesFixture,
-    );
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
 
     expect(transformedLessons.nextUnit).toEqual({
       title: "Optionality title",
@@ -609,6 +635,166 @@ describe("getNeighbourUnits", () => {
       title: "Unit 2",
     });
   });
+
+  it("gets swimming neighbours only for swimming units", () => {
+    const result = getNeighbourUnits({
+      unitSequenceData: [
+        {
+          unitSlug: "unit-1",
+          unitTitle: "Unit 1",
+          unitDescription: null,
+          nullUnitvariantId: 1,
+          yearOrder: 1,
+          unitOrder: 1,
+          year: "1",
+        },
+        {
+          unitSlug: "swimming-1",
+          unitTitle: "Swimming 1",
+          unitDescription: null,
+          nullUnitvariantId: 2,
+          yearOrder: 1,
+          unitOrder: 2,
+          year: "1",
+          isSwimming: true,
+        },
+        {
+          unitSlug: "unit-2",
+          unitTitle: "Unit 2",
+          unitDescription: null,
+          nullUnitvariantId: 3,
+          yearOrder: 1,
+          unitOrder: 3,
+          year: "1",
+        },
+        {
+          unitSlug: "swimming-2",
+          unitTitle: "Swimming 2",
+          unitDescription: null,
+          nullUnitvariantId: 4,
+          yearOrder: 2,
+          unitOrder: 1,
+          year: "2",
+          isSwimming: true,
+        },
+        {
+          unitSlug: "unit-3",
+          unitTitle: "Unit 3",
+          unitDescription: null,
+          nullUnitvariantId: 5,
+          yearOrder: 2,
+          unitOrder: 2,
+          year: "2",
+        },
+        {
+          unitSlug: "swimming-3",
+          unitTitle: "Swimming 3",
+          unitDescription: null,
+          nullUnitvariantId: 6,
+          yearOrder: 3,
+          unitOrder: 1,
+          year: "3",
+          isSwimming: true,
+        },
+      ],
+      nullUnitvariantId: 4,
+    });
+
+    expect(result.prevUnit).toEqual({
+      slug: "swimming-1",
+      title: "Swimming 1",
+    });
+    expect(result.nextUnit).toEqual({
+      slug: "swimming-3",
+      title: "Swimming 3",
+    });
+  });
+
+  it("returns no previous unit for the first swimming unit", () => {
+    const result = getNeighbourUnits({
+      unitSequenceData: [
+        {
+          unitSlug: "swimming-1",
+          unitTitle: "Swimming 1",
+          unitDescription: null,
+          nullUnitvariantId: 1,
+          yearOrder: 1,
+          unitOrder: 1,
+          year: "1",
+          isSwimming: true,
+        },
+        {
+          unitSlug: "unit-2",
+          unitTitle: "Unit 2",
+          unitDescription: null,
+          nullUnitvariantId: 2,
+          yearOrder: 1,
+          unitOrder: 2,
+          year: "1",
+        },
+        {
+          unitSlug: "swimming-2",
+          unitTitle: "Swimming 2",
+          unitDescription: null,
+          nullUnitvariantId: 3,
+          yearOrder: 2,
+          unitOrder: 1,
+          year: "2",
+          isSwimming: true,
+        },
+      ],
+      nullUnitvariantId: 1,
+    });
+
+    expect(result.prevUnit).toBeNull();
+    expect(result.nextUnit).toEqual({
+      slug: "swimming-2",
+      title: "Swimming 2",
+    });
+  });
+
+  it("returns no next unit for the last swimming unit", () => {
+    const result = getNeighbourUnits({
+      unitSequenceData: [
+        {
+          unitSlug: "swimming-1",
+          unitTitle: "Swimming 1",
+          unitDescription: null,
+          nullUnitvariantId: 1,
+          yearOrder: 1,
+          unitOrder: 1,
+          year: "1",
+          isSwimming: true,
+        },
+        {
+          unitSlug: "unit-2",
+          unitTitle: "Unit 2",
+          unitDescription: null,
+          nullUnitvariantId: 2,
+          yearOrder: 2,
+          unitOrder: 1,
+          year: "2",
+        },
+        {
+          unitSlug: "swimming-2",
+          unitTitle: "Swimming 2",
+          unitDescription: null,
+          nullUnitvariantId: 3,
+          yearOrder: 3,
+          unitOrder: 1,
+          year: "3",
+          isSwimming: true,
+        },
+      ],
+      nullUnitvariantId: 3,
+    });
+
+    expect(result.prevUnit).toEqual({
+      slug: "swimming-1",
+      title: "Swimming 1",
+    });
+    expect(result.nextUnit).toBeNull();
+  });
 });
 
 describe("getTransformedLesons", () => {
@@ -657,9 +843,9 @@ describe("isPePractical", () => {
   };
 
   it("sets isPePractical true when at least one lesson is practical", () => {
-    const result = getPackagedUnit(
-      mockPackagedUnitData,
-      [
+    const result = getPackagedUnit({
+      packagedUnitData: mockPackagedUnitData,
+      unitLessons: [
         { ...baseLesson, actions: { isPePractical: true } },
         {
           ...baseLesson,
@@ -667,33 +853,35 @@ describe("isPePractical", () => {
           actions: {},
         },
       ],
-      false,
-      false,
-      unitSequenceFixture,
-      unitsInOtherProgrammesFixture,
-    );
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
     expect(result.actions?.isPePractical).toBe(true);
   });
 
   it("sets isPePractical false when no lessons are practical", () => {
-    const result = getPackagedUnit(
-      mockPackagedUnitData,
-      [
+    const result = getPackagedUnit({
+      packagedUnitData: mockPackagedUnitData,
+      unitLessons: [
         { ...baseLesson, actions: {} },
         { ...baseLesson, lessonSlug: "lesson-2", actions: null },
       ],
-      false,
-      false,
-      unitSequenceFixture,
-      unitsInOtherProgrammesFixture,
-    );
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
     expect(result.actions?.isPePractical).toBe(false);
   });
 
   it("excludes unpublished lessons when determining isPePractical", () => {
-    const result = getPackagedUnit(
-      mockPackagedUnitData,
-      [
+    const result = getPackagedUnit({
+      packagedUnitData: mockPackagedUnitData,
+      unitLessons: [
         { ...baseLesson, actions: {} },
         {
           lessonSlug: "lesson-2",
@@ -704,11 +892,12 @@ describe("isPePractical", () => {
           expired: false,
         },
       ],
-      false,
-      false,
-      unitSequenceFixture,
-      unitsInOtherProgrammesFixture,
-    );
+      containsGeorestrictedLessons: false,
+      containsLoginRequiredLessons: false,
+      unitSequenceData: unitSequenceFixture,
+      unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
+      threads: threadsFixture,
+    });
     expect(result.actions?.isPePractical).toBe(false);
   });
 });
@@ -798,14 +987,16 @@ describe("getProgrammeToggles", () => {
     );
     expect(result.subjectOptionToggles).toEqual([
       {
-        title: "Biology",
-        programmeSlug: "biology-secondary-ks4-aqa",
-        isSelected: false,
-      },
-      {
         title: "Combined science",
         programmeSlug: "combined-science-secondary-ks4-aqa",
         isSelected: true,
+        subjectSlug: "combined-science",
+      },
+      {
+        title: "Biology",
+        programmeSlug: "biology-secondary-ks4-aqa",
+        isSelected: false,
+        subjectSlug: "biology",
       },
     ]);
   });
@@ -871,26 +1062,28 @@ describe("getProgrammeToggles", () => {
     );
     expect(result.subjectOptionToggles).toEqual([
       {
-        title: "Biology",
-        programmeSlug: "biology-secondary-ks4-higher-aqa",
-        isSelected: false,
-      },
-      {
         title: "Combined science",
         programmeSlug: "combined-science-secondary-ks4-higher-aqa",
         isSelected: true,
+        subjectSlug: "combined-science",
+      },
+      {
+        title: "Biology",
+        programmeSlug: "biology-secondary-ks4-higher-aqa",
+        isSelected: false,
+        subjectSlug: "biology",
       },
     ]);
     expect(result.tierOptionToggles).toEqual([
       {
-        title: "Higher",
-        programmeSlug: "combined-science-secondary-ks4-higher-aqa",
-        isSelected: true,
-      },
-      {
         title: "Foundation",
         programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
         isSelected: false,
+      },
+      {
+        title: "Higher",
+        programmeSlug: "combined-science-secondary-ks4-higher-aqa",
+        isSelected: true,
       },
     ]);
   });
@@ -936,15 +1129,111 @@ describe("getProgrammeToggles", () => {
     );
     expect(result.subjectOptionToggles).toEqual([
       {
-        title: "Biology",
-        programmeSlug: "biology-secondary-ks4-aqa",
-        isSelected: false,
-      },
-      {
         title: "Combined science",
         programmeSlug: "combined-science-secondary-ks4-aqa",
         isSelected: true,
+        subjectSlug: "combined-science",
       },
+      {
+        title: "Biology",
+        programmeSlug: "biology-secondary-ks4-aqa",
+        isSelected: false,
+        subjectSlug: "biology",
+      },
+    ]);
+  });
+
+  it("sorts subject toggles", () => {
+    const allProgrammes = [
+      {
+        programme_slug: "chemistry-secondary-ks4-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Chemistry",
+            subject_slug: "chemistry",
+            examboard_slug: "aqa",
+            subject_display_order: 30,
+          },
+        }),
+      },
+      {
+        programme_slug: "biology-secondary-ks4-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Biology",
+            subject_slug: "biology",
+            examboard_slug: "aqa",
+            subject_display_order: 10,
+          },
+        }),
+      },
+      {
+        programme_slug: "combined-science-secondary-ks4-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Combined science",
+            subject_slug: "combined-science",
+            examboard_slug: "aqa",
+            subject_display_order: 20,
+          },
+        }),
+      },
+    ];
+
+    const result = getProgrammeToggles(
+      "combined-science-secondary-ks4-aqa",
+      allProgrammes,
+    );
+
+    expect(
+      result.subjectOptionToggles.map((toggle) => toggle.programmeSlug),
+    ).toEqual([
+      "combined-science-secondary-ks4-aqa",
+      "biology-secondary-ks4-aqa",
+      "chemistry-secondary-ks4-aqa",
+    ]);
+  });
+
+  it("sorts tiers", () => {
+    const allProgrammes = [
+      {
+        programme_slug: "combined-science-secondary-ks4-higher-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Combined science",
+            subject_slug: "combined-science",
+            examboard_slug: "aqa",
+            tier_slug: "higher",
+            tier_description: "Higher",
+            tier_display_order: 20,
+          },
+        }),
+      },
+      {
+        programme_slug: "combined-science-secondary-ks4-foundation-aqa",
+        programme_fields: programmeFieldsFixture({
+          overrides: {
+            subject: "Combined science",
+            subject_slug: "combined-science",
+            examboard_slug: "aqa",
+            tier_slug: "foundation",
+            tier_description: "Foundation",
+            tier_display_order: 10,
+          },
+        }),
+      },
+    ];
+
+    const result = getProgrammeToggles(
+      "combined-science-secondary-ks4-higher-aqa",
+      allProgrammes,
+    );
+
+    expect(
+      result.tierOptionToggles.map((toggle) => toggle.programmeSlug),
+    ).toEqual([
+      "combined-science-secondary-ks4-foundation-aqa",
+      "combined-science-secondary-ks4-higher-aqa",
     ]);
   });
 });
