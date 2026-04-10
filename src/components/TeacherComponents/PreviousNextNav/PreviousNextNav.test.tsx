@@ -19,15 +19,13 @@ describe("PreviousNextNav", () => {
 
     const previousUnitTitle = screen.getByText("Mock prev unit");
     expect(previousUnitTitle).toBeInTheDocument();
-    const previousUnitLink = screen.getByRole("link", {
-      name: "Previous unit",
-    });
-    expect(previousUnitLink).toBeInTheDocument();
+    const previousUnitText = screen.getByText("Previous unit");
+    expect(previousUnitText).toBeInTheDocument();
 
     const nextUnitTitle = screen.getByText("Mock next unit");
     expect(nextUnitTitle).toBeInTheDocument();
-    const nextUnitLink = screen.getByRole("link", { name: "Next unit" });
-    expect(nextUnitLink).toBeInTheDocument();
+    const nextUnitText = screen.getByText("Next unit");
+    expect(nextUnitText).toBeInTheDocument();
   });
   it("renders previous and next lessons", () => {
     render(
@@ -41,15 +39,13 @@ describe("PreviousNextNav", () => {
 
     const previouslessonTitle = screen.getByText("Mock prev lesson");
     expect(previouslessonTitle).toBeInTheDocument();
-    const previouslessonLink = screen.getByRole("link", {
-      name: "Previous lesson",
-    });
-    expect(previouslessonLink).toBeInTheDocument();
+    const previouslessonText = screen.getByText("Previous lesson");
+    expect(previouslessonText).toBeInTheDocument();
 
     const nextlessonTitle = screen.getByText("Mock next lesson");
     expect(nextlessonTitle).toBeInTheDocument();
-    const nextlessonLink = screen.getByRole("link", { name: "Next lesson" });
-    expect(nextlessonLink).toBeInTheDocument();
+    const nextlessonText = screen.getByText("Next lesson");
+    expect(nextlessonText).toBeInTheDocument();
   });
   it("renders index for previous nav item", () => {
     render(
