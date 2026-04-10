@@ -1348,8 +1348,9 @@ describe("PupilExperienceView", () => {
       await waitFor(() => {
         expect(screen.getByTestId("google-sign-in-view")).toBeInTheDocument();
       });
-      // Ensure all state updates from hydrateCourseWorkContext have settled
+      // Ensure hydration ran and all state updates have settled
       await waitFor(() => {
+        expect(mockedGoogleClassroomApi.verifySession).toHaveBeenCalled();
         expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
           expect.objectContaining({ isHydratingInitialProgress: false }),
         );
@@ -1377,6 +1378,9 @@ describe("PupilExperienceView", () => {
       renderWithCourseWork();
 
       await waitFor(() => {
+        expect(
+          mockedGoogleClassroomApi.getCourseWorkContext,
+        ).toHaveBeenCalled();
         expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
           expect.objectContaining({ isHydratingInitialProgress: false }),
         );
@@ -1411,14 +1415,13 @@ describe("PupilExperienceView", () => {
       renderWithCourseWork();
 
       await waitFor(() => {
+        expect(
+          mockedGoogleClassroomApi.getCourseWorkProgress,
+        ).toHaveBeenCalledWith("sub-1", "test-token-123");
         expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
           expect.objectContaining({ isHydratingInitialProgress: false }),
         );
       });
-
-      expect(
-        mockedGoogleClassroomApi.getCourseWorkProgress,
-      ).toHaveBeenCalledWith("sub-1", "test-token-123");
       expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
         expect.objectContaining({
           initialSectionResults: expect.objectContaining({
@@ -1545,6 +1548,9 @@ describe("PupilExperienceView", () => {
       renderWithCourseWork();
 
       await waitFor(() => {
+        expect(
+          mockedGoogleClassroomApi.getCourseWorkContext,
+        ).toHaveBeenCalled();
         expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
           expect.objectContaining({ isHydratingInitialProgress: false }),
         );
