@@ -37,14 +37,14 @@ type PreviousNextItemProps = Pick<
 
 const StyledFlexContainer = styled(OakFlex)<
   OakFlexProps & {
-    backgroundColorLevel: PreviousNextItemProps["backgroundColorLevel"];
+    $backgroundColorLevel: PreviousNextItemProps["backgroundColorLevel"];
   }
 >`
   &:hover {
     background: ${(props) =>
-      parseColor(`bg-decorative${props.backgroundColorLevel}-very-subdued`)};
+      parseColor(`bg-decorative${props.$backgroundColorLevel}-very-subdued`)};
     border-color: ${(props) =>
-      parseColor(`border-decorative${props.backgroundColorLevel}-stronger`)};
+      parseColor(`border-decorative${props.$backgroundColorLevel}-stronger`)};
     .previous-next-item-link {
       color: ${parseColor("text-subdued")};
       text-decoration: underline;
@@ -72,7 +72,7 @@ export default function PreviousNextItem({
         $flexDirection={"column"}
         $pa={"spacing-24"}
         $gap={"spacing-12"}
-        backgroundColorLevel={backgroundColorLevel}
+        $backgroundColorLevel={backgroundColorLevel}
         as={Link}
         href={href}
         $color={"text-primary"}
