@@ -344,8 +344,9 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                     )}
                   </OakFlex>
                 )}
-                {(isCourseWorkAssignment ||
-                  (classroomAssignmentChecked && !isClassroomAssignment)) &&
+                {classroomAssignmentChecked &&
+                  !isClassroomAssignment &&
+                  !isCourseWorkAssignment &&
                   hasQuiz && (
                     <>
                       <OakHeading tag="h2" $font={"body-2-bold"}>
