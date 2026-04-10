@@ -22,6 +22,7 @@ import "@/__tests__/__helpers__/ResizeObserverMock";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
+import { mapToSubmitCourseWorkProgress } from "@/browser-lib/google-classroom/mapToSubmitCourseWorkProgress";
 
 const classroomAddOnOpenedMock = jest.fn();
 const clearAddOnOpenedFlagMock = jest.fn();
@@ -103,8 +104,30 @@ jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
     getPostSubmissionState: jest.fn(),
     getPupilLessonProgress: jest.fn(),
     submitPupilProgress: jest.fn(),
+    verifySession: jest.fn(),
+    getCourseWorkContext: jest.fn(),
+    getCourseWorkProgress: jest.fn(),
+    upsertCourseWorkProgress: jest.fn(),
+    getGoogleSignInUrl: jest.fn(),
   },
 }));
+
+jest.mock("@oaknational/google-classroom-addon/ui", () => ({
+  GoogleSignInView: () => (
+    <div data-testid="google-sign-in-view">Sign in with Google</div>
+  ),
+  AuthCookieKeys: {
+    PupilAccessToken: "pupil-access-token",
+    PupilSession: "pupil-session",
+  },
+}));
+
+jest.mock(
+  "@/browser-lib/google-classroom/mapToSubmitCourseWorkProgress",
+  () => ({
+    mapToSubmitCourseWorkProgress: jest.fn().mockReturnValue({}),
+  }),
+);
 
 jest.mock(
   "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults",
@@ -139,6 +162,10 @@ const mockedGoogleClassroomApi = googleClassroomApi as jest.Mocked<
 const mockedMapPupilLessonProgressToSectionResults =
   mapPupilLessonProgressToSectionResults as jest.MockedFunction<
     typeof mapPupilLessonProgressToSectionResults
+  >;
+const mockedMapToSubmitCourseWorkProgress =
+  mapToSubmitCourseWorkProgress as jest.MockedFunction<
+    typeof mapToSubmitCourseWorkProgress
   >;
 const createMockSearchParams = (
   params?: ConstructorParameters<typeof URLSearchParams>[0],
@@ -223,7 +250,25 @@ describe("PupilExperienceView", () => {
     mockedGoogleClassroomApi.getPostSubmissionState.mockResolvedValue(null);
     mockedGoogleClassroomApi.getPupilLessonProgress.mockResolvedValue(null);
     mockedGoogleClassroomApi.submitPupilProgress.mockResolvedValue(undefined);
+    mockedGoogleClassroomApi.verifySession.mockReturnValue(
+      jest.fn().mockResolvedValue({
+        authenticated: false,
+        session: undefined,
+        token: undefined,
+      }),
+    );
+    mockedGoogleClassroomApi.getCourseWorkContext.mockResolvedValue(null);
+    mockedGoogleClassroomApi.getCourseWorkProgress.mockResolvedValue(null);
+    mockedGoogleClassroomApi.upsertCourseWorkProgress.mockResolvedValue(
+      undefined,
+    );
     mockedMapPupilLessonProgressToSectionResults.mockReturnValue({});
+    mockedMapToSubmitCourseWorkProgress.mockReturnValue({} as never);
+    Object.defineProperty(window, "location", {
+      configurable: true,
+      writable: true,
+      value: { search: "" },
+    });
     Object.defineProperty(globalThis, "cookieStore", {
       value: { get: jest.fn() },
       writable: true,
@@ -1258,6 +1303,242 @@ describe("PupilExperienceView", () => {
     );
 
     expect(queryByText("Lesson Title")).toBeNull();
+  });
+
+  describe("CourseWork flow", () => {
+    const setAssignmentToken = (token: string | null) => {
+      Object.defineProperty(window, "location", {
+        configurable: true,
+        writable: true,
+        value: { search: token ? `?assignmentToken=${token}` : "" },
+      });
+    };
+
+    const renderWithCourseWork = () =>
+      render(
+        <PupilExperienceView
+          lessonContent={lessonContentFixture({})}
+          browseData={lessonBrowseDataFixture({})}
+          hasWorksheet={false}
+          hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
+          initialSection="overview"
+          pageType="browse"
+        />,
+      );
+
+    beforeEach(() => {
+      setAssignmentToken("test-token-123");
+      jest
+        .spyOn(LessonEngineProvider, "useLessonEngineContext")
+        .mockReturnValue(
+          createLessonEngineContext({ currentSection: "overview" }),
+        );
+    });
+
+    it("shows the sign-in overlay when the pupil is not authenticated", async () => {
+      mockedGoogleClassroomApi.verifySession.mockReturnValue(
+        jest.fn().mockResolvedValue({
+          authenticated: false,
+          session: undefined,
+          token: undefined,
+        }),
+      );
+
+      renderWithCourseWork();
+
+      await waitFor(() => {
+        expect(screen.getByTestId("google-sign-in-view")).toBeInTheDocument();
+      });
+    });
+
+    it("does not show the sign-in overlay when the pupil is authenticated", async () => {
+      mockedGoogleClassroomApi.verifySession.mockReturnValue(
+        jest.fn().mockResolvedValue({
+          authenticated: true,
+          loginHint: "pupil@test.com",
+          session: "session-abc",
+          token: "token-abc",
+        }),
+      );
+      mockedGoogleClassroomApi.getCourseWorkContext.mockResolvedValue({
+        submissionId: "sub-1",
+        courseWorkId: "cw-1",
+        courseId: "c-1",
+        lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+      });
+
+      renderWithCourseWork();
+
+      await waitFor(() => {
+        expect(mockedGoogleClassroomApi.verifySession).toHaveBeenCalled();
+      });
+      expect(
+        screen.queryByTestId("google-sign-in-view"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("restores saved progress when context and prior progress are present", async () => {
+      mockedGoogleClassroomApi.verifySession.mockReturnValue(
+        jest.fn().mockResolvedValue({
+          authenticated: true,
+          loginHint: "pupil@test.com",
+          session: "session-abc",
+          token: "token-abc",
+        }),
+      );
+      mockedGoogleClassroomApi.getCourseWorkContext.mockResolvedValue({
+        submissionId: "sub-1",
+        courseWorkId: "cw-1",
+        courseId: "c-1",
+        lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+      });
+      mockedGoogleClassroomApi.getCourseWorkProgress.mockResolvedValue({
+        starterQuiz: { grade: 3, numQuestions: 5 },
+        exitQuiz: { grade: 4, numQuestions: 5 },
+      } as never);
+
+      renderWithCourseWork();
+
+      await waitFor(() => {
+        expect(
+          mockedGoogleClassroomApi.getCourseWorkProgress,
+        ).toHaveBeenCalledWith("sub-1", "test-token-123");
+      });
+
+      expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          initialSectionResults: expect.objectContaining({
+            "starter-quiz": { grade: 3, numQuestions: 5 },
+            "exit-quiz": { grade: 4, numQuestions: 5 },
+          }),
+        }),
+      );
+    });
+
+    it("wires onNext and onSectionResultUpdate to LessonEngineProvider", async () => {
+      mockedGoogleClassroomApi.verifySession.mockReturnValue(
+        jest.fn().mockResolvedValue({
+          authenticated: true,
+          loginHint: "pupil@test.com",
+          session: "session-abc",
+          token: "token-abc",
+        }),
+      );
+      mockedGoogleClassroomApi.getCourseWorkContext.mockResolvedValue({
+        submissionId: "sub-1",
+        courseWorkId: "cw-1",
+        courseId: "c-1",
+        lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+      });
+
+      renderWithCourseWork();
+
+      await waitFor(() => {
+        expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
+          expect.objectContaining({
+            onNext: expect.any(Function),
+            onSectionResultUpdate: expect.any(Function),
+          }),
+        );
+      });
+    });
+
+    it("saves progress via upsertCourseWorkProgress when onNext is called after context is ready", async () => {
+      mockedGoogleClassroomApi.verifySession.mockReturnValue(
+        jest.fn().mockResolvedValue({
+          authenticated: true,
+          loginHint: "pupil@test.com",
+          session: "session-abc",
+          token: "token-abc",
+        }),
+      );
+      mockedGoogleClassroomApi.getCourseWorkContext.mockResolvedValue({
+        submissionId: "sub-1",
+        courseWorkId: "cw-1",
+        courseId: "c-1",
+        lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+      });
+      const progressPayload = { submissionId: "sub-1", sections: {} } as never;
+      mockedMapToSubmitCourseWorkProgress.mockReturnValue(progressPayload);
+
+      renderWithCourseWork();
+
+      await waitFor(() => {
+        expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
+          expect.objectContaining({ onNext: expect.any(Function) }),
+        );
+      });
+
+      const onNext = lessonEngineProviderMock.mock.calls.at(-1)?.[0].onNext;
+      await act(async () => {
+        await onNext?.({ intro: { isComplete: true } }, "intro");
+      });
+
+      expect(mockedMapToSubmitCourseWorkProgress).toHaveBeenCalledWith(
+        expect.objectContaining({ submissionId: "sub-1" }),
+        { intro: { isComplete: true } },
+      );
+      expect(
+        mockedGoogleClassroomApi.upsertCourseWorkProgress,
+      ).toHaveBeenCalledWith(progressPayload);
+    });
+
+    it("does not enter the CourseWork flow when there is no assignmentToken", async () => {
+      setAssignmentToken(null);
+
+      renderWithCourseWork();
+
+      await waitFor(() => {
+        expect(lessonEngineProviderMock).toHaveBeenCalled();
+      });
+
+      expect(mockedGoogleClassroomApi.verifySession).not.toHaveBeenCalled();
+    });
+
+    it("renders the lesson normally when the context has no submissionId", async () => {
+      mockedGoogleClassroomApi.verifySession.mockReturnValue(
+        jest.fn().mockResolvedValue({
+          authenticated: true,
+          loginHint: "pupil@test.com",
+          session: "session-abc",
+          token: "token-abc",
+        }),
+      );
+      mockedGoogleClassroomApi.getCourseWorkContext.mockResolvedValue({
+        courseWorkId: "cw-1",
+        courseId: "c-1",
+        lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+        // No submissionId
+      });
+
+      renderWithCourseWork();
+
+      await waitFor(() => {
+        expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
+          expect.objectContaining({ isHydratingInitialProgress: false }),
+        );
+      });
+
+      // No progress saved, no sign-in overlay
+      expect(
+        screen.queryByTestId("google-sign-in-view"),
+      ).not.toBeInTheDocument();
+      expect(
+        mockedGoogleClassroomApi.getCourseWorkProgress,
+      ).not.toHaveBeenCalled();
+    });
   });
 });
 describe("lessonAccessedPupilJourney analytics", () => {
