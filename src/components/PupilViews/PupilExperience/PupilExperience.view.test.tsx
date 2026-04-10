@@ -1348,6 +1348,12 @@ describe("PupilExperienceView", () => {
       await waitFor(() => {
         expect(screen.getByTestId("google-sign-in-view")).toBeInTheDocument();
       });
+      // Ensure all state updates from hydrateCourseWorkContext have settled
+      await waitFor(() => {
+        expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
+          expect.objectContaining({ isHydratingInitialProgress: false }),
+        );
+      });
     });
 
     it("does not show the sign-in overlay when the pupil is authenticated", async () => {
@@ -1371,7 +1377,9 @@ describe("PupilExperienceView", () => {
       renderWithCourseWork();
 
       await waitFor(() => {
-        expect(mockedGoogleClassroomApi.verifySession).toHaveBeenCalled();
+        expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
+          expect.objectContaining({ isHydratingInitialProgress: false }),
+        );
       });
       expect(
         screen.queryByTestId("google-sign-in-view"),
@@ -1403,11 +1411,14 @@ describe("PupilExperienceView", () => {
       renderWithCourseWork();
 
       await waitFor(() => {
-        expect(
-          mockedGoogleClassroomApi.getCourseWorkProgress,
-        ).toHaveBeenCalledWith("sub-1", "test-token-123");
+        expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
+          expect.objectContaining({ isHydratingInitialProgress: false }),
+        );
       });
 
+      expect(
+        mockedGoogleClassroomApi.getCourseWorkProgress,
+      ).toHaveBeenCalledWith("sub-1", "test-token-123");
       expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
         expect.objectContaining({
           initialSectionResults: expect.objectContaining({
