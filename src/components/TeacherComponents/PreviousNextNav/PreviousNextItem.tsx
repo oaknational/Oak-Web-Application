@@ -1,12 +1,15 @@
 import {
+  OakBox,
   OakFlex,
   OakFlexProps,
   OakFocusIndicator,
-  OakTertiaryInvertedButton,
+  OakIcon,
+  OakIconName,
   OakTypography,
   parseColor,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import Link from "next/link";
 
 import { PreviousNextNavProps } from "./PreviousNextNav";
 
@@ -42,6 +45,13 @@ const StyledFlexContainer = styled(OakFlex)<
       parseColor(`bg-decorative${props.backgroundColorLevel}-very-subdued`)};
     border-color: ${(props) =>
       parseColor(`border-decorative${props.backgroundColorLevel}-stronger`)};
+    .previous-next-item-link {
+      color: ${parseColor("text-subdued")};
+      text-decoration: underline;
+    }
+    .item-icon {
+      background: ${parseColor("bg-btn-secondary-hover")};
+    }
   }
 `;
 
@@ -63,6 +73,8 @@ export default function PreviousNextItem({
         $pa={"spacing-24"}
         $gap={"spacing-12"}
         backgroundColorLevel={backgroundColorLevel}
+        as={Link}
+        href={href}
       >
         {Boolean(index) && (
           <OakFlex
@@ -85,17 +97,38 @@ export default function PreviousNextItem({
         <OakFlex
           $mt={"spacing-12"}
           $justifyContent={navDirection === "next" ? "flex-end" : "flex-start"}
+          $alignItems={"center"}
+          $gap={"spacing-12"}
         >
-          <OakTertiaryInvertedButton
-            element="a"
-            href={href}
-            iconName={navDirection === "next" ? "arrow-right" : "arrow-left"}
-            isTrailingIcon={navDirection === "next"}
+          {navDirection === "prev" && <ItemIcon iconName="arrow-left" />}
+          <OakTypography
+            className="previous-next-item-link"
+            $font={"heading-7"}
           >
             {navDirection === "prev" ? "Previous" : "Next"} {navItemType}
-          </OakTertiaryInvertedButton>
+          </OakTypography>
+          {navDirection === "next" && <ItemIcon iconName="arrow-right" />}
         </OakFlex>
       </StyledFlexContainer>
     </OakFocusIndicator>
   );
 }
+
+const ItemIcon = ({ iconName }: { iconName: OakIconName }) => {
+  return (
+    <OakBox
+      $borderColor={"border-primary"}
+      $borderRadius={"border-radius-circle"}
+      $ba="border-solid-l"
+    >
+      <OakIcon
+        iconName={iconName}
+        $width={"spacing-24"}
+        $height={"spacing-24"}
+        $background={"bg-primary"}
+        $borderRadius={"border-radius-circle"}
+        className="item-icon"
+      />
+    </OakBox>
+  );
+};
