@@ -113,13 +113,10 @@ jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
 }));
 
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
+  ...jest.requireActual("@oaknational/google-classroom-addon/ui"),
   GoogleSignInView: () => (
     <div data-testid="google-sign-in-view">Sign in with Google</div>
   ),
-  AuthCookieKeys: {
-    PupilAccessToken: "pupil-access-token",
-    PupilSession: "pupil-session",
-  },
 }));
 
 jest.mock(
