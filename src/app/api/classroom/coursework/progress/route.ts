@@ -4,8 +4,12 @@ import { upsertCourseWorkPupilProgressArgsSchema } from "@oaknational/google-cla
 import {
   createClassroomErrorReporter,
   getOakGoogleClassroomAddon,
-  isOakGoogleClassroomException,
 } from "@/node-lib/google-classroom";
+import {
+  extractPupilAuth,
+  handleCourseWorkApiError,
+  unauthorizedResponse,
+} from "@/app/api/classroom/coursework/courseWorkApiHelpers";
 
 const reportError = createClassroomErrorReporter("coursework-progress");
 
@@ -38,19 +42,10 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(progress, { status: 200 });
   } catch (error) {
-    if (isOakGoogleClassroomException(error)) {
-      const errorObject = error.toObject();
-      reportError(errorObject);
-      return NextResponse.json(errorObject, { status: 400 });
-    }
-
-    reportError(error, { severity: "error" });
-    return NextResponse.json(
-      {
-        error: "Failed to retrieve progress",
-        details: error instanceof Error ? error.message : String(error),
-      },
-      { status: 500 },
+    return handleCourseWorkApiError(
+      error,
+      reportError,
+      "Failed to retrieve progress",
     );
   }
 }
@@ -64,14 +59,10 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
-    const accessToken = request.headers.get("Authorization");
-    const session = request.headers.get("X-Oakgc-Session");
+    const auth = extractPupilAuth(request);
 
-    if (!accessToken || !session) {
-      return NextResponse.json(
-        { message: "Authentication required" },
-        { status: 401 },
-      );
+    if (!auth) {
+      return unauthorizedResponse();
     }
 
     const body = await request.json();
@@ -87,25 +78,16 @@ export async function POST(request: NextRequest) {
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
     const result = await oakClassroomClient.upsertCourseWorkPupilProgress(
       parsed.data,
-      accessToken,
-      session,
+      auth.accessToken,
+      auth.session,
     );
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
-    if (isOakGoogleClassroomException(error)) {
-      const errorObject = error.toObject();
-      reportError(errorObject);
-      return NextResponse.json(errorObject, { status: 400 });
-    }
-
-    reportError(error, { severity: "error" });
-    return NextResponse.json(
-      {
-        error: "Failed to upsert progress",
-        details: error instanceof Error ? error.message : String(error),
-      },
-      { status: 500 },
+    return handleCourseWorkApiError(
+      error,
+      reportError,
+      "Failed to upsert progress",
     );
   }
 }

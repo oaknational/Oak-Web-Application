@@ -4,6 +4,7 @@ import {
   createClassroomErrorReporter,
   getOakGoogleClassroomAddon,
 } from "@/node-lib/google-classroom";
+import { handleCourseWorkApiError } from "@/app/api/classroom/coursework/courseWorkApiHelpers";
 
 const reportError = createClassroomErrorReporter("coursework-results");
 
@@ -19,9 +20,8 @@ const reportError = createClassroomErrorReporter("coursework-results");
  */
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
-    const assignmentToken = searchParams.get("assignmentToken");
-    const submissionId = searchParams.get("submissionId");
+    const assignmentToken = request.nextUrl.searchParams.get("assignmentToken");
+    const submissionId = request.nextUrl.searchParams.get("submissionId");
 
     if (!assignmentToken || !submissionId) {
       return NextResponse.json(
@@ -54,13 +54,10 @@ export async function GET(request: NextRequest) {
       pupilProgress,
     });
   } catch (error) {
-    reportError(error, { severity: "error" });
-    return NextResponse.json(
-      {
-        error: "Failed to fetch results",
-        details: error instanceof Error ? error.message : String(error),
-      },
-      { status: 500 },
+    return handleCourseWorkApiError(
+      error,
+      reportError,
+      "Failed to fetch results",
     );
   }
 }

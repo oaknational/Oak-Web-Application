@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import z from "zod";
 
 import {
   createClassroomErrorReporter,
   getOakGoogleClassroomAddon,
-  isOakGoogleClassroomException,
+  turnInBodySchema,
 } from "@/node-lib/google-classroom";
+import {
+  extractPupilAuth,
+  handleCourseWorkApiError,
+  unauthorizedResponse,
+} from "@/app/api/classroom/coursework/courseWorkApiHelpers";
 
 const reportError = createClassroomErrorReporter("coursework-turnin");
-
-const turnInBodySchema = z.object({
-  assignmentToken: z.string(),
-});
 
 /**
  * POST /api/classroom/coursework/turnin
@@ -23,14 +23,10 @@ const turnInBodySchema = z.object({
  */
 export async function POST(request: NextRequest) {
   try {
-    const accessToken = request.headers.get("Authorization");
-    const session = request.headers.get("X-Oakgc-Session");
+    const auth = extractPupilAuth(request);
 
-    if (!accessToken || !session) {
-      return NextResponse.json(
-        { message: "Authentication required" },
-        { status: 401 },
-      );
+    if (!auth) {
+      return unauthorizedResponse();
     }
 
     const body = await request.json();
@@ -61,8 +57,8 @@ export async function POST(request: NextRequest) {
     const submissionId = await oakClassroomClient.getStudentSubmissionId(
       courseId,
       courseWorkId,
-      accessToken,
-      session,
+      auth.accessToken,
+      auth.session,
     );
 
     await oakClassroomClient.turnInCourseWorkSubmission(
@@ -70,25 +66,16 @@ export async function POST(request: NextRequest) {
       courseWorkId,
       submissionId,
       assignmentToken,
-      accessToken,
-      session,
+      auth.accessToken,
+      auth.session,
     );
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
-    if (isOakGoogleClassroomException(error)) {
-      const errorObject = error.toObject();
-      reportError(errorObject);
-      return NextResponse.json(errorObject, { status: 400 });
-    }
-
-    reportError(error, { severity: "error" });
-    return NextResponse.json(
-      {
-        error: "Failed to turn in assignment",
-        details: error instanceof Error ? error.message : String(error),
-      },
-      { status: 500 },
+    return handleCourseWorkApiError(
+      error,
+      reportError,
+      "Failed to turn in assignment",
     );
   }
 }

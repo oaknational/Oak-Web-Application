@@ -11,6 +11,8 @@ import {
 } from "@oaknational/google-classroom-addon/types";
 import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
+import { ScopeInsufficientError } from "./errors";
+
 const getOakGCAuthHeaders = async (
   isPupil?: boolean,
 ): Promise<Headers | undefined> => {
@@ -54,7 +56,6 @@ const sendRequest = async <returnType, payload = undefined>(
     } catch {
       throw new Error(`API request failed: ${res.status} ${res.statusText}`);
     }
-    // If is an OakGoogleClassroomException, throw as is
     if (
       errorData &&
       typeof errorData === "object" &&
@@ -63,6 +64,9 @@ const sendRequest = async <returnType, payload = undefined>(
       "name" in errorData &&
       errorData.name === "OakGoogleClassroomException"
     ) {
+      if (errorData.code === "insufficient_scope") {
+        throw new ScopeInsufficientError();
+      }
       throw errorData;
     }
     // catch other errors
@@ -277,6 +281,15 @@ const getPostSubmissionState = async (
 
 // ── Teacher: CourseWork ──────────────────────────────────────────────────────
 
+const COURSEWORK_API_ROUTES = {
+  courses: "/api/classroom/coursework/courses",
+  create: "/api/classroom/coursework/create",
+  context: "/api/classroom/coursework/context",
+  progress: "/api/classroom/coursework/progress",
+  turnin: "/api/classroom/coursework/turnin",
+  results: "/api/classroom/coursework/results",
+} as const;
+
 type CreateCourseWorkArgs = {
   courseId: string;
   title: string;
@@ -290,7 +303,7 @@ type CreateCourseWorkArgs = {
 const listCourses = async (): Promise<CourseListItem[]> => {
   const headers = await getOakGCAuthHeaders();
   const data = await sendRequest<{ courses: CourseListItem[] }>(
-    "/api/classroom/coursework/courses",
+    COURSEWORK_API_ROUTES.courses,
     "GET",
     undefined,
     headers,
@@ -305,7 +318,7 @@ const createCourseWork = async (
   return sendRequest<
     CourseWorkCreatedResult & { assignmentToken: string },
     CreateCourseWorkArgs
-  >("/api/classroom/coursework/create", "POST", args, headers);
+  >(COURSEWORK_API_ROUTES.create, "POST", args, headers);
 };
 
 // ── Pupil: CourseWork ────────────────────────────────────────────────────────
@@ -326,7 +339,7 @@ const getCourseWorkContext = async (
     const headers = await getOakGCAuthHeaders(true);
     const params = new URLSearchParams({ assignmentToken });
     return await sendRequest<CourseWorkContextResponse>(
-      `/api/classroom/coursework/context?${params.toString()}`,
+      `${COURSEWORK_API_ROUTES.context}?${params.toString()}`,
       "GET",
       undefined,
       headers,
@@ -342,7 +355,7 @@ const upsertCourseWorkProgress = async (
 ): Promise<void> => {
   const headers = await getOakGCAuthHeaders(true);
   await sendRequest<void, UpsertCourseWorkPupilProgressArgs>(
-    "/api/classroom/coursework/progress",
+    COURSEWORK_API_ROUTES.progress,
     "POST",
     args,
     headers,
@@ -352,7 +365,7 @@ const upsertCourseWorkProgress = async (
 const turnInCourseWork = async (assignmentToken: string): Promise<void> => {
   const headers = await getOakGCAuthHeaders(true);
   await sendRequest<void, { assignmentToken: string }>(
-    "/api/classroom/coursework/turnin",
+    COURSEWORK_API_ROUTES.turnin,
     "POST",
     { assignmentToken },
     headers,
@@ -367,7 +380,7 @@ const getCourseWorkProgress = async (
     const headers = await getOakGCAuthHeaders(true);
     const params = new URLSearchParams({ submissionId, assignmentToken });
     return await sendRequest<CourseWorkPupilProgress>(
-      `/api/classroom/coursework/progress?${params.toString()}`,
+      `${COURSEWORK_API_ROUTES.progress}?${params.toString()}`,
       "GET",
       undefined,
       headers,

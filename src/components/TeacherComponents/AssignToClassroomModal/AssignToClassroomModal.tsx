@@ -16,17 +16,7 @@ import {
 import { CourseListItem } from "@oaknational/google-classroom-addon/types";
 
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
-
-/**
- * Thrown when the Google Classroom API returns a 403 scope_insufficient error.
- * The teacher needs to re-authenticate to grant the classroom.coursework.students scope.
- */
-export class ScopeInsufficientError extends Error {
-  constructor() {
-    super("scope_insufficient");
-    this.name = "ScopeInsufficientError";
-  }
-}
+import { ScopeInsufficientError } from "@/browser-lib/google-classroom/errors";
 
 const TEACHER_SESSION_COOKIE = "oak-gclassroom-session";
 const TEACHER_TOKEN_COOKIE = "oak-gclassroom-token";
@@ -47,6 +37,19 @@ type AssignToClassroomModalProps = {
   unitSlug: string;
   lessonTitle: string;
   exitQuizNumQuestions?: number;
+};
+
+const toModalErrorState = (
+  error: unknown,
+  fallbackMessage = "An error occurred",
+): ModalState => {
+  if (error instanceof ScopeInsufficientError) {
+    return { type: "scope_insufficient" };
+  }
+  return {
+    type: "error",
+    message: error instanceof Error ? error.message : fallbackMessage,
+  };
 };
 
 const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
@@ -79,14 +82,7 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
         setSelectedCourseId(courses[0]!.id);
       }
     } catch (error) {
-      if (error instanceof ScopeInsufficientError) {
-        setState({ type: "scope_insufficient" });
-      } else {
-        setState({
-          type: "error",
-          message: error instanceof Error ? error.message : "An error occurred",
-        });
-      }
+      setState(toModalErrorState(error));
     }
   }, []);
 
@@ -160,15 +156,7 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
         title: result.title,
       });
     } catch (error) {
-      if (error instanceof ScopeInsufficientError) {
-        setState({ type: "scope_insufficient" });
-      } else {
-        setState({
-          type: "error",
-          message:
-            error instanceof Error ? error.message : "Failed to assign lesson",
-        });
-      }
+      setState(toModalErrorState(error, "Failed to assign lesson"));
     } finally {
       setIsSubmitting(false);
     }

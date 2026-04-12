@@ -23,6 +23,7 @@ import { PupilExperienceViewProps } from "../PupilExperience";
 
 import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
 
+import { AsyncState } from "@/common-lib/types/asyncState.types";
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
@@ -64,9 +65,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const assignmentToken = searchParams?.get("assignmentToken") ?? null;
   const isCourseWorkAssignment = Boolean(assignmentToken);
 
-  const [handInState, setHandInState] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+  const [handInState, setHandInState] = useState<AsyncState>("idle");
   let handInButtonLabel = "Hand in";
   if (handInState === "loading") handInButtonLabel = "Handing in…";
   if (handInState === "success") handInButtonLabel = "Handed in";

@@ -144,8 +144,7 @@ function CourseWorkResultsPage() {
     };
 
     void load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [searchParams]);
 
   if (loading) {
     return (

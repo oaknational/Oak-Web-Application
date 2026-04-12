@@ -1,11 +1,9 @@
 import { screen, waitFor, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import {
-  AssignToClassroomModal,
-  ScopeInsufficientError,
-} from "./AssignToClassroomModal";
+import { AssignToClassroomModal } from "./AssignToClassroomModal";
 
+import { ScopeInsufficientError } from "@/browser-lib/google-classroom/errors";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 

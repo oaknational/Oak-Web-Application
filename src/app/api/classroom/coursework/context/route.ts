@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   createClassroomErrorReporter,
   getOakGoogleClassroomAddon,
-  isOakGoogleClassroomException,
 } from "@/node-lib/google-classroom";
+import { handleCourseWorkApiError } from "@/app/api/classroom/coursework/courseWorkApiHelpers";
 
 const reportError = createClassroomErrorReporter("coursework-context");
 
@@ -44,8 +44,8 @@ export async function GET(request: NextRequest) {
       courseWork;
 
     // If the pupil has authenticated, resolve their submission ID.
-    const accessToken = request.headers.get("Authorization");
-    const session = request.headers.get("X-Oakgc-Session");
+    const accessToken = request.headers.get("authorization");
+    const session = request.headers.get("x-oakgc-session");
 
     let submissionId: string | undefined;
     if (accessToken && session) {
@@ -73,19 +73,10 @@ export async function GET(request: NextRequest) {
       { status: 200 },
     );
   } catch (error) {
-    if (isOakGoogleClassroomException(error)) {
-      const errorObject = error.toObject();
-      reportError(errorObject);
-      return NextResponse.json(errorObject, { status: 400 });
-    }
-
-    reportError(error, { severity: "error" });
-    return NextResponse.json(
-      {
-        error: "Failed to resolve coursework context",
-        details: error instanceof Error ? error.message : String(error),
-      },
-      { status: 500 },
+    return handleCourseWorkApiError(
+      error,
+      reportError,
+      "Failed to resolve coursework context",
     );
   }
 }
