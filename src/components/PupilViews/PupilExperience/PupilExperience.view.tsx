@@ -67,6 +67,23 @@ import {
   useGoogleClassroomContext,
 } from "@/components/GoogleClassroom/useGoogleClassroomContext";
 
+const mapSavedCourseWorkProgress = (
+  savedProgress: Record<string, unknown>,
+): LessonSectionResults => {
+  const mapped: LessonSectionResults = {};
+  if (savedProgress.starterQuiz)
+    mapped["starter-quiz"] =
+      savedProgress.starterQuiz as LessonSectionResults["starter-quiz"];
+  if (savedProgress.exitQuiz)
+    mapped["exit-quiz"] =
+      savedProgress.exitQuiz as LessonSectionResults["exit-quiz"];
+  if (savedProgress.video)
+    mapped.video = savedProgress.video as LessonSectionResults["video"];
+  if (savedProgress.intro)
+    mapped.intro = savedProgress.intro as LessonSectionResults["intro"];
+  return mapped;
+};
+
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
     switch (section) {
@@ -564,16 +581,9 @@ const PupilExperienceLayout = ({
         assignmentToken,
       );
       if (savedProgress) {
-        const p = savedProgress as Record<string, unknown>;
-        const mapped: LessonSectionResults = {};
-        if (p.starterQuiz)
-          mapped["starter-quiz"] =
-            p.starterQuiz as LessonSectionResults["starter-quiz"];
-        if (p.exitQuiz)
-          mapped["exit-quiz"] = p.exitQuiz as LessonSectionResults["exit-quiz"];
-        if (p.video) mapped.video = p.video as LessonSectionResults["video"];
-        if (p.intro) mapped.intro = p.intro as LessonSectionResults["intro"];
-
+        const mapped = mapSavedCourseWorkProgress(
+          savedProgress as Record<string, unknown>,
+        );
         if (Object.keys(mapped).length > 0) {
           setInitialSectionResults(mapped);
           setLessonEngineInstanceKey((k) => k + 1);
