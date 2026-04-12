@@ -43,12 +43,9 @@ const mapQuizQuestionResults = (questionResults: QuestionState[] | undefined) =>
 
 const mapQuizProgress = (quizResult: QuizSectionResult | undefined) => {
   if (!quizResult) return undefined;
-  // Schema requires numQuestions > 0; omit the quiz section if it's missing
-  const numQuestions = quizResult.numQuestions;
-  if (!numQuestions) return undefined;
   return {
     grade: quizResult.grade ?? 0,
-    numQuestions,
+    numQuestions: quizResult.numQuestions ?? 0,
     isComplete: quizResult.isComplete ?? false,
     questionResults: mapQuizQuestionResults(quizResult.questionResults),
   };

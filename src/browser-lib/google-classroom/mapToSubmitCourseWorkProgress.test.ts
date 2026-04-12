@@ -34,30 +34,6 @@ describe("mapToSubmitCourseWorkProgress", () => {
   });
 
   describe("starterQuiz", () => {
-    it("omits starterQuiz when numQuestions is undefined", () => {
-      const sectionResults: LessonSectionResults = {
-        "starter-quiz": {
-          grade: 0,
-          numQuestions: undefined,
-          isComplete: false,
-        },
-      };
-
-      const result = mapToSubmitCourseWorkProgress(baseContext, sectionResults);
-
-      expect(result.starterQuiz).toBeUndefined();
-    });
-
-    it("omits starterQuiz when numQuestions is 0", () => {
-      const sectionResults: LessonSectionResults = {
-        "starter-quiz": { grade: 0, numQuestions: 0, isComplete: false },
-      };
-
-      const result = mapToSubmitCourseWorkProgress(baseContext, sectionResults);
-
-      expect(result.starterQuiz).toBeUndefined();
-    });
-
     it("maps a complete starter quiz result", () => {
       const sectionResults: LessonSectionResults = {
         "starter-quiz": {
@@ -95,26 +71,6 @@ describe("mapToSubmitCourseWorkProgress", () => {
   });
 
   describe("exitQuiz", () => {
-    it("omits exitQuiz when numQuestions is undefined", () => {
-      const sectionResults: LessonSectionResults = {
-        "exit-quiz": { grade: 0, numQuestions: undefined, isComplete: false },
-      };
-
-      const result = mapToSubmitCourseWorkProgress(baseContext, sectionResults);
-
-      expect(result.exitQuiz).toBeUndefined();
-    });
-
-    it("omits exitQuiz when numQuestions is 0", () => {
-      const sectionResults: LessonSectionResults = {
-        "exit-quiz": { grade: 0, numQuestions: 0, isComplete: false },
-      };
-
-      const result = mapToSubmitCourseWorkProgress(baseContext, sectionResults);
-
-      expect(result.exitQuiz).toBeUndefined();
-    });
-
     it("maps a complete exit quiz result", () => {
       const sectionResults: LessonSectionResults = {
         "exit-quiz": {

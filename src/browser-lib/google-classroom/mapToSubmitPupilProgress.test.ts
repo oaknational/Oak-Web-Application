@@ -238,18 +238,6 @@ describe("mapToSubmitPupilProgress", () => {
     expect(qr?.correctAnswer).toEqual(["first"]);
   });
 
-  it("should omit quiz section when numQuestions is missing (schema requires > 0)", () => {
-    const sectionResults = {
-      "starter-quiz": {
-        isComplete: true,
-      },
-    } as unknown as LessonSectionResults;
-
-    const result = mapToSubmitPupilProgress(mockContext, sectionResults);
-
-    expect(result.starterQuiz).toBeUndefined();
-  });
-
   it("should include intro progress when present", () => {
     const sectionResults: LessonSectionResults = {
       intro: {
