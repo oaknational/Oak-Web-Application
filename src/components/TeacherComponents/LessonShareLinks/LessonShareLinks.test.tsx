@@ -86,13 +86,14 @@ describe("LessonShareLinks", () => {
       />,
     );
 
-    const googleClassroomButton = getByRole("button", {
+    // No onGoogleClassroomClick provided → renders as a link, not a button
+    const googleClassroomLink = getByRole("link", {
       name: "Assign to Google Classroom",
     });
 
-    expect(googleClassroomButton).toBeInTheDocument();
+    expect(googleClassroomLink).toBeInTheDocument();
     const user = userEvent.setup();
-    await user.click(googleClassroomButton);
+    await user.click(googleClassroomLink);
     expect(onSubmit).toHaveBeenCalledWith("google-classroom");
   });
 });

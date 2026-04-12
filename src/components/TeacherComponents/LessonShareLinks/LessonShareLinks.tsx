@@ -87,21 +87,44 @@ const LessonShareLinks: FC<{
           disabled={props.disabled}
         />
 
-        {/* Google Classroom – opens the CourseWork modal when a handler is provided */}
-        <LoadingButton
-          text={shareLinkConfig.googleClassroom.name}
-          icon={shareLinkConfig.googleClassroom.icon}
-          isLoading={false}
-          disabled={props.disabled}
-          type="button"
-          key={shareLinkConfig.googleClassroom.name}
-          onClick={() => {
-            props.onSubmit(shareLinkConfig.googleClassroom.avoMedium);
-            props.onGoogleClassroomClick?.();
-          }}
-          ariaLabel="Assign to Google Classroom"
-          ariaLive={"polite"}
-        />
+        {/* Google Classroom – opens the CourseWork modal when a handler is
+            provided, otherwise falls back to the generic Classroom share URL */}
+        {props.onGoogleClassroomClick ? (
+          <LoadingButton
+            text={shareLinkConfig.googleClassroom.name}
+            icon={shareLinkConfig.googleClassroom.icon}
+            isLoading={false}
+            disabled={props.disabled}
+            type="button"
+            key={shareLinkConfig.googleClassroom.name}
+            onClick={() => {
+              props.onSubmit(shareLinkConfig.googleClassroom.avoMedium);
+              props.onGoogleClassroomClick!();
+            }}
+            ariaLabel="Assign to Google Classroom"
+            ariaLive={"polite"}
+          />
+        ) : (
+          <LoadingButton
+            text={shareLinkConfig.googleClassroom.name}
+            icon={shareLinkConfig.googleClassroom.icon}
+            isLoading={false}
+            disabled={props.disabled}
+            type="link"
+            external={true}
+            key={shareLinkConfig.googleClassroom.name}
+            href={getHrefForSocialSharing({
+              lessonSlug: props.lessonSlug,
+              selectedActivities: props.selectedActivities,
+              linkConfig: shareLinkConfig.googleClassroom,
+            })}
+            onClick={() =>
+              props.onSubmit(shareLinkConfig.googleClassroom.avoMedium)
+            }
+            ariaLabel="Assign to Google Classroom"
+            ariaLive={"polite"}
+          />
+        )}
 
         {nonClassroomLinks.map((link) => (
           <LoadingButton

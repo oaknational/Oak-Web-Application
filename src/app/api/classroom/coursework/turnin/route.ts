@@ -6,7 +6,7 @@ import {
   turnInBodySchema,
 } from "@/node-lib/google-classroom";
 import {
-  extractPupilAuth,
+  extractAuth,
   handleCourseWorkApiError,
   unauthorizedResponse,
 } from "@/app/api/classroom/coursework/courseWorkApiHelpers";
@@ -23,7 +23,7 @@ const reportError = createClassroomErrorReporter("coursework-turnin");
  */
 export async function POST(request: NextRequest) {
   try {
-    const auth = extractPupilAuth(request);
+    const auth = extractAuth(request);
 
     if (!auth) {
       return unauthorizedResponse();

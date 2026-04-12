@@ -1,5 +1,6 @@
 import { screen, waitFor, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
 import { AssignToClassroomModal } from "./AssignToClassroomModal";
 
@@ -24,7 +25,7 @@ const mockGetGoogleSignInUrl =
   googleClassroomApi.getGoogleSignInUrl as jest.Mock;
 
 const mockWindowOpen = jest.fn().mockReturnValue({ close: jest.fn() });
-const mockCookieStore = { set: jest.fn() };
+const mockCookieStore = { set: jest.fn().mockResolvedValue(undefined) };
 
 Object.defineProperty(window, "open", {
   value: mockWindowOpen,
@@ -154,12 +155,20 @@ describe("AssignToClassroomModal", () => {
         .mockReturnValue(authenticatedSession());
       mockListCourses.mockResolvedValue(mockCourses);
 
+      const user = userEvent.setup();
       renderWithTheme(<AssignToClassroomModal {...defaultProps} />);
       await waitFor(() => {
         expect(
           screen.getByText("Save to Google Classroom"),
         ).toBeInTheDocument();
       });
+
+      // Open the popup so popupRef.current is set before dispatching the message
+      await user.click(
+        screen.getByRole("button", { name: "Sign in with Google" }),
+      );
+      await waitFor(() => expect(mockWindowOpen).toHaveBeenCalled());
+      const popup = mockWindowOpen.mock.results[0]!.value;
 
       act(() => {
         window.dispatchEvent(
@@ -170,6 +179,8 @@ describe("AssignToClassroomModal", () => {
               session: "new-session",
               accessToken: "new-token",
             },
+            origin: window.location.origin,
+            source: popup as unknown as MessageEventSource,
           }),
         );
       });
@@ -178,13 +189,13 @@ describe("AssignToClassroomModal", () => {
         expect(mockCookieStore.set).toHaveBeenCalledTimes(2);
         expect(mockCookieStore.set).toHaveBeenCalledWith(
           expect.objectContaining({
-            name: "oak-gclassroom-session",
+            name: AuthCookieKeys.Session,
             value: "new-session",
           }),
         );
         expect(mockCookieStore.set).toHaveBeenCalledWith(
           expect.objectContaining({
-            name: "oak-gclassroom-token",
+            name: AuthCookieKeys.AccessToken,
             value: "new-token",
           }),
         );
@@ -196,12 +207,20 @@ describe("AssignToClassroomModal", () => {
     });
 
     it("ignores auth messages without success flag", async () => {
+      const user = userEvent.setup();
       renderWithTheme(<AssignToClassroomModal {...defaultProps} />);
       await waitFor(() => {
         expect(
           screen.getByText("Save to Google Classroom"),
         ).toBeInTheDocument();
       });
+
+      // Open popup so origin + source guards pass, allowing the success check to be reached
+      await user.click(
+        screen.getByRole("button", { name: "Sign in with Google" }),
+      );
+      await waitFor(() => expect(mockWindowOpen).toHaveBeenCalled());
+      const popup = mockWindowOpen.mock.results[0]!.value;
 
       const callCountBefore = (mockVerifySession as jest.Mock).mock.calls
         .length;
@@ -213,6 +232,8 @@ describe("AssignToClassroomModal", () => {
               type: "oak-google-classroom-auth-complete",
               success: false,
             },
+            origin: window.location.origin,
+            source: popup as unknown as MessageEventSource,
           }),
         );
       });
@@ -244,6 +265,86 @@ describe("AssignToClassroomModal", () => {
       expect((mockVerifySession as jest.Mock).mock.calls.length).toBe(
         callCountBefore,
       );
+    });
+
+    it("ignores messages from a different origin", async () => {
+      mockVerifySession
+        .mockReturnValueOnce(unauthenticatedSession())
+        .mockReturnValue(authenticatedSession());
+
+      const user = userEvent.setup();
+      renderWithTheme(<AssignToClassroomModal {...defaultProps} />);
+      await waitFor(() => {
+        expect(
+          screen.getByText("Save to Google Classroom"),
+        ).toBeInTheDocument();
+      });
+
+      await user.click(
+        screen.getByRole("button", { name: "Sign in with Google" }),
+      );
+      await waitFor(() => expect(mockWindowOpen).toHaveBeenCalled());
+      const popup = mockWindowOpen.mock.results[0]!.value;
+
+      const callCountBefore = (mockVerifySession as jest.Mock).mock.calls
+        .length;
+
+      act(() => {
+        window.dispatchEvent(
+          new MessageEvent("message", {
+            data: {
+              type: "oak-google-classroom-auth-complete",
+              success: true,
+              session: "attacker-session",
+              accessToken: "attacker-token",
+            },
+            origin: "https://evil.example.com",
+            source: popup as unknown as MessageEventSource,
+          }),
+        );
+      });
+
+      expect((mockVerifySession as jest.Mock).mock.calls.length).toBe(
+        callCountBefore,
+      );
+      expect(mockCookieStore.set).not.toHaveBeenCalled();
+    });
+
+    it("ignores messages from a source other than the auth popup", async () => {
+      mockVerifySession
+        .mockReturnValueOnce(unauthenticatedSession())
+        .mockReturnValue(authenticatedSession());
+
+      renderWithTheme(<AssignToClassroomModal {...defaultProps} />);
+      await waitFor(() => {
+        expect(
+          screen.getByText("Save to Google Classroom"),
+        ).toBeInTheDocument();
+      });
+
+      const callCountBefore = (mockVerifySession as jest.Mock).mock.calls
+        .length;
+
+      // Dispatch with correct origin but source is not the popup (popupRef.current is null here)
+      act(() => {
+        window.dispatchEvent(
+          new MessageEvent("message", {
+            data: {
+              type: "oak-google-classroom-auth-complete",
+              success: true,
+              session: "attacker-session",
+              accessToken: "attacker-token",
+            },
+            origin: window.location.origin,
+            source: window as unknown as MessageEventSource,
+          }),
+        );
+      });
+
+      expect((mockVerifySession as jest.Mock).mock.calls.length).toBe(
+        callCountBefore,
+      );
+      expect(mockCookieStore.set).not.toHaveBeenCalled();
     });
   });
 

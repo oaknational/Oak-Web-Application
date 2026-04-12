@@ -5,15 +5,7 @@ import { type ErrorData } from "@/common-lib/error-reporter/errorReporter";
 
 export type AuthCredentials = { accessToken: string; session: string };
 
-export function extractTeacherAuth(
-  request: NextRequest,
-): AuthCredentials | null {
-  const accessToken = request.headers.get("Authorization");
-  const session = request.headers.get("X-Oakgc-Session");
-  return accessToken && session ? { accessToken, session } : null;
-}
-
-export function extractPupilAuth(request: NextRequest): AuthCredentials | null {
+export function extractAuth(request: NextRequest): AuthCredentials | null {
   const accessToken = request.headers.get("Authorization");
   const session = request.headers.get("X-Oakgc-Session");
   return accessToken && session ? { accessToken, session } : null;

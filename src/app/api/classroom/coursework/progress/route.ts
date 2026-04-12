@@ -6,7 +6,7 @@ import {
   getOakGoogleClassroomAddon,
 } from "@/node-lib/google-classroom";
 import {
-  extractPupilAuth,
+  extractAuth,
   handleCourseWorkApiError,
   unauthorizedResponse,
 } from "@/app/api/classroom/coursework/courseWorkApiHelpers";
@@ -59,7 +59,7 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
-    const auth = extractPupilAuth(request);
+    const auth = extractAuth(request);
 
     if (!auth) {
       return unauthorizedResponse();

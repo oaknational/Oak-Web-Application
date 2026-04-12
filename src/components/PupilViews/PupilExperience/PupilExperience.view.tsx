@@ -497,74 +497,6 @@ const PupilExperienceLayout = ({
     if (!isGoogleClassroomAssignment) setIsContextReady(true);
   }, [classroomAssignmentChecked, isGoogleClassroomAssignment]);
 
-  // ── CourseWork: hydrate pupil context when assignmentToken is present ──────
-  useEffect(() => {
-    if (!isCourseWorkFlow || !assignmentToken) return;
-    if (courseWorkContextRef.current) return;
-
-    const hydrateCourseWorkContext = async () => {
-      setIsFetchingClassroomContext(true);
-
-      // Check if pupil is authenticated
-      const session = await googleClassroomApi.verifySession(true)();
-      if (!session.authenticated) {
-        setIsPupilSignInRequired(true);
-        setIsFetchingClassroomContext(false);
-        setIsContextReady(true);
-        return;
-      }
-
-      try {
-        const ctx =
-          await googleClassroomApi.getCourseWorkContext(assignmentToken);
-
-        if (!ctx?.submissionId || !session.loginHint) {
-          // Can't track progress without a submission – render lesson normally.
-          setIsContextReady(true);
-          return;
-        }
-
-        courseWorkContextRef.current = {
-          submissionId: ctx.submissionId,
-          assignmentToken,
-          courseWorkId: ctx.courseWorkId,
-          courseId: ctx.courseId,
-          pupilLoginHint: session.loginHint,
-        };
-
-        // Restore saved progress
-        const savedProgress = await googleClassroomApi.getCourseWorkProgress(
-          ctx.submissionId,
-          assignmentToken,
-        );
-        if (savedProgress) {
-          const p = savedProgress as Record<string, unknown>;
-          const mapped: LessonSectionResults = {};
-          if (p.starterQuiz)
-            mapped["starter-quiz"] =
-              p.starterQuiz as LessonSectionResults["starter-quiz"];
-          if (p.exitQuiz)
-            mapped["exit-quiz"] =
-              p.exitQuiz as LessonSectionResults["exit-quiz"];
-          if (p.video) mapped.video = p.video as LessonSectionResults["video"];
-          if (p.intro) mapped.intro = p.intro as LessonSectionResults["intro"];
-
-          if (Object.keys(mapped).length > 0) {
-            setInitialSectionResults(mapped);
-            setLessonEngineInstanceKey((k) => k + 1);
-          }
-        }
-      } catch {
-        // Failed to load context — lesson will render without progress tracking
-      } finally {
-        setIsFetchingClassroomContext(false);
-        setIsContextReady(true);
-      }
-    };
-
-    void hydrateCourseWorkContext();
-  }, [isCourseWorkFlow, assignmentToken]);
-
   const saveCourseWorkProgressNow = useCallback(
     async (sectionResults: LessonSectionResults) => {
       const cwCtx = courseWorkContextRef.current;
@@ -592,6 +524,85 @@ const PupilExperienceLayout = ({
     },
     [],
   );
+
+  // ── CourseWork: hydrate pupil context when assignmentToken is present ──────
+  // Extracted so it can be called both on mount and after a successful sign-in.
+  const runHydrateCourseWorkContext = useCallback(async () => {
+    if (!assignmentToken) return;
+    setIsFetchingClassroomContext(true);
+
+    // Check if pupil is authenticated
+    const session = await googleClassroomApi.verifySession(true)();
+    if (!session.authenticated) {
+      setIsPupilSignInRequired(true);
+      setIsFetchingClassroomContext(false);
+      setIsContextReady(true);
+      return;
+    }
+
+    try {
+      const ctx =
+        await googleClassroomApi.getCourseWorkContext(assignmentToken);
+
+      if (!ctx?.submissionId || !session.loginHint) {
+        // Can't track progress without a submission – render lesson normally.
+        setIsContextReady(true);
+        return;
+      }
+
+      courseWorkContextRef.current = {
+        submissionId: ctx.submissionId,
+        assignmentToken,
+        courseWorkId: ctx.courseWorkId,
+        courseId: ctx.courseId,
+        pupilLoginHint: session.loginHint,
+      };
+
+      // Restore saved progress
+      const savedProgress = await googleClassroomApi.getCourseWorkProgress(
+        ctx.submissionId,
+        assignmentToken,
+      );
+      if (savedProgress) {
+        const p = savedProgress as Record<string, unknown>;
+        const mapped: LessonSectionResults = {};
+        if (p.starterQuiz)
+          mapped["starter-quiz"] =
+            p.starterQuiz as LessonSectionResults["starter-quiz"];
+        if (p.exitQuiz)
+          mapped["exit-quiz"] = p.exitQuiz as LessonSectionResults["exit-quiz"];
+        if (p.video) mapped.video = p.video as LessonSectionResults["video"];
+        if (p.intro) mapped.intro = p.intro as LessonSectionResults["intro"];
+
+        if (Object.keys(mapped).length > 0) {
+          setInitialSectionResults(mapped);
+          setLessonEngineInstanceKey((k) => k + 1);
+        }
+      }
+
+      // Flush any progress that was queued before context was ready.
+      // The isContextReady flush-effect handles the initial load case (where
+      // isContextReady transitions false→true); this handles re-hydration after
+      // sign-in, where isContextReady is already true and the effect won't re-run.
+      const pending = pendingCourseWorkSaveRef.current;
+      if (pending) {
+        pendingCourseWorkSaveRef.current = null;
+        void saveCourseWorkProgressNow(pending);
+      }
+    } catch {
+      // Failed to load context — lesson will render without progress tracking
+    } finally {
+      setIsFetchingClassroomContext(false);
+      setIsContextReady(true);
+    }
+  }, [assignmentToken, saveCourseWorkProgressNow]);
+
+  useEffect(() => {
+    if (!isCourseWorkFlow || !assignmentToken) return;
+    if (courseWorkContextRef.current) return;
+
+    void runHydrateCourseWorkContext();
+  }, [isCourseWorkFlow, assignmentToken, runHydrateCourseWorkContext]);
 
   // Flush any progress that was queued before the CourseWork context was ready.
   useEffect(() => {
@@ -735,23 +746,7 @@ const PupilExperienceLayout = ({
                 }
                 onSuccessfulSignIn={async () => {
                   setIsPupilSignInRequired(false);
-                  // Re-hydrate context now that the pupil is signed in
-                  if (!assignmentToken) return;
-                  const session =
-                    await googleClassroomApi.verifySession(true)();
-                  const ctx =
-                    await googleClassroomApi.getCourseWorkContext(
-                      assignmentToken,
-                    );
-                  if (ctx?.submissionId && session.loginHint) {
-                    courseWorkContextRef.current = {
-                      submissionId: ctx.submissionId,
-                      assignmentToken,
-                      courseWorkId: ctx.courseWorkId,
-                      courseId: ctx.courseId,
-                      pupilLoginHint: session.loginHint,
-                    };
-                  }
+                  await runHydrateCourseWorkContext();
                 }}
                 privacyPolicyUrl="/legal/privacy-policy"
                 showMailingListOption={false}

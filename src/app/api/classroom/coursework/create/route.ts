@@ -6,7 +6,7 @@ import {
   getOakGoogleClassroomAddon,
 } from "@/node-lib/google-classroom";
 import {
-  extractTeacherAuth,
+  extractAuth,
   handleCourseWorkApiError,
   unauthorizedResponse,
 } from "@/app/api/classroom/coursework/courseWorkApiHelpers";
@@ -15,7 +15,7 @@ const reportError = createClassroomErrorReporter("coursework-create");
 
 export async function POST(request: NextRequest) {
   try {
-    const auth = extractTeacherAuth(request);
+    const auth = extractAuth(request);
 
     if (!auth) {
       return unauthorizedResponse();

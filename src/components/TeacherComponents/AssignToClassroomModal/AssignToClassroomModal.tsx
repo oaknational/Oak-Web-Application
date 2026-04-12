@@ -14,12 +14,10 @@ import {
   OakTextInput,
 } from "@oaknational/oak-components";
 import { CourseListItem } from "@oaknational/google-classroom-addon/types";
+import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
 
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 import { ScopeInsufficientError } from "@/browser-lib/google-classroom/errors";
-
-const TEACHER_SESSION_COOKIE = "oak-gclassroom-session";
-const TEACHER_TOKEN_COOKIE = "oak-gclassroom-token";
 
 type ModalState =
   | { type: "loading" }
@@ -97,21 +95,26 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
   }, [isOpen, lessonTitle, checkSessionAndLoadCourses]);
 
   useEffect(() => {
-    const handleAuthMessage = (event: MessageEvent) => {
+    const handleAuthMessage = async (event: MessageEvent) => {
       if (event.data?.type !== "oak-google-classroom-auth-complete") return;
+      if (event.origin !== globalThis.window.location.origin) return;
+      if (event.source !== popupRef.current) return;
       popupRef.current?.close();
       popupRef.current = null;
       setIsSigningIn(false);
       if (event.data.success && event.data.session && event.data.accessToken) {
-        globalThis.window.cookieStore?.set({
-          name: TEACHER_SESSION_COOKIE,
+        // Note: sameSite "none" requires Secure; that attribute is not yet
+        // modelled in the TypeScript CookieInit type but is enforced by the
+        // browser at runtime — these cookies are only set over HTTPS.
+        await globalThis.window.cookieStore?.set({
+          name: AuthCookieKeys.Session,
           value: event.data.session as string,
           partitioned: true,
           sameSite: "none",
           path: "/",
         });
-        globalThis.window.cookieStore?.set({
-          name: TEACHER_TOKEN_COOKIE,
+        await globalThis.window.cookieStore?.set({
+          name: AuthCookieKeys.AccessToken,
           value: event.data.accessToken as string,
           partitioned: true,
           sameSite: "none",
