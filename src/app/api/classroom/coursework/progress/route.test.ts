@@ -218,7 +218,7 @@ describe("POST /api/classroom/coursework/progress", () => {
 
     expect(mockUpsertCourseWorkPupilProgress).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
-      { message: "Authentication required" },
+      { error: "Authentication required" },
       { status: 401 },
     );
   });

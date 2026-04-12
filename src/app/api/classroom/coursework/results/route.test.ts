@@ -19,6 +19,7 @@ jest.mock("@/node-lib/google-classroom", () => {
   return {
     getOakGoogleClassroomAddon: jest.fn(),
     createClassroomErrorReporter: jest.fn(() => reporterMock),
+    isOakGoogleClassroomException: jest.fn(() => false),
     __mockReportError: reporterMock,
   };
 });
@@ -45,7 +46,9 @@ const mockGetCourseWorkPupilProgress = jest
 
 const makeRequest = (params: Record<string, string>) =>
   ({
-    url: `https://example.com/api/classroom/coursework/results?${new URLSearchParams(params).toString()}`,
+    nextUrl: {
+      searchParams: new URLSearchParams(params),
+    },
   }) as unknown as NextRequest;
 
 describe("GET /api/classroom/coursework/results", () => {

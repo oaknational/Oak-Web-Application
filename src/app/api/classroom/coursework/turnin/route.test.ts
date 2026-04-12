@@ -16,10 +16,12 @@ jest.mock("next/server", () => ({
 
 jest.mock("@/node-lib/google-classroom", () => {
   const reporterMock = jest.fn();
+  const actual = jest.requireActual("@/node-lib/google-classroom");
   return {
     getOakGoogleClassroomAddon: jest.fn(),
     createClassroomErrorReporter: jest.fn(() => reporterMock),
     isOakGoogleClassroomException: jest.fn(() => false),
+    turnInBodySchema: actual.turnInBodySchema,
     __mockReportError: reporterMock,
   };
 });
@@ -116,7 +118,7 @@ describe("POST /api/classroom/coursework/turnin", () => {
 
     expect(mockGetClassroomCourseWork).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
-      { message: "Authentication required" },
+      { error: "Authentication required" },
       { status: 401 },
     );
   });

@@ -44,8 +44,8 @@ export async function GET(request: NextRequest) {
       courseWork;
 
     // If the pupil has authenticated, resolve their submission ID.
-    const accessToken = request.headers.get("authorization");
-    const session = request.headers.get("x-oakgc-session");
+    const accessToken = request.headers.get("Authorization");
+    const session = request.headers.get("X-Oakgc-Session");
 
     let submissionId: string | undefined;
     if (accessToken && session) {

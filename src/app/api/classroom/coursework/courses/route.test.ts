@@ -76,7 +76,7 @@ describe("GET /api/classroom/coursework/courses", () => {
 
     expect(mockListCourses).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
-      { message: "Authentication required" },
+      { error: "Authentication required" },
       { status: 401 },
     );
   });
@@ -94,7 +94,7 @@ describe("GET /api/classroom/coursework/courses", () => {
 
     expect(mockListCourses).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
-      { message: "Authentication required" },
+      { error: "Authentication required" },
       { status: 401 },
     );
   });
