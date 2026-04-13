@@ -50,6 +50,8 @@ import type { AddOnContextResponse } from "@/browser-lib/google-classroom/google
 import { type ClassroomProgressContext } from "@/browser-lib/google-classroom";
 import { mapToSubmitPupilProgress } from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
 import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
+import { useCourseWorkProgress } from "@/hooks/useCourseWorkProgress";
+import { PupilCourseWorkSignInOverlay } from "@/components/PupilComponents/PupilCourseWorkSignInOverlay/PupilCourseWorkSignInOverlay";
 import {
   GoogleClassroomAnalyticsProvider,
   useGoogleClassroomAnalytics,
@@ -233,8 +235,9 @@ const PupilExperienceClassroomAnalytics = ({
   );
 
   useEffect(() => {
-    window.addEventListener("pagehide", clearAddOnOpenedFlag);
-    return () => window.removeEventListener("pagehide", clearAddOnOpenedFlag);
+    globalThis.window.addEventListener("pagehide", clearAddOnOpenedFlag);
+    return () =>
+      globalThis.window.removeEventListener("pagehide", clearAddOnOpenedFlag);
   }, [clearAddOnOpenedFlag]);
 
   useEffect(() => {
@@ -257,6 +260,8 @@ type ClassroomAnalyticsContext = {
 type PupilExperienceLayoutProps = PupilExperienceViewProps & {
   googleClassroomContext: GoogleClassroomContext;
   onClassroomContextResolved: (ctx: ClassroomAnalyticsContext) => void;
+  /** When set, the pupil arrived via a CourseWork link (teacher-assigned). */
+  assignmentToken?: string | null;
 };
 
 const PupilExperienceLayout = ({
@@ -271,6 +276,7 @@ const PupilExperienceLayout = ({
   worksheetInfo,
   googleClassroomContext,
   onClassroomContextResolved,
+  assignmentToken,
 }: PupilExperienceLayoutProps) => {
   const ageRestriction = browseData.features?.ageRestriction;
   const hasAgeRestriction = !!ageRestriction;
@@ -283,14 +289,43 @@ const PupilExperienceLayout = ({
   } = googleClassroomContext;
   const isGoogleClassroomAssignment =
     isClassroomAssignment === true && classroomAssignmentChecked === true;
+
+  // ── Add-on flow state ─────────────────────────────────────────────────────
   const classroomContextRef = useRef<ClassroomProgressContext | null>(null);
-  const [isFetchingClassroomContext, setIsFetchingClassroomContext] =
-    useState(false);
-  const [isContextReady, setIsContextReady] = useState(false);
-  const [initialSectionResults, setInitialSectionResults] =
+  const [isAddonFetching, setIsAddonFetching] = useState(false);
+  const [isAddonContextReady, setIsAddonContextReady] = useState(false);
+  const [addonInitialSectionResults, setAddonInitialSectionResults] =
     useState<LessonSectionResults>();
-  const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
+  const [addonLessonEngineKey, setAddonLessonEngineKey] = useState(0);
   const [isReadOnlyState, setIsReadOnlyState] = useState(false);
+
+  // ── CourseWork flow ───────────────────────────────────────────────────────
+  const courseWork = useCourseWorkProgress({
+    assignmentToken,
+    isGoogleClassroomAssignment,
+  });
+  const isCourseWorkReady =
+    courseWork.isCourseWorkFlow && courseWork.status === "ready";
+
+  // ── Combined state (flows are mutually exclusive) ─────────────────────────
+  const {
+    isFetchingClassroomContext,
+    isContextReady,
+    initialSectionResults,
+    lessonEngineInstanceKey,
+  } = courseWork.isCourseWorkFlow
+    ? {
+        isFetchingClassroomContext: courseWork.isFetching,
+        isContextReady: courseWork.isContextReady,
+        initialSectionResults: courseWork.initialSectionResults,
+        lessonEngineInstanceKey: courseWork.lessonEngineKey,
+      }
+    : {
+        isFetchingClassroomContext: isAddonFetching,
+        isContextReady: isAddonContextReady,
+        initialSectionResults: addonInitialSectionResults,
+        lessonEngineInstanceKey: addonLessonEngineKey,
+      };
 
   const fetchAddonContext = useCallback(
     async (args: {
@@ -347,12 +382,12 @@ const PupilExperienceLayout = ({
     if (!isGoogleClassroomAssignment || classroomContextRef.current) return;
     const hydrateGoogleClassroomContext = async () => {
       if (!courseId || !itemId || !attachmentId) {
-        setIsContextReady(true);
+        setIsAddonContextReady(true);
         return;
       }
 
       try {
-        setIsFetchingClassroomContext(true);
+        setIsAddonFetching(true);
         const addonContext = await fetchAddonContext({
           courseId,
           itemId,
@@ -383,8 +418,8 @@ const PupilExperienceLayout = ({
             attachmentId,
           });
           if (Object.keys(mappedSectionResults).length > 0) {
-            setInitialSectionResults(mappedSectionResults);
-            setLessonEngineInstanceKey((value) => value + 1);
+            setAddonInitialSectionResults(mappedSectionResults);
+            setAddonLessonEngineKey((value) => value + 1);
           }
 
           const readOnlyState = await isSubmissionStateReadOnly({
@@ -401,14 +436,14 @@ const PupilExperienceLayout = ({
       } catch {
         // Failed to get context - progress sync will be disabled
       } finally {
-        setIsFetchingClassroomContext(false);
-        setIsContextReady(true);
+        setIsAddonFetching(false);
+        setIsAddonContextReady(true);
       }
     };
 
     const refreshReadOnlyState = async () => {
       if (!courseId || !itemId || !attachmentId) {
-        setIsContextReady(true);
+        setIsAddonContextReady(true);
         return;
       }
 
@@ -453,9 +488,9 @@ const PupilExperienceLayout = ({
       await refreshReadOnlyState();
     };
 
-    window.addEventListener("focus", handleWindowFocus);
+    globalThis.window.addEventListener("focus", handleWindowFocus);
     return () => {
-      window.removeEventListener("focus", handleWindowFocus);
+      globalThis.window.removeEventListener("focus", handleWindowFocus);
     };
   }, [
     attachmentId,
@@ -470,7 +505,7 @@ const PupilExperienceLayout = ({
 
   useEffect(() => {
     if (!classroomAssignmentChecked) return;
-    if (!isGoogleClassroomAssignment) setIsContextReady(true);
+    if (!isGoogleClassroomAssignment) setIsAddonContextReady(true);
   }, [classroomAssignmentChecked, isGoogleClassroomAssignment]);
 
   const handleOnNext = useCallback(
@@ -478,6 +513,17 @@ const PupilExperienceLayout = ({
       sectionResults: LessonSectionResults,
       _completedSection: LessonReviewSection,
     ) => {
+      // CourseWork flow
+      if (courseWork.isCourseWorkFlow) {
+        try {
+          await courseWork.saveProgress(sectionResults);
+          return;
+        } catch (error) {
+          console.error("Failed to save CourseWork progress:", error);
+        }
+      }
+
+      // Add-on flow
       const ctx = classroomContextRef.current;
       if (!ctx) return;
 
@@ -488,8 +534,19 @@ const PupilExperienceLayout = ({
         console.error(error);
       }
     },
-    [],
+    [courseWork],
   );
+
+  const { track } = usePupilAnalytics();
+  const [isOpen, setIsOpen] = useState<boolean>(
+    !!lessonContent.contentGuidance || hasAgeRestriction,
+  );
+  const router = useRouter();
+  const availableSections = pickAvailableSectionsForLesson(lessonContent);
+
+  const isSensitive = lessonContent.deprecatedFields?.isSensitive === true;
+
+  const [redirectOverlayCleared, setRedirectOverlayCleared] = useState(false);
 
   const getAgeRestrictionString = (
     ageRestriction: string | undefined | null,
@@ -504,17 +561,6 @@ const PupilExperienceLayout = ({
     }
   };
 
-  const { track } = usePupilAnalytics();
-  const [isOpen, setIsOpen] = useState<boolean>(
-    !!lessonContent.contentGuidance || hasAgeRestriction,
-  );
-  const router = useRouter();
-  const availableSections = pickAvailableSectionsForLesson(lessonContent);
-
-  const isSensitive = lessonContent.deprecatedFields?.isSensitive === true;
-
-  const [redirectOverlayCleared, setRedirectOverlayCleared] = useState(false);
-
   const handleContentGuidanceAccept = () => {
     setIsOpen(false);
     track.contentGuidanceAccepted({
@@ -528,7 +574,7 @@ const PupilExperienceLayout = ({
 
   const handleContentGuidanceDecline = () => {
     if (isGoogleClassroomAssignment) {
-      window?.parent?.postMessage(
+      globalThis.window?.parent?.postMessage(
         {
           type: "Classroom",
           action: "closeIframe",
@@ -557,8 +603,19 @@ const PupilExperienceLayout = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isContextReady]);
 
-  const declineIcon = isGoogleClassroomAssignment ? "cross" : undefined;
-  const declineText = isGoogleClassroomAssignment ? "Exit lesson" : undefined;
+  const { declineIcon, declineText } = isGoogleClassroomAssignment
+    ? { declineIcon: "cross" as const, declineText: "Exit lesson" as const }
+    : { declineIcon: undefined, declineText: undefined };
+  const classroomOnNext =
+    isGoogleClassroomAssignment || isCourseWorkReady ? handleOnNext : undefined;
+  const courseWorkNotReady =
+    courseWork.isCourseWorkFlow && courseWork.status !== "ready";
+  let lessonEngineInitialSection = initialSection;
+  if (isReadOnlyState) {
+    lessonEngineInitialSection = "review";
+  } else if (courseWorkNotReady) {
+    lessonEngineInitialSection = "overview";
+  }
   return (
     <GoogleClassroomAnalyticsProvider>
       <PupilExperienceClassroomAnalytics
@@ -575,15 +632,18 @@ const PupilExperienceLayout = ({
         }}
       >
         <CookieConsentStyles />
+        {courseWork.isPupilSignInRequired && (
+          <PupilCourseWorkSignInOverlay
+            onSuccessfulSignIn={courseWork.onSignInSuccess}
+          />
+        )}
         <LessonEngineProvider
           key={lessonEngineInstanceKey}
           initialLessonReviewSections={availableSections}
-          initialSection={isReadOnlyState ? "review" : initialSection}
+          initialSection={lessonEngineInitialSection}
           initialSectionResults={initialSectionResults}
-          onNext={isGoogleClassroomAssignment ? handleOnNext : undefined}
-          onSectionResultUpdate={
-            isGoogleClassroomAssignment ? handleOnNext : undefined
-          }
+          onNext={classroomOnNext}
+          onSectionResultUpdate={classroomOnNext}
           isHydratingInitialProgress={isFetchingClassroomContext}
           isReadOnly={isReadOnlyState}
         >
@@ -625,12 +685,20 @@ const PupilExperienceLayout = ({
             />
           )}
 
-          <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
+          <OakBox style={{ pointerEvents: isOpen ? "none" : "all" }}>
             <OakBox $height={"100vh"}>
               {browseData.lessonData.deprecatedFields?.expired ? (
                 <PupilExpiredView lessonTitle={browseData.lessonData.title} />
               ) : (
                 <>
+                  <OakInlineBanner
+                    message={courseWork.errorMessage ?? ""}
+                    isOpen={
+                      courseWork.isCourseWorkFlow &&
+                      !courseWork.isPupilSignInRequired &&
+                      Boolean(courseWork.errorMessage)
+                    }
+                  />
                   <OakInlineBanner
                     message="You have turned-in this assignment. You can review the lesson and see your previous answers."
                     isOpen={isReadOnlyState}
@@ -668,7 +736,14 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
       teacherLoginHint: null,
       submissionId: null,
     });
+  const [assignmentToken, setAssignmentToken] = useState<string | null>(null);
   const googleClassroomContext = useGoogleClassroomContext();
+
+  useEffect(() => {
+    if (globalThis.window === undefined) return;
+    const searchParams = new URLSearchParams(globalThis.window.location.search);
+    setAssignmentToken(searchParams.get("assignmentToken"));
+  }, []);
 
   const { worksheetInfo } = useWorksheetInfoState(
     lessonContent.hasWorksheetAssetObject,
@@ -695,6 +770,7 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
         worksheetInfo={worksheetInfo}
         googleClassroomContext={googleClassroomContext}
         onClassroomContextResolved={setClassroomAnalyticsContext}
+        assignmentToken={assignmentToken}
       />
     </PupilAnalyticsProvider>
   );

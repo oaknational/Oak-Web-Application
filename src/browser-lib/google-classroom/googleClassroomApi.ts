@@ -4,8 +4,14 @@ import {
   UpsertPupilLessonProgressArgs,
   PupilLessonProgress,
   PostSubmissionState,
+  CourseListItem,
+  CourseWorkCreatedResult,
+  UpsertCourseWorkPupilProgressArgs,
+  CourseWorkPupilProgress,
 } from "@oaknational/google-classroom-addon/types";
 import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
+
+import { ScopeInsufficientError } from "./errors";
 
 const getOakGCAuthHeaders = async (
   isPupil?: boolean,
@@ -50,7 +56,6 @@ const sendRequest = async <returnType, payload = undefined>(
     } catch {
       throw new Error(`API request failed: ${res.status} ${res.statusText}`);
     }
-    // If is an OakGoogleClassroomException, throw as is
     if (
       errorData &&
       typeof errorData === "object" &&
@@ -59,6 +64,9 @@ const sendRequest = async <returnType, payload = undefined>(
       "name" in errorData &&
       errorData.name === "OakGoogleClassroomException"
     ) {
+      if (errorData.code === "insufficient_scope") {
+        throw new ScopeInsufficientError();
+      }
       throw errorData;
     }
     // catch other errors
@@ -271,6 +279,144 @@ const getPostSubmissionState = async (
   }
 };
 
+// ── Teacher: CourseWork ──────────────────────────────────────────────────────
+
+const COURSEWORK_API_ROUTES = {
+  courses: "/api/classroom/coursework/courses",
+  create: "/api/classroom/coursework/create",
+  context: "/api/classroom/coursework/context",
+  progress: "/api/classroom/coursework/progress",
+  turnin: "/api/classroom/coursework/turnin",
+  results: "/api/classroom/coursework/results",
+} as const;
+
+type CreateCourseWorkArgs = {
+  courseId: string;
+  title: string;
+  description?: string;
+  lessonSlug: string;
+  programmeSlug: string;
+  unitSlug: string;
+  maxPoints: number;
+};
+
+const listCourses = async (): Promise<CourseListItem[]> => {
+  const headers = await getOakGCAuthHeaders();
+  const data = await sendRequest<{ courses: CourseListItem[] }>(
+    COURSEWORK_API_ROUTES.courses,
+    "GET",
+    undefined,
+    headers,
+  );
+  return data.courses;
+};
+
+const createCourseWork = async (
+  args: CreateCourseWorkArgs,
+): Promise<CourseWorkCreatedResult & { assignmentToken: string }> => {
+  const headers = await getOakGCAuthHeaders();
+  return sendRequest<
+    CourseWorkCreatedResult & { assignmentToken: string },
+    CreateCourseWorkArgs
+  >(COURSEWORK_API_ROUTES.create, "POST", args, headers);
+};
+
+// ── Pupil: CourseWork ────────────────────────────────────────────────────────
+
+export type CourseWorkContextResponse = {
+  courseWorkId: string;
+  courseId: string;
+  lessonSlug: string;
+  programmeSlug: string;
+  unitSlug: string;
+  submissionId?: string;
+};
+
+const getCourseWorkContext = async (
+  assignmentToken: string,
+): Promise<CourseWorkContextResponse | null> => {
+  try {
+    const headers = await getOakGCAuthHeaders(true);
+    const params = new URLSearchParams({ assignmentToken });
+    return await sendRequest<CourseWorkContextResponse>(
+      `${COURSEWORK_API_ROUTES.context}?${params.toString()}`,
+      "GET",
+      undefined,
+      headers,
+    );
+  } catch (error) {
+    console.error("Failed to get coursework context:", error);
+    return null;
+  }
+};
+
+const upsertCourseWorkProgress = async (
+  args: UpsertCourseWorkPupilProgressArgs,
+): Promise<void> => {
+  const headers = await getOakGCAuthHeaders(true);
+  await sendRequest<void, UpsertCourseWorkPupilProgressArgs>(
+    COURSEWORK_API_ROUTES.progress,
+    "POST",
+    args,
+    headers,
+  );
+};
+
+const turnInCourseWork = async (assignmentToken: string): Promise<void> => {
+  const headers = await getOakGCAuthHeaders(true);
+  await sendRequest<void, { assignmentToken: string }>(
+    COURSEWORK_API_ROUTES.turnin,
+    "POST",
+    { assignmentToken },
+    headers,
+  );
+};
+
+const getCourseWorkProgress = async (
+  submissionId: string,
+  assignmentToken: string,
+): Promise<CourseWorkPupilProgress | null> => {
+  try {
+    const headers = await getOakGCAuthHeaders(true);
+    const params = new URLSearchParams({ submissionId, assignmentToken });
+    return await sendRequest<CourseWorkPupilProgress>(
+      `${COURSEWORK_API_ROUTES.progress}?${params.toString()}`,
+      "GET",
+      undefined,
+      headers,
+    );
+  } catch (error) {
+    console.error("Failed to get coursework progress:", error);
+    return null;
+  }
+};
+
+export type CourseWorkResultsResponse = {
+  lessonSlug: string;
+  programmeSlug: string;
+  unitSlug: string;
+  pupilProgress: CourseWorkPupilProgress | null;
+};
+
+const getCourseWorkResults = async (
+  assignmentToken: string,
+  submissionId: string,
+): Promise<CourseWorkResultsResponse | null> => {
+  try {
+    const headers = await getOakGCAuthHeaders();
+    const params = new URLSearchParams({ assignmentToken, submissionId });
+    return await sendRequest<CourseWorkResultsResponse>(
+      `${COURSEWORK_API_ROUTES.results}?${params.toString()}`,
+      "GET",
+      undefined,
+      headers,
+    );
+  } catch (error) {
+    console.error("Failed to get coursework results:", error);
+    return null;
+  }
+};
+
 export default {
   getGoogleSignInUrl,
   verifySession,
@@ -279,4 +425,11 @@ export default {
   submitPupilProgress,
   getPupilLessonProgress,
   getPostSubmissionState,
+  listCourses,
+  createCourseWork,
+  getCourseWorkContext,
+  upsertCourseWorkProgress,
+  getCourseWorkProgress,
+  getCourseWorkResults,
+  turnInCourseWork,
 };

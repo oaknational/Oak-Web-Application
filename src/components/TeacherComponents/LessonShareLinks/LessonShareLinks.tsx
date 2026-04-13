@@ -24,6 +24,7 @@ const LessonShareLinks: FC<{
   selectedActivities?: Array<ResourceType>;
   schoolUrn?: string;
   onSubmit: (shareMedium: ShareMediumValueType) => void;
+  onGoogleClassroomClick?: () => void;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
   const { setCurrentToastProps } = useOakNotificationsContext();
@@ -31,6 +32,12 @@ const LessonShareLinks: FC<{
   useEffect(() => {
     setIsShareSuccessful(false);
   }, [props.selectedActivities]);
+
+  const linkShareOptions = [
+    shareLinkConfig.microsoftTeams,
+    shareLinkConfig.email,
+    ...(props.onGoogleClassroomClick ? [] : [shareLinkConfig.googleClassroom]),
+  ];
 
   return (
     <>
@@ -79,11 +86,24 @@ const LessonShareLinks: FC<{
           disabled={props.disabled}
         />
 
-        {[
-          shareLinkConfig.googleClassroom,
-          shareLinkConfig.microsoftTeams,
-          shareLinkConfig.email,
-        ].map((link) => (
+        {props.onGoogleClassroomClick && (
+          <LoadingButton
+            text={shareLinkConfig.googleClassroom.name}
+            icon={shareLinkConfig.googleClassroom.icon}
+            isLoading={false}
+            disabled={props.disabled}
+            type="button"
+            key={shareLinkConfig.googleClassroom.name}
+            onClick={() => {
+              props.onSubmit(shareLinkConfig.googleClassroom.avoMedium);
+              props.onGoogleClassroomClick!();
+            }}
+            ariaLabel="Assign to Google Classroom"
+            ariaLive={"polite"}
+          />
+        )}
+
+        {linkShareOptions.map((link) => (
           <LoadingButton
             text={link.name}
             icon={link.icon}
@@ -100,7 +120,11 @@ const LessonShareLinks: FC<{
             onClick={() => {
               props.onSubmit(link.avoMedium);
             }}
-            ariaLabel={`Share to ${link.name}`}
+            ariaLabel={
+              link.name === shareLinkConfig.googleClassroom.name
+                ? "Assign to Google Classroom"
+                : `Share to ${link.name}`
+            }
             ariaLive={"polite"}
           />
         ))}

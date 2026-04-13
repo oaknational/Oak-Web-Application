@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   OakFlex,
   OakGrid,
@@ -20,6 +21,7 @@ import {
 import { PupilExperienceViewProps } from "../PupilExperience";
 
 import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
+import { CourseWorkHandInButton } from "./CourseWorkHandInButton";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
@@ -57,6 +59,10 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   } = props;
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
+  const searchParams = useSearchParams();
+  const assignmentToken = searchParams?.get("assignmentToken") ?? null;
+  const isCourseWorkAssignment = Boolean(assignmentToken);
+
   const { phase = "primary", yearDescription, subject } = programmeFields;
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {
@@ -110,7 +116,8 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   }
 
   const bottomNavSlot = classroomAssignmentChecked &&
-    !isClassroomAssignment && (
+    !isClassroomAssignment &&
+    !isCourseWorkAssignment && (
       <OakLessonBottomNav>
         <OakPrimaryButton
           element="a"
@@ -272,9 +279,13 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                 $gap={"spacing-16"}
                 $minHeight={"spacing-92"}
               >
-                {hasQuiz &&
-                  classroomAssignmentChecked &&
-                  !isClassroomAssignment && (
+                {assignmentToken && (
+                  <CourseWorkHandInButton assignmentToken={assignmentToken} />
+                )}
+                {classroomAssignmentChecked &&
+                  !isClassroomAssignment &&
+                  !isCourseWorkAssignment &&
+                  hasQuiz && (
                     <>
                       <OakHeading tag="h2" $font={"body-2-bold"}>
                         Share options:

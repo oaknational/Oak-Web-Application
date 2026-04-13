@@ -89,7 +89,7 @@
     "@mdx-js/loader": "^3.1.0",
     "@mux/mux-node": "^9.0.1",
     "@mux/mux-player-react": "3.10.2",
-    "@oaknational/google-classroom-addon": "^1.31.0",
+    "@oaknational/google-classroom-addon": "^1.32.0",
     "@oaknational/oak-components": "^2.16.0",
     "@oaknational/oak-consent-client": "2.4.0",
     "@oaknational/oak-curriculum-schema": "2.4.0-beta.2",
