@@ -87,7 +87,7 @@ describe("ProgrammeToggles", () => {
       "href",
       resolveOakHref({
         page: "unit-page",
-        subjectPhaseSlug: "maths-secondary-ks4-foundation",
+        programmeSlug: "maths-secondary-ks4-foundation",
         unitSlug: "algebra",
       }),
     );
@@ -96,7 +96,7 @@ describe("ProgrammeToggles", () => {
       "href",
       resolveOakHref({
         page: "unit-page",
-        subjectPhaseSlug: "maths-secondary-ks4-higher",
+        programmeSlug: "maths-secondary-ks4-higher",
         unitSlug: "algebra",
       }),
     );
@@ -126,7 +126,7 @@ describe("ProgrammeToggles", () => {
       "href",
       resolveOakHref({
         page: "unit-page",
-        subjectPhaseSlug: "biology-secondary-ks4-foundation-aqa",
+        programmeSlug: "biology-secondary-ks4-foundation-aqa",
         unitSlug: "cells",
       }),
     );
@@ -135,7 +135,7 @@ describe("ProgrammeToggles", () => {
       "href",
       resolveOakHref({
         page: "unit-page",
-        subjectPhaseSlug: "combined-science-secondary-ks4-foundation-aqa",
+        programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
         unitSlug: "cells",
       }),
     );

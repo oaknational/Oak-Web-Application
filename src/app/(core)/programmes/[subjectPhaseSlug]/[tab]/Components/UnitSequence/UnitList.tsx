@@ -96,7 +96,7 @@ export function ProgrammeUnitList({
           href: resolveOakHref({
             page: "unit-page",
             unitSlug: option.slug ?? unit.slug,
-            subjectPhaseSlug: programmeSlug,
+            programmeSlug,
             query: {
               subject_category: filters.subjectCategories.at(0),
             },
@@ -122,7 +122,7 @@ export function ProgrammeUnitList({
           href={resolveOakHref({
             page: "unit-page",
             unitSlug: unit.slug,
-            subjectPhaseSlug: programmeSlug,
+            programmeSlug,
             query: {
               subject_category: filters.subjectCategories.at(0),
             },
