@@ -42,7 +42,6 @@ const { getLessonData } = jest.requireMock(
   "@/app/classroom/pupil/programmes/[programmeSlug]/[unitSlug]/[lessonSlug]/results/printable/getLessonData",
 );
 
- 
 const mockGetCourseWorkResults = jest.requireMock(
   "@/browser-lib/google-classroom/googleClassroomApi",
 ).default.getCourseWorkResults as jest.Mock;

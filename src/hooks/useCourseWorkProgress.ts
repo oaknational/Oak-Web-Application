@@ -126,8 +126,7 @@ export function useCourseWorkProgress({
         await googleClassroomApi.upsertCourseWorkProgress(payload);
         setErrorMessage(null);
         return true;
-      } catch (error) {
-        console.error("Failed to save CourseWork progress:", error);
+      } catch {
         setErrorMessage(COURSEWORK_SAVE_ERROR_MESSAGE);
         return false;
       }
