@@ -36,7 +36,7 @@ const LessonShareLinks: FC<{
   const linkShareOptions = [
     shareLinkConfig.microsoftTeams,
     shareLinkConfig.email,
-    ...(!props.onGoogleClassroomClick ? [shareLinkConfig.googleClassroom] : []),
+    ...(props.onGoogleClassroomClick ? [] : [shareLinkConfig.googleClassroom]),
   ];
 
   return (

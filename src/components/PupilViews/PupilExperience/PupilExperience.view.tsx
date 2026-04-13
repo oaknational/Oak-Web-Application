@@ -605,11 +605,14 @@ const PupilExperienceLayout = ({
 
   const declineIcon = isGoogleClassroomAssignment ? "cross" : undefined;
   const declineText = isGoogleClassroomAssignment ? "Exit lesson" : undefined;
-  const lessonEngineInitialSection = isReadOnlyState
-    ? "review"
-    : courseWork.isCourseWorkFlow && courseWork.status !== "ready"
-      ? "overview"
-      : initialSection;
+  const courseWorkNotReady =
+    courseWork.isCourseWorkFlow && courseWork.status !== "ready";
+  let lessonEngineInitialSection = initialSection;
+  if (isReadOnlyState) {
+    lessonEngineInitialSection = "review";
+  } else if (courseWorkNotReady) {
+    lessonEngineInitialSection = "overview";
+  }
   return (
     <GoogleClassroomAnalyticsProvider>
       <PupilExperienceClassroomAnalytics
