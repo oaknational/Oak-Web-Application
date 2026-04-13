@@ -1,0 +1,20 @@
+minimumReleaseAge: 10080
+minimumReleaseAgeExclude:
+  - "@oaknational/google-classroom-addon"
+  - "@oaknational/oak-components"
+  - "@oaknational/oak-consent-client"
+  - "@oaknational/oak-curriculum-schema%"
+allowBuilds:
+  '@clerk/shared': true
+  '@percy/core': true
+  '@sentry/cli': true
+  '@swc/core': true
+  chromedriver: true
+  core-js: true
+  core-js-pure: true
+  esbuild: true
+  protobufjs: true
+  puppeteer: true
+  re2: true
+  sharp: true
+  unrs-resolver: true
