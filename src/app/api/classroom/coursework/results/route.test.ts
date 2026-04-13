@@ -30,7 +30,9 @@ const mockedGetOakGoogleClassroomAddon =
 const mockAccessToken = "mock-access-token";
 const mockSession = "mock-session-id";
 
-const mockAuthHeaders = {
+type MockHeaders = Pick<Headers, "get">;
+
+const mockAuthHeaders: MockHeaders = {
   get: jest.fn((headerName: string) => {
     if (headerName === "Authorization") return mockAccessToken;
     if (headerName === "X-Oakgc-Session") return mockSession;
@@ -38,8 +40,8 @@ const mockAuthHeaders = {
   }),
 };
 
-const mockNoAuthHeaders = {
-  get: jest.fn(() => null),
+const mockNoAuthHeaders: MockHeaders = {
+  get: jest.fn((_headerName: string) => null),
 };
 
 const mockVerifiedSession = {
@@ -68,7 +70,7 @@ const mockVerifyAuthSession = jest.fn().mockResolvedValue(mockVerifiedSession);
 
 const makeRequest = (
   params: Record<string, string>,
-  headers = mockAuthHeaders,
+  headers: MockHeaders = mockAuthHeaders,
 ) =>
   ({
     nextUrl: {
