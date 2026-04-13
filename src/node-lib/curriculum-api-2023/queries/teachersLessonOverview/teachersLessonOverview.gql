@@ -1,0 +1,91 @@
+query teachersLessonOverview(
+  $lessonSlug: String!
+  $unitSlug: String!
+  $programmeSlug: String!
+) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
+    where: {
+      lesson_slug: { _eq: $lessonSlug }
+      unit_slug: { _eq: $unitSlug }
+      programme_slug: { _eq: $programmeSlug }
+      is_legacy: { _eq: false }
+    }
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    programme_slug_by_year
+    lesson_data
+    unit_data
+    programme_fields
+    actions
+    features
+    order_in_unit
+  }
+  content: published_mv_lesson_content_published_9_0_0(
+    where: { lesson_slug: { _eq: $lessonSlug } }
+  ) {
+    lesson_id
+    lesson_title
+    lesson_slug
+    deprecated_fields
+    misconceptions_and_common_mistakes
+    equipment_and_resources
+    teacher_tips
+    key_learning_points
+    pupil_lesson_outcome
+    phonics_outcome
+    lesson_keywords
+    content_guidance
+    video_mux_playback_id
+    video_id
+    video_with_sign_language_mux_playback_id
+    transcript_sentences
+    starter_quiz
+    starter_quiz_id
+    exit_quiz
+    exit_quiz_id
+    supervision_level
+    video_title
+    has_worksheet_google_drive_downloadable_version
+    has_slide_deck_asset_object
+    worksheet_asset_id
+    has_worksheet_asset_object
+    worksheet_answers_asset_id
+    has_worksheet_answers_asset_object
+    supplementary_asset_id
+    has_supplementary_asset_object
+    slide_deck_asset_id
+    slide_deck_asset_object_url
+    worksheet_asset_object_url
+    supplementary_asset_object_url
+    has_lesson_guide_google_drive_downloadable_version
+    lesson_guide_asset_object_url
+    has_lesson_guide_object
+    lesson_guide_asset_id
+    downloadable_files
+    lesson_release_date
+    geo_restricted
+    login_required
+  }
+  unitData: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
+    where: {
+      supplementary_data: {
+        _contains: { static_lesson_list: [{ slug: $lessonSlug }] }
+      }
+      unit_slug: { _eq: $unitSlug }
+      programme_slug: { _eq: $programmeSlug }
+      is_legacy: { _eq: false }
+    }
+  ) {
+    lesson_count
+    supplementary_data
+  }
+  tpcWorks: published_mv_get_tpc_works_by_lesson_slug_1_0_0(
+    where: { slug: { _eq: $lessonSlug } }
+  ) {
+    slug
+    lesson_id
+    works_list
+  }
+}
