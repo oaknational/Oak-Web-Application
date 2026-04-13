@@ -28,16 +28,16 @@ jobs:
           cache: "npm"
 
       # Install.
-      - run: npm ci --verbose
+      - run: pnpm ci --verbose
 
       # Check formatting adheres to our config.
-      - run: npm run format:check
+      - run: pnpm run format:check
 
       # Lint.
-      - run: npm run lint
+      - run: pnpm run lint
 
       # Check types.
-      - run: npm run check-types
+      - run: pnpm run check-types
 
   test:
     name: test, Sonar
@@ -56,10 +56,10 @@ jobs:
           cache: "npm"
 
       # Install.
-      - run: npm ci --verbose
+      - run: pnpm ci --verbose
 
       # Unit tests, no integration tests.
-      - run: npm run test:ci
+      - run: pnpm run test:ci
 
       # Manually run the SonarCloud scan so we can send test coverage information.
       - name: SonarCloud Scan

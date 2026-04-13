@@ -27,7 +27,7 @@ jobs:
  #       with:
  #         node-version: 22.x
  #         cache: "npm"
- #     - run: npm ci
+ #     - run: pnpm ci
  #
  #     - uses: ./.github/actions/ref_from_sha
  #       name: Get PR Ref from SHA
@@ -56,7 +56,7 @@ jobs:
   #       with:
   #         node-version: 22.x
   #         cache: "npm"
-  #     - run: npm ci
+  #     - run: pnpm ci
   #     - name: Warm the Cache
   #       run: node ./scripts/build/warm_cache.js
   #       env:
@@ -82,7 +82,7 @@ jobs:
           node-version: 22.x
           cache: "npm"
       # Install.
-      - run: npm ci --verbose
+      - run: pnpm ci --verbose
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"
@@ -90,7 +90,7 @@ jobs:
       # Run pa11y
       - name: Pa11y CI
         id: run_pa11y
-        run: npm run pa11y
+        run: pnpm run pa11y
         env:
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
@@ -124,7 +124,7 @@ jobs:
         with:
           node-version: 22.x
           cache: "npm"
-      - run: npm ci --verbose
+      - run: pnpm ci --verbose
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"

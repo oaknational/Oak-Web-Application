@@ -21,7 +21,7 @@ locals {
     storybook = {
       description        = "Oak Web Application Storybook"
       domains            = ["storybook.thenational.academy"]
-      build_command      = "npm run storybook:build"
+      build_command      = "pnpm run storybook:build"
       build_type         = "storybook"
       project_visibility = "private"
       framework          = "storybook"
