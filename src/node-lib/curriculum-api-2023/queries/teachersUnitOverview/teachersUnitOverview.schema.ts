@@ -11,11 +11,11 @@ import {
   lessonListSchema,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-const neighbourUnitSchema = z
+const neighbourUnitOrLessonSchema = z
   .object({ title: z.string(), slug: z.string() })
   .nullable();
 
-export type NeighbourUnit = z.infer<typeof neighbourUnitSchema>;
+export type NeighbourUnitOrLesson = z.infer<typeof neighbourUnitOrLessonSchema>;
 
 const programmeToggleSchema = z.array(
   z.object({
@@ -137,8 +137,8 @@ export const unitOverviewDataSchema = z.object({
       .prior_knowledge_requirements,
   whyThisWhyNow:
     modifiedLessonsResponseSchema.shape.unit_data.shape.why_this_why_now,
-  nextUnit: neighbourUnitSchema,
-  prevUnit: neighbourUnitSchema,
+  nextUnit: neighbourUnitOrLessonSchema,
+  prevUnit: neighbourUnitOrLessonSchema,
   tierOptionToggles: programmeToggleSchema,
   subjectOptionToggles: programmeToggleSchema,
   threads: z.array(z.string()),

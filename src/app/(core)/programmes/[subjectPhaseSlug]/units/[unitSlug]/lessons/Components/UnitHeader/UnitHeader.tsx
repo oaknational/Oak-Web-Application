@@ -9,7 +9,7 @@ import {
   CompactHeaderProps,
   Header,
 } from "@/components/TeacherComponents/Header/Header";
-import { NeighbourUnit } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
+import { NeighbourUnitOrLesson } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
@@ -22,8 +22,8 @@ export type UnitHeaderProps = Omit<
   phase: "primary" | "secondary" | "foundation";
   unitDownloadFileId?: string;
   isGeorestrictedUnit?: boolean;
-  nextUnit: NeighbourUnit;
-  prevUnit: NeighbourUnit;
+  nextUnit: NeighbourUnitOrLesson;
+  prevUnit: NeighbourUnitOrLesson;
   subjectPhaseSlug: string;
   programmeSlug: string;
   trackingProps: {
