@@ -44,6 +44,9 @@ importers:
       '@mux/mux-node':
         specifier: ^9.0.1
         version: 9.0.1(encoding@0.1.13)
+      '@mux/mux-player':
+        specifier: ^3.10.2
+        version: 3.10.2(react@18.3.1)
       '@mux/mux-player-react':
         specifier: 3.10.2
         version: 3.10.2(@types/react-dom@18.3.0)(@types/react@18.2.79)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -68,15 +71,30 @@ importers:
       '@portabletext/react':
         specifier: ^4.0.3
         version: 4.0.3(react@18.3.1)
+      '@portabletext/types':
+        specifier: ^2.0.15
+        version: 2.0.15
       '@react-aria/aria-modal-polyfill':
         specifier: ^3.7.13
         version: 3.7.14(react@18.3.1)
       '@react-aria/i18n':
         specifier: ^3.12.3
         version: 3.12.3(react@18.3.1)
+      '@react-aria/listbox':
+        specifier: ^3.13.5
+        version: 3.13.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@react-aria/utils':
+        specifier: ^3.25.3
+        version: 3.25.3(react@18.3.1)
       '@react-stately/combobox':
         specifier: ^3.10.0
         version: 3.10.0(react@18.3.1)
+      '@react-types/select':
+        specifier: ^3.9.7
+        version: 3.9.7(react@18.3.1)
+      '@react-types/shared':
+        specifier: ^3.25.0
+        version: 3.25.0(react@18.3.1)
       '@sanity/asset-utils':
         specifier: ^1.3.2
         version: 1.3.2
@@ -92,15 +110,24 @@ importers:
       '@storybook/addon-webpack5-compiler-swc':
         specifier: ^4.0.1
         version: 4.0.1(@swc/helpers@0.5.19)(storybook@9.1.8(@testing-library/dom@10.2.0)(prettier@3.3.3))(webpack@5.105.1(@swc/core@1.15.18(@swc/helpers@0.5.19))(esbuild@0.19.12))
+      '@storybook/react':
+        specifier: ^9.1.8
+        version: 9.1.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@9.1.8(@testing-library/dom@10.2.0)(prettier@3.3.3))(typescript@5.9.3)
       '@svgr/webpack':
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.9.3)
+      '@tiptap/core':
+        specifier: ^2.7.0
+        version: 2.14.0(@tiptap/pm@2.14.0)
       '@tiptap/extension-character-count':
         specifier: ^2.11.7
         version: 2.11.7(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)
       '@tiptap/extension-link':
         specifier: ^2.11.7
         version: 2.11.7(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)
+      '@tiptap/pm':
+        specifier: ^2.7.0
+        version: 2.14.0
       '@tiptap/react':
         specifier: ^2.14.0
         version: 2.14.0(@tiptap/core@2.14.0(@tiptap/pm@2.14.0))(@tiptap/pm@2.14.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -131,6 +158,9 @@ importers:
       crypto-browserify:
         specifier: ^3.12.1
         version: 3.12.1
+      csstype:
+        specifier: ^3.1.3
+        version: 3.1.3
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -149,12 +179,18 @@ importers:
       google-auth-library:
         specifier: 9.15.1
         version: 9.15.1(encoding@0.1.13)
+      graphql-request:
+        specifier: ^7.4.0
+        version: 7.4.0(graphql@16.10.0)
       html-react-parser:
         specifier: ^5.2.2
         version: 5.2.2(@types/react@18.2.79)(react@18.3.1)
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
+      jsdom:
+        specifier: ^20.0.3
+        version: 20.0.3
       jszip:
         specifier: ^3.10.1
         version: 3.10.1
@@ -294,9 +330,18 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^19.8.1
         version: 19.8.1
+      '@commitlint/format':
+        specifier: ^19.8.1
+        version: 19.8.1
       '@commitlint/prompt-cli':
         specifier: ^19.8.1
         version: 19.8.1(@types/node@22.19.17)(typescript@5.9.3)
+      '@eslint/eslintrc':
+        specifier: ^3.3.3
+        version: 3.3.3
+      '@eslint/js':
+        specifier: ^9.39.2
+        version: 9.39.2
       '@google-cloud/secret-manager':
         specifier: ^6.0.1
         version: 6.0.1
@@ -308,10 +353,13 @@ importers:
         version: 4.1.6(encoding@0.1.13)(graphql@16.10.0)
       '@graphql-codegen/typescript-graphql-request':
         specifier: ^6.2.0
-        version: 6.3.0(encoding@0.1.13)(graphql-request@6.1.0(encoding@0.1.13)(graphql@16.10.0))(graphql-tag@2.12.6(graphql@16.10.0))(graphql@16.10.0)
+        version: 6.3.0(encoding@0.1.13)(graphql-request@7.4.0(graphql@16.10.0))(graphql-tag@2.12.6(graphql@16.10.0))(graphql@16.10.0)
       '@graphql-codegen/typescript-operations':
         specifier: ^4.6.1
         version: 4.6.1(encoding@0.1.13)(graphql@16.10.0)
+      '@jest/globals':
+        specifier: ^29.7.0
+        version: 29.7.0
       '@netlify/edge-functions':
         specifier: ^2.12.0
         version: 2.12.0
@@ -441,6 +489,9 @@ importers:
       copy-webpack-plugin:
         specifier: ^12.0.2
         version: 12.0.2(webpack@5.105.1(@swc/core@1.15.18(@swc/helpers@0.5.19))(esbuild@0.19.12))
+      dom-accessibility-api:
+        specifier: ^0.6.3
+        version: 0.6.3
       dotenv:
         specifier: ^16.3.1
         version: 16.4.5
@@ -474,12 +525,18 @@ importers:
       eslint-plugin-storybook:
         specifier: ^9.1.8
         version: 9.1.8(eslint@9.39.2(jiti@2.6.1))(storybook@9.1.8(@testing-library/dom@10.2.0)(prettier@3.3.3))(typescript@5.9.3)
+      express:
+        specifier: ^5.1.0
+        version: 5.1.0
       firebase-tools:
         specifier: ^14.18.0
         version: 14.20.0(@swc/core@1.15.18(@swc/helpers@0.5.19))(@types/node@22.19.17)(encoding@0.1.13)(typescript@5.9.3)
       glob:
         specifier: ^11.0.0
         version: 11.0.1
+      globals:
+        specifier: ^17.5.0
+        version: 17.5.0
       googleapis:
         specifier: ^144.0.0
         version: 144.0.0(encoding@0.1.13)
@@ -8511,6 +8568,10 @@ packages:
     resolution: {integrity: sha512-7ACyT3wmyp3I61S4fG682L0VA2RGD9otkqGJIwNUMF1SWUombIIk+af1unuDYgMm082aHYwD+mzJvv9Iu8dsgg==}
     engines: {node: '>=18'}
 
+  globals@17.5.0:
+    resolution: {integrity: sha512-qoV+HK2yFl/366t2/Cb3+xxPUo5BuMynomoDmiaZBIdbs+0pYbjfZU+twLhGKp4uCZ/+NbtpVepH5bGCxRyy2g==}
+    engines: {node: '>=18'}
+
   globalthis@1.0.4:
     resolution: {integrity: sha512-DpLKbNU4WylpxJykQujfCcwYWiV/Jhm50Goo0wrVILAv5jOr9d+H+UR3PhSCD2rCCEIg0uc+G+muBTwD54JhDQ==}
     engines: {node: '>= 0.4'}
@@ -8588,6 +8649,11 @@ packages:
 
   graphql-request@6.1.0:
     resolution: {integrity: sha512-p+XPfS4q7aIpKVcgmnZKhMNqhltk20hfXtkaIkTfjjmiKMJ5xrt5c743cL03y/K7y1rg3WrIC49xGiEQ4mxdNw==}
+    peerDependencies:
+      graphql: 14 - 16
+
+  graphql-request@7.4.0:
+    resolution: {integrity: sha512-xfr+zFb/QYbs4l4ty0dltqiXIp07U6sl+tOKAb0t50/EnQek6CVVBLjETXi+FghElytvgaAWtIOt3EV7zLzIAQ==}
     peerDependencies:
       graphql: 14 - 16
 
@@ -15701,13 +15767,13 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@graphql-codegen/typescript-graphql-request@6.3.0(encoding@0.1.13)(graphql-request@6.1.0(encoding@0.1.13)(graphql@16.10.0))(graphql-tag@2.12.6(graphql@16.10.0))(graphql@16.10.0)':
+  '@graphql-codegen/typescript-graphql-request@6.3.0(encoding@0.1.13)(graphql-request@7.4.0(graphql@16.10.0))(graphql-tag@2.12.6(graphql@16.10.0))(graphql@16.10.0)':
     dependencies:
       '@graphql-codegen/plugin-helpers': 3.1.2(graphql@16.10.0)
       '@graphql-codegen/visitor-plugin-common': 2.13.8(encoding@0.1.13)(graphql@16.10.0)
       auto-bind: 4.0.0
       graphql: 16.10.0
-      graphql-request: 6.1.0(encoding@0.1.13)(graphql@16.10.0)
+      graphql-request: 7.4.0(graphql@16.10.0)
       graphql-tag: 2.12.6(graphql@16.10.0)
       tslib: 2.8.1
     transitivePeerDependencies:
@@ -23914,6 +23980,8 @@ snapshots:
 
   globals@15.15.0: {}
 
+  globals@17.5.0: {}
+
   globalthis@1.0.4:
     dependencies:
       define-properties: 1.2.1
@@ -24073,6 +24141,11 @@ snapshots:
       graphql: 16.10.0
     transitivePeerDependencies:
       - encoding
+
+  graphql-request@7.4.0(graphql@16.10.0):
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.10.0)
+      graphql: 16.10.0
 
   graphql-tag@2.12.6(graphql@16.10.0):
     dependencies:
