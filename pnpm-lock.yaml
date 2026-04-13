@@ -71,6 +71,9 @@ importers:
       '@react-aria/aria-modal-polyfill':
         specifier: ^3.7.13
         version: 3.7.14(react@18.3.1)
+      '@react-stately/combobox':
+        specifier: ^3.10.0
+        version: 3.10.0(react@18.3.1)
       '@sanity/asset-utils':
         specifier: ^1.3.2
         version: 1.3.2
