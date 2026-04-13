@@ -25,6 +25,7 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitAny": true,
     "downlevelIteration": true,
+    "preserveSymlinks": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

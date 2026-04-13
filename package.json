@@ -212,6 +212,7 @@
     "@types/react-transition-group": "^4.4.9",
     "@types/styled-components": "^5.1.30",
     "@types/webpack-bugsnag-plugins": "^1.4.5",
+    "@types/yargs": "^17.0.35",
     "@typescript-eslint/eslint-plugin": "^8.52.0",
     "@typescript-eslint/parser": "^8.52.0",
     "browserstack-local": "^1.5.6",
