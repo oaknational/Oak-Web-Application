@@ -77,10 +77,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: pnpm/action-setup@v6
         with:
-          node-version: 22.x
-          cache: "npm"
+          cache: true
       # Install.
       - run: pnpm ci --verbose
 
@@ -120,10 +119,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: pnpm/action-setup@v6
         with:
-          node-version: 22.x
-          cache: "npm"
+          cache: true
       - run: pnpm ci --verbose
 
       - name: Log out URL
