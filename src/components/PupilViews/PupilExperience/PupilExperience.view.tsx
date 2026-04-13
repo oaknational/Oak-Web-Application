@@ -54,10 +54,7 @@ import type { AddOnContextResponse } from "@/browser-lib/google-classroom/google
 import { type ClassroomProgressContext } from "@/browser-lib/google-classroom";
 import { mapToSubmitPupilProgress } from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
 import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
-import {
-  mapToSubmitCourseWorkProgress,
-  type CourseWorkProgressContext,
-} from "@/browser-lib/google-classroom/mapToSubmitCourseWorkProgress";
+import { useCourseWorkProgress } from "@/components/PupilViews/PupilExperience/useCourseWorkProgress";
 import {
   GoogleClassroomAnalyticsProvider,
   useGoogleClassroomAnalytics,
@@ -66,23 +63,6 @@ import {
   type GoogleClassroomContext,
   useGoogleClassroomContext,
 } from "@/components/GoogleClassroom/useGoogleClassroomContext";
-
-const mapSavedCourseWorkProgress = (
-  savedProgress: Record<string, unknown>,
-): LessonSectionResults => {
-  const mapped: LessonSectionResults = {};
-  if (savedProgress.starterQuiz)
-    mapped["starter-quiz"] =
-      savedProgress.starterQuiz as LessonSectionResults["starter-quiz"];
-  if (savedProgress.exitQuiz)
-    mapped["exit-quiz"] =
-      savedProgress.exitQuiz as LessonSectionResults["exit-quiz"];
-  if (savedProgress.video)
-    mapped.video = savedProgress.video as LessonSectionResults["video"];
-  if (savedProgress.intro)
-    mapped.intro = savedProgress.intro as LessonSectionResults["intro"];
-  return mapped;
-};
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -312,26 +292,35 @@ const PupilExperienceLayout = ({
   } = googleClassroomContext;
   const isGoogleClassroomAssignment =
     isClassroomAssignment === true && classroomAssignmentChecked === true;
+
+  // ── Add-on flow state ─────────────────────────────────────────────────────
   const classroomContextRef = useRef<ClassroomProgressContext | null>(null);
-  const [isFetchingClassroomContext, setIsFetchingClassroomContext] =
-    useState(false);
-  const [isContextReady, setIsContextReady] = useState(false);
-  const [initialSectionResults, setInitialSectionResults] =
+  const [isAddonFetching, setIsAddonFetching] = useState(false);
+  const [isAddonContextReady, setIsAddonContextReady] = useState(false);
+  const [addonInitialSectionResults, setAddonInitialSectionResults] =
     useState<LessonSectionResults>();
-  const [lessonEngineInstanceKey, setLessonEngineInstanceKey] = useState(0);
+  const [addonLessonEngineKey, setAddonLessonEngineKey] = useState(0);
   const [isReadOnlyState, setIsReadOnlyState] = useState(false);
 
-  // ── CourseWork flow (teacher-assigned link with assignmentToken) ──────────
-  const courseWorkContextRef = useRef<CourseWorkProgressContext | null>(null);
-  const [isPupilSignInRequired, setIsPupilSignInRequired] = useState(false);
-  const isCourseWorkFlow = Boolean(
-    assignmentToken && !isGoogleClassroomAssignment,
-  );
-  // Queue: holds the latest sectionResults that arrived before context was ready.
-  // Only the most-recent call matters — earlier partial saves are superseded.
-  const pendingCourseWorkSaveRef = useRef<LessonSectionResults | null>(null);
-  // Guard against concurrent saves so the read-merge-write in the addon is safe.
-  const courseWorkSaveInFlightRef = useRef(false);
+  // ── CourseWork flow ───────────────────────────────────────────────────────
+  const courseWork = useCourseWorkProgress({
+    assignmentToken,
+    isGoogleClassroomAssignment,
+  });
+
+  // ── Combined state (flows are mutually exclusive) ─────────────────────────
+  const isFetchingClassroomContext = courseWork.isCourseWorkFlow
+    ? courseWork.isFetching
+    : isAddonFetching;
+  const isContextReady = courseWork.isCourseWorkFlow
+    ? courseWork.isContextReady
+    : isAddonContextReady;
+  const initialSectionResults = courseWork.isCourseWorkFlow
+    ? courseWork.initialSectionResults
+    : addonInitialSectionResults;
+  const lessonEngineInstanceKey = courseWork.isCourseWorkFlow
+    ? courseWork.lessonEngineKey
+    : addonLessonEngineKey;
 
   const fetchAddonContext = useCallback(
     async (args: {
@@ -388,12 +377,12 @@ const PupilExperienceLayout = ({
     if (!isGoogleClassroomAssignment || classroomContextRef.current) return;
     const hydrateGoogleClassroomContext = async () => {
       if (!courseId || !itemId || !attachmentId) {
-        setIsContextReady(true);
+        setIsAddonContextReady(true);
         return;
       }
 
       try {
-        setIsFetchingClassroomContext(true);
+        setIsAddonFetching(true);
         const addonContext = await fetchAddonContext({
           courseId,
           itemId,
@@ -424,8 +413,8 @@ const PupilExperienceLayout = ({
             attachmentId,
           });
           if (Object.keys(mappedSectionResults).length > 0) {
-            setInitialSectionResults(mappedSectionResults);
-            setLessonEngineInstanceKey((value) => value + 1);
+            setAddonInitialSectionResults(mappedSectionResults);
+            setAddonLessonEngineKey((value) => value + 1);
           }
 
           const readOnlyState = await isSubmissionStateReadOnly({
@@ -442,14 +431,14 @@ const PupilExperienceLayout = ({
       } catch {
         // Failed to get context - progress sync will be disabled
       } finally {
-        setIsFetchingClassroomContext(false);
-        setIsContextReady(true);
+        setIsAddonFetching(false);
+        setIsAddonContextReady(true);
       }
     };
 
     const refreshReadOnlyState = async () => {
       if (!courseId || !itemId || !attachmentId) {
-        setIsContextReady(true);
+        setIsAddonContextReady(true);
         return;
       }
 
@@ -511,117 +500,8 @@ const PupilExperienceLayout = ({
 
   useEffect(() => {
     if (!classroomAssignmentChecked) return;
-    if (!isGoogleClassroomAssignment) setIsContextReady(true);
+    if (!isGoogleClassroomAssignment) setIsAddonContextReady(true);
   }, [classroomAssignmentChecked, isGoogleClassroomAssignment]);
-
-  const saveCourseWorkProgressNow = useCallback(
-    async (sectionResults: LessonSectionResults) => {
-      const cwCtx = courseWorkContextRef.current;
-      if (!cwCtx) return;
-      if (courseWorkSaveInFlightRef.current) {
-        // Another save is running — queue this one; it will be flushed on completion.
-        pendingCourseWorkSaveRef.current = sectionResults;
-        return;
-      }
-      courseWorkSaveInFlightRef.current = true;
-      try {
-        const payload = mapToSubmitCourseWorkProgress(cwCtx, sectionResults);
-        await googleClassroomApi.upsertCourseWorkProgress(payload);
-      } catch (error) {
-        console.error("Failed to save CourseWork progress:", error);
-      } finally {
-        courseWorkSaveInFlightRef.current = false;
-        // Flush any save that queued while this one was in flight.
-        const pending = pendingCourseWorkSaveRef.current;
-        if (pending) {
-          pendingCourseWorkSaveRef.current = null;
-          void saveCourseWorkProgressNow(pending);
-        }
-      }
-    },
-    [],
-  );
-
-  // ── CourseWork: hydrate pupil context when assignmentToken is present ──────
-  // Extracted so it can be called both on mount and after a successful sign-in.
-  const runHydrateCourseWorkContext = useCallback(async () => {
-    if (!assignmentToken) return;
-    setIsFetchingClassroomContext(true);
-
-    // Check if pupil is authenticated
-    const session = await googleClassroomApi.verifySession(true)();
-    if (!session.authenticated) {
-      setIsPupilSignInRequired(true);
-      setIsFetchingClassroomContext(false);
-      setIsContextReady(true);
-      return;
-    }
-
-    try {
-      const ctx =
-        await googleClassroomApi.getCourseWorkContext(assignmentToken);
-
-      if (!ctx?.submissionId || !session.loginHint) {
-        // Can't track progress without a submission – render lesson normally.
-        setIsContextReady(true);
-        return;
-      }
-
-      courseWorkContextRef.current = {
-        submissionId: ctx.submissionId,
-        assignmentToken,
-        courseWorkId: ctx.courseWorkId,
-        courseId: ctx.courseId,
-        pupilLoginHint: session.loginHint,
-      };
-
-      // Restore saved progress
-      const savedProgress = await googleClassroomApi.getCourseWorkProgress(
-        ctx.submissionId,
-        assignmentToken,
-      );
-      if (savedProgress) {
-        const mapped = mapSavedCourseWorkProgress(
-          savedProgress as Record<string, unknown>,
-        );
-        if (Object.keys(mapped).length > 0) {
-          setInitialSectionResults(mapped);
-          setLessonEngineInstanceKey((k) => k + 1);
-        }
-      }
-
-      // Flush any progress that was queued before context was ready.
-      // The isContextReady flush-effect handles the initial load case (where
-      // isContextReady transitions false→true); this handles re-hydration after
-      // sign-in, where isContextReady is already true and the effect won't re-run.
-      const pending = pendingCourseWorkSaveRef.current;
-      if (pending) {
-        pendingCourseWorkSaveRef.current = null;
-        void saveCourseWorkProgressNow(pending);
-      }
-    } catch {
-      // Failed to load context — lesson will render without progress tracking
-    } finally {
-      setIsFetchingClassroomContext(false);
-      setIsContextReady(true);
-    }
-  }, [assignmentToken, saveCourseWorkProgressNow]);
-
-  useEffect(() => {
-    if (!isCourseWorkFlow || !assignmentToken) return;
-    if (courseWorkContextRef.current) return;
-
-    void runHydrateCourseWorkContext();
-  }, [isCourseWorkFlow, assignmentToken, runHydrateCourseWorkContext]);
-
-  // Flush any progress that was queued before the CourseWork context was ready.
-  useEffect(() => {
-    if (!isContextReady || !courseWorkContextRef.current) return;
-    const pending = pendingCourseWorkSaveRef.current;
-    if (!pending) return;
-    pendingCourseWorkSaveRef.current = null;
-    void saveCourseWorkProgressNow(pending);
-  }, [isContextReady, saveCourseWorkProgressNow]);
 
   const handleOnNext = useCallback(
     async (
@@ -629,13 +509,8 @@ const PupilExperienceLayout = ({
       _completedSection: LessonReviewSection,
     ) => {
       // CourseWork flow
-      if (isCourseWorkFlow) {
-        if (courseWorkContextRef.current) {
-          await saveCourseWorkProgressNow(sectionResults);
-        } else {
-          // Context not ready yet — queue so it's flushed once hydration completes.
-          pendingCourseWorkSaveRef.current = sectionResults;
-        }
+      if (courseWork.isCourseWorkFlow) {
+        await courseWork.saveOrQueueProgress(sectionResults);
         return;
       }
 
@@ -650,7 +525,7 @@ const PupilExperienceLayout = ({
         console.error(error);
       }
     },
-    [isCourseWorkFlow, saveCourseWorkProgressNow],
+    [courseWork],
   );
 
   const getAgeRestrictionString = (
@@ -737,7 +612,7 @@ const PupilExperienceLayout = ({
         }}
       >
         <CookieConsentStyles />
-        {isPupilSignInRequired && (
+        {courseWork.isPupilSignInRequired && (
           <OakBox
             style={{
               position: "fixed",
@@ -754,10 +629,7 @@ const PupilExperienceLayout = ({
                 getGoogleSignInLink={() =>
                   googleClassroomApi.getGoogleSignInUrl(null, false, true)
                 }
-                onSuccessfulSignIn={async () => {
-                  setIsPupilSignInRequired(false);
-                  await runHydrateCourseWorkContext();
-                }}
+                onSuccessfulSignIn={courseWork.onSignInSuccess}
                 privacyPolicyUrl="/legal/privacy-policy"
                 showMailingListOption={false}
                 cookieKeys={[
@@ -774,12 +646,12 @@ const PupilExperienceLayout = ({
           initialSection={isReadOnlyState ? "review" : initialSection}
           initialSectionResults={initialSectionResults}
           onNext={
-            isGoogleClassroomAssignment || isCourseWorkFlow
+            isGoogleClassroomAssignment || courseWork.isCourseWorkFlow
               ? handleOnNext
               : undefined
           }
           onSectionResultUpdate={
-            isGoogleClassroomAssignment || isCourseWorkFlow
+            isGoogleClassroomAssignment || courseWork.isCourseWorkFlow
               ? handleOnNext
               : undefined
           }

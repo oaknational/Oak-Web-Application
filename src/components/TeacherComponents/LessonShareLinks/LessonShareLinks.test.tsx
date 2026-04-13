@@ -86,7 +86,6 @@ describe("LessonShareLinks", () => {
       />,
     );
 
-    // No onGoogleClassroomClick provided → renders as a link, not a button
     const googleClassroomLink = getByRole("link", {
       name: "Assign to Google Classroom",
     });

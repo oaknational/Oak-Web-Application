@@ -7,7 +7,7 @@ import {
 import {
   extractAuth,
   handleCourseWorkApiError,
-  unauthorizedResponse,
+  unauthorisedResponse,
 } from "@/app/api/classroom/coursework/courseWorkApiHelpers";
 
 const reportError = createClassroomErrorReporter("coursework-courses");
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     const auth = extractAuth(request);
 
     if (!auth) {
-      return unauthorizedResponse();
+      return unauthorisedResponse();
     }
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);

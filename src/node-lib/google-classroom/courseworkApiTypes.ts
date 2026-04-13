@@ -7,7 +7,7 @@ export const createCourseWorkBodySchema = z.object({
   lessonSlug: z.string(),
   programmeSlug: z.string(),
   unitSlug: z.string(),
-  maxPoints: z.number().int().min(0).default(10),
+  maxPoints: z.number().int().min(0).default(6),
 });
 
 export type CreateCourseWorkBody = z.infer<typeof createCourseWorkBodySchema>;

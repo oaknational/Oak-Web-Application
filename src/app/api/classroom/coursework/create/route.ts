@@ -8,7 +8,7 @@ import {
 import {
   extractAuth,
   handleCourseWorkApiError,
-  unauthorizedResponse,
+  unauthorisedResponse,
 } from "@/app/api/classroom/coursework/courseWorkApiHelpers";
 
 const reportError = createClassroomErrorReporter("coursework-create");
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     const auth = extractAuth(request);
 
     if (!auth) {
-      return unauthorizedResponse();
+      return unauthorisedResponse();
     }
 
     const body = await request.json();

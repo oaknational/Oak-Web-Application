@@ -38,7 +38,7 @@ const mockBody = {
   lessonSlug: "intro-to-algebra",
   programmeSlug: "maths-primary",
   unitSlug: "algebra-unit-1",
-  maxPoints: 10,
+  maxPoints: 6,
 };
 
 const mockCreateCourseWork = jest.fn().mockResolvedValue({
@@ -83,7 +83,7 @@ describe("POST /api/classroom/coursework/create", () => {
     );
   });
 
-  it("should apply the default maxPoints of 10 when omitted", async () => {
+  it("should apply the default maxPoints of 6 when omitted", async () => {
     const { maxPoints: _, ...bodyWithoutPoints } = mockBody;
     mockRequest = {
       json: async () => bodyWithoutPoints,
@@ -93,7 +93,7 @@ describe("POST /api/classroom/coursework/create", () => {
     await POST(mockRequest);
 
     expect(mockCreateCourseWork).toHaveBeenCalledWith(
-      expect.objectContaining({ maxPoints: 10 }),
+      expect.objectContaining({ maxPoints: 6 }),
       mockAccessToken,
       mockSession,
     );

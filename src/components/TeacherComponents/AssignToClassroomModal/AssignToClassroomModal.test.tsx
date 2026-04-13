@@ -439,7 +439,7 @@ describe("AssignToClassroomModal", () => {
       });
     });
 
-    it("uses maxPoints of 10 when exitQuizNumQuestions is not provided", async () => {
+    it("uses maxPoints of 6 when exitQuizNumQuestions is not provided", async () => {
       const user = userEvent.setup();
       renderWithTheme(
         <AssignToClassroomModal
@@ -460,7 +460,7 @@ describe("AssignToClassroomModal", () => {
 
       await waitFor(() => {
         expect(mockCreateCourseWork).toHaveBeenCalledWith(
-          expect.objectContaining({ maxPoints: 10 }),
+          expect.objectContaining({ maxPoints: 6 }),
         );
       });
     });

@@ -24,8 +24,6 @@ const LessonShareLinks: FC<{
   selectedActivities?: Array<ResourceType>;
   schoolUrn?: string;
   onSubmit: (shareMedium: ShareMediumValueType) => void;
-  /** When provided, clicking "Assign to Google Classroom" opens the CourseWork
-   *  modal instead of navigating to the generic Classroom share URL. */
   onGoogleClassroomClick?: () => void;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
@@ -87,8 +85,6 @@ const LessonShareLinks: FC<{
           disabled={props.disabled}
         />
 
-        {/* Google Classroom – opens the CourseWork modal when a handler is
-            provided, otherwise falls back to the generic Classroom share URL */}
         {props.onGoogleClassroomClick ? (
           <LoadingButton
             text={shareLinkConfig.googleClassroom.name}

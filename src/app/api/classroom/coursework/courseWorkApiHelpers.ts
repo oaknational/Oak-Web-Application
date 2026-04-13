@@ -11,7 +11,7 @@ export function extractAuth(request: NextRequest): AuthCredentials | null {
   return accessToken && session ? { accessToken, session } : null;
 }
 
-export function unauthorizedResponse(): NextResponse {
+export function unauthorisedResponse(): NextResponse {
   return NextResponse.json(
     { error: "Authentication required" },
     { status: 401 },

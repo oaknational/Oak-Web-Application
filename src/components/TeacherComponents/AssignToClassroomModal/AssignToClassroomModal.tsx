@@ -152,7 +152,7 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
         lessonSlug,
         programmeSlug,
         unitSlug,
-        maxPoints: exitQuizNumQuestions || 10,
+        maxPoints: exitQuizNumQuestions || 6, // defaulted to 6
       });
       setState({
         type: "success",
