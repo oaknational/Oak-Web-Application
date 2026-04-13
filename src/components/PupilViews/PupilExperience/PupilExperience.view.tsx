@@ -603,8 +603,11 @@ const PupilExperienceLayout = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isContextReady]);
 
-  const declineIcon = isGoogleClassroomAssignment ? "cross" : undefined;
-  const declineText = isGoogleClassroomAssignment ? "Exit lesson" : undefined;
+  const { declineIcon, declineText } = isGoogleClassroomAssignment
+    ? { declineIcon: "cross" as const, declineText: "Exit lesson" as const }
+    : { declineIcon: undefined, declineText: undefined };
+  const classroomOnNext =
+    isGoogleClassroomAssignment || isCourseWorkReady ? handleOnNext : undefined;
   const courseWorkNotReady =
     courseWork.isCourseWorkFlow && courseWork.status !== "ready";
   let lessonEngineInitialSection = initialSection;
@@ -639,16 +642,8 @@ const PupilExperienceLayout = ({
           initialLessonReviewSections={availableSections}
           initialSection={lessonEngineInitialSection}
           initialSectionResults={initialSectionResults}
-          onNext={
-            isGoogleClassroomAssignment || isCourseWorkReady
-              ? handleOnNext
-              : undefined
-          }
-          onSectionResultUpdate={
-            isGoogleClassroomAssignment || isCourseWorkReady
-              ? handleOnNext
-              : undefined
-          }
+          onNext={classroomOnNext}
+          onSectionResultUpdate={classroomOnNext}
           isHydratingInitialProgress={isFetchingClassroomContext}
           isReadOnly={isReadOnlyState}
         >
