@@ -24,6 +24,7 @@ jobs:
       - name: Use Node.js
         uses: pnpm/action-setup@v6
         with:
+          version: 10
           cache: true
 
       # Install.
@@ -51,6 +52,7 @@ jobs:
       - name: Use Node.js
         uses: pnpm/action-setup@v6
         with:
+          version: 10
           cache: true
 
       # Install.
