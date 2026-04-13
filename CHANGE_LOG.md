@@ -1,3 +1,29 @@
+# [1.1040.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1039.0...v1.1040.0) (2026-04-13)
+
+
+### Features
+
+* **LESQ-1905:** add teachersLessonOverview query ([e271552](https://github.com/oaknational/Oak-Web-Application/commit/e271552a4c674cfc6676b456e1dedcdec8004414))
+* **LESQ-1905:** remove `legacyCopyrightContent` from teachers overview query ([4faecd0](https://github.com/oaknational/Oak-Web-Application/commit/4faecd0c25b3c9abc0db653ee11367f0b5419711))
+
+# [1.1039.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1038.2...v1.1039.0) (2026-04-13)
+
+
+### Bug Fixes
+
+* props syntax ([a4836d5](https://github.com/oaknational/Oak-Web-Application/commit/a4836d5ee803b541f7375d86f2d0d051a0a66ad4))
+
+
+### Features
+
+* add BrowseNavItem component ([e6d6bbe](https://github.com/oaknational/Oak-Web-Application/commit/e6d6bbeba0f62c8ae022419a2077a85c40f420ec))
+* add cards to unit view ([48e5e1a](https://github.com/oaknational/Oak-Web-Application/commit/48e5e1a745b7d272f1a78105d465101d7c63ee05))
+* add focus styles ([7f5b0da](https://github.com/oaknational/Oak-Web-Application/commit/7f5b0da67095c14ef20fe42d87a64ab3c3ad21bb))
+* add hover styles ([7e53fdc](https://github.com/oaknational/Oak-Web-Application/commit/7e53fdc7f2231f5d45c751ea95ab286c44884485))
+* add styling for disabled state ([8ada256](https://github.com/oaknational/Oak-Web-Application/commit/8ada25683331471935eb854046da4fc255b421d3))
+* make the previous next items a clickable card ([3f36933](https://github.com/oaknational/Oak-Web-Application/commit/3f3693393ac965e5fd03f1b1913d50b52fda1025))
+* revert adding disabled state ([4013cf2](https://github.com/oaknational/Oak-Web-Application/commit/4013cf294af1ee1e733c7bb851123b8cc6dd1496))
+
 ## [1.1038.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1038.1...v1.1038.2) (2026-04-09)
 
 
