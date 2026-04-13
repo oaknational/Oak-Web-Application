@@ -73,4 +73,59 @@ describe("PreviousNextNav", () => {
     const previousIndex = screen.getByTestId("nav-item-index");
     expect(previousIndex).toHaveTextContent("4");
   });
+  it("uses previous.index over currentIndex when both are set", () => {
+    render(
+      <PreviousNextNav
+        navItemType="lesson"
+        backgroundColorLevel={3}
+        currentIndex={3}
+        previous={{
+          title: "Mock prev lesson",
+          href: "testUrl",
+          index: 10,
+        }}
+      />,
+    );
+
+    expect(screen.getByTestId("nav-item-index")).toHaveTextContent("10");
+  });
+  it("uses next.index over currentIndex when both are set", () => {
+    render(
+      <PreviousNextNav
+        navItemType="lesson"
+        backgroundColorLevel={3}
+        currentIndex={3}
+        next={{
+          title: "Mock next lesson",
+          href: "testUrl",
+          index: 99,
+        }}
+      />,
+    );
+
+    expect(screen.getByTestId("nav-item-index")).toHaveTextContent("99");
+  });
+  it("uses explicit previous.index and next.index over currentIndex when all are set", () => {
+    render(
+      <PreviousNextNav
+        navItemType="lesson"
+        backgroundColorLevel={3}
+        currentIndex={3}
+        previous={{
+          title: "Mock prev lesson",
+          href: "testUrl",
+          index: 10,
+        }}
+        next={{
+          title: "Mock next lesson",
+          href: "testUrl",
+          index: 99,
+        }}
+      />,
+    );
+
+    const indices = screen.getAllByTestId("nav-item-index");
+    expect(indices[0]).toHaveTextContent("10");
+    expect(indices[1]).toHaveTextContent("99");
+  });
 });
