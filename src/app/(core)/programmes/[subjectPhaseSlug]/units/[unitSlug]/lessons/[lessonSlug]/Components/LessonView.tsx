@@ -3,16 +3,8 @@
 import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
+import { resolveOakHref } from "@/common-lib/urls";
 import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
-
-// TODO: make this an oak href
-function integratedTeachersLessonHref(
-  programmeSlug: string,
-  unitSlug: string,
-  targetLessonSlug: string,
-) {
-  return `/programmes/${programmeSlug}/units/${unitSlug}/lessons/${targetLessonSlug}`;
-}
 
 export default function LessonView({
   programmeSlug,
@@ -38,11 +30,12 @@ export default function LessonView({
             previous={
               data.previousLesson
                 ? {
-                    href: integratedTeachersLessonHref(
+                    href: resolveOakHref({
+                      page: "lesson-page",
                       programmeSlug,
                       unitSlug,
-                      data.previousLesson.lessonSlug,
-                    ),
+                      lessonSlug: data.previousLesson.lessonSlug,
+                    }),
                     title: data.previousLesson.lessonTitle,
                     index: data.previousLesson.lessonIndex,
                   }
@@ -51,11 +44,12 @@ export default function LessonView({
             next={
               data.nextLesson
                 ? {
-                    href: integratedTeachersLessonHref(
+                    href: resolveOakHref({
+                      page: "lesson-page",
                       programmeSlug,
                       unitSlug,
-                      data.nextLesson.lessonSlug,
-                    ),
+                      lessonSlug: data.nextLesson.lessonSlug,
+                    }),
                     title: data.nextLesson.lessonTitle,
                     index: data.nextLesson.lessonIndex,
                   }

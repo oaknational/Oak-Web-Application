@@ -51,7 +51,7 @@ const ProgrammeToggleOption = ({
 
   const href = resolveOakHref({
     page: "unit-page",
-    subjectPhaseSlug: programmeSlug,
+    programmeSlug,
     unitSlug,
   });
 

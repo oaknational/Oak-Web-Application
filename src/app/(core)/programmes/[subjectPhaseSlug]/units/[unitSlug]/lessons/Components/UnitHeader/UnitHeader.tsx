@@ -179,7 +179,7 @@ const UnitNavButtons = ({
           href={resolveOakHref({
             page: "unit-page",
             unitSlug: prevUnit.slug,
-            subjectPhaseSlug: programmeSlug,
+            programmeSlug,
           })}
           iconOverride={
             <OakIcon
@@ -199,7 +199,7 @@ const UnitNavButtons = ({
           href={resolveOakHref({
             page: "unit-page",
             unitSlug: nextUnit.slug,
-            subjectPhaseSlug: programmeSlug,
+            programmeSlug,
           })}
           isTrailingIcon
           iconOverride={
