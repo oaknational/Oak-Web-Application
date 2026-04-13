@@ -7,7 +7,6 @@ import HeaderNavFooter from "../HeaderNavFooter/HeaderNavFooter";
 import { NeighbourUnitOrLesson } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 
-
 type LessonHeaderProps = LargeHeaderProps & {
   currentLessonSlug: string;
   prevLesson: NeighbourUnitOrLesson;

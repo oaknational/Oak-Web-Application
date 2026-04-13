@@ -8,7 +8,7 @@ import {
   OakTertiaryInvertedButton,
 } from "@oaknational/oak-components";
 
-type HeaderNavFooterProps = {
+export type HeaderNavFooterProps = {
   backgroundColorLevel: 1 | 3 | 4;
   type: "unit" | "lesson";
   prevHref?: string;
@@ -63,12 +63,11 @@ const HeaderNavFooter = (props: HeaderNavFooterProps) => {
   );
 };
 
-type PrevNextButtonsProps = {
+type PrevNextButtonsProps = Pick<
+  HeaderNavFooterProps,
+  "backgroundColorLevel" | "type" | "nextHref" | "prevHref"
+> & {
   $display: OakFlexProps["$display"];
-  backgroundColorLevel: 1 | 3 | 4;
-  type: "unit" | "lesson";
-  prevHref?: string;
-  nextHref?: string;
 };
 
 const PrevNextButtons = ({
