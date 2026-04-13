@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import { PupilLessonOverviewBottomNav } from "./PupilLessonOverviewBottomNav";
+import { PupilLessonBottomNav } from "./PupilLessonBottomNav";
 
 const meta = {
-  component: PupilLessonOverviewBottomNav,
+  component: PupilLessonBottomNav,
   decorators: [
     (StoryComponent) => (
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -12,7 +12,7 @@ const meta = {
       </OakThemeProvider>
     ),
   ],
-} satisfies Meta<typeof PupilLessonOverviewBottomNav>;
+} satisfies Meta<typeof PupilLessonBottomNav>;
 
 export default meta;
 
@@ -22,7 +22,6 @@ export const Default: Story = {
   args: {
     proceedLabel: "Continue lesson",
     onProceed: () => {},
-    disabled: false,
   },
 };
 

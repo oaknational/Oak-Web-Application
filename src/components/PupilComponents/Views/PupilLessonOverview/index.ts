@@ -4,7 +4,6 @@ export * from "./PupilLessonOverviewHeader";
 export * from "./PupilLessonOverviewOutcomes";
 export * from "./PupilLessonOverviewContentGuidance";
 export * from "./PupilLessonOverviewSectionsNav";
-export * from "./PupilLessonOverviewBottomNav";
 export * from "./helpers/getProceedLabel";
 export * from "./helpers/getSectionProgress";
 export * from "./helpers/formatContentGuidanceText";

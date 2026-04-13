@@ -7,10 +7,8 @@ import {
   OakLessonLayout,
 } from "@oaknational/oak-components";
 
-import {
-  PupilLessonOverviewBottomNav,
-  PupilLessonOverviewBottomNavProps,
-} from "./PupilLessonOverviewBottomNav";
+import { PupilLessonBottomNav, PupilLessonBottomNavProps } from "../shared";
+
 import {
   PupilLessonOverviewHeader,
   PupilLessonOverviewHeaderProps,
@@ -29,7 +27,7 @@ export type PupilLessonOverviewViewProps = {
   outcomesSlot?: React.ReactNode;
   contentGuidanceSlot?: React.ReactNode;
   sectionsNav: PupilLessonOverviewSectionsNavProps;
-  bottomNav: PupilLessonOverviewBottomNavProps;
+  bottomNav: PupilLessonBottomNavProps;
 };
 
 export const PupilLessonOverviewView = ({
@@ -48,7 +46,7 @@ export const PupilLessonOverviewView = ({
       lessonSectionName="overview"
       phase={phase}
       topNavSlot={topNavSlot}
-      bottomNavSlot={<PupilLessonOverviewBottomNav {...bottomNav} />}
+      bottomNavSlot={<PupilLessonBottomNav {...bottomNav} />}
     >
       <OakGrid
         $maxWidth={["100%", "spacing-960", "100%"]}
