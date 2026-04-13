@@ -1,3 +1,11 @@
+# [1.1040.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1039.0...v1.1040.0) (2026-04-13)
+
+
+### Features
+
+* **LESQ-1905:** add teachersLessonOverview query ([e271552](https://github.com/oaknational/Oak-Web-Application/commit/e271552a4c674cfc6676b456e1dedcdec8004414))
+* **LESQ-1905:** remove `legacyCopyrightContent` from teachers overview query ([4faecd0](https://github.com/oaknational/Oak-Web-Application/commit/4faecd0c25b3c9abc0db653ee11367f0b5419711))
+
 # [1.1039.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1038.2...v1.1039.0) (2026-04-13)
 
 
