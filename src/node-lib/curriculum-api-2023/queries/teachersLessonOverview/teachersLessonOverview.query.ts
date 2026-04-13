@@ -140,28 +140,6 @@ export function getContentGuidance(
   }));
 }
 
-export function getCopyrightContent(
-  content:
-    | TeachersLessonBrowseDataByKs["lessonData"]["copyrightContent"]
-    | { copyrightInfo: string }[]
-    | null,
-): TeachersLessonOverviewPageData["legacyCopyrightContent"] {
-  if (content === null) {
-    return null;
-  }
-
-  return content.map((item) => {
-    if ("copyrightInfo" in item) {
-      return {
-        copyrightInfo: item.copyrightInfo ?? "",
-      };
-    }
-    return {
-      copyrightInfo: "",
-    };
-  });
-}
-
 export const getAdditionalFiles = (
   additionalFiles: TeachersLessonOverviewContent["downloadableFiles"],
 ): string[] | null => {
@@ -248,10 +226,6 @@ export const transformedTeachersLessonOverviewData = (
     keyLearningPoints: content.keyLearningPoints ?? null,
     pupilLessonOutcome: content.pupilLessonOutcome,
     lessonKeywords: content.lessonKeywords,
-    // TD: is this needed?
-    legacyCopyrightContent: getCopyrightContent(
-      browseData.lessonData.copyrightContent,
-    ),
     supervisionLevel: content.supervisionLevel,
     worksheetUrl: content.worksheetAssetObjectUrl,
     presentationUrl: content.slideDeckAssetObjectUrl,

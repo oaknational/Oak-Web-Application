@@ -13,7 +13,6 @@ import lessonMediaClipsFixtures from "../../fixtures/lessonMediaClips.fixture";
 
 import teachersLessonOverview, {
   getContentGuidance,
-  getCopyrightContent,
   getDownloadsArray,
   getAdditionalFiles,
   getAdjacentLessonsByOrderInUnit,
@@ -408,27 +407,6 @@ describe("teachersLessonOverview()", () => {
     }).rejects.toThrow("Resource not found");
   });
 
-  describe("getCopyrightContent", () => {
-    it("should return null if content is null", () => {
-      expect(getCopyrightContent(null)).toBeNull();
-    });
-
-    it("should return an array with copyrightInfo if provided", () => {
-      const content = [
-        { copyrightInfo: "Copyright 2024 Example Corp." },
-        { copyrightInfo: "Copyright 2023 Another Corp." },
-      ];
-      expect(getCopyrightContent(content)).toEqual([
-        { copyrightInfo: "Copyright 2024 Example Corp." },
-        { copyrightInfo: "Copyright 2023 Another Corp." },
-      ]);
-    });
-
-    it("should handle empty string copyrightInfo fields", () => {
-      const content = [{ copyrightInfo: "" }];
-      expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
-    });
-  });
   describe("getContentGuidance", () => {
     it("should return null if content.contentGuidance is null", () => {
       expect(getContentGuidance(null)).toBeNull();

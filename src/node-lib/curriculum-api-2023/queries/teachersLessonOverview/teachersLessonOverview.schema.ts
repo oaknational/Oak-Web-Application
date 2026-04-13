@@ -69,6 +69,7 @@ export type TeachersLessonOverviewAdjacentLesson = z.infer<
 
 const teachersLessonOverviewBaseSchema = baseLessonOverviewSchema.omit({
   isLegacy: true,
+  legacyCopyrightContent: true,
 });
 
 export const teachersLessonOverviewSchema =
