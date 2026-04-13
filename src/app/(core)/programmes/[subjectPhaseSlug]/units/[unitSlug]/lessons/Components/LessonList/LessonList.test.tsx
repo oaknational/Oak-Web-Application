@@ -113,7 +113,7 @@ describe("LessonList", () => {
     expect(firstLessonLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "lesson-overview",
+        page: "lesson-page",
         programmeSlug: defaultProps.programmeSlug,
         unitSlug: defaultProps.unitSlug,
         lessonSlug: "lesson-1",
@@ -122,7 +122,7 @@ describe("LessonList", () => {
     expect(secondLessonLink).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "lesson-overview",
+        page: "lesson-page",
         programmeSlug: defaultProps.programmeSlug,
         unitSlug: defaultProps.unitSlug,
         lessonSlug: "lesson-2",
