@@ -171,6 +171,28 @@ describe("generateMetadata", () => {
       "Introduction to Geometry KS2 | Y4 Maths Lesson Resources",
     );
   });
+  it("handles missing year gracefully in metadata", async () => {
+    const fixtureWithoutYear = { ...lessonOverviewFixture, year: null };
+    mockLessonOverview.mockResolvedValue(fixtureWithoutYear);
+
+    const result = await generateMetadata({
+      params: Promise.resolve(defaultParams),
+      searchParams: Promise.resolve({}),
+    });
+
+    expect(result.title).toBe(
+      "Introduction to Geometry KS2 | Maths Lesson Resources",
+    );
+    expect(result.description).toBe(
+      "View lesson content and choose resources to download or share",
+    );
+    expect(result.openGraph?.title).toBe(
+      "Introduction to Geometry KS2 | Maths Lesson Resources",
+    );
+    expect(result.twitter?.title).toBe(
+      "Introduction to Geometry KS2 | Maths Lesson Resources",
+    );
+  });
   it("includes tier and exam board correctly in title when present", async () => {
     const fixtureWithTierAndExamBoard = {
       ...lessonOverviewFixture,

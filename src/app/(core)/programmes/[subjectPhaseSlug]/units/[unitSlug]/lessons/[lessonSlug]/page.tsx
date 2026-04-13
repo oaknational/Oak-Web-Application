@@ -47,7 +47,8 @@ const getTitleForMetadata = ({
 }) => {
   const optionalTitles = [tierTitle, examBoardTitle].filter(Boolean).join(" ");
   const optionalTitlesPart = optionalTitles ? ` ${optionalTitles}` : "";
-  return `${lessonTitle}${optionalTitlesPart} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources`;
+  const yearString = year ? ` Y${year}` : "";
+  return `${lessonTitle}${optionalTitlesPart} ${keyStageSlug.toUpperCase()} |${yearString} ${subjectTitle} Lesson Resources`;
 };
 
 export async function generateMetadata(
