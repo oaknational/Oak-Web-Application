@@ -86,7 +86,7 @@ describe("ProgrammeToggles", () => {
     expect(foundation).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "unit-page",
+        page: "integrated-lesson-index",
         programmeSlug: "maths-secondary-ks4-foundation",
         unitSlug: "algebra",
       }),
@@ -95,7 +95,7 @@ describe("ProgrammeToggles", () => {
     expect(higher).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "unit-page",
+        page: "integrated-lesson-index",
         programmeSlug: "maths-secondary-ks4-higher",
         unitSlug: "algebra",
       }),
@@ -125,7 +125,7 @@ describe("ProgrammeToggles", () => {
     expect(biology).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "unit-page",
+        page: "integrated-lesson-index",
         programmeSlug: "biology-secondary-ks4-foundation-aqa",
         unitSlug: "cells",
       }),
@@ -134,7 +134,7 @@ describe("ProgrammeToggles", () => {
     expect(combinedScience).toHaveAttribute(
       "href",
       resolveOakHref({
-        page: "unit-page",
+        page: "integrated-lesson-index",
         programmeSlug: "combined-science-secondary-ks4-foundation-aqa",
         unitSlug: "cells",
       }),

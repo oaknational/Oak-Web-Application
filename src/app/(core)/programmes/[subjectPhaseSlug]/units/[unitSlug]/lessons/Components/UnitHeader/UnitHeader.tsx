@@ -177,7 +177,7 @@ const UnitNavButtons = ({
         <OakSmallPrimaryInvertedButton
           element="a"
           href={resolveOakHref({
-            page: "unit-page",
+            page: "integrated-lesson-index",
             unitSlug: prevUnit.slug,
             programmeSlug,
           })}
@@ -197,7 +197,7 @@ const UnitNavButtons = ({
         <OakSmallPrimaryInvertedButton
           element="a"
           href={resolveOakHref({
-            page: "unit-page",
+            page: "integrated-lesson-index",
             unitSlug: nextUnit.slug,
             programmeSlug,
           })}
