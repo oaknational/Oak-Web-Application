@@ -1,4 +1,4 @@
-import { OakPrimaryButton } from "@oaknational/oak-components";
+import { OakPrimaryButton, useMediaQuery } from "@oaknational/oak-components";
 import Link from "next/link";
 
 import { Header, LargeHeaderProps } from "../Header/Header";
@@ -18,6 +18,7 @@ type LessonHeaderProps = LargeHeaderProps & {
 const LessonHeader = (props: LessonHeaderProps) => {
   const { prevLesson, nextLesson, unitSlug, programmeSlug, currentLessonSlug } =
     props;
+  const isDesktop = useMediaQuery("desktop");
   return (
     <>
       <Header {...props} />
@@ -63,7 +64,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
               query: { preselected: "all" },
             })}
           >
-            Download all resources
+            {isDesktop ? "Download all resources" : "Download"}
           </OakPrimaryButton>
         }
       />
