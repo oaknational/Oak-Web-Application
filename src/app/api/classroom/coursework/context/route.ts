@@ -4,7 +4,11 @@ import {
   createClassroomErrorReporter,
   getOakGoogleClassroomAddon,
 } from "@/node-lib/google-classroom";
-import { handleCourseWorkApiError } from "@/app/api/classroom/coursework/courseWorkApiHelpers";
+import {
+  extractAuth,
+  handleCourseWorkApiError,
+  unauthorisedResponse,
+} from "@/app/api/classroom/coursework/courseWorkApiHelpers";
 
 const reportError = createClassroomErrorReporter("coursework-context");
 
@@ -44,8 +48,13 @@ export async function GET(request: NextRequest) {
       courseWork;
 
     // If the pupil has authenticated, resolve their submission ID.
-    const accessToken = request.headers.get("Authorization");
-    const session = request.headers.get("X-Oakgc-Session");
+    const auth = extractAuth(request);
+
+    if (!auth) {
+      return unauthorisedResponse();
+    }
+
+    const { accessToken, session } = auth;
 
     let submissionId: string | undefined;
     if (accessToken && session) {
@@ -58,6 +67,9 @@ export async function GET(request: NextRequest) {
         );
       } catch {
         // Submission lookup failed — caller will treat submissionId as absent.
+        console.error(
+          "Failed to fetch student submission ID; returning context without it",
+        );
       }
     }
 

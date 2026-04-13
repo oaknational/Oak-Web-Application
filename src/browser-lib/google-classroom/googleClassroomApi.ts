@@ -391,6 +391,32 @@ const getCourseWorkProgress = async (
   }
 };
 
+export type CourseWorkResultsResponse = {
+  lessonSlug: string;
+  programmeSlug: string;
+  unitSlug: string;
+  pupilProgress: CourseWorkPupilProgress | null;
+};
+
+const getCourseWorkResults = async (
+  assignmentToken: string,
+  submissionId: string,
+): Promise<CourseWorkResultsResponse | null> => {
+  try {
+    const headers = await getOakGCAuthHeaders();
+    const params = new URLSearchParams({ assignmentToken, submissionId });
+    return await sendRequest<CourseWorkResultsResponse>(
+      `${COURSEWORK_API_ROUTES.results}?${params.toString()}`,
+      "GET",
+      undefined,
+      headers,
+    );
+  } catch (error) {
+    console.error("Failed to get coursework results:", error);
+    return null;
+  }
+};
+
 export default {
   getGoogleSignInUrl,
   verifySession,
@@ -404,5 +430,6 @@ export default {
   getCourseWorkContext,
   upsertCourseWorkProgress,
   getCourseWorkProgress,
+  getCourseWorkResults,
   turnInCourseWork,
 };

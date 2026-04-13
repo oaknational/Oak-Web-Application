@@ -29,6 +29,7 @@ const mockedGetOakGoogleClassroomAddon =
 
 const mockAccessToken = "mock-access-token";
 const mockSession = "mock-session-id";
+const mockLoginHint = "pupil@example.com";
 
 const mockAuthHeaders = {
   get: jest.fn((headerName: string) => {
@@ -38,16 +39,30 @@ const mockAuthHeaders = {
   }),
 };
 
+const mockNoAuthHeaders = {
+  get: jest.fn(() => null),
+};
+
 const mockProgressBody = {
   submissionId: "submission-123",
   assignmentToken: "token-abc",
   courseWorkId: "coursework-456",
   courseId: "course-789",
-  pupilLoginHint: "pupil@example.com",
+  pupilLoginHint: mockLoginHint,
 };
 
 const mockProgressResult = { saved: true };
-const mockGetProgressResult = { grade: 8, numQuestions: 10 };
+const mockGetProgressResult = {
+  grade: 8,
+  numQuestions: 10,
+  pupilLoginHint: mockLoginHint,
+};
+
+const mockVerifiedSession = {
+  session: mockSession,
+  token: mockAccessToken,
+  loginHint: mockLoginHint,
+};
 
 const mockUpsertCourseWorkPupilProgress = jest
   .fn()
@@ -55,30 +70,41 @@ const mockUpsertCourseWorkPupilProgress = jest
 const mockGetCourseWorkPupilProgress = jest
   .fn()
   .mockResolvedValue(mockGetProgressResult);
+const mockVerifyAuthSession = jest.fn().mockResolvedValue(mockVerifiedSession);
+
+const makeGetRequest = (
+  params: Record<string, string>,
+  headers = mockAuthHeaders,
+) =>
+  ({
+    nextUrl: {
+      searchParams: new URLSearchParams(params),
+    },
+    headers,
+  }) as unknown as NextRequest;
 
 describe("GET /api/classroom/coursework/progress", () => {
-  let mockRequest: NextRequest;
-
   beforeEach(() => {
     jest.clearAllMocks();
     mockedGetOakGoogleClassroomAddon.mockReturnValue({
       getCourseWorkPupilProgress: mockGetCourseWorkPupilProgress,
       upsertCourseWorkPupilProgress: mockUpsertCourseWorkPupilProgress,
+      verifyAuthSession: mockVerifyAuthSession,
     });
   });
 
   it("should return progress for valid query params", async () => {
-    mockRequest = {
-      nextUrl: {
-        searchParams: new URLSearchParams({
-          submissionId: "submission-123",
-          assignmentToken: "token-abc",
-        }),
-      } as NextRequest["nextUrl"],
-    } as unknown as NextRequest;
+    await GET(
+      makeGetRequest({
+        submissionId: "submission-123",
+        assignmentToken: "token-abc",
+      }),
+    );
 
-    await GET(mockRequest);
-
+    expect(mockVerifyAuthSession).toHaveBeenCalledWith(
+      mockSession,
+      mockAccessToken,
+    );
     expect(mockGetCourseWorkPupilProgress).toHaveBeenCalledWith(
       "submission-123",
       "token-abc",
@@ -88,14 +114,78 @@ describe("GET /api/classroom/coursework/progress", () => {
     });
   });
 
-  it("should return 400 when submissionId is missing", async () => {
-    mockRequest = {
-      nextUrl: {
-        searchParams: new URLSearchParams({ assignmentToken: "token-abc" }),
-      } as NextRequest["nextUrl"],
-    } as unknown as NextRequest;
+  it("should return 401 when auth headers are missing", async () => {
+    await GET(
+      makeGetRequest(
+        { submissionId: "submission-123", assignmentToken: "token-abc" },
+        mockNoAuthHeaders,
+      ),
+    );
 
-    await GET(mockRequest);
+    expect(mockVerifyAuthSession).not.toHaveBeenCalled();
+    expect(mockGetCourseWorkPupilProgress).not.toHaveBeenCalled();
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      { error: "Authentication required" },
+      { status: 401 },
+    );
+  });
+
+  it("should return 401 when session verification fails", async () => {
+    mockVerifyAuthSession.mockResolvedValueOnce(null);
+
+    await GET(
+      makeGetRequest({
+        submissionId: "submission-123",
+        assignmentToken: "token-abc",
+      }),
+    );
+
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      { error: "Authentication required" },
+      { status: 401 },
+    );
+  });
+
+  it("should return 403 when loginHint does not match pupilLoginHint", async () => {
+    mockVerifyAuthSession.mockResolvedValueOnce({
+      ...mockVerifiedSession,
+      loginHint: "other-pupil@example.com",
+    });
+
+    await GET(
+      makeGetRequest({
+        submissionId: "submission-123",
+        assignmentToken: "token-abc",
+      }),
+    );
+
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      { error: "Forbidden" },
+      { status: 403 },
+    );
+  });
+
+  it("should allow access when session has no loginHint", async () => {
+    mockVerifyAuthSession.mockResolvedValueOnce({
+      session: mockSession,
+      token: mockAccessToken,
+      loginHint: undefined,
+    });
+
+    await GET(
+      makeGetRequest({
+        submissionId: "submission-123",
+        assignmentToken: "token-abc",
+      }),
+    );
+
+    expect(NextResponse.json).toHaveBeenCalledWith(mockGetProgressResult, {
+      status: 200,
+    });
+  });
+
+  it("should return 400 when submissionId is missing", async () => {
+    await GET(makeGetRequest({ assignmentToken: "token-abc" }));
 
     expect(mockGetCourseWorkPupilProgress).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
@@ -107,13 +197,7 @@ describe("GET /api/classroom/coursework/progress", () => {
   });
 
   it("should return 400 when assignmentToken is missing", async () => {
-    mockRequest = {
-      nextUrl: {
-        searchParams: new URLSearchParams({ submissionId: "submission-123" }),
-      } as NextRequest["nextUrl"],
-    } as unknown as NextRequest;
-
-    await GET(mockRequest);
+    await GET(makeGetRequest({ submissionId: "submission-123" }));
 
     expect(mockGetCourseWorkPupilProgress).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
@@ -127,16 +211,12 @@ describe("GET /api/classroom/coursework/progress", () => {
       new Error("Firestore unavailable"),
     );
 
-    mockRequest = {
-      nextUrl: {
-        searchParams: new URLSearchParams({
-          submissionId: "submission-123",
-          assignmentToken: "token-abc",
-        }),
-      } as NextRequest["nextUrl"],
-    } as unknown as NextRequest;
-
-    await GET(mockRequest);
+    await GET(
+      makeGetRequest({
+        submissionId: "submission-123",
+        assignmentToken: "token-abc",
+      }),
+    );
 
     expect(NextResponse.json).toHaveBeenCalledWith(
       {
@@ -156,6 +236,7 @@ describe("POST /api/classroom/coursework/progress", () => {
     mockedGetOakGoogleClassroomAddon.mockReturnValue({
       getCourseWorkPupilProgress: mockGetCourseWorkPupilProgress,
       upsertCourseWorkPupilProgress: mockUpsertCourseWorkPupilProgress,
+      verifyAuthSession: mockVerifyAuthSession,
     });
   });
 

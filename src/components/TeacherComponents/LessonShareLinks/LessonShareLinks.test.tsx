@@ -95,4 +95,35 @@ describe("LessonShareLinks", () => {
     await user.click(googleClassroomLink);
     expect(onSubmit).toHaveBeenCalledWith("google-classroom");
   });
+
+  it("should render the Google Classroom button when onGoogleClassroomClick is provided", async () => {
+    const onSubmit = jest.fn();
+    const onGoogleClassroomClick = jest.fn();
+
+    renderWithProviders()(
+      <LessonShareLinks
+        disabled={false}
+        lessonSlug="test-slug"
+        selectedActivities={["exit-quiz-questions"]}
+        onSubmit={onSubmit}
+        onGoogleClassroomClick={onGoogleClassroomClick}
+      />,
+    );
+
+    expect(
+      screen.queryByRole("link", {
+        name: "Assign to Google Classroom",
+      }),
+    ).not.toBeInTheDocument();
+
+    const googleClassroomButton = screen.getByRole("button", {
+      name: "Assign to Google Classroom",
+    });
+
+    const user = userEvent.setup();
+    await user.click(googleClassroomButton);
+
+    expect(onSubmit).toHaveBeenCalledWith("google-classroom");
+    expect(onGoogleClassroomClick).toHaveBeenCalled();
+  });
 });

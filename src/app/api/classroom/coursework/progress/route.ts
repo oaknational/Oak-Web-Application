@@ -17,10 +17,16 @@ const reportError = createClassroomErrorReporter("coursework-progress");
  * GET /api/classroom/coursework/progress?submissionId=<id>&assignmentToken=<token>
  *
  * Retrieves saved pupil progress for a CourseWork assignment.
- * Does not require Google Classroom authentication (Firestore-only lookup).
+ * Requires pupil authentication headers. Verifies the authenticated pupil
+ * owns the requested submission before returning data.
  */
 export async function GET(request: NextRequest) {
   try {
+    const auth = extractAuth(request);
+    if (!auth) {
+      return unauthorisedResponse();
+    }
+
     const submissionId = request.nextUrl.searchParams.get("submissionId");
     const assignmentToken = request.nextUrl.searchParams.get("assignmentToken");
 
@@ -35,10 +41,25 @@ export async function GET(request: NextRequest) {
     }
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
-    const progress = await oakClassroomClient.getCourseWorkPupilProgress(
-      submissionId,
-      assignmentToken,
-    );
+    const [verifiedSession, progress] = await Promise.all([
+      oakClassroomClient.verifyAuthSession(auth.session, auth.accessToken),
+      oakClassroomClient.getCourseWorkPupilProgress(
+        submissionId,
+        assignmentToken,
+      ),
+    ]);
+
+    if (!verifiedSession) {
+      return unauthorisedResponse();
+    }
+
+    if (
+      progress &&
+      verifiedSession.loginHint &&
+      verifiedSession.loginHint !== progress.pupilLoginHint
+    ) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
 
     return NextResponse.json(progress, { status: 200 });
   } catch (error) {

@@ -162,8 +162,9 @@ export const PupilViewsLessonOverview = ({
             width={["100%", "max-content"]}
             iconName="arrow-right"
             isTrailingIcon
+            isLoading={isHydratingInitialProgress}
             data-testid="proceed-to-next-section"
-            disabled={!isMounted}
+            disabled={!isMounted || isHydratingInitialProgress}
           >
             {pickProceedToNextSectionLabel(
               lessonStarted,

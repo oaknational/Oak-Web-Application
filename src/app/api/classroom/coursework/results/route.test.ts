@@ -27,6 +27,27 @@ jest.mock("@/node-lib/google-classroom", () => {
 const mockedGetOakGoogleClassroomAddon =
   getOakGoogleClassroomAddon as jest.Mock;
 
+const mockAccessToken = "mock-access-token";
+const mockSession = "mock-session-id";
+
+const mockAuthHeaders = {
+  get: jest.fn((headerName: string) => {
+    if (headerName === "Authorization") return mockAccessToken;
+    if (headerName === "X-Oakgc-Session") return mockSession;
+    return null;
+  }),
+};
+
+const mockNoAuthHeaders = {
+  get: jest.fn(() => null),
+};
+
+const mockVerifiedSession = {
+  session: mockSession,
+  token: mockAccessToken,
+  loginHint: "teacher@example.com",
+};
+
 const mockCourseWork = {
   lessonSlug: "intro-to-algebra",
   programmeSlug: "maths-primary",
@@ -43,12 +64,17 @@ const mockGetClassroomCourseWork = jest.fn().mockResolvedValue(mockCourseWork);
 const mockGetCourseWorkPupilProgress = jest
   .fn()
   .mockResolvedValue(mockPupilProgress);
+const mockVerifyAuthSession = jest.fn().mockResolvedValue(mockVerifiedSession);
 
-const makeRequest = (params: Record<string, string>) =>
+const makeRequest = (
+  params: Record<string, string>,
+  headers = mockAuthHeaders,
+) =>
   ({
     nextUrl: {
       searchParams: new URLSearchParams(params),
     },
+    headers,
   }) as unknown as NextRequest;
 
 describe("GET /api/classroom/coursework/results", () => {
@@ -57,6 +83,7 @@ describe("GET /api/classroom/coursework/results", () => {
     mockedGetOakGoogleClassroomAddon.mockReturnValue({
       getClassroomCourseWork: mockGetClassroomCourseWork,
       getCourseWorkPupilProgress: mockGetCourseWorkPupilProgress,
+      verifyAuthSession: mockVerifyAuthSession,
     });
   });
 
@@ -65,6 +92,10 @@ describe("GET /api/classroom/coursework/results", () => {
       makeRequest({ assignmentToken: "token-abc", submissionId: "sub-123" }),
     );
 
+    expect(mockVerifyAuthSession).toHaveBeenCalledWith(
+      mockSession,
+      mockAccessToken,
+    );
     expect(mockGetClassroomCourseWork).toHaveBeenCalledWith("token-abc");
     expect(mockGetCourseWorkPupilProgress).toHaveBeenCalledWith(
       "sub-123",
@@ -78,8 +109,41 @@ describe("GET /api/classroom/coursework/results", () => {
     });
   });
 
-  it("fetches courseWork and pupilProgress in parallel", async () => {
+  it("returns 401 when auth headers are missing", async () => {
+    await GET(
+      makeRequest(
+        { assignmentToken: "token-abc", submissionId: "sub-123" },
+        mockNoAuthHeaders,
+      ),
+    );
+
+    expect(mockVerifyAuthSession).not.toHaveBeenCalled();
+    expect(mockGetClassroomCourseWork).not.toHaveBeenCalled();
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      { error: "Authentication required" },
+      { status: 401 },
+    );
+  });
+
+  it("returns 401 when session verification fails", async () => {
+    mockVerifyAuthSession.mockResolvedValueOnce(null);
+
+    await GET(
+      makeRequest({ assignmentToken: "token-abc", submissionId: "sub-123" }),
+    );
+
+    expect(NextResponse.json).toHaveBeenCalledWith(
+      { error: "Authentication required" },
+      { status: 401 },
+    );
+  });
+
+  it("fetches courseWork, pupilProgress, and verifies session in parallel", async () => {
     const order: string[] = [];
+    mockVerifyAuthSession.mockImplementationOnce(async () => {
+      order.push("verifySession");
+      return mockVerifiedSession;
+    });
     mockGetClassroomCourseWork.mockImplementationOnce(async () => {
       order.push("courseWork");
       return mockCourseWork;
@@ -93,9 +157,10 @@ describe("GET /api/classroom/coursework/results", () => {
       makeRequest({ assignmentToken: "token-abc", submissionId: "sub-123" }),
     );
 
+    expect(mockVerifyAuthSession).toHaveBeenCalledTimes(1);
     expect(mockGetClassroomCourseWork).toHaveBeenCalledTimes(1);
     expect(mockGetCourseWorkPupilProgress).toHaveBeenCalledTimes(1);
-    expect(order).toEqual(["courseWork", "pupilProgress"]);
+    expect(order).toEqual(["verifySession", "courseWork", "pupilProgress"]);
   });
 
   it("returns 404 when the assignment is not found", async () => {

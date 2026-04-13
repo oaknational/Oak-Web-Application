@@ -1,20 +1,18 @@
 "use client";
 
 import { FC, useCallback, useEffect, useRef, useState } from "react";
-import {
-  OakModalCenter,
-  OakFlex,
-  OakHeading,
-  OakP,
-  OakPrimaryButton,
-  OakSmallSecondaryButton,
-  OakLoadingSpinner,
-  OakRadioButton,
-  OakRadioGroup,
-  OakTextInput,
-} from "@oaknational/oak-components";
+import { OakModalCenter } from "@oaknational/oak-components";
 import { CourseListItem } from "@oaknational/google-classroom-addon/types";
 import { AuthCookieKeys } from "@oaknational/google-classroom-addon/ui";
+
+import {
+  ASSIGN_MODAL_DESCRIPTION_ID,
+  ASSIGN_MODAL_HEADING_ID,
+  AssignToClassroomModalCoursePickerState,
+  AssignToClassroomModalLoadingState,
+  AssignToClassroomModalMessageState,
+  AssignToClassroomModalSuccessState,
+} from "./AssignToClassroomModalContent";
 
 import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomApi";
 import { ScopeInsufficientError } from "@/browser-lib/google-classroom/errors";
@@ -168,151 +166,63 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
   const renderContent = () => {
     switch (state.type) {
       case "loading":
-        return (
-          <OakFlex
-            $justifyContent="center"
-            $alignItems="center"
-            $minHeight="spacing-16"
-          >
-            <OakLoadingSpinner />
-          </OakFlex>
-        );
+        return <AssignToClassroomModalLoadingState />;
 
       case "unauthenticated":
         return (
-          <OakFlex $flexDirection="column" $gap="spacing-24">
-            <OakHeading tag="h2" $font="heading-5" id="assign-modal-heading">
-              Save to Google Classroom
-            </OakHeading>
-            <OakP id="assign-modal-description">
-              Sign in with Google to save this assignment as a draft in your
-              Google Classroom.
-            </OakP>
-            <OakPrimaryButton
-              onClick={handleSignIn}
-              disabled={isSigningIn}
-              isLoading={isSigningIn}
-            >
-              Sign in with Google
-            </OakPrimaryButton>
-          </OakFlex>
+          <AssignToClassroomModalMessageState
+            heading="Save to Google Classroom"
+            description="Sign in with Google to save this assignment as a draft in your Google Classroom."
+            primaryActionLabel="Sign in with Google"
+            onPrimaryAction={handleSignIn}
+            primaryActionDisabled={isSigningIn}
+            primaryActionLoading={isSigningIn}
+          />
         );
 
       case "scope_insufficient":
         return (
-          <OakFlex $flexDirection="column" $gap="spacing-24">
-            <OakHeading tag="h2" $font="heading-5" id="assign-modal-heading">
-              Reconnect Google account
-            </OakHeading>
-            <OakP id="assign-modal-description">
-              To create assignments from Oak, you need to grant an additional
-              permission. Please reconnect your Google account to continue.
-            </OakP>
-            <OakPrimaryButton onClick={handleSignIn}>
-              Reconnect Google account
-            </OakPrimaryButton>
-          </OakFlex>
+          <AssignToClassroomModalMessageState
+            heading="Reconnect Google account"
+            description="To create assignments from Oak, you need to grant an additional permission. Please reconnect your Google account to continue."
+            primaryActionLabel="Reconnect Google account"
+            onPrimaryAction={handleSignIn}
+          />
         );
 
       case "course_picker":
         return (
-          <OakFlex $flexDirection="column" $gap="spacing-24">
-            <OakHeading tag="h2" $font="heading-5" id="assign-modal-heading">
-              Save to Google Classroom
-            </OakHeading>
-            {state.courses.length === 0 ? (
-              <OakP>No active classes found in your Google Classroom.</OakP>
-            ) : (
-              <>
-                <OakFlex $flexDirection="column" $gap="spacing-8">
-                  <OakP $font="body-2-bold">Assignment title</OakP>
-                  <OakTextInput
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    aria-label="Assignment title"
-                  />
-                </OakFlex>
-                <OakFlex $flexDirection="column" $gap="spacing-8">
-                  <OakP $font="body-2-bold">Select a class</OakP>
-                  <OakRadioGroup
-                    name="course"
-                    value={selectedCourseId}
-                    onChange={(e) => setSelectedCourseId(e.target.value)}
-                  >
-                    {state.courses.map((course) => (
-                      <OakRadioButton
-                        key={course.id}
-                        value={course.id}
-                        label={
-                          course.section
-                            ? `${course.name} — ${course.section}`
-                            : course.name
-                        }
-                        id={`course-${course.id}`}
-                      />
-                    ))}
-                  </OakRadioGroup>
-                </OakFlex>
-                <OakFlex $gap="spacing-12">
-                  <OakPrimaryButton
-                    onClick={handleAssign}
-                    disabled={!selectedCourseId || isSubmitting || !title}
-                    isLoading={isSubmitting}
-                  >
-                    Share assignment
-                  </OakPrimaryButton>
-                  <OakSmallSecondaryButton onClick={onClose}>
-                    Cancel
-                  </OakSmallSecondaryButton>
-                </OakFlex>
-              </>
-            )}
-          </OakFlex>
+          <AssignToClassroomModalCoursePickerState
+            title={title}
+            courses={state.courses}
+            selectedCourseId={selectedCourseId}
+            isSubmitting={isSubmitting}
+            onTitleChange={setTitle}
+            onSelectedCourseIdChange={setSelectedCourseId}
+            onAssign={handleAssign}
+            onCancel={onClose}
+          />
         );
 
       case "success":
         return (
-          <OakFlex $flexDirection="column" $gap="spacing-24">
-            <OakHeading tag="h2" $font="heading-5" id="assign-modal-heading">
-              Assignment saved
-            </OakHeading>
-            <OakP id="assign-modal-description">
-              &ldquo;{state.title}&rdquo; has been saved to your Google
-              Classroom as a draft assignment. Open it in Google Classroom to
-              publish it for your students.
-            </OakP>
-            <OakFlex $gap="spacing-12">
-              <OakPrimaryButton
-                element="a"
-                href="https://classroom.google.com"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View draft
-              </OakPrimaryButton>
-              <OakSmallSecondaryButton onClick={onClose}>
-                Close
-              </OakSmallSecondaryButton>
-            </OakFlex>
-          </OakFlex>
+          <AssignToClassroomModalSuccessState
+            title={state.title}
+            onClose={onClose}
+            viewDraftHref="https://classroom.google.com"
+          />
         );
 
       case "error":
         return (
-          <OakFlex $flexDirection="column" $gap="spacing-24">
-            <OakHeading tag="h2" $font="heading-5" id="assign-modal-heading">
-              Something went wrong
-            </OakHeading>
-            <OakP id="assign-modal-description">{state.message}</OakP>
-            <OakFlex $gap="spacing-12">
-              <OakPrimaryButton onClick={checkSessionAndLoadCourses}>
-                Try again
-              </OakPrimaryButton>
-              <OakSmallSecondaryButton onClick={onClose}>
-                Cancel
-              </OakSmallSecondaryButton>
-            </OakFlex>
-          </OakFlex>
+          <AssignToClassroomModalMessageState
+            heading="Something went wrong"
+            description={state.message}
+            primaryActionLabel="Try again"
+            onPrimaryAction={checkSessionAndLoadCourses}
+            secondaryActionLabel="Cancel"
+            onSecondaryAction={onClose}
+          />
         );
     }
   };
@@ -325,8 +235,8 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
         $pa: ["spacing-32", "spacing-56"],
         $mh: "auto",
         "aria-modal": true,
-        "aria-labelledby": "assign-modal-heading",
-        "aria-describedby": "assign-modal-description",
+        "aria-labelledby": ASSIGN_MODAL_HEADING_ID,
+        "aria-describedby": ASSIGN_MODAL_DESCRIPTION_ID,
       }}
       modalOuterFlexProps={{
         $maxWidth: "spacing-640",

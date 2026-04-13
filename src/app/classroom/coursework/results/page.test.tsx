@@ -31,9 +31,21 @@ jest.mock("@/browser-lib/mathjax/MathJaxProvider", () => ({
   ),
 }));
 
+jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
+  __esModule: true,
+  default: {
+    getCourseWorkResults: jest.fn(),
+  },
+}));
+
 const { getLessonData } = jest.requireMock(
   "@/app/classroom/pupil/programmes/[programmeSlug]/[unitSlug]/[lessonSlug]/results/printable/getLessonData",
 );
+
+ 
+const mockGetCourseWorkResults = jest.requireMock(
+  "@/browser-lib/google-classroom/googleClassroomApi",
+).default.getCourseWorkResults as jest.Mock;
 
 const mockBrowseData = lessonBrowseDataFixture({});
 const mockContent = lessonContentFixture({});
@@ -59,25 +71,13 @@ const mockResultsData = {
   pupilProgress: mockPupilProgress,
 };
 
-const mockFetch = jest.fn();
-global.fetch = mockFetch;
-
-const mockJsonResponse = (data: unknown, status = 200) => {
-  mockFetch.mockResolvedValue(
-    new Response(JSON.stringify(data), {
-      status,
-      headers: { "Content-Type": "application/json" },
-    }),
-  );
-};
-
 describe("CourseWorkResultsPage", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     useSearchParamsMock.mockReturnValue(
       new URLSearchParams("assignmentToken=token-abc&submissionId=sub-1"),
     );
-    mockJsonResponse(mockResultsData);
+    mockGetCourseWorkResults.mockResolvedValue(mockResultsData);
     getLessonData.mockResolvedValue({
       browseData: mockBrowseData,
       content: mockContent,
@@ -88,8 +88,6 @@ describe("CourseWorkResultsPage", () => {
     await act(async () => {
       renderWithTheme(<CourseWorkResultsPage />);
     });
-    // The spinner is only visible before the first async tick — check it
-    // appeared by verifying the results are now present (load completed)
     await waitFor(() => {
       expect(screen.getByTestId("pupil-results")).toBeInTheDocument();
     });
@@ -104,13 +102,14 @@ describe("CourseWorkResultsPage", () => {
     });
   });
 
-  it("fetches from the correct URL with assignmentToken and submissionId", async () => {
+  it("calls getCourseWorkResults with assignmentToken and submissionId", async () => {
     await act(async () => {
       renderWithTheme(<CourseWorkResultsPage />);
     });
     await waitFor(() => {
-      expect(mockFetch).toHaveBeenCalledWith(
-        "/api/classroom/coursework/results?assignmentToken=token-abc&submissionId=sub-1",
+      expect(mockGetCourseWorkResults).toHaveBeenCalledWith(
+        "token-abc",
+        "sub-1",
       );
     });
   });
@@ -136,7 +135,7 @@ describe("CourseWorkResultsPage", () => {
         screen.getByText("Missing assignmentToken or submissionId"),
       ).toBeInTheDocument();
     });
-    expect(mockFetch).not.toHaveBeenCalled();
+    expect(mockGetCourseWorkResults).not.toHaveBeenCalled();
   });
 
   it("shows an error message when submissionId is missing", async () => {
@@ -151,25 +150,24 @@ describe("CourseWorkResultsPage", () => {
         screen.getByText("Missing assignmentToken or submissionId"),
       ).toBeInTheDocument();
     });
-    expect(mockFetch).not.toHaveBeenCalled();
+    expect(mockGetCourseWorkResults).not.toHaveBeenCalled();
   });
 
-  it("shows an error message when the fetch fails", async () => {
-    mockFetch.mockResolvedValueOnce(
-      new Response(null, { status: 500, statusText: "Internal Server Error" }),
-    );
+  it("shows an error message when the API returns null", async () => {
+    mockGetCourseWorkResults.mockResolvedValueOnce(null);
     await act(async () => {
       renderWithTheme(<CourseWorkResultsPage />);
     });
     await waitFor(() => {
-      expect(
-        screen.getByText("Failed to fetch results: 500"),
-      ).toBeInTheDocument();
+      expect(screen.getByText("Failed to fetch results")).toBeInTheDocument();
     });
   });
 
   it("shows an error message when pupilProgress is null", async () => {
-    mockJsonResponse({ ...mockResultsData, pupilProgress: null });
+    mockGetCourseWorkResults.mockResolvedValueOnce({
+      ...mockResultsData,
+      pupilProgress: null,
+    });
     await act(async () => {
       renderWithTheme(<CourseWorkResultsPage />);
     });
@@ -190,8 +188,10 @@ describe("CourseWorkResultsPage", () => {
     });
   });
 
-  it("shows a generic error message when fetch throws", async () => {
-    mockFetch.mockRejectedValueOnce(new Error("Network failure"));
+  it("shows a generic error message when getCourseWorkResults throws", async () => {
+    mockGetCourseWorkResults.mockRejectedValueOnce(
+      new Error("Network failure"),
+    );
     await act(async () => {
       renderWithTheme(<CourseWorkResultsPage />);
     });

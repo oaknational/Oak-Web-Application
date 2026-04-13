@@ -139,6 +139,15 @@ describe("PupilViewsLessonOverview", () => {
     ).toBeInTheDocument();
   });
 
+  it("disables and shows loading on the proceed button while initial progress is hydrating", () => {
+    renderOverview({
+      isHydratingInitialProgress: true,
+    });
+
+    expect(screen.getByTestId("proceed-to-next-section")).toBeDisabled();
+    expect(screen.getByText("Loading")).toBeInTheDocument();
+  });
+
   [
     [/Intro/, "intro"],
     [/Starter quiz/, "starter-quiz"],

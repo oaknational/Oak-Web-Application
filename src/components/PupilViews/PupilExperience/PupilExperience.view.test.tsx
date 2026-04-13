@@ -1394,6 +1394,14 @@ describe("PupilExperienceView", () => {
     });
 
     it("restores saved progress when context and prior progress are present", async () => {
+      const savedProgress = {
+        starterQuiz: { grade: 3, numQuestions: 5 },
+        exitQuiz: { grade: 4, numQuestions: 5 },
+      } as never;
+      const mappedProgress = {
+        "starter-quiz": { grade: 3, numQuestions: 5, isComplete: true },
+        "exit-quiz": { grade: 4, numQuestions: 5, isComplete: true },
+      };
       mockedGoogleClassroomApi.verifySession.mockReturnValue(
         jest.fn().mockResolvedValue({
           authenticated: true,
@@ -1410,10 +1418,12 @@ describe("PupilExperienceView", () => {
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
       });
-      mockedGoogleClassroomApi.getCourseWorkProgress.mockResolvedValue({
-        starterQuiz: { grade: 3, numQuestions: 5 },
-        exitQuiz: { grade: 4, numQuestions: 5 },
-      } as never);
+      mockedGoogleClassroomApi.getCourseWorkProgress.mockResolvedValue(
+        savedProgress,
+      );
+      mockedMapPupilLessonProgressToSectionResults.mockReturnValue(
+        mappedProgress,
+      );
 
       renderWithCourseWork();
 
@@ -1421,16 +1431,33 @@ describe("PupilExperienceView", () => {
         expect(
           mockedGoogleClassroomApi.getCourseWorkProgress,
         ).toHaveBeenCalledWith("sub-1", "test-token-123");
+        expect(
+          mockedMapPupilLessonProgressToSectionResults,
+        ).toHaveBeenCalledWith(savedProgress);
         expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
           expect.objectContaining({ isHydratingInitialProgress: false }),
         );
       });
       expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
         expect.objectContaining({
-          initialSectionResults: expect.objectContaining({
-            "starter-quiz": { grade: 3, numQuestions: 5 },
-            "exit-quiz": { grade: 4, numQuestions: 5 },
-          }),
+          initialSectionResults: expect.objectContaining(mappedProgress),
+        }),
+      );
+    });
+
+    it("starts in a loading state and blocks coursework progress callbacks until ready", () => {
+      mockedGoogleClassroomApi.verifySession.mockReturnValue(
+        jest.fn(() => new Promise(() => {})),
+      );
+
+      renderWithCourseWork();
+
+      expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          initialSection: "overview",
+          isHydratingInitialProgress: true,
+          onNext: undefined,
+          onSectionResultUpdate: undefined,
         }),
       );
     });
@@ -1518,6 +1545,81 @@ describe("PupilExperienceView", () => {
       ).toHaveBeenCalledWith(progressPayload);
     });
 
+    it("shows an error banner when saving coursework progress fails and retries on the next interaction", async () => {
+      mockedGoogleClassroomApi.verifySession.mockReturnValue(
+        jest.fn().mockResolvedValue({
+          authenticated: true,
+          loginHint: "pupil@test.com",
+          session: "session-abc",
+          token: "token-abc",
+        }),
+      );
+      mockedGoogleClassroomApi.getCourseWorkContext.mockResolvedValue({
+        submissionId: "sub-1",
+        courseWorkId: "cw-1",
+        courseId: "c-1",
+        lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+      });
+      const firstPayload = { submissionId: "sub-1", sections: { intro: true } };
+      const secondPayload = {
+        submissionId: "sub-1",
+        sections: { video: true },
+      };
+      mockedMapToSubmitCourseWorkProgress
+        .mockReturnValueOnce(firstPayload as never)
+        .mockReturnValueOnce(secondPayload as never);
+      mockedGoogleClassroomApi.upsertCourseWorkProgress
+        .mockRejectedValueOnce(new Error("Save failed"))
+        .mockResolvedValueOnce(undefined);
+
+      renderWithCourseWork();
+
+      await waitFor(() => {
+        expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
+          expect.objectContaining({
+            onNext: expect.any(Function),
+            isHydratingInitialProgress: false,
+          }),
+        );
+      });
+
+      const onNext = lessonEngineProviderMock.mock.calls.at(-1)?.[0].onNext;
+      await act(async () => {
+        await onNext?.({ intro: { isComplete: true } }, "intro");
+      });
+
+      await waitFor(() => {
+        expect(
+          screen.getByText(
+            "We couldn't save your assignment progress. Please try again.",
+          ),
+        ).toBeInTheDocument();
+      });
+
+      await act(async () => {
+        await onNext?.(
+          {
+            video: {
+              played: true,
+              duration: 20,
+              timeElapsed: 20,
+              isComplete: true,
+            },
+          },
+          "video",
+        );
+      });
+
+      expect(
+        mockedGoogleClassroomApi.upsertCourseWorkProgress,
+      ).toHaveBeenNthCalledWith(1, firstPayload);
+      expect(
+        mockedGoogleClassroomApi.upsertCourseWorkProgress,
+      ).toHaveBeenNthCalledWith(2, secondPayload);
+    });
+
     it("does not enter the CourseWork flow when there is no assignmentToken", async () => {
       setAssignmentToken(null);
 
@@ -1530,7 +1632,7 @@ describe("PupilExperienceView", () => {
       expect(mockedGoogleClassroomApi.verifySession).not.toHaveBeenCalled();
     });
 
-    it("renders the lesson normally when the context has no submissionId", async () => {
+    it("shows a sync error banner when the coursework context is incomplete", async () => {
       mockedGoogleClassroomApi.verifySession.mockReturnValue(
         jest.fn().mockResolvedValue({
           authenticated: true,
@@ -1559,13 +1661,24 @@ describe("PupilExperienceView", () => {
         );
       });
 
-      // No progress saved, no sign-in overlay
+      expect(
+        screen.getByText(
+          "We couldn't load your assignment progress. You can still view the lesson, but progress won't sync.",
+        ),
+      ).toBeInTheDocument();
       expect(
         screen.queryByTestId("google-sign-in-view"),
       ).not.toBeInTheDocument();
       expect(
         mockedGoogleClassroomApi.getCourseWorkProgress,
       ).not.toHaveBeenCalled();
+      expect(lessonEngineProviderMock).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          initialSection: "overview",
+          onNext: undefined,
+          onSectionResultUpdate: undefined,
+        }),
+      );
     });
   });
 });

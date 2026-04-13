@@ -7,10 +7,6 @@ import {
   OakPupilJourneyContentGuidance,
 } from "@oaknational/oak-components";
 import { PostSubmissionState } from "@oaknational/google-classroom-addon/types";
-import {
-  AuthCookieKeys,
-  GoogleSignInView,
-} from "@oaknational/google-classroom-addon/ui";
 
 import {
   LessonEngineProvider,
@@ -54,7 +50,8 @@ import type { AddOnContextResponse } from "@/browser-lib/google-classroom/google
 import { type ClassroomProgressContext } from "@/browser-lib/google-classroom";
 import { mapToSubmitPupilProgress } from "@/browser-lib/google-classroom/mapToSubmitPupilProgress";
 import { mapPupilLessonProgressToSectionResults } from "@/browser-lib/google-classroom/mapPupilLessonProgressToSectionResults";
-import { useCourseWorkProgress } from "@/components/PupilViews/PupilExperience/useCourseWorkProgress";
+import { useCourseWorkProgress } from "@/hooks/useCourseWorkProgress";
+import { PupilCourseWorkSignInOverlay } from "@/components/PupilComponents/PupilCourseWorkSignInOverlay/PupilCourseWorkSignInOverlay";
 import {
   GoogleClassroomAnalyticsProvider,
   useGoogleClassroomAnalytics,
@@ -307,6 +304,8 @@ const PupilExperienceLayout = ({
     assignmentToken,
     isGoogleClassroomAssignment,
   });
+  const isCourseWorkReady =
+    courseWork.isCourseWorkFlow && courseWork.status === "ready";
 
   // ── Combined state (flows are mutually exclusive) ─────────────────────────
   const {
@@ -516,8 +515,12 @@ const PupilExperienceLayout = ({
     ) => {
       // CourseWork flow
       if (courseWork.isCourseWorkFlow) {
-        await courseWork.saveOrQueueProgress(sectionResults);
-        return;
+        try {
+          await courseWork.saveProgress(sectionResults);
+          return;
+        } catch (error) {
+          console.error("Failed to save CourseWork progress:", error);
+        }
       }
 
       // Add-on flow
@@ -602,6 +605,11 @@ const PupilExperienceLayout = ({
 
   const declineIcon = isGoogleClassroomAssignment ? "cross" : undefined;
   const declineText = isGoogleClassroomAssignment ? "Exit lesson" : undefined;
+  const lessonEngineInitialSection = isReadOnlyState
+    ? "review"
+    : courseWork.isCourseWorkFlow && courseWork.status !== "ready"
+      ? "overview"
+      : initialSection;
   return (
     <GoogleClassroomAnalyticsProvider>
       <PupilExperienceClassroomAnalytics
@@ -619,45 +627,22 @@ const PupilExperienceLayout = ({
       >
         <CookieConsentStyles />
         {courseWork.isPupilSignInRequired && (
-          <OakBox
-            style={{
-              position: "fixed",
-              inset: 0,
-              zIndex: 1000,
-              background: "rgba(255,255,255,0.95)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <OakBox $maxWidth="spacing-480" $width="100%" $pa="spacing-8">
-              <GoogleSignInView
-                getGoogleSignInLink={() =>
-                  googleClassroomApi.getGoogleSignInUrl(null, false, true)
-                }
-                onSuccessfulSignIn={courseWork.onSignInSuccess}
-                privacyPolicyUrl="/legal/privacy-policy"
-                showMailingListOption={false}
-                cookieKeys={[
-                  AuthCookieKeys.PupilAccessToken,
-                  AuthCookieKeys.PupilSession,
-                ]}
-              />
-            </OakBox>
-          </OakBox>
+          <PupilCourseWorkSignInOverlay
+            onSuccessfulSignIn={courseWork.onSignInSuccess}
+          />
         )}
         <LessonEngineProvider
           key={lessonEngineInstanceKey}
           initialLessonReviewSections={availableSections}
-          initialSection={isReadOnlyState ? "review" : initialSection}
+          initialSection={lessonEngineInitialSection}
           initialSectionResults={initialSectionResults}
           onNext={
-            isGoogleClassroomAssignment || courseWork.isCourseWorkFlow
+            isGoogleClassroomAssignment || isCourseWorkReady
               ? handleOnNext
               : undefined
           }
           onSectionResultUpdate={
-            isGoogleClassroomAssignment || courseWork.isCourseWorkFlow
+            isGoogleClassroomAssignment || isCourseWorkReady
               ? handleOnNext
               : undefined
           }
@@ -709,6 +694,14 @@ const PupilExperienceLayout = ({
               ) : (
                 <>
                   <OakInlineBanner
+                    message={courseWork.errorMessage ?? ""}
+                    isOpen={
+                      courseWork.isCourseWorkFlow &&
+                      !courseWork.isPupilSignInRequired &&
+                      Boolean(courseWork.errorMessage)
+                    }
+                  />
+                  <OakInlineBanner
                     message="You have turned-in this assignment. You can review the lesson and see your previous answers."
                     isOpen={isReadOnlyState}
                   />
@@ -745,14 +738,14 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
       teacherLoginHint: null,
       submissionId: null,
     });
+  const [assignmentToken, setAssignmentToken] = useState<string | null>(null);
   const googleClassroomContext = useGoogleClassroomContext();
 
-  // Read assignmentToken from the URL for the CourseWork flow
-  const searchParams =
-    globalThis.window === undefined
-      ? null
-      : new URLSearchParams(globalThis.window.location.search);
-  const assignmentToken = searchParams?.get("assignmentToken") ?? null;
+  useEffect(() => {
+    if (globalThis.window === undefined) return;
+    const searchParams = new URLSearchParams(globalThis.window.location.search);
+    setAssignmentToken(searchParams.get("assignmentToken"));
+  }, []);
 
   const { worksheetInfo } = useWorksheetInfoState(
     lessonContent.hasWorksheetAssetObject,

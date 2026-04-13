@@ -33,9 +33,10 @@ const LessonShareLinks: FC<{
     setIsShareSuccessful(false);
   }, [props.selectedActivities]);
 
-  const nonClassroomLinks = [
+  const linkShareOptions = [
     shareLinkConfig.microsoftTeams,
     shareLinkConfig.email,
+    ...(!props.onGoogleClassroomClick ? [shareLinkConfig.googleClassroom] : []),
   ];
 
   return (
@@ -85,7 +86,7 @@ const LessonShareLinks: FC<{
           disabled={props.disabled}
         />
 
-        {props.onGoogleClassroomClick ? (
+        {props.onGoogleClassroomClick && (
           <LoadingButton
             text={shareLinkConfig.googleClassroom.name}
             icon={shareLinkConfig.googleClassroom.icon}
@@ -100,29 +101,9 @@ const LessonShareLinks: FC<{
             ariaLabel="Assign to Google Classroom"
             ariaLive={"polite"}
           />
-        ) : (
-          <LoadingButton
-            text={shareLinkConfig.googleClassroom.name}
-            icon={shareLinkConfig.googleClassroom.icon}
-            isLoading={false}
-            disabled={props.disabled}
-            type="link"
-            external={true}
-            key={shareLinkConfig.googleClassroom.name}
-            href={getHrefForSocialSharing({
-              lessonSlug: props.lessonSlug,
-              selectedActivities: props.selectedActivities,
-              linkConfig: shareLinkConfig.googleClassroom,
-            })}
-            onClick={() =>
-              props.onSubmit(shareLinkConfig.googleClassroom.avoMedium)
-            }
-            ariaLabel="Assign to Google Classroom"
-            ariaLive={"polite"}
-          />
         )}
 
-        {nonClassroomLinks.map((link) => (
+        {linkShareOptions.map((link) => (
           <LoadingButton
             text={link.name}
             icon={link.icon}
@@ -139,7 +120,11 @@ const LessonShareLinks: FC<{
             onClick={() => {
               props.onSubmit(link.avoMedium);
             }}
-            ariaLabel={`Share to ${link.name}`}
+            ariaLabel={
+              link.name === shareLinkConfig.googleClassroom.name
+                ? "Assign to Google Classroom"
+                : `Share to ${link.name}`
+            }
             ariaLive={"polite"}
           />
         ))}
