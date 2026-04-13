@@ -43,7 +43,7 @@ jobs:
           cache: true
 
       # Install.
-      - run: pnpm ci --verbose
+      - run: pnpm install --verbose
 
       # Create Github release using semantic-release package.
       # See config here release.config.js

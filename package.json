@@ -282,7 +282,8 @@
   },
   "engines": {
     "node": "22",
-    "npm": ">=10.9 <11"
+    "npm": ">=10.9 <11",
+    "pnpm": ">=10"
   },
   "publishConfig": {
     "access": "restricted"

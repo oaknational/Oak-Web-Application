@@ -82,7 +82,7 @@ jobs:
           version: 10
           cache: true
       # Install.
-      - run: pnpm ci --verbose
+      - run: pnpm install --verbose
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"
@@ -124,7 +124,7 @@ jobs:
         with:
           version: 10
           cache: true
-      - run: pnpm ci --verbose
+      - run: pnpm install --verbose
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"

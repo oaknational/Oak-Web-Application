@@ -28,7 +28,7 @@ jobs:
           cache: true
 
       # Install.
-      - run: pnpm ci --verbose
+      - run: pnpm install --verbose
 
       # Check formatting adheres to our config.
       - run: pnpm run format:check
@@ -56,7 +56,7 @@ jobs:
           cache: true
 
       # Install.
-      - run: pnpm ci --verbose
+      - run: pnpm install --verbose
 
       # Unit tests, no integration tests.
       - run: pnpm run test:ci

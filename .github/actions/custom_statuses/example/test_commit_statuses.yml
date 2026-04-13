@@ -17,7 +17,7 @@ jobs:
           version: 10
           cache: true
 
-      - run: pnpm ci --verbose
+      - run: pnpm install --frozen-lockfile --verbose
         env:
           NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
