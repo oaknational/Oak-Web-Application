@@ -76,6 +76,7 @@ export default function PreviousNextItem({
         as={Link}
         href={href}
         $color={"text-primary"}
+        rel={navDirection}
       >
         {Boolean(index) && (
           <OakFlex
