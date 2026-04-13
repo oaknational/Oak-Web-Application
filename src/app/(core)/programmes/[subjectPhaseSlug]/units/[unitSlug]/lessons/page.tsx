@@ -133,6 +133,8 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
         phaseSlug={data.phaseSlug}
         tierOptionToggles={data.tierOptionToggles}
         subjectOptionToggles={data.subjectOptionToggles}
+        nextUnit={data.nextUnit}
+        prevUnit={data.prevUnit}
       />
     </>
   );
