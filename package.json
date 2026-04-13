@@ -59,7 +59,8 @@
     "remove-local-schema": "npx yalc remove @oaknational/oak-curriculum-schema && $npm_execpath add @oaknational/oak-curriculum-schema",
     "build-storybook": "storybook build",
     "use-local-classroom-addon": "$npm_execpath remove @oaknational/google-classroom-addon && yalc add @oaknational/google-classroom-addon",
-    "remove-local-classroom-addon": "yalc remove @oaknational/google-classroom-addon && $npm_execpath install @oaknational/google-classroom-addon"
+    "remove-local-classroom-addon": "yalc remove @oaknational/google-classroom-addon && $npm_execpath install @oaknational/google-classroom-addon",
+    "knip": "knip"
   },
   "overrides": {
     "@testing-library/dom": "$@testing-library/dom",
@@ -205,7 +206,7 @@
     "@types/json-diff": "^1.0.3",
     "@types/lodash": "^4.17.18",
     "@types/micromatch": "^4.0.9",
-    "@types/node": "^22.10.5",
+    "@types/node": "^22.19.17",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.3.0",
     "@types/react-transition-group": "^4.4.9",
@@ -240,6 +241,7 @@
     "jest-fetch-mock": "^3.0.3",
     "jest-styled-components": "^7.2.0",
     "json-diff": "^1.0.6",
+    "knip": "^6.3.1",
     "lint-staged": "^15.2.10",
     "microdiff": "^1.5.0",
     "micromatch": "^4.0.8",
@@ -267,7 +269,7 @@
     "svg-sprite": "^2.0.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2",
+    "typescript": "^5.9.3",
     "typescript-plugin-css-modules": "^5.2.0",
     "webpack": "^5.105.1",
     "webpack-bugsnag-plugins": "^1.9.0",
