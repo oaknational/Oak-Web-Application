@@ -3,7 +3,7 @@
  */
 import LessonPage, { generateMetadata } from "./page";
 
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 jest.mock("next/navigation", () => ({
   __esModule: true,
@@ -32,7 +32,7 @@ const mockLessonOverview = jest.fn();
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   __esModule: true,
   default: {
-    lessonOverview: (...args: unknown[]) => mockLessonOverview(...args),
+    teachersLessonOverview: (...args: unknown[]) => mockLessonOverview(...args),
   },
 }));
 
@@ -47,7 +47,7 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-const lessonOverviewFixture: Partial<LessonOverviewPageData> = {
+const lessonOverviewFixture: Partial<TeachersLessonOverviewPageData> = {
   programmeSlug: "maths-primary-ks2",
   unitSlug: "geometry-abc123",
   unitTitle: "Geometry",
@@ -64,7 +64,6 @@ const lessonOverviewFixture: Partial<LessonOverviewPageData> = {
   tierTitle: null,
   examBoardSlug: null,
   examBoardTitle: null,
-  isLegacy: false,
   pupilLessonOutcome: "I can identify basic shapes",
   keyLearningPoints: [
     { keyLearningPoint: "Identify 2D shapes" },
@@ -75,7 +74,6 @@ const lessonOverviewFixture: Partial<LessonOverviewPageData> = {
   ],
   downloads: [],
   updatedAt: "2024-01-01",
-  pathways: [],
   additionalFiles: null,
   lessonMediaClips: null,
   lessonReleaseDate: null,
@@ -171,28 +169,7 @@ describe("generateMetadata", () => {
       "Introduction to Geometry KS2 | Y4 Maths Lesson Resources",
     );
   });
-  it("handles missing year gracefully in metadata", async () => {
-    const fixtureWithoutYear = { ...lessonOverviewFixture, year: null };
-    mockLessonOverview.mockResolvedValue(fixtureWithoutYear);
 
-    const result = await generateMetadata({
-      params: Promise.resolve(defaultParams),
-      searchParams: Promise.resolve({}),
-    });
-
-    expect(result.title).toBe(
-      "Introduction to Geometry KS2 | Maths Lesson Resources",
-    );
-    expect(result.description).toBe(
-      "View lesson content and choose resources to download or share",
-    );
-    expect(result.openGraph?.title).toBe(
-      "Introduction to Geometry KS2 | Maths Lesson Resources",
-    );
-    expect(result.twitter?.title).toBe(
-      "Introduction to Geometry KS2 | Maths Lesson Resources",
-    );
-  });
   it("includes tier and exam board correctly in title when present", async () => {
     const fixtureWithTierAndExamBoard = {
       ...lessonOverviewFixture,

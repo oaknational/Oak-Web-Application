@@ -8,7 +8,7 @@ import withPageErrorHandling, {
 } from "@/hocs/withPageErrorHandling";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 
 type LessonPageParams = {
   subjectPhaseSlug: string;
@@ -21,8 +21,8 @@ const getCachedLessonData = cache(
     programmeSlug: string,
     unitSlug: string,
     lessonSlug: string,
-  ): Promise<LessonOverviewPageData> => {
-    return curriculumApi2023.lessonOverview({
+  ): Promise<TeachersLessonOverviewPageData> => {
+    return curriculumApi2023.teachersLessonOverview({
       programmeSlug,
       unitSlug,
       lessonSlug,
@@ -42,13 +42,13 @@ const getTitleForMetadata = ({
   tierTitle: string | null | undefined;
   examBoardTitle: string | null | undefined;
   keyStageSlug: string;
-  year: string | null | undefined;
+  year: string;
   subjectTitle: string;
 }) => {
   const optionalTitles = [tierTitle, examBoardTitle].filter(Boolean).join(" ");
   const optionalTitlesPart = optionalTitles ? ` ${optionalTitles}` : "";
-  const yearString = year ? ` Y${year}` : "";
-  return `${lessonTitle}${optionalTitlesPart} ${keyStageSlug.toUpperCase()} |${yearString} ${subjectTitle} Lesson Resources`;
+
+  return `${lessonTitle}${optionalTitlesPart} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources`;
 };
 
 export async function generateMetadata(
