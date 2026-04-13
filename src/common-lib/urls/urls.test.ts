@@ -126,10 +126,10 @@ describe("urls.ts", () => {
         "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48",
       );
     });
-    it("Lesson page", () => {
+    it("Integrated lesson index", () => {
       expect(
         resolveOakHref({
-          page: "lesson-page",
+          page: "integrated-lesson-index",
           programmeSlug: "maths-secondary-year-10-aqa",
           unitSlug: "algebra-123",
           lessonSlug: "solving-equations-456",

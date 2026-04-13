@@ -94,7 +94,7 @@ export function ProgrammeUnitList({
             isOptionalityUnit: false,
           }),
           href: resolveOakHref({
-            page: "unit-page",
+            page: "integrated-unit-index",
             unitSlug: option.slug ?? unit.slug,
             programmeSlug,
             query: {
@@ -120,7 +120,7 @@ export function ProgrammeUnitList({
           isHighlighted={isHighlighted}
           tags={getTagsForUnitCard(unit)}
           href={resolveOakHref({
-            page: "unit-page",
+            page: "integrated-unit-index",
             unitSlug: unit.slug,
             programmeSlug,
             query: {
