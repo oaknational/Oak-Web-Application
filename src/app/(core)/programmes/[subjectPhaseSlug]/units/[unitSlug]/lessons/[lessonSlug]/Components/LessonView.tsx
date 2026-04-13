@@ -44,6 +44,7 @@ export default function LessonView({
                       data.previousLesson.lessonSlug,
                     ),
                     title: data.previousLesson.lessonTitle,
+                    index: data.previousLesson.lessonIndex,
                   }
                 : undefined
             }
@@ -56,6 +57,7 @@ export default function LessonView({
                       data.nextLesson.lessonSlug,
                     ),
                     title: data.nextLesson.lessonTitle,
+                    index: data.nextLesson.lessonIndex,
                   }
                 : undefined
             }
