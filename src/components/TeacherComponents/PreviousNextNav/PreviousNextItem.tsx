@@ -82,7 +82,11 @@ export default function PreviousNextItem({
             $borderRadius={"border-radius-circle"}
             $font={"heading-7"}
             $pa={"spacing-12"}
-            $background={`bg-decorative${backgroundColorLevel}-subdued`}
+            $background={
+              backgroundColorLevel === 1
+                ? "bg-decorative1-main"
+                : `bg-decorative${backgroundColorLevel}-subdued`
+            }
             $justifyContent={"center"}
             $alignItems={"center"}
             $width={"spacing-32"}
