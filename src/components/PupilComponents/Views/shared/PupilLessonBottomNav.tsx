@@ -3,19 +3,19 @@ import {
   OakPrimaryButton,
 } from "@oaknational/oak-components";
 
-export type PupilLessonOverviewBottomNavProps = {
+export type PupilLessonBottomNavProps = {
   proceedLabel: string;
   onProceed: () => void;
   disabled?: boolean;
   testId?: string;
 };
 
-export const PupilLessonOverviewBottomNav = ({
+export const PupilLessonBottomNav = ({
   proceedLabel,
   onProceed,
   disabled,
   testId = "proceed-to-next-section",
-}: PupilLessonOverviewBottomNavProps) => {
+}: PupilLessonBottomNavProps) => {
   return (
     <OakLessonBottomNav>
       <OakPrimaryButton
