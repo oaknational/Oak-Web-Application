@@ -2,6 +2,13 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
+import {
+  getSubjectHeroImageUrl,
+  SubjectName,
+} from "../../../../[tab]/Components/ProgrammeHeader/getSubjectHeroImageUrl";
+
+import LessonHeader from "./Components/LessonHeader/LessonHeader";
+
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import withPageErrorHandling, {
   AppPageProps,
@@ -111,7 +118,17 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
 
   const data = await getCachedLessonData(programmeSlug, unitSlug, lessonSlug);
 
-  return <div>{data.lessonTitle}</div>;
+  return (
+    <LessonHeader
+      heroImage={getSubjectHeroImageUrl(data.subjectSlug as SubjectName)}
+      heading={data.lessonTitle}
+      currentLessonSlug={data.lessonSlug}
+      nextLesson={data.nextLesson}
+      prevLesson={data.previousLesson}
+      programmeSlug={data.programmeSlug}
+      unitSlug={data.unitSlug}
+    />
+  );
 };
 
 const LessonPage = withPageErrorHandling(InnerLessonPage, "lesson-page::app");

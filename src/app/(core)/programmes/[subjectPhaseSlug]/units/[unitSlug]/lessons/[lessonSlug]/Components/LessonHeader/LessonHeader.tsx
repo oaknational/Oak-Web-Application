@@ -1,16 +1,19 @@
+"use client";
 import { OakPrimaryButton, useMediaQuery } from "@oaknational/oak-components";
 import Link from "next/link";
 
-import { Header, LargeHeaderProps } from "../Header/Header";
-import HeaderNavFooter from "../HeaderNavFooter/HeaderNavFooter";
-
-import { NeighbourUnitOrLesson } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
+import {
+  Header,
+  LargeHeaderProps,
+} from "@/components/TeacherComponents/Header/Header";
+import HeaderNavFooter from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooter";
 import { resolveOakHref } from "@/common-lib/urls";
+import { TeachersLessonOverviewAdjacentLesson } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 
-type LessonHeaderProps = LargeHeaderProps & {
+type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
   currentLessonSlug: string;
-  prevLesson: NeighbourUnitOrLesson;
-  nextLesson: NeighbourUnitOrLesson;
+  prevLesson: TeachersLessonOverviewAdjacentLesson | null;
+  nextLesson: TeachersLessonOverviewAdjacentLesson | null;
   programmeSlug: string;
   unitSlug: string;
 };
@@ -21,7 +24,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
   const isDesktop = useMediaQuery("desktop");
   return (
     <>
-      <Header {...props} />
+      <Header {...props} layoutVariant="large" backgroundColorLevel={1} />
       <HeaderNavFooter
         type="lesson"
         backgroundColorLevel={1}
@@ -33,8 +36,8 @@ const LessonHeader = (props: LessonHeaderProps) => {
         prevHref={
           prevLesson
             ? resolveOakHref({
-                page: "lesson-overview", // TD: update
-                lessonSlug: prevLesson.slug,
+                page: "teachers-lesson-overview",
+                lessonSlug: prevLesson.lessonSlug,
                 programmeSlug,
                 unitSlug,
               })
@@ -43,8 +46,8 @@ const LessonHeader = (props: LessonHeaderProps) => {
         nextHref={
           nextLesson
             ? resolveOakHref({
-                page: "lesson-overview", // TD: update
-                lessonSlug: nextLesson.slug,
+                page: "teachers-lesson-overview",
+                lessonSlug: nextLesson.lessonSlug,
                 unitSlug,
                 programmeSlug,
               })

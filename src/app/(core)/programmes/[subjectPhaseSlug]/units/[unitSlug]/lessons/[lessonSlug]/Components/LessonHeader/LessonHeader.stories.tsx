@@ -49,7 +49,15 @@ export const Default: Story = {
     currentLessonSlug: "lesson-2",
     programmeSlug: "art-primary-ks1",
     unitSlug: "unit-1",
-    nextLesson: { slug: "lesson-3", title: "Lesson 3" },
-    prevLesson: { slug: "lesson-1", title: "Lesson 1" },
+    nextLesson: {
+      lessonSlug: "lesson-3",
+      lessonTitle: "Lesson 3",
+      lessonIndex: 3,
+    },
+    prevLesson: {
+      lessonSlug: "lesson-1",
+      lessonTitle: "Lesson 1",
+      lessonIndex: 1,
+    },
   },
 };

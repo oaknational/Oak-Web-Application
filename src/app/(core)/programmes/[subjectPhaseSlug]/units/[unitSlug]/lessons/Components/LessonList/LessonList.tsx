@@ -198,7 +198,7 @@ const LessonList = ({
                   title={lesson.lessonTitle}
                   subcopy={<LessonSubcopy lesson={lesson} />}
                   href={resolveOakHref({
-                    page: "lesson-overview",
+                    page: "teachers-lesson-overview",
                     programmeSlug,
                     unitSlug,
                     lessonSlug: lesson.lessonSlug,
