@@ -20,6 +20,7 @@ import type { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/qu
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 
 export type UnitViewProps = Pick<
   TeachersUnitOverviewData,
@@ -40,6 +41,8 @@ export type UnitViewProps = Pick<
   | "phaseSlug"
   | "tierOptionToggles"
   | "subjectOptionToggles"
+  | "prevUnit"
+  | "nextUnit"
 >;
 
 export const UnitView = ({
@@ -60,6 +63,8 @@ export const UnitView = ({
   phaseSlug,
   tierOptionToggles,
   subjectOptionToggles,
+  nextUnit,
+  prevUnit,
 }: UnitViewProps) => {
   const hasToggles =
     tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
@@ -144,9 +149,44 @@ export const UnitView = ({
           />
           <HelpLinkCard $display={["block", "none"]} />
         </OakGridArea>
+        <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
+          <PreviousNextNav
+            backgroundColorLevel={getBackgroundColorLevel(phaseSlug)}
+            currentIndex={unitIndex}
+            navItemType="unit"
+            previous={
+              prevUnit
+                ? {
+                    href: resolveOakHref({
+                      page: "unit-page",
+                      subjectPhaseSlug: programmeSlug,
+                      unitSlug: prevUnit.slug,
+                    }),
+                    title: prevUnit.title,
+                  }
+                : undefined
+            }
+            next={
+              nextUnit
+                ? {
+                    href: resolveOakHref({
+                      page: "unit-page",
+                      subjectPhaseSlug: programmeSlug,
+                      unitSlug: nextUnit.slug,
+                    }),
+                    title: nextUnit.title,
+                  }
+                : undefined
+            }
+          />
+        </OakGridArea>
       </OakGrid>
     </OakBox>
   );
+};
+
+const getBackgroundColorLevel = (phaseSlug: UnitViewProps["phaseSlug"]) => {
+  return phaseSlug === "primary" ? 4 : 3;
 };
 
 const UnitInfo = ({
@@ -197,7 +237,6 @@ const UnitThreads = ({
   $display: OakFlexProps["$display"];
   phaseSlug: UnitViewProps["phaseSlug"];
 }) => {
-  const backgroundColorLevel = phaseSlug === "primary" ? 4 : 3;
   if (threads.length) {
     return (
       <OakFlex
@@ -211,8 +250,8 @@ const UnitThreads = ({
             <OakTagFunctional
               key={thread}
               label={thread}
-              $background={`bg-decorative${backgroundColorLevel}-very-subdued`}
-              $borderColor={`border-decorative${backgroundColorLevel}`}
+              $background={`bg-decorative${getBackgroundColorLevel(phaseSlug)}-very-subdued`}
+              $borderColor={`border-decorative${getBackgroundColorLevel(phaseSlug)}`}
               $ba={"border-solid-s"}
             />
           ))}
