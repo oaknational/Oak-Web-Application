@@ -9,10 +9,17 @@ import {
 } from "@oaknational/oak-components";
 import { useMemo } from "react";
 import styled from "styled-components";
+import { PortableTextBlockComponent } from "@portabletext/react";
 
 import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+
+const OakPStyled: PortableTextBlockComponent = (props) => {
+  return <OakP $font={["body-2", "body-1"]}>{props.children}</OakP>;
+};
 
 const CustomWeAreItemOakGridArea = styled(OakGridArea)`
   grid-column: span 3;
@@ -36,8 +43,8 @@ const COLORS: OakBoxProps["$background"][] = [
 type WhoAreWeDescProps = {
   title: string;
   items: {
-    title: string;
-    text: string;
+    heading: string;
+    textRaw: PortableTextJSON;
     image: ImageWithAltText;
   }[];
 };
@@ -66,10 +73,10 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
           {title}
         </OakHeading>
         <OakGrid $rg={"spacing-32"} $cg={"spacing-16"}>
-          {itemsMapped.map(({ background, title, text, image }) => {
+          {itemsMapped.map(({ background, heading, textRaw, image }) => {
             return (
               <CustomWeAreItemOakGridArea
-                key={title}
+                key={heading}
                 data-testid="who-we-are-desc-item"
                 $colSpan={12}
               >
@@ -93,9 +100,16 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                       tag="h3"
                       $font={["heading-6", "heading-5", "heading-5"]}
                     >
-                      {title}
+                      {heading}
                     </OakHeading>
-                    <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
+                    <PortableTextWithDefaults
+                      value={textRaw}
+                      components={{
+                        block: {
+                          normal: OakPStyled,
+                        },
+                      }}
+                    />
                   </OakFlex>
                 </OakFlex>
               </CustomWeAreItemOakGridArea>

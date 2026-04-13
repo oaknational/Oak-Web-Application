@@ -6,10 +6,18 @@ import {
   OakP,
 } from "@oaknational/oak-components";
 import { forwardRef } from "react";
+import { PortableTextBlockComponent } from "@portabletext/react";
+
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+
+const OakPStyled: PortableTextBlockComponent = (props) => {
+  return <OakP $font={"body-1"}>{props.children}</OakP>;
+};
 
 export type MeetTheTeamContainerProps = {
   title: string;
-  text?: string | null;
+  text?: string | PortableTextJSON | null;
   children: React.ReactNode;
   anchor?: string;
 };
@@ -30,7 +38,14 @@ export const MeetTheTeamContainer = forwardRef<
           <OakHeading tag="h2" $font={["heading-5", "heading-3", "heading-3"]}>
             {title}
           </OakHeading>
-          {text && <OakP $font={"body-1"}>{text}</OakP>}
+          <PortableTextWithDefaults
+            value={text}
+            components={{
+              block: {
+                normal: OakPStyled,
+              },
+            }}
+          />
         </OakFlex>
         <OakGrid
           as="ul"
