@@ -1,0 +1,13 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "tags": [
+    "-lintignore"
+  ],
+  "ignore": [
+    "src/node-lib/curriculum-api-2023/generated/sdk.ts",
+    "src/node-lib/sanity-graphql/generated/sdk.ts",
+    "src/node-lib/educator-api/generated/sdk.ts",
+    "src/node-lib/avo/Avo.ts",
+    "scripts/**/*"
+  ]
+}
