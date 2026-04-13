@@ -134,7 +134,7 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
         )}
         {/* Content area: 7 columns on desktop for large layout, full width on mobile and compact layout*/}
         <OakGridArea $colSpan={[12, isCompactLayout ? 12 : 7]} $order={[3, 2]}>
-          <OakFlex $gap={"spacing-32"}>
+          <OakFlex $gap={"spacing-32"} $height={"100%"}>
             <CompactHeaderSubjectIcon display={["none", "block"]} {...props} />
             <OakFlex
               $textWrap="balance"
