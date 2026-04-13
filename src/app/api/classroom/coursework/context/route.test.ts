@@ -42,6 +42,9 @@ const mockGetClassroomCourseWork = jest.fn().mockResolvedValue(mockCourseWork);
 const mockGetStudentSubmissionId = jest
   .fn()
   .mockResolvedValue("submission-123");
+const consoleErrorSpy = jest
+  .spyOn(console, "error")
+  .mockImplementation(() => undefined);
 
 const makeRequest = (
   params: Record<string, string>,
@@ -63,6 +66,10 @@ describe("GET /api/classroom/coursework/context", () => {
       getClassroomCourseWork: mockGetClassroomCourseWork,
       getStudentSubmissionId: mockGetStudentSubmissionId,
     });
+  });
+
+  afterAll(() => {
+    consoleErrorSpy.mockRestore();
   });
 
   it("returns context with submissionId when pupil is authenticated", async () => {
@@ -93,13 +100,13 @@ describe("GET /api/classroom/coursework/context", () => {
     );
   });
 
-  it("returns context without submissionId when pupil is unauthenticated", async () => {
+  it("returns 401 when pupil is unauthenticated", async () => {
     await GET(makeRequest({ assignmentToken: "token-abc" }));
 
     expect(mockGetStudentSubmissionId).not.toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
-      expect.objectContaining({ submissionId: undefined }),
-      { status: 200 },
+      { error: "Authentication required" },
+      { status: 401 },
     );
   });
 
