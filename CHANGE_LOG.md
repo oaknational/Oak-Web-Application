@@ -1,3 +1,19 @@
+# [1.1042.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1041.0...v1.1042.0) (2026-04-14)
+
+
+### Bug Fixes
+
+* **LESQ-1910:** make next+previous links equal height ([2531c67](https://github.com/oaknational/Oak-Web-Application/commit/2531c67fad117b46d7749aa1a3f5da8917d3ffe1))
+
+
+### Features
+
+* **LESQ-1910:** add next+previous lesson buttons ([0496bdc](https://github.com/oaknational/Oak-Web-Application/commit/0496bdca67d254dc6b14d52cc550e62578ad8ecd))
+* **LESQ-1910:** skip unpublished lessons for next+previous ([c8f396d](https://github.com/oaknational/Oak-Web-Application/commit/c8f396da5115ecb0e92b095c780aa7b09b1f6a33))
+* **LESQ-1910:** use index from data ([fdaab2e](https://github.com/oaknational/Oak-Web-Application/commit/fdaab2e03779b789dbce789515d3ad6f2471e7bd))
+* **LESQ-1910:** use the main token for level 1 background ([9dd0405](https://github.com/oaknational/Oak-Web-Application/commit/9dd0405d8a379121af88afb7e29d6fc8a83c1dc0))
+* update links on lesson list to point to new lesson page ([6bca8d2](https://github.com/oaknational/Oak-Web-Application/commit/6bca8d26728c3b8416dc612696644eed5a6567ea))
+
 # [1.1041.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1040.0...v1.1041.0) (2026-04-14)
 
 

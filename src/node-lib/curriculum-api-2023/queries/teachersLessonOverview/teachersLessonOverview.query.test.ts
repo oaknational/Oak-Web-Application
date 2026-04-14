@@ -90,9 +90,9 @@ describe("teachersLessonOverview()", () => {
       expect(
         getAdjacentLessonsByOrderInUnit(
           [
-            { slug: "a", title: "A", order: 1 },
-            { slug: "b", title: "B", order: 2 },
-            { slug: "c", title: "C", order: 3 },
+            { slug: "a", title: "A", order: 1, _state: "published" },
+            { slug: "b", title: "B", order: 2, _state: "published" },
+            { slug: "c", title: "C", order: 3, _state: "published" },
           ],
           "b",
         ),
@@ -114,8 +114,8 @@ describe("teachersLessonOverview()", () => {
       expect(
         getAdjacentLessonsByOrderInUnit(
           [
-            { slug: "a", title: "A", order: 1 },
-            { slug: "b", title: "B", order: 2 },
+            { slug: "a", title: "A", order: 1, _state: "published" },
+            { slug: "b", title: "B", order: 2, _state: "published" },
           ],
           "a",
         ),
@@ -130,8 +130,8 @@ describe("teachersLessonOverview()", () => {
       expect(
         getAdjacentLessonsByOrderInUnit(
           [
-            { slug: "a", title: "A", order: 1 },
-            { slug: "b", title: "B", order: 2 },
+            { slug: "a", title: "A", order: 1, _state: "published" },
+            { slug: "b", title: "B", order: 2, _state: "published" },
           ],
           "b",
         ),
@@ -148,7 +148,7 @@ describe("teachersLessonOverview()", () => {
     it("returns both null when current slug is not in the list", () => {
       expect(
         getAdjacentLessonsByOrderInUnit(
-          [{ slug: "a", title: "A", order: 1 }],
+          [{ slug: "a", title: "A", order: 1, _state: "published" }],
           "missing",
         ),
       ).toEqual({ previousLesson: null, nextLesson: null });
@@ -158,9 +158,9 @@ describe("teachersLessonOverview()", () => {
       expect(
         getAdjacentLessonsByOrderInUnit(
           [
-            { slug: "lesson-c", title: "C", order: 3 },
-            { slug: "lesson-a", title: "A", order: 1 },
-            { slug: "lesson-b", title: "B", order: 2 },
+            { slug: "lesson-c", title: "C", order: 3, _state: "published" },
+            { slug: "lesson-a", title: "A", order: 1, _state: "published" },
+            { slug: "lesson-b", title: "B", order: 2, _state: "published" },
           ],
           "lesson-b",
         ),
@@ -182,9 +182,9 @@ describe("teachersLessonOverview()", () => {
       expect(
         getAdjacentLessonsByOrderInUnit(
           [
-            { slug: "zebra", title: "Z", order: 1 },
-            { slug: "alpha", title: "A", order: 1 },
-            { slug: "mike", title: "M", order: 2 },
+            { slug: "zebra", title: "Z", order: 1, _state: "published" },
+            { slug: "alpha", title: "A", order: 1, _state: "published" },
+            { slug: "mike", title: "M", order: 2, _state: "published" },
           ],
           "zebra",
         ),
@@ -199,6 +199,53 @@ describe("teachersLessonOverview()", () => {
           lessonTitle: "M",
           lessonIndex: 3,
         },
+      });
+    });
+
+    it("skips non-published lessons for next/prev but keeps 1-based index from full unit order", () => {
+      expect(
+        getAdjacentLessonsByOrderInUnit(
+          [
+            { slug: "l1", title: "L1", order: 1, _state: "published" },
+            { slug: "l2", title: "L2", order: 2, _state: "published" },
+            { slug: "l3", title: "L3", order: 3, _state: "published" },
+            { slug: "l4", title: "L4", order: 4, _state: "published" },
+            { slug: "l5", title: "L5", order: 5, _state: "new" },
+            { slug: "l6", title: "L6", order: 6, _state: "published" },
+          ],
+          "l4",
+        ),
+      ).toEqual({
+        previousLesson: {
+          lessonSlug: "l3",
+          lessonTitle: "L3",
+          lessonIndex: 3,
+        },
+        nextLesson: {
+          lessonSlug: "l6",
+          lessonTitle: "L6",
+          lessonIndex: 6,
+        },
+      });
+    });
+
+    it("skips non-published lessons when scanning for previous", () => {
+      expect(
+        getAdjacentLessonsByOrderInUnit(
+          [
+            { slug: "l1", title: "L1", order: 1, _state: "published" },
+            { slug: "l2", title: "L2", order: 2, _state: "new" },
+            { slug: "l3", title: "L3", order: 3, _state: "published" },
+          ],
+          "l3",
+        ),
+      ).toEqual({
+        previousLesson: {
+          lessonSlug: "l1",
+          lessonTitle: "L1",
+          lessonIndex: 1,
+        },
+        nextLesson: null,
       });
     });
   });
@@ -384,6 +431,98 @@ describe("teachersLessonOverview()", () => {
       lessonSlug: "lesson-c",
       lessonTitle: "Lesson C",
       lessonIndex: 3,
+    });
+  });
+
+  test("skips non-published static lessons for adjacent links but uses full-sequence lessonIndex", async () => {
+    const browseRow = syntheticUnitvariantLessonsByKsFixture({
+      overrides: {
+        lesson_slug: "lesson-4",
+        unit_slug: unitSlugTest,
+        programme_slug: programmeSlugTest,
+        order_in_unit: 4,
+        programme_slug_by_year: [programmeSlugTest],
+      },
+    });
+    const content = lessonContentFixture({
+      overrides: { exit_quiz: [], starter_quiz: [] },
+    });
+    const unitData = {
+      lesson_count: 6,
+      supplementary_data: {
+        unit_order: 1,
+        static_lesson_list: [
+          {
+            slug: "lesson-1",
+            order: 1,
+            title: "Lesson 1",
+            _state: "published",
+            lesson_uid: "uid-1",
+          },
+          {
+            slug: "lesson-2",
+            order: 2,
+            title: "Lesson 2",
+            _state: "published",
+            lesson_uid: "uid-2",
+          },
+          {
+            slug: "lesson-3",
+            order: 3,
+            title: "Lesson 3",
+            _state: "published",
+            lesson_uid: "uid-3",
+          },
+          {
+            slug: "lesson-4",
+            order: 4,
+            title: "Lesson 4",
+            _state: "published",
+            lesson_uid: "uid-4",
+          },
+          {
+            slug: "lesson-5",
+            order: 5,
+            title: "Lesson 5",
+            _state: "draft",
+            lesson_uid: "uid-5",
+          },
+          {
+            slug: "lesson-6",
+            order: 6,
+            title: "Lesson 6",
+            _state: "published",
+            lesson_uid: "uid-6",
+          },
+        ],
+      },
+    };
+
+    const lesson = await teachersLessonOverview({
+      ...sdk,
+      teachersLessonOverview: jest.fn(() =>
+        Promise.resolve({
+          browseData: [browseRow],
+          content: [content],
+          unitData: [unitData],
+          tpcWorks: [],
+        }),
+      ),
+    })({
+      lessonSlug: "lesson-4",
+      unitSlug: unitSlugTest,
+      programmeSlug: programmeSlugTest,
+    });
+
+    expect(lesson.previousLesson).toEqual({
+      lessonSlug: "lesson-3",
+      lessonTitle: "Lesson 3",
+      lessonIndex: 3,
+    });
+    expect(lesson.nextLesson).toEqual({
+      lessonSlug: "lesson-6",
+      lessonTitle: "Lesson 6",
+      lessonIndex: 6,
     });
   });
 

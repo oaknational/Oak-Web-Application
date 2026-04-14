@@ -64,7 +64,7 @@ export default function PreviousNextItem({
   backgroundColorLevel,
 }: Readonly<PreviousNextItemProps>) {
   return (
-    <OakFocusIndicator $borderRadius={"border-radius-l"}>
+    <OakFocusIndicator $borderRadius={"border-radius-l"} $minHeight={"100%"}>
       <StyledFlexContainer
         $borderRadius={"border-radius-l"}
         $borderColor={"border-neutral-lighter"}
@@ -76,13 +76,19 @@ export default function PreviousNextItem({
         as={Link}
         href={href}
         $color={"text-primary"}
+        rel={navDirection}
+        $minHeight={"100%"}
       >
         {Boolean(index) && (
           <OakFlex
             $borderRadius={"border-radius-circle"}
             $font={"heading-7"}
             $pa={"spacing-12"}
-            $background={`bg-decorative${backgroundColorLevel}-subdued`}
+            $background={
+              backgroundColorLevel === 1
+                ? "bg-decorative1-main"
+                : `bg-decorative${backgroundColorLevel}-subdued`
+            }
             $justifyContent={"center"}
             $alignItems={"center"}
             $width={"spacing-32"}
@@ -92,9 +98,11 @@ export default function PreviousNextItem({
             {index}
           </OakFlex>
         )}
-        <OakTypography $font={"body-3-bold"}>{title}</OakTypography>
+        <OakTypography $font={"body-3-bold"} $mb={"spacing-12"}>
+          {title}
+        </OakTypography>
         <OakFlex
-          $mt={"spacing-12"}
+          $mt={"auto"}
           $justifyContent={navDirection === "next" ? "flex-end" : "flex-start"}
           $alignItems={"center"}
           $gap={"spacing-12"}

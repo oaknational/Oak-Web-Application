@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
+import LessonView from "./Components/LessonView";
+
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import withPageErrorHandling, {
   AppPageProps,
@@ -111,7 +113,7 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
 
   const data = await getCachedLessonData(programmeSlug, unitSlug, lessonSlug);
 
-  return <div>{data.lessonTitle}</div>;
+  return <LessonView {...data} />;
 };
 
 const LessonPage = withPageErrorHandling(InnerLessonPage, "lesson-page::app");
