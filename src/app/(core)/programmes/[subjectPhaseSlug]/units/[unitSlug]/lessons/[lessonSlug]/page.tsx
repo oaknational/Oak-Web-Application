@@ -6,6 +6,7 @@ import {
   getSubjectHeroImageUrl,
   SubjectName,
 } from "../../../../[tab]/Components/ProgrammeHeader/getSubjectHeroImageUrl";
+import { Breadcrumbs } from "../Components/Breadcrumbs/Breadcrumbs";
 
 import LessonHeader from "./Components/LessonHeader/LessonHeader";
 
@@ -16,6 +17,7 @@ import withPageErrorHandling, {
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 type LessonPageParams = {
   subjectPhaseSlug: string;
@@ -127,6 +129,18 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
       prevLesson={data.previousLesson}
       programmeSlug={data.programmeSlug}
       unitSlug={data.unitSlug}
+      headerSlot={
+        <Breadcrumbs
+          data={data}
+          subjectPhaseSlug={getTeacherSubjectPhaseSlug({
+            subjectSlug: data.subjectSlug,
+            phaseSlug: data.phaseSlug,
+            subjectParentTitle: data.subjectParent,
+            examboardSlug: data.examBoardSlug,
+            pathwaySlug: data.pathwaySlug,
+          })}
+        />
+      }
     />
   );
 };
