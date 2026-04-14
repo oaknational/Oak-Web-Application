@@ -97,8 +97,10 @@ export const PupilPageContent = ({
   worksheetInfo,
   additionalFiles,
   isHandedIn,
+  onHandInSuccess,
 }: Omit<PupilExperienceViewProps, "initialSection"> & {
   isHandedIn?: boolean;
+  onHandInSuccess?: () => void;
 }) => {
   const { currentSection } = useLessonEngineContext();
   const {
@@ -205,6 +207,7 @@ export const PupilPageContent = ({
           browseData={browseData}
           pageType={pageType}
           isHandedIn={isHandedIn}
+          onHandInSuccess={onHandInSuccess}
         />
       )}
     </>
@@ -710,7 +713,7 @@ const PupilExperienceLayout = ({
                   />
                   <OakInlineBanner
                     message="You have turned-in this assignment. You can review the lesson and see your previous answers."
-                    isOpen={isReadOnlyState}
+                    isOpen={isReadOnlyState || courseWork.isHandedIn}
                   />
                   <PupilPageContent
                     browseData={browseData}
@@ -722,6 +725,7 @@ const PupilExperienceLayout = ({
                     hasAdditionalFiles={hasAdditionalFiles}
                     additionalFiles={additionalFiles}
                     isHandedIn={courseWork.isHandedIn}
+                    onHandInSuccess={courseWork.onHandInSuccess}
                   />
                 </>
               )}

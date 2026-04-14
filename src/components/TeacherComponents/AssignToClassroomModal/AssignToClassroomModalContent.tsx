@@ -135,7 +135,7 @@ const AssignToClassroomModalCoursePickerState: FC<
             ))}
           </OakSelect>
         </OakFlex>
-        <OakFlex $gap="spacing-12">
+        <OakFlex $gap="spacing-12" $mb={["spacing-12", "spacing-16"]}>
           <OakPrimaryButton
             onClick={onAssign}
             disabled={!selectedCourseId || isSubmitting || !title}
@@ -163,7 +163,7 @@ const AssignToClassroomModalSuccessState: FC<
       &ldquo;{title}&rdquo; has been saved to your Google Classroom as a draft
       assignment. Open it in Google Classroom to publish it for your students.
     </OakP>
-    <OakFlex $gap="spacing-12">
+    <OakFlex $gap="spacing-12" $mb={["spacing-12", "spacing-16"]}>
       <OakPrimaryButton
         element="a"
         href={viewDraftHref}

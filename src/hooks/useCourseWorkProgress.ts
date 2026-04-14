@@ -158,6 +158,10 @@ export function useCourseWorkProgress({
     await hydrate();
   }, [hydrate]);
 
+  const onHandInSuccess = useCallback(() => {
+    setIsHandedIn(true);
+  }, []);
+
   return {
     isCourseWorkFlow,
     status,
@@ -171,5 +175,6 @@ export function useCourseWorkProgress({
     isHandedIn,
     saveProgress,
     onSignInSuccess,
+    onHandInSuccess,
   };
 }

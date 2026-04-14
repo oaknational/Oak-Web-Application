@@ -48,6 +48,7 @@ type PupilViewsReviewProps = {
   browseData: PupilExperienceViewProps["browseData"];
   pageType: PupilExperienceViewProps["pageType"];
   isHandedIn?: boolean;
+  onHandInSuccess?: () => void;
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
@@ -58,6 +59,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     exitQuizQuestionsArray,
     browseData: { programmeFields, lessonSlug, isLegacy },
     isHandedIn,
+    onHandInSuccess,
   } = props;
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
@@ -285,6 +287,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                   <CourseWorkHandInButton
                     assignmentToken={assignmentToken}
                     initialIsHandedIn={isHandedIn}
+                    onHandInSuccess={onHandInSuccess}
                   />
                 )}
                 {classroomAssignmentChecked &&

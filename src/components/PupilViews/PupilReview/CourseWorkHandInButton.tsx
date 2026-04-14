@@ -13,11 +13,13 @@ import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomAp
 type CourseWorkHandInButtonProps = {
   assignmentToken: string;
   initialIsHandedIn?: boolean;
+  onHandInSuccess?: () => void;
 };
 
 export const CourseWorkHandInButton = ({
   assignmentToken,
   initialIsHandedIn,
+  onHandInSuccess,
 }: CourseWorkHandInButtonProps) => {
   const [handInState, setHandInState] = useState<AsyncState>(
     initialIsHandedIn ? "success" : "idle",
@@ -32,6 +34,7 @@ export const CourseWorkHandInButton = ({
     try {
       await googleClassroomApi.turnInCourseWork(assignmentToken);
       setHandInState("success");
+      onHandInSuccess?.();
     } catch {
       setHandInState("error");
     }
