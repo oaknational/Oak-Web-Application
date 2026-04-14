@@ -7,7 +7,7 @@ import {
 } from "@/components/PupilComponents/QuizUtils/answerTypeDiscriminators";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
-export function pickQuizTooltip(answers: QuizQuestionAnswers) {
+export const pickQuizTooltip = (answers: QuizQuestionAnswers) => {
   switch (true) {
     case isOrderAnswer(answers):
       return "You need to order to move on!";
@@ -20,4 +20,4 @@ export function pickQuizTooltip(answers: QuizQuestionAnswers) {
     case isSingleAnswerMCQ(answers):
       return "You need to select an answer to move on!";
   }
-}
+};
