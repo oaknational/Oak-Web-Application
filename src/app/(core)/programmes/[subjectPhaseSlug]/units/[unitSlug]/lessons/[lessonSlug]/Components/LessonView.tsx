@@ -7,6 +7,7 @@ import {
   OakHeading,
 } from "@oaknational/oak-components";
 
+import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
 
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
@@ -17,7 +18,6 @@ import {
   getMediaClipLabel,
   getPageLinksWithSubheadingsForLesson,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { checkIfResourceHasLegacyCopyright } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
@@ -125,47 +125,68 @@ export default function LessonView(
         $width={"100%"}
         $maxWidth={"spacing-1280"}
       >
-        <OakGridArea
-          $colSpan={[12, 4, 4]}
-          $display={["none", "block", "block"]}
-        >
-          <LessonOverviewSideNav
-            links={pageLinks}
-            contentRestricted={contentRestricted}
-            downloadAllButtonProps={{
-              lessonSlug,
-              programmeSlug,
-              unitSlug,
-              showDownloadAll,
-              onClickDownloadAll: () => {
-                trackDownloadResourceButtonClicked("all");
-              },
-              geoRestricted,
-              loginRequired,
-              expired,
-              isSpecialist: false,
-              isCanonical: false,
-            }}
-            currentSectionId={null}
-          />
-        </OakGridArea>
-        <OakGridArea $colSpan={[12, 8, 8]}>
-          <OakBox id="slide-deck" style={{ height: 500 }}>
-            <OakHeading tag="h2">Slide deck</OakHeading>
-          </OakBox>
-          <OakBox id="lesson-details" style={{ height: 500 }}>
-            <OakHeading tag="h2">Lesson details</OakHeading>
-          </OakBox>
-          <OakBox id="video" style={{ height: 500 }}>
-            <OakHeading tag="h2">Video</OakHeading>
-          </OakBox>
-          <OakBox id="worksheet" style={{ height: 500 }}>
-            <OakHeading tag="h2">Worksheet</OakHeading>
-          </OakBox>
-          <OakBox id="quiz" style={{ height: 500 }}>
-            <OakHeading tag="h2">Quiz</OakHeading>
-          </OakBox>
-        </OakGridArea>
+        <CurrentSectionIdProvider>
+          <OakGridArea
+            $colSpan={[12, 4, 4]}
+            $display={["none", "block", "block"]}
+          >
+            <LessonOverviewSideNav
+              links={pageLinks}
+              contentRestricted={contentRestricted}
+              downloadAllButtonProps={{
+                lessonSlug,
+                programmeSlug,
+                unitSlug,
+                showDownloadAll,
+                onClickDownloadAll: () => {
+                  trackDownloadResourceButtonClicked("all");
+                },
+                geoRestricted,
+                loginRequired,
+                expired,
+                isSpecialist: false,
+                isCanonical: false,
+              }}
+            />
+          </OakGridArea>
+          <OakGridArea $colSpan={[12, 8, 8]}>
+            <OakBox
+              id="slide-deck"
+              style={{ height: 500 }}
+              className="anchor-section"
+            >
+              <OakHeading tag="h2">Slide deck</OakHeading>
+            </OakBox>
+            <OakBox
+              id="lesson-details"
+              style={{ height: 500 }}
+              className="anchor-section"
+            >
+              <OakHeading tag="h2">Lesson details</OakHeading>
+            </OakBox>
+            <OakBox
+              id="video"
+              style={{ height: 500 }}
+              className="anchor-section"
+            >
+              <OakHeading tag="h2">Video</OakHeading>
+            </OakBox>
+            <OakBox
+              id="worksheet"
+              style={{ height: 500 }}
+              className="anchor-section"
+            >
+              <OakHeading tag="h2">Worksheet</OakHeading>
+            </OakBox>
+            <OakBox
+              id="quiz"
+              style={{ height: 500 }}
+              className="anchor-section"
+            >
+              <OakHeading tag="h2">Quiz</OakHeading>
+            </OakBox>
+          </OakGridArea>
+        </CurrentSectionIdProvider>
         <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
           <PreviousNextNav
             backgroundColorLevel={1}
