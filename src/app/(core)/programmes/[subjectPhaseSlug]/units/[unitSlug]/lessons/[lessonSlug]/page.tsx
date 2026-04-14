@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
-
 import {
   getSubjectHeroImageUrl,
   SubjectName,
