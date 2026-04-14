@@ -21,6 +21,7 @@ export type PreviousNextNavProps = {
   previous?: {
     href: string;
     title: string;
+    index?: number;
   };
   /**
    * Properties for the Next nav item
@@ -28,6 +29,7 @@ export type PreviousNextNavProps = {
   next?: {
     href: string;
     title: string;
+    index?: number;
   };
 };
 
@@ -44,7 +46,9 @@ export default function PreviousNextNav(props: Readonly<PreviousNextNavProps>) {
             href={previous.href}
             backgroundColorLevel={backgroundColorLevel}
             title={previous.title}
-            index={currentIndex ? currentIndex - 1 : undefined}
+            index={
+              previous.index ?? (currentIndex ? currentIndex - 1 : undefined)
+            }
           />
         </OakGridArea>
       )}
@@ -56,7 +60,7 @@ export default function PreviousNextNav(props: Readonly<PreviousNextNavProps>) {
             href={next.href}
             backgroundColorLevel={backgroundColorLevel}
             title={next.title}
-            index={currentIndex ? currentIndex + 1 : undefined}
+            index={next.index ?? (currentIndex ? currentIndex + 1 : undefined)}
           />
         </OakGridArea>
       )}

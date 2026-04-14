@@ -177,9 +177,9 @@ const UnitNavButtons = ({
         <OakSmallPrimaryInvertedButton
           element="a"
           href={resolveOakHref({
-            page: "unit-page",
+            page: "integrated-lesson-index",
             unitSlug: prevUnit.slug,
-            subjectPhaseSlug: programmeSlug,
+            programmeSlug,
           })}
           iconOverride={
             <OakIcon
@@ -197,9 +197,9 @@ const UnitNavButtons = ({
         <OakSmallPrimaryInvertedButton
           element="a"
           href={resolveOakHref({
-            page: "unit-page",
+            page: "integrated-lesson-index",
             unitSlug: nextUnit.slug,
-            subjectPhaseSlug: programmeSlug,
+            programmeSlug,
           })}
           isTrailingIcon
           iconOverride={

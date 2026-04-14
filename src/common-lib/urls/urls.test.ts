@@ -126,6 +126,18 @@ describe("urls.ts", () => {
         "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48",
       );
     });
+    it("Integrated lesson overview", () => {
+      expect(
+        resolveOakHref({
+          page: "integrated-lesson-overview",
+          programmeSlug: "maths-secondary-year-10-aqa",
+          unitSlug: "algebra-123",
+          lessonSlug: "solving-equations-456",
+        }),
+      ).toBe(
+        "/programmes/maths-secondary-year-10-aqa/units/algebra-123/lessons/solving-equations-456",
+      );
+    });
     it("Lesson downloads", () => {
       expect(
         resolveOakHref({
