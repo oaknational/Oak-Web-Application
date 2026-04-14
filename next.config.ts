@@ -366,7 +366,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       remotePatterns: imageRemotePatterns,
     },
     async redirects() {
-      return [
+      const pupilsRedirects = [
         {
           source: "/pupils/lessons/:lessonSlug",
           destination: "/pupils/lessons/:lessonSlug/overview",
@@ -390,6 +390,45 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           permanent: true,
         },
       ];
+
+      const aboutUsRedirects = [
+        {
+          source: "/about-us/leadership",
+          destination: "/about-us/meet-the-team",
+          permanent: true,
+        },
+        {
+          source: "/about-us/board",
+          destination: "/about-us/meet-the-team",
+          permanent: true,
+        },
+        {
+          source: "/about-us/partners",
+          destination: "/about-us/oaks-curricula",
+          permanent: true,
+        },
+        {
+          source: "/about-us/work-with-us",
+          destination: "/about-us/get-involved",
+          permanent: true,
+        },
+      ];
+
+      const eyfsRedirects = [
+        {
+          source: "/teachers/key-stages/early-years-foundation-stage/subjects",
+          destination: "/teachers/eyfs/maths",
+          permanent: true,
+        },
+        {
+          source:
+            "/teachers/programmes/:subjectSlug-foundation-early-years-foundation-stage-l/units/:path*",
+          destination: "/teachers/eyfs/:subjectSlug",
+          permanent: true,
+        },
+      ];
+
+      return [...pupilsRedirects, ...aboutUsRedirects, ...eyfsRedirects];
     },
     async rewrites() {
       // Reverse proxy posthog in development to avoid localhost CORS issues in Chrome https://posthog.com/docs/advanced/proxy/nextjs

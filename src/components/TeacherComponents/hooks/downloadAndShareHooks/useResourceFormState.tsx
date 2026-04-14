@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
 
@@ -13,7 +13,6 @@ import {
   getSchoolUrn,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import {
-  ResourceFormProps,
   ResourceType,
   isPreselectedDownloadType,
   isPreselectedShareType,
@@ -49,7 +48,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     trigger,
     watch,
     handleSubmit,
-  } = useForm<ResourceFormProps>({
+  } = useForm({
     resolver: zodResolver(resourceFormValuesSchema),
     mode: "onBlur",
   });
@@ -124,7 +123,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     if (userEmail && isSignedIn) {
       updateUserDetailsFromHubspot(userEmail);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     isSignedIn,
     setEmailInLocalStorage,

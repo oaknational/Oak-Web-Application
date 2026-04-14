@@ -23,6 +23,7 @@ export const CurricMobileFilterModal: Story = {
       years: ["7", "8", "9", "10", "11"],
       threads: [],
       pathways: [],
+      keystages: [],
     },
     onChangeFilters: () => {},
     slugs: {

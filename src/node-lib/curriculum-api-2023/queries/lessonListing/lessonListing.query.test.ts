@@ -67,7 +67,7 @@ describe("lessonListing()", () => {
         pathwayTitle: null,
         pathwayDisplayOrder: null,
         parentSubject: "Maths",
-        actions: {},
+        actions: { isPePractical: false },
         containsGeorestrictedLessons: false,
         containsLoginRequiredLessons: false,
         lessons: [
@@ -102,36 +102,30 @@ describe("lessonListing()", () => {
             { slug: "lesson-slug", title: "lesson-title", order: 1 },
           ],
           lesson_slug: "lesson-slug-2",
-          lesson_data: {
-            lesson_id: 1,
-            lesson_uid: "lesson-uid",
-            title: "lesson-title-2",
-            description: "lesson-description-2",
-            slug: "lesson-slug-2",
-            pupil_lesson_outcome: "pupil-lesson-outcome",
-            key_learning_points: [{}],
-            equipment_and_resources: null,
-            content_guidance_details: null,
-            phonics_outcome: null,
-            content_guidance: null,
-            supervision_level: null,
-            thirdpartycontent_list: null,
-            misconceptions_and_common_mistakes: null,
-            keywords: null,
-            video_id: null,
-            sign_language_video_id: null,
-            quiz_id_starter: null,
-            quiz_id_exit: null,
-            asset_id_slidedeck: null,
-            asset_id_worksheet: null,
-            copyright_content: null,
-            _state: "published",
-            _cohort: "2023-2024",
-            updated_at: "2023-01-01T00:00:00.000Z",
-            deprecated_fields: null,
-            expiration_date: null,
-            lesson_release_date: "2023-01-01T00:00:00.000Z",
-          },
+          lesson_data: lessonDataFixture({
+            overrides: {
+              lesson_id: 1,
+              lesson_uid: "lesson-uid",
+              title: "lesson-title-2",
+              description: "lesson-description-2",
+              slug: "lesson-slug-2",
+              pupil_lesson_outcome: "pupil-lesson-outcome",
+              key_learning_points: [
+                {
+                  key_learning_point: "Example key learning point",
+                },
+              ],
+              phonics_outcome: null,
+              content_guidance: null,
+              misconceptions_and_common_mistakes: null,
+              keywords: null,
+              asset_id_slidedeck: null,
+              asset_id_worksheet: null,
+              copyright_content: null,
+              updated_at: "2023-01-01T00:00:00.000Z",
+              lesson_release_date: "2023-01-01T00:00:00.000Z",
+            },
+          }),
         },
       });
       const lessonListingFixture = syntheticUnitvariantLessonsByKsFixture({
@@ -255,7 +249,7 @@ describe("lessonListing()", () => {
         pathwaySlug: null,
         pathwayTitle: null,
         pathwayDisplayOrder: null,
-        actions: {},
+        actions: { isPePractical: false },
         containsGeorestrictedLessons: false,
         containsLoginRequiredLessons: false,
       });
@@ -317,7 +311,7 @@ describe("lessonListing()", () => {
         pathwaySlug: null,
         pathwayTitle: null,
         pathwayDisplayOrder: null,
-        actions: {},
+        actions: { isPePractical: false },
         containsGeorestrictedLessons: false,
         containsLoginRequiredLessons: false,
         parentSubject: "Maths",
@@ -348,6 +342,77 @@ describe("lessonListing()", () => {
           lessonReleaseDate: null,
         },
       ]);
+    });
+
+    describe("isPePractical", () => {
+      const baseLesson = {
+        lessonSlug: "lesson-slug",
+        lessonTitle: "lesson-title",
+        description: "lesson-description",
+        pupilLessonOutcome: "pupil-lesson-outcome",
+        expired: false,
+        quizCount: 0,
+        videoCount: 0,
+        presentationCount: 0,
+        worksheetCount: 0,
+        hasLegacyCopyrightMaterial: false,
+        orderInUnit: 1,
+        lessonCohort: "2023-2024",
+        geoRestricted: false,
+        loginRequired: false,
+        isUnpublished: false,
+        lessonReleaseDate: null,
+      };
+
+      test("sets isPePractical true when at least one lesson is practical", () => {
+        const result = getPackagedUnit(
+          mockPackagedUnitData,
+          [
+            { ...baseLesson, actions: { isPePractical: true } },
+            {
+              ...baseLesson,
+              lessonSlug: "lesson-2",
+              actions: {},
+            },
+          ],
+          false,
+          false,
+        );
+        expect(result.actions?.isPePractical).toBe(true);
+      });
+
+      test("sets isPePractical false when no lessons are practical", () => {
+        const result = getPackagedUnit(
+          mockPackagedUnitData,
+          [
+            { ...baseLesson, actions: {} },
+            { ...baseLesson, lessonSlug: "lesson-2", actions: null },
+          ],
+          false,
+          false,
+        );
+        expect(result.actions?.isPePractical).toBe(false);
+      });
+
+      test("excludes unpublished lessons when determining isPePractical", () => {
+        const result = getPackagedUnit(
+          mockPackagedUnitData,
+          [
+            { ...baseLesson, actions: {} },
+            {
+              lessonSlug: "lesson-2",
+              lessonTitle: "lesson-title-2",
+              orderInUnit: 2,
+              isUnpublished: true,
+              lessonReleaseDate: null,
+              expired: false,
+            },
+          ],
+          false,
+          false,
+        );
+        expect(result.actions?.isPePractical).toBe(false);
+      });
     });
   });
 });

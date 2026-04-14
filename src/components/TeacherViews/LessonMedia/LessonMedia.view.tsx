@@ -11,6 +11,7 @@ import {
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
+import { ActionsCamel } from "@oaknational/oak-curriculum-schema";
 
 import VideoPlayer, {
   VideoEventCallbackArgs,
@@ -26,6 +27,7 @@ import {
   sortMediaClipsByOrder,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
+import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
 import { LessonMediaAttributions } from "@/components/TeacherComponents/LessonMediaAttributions/LessonMediaAttributions";
 import type {
@@ -40,12 +42,12 @@ import {
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import {
   KeyStageTitleValueType,
   PathwayValueType,
 } from "@/browser-lib/avo/Avo";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
+import { LEGACY_COHORT } from "@/config/cohort";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type BaseLessonMedia = {
@@ -57,7 +59,7 @@ type BaseLessonMedia = {
   mediaClips: MediaClipListCamelCase;
   lessonOutline: { lessonOutline: string }[];
   lessonReleaseDate: string | null;
-  actions?: Actions;
+  actions?: ActionsCamel | null;
 };
 
 type CanonicalLesson = BaseLessonMedia & {
@@ -89,6 +91,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
     loginRequired,
     geoRestricted,
   } = lesson;
+
   const { track } = useAnalytics();
   const {
     showSignedOutLoginRequired,
@@ -121,16 +124,38 @@ export const LessonMedia = (props: LessonMediaProps) => {
     keyStageSlug,
     unitTitle,
     pathwayTitle,
+    examBoardTitle,
+    tierTitle,
+    lessonCohort,
   } = commonPathway;
+
+  const isLegacy = lessonCohort === LEGACY_COHORT;
+  const pathwayData = getAnalyticsBrowseData({
+    keyStageSlug,
+    keyStageTitle,
+    subjectSlug,
+    subjectTitle,
+    unitSlug,
+    unitTitle,
+    year: commonPathway.year,
+    yearTitle,
+    examBoardTitle,
+    tierTitle,
+    pathwayTitle,
+    lessonSlug,
+    lessonName: lessonTitle,
+    lessonReleaseDate,
+    isLegacy,
+  });
 
   const router = useRouter();
   const { query } = router;
 
   // construct list of all clips in one array
 
-  const isPEPractical = actions?.isPePractical;
-  const isPELesson = actions?.displayPETitle;
-  const isMFL = actions?.displayVocabButton;
+  const isPEPractical = !!actions?.isPePractical;
+  const isPELesson = !!actions?.displayPETitle;
+  const isMFL = !!actions?.displayVocabButton;
 
   const learningCycleVideosTitleMap = createLearningCycleVideosTitleMap({
     isMFL,
@@ -326,15 +351,15 @@ export const LessonMedia = (props: LessonMediaProps) => {
       playbackId={getPlaybackId(currentClip) || ""}
       playbackPolicy={"signed"}
       title={currentClip.customTitle ?? currentClip?.mediaObject?.displayName}
-      // avo events need updating
       location={"media clips"}
-      isLegacy={false}
+      isLegacy={isLegacy}
       isAudioClip={currentClip.mediaObject?.format === "mp3"}
       userEventCallback={handleVideoEvents}
       loadingTextColor="text-inverted"
       defaultHiddenCaptions={isPEPractical}
       cloudinaryUrl={currentClip.mediaObject.url}
       muxAssetId={currentClip.videoObject?.muxAssetId}
+      pathwayData={pathwayData}
     />
   );
 

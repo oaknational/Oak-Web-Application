@@ -46,6 +46,7 @@ export const noMissingUnitsFixture = {
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "8": {
     childSubjects: [],
@@ -60,6 +61,7 @@ export const noMissingUnitsFixture = {
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "9": {
     childSubjects: [],
@@ -74,6 +76,7 @@ export const noMissingUnitsFixture = {
       createUnit({ year: "9", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "10": {
     childSubjects: [],
@@ -88,6 +91,7 @@ export const noMissingUnitsFixture = {
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
   "11": {
     childSubjects: [],
@@ -102,6 +106,7 @@ export const noMissingUnitsFixture = {
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
 };
 
@@ -116,6 +121,7 @@ export const missingUnitsForEntirePhaseFixture = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks3",
   },
   "8": {
     childSubjects: [],
@@ -138,6 +144,7 @@ export const missingUnitsForEntirePhaseFixture = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks3",
   },
   "10": {
     childSubjects: [],
@@ -178,6 +185,7 @@ export const missingUnitsForFirstYearFixture = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks3",
   },
   "8": {
     childSubjects: [],
@@ -192,6 +200,7 @@ export const missingUnitsForFirstYearFixture = {
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "9": {
     childSubjects: [],
@@ -206,6 +215,7 @@ export const missingUnitsForFirstYearFixture = {
       createUnit({ year: "9", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "10": {
     childSubjects: [],
@@ -220,6 +230,7 @@ export const missingUnitsForFirstYearFixture = {
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
   "11": {
     childSubjects: [],
@@ -234,6 +245,7 @@ export const missingUnitsForFirstYearFixture = {
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
 };
 
@@ -248,6 +260,7 @@ export const missingUnitsForFirstYearPrimaryFixture = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "1", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks1",
   },
   "2": {
     childSubjects: [],
@@ -262,6 +275,7 @@ export const missingUnitsForFirstYearPrimaryFixture = {
       createUnit({ year: "2", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "2", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks1",
   },
   "3": {
     childSubjects: [],
@@ -276,6 +290,7 @@ export const missingUnitsForFirstYearPrimaryFixture = {
       createUnit({ year: "3", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "3", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks1",
   },
   "4": {
     childSubjects: [],
@@ -290,6 +305,7 @@ export const missingUnitsForFirstYearPrimaryFixture = {
       createUnit({ year: "4", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "4", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks2",
   },
   "5": {
     childSubjects: [],
@@ -304,6 +320,7 @@ export const missingUnitsForFirstYearPrimaryFixture = {
       createUnit({ year: "5", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "5", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks2",
   },
   "6": {
     childSubjects: [],
@@ -318,6 +335,7 @@ export const missingUnitsForFirstYearPrimaryFixture = {
       createUnit({ year: "6", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "6", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks2",
   },
 };
 
@@ -335,6 +353,7 @@ export const missingUnitsForSecondYearFixture = {
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "8": {
     childSubjects: [],
@@ -346,6 +365,7 @@ export const missingUnitsForSecondYearFixture = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks3",
   },
   "9": {
     childSubjects: [],
@@ -360,6 +380,7 @@ export const missingUnitsForSecondYearFixture = {
       createUnit({ year: "9", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "10": {
     childSubjects: [],
@@ -374,6 +395,7 @@ export const missingUnitsForSecondYearFixture = {
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
   "11": {
     childSubjects: [],
@@ -388,6 +410,7 @@ export const missingUnitsForSecondYearFixture = {
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
 };
 
@@ -402,6 +425,7 @@ export const missingConsecutiveUnitsAtStartFixture = {
     nationalCurriculum: [],
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks3",
   },
   "8": {
     childSubjects: [],
@@ -413,6 +437,7 @@ export const missingConsecutiveUnitsAtStartFixture = {
     nationalCurriculum: [],
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks3",
   },
   "9": {
     childSubjects: [],
@@ -424,6 +449,7 @@ export const missingConsecutiveUnitsAtStartFixture = {
     nationalCurriculum: [],
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks3",
   },
   "10": {
     childSubjects: [],
@@ -438,6 +464,7 @@ export const missingConsecutiveUnitsAtStartFixture = {
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
   "11": {
     childSubjects: [],
@@ -452,6 +479,7 @@ export const missingConsecutiveUnitsAtStartFixture = {
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
 };
 
@@ -466,6 +494,7 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
     nationalCurriculum: [],
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "1", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks1",
   },
   "2": {
     childSubjects: [],
@@ -477,6 +506,7 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
     nationalCurriculum: [],
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "2", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks1",
   },
   "3": {
     childSubjects: [],
@@ -488,6 +518,7 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
     nationalCurriculum: [],
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "3", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks1",
   },
   "4": {
     childSubjects: [],
@@ -502,6 +533,7 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
       createUnit({ year: "4", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "4", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks2",
   },
   "5": {
     childSubjects: [],
@@ -516,6 +548,7 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
       createUnit({ year: "5", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "5", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks2",
   },
   "6": {
     childSubjects: [],
@@ -530,6 +563,7 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
       createUnit({ year: "6", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "6", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks2",
   },
 };
 
@@ -547,6 +581,7 @@ export const missingUnitsInMiddleFixture = {
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "8": {
     childSubjects: [],
@@ -558,6 +593,7 @@ export const missingUnitsInMiddleFixture = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks3",
   },
   "9": {
     childSubjects: [],
@@ -569,6 +605,7 @@ export const missingUnitsInMiddleFixture = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks3",
   },
   "10": {
     childSubjects: [],
@@ -582,6 +619,7 @@ export const missingUnitsInMiddleFixture = {
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
   "11": {
     childSubjects: [],
@@ -596,6 +634,7 @@ export const missingUnitsInMiddleFixture = {
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
 };
 
@@ -613,6 +652,7 @@ export const missingConsecutiveUnitsAtEndFixture = {
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "8": {
     childSubjects: [],
@@ -627,6 +667,7 @@ export const missingConsecutiveUnitsAtEndFixture = {
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "9": {
     childSubjects: [],
@@ -638,6 +679,7 @@ export const missingConsecutiveUnitsAtEndFixture = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks3",
   },
   "10": {
     childSubjects: [],
@@ -651,6 +693,7 @@ export const missingConsecutiveUnitsAtEndFixture = {
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
   "11": {
     childSubjects: [],
@@ -664,6 +707,7 @@ export const missingConsecutiveUnitsAtEndFixture = {
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
 };
 
@@ -678,6 +722,7 @@ export const missingAlternateUnitsFixture = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks3",
   },
   "8": {
     childSubjects: [],
@@ -692,6 +737,7 @@ export const missingAlternateUnitsFixture = {
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "9": {
     childSubjects: [],
@@ -703,6 +749,7 @@ export const missingAlternateUnitsFixture = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
+    keystage: "ks3",
   },
   "10": {
     childSubjects: [],
@@ -717,6 +764,7 @@ export const missingAlternateUnitsFixture = {
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
   "11": {
     childSubjects: [],
@@ -730,6 +778,7 @@ export const missingAlternateUnitsFixture = {
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
 };
 
@@ -747,6 +796,7 @@ export const missingUnitForLastYearFixture = {
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "8": {
     childSubjects: [],
@@ -761,6 +811,7 @@ export const missingUnitForLastYearFixture = {
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "9": {
     childSubjects: [],
@@ -775,6 +826,7 @@ export const missingUnitForLastYearFixture = {
       createUnit({ year: "9", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks3",
   },
   "10": {
     childSubjects: [],
@@ -789,6 +841,7 @@ export const missingUnitForLastYearFixture = {
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
   "11": {
     childSubjects: [],
@@ -802,6 +855,7 @@ export const missingUnitForLastYearFixture = {
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
+    keystage: "ks4",
   },
 };
 
@@ -835,6 +889,7 @@ export const primaryEnglishYearData = {
         subjectcategories: [primaryEnglishSubjectCategories[0]!],
       }),
     ],
+    keystage: "ks1",
   },
   "2": {
     childSubjects: [],
@@ -858,6 +913,7 @@ export const primaryEnglishYearData = {
         subjectcategories: [primaryEnglishSubjectCategories[1]!],
       }),
     ],
+    keystage: "ks1",
   },
   "3": {
     childSubjects: [],
@@ -886,6 +942,7 @@ export const primaryEnglishYearData = {
         subjectcategories: [primaryEnglishSubjectCategories[2]!],
       }),
     ],
+    keystage: "ks1",
   },
   "4": {
     childSubjects: [],
@@ -919,6 +976,7 @@ export const primaryEnglishYearData = {
         subjectcategories: [primaryEnglishSubjectCategories[3]!],
       }),
     ],
+    keystage: "ks2",
   },
   "5": {
     childSubjects: [],
@@ -957,6 +1015,7 @@ export const primaryEnglishYearData = {
         subjectcategories: [primaryEnglishSubjectCategories[4]!],
       }),
     ],
+    keystage: "ks2",
   },
   "6": {
     childSubjects: [],
@@ -985,6 +1044,7 @@ export const primaryEnglishYearData = {
         subjectcategories: [primaryEnglishSubjectCategories[4]!],
       }),
     ],
+    keystage: "ks2",
   },
 };
 
@@ -1013,6 +1073,7 @@ export const primaryScienceYearData = {
         subjectcategories: [primaryScienceSubjectCategories[1]!],
       }),
     ],
+    keystage: "ks1",
   },
   "2": {
     childSubjects: [],
@@ -1036,6 +1097,7 @@ export const primaryScienceYearData = {
         subjectcategories: [primaryScienceSubjectCategories[2]!],
       }),
     ],
+    keystage: "ks1",
   },
   "3": {
     childSubjects: [],
@@ -1064,6 +1126,7 @@ export const primaryScienceYearData = {
         subjectcategories: [primaryScienceSubjectCategories[3]!],
       }),
     ],
+    keystage: "ks1",
   },
   "4": {
     childSubjects: [],
@@ -1097,6 +1160,7 @@ export const primaryScienceYearData = {
         subjectcategories: [primaryScienceSubjectCategories[3]!],
       }),
     ],
+    keystage: "ks2",
   },
   "5": {
     childSubjects: [],
@@ -1120,6 +1184,7 @@ export const primaryScienceYearData = {
         subjectcategories: [primaryScienceSubjectCategories[3]!],
       }),
     ],
+    keystage: "ks2",
   },
   "6": {
     childSubjects: [],
@@ -1136,6 +1201,7 @@ export const primaryScienceYearData = {
         subjectcategories: [primaryEnglishSubjectCategories[3]!],
       }),
     ],
+    keystage: "ks2",
   },
 };
 
@@ -1309,6 +1375,7 @@ export const secondaryMathsYearData = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "7" })],
+    keystage: "ks3",
   },
   "8": {
     childSubjects: [],
@@ -1320,6 +1387,7 @@ export const secondaryMathsYearData = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "8" })],
+    keystage: "ks3",
   },
   "9": {
     childSubjects: [],
@@ -1331,6 +1399,7 @@ export const secondaryMathsYearData = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "9" })],
+    keystage: "ks3",
   },
   "10": {
     childSubjects: [],
@@ -1342,6 +1411,7 @@ export const secondaryMathsYearData = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "10" })],
+    keystage: "ks4",
   },
   "11": {
     childSubjects: [],
@@ -1352,6 +1422,7 @@ export const secondaryMathsYearData = {
     isSwimming: false,
     nationalCurriculum: [],
     units: [createUnit({ year: "11" })],
+    keystage: "ks4",
   },
 };
 

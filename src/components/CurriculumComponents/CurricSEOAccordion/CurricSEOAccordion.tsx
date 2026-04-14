@@ -13,19 +13,18 @@ import {
   truncatePortableTextBlock,
 } from "@/utils/curriculum/formatting";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 type CurricSEOAccordionProps = {
   curriculumSeoText: PortableTextBlock[];
-  subject: SubjectPhasePickerData["subjects"][number];
+  subjectTitle: string;
 };
 
 export default function CurricSEOAccordion({
   curriculumSeoText,
-  subject,
+  subjectTitle,
 }: Readonly<CurricSEOAccordionProps>) {
   const isMobile = useMediaQuery("mobile");
-  const displaySubjectTitle = subjectTitleWithCase(subject.title);
+  const displaySubjectTitle = subjectTitleWithCase(subjectTitle);
   const truncationLength = isMobile ? 40 : 100;
 
   return (

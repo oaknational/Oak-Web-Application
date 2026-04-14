@@ -19,7 +19,9 @@ export const GoogleClassroomSubjectIconHeader = ({
     >
       <SubjectIconBrushBoarders
         subjectSlug={subjectSlug}
-        color={pageType === "unit" ? "lavender" : "pink"}
+        color={
+          pageType === "unit" ? "bg-decorative3-main" : "bg-decorative4-main"
+        }
         isNew={false}
       />
     </OakFlex>

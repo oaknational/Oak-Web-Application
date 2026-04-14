@@ -93,20 +93,20 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
       $flexDirection={["column", "row"]}
       role="listitem"
     >
-      {!isHint && (
-        <OakIcon
-          iconName={grade === 1 ? "tick" : "cross"}
-          alt={grade === 1 ? "tick" : "cross"}
-          $background={grade === 1 ? "icon-success" : "icon-error"}
-          $colorFilter={"white"}
-          $borderRadius={"border-radius-circle"}
-        />
-      )}
+      <OakIcon
+        iconName={grade === 1 ? "tick" : "cross"}
+        alt={grade === 1 ? "tick" : "cross"}
+        $background={grade === 1 ? "icon-success" : "icon-error"}
+        $colorFilter={"text-inverted"}
+        $borderRadius={"border-radius-circle"}
+        $visibility={isHint ? "hidden" : "visible"}
+      />
       <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
         {questionStem && (
           <QuizResultQuestionStem
             displayIndex={displayIndex}
             questionStem={questionStem}
+            isDisabled={questionResult.mode !== "feedback"}
           />
         )}
         {answers?.["multiple-choice"] && isArray(questionResult?.feedback) && (

@@ -3,12 +3,16 @@ import { FC } from "react";
 import { ThemeProvider } from "styled-components";
 import Bugsnag from "@bugsnag/js";
 import { MockOakConsentClient } from "@oaknational/oak-consent-client";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import ErrorBoundary from ".";
 
 import noop from "@/__tests__/__helpers__/noop";
 import theme from "@/styles/theme";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
+import MockedAnalyticsProvider from "@/__tests__/__helpers__/MockedAnalyticsProvider";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
 
 const consoleLogSpy = jest.spyOn(console, "log");
 const consoleErrorSpy = jest.spyOn(console, "error");
@@ -40,20 +44,29 @@ const TantrumChild = () => {
   throw new Error("Where's my toys");
 };
 
-const WithThemeProvider: FC = (props) => {
-  return <ThemeProvider theme={theme} {...props} />;
-};
-
 const WithoutStatisticsConsent: FC = (props) => {
   const client = new MockOakConsentClient();
   client.getConsent = () => "denied";
 
   return (
-    <ThemeProvider theme={theme}>
-      <CookieConsentProvider client={client} {...props} />
-    </ThemeProvider>
+    <MockedAnalyticsProvider>
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <ThemeProvider theme={theme}>
+          <OakNotificationsProvider>
+            <CookieConsentProvider client={client} {...props} />
+          </OakNotificationsProvider>
+        </ThemeProvider>
+      </OakThemeProvider>
+    </MockedAnalyticsProvider>
   );
 };
+
+const renderer = renderWithProvidersByName([
+  "theme",
+  "oakTheme",
+  "analytics",
+  "oakNotifications",
+]);
 
 describe("ErrorBoundary.tsx", () => {
   beforeEach(() => {
@@ -62,11 +75,10 @@ describe("ErrorBoundary.tsx", () => {
   });
 
   it("should render children if no error", () => {
-    const { getByTestId } = render(
+    const { getByTestId } = renderer(
       <ErrorBoundary>
         <div data-testid="child">The app</div>
       </ErrorBoundary>,
-      { wrapper: WithThemeProvider },
     );
 
     expect(getByTestId("child")).toBeInTheDocument();
@@ -74,11 +86,10 @@ describe("ErrorBoundary.tsx", () => {
 
   describe("when an error occurs", () => {
     it("should render client error view in the case of an uncaught exception", () => {
-      const { getByRole } = render(
+      const { getByRole } = renderer(
         <ErrorBoundary>
           <TantrumChild />
         </ErrorBoundary>,
-        { wrapper: WithThemeProvider },
       );
 
       expect(getByRole("heading", { level: 1 })).toHaveTextContent(
@@ -87,11 +98,10 @@ describe("ErrorBoundary.tsx", () => {
     });
 
     it("should contain a button with link to homepage", () => {
-      const { getByTestId } = render(
+      const { getByTestId } = renderer(
         <ErrorBoundary>
           <TantrumChild />
         </ErrorBoundary>,
-        { wrapper: WithThemeProvider },
       );
 
       expect(getByTestId("homeButton").closest("a")).toHaveAttribute(
@@ -103,11 +113,10 @@ describe("ErrorBoundary.tsx", () => {
     it("should still work when Bugsnag boundary is not available", () => {
       jest.spyOn(Bugsnag, "getPlugin").mockReturnValue(undefined);
 
-      const { getByRole } = render(
+      const { getByRole } = renderer(
         <ErrorBoundary>
           <TantrumChild />
         </ErrorBoundary>,
-        { wrapper: WithThemeProvider },
       );
 
       expect(getByRole("heading", { level: 1 })).toHaveTextContent(

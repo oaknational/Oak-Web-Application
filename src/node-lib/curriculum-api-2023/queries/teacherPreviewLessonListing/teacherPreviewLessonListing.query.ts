@@ -1,4 +1,8 @@
-import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
+import {
+  ActionsCamel,
+  ProgrammeFields,
+} from "@oaknational/oak-curriculum-schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import { BetaLessonListSchema } from "./teacherPreviewLessonListing.schema";
 
@@ -10,12 +14,10 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import OakError from "@/errors/OakError";
-import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { TeacherPreviewLessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
 import { getIntersection } from "@/utils/getIntersection";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 export const getTransformedLessons = (
   lessons: TeacherPreviewLessonListingQuery["lessons"],
@@ -46,7 +48,7 @@ export const getTransformedLessons = (
         hasLegacyCopyrightMaterial,
         orderInUnit: lesson.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
-        actions: (keysToCamelCase(lesson.actions) || null) as Actions,
+        actions: (keysToCamelCase(lesson.actions) || null) as ActionsCamel,
         lessonReleaseDate: "unreleased",
         geoRestricted: lesson.features?.agf__geo_restricted ?? false,
         loginRequired: lesson.features?.agf__login_required ?? false,
@@ -83,9 +85,15 @@ export const getPackagedUnit = (
     programmeFields,
   });
 
+  const lessonActions = unitLessons.map((lesson) => lesson.actions);
   const combinedActions = getIntersection<
     BetaLessonListSchema[number]["actions"]
-  >(unitLessons.map((lesson) => lesson.actions)) as Actions;
+  >(lessonActions) as ActionsCamel;
+
+  // Set `isPePractical` to true if any lesson is practical
+  combinedActions.isPePractical = lessonActions.some(
+    (actions) => actions?.isPePractical === true,
+  );
 
   return {
     programmeSlug,

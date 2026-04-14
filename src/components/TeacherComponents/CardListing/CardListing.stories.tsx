@@ -1,0 +1,403 @@
+import { Meta, StoryObj } from "@storybook/nextjs";
+import {
+  oakDefaultTheme,
+  OakFlex,
+  OakThemeProvider,
+  OakTypography,
+} from "@oaknational/oak-components";
+import { ClerkProvider } from "@clerk/nextjs";
+
+import CardListing from "./CardListing";
+
+import NotificationsDecorator from "@/storybook-decorators/NotificationsDecorator";
+import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
+
+const meta: Meta<typeof CardListing> = {
+  component: CardListing,
+  decorators: [
+    SaveCountDecorator,
+    NotificationsDecorator,
+    (Story) => (
+      <ClerkProvider>
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <Story />
+        </OakThemeProvider>
+      </ClerkProvider>
+    ),
+  ],
+  parameters: {
+    controls: {
+      include: [],
+    },
+  },
+};
+
+export default meta;
+
+const defaultArgs = {
+  isHighlighted: false,
+  index: 10,
+  subcopy: "Ullamcorper auctor volutpat",
+  tags: [
+    { label: "Tag 1" },
+    { label: "Tag 2" },
+    { label: "Tag 3" },
+    { label: "Tag 4" },
+    { label: "Tag 5" },
+    { label: "Tag 6" },
+  ],
+  lessonCount: 10,
+  title:
+    "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
+  saveProps: {
+    unitSlug: "unit-slug",
+    unitTitle: "Unit title",
+    programmeSlug: "programme-slug",
+    trackingProps: {
+      savedFrom: "unit_listing_save_button" as const,
+      keyStageSlug: "ks1" as const,
+      keyStageTitle: "Key stage 1" as const,
+      subjectSlug: "maths",
+      subjectTitle: "Maths",
+    },
+  },
+  href: "fakeurl.com",
+};
+
+type Story = StoryObj<typeof CardListing>;
+
+export const Customisable: Story = {
+  render: (args) => <CardListing {...args} />,
+  args: defaultArgs,
+  argTypes: {
+    tags: {
+      control: {
+        type: "select",
+      },
+      options: ["copyright", "list", "none"],
+      mapping: {
+        copyright: [{ label: "Copyright", icon: "copyright" }],
+        list: defaultArgs.tags,
+        none: undefined,
+      },
+    },
+    saveProps: {
+      control: { type: "select" },
+      options: [undefined, defaultArgs.saveProps],
+    },
+  },
+  parameters: {
+    controls: {
+      include: [
+        "layoutVariant",
+        "title",
+        "subcopy",
+        "lessonCount",
+        "isHighlighted",
+        "tags",
+        "disabled",
+        "saveProps",
+      ],
+    },
+  },
+};
+
+export const Vertical: Story = {
+  render: (args) => (
+    <OakFlex $flexWrap={"wrap"} $gap={"spacing-20"}>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          Vertical layout
+        </OakTypography>
+        <CardListing {...args} layoutVariant="vertical" />
+      </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          With no optional props
+        </OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="vertical"
+          subcopy={undefined}
+          lessonCount={undefined}
+          tags={undefined}
+          saveProps={undefined}
+        />
+      </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          With no subcopy
+        </OakTypography>
+        <CardListing {...args} layoutVariant="vertical" subcopy={undefined} />
+      </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          Highlighted
+        </OakTypography>
+        <CardListing {...args} layoutVariant="vertical" isHighlighted={true} />
+      </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          Without lesson count
+        </OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="vertical"
+          lessonCount={undefined}
+        />
+      </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          Without save button
+        </OakTypography>
+        <CardListing {...args} layoutVariant="vertical" saveProps={undefined} />
+      </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          Disabled
+        </OakTypography>
+        <CardListing {...args} layoutVariant="vertical" disabled />
+      </OakFlex>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"spacing-16"}
+        $width={"spacing-240"}
+      >
+        <OakTypography $font={"heading-5"} $height={"spacing-64"}>
+          Visited link (google.com)
+        </OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="vertical"
+          href="https://google.com"
+        />
+      </OakFlex>
+    </OakFlex>
+  ),
+  args: defaultArgs,
+};
+
+export const Horizontal: Story = {
+  render: (args) => (
+    <OakFlex $flexDirection={"column"} $gap={"spacing-20"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Horizontal layout</OakTypography>
+        <CardListing {...args} layoutVariant="horizontal" />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>
+          With no optional props
+        </OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          subcopy={undefined}
+          saveProps={undefined}
+          lessonCount={undefined}
+          tags={undefined}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>With no subcopy</OakTypography>
+        <CardListing {...args} layoutVariant="horizontal" subcopy={undefined} />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Highlighted</OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          isHighlighted={true}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Without lesson count</OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          lessonCount={undefined}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Without save button</OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          saveProps={undefined}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Disabled</OakTypography>
+        <CardListing {...args} layoutVariant="horizontal" disabled />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>
+          Visited link (google.com)
+        </OakTypography>
+        <CardListing
+          {...args}
+          layoutVariant="horizontal"
+          href="https://google.com"
+        />
+      </OakFlex>
+    </OakFlex>
+  ),
+  args: defaultArgs,
+};
+const cardProps = {
+  isHighlighted: false,
+  lessonCount: 10,
+  title:
+    "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
+  saveProps: {
+    unitSlug: "unit-slug",
+    unitTitle: "Unit title",
+    programmeSlug: "programme-slug",
+    trackingProps: {
+      savedFrom: "unit_listing_save_button" as const,
+      keyStageSlug: "ks1" as const,
+      keyStageTitle: "Key stage 1" as const,
+      subjectSlug: "maths",
+      subjectTitle: "Maths",
+    },
+  },
+  href: "fakeurl.com",
+};
+export const Optionality: Story = {
+  render: (args) => (
+    <OakFlex
+      $flexDirection={"column"}
+      $gap={"spacing-20"}
+      $width={args.layoutVariant === "vertical" ? "spacing-360" : "100%"}
+    >
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>With all props</OakTypography>
+        <CardListing {...args} />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>
+          With no optional props
+        </OakTypography>
+        <CardListing
+          {...args}
+          subcopy={undefined}
+          saveProps={undefined}
+          lessonCount={undefined}
+          tags={undefined}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>With no subcopy</OakTypography>
+        <CardListing {...args} subcopy={undefined} />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Highlighted</OakTypography>
+        <CardListing
+          {...args}
+          childCards={[
+            { ...cardProps, title: "Optionality 1" },
+            { ...cardProps, title: "Optionality 2", isHighlighted: true },
+            { ...cardProps, title: "Optionality 3" },
+          ]}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Without save button</OakTypography>
+        <CardListing
+          {...args}
+          saveProps={undefined}
+          childCards={[
+            { ...cardProps, title: "Optionality 1", saveProps: undefined },
+            { ...cardProps, title: "Optionality 2", saveProps: undefined },
+            { ...cardProps, title: "Optionality 3", saveProps: undefined },
+          ]}
+        />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>Disabled</OakTypography>
+        <CardListing {...args} disabled />
+      </OakFlex>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
+        <OakTypography $font={"heading-5"}>
+          Visited link (google.com)
+        </OakTypography>
+        <CardListing {...args} href="https://google.com" />
+      </OakFlex>
+    </OakFlex>
+  ),
+  args: {
+    ...defaultArgs,
+    childCards: [
+      {
+        ...cardProps,
+        title:
+          "Optionality 1 really long title with lots of words in it to fill out the space on the page",
+      },
+      { ...cardProps, title: "Optionality 2" },
+      { ...cardProps, title: "Optionality 3" },
+    ],
+  },
+  argTypes: {
+    childCards: {
+      control: {
+        type: "select",
+      },
+      options: ["1", "3", "5"],
+      mapping: {
+        1: [{ ...cardProps, title: "Optionality 1" }],
+        3: [
+          {
+            ...cardProps,
+            title:
+              "Optionality 1 really long title with lots of words in it to fill out the space on the page",
+          },
+          { ...cardProps, title: "Optionality 2" },
+          { ...cardProps, title: "Optionality 3" },
+        ],
+        5: [
+          {
+            ...cardProps,
+            title:
+              "Optionality 1 really long title with lots of words in it to fill out the space on the page",
+          },
+          { ...cardProps, title: "Optionality 2" },
+          { ...cardProps, title: "Optionality 3" },
+          { ...cardProps, title: "Optionality 4" },
+          { ...cardProps, title: "Optionality 5" },
+        ],
+      },
+    },
+  },
+  parameters: {
+    controls: {
+      include: ["layoutVariant", "childCards"],
+    },
+  },
+};

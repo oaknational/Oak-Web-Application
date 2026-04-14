@@ -92,6 +92,7 @@ describe("Component Curriculum Download Tab", () => {
       formattedData: {
         yearOptions: [],
         threadOptions: [],
+        keystages: [],
         yearData: {
           "7": createYearData({
             units: [createUnit({ slug: "test" })],
@@ -106,6 +107,7 @@ describe("Component Curriculum Download Tab", () => {
         subjectTitle: "English",
         phaseTitle: "Secondary",
         examboardTitle: null,
+        nonCurriculum: false,
       },
       ...overrides,
     };

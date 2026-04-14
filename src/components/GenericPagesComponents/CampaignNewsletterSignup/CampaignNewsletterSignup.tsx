@@ -89,7 +89,7 @@ const SchoolPickerInput = ({
         schools={schools ?? []}
         errors={errors}
         onChange={onChange}
-        labelBackground="mint"
+        labelBackground="bg-decorative1-main"
         hidePrivacyPolicy={true}
         emailRequired={true}
       />
@@ -251,7 +251,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                 error={errors.name}
                 onChange={(e) => onChange({ name: e.target.value })}
                 required={true}
-                labelBackground="mint"
+                labelBackground="bg-decorative1-main"
                 placeholder="Type your name"
                 defaultValue={data.name}
               />
@@ -319,7 +319,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                     required={false}
                     placeholder="Type your school or organisation"
                     name="newsletter-school"
-                    labelBackground={"mint"}
+                    labelBackground={"bg-decorative1-main"}
                     defaultValue={data.schoolOrg}
                   />
                   <OakInputWithLabel
@@ -331,7 +331,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                     required={true}
                     placeholder="Type your email address"
                     name="newsletter-email"
-                    labelBackground={"mint"}
+                    labelBackground={"bg-decorative1-main"}
                     defaultValue={data.email}
                   />
                 </>

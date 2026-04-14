@@ -29,8 +29,12 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
-import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import {
+  getDoesSubjectHaveNewUnits,
+  TakedownBanner,
+} from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 
 type PupilViewsLessonOverviewProps = {
   browseData: LessonBrowseData;
@@ -57,7 +61,7 @@ export const PupilViewsLessonOverview = ({
 }: PupilViewsLessonOverviewProps) => {
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
-  const { programmeFields, lessonData } = browseData;
+  const { programmeFields, lessonData, programmeSlug } = browseData;
   const {
     subjectSlug,
     phase = "primary",
@@ -73,6 +77,8 @@ export const PupilViewsLessonOverview = ({
     isLessonComplete,
     lessonStarted,
     updateCurrentSection,
+    isReadOnly,
+    isHydratingInitialProgress,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
   const { track } = usePupilAnalytics();
@@ -82,6 +88,12 @@ export const PupilViewsLessonOverview = ({
   useEffect(() => {
     setIsMounted(true);
   }, []);
+  useEffect(() => {
+    if (isReadOnly) {
+      updateCurrentSection("review");
+      trackSectionStarted("review");
+    }
+  }, [isReadOnly, updateCurrentSection, trackSectionStarted]);
 
   const baseSlug = `${browseData.programmeFields.subjectSlug}-${browseData.programmeFields.phaseSlug}-${browseData.programmeFields.yearSlug}`;
   const unitListingHref = `/pupils/programmes/${baseSlug}/options`; // NB. options will forward to units if no options available
@@ -103,6 +115,11 @@ export const PupilViewsLessonOverview = ({
       lessonReviewSections.find(
         (section) => !sectionResults[section]?.isComplete,
       ) ?? "review";
+    if (isReadOnly) {
+      updateCurrentSection("review");
+      trackSectionStarted("review");
+      return;
+    }
     proceedToNextSection();
     trackSectionStarted(nextSection);
   };
@@ -116,14 +133,17 @@ export const PupilViewsLessonOverview = ({
     ));
 
   const expiringBanner = (
-    <ExpiringBanner
-      isOpen={
+    <TakedownBanner
+      isExpiring={
         expirationDate !== null ||
         browseData.actions?.displayExpiringBanner === true
       }
-      isResourcesMessage={false}
-      isSingular={true}
+      isLegacy={isSlugLegacy(programmeSlug)}
+      hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug)}
+      subjectSlug={subjectSlug}
+      userType="pupil"
       onwardHref={unitListingHref}
+      isSingle
     />
   );
 
@@ -255,7 +275,7 @@ export const PupilViewsLessonOverview = ({
                   $alignItems="center"
                   $mb="spacing-16"
                 >
-                  <OakIcon iconName="warning" $colorFilter="amber" />
+                  <OakIcon iconName="warning" $colorFilter="icon-warning" />
                   <OakHeading tag="h2" $font="heading-7">
                     Content guidance
                   </OakHeading>
@@ -304,6 +324,7 @@ export const PupilViewsLessonOverview = ({
                     })}
                     lessonSectionName="intro"
                     progress={pickProgressForSection("intro")}
+                    isLoading={isHydratingInitialProgress}
                   />
                 </OakLI>
               )}
@@ -319,6 +340,10 @@ export const PupilViewsLessonOverview = ({
                     numQuestions={starterQuizNumQuestions}
                     grade={sectionResults["starter-quiz"]?.grade ?? 0}
                     data-testid="starter-quiz"
+                    disabled={
+                      sectionResults["starter-quiz"]?.isComplete || isReadOnly
+                    }
+                    isLoading={isHydratingInitialProgress}
                   />
                 </OakLI>
               )}
@@ -331,6 +356,7 @@ export const PupilViewsLessonOverview = ({
                     })}
                     lessonSectionName="video"
                     progress={pickProgressForSection("video")}
+                    isLoading={isHydratingInitialProgress}
                   />
                 </OakLI>
               )}
@@ -346,6 +372,10 @@ export const PupilViewsLessonOverview = ({
                     numQuestions={exitQuizNumQuestions}
                     grade={sectionResults["exit-quiz"]?.grade ?? 0}
                     data-testid="exit-quiz"
+                    disabled={
+                      sectionResults["exit-quiz"]?.isComplete || isReadOnly
+                    }
+                    isLoading={isHydratingInitialProgress}
                   />
                 </OakLI>
               )}

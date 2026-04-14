@@ -1,0 +1,17 @@
+query programmePageBySlug(
+  $slug: String
+  $isDraftFilter: Sanity_DocumentFilter
+) {
+  allProgrammePage(
+    where: { _: $isDraftFilter, slug: { current: { eq: $slug } } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    slug {
+      current
+    }
+    bodyCopy
+    bullets
+  }
+}

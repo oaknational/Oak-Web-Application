@@ -3,8 +3,6 @@ import {
   OakP,
   OakFlex,
   OakSearchFilterCheckBox,
-  oakDefaultTheme,
-  OakThemeProvider,
   OakBox,
   OakFieldset,
 } from "@oaknational/oak-components";
@@ -91,7 +89,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
   } = props;
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
+    <>
       <OakBox
         $mb="spacing-32"
         $bb={"border-solid-s"}
@@ -168,11 +166,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
             {keyStageFilters.map((keyStageFilter) => (
               <OakSearchFilterCheckBox
                 name={"keyStageFilters"}
-                displayValue={
-                  keyStageFilter.shortCode === "EYFS"
-                    ? keyStageFilter.shortCode
-                    : toSentenceCase(keyStageFilter.title)
-                }
+                displayValue={toSentenceCase(keyStageFilter.title)}
                 key={`search-filters-keyStage-${keyStageFilter.slug}`}
                 aria-label={`${keyStageFilter.title} filter`}
                 id={`search-filters-keyStage-${keyStageFilter.slug}:mobile:${isMobileFilter}`}
@@ -221,7 +215,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
           isMobileFilter,
         )}
       </>
-    </OakThemeProvider>
+    </>
   );
 };
 

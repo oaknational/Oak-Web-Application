@@ -5,13 +5,6 @@ import {
   OakFlex,
 } from "@oaknational/oak-components";
 
-import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-
-/*
- * Waiting for the following components to be in oak-components
- *
- *  - <BrushBorders />
- */
 type AcceptTermsProps = {
   error?: string;
   value: boolean;
@@ -23,12 +16,7 @@ export default function AcceptTerms({
   onChange,
 }: Readonly<AcceptTermsProps>) {
   return (
-    <OakFlex
-      $width={"100%"}
-      $flexDirection={"column"}
-      $alignItems={"start"}
-      $gap={"spacing-24"}
-    >
+    <OakFlex $width={"100%"} $flexDirection={"column"} $gap={"spacing-24"}>
       {error && (
         <div data-testid="error">
           <OakFieldError>{error}</OakFieldError>
@@ -37,10 +25,12 @@ export default function AcceptTerms({
       <OakBox
         $position={"relative"}
         $background={"bg-neutral"}
-        $pv="spacing-8"
+        $pv="spacing-16"
         $ph="spacing-8"
+        $borderRadius={"border-radius-m"}
+        $width={"100%"}
+        $font="body-2-bold"
       >
-        <BrushBorders hideOnMobileH hideOnMobileV color={"grey20"} />
         <OakCheckBox
           displayValue={"I accept terms and conditions (required)"}
           checked={value}

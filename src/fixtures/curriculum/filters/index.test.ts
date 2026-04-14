@@ -10,6 +10,7 @@ describe("createFilter", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     });
   });
 
@@ -24,6 +25,7 @@ describe("createFilter", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     });
   });
 
@@ -38,6 +40,7 @@ describe("createFilter", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     });
   });
 
@@ -52,6 +55,7 @@ describe("createFilter", () => {
       years: [],
       threads: [],
       pathways: [],
+      keystages: [],
     });
   });
 
@@ -66,6 +70,7 @@ describe("createFilter", () => {
       years: ["9", "10", "11"],
       threads: [],
       pathways: [],
+      keystages: [],
     });
   });
 
@@ -80,6 +85,7 @@ describe("createFilter", () => {
       years: [],
       threads: ["test1", "test2"],
       pathways: [],
+      keystages: [],
     });
   });
 });

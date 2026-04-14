@@ -4,265 +4,213 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR gVzFgl"
+      class="sc-aXZVg juNTIU"
     >
-      <div
-        class="sc-fqkvVR kgcpTx"
+      <span
+        class="sc-aXZVg pxORc"
         style="pointer-events: none;"
       >
         <img
           alt=""
-          class="sc-dcJsrY cDKKvZ"
+          class="sc-iGgWBj cMzyFO"
           data-nimg="fill"
           decoding="async"
           loading="lazy"
           src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
         />
-      </div>
+      </span>
       <div
-        class="sc-fqkvVR caVZsU"
+        class="sc-aXZVg crJsie"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB fPYsZM gwxZIR"
+          class="sc-aXZVg sc-gEvEer esISEd cLpNFw"
         >
           <h2
-            class="sc-kpDqfm iuktHK"
+            class="sc-eldPxv fFnkKX"
+            id="react-use-id-test-result"
           >
             TEST_TITLE
           </h2>
-          <div
-            class="sc-fqkvVR sc-jXbUNg aZqjs iwxQGX"
+          <nav
+            aria-labelledby="react-use-id-test-result"
           >
-            <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
+            <ul
+              class="sc-ea54c430-2 flLvBT"
             >
-              <div
-                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
+              <li
+                class="sc-ea54c430-1 duAgam"
               >
-                <a
-                  href="#item_one"
-                  style="outline: none;"
+                <div
+                  class="sc-aXZVg sc-kMkxaj hLrCss hqGXqu"
                 >
-                  <div
-                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
-                    data-testid="who-we-are-explore-item"
+                  <a
+                    href="#item_one"
+                    style="outline: none;"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
+                      class="sc-aXZVg sc-gEvEer sc-ea54c430-0 bqitgL egjftS egvGNM"
+                      data-testid="who-we-are-explore-item"
                     >
                       <div
-                        class="sc-fqkvVR gjLiRo"
+                        class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
                       >
-                        <img
-                          alt=""
-                          class="sc-dcJsrY cDKKvZ"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
+                        <span
+                          class="sc-aXZVg eAconP"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj cMzyFO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
                       </div>
-                    </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB fzzIIf bAFsaQ"
-                    >
-                      ITEM_ONE
-                    </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
-                    >
                       <div
-                        class="sc-fqkvVR dbPreQ"
+                        class="sc-aXZVg sc-gEvEer eaijmN fXHtRp"
                       >
-                        <img
-                          alt=""
-                          class="sc-dcJsrY cDKKvZ"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
+                        ITEM_ONE
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
+                      >
+                        <span
+                          class="sc-aXZVg jcHcan"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj cMzyFO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
                       </div>
                     </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
-            >
-              <div
-                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
+                  </a>
+                </div>
+              </li>
+              <li
+                class="sc-ea54c430-1 duAgam"
               >
-                <a
-                  href="#item_two"
-                  style="outline: none;"
+                <div
+                  class="sc-aXZVg sc-kMkxaj hLrCss hqGXqu"
                 >
-                  <div
-                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
-                    data-testid="who-we-are-explore-item"
+                  <a
+                    href="#item_two"
+                    style="outline: none;"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
+                      class="sc-aXZVg sc-gEvEer sc-ea54c430-0 bqitgL egjftS egvGNM"
+                      data-testid="who-we-are-explore-item"
                     >
                       <div
-                        class="sc-fqkvVR gjLiRo"
+                        class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
                       >
-                        <img
-                          alt=""
-                          class="sc-dcJsrY cDKKvZ"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
+                        <span
+                          class="sc-aXZVg eAconP"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj cMzyFO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
                       </div>
-                    </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB fzzIIf bAFsaQ"
-                    >
-                      ITEM_TWO
-                    </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
-                    >
                       <div
-                        class="sc-fqkvVR dbPreQ"
+                        class="sc-aXZVg sc-gEvEer eaijmN fXHtRp"
                       >
-                        <img
-                          alt=""
-                          class="sc-dcJsrY cDKKvZ"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
+                        ITEM_TWO
+                      </div>
+                      <div
+                        class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
+                      >
+                        <span
+                          class="sc-aXZVg jcHcan"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj cMzyFO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
                       </div>
                     </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
-            >
-              <div
-                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
+                  </a>
+                </div>
+              </li>
+              <li
+                class="sc-ea54c430-1 duAgam"
               >
-                <a
-                  href="#item_three"
-                  style="outline: none;"
+                <div
+                  class="sc-aXZVg sc-kMkxaj hLrCss hqGXqu"
                 >
-                  <div
-                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
-                    data-testid="who-we-are-explore-item"
+                  <a
+                    href="#item_three"
+                    style="outline: none;"
                   >
                     <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
+                      class="sc-aXZVg sc-gEvEer sc-ea54c430-0 bqitgL egjftS egvGNM"
+                      data-testid="who-we-are-explore-item"
                     >
                       <div
-                        class="sc-fqkvVR gjLiRo"
+                        class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
                       >
-                        <img
-                          alt=""
-                          class="sc-dcJsrY cDKKvZ"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
+                        <span
+                          class="sc-aXZVg eAconP"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj cMzyFO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
                       </div>
-                    </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB fzzIIf bAFsaQ"
-                    >
-                      ITEM_THREE
-                    </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
-                    >
                       <div
-                        class="sc-fqkvVR dbPreQ"
+                        class="sc-aXZVg sc-gEvEer eaijmN fXHtRp"
                       >
-                        <img
-                          alt=""
-                          class="sc-dcJsrY cDKKvZ"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
+                        ITEM_THREE
                       </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz xogsE"
-            >
-              <div
-                class="sc-fqkvVR sc-85abac1-0 niMRt ksjKHu"
-              >
-                <a
-                  href="#item_four"
-                  style="outline: none;"
-                >
-                  <div
-                    class="sc-fqkvVR sc-kAyceB sc-545e4b26-0 jtCAPK fQLyIH fSzYCW"
-                    data-testid="who-we-are-explore-item"
-                  >
-                    <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
-                    >
                       <div
-                        class="sc-fqkvVR gjLiRo"
+                        class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
                       >
-                        <img
-                          alt=""
-                          class="sc-dcJsrY cDKKvZ"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1704901279/icons/canbi3fuz5fanzom2hvi.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
+                        <span
+                          class="sc-aXZVg jcHcan"
+                        >
+                          <img
+                            alt=""
+                            class="sc-iGgWBj cMzyFO"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </span>
                       </div>
                     </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB fzzIIf bAFsaQ"
-                    >
-                      ITEM_FOUR
-                    </div>
-                    <div
-                      class="sc-fqkvVR sc-kAyceB aZqjs joHkzz"
-                    >
-                      <div
-                        class="sc-fqkvVR dbPreQ"
-                      >
-                        <img
-                          alt=""
-                          class="sc-dcJsrY cDKKvZ"
-                          data-nimg="fill"
-                          decoding="async"
-                          loading="lazy"
-                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>

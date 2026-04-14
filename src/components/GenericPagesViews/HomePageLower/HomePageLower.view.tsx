@@ -6,8 +6,10 @@ import {
   OakHeading,
   OakMaxWidth,
   OakP,
+  OakSecondaryButton,
 } from "@oaknational/oak-components";
 
+import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
@@ -24,6 +26,8 @@ import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
 import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
 import { CampaignPromoBannerType } from "@/common-lib/cms-types/campaignPage";
+import { resolveOakHref } from "@/common-lib/urls";
+import { buildAboutUsAnalytics } from "@/utils/analytics-builders";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -72,8 +76,8 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                   $flexDirection={"column"}
                   $gap={["spacing-32", "spacing-32", "spacing-48"]}
                 >
-                  <OakBox>
-                    <OakBox $pb={"spacing-16"}>
+                  <OakFlex $gap={"spacing-16"} $flexDirection={"column"}>
+                    <OakBox>
                       <OakHeading
                         tag="h1"
                         $font={["heading-5", "heading-5", "heading-4"]}
@@ -84,7 +88,18 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                     <OakP $font={["body-2", "body-2", "body-1"]}>
                       {introVideo?.bodyPortableText?.[0]?.children[0]?.text}
                     </OakP>
-                  </OakBox>
+                    <OakSecondaryButton
+                      element="a"
+                      href={resolveOakHref({ page: "about-who-we-are" })}
+                      iconName="arrow-right"
+                      isTrailingIcon={true}
+                      onClick={() =>
+                        aboutUsAccessed(buildAboutUsAnalytics("about_oak"))
+                      }
+                    >
+                      About Oak
+                    </OakSecondaryButton>
+                  </OakFlex>
                   <CMSVideo
                     hideCaptions={true}
                     video={introVideo.video}

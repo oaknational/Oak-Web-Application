@@ -34,7 +34,7 @@ describe("LessonOverviewCreateWithAiDropdown", () => {
       background: "bg-decorative1-subdued",
       isNew: true,
       isShareable: true,
-      subjectIconBackgroundColor: "mint",
+      subjectIconBackgroundColor: "bg-decorative1-main",
       track: {} as LessonOverviewHeaderProps["track"],
       analyticsUseCase: "Teacher",
       onClickDownloadAll: jest.fn(),

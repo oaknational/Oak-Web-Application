@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import sdk from "./sdk";
 import lessonOverviewQuery from "./queries/lessonOverview/lessonOverview.query";
+import teachersLessonOverviewQuery from "./queries/teachersLessonOverview/teachersLessonOverview.query";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
 import lessonDownloadsQuery from "./queries/lessonDownloads/lessonDownloads.query";
@@ -46,6 +47,8 @@ import { pupilUnitRedirectQuery } from "./queries/pupilUnitRedirect/pupilUnitRed
 import { pupilCanonicalLessonRedirectQuery } from "./queries/pupilCanonicalLessonRedirect/pupilCanonicalLessonRedirect.query";
 import { pupilBrowseLessonRedirectQuery } from "./queries/pupilBrowseLessonRedirect/pupilBrowseLessonRedirect.query";
 import topNavQuery from "./queries/topNav/topNav.query";
+import eyfsPageQuery from "./queries/eyfs/eyfsPage.query";
+import teachersUnitOverviewQuery from "./queries/teachersUnitOverview/teachersUnitOverview.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -77,30 +80,9 @@ export const searchPageSchema = z.object({
   yearGroups: z.array(genericFilteringGroup),
 });
 
-export const subjectPhaseOptionSchema = genericFilteringGroup.extend({
-  phases: z.array(genericFilteringGroup),
-  keystages: z.array(genericFilteringGroup).optional().nullable(),
-  cycle: z.string(),
-  ks4_options: z.array(genericFilteringGroup).optional().nullable(),
-});
-
-const curriculumHeaderData = z.object({
-  subject: z.string(),
-  subjectSlug: z.string(),
-  phase: z.string(),
-  phaseSlug: z.string(),
-  examboard: z.string().optional(),
-  examboardSlug: z.string().optional(),
-});
-
-const curriculumDownloadsTabData = z.object({
-  urls: z.array(z.string()),
-});
-
 export type Phase = z.infer<typeof genericFilteringGroup>;
 export type Subject = z.infer<typeof genericFilteringGroup>;
 export type KS4Option = z.infer<typeof genericFilteringGroup>;
-export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
 export type CurriculumPhaseOptions = z.infer<
   typeof curriculumPhaseOptionsSchema
 >;
@@ -109,10 +91,16 @@ export type KeyStagesData = z.infer<typeof keyStagesData>;
 export type CurriculumOverviewMVData = z.infer<typeof curriculumOverviewSchema>;
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 
-export type CurriculumDownloadsTabData = z.infer<
-  typeof curriculumDownloadsTabData
->;
-export type CurriculumHeaderData = z.infer<typeof curriculumHeaderData>;
+export type CurriculumDownloadsTabData = { urls: string[] };
+
+export type CurriculumHeaderData = {
+  subject: string;
+  subjectSlug: string;
+  phase: string;
+  phaseSlug: string;
+  examboard?: string;
+  examboardSlug?: string;
+};
 
 export type CurriculumUnitsTabData = z.infer<typeof curriculumSequenceSchema>;
 export type CurriculumUnit = z.infer<
@@ -139,6 +127,7 @@ const curriculumApi2023 = {
   lessonMediaClips: lessonMediaClipsQuery(sdk),
   lessonShare: lessonShareQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
+  teachersLessonOverview: teachersLessonOverviewQuery(sdk),
   pupilLessonQuery: pupilLessonQuery(sdk),
   pupilCanonicalLessonRedirectQuery: pupilCanonicalLessonRedirectQuery(sdk),
   pupilBrowseLessonRedirectQuery: pupilBrowseLessonRedirectQuery(sdk),
@@ -182,6 +171,8 @@ const curriculumApi2023 = {
   teachersSitemap: teachersSitemap(sdk),
 
   topNav: topNavQuery(sdk),
+  eyfsPage: eyfsPageQuery(sdk),
+  teachersUnitOverview: teachersUnitOverviewQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;

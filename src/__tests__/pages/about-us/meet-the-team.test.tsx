@@ -1,73 +1,93 @@
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 
-import { testAboutPageBaseData } from "./about-us.fixtures";
-
 import AboutUsMeetTheTeam, {
-  AboutUsMeetTheTeamPage,
-  getServerSideProps,
-  mockData,
+  AboutUsMeetTheTeamPageProps,
+  getStaticProps,
 } from "@/pages/about-us/meet-the-team";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import CMSClient from "@/node-lib/cms";
+import {
+  portableTextFromString,
+  mockImageAsset,
+} from "@/__tests__/__helpers__/cms";
 
-jest.mock("@/node-lib/posthog/getFeatureFlag");
 jest.mock("../../../node-lib/cms");
-jest.mock("@/node-lib/posthog/getPosthogId", () => ({
-  __esModule: true,
-  getPosthogIdFromCookie: jest.fn().mockReturnValue("test-posthog-id"),
-}));
 
-export const testAboutWhoWeArePageData: AboutUsMeetTheTeamPage["pageData"] = {
-  ...testAboutPageBaseData,
-  ...mockData,
+const mockTeamMember = {
+  id: "test-id",
+  name: "Ed Southall",
+  role: "Subject Lead (maths)",
+  slug: { current: "ed-southall" },
+  image: null,
+  bioPortableText: null,
+  socials: null,
+  hotspot: null,
+};
+
+const mockPageData: AboutUsMeetTheTeamPageProps["pageData"] = {
+  header: {
+    introText:
+      "Learn more about the experts from across education, technology, school support and education who make up our leadership team and board.",
+    image: mockImageAsset(),
+  },
+  ourLeadership: {
+    textRaw: portableTextFromString(
+      "Our leadership team brings together experts to deliver the best support to teachers and value for money for the public.",
+    ),
+    leadershipTeam: [mockTeamMember],
+  },
+  ourBoard: {
+    textRaw: portableTextFromString(
+      "Our Board oversees all of our work at Oak National Academy. They provide strategic direction and safeguard our independence.",
+    ),
+    boardMembers: [mockTeamMember],
+  },
+  documents2: {
+    files: [],
+  },
+  governance2: {
+    textRaw: portableTextFromString("Test governance text"),
+  },
+  seo: null,
 };
 
 describe("pages/about/meet-the-team.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.resetModules();
+    (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(mockPageData);
   });
 
   it("renders", () => {
     const { container } = renderWithProviders()(
-      <AboutUsMeetTheTeam
-        pageData={testAboutWhoWeArePageData}
-        topNav={topNavFixture}
-      />,
+      <AboutUsMeetTheTeam pageData={mockPageData} topNav={topNavFixture} />,
     );
 
     expect(container).toMatchSnapshot();
   });
 
-  describe("getServerSideProps", () => {
-    it("should 404 when not enabled", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(false);
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-        res: {},
-        query: {},
+  describe("getStaticProps", () => {
+    it("should return props when CMS returns data", async () => {
+      const propsResult = await getStaticProps({
         params: {},
-      } as unknown as GetServerSidePropsContext);
-
-      expect(propsResult).toMatchObject({
-        notFound: true,
-      });
-    });
-
-    it("should 200 when enabled", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(true);
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-        res: {},
-        query: {},
-        params: {},
-      } as unknown as GetServerSidePropsContext);
+      } as unknown as GetStaticPropsContext);
 
       expect(propsResult).toMatchObject({
         props: expect.anything(),
+      });
+    });
+
+    it("should 404 when CMS returns no data", async () => {
+      (CMSClient.meetTheTeamPage as jest.Mock).mockResolvedValue(null);
+
+      const propsResult = await getStaticProps({
+        params: {},
+      } as unknown as GetStaticPropsContext);
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
       });
     });
   });

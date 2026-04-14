@@ -4,44 +4,44 @@ exports[`CurricTermCard snapshot 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-kAyceB jbWzOH moWty"
+      class="sc-aXZVg sc-gEvEer jSYdzG gWvaOf"
     >
       <div
-        class="sc-fqkvVR aZqjs"
+        class="sc-aXZVg hkJkIR"
       >
         <h5
-          class="sc-kpDqfm ewpVNK"
+          class="sc-eldPxv fqxCxQ"
         >
           Yeat 1
         </h5>
         <div
-          class="sc-fqkvVR sc-kAyceB aZqjs gCgXGf"
+          class="sc-aXZVg sc-gEvEer hkJkIR fUsBHa"
         >
           <span
-            class="sc-dAlyuH eMKgAN"
+            class="sc-eqUAAy DQGGZ"
           >
             25
             /
             30
              lessons scheduled
           </span>
-          <div
-            class="sc-fqkvVR dbPreQ"
+          <span
+            class="sc-aXZVg jcHcan"
           >
             <img
               alt=""
-              class="sc-dcJsrY cDKKvZ"
+              class="sc-iGgWBj cMzyFO"
               data-nimg="fill"
               decoding="async"
               loading="lazy"
               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1709052869/icons/Icon_Info_vsx3xi.svg"
               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
             />
-          </div>
+          </span>
         </div>
       </div>
       <div
-        class="sc-fqkvVR aZqjs"
+        class="sc-aXZVg hkJkIR"
         data-testid="content"
       >
         TESTING

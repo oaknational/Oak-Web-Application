@@ -220,6 +220,7 @@ describe("generateYearTitle", () => {
       },
       threadOptions: [],
       yearOptions: ["10"],
+      keystages: [],
     };
     const year = "10";
     const slugs = {
@@ -249,6 +250,7 @@ describe("generateYearTitle", () => {
       },
       threadOptions: [],
       yearOptions: ["11"],
+      keystages: [],
     };
     const year = "11";
     const slugs = {
@@ -280,6 +282,7 @@ describe("generateYearTitle", () => {
       threadOptions: [],
       tiers: ["foundation"],
       yearOptions: ["11"],
+      keystages: [],
     };
     const year = "11";
     const slugs = {
@@ -311,6 +314,7 @@ describe("generateYearTitle", () => {
       threadOptions: [],
       tiers: ["foundation"],
       yearOptions: ["11"],
+      keystages: [],
     };
     const year = "11";
     const slugs = {
@@ -342,6 +346,7 @@ describe("generateYearTitle", () => {
       threadOptions: [],
       tiers: ["foundation"],
       yearOptions: ["10"],
+      keystages: [],
     };
     const year = "10";
     const slugs = {
@@ -368,6 +373,7 @@ describe("generateYearTitle", () => {
       },
       threadOptions: [],
       yearOptions: ["9"],
+      keystages: [],
     };
     const year = "9";
     const slugs = {
@@ -396,6 +402,7 @@ describe("generateYearTitle", () => {
       },
       threadOptions: [],
       yearOptions: ["9"],
+      keystages: [],
     };
     const year = "9";
     const slugs = {
@@ -425,6 +432,7 @@ describe("generateYearTitle", () => {
       },
       threadOptions: [],
       yearOptions: ["all-years"],
+      keystages: [],
     };
     const year = "all-years";
     const slugs = {
@@ -486,6 +494,7 @@ describe("generateSheetTitle", () => {
       },
       threadOptions: [],
       yearOptions: ["10"],
+      keystages: [],
     };
     expect(generateSheetTitle(formattedData, "10")).toEqual("Year 10");
   });
@@ -504,6 +513,7 @@ describe("generateSheetTitle", () => {
       },
       threadOptions: [],
       yearOptions: ["all-years"],
+      keystages: [],
     };
     expect(generateSheetTitle(formattedData, "all-years")).toEqual(
       "Swimming and water safety",
@@ -515,6 +525,7 @@ describe("generateSheetTitle", () => {
       yearData: {},
       threadOptions: [],
       yearOptions: ["10"],
+      keystages: [],
     };
     expect(() => generateSheetTitle(formattedData, "10")).toThrow(
       new Error("Missing yearData"),

@@ -42,7 +42,7 @@ function useLocalStorage<T>(
   initialValue: T,
   // pass an areEqual function to ensure state doesn't get updated too often
   areEqual?: (a: T, b: T) => boolean,
-  schema?: z.ZodSchema<T>,
+  schema?: z.ZodType<T>,
 ): [T, SetValue<T>] {
   // Get from local storage then
   // parse stored json or return initialValue
@@ -111,7 +111,7 @@ function useLocalStorage<T>(
         if (!schemaParseResult.success) {
           console.warn(
             `Error setting localStorage key “${key}”:`,
-            schemaParseResult.error.flatten(),
+            z.treeifyError(schemaParseResult.error),
           );
           return;
         }
@@ -161,7 +161,7 @@ export default useLocalStorage;
 export function parseJSON<T>(value: string | null): T | undefined {
   try {
     return value === "undefined" ? undefined : JSON.parse(value ?? "");
-  } catch (error) {
+  } catch (_error) {
     console.log("parsing error on", { value });
     return undefined;
   }

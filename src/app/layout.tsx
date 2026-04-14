@@ -10,15 +10,12 @@ import AnalyticsWrapper from "./components/AnalyticsWrapper";
 import { getTwitterMetadata, getOpenGraphMetadata } from "./metadata";
 
 import "@/styles/app-global.css";
-import {
-  OakBox,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@/styles/oakThemeApp";
+import { OakThemeProvider, oakDefaultTheme } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "@/image-data";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { OakNotificationsProvider } from "@/context/OakNotifications/OakNotificationsProvider";
+import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
 
 // https://nextjs.org/docs/app/getting-started/metadata-and-og-images
 export const metadata: Metadata = {
@@ -62,6 +59,9 @@ export default function RootLayout({
                       },
                     }}
                     appearance={{
+                      layout: {
+                        logoLinkUrl: "/",
+                      },
                       variables: {
                         colorPrimary: "#222222",
                         fontFamily: lexend.style.fontFamily,
@@ -85,9 +85,7 @@ export default function RootLayout({
                     }}
                   >
                     <AnalyticsWrapper>
-                      <OakBox $width="100vw" $height="100vh">
-                        {children}
-                      </OakBox>
+                      <SaveCountProvider>{children}</SaveCountProvider>
                     </AnalyticsWrapper>
                   </ClerkProvider>
                 </OakNotificationsProvider>

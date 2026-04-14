@@ -56,6 +56,7 @@ export const Default: Story = {
       },
       threadOptions: [thread1, thread2],
       yearOptions: ["1", "2"],
+      keystages: [],
     },
     slugs: {
       phaseSlug: "primary",

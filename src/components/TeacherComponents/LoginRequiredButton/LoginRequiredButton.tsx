@@ -1,4 +1,4 @@
-import { SignUpButton } from "@clerk/nextjs";
+import { SignInButton } from "@clerk/nextjs";
 import {
   OakBox,
   OakFlex,
@@ -13,8 +13,8 @@ import {
   OakTagFunctional,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 import { useMemo } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
@@ -63,6 +63,7 @@ type BaseProps = {
   sizeVariant?: SizeVariant;
   element?: "a" | "button";
   rel?: string;
+  returnToAnchor?: string; // anchor target id to return to after sign in / onboarding
 };
 
 type LoginRequiredButtonProps = BaseProps & OakPrimaryButtonProps;
@@ -85,6 +86,25 @@ const getButtonVariant = (variant: ButtonVariant, sizeVariant: SizeVariant) => {
   }
 };
 
+const getRedirectUrl = (
+  path: string | null,
+  returnToAnchor: string | undefined,
+) => {
+  let returnTo = "";
+  if (path) {
+    returnTo += path;
+    if (returnToAnchor) {
+      returnTo += `#${returnToAnchor}`;
+    }
+  }
+  const query = returnTo ? { returnTo } : undefined;
+
+  return resolveOakHref({
+    page: "onboarding",
+    query,
+  });
+};
+
 const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
   const {
     actionProps,
@@ -95,9 +115,11 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     element = "button",
     loginRequired,
     geoRestricted,
+    returnToAnchor,
     ...overrideProps
   } = props;
   const router = useRouter();
+  const path = usePathname();
   const {
     showSignedInNotOnboarded,
     showSignedOutGeoRestricted,
@@ -144,12 +166,9 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     case "onboarding":
       return (
         <ButtonComponent
-          onClick={() =>
-            router.push({
-              pathname: resolveOakHref({ page: "onboarding" }),
-              query: { returnTo: router.asPath },
-            })
-          }
+          onClick={() => {
+            router.push(getRedirectUrl(path, returnToAnchor));
+          }}
           {...overrideProps}
         >
           {onboardingProps?.name ?? "Complete sign up to continue"}
@@ -157,8 +176,9 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
       );
     case "signup":
       return (
-        <SignUpButton
-          forceRedirectUrl={`/onboarding?returnTo=${router.asPath}`}
+        <SignInButton
+          forceRedirectUrl={getRedirectUrl(path, returnToAnchor)}
+          signUpForceRedirectUrl={getRedirectUrl(path, returnToAnchor)}
         >
           <ButtonComponent
             iconName={signUpProps?.iconName}
@@ -177,7 +197,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
               {signUpProps?.name ?? "Sign up"}
             </OakFlex>
           </ButtonComponent>
-        </SignUpButton>
+        </SignInButton>
       );
     case "action":
     case "georestricted":

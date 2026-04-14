@@ -81,7 +81,7 @@ const VisualCheckbox: FC<VisualCheckboxProps> = (props) => {
       {props.checked && (
         <OakIcon
           iconName={"tick"}
-          $colorFilter={"white"}
+          $colorFilter={"text-inverted"}
           $width={"spacing-20"}
           $height={"spacing-20"}
           data-testid="tick-icon"

@@ -37,6 +37,7 @@ import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsPr
 import { useGetQuizTrackingData } from "@/hooks/useGetQuizTrackingData";
 import { shortAnswerInputId } from "@/components/PupilComponents/QuizShortAnswer";
 import { multipleChoiceAnswerId } from "@/components/PupilComponents/QuizMCQMultiAnswer";
+import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -49,7 +50,7 @@ const isQuizSection = (section: string): section is QuizSection => {
 };
 
 const QuizInner = () => {
-  const { currentSection, updateCurrentSection, completeActivity } =
+  const { currentSection, updateCurrentSection, completeActivity, isReadOnly } =
     useLessonEngineContext();
   const quizEngineContext = useQuizEngineContext();
   const {
@@ -65,6 +66,7 @@ const QuizInner = () => {
 
   const getSectionLinkProps = useGetSectionLinkProps();
   const { track } = usePupilAnalytics();
+  const { trackSectionStarted } = useTrackSectionStarted();
   const { getQuizTrackingData } = useGetQuizTrackingData();
   const [firstTabPressed, setFirstTabPressed] = useState<{
     questionIndex: number;
@@ -116,6 +118,7 @@ const QuizInner = () => {
   const grade = currentQuestionState?.grade;
   const isPartiallyCorrect = currentQuestionState?.isPartiallyCorrect;
   const isCorrect = grade === 1;
+  const isExitQuizReadOnly = isReadOnly && currentSection === "exit-quiz";
 
   const handleNextQuestionClick = () => {
     const _currentQuestionIndex = Math.min(
@@ -136,6 +139,11 @@ const QuizInner = () => {
       }
       completeActivity(currentSection);
     } else {
+      if (isReadOnly) {
+        updateCurrentSection("review");
+        trackSectionStarted("review");
+        return;
+      }
       handleNextQuestion();
     }
   };
@@ -220,6 +228,7 @@ const QuizInner = () => {
               isTrailingIcon
               iconName="arrow-right"
               width={["100%", "max-content"]}
+              disabled={isExitQuizReadOnly}
               aria-describedby={
                 currentQuestionState?.mode === "incomplete"
                   ? "quiz-tooltip"

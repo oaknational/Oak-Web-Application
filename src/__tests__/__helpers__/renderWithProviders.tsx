@@ -20,8 +20,8 @@ import { ThemeProvider } from "styled-components";
 import { OverlayProvider } from "react-aria";
 import { MemoryRouterProviderProps } from "next-router-mock/dist/MemoryRouterProvider/MemoryRouterProvider";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 import { pick } from "lodash";
+import { MockOakConsentClient } from "@oaknational/oak-consent-client";
 
 import "../../browser-lib/oak-globals/oakGlobals";
 import ErrorBoundary from "../../components/AppComponents/ErrorBoundary";
@@ -63,12 +63,12 @@ const providersByName: {
     Partial<ProviderPropsByName[K]>?,
   ];
 } = {
+  oakTheme: [OakThemeProvider, { theme: oakDefaultTheme }],
   cookieConsent: [
     CookieConsentProvider,
     { client: new MockOakConsentClient() },
   ],
   theme: [ThemeProvider, { theme }],
-  oakTheme: [OakThemeProvider, { theme: oakDefaultTheme }],
   errorBoundary: [ErrorBoundary],
   analytics: [MockedAnalyticsProvider],
   router: [MemoryRouterProvider],

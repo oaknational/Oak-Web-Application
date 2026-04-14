@@ -109,7 +109,7 @@ describe("components/AppHeader", () => {
     setUseUserReturn(mockLoggedOut);
     renderWithProviders()(<AppHeader />);
 
-    const signUpButton = screen.getByText("Sign up");
+    const signUpButton = screen.getByText("Sign in");
     expect(signUpButton).toBeInTheDocument();
   });
 

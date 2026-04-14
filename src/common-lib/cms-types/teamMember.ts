@@ -19,6 +19,11 @@ export const teamMemberSchema = z
     image: imageSchema.nullish(),
     id: z.string(),
     role: z.string().nullish(),
+    slug: z
+      .object({
+        current: z.string(),
+      })
+      .nullish(),
     hotspot: z
       .object({
         height: z.number(),

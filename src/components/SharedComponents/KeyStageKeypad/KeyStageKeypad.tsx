@@ -2,8 +2,10 @@ import { FC } from "react";
 import {
   OakFlex,
   OakHeading,
+  OakLI,
   OakPrimaryButton,
   OakPrimaryInvertedButton,
+  OakUL,
 } from "@oaknational/oak-components";
 import Link from "next/link";
 
@@ -56,29 +58,32 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
   keyStages,
   trackingOnClick,
 }) => {
-  keyStages.sort((a, b) =>
+  const sortedKeyStages = keyStages.toSorted((a, b) =>
     a.displayOrder && b.displayOrder ? a.displayOrder - b.displayOrder : 0,
   );
-
+  const headingId = `key-stage-keypad-heading`;
   return (
     <OakFlex
       as="nav"
       $gap="spacing-16"
       $flexDirection="column"
-      aria-label="key stages and year groups"
+      aria-labelledby={headingId}
     >
-      <OakHeading tag={titleTag} $font={"heading-7"}>
+      <OakHeading id={headingId} tag={titleTag} $font={"heading-7"}>
         {title}
       </OakHeading>
-      <OakFlex $gap="spacing-16" $flexWrap={"wrap"}>
-        {keyStages.map((ks) => (
-          <KeypadLink
-            {...ks}
-            trackingOnClick={trackingOnClick}
-            key={`key-stage-${ks.slug}`}
-          />
+      <OakUL
+        $display={"flex"}
+        $pa={"spacing-0"}
+        $gap="spacing-16"
+        $flexWrap={"wrap"}
+      >
+        {sortedKeyStages.map((ks) => (
+          <OakLI $listStyle={"none"} key={`key-stage-li-${ks.slug}`}>
+            <KeypadLink {...ks} trackingOnClick={trackingOnClick} />
+          </OakLI>
         ))}
-      </OakFlex>
+      </OakUL>
     </OakFlex>
   );
 };

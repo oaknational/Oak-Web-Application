@@ -6,7 +6,6 @@ import {
   OakP,
   OakSpan,
   OakFlex,
-  OakColorFilterToken,
   OakUiRoleToken,
 } from "@oaknational/oak-components";
 
@@ -24,7 +23,7 @@ export type SpecialistHeaderListingProps = {
   background?: OakUiRoleToken;
   subjectTitle: string;
   subjectSlug: string;
-  subjectIconBackgroundColor?: OakColorFilterToken;
+  subjectIconBackgroundColor?: OakUiRoleToken;
   title: string;
   hasCurriculumDownload?: boolean;
   description: string;
@@ -35,7 +34,7 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
     subjectSlug,
     title,
     subjectTitle,
-    subjectIconBackgroundColor = "aqua",
+    subjectIconBackgroundColor = "bg-decorative2-main",
     breadcrumbs,
     background = "bg-decorative2-subdued",
     description,

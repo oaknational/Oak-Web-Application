@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import Layout from "@/components/AppComponents/Layout";
 import { AboutUsLayout } from "@/components/GenericPagesComponents/AboutUsLayout";
@@ -9,46 +9,32 @@ import {
 } from "@/components/GenericPagesComponents/AboutSharedHeader";
 import { GetInvolvedCollaborateWithUs } from "@/components/GenericPagesComponents/GetInvolvedCollaborateWithUs";
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import CMSClient from "@/node-lib/cms";
-import { PortableTextJSON } from "@/common-lib/cms-types";
+import getPageProps from "@/node-lib/getPageProps";
+import { GetInvolvedPage } from "@/common-lib/cms-types/aboutPages";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 
-const posthogApiKey = getBrowserConfig("posthogApiKey");
-
-export type GetInvolvedPage = {
-  pageData: {
-    header: {
-      textRaw: PortableTextJSON;
-    };
-    collaborate: {
-      researchPanelTextRaw: PortableTextJSON;
-      feedbackTextRaw: PortableTextJSON;
-    };
-    workWithUs: {
-      textRaw: PortableTextJSON;
-    };
-  };
+export type GetInvolvedPageProps = {
+  pageData: GetInvolvedPage;
   topNav: TopNavProps;
 };
 
-export const GetInvolved: NextPage<GetInvolvedPage> = ({
+export const GetInvolved: NextPage<GetInvolvedPageProps> = ({
   pageData,
   topNav,
-}) => {
+}: GetInvolvedPageProps) => {
   return (
     <Layout
-      seoProps={getSeoProps(null)}
+      seoProps={getSeoProps({ title: "Get Involved" })}
       $background={"bg-primary"}
       topNavProps={topNav}
     >
       <AboutUsLayout>
         <AboutSharedHeader
           title={"Get involved"}
-          content={pageData.header.textRaw}
+          content={pageData.header.introText}
           titleHighlight="bg-decorative3-main"
         >
           <BackgroundHeaderLoop />
@@ -67,6 +53,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
                   text: "Join the research panel",
                   link: "https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd",
                   external: true,
+                  componentType: "join_research_panel",
                 },
                 {
                   text: "Explore our research",
@@ -83,6 +70,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
                   text: "Get in touch",
                   link: "https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd",
                   external: true,
+                  componentType: "get_in_touch",
                 },
               ],
             },
@@ -93,8 +81,11 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
           text={pageData.workWithUs.textRaw}
           permanentRolesLink="https://app.beapplied.com/org/1574/oak-national-academy/"
           freelanceRolesLink="https://app.beapplied.com/org/1767/oak-national-academy-freelancers/"
-          imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1764066578/about-us/team-huddle_zivgxj.png"
-          imageAlt=""
+          imageUrl={
+            getProxiedSanityAssetUrl(pageData.workWithUs.image?.asset?.url) ??
+            ""
+          }
+          imageAlt={pageData.workWithUs.image?.altText ?? ""}
           badges={[
             {
               url: "https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg",
@@ -115,40 +106,36 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({
   );
 };
 
-export const getServerSideProps = (async (context) => {
-  const isPreviewMode = context.preview === true;
-  const posthogUserId = getPosthogIdFromCookie(
-    context.req.cookies,
-    posthogApiKey,
-  );
+export const getStaticProps: GetStaticProps<GetInvolvedPageProps> = async (
+  context,
+) => {
+  return getPageProps({
+    page: "about-get-involved::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const aboutWhoWeArePage = await CMSClient.newAboutGetInvolvedPage({
-    previewMode: isPreviewMode,
-  });
+      const getInvolvedPage = await CMSClient.getInvolvedPage({
+        previewMode: isPreviewMode,
+      });
 
-  let enableV2: boolean = false;
-  if (posthogUserId) {
-    // get the variant key for the user
-    enableV2 =
-      (await getFeatureFlag({
-        featureFlagKey: "about-us--who-we-are--v2",
-        posthogUserId,
-      })) === true;
-  }
-  const topNav = await curriculumApi2023.topNav();
+      const topNav = await curriculumApi2023.topNav();
 
-  if (!enableV2 || !aboutWhoWeArePage) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!getInvolvedPage) {
+        return {
+          notFound: true,
+        };
+      }
 
-  return {
-    props: {
-      pageData: aboutWhoWeArePage,
-      topNav,
+      const results: GetStaticPropsResult<GetInvolvedPageProps> = {
+        props: {
+          pageData: getInvolvedPage,
+          topNav,
+        },
+      };
+      return results;
     },
-  };
-}) satisfies GetServerSideProps<GetInvolvedPage>;
+  });
+};
 
 export default GetInvolved;

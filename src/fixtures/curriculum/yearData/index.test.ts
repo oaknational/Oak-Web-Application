@@ -17,6 +17,7 @@ describe("createSubjectCategory", () => {
       isSwimming: false,
       nationalCurriculum: [],
       groupAs: null,
+      keystage: "",
     });
   });
 
@@ -87,6 +88,7 @@ describe("createSubjectCategory", () => {
       ],
       pathways: [],
       isSwimming: true,
+      keystage: "",
       nationalCurriculum: [],
       groupAs: "testing_group",
     });

@@ -3,112 +3,112 @@
 exports[`GetInvolvedCollaborateWithUs renders 1`] = `
 <div>
   <div
-    class="sc-fqkvVR bINMMm"
+    class="sc-aXZVg emXSYj"
   >
     <div
-      class="sc-fqkvVR eFnhMc"
+      class="sc-aXZVg crJsie"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB fXwKwU eeevb"
+        class="sc-aXZVg sc-gEvEer gCJoSJ bktafW"
       >
         <div
-          class="sc-fqkvVR sc-jXbUNg aZqjs bTkObi"
+          class="sc-aXZVg sc-tagGq hkJkIR xdgbG"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz qfLVW"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF hkJkIR iDBIXi bWIaAb"
           >
             <h2
-              class="sc-kpDqfm ihxtLl"
+              class="sc-eldPxv iiNDPs"
             >
               Collaborate with us
             </h2>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz ddObaP"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF hkJkIR iDBIXi ffZWrO"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB jCtENa icXtIh"
+              class="sc-aXZVg sc-gEvEer laOGVT wjdwM"
             >
-              <div
-                class="sc-fqkvVR eAnxgr sc-a2cdd834-0 gAMzeR"
+              <span
+                class="sc-aXZVg hefbZs sc-c614e434-0 hqLybo"
               >
                 <img
                   alt=""
-                  class="sc-dcJsrY jRtmJB"
+                  class="sc-iGgWBj dZvqhO"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
                   src="http://example.com/chatting.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
+              </span>
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB aZqjs joHkzz krIOWV"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF hkJkIR iDBIXi fihLpo"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB aZqjs kKfJVM"
+              class="sc-aXZVg sc-gEvEer hkJkIR daEtut"
             >
               <div
-                class="sc-fqkvVR hfgawz"
+                class="sc-aXZVg lapfgC"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB jWrGgo kYkjWQ"
+                  class="sc-aXZVg sc-gEvEer jeRRSZ iwFTtF"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB aZqjs itOXgy"
+                    class="sc-aXZVg sc-gEvEer hkJkIR dfjiUz"
                   >
                     <h3
-                      class="sc-kpDqfm fjMWCL"
+                      class="sc-eldPxv pqCFq"
                     >
                       Give your feedback
                     </h3>
                     <p
-                      class="sc-dLMFU sc-ff4f593d-0 gInKlR imPMXG"
+                      class="sc-ikkxIA esDZwj"
                     >
                       Share your story and we'll send you a gift voucher as a thanks for your time.
                     </p>
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB aZqjs kjCrYV"
+                    class="sc-aXZVg sc-gEvEer hkJkIR ehpWeg"
                   >
                     <div
-                      class="sc-fqkvVR sc-fjvvzt gQBvmm kIRemE"
+                      class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
                     >
                       <div
-                        class="sc-fqkvVR hHxuBp grey-shadow"
+                        class="sc-aXZVg hpZeuU grey-shadow"
                       />
                       <div
-                        class="sc-fqkvVR hHxuBp yellow-shadow"
+                        class="sc-aXZVg hpZeuU yellow-shadow"
                       />
                       <a
-                        class="sc-dtBdUo sc-fXSgeo vwEYe iwHZRx internal-button"
+                        class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
                         href="https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd"
                         rel="noopener noreferrer"
                         target="_blank"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB aZqjs cHFgFN"
+                          class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
                         >
                           <span
-                            class="sc-dAlyuH dYZdPz"
+                            class="sc-eqUAAy dorClf"
                           >
                             Get in touch
                           </span>
-                          <div
-                            class="sc-fqkvVR hCMPss"
+                          <span
+                            class="sc-aXZVg bQyjPj"
                           >
                             <img
                               alt="external"
-                              class="sc-dcJsrY cDKKvZ"
+                              class="sc-iGgWBj cMzyFO"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </div>
+                          </span>
                         </div>
                       </a>
                     </div>
@@ -116,64 +116,64 @@ exports[`GetInvolvedCollaborateWithUs renders 1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR hfgawz"
+                class="sc-aXZVg lapfgC"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB jWrGgo kYkjWQ"
+                  class="sc-aXZVg sc-gEvEer jeRRSZ iwFTtF"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB aZqjs itOXgy"
+                    class="sc-aXZVg sc-gEvEer hkJkIR dfjiUz"
                   >
                     <h3
-                      class="sc-kpDqfm fjMWCL"
+                      class="sc-eldPxv pqCFq"
                     >
                       Help us improve
                     </h3>
                     <p
-                      class="sc-dLMFU sc-ff4f593d-0 gInKlR imPMXG"
+                      class="sc-ikkxIA esDZwj"
                     >
                       Teachers are at the heart of everything we build. Have your say by taking part in research.
                     </p>
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB aZqjs kjCrYV"
+                    class="sc-aXZVg sc-gEvEer hkJkIR ehpWeg"
                   >
                     <div
-                      class="sc-fqkvVR sc-fjvvzt gQBvmm kIRemE"
+                      class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
                     >
                       <div
-                        class="sc-fqkvVR hHxuBp grey-shadow"
+                        class="sc-aXZVg hpZeuU grey-shadow"
                       />
                       <div
-                        class="sc-fqkvVR hHxuBp yellow-shadow"
+                        class="sc-aXZVg hpZeuU yellow-shadow"
                       />
                       <a
-                        class="sc-dtBdUo sc-fXSgeo vwEYe iwHZRx internal-button"
+                        class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
                         href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
                         rel="noopener noreferrer"
                         target="_blank"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB aZqjs cHFgFN"
+                          class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
                         >
                           <span
-                            class="sc-dAlyuH dYZdPz"
+                            class="sc-eqUAAy dorClf"
                           >
                             Take part in research
                           </span>
-                          <div
-                            class="sc-fqkvVR hCMPss"
+                          <span
+                            class="sc-aXZVg bQyjPj"
                           >
                             <img
                               alt="external"
-                              class="sc-dcJsrY cDKKvZ"
+                              class="sc-iGgWBj cMzyFO"
                               data-nimg="fill"
                               decoding="async"
                               loading="lazy"
                               src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
                               style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                             />
-                          </div>
+                          </span>
                         </div>
                       </a>
                     </div>

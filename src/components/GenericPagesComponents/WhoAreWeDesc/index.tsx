@@ -7,19 +7,19 @@ import {
   OakP,
   OakBoxProps,
 } from "@oaknational/oak-components";
-import { ReactNode, useMemo } from "react";
+import { useMemo } from "react";
 import styled from "styled-components";
+import { PortableTextBlockComponent } from "@portabletext/react";
 
 import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
 import CMSImage from "@/components/SharedComponents/CMSImage";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
-function InnerMaxWidth({ children }: { children: ReactNode }) {
-  return (
-    <OakBox $maxWidth={"spacing-1280"} $mh={"auto"}>
-      {children}
-    </OakBox>
-  );
-}
+const OakPStyled: PortableTextBlockComponent = (props) => {
+  return <OakP $font={["body-2", "body-1"]}>{props.children}</OakP>;
+};
 
 const CustomWeAreItemOakGridArea = styled(OakGridArea)`
   grid-column: span 3;
@@ -43,8 +43,8 @@ const COLORS: OakBoxProps["$background"][] = [
 type WhoAreWeDescProps = {
   title: string;
   items: {
-    title: string;
-    text: string;
+    heading: string;
+    textRaw: PortableTextJSON;
     image: ImageWithAltText;
   }[];
 };
@@ -59,26 +59,24 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
   }, [items]);
 
   return (
-    <InnerMaxWidth>
+    <NewGutterMaxWidth>
       <OakFlex
         $flexDirection={"column"}
         $pv={["spacing-56", "spacing-80", "spacing-80"]}
-        $ph={["spacing-16", "spacing-16", "spacing-0"]}
         $gap={["spacing-32", "spacing-56", "spacing-56"]}
       >
         <OakHeading
           tag="h2"
           $textAlign={["left", "center", "center"]}
           $font={["heading-5", "heading-3", "heading-3"]}
-          $color="text-primary"
         >
           {title}
         </OakHeading>
         <OakGrid $rg={"spacing-32"} $cg={"spacing-16"}>
-          {itemsMapped.map(({ background, title, text, image }) => {
+          {itemsMapped.map(({ background, heading, textRaw, image }) => {
             return (
               <CustomWeAreItemOakGridArea
-                key={title}
+                key={heading}
                 data-testid="who-we-are-desc-item"
                 $colSpan={12}
               >
@@ -87,8 +85,7 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                     $height={"spacing-240"}
                     $background={background}
                     $borderRadius={"border-radius-m2"}
-                    $pv={"spacing-24"}
-                    $ph={"spacing-64"}
+                    $pa={"spacing-24"}
                   >
                     {image.asset?.url && (
                       <CMSImage
@@ -102,16 +99,17 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                     <OakHeading
                       tag="h3"
                       $font={["heading-6", "heading-5", "heading-5"]}
-                      $color="text-primary"
                     >
-                      {title}
+                      {heading}
                     </OakHeading>
-                    <OakP
-                      $font={["body-2", "body-1", "body-1"]}
-                      $color="text-primary"
-                    >
-                      {text}
-                    </OakP>
+                    <PortableTextWithDefaults
+                      value={textRaw}
+                      components={{
+                        block: {
+                          normal: OakPStyled,
+                        },
+                      }}
+                    />
                   </OakFlex>
                 </OakFlex>
               </CustomWeAreItemOakGridArea>
@@ -119,6 +117,6 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
           })}
         </OakGrid>
       </OakFlex>
-    </InnerMaxWidth>
+    </NewGutterMaxWidth>
   );
 }

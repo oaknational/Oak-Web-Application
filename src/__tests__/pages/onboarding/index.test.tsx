@@ -2,12 +2,23 @@ import { screen } from "@testing-library/dom";
 
 import OnboardingPage from "@/pages/onboarding";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import { mockNotOnboardedUser } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: () => "with-login",
+  useFeatureFlagEnabled: () => false,
+}));
+
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(() => "/onboarding"),
+  useRouter: jest.fn().mockReturnValue({ replace: jest.fn() }),
+  useSearchParams: jest.fn(),
+}));
 
 describe("onboarding page", () => {
   test("it renders the onboarding page", () => {
-    setUseUserReturn(mockLoggedIn);
+    setUseUserReturn(mockNotOnboardedUser);
 
     renderWithProviders()(<OnboardingPage />);
 

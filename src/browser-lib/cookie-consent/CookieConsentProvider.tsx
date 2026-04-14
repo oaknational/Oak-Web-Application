@@ -6,14 +6,12 @@
  */
 
 import { PropsWithChildren, useEffect, useState } from "react";
-// eslint-disable-next-line import/order
 import {
   MockOakConsentClient,
   OakConsentClient,
   OakConsentProvider,
   useOakConsent,
 } from "@oaknational/oak-consent-client";
-
 import {
   OakBox,
   OakCookieConsent,
@@ -23,7 +21,6 @@ import {
   useCookieConsent as useCookieConsentUI,
 } from "@oaknational/oak-components";
 
-// eslint-disable-next-line import/order
 import { consentClient } from "./consentClient";
 
 const RequiresInteraction = () => {

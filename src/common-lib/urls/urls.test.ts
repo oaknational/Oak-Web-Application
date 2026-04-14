@@ -126,6 +126,18 @@ describe("urls.ts", () => {
         "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48",
       );
     });
+    it("Integrated lesson overview", () => {
+      expect(
+        resolveOakHref({
+          page: "integrated-lesson-overview",
+          programmeSlug: "maths-secondary-year-10-aqa",
+          unitSlug: "algebra-123",
+          lessonSlug: "solving-equations-456",
+        }),
+      ).toBe(
+        "/programmes/maths-secondary-year-10-aqa/units/algebra-123/lessons/solving-equations-456",
+      );
+    });
     it("Lesson downloads", () => {
       expect(
         resolveOakHref({
@@ -182,27 +194,24 @@ describe("urls.ts", () => {
         }),
       ).toBe("/teachers/key-stages/ks2/subjects");
     });
-    it("About us: Board", () => {
-      expect(resolveOakHref({ page: "about-board" })).toBe("/about-us/board");
-    });
     it("About us: Who we are", () => {
       expect(resolveOakHref({ page: "about-who-we-are" })).toBe(
         "/about-us/who-we-are",
       );
     });
-    it("About us: Leadership", () => {
-      expect(resolveOakHref({ page: "about-leadership" })).toBe(
-        "/about-us/leadership",
+    it("About us: Meet the team", () => {
+      expect(resolveOakHref({ page: "about-meet-the-team" })).toBe(
+        "/about-us/meet-the-team",
       );
     });
-    it("About us: Partners", () => {
-      expect(resolveOakHref({ page: "about-partners" })).toBe(
-        "/about-us/partners",
+    it("About us: Oak's curricula", () => {
+      expect(resolveOakHref({ page: "about-oaks-curricula" })).toBe(
+        "/about-us/oaks-curricula",
       );
     });
-    it("About us: Work with us", () => {
-      expect(resolveOakHref({ page: "about-work-with-us" })).toBe(
-        "/about-us/work-with-us",
+    it("About us: Get involved", () => {
+      expect(resolveOakHref({ page: "about-get-involved" })).toBe(
+        "/about-us/get-involved",
       );
     });
     it("Contact us", () => {
@@ -223,11 +232,6 @@ describe("urls.ts", () => {
       expect(
         resolveOakHref({ page: "legal", legalSlug: "legal-page-123" }),
       ).toBe("/legal/legal-page-123");
-    });
-    it("Support your team", () => {
-      expect(resolveOakHref({ page: "support-your-team" })).toBe(
-        "/support-your-team",
-      );
     });
     it("Help", () => {
       expect(resolveOakHref({ page: "help" })).toBe(
@@ -309,6 +313,32 @@ describe("urls.ts", () => {
       ).toBe(
         "https://labs.thenational.academy/aila/teaching-materials?programmeSlug=science-ks3",
       );
+    });
+
+    it("EYFS page direct link", () => {
+      const props: ResolveOakHrefProps = {
+        page: "eyfs-page",
+        subjectSlug: "maths",
+      };
+      expect(resolveOakHref(props)).toBe("/teachers/eyfs/maths");
+    });
+
+    it("subject-index with EYFS keyStageSlug redirects to /teachers/eyfs/maths", () => {
+      expect(
+        resolveOakHref({
+          page: "subject-index",
+          keyStageSlug: "early-years-foundation-stage",
+        }),
+      ).toBe("/teachers/eyfs/maths");
+    });
+
+    it("subject-index with non-EYFS keyStageSlug resolves normally", () => {
+      expect(
+        resolveOakHref({
+          page: "subject-index",
+          keyStageSlug: "ks1",
+        }),
+      ).toBe("/teachers/key-stages/ks1/subjects");
     });
   });
 });

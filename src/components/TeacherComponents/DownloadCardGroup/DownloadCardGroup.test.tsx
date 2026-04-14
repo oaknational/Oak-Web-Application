@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 import DownloadCardGroup, { DownloadCardGroupProps } from "./DownloadCardGroup";
 
-import type { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import type { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -12,7 +12,7 @@ const ComponentWrapper = (props: {
   downloads: DownloadCardGroupProps["downloads"];
   hasError?: boolean;
 }) => {
-  const { control, trigger } = useForm<ResourceFormProps>();
+  const { control, trigger } = useForm<ResourceFormValues>();
 
   return (
     <DownloadCardGroup {...props} control={control} triggerForm={trigger} />

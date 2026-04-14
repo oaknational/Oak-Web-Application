@@ -4,7 +4,7 @@ import {
   OakFieldError,
   OakJauntyAngleLabel,
   OakTextInput,
-  OakColorToken,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 import { useState } from "react";
 import { RefCallBack } from "react-hook-form";
@@ -12,18 +12,18 @@ import { RefCallBack } from "react-hook-form";
 export const getFormLabelBackground = (
   error: string | undefined,
   focusState: boolean | undefined,
-  backgroundColor: OakColorToken | undefined,
+  backgroundColor: OakUiRoleToken | undefined,
 ) => {
   if (error) {
-    return "red";
+    return "bg-error";
   }
   if (focusState) {
-    return "blue";
+    return "bg-inverted";
   }
   if (backgroundColor) {
     return backgroundColor;
   }
-  return "lemon";
+  return "bg-decorative5-main";
 };
 
 export const OakInputWithLabel = ({
@@ -51,7 +51,7 @@ export const OakInputWithLabel = ({
   autocomplete?: string;
   name: string;
   defaultValue?: string;
-  labelBackground?: OakColorToken;
+  labelBackground?: OakUiRoleToken;
   // value?: string;
 }) => {
   const [hasFocus, setHasFocus] = useState(false);

@@ -6,6 +6,7 @@ import {
   parseSubjectPhaseSlug,
 } from "./slugs";
 
+import { createUnit } from "@/fixtures/curriculum/unit";
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 
 describe("parseSubjectPhaseSlug", () => {
@@ -121,234 +122,93 @@ describe("getKs4RedirectSlug", () => {
 
 describe("createTeacherProgrammeSlug", () => {
   test("unit data ks2 returns correct programme slug", () => {
-    const unitData = {
-      planned_number_of_lessons: 5,
-      connection_future_unit_description: null,
-      connection_prior_unit_description: null,
-      connection_future_unit_title: null,
-      connection_prior_unit_title: null,
-      examboard: null,
-      examboard_slug: null,
+    const unitData = createUnit({
       keystage_slug: "ks2",
-      lessons: [],
-      order: 1,
       phase: "Primary",
       phase_slug: "primary",
-      slug: "cellular-respiration-and-atp",
       subject: "Science",
+      subject_slug: "science",
       subject_parent: null,
       subject_parent_slug: null,
-      subject_slug: "science",
-
-      subjectcategories: null,
-      threads: [],
-      tier: null,
-      tier_slug: null,
-      title: "Aerobic and anaerobic cellular respiration",
-      unit_options: [],
-      year: "11",
-      cycle: "1",
-      why_this_why_now: null,
-      description: null,
-      state: "published",
-      national_curriculum_content: [],
-      prior_knowledge_requirements: [],
-    };
+    });
     expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks2");
   });
   test("unit data ks4 returns correct programme slug", () => {
-    const unitData = {
-      planned_number_of_lessons: 5,
-      connection_future_unit_description: null,
-      connection_prior_unit_description: null,
-      connection_future_unit_title: null,
-      connection_prior_unit_title: null,
-
-      examboard: null,
-      examboard_slug: null,
-      keystage_slug: "ks4",
-      lessons: [],
-      order: 1,
+    const unitData = createUnit({
       phase: "Primary",
       phase_slug: "primary",
-      slug: "cellular-respiration-and-atp",
       subject: "Science",
+      subject_slug: "science",
       subject_parent: null,
       subject_parent_slug: null,
-      subject_slug: "science",
-
-      subjectcategories: null,
-      threads: [],
-      tier: null,
-      tier_slug: null,
-      title: "Aerobic and anaerobic cellular respiration",
-      unit_options: [],
-      year: "11",
-      cycle: "1",
-      why_this_why_now: null,
-      description: null,
-      state: "published",
-      national_curriculum_content: [],
-      prior_knowledge_requirements: [],
-    };
-    expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks4");
+    });
+    expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks2");
   });
   test("unit data with exam board and tier returns the correct programme slug", () => {
-    const unitData = {
-      planned_number_of_lessons: 5,
-      connection_future_unit_description: null,
-      connection_prior_unit_description: null,
-      connection_future_unit_title: null,
-      connection_prior_unit_title: null,
-
-      examboard: null,
-      examboard_slug: null,
-      keystage_slug: "ks4",
-      lessons: [],
-      order: 1,
-      phase: "Secondary",
-      phase_slug: "secondary",
-      slug: "cellular-respiration-and-atp",
-      subject: "Combined Science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
-      subject_slug: "combined-science",
-
-      subjectcategories: null,
-      threads: [],
-      tier: null,
-      tier_slug: null,
-      title: "Aerobic and anaerobic cellular respiration",
-      unit_options: [],
-      year: "11",
-      cycle: "1",
-      why_this_why_now: null,
-      description: null,
-      state: "published",
-      national_curriculum_content: [],
-      prior_knowledge_requirements: [],
-    };
+    const unitData = createUnit({
+      examboard: "aqa",
+      tier: "foundation",
+      year: "10",
+    });
     expect(createTeacherProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
-      "combined-science-secondary-ks4-foundation-aqa",
+      "transfiguration-secondary-ks4-foundation-aqa",
     );
   });
   test("unit data for ks3 returns the correct programme slug", () => {
-    const unitData = {
-      planned_number_of_lessons: 5,
-      connection_future_unit_description: null,
-      connection_prior_unit_description: null,
-      connection_future_unit_title: null,
-      connection_prior_unit_title: null,
-
-      examboard: null,
-      examboard_slug: null,
-      keystage_slug: "ks3",
-      lessons: [],
-      order: 1,
-      phase: "Secondary",
-      phase_slug: "secondary",
-      slug: "cellular-respiration-and-atp",
-      subject: "Combined Science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
-      subject_slug: "combined-science",
-
-      subjectcategories: null,
-      threads: [],
-      tier: null,
-      tier_slug: null,
-      title: "Aerobic and anaerobic cellular respiration",
-      unit_options: [],
-      year: "9",
-      cycle: "1",
-      why_this_why_now: null,
-      description: null,
-      state: "published",
-      national_curriculum_content: [],
-      prior_knowledge_requirements: [],
-    };
+    const unitData = createUnit({ keystage_slug: "ks3", year: "9" });
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
-      "combined-science-secondary-ks3",
+      "transfiguration-secondary-ks3",
     );
   });
 
   test("unit data for ks3 returns the correct programme slug", () => {
-    const unitData = {
-      planned_number_of_lessons: 5,
-      connection_future_unit_description: null,
-      connection_prior_unit_description: null,
-      connection_future_unit_title: null,
-      connection_prior_unit_title: null,
-
-      examboard: null,
-      examboard_slug: null,
-      keystage_slug: "ks3",
-      lessons: [],
-      order: 1,
-      phase: "Secondary",
-      phase_slug: "secondary",
-      slug: "cellular-respiration-and-atp",
-      subject: "Combined Science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
-      subject_slug: "combined-science",
-
-      subjectcategories: null,
-      threads: [],
-      tier: null,
-      tier_slug: null,
-      title: "Aerobic and anaerobic cellular respiration",
-      unit_options: [],
-      year: "9",
-      cycle: "1",
-      why_this_why_now: null,
-      description: null,
-      state: "published",
-      national_curriculum_content: [],
-      prior_knowledge_requirements: [],
-    };
+    const unitData = createUnit({ keystage_slug: "ks3", year: "9" });
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
-      "combined-science-secondary-ks3",
+      "transfiguration-secondary-ks3",
     );
   });
 
-  test("unit data with exam board and tier returns the correct programme slug", () => {
-    const unitData = {
-      planned_number_of_lessons: 5,
-      connection_future_unit_description: null,
-      connection_prior_unit_description: null,
-      connection_future_unit_title: null,
-      connection_prior_unit_title: null,
-
-      examboard: null,
-      examboard_slug: null,
-      keystage_slug: "ks4",
-      lessons: [],
-      order: 1,
-      phase: "Secondary",
-      phase_slug: "secondary",
-      slug: "cellular-respiration-and-atp",
-      subject: "Combined Science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
-      subject_slug: "combined-science",
-
-      subjectcategories: null,
-      threads: [],
-      tier: null,
-      tier_slug: null,
-      title: "Aerobic and anaerobic cellular respiration",
-      unit_options: [],
-      year: "11",
-      cycle: "1",
-      why_this_why_now: null,
-      description: null,
-      state: "published",
-      national_curriculum_content: [],
-      prior_knowledge_requirements: [],
-    };
+  test("core pathway excludes examboard from slug (Computing)", () => {
+    const unitData = createUnit({
+      slug: "online-safety",
+      subject: "Computing",
+      subject_parent: null,
+      subject_parent_slug: null,
+      subject_slug: "computing",
+      title: "Online safety",
+      year: "10",
+    });
     expect(
-      createTeacherProgrammeSlug(unitData, "aqa", "foundation", "gcse"),
-    ).toEqual("combined-science-secondary-ks4-foundation-gcse-aqa");
+      createTeacherProgrammeSlug(unitData, "ocr", undefined, "core"),
+    ).toEqual("computing-secondary-ks4-core");
   });
+
+  test("core pathway excludes examboard from slug (PE)", () => {
+    const unitData = createUnit({
+      slug: "health-fitness-and-wellbeing",
+      subject: "Physical Education",
+      subject_parent: null,
+      subject_parent_slug: null,
+      subject_slug: "physical-education",
+      title: "Health, fitness and wellbeing",
+      year: "10",
+    });
+    expect(
+      createTeacherProgrammeSlug(unitData, "ocr", undefined, "core"),
+    ).toEqual("physical-education-secondary-ks4-core");
+  });
+});
+test("gcse pathway excludes examboard when examboard equals pathway", () => {
+  const unitData = createUnit({
+    slug: "what-can-we-do-to-reduce-crime",
+    subject: "Citizenship",
+    subject_parent: null,
+    subject_parent_slug: null,
+    subject_slug: "citizenship",
+    title: "What can we do to reduce crime?",
+    year: "10",
+  });
+  expect(
+    createTeacherProgrammeSlug(unitData, "gcse", undefined, "gcse"),
+  ).toEqual("citizenship-secondary-ks4-gcse");
 });

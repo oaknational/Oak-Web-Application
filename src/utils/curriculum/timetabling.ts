@@ -8,7 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import z from "zod";
 
-const TIMETABLE_HEADER_PARAM_KEYS = [
+export const TIMETABLE_HEADER_PARAM_KEYS = [
   "subject",
   "year",
   "autumn",
@@ -30,12 +30,12 @@ const defaults = {
 };
 
 const schema = z.object({
-  autumn: z.coerce.number().default(defaults.autumn),
-  spring: z.coerce.number().default(defaults.spring),
-  summer: z.coerce.number().default(defaults.summer),
-  year: z.string().default("1"),
-  name: z.string().default(defaults.name),
-  mode: z.string().default(defaults.mode),
+  autumn: z.coerce.number().prefault(defaults.autumn),
+  spring: z.coerce.number().prefault(defaults.spring),
+  summer: z.coerce.number().prefault(defaults.summer),
+  year: z.string().prefault("1"),
+  name: z.string().prefault(defaults.name),
+  mode: z.string().prefault(defaults.mode),
 });
 
 type TimetableParams = z.infer<typeof schema>;

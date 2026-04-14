@@ -10,7 +10,6 @@ variable "custom_env_vars" {
       CURRICULUM_API_2023_URL = string
       OVERRIDE_URL            = string
       OAK_CONFIG_LOCATION     = string
-      PUPIL_FIRESTORE_ID      = string
     }))
   })
   default = {}
@@ -39,11 +38,9 @@ variable "env_vars" {
       OAK_CONFIG_LOCATION  = optional(string)
       OVERRIDE_APP_VERSION = optional(string)
       OVERRIDE_URL         = optional(string)
-      PUPIL_FIRESTORE_ID   = optional(string)
     }))
     preview = optional(object({
       OAK_CONFIG_LOCATION = optional(string)
-      PUPIL_FIRESTORE_ID  = optional(string)
     }))
   })
   validation {
@@ -55,6 +52,21 @@ variable "env_vars" {
     error_message = "Environment variables don't match requirements for '${local.build_type}' build. Required: ${jsonencode(local.required_current_env)}"
   }
 }
+
+variable "firestore" {
+  description = "Firestore configuration"
+  type = object({
+    firestore_weekly_backup_retention       = optional(string)
+    firestore_enable_point_in_time_recovery = optional(bool)
+  })
+  default = null
+
+  validation {
+    condition     = try(var.firestore.weekly_backup_retention >= 0, true)
+    error_message = "Weekly backup retention must be a positive number or 0 to disable backups."
+  }
+}
+
 
 variable "clerk_secret_key_preview" {
   description = "Clerk secret key for preview environment"

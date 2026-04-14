@@ -3,12 +3,7 @@ import {
   GetStaticProps,
   GetStaticPropsResult,
 } from "next";
-import {
-  OakFlex,
-  OakMaxWidth,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakFlex, OakMaxWidth } from "@oaknational/oak-components";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -30,6 +25,10 @@ import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import {
+  isEyfsPathway,
+  redirectToEyfsPage,
+} from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -89,40 +88,38 @@ export default function LessonOverviewCanonicalPage({
         }),
       }}
     >
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonOverview
-          lesson={{
-            ...lesson,
-            isCanonical: true,
-            isSpecialist,
-            teacherShareButton: teacherNotesButton,
-            teacherShareButtonProps: TeacherNotesButtonProps,
-            teacherNoteHtml: teacherNoteHtml,
-            teacherNoteError: error,
+      <LessonOverview
+        lesson={{
+          ...lesson,
+          isCanonical: true,
+          isSpecialist,
+          teacherShareButton: teacherNotesButton,
+          teacherShareButtonProps: TeacherNotesButtonProps,
+          teacherNoteHtml: teacherNoteHtml,
+          teacherNoteError: error,
+        }}
+        isBeta={false}
+      />
+      {!isSpecialist && (
+        <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
+          <OakMaxWidth $pv="spacing-80">
+            <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
+          </OakMaxWidth>
+        </OakFlex>
+      )}
+      {teacherNote && isEditable && (
+        <TeacherNotesModal
+          isOpen={teacherNotesOpen}
+          onClose={() => {
+            setTeacherNotesOpen(false);
           }}
-          isBeta={false}
+          teacherNote={teacherNote}
+          saveTeacherNote={saveTeacherNote}
+          sharingUrl={shareUrl}
+          error={error}
+          shareActivated={shareActivated}
         />
-        {!isSpecialist && (
-          <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
-            <OakMaxWidth $pv="spacing-80">
-              <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
-            </OakMaxWidth>
-          </OakFlex>
-        )}
-        {teacherNote && isEditable && (
-          <TeacherNotesModal
-            isOpen={teacherNotesOpen}
-            onClose={() => {
-              setTeacherNotesOpen(false);
-            }}
-            teacherNote={teacherNote}
-            saveTeacherNote={saveTeacherNote}
-            sharingUrl={shareUrl}
-            error={error}
-            shareActivated={shareActivated}
-          />
-        )}
-      </OakThemeProvider>
+      )}
     </AppLayout>
   );
 }
@@ -179,6 +176,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           }
         }
       }
+
       if (!lesson) {
         const redirect = await getRedirect({
           isCanonical: true,
@@ -187,6 +185,10 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           isLesson: true,
         });
         return redirect ? { redirect } : { notFound: true };
+      }
+
+      if (isEyfsPathway(lesson.pathways[0])) {
+        return { redirect: redirectToEyfsPage(lesson.pathways[0]) };
       }
 
       const topNav = await curriculumApi2023.topNav();

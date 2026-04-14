@@ -56,7 +56,7 @@ function DotWithWings({
         {iconName && (
           <OakIcon
             iconName={iconName}
-            $colorFilter="white"
+            $colorFilter="text-inverted"
             $width={"spacing-24"}
             $height={"spacing-24"}
           />

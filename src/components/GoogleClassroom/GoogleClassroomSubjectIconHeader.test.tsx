@@ -26,7 +26,7 @@ jest.mock("@/components/TeacherComponents/SubjectIconBrushBorders", () =>
 describe("GoogleClassroomSubjectIconHeader", () => {
   beforeEach(() => jest.clearAllMocks());
 
-  it("uses lavender when pageType is unit", () => {
+  it("uses bg-decorative3-main when pageType is unit", () => {
     render(
       <GoogleClassroomSubjectIconHeader pageType="unit" subjectSlug="maths" />,
     );
@@ -34,13 +34,13 @@ describe("GoogleClassroomSubjectIconHeader", () => {
     expect(subjectIconMock).toHaveBeenCalledWith(
       expect.objectContaining({
         subjectSlug: "maths",
-        color: "lavender",
+        color: "bg-decorative3-main",
         isNew: false,
       }),
     );
   });
 
-  it("uses pink when pageType is lesson", () => {
+  it("uses bg-decorative4-main when pageType is lesson", () => {
     render(
       <GoogleClassroomSubjectIconHeader pageType="lesson" subjectSlug={null} />,
     );
@@ -48,7 +48,7 @@ describe("GoogleClassroomSubjectIconHeader", () => {
     expect(subjectIconMock).toHaveBeenCalledWith(
       expect.objectContaining({
         subjectSlug: null,
-        color: "pink",
+        color: "bg-decorative4-main",
       }),
     );
   });

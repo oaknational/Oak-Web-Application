@@ -5,21 +5,24 @@ import {
   OakPupilJourneyLayout,
   OakPupilJourneyListItem,
   OakTertiaryButton,
-  OakThemeProvider,
-  oakDefaultTheme,
   OakPupilJourneyList,
   OakPupilJourneyListCounter,
   OakBox,
   isValidIconName,
 } from "@oaknational/oak-components";
+import Link from "next/link";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
+import {
+  getDoesSubjectHaveNewUnits,
+  TakedownBanner,
+} from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type PupilLessonListingViewProps = {
   unitData: LessonListingBrowseData[number]["unitData"];
@@ -31,8 +34,14 @@ export type PupilLessonListingViewProps = {
 };
 
 export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
-  const { unitData, programmeFields, orderedCurriculumData, backLink, topNav } =
-    props;
+  const {
+    unitData,
+    programmeFields,
+    orderedCurriculumData,
+    backLink,
+    topNav,
+    programmeSlug,
+  } = props;
   const {
     yearDescription,
     yearSlug,
@@ -105,19 +114,22 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
         />
       </OakFlex>
 
-      <ExpiringBanner
-        isOpen={
+      <TakedownBanner
+        isExpiring={
           unitData.expirationDate !== null ||
           orderedCurriculumData.some((c) => c.actions?.displayExpiringBanner)
         }
-        isResourcesMessage={false}
+        isLegacy={isSlugLegacy(programmeSlug)}
+        hasNewUnits={getDoesSubjectHaveNewUnits(subjectSlug)}
+        subjectSlug={subjectSlug}
+        userType="pupil"
         onwardHref={unitListingHref}
       />
     </OakFlex>
   );
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
+    <>
       {" "}
       <AppLayout
         seoProps={{
@@ -156,6 +168,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
                     key={index}
                     title={lesson.lessonData.title}
                     unavailable={!!lesson.lessonData?.deprecatedFields?.expired}
+                    as={Link}
                   />
                 );
               })}
@@ -164,6 +177,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
           <PupilRedirectedOverlay />
         </OakPupilJourneyLayout>
       </AppLayout>
-    </OakThemeProvider>
+    </>
   );
 };

@@ -22,15 +22,15 @@ import ResourcePageDetailsCompleted from "@/components/TeacherComponents/Resourc
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
 import CopyrightNotice from "@/components/TeacherComponents/OglCopyrightNotice";
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { resolveOakHref } from "@/common-lib/urls";
 
 export type TermsAgreementFormProps = {
   form: {
-    control: Control<ResourceFormProps>;
-    register: UseFormRegister<ResourceFormProps>;
-    errors: FieldErrors<ResourceFormProps>;
-    trigger: UseFormTrigger<ResourceFormProps>;
+    control: Control<ResourceFormValues>;
+    register: UseFormRegister<ResourceFormValues>;
+    errors: FieldErrors<ResourceFormValues>;
+    trigger: UseFormTrigger<ResourceFormValues>;
   };
   isLoading?: boolean;
   email?: string;

@@ -5,7 +5,6 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import {
   getFallbackBlockingConfig,
@@ -110,34 +109,32 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         }),
       }}
     >
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Banners />
-        <LessonOverview
-          lesson={{
-            ...curriculumData,
-            isCanonical: false,
-            isSpecialist: false,
-            teacherShareButton: teacherNotesButton,
-            teacherShareButtonProps: TeacherNotesButtonProps,
-            teacherNoteHtml,
-            teacherNoteError: error,
+      <Banners />
+      <LessonOverview
+        lesson={{
+          ...curriculumData,
+          isCanonical: false,
+          isSpecialist: false,
+          teacherShareButton: teacherNotesButton,
+          teacherShareButtonProps: TeacherNotesButtonProps,
+          teacherNoteHtml,
+          teacherNoteError: error,
+        }}
+        isBeta={false}
+      />
+      {teacherNote && isEditable && (
+        <TeacherNotesModal
+          isOpen={teacherNotesOpen}
+          onClose={() => {
+            setTeacherNotesOpen(false);
           }}
-          isBeta={false}
+          teacherNote={teacherNote}
+          saveTeacherNote={saveTeacherNote}
+          sharingUrl={shareUrl}
+          error={error}
+          shareActivated={shareActivated}
         />
-        {teacherNote && isEditable && (
-          <TeacherNotesModal
-            isOpen={teacherNotesOpen}
-            onClose={() => {
-              setTeacherNotesOpen(false);
-            }}
-            teacherNote={teacherNote}
-            saveTeacherNote={saveTeacherNote}
-            sharingUrl={shareUrl}
-            error={error}
-            shareActivated={shareActivated}
-          />
-        )}
-      </OakThemeProvider>
+      )}
     </AppLayout>
   );
 };

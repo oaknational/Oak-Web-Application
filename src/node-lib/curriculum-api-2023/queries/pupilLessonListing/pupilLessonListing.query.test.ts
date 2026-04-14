@@ -24,6 +24,16 @@ describe("pupilLessonListing()", () => {
             backLinkData: [],
           }) as Promise<PupilLessonListingQuery>, // Add the correct return type
       ),
+      pupilLessonListingLessonContent: jest.fn(() =>
+        Promise.resolve({
+          data: [
+            {
+              lesson_slug: _syntheticUnitvariantLessonsFixture.lesson_slug,
+              exit_quiz: [{ id: "quiz1" }, { id: "quiz2" }],
+            },
+          ],
+        }),
+      ),
     })({
       unitSlug: "test",
       programmeSlug: "programme-slug-test-secondary-year-10",
@@ -62,6 +72,14 @@ describe("pupilLessonListing()", () => {
             browseData: fixtures as PupilLessonListingQuery["browseData"],
           }) as Promise<PupilLessonListingQuery>,
       ),
+      pupilLessonListingLessonContent: jest.fn(() =>
+        Promise.resolve({
+          data: fixtures.map((fixture) => ({
+            lesson_slug: fixture.lesson_slug,
+            exit_quiz: [{ id: "quiz1" }, { id: "quiz2" }],
+          })),
+        }),
+      ),
     })({
       unitSlug: "test",
       programmeSlug: "programme-slug-test-secondary-year-10",
@@ -98,6 +116,14 @@ describe("pupilLessonListing()", () => {
               browseData: fixtures as PupilLessonListingQuery["browseData"],
             }) as Promise<PupilLessonListingQuery>,
         ),
+        pupilLessonListingLessonContent: jest.fn(() =>
+          Promise.resolve({
+            data: fixtures.map((fixture) => ({
+              lesson_slug: fixture.lesson_slug,
+              exit_quiz: [{ id: "quiz1" }, { id: "quiz2" }],
+            })),
+          }),
+        ),
       })({
         unitSlug: "test",
         programmeSlug: "programme-slug-test-secondary-year-10",
@@ -128,6 +154,14 @@ describe("pupilLessonListing()", () => {
             browseData: fixtures as PupilLessonListingQuery["browseData"],
           }) as Promise<PupilLessonListingQuery>,
       ),
+      pupilLessonListingLessonContent: jest.fn(() =>
+        Promise.resolve({
+          data: fixtures.map((fixture) => ({
+            lesson_slug: fixture.lesson_slug,
+            exit_quiz: [{ id: "quiz1" }, { id: "quiz2" }],
+          })),
+        }),
+      ),
     })({
       unitSlug: "test",
       programmeSlug: "programme-slug-test-secondary-year-10",
@@ -151,5 +185,42 @@ describe("pupilLessonListing()", () => {
         programmeSlug: "programme-slug-test",
       }),
     ).rejects.toThrow("Resource not found");
+  });
+  test("throws a Zod error if the response is invalid", async () => {
+    const _syntheticUnitvariantLessonsFixture =
+      syntheticUnitvariantLessonsFixture({
+        overrides: {
+          lesson_slug: undefined,
+          unit_slug: "unit-slug-test",
+          programme_slug: "programme-slug-test-secondary-year-10",
+        },
+      });
+    await expect(async () => {
+      await pupilLessonListingQuery({
+        ...sdk,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        pupilLessonListing: jest.fn(
+          () =>
+            Promise.resolve({
+              browseData: [_syntheticUnitvariantLessonsFixture],
+              backLinkData: [],
+            }) as Promise<PupilLessonListingQuery>, // Add the correct return type
+        ),
+        pupilLessonListingLessonContent: jest.fn(() =>
+          Promise.resolve({
+            data: [
+              {
+                lesson_slug: _syntheticUnitvariantLessonsFixture.lesson_slug,
+                exit_quiz: [{ id: "quiz1" }, { id: "quiz2" }],
+              },
+            ],
+          }),
+        ),
+      })({
+        unitSlug: "test",
+        programmeSlug: "programme-slug-test-secondary-year-10",
+      });
+    }).rejects.toThrow();
   });
 });

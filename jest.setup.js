@@ -11,7 +11,7 @@ if (process.env.TEST_ALLOW_LOGGING !== "1") {
   ["log", "info", "error", "warn", "debug"].forEach((type) => {
     console[type] = (message) => {
       throw new Error(
-        `Failed: We don't allow console.${type} while running tests!\n\n${message}`,
+        `Failed: We don't allow console.${type} while running tests!\n\n${message}\n\nIf you'd like to enable logging for testing, prefix with TEST_ALLOW_LOGGING=1`,
       );
     };
   });
@@ -124,4 +124,26 @@ jest.mock("@/node-lib/educator-api/helpers/useGetEducatorData", () => ({
     isLoading: false,
     mutate: jest.fn(),
   })),
+}));
+
+// Mock window.matchMedia
+Object.defineProperty(global, "matchMedia", {
+  writable: true,
+  value: jest.fn().mockImplementation((query) => ({
+    matches: true,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
+// App router
+jest.mock("next/navigation", () => ({
+  usePathname: jest.fn(),
+  useRouter: jest.fn(),
+  useSearchParams: jest.fn(),
 }));

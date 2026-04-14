@@ -13,6 +13,7 @@ import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
 
 import { invariant } from "@/utils/invariant";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 
 export type QuizOrderAnswerProps = {
   onChange: () => void;
@@ -21,6 +22,7 @@ export type QuizOrderAnswerProps = {
 export const QuizOrderAnswer = ({ onChange }: QuizOrderAnswerProps) => {
   const { currentQuestionData, questionState, currentQuestionIndex } =
     useQuizEngineContext();
+  const { currentSection, isReadOnly } = useLessonEngineContext();
   invariant(currentQuestionData, "currentQuestionData is not defined");
   const answers = currentQuestionData.answers;
   const questionUid = currentQuestionData.questionUid;
@@ -63,6 +65,7 @@ export const QuizOrderAnswer = ({ onChange }: QuizOrderAnswerProps) => {
   const [currentOrder, setCurrentOrder] = useState(initialItems);
   const [announcements, setAnnouncements] = useState(currentOrder);
   const [documentLoaded, setDocumentLoaded] = useState(false);
+  const isExitQuizReadOnly = isReadOnly && currentSection === "exit-quiz";
 
   useEffect(() => {
     setDocumentLoaded(true);
@@ -89,6 +92,7 @@ export const QuizOrderAnswer = ({ onChange }: QuizOrderAnswerProps) => {
   }, [currentOrder, documentLoaded]);
 
   const handleOrderChange = (items: OakQuizOrderProps["initialItems"]) => {
+    if (isExitQuizReadOnly) return;
     onChange();
     setCurrentOrder(items);
   };
@@ -121,7 +125,7 @@ export const QuizOrderAnswer = ({ onChange }: QuizOrderAnswerProps) => {
     <OakBox>
       <OakQuizOrder
         initialItems={initialItems}
-        onChange={handleOrderChange}
+        onChange={isExitQuizReadOnly ? undefined : handleOrderChange}
         isHighlighted={currentQuestionState?.mode === "incomplete"}
         announcements={announcements}
       />

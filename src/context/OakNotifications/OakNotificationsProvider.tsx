@@ -1,17 +1,17 @@
 "use client";
+
 import {
-  oakDefaultTheme,
   OakFlex,
   OakInlineBanner,
   OakInlineBannerProps,
-  OakThemeProvider,
   OakToast,
   OakToastProps,
 } from "@oaknational/oak-components";
 import { usePathname } from "next/navigation";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import { createContext, FC, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
+
+import { useIsNewTopnavEnabled } from "@/hooks/useIsNewTopnavEnabled";
 
 type OakNotificationsContext = {
   currentToastProps: OakToastProps | null;
@@ -38,8 +38,7 @@ export const OakNotificationsProvider: FC<{
   const [offsetTop, setOffsetTop] = useState<number>(82);
   const [id, setId] = useState(0);
   const path = usePathname();
-
-  const newTopNavEnabled = useFeatureFlagEnabled("teachers-new-top-nav");
+  const newTopNavEnabled = useIsNewTopnavEnabled();
 
   useEffect(() => {
     let observer: IntersectionObserver | null = null;
@@ -93,36 +92,34 @@ export const OakNotificationsProvider: FC<{
 
   return (
     <oakNotificationsContext.Provider value={contextValue}>
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <StyledOakNotificationsContainer
-          $position="fixed"
-          $zIndex="in-front"
-          offsetTop={offsetTop}
-          $right={["spacing-0", "spacing-24"]}
-          $width={["100%", "max-content"]}
-          aria-live="polite"
-          $flexDirection={"column"}
-          $gap={"spacing-12"}
-          $alignItems={["center", "flex-end"]}
-          $ph={["spacing-12", "spacing-0"]}
-        >
-          {currentBannerProps && (
-            <OakInlineBanner
-              {...currentBannerProps}
-              $maxWidth={"spacing-480"}
-              onDismiss={() => setCurrentBannerProps(null)}
-              canDismiss
-            />
-          )}
-          {currentToastProps && (
-            <OakToast
-              {...currentToastProps}
-              onClose={() => setCurrentToastProps(null)}
-              id={id}
-            />
-          )}
-        </StyledOakNotificationsContainer>
-      </OakThemeProvider>
+      <StyledOakNotificationsContainer
+        $position="fixed"
+        $zIndex="in-front"
+        offsetTop={offsetTop}
+        $right={["spacing-0", "spacing-24"]}
+        $width={["100%", "max-content"]}
+        aria-live="polite"
+        $flexDirection={"column"}
+        $gap={"spacing-12"}
+        $alignItems={["center", "flex-end"]}
+        $ph={["spacing-12", "spacing-0"]}
+      >
+        {currentBannerProps && (
+          <OakInlineBanner
+            {...currentBannerProps}
+            $maxWidth={"spacing-480"}
+            onDismiss={() => setCurrentBannerProps(null)}
+            canDismiss
+          />
+        )}
+        {currentToastProps && (
+          <OakToast
+            {...currentToastProps}
+            onClose={() => setCurrentToastProps(null)}
+            id={id}
+          />
+        )}
+      </StyledOakNotificationsContainer>
       {children}
     </oakNotificationsContext.Provider>
   );

@@ -1,3 +1,5 @@
+import slugify from "slugify";
+
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 
@@ -5,6 +7,12 @@ export type CurriculumSelectionSlugs = {
   phaseSlug: string;
   subjectSlug: string;
   ks4OptionSlug: string | null;
+};
+
+export type CurriculumSelectionTitles = {
+  phaseTitle: string;
+  subjectTitle: string;
+  examboardTitle: string | undefined;
 };
 
 export const parseSubjectPhaseSlug = (
@@ -98,19 +106,27 @@ export function getKs4RedirectSlug(
 export function createTeacherProgrammeSlug(
   unitData?: CurriculumUnitsTabData["units"][number] | null,
   examboardSlug?: string | null,
-  tierSlug?: string,
-  pathwaySlug?: string,
+  tierSlug?: string | null,
+  pathwaySlug?: string | null,
 ) {
   if (unitData?.keystage_slug === "ks4") {
     const parts: string[] = [];
-    parts.push(unitData.subject_slug);
-    parts.push(unitData.phase_slug);
-    parts.push(unitData.keystage_slug);
+    parts.push(
+      unitData.subject_slug,
+      unitData.phase_slug,
+      unitData.keystage_slug,
+    );
+
     if (tierSlug) parts.push(tierSlug);
     if (pathwaySlug) parts.push(pathwaySlug);
 
-    if (examboardSlug && !["core", "gcse"].includes(examboardSlug))
+    if (
+      examboardSlug &&
+      pathwaySlug !== "core" &&
+      examboardSlug !== pathwaySlug
+    )
       parts.push(examboardSlug);
+
     return parts.join("-");
   } else if (unitData) {
     return [
@@ -120,4 +136,28 @@ export function createTeacherProgrammeSlug(
     ].join("-");
   }
   return "";
+}
+
+export function getTeacherSubjectPhaseSlug({
+  subjectSlug,
+  phaseSlug,
+  examboardSlug,
+  pathwaySlug,
+  subjectParentTitle,
+}: {
+  subjectSlug: string;
+  phaseSlug: string;
+  examboardSlug?: string | null;
+  pathwaySlug?: string | null;
+  subjectParentTitle?: string | null;
+}) {
+  const subjectSegment = subjectParentTitle
+    ? slugify(subjectParentTitle).toLocaleLowerCase()
+    : subjectSlug;
+
+  const examboardSegment = examboardSlug ? `-${examboardSlug}` : "";
+
+  const pathwaySegment = pathwaySlug ? `-${pathwaySlug}` : "";
+
+  return `${subjectSegment}-${phaseSlug}${examboardSegment}${pathwaySegment}`;
 }

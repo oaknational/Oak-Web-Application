@@ -4,6 +4,7 @@ import Page from "./page";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import OakError from "@/errors/OakError";
 import { extractBaseSlug } from "@/pages-helpers/pupil";
 import { checkAndExcludeUnitsWithAgeRestrictedLessons } from "@/pages-helpers/pupil/units-page/units-page-helper";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
@@ -20,11 +21,27 @@ const unitsListingViewMock = jest.fn();
 
 jest.mock("lodash", () => jest.requireActual("lodash"));
 
+jest.mock("next/navigation", () => ({
+  notFound: () => {
+    throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+  },
+}));
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefined: jest.fn(),
+    },
+  }),
+}));
+
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   UnitsListingView: (props: never) => {
     unitsListingViewMock(props);
     return <div data-testid="units-view">Units</div>;
   },
+  UnitCards: () => <div data-testid="unit-cards" />,
 }));
 
 jest.mock("@/node-lib/curriculum-api-2023");
@@ -93,7 +110,6 @@ describe("src/app/classroom/browse/programmes/[programmeSlug]/units/page", () =>
 
     const props = unitsListingViewMock.mock
       .calls[0][0] as UnitsListingViewProps;
-    expect(props.programmeSlug).toBe("maths-h");
     expect(props.programmeUnits).toHaveLength(2);
     expect(props.programmeUnits[0]).toHaveLength(2);
     expect(
@@ -105,10 +121,28 @@ describe("src/app/classroom/browse/programmes/[programmeSlug]/units/page", () =>
       "algebra-1",
     ]);
     expect(props.programmeData.yearSlug).toBe("year-10");
-    expect(props.unitsLessonListUrlTemplate).toBe(
-      "/classroom/browse/programmes/:programmeSlug/units/:unitSlug/lessons",
-    );
     expect(props.headerLeftSlot).toBeTruthy();
+  });
+
+  it("returns 404 when API throws OakError with curriculum-api/not-found", async () => {
+    (curriculumApi2023.pupilUnitListingQuery as jest.Mock).mockRejectedValue(
+      new OakError({ code: "curriculum-api/not-found" }),
+    );
+
+    await expect(
+      Page({ params: Promise.resolve({ programmeSlug: "maths-h" }) }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
+
+  it("re-throws when API throws a non-not-found OakError", async () => {
+    const error = new OakError({ code: "curriculum-api/internal-error" });
+    (curriculumApi2023.pupilUnitListingQuery as jest.Mock).mockRejectedValue(
+      error,
+    );
+
+    await expect(
+      Page({ params: Promise.resolve({ programmeSlug: "maths-h" }) }),
+    ).rejects.toEqual(error);
   });
 
   it("returns 404 when no curriculum data", async () => {
@@ -116,10 +150,61 @@ describe("src/app/classroom/browse/programmes/[programmeSlug]/units/page", () =>
       null,
     );
 
-    const output = await Page({
-      params: Promise.resolve({ programmeSlug: "nope" }),
-    });
+    await expect(
+      Page({
+        params: Promise.resolve({ programmeSlug: "nope" }),
+      }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
 
-    expect(output).toEqual(<>404</>);
+  it("returns 404 when all units are filtered out", async () => {
+    const mockData = [
+      {
+        programmeSlug: "maths-h",
+        unitSlug: "algebra-1",
+        programmeFields: {
+          yearSlug: "year-10",
+          subjectSlug: "maths",
+          optionality: false,
+        },
+        supplementaryData: { unitOrder: 1 },
+      },
+    ];
+    (curriculumApi2023.pupilUnitListingQuery as jest.Mock).mockResolvedValue(
+      mockData,
+    );
+    (checkAndExcludeUnitsWithAgeRestrictedLessons as jest.Mock).mockReturnValue(
+      [],
+    );
+
+    await expect(
+      Page({
+        params: Promise.resolve({ programmeSlug: "maths-h" }),
+      }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  });
+
+  it("returns 404 when selected programme cannot be found", async () => {
+    const mockData = [
+      {
+        programmeSlug: 123,
+        unitSlug: "algebra-1",
+        programmeFields: {
+          yearSlug: "year-10",
+          subjectSlug: "maths",
+          optionality: false,
+        },
+        supplementaryData: { unitOrder: 1 },
+      },
+    ];
+    (curriculumApi2023.pupilUnitListingQuery as jest.Mock).mockResolvedValue(
+      mockData,
+    );
+
+    await expect(
+      Page({
+        params: Promise.resolve({ programmeSlug: "123" }),
+      }),
+    ).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
 });

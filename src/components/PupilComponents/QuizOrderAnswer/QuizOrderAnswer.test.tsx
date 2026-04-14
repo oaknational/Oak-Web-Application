@@ -9,6 +9,8 @@ import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineCon
 import { QuizOrderAnswer } from "./QuizOrderAnswer";
 
 import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
+import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { OrderAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
@@ -18,8 +20,6 @@ jest.mock("@oaknational/oak-components", () => {
     OakQuizOrder: jest.fn().mockReturnValue(null),
   };
 });
-
-window.matchMedia = () => ({ matches: true }) as unknown as MediaQueryList;
 
 describe(QuizOrderAnswer, () => {
   const mouse: OrderAnswer = {
@@ -67,6 +67,7 @@ describe(QuizOrderAnswer, () => {
       answers: {
         order: [mouse, cat, elephant],
       },
+      _state: "published",
     },
   });
   const newOrder = [
@@ -100,9 +101,11 @@ describe(QuizOrderAnswer, () => {
   it("renders a hidden input for each item", () => {
     const { getAllByTestId } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizOrderAnswer onChange={() => {}} />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <QuizEngineContext.Provider value={context}>
+            <QuizOrderAnswer onChange={() => {}} />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
 
@@ -125,9 +128,11 @@ describe(QuizOrderAnswer, () => {
 
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizOrderAnswer onChange={onChange} />
-        </QuizEngineContext.Provider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <QuizEngineContext.Provider value={context}>
+            <QuizOrderAnswer onChange={onChange} />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
 
@@ -165,9 +170,11 @@ describe(QuizOrderAnswer, () => {
         .mockReturnValue(mockElement as HTMLElement);
       const { getAllByText } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
-          <QuizEngineContext.Provider value={context}>
-            <QuizOrderAnswer onChange={() => {}} />
-          </QuizEngineContext.Provider>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <QuizEngineContext.Provider value={context}>
+              <QuizOrderAnswer onChange={() => {}} />
+            </QuizEngineContext.Provider>
+          </LessonEngineContext.Provider>
         </OakThemeProvider>,
       );
 
@@ -187,9 +194,11 @@ describe(QuizOrderAnswer, () => {
         .mockReturnValue(mockElement as HTMLElement);
       const { getByText } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
-          <QuizEngineContext.Provider value={context}>
-            <QuizOrderAnswer onChange={() => {}} />
-          </QuizEngineContext.Provider>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <QuizEngineContext.Provider value={context}>
+              <QuizOrderAnswer onChange={() => {}} />
+            </QuizEngineContext.Provider>
+          </LessonEngineContext.Provider>
         </OakThemeProvider>,
       );
 
@@ -224,9 +233,11 @@ describe(QuizOrderAnswer, () => {
 
       const { getAllByTestId, rerender } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
-          <QuizEngineContext.Provider value={context}>
-            <QuizOrderAnswer onChange={() => {}} />
-          </QuizEngineContext.Provider>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <QuizEngineContext.Provider value={context}>
+              <QuizOrderAnswer onChange={() => {}} />
+            </QuizEngineContext.Provider>
+          </LessonEngineContext.Provider>
         </OakThemeProvider>,
       );
 
@@ -236,9 +247,11 @@ describe(QuizOrderAnswer, () => {
 
       rerender(
         <OakThemeProvider theme={oakDefaultTheme}>
-          <QuizEngineContext.Provider value={feedbackContext}>
-            <QuizOrderAnswer onChange={() => {}} />
-          </QuizEngineContext.Provider>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <QuizEngineContext.Provider value={feedbackContext}>
+              <QuizOrderAnswer onChange={() => {}} />
+            </QuizEngineContext.Provider>
+          </LessonEngineContext.Provider>
         </OakThemeProvider>,
       );
 

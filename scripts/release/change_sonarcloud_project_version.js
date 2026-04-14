@@ -1,7 +1,6 @@
 const { readFileSync, writeFileSync } = require("node:fs");
 const path = require("node:path");
 
-// eslint-disable-next-line import/no-unresolved
 const { PropertiesEditor } = require("properties-file/editor");
 
 const SONAR_PROJECT_PROPERTIES_FILE = path.join(

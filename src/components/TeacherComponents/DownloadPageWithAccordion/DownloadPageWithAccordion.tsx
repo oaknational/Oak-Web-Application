@@ -22,7 +22,7 @@ import ComplexCopyrightRestrictionBanner from "../ComplexCopyrightRestrictionBan
 
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { ResourceFormValues } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
 import OglCopyrightNotice from "@/components/TeacherComponents/OglCopyrightNotice";
 import FieldError from "@/components/SharedComponents/FieldError";
@@ -40,17 +40,17 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     downloadsRestricted: boolean;
     handleToggleSelectAll: () => void;
     selectAllChecked: boolean;
-    errors: FieldErrors<ResourceFormProps>;
+    errors: FieldErrors<ResourceFormValues>;
     cardGroup: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
     schoolId?: string;
-    register: UseFormRegister<ResourceFormProps>;
-    control: Control<ResourceFormProps>;
+    register: UseFormRegister<ResourceFormValues>;
+    control: Control<ResourceFormValues>;
     showPostAlbCopyright: boolean;
     showSavedDetails: boolean;
     cta: React.ReactNode;
-    triggerForm: UseFormTrigger<ResourceFormProps>;
+    triggerForm: UseFormTrigger<ResourceFormValues>;
     apiError?: string | null;
     updatedAt: string;
     showTermsAgreement: boolean;
@@ -250,7 +250,7 @@ const DownloadPageWithAccordionContent = (
             <OakFlex $flexDirection={"row"}>
               <OakIcon
                 iconName="content-guidance"
-                $colorFilter={"red"}
+                $colorFilter={"icon-error"}
                 $width={"spacing-24"}
                 $height={"spacing-24"}
               />

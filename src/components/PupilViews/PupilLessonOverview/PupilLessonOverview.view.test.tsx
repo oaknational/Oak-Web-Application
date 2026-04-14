@@ -1,8 +1,8 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { PupilViewsLessonOverview } from "./PupilLessonOverview.view";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   LessonEngineContext,
   LessonEngineContextType,
@@ -11,6 +11,11 @@ import { createLessonEngineContext } from "@/components/PupilComponents/pupilTes
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
+import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
+
+const mockTrackSectionStarted = jest.fn();
 
 const usePupilAnalyticsMock = {
   track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
@@ -27,7 +32,58 @@ jest.mock(
   },
 );
 
-const mockBroweData = lessonBrowseDataFixture({
+jest.mock("@/hooks/useAssignmentSearchParams", () => ({
+  useAssignmentSearchParams: jest.fn(),
+}));
+
+jest.mock("@/hooks/useTrackSectionStarted", () => ({
+  useTrackSectionStarted: jest.fn(),
+}));
+
+jest.mock(
+  "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton",
+  () => ({
+    ViewAllLessonsButton: ({
+      href,
+      onClick,
+    }: {
+      href?: string | null;
+      onClick?: () => void;
+    }) => (
+      <button
+        data-testid="view-all-lessons-button"
+        data-href={href}
+        onClick={onClick}
+      >
+        View all lessons
+      </button>
+    ),
+  }),
+);
+
+jest.mock(
+  "@/components/SharedComponents/TakedownBanner/TakedownBanner",
+  () => ({
+    getDoesSubjectHaveNewUnits: jest.fn(() => true),
+    TakedownBanner: (props: Record<string, unknown>) => (
+      <div
+        data-testid="takedown-banner"
+        data-is-expiring={String(props.isExpiring)}
+        data-is-legacy={String(props.isLegacy)}
+        data-onward-href={String(props.onwardHref)}
+      />
+    ),
+  }),
+);
+
+const mockedUseAssignmentSearchParams =
+  useAssignmentSearchParams as jest.MockedFunction<
+    typeof useAssignmentSearchParams
+  >;
+const mockedUseTrackSectionStarted =
+  useTrackSectionStarted as jest.MockedFunction<typeof useTrackSectionStarted>;
+
+const mockBrowseData = lessonBrowseDataFixture({
   programmeFields: {
     ...lessonBrowseDataFixture({}).programmeFields,
     phase: "primary",
@@ -42,24 +98,41 @@ const mockBroweData = lessonBrowseDataFixture({
   },
 });
 
+const render = renderWithProviders();
+
+const renderOverview = (
+  context?: Partial<LessonEngineContextType>,
+  props?: Partial<React.ComponentProps<typeof PupilViewsLessonOverview>>,
+) => {
+  return render(
+    <OakPupilClientProvider>
+      <LessonEngineContext.Provider value={createLessonEngineContext(context)}>
+        <PupilViewsLessonOverview
+          lessonTitle="Introduction to The Canterbury Tales"
+          starterQuizNumQuestions={4}
+          exitQuizNumQuestions={5}
+          browseData={mockBrowseData}
+          {...props}
+        />
+      </LessonEngineContext.Provider>
+    </OakPupilClientProvider>,
+  );
+};
+
 describe("PupilViewsLessonOverview", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: false,
+      classroomAssignmentChecked: true,
+    });
+    mockedUseTrackSectionStarted.mockReturnValue({
+      trackSectionStarted: mockTrackSectionStarted,
+    });
+  });
+
   it("displays the lesson title", () => {
-    const { queryByRole } = renderWithTheme(
-      <OakPupilClientProvider>
-        {" "}
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider value={createLessonEngineContext()}>
-            <PupilViewsLessonOverview
-              lessonTitle="Introduction to The Canterbury Tales"
-              starterQuizNumQuestions={4}
-              exitQuizNumQuestions={5}
-              browseData={mockBroweData}
-            />
-          </LessonEngineContext.Provider>
-        </OakThemeProvider>
-        ,
-      </OakPupilClientProvider>,
-    );
+    const { queryByRole } = renderOverview();
 
     expect(
       queryByRole("heading", { name: "Introduction to The Canterbury Tales" }),
@@ -75,24 +148,7 @@ describe("PupilViewsLessonOverview", () => {
     it(`allows navigation to the "${section}" section of the quiz`, () => {
       const updateCurrentSection = jest.fn();
 
-      const { getByRole } = renderWithTheme(
-        <OakPupilClientProvider>
-          {" "}
-          <OakThemeProvider theme={oakDefaultTheme}>
-            <LessonEngineContext.Provider
-              value={createLessonEngineContext({ updateCurrentSection })}
-            >
-              <PupilViewsLessonOverview
-                lessonTitle="Introduction to The Canterbury Tales"
-                starterQuizNumQuestions={4}
-                exitQuizNumQuestions={5}
-                browseData={mockBroweData}
-              />
-            </LessonEngineContext.Provider>
-          </OakThemeProvider>
-          ,
-        </OakPupilClientProvider>,
-      );
+      const { getByRole } = renderOverview({ updateCurrentSection });
 
       getByRole("link", { name }).click();
 
@@ -101,52 +157,22 @@ describe("PupilViewsLessonOverview", () => {
   });
 
   it("displays in-progress for in progress sections", () => {
-    const { getByTestId } = renderWithTheme(
-      <OakPupilClientProvider>
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider
-            value={createLessonEngineContext({
-              currentSection: "starter-quiz",
-              sectionResults: {
-                "starter-quiz": {
-                  grade: 1,
-                  isComplete: false,
-                  numQuestions: 0,
-                },
-              },
-            })}
-          >
-            <PupilViewsLessonOverview
-              lessonTitle="Introduction to The Canterbury Tales"
-              starterQuizNumQuestions={4}
-              exitQuizNumQuestions={5}
-              browseData={mockBroweData}
-            />
-          </LessonEngineContext.Provider>
-        </OakThemeProvider>
-      </OakPupilClientProvider>,
-    );
+    const { getByTestId } = renderOverview({
+      currentSection: "starter-quiz",
+      sectionResults: {
+        "starter-quiz": {
+          grade: 1,
+          isComplete: false,
+          numQuestions: 0,
+        },
+      },
+    });
 
     expect(getByTestId("starter-quiz")).toHaveTextContent(/In progress/);
   });
 
   it("displays the number of questions for each quiz", () => {
-    // console.log(logAttempt);
-    const { getByTestId } = renderWithTheme(
-      <OakPupilClientProvider>
-        {" "}
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider value={createLessonEngineContext()}>
-            <PupilViewsLessonOverview
-              lessonTitle="Introduction to The Canterbury Tales"
-              starterQuizNumQuestions={4}
-              exitQuizNumQuestions={5}
-              browseData={mockBroweData}
-            />
-          </LessonEngineContext.Provider>
-        </OakThemeProvider>
-      </OakPupilClientProvider>,
-    );
+    const { getByTestId } = renderOverview();
 
     expect(getByTestId("starter-quiz")).toHaveTextContent(/4 Questions/);
     expect(getByTestId("exit-quiz")).toHaveTextContent(/5 questions/);
@@ -195,22 +221,166 @@ describe("PupilViewsLessonOverview", () => {
   }>)(
     'renders "$label" for the proceed to next section button',
     ({ label, context }) => {
-      const { getByTestId } = renderWithTheme(
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider
-            value={createLessonEngineContext(context)}
-          >
-            <PupilViewsLessonOverview
-              lessonTitle="Introduction to The Canterbury Tales"
-              starterQuizNumQuestions={4}
-              exitQuizNumQuestions={5}
-              browseData={mockBroweData}
-            />
-          </LessonEngineContext.Provider>
-        </OakThemeProvider>,
-      );
+      const { getByTestId } = renderOverview(context);
 
       expect(getByTestId("proceed-to-next-section")).toHaveTextContent(label);
     },
   );
+
+  it("redirects to review on mount when read only", async () => {
+    const updateCurrentSection = jest.fn();
+
+    renderOverview({
+      isReadOnly: true,
+      updateCurrentSection,
+    });
+
+    await waitFor(() => {
+      expect(updateCurrentSection).toHaveBeenCalledWith("review");
+      expect(mockTrackSectionStarted).toHaveBeenCalledWith("review");
+    });
+  });
+
+  it("proceeds to the first incomplete section and tracks it", async () => {
+    const proceedToNextSection = jest.fn();
+
+    renderOverview({
+      proceedToNextSection,
+      lessonReviewSections: ["intro", "starter-quiz", "video", "exit-quiz"],
+      sectionResults: {
+        intro: { isComplete: true },
+        "starter-quiz": { isComplete: true, numQuestions: 4, grade: 1 },
+      },
+    });
+
+    await userEvent.click(screen.getByTestId("proceed-to-next-section"));
+
+    expect(proceedToNextSection).toHaveBeenCalled();
+    expect(mockTrackSectionStarted).toHaveBeenCalledWith("video");
+  });
+
+  it("keeps the user on review when read only and proceed is clicked", async () => {
+    const updateCurrentSection = jest.fn();
+    const proceedToNextSection = jest.fn();
+
+    renderOverview({
+      isReadOnly: true,
+      updateCurrentSection,
+      proceedToNextSection,
+    });
+
+    await userEvent.click(screen.getByTestId("proceed-to-next-section"));
+
+    expect(proceedToNextSection).not.toHaveBeenCalled();
+    expect(updateCurrentSection).toHaveBeenCalledWith("review");
+    expect(mockTrackSectionStarted).toHaveBeenCalledWith("review");
+  });
+
+  it("renders lesson outcomes and formatted content guidance", () => {
+    renderOverview(undefined, {
+      pupilLessonOutcome: "Understand the prologue",
+      phonicsOutcome: "Pronounce new sounds",
+      contentGuidance: [
+        {
+          contentguidanceLabel: "Contains discussion of grief",
+          contentguidanceArea: "theme",
+          contentguidanceDescription: null,
+        },
+        {
+          contentguidanceLabel: "References loss.",
+          contentguidanceArea: "theme",
+          contentguidanceDescription: null,
+        },
+      ],
+      supervisionLevel: "Discuss with a trusted adult",
+    });
+
+    expect(screen.getByText("Lesson outcome")).toBeInTheDocument();
+    expect(screen.getByText("Understand the prologue")).toBeInTheDocument();
+    expect(screen.getByText("Pronounce new sounds")).toBeInTheDocument();
+    expect(screen.getByTestId("content-guidance-info")).toHaveTextContent(
+      "Contains discussion of grief. References loss. Discuss with a trusted adult.",
+    );
+  });
+
+  it("shows the back button only for non-classroom lessons and tracks abandonment", async () => {
+    renderOverview(
+      {
+        isLessonComplete: false,
+      },
+      { backUrl: "/back" },
+    );
+
+    await userEvent.click(screen.getByTestId("view-all-lessons-button"));
+
+    expect(screen.getByTestId("view-all-lessons-button")).toBeInTheDocument();
+    expect(usePupilAnalyticsMock.track.lessonAbandoned).toHaveBeenCalledWith(
+      {},
+    );
+  });
+
+  it("hides the back button for classroom assignments and while assignment check is incomplete", () => {
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: true,
+      classroomAssignmentChecked: true,
+    });
+
+    const { rerender } = renderOverview(undefined, { backUrl: "/back" });
+
+    expect(
+      screen.queryByTestId("view-all-lessons-button"),
+    ).not.toBeInTheDocument();
+
+    mockedUseAssignmentSearchParams.mockReturnValue({
+      isClassroomAssignment: false,
+      classroomAssignmentChecked: false,
+    });
+
+    rerender(
+      <OakPupilClientProvider>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsLessonOverview
+            lessonTitle="Introduction to The Canterbury Tales"
+            starterQuizNumQuestions={4}
+            exitQuizNumQuestions={5}
+            browseData={mockBrowseData}
+            backUrl="/back"
+          />
+        </LessonEngineContext.Provider>
+      </OakPupilClientProvider>,
+    );
+
+    expect(
+      screen.queryByTestId("view-all-lessons-button"),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders the takedown banner and section progress states", () => {
+    renderOverview(
+      {
+        isReadOnly: true,
+        isHydratingInitialProgress: true,
+        lessonReviewSections: ["intro", "starter-quiz", "video", "exit-quiz"],
+        sectionResults: {
+          "starter-quiz": { isComplete: true, numQuestions: 4, grade: 2 },
+          "exit-quiz": { isComplete: false, numQuestions: 5, grade: 1 },
+        },
+      },
+      {
+        browseData: {
+          ...mockBrowseData,
+          programmeSlug: "legacy-programme",
+          actions: { displayExpiringBanner: true },
+          lessonData: {
+            ...mockBrowseData.lessonData,
+            expirationDate: "2026-05-01",
+          },
+        },
+      },
+    );
+
+    expect(screen.getAllByTestId("takedown-banner")).toHaveLength(2);
+    expect(screen.getByTestId("starter-quiz")).toHaveTextContent(/Complete/);
+    expect(screen.getByTestId("exit-quiz")).toHaveTextContent(/In progress/);
+  });
 });

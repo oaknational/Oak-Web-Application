@@ -11,7 +11,7 @@ const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 /**
  * Expected response schema
  */
-const lessonDataSchema = z.object({
+export const lessonDataSchema = z.object({
   resources: z.array(
     z.tuple([
       z.custom<DownloadResourceType>(),
@@ -44,30 +44,7 @@ const schema = z.object({
     .optional(),
 });
 
-const legacySchema = z.object({
-  data: z
-    .object({
-      resources: z.object({
-        "exit-quiz-answers": z.boolean().optional(),
-        "exit-quiz-questions": z.boolean().optional(),
-        "intro-quiz-answers": z.boolean().optional(),
-        "intro-quiz-questions": z.boolean().optional(),
-        presentation: z.boolean().optional(),
-        "worksheet-pdf": z.boolean().optional(),
-        "worksheet-pptx": z.boolean().optional(),
-      }),
-    })
-    .optional(),
-  error: z
-    .object({
-      message: z.string(),
-    })
-    .optional(),
-});
 export type DownloadsApiCheckFilesResponseSchema = z.infer<typeof schema>;
-export type LegacyDownloadsApiCheckFilesResponseSchema = z.infer<
-  typeof legacySchema
->;
 
 const getDownloadExistence = async (
   meta: Meta,
@@ -87,7 +64,7 @@ const getDownloadExistence = async (
 
   const json = await res.json();
 
-  const data = getParsedData(
+  const data = getParsedData<z.infer<typeof schema>>(
     json,
     schema,
     "downloads/check-files-failed",

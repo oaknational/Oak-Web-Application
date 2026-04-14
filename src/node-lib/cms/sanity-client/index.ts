@@ -18,11 +18,13 @@ import {
   webinarSchema,
   landingPagePreviewSchema,
   landingPageSchema,
-  supportPageSchema,
   blogListingPageSchema,
   curriculumOverviewCMSSchema,
-  newAboutGetInvolvedPageSchema,
-  newAboutWhoWeArePageSchema,
+  getInvolvedPageSchema,
+  whoWeArePageSchema,
+  meetTheTeamPageSchema,
+  oaksCurriculaPageSchema,
+  teamMemberSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 import getProxiedSanityAssetUrl from "../../../common-lib/urls/getProxiedSanityAssetUrl";
@@ -32,6 +34,7 @@ import { getSingleton, getBySlug, getList } from "./cmsMethods";
 
 import { planALessonPageSchema } from "@/common-lib/cms-types/planALessonPage";
 import { campaignPageSchema } from "@/common-lib/cms-types/campaignPage";
+import { programmePageSchema } from "@/common-lib/cms-types/programmePage";
 
 const getSanityClient = () => ({
   webinarsListingPage: getSingleton(
@@ -94,9 +97,9 @@ const getSanityClient = () => ({
         : undefined;
     },
   ),
-  newAboutWhoWeArePage: getSingleton(
-    sanityGraphqlApi.newAboutWhoWeArePage,
-    newAboutWhoWeArePageSchema,
+  whoWeArePage: getSingleton(
+    sanityGraphqlApi.whoWeArePage,
+    whoWeArePageSchema,
     (result) => {
       console.log({ result });
       const whoWeArePageData = result?.allNewAboutCorePageWhoWeAre?.[0];
@@ -174,18 +177,13 @@ const getSanityClient = () => ({
         : undefined;
     },
   ),
-  newAboutGetInvolvedPage: getSingleton(
-    sanityGraphqlApi.newAboutGetInvolvedPage,
-    newAboutGetInvolvedPageSchema,
+  getInvolvedPage: getSingleton(
+    sanityGraphqlApi.getInvolvedPage,
+    getInvolvedPageSchema,
     (result) => {
       const whoWeArePageData = result?.allNewAboutCorePageGetInvolved?.[0];
       return whoWeArePageData;
     },
-  ),
-  supportPage: getSingleton(
-    sanityGraphqlApi.supportCorePage,
-    supportPageSchema,
-    (result) => result?.allSupportCorePage?.[0],
   ),
   contactPage: getSingleton(
     sanityGraphqlApi.contactCorePage,
@@ -231,6 +229,38 @@ const getSanityClient = () => ({
     sanityGraphqlApi.campaignBySlug,
     campaignPageSchema,
     (result) => result?.allCampaignPage?.[0],
+  ),
+  oaksCurriculaPage: getSingleton(
+    sanityGraphqlApi.oaksCurriculaPage,
+    oaksCurriculaPageSchema,
+    (result) => result?.allNewAboutCorePageOaksCurricula?.[0],
+  ),
+  meetTheTeamPage: getSingleton(
+    sanityGraphqlApi.meetTheTeamPage,
+    meetTheTeamPageSchema,
+    (result) => {
+      const meetTheTeamData = result?.allNewAboutCorePageMeetTheTeam?.[0];
+      if (meetTheTeamData?.documents2?.files) {
+        meetTheTeamData.documents2.files.forEach((doc) => {
+          const url = doc?.file?.asset?.url;
+          const proxiedUrl = getProxiedSanityAssetUrl(url);
+          if (doc?.file?.asset?.url) {
+            doc.file.asset.url = proxiedUrl;
+          }
+        });
+      }
+      return meetTheTeamData;
+    },
+  ),
+  teamMemberBySlug: getBySlug(
+    sanityGraphqlApi.teamMemberBySlug,
+    teamMemberSchema,
+    (result) => result?.allTeamMember?.[0],
+  ),
+  programmePageBySlug: getBySlug(
+    sanityGraphqlApi.programmePageBySlug,
+    programmePageSchema,
+    (result) => result?.allProgrammePage?.[0],
   ),
 });
 

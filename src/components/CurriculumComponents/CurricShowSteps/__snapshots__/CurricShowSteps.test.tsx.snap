@@ -5,84 +5,84 @@ exports[`CurricShowSteps basic usage 1`] = `
   <div>
     <div>
       <div
-        class="sc-fqkvVR gnlYEe"
+        class="sc-aXZVg hBzEQH"
         style="width: 100%; position: relative; overflow: hidden;"
       >
         <div
           style="display: flex; align-items: center;"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB aZqjs kyta-DD"
+            class="sc-aXZVg sc-gEvEer hkJkIR jMLdOa"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB doYJNf bAFsaQ"
+              class="sc-aXZVg sc-gEvEer dpcCoC fXHtRp"
             />
             <div
-              class="sc-fqkvVR sc-kAyceB kQpkPK kyta-DD"
+              class="sc-aXZVg sc-gEvEer bzXdSn jMLdOa"
             >
-              <div
-                class="sc-fqkvVR hCMPss"
+              <span
+                class="sc-aXZVg bQyjPj"
               >
                 <img
                   alt=""
-                  class="sc-dcJsrY bDcxkE"
+                  class="sc-iGgWBj bOyFfb"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954310/icons/efd3esaor6zqk7seh6kt.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
+              </span>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB emCZlQ bAFsaQ"
+              class="sc-aXZVg sc-gEvEer bGhIrp fXHtRp"
             />
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB fcIGbi bAFsaQ"
+            class="sc-aXZVg sc-gEvEer bMmeoX fXHtRp"
           />
           <div
-            class="sc-fqkvVR sc-kAyceB aZqjs kyta-DD"
+            class="sc-aXZVg sc-gEvEer hkJkIR jMLdOa"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB emCZlQ bAFsaQ"
+              class="sc-aXZVg sc-gEvEer bGhIrp fXHtRp"
             />
             <div
-              class="sc-fqkvVR sc-kAyceB kQpkPK kyta-DD"
+              class="sc-aXZVg sc-gEvEer bzXdSn jMLdOa"
             >
-              <div
-                class="sc-fqkvVR hCMPss"
+              <span
+                class="sc-aXZVg bQyjPj"
               >
                 <img
                   alt=""
-                  class="sc-dcJsrY bDcxkE"
+                  class="sc-iGgWBj bOyFfb"
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
                   src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954310/icons/efd3esaor6zqk7seh6kt.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
-              </div>
+              </span>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB emCZlQ bAFsaQ"
+              class="sc-aXZVg sc-gEvEer bGhIrp fXHtRp"
             />
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB fcIGbi bAFsaQ"
+            class="sc-aXZVg sc-gEvEer bMmeoX fXHtRp"
           />
           <div
-            class="sc-fqkvVR sc-kAyceB diPmKX kyta-DD"
+            class="sc-aXZVg sc-gEvEer kzfVTa jMLdOa"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB gxBcmE kyta-DD"
+              class="sc-aXZVg sc-gEvEer eJJGrh jMLdOa"
               color="text-inverted"
             />
             <div
-              class="sc-fqkvVR gAsgCZ"
+              class="sc-aXZVg ffUlPY"
               data-testid="step-text"
               style="left: 0px; top: 44px;"
             >
@@ -93,20 +93,20 @@ exports[`CurricShowSteps basic usage 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB fcIGbi bAFsaQ"
+            class="sc-aXZVg sc-gEvEer bMmeoX fXHtRp"
           />
           <div
-            class="sc-fqkvVR sc-kAyceB aZqjs kyta-DD"
+            class="sc-aXZVg sc-gEvEer hkJkIR jMLdOa"
             style="width: 44px; height: 44px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB emCZlQ bAFsaQ"
+              class="sc-aXZVg sc-gEvEer bGhIrp fXHtRp"
             />
             <div
-              class="sc-fqkvVR sc-kAyceB bBHyNS kyta-DD"
+              class="sc-aXZVg sc-gEvEer WSWAL jMLdOa"
             />
             <div
-              class="sc-fqkvVR sc-kAyceB doYJNf bAFsaQ"
+              class="sc-aXZVg sc-gEvEer dpcCoC fXHtRp"
             />
           </div>
         </div>

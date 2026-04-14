@@ -35,7 +35,7 @@ const searchResultsSourceCommon = z.object({
   theme_title: z.string().nullish(),
   tier: z.string().nullish(),
   phase: z.string().nullish(),
-  pathways: z.array(pathwaySchema).default([]),
+  pathways: z.array(pathwaySchema).prefault([]),
   cohort: z.string().optional(),
 });
 

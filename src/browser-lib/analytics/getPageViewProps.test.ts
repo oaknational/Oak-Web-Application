@@ -113,33 +113,9 @@ describe("getPageViewProps()", () => {
       analyticsUseCase: "Teacher",
     });
   });
-  it("About us: Board", () => {
-    expect(getPageViewProps("/about-us/board")).toEqual({
-      pageName: "About Us: Board",
-      analyticsUseCase: null,
-    });
-  });
   it("About us: Who we are", () => {
     expect(getPageViewProps("/about-us/who-we-are")).toEqual({
       pageName: "About Us: Who We Are",
-      analyticsUseCase: null,
-    });
-  });
-  it("About us: Leadership", () => {
-    expect(getPageViewProps("/about-us/leadership")).toEqual({
-      pageName: "About Us: Leadership",
-      analyticsUseCase: null,
-    });
-  });
-  it("About us: Partners", () => {
-    expect(getPageViewProps("/about-us/partners")).toEqual({
-      pageName: "About Us: Partners",
-      analyticsUseCase: null,
-    });
-  });
-  it("About us: Work with us", () => {
-    expect(getPageViewProps("/about-us/work-with-us")).toEqual({
-      pageName: "About Us: Work With Us",
       analyticsUseCase: null,
     });
   });
@@ -170,12 +146,6 @@ describe("getPageViewProps()", () => {
   it("Legal", () => {
     expect(getPageViewProps("/legal/know-your-rights")).toEqual({
       pageName: "Legal",
-      analyticsUseCase: null,
-    });
-  });
-  it("Support your team", () => {
-    expect(getPageViewProps("/support-your-team")).toEqual({
-      pageName: "Support Your Team",
       analyticsUseCase: null,
     });
   });

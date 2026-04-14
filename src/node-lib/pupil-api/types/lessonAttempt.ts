@@ -1,51 +1,15 @@
 import { z } from "zod";
-import { imageItemSchema } from "@oaknational/oak-curriculum-schema";
+import {
+  ImageItemCamel,
+  imageItemSchema,
+} from "@oaknational/oak-curriculum-schema";
+import zodToCamelCase from "zod-to-camel-case";
 
-import { convertKey, ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
-
-type ZodType = z.ZodTypeAny;
-
-export function zodToCamelCase(schema: ZodType): ZodType {
-  if (schema instanceof z.ZodOptional) {
-    return z.optional(zodToCamelCase(schema.unwrap()));
-  }
-
-  if (schema instanceof z.ZodObject) {
-    const shape = schema._def.shape();
-    const newShape: { [key: string]: ZodType } = {};
-
-    for (const [key, value] of Object.entries(shape)) {
-      const camelKey = convertKey(key);
-      newShape[camelKey] = zodToCamelCase(value as ZodType);
-    }
-
-    return z.object(newShape);
-  }
-
-  if (schema instanceof z.ZodArray) {
-    return z.array(zodToCamelCase(schema._def.type));
-  }
-
-  if (schema instanceof z.ZodUnion) {
-    return z.union(
-      schema._def.options.map((option: ZodType) => zodToCamelCase(option)),
-    );
-  }
-
-  if (schema instanceof z.ZodIntersection) {
-    return z.intersection(
-      zodToCamelCase(schema._def.left),
-      zodToCamelCase(schema._def.right),
-    );
-  }
-
-  if (schema instanceof z.ZodRecord) {
-    return z.record(schema._def.keyType, zodToCamelCase(schema._def.valueType));
-  }
-
-  // Return primitive types as-is
-  return schema;
-}
+import {
+  PupilAnswer,
+  QuestionFeedbackType,
+  QuestionModeType,
+} from "@/components/PupilComponents/QuizUtils/questionTypes";
 
 const pupilAnswerMatchSchema = z.array(z.string());
 const pupilAnswerOrderSchema = z.array(z.number());
@@ -76,30 +40,49 @@ const questionModeSchema = z.union([
   z.literal("feedback"),
 ]);
 
+export const questionResultSchema = z.object({
+  offer_hint: z.boolean().default(false),
+  grade: z.number(),
+  mode: questionModeSchema,
+  pupil_answer: pupilAnswerSchema.nullable().optional(),
+  feedback: z
+    .union([questionFeedbackSchema, z.array(questionFeedbackSchema)])
+    .optional(),
+  correct_answer: correctAnswerSchema.optional(),
+  is_partially_correct: z.boolean().optional(),
+});
+
+export type QuestionResult = z.infer<typeof questionResultSchema>;
+
+export type QuestionResultCamelCase = {
+  offerHint: boolean;
+  grade: number;
+  mode: QuestionModeType;
+  pupilAnswer?: PupilAnswer | null;
+  feedback?: QuestionFeedbackType | QuestionFeedbackType[];
+  correctAnswer?: string | (string | ImageItemCamel | undefined)[];
+  isPartiallyCorrect?: boolean;
+};
+
 export const quizResultSchema = z
   .object({
     grade: z.number().optional(),
     num_questions: z.number().optional(),
-    question_results: z
-      .array(
-        z.object({
-          offer_hint: z.boolean(),
-          grade: z.number(),
-          mode: questionModeSchema,
-          pupil_answer: pupilAnswerSchema.nullable().optional(),
-          feedback: z
-            .union([questionFeedbackSchema, z.array(questionFeedbackSchema)])
-            .optional(),
-          correct_answer: correctAnswerSchema.optional(),
-          is_partially_correct: z.boolean().optional(),
-        }),
-      )
-      .optional(),
+    question_results: z.array(questionResultSchema).optional(),
   })
   .optional();
 
+export type QuizResult = z.infer<typeof quizResultSchema>;
+export type QuizResultCamelCase = {
+  grade?: number;
+  numQuestions?: number;
+  questionResults?: QuestionResultCamelCase[];
+};
+
 export const lessonAttemptSchema = z.object({
-  attempt_id: z.string().nanoid({ message: "Invalid attempt_id" }),
+  attempt_id: z.nanoid({
+    error: "Invalid attempt_id",
+  }),
   created_at: z.string(),
   lesson_data: z.object({
     title: z.string(),
@@ -110,28 +93,62 @@ export const lessonAttemptSchema = z.object({
     year_description: z.string(),
   }),
   section_results: z.object({
-    intro: z.object({
-      worksheet_downloaded: z.boolean(),
-      worksheet_available: z.boolean(),
-      is_complete: z.boolean(),
-    }),
+    intro: z
+      .object({
+        worksheet_downloaded: z.boolean(),
+        worksheet_available: z.boolean(),
+        is_complete: z.boolean(),
+      })
+      .partial()
+      .optional(),
     "starter-quiz": quizResultSchema,
-    video: z.object({
-      is_complete: z.boolean(),
-      played: z.boolean(),
-      duration: z.number(),
-      time_elapsed: z.number(),
-      muted: z.boolean(),
-      signed_opened: z.boolean(),
-      transcript_opened: z.boolean(),
-    }),
+    video: z
+      .object({
+        is_complete: z.boolean(),
+        played: z.boolean(),
+        duration: z.number(),
+        time_elapsed: z.number(),
+        muted: z.boolean().default(false),
+        signed_opened: z.boolean().default(false),
+        transcript_opened: z.boolean().default(false),
+      })
+      .optional(),
     "exit-quiz": quizResultSchema,
   }),
 });
 
 export type LessonAttempt = z.infer<typeof lessonAttemptSchema>;
 
-export type LessonAttemptCamelCase = ConvertKeysToCamelCase<LessonAttempt>;
+export type LessonAttemptCamelCase = {
+  attemptId: string;
+  createdAt: string;
+  lessonData: {
+    title: string;
+    slug: string;
+  };
+  browseData: {
+    subject: string;
+    yearDescription: string;
+  };
+  sectionResults: {
+    intro?: {
+      worksheetDownloaded?: boolean;
+      worksheetAvailable?: boolean;
+      isComplete?: boolean;
+    };
+    "starter-quiz": QuizResultCamelCase;
+    video?: {
+      isComplete?: boolean;
+      played?: boolean;
+      duration?: number;
+      timeElapsed?: number;
+      muted?: boolean;
+      signedOpened?: boolean;
+      transcriptOpened?: boolean;
+    };
+    "exit-quiz": QuizResultCamelCase;
+  };
+};
 
 export const createLessonAttemptPayloadSchema = lessonAttemptSchema.pick({
   attempt_id: true,
@@ -151,6 +168,9 @@ export const attemptDataSchema = lessonAttemptSchema.pick({
   section_results: true,
 });
 
-export const attemptDataCamelCaseSchema = zodToCamelCase(attemptDataSchema);
 export type AttemptDataSchema = z.infer<typeof attemptDataSchema>;
-export type AttemptDataCamelCase = ConvertKeysToCamelCase<AttemptDataSchema>;
+
+export const attemptDataCamelCaseSchema = zodToCamelCase(attemptDataSchema, {
+  bidirectional: true,
+});
+export type AttemptDataCamelCase = z.infer<typeof attemptDataCamelCaseSchema>;

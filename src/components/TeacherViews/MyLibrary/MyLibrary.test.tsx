@@ -194,6 +194,8 @@ describe("MyLibrary", () => {
       filterValue: "Subject 1",
       filterType: "Subject filter",
       activeFilters: [],
+      googleLoginHint: null,
+      clientEnvironment: null,
     });
   });
 });

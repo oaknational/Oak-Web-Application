@@ -8,7 +8,7 @@
  * but alas, I'm having to write this one off for now
  * - Ross, Sep '22
  */
-import { z, ZodArray, ZodError, ZodSchema, ZodTypeAny } from "zod";
+import { z, ZodArray, ZodError, ZodType } from "zod";
 
 import OakError from "@/errors/OakError";
 
@@ -31,7 +31,7 @@ export function createInvalidRejectingSchema<E, S extends ZodArray<E, "many">>(
   return z.preprocess((val) => wrapValue(val).filter(validate), arraySchema);
 }
 
-const isZodArraySchema = <T extends ZodTypeAny>(
+const isZodArraySchema = <T extends ZodType>(
   schema: unknown,
 ): schema is ZodArray<T> => {
   return typeof schema === "object" && schema !== null && "element" in schema;
@@ -85,11 +85,11 @@ const draftPrefixRegex = /^drafts\./;
 const isDraft = (id: string): boolean => draftPrefixRegex.test(id);
 const trimDraftsPrefix = (id: string) => id.replace(draftPrefixRegex, "");
 
-export const parseResults = <S extends ZodSchema, D>(
+export const parseResults = <S extends ZodType, D>(
   schema: S,
   data: D,
   isPreviewMode?: boolean,
-): ReturnType<S["parse"]> => {
+): z.output<S> => {
   if (isPreviewMode) {
     try {
       if (isZodArraySchema(schema)) {
@@ -117,9 +117,9 @@ export const parseResults = <S extends ZodSchema, D>(
         );
 
         // Explicitly cast the erroneous unknown[] to the right type
-        return uniqueItems as ReturnType<S["parse"]>;
+        return uniqueItems as z.output<S>;
       } else {
-        return schema.parse(data) as ReturnType<S["parse"]>;
+        return schema.parse(data);
       }
     } catch (error) {
       let oakError = error;
@@ -131,7 +131,7 @@ export const parseResults = <S extends ZodSchema, D>(
           code: "preview/zod-error",
           originalError: error,
           meta: {
-            errors: error.errors,
+            errors: error.issues,
           },
         });
         throw oakError;
@@ -141,5 +141,5 @@ export const parseResults = <S extends ZodSchema, D>(
     }
   }
 
-  return schema.parse(data) as ReturnType<S["parse"]>;
+  return schema.parse(data);
 };

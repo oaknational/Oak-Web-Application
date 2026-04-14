@@ -1,7 +1,7 @@
 import { useUser } from "@clerk/nextjs";
 import useSWR from "swr";
 
-export async function useCheckUserMetadata() {
+export function useCheckUserMetadata() {
   const { user } = useUser();
 
   const updateRegionApiRoute = "/api/update-region";

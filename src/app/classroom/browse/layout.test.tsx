@@ -7,6 +7,21 @@ import { googleClassroomApi } from "@/browser-lib/google-classroom";
 
 const withAuthMock = jest.fn();
 const browseLayoutMock = jest.fn();
+const trackLessonAttachedMock = jest.fn();
+
+const googleClassroomAnalyticsMock = {
+  trackLessonAttached: trackLessonAttachedMock,
+};
+
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
+  __esModule: true,
+  useGoogleClassroomAnalytics: (
+    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
+  ) =>
+    selector
+      ? selector(googleClassroomAnalyticsMock)
+      : googleClassroomAnalyticsMock,
+}));
 
 jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   WithGoogleClassroomAuth: (props: never) => {
@@ -21,9 +36,10 @@ jest.mock("@oaknational/google-classroom-addon/ui", () => ({
   },
 }));
 
+const mockVerifySessionInner = jest.fn();
 jest.mock("@/browser-lib/google-classroom", () => ({
   googleClassroomApi: {
-    verifySession: jest.fn(),
+    verifySession: jest.fn(() => mockVerifySessionInner),
     createAttachment: jest.fn(),
   },
 }));
@@ -40,9 +56,10 @@ describe("src/app/classroom/browse/layout", () => {
       </Page>,
     );
 
+    expect(googleClassroomApi.verifySession).toHaveBeenCalledWith();
     expect(withAuthMock).toHaveBeenCalledWith(
       expect.objectContaining({
-        verifySessionAction: googleClassroomApi.verifySession,
+        verifySessionAction: mockVerifySessionInner,
         signInUrl: "/classroom/sign-in",
       }),
     );

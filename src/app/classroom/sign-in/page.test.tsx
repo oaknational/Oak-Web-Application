@@ -9,6 +9,23 @@ const useRouterMock = jest.fn();
 const useSearchParamsMock = jest.fn();
 const googleSignInViewMock = jest.fn();
 const getGoogleSignInUrlMock = jest.fn();
+const trackSignInStartedMock = jest.fn();
+const trackSignInCompletedMock = jest.fn();
+
+const googleClassroomAnalyticsMock = {
+  trackSignInStarted: trackSignInStartedMock,
+  trackSignInCompleted: trackSignInCompletedMock,
+};
+
+jest.mock("@/components/GoogleClassroom/useGoogleClassroomAnalytics", () => ({
+  __esModule: true,
+  useGoogleClassroomAnalytics: (
+    selector?: (state: typeof googleClassroomAnalyticsMock) => unknown,
+  ) =>
+    selector
+      ? selector(googleClassroomAnalyticsMock)
+      : googleClassroomAnalyticsMock,
+}));
 
 jest.mock("next/navigation", () => ({
   __esModule: true,
@@ -49,23 +66,50 @@ describe("src/app/classroom/sign-in/page", () => {
     const viewProps = googleSignInViewMock.mock.calls[0][0];
 
     await viewProps.getGoogleSignInLink();
-    expect(getGoogleSignInUrlMock).toHaveBeenCalledWith("123456789");
+    expect(getGoogleSignInUrlMock).toHaveBeenCalledWith("123456789", undefined);
+    expect(trackSignInStartedMock).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+    });
 
     viewProps.onSuccessfulSignIn();
+    expect(trackSignInCompletedMock).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+      subscribeToNewsletter: false,
+    });
     expect(routerPush).toHaveBeenCalledWith(
       "/classroom/browse?login_hint=123456789&courseId=gc-1",
     );
     expect(viewProps.privacyPolicyUrl).toBe("/legal/privacy-policy");
   });
 
-  it("falls back to empty query params when not present", async () => {
+  it("redirects to decoded redirecturi when present", () => {
+    useSearchParamsMock.mockReturnValue(
+      new URLSearchParams(
+        "redirecturi=%2Fclassroom%2Fpupil%2Fresults%2Fprintable%3FloginHint%3Dabc%26courseId%3Dgc-1%26itemId%3Ditem-1",
+      ),
+    );
+
+    renderWithTheme(<Page />);
+
+    const viewProps = googleSignInViewMock.mock.calls[0][0];
+    viewProps.onSuccessfulSignIn();
+
+    expect(routerPush).toHaveBeenCalledWith(
+      "/classroom/pupil/results/printable?loginHint=abc&courseId=gc-1&itemId=item-1",
+    );
+  });
+
+  it("falls back to current query params when redirecturi is not present", async () => {
     useSearchParamsMock.mockReturnValue(new URLSearchParams(""));
 
     renderWithTheme(<Page />);
 
     const viewProps = googleSignInViewMock.mock.calls[0][0];
     await viewProps.getGoogleSignInLink();
-    expect(getGoogleSignInUrlMock).toHaveBeenCalledWith(null);
+    expect(getGoogleSignInUrlMock).toHaveBeenCalledWith(null, undefined);
+    expect(trackSignInStartedMock).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+    });
 
     viewProps.onSuccessfulSignIn();
     expect(routerPush).toHaveBeenCalledWith("/classroom/browse?");

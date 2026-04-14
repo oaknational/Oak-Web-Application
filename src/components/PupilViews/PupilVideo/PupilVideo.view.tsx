@@ -68,6 +68,8 @@ export const PupilViewsVideo = ({
     proceedToNextSection,
     lessonReviewSections,
     updateAdditionalFilesDownloaded,
+    currentSection,
+    isReadOnly,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
   const additionalFilesAssetIds = additionalFiles
@@ -87,14 +89,14 @@ export const PupilViewsVideo = ({
   const videoResult = useRef<VideoResult>({
     played: false,
     duration: 0,
-    timeElapsed: 0,
+    timeElapsed: sectionResults.video?.timeElapsed || 0,
     muted: false,
     signedOpened: false,
     transcriptOpened: false,
   });
 
   // make sure the video result is initialized
-  if (!sectionResults.video) {
+  if (!sectionResults.video && currentSection === "video") {
     updateSectionResult(videoResult.current);
   }
 
@@ -105,9 +107,12 @@ export const PupilViewsVideo = ({
     const t = event.timeElapsed || 0;
     // throttling updates to every 10 seconds to avoid overloading state updates
     // also prevents timeElapsed from being updated when the skips to an earlier moment
-    if (event.event !== "playing" || t - videoResult.current.timeElapsed > 10) {
+    if (
+      event.event !== "playing" ||
+      (t - videoResult.current.timeElapsed > 10 && currentSection === "video")
+    ) {
       videoResult.current.timeElapsed = t;
-      updateSectionResult(videoResult.current);
+      if (currentSection === "video") updateSectionResult(videoResult.current);
     }
   };
 
@@ -124,6 +129,11 @@ export const PupilViewsVideo = ({
         lessonReviewSections.find(
           (section) => !sectionResults[section]?.isComplete,
         ) ?? "review";
+      if (isReadOnly) {
+        updateCurrentSection("review");
+        trackSectionStarted("review");
+        return;
+      }
       trackSectionStarted(nextSection);
       proceedToNextSection();
     } else {
@@ -187,6 +197,8 @@ export const PupilViewsVideo = ({
             <VideoPlayer
               playbackId={playbackId}
               playbackPolicy="signed"
+              initialStartTime={sectionResults.video?.timeElapsed ?? 0}
+              isActive={currentSection === "video"}
               title={lessonTitle}
               location="pupil"
               isLegacy={isLegacy}

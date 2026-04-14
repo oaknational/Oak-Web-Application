@@ -1,7 +1,8 @@
-import { OptionsView } from "@oaknational/google-classroom-addon/ui";
+import { notFound } from "next/navigation";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
+import { GoogleClassroomOptions } from "@/components/GoogleClassroom/GoogleClassroomOptions";
 
 async function GoogleClassroomOptionsPage({
   params,
@@ -12,6 +13,10 @@ async function GoogleClassroomOptionsPage({
   const programmes = await curriculumApi2023.pupilProgrammeListingQuery({
     baseSlug: programmeSlug,
   });
+  if (!programmes?.length) {
+    notFound();
+  }
+
   const yearSlug = programmes?.find((p) => !!p.yearSlug)?.yearSlug;
   const getBackUrl = () =>
     yearSlug
@@ -27,7 +32,7 @@ async function GoogleClassroomOptionsPage({
     });
   };
   return (
-    <OptionsView
+    <GoogleClassroomOptions
       programmes={programmes}
       baseSlug={programmeSlug}
       yearSlug={yearSlug}

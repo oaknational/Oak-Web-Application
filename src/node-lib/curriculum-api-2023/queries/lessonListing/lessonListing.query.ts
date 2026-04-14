@@ -1,7 +1,9 @@
 import {
+  ActionsCamel,
   ProgrammeFields,
   StaticLesson,
 } from "@oaknational/oak-curriculum-schema";
+import { keysToCamelCase } from "zod-to-camel-case";
 
 import {
   lessonListingPageDataSchema,
@@ -14,14 +16,12 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import OakError from "@/errors/OakError";
 import {
   LessonListSchema,
-  Actions,
   LessonListItem,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
 import { getIntersection } from "@/utils/getIntersection";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 export const getTransformedLessons = (
   lessons: LessonListingQuery["lessons"],
@@ -59,7 +59,7 @@ export const getTransformedLessons = (
           hasLegacyCopyrightMaterial,
           orderInUnit: lesson.order_in_unit,
           lessonCohort: lesson.lesson_data._cohort,
-          actions: (keysToCamelCase(lesson.actions) || null) as Actions,
+          actions: (keysToCamelCase(lesson.actions) || null) as ActionsCamel,
           isUnpublished: false,
           lessonReleaseDate: lesson.lesson_data.lesson_release_date,
           geoRestricted: lesson.features?.agf__geo_restricted ?? false,
@@ -108,11 +108,20 @@ export const getPackagedUnit = (
     programmeFields,
   });
 
+  const publishedLessonActions = unitLessons
+    .filter((lesson) => !lesson.isUnpublished)
+    .map((lesson) => lesson.actions);
+
   const combinedActions = getIntersection<LessonListItem["actions"]>(
-    unitLessons
-      .filter((lesson) => !lesson.isUnpublished)
-      .map((lesson) => lesson.actions),
-  ) as Actions;
+    publishedLessonActions,
+  );
+
+  if (combinedActions) {
+    // Set `isPePractical` to true if any lesson is practical
+    combinedActions.isPePractical = publishedLessonActions.some(
+      (actions) => actions?.isPePractical === true,
+    );
+  }
 
   return {
     programmeSlug,

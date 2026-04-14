@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`eyfs layout renders correctly 1`] = `
+<Styled(styled.div)
+  $flexDirection="column"
+  $gap={
+    [
+      "spacing-40",
+      "spacing-48",
+      "spacing-64",
+    ]
+  }
+  $maxWidth={
+    [
+      "100%",
+      "100%",
+      "spacing-1280",
+    ]
+  }
+  $mh="auto"
+  $ph={
+    [
+      "spacing-20",
+      "spacing-40",
+      "spacing-12",
+    ]
+  }
+  $pv={
+    [
+      "spacing-48",
+      "spacing-48",
+      "spacing-64",
+    ]
+  }
+>
+  <EYFSHeader
+    subjectTitle="Maths"
+  />
+  <EYFSNavigation
+    subjectTabs={
+      [
+        {
+          "slug": "maths",
+          "title": "Maths",
+        },
+      ]
+    }
+  />
+  <styled.div>
+    children
+  </styled.div>
+</Styled(styled.div)>
+`;

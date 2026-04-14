@@ -15,6 +15,9 @@ import {
   PreselectedDownloadType,
   PreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import isSlugEYFS, {
+  EYFS_PROGRAMME_SLUG_REGEX,
+} from "@/utils/slugModifiers/isSlugEYFS";
 
 const reportError = errorReporter("urls.ts");
 
@@ -114,6 +117,20 @@ export type LessonListingLinkProps = {
   page: "lesson-index";
   programmeSlug: string;
   unitSlug: string;
+};
+export type IntegratedLessonListingLinkProps = {
+  page: "integrated-lesson-index";
+  programmeSlug: string;
+  unitSlug: string;
+  query?: {
+    subject_category?: string;
+  };
+};
+export type IntegratedLessonOverviewLinkProps = {
+  page: "integrated-lesson-overview";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
 };
 export type SpecialistLessonListingLinkProps = Omit<
   LessonListingLinkProps,
@@ -286,15 +303,21 @@ type CampaignSingleLinkProps = {
   page: "campaign-single";
   campaignSlug: string;
 };
-type AboutUsBoardLinkProps = { page: "about-board" };
 type AboutUsWhoWeAreLinkProps = { page: "about-who-we-are" };
-type AboutUsLeadershipLinkProps = { page: "about-leadership" };
-type AboutUsPartnersLinkProps = { page: "about-partners" };
-type AboutUsWorkWithUsLinkProps = { page: "about-work-with-us" };
+
+type AboutUsMeetTheTeamLinkProps = { page: "about-meet-the-team" };
+type AboutUsMeetTheTeamBioLinkProps = {
+  page: "about-meet-the-team-bio";
+  slug: string;
+};
+type AboutUsGetInvolvedLinkProps = { page: "about-get-involved" };
+type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
 
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
 type HelpLinkProps = { page: "help" };
+type PupilHelpLinkProps = { page: "pupil-help" };
+type GuideToOakLinkProps = { page: "guide-to-oak" };
 type HomeLinkProps = { page: "home" };
 type LessonPlanningLinkProps = { page: "lesson-planning" };
 type LegalLinkProps = {
@@ -306,7 +329,6 @@ type LegalLinkProps = {
    */
   legalSlug: OrString<"privacy-policy" | "terms-and-conditions">;
 };
-type SupportYourTeamLinkProps = { page: "support-your-team" };
 type OurTeachersLinkProps = { page: "our-teachers" };
 type OakCurriculumLinkProps = { page: "oak-curriculum" };
 type ClassroomLinkProps = { page: "classroom" };
@@ -369,6 +391,44 @@ type MyLibraryProps = {
   page: "my-library";
 };
 
+type ProgrammePageProps = {
+  page: "teacher-programme";
+  subjectPhaseSlug: string;
+  tab: string;
+};
+
+type ClassroomSignInLinkProps = { page: "classroom-sign-in" };
+
+type ClassroomBrowseLinkProps = { page: "classroom-browse" };
+
+type ClassroomSubjectsLinkProps = { page: "classroom-subjects" };
+
+type ClassroomOptionsLinkProps = { page: "classroom-options" };
+
+type ClassroomUnitsLinkProps = { page: "classroom-units" };
+
+type ClassroomLessonsLinkProps = { page: "classroom-lessons" };
+
+type ClassroomAuthSuccessLinkProps = { page: "classroom-auth-success" };
+
+type ClassroomPupilSignInLinkProps = { page: "classroom-pupil-sign-in" };
+
+type EyfsPageLinkProps = {
+  page: "eyfs-page";
+  subjectSlug: string;
+};
+
+type OnlyPageRequired<T> = T extends { page: string }
+  ? { page: T["page"] } extends T
+    ? T
+    : never
+  : never;
+
+export type OakLinkPropsRequiringPageOnly = Extract<
+  OakLinkProps,
+  OnlyPageRequired<OakLinkProps>
+>;
+
 export type OakLinkProps =
   | LabsLinkProps
   | LabsTeachingMaterialsLinkProps
@@ -397,6 +457,8 @@ export type OakLinkProps =
   | SpecialistLessonOverviewLinkProps
   | LessonOverviewCanonicalLinkProps
   | LessonListingLinkProps
+  | IntegratedLessonListingLinkProps
+  | IntegratedLessonOverviewLinkProps
   | SpecialistLessonListingLinkProps
   | UnitListingLinkProps
   | SpecialistUnitListingLinkProps
@@ -408,18 +470,18 @@ export type OakLinkProps =
   | WebinarListingLinkProps
   | WebinarSingleLinkProps
   | HelpLinkProps
+  | PupilHelpLinkProps
   | LegalLinkProps
   | SearchLinkProps
-  | AboutUsBoardLinkProps
   | AboutUsWhoWeAreLinkProps
-  | AboutUsLeadershipLinkProps
-  | AboutUsPartnersLinkProps
-  | AboutUsWorkWithUsLinkProps
+  | AboutUsMeetTheTeamLinkProps
+  | AboutUsMeetTheTeamBioLinkProps
+  | AboutUsGetInvolvedLinkProps
+  | AboutUsOaksCurriculaLinkProps
   | CareersLinkProps
   | ContactUsLinkProps
   | HomeLinkProps
   | LessonPlanningLinkProps
-  | SupportYourTeamLinkProps
   | OurTeachersLinkProps
   | OakCurriculumLinkProps
   | ClassroomLinkProps
@@ -434,18 +496,27 @@ export type OakLinkProps =
   | OnboardingRoleSelectionLinkProps
   | OnboardingUseOfOak
   | PupilLessonCanonical
-  | MyLibraryProps;
+  | MyLibraryProps
+  | ProgrammePageProps
+  | ClassroomSignInLinkProps
+  | ClassroomBrowseLinkProps
+  | ClassroomSubjectsLinkProps
+  | ClassroomOptionsLinkProps
+  | ClassroomUnitsLinkProps
+  | ClassroomLessonsLinkProps
+  | ClassroomAuthSuccessLinkProps
+  | ClassroomPupilSignInLinkProps
+  | EyfsPageLinkProps
+  | GuideToOakLinkProps;
 
-const EXTERNAL_PAGE_NAMES = [
-  "[external] Careers",
-  "[external] Help",
-  "[external] Classroom",
-  "[external] Labs",
-  "[external] Our teachers",
-  "[external] Teacher hub",
-  "[external] Our curriculum",
-] as const;
-type ExternalPageName = (typeof EXTERNAL_PAGE_NAMES)[number];
+export type ExternalPageName =
+  | "[external] Careers"
+  | "[external] Help"
+  | "[external] Classroom"
+  | "[external] Labs"
+  | "[external] Our teachers"
+  | "[external] Teacher hub"
+  | "[external] Our curriculum";
 
 type OakPages = {
   [K in OakLinkProps as K["page"]]: OakPageConfig<K>;
@@ -580,38 +651,78 @@ const postResolveHref =
     return `${path}?${queryString}`;
   };
 
+const subjectIndexMatchHref = (href: string) => {
+  const pattern = "/teachers/key-stages/:keyStageSlug/subjects";
+  if (match(pattern)(href)) {
+    return match<SubjectListingLinkProps>(pattern)(href);
+  }
+  return false;
+};
+
+const subjectIndexResolveHref = (props: SubjectListingLinkProps): string => {
+  if (props.keyStageSlug === "early-years-foundation-stage") {
+    return "/teachers/eyfs/maths";
+  }
+  return `/teachers/key-stages/${encodeURIComponent(props.keyStageSlug)}/subjects`;
+};
+
+const unitIndexMatchHref = (href: string) => {
+  const pattern = "/teachers/programmes/:programmeSlug/units";
+  if (match(pattern)(href)) {
+    return match<UnitListingLinkProps>(pattern)(href);
+  }
+  return false;
+};
+
+const unitIndexResolveHref = (props: UnitListingLinkProps): string => {
+  if (isSlugEYFS(props.programmeSlug)) {
+    const eyfsSubjectSlug = EYFS_PROGRAMME_SLUG_REGEX.exec(props.programmeSlug)
+      ?.groups?.subject;
+    return `/teachers/eyfs/${encodeURIComponent(eyfsSubjectSlug || "maths")}`;
+  }
+  const path = `/teachers/programmes/${encodeURIComponent(props.programmeSlug)}/units`;
+  if (!props.search) {
+    return path;
+  }
+  const queryString = createQueryStringFromObject(props.search);
+  if (!queryString) {
+    return path;
+  }
+  return `${path}?${queryString}`;
+};
+
 export const OAK_PAGES: {
   [K in keyof OakPages]: OakPages[K] & { pageType: K };
 } = {
-  "about-board": createOakPageConfig({
-    pathPattern: "/about-us/board",
-    analyticsPageName: "About Us: Board",
-    configType: "internal",
-    pageType: "about-board",
-  }),
   "about-who-we-are": createOakPageConfig({
     pathPattern: "/about-us/who-we-are",
     analyticsPageName: "About Us: Who We Are",
     configType: "internal",
     pageType: "about-who-we-are",
   }),
-  "about-leadership": createOakPageConfig({
-    pathPattern: "/about-us/leadership",
-    analyticsPageName: "About Us: Leadership",
+  "about-meet-the-team": createOakPageConfig({
+    pathPattern: "/about-us/meet-the-team",
+    analyticsPageName: "About Us: Meet the team",
     configType: "internal",
-    pageType: "about-leadership",
+    pageType: "about-meet-the-team",
   }),
-  "about-partners": createOakPageConfig({
-    pathPattern: "/about-us/partners",
-    analyticsPageName: "About Us: Partners",
+  "about-meet-the-team-bio": createOakPageConfig({
+    pathPattern: "/about-us/meet-the-team/:slug",
+    analyticsPageName: "About Us: Meet the team Bio",
     configType: "internal",
-    pageType: "about-partners",
+    pageType: "about-meet-the-team-bio",
   }),
-  "about-work-with-us": createOakPageConfig({
-    pathPattern: "/about-us/work-with-us",
-    analyticsPageName: "About Us: Work With Us",
+  "about-get-involved": createOakPageConfig({
+    pathPattern: "/about-us/get-involved",
+    analyticsPageName: "About Us: Get Involved",
     configType: "internal",
-    pageType: "about-work-with-us",
+    pageType: "about-get-involved",
+  }),
+  "about-oaks-curricula": createOakPageConfig({
+    pathPattern: "/about-us/oaks-curricula",
+    analyticsPageName: "About Us: Oak's curricula",
+    configType: "internal",
+    pageType: "about-oaks-curricula",
   }),
   careers: createOakPageConfig({
     url: "https://app.beapplied.com/org/1574/oak-national-academy",
@@ -630,6 +741,18 @@ export const OAK_PAGES: {
     analyticsPageName: "[external] Help",
     configType: "external",
     pageType: "help",
+  }),
+  "pupil-help": createOakPageConfig({
+    url: "https://support.thenational.academy/our-pupil-area",
+    analyticsPageName: "[external] Help",
+    configType: "external",
+    pageType: "pupil-help",
+  }),
+  "guide-to-oak": createOakPageConfig({
+    url: "https://support.thenational.academy/guide-how-to-use-oak",
+    analyticsPageName: "[external] Help",
+    configType: "external",
+    pageType: "guide-to-oak",
   }),
   home: createOakPageConfig({
     pathPattern: "/",
@@ -667,12 +790,6 @@ export const OAK_PAGES: {
     configType: "external",
     pageType: "labs-teaching-materials",
   }),
-  "support-your-team": createOakPageConfig({
-    pathPattern: "/support-your-team",
-    analyticsPageName: "Support Your Team",
-    configType: "internal",
-    pageType: "support-your-team",
-  }),
   "our-teachers": createOakPageConfig({
     url: "https://classroom.thenational.academy/teachers",
     analyticsPageName: "[external] Our teachers",
@@ -706,10 +823,11 @@ export const OAK_PAGES: {
     resolveHref: postResolveHref("webinar-index"),
   }),
   "unit-index": createOakPageConfig({
-    pathPattern: "/teachers/programmes/:programmeSlug/units",
     analyticsPageName: "Unit Listing",
-    configType: "internal",
+    configType: "internal-custom-resolve",
     pageType: "unit-index",
+    matchHref: unitIndexMatchHref,
+    resolveHref: unitIndexResolveHref,
   }),
   "specialist-unit-index": createOakPageConfig({
     pathPattern: "/teachers/specialist/programmes/:programmeSlug/units",
@@ -722,6 +840,19 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson Listing",
     configType: "internal",
     pageType: "lesson-index",
+  }),
+  "integrated-lesson-index": createOakPageConfig({
+    pathPattern: "/programmes/:programmeSlug/units/:unitSlug/lessons",
+    analyticsPageName: "Lesson Listing",
+    configType: "internal",
+    pageType: "integrated-lesson-index",
+  }),
+  "integrated-lesson-overview": createOakPageConfig({
+    pathPattern:
+      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
+    analyticsPageName: "Lesson",
+    configType: "internal",
+    pageType: "integrated-lesson-overview",
   }),
   "specialist-lesson-index": createOakPageConfig({
     pathPattern:
@@ -899,10 +1030,11 @@ export const OAK_PAGES: {
     pageType: "landing-page",
   }),
   "subject-index": createOakPageConfig({
-    pathPattern: "/teachers/key-stages/:keyStageSlug/subjects",
     analyticsPageName: "Subject Listing",
-    configType: "internal",
+    configType: "internal-custom-resolve",
     pageType: "subject-index",
+    matchHref: subjectIndexMatchHref,
+    resolveHref: subjectIndexResolveHref,
   }),
   "specialist-subject-index": createOakPageConfig({
     pathPattern: "/teachers/specialist/subjects",
@@ -988,6 +1120,67 @@ export const OAK_PAGES: {
     analyticsPageName: "My library",
     configType: "internal",
     pageType: "my-library",
+  }),
+  "teacher-programme": createOakPageConfig({
+    pathPattern: "/programmes/:subjectPhaseSlug/:tab",
+    analyticsPageName: "Curriculum Unit Sequence",
+    configType: "internal",
+    pageType: "teacher-programme",
+  }),
+  "classroom-sign-in": createOakPageConfig({
+    pathPattern: "/classroom/sign-in",
+    analyticsPageName: "Classroom: Sign In",
+    configType: "internal",
+    pageType: "classroom-sign-in",
+  }),
+  "classroom-browse": createOakPageConfig({
+    pathPattern: "/classroom/browse",
+    analyticsPageName: "Classroom: Browse Years",
+    configType: "internal",
+    pageType: "classroom-browse",
+  }),
+  "classroom-subjects": createOakPageConfig({
+    pathPattern: "/classroom/browse/years/:yearSlug/subjects",
+    analyticsPageName: "Classroom: Subjects",
+    configType: "internal",
+    pageType: "classroom-subjects",
+  }),
+  "classroom-options": createOakPageConfig({
+    pathPattern: "/classroom/browse/programmes/:programmeSlug/options",
+    analyticsPageName: "Classroom: Programme Options",
+    configType: "internal",
+    pageType: "classroom-options",
+  }),
+  "classroom-units": createOakPageConfig({
+    pathPattern: "/classroom/browse/programmes/:programmeSlug/units",
+    analyticsPageName: "Classroom: Units",
+    configType: "internal",
+    pageType: "classroom-units",
+  }),
+  "classroom-lessons": createOakPageConfig({
+    pathPattern:
+      "/classroom/browse/programmes/:programmeSlug/units/:unitSlug/lessons",
+    analyticsPageName: "Classroom: Lessons",
+    configType: "internal",
+    pageType: "classroom-lessons",
+  }),
+  "classroom-auth-success": createOakPageConfig({
+    pathPattern: "/classroom/auth/success",
+    analyticsPageName: "Classroom: Auth Success",
+    configType: "internal",
+    pageType: "classroom-auth-success",
+  }),
+  "classroom-pupil-sign-in": createOakPageConfig({
+    pathPattern: "/classroom/pupil/sign-in",
+    analyticsPageName: "Classroom: Pupil Sign In",
+    configType: "internal",
+    pageType: "classroom-pupil-sign-in",
+  }),
+  "eyfs-page": createOakPageConfig({
+    pathPattern: "/teachers/eyfs/:subjectSlug",
+    analyticsPageName: "Unit Listing",
+    configType: "internal",
+    pageType: "eyfs-page",
   }),
 };
 

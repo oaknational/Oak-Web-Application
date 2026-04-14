@@ -2,7 +2,6 @@ import React, { FC, useState } from "react";
 import { useRouter } from "next/router";
 import {
   OakFlex,
-  OakUnitsContainer,
   OakPagination,
   OakAnchorTarget,
   OakBox,
@@ -10,9 +9,9 @@ import {
 } from "@oaknational/oak-components";
 
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
+import { UnitsContainer } from "../UnitsContainer";
 
 import { getPageItems, getProgrammeFactors } from "./helpers";
-import { UnitListLegacyBanner } from "./UnitListLegacyBanner";
 import { areNewAndLegacyUnitsOnPage, getUnitCards } from "./getUnitCards";
 
 import {
@@ -30,6 +29,10 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
+import {
+  getIsUnitExpiring,
+  TakedownBanner,
+} from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 
 export type Tier = {
   title: string;
@@ -137,12 +140,19 @@ const UnitList: FC<UnitListProps> = (props) => {
       savedFrom: "unit_listing_save_button",
     });
 
-  const hasNewAndLegacyUnits: boolean =
+  const hasNewAndLegacyUnitsOnPage: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
 
-  //TODO: Temporary measure until curriculum downloads are ready for RSHE
-  const hideNewCurriculumDownloadButton =
-    subjectSlug === "rshe-pshe" || subjectSlug === "financial-education";
+  // Used to show the appropriate takedown banner for cycle 1 and 2 programmes
+  const hasLegacyUnits = units.some((unit) =>
+    unit.some((u) => isSlugLegacy(u.programmeSlug)),
+  );
+  const hasNewUnits = units.some((unit) =>
+    unit.some((u) => !isSlugLegacy(u.programmeSlug)),
+  );
+  const hasNewAndLegacyUnitsInProgramme = hasLegacyUnits && hasNewUnits;
+
+  const hideNewCurriculumDownloadButton = subjectSlug === "financial-education";
 
   const [saveButtonElementId, setSaveButtonElementId] = useState<
     string | undefined
@@ -179,7 +189,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           <OakFlex $flexDirection="column" $gap="spacing-72">
             {/* Swimming units */}
             {swimmingPageItems.length > 0 && keyStageSlug && phaseSlug && (
-              <OakUnitsContainer
+              <UnitsContainer
                 isLegacy={false}
                 subject={""}
                 phase={phaseSlug}
@@ -217,7 +227,7 @@ const UnitList: FC<UnitListProps> = (props) => {
 
             {/* New units */}
             {newPageItems.length > 0 && phaseSlug && (
-              <OakUnitsContainer
+              <UnitsContainer
                 isLegacy={false}
                 subject={modifiedCategory ?? subjectTitle}
                 phase={phaseSlug}
@@ -243,13 +253,16 @@ const UnitList: FC<UnitListProps> = (props) => {
 
             {/* Legacy units */}
             {legacyPageItems.length > 0 && keyStageSlug && phaseSlug && (
-              <OakUnitsContainer
+              <UnitsContainer
                 isLegacy={true}
                 banner={
-                  <UnitListLegacyBanner
+                  <TakedownBanner
+                    titleTag="h4"
                     userType={"teacher"}
-                    hasNewUnits={hasNewAndLegacyUnits}
-                    allLegacyUnits={legacyPageItems}
+                    subjectSlug={subjectSlug}
+                    hasNewUnits={hasNewAndLegacyUnitsInProgramme}
+                    isLegacy={true}
+                    isExpiring={getIsUnitExpiring(legacyPageItems)}
                     onButtonClick={() => onPageChange(1)}
                   />
                 }
@@ -276,13 +289,16 @@ const UnitList: FC<UnitListProps> = (props) => {
           </OakFlex>
         ) : (
           // Specialist units
-          <OakUnitsContainer
+          <UnitsContainer
             isLegacy={true}
             banner={
-              <UnitListLegacyBanner
+              <TakedownBanner
+                titleTag="h4"
                 userType={"teacher"}
-                hasNewUnits={hasNewAndLegacyUnits}
-                allLegacyUnits={legacyPageItems}
+                subjectSlug={subjectSlug}
+                hasNewUnits={hasNewAndLegacyUnitsOnPage}
+                isLegacy={true}
+                isExpiring={getIsUnitExpiring(legacyPageItems)}
                 onButtonClick={() => onPageChange(1)}
               />
             }

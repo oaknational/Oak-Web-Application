@@ -66,6 +66,8 @@ const ProgrammesListingPage: NextPage<
         filterType,
         filterValue,
         activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
+        googleLoginHint: null,
+        clientEnvironment: null,
       });
   };
 
@@ -140,7 +142,7 @@ const ProgrammesListingPage: NextPage<
           },
         ]}
         background={"bg-decorative3-very-subdued"}
-        subjectIconBackgroundColor={"lavender"}
+        subjectIconBackgroundColor={"bg-decorative3-main"}
         title={`${subjectTitle} ${pathwayTitle ?? ""}`}
         programmeFactor={keyStageTitle}
         hasCurriculumDownload={legacy}

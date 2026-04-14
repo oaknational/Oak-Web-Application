@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { GetServerSidePropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 import "jest-styled-components";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
@@ -7,14 +7,15 @@ import renderWithProviders from "../../__helpers__/renderWithProviders";
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
 import GetInvolved, {
-  GetInvolvedPage,
-  getServerSideProps,
+  GetInvolvedPageProps,
+  getStaticProps,
 } from "@/pages/about-us/get-involved";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
-import { portableTextFromString } from "@/__tests__/__helpers__/cms";
+import {
+  portableTextFromString,
+  mockImageAsset,
+} from "@/__tests__/__helpers__/cms";
+import CMSClient from "@/node-lib/cms";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
-
-jest.mock("@/node-lib/posthog/getFeatureFlag");
 jest.mock("../../../node-lib/cms");
 jest.mock("@mux/mux-player-react/lazy", () => {
   return forwardRef((props, ref) => {
@@ -23,12 +24,11 @@ jest.mock("@mux/mux-player-react/lazy", () => {
   });
 });
 
-const testAboutWhoWeArePageData: GetInvolvedPage["pageData"] = {
+const testGetInvolvedPageData: GetInvolvedPageProps["pageData"] = {
   ...testAboutPageBaseData,
   header: {
-    textRaw: portableTextFromString(
+    introText:
       "We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.",
-    ),
   },
   collaborate: {
     researchPanelTextRaw: portableTextFromString(
@@ -42,6 +42,7 @@ const testAboutWhoWeArePageData: GetInvolvedPage["pageData"] = {
     textRaw: portableTextFromString(
       `We're a fast-paced and innovative team, working to support and inspire teachers to deliver great teaching, so every pupil benefits. All our roles are remote-first. If you want to be part of something unique that's making a difference to millions of children's lives, we'd love to hear from you.`,
     ),
+    image: mockImageAsset(),
   },
 };
 
@@ -49,28 +50,26 @@ describe("pages/about/get-involved.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
+    (CMSClient.getInvolvedPage as jest.Mock).mockResolvedValue(
+      testGetInvolvedPageData,
+    );
   });
 
   it("renders", () => {
     const { container } = renderWithProviders()(
-      <GetInvolved
-        pageData={testAboutWhoWeArePageData}
-        topNav={topNavFixture}
-      />,
+      <GetInvolved pageData={testGetInvolvedPageData} topNav={topNavFixture} />,
     );
 
     expect(container).toMatchSnapshot();
   });
 
   describe("getStaticProps", () => {
-    it("should 404 when not enabled", async () => {
-      (getFeatureFlag as jest.Mock).mockResolvedValue(false);
-      const propsResult = await getServerSideProps({
-        req: { cookies: {} },
-        res: {},
-        query: {},
+    it("should 404 when no data returned from CMS", async () => {
+      (CMSClient.getInvolvedPage as jest.Mock).mockResolvedValue(null);
+
+      const propsResult = await getStaticProps({
         params: {},
-      } as unknown as GetServerSidePropsContext);
+      } as unknown as GetStaticPropsContext);
 
       expect(propsResult).toMatchObject({
         notFound: true,

@@ -1,9 +1,10 @@
 import React, { FC } from "react";
 import {
-  OakColorFilterToken,
+  OakLI,
   OakSmallSecondaryButtonWithDropdown,
   OakUiRoleToken,
 } from "@oaknational/oak-components";
+import { ActionsCamel } from "@oaknational/oak-curriculum-schema";
 
 import { TeacherShareNotesButton } from "../TeacherShareNotesButton/TeacherShareNotesButton";
 import { LessonOverviewHeaderShareAllButton } from "../LessonOverviewHeaderShareAllButton";
@@ -18,7 +19,6 @@ import {
 } from "@/browser-lib/avo/Avo";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
-import { LessonBrowseDataByKs } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 /**
  * This is a header for the lesson overview page.
@@ -56,7 +56,7 @@ export type LessonOverviewHeaderProps = {
   background: OakUiRoleToken;
   isNew: boolean;
   isShareable: boolean;
-  subjectIconBackgroundColor: OakColorFilterToken;
+  subjectIconBackgroundColor: OakUiRoleToken;
   track: TrackFns;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilLessonOutcome?: string | null;
@@ -75,7 +75,7 @@ export type LessonOverviewHeaderProps = {
   ) => void;
   trackCreateWithAiButtonClicked?: () => void;
   subjectCategories?: Array<string | number | null> | null;
-  actions?: LessonBrowseDataByKs["actions"];
+  actions?: ActionsCamel | null;
 };
 
 const ShareButtons: FC<{
@@ -97,24 +97,32 @@ const ShareButtons: FC<{
 
   if (shouldUseDropdown && teacherShareButtonProps) {
     return (
-      <OakSmallSecondaryButtonWithDropdown primaryActionText={"Share lesson"}>
-        <LessonOverviewHeaderShareAllButton
-          variant="dropdown"
-          {...overviewProps}
-        />
-        <TeacherShareNotesButton
-          variant="dropdown"
-          {...teacherShareButtonProps}
-        />
-      </OakSmallSecondaryButtonWithDropdown>
+      <OakLI $listStyle={"none"}>
+        <OakSmallSecondaryButtonWithDropdown primaryActionText={"Share lesson"}>
+          <LessonOverviewHeaderShareAllButton
+            variant="dropdown"
+            {...overviewProps}
+          />
+          <TeacherShareNotesButton
+            variant="dropdown"
+            {...teacherShareButtonProps}
+          />
+        </OakSmallSecondaryButtonWithDropdown>
+      </OakLI>
     );
   }
 
   return (
     <>
-      {showShare && <LessonOverviewHeaderShareAllButton {...overviewProps} />}
+      {showShare && (
+        <OakLI $listStyle={"none"}>
+          <LessonOverviewHeaderShareAllButton {...overviewProps} />
+        </OakLI>
+      )}
       {teacherShareButtonProps && (
-        <TeacherShareNotesButton {...teacherShareButtonProps} />
+        <OakLI $listStyle={"none"}>
+          <TeacherShareNotesButton {...teacherShareButtonProps} />
+        </OakLI>
       )}
     </>
   );

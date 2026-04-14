@@ -1,8 +1,4 @@
-import {
-  OakBox,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakBox } from "@oaknational/oak-components";
 import { PropsWithChildren } from "react";
 
 /**
@@ -13,13 +9,13 @@ import { PropsWithChildren } from "react";
  */
 export const Wall = ({ children }: PropsWithChildren) => {
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
+    <>
       <OakBox as="noscript" $position="absolute">
         JavaScript is required to access this content
       </OakBox>
       <OakBox data-testid="content" aria-hidden="true" $opacity="transparent">
         {children}
       </OakBox>
-    </OakThemeProvider>
+    </>
   );
 };

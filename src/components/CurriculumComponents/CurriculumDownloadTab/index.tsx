@@ -9,11 +9,10 @@ import {
 import {
   OakHeading,
   OakDownloadsJourneyChildSubjectTierSelector,
-  OakThemeProvider,
-  oakDefaultTheme,
   Tier,
   Subject,
   OakBox,
+  OakBoxProps,
 } from "@oaknational/oak-components";
 import { mapKeys, camelCase, capitalize } from "lodash";
 
@@ -118,6 +117,15 @@ export type CurriculumDownloadTabProps = {
   tiers: { tier: string; tier_slug: string }[];
   child_subjects?: { subject: string; subject_slug: string }[];
   formattedData: CurriculumUnitsFormattedData;
+  /**
+   * Inline padding for the content area.
+   *
+   * The integrated programme page layout has different padding requirements, so
+   * so we use this prop to control the padding.
+   *
+   * Can be removed once the integrated programme page is launched and components are reorganised.
+   */
+  ph?: OakBoxProps["$ph"];
 };
 const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   mvRefreshTime,
@@ -126,6 +134,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   child_subjects,
   curriculumInfo,
   formattedData,
+  ph = "spacing-16",
 }) => {
   const { track } = useAnalytics();
   const { onHubspotSubmit } = useHubspotSubmit();
@@ -331,47 +340,45 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   }
 
   return (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakBox
-        id="curriculum-downloads"
-        aria-labelledby="curriculum-downloads-heading"
-        tabIndex={-1}
-        $maxWidth={"spacing-1280"}
-        $mh={"auto"}
-        $ph={"spacing-16"}
-        $pt={["spacing-48", "spacing-0"]}
-        $pb={["spacing-48"]}
-        $mt={["spacing-0", "spacing-48", "spacing-48"]}
-        $borderColor="border-error"
-        $width={"100%"}
-        role="region"
-      >
-        <ScreenReaderOnly>
-          <OakHeading id="curriculum-downloads-heading" tag="h2">
-            Download
-          </OakHeading>
-        </ScreenReaderOnly>
-        {subjectTierSelectionVisible === true && (
-          <OakDownloadsJourneyChildSubjectTierSelector
-            tiers={tiers}
-            childSubjects={childSubjects}
-            getTierSubjectValues={handleTierSubjectSelection}
-          />
-        )}
-        {!isLoading && subjectTierSelectionVisible === false && (
-          <CurriculumDownloadView
-            onBackToKs4Options={onBackToKs4Options}
-            isSubmitting={isSubmitting}
-            onSubmit={onSubmit}
-            onChange={setData}
-            schools={schoolList ?? []}
-            data={data}
-            availableDownloadTypes={availableDownloadTypes}
-            submitError={submitError}
-          />
-        )}
-      </OakBox>
-    </OakThemeProvider>
+    <OakBox
+      id="curriculum-downloads"
+      aria-labelledby="curriculum-downloads-heading"
+      tabIndex={-1}
+      $maxWidth={"spacing-1280"}
+      $mh={"auto"}
+      $ph={ph}
+      $pt={["spacing-48", "spacing-0"]}
+      $pb={["spacing-48"]}
+      $mt={["spacing-0", "spacing-56", "spacing-56"]}
+      $borderColor="border-error"
+      $width={"100%"}
+      role="region"
+    >
+      <ScreenReaderOnly>
+        <OakHeading id="curriculum-downloads-heading" tag="h2">
+          Download
+        </OakHeading>
+      </ScreenReaderOnly>
+      {subjectTierSelectionVisible === true && (
+        <OakDownloadsJourneyChildSubjectTierSelector
+          tiers={tiers}
+          childSubjects={childSubjects}
+          getTierSubjectValues={handleTierSubjectSelection}
+        />
+      )}
+      {!isLoading && subjectTierSelectionVisible === false && (
+        <CurriculumDownloadView
+          onBackToKs4Options={onBackToKs4Options}
+          isSubmitting={isSubmitting}
+          onSubmit={onSubmit}
+          onChange={setData}
+          schools={schoolList ?? []}
+          data={data}
+          availableDownloadTypes={availableDownloadTypes}
+          submitError={submitError}
+        />
+      )}
+    </OakBox>
   );
 };
 

@@ -87,6 +87,7 @@ exports[`CurriculumTab renders 1`] = `
   min-width: 1.5rem;
   height: 1.5rem;
   min-height: 1.5rem;
+  display: block;
   font-family: --var(google-font),Lexend,sans-serif;
 }
 
@@ -305,22 +306,6 @@ exports[`CurriculumTab renders 1`] = `
   -ms-letter-spacing: 0.0115rem;
   letter-spacing: 0.0115rem;
   white-space: nowrap;
-}
-
-.c5 {
-  -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
-  filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
-  object-fit: contain;
-}
-
-.c26 {
-  object-fit: contain;
-}
-
-.c59 {
-  -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
-  filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
-  object-fit: contain;
 }
 
 .c1 {
@@ -553,29 +538,6 @@ exports[`CurriculumTab renders 1`] = `
   align-items: center;
 }
 
-.c12 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
-  letter-spacing: 0.0115rem;
-  color: #222222;
-}
-
-.c13 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 600;
-  font-size: 2rem;
-  line-height: 2.5rem;
-  -webkit-letter-spacing: 0.0115rem;
-  -moz-letter-spacing: 0.0115rem;
-  -ms-letter-spacing: 0.0115rem;
-  letter-spacing: 0.0115rem;
-}
-
 .c22 {
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -616,62 +578,6 @@ exports[`CurriculumTab renders 1`] = `
   letter-spacing: -0.005rem;
 }
 
-.c18 {
-  margin-top: 1rem;
-  display: revert;
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-family: --var(google-font),Lexend,sans-serif;
-  display: revert;
-  display: revert;
-}
-
-.c42 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
-  letter-spacing: -0.005rem;
-  color: #222222;
-}
-
-.c16 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 300;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
-  letter-spacing: -0.005rem;
-}
-
-.c24 {
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 700;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
-  letter-spacing: -0.005rem;
-}
-
-.c17 {
-  margin: 0;
-  display: block;
-  font-family: --var(google-font),Lexend,sans-serif;
-  font-weight: 300;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  -webkit-letter-spacing: -0.005rem;
-  -moz-letter-spacing: -0.005rem;
-  -ms-letter-spacing: -0.005rem;
-  letter-spacing: -0.005rem;
-}
-
 .c55 {
   background: none;
   color: inherit;
@@ -689,6 +595,7 @@ exports[`CurriculumTab renders 1`] = `
   padding-right: 1rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+  display: inline-block;
   border: 0.125rem solid;
   border-color: #222222;
   border-radius: 0.25rem;
@@ -716,6 +623,7 @@ exports[`CurriculumTab renders 1`] = `
   padding-right: 1rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+  display: inline-block;
   border: 0.125rem solid;
   border-color: #222222;
   border-radius: 0.25rem;
@@ -726,11 +634,26 @@ exports[`CurriculumTab renders 1`] = `
   cursor: default;
 }
 
+.c5 {
+  -webkit-filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
+  filter: brightness(0) saturate(100%) invert(85%) sepia(23%) saturate(120%) hue-rotate(71deg) brightness(112%) contrast(97%);
+  object-fit: contain;
+}
+
+.c26 {
+  object-fit: contain;
+}
+
+.c59 {
+  -webkit-filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
+  filter: invert(98%) sepia(98%) saturate(0%) hue-rotate(328deg) brightness(102%) contrast(102%);
+  object-fit: contain;
+}
+
 .c56 {
   position: relative;
   width: 100%;
   height: 100%;
-  display: inline-block;
 }
 
 .c56:hover {
@@ -769,7 +692,6 @@ exports[`CurriculumTab renders 1`] = `
   position: relative;
   width: 100%;
   height: 100%;
-  display: inline-block;
 }
 
 .c76:hover {
@@ -829,6 +751,85 @@ exports[`CurriculumTab renders 1`] = `
   box-shadow: 0.125rem 0.125rem 0 rgba(255,229,85,100%);
 }
 
+.c12 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+  color: #222222;
+}
+
+.c13 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  -webkit-letter-spacing: 0.0115rem;
+  -moz-letter-spacing: 0.0115rem;
+  -ms-letter-spacing: 0.0115rem;
+  letter-spacing: 0.0115rem;
+}
+
+.c18 {
+  margin-top: 1rem;
+  display: revert;
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-family: --var(google-font),Lexend,sans-serif;
+  display: revert;
+  display: revert;
+}
+
+.c42 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+  color: #222222;
+}
+
+.c16 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c24 {
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
+.c17 {
+  margin: 0;
+  display: block;
+  font-family: --var(google-font),Lexend,sans-serif;
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-letter-spacing: -0.005rem;
+  -moz-letter-spacing: -0.005rem;
+  -ms-letter-spacing: -0.005rem;
+  letter-spacing: -0.005rem;
+}
+
 .c21 {
   display: inline;
   -webkit-align-items: center;
@@ -867,6 +868,27 @@ exports[`CurriculumTab renders 1`] = `
 .c21[disabled] {
   cursor: not-allowed;
   color: #808080;
+}
+
+.c37 {
+  box-shadow: 0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c37:has(a:hover,button:hover) {
+  box-shadow: none;
+}
+
+.c37:has( a, button) {
+  box-shadow: 0 0 0 0.125rem rgba(255,229,85,100%),0 0 0 0.3rem rgba(87,87,87,100%);
+}
+
+.c37:has( a, button)  a,
+.c37:has( a, button) button {
+  outline: none;
+}
+
+.c37:has(a:active,button:active) {
+  box-shadow: none;
 }
 
 .c63 {
@@ -909,27 +931,8 @@ exports[`CurriculumTab renders 1`] = `
   transition: all 0.3s ease;
 }
 
-.c37 {
+.c38 {
   box-shadow: none;
-}
-
-.c37:has( a,button ) {
-  border-radius: 0.25em;
-  z-index: 2;
-  box-shadow: rgb(255,229,85) 0px 0px 0px 0.125rem,rgb(87,87,87) 0px 0px 0px 0.3rem;
-}
-
-.c37:has(a:hover,button:hover),
-.c37:has(button:hover:not(:active)) {
-  z-index: 1;
-}
-
-.c37:has(a:hover,button:hover) {
-  box-shadow: none;
-}
-
-.c37:has(a:active,button:active) {
-  z-index: 2;
 }
 
 .c39 {
@@ -944,10 +947,6 @@ exports[`CurriculumTab renders 1`] = `
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
-}
-
-.c38:hover {
-  background: #f2f2f2;
 }
 
 .c2 {
@@ -1281,6 +1280,33 @@ exports[`CurriculumTab renders 1`] = `
 }
 
 @media (min-width:750px) {
+  .c71 {
+    font-weight: 700;
+  }
+}
+
+@media (min-width:750px) {
+  .c71 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c71 {
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width:750px) {
+  .c71 {
+    -webkit-letter-spacing: -0.005rem;
+    -moz-letter-spacing: -0.005rem;
+    -ms-letter-spacing: -0.005rem;
+    letter-spacing: -0.005rem;
+  }
+}
+
+@media (min-width:750px) {
   .c13 {
     font-weight: 600;
   }
@@ -1334,33 +1360,6 @@ exports[`CurriculumTab renders 1`] = `
   }
 }
 
-@media (min-width:750px) {
-  .c71 {
-    font-weight: 700;
-  }
-}
-
-@media (min-width:750px) {
-  .c71 {
-    font-size: 1rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c71 {
-    line-height: 1.5rem;
-  }
-}
-
-@media (min-width:750px) {
-  .c71 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
-    letter-spacing: -0.005rem;
-  }
-}
-
 @media (hover:hover) {
   .c21:hover,
   .c21:visited:hover {
@@ -1404,7 +1403,7 @@ exports[`CurriculumTab renders 1`] = `
           <div
             style="position: absolute; bottom: 18px; right: calc(-40rem + 50vw - 200px); width: 529px; height: 420px;"
           >
-            <div
+            <span
               class="c4"
             >
               <img
@@ -1416,7 +1415,7 @@ exports[`CurriculumTab renders 1`] = `
                 src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
                 style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </div>
+            </span>
           </div>
         </div>
         <div
@@ -1483,7 +1482,7 @@ exports[`CurriculumTab renders 1`] = `
                       Our curriculum planning approach
                     </span>
                   </span>
-                  <div
+                  <span
                     class="c25 "
                   >
                     <img
@@ -1495,7 +1494,7 @@ exports[`CurriculumTab renders 1`] = `
                       src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
                       style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                     />
-                  </div>
+                  </span>
                 </a>
               </div>
               <div
@@ -1644,7 +1643,7 @@ exports[`CurriculumTab renders 1`] = `
                                     >
                                       View
                                     </span>
-                                    <div
+                                    <span
                                       class="c25"
                                     >
                                       <img
@@ -1656,7 +1655,7 @@ exports[`CurriculumTab renders 1`] = `
                                         src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                                         style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                       />
-                                    </div>
+                                    </span>
                                   </div>
                                 </button>
                               </div>
@@ -1835,7 +1834,7 @@ exports[`CurriculumTab renders 1`] = `
                                 >
                                   View
                                 </span>
-                                <div
+                                <span
                                   class="c25"
                                 >
                                   <img
@@ -1847,7 +1846,7 @@ exports[`CurriculumTab renders 1`] = `
                                     src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
                                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                   />
-                                </div>
+                                </span>
                               </div>
                             </button>
                           </div>

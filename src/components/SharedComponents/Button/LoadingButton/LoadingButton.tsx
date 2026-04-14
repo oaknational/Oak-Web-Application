@@ -108,7 +108,7 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
         ) : (
           <OakIcon
             iconName={props.success ? "tick" : props.icon}
-            $colorFilter="white"
+            $colorFilter="text-inverted"
             width={"24"}
             height={"24"}
             $width={"spacing-24"}

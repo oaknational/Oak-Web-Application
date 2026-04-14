@@ -6,13 +6,26 @@ import {
   OakGrid,
   OakIcon,
   OakGridArea,
+  OakP,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { PortableTextBlockComponent } from "@portabletext/react";
 
-import { InnerMaxWidth } from "../InnerMaxWidth";
-
+import {
+  aboutUsContactInitiated,
+  ComponentTypeValueType,
+} from "@/browser-lib/avo/Avo";
 import { PortableTextJSON } from "@/common-lib/cms-types";
+import { NewGutterMaxWidth } from "@/components/GenericPagesComponents/NewGutterMaxWidth";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { buildAboutUsContactInitiatedAnalytics } from "@/utils/analytics-builders";
+
+const handleClick = (componentType: ComponentTypeValueType) => {
+  const aboutUsContactInitiatedAnalytics =
+    buildAboutUsContactInitiatedAnalytics(componentType);
+
+  return aboutUsContactInitiated(aboutUsContactInitiatedAnalytics);
+};
 
 const BadgeImage = styled.img`
   max-height: 40px;
@@ -28,6 +41,10 @@ const BadgeImage = styled.img`
     max-height: 64px;
   }
 `;
+
+const OakPStyled: PortableTextBlockComponent = (props) => {
+  return <OakP $font={["body-2", "body-1"]}>{props.children}</OakP>;
+};
 
 export type GetInvolvedWorkWithUsProps = {
   heading: string;
@@ -52,7 +69,7 @@ export function GetInvolvedWorkWithUs({
   badges,
 }: Readonly<GetInvolvedWorkWithUsProps>) {
   return (
-    <InnerMaxWidth>
+    <NewGutterMaxWidth>
       <OakGrid
         $rg={["spacing-40", "spacing-40", "spacing-16"]}
         $cg={["spacing-0", "spacing-40", "spacing-16"]}
@@ -67,7 +84,6 @@ export function GetInvolvedWorkWithUs({
             <OakFlex $flexDirection="column" $gap="spacing-24">
               <OakHeading
                 $font={["heading-5", "heading-3", "heading-3"]}
-                $color="text-primary"
                 tag="h2"
               >
                 {heading}
@@ -77,7 +93,14 @@ export function GetInvolvedWorkWithUs({
                 $flexDirection={"column"}
                 $gap={["spacing-20", "spacing-24"]}
               >
-                <PortableTextWithDefaults value={text} />
+                <PortableTextWithDefaults
+                  value={text}
+                  components={{
+                    block: {
+                      normal: OakPStyled,
+                    },
+                  }}
+                />
               </OakFlex>
             </OakFlex>
 
@@ -96,6 +119,7 @@ export function GetInvolvedWorkWithUs({
                 element="a"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleClick("permanent_roles")}
               >
                 Permanent roles
               </OakSecondaryButton>
@@ -113,6 +137,7 @@ export function GetInvolvedWorkWithUs({
                 element="a"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleClick("freelance_roles")}
               >
                 Freelance roles
               </OakSecondaryButton>
@@ -150,6 +175,6 @@ export function GetInvolvedWorkWithUs({
           </OakFlex>
         </OakGridArea>
       </OakGrid>
-    </InnerMaxWidth>
+    </NewGutterMaxWidth>
   );
 }

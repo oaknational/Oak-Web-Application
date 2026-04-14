@@ -17,9 +17,12 @@ import { generateKeyStageTitle } from "@/components/PupilComponents/PupilAnalyti
 import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 import RelatedSubjectsBanner from "@/components/PupilComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
 import PupilSubjectDescription from "@/components/PupilComponents/PupilSubjectDescription/PupilSubjectDescription";
-import { UnitListLegacyBanner } from "@/components/TeacherComponents/UnitList/UnitListLegacyBanner";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
+import {
+  getIsUnitExpiring,
+  TakedownBanner,
+} from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
@@ -108,10 +111,14 @@ export const PupilViewsUnitListing = ({
               additionalInfoSlot={
                 <>
                   <PupilSubjectDescription programmeFields={programmeFields} />
-                  <UnitListLegacyBanner
+                  <TakedownBanner
                     userType={"pupil"}
+                    subjectSlug={programmeFields.subjectSlug}
                     hasNewUnits={hasNewAndLegacyUnitsInAllSections}
-                    allLegacyUnits={unitSection.units}
+                    isExpiring={getIsUnitExpiring(unitSection.units)}
+                    isLegacy={unitSection.units.some((unit) =>
+                      unit.every((u) => u.isLegacy),
+                    )}
                   />
                 </>
               }

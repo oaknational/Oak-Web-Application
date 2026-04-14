@@ -17,7 +17,7 @@ export const reshapeUnitData = (rawUnits: UnitsCamel): GroupedUnitsSchema => {
     year: unit.programmeFields.year,
     unitStudyOrder: unit.supplementaryData.unitOrder,
     yearOrder: unit.programmeFields.yearDisplayOrder,
-    cohort: unit.unitData.Cohort,
+    cohort: unit.unitData._cohort,
     isOptionalityUnit: !!unit.programmeFields.optionality,
     lessonCount: unit.lessonCount,
     expiredLessonCount: unit.lessonExpiredCount,

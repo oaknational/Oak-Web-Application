@@ -6,7 +6,7 @@ import getServerConfig from "@/node-lib/getServerConfig";
 
 // Request schema validation for email-based lookup
 const emailLookupSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
 });
 
 // Request schema validation for cookie-based lookup
@@ -106,7 +106,7 @@ export function createHandler(hubspotClient: HubspotClient) {
       if (error instanceof z.ZodError) {
         return res
           .status(400)
-          .json({ error: "Invalid request", details: error.errors });
+          .json({ error: "Invalid request", details: error.issues });
       }
 
       console.error("Error looking up HubSpot contact:", error);
