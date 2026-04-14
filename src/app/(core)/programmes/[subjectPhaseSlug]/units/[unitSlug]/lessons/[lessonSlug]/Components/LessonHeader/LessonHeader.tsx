@@ -10,7 +10,7 @@ import HeaderNavFooter from "@/components/TeacherComponents/HeaderNavFooter/Head
 import { resolveOakHref } from "@/common-lib/urls";
 import { TeachersLessonOverviewAdjacentLesson } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 
-type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
+export type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
   currentLessonSlug: string;
   prevLesson: TeachersLessonOverviewAdjacentLesson | null;
   nextLesson: TeachersLessonOverviewAdjacentLesson | null;
