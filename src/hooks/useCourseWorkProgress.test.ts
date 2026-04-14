@@ -13,6 +13,7 @@ jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
     getCourseWorkContext: jest.fn(),
     getCourseWorkProgress: jest.fn(),
     upsertCourseWorkProgress: jest.fn(),
+    hasTeacherCookies: jest.fn(),
   },
 }));
 
