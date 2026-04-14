@@ -1,3 +1,33 @@
+# [1.1042.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1041.0...v1.1042.0) (2026-04-14)
+
+
+### Bug Fixes
+
+* **LESQ-1910:** make next+previous links equal height ([2531c67](https://github.com/oaknational/Oak-Web-Application/commit/2531c67fad117b46d7749aa1a3f5da8917d3ffe1))
+
+
+### Features
+
+* **LESQ-1910:** add next+previous lesson buttons ([0496bdc](https://github.com/oaknational/Oak-Web-Application/commit/0496bdca67d254dc6b14d52cc550e62578ad8ecd))
+* **LESQ-1910:** skip unpublished lessons for next+previous ([c8f396d](https://github.com/oaknational/Oak-Web-Application/commit/c8f396da5115ecb0e92b095c780aa7b09b1f6a33))
+* **LESQ-1910:** use index from data ([fdaab2e](https://github.com/oaknational/Oak-Web-Application/commit/fdaab2e03779b789dbce789515d3ad6f2471e7bd))
+* **LESQ-1910:** use the main token for level 1 background ([9dd0405](https://github.com/oaknational/Oak-Web-Application/commit/9dd0405d8a379121af88afb7e29d6fc8a83c1dc0))
+* update links on lesson list to point to new lesson page ([6bca8d2](https://github.com/oaknational/Oak-Web-Application/commit/6bca8d26728c3b8416dc612696644eed5a6567ea))
+
+# [1.1041.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1040.0...v1.1041.0) (2026-04-14)
+
+
+### Bug Fixes
+
+* handle missing year in page title ([3d0d4f7](https://github.com/oaknational/Oak-Web-Application/commit/3d0d4f7bd3d9da4052878a50a2faf440169639cf))
+* use updated lesson query rm missing year logic ([fc94ca4](https://github.com/oaknational/Oak-Web-Application/commit/fc94ca495127987a3a208130413e210be362c591))
+
+
+### Features
+
+* added knip and remove old files from the codebase ([c2388b1](https://github.com/oaknational/Oak-Web-Application/commit/c2388b15143ea50dd21421adad17a9c508d09d52))
+* new lesson page ([a7e3e03](https://github.com/oaknational/Oak-Web-Application/commit/a7e3e033985fbdc84278a2ef6bb0a7ec5ba9232b))
+
 # [1.1040.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1039.0...v1.1040.0) (2026-04-13)
 
 

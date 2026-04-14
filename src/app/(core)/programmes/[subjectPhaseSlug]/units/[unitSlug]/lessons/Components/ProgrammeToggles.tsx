@@ -50,8 +50,8 @@ const ProgrammeToggleOption = ({
     : undefined;
 
   const href = resolveOakHref({
-    page: "unit-page",
-    subjectPhaseSlug: programmeSlug,
+    page: "integrated-lesson-index",
+    programmeSlug,
     unitSlug,
   });
 
