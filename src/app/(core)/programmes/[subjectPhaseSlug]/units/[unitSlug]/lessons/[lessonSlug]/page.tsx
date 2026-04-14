@@ -2,12 +2,14 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
+
 import {
   getSubjectHeroImageUrl,
   SubjectName,
 } from "../../../../[tab]/Components/ProgrammeHeader/getSubjectHeroImageUrl";
 import { Breadcrumbs } from "../Components/Breadcrumbs/Breadcrumbs";
 
+import LessonView from "./Components/LessonView";
 import LessonHeader from "./Components/LessonHeader/LessonHeader";
 
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
@@ -121,27 +123,30 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
   const data = await getCachedLessonData(programmeSlug, unitSlug, lessonSlug);
 
   return (
-    <LessonHeader
-      heroImage={getSubjectHeroImageUrl(data.subjectSlug as SubjectName)}
-      heading={data.lessonTitle}
-      currentLessonSlug={data.lessonSlug}
-      nextLesson={data.nextLesson}
-      prevLesson={data.previousLesson}
-      programmeSlug={data.programmeSlug}
-      unitSlug={data.unitSlug}
-      headerSlot={
-        <Breadcrumbs
-          data={data}
-          subjectPhaseSlug={getTeacherSubjectPhaseSlug({
-            subjectSlug: data.subjectSlug,
-            phaseSlug: data.phaseSlug,
-            subjectParentTitle: data.subjectParent,
-            examboardSlug: data.examBoardSlug,
-            pathwaySlug: data.pathwaySlug,
-          })}
-        />
-      }
-    />
+    <>
+      <LessonHeader
+        heroImage={getSubjectHeroImageUrl(data.subjectSlug as SubjectName)}
+        heading={data.lessonTitle}
+        currentLessonSlug={data.lessonSlug}
+        nextLesson={data.nextLesson}
+        prevLesson={data.previousLesson}
+        programmeSlug={data.programmeSlug}
+        unitSlug={data.unitSlug}
+        headerSlot={
+          <Breadcrumbs
+            data={data}
+            subjectPhaseSlug={getTeacherSubjectPhaseSlug({
+              subjectSlug: data.subjectSlug,
+              phaseSlug: data.phaseSlug,
+              subjectParentTitle: data.subjectParent,
+              examboardSlug: data.examBoardSlug,
+              pathwaySlug: data.pathwaySlug,
+            })}
+          />
+        }
+      />
+      <LessonView {...data} />
+    </>
   );
 };
 

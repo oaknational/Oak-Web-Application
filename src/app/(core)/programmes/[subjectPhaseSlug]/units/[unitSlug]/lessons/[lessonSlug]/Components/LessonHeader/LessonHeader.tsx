@@ -34,9 +34,9 @@ const LessonHeader = (props: LessonHeaderProps) => {
         type="lesson"
         backgroundColorLevel={1}
         viewHref={resolveOakHref({
-          page: "unit-page",
+          page: "integrated-unit-overview",
           unitSlug,
-          subjectPhaseSlug: programmeSlug,
+          programmeSlug,
         })}
         prevHref={
           prevLesson

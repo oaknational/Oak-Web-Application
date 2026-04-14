@@ -59,9 +59,9 @@ export const Breadcrumbs = ({
       {
         text: unitTitle,
         href: resolveOakHref({
-          page: "unit-page",
+          page: "integrated-unit-overview",
           unitSlug: unitSlug,
-          subjectPhaseSlug: programmeSlug,
+          programmeSlug,
         }),
       },
       {

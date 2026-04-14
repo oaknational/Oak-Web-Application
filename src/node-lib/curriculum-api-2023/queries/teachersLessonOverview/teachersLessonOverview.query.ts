@@ -47,25 +47,35 @@ export function getAdjacentLessonsByOrderInUnit(
     return { previousLesson: null, nextLesson: null };
   }
 
-  const previousLesson = sortedRows[idx - 1] ?? null;
-  const nextLesson = sortedRows[idx + 1] ?? null;
+  let previousLesson: TeachersLessonOverviewAdjacentLesson | null = null;
+  // Find the previous published lesson
+  for (let j = idx - 1; j >= 0; j--) {
+    const row = sortedRows[j];
+    if (row?._state === "published") {
+      previousLesson = {
+        lessonSlug: row.slug,
+        lessonTitle: row.title,
+        lessonIndex: j + 1,
+      };
+      break;
+    }
+  }
 
-  return {
-    previousLesson: previousLesson
-      ? {
-          lessonSlug: previousLesson.slug,
-          lessonTitle: previousLesson.title,
-          lessonIndex: idx,
-        }
-      : null,
-    nextLesson: nextLesson
-      ? {
-          lessonSlug: nextLesson.slug,
-          lessonTitle: nextLesson.title,
-          lessonIndex: idx + 2,
-        }
-      : null,
-  };
+  let nextLesson: TeachersLessonOverviewAdjacentLesson | null = null;
+  // Find the next published lesson
+  for (let j = idx + 1; j < sortedRows.length; j++) {
+    const row = sortedRows[j];
+    if (row?._state === "published") {
+      nextLesson = {
+        lessonSlug: row.slug,
+        lessonTitle: row.title,
+        lessonIndex: j + 1,
+      };
+      break;
+    }
+  }
+
+  return { previousLesson, nextLesson };
 }
 
 export const getDownloadsArray = (content: {
