@@ -4,7 +4,7 @@ exports[`GuidingPrinciples renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer sc-2b6c79cd-0 ksgVSu bsewjB etGGdS"
+      class="sc-aXZVg sc-gEvEer sc-2898721e-0 ksgVSu bsewjB fpqGnA"
     >
       <div
         class="sc-aXZVg sc-gEvEer hkJkIR NeWQh"
@@ -24,11 +24,11 @@ exports[`GuidingPrinciples renders correctly 1`] = `
           </p>
         </div>
         <div
-          class="sc-ad0ad6f5-0 sc-213e351e-0 hHxnYT cUwoYe"
+          class="sc-aXZVg sc-gEvEer ctOQaM iDBIXi"
         >
           <img
             alt=""
-            class="sc-6170517-0 iXcWYG"
+            class="sc-ba397cd3-0 gJBvmX"
             data-nimg="fill"
             decoding="async"
             loading="lazy"

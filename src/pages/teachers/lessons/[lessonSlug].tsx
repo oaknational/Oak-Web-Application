@@ -103,7 +103,7 @@ export default function LessonOverviewCanonicalPage({
       {!isSpecialist && (
         <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
           <OakMaxWidth $pv="spacing-80">
-            <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
+            <LessonAppearsIn {...pathwayGroups} />
           </OakMaxWidth>
         </OakFlex>
       )}

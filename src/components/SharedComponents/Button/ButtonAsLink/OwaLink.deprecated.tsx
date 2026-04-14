@@ -1,25 +1,24 @@
-import Link, { LinkProps } from "next/link";
-import { forwardRef, ReactNode } from "react";
-import styled, { css } from "styled-components";
 import { OakSvg } from "@oaknational/oak-components";
+import { LinkProps } from "next/link";
+import { ReactNode } from "react";
+import styled, { css } from "styled-components";
 
-import {
-  isExternalHref,
-  MaybeOakHref,
-  resolveOakHref,
-  ResolveOakHrefProps,
-} from "@/common-lib/urls";
+import { box } from "../../Box";
+import { focusUnderlineStyles } from "../../FocusUnderline";
+import { newFocusUnderlineStyles } from "../../NewFocusUnderline";
+import { HTMLAnchorProps } from "../common";
+
 import { OmitKeepDiscriminated } from "@/utils/generics";
-import { box } from "@/components/SharedComponents/Box";
-import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
-import FocusUnderline, {
-  focusUnderlineStyles,
-} from "@/components/SharedComponents/FocusUnderline";
-import NewFocusUnderline, {
-  newFocusUnderlineStyles,
-} from "@/components/SharedComponents/NewFocusUnderline";
 import flex from "@/styles/utils/flex";
 import { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
+import {
+  MaybeOakHref,
+  ResolveOakHrefProps,
+  resolveOakHref,
+  isExternalHref,
+} from "@/common-lib/urls";
+
+// DELETE THIS FILE OMCE BUTTONASLINK REMOVED
 
 type FocusStyle = "underline" | "new-underline";
 type FocusStylesProps = {
@@ -172,34 +171,3 @@ export const transformOwaLinkProps = <T extends OwaLinkPropsWithoutChildren>(
     ...linkProps,
   };
 };
-
-/**
- * OakLink renders a next/link with correct props by taking typed values
- * for page name etc.
- * It's intended to help centralise information about our url structures,
- * and to facilitate behaviour link "open in a new tab" and tracking.
- *
- * @todo add track props
- * @todo currently this allows href as any string, do we want to further
- * restrict it?
- */
-const OwaLink = forwardRef<HTMLAnchorElement, OwaLinkProps>((props, ref) => {
-  const { nextLinkProps, ...transformedProps } = transformOwaLinkProps(props);
-  return (
-    <Link {...nextLinkProps} legacyBehavior passHref>
-      <StyledNextLink ref={ref} {...transformedProps}>
-        <>
-          {props.children}
-          {props.$focusStyles?.includes("underline") && (
-            <FocusUnderline $underlineColor={"lemon"} />
-          )}
-          {props.$focusStyles?.includes("new-underline") && (
-            <NewFocusUnderline />
-          )}
-        </>
-      </StyledNextLink>
-    </Link>
-  );
-});
-
-export default OwaLink;

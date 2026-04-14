@@ -1,15 +1,12 @@
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
+import { OakUiRoleToken } from "@oaknational/oak-components";
 
-import getColorByName from "@/styles/themeHelpers/getColorByName";
-import { OakColorName } from "@/styles/theme/types";
 import { getBreakpoint } from "@/styles/utils/responsive";
 import Svg from "@/components/SharedComponents/Svg";
-import { $selectedStyle } from "@/components/SharedComponents/OwaLink/OwaLink";
 
-const brushBorder = css<{ color: OakColorName }>`
+const brushBorder = css`
   position: absolute;
-  color: ${(props) => getColorByName(props.color)};
   mask-position: center;
 `;
 
@@ -23,7 +20,10 @@ const TOP_THICKNESS = 12;
 const RIGHT_THICKNESS = 8;
 const BOTTOM_THICKNESS = 11;
 const LEFT_THICKNESS = 8;
-
+const $selectedStyle = css`
+  transition-duration: 0s;
+  transition-delay: 0s;
+`;
 const brushBorderTop = css`
   ${brushBorder}
   ${$selectedStyle}
@@ -76,7 +76,7 @@ const BrushBorderLeft = styled(Svg)`
 `;
 
 type BrushBordersProps = {
-  color: OakColorName;
+  color: OakUiRoleToken;
   hideOnMobileH?: boolean;
   hideOnMobileV?: boolean;
   isSelected?: boolean;

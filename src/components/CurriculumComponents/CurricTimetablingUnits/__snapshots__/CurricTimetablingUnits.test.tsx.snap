@@ -133,7 +133,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
         >
           <img
             alt=""
-            class="sc-6170517-0 gnvkSN"
+            class="sc-ba397cd3-0 gkWxGE"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -147,7 +147,7 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
     </div>
   </div>
   <div
-    class="sc-aXZVg sc-gEvEer sc-fvtFIe dcJZBD fUxOFh"
+    class="sc-aXZVg sc-gEvEer sc-gFVvzn dcJZBD fUxOFh"
   >
     <div
       class="sc-aXZVg sc-gEvEer hkJkIR fjNQtm"
@@ -292,11 +292,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-fMMURN cKYNrZ iDBIXi"
+            class="sc-aXZVg sc-gEvEer sc-bDpDS cKYNrZ iDBIXi"
             focusable="false"
           >
             <svg
-              class="sc-bBeLUv ejVkoR"
+              class="sc-brPLxw jwxDvw"
               height="100%"
               preserveAspectRatio="none"
               viewBox="0 0 866 8"
@@ -681,7 +681,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
         >
           <img
             alt=""
-            class="sc-6170517-0 gnvkSN"
+            class="sc-ba397cd3-0 gkWxGE"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -695,7 +695,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
     </div>
   </div>
   <div
-    class="sc-aXZVg sc-gEvEer sc-fvtFIe dcJZBD fUxOFh"
+    class="sc-aXZVg sc-gEvEer sc-gFVvzn dcJZBD fUxOFh"
   >
     <div
       class="sc-aXZVg sc-gEvEer hkJkIR fjNQtm"
@@ -840,11 +840,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-fMMURN cKYNrZ iDBIXi"
+            class="sc-aXZVg sc-gEvEer sc-bDpDS cKYNrZ iDBIXi"
             focusable="false"
           >
             <svg
-              class="sc-bBeLUv ejVkoR"
+              class="sc-brPLxw jwxDvw"
               height="100%"
               preserveAspectRatio="none"
               viewBox="0 0 866 8"
@@ -1033,7 +1033,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-f456e885-1 bqYjse"
                     >
                       <div
-                        class="sc-aXZVg sc-kMkxaj hSSbvD gTHfrn"
+                        class="sc-aXZVg sc-fTFjTM hSSbvD dDtfAW"
                       >
                         <a
                           class="sc-a6022ff2-0 ejmuOd"
@@ -1048,7 +1048,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                               class="sc-aXZVg sc-gEvEer hkJkIR gWvaOf"
                             >
                               <div
-                                class="sc-9d6b6245-0 bZsOFK pa11y-ignore"
+                                class="sc-eldPxv sc-ef43f00b-0 fqxCxQ ebOXeQ pa11y-ignore"
                               >
                                 <span
                                   aria-hidden="true"
@@ -1096,7 +1096,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       class="sc-f456e885-1 bqYjse"
                     >
                       <div
-                        class="sc-aXZVg sc-kMkxaj hSSbvD gTHfrn"
+                        class="sc-aXZVg sc-fTFjTM hSSbvD dDtfAW"
                       >
                         <a
                           class="sc-a6022ff2-0 ejmuOd"
@@ -1111,7 +1111,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                               class="sc-aXZVg sc-gEvEer hkJkIR gWvaOf"
                             >
                               <div
-                                class="sc-9d6b6245-0 bZsOFK pa11y-ignore"
+                                class="sc-eldPxv sc-ef43f00b-0 fqxCxQ ebOXeQ pa11y-ignore"
                               >
                                 <span
                                   aria-hidden="true"
