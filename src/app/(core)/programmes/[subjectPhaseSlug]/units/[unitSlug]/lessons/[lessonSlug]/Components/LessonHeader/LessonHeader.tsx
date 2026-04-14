@@ -24,7 +24,12 @@ const LessonHeader = (props: LessonHeaderProps) => {
   const isDesktop = useMediaQuery("desktop");
   return (
     <>
-      <Header {...props} layoutVariant="large" backgroundColorLevel={1} />
+      <Header
+        {...props}
+        layoutVariant="large"
+        backgroundColorLevel={1}
+        useSubduedBackground
+      />
       <HeaderNavFooter
         type="lesson"
         backgroundColorLevel={1}
