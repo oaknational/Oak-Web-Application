@@ -1,3 +1,17 @@
+# [1.1041.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1040.0...v1.1041.0) (2026-04-14)
+
+
+### Bug Fixes
+
+* handle missing year in page title ([3d0d4f7](https://github.com/oaknational/Oak-Web-Application/commit/3d0d4f7bd3d9da4052878a50a2faf440169639cf))
+* use updated lesson query rm missing year logic ([fc94ca4](https://github.com/oaknational/Oak-Web-Application/commit/fc94ca495127987a3a208130413e210be362c591))
+
+
+### Features
+
+* added knip and remove old files from the codebase ([c2388b1](https://github.com/oaknational/Oak-Web-Application/commit/c2388b15143ea50dd21421adad17a9c508d09d52))
+* new lesson page ([a7e3e03](https://github.com/oaknational/Oak-Web-Application/commit/a7e3e033985fbdc84278a2ef6bb0a7ec5ba9232b))
+
 # [1.1040.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1039.0...v1.1040.0) (2026-04-13)
 
 
