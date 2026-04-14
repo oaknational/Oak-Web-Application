@@ -3,15 +3,20 @@
 import type { ComponentProps } from "react";
 import { OakFlex } from "@oaknational/oak-components";
 
+import { useCurrentSectionId } from "./CurrentSectionIdProvider";
+
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
 
-type LessonOverviewSideNavProps = ComponentProps<
-  typeof LessonOverviewSideNavAnchorLinks
+type LessonOverviewSideNavProps = Omit<
+  ComponentProps<typeof LessonOverviewSideNavAnchorLinks>,
+  "currentSectionId"
 >;
 
 export default function LessonOverviewSideNav(
   props: Readonly<LessonOverviewSideNavProps>,
 ) {
+  const currentSectionId = useCurrentSectionId();
+
   return (
     <OakFlex
       as="nav"
@@ -23,7 +28,10 @@ export default function LessonOverviewSideNav(
       $position="sticky"
       $top="spacing-56"
     >
-      <LessonOverviewSideNavAnchorLinks {...props} />
+      <LessonOverviewSideNavAnchorLinks
+        {...props}
+        currentSectionId={currentSectionId}
+      />
     </OakFlex>
   );
 }
