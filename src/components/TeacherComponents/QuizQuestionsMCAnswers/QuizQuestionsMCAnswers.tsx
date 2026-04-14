@@ -10,7 +10,6 @@ import {
 import QuizImage from "@/components/TeacherComponents/QuizImage";
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import QuizImageAnswer from "@/components/TeacherComponents/QuizImageAnswer";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Typography from "@/components/SharedComponents/Typography";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
@@ -43,19 +42,23 @@ export const QuizQuestionsMCAnswers = (props: {
           choice.answer.length === 1 && imageAnswers.length === 1;
 
         return (
-          <Flex
+          <OakFlex
             key={`q-${questionNumber}-answer-${i}`}
             $flexDirection={"column"}
-            $gap={8}
+            $gap={"spacing-8"}
             $alignItems={encloseAnswer ? "center" : "flex-start"}
             $borderStyle="solid"
-            $borderColor="black"
-            $borderRadius={8}
+            $borderColor="border-brand"
+            $borderRadius={"border-radius-m"}
             role="listitem"
-            $ph={encloseAnswer && !imageAnswer ? 10 : 0}
-            $pv={encloseAnswer && !imageAnswer ? 16 : 0}
-            $ba={encloseAnswer && !imageAnswer ? 1 : 0}
-            $maxWidth={encloseAnswer ? 450 : "100%"}
+            $ph={encloseAnswer && !imageAnswer ? "spacing-12" : "spacing-0"}
+            $pv={encloseAnswer && !imageAnswer ? "spacing-16" : "spacing-0"}
+            $ba={
+              encloseAnswer && !imageAnswer
+                ? "border-solid-s"
+                : "border-solid-none"
+            }
+            $maxWidth={encloseAnswer ? "spacing-480" : "100%"}
           >
             {choice.answer.map((answerItem, j) => {
               if (answerItem.type === "text" && !choice.answerIsCorrect) {
@@ -116,7 +119,7 @@ export const QuizQuestionsMCAnswers = (props: {
                 );
               }
             })}
-          </Flex>
+          </OakFlex>
         );
       })}
     </OakFlex>

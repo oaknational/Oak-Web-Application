@@ -1,9 +1,8 @@
 import { FC, useState } from "react";
-import { OakP, OakFlex } from "@oaknational/oak-components";
+import { OakP, OakFlex, OakSecondaryButton } from "@oaknational/oak-components";
 
 import { AnalyticsBrowseData } from "../types/lesson.types";
 
-import Button, { ButtonProps } from "@/components/SharedComponents/Button";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import TranscriptViewer from "@/components/TeacherComponents/TranscriptViewer";
 
@@ -35,13 +34,6 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
     setTranscriptOn(!transcriptOn);
   };
 
-  const buttonParams: Partial<ButtonProps> = {
-    variant: "minimal",
-    background: "white",
-    iconBackground: "blue",
-    $iconPosition: "trailing",
-  };
-
   return (
     <OakFlex $flexDirection={"column"} $gap={["spacing-24"]}>
       {video && (
@@ -63,26 +55,25 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
         $gap={["spacing-16", "spacing-0"]}
       >
         {hasCaptions && (
-          <Button
-            label={transcriptOn ? "Hide transcript" : "Show transcript"}
-            icon={transcriptOn ? "chevron-up" : "chevron-down"}
+          <OakSecondaryButton
+            iconName={transcriptOn ? "chevron-up" : "chevron-down"}
             onClick={toggleTranscript}
-            {...buttonParams}
+            isTrailingIcon
             aria-controls="transcript-viewer"
             aria-expanded={transcriptOn}
-          />
+          >
+            {transcriptOn ? "Hide transcript" : "Show transcript"}
+          </OakSecondaryButton>
         )}
         <OakFlex $flexGrow={[0, 1]} $justifyContent={["center", "end"]}>
           {signLanguageVideo && (
-            <Button
-              label={
-                signLanguageOn ? "Hide sign language" : "Show sign language"
-              }
-              icon={"sign-language"}
+            <OakSecondaryButton
+              iconName="sign-language"
               onClick={toggleSignLanguage}
-              background={signLanguageOn ? "blue" : "white"}
-              {...buttonParams}
-            />
+              isTrailingIcon
+            >
+              {signLanguageOn ? "Hide sign language" : "Show sign language"}
+            </OakSecondaryButton>
           )}
         </OakFlex>
         {!hasCaptions && !signLanguageVideo && (
