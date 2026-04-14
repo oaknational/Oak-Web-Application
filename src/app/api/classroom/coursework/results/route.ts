@@ -4,11 +4,7 @@ import {
   createClassroomErrorReporter,
   getOakGoogleClassroomAddon,
 } from "@/node-lib/google-classroom";
-import {
-  extractAuth,
-  handleCourseWorkApiError,
-  unauthorisedResponse,
-} from "@/app/api/classroom/coursework/courseWorkApiHelpers";
+import { handleCourseWorkApiError } from "@/app/api/classroom/coursework/courseWorkApiHelpers";
 
 const reportError = createClassroomErrorReporter("coursework-results");
 
@@ -16,18 +12,14 @@ const reportError = createClassroomErrorReporter("coursework-results");
  * GET /api/classroom/coursework/results
  *
  * Fetches the CourseWork entity and pupil progress for a given
- * assignmentToken + submissionId. Requires teacher authentication headers.
+ * assignmentToken + submissionId. No authentication required —
+ * both lookups are Firestore-only.
  *
  * Used by the /classroom/coursework/results teacher-facing results page
  * that the addon attaches as a link to the student's submission.
  */
 export async function GET(request: NextRequest) {
   try {
-    const auth = extractAuth(request);
-    if (!auth) {
-      return unauthorisedResponse();
-    }
-
     const assignmentToken = request.nextUrl.searchParams.get("assignmentToken");
     const submissionId = request.nextUrl.searchParams.get("submissionId");
 
@@ -40,18 +32,13 @@ export async function GET(request: NextRequest) {
 
     const oakClassroomClient = getOakGoogleClassroomAddon(request);
 
-    const [verifiedSession, courseWork, pupilProgress] = await Promise.all([
-      oakClassroomClient.verifyAuthSession(auth.session, auth.accessToken),
+    const [courseWork, pupilProgress] = await Promise.all([
       oakClassroomClient.getClassroomCourseWork(assignmentToken),
       oakClassroomClient.getCourseWorkPupilProgress(
         submissionId,
         assignmentToken,
       ),
     ]);
-
-    if (!verifiedSession) {
-      return unauthorisedResponse();
-    }
 
     if (!courseWork) {
       return NextResponse.json(
