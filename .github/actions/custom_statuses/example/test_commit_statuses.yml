@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: set up Node
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb #v6
         with:
           version: 10
           cache: true
