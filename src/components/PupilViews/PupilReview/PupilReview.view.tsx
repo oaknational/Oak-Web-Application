@@ -47,6 +47,7 @@ type PupilViewsReviewProps = {
   unitSlug: string;
   browseData: PupilExperienceViewProps["browseData"];
   pageType: PupilExperienceViewProps["pageType"];
+  isHandedIn?: boolean;
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
@@ -56,6 +57,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     starterQuizQuestionsArray,
     exitQuizQuestionsArray,
     browseData: { programmeFields, lessonSlug, isLegacy },
+    isHandedIn,
   } = props;
   const { isClassroomAssignment, classroomAssignmentChecked } =
     useAssignmentSearchParams();
@@ -280,7 +282,10 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                 $minHeight={"spacing-92"}
               >
                 {assignmentToken && (
-                  <CourseWorkHandInButton assignmentToken={assignmentToken} />
+                  <CourseWorkHandInButton
+                    assignmentToken={assignmentToken}
+                    initialIsHandedIn={isHandedIn}
+                  />
                 )}
                 {classroomAssignmentChecked &&
                   !isClassroomAssignment &&

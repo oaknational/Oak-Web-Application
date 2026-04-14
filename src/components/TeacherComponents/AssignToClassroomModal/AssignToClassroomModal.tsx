@@ -251,6 +251,8 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
         "aria-modal": true,
         "aria-labelledby": ASSIGN_MODAL_HEADING_ID,
         "aria-describedby": ASSIGN_MODAL_DESCRIPTION_ID,
+        $overflowY: "auto",
+        style: { maxHeight: "calc(100vh - 64px)", paddingBottom: "48px" },
       }}
       modalOuterFlexProps={{
         $maxWidth: "spacing-640",

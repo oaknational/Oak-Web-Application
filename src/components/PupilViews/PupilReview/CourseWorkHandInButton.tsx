@@ -12,12 +12,16 @@ import googleClassroomApi from "@/browser-lib/google-classroom/googleClassroomAp
 
 type CourseWorkHandInButtonProps = {
   assignmentToken: string;
+  initialIsHandedIn?: boolean;
 };
 
 export const CourseWorkHandInButton = ({
   assignmentToken,
+  initialIsHandedIn,
 }: CourseWorkHandInButtonProps) => {
-  const [handInState, setHandInState] = useState<AsyncState>("idle");
+  const [handInState, setHandInState] = useState<AsyncState>(
+    initialIsHandedIn ? "success" : "idle",
+  );
 
   let handInButtonLabel = "Hand in";
   if (handInState === "loading") handInButtonLabel = "Handing in…";

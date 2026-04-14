@@ -96,7 +96,10 @@ export const PupilPageContent = ({
   pageType,
   worksheetInfo,
   additionalFiles,
-}: Omit<PupilExperienceViewProps, "initialSection">) => {
+  isHandedIn,
+}: Omit<PupilExperienceViewProps, "initialSection"> & {
+  isHandedIn?: boolean;
+}) => {
   const { currentSection } = useLessonEngineContext();
   const {
     starterQuiz,
@@ -201,6 +204,7 @@ export const PupilPageContent = ({
           unitSlug={browseData.unitSlug}
           browseData={browseData}
           pageType={pageType}
+          isHandedIn={isHandedIn}
         />
       )}
     </>
@@ -717,6 +721,7 @@ const PupilExperienceLayout = ({
                     pageType={pageType}
                     hasAdditionalFiles={hasAdditionalFiles}
                     additionalFiles={additionalFiles}
+                    isHandedIn={courseWork.isHandedIn}
                   />
                 </>
               )}

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { PostSubmissionState } from "@oaknational/google-classroom-addon/types";
 
 import {
   mapToSubmitCourseWorkProgress,
@@ -48,6 +49,7 @@ export function useCourseWorkProgress({
   const [initialSectionResults, setInitialSectionResults] =
     useState<LessonSectionResults>();
   const [lessonEngineKey, setLessonEngineKey] = useState(0);
+  const [isHandedIn, setIsHandedIn] = useState(false);
 
   const hydrate = useCallback(async () => {
     if (!assignmentToken || !isCourseWorkFlow) {
@@ -64,6 +66,7 @@ export function useCourseWorkProgress({
     setErrorMessage(null);
     setPreviewMessage(null);
     setInitialSectionResults(undefined);
+    setIsHandedIn(false);
 
     const session = await googleClassroomApi.verifySession(true)();
     if (!session.authenticated) {
@@ -104,6 +107,11 @@ export function useCourseWorkProgress({
           setInitialSectionResults(mapped);
           setLessonEngineKey((k) => k + 1);
         }
+        if (
+          savedProgress.postSubmissionState === PostSubmissionState.TURNED_IN
+        ) {
+          setIsHandedIn(true);
+        }
       }
       setStatus("ready");
     } catch {
@@ -120,6 +128,7 @@ export function useCourseWorkProgress({
       setErrorMessage(null);
       setPreviewMessage(null);
       setInitialSectionResults(undefined);
+      setIsHandedIn(false);
       return;
     }
     void hydrate();
@@ -159,6 +168,7 @@ export function useCourseWorkProgress({
     isContextReady: status !== "loading",
     initialSectionResults,
     lessonEngineKey,
+    isHandedIn,
     saveProgress,
     onSignInSuccess,
   };
