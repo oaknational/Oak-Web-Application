@@ -34,7 +34,7 @@ const HeaderNavFooter = (props: HeaderNavFooterProps) => {
         $gap={"spacing-16"}
         $maxWidth="spacing-1280"
       >
-        <OakFlex $gap={"spacing-32"} $alignItems={"center"}>
+        <OakFlex as="nav" $gap={"spacing-32"} $alignItems={"center"}>
           <OakTertiaryInvertedButton
             iconName="list"
             element="a"
