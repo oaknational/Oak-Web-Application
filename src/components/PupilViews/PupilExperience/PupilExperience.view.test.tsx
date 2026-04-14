@@ -108,7 +108,7 @@ jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
     getCourseWorkContext: jest.fn(),
     getCourseWorkProgress: jest.fn(),
     upsertCourseWorkProgress: jest.fn(),
-    getGoogleSignInUrl: jest.fn(),
+    getGoogleSignInUrl: jest.fn().mockResolvedValue(null),
   },
 }));
 
