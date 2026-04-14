@@ -692,11 +692,16 @@ const PupilExperienceLayout = ({
               ) : (
                 <>
                   <OakInlineBanner
-                    message={courseWork.errorMessage ?? ""}
+                    type={courseWork.previewMessage ? "info" : undefined}
+                    message={
+                      courseWork.previewMessage ?? courseWork.errorMessage ?? ""
+                    }
                     isOpen={
                       courseWork.isCourseWorkFlow &&
                       !courseWork.isPupilSignInRequired &&
-                      Boolean(courseWork.errorMessage)
+                      Boolean(
+                        courseWork.previewMessage || courseWork.errorMessage,
+                      )
                     }
                   />
                   <OakInlineBanner

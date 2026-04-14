@@ -21,6 +21,8 @@ const COURSEWORK_SAVE_ERROR_MESSAGE =
   "We couldn't save your assignment progress. Please try again.";
 const COURSEWORK_NOT_READY_ERROR_MESSAGE =
   "Assignment progress isn't ready yet. Please try again.";
+const COURSEWORK_PREVIEW_MESSAGE =
+  "You're viewing this lesson in preview mode. Progress won't sync to Google Classroom.";
 
 type UseCourseWorkProgressArgs = {
   assignmentToken: string | null | undefined;
@@ -42,6 +44,7 @@ export function useCourseWorkProgress({
     null,
   );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [previewMessage, setPreviewMessage] = useState<string | null>(null);
   const [initialSectionResults, setInitialSectionResults] =
     useState<LessonSectionResults>();
   const [lessonEngineKey, setLessonEngineKey] = useState(0);
@@ -51,6 +54,7 @@ export function useCourseWorkProgress({
       setStatus("inactive");
       setContext(null);
       setErrorMessage(null);
+      setPreviewMessage(null);
       setInitialSectionResults(undefined);
       return;
     }
@@ -58,6 +62,7 @@ export function useCourseWorkProgress({
     setStatus("loading");
     setContext(null);
     setErrorMessage(null);
+    setPreviewMessage(null);
     setInitialSectionResults(undefined);
 
     const session = await googleClassroomApi.verifySession(true)();
@@ -70,8 +75,13 @@ export function useCourseWorkProgress({
       const ctx =
         await googleClassroomApi.getCourseWorkContext(assignmentToken);
       if (!ctx?.submissionId || !session.loginHint) {
-        setStatus("error");
-        setErrorMessage(COURSEWORK_LOAD_ERROR_MESSAGE);
+        // No submission for this user. If they have teacher cookies it's a
+        // preview link — show an info banner. Otherwise degrade silently.
+        setStatus("inactive");
+        const isTeacher = await googleClassroomApi.hasTeacherCookies();
+        if (isTeacher) {
+          setPreviewMessage(COURSEWORK_PREVIEW_MESSAGE);
+        }
         return;
       }
 
@@ -108,6 +118,7 @@ export function useCourseWorkProgress({
       setStatus("inactive");
       setContext(null);
       setErrorMessage(null);
+      setPreviewMessage(null);
       setInitialSectionResults(undefined);
       return;
     }
@@ -142,6 +153,7 @@ export function useCourseWorkProgress({
     isCourseWorkFlow,
     status,
     errorMessage,
+    previewMessage,
     isPupilSignInRequired: status === "sign_in_required",
     isFetching: status === "loading",
     isContextReady: status !== "loading",

@@ -62,6 +62,7 @@ describe("useCourseWorkProgress", () => {
       unitSlug: "unit-slug",
     });
     mockedGoogleClassroomApi.getCourseWorkProgress.mockResolvedValue(null);
+    mockedGoogleClassroomApi.hasTeacherCookies.mockResolvedValue(false);
     mockedGoogleClassroomApi.upsertCourseWorkProgress.mockResolvedValue(
       undefined,
     );
@@ -126,7 +127,7 @@ describe("useCourseWorkProgress", () => {
     expect(result.current.isPupilSignInRequired).toBe(true);
   });
 
-  it("moves to error when the coursework context is missing a submissionId", async () => {
+  it("degrades to inactive without a preview message when a pupil has no submissionId", async () => {
     mockedGoogleClassroomApi.getCourseWorkContext.mockResolvedValue({
       courseWorkId: "coursework-1",
       courseId: "course-1",
@@ -134,6 +135,7 @@ describe("useCourseWorkProgress", () => {
       programmeSlug: "programme-slug",
       unitSlug: "unit-slug",
     });
+    // hasTeacherCookies returns false — this is a pupil, not a teacher
 
     const { result } = renderHook(() =>
       useCourseWorkProgress({
@@ -143,15 +145,41 @@ describe("useCourseWorkProgress", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.status).toBe("error");
+      expect(result.current.status).toBe("inactive");
     });
 
-    expect(result.current.errorMessage).toBe(
-      "We couldn't load your assignment progress. You can still view the lesson, but progress won't sync.",
+    expect(result.current.errorMessage).toBeNull();
+    expect(result.current.previewMessage).toBeNull();
+  });
+
+  it("degrades to inactive with a preview message when a teacher has no submissionId", async () => {
+    mockedGoogleClassroomApi.getCourseWorkContext.mockResolvedValue({
+      courseWorkId: "coursework-1",
+      courseId: "course-1",
+      lessonSlug: "lesson-slug",
+      programmeSlug: "programme-slug",
+      unitSlug: "unit-slug",
+    });
+    mockedGoogleClassroomApi.hasTeacherCookies.mockResolvedValue(true);
+
+    const { result } = renderHook(() =>
+      useCourseWorkProgress({
+        assignmentToken: "assignment-token",
+        isGoogleClassroomAssignment: false,
+      }),
+    );
+
+    await waitFor(() => {
+      expect(result.current.status).toBe("inactive");
+    });
+
+    expect(result.current.errorMessage).toBeNull();
+    expect(result.current.previewMessage).toBe(
+      "You're viewing this lesson in preview mode. Progress won't sync to Google Classroom.",
     );
   });
 
-  it("moves to error when the verified session is missing a loginHint", async () => {
+  it("silently degrades to inactive when the verified session is missing a loginHint", async () => {
     mockedGoogleClassroomApi.verifySession.mockReturnValue(
       jest.fn().mockResolvedValue({
         authenticated: true,
@@ -169,12 +197,10 @@ describe("useCourseWorkProgress", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.status).toBe("error");
+      expect(result.current.status).toBe("inactive");
     });
 
-    expect(result.current.errorMessage).toBe(
-      "We couldn't load your assignment progress. You can still view the lesson, but progress won't sync.",
-    );
+    expect(result.current.errorMessage).toBeNull();
   });
 
   it("moves to error when hydration fails", async () => {

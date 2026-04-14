@@ -417,9 +417,15 @@ const getCourseWorkResults = async (
   }
 };
 
+const hasTeacherCookies = async (): Promise<boolean> => {
+  const headers = await getOakGCAuthHeaders();
+  return headers !== undefined;
+};
+
 export default {
   getGoogleSignInUrl,
   verifySession,
+  hasTeacherCookies,
   createAttachment,
   getAddOnContext,
   submitPupilProgress,
