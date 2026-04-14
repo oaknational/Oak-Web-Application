@@ -15,6 +15,7 @@ jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
     listCourses: jest.fn(),
     createCourseWork: jest.fn(),
     getGoogleSignInUrl: jest.fn(),
+    hasTeacherCookies: jest.fn(),
   },
 }));
 
@@ -24,7 +25,8 @@ const mockCreateCourseWork = googleClassroomApi.createCourseWork as jest.Mock;
 const mockGetGoogleSignInUrl =
   googleClassroomApi.getGoogleSignInUrl as jest.Mock;
 
-const mockWindowOpen = jest.fn().mockReturnValue({ close: jest.fn() });
+const mockPopup = { close: jest.fn(), location: { href: "" } };
+const mockWindowOpen = jest.fn().mockReturnValue(mockPopup);
 const mockCookieStore = { set: jest.fn().mockResolvedValue(undefined) };
 
 Object.defineProperty(window, "open", {
@@ -59,6 +61,7 @@ const unauthenticatedSession = () =>
 describe("AssignToClassroomModal", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockPopup.location.href = "";
     mockVerifySession.mockReturnValue(unauthenticatedSession());
     mockListCourses.mockResolvedValue([]);
     mockCreateCourseWork.mockResolvedValue({
@@ -120,9 +123,12 @@ describe("AssignToClassroomModal", () => {
       expect(mockGetGoogleSignInUrl).toHaveBeenCalledWith(null);
       await waitFor(() => {
         expect(mockWindowOpen).toHaveBeenCalledWith(
-          "https://accounts.google.com/signin",
+          "",
           "googleSignIn",
           expect.any(String),
+        );
+        expect(mockPopup.location.href).toBe(
+          "https://accounts.google.com/signin",
         );
       });
     });
@@ -143,7 +149,13 @@ describe("AssignToClassroomModal", () => {
       );
 
       await waitFor(() => {
-        expect(mockWindowOpen).not.toHaveBeenCalled();
+        expect(mockWindowOpen).toHaveBeenCalledWith(
+          "",
+          "googleSignIn",
+          expect.any(String),
+        );
+        expect(mockPopup.close).toHaveBeenCalled();
+        expect(mockPopup.location.href).toBe("");
       });
     });
   });
@@ -382,12 +394,18 @@ describe("AssignToClassroomModal", () => {
       mockListCourses.mockResolvedValue(mockCourses);
     });
 
-    it("renders courses as radio buttons", async () => {
+    it("renders courses in a dropdown", async () => {
       renderWithTheme(<AssignToClassroomModal {...defaultProps} />);
 
       await waitFor(() => {
-        expect(screen.getByText("Maths Year 7 — Period 1")).toBeInTheDocument();
-        expect(screen.getByText("Maths Year 8")).toBeInTheDocument();
+        const select = screen.getByRole("combobox");
+        expect(select).toBeInTheDocument();
+        expect(
+          screen.getByRole("option", { name: "Maths Year 7 — Period 1" }),
+        ).toBeInTheDocument();
+        expect(
+          screen.getByRole("option", { name: "Maths Year 8" }),
+        ).toBeInTheDocument();
       });
     });
 

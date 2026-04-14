@@ -5,10 +5,10 @@ import {
   OakFlex,
   OakHeading,
   OakLoadingSpinner,
+  OakOption,
   OakP,
   OakPrimaryButton,
-  OakRadioButton,
-  OakRadioGroup,
+  OakSelect,
   OakSmallSecondaryButton,
   OakTextInput,
 } from "@oaknational/oak-components";
@@ -118,25 +118,22 @@ const AssignToClassroomModalCoursePickerState: FC<
           />
         </OakFlex>
         <OakFlex $flexDirection="column" $gap="spacing-8">
-          <OakP $font="body-2-bold">Select a class</OakP>
-          <OakRadioGroup
-            name="course"
+          <OakP $font="body-2-bold" id="course-select-label">
+            Select a class
+          </OakP>
+          <OakSelect
             value={selectedCourseId}
             onChange={(event) => onSelectedCourseIdChange(event.target.value)}
+            aria-labelledby="course-select-label"
           >
             {courses.map((course) => (
-              <OakRadioButton
-                key={course.id}
-                value={course.id}
-                label={
-                  course.section
-                    ? `${course.name} — ${course.section}`
-                    : course.name
-                }
-                id={`course-${course.id}`}
-              />
+              <OakOption key={course.id} value={course.id}>
+                {course.section
+                  ? `${course.name} — ${course.section}`
+                  : course.name}
+              </OakOption>
             ))}
-          </OakRadioGroup>
+          </OakSelect>
         </OakFlex>
         <OakFlex $gap="spacing-12">
           <OakPrimaryButton

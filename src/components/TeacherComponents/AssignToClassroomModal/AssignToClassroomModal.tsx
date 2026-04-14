@@ -62,7 +62,14 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
   const [title, setTitle] = useState(lessonTitle);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSigningIn, setIsSigningIn] = useState(false);
+  const [modalContainer, setModalContainer] = useState<HTMLElement | null>(
+    null,
+  );
   const popupRef = useRef<Window | null>(null);
+
+  useEffect(() => {
+    setModalContainer(document.body);
+  }, []);
 
   const checkSessionAndLoadCourses = useCallback(async () => {
     setState({ type: "loading" });
@@ -128,16 +135,22 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
 
   const handleSignIn = async () => {
     setIsSigningIn(true);
-    const url = await googleClassroomApi.getGoogleSignInUrl(null);
-    if (!url) {
-      setIsSigningIn(false);
-      return;
-    }
-    popupRef.current = globalThis.window.open(
-      url,
+    // Open the popup synchronously within the user-gesture call stack so
+    // Safari (and other browsers with pop-up blockers) allow it.  We then
+    // redirect the already-open window once we have the auth URL.
+    const popup = globalThis.window.open(
+      "",
       "googleSignIn",
       "height=500,width=500,left=100,top=100,resizable=no,scrollbars=yes",
     );
+    const url = await googleClassroomApi.getGoogleSignInUrl(null);
+    if (!url || !popup) {
+      popup?.close();
+      setIsSigningIn(false);
+      return;
+    }
+    popup.location.href = url;
+    popupRef.current = popup;
   };
 
   const handleAssign = async () => {
@@ -231,6 +244,7 @@ const AssignToClassroomModal: FC<AssignToClassroomModalProps> = ({
     <OakModalCenter
       isOpen={isOpen}
       onClose={onClose}
+      domContainer={modalContainer ?? undefined}
       modalFlexProps={{
         $pa: ["spacing-32", "spacing-56"],
         $mh: "auto",
