@@ -1,10 +1,10 @@
 "use client";
 
+import { Fragment } from "react";
 import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
 
-import LessonOverviewVideo from "../../../../../../../../../components/TeacherComponents/LessonOverviewVideo";
-import { getAnalyticsBrowseData } from "../../../../../../../../../components/TeacherComponents/helpers/getAnalyticsBrowseData";
-
+import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
+import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 import { resolveOakHref } from "@/common-lib/urls";
 import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
@@ -19,6 +19,7 @@ import {
   LessonOverviewQuizQuestion,
   StemObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 
 const ALLOWED_MATHJAX_SUBJECT_SLUGS = new Set([
   "maths",
@@ -135,11 +136,12 @@ const hasLessonMathJax = (data: TeachersLessonOverviewPageData): boolean => {
 function getLessonResources({
   data,
   copyRightState,
+  isMathJaxLesson,
 }: {
   data: TeachersLessonOverviewPageData;
   copyRightState: ReturnType<typeof useComplexCopyright>;
+  isMathJaxLesson: boolean;
 }) {
-  const isMathJaxLesson = hasLessonMathJax(data);
   const browsePathwayData = getAnalyticsBrowseData({
     keyStageSlug: data.keyStageSlug,
     keyStageTitle: data.keyStageTitle,
@@ -279,69 +281,77 @@ export default function LessonView(
     loginRequired: data.loginRequired,
     geoRestricted: data.geoRestricted,
   });
+  const isMathJaxLesson = hasLessonMathJax(data);
+  const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
 
-  const lessonResources = getLessonResources({ data, copyRightState });
+  const lessonResources = getLessonResources({
+    data,
+    copyRightState,
+    isMathJaxLesson,
+  });
   return (
-    <OakBox $ph="spacing-40">
-      <OakGrid
-        $cg="spacing-16"
-        $rg="spacing-56"
-        $mb={["spacing-0", "spacing-48", "spacing-48"]}
-        $mh="auto"
-        $mt={["spacing-48", "spacing-56"]}
-        $width={"100%"}
-        $maxWidth={"spacing-1280"}
-      >
-        <OakGridArea
-          $colSpan={[12, 3]}
-          $alignSelf={"start"}
-          $position={"sticky"}
-          $display={["none", "block"]}
-          $top={"spacing-92"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+    <MathJaxLessonProvider>
+      <OakBox $ph="spacing-40">
+        <OakGrid
+          $cg="spacing-16"
+          $rg="spacing-56"
+          $mb={["spacing-0", "spacing-48", "spacing-48"]}
+          $mh="auto"
+          $mt={["spacing-48", "spacing-56"]}
+          $width={"100%"}
+          $maxWidth={"spacing-1280"}
         >
-          {/* anchor links area */}
-        </OakGridArea>
-        <OakGridArea $colSpan={[12, 9]} $mb={"spacing-48"}>
-          {lessonResources.map((resource) => (
-            <OakBox key={resource.key} $mb={"spacing-48"}>
-              {resource.component}
-            </OakBox>
-          ))}
-          <PreviousNextNav
-            backgroundColorLevel={1}
-            currentIndex={data.orderInUnit ?? undefined}
-            navItemType="lesson"
-            previous={
-              data.previousLesson
-                ? {
-                    href: resolveOakHref({
-                      page: "integrated-lesson-index",
-                      programmeSlug: data.programmeSlug,
-                      unitSlug: data.unitSlug,
-                      lessonSlug: data.previousLesson.lessonSlug,
-                    }),
-                    title: data.previousLesson.lessonTitle,
-                    index: data.previousLesson.lessonIndex,
-                  }
-                : undefined
-            }
-            next={
-              data.nextLesson
-                ? {
-                    href: resolveOakHref({
-                      page: "integrated-lesson-index",
-                      programmeSlug: data.programmeSlug,
-                      unitSlug: data.unitSlug,
-                      lessonSlug: data.nextLesson.lessonSlug,
-                    }),
-                    title: data.nextLesson.lessonTitle,
-                    index: data.nextLesson.lessonIndex,
-                  }
-                : undefined
-            }
-          />
-        </OakGridArea>
-      </OakGrid>
-    </OakBox>
+          <OakGridArea
+            $colSpan={[12, 3]}
+            $alignSelf={"start"}
+            $position={"sticky"}
+            $display={["none", "block"]}
+            $top={"spacing-92"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+          >
+            {/* anchor links area */}
+          </OakGridArea>
+          <OakGridArea $colSpan={[12, 9]} $mb={"spacing-48"}>
+            {lessonResources.map((resource) => (
+              <OakBox key={resource.key} $mb={"spacing-48"}>
+                {resource.component}
+              </OakBox>
+            ))}
+            <PreviousNextNav
+              backgroundColorLevel={1}
+              currentIndex={data.orderInUnit ?? undefined}
+              navItemType="lesson"
+              previous={
+                data.previousLesson
+                  ? {
+                      href: resolveOakHref({
+                        page: "integrated-lesson-index",
+                        programmeSlug: data.programmeSlug,
+                        unitSlug: data.unitSlug,
+                        lessonSlug: data.previousLesson.lessonSlug,
+                      }),
+                      title: data.previousLesson.lessonTitle,
+                      index: data.previousLesson.lessonIndex,
+                    }
+                  : undefined
+              }
+              next={
+                data.nextLesson
+                  ? {
+                      href: resolveOakHref({
+                        page: "integrated-lesson-index",
+                        programmeSlug: data.programmeSlug,
+                        unitSlug: data.unitSlug,
+                        lessonSlug: data.nextLesson.lessonSlug,
+                      }),
+                      title: data.nextLesson.lessonTitle,
+                      index: data.nextLesson.lessonIndex,
+                    }
+                  : undefined
+              }
+            />
+          </OakGridArea>
+        </OakGrid>
+      </OakBox>
+    </MathJaxLessonProvider>
   );
 }
