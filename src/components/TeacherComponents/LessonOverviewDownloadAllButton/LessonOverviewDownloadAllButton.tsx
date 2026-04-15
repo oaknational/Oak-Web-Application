@@ -4,7 +4,7 @@ import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/Lesson
 import { resolveOakHref } from "@/common-lib/urls";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 
-export type LessonOverviewHeaderDownloadAllButtonProps = Pick<
+export type LessonOverviewDownloadAllButtonProps = Pick<
   LessonOverviewHeaderProps,
   | "expired"
   | "showDownloadAll"
@@ -19,8 +19,8 @@ export type LessonOverviewHeaderDownloadAllButtonProps = Pick<
 > &
   Pick<ComponentProps<typeof LoginRequiredButton>, "sizeVariant" | "width">;
 
-export const LessonOverviewHeaderDownloadAllButton: FC<
-  LessonOverviewHeaderDownloadAllButtonProps
+export const LessonOverviewDownloadAllButton: FC<
+  LessonOverviewDownloadAllButtonProps
 > = (props) => {
   const {
     expired,
