@@ -30,7 +30,10 @@ import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { LessonSummaryReviewedProperties } from "@/browser-lib/avo/Avo";
 import { useOakPupil } from "@/hooks/useOakPupil";
-import { attemptDataCamelCaseSchema } from "@/node-lib/pupil-api/types";
+import {
+  attemptDataCamelCaseSchema,
+  AttemptDataCamelCase,
+} from "@/node-lib/pupil-api/types";
 import { useAssignmentSearchParams } from "@/hooks/useAssignmentSearchParams";
 
 type PupilViewsReviewProps = {
@@ -61,6 +64,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     sectionResults,
     isLessonComplete,
     lessonReviewSections,
+    isReadOnly,
   } = useLessonEngineContext();
   const { track } = usePupilAnalytics();
   const getSectionLinkProps = useGetSectionLinkProps();
@@ -92,7 +96,9 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       },
       sectionResults: sectionResults,
     };
-    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+
+    const parsedAttemptData: AttemptDataCamelCase =
+      attemptDataCamelCaseSchema.parse(attemptData);
     const attemptId = logAttempt(parsedAttemptData, true);
     if (typeof attemptId === "string") {
       setStoredAttemptLocally({ stored: true, attemptId });
@@ -123,7 +129,8 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       browseData: { subject: subject, yearDescription: yearDescription ?? "" },
       sectionResults: sectionResults,
     };
-    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+    const parsedAttemptData: AttemptDataCamelCase =
+      attemptDataCamelCaseSchema.parse(attemptData);
     const res = logAttempt(parsedAttemptData, false);
     if (typeof res === "string") {
       const shareUrl = `${
@@ -240,13 +247,15 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
         $ph={["spacing-16", "spacing-24", "spacing-0"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <OakTertiaryButton
-            iconName="arrow-left"
-            element="a"
-            {...getSectionLinkProps("overview", updateCurrentSection)}
-          >
-            Lesson overview
-          </OakTertiaryButton>
+          {!isReadOnly && (
+            <OakTertiaryButton
+              iconName="arrow-left"
+              element="a"
+              {...getSectionLinkProps("overview", updateCurrentSection)}
+            >
+              Lesson overview
+            </OakTertiaryButton>
+          )}
 
           <OakFlex $mv="spacing-56">
             <OakFlex

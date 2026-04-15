@@ -4,10 +4,10 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg cryvKT"
+      class="sc-aXZVg crJsie"
     >
       <div
-        class="sc-aXZVg sc-gEvEer kQLqxs cLpNFw"
+        class="sc-aXZVg sc-gEvEer eDMrjZ cLpNFw"
       >
         <h2
           class="sc-eldPxv keSODe"
@@ -15,17 +15,17 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
           TESTING_TITLE
         </h2>
         <div
-          class="sc-aXZVg sc-tagGq hdseiA dwIuIO"
+          class="sc-aXZVg sc-tagGq hkJkIR dwIuIO"
         >
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfda912c-0 hdseiA iDBIXi giQTDM fWbKoL"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfe45633-0 hkJkIR iDBIXi giQTDM jHIizF"
             data-testid="who-we-are-desc-item"
           >
             <div
-              class="sc-aXZVg sc-gEvEer hdseiA daEtut"
+              class="sc-aXZVg sc-gEvEer hkJkIR daEtut"
             >
               <div
-                class="sc-aXZVg iTlOvk"
+                class="sc-aXZVg gFoXSh"
               >
                 <img
                   alt="ITEM_ALT_0"
@@ -41,7 +41,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 />
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer hdseiA fVNIMq"
+                class="sc-aXZVg sc-gEvEer hkJkIR fVNIMq"
               >
                 <h3
                   class="sc-eldPxv irNobO"
@@ -49,7 +49,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                   ITEM_TITLE_0
                 </h3>
                 <p
-                  class="sc-ikkxIA cXRvuH"
+                  class="sc-ikkxIA esDZwj"
                 >
                   ITEM_TEXT_0
                 </p>
@@ -57,14 +57,14 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfda912c-0 hdseiA iDBIXi giQTDM fWbKoL"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfe45633-0 hkJkIR iDBIXi giQTDM jHIizF"
             data-testid="who-we-are-desc-item"
           >
             <div
-              class="sc-aXZVg sc-gEvEer hdseiA daEtut"
+              class="sc-aXZVg sc-gEvEer hkJkIR daEtut"
             >
               <div
-                class="sc-aXZVg fMYJdU"
+                class="sc-aXZVg dlqchN"
               >
                 <img
                   alt="ITEM_ALT_1"
@@ -80,7 +80,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 />
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer hdseiA fVNIMq"
+                class="sc-aXZVg sc-gEvEer hkJkIR fVNIMq"
               >
                 <h3
                   class="sc-eldPxv irNobO"
@@ -88,7 +88,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                   ITEM_TITLE_1
                 </h3>
                 <p
-                  class="sc-ikkxIA cXRvuH"
+                  class="sc-ikkxIA esDZwj"
                 >
                   ITEM_TEXT_1
                 </p>
@@ -96,14 +96,14 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfda912c-0 hdseiA iDBIXi giQTDM fWbKoL"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfe45633-0 hkJkIR iDBIXi giQTDM jHIizF"
             data-testid="who-we-are-desc-item"
           >
             <div
-              class="sc-aXZVg sc-gEvEer hdseiA daEtut"
+              class="sc-aXZVg sc-gEvEer hkJkIR daEtut"
             >
               <div
-                class="sc-aXZVg icEKlF"
+                class="sc-aXZVg clxvSs"
               >
                 <img
                   alt="ITEM_ALT_2"
@@ -119,7 +119,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 />
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer hdseiA fVNIMq"
+                class="sc-aXZVg sc-gEvEer hkJkIR fVNIMq"
               >
                 <h3
                   class="sc-eldPxv irNobO"
@@ -127,7 +127,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                   ITEM_TITLE_2
                 </h3>
                 <p
-                  class="sc-ikkxIA cXRvuH"
+                  class="sc-ikkxIA esDZwj"
                 >
                   ITEM_TEXT_2
                 </p>
@@ -135,14 +135,14 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfda912c-0 hdseiA iDBIXi giQTDM fWbKoL"
+            class="sc-aXZVg sc-gEvEer sc-esYiGF sc-cfe45633-0 hkJkIR iDBIXi giQTDM jHIizF"
             data-testid="who-we-are-desc-item"
           >
             <div
-              class="sc-aXZVg sc-gEvEer hdseiA daEtut"
+              class="sc-aXZVg sc-gEvEer hkJkIR daEtut"
             >
               <div
-                class="sc-aXZVg hyjivR"
+                class="sc-aXZVg cYUhFQ"
               >
                 <img
                   alt="ITEM_ALT_3"
@@ -158,7 +158,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                 />
               </div>
               <div
-                class="sc-aXZVg sc-gEvEer hdseiA fVNIMq"
+                class="sc-aXZVg sc-gEvEer hkJkIR fVNIMq"
               >
                 <h3
                   class="sc-eldPxv irNobO"
@@ -166,7 +166,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
                   ITEM_TITLE_3
                 </h3>
                 <p
-                  class="sc-ikkxIA cXRvuH"
+                  class="sc-ikkxIA esDZwj"
                 >
                   ITEM_TEXT_3
                 </p>

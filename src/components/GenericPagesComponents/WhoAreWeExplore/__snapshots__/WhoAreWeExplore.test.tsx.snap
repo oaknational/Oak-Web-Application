@@ -4,10 +4,10 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg tbBTB"
+      class="sc-aXZVg juNTIU"
     >
       <span
-        class="sc-aXZVg fGFMqx"
+        class="sc-aXZVg pxORc"
         style="pointer-events: none;"
       >
         <img
@@ -21,10 +21,10 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
         />
       </span>
       <div
-        class="sc-aXZVg cryvKT"
+        class="sc-aXZVg crJsie"
       >
         <div
-          class="sc-aXZVg sc-gEvEer gZGeqY cLpNFw"
+          class="sc-aXZVg sc-gEvEer esISEd cLpNFw"
         >
           <h2
             class="sc-eldPxv fFnkKX"
@@ -42,21 +42,21 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 class="sc-ea54c430-1 duAgam"
               >
                 <div
-                  class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
+                  class="sc-aXZVg sc-fTFjTM hLrCss fTpqJb"
                 >
                   <a
                     href="#item_one"
                     style="outline: none;"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-ea54c430-0 krhsqK egjftS egvGNM"
+                      class="sc-aXZVg sc-gEvEer sc-ea54c430-0 bqitgL egjftS egvGNM"
                       data-testid="who-we-are-explore-item"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
+                        class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
                       >
                         <span
-                          class="sc-aXZVg gqKCsC"
+                          class="sc-aXZVg eAconP"
                         >
                           <img
                             alt=""
@@ -70,15 +70,15 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                         </span>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer iUcqpI fXHtRp"
+                        class="sc-aXZVg sc-gEvEer eaijmN fXHtRp"
                       >
                         ITEM_ONE
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
+                        class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
                       >
                         <span
-                          class="sc-aXZVg gRUGli"
+                          class="sc-aXZVg jcHcan"
                         >
                           <img
                             alt=""
@@ -99,21 +99,21 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 class="sc-ea54c430-1 duAgam"
               >
                 <div
-                  class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
+                  class="sc-aXZVg sc-fTFjTM hLrCss fTpqJb"
                 >
                   <a
                     href="#item_two"
                     style="outline: none;"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-ea54c430-0 krhsqK egjftS egvGNM"
+                      class="sc-aXZVg sc-gEvEer sc-ea54c430-0 bqitgL egjftS egvGNM"
                       data-testid="who-we-are-explore-item"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
+                        class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
                       >
                         <span
-                          class="sc-aXZVg gqKCsC"
+                          class="sc-aXZVg eAconP"
                         >
                           <img
                             alt=""
@@ -127,15 +127,15 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                         </span>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer iUcqpI fXHtRp"
+                        class="sc-aXZVg sc-gEvEer eaijmN fXHtRp"
                       >
                         ITEM_TWO
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
+                        class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
                       >
                         <span
-                          class="sc-aXZVg gRUGli"
+                          class="sc-aXZVg jcHcan"
                         >
                           <img
                             alt=""
@@ -156,21 +156,21 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 class="sc-ea54c430-1 duAgam"
               >
                 <div
-                  class="sc-aXZVg sc-kMkxaj bpmavV hqGXqu"
+                  class="sc-aXZVg sc-fTFjTM hLrCss fTpqJb"
                 >
                   <a
                     href="#item_three"
                     style="outline: none;"
                   >
                     <div
-                      class="sc-aXZVg sc-gEvEer sc-ea54c430-0 krhsqK egjftS egvGNM"
+                      class="sc-aXZVg sc-gEvEer sc-ea54c430-0 bqitgL egjftS egvGNM"
                       data-testid="who-we-are-explore-item"
                     >
                       <div
-                        class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
+                        class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
                       >
                         <span
-                          class="sc-aXZVg gqKCsC"
+                          class="sc-aXZVg eAconP"
                         >
                           <img
                             alt=""
@@ -184,15 +184,15 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                         </span>
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer iUcqpI fXHtRp"
+                        class="sc-aXZVg sc-gEvEer eaijmN fXHtRp"
                       >
                         ITEM_THREE
                       </div>
                       <div
-                        class="sc-aXZVg sc-gEvEer hdseiA iDBIXi"
+                        class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
                       >
                         <span
-                          class="sc-aXZVg gRUGli"
+                          class="sc-aXZVg jcHcan"
                         >
                           <img
                             alt=""

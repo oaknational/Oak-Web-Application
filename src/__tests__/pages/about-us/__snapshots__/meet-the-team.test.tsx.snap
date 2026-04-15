@@ -4645,6 +4645,9 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                 class="c8 yellow-shadow"
               />
               <button
+                aria-controls="teachers-top-nav-hamburger"
+                aria-expanded="false"
+                aria-label="Open navigation menu"
                 class="c69 c10 internal-button"
                 data-testid="top-nav-hamburger-button"
               >
@@ -4716,7 +4719,9 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
-                    src="https://res.cloudinary.com/oak-web-application/image/upload/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
+                    sizes="100vw"
+                    src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75 3840w"
                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                   />
                 </span>
@@ -5987,7 +5992,7 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       >
                         <a
                           class="c183 "
-                          href="/teachers/key-stages/early-years-foundation-stage/subjects"
+                          href="/teachers/eyfs/maths"
                         >
                           <span
                             class="c29"

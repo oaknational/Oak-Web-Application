@@ -1,4 +1,5 @@
 import {
+  PostSubmissionState,
   PupilLessonProgress,
   questionResultSchema,
 } from "@oaknational/google-classroom-addon/types";
@@ -17,6 +18,7 @@ const mockQuestionResult: z.infer<typeof questionResultSchema> = {
 };
 
 const mockPupilProgress: PupilLessonProgress = {
+  postSubmissionState: PostSubmissionState.CREATED,
   submissionId: "sub-1",
   attachmentId: "att-1",
   courseId: "course-1",

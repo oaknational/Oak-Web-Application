@@ -1,11 +1,12 @@
 import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import {
   OakFlex,
   OakLoadingSpinner,
   OakPrimaryButton,
   OakTagFunctional,
+  useMediaQuery,
 } from "@oaknational/oak-components";
 
 import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
@@ -16,17 +17,18 @@ import { resolveOakHref } from "@/common-lib/urls";
 
 // Used when a user is signed in but not onboarded
 const UnitDownloadOnboardButton = ({
-  onClick,
+  href,
   showNewTag,
 }: {
-  onClick: () => Promise<boolean>;
+  href: string;
   showNewTag: boolean;
 }) => (
   <OakPrimaryButton
     width="fit-content"
-    onClick={onClick}
     ph={["spacing-8", "spacing-20"]}
     pv={["spacing-4", "spacing-12"]}
+    element="a"
+    href={href}
   >
     <OakFlex $alignItems="center" $gap="spacing-12">
       {showNewTag && (
@@ -37,7 +39,7 @@ const UnitDownloadOnboardButton = ({
           $pv={"spacing-0"}
         />
       )}
-      Complete sign up to download this unit
+      Sign up to download
     </OakFlex>
   </OakPrimaryButton>
 );
@@ -46,9 +48,11 @@ const UnitDownloadOnboardButton = ({
 const UnitDownloadSignInButton = ({
   redirectUrl,
   showNewTag,
+  isDesktop,
 }: {
   redirectUrl: string;
   showNewTag: boolean;
+  isDesktop: boolean;
 }) => (
   <SignInButton
     forceRedirectUrl={redirectUrl}
@@ -69,7 +73,7 @@ const UnitDownloadSignInButton = ({
             $pv={"spacing-0"}
           />
         )}
-        Download unit
+        Download {isDesktop && " complete unit"}
       </OakFlex>
     </OakPrimaryButton>
   </SignInButton>
@@ -81,28 +85,34 @@ const DownloadButton = ({
   downloadInProgress,
   fileSize,
   disabled,
+  isDesktop,
 }: {
   onUnitDownloadClick: () => void;
   downloadInProgress: boolean;
   fileSize: string | undefined;
   disabled: boolean;
-}) => (
-  <OakPrimaryButton
-    iconName="download"
-    isTrailingIcon
-    onClick={onUnitDownloadClick}
-    disabled={downloadInProgress || disabled}
-    ph={["spacing-8", "spacing-20"]}
-    pv={["spacing-4", "spacing-12"]}
-  >
-    <OakFlex $gap="spacing-12">
-      {downloadInProgress && (
-        <OakLoadingSpinner data-testid="loading-spinner" />
-      )}
-      {downloadInProgress ? "Downloading..." : `Download (.zip ${fileSize})`}
-    </OakFlex>
-  </OakPrimaryButton>
-);
+  isDesktop: boolean;
+}) => {
+  const zipSizeText = isDesktop ? ` (.zip ${fileSize})` : "";
+  const downloadButtonText = "Download" + zipSizeText;
+  return (
+    <OakPrimaryButton
+      iconName="download"
+      isTrailingIcon
+      onClick={onUnitDownloadClick}
+      disabled={downloadInProgress || disabled}
+      ph={["spacing-8", "spacing-20"]}
+      pv={["spacing-4", "spacing-12"]}
+    >
+      <OakFlex $gap="spacing-12">
+        {downloadInProgress && (
+          <OakLoadingSpinner data-testid="loading-spinner" />
+        )}
+        {downloadInProgress ? "Downloading..." : downloadButtonText}
+      </OakFlex>
+    </OakPrimaryButton>
+  );
+};
 
 export const useUnitDownloadButtonState = () => {
   const [downloadError, setDownloadError] = useState<boolean | undefined>();
@@ -145,7 +155,8 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const { unitFileId, geoRestricted } = props;
   const { isSignedIn, isLoaded, user } = useUser();
   const auth = useAuth();
-  const router = useRouter();
+  const pathname = usePathname();
+  const isDesktop = useMediaQuery("desktop");
 
   const {
     onDownloadSuccess,
@@ -197,18 +208,17 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
 
   return showOnboardButton ? (
     <UnitDownloadOnboardButton
-      onClick={() =>
-        router.push({
-          pathname: resolveOakHref({ page: "onboarding" }),
-          query: { returnTo: router.asPath },
-        })
-      }
+      href={resolveOakHref({
+        page: "onboarding",
+        query: { returnTo: pathname ?? "" },
+      })}
       showNewTag={props.showNewTag}
     />
   ) : showSignInButton ? (
     <UnitDownloadSignInButton
-      redirectUrl={`/onboarding?returnTo=${router.asPath}`}
+      redirectUrl={`/onboarding?returnTo=${pathname}`}
       showNewTag={props.showNewTag}
+      isDesktop={isDesktop}
     />
   ) : showDownloadButton ? (
     <DownloadButton
@@ -216,6 +226,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       onUnitDownloadClick={onUnitDownloadClick}
       downloadInProgress={downloadInProgress}
       fileSize={fileSize}
+      isDesktop={isDesktop}
     />
   ) : null;
 }

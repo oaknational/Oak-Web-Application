@@ -264,4 +264,4 @@ async function run(mode: string) {
 }
 
 const mode = "stdout";
-await run(mode);
+run(mode);

@@ -3,6 +3,7 @@ import { getByRole } from "@testing-library/dom";
 import { WhoAreWeDesc } from "./";
 
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 
 const render = renderWithProvidersByName(["oakTheme"]);
 
@@ -10,8 +11,8 @@ describe("WhoAreWeDesc", () => {
   it("renders correctly", () => {
     const items = new Array(4).fill(true).map((_item, index) => {
       return {
-        title: `ITEM_TITLE_${index}`,
-        text: `ITEM_TEXT_${index}`,
+        heading: `ITEM_TITLE_${index}`,
+        textRaw: portableTextFromString(`ITEM_TEXT_${index}`),
         image: {
           asset: {
             _id: `image-${index}-300x300-png`,
@@ -41,9 +42,9 @@ describe("WhoAreWeDesc", () => {
         item.image.altText,
       );
       expect(getByRole(itemElements[index]!, "heading")).toHaveTextContent(
-        item.title,
+        item.heading,
       );
-      expect(itemElements[index]!).toHaveTextContent(item.text);
+      expect(itemElements[index]!).toHaveTextContent(`ITEM_TEXT_${index}`);
     });
 
     expect(baseElement).toMatchSnapshot();

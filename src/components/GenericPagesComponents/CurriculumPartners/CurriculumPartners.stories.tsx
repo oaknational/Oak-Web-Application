@@ -23,7 +23,22 @@ type Story = StoryObj<typeof Component>;
 export const Default: Story = {
   args: {
     title: "Current",
-    text: "Partners involved in the creation of our new curricula (published after September 2022).",
+    text: [
+      {
+        _key: "test-key",
+        _type: "block",
+        children: [
+          {
+            _key: "test-span",
+            _type: "span",
+            marks: [],
+            text: "Partners involved in the creation of our new curricula (published after September 2022).",
+          },
+        ],
+        markDefs: [],
+        style: "normal",
+      },
+    ],
     items: new Array(10).fill(true).map((_, index) => {
       return {
         imageUrl: `/images/oak-national-academy-logo-512.png#${index}`,

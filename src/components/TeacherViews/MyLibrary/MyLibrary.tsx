@@ -119,6 +119,8 @@ export default function MyLibrary(props: Readonly<MyLibraryProps>) {
                     filterType: "Subject filter",
                     filterValue: collection.subject,
                     activeFilters: [],
+                    googleLoginHint: null,
+                    clientEnvironment: null,
                   })
                 }
                 iconName={getValidSubjectIconName(collection.subjectSlug)}

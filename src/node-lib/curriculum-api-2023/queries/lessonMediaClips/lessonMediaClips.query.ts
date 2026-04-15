@@ -1,3 +1,5 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import {
   canonicalLessonMediaClipsSchema,
   lessonMediaClipsSchema,
@@ -13,7 +15,6 @@ import {
   InputMaybe,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 import {
   LessonBrowseDataByKs,
   lessonBrowseDataByKsSchema,

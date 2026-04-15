@@ -2,7 +2,7 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "@/node-lib/cms";
 import getPageProps from "@/node-lib/getPageProps";
-import { NewAboutWhoWeArePage } from "@/common-lib/cms-types";
+import { WhoWeArePage } from "@/common-lib/cms-types/aboutPages";
 import {
   AboutSharedHeader,
   AboutSharedHeaderImage,
@@ -16,12 +16,12 @@ import Layout from "@/components/AppComponents/Layout";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 
-export type AboutPageProps = {
-  pageData: NewAboutWhoWeArePage;
+export type WhoWeArePageProps = {
+  pageData: WhoWeArePage;
   topNav: TopNavProps;
 };
 
-const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
+const WhoWeAre: NextPage<WhoWeArePageProps> = ({ pageData, topNav }) => {
   return (
     <Layout
       seoProps={getSeoProps({ title: "Who We Are" })}
@@ -31,29 +31,29 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData, topNav }) => {
       <AboutUsLayout>
         <AboutSharedHeader
           title={"About Oak"}
-          content={pageData.header.subTitle}
+          content={pageData.header2.introText}
         >
           <AboutSharedHeaderImage
-            imageAlt=""
-            imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
+            imageAlt={pageData.header2.image?.altText ?? ""}
+            imageUrl={pageData.header2.image?.asset?.url ?? ""}
           />
         </AboutSharedHeader>
         <WhoAreWeBreakout
-          image={pageData.breakout.image}
-          content={pageData.breakout.text}
+          image={pageData.breakout2.image}
+          content={pageData.breakout2.text}
         />
         <WhoAreWeTimeline
           title={"As teaching evolves, so do we..."}
           subTitle={"Oak’s story"}
-          items={pageData.timeline}
+          items={pageData.timeline2.timelineItems}
         />
-        <WhoAreWeDesc title={"We are..."} items={pageData.usp} />
+        <WhoAreWeDesc title={"We are..."} items={pageData.weAreCards.cards} />
       </AboutUsLayout>
     </Layout>
   );
 };
 
-export const getStaticProps: GetStaticProps<AboutPageProps> = async (
+export const getStaticProps: GetStaticProps<WhoWeArePageProps> = async (
   context,
 ) => {
   return getPageProps({
@@ -62,7 +62,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
     getProps: async () => {
       const isPreviewMode = context.preview === true;
 
-      const pageData = await CMSClient.newAboutWhoWeArePage({
+      const pageData = await CMSClient.whoWeArePage({
         previewMode: isPreviewMode,
       });
 
@@ -74,7 +74,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
 
       const topNav = await curriculumApi2023.topNav();
 
-      const results: GetStaticPropsResult<AboutPageProps> = {
+      const results: GetStaticPropsResult<WhoWeArePageProps> = {
         props: {
           pageData,
           topNav,
@@ -85,4 +85,4 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   });
 };
 
-export default AboutWhoWeAre;
+export default WhoWeAre;

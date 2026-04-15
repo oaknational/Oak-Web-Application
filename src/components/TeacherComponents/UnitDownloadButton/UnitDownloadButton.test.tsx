@@ -62,7 +62,7 @@ describe("UnitDownloadButton", () => {
         geoRestricted={false}
       />,
     );
-    const button = screen.getByText("Complete sign up to download this unit");
+    const button = screen.getByText("Sign up to download");
     expect(button).toBeInTheDocument();
   });
   it("should render a download button when logged in", () => {
@@ -117,7 +117,7 @@ describe("UnitDownloadButton", () => {
         geoRestricted={false}
       />,
     );
-    const button = screen.getByText("Download unit");
+    const button = screen.getByText("Download complete unit");
     expect(button).toBeInTheDocument();
   });
   it("should disable the button when geoblocked", () => {

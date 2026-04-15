@@ -4,10 +4,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer hdseiA daEtut"
+      class="sc-aXZVg sc-gEvEer hkJkIR daEtut"
     >
       <div
-        class="sc-aXZVg sc-gEvEer hdseiA gWBhKY"
+        class="sc-aXZVg sc-gEvEer hkJkIR gWBhKY"
       >
         <h3
           class="sc-eldPxv dZzbTI"
@@ -15,22 +15,22 @@ exports[`CurriculumPartners renders correctly 1`] = `
           TEST_TITLE
         </h3>
         <p
-          class="sc-ikkxIA cXRvuH"
+          class="sc-ikkxIA esDZwj"
         >
           TEST_TEXT
         </p>
       </div>
       <div
-        class="sc-aXZVg hdseiA"
+        class="sc-aXZVg hkJkIR"
       >
         <ul
-          class="sc-aXZVg sc-tagGq NyjaL hDvzcX"
+          class="sc-aXZVg sc-tagGq hwYrLi hDvzcX"
         >
           <li
-            class="sc-fPXMVe jJBTEh"
+            class="sc-fPXMVe bANRkk"
           >
             <span
-              class="sc-aXZVg jDYuWD"
+              class="sc-aXZVg hOLzMm"
             >
               <img
                 alt="item 0"
@@ -46,10 +46,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe jJBTEh"
+            class="sc-fPXMVe bANRkk"
           >
             <span
-              class="sc-aXZVg jDYuWD"
+              class="sc-aXZVg hOLzMm"
             >
               <img
                 alt="item 1"
@@ -65,10 +65,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe jJBTEh"
+            class="sc-fPXMVe bANRkk"
           >
             <span
-              class="sc-aXZVg jDYuWD"
+              class="sc-aXZVg hOLzMm"
             >
               <img
                 alt="item 2"
@@ -84,10 +84,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe jJBTEh"
+            class="sc-fPXMVe bANRkk"
           >
             <span
-              class="sc-aXZVg jDYuWD"
+              class="sc-aXZVg hOLzMm"
             >
               <img
                 alt="item 3"
@@ -103,10 +103,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe jJBTEh"
+            class="sc-fPXMVe bANRkk"
           >
             <span
-              class="sc-aXZVg jDYuWD"
+              class="sc-aXZVg hOLzMm"
             >
               <img
                 alt="item 4"
@@ -122,10 +122,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe jJBTEh"
+            class="sc-fPXMVe bANRkk"
           >
             <span
-              class="sc-aXZVg jDYuWD"
+              class="sc-aXZVg hOLzMm"
             >
               <img
                 alt="item 5"
@@ -141,10 +141,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe jJBTEh"
+            class="sc-fPXMVe bANRkk"
           >
             <span
-              class="sc-aXZVg jDYuWD"
+              class="sc-aXZVg hOLzMm"
             >
               <img
                 alt="item 6"
@@ -160,10 +160,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe jJBTEh"
+            class="sc-fPXMVe bANRkk"
           >
             <span
-              class="sc-aXZVg jDYuWD"
+              class="sc-aXZVg hOLzMm"
             >
               <img
                 alt="item 7"
@@ -179,10 +179,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe jJBTEh"
+            class="sc-fPXMVe bANRkk"
           >
             <span
-              class="sc-aXZVg jDYuWD"
+              class="sc-aXZVg hOLzMm"
             >
               <img
                 alt="item 8"
@@ -198,10 +198,10 @@ exports[`CurriculumPartners renders correctly 1`] = `
             </span>
           </li>
           <li
-            class="sc-fPXMVe jJBTEh"
+            class="sc-fPXMVe bANRkk"
           >
             <span
-              class="sc-aXZVg jDYuWD"
+              class="sc-aXZVg hOLzMm"
             >
               <img
                 alt="item 9"

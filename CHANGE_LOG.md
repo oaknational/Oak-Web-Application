@@ -1,3 +1,508 @@
+# [1.1042.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1041.0...v1.1042.0) (2026-04-14)
+
+
+### Bug Fixes
+
+* **LESQ-1910:** make next+previous links equal height ([2531c67](https://github.com/oaknational/Oak-Web-Application/commit/2531c67fad117b46d7749aa1a3f5da8917d3ffe1))
+
+
+### Features
+
+* **LESQ-1910:** add next+previous lesson buttons ([0496bdc](https://github.com/oaknational/Oak-Web-Application/commit/0496bdca67d254dc6b14d52cc550e62578ad8ecd))
+* **LESQ-1910:** skip unpublished lessons for next+previous ([c8f396d](https://github.com/oaknational/Oak-Web-Application/commit/c8f396da5115ecb0e92b095c780aa7b09b1f6a33))
+* **LESQ-1910:** use index from data ([fdaab2e](https://github.com/oaknational/Oak-Web-Application/commit/fdaab2e03779b789dbce789515d3ad6f2471e7bd))
+* **LESQ-1910:** use the main token for level 1 background ([9dd0405](https://github.com/oaknational/Oak-Web-Application/commit/9dd0405d8a379121af88afb7e29d6fc8a83c1dc0))
+* update links on lesson list to point to new lesson page ([6bca8d2](https://github.com/oaknational/Oak-Web-Application/commit/6bca8d26728c3b8416dc612696644eed5a6567ea))
+
+# [1.1041.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1040.0...v1.1041.0) (2026-04-14)
+
+
+### Bug Fixes
+
+* handle missing year in page title ([3d0d4f7](https://github.com/oaknational/Oak-Web-Application/commit/3d0d4f7bd3d9da4052878a50a2faf440169639cf))
+* use updated lesson query rm missing year logic ([fc94ca4](https://github.com/oaknational/Oak-Web-Application/commit/fc94ca495127987a3a208130413e210be362c591))
+
+
+### Features
+
+* added knip and remove old files from the codebase ([c2388b1](https://github.com/oaknational/Oak-Web-Application/commit/c2388b15143ea50dd21421adad17a9c508d09d52))
+* new lesson page ([a7e3e03](https://github.com/oaknational/Oak-Web-Application/commit/a7e3e033985fbdc84278a2ef6bb0a7ec5ba9232b))
+
+# [1.1040.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1039.0...v1.1040.0) (2026-04-13)
+
+
+### Features
+
+* **LESQ-1905:** add teachersLessonOverview query ([e271552](https://github.com/oaknational/Oak-Web-Application/commit/e271552a4c674cfc6676b456e1dedcdec8004414))
+* **LESQ-1905:** remove `legacyCopyrightContent` from teachers overview query ([4faecd0](https://github.com/oaknational/Oak-Web-Application/commit/4faecd0c25b3c9abc0db653ee11367f0b5419711))
+
+# [1.1039.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1038.2...v1.1039.0) (2026-04-13)
+
+
+### Bug Fixes
+
+* props syntax ([a4836d5](https://github.com/oaknational/Oak-Web-Application/commit/a4836d5ee803b541f7375d86f2d0d051a0a66ad4))
+
+
+### Features
+
+* add BrowseNavItem component ([e6d6bbe](https://github.com/oaknational/Oak-Web-Application/commit/e6d6bbeba0f62c8ae022419a2077a85c40f420ec))
+* add cards to unit view ([48e5e1a](https://github.com/oaknational/Oak-Web-Application/commit/48e5e1a745b7d272f1a78105d465101d7c63ee05))
+* add focus styles ([7f5b0da](https://github.com/oaknational/Oak-Web-Application/commit/7f5b0da67095c14ef20fe42d87a64ab3c3ad21bb))
+* add hover styles ([7e53fdc](https://github.com/oaknational/Oak-Web-Application/commit/7e53fdc7f2231f5d45c751ea95ab286c44884485))
+* add styling for disabled state ([8ada256](https://github.com/oaknational/Oak-Web-Application/commit/8ada25683331471935eb854046da4fc255b421d3))
+* make the previous next items a clickable card ([3f36933](https://github.com/oaknational/Oak-Web-Application/commit/3f3693393ac965e5fd03f1b1913d50b52fda1025))
+* revert adding disabled state ([4013cf2](https://github.com/oaknational/Oak-Web-Application/commit/4013cf294af1ee1e733c7bb851123b8cc6dd1496))
+
+## [1.1038.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1038.1...v1.1038.2) (2026-04-09)
+
+
+### Bug Fixes
+
+* assets ([be2dda0](https://github.com/oaknational/Oak-Web-Application/commit/be2dda090f3e45b3184d833edf56a6854c372ff4))
+* assets ([2e70c17](https://github.com/oaknational/Oak-Web-Application/commit/2e70c1734b0b828962ecd817599bd41e7da9cb09))
+* remove gap in who we are timeline ([83c8ff4](https://github.com/oaknational/Oak-Web-Application/commit/83c8ff4899862b797f7e7356b440aabf00ad7700))
+* remove to do comment ([dd4cce6](https://github.com/oaknational/Oak-Web-Application/commit/dd4cce6047f7afa4d7ae4716789d9d4bfa8f6eff))
+* sdk ([dc52278](https://github.com/oaknational/Oak-Web-Application/commit/dc52278d42534e2b81a8638a3fe670b642a960c9))
+* snaps ([0453c8c](https://github.com/oaknational/Oak-Web-Application/commit/0453c8ca28d137341cb8d92fd4ae121627415d05))
+* snaps ([e1806bb](https://github.com/oaknational/Oak-Web-Application/commit/e1806bb9a7f1658d5856a5b2c9f6f0413fd7e9e7))
+
+## [1.1038.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1038.0...v1.1038.1) (2026-04-09)
+
+
+### Bug Fixes
+
+* **LESQ-1896:** handle next+prev across swimming lessons ([de84a06](https://github.com/oaknational/Oak-Web-Application/commit/de84a06954a65dee1b69930185f548b8a1e82fc3))
+
+# [1.1038.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1037.1...v1.1038.0) (2026-04-09)
+
+
+### Bug Fixes
+
+* image aspect ratio ([16d23d6](https://github.com/oaknational/Oak-Web-Application/commit/16d23d68f8409d6bf77d668d4601ccce84eebecd))
+
+
+### Features
+
+* add card component to unit view ([893d85d](https://github.com/oaknational/Oak-Web-Application/commit/893d85d1b650f8b2def97dbd7951034f75e864aa))
+
+## [1.1037.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1037.0...v1.1037.1) (2026-04-09)
+
+
+### Bug Fixes
+
+* add sanity protocol back in ([f231b36](https://github.com/oaknational/Oak-Web-Application/commit/f231b367384879ac1c341a60bd453fadbf2c3357))
+* add temporary sanity whitelist while using different dataset ([2f2de62](https://github.com/oaknational/Oak-Web-Application/commit/2f2de62928fa57a37c6348b81da4d05e51b283b7))
+* additional get involved schema updates ([654bee0](https://github.com/oaknational/Oak-Web-Application/commit/654bee0b3ba4699acb97804715f94235c8a1a4bf))
+* assets configs ([1d992ca](https://github.com/oaknational/Oak-Web-Application/commit/1d992cac5f7b503ac57d98088d8cbe7f30c90df2))
+* component tests ([85bce0c](https://github.com/oaknational/Oak-Web-Application/commit/85bce0c40ad0391f749cf014daf69095dac10d2b))
+* get-involved page ([a6a627e](https://github.com/oaknational/Oak-Web-Application/commit/a6a627eee4abe1e4f0b7ca688f2515431a72bbcc))
+* guiding priciples text ([d61ac84](https://github.com/oaknational/Oak-Web-Application/commit/d61ac842995b12af1847b7ec9e4ee7516c9f04bd))
+* guiding principles snap ([c905bdd](https://github.com/oaknational/Oak-Web-Application/commit/c905bdd74abbe67d68e268db9ffc5d3578eb3504))
+* guiding principles text on teachers/curric ([3c7e6da](https://github.com/oaknational/Oak-Web-Application/commit/3c7e6dacbb20d8aa3232eec658b8823db1a75c7a))
+* guiding principles text size ([c87b138](https://github.com/oaknational/Oak-Web-Application/commit/c87b13866f9a0725d2e44fc953d0741a690e8fa3))
+* image generation ([f4c101f](https://github.com/oaknational/Oak-Web-Application/commit/f4c101f4f5ac8b7dfa6a0e61d214d505d873784c))
+* incorrect who we are on get involved ([8e11015](https://github.com/oaknational/Oak-Web-Application/commit/8e1101580be5cbe3c874a8b8a36bc4d0c877ddce))
+* lint ([a6110cb](https://github.com/oaknational/Oak-Web-Application/commit/a6110cbbf3506649cfa83fb2f79d6619ac3a4347))
+* meet the team docs ([c63151f](https://github.com/oaknational/Oak-Web-Application/commit/c63151fda4a2097b4c473bcbbcab30ea9fdd9b25))
+* meet the team page ([877db92](https://github.com/oaknational/Oak-Web-Application/commit/877db92d937d20c5b1c89ac9a25c88a463895d33))
+* meet the team page adjustments ([ba0dd56](https://github.com/oaknational/Oak-Web-Application/commit/ba0dd568c4e88ce0fdfcdf4936656785755acdf2))
+* meet the team slug tests ([ce6f976](https://github.com/oaknational/Oak-Web-Application/commit/ce6f976ffc46bae7a5dbb5347f20d233947993df))
+* oak's curricula page ([8461fee](https://github.com/oaknational/Oak-Web-Application/commit/8461fee2cbfba7e2d66e13ab976e1b6069efa20c))
+* proxy sanity url for work with us so cdn is not needed ([c231128](https://github.com/oaknational/Oak-Web-Application/commit/c231128d71e6a2f92f0bc19cfca72f6783591c24))
+* remove alias ([ee64567](https://github.com/oaknational/Oak-Web-Application/commit/ee64567bdc4ec1e3d50c8bebcc88281f5a1e0ec4))
+* remove redundant aliases ([9359d06](https://github.com/oaknational/Oak-Web-Application/commit/9359d0691d321aa7d5bae092741f8186fd729657))
+* remove redundant renaming ([8768fe5](https://github.com/oaknational/Oak-Web-Application/commit/8768fe5751d9c27b92cad6ae1f425a56dc22b132))
+* remove sanity cdn block ([33ee4b4](https://github.com/oaknational/Oak-Web-Application/commit/33ee4b4f22e30b637b45aace6a5d757427f257d5))
+* rerun codegen ([4b834ff](https://github.com/oaknational/Oak-Web-Application/commit/4b834ffd7d630e8f2edbda25a3c09ecfdf67a8c6))
+* sdk ([e8b164e](https://github.com/oaknational/Oak-Web-Application/commit/e8b164e121a872165db1815c8b303bade376f2d6))
+* small graphql updates ([d244bac](https://github.com/oaknational/Oak-Web-Application/commit/d244bac686f4c95defd0acb92d2b3bfa25737380))
+* snaps ([1469f18](https://github.com/oaknational/Oak-Web-Application/commit/1469f18cff614b86004a3bf698a18f8ebcf85b82))
+* snaps ([a1981dc](https://github.com/oaknational/Oak-Web-Application/commit/a1981dc0f01df096897bdb9ef739045c52ba3352))
+* snaps ([49944e3](https://github.com/oaknational/Oak-Web-Application/commit/49944e3eef092b8de7d8c5ba79eab69b2e626689))
+* snaps ([95215fa](https://github.com/oaknational/Oak-Web-Application/commit/95215fab1f36ff353a3f0e3a117156f300d67128))
+* snaps ([92df4bf](https://github.com/oaknational/Oak-Web-Application/commit/92df4bf4cb71c95050c6823fa6a8fc8f766c0227))
+* snaps ([10b5df0](https://github.com/oaknational/Oak-Web-Application/commit/10b5df090a3811ab99e1da0038d89623184383f5))
+* stories ([c2914d9](https://github.com/oaknational/Oak-Web-Application/commit/c2914d9dfe56e3015979caa60053383fff32dc22))
+* tests and snaps ([c1846c8](https://github.com/oaknational/Oak-Web-Application/commit/c1846c815f6a887334ede29b95dffdf7658febb4))
+* update page tests ([8519b5f](https://github.com/oaknational/Oak-Web-Application/commit/8519b5fb20d49cc1faac4c54d566b7aff78d8bf6))
+* use text instead of children in curricquote ([2d7f171](https://github.com/oaknational/Oak-Web-Application/commit/2d7f171faee2f96fe8e16520574783a75c46a815))
+* who we are component tests ([d843519](https://github.com/oaknational/Oak-Web-Application/commit/d84351950442195602685d62f9f66c9d81657dc9))
+* who we are page ([71ac39c](https://github.com/oaknational/Oak-Web-Application/commit/71ac39c3eeefc9a0c458d3ef81650689d94c4500))
+
+# [1.1037.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1036.0...v1.1037.0) (2026-04-09)
+
+
+### Bug Fixes
+
+* only show threads header when there are threads ([d887a39](https://github.com/oaknational/Oak-Web-Application/commit/d887a399ad008c710b09faf41c1c9bacc0d6c343))
+* threads response data structure ([d234699](https://github.com/oaknational/Oak-Web-Application/commit/d234699849bbe6d7eb18c47351e2a2cee5b9a54a))
+
+
+### Features
+
+* add unit details to query and pass to page ([1b9e2ad](https://github.com/oaknational/Oak-Web-Application/commit/1b9e2ad783a1b5b214f567cfa9c69f836525a405))
+* get threads from unit overview query ([3cc93de](https://github.com/oaknational/Oak-Web-Application/commit/3cc93defee6b4156dc51555171241e496ba06209))
+* merge in main ([4de6820](https://github.com/oaknational/Oak-Web-Application/commit/4de6820c433c803afb7e7b9b53976769a57de39f))
+* render threads on unit overview ([108cae2](https://github.com/oaknational/Oak-Web-Application/commit/108cae29260c780cc3712bc7fd044c4eef5ab48b))
+* style unit info section ([46a844c](https://github.com/oaknational/Oak-Web-Application/commit/46a844c1f49ceed155190ce4dfe1482b12e26d7b))
+
+# [1.1036.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1035.0...v1.1036.0) (2026-04-09)
+
+
+### Bug Fixes
+
+* download button causing page height to increase ([800472e](https://github.com/oaknational/Oak-Web-Application/commit/800472e97b3410210dc53f6cb955383842be4a84))
+* **LESQ-1858:** sort programme toggles for consistency with programme page ([0adf6de](https://github.com/oaknational/Oak-Web-Application/commit/0adf6deb4933d1f04161100321a79d50d4728627))
+
+
+### Features
+
+* **LESQ-1858:** add a component to navigate between tiers ([5072d63](https://github.com/oaknational/Oak-Web-Application/commit/5072d63356a20e135de7a89c395af3b20a4cdc94))
+* **LESQ-1858:** add subject icons to subject programme toggles ([ca4b148](https://github.com/oaknational/Oak-Web-Application/commit/ca4b1482ffdadbfc553a2e2059975d76d370cc68))
+* **LESQ-1858:** add subject option toggles ([8e7e395](https://github.com/oaknational/Oak-Web-Application/commit/8e7e39581a3951082fc150c4ba7793cd92071003))
+* **LESQ-1858:** wire up the tier toggle UI ([883f04d](https://github.com/oaknational/Oak-Web-Application/commit/883f04d71ac1759239ba2505b1a4ab3cf8731828))
+
+# [1.1035.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1034.0...v1.1035.0) (2026-04-08)
+
+
+### Bug Fixes
+
+* icon width for compact layout ([920a2f9](https://github.com/oaknational/Oak-Web-Application/commit/920a2f964af5a385f0e20ea1bdb25dfed46d9ca0))
+* **LESQ-1857:** correct spacing for desktop ([d5f5b66](https://github.com/oaknational/Oak-Web-Application/commit/d5f5b66ee8124a3b8366b4385b4c5575bd973f02))
+* **LESQ-1857:** drop copyright tag onto new row on tablet ([982d267](https://github.com/oaknational/Oak-Web-Application/commit/982d267307e1524f12288759ddfd20d2744ff2ca))
+* **LESQ-1857:** handle swimming units for counting ([82f8843](https://github.com/oaknational/Oak-Web-Application/commit/82f88438c5b8458cc2027be614e2b408654b95ec))
+* **LESQ-1873:** hamburger menu button has no accessible name ([f1e9c8b](https://github.com/oaknational/Oak-Web-Application/commit/f1e9c8b234d269fce0c5e39357e8a16a2742dab2))
+* merge conflict mishap ([d754a2c](https://github.com/oaknational/Oak-Web-Application/commit/d754a2c7349315f9e09e35b3f867cc8853d75825))
+* remove casting for iconColor by narrowing allowed type ([bc7da2b](https://github.com/oaknational/Oak-Web-Application/commit/bc7da2bf14f70f144e871912aa1089d15f4c3116))
+* remove unneccesary as cast ([c5e2bf9](https://github.com/oaknational/Oak-Web-Application/commit/c5e2bf9ed234d8a938b7ebcd8d9c7c9f82f3714e))
+* row gap for compact layout ([a8daec8](https://github.com/oaknational/Oak-Web-Application/commit/a8daec83f1d7b309df36dff0c2d8e5359b9c3282))
+
+
+### Features
+
+* add breadcrumbs ([66828e7](https://github.com/oaknational/Oak-Web-Application/commit/66828e7a76e2430d44de1c2c630efda7969bb06a))
+* add breadcrumbs on unit overview page ([150d284](https://github.com/oaknational/Oak-Web-Application/commit/150d28452d8436af3fb64219cac719b8e4810660))
+* add footer section for unit header ([9fa9c9a](https://github.com/oaknational/Oak-Web-Application/commit/9fa9c9aa0ab3cbfeb195f9a4393dab942af07af9))
+* add link to programme page ([dbb6b05](https://github.com/oaknational/Oak-Web-Application/commit/dbb6b056d77558eab01a95f0f0fdaad0bb2bc062))
+* add links for prev and next unit ([1904b7d](https://github.com/oaknational/Oak-Web-Application/commit/1904b7dd4545e301b480f3131faba900d8ef8816))
+* add subject icon to compact header ([68a4085](https://github.com/oaknational/Oak-Web-Application/commit/68a40857d98a495739ded5e267ea7a36be879696))
+* add tags to header ([263e625](https://github.com/oaknational/Oak-Web-Application/commit/263e62593b115a9a00d46c14810d07317065a2b4))
+* add unit count to breadcrumbs ([51ca75a](https://github.com/oaknational/Oak-Web-Application/commit/51ca75ade586d09cbb5ea8b05f586755ce138c18))
+* add unit download functionality to unitheader ([6fdb4a7](https://github.com/oaknational/Oak-Web-Application/commit/6fdb4a7f76732fd00776c280d171c96e37ad4a8e))
+* add unit header component and update header props for variants ([24a723c](https://github.com/oaknational/Oak-Web-Application/commit/24a723c4617a318e69d9a82a470c76f6710b9bc9))
+* add UnitHeader to unit overview page ([a0ec982](https://github.com/oaknational/Oak-Web-Application/commit/a0ec98246c52464fbe2005f2622bbd10d33f5312))
+* include pathway in subject phase slug ([5b89ce1](https://github.com/oaknational/Oak-Web-Application/commit/5b89ce1065a5faf940604ce422fc660305101c71))
+* **LESQ-1857:** add copyright tag to restricted lessons ([6befdbc](https://github.com/oaknational/Oak-Web-Application/commit/6befdbc093461571200d0315300df07a5be58e0f))
+* **LESQ-1857:** add lesson list to unit page ([3ac5f03](https://github.com/oaknational/Oak-Web-Application/commit/3ac5f03e38d0a749c8bfe0006ba15489959876ea))
+* **LESQ-1857:** add LessonList component ([80d9094](https://github.com/oaknational/Oak-Web-Application/commit/80d9094921d2117a9b530998f1c94c2905b36e50))
+* **LESQ-1857:** add skip to lessons ([b7ce121](https://github.com/oaknational/Oak-Web-Application/commit/b7ce121ee551bcf29543f3ee8e76ef4f07ddd5f2))
+* **LESQ-1857:** add unit description to `teachersUnitOverview` query ([069908b](https://github.com/oaknational/Oak-Web-Application/commit/069908b44a7eac5226008747f1bf6bc55b672c2a))
+* **LESQ-1857:** align heading levels ([bd239b7](https://github.com/oaknational/Oak-Web-Application/commit/bd239b7b484e8d7f6ab7de5f0343d5656521df6a))
+* **LESQ-1857:** dedupe optionality units to align unit counts ([683cfd8](https://github.com/oaknational/Oak-Web-Application/commit/683cfd8b2f8eb6e00a6a4c31c6378274fd5612ba))
+* **LESQ-1857:** display unit description ([c61726b](https://github.com/oaknational/Oak-Web-Application/commit/c61726b5b83df0c358fb6bcb811be8bdbbd7257e))
+* **LESQ-1857:** display unit order and count ([8267a7f](https://github.com/oaknational/Oak-Web-Application/commit/8267a7f0f111661b20818934e76056235853ee0f))
+* **LESQ-1857:** exclude units with no published lessons from programme page ([b4fd303](https://github.com/oaknational/Oak-Web-Application/commit/b4fd303180acb48904813f4fbf7aab7262dcf8b5))
+* **LESQ-1857:** include unit order and count in the query result ([a88f73a](https://github.com/oaknational/Oak-Web-Application/commit/a88f73aa1ab9e6a6c3f395c875cbd5195f0fbe07))
+* **LESQ-1857:** make listing fill the viewport on mobile ([f316165](https://github.com/oaknational/Oak-Web-Application/commit/f316165065c81bd4160a8ba60c5cc07beb409ab1))
+* **LESQ-1857:** make unit number stack in card listing when vertical+mobile ([fc2dd87](https://github.com/oaknational/Oak-Web-Application/commit/fc2dd87630d53cb7f4f50ae397b74d9509390cda))
+* **LESQ-1857:** respect signed-in state when deciding to display copyright tag ([5740732](https://github.com/oaknational/Oak-Web-Application/commit/5740732c415df89094fe1cb93f01f93584436663))
+* **LESQ-1857:** restructure headings ([ac62dfa](https://github.com/oaknational/Oak-Web-Application/commit/ac62dfa8afa0d9868bb20c5c874d22b15efad996))
+* **LESQ-1857:** show coming soon for unpublished lessons ([528d77a](https://github.com/oaknational/Oak-Web-Application/commit/528d77af5207e197f1957dfc6de389c9bb45a924))
+* pull in lesson listing ([910186c](https://github.com/oaknational/Oak-Web-Application/commit/910186c960c86b64d8ede6ff733f20365f6ef592))
+* render neighbour unit buttons conditionally ([5cc1369](https://github.com/oaknational/Oak-Web-Application/commit/5cc1369013aa7c2c9f4be5bf6eead865319d561c))
+* update icon to list ([04dc9fc](https://github.com/oaknational/Oak-Web-Application/commit/04dc9fc647346df489ccc840e3443448b9d15381))
+* update neighbour unit type ([95e2697](https://github.com/oaknational/Oak-Web-Application/commit/95e26974b74c0e711d028848e292f1f1bff41592))
+* update Unit download button text ([64b944b](https://github.com/oaknational/Oak-Web-Application/commit/64b944ba4124a2310f2d422c1da8d73a463a2ae4))
+
+# [1.1034.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1033.0...v1.1034.0) (2026-04-02)
+
+
+### Bug Fixes
+
+* **LESQ-1857:** correct spacing for desktop ([96591f1](https://github.com/oaknational/Oak-Web-Application/commit/96591f12305369a168c04ec7ef5bb6702e39a1b7))
+* **LESQ-1857:** drop copyright tag onto new row on tablet ([d8bf813](https://github.com/oaknational/Oak-Web-Application/commit/d8bf813af3c3a1c9bba942f1f196bb2abef7fb5c))
+* **LESQ-1857:** handle swimming units for counting ([d149899](https://github.com/oaknational/Oak-Web-Application/commit/d1498991cbba908019f6c2ff4754e75048f9c11e))
+* **LESQ-1857:** subjectcategory filtering breaking optionality unit rendering ([095d6a6](https://github.com/oaknational/Oak-Web-Application/commit/095d6a64c2620fa6fa2c08442e488e7f540069bb))
+* merge main ([74e3ca4](https://github.com/oaknational/Oak-Web-Application/commit/74e3ca4717006156fa1cd0e0f50f3a51929919e3))
+* refactor context fetch ([35d0bea](https://github.com/oaknational/Oak-Web-Application/commit/35d0bea6f072a30694770bc52d06b55b9d4ca770))
+* remove weird indexing bug ([aaea4e2](https://github.com/oaknational/Oak-Web-Application/commit/aaea4e270b41ceb3edca59102e5627e58336d68c))
+* remove weird indexing bug ([6d5b822](https://github.com/oaknational/Oak-Web-Application/commit/6d5b822e1a11c7e662894ee9671a42f5b8f83302))
+* test coverage ([8e80b50](https://github.com/oaknational/Oak-Web-Application/commit/8e80b507de17b2360e45a2bbbaa2c7a57316b897))
+* test coverage ([d207fe8](https://github.com/oaknational/Oak-Web-Application/commit/d207fe8daa039a44d4fda448802f0f31bdb11200))
+* test coverage ([8db0ac2](https://github.com/oaknational/Oak-Web-Application/commit/8db0ac2fcff319417e479f879d18724e27aec494))
+* test coverage ([ac5b72f](https://github.com/oaknational/Oak-Web-Application/commit/ac5b72f173852a28d7985285e2270d2f593c99e0))
+
+
+### Features
+
+* add enum ([e19696d](https://github.com/oaknational/Oak-Web-Application/commit/e19696dc50a86553b49e1cd784fbc161fd54755b))
+* add readonly state ([918e5f0](https://github.com/oaknational/Oak-Web-Application/commit/918e5f0bfb68ca5e407877294b20de5b4a201536))
+* **LESQ-1857:** add copyright tag to restricted lessons ([1a4b151](https://github.com/oaknational/Oak-Web-Application/commit/1a4b1510eb2ee66c80daa442c63e3aa491254495))
+* **LESQ-1857:** add lesson list to unit page ([10f0041](https://github.com/oaknational/Oak-Web-Application/commit/10f004127e1b3ce378a1bf554232156d47fabdc6))
+* **LESQ-1857:** add LessonList component ([70dbec8](https://github.com/oaknational/Oak-Web-Application/commit/70dbec8345c764dd205368d4760f1a4e5dc28cad))
+* **LESQ-1857:** add skip to lessons ([0050a4b](https://github.com/oaknational/Oak-Web-Application/commit/0050a4b7a394c79fabe90a25574980127ebd9afd))
+* **LESQ-1857:** add unit description to `teachersUnitOverview` query ([abd4175](https://github.com/oaknational/Oak-Web-Application/commit/abd4175d6ab86dca3a937706b9792d7dd5f96758))
+* **LESQ-1857:** align heading levels ([9b86d4d](https://github.com/oaknational/Oak-Web-Application/commit/9b86d4d619f8dd66583ebfa773e1c594ac38ff7f))
+* **LESQ-1857:** dedupe optionality units to align unit counts ([8132fab](https://github.com/oaknational/Oak-Web-Application/commit/8132fab22f0069b6c2fa33a6e809becb8aef6048))
+* **LESQ-1857:** display unit description ([4a6b0c1](https://github.com/oaknational/Oak-Web-Application/commit/4a6b0c1273760afa412a6018b16b21e590312593))
+* **LESQ-1857:** display unit order and count ([b118e64](https://github.com/oaknational/Oak-Web-Application/commit/b118e64d95b5e5134c69e4999656552b1f356a97))
+* **LESQ-1857:** exclude units with no published lessons from programme page ([449aba4](https://github.com/oaknational/Oak-Web-Application/commit/449aba45d453720a46a94ac671ee9dc6ae1c2573))
+* **LESQ-1857:** filter unit counts by subject category when present ([94e1bce](https://github.com/oaknational/Oak-Web-Application/commit/94e1bceb9de0cc113d786bbb074e6b4ca18fe15c))
+* **LESQ-1857:** forward subject category to the unit page ([a8880b8](https://github.com/oaknational/Oak-Web-Application/commit/a8880b8cf0faac32b81cf420ea0e2b1cd2e2c405))
+* **LESQ-1857:** include unit order and count in the query result ([bcc9d97](https://github.com/oaknational/Oak-Web-Application/commit/bcc9d97281e95be430458d2406f903a41236a5b4))
+* **LESQ-1857:** make listing fill the viewport on mobile ([a2cb499](https://github.com/oaknational/Oak-Web-Application/commit/a2cb4992255db2d2778f1f20b3be85f9cf163d63))
+* **LESQ-1857:** make unit number stack in card listing when vertical+mobile ([14628a0](https://github.com/oaknational/Oak-Web-Application/commit/14628a014e46cf6c715039bc1a867abd128c4b6e))
+* **LESQ-1857:** respect signed-in state when deciding to display copyright tag ([145c03e](https://github.com/oaknational/Oak-Web-Application/commit/145c03e870f047a35be321a95607db9abfd59b15))
+* **LESQ-1857:** restructure headings ([abe9e25](https://github.com/oaknational/Oak-Web-Application/commit/abe9e257abed101bc0832e335cc4b44bbcc1a4fe))
+* **LESQ-1857:** show coming soon for unpublished lessons ([03aabcf](https://github.com/oaknational/Oak-Web-Application/commit/03aabcfca5262358d859b2791b1466c483cc655e))
+* merge main ([b5a8251](https://github.com/oaknational/Oak-Web-Application/commit/b5a8251fad6c8c2a8ae09ff64e5ac2e1edd10bae))
+* new submission types ([c3e9640](https://github.com/oaknational/Oak-Web-Application/commit/c3e964053be6cd69af3796ed1faf5e03ca20c9c5))
+* new submission types ([c77edec](https://github.com/oaknational/Oak-Web-Application/commit/c77edecdb264e873aa59a4d2f01a04bd113707b8))
+* pull ([78e6f8c](https://github.com/oaknational/Oak-Web-Application/commit/78e6f8c56ecef6f1f776a46eb5ddda067bbcb559))
+
+# [1.1033.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1032.0...v1.1033.0) (2026-04-01)
+
+
+### Features
+
+* switch to avo main branch ([26ad398](https://github.com/oaknational/Oak-Web-Application/commit/26ad398bc21e5d6fa96ecd00c8f0d30c4c16e13a))
+* trigger ci:cd ([01c6338](https://github.com/oaknational/Oak-Web-Application/commit/01c6338ea75ad075e603ef71e22af7f19a9477c9))
+
+# [1.1032.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1031.1...v1.1032.0) (2026-04-01)
+
+
+### Bug Fixes
+
+* add hooks to to stop console.error being triggered ([f74df88](https://github.com/oaknational/Oak-Web-Application/commit/f74df883652a78a433b217683ec065ac36c577ac))
+* hardened test files ([4500407](https://github.com/oaknational/Oak-Web-Application/commit/4500407dec61ce2cfc456c3445887ecb96b4f89d))
+* memory leak ([61ad83b](https://github.com/oaknational/Oak-Web-Application/commit/61ad83b47e114846d8d7069d3978118226cb6df7))
+* merge conflicts and refactor test ([9032fa5](https://github.com/oaknational/Oak-Web-Application/commit/9032fa5cfbae3b8b0c8a3e25bead29200bb8b918))
+* remove unused type ([fff66ab](https://github.com/oaknational/Oak-Web-Application/commit/fff66ab82f9eb8203eca3d227ab7c8b73131a339))
+
+
+### Features
+
+* add tests files ([d73f6f8](https://github.com/oaknational/Oak-Web-Application/commit/d73f6f8854a53ad8dfeda0f3688024e38809a518))
+* implement pupil analytics ([945c020](https://github.com/oaknational/Oak-Web-Application/commit/945c0201004565be171fff5e0c43881db13f35a9))
+* trigger ci:cd ([d4ca33f](https://github.com/oaknational/Oak-Web-Application/commit/d4ca33fe30f365a1c81613128680b3b037ee1998))
+
+## [1.1031.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1031.0...v1.1031.1) (2026-04-01)
+
+
+### Bug Fixes
+
+* act warnings and commented out test for onboarding ([22c17e3](https://github.com/oaknational/Oak-Web-Application/commit/22c17e30cc9e1b79284d2a74d270d07f92f7c089))
+* added back eslint disable line that was causing eslint error ([616c2d4](https://github.com/oaknational/Oak-Web-Application/commit/616c2d48f28f8c2c31438a5408304bef9b3c567e))
+* check if vals undefined not null ([3b8609e](https://github.com/oaknational/Oak-Web-Application/commit/3b8609ebc12ca49d8082ba3aaf37718dba2e9446))
+* combine email()/min() in intersection schema so min() runs first ([1672b01](https://github.com/oaknational/Oak-Web-Application/commit/1672b0102ae8220f5cfb3589c3480ab5a443ed15))
+* convert actions keys with ConvertKeysToCamelCase<...> (thanks [@charsville](https://github.com/charsville)) ([49d79cc](https://github.com/oaknational/Oak-Web-Application/commit/49d79cc5f3f3aad2e7c5caf689c9be7cc5895934))
+* copyright_content type fixes, includes update to @oaknational/oak-curriculum-schema to fix type ([db05477](https://github.com/oaknational/Oak-Web-Application/commit/db05477afbaa30f298031be4c59f3cf0a6c2ccd5))
+* esm issue with package imports ([367a633](https://github.com/oaknational/Oak-Web-Application/commit/367a6334d8bd9e526447c85f5c6f749df8d2f764))
+* fix eslint formatting errors ([22a099a](https://github.com/oaknational/Oak-Web-Application/commit/22a099a192c06e9d8350c384b748793cae15754b))
+* fix type error in test ([3d81857](https://github.com/oaknational/Oak-Web-Application/commit/3d81857f872bf5ea02bac9d1c4897ef5ffa92600))
+* fixed issues with failing tests after zod 4 updates ([2746db6](https://github.com/oaknational/Oak-Web-Application/commit/2746db6ec3dd94e68774d7ccb1561577a8d0f4e4))
+* fixed sonarcloud issues ([ff46955](https://github.com/oaknational/Oak-Web-Application/commit/ff46955d5560c23614f906c1b64962da128c2859))
+* fixed tsc errors after running codemod and package updates ([cea968b](https://github.com/oaknational/Oak-Web-Application/commit/cea968b6caa01fc58b1b38dfb67db86db3345a5b))
+* ignore ts error on zod-to-camel-case import ([050c968](https://github.com/oaknational/Oak-Web-Application/commit/050c968287483a952f17644e8672e3e23756f71b))
+* made fixes to support v2 of curric schema ([aba5367](https://github.com/oaknational/Oak-Web-Application/commit/aba5367a550dcdf3a041ffebd2f590006823c1fe))
+* mismatch between schema and types in pupil results ([d6fc2a5](https://github.com/oaknational/Oak-Web-Application/commit/d6fc2a5b3d2250a9e67583da59d1aaa94803bc65))
+* re-add removed eslint disable line ([31a0824](https://github.com/oaknational/Oak-Web-Application/commit/31a0824e07fad1a88b8065e77c5301891cff5054))
+* reinstate underscore for state and cohort ([3326e99](https://github.com/oaknational/Oak-Web-Application/commit/3326e99ca3c1eabc3d25dd1ec7887253bcbdf461))
+* remove `actions: { displayExpiringBanner: false }` as of invalid type and not required ([3865c6f](https://github.com/oaknational/Oak-Web-Application/commit/3865c6f8f0ece52f68e59fd19b4cbfe735e8e39f))
+* remove custom zod resolver and import from zod resolver package ([56eef79](https://github.com/oaknational/Oak-Web-Application/commit/56eef79e5dce582961ea74e993e44eab1a152b58))
+* remove duplicate action types in shared schema ([32e9192](https://github.com/oaknational/Oak-Web-Application/commit/32e919235a41b6266851ee1eff2165714b24c1d1))
+* remove redundant parse ([0d289d3](https://github.com/oaknational/Oak-Web-Application/commit/0d289d37b64ccab24e08ab29391c90fe8f3ccf12))
+* remove strict object declaration from curriculum sequence schema ([9b741ae](https://github.com/oaknational/Oak-Web-Application/commit/9b741ae73959ad932939b04552f51f13084b0b55))
+* remove use/remove-local-oak-consent-client incorrectly added in base PR ([ea1d381](https://github.com/oaknational/Oak-Web-Application/commit/ea1d3810a3f74d0ba0d6fce9f480a396cc4c4e32))
+* removed old tests for copyright_content no longer required on fields is copyright_info ([da09715](https://github.com/oaknational/Oak-Web-Application/commit/da0971585479820bac056275e42193e875670ed1))
+* replace createTestUnit(...) with createUnit(...) ([3bab422](https://github.com/oaknational/Oak-Web-Application/commit/3bab422179afd41aa0a6debb390cdcb9c819f6b8))
+* revert camel caseification of quizzes (kebab case they will remain) ([02779d2](https://github.com/oaknational/Oak-Web-Application/commit/02779d2173aa251c9eb2578d6a994290475c82f6))
+* simplified quiz attribution function ([1fd2576](https://github.com/oaknational/Oak-Web-Application/commit/1fd2576f89d2d79fe24d3ab850cb597b51dcafdf))
+* switch back `emailRequiredSchema` to `z.email()` type ([20dcc46](https://github.com/oaknational/Oak-Web-Application/commit/20dcc4692fcb90d54381beadb0e9f6a734ac2d8e))
+* update changes from main ([0830890](https://github.com/oaknational/Oak-Web-Application/commit/083089018d8728b5be480fe918928e437990a02b))
+* update deprecated fixture ([448b450](https://github.com/oaknational/Oak-Web-Application/commit/448b4506f38a207a09e3564d758713062abe1038))
+* update downloads form types ([7950079](https://github.com/oaknational/Oak-Web-Application/commit/7950079a67801c1d32a27aaf4dc4014a55ecc993))
+* update isExamboardSlug to parse schema value ([ce5d777](https://github.com/oaknational/Oak-Web-Application/commit/ce5d77731f1ac549df8c263a03b6221345c83d48))
+* update types in tests and stories ([7a87e37](https://github.com/oaknational/Oak-Web-Application/commit/7a87e373f7c6090b9bd397152938f3065b55e016))
+* update useForms to v5 of hook form ([964e01d](https://github.com/oaknational/Oak-Web-Application/commit/964e01d8b826962cd821c1da2ea6404e424793aa))
+* updated consent client package version to use 2.4.0 with zod 4 ([17abe36](https://github.com/oaknational/Oak-Web-Application/commit/17abe36dc6f00f135474efab658669b2be5cbc9c))
+* updated zod-to-camel-case and matched OWA convert keys functions behaviour ([a90415b](https://github.com/oaknational/Oak-Web-Application/commit/a90415b3199f88fc5c0d43df4b5ebd438fe51a8a))
+* use actionSchemaCamel to get correct action type in takedown banner ([c07e3b5](https://github.com/oaknational/Oak-Web-Application/commit/c07e3b5ce4e20d55cb9d19906c4bc8dd47bc9673))
+* use bidirectional flag for actions camel schema ([7eee02a](https://github.com/oaknational/Oak-Web-Application/commit/7eee02a5a69223778950047fe4e28fa3d96add6d))
+* use camel actions in specialist schema and remove casts to Actions ([40f7e6e](https://github.com/oaknational/Oak-Web-Application/commit/40f7e6eb949a92da2f635a10c69a20a13683e959))
+* use ZodError instead of regexp matching ([685c257](https://github.com/oaknational/Oak-Web-Application/commit/685c257caafde4b3074aa704670eea9ac7d3d925))
+
+# [1.1031.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1030.0...v1.1031.0) (2026-03-31)
+
+
+### Bug Fixes
+
+* comment out unused vars ([02b8436](https://github.com/oaknational/Oak-Web-Application/commit/02b84364423d44756b4e0eae30cc326c3097fbf5))
+* only retry when count > 0 ([d116515](https://github.com/oaknational/Oak-Web-Application/commit/d1165156368027c355cdcfa81a1fd7b6eda7f01e))
+* revert count comparison change ([bcb12eb](https://github.com/oaknational/Oak-Web-Application/commit/bcb12eb7f34d697ab3dbd8865e08e06e464d312e))
+
+
+### Features
+
+* add cache directive to topnav query ([89a6d39](https://github.com/oaknational/Oak-Web-Application/commit/89a6d39d232f0a3da7b82a20ea7cc13f5f872ba5))
+* add logger ([97d911d](https://github.com/oaknational/Oak-Web-Application/commit/97d911deb864434b0ca2f87742faf90943e13354))
+* get query name from fn args for logging ([c010384](https://github.com/oaknational/Oak-Web-Application/commit/c010384aa4bbb300ab1edcbe83ccc41cbda0c315))
+* remove handler and just log errors ([58810bd](https://github.com/oaknational/Oak-Web-Application/commit/58810bdde87d0345934cd87178a077d2fb25da19))
+* try handling all errors and log in handle ([8e5e89f](https://github.com/oaknational/Oak-Web-Application/commit/8e5e89f141ea35ae24138465081f97a09744b017))
+* try removing with retries method ([a28731a](https://github.com/oaknational/Oak-Web-Application/commit/a28731a463b734c61836f297fd4ee49818eef2c0))
+* update retry method to try and get more info logged out ([becb5f6](https://github.com/oaknational/Oak-Web-Application/commit/becb5f6c1bed4650a6776e91197124480277a2ad))
+
+# [1.1030.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1029.0...v1.1030.0) (2026-03-31)
+
+
+### Features
+
+* add fn to get tier option toggles ([7437e9e](https://github.com/oaknational/Oak-Web-Application/commit/7437e9e3c08e78bd9f523fe1de802a3e1dc9024f))
+* add isSelected prop to toggles ([91a0b77](https://github.com/oaknational/Oak-Web-Application/commit/91a0b772e677864b82eddf0ade7d54e2166f5d16))
+* get programme options in query ([126e7d1](https://github.com/oaknational/Oak-Web-Application/commit/126e7d1bb4af4a155c0725af0d48f05ecab8f2a6))
+* return subject option toggles ([fe54961](https://github.com/oaknational/Oak-Web-Application/commit/fe549614f002173e085010a7d7aa65016901cc30))
+
+# [1.1029.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1028.0...v1.1029.0) (2026-03-31)
+
+
+### Bug Fixes
+
+* **LESQ-1876:** only omit EYFS on subjects index ([c4cbdf0](https://github.com/oaknational/Oak-Web-Application/commit/c4cbdf075725de8d0348f41e0fdba4133a05fc45))
+
+
+### Features
+
+* **LESQ-1882:** redirect canonical EYFS lessons to the new pages ([ed70fed](https://github.com/oaknational/Oak-Web-Application/commit/ed70fede4a612a38b8cf09d2ffa0967ba3b85692))
+
+# [1.1028.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1027.1...v1.1028.0) (2026-03-30)
+
+
+### Features
+
+* **LESQ-1866:** add new unit page ([77646af](https://github.com/oaknational/Oak-Web-Application/commit/77646af0fd6c5d73da3d8564a0e745506d9f0d0c))
+* **LESQ-1866:** update unit list links to new unit page ([411a87c](https://github.com/oaknational/Oak-Web-Application/commit/411a87c3f1751f90bd966bc126e1ef36cf387b96))
+
+## [1.1027.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1027.0...v1.1027.1) (2026-03-30)
+
+
+### Bug Fixes
+
+* ensure we await cookieStore init before fetching GC context ([0faaff3](https://github.com/oaknational/Oak-Web-Application/commit/0faaff3e0aca2b4fbddf6344371cd1e51917a88d))
+
+# [1.1027.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1026.0...v1.1027.0) (2026-03-27)
+
+
+### Bug Fixes
+
+* fix broken tests ([ae5361f](https://github.com/oaknational/Oak-Web-Application/commit/ae5361ffcf6cbaffb7774f9ce90a5f3a8848f509))
+* remove typeof as safe to compare directly ([75411c4](https://github.com/oaknational/Oak-Web-Application/commit/75411c4eb76e66e9b98e94ba24d7001272ef2568))
+* sort unit sequence by year as well as unit order ([f0701af](https://github.com/oaknational/Oak-Web-Application/commit/f0701af1d499d5cbb159fc7baab8e08d8980849f))
+
+
+### Features
+
+* add mock to test file ([94507cd](https://github.com/oaknational/Oak-Web-Application/commit/94507cd2be7b250405b4976a98f03510d5173e59))
+* add prev and next unit to response data ([fae9500](https://github.com/oaknational/Oak-Web-Application/commit/fae9500a4fd9f657def29349532e46fc4d9a7815))
+* add teachers unit page query ([11efe75](https://github.com/oaknational/Oak-Web-Application/commit/11efe75020fdbddd779c24338674f243912497dc))
+* adds new properties to browse refined event and updates tests ([e3dc650](https://github.com/oaknational/Oak-Web-Application/commit/e3dc65048fd98ffa2fe82215c1f756e2181d7cba))
+* adds property to avo event, iterates classroom version, tierDescription ([f899cb8](https://github.com/oaknational/Oak-Web-Application/commit/f899cb84d8212d2c8451d56cceb4444d961d5a3f))
+* adds test for anaytics components and adds mock for page files ([c424fb3](https://github.com/oaknational/Oak-Web-Application/commit/c424fb3f9b26838d2dfd7d1448d7f59a15b3daa2))
+* fire tracking event from layout page ([cda6e6b](https://github.com/oaknational/Oak-Web-Application/commit/cda6e6b9593097c8798258d5ccf0b6f2441a453d))
+* implement avo tracking on g-classroom journey ([ff3e1e1](https://github.com/oaknational/Oak-Web-Application/commit/ff3e1e17c05b67653ac3622d693a648e6a0b508f))
+* init feature branch ([194e997](https://github.com/oaknational/Oak-Web-Application/commit/194e997d0704c72d544fc429807c5e0feb60c0db))
+* pupil classroomAddOnOpened tracking event  implementation ([c0d21d2](https://github.com/oaknational/Oak-Web-Application/commit/c0d21d2e0689839fee1fb30c6ef42179e14b0a5c))
+* readonly components and remove duplicate code ([6ecb9d5](https://github.com/oaknational/Oak-Web-Application/commit/6ecb9d5ccd5f15703f6958aede37feb7c7ba57f9))
+* trigger ci:cd ([9312f26](https://github.com/oaknational/Oak-Web-Application/commit/9312f26036afe5ed669ce99d6ea750231bc5d4a1))
+* update avo branch to point at main ([af2392c](https://github.com/oaknational/Oak-Web-Application/commit/af2392ce2a2a90859be68651c2da933a1fea9610))
+* update query with unit sequence data ([1a6ab89](https://github.com/oaknational/Oak-Web-Application/commit/1a6ab89358fb5a5a2798c54d3f4a0545f6a1f61f))
+* utilise zustard and a specific analytics hooks and context for google classroom ([35f4a08](https://github.com/oaknational/Oak-Web-Application/commit/35f4a089444b101942f456177d2a88b94b937a1e))
+
+# [1.1026.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1025.0...v1.1026.0) (2026-03-26)
+
+
+### Bug Fixes
+
+* add retry wrapper to graphql sdk ([5409fce](https://github.com/oaknational/Oak-Web-Application/commit/5409fce89c08e9ea73499a853fb3b9cd4f5e5359))
+* retry count ([05f950d](https://github.com/oaknational/Oak-Web-Application/commit/05f950db990bda9595399c42b56e9dcbaaa821e0))
+* update retry count and add more logging ([8b179ae](https://github.com/oaknational/Oak-Web-Application/commit/8b179aefd8e18bb1b37702fb6adec2dc85937025))
+
+
+### Features
+
+* add error reporting on error ([8c76d7d](https://github.com/oaknational/Oak-Web-Application/commit/8c76d7d1a01bb5305f40e2da54ef6de8131f3b40))
+* add logger to retry handler ([57438e2](https://github.com/oaknational/Oak-Web-Application/commit/57438e2e757335b3795d3e5acd42d107e5e9250e))
+* **LESQ-1843:** allow querying for non-curriculum subjects ([f80b97a](https://github.com/oaknational/Oak-Web-Application/commit/f80b97a79cadb22d611fca019a78c9f276d7c10f))
+* **LESQ-1843:** dont load curriculum overview for non-curriculum subjects ([57cb985](https://github.com/oaknational/Oak-Web-Application/commit/57cb985e511992bc989fc7659b73e9b2917f2ffa))
+* **LESQ-1843:** dont render tabs for non-curriculum subjects ([2e36c42](https://github.com/oaknational/Oak-Web-Application/commit/2e36c425a3b8a392419b5888924a4f318603b3d8))
+* **LESQ-1843:** move margin to tabs ([4823e60](https://github.com/oaknational/Oak-Web-Application/commit/4823e6028765c9b52db3401b3fa6c86f71a44976))
+* move error reporting to logger fn ([bb845a4](https://github.com/oaknational/Oak-Web-Application/commit/bb845a4962f77d6149652ef6f5c2bd8a3adc512f))
+* remove final error logging ([a9d134b](https://github.com/oaknational/Oak-Web-Application/commit/a9d134b71a6ba90c1787b9029da06c66ba90569f))
+* update logging ([8bd945a](https://github.com/oaknational/Oak-Web-Application/commit/8bd945ae425a33b153613aa4921e3f5e416527a8))
+
+# [1.1025.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1024.0...v1.1025.0) (2026-03-25)
+
+
+### Bug Fixes
+
+* add useSpan to tag to fix a11y issue ([c9045a5](https://github.com/oaknational/Oak-Web-Application/commit/c9045a5ae727ae416bdcbf5254ed2adbaad314d2))
+* keep child cards in line with content ([12b9cd3](https://github.com/oaknational/Oak-Web-Application/commit/12b9cd362d43a3cb282900a49e049fbdf58a0a4b))
+* remove border change on hover ([fb472aa](https://github.com/oaknational/Oak-Web-Application/commit/fb472aad9f58ca9d42a554f440fabc7db6b453ab))
+
+
+### Features
+
+* add child cards to horizontal card layout ([5b8bdc8](https://github.com/oaknational/Oak-Web-Application/commit/5b8bdc8510b165e348a006b2b53845192ba042b0))
+* add child cards to vertical layout ([bb0a537](https://github.com/oaknational/Oak-Web-Application/commit/bb0a53740ba9ac1fba11b75bc1481e1f00ca091f))
+* add optionality cards into unit list ([97a3e8b](https://github.com/oaknational/Oak-Web-Application/commit/97a3e8ba158fc58e338e5d382fe73d727b35e87a))
+* add options tag to optionality card ([53b4036](https://github.com/oaknational/Oak-Web-Application/commit/53b4036eeed7f4821523f525f9213664d6d1a58d))
+* border colour change on hover ([63b79dd](https://github.com/oaknational/Oak-Web-Application/commit/63b79dd096ef4a75b1dac089bf57751344fe76d5))
+* dont render card as link when child cards passed in ([8202e5c](https://github.com/oaknational/Oak-Web-Application/commit/8202e5cfdb56d48a5e869c1b6265b52d663ecf1e))
+* hide footer on main card when child cards exist ([bfbfbcc](https://github.com/oaknational/Oak-Web-Application/commit/bfbfbcc284af4fe6d8195ef092c020df25ff7cf1))
+* update optionality stories ([3ac3465](https://github.com/oaknational/Oak-Web-Application/commit/3ac3465a1088f8cf806a62510ec5101c5cd739d6))
+
+# [1.1024.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1023.3...v1.1024.0) (2026-03-24)
+
+
+### Features
+
+* add custom resolve and match functions for subject and unit indices ([55dd692](https://github.com/oaknational/Oak-Web-Application/commit/55dd692ff755f646e22f7da459c9c3fa587f1a0a))
+* revert refactor, centralise regex check for eyfs ([de48138](https://github.com/oaknational/Oak-Web-Application/commit/de4813873a3aca2d36e7b2fd6b7600376af42422))
+* update EYFS links and add related tests ([2152df9](https://github.com/oaknational/Oak-Web-Application/commit/2152df9ac0632c75de6ed259bc81181067f7312d))
+* update link in layoutfooter after merge conflict ([f90fc17](https://github.com/oaknational/Oak-Web-Application/commit/f90fc170e2460542d1376c147a56d5394a55e9bf))
+
+## [1.1023.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.1023.2...v1.1023.3) (2026-03-24)
+
+## [1.1023.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1023.1...v1.1023.2) (2026-03-24)
+
+## [1.1023.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1023.0...v1.1023.1) (2026-03-24)
+
+
+### Bug Fixes
+
+* added verbose flag to "npm ci", removed npm cache and set timeout to 60mins ([8b9caeb](https://github.com/oaknational/Oak-Web-Application/commit/8b9caebebbc9b971438174a239bae2e252300858))
+
+# [1.1023.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1022.0...v1.1023.0) (2026-03-20)
+
+
+### Features
+
+* filter out rule of law subject from search filters ([731b076](https://github.com/oaknational/Oak-Web-Application/commit/731b07600e6345d107abad74bd08d470efe25936))
+
+# [1.1022.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1021.1...v1.1022.0) (2026-03-17)
+
+
+### Features
+
+* retire old standalone video player ([2a2f161](https://github.com/oaknational/Oak-Web-Application/commit/2a2f1614cde4b69a5f3bb6e6106813167c7e200c))
+
+## [1.1021.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1021.0...v1.1021.1) (2026-03-17)
+
+
+### Bug Fixes
+
+* remove top-level await from old-components script as not support by default ([37d6f27](https://github.com/oaknational/Oak-Web-Application/commit/37d6f27faa2c4b2416840bc03853f7d6b7cf8384))
+
 # [1.1021.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1020.2...v1.1021.0) (2026-03-17)
 
 

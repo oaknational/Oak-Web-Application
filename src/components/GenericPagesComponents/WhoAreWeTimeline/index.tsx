@@ -26,9 +26,9 @@ export type WhoAreWeTimelineProps = {
   title: string;
   subTitle: string;
   items: {
-    title: string;
-    subTitle: string;
-    text: PortableTextJSON;
+    heading: string;
+    subHeading: string;
+    textRaw: PortableTextJSON;
   }[];
 };
 export default function WhoAreWeTimeline({
@@ -68,7 +68,7 @@ export default function WhoAreWeTimeline({
                   const isLast = items.length - 1 === itemIndex;
                   return (
                     <OakFlex
-                      key={item.title}
+                      key={item.heading}
                       data-testid="timetable-timeline-item"
                       $gap={"spacing-16"}
                     >
@@ -107,19 +107,18 @@ export default function WhoAreWeTimeline({
                             $ph={"spacing-4"}
                             $background={"bg-decorative1-main"}
                           >
-                            {item.subTitle}
+                            {item.subHeading}
                           </OakSpan>
                         </OakBox>
                         <OakHeading tag="h3" $font={["heading-6", "heading-5"]}>
-                          {item.title}
+                          {item.heading}
                         </OakHeading>
                         <OakFlex
                           $font={["body-2", "body-1"]}
                           $flexDirection={"column"}
-                          $gap={["spacing-20", "spacing-24"]}
                         >
                           <PortableTextWithDefaults
-                            value={item.text}
+                            value={item.textRaw}
                             components={{
                               marks: {
                                 anchorLink: SecondaryAnchorLink,

@@ -26,25 +26,63 @@ export const Default: Story = {
     subTitle: "Oak’s story",
     items: [
       {
-        subTitle: "From then",
-        title: "A rapid response to the pandemic",
-        text: [
-          "In 2020, teachers needed a quick way to keep pupils learning during lockdown. So we brought together a group of expert partners to support schools with thousands of lessons designed for remote learning.",
+        subHeading: "From then",
+        heading: "A rapid response to the pandemic",
+        textRaw: [
+          {
+            _key: "test1",
+            _type: "block",
+            children: [
+              {
+                _key: "span1",
+                _type: "span",
+                marks: [],
+                text: "In 2020, teachers needed a quick way to keep pupils learning during lockdown. So we brought together a group of expert partners to support schools with thousands of lessons designed for remote learning.",
+              },
+            ],
+            markDefs: [],
+            style: "normal",
+          },
         ],
       },
       {
-        subTitle: "To now",
-        title: "Complete resources for the classroom, schools and trusts",
-        text: [
-          "From early years to exam years, we now provide complete curriculum support for the classroom. Every national curriculum subject, every unit, every lesson, in one place.",
-          "We’re also transforming lesson prep with AI tools that help teachers create, adapt, and enhance their lessons in minutes, while keeping quality high and content safe.",
+        subHeading: "To now",
+        heading: "Complete resources for the classroom, schools and trusts",
+        textRaw: [
+          {
+            _key: "test2",
+            _type: "block",
+            children: [
+              {
+                _key: "span2",
+                _type: "span",
+                marks: [],
+                text: "From early years to exam years, we now provide complete curriculum support for the classroom. Every national curriculum subject, every unit, every lesson, in one place. We're also transforming lesson prep with AI tools that help teachers create, adapt, and enhance their lessons in minutes, while keeping quality high and content safe.",
+              },
+            ],
+            markDefs: [],
+            style: "normal",
+          },
         ],
       },
       {
-        subTitle: "And beyond",
-        title: "Staying ahead in a changing world",
-        text: [
-          "We’ve always anticipated the emerging needs of teachers – from building safe and secure AI tools, to making our platform code available to partners who want to integrate it directly. We’ll keep innovating as we find new ways to help teachers stay ahead in a changing world.",
+        subHeading: "And beyond",
+        heading: "Staying ahead in a changing world",
+        textRaw: [
+          {
+            _key: "test3",
+            _type: "block",
+            children: [
+              {
+                _key: "span3",
+                _type: "span",
+                marks: [],
+                text: "We've always anticipated the emerging needs of teachers – from building safe and secure AI tools, to making our platform code available to partners who want to integrate it directly. We'll keep innovating as we find new ways to help teachers stay ahead in a changing world.",
+              },
+            ],
+            markDefs: [],
+            style: "normal",
+          },
         ],
       },
     ],

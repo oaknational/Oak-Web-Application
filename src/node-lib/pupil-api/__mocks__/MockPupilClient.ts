@@ -1,3 +1,5 @@
+import { keysToCamelCase } from "zod-to-camel-case";
+
 import type {
   AddTeacherNote,
   GetAttempt,
@@ -7,7 +9,6 @@ import type {
   State,
 } from "@/browser-lib/pupil-client/client";
 import { TeacherNote } from "@/node-lib/pupil-api/types";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const mockAttempt = {
   attemptId: "gCgkXUx42GY-9cAniQelm",
