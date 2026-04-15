@@ -146,13 +146,6 @@ export type LessonOverviewLinkProps = {
   lessonSlug: string;
 };
 
-export type TeachersLessonOverviewLinkProps = {
-  page: "teachers-lesson-overview";
-  programmeSlug: string;
-  unitSlug: string;
-  lessonSlug: string;
-};
-
 export type TeachersHomePageProps = {
   page: "teachers-home-page";
 };
@@ -452,7 +445,6 @@ export type OakLinkProps =
   | SpecialistLessonShareLinkProps
   | LessonShareCanonicalLinkProps
   | LessonOverviewLinkProps
-  | TeachersLessonOverviewLinkProps
   | PupilLessonLinkProps
   | PupilLessonResultsLinkProps
   | PupilLessonResultsCanonicalShareLinkProps
@@ -875,13 +867,6 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "lesson-overview",
-  }),
-  "teachers-lesson-overview": createOakPageConfig({
-    pathPattern:
-      "/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
-    analyticsPageName: "Lesson",
-    configType: "internal",
-    pageType: "teachers-lesson-overview",
   }),
   "pupil-lesson": createOakPageConfig({
     pathPattern:

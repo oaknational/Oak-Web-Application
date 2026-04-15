@@ -41,7 +41,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
         prevHref={
           prevLesson
             ? resolveOakHref({
-                page: "teachers-lesson-overview",
+                page: "integrated-lesson-overview",
                 lessonSlug: prevLesson.lessonSlug,
                 programmeSlug,
                 unitSlug,
@@ -51,7 +51,7 @@ const LessonHeader = (props: LessonHeaderProps) => {
         nextHref={
           nextLesson
             ? resolveOakHref({
-                page: "teachers-lesson-overview",
+                page: "integrated-lesson-overview",
                 lessonSlug: nextLesson.lessonSlug,
                 unitSlug,
                 programmeSlug,
