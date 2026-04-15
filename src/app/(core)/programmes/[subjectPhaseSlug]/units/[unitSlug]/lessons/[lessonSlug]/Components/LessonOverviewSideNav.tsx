@@ -27,6 +27,7 @@ export default function LessonOverviewSideNav(
       $pr={["spacing-16"]}
       $position="sticky"
       $top="spacing-56"
+      $width="100%"
     >
       <LessonOverviewSideNavAnchorLinks
         {...props}
