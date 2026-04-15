@@ -60,7 +60,9 @@
     "build-storybook": "storybook build",
     "use-local-classroom-addon": "$npm_execpath remove @oaknational/google-classroom-addon && yalc add @oaknational/google-classroom-addon",
     "remove-local-classroom-addon": "yalc remove @oaknational/google-classroom-addon && $npm_execpath install @oaknational/google-classroom-addon",
-    "knip": "knip"
+    "knip": "knip",
+    "outdated": "bash scripts/dev/outdated.sh",
+    "audit:report": "bash scripts/dev/audit.sh"
   },
   "overrides": {
     "@testing-library/dom": "$@testing-library/dom",
