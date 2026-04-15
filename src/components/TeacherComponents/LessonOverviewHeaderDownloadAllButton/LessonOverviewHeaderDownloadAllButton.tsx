@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ComponentProps, FC } from "react";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -16,7 +16,8 @@ export type LessonOverviewHeaderDownloadAllButtonProps = Pick<
   | "isCanonical"
   | "geoRestricted"
   | "loginRequired"
->;
+> &
+  Pick<ComponentProps<typeof LoginRequiredButton>, "sizeVariant" | "width">;
 
 export const LessonOverviewHeaderDownloadAllButton: FC<
   LessonOverviewHeaderDownloadAllButtonProps
@@ -32,6 +33,8 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
     isCanonical,
     geoRestricted,
     loginRequired,
+    sizeVariant = "small",
+    width = "spacing-160",
   } = props;
 
   const preselected = "all";
@@ -80,13 +83,13 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
         shouldHidewhenGeoRestricted: true,
         href: href,
       }}
-      sizeVariant="small"
+      sizeVariant={sizeVariant}
       element="a"
       data-testid="download-all-button"
       iconName="download"
       isTrailingIcon
       aria-label="Download all"
-      width={"spacing-160"}
+      width={width}
     />
   );
 };
