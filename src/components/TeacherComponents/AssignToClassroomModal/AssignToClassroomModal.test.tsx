@@ -394,17 +394,19 @@ describe("AssignToClassroomModal", () => {
       mockListCourses.mockResolvedValue(mockCourses);
     });
 
-    it("renders courses in a dropdown", async () => {
+    it("renders courses in a vertical radio list", async () => {
       renderWithTheme(<AssignToClassroomModal {...defaultProps} />);
 
       await waitFor(() => {
-        const select = screen.getByRole("combobox");
-        expect(select).toBeInTheDocument();
+        const courseList = screen.getByRole("radiogroup", {
+          name: "Select a class",
+        });
+        expect(courseList).toBeInTheDocument();
         expect(
-          screen.getByRole("option", { name: "Maths Year 7 — Period 1" }),
+          screen.getByRole("radio", { name: "Maths Year 7 — Period 1" }),
         ).toBeInTheDocument();
         expect(
-          screen.getByRole("option", { name: "Maths Year 8" }),
+          screen.getByRole("radio", { name: "Maths Year 8" }),
         ).toBeInTheDocument();
       });
     });

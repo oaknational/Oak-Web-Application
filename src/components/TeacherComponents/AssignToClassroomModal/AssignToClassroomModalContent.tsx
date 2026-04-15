@@ -1,14 +1,16 @@
 "use client";
 
 import { FC } from "react";
+import styled from "styled-components";
 import {
+  OakBox,
+  OakButtonAsRadioGroup,
   OakFlex,
   OakHeading,
   OakLoadingSpinner,
-  OakOption,
   OakP,
   OakPrimaryButton,
-  OakSelect,
+  OakSecondaryButtonAsRadio,
   OakSmallSecondaryButton,
   OakTextInput,
 } from "@oaknational/oak-components";
@@ -16,6 +18,16 @@ import { CourseListItem } from "@oaknational/google-classroom-addon/types";
 
 export const ASSIGN_MODAL_HEADING_ID = "assign-modal-heading";
 export const ASSIGN_MODAL_DESCRIPTION_ID = "assign-modal-description";
+
+// OakSecondaryButtonAsRadio's internal button defaults to width:max-content
+// with no prop to override it — target the button element directly.
+const FullWidthRadioGroup = styled(OakButtonAsRadioGroup)`
+  width: 100%;
+  flex-direction: column;
+  > * {
+    width: 100%;
+  }
+`;
 
 type AssignToClassroomModalMessageStateProps = {
   heading: string;
@@ -121,19 +133,32 @@ const AssignToClassroomModalCoursePickerState: FC<
           <OakP $font="body-2-bold" id="course-select-label">
             Select a class
           </OakP>
-          <OakSelect
-            value={selectedCourseId}
-            onChange={(event) => onSelectedCourseIdChange(event.target.value)}
-            aria-labelledby="course-select-label"
+          <OakBox
+            $overflowY="auto"
+            $maxHeight="spacing-240"
+            $ba="border-solid-s"
+            $borderColor="border-neutral"
+            $borderRadius="border-radius-s"
+            $pa="spacing-4"
           >
-            {courses.map((course) => (
-              <OakOption key={course.id} value={course.id}>
-                {course.section
-                  ? `${course.name} — ${course.section}`
-                  : course.name}
-              </OakOption>
-            ))}
-          </OakSelect>
+            <FullWidthRadioGroup
+              name="course-selection"
+              value={selectedCourseId}
+              onChange={onSelectedCourseIdChange}
+              $flexDirection="column"
+              $gap="spacing-4"
+              ariaLabelledby="course-select-label"
+              disabled={isSubmitting}
+            >
+              {courses.map((course) => (
+                <OakSecondaryButtonAsRadio key={course.id} value={course.id}>
+                  {course.section
+                    ? `${course.name} — ${course.section}`
+                    : course.name}
+                </OakSecondaryButtonAsRadio>
+              ))}
+            </FullWidthRadioGroup>
+          </OakBox>
         </OakFlex>
         <OakFlex $gap="spacing-12" $mb={["spacing-12", "spacing-16"]}>
           <OakPrimaryButton
