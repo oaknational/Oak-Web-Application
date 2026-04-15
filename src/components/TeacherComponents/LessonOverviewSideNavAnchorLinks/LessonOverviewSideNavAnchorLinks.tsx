@@ -8,9 +8,9 @@ import {
 
 import { getContainerId } from "../LessonItemContainer/LessonItemContainer";
 import {
-  LessonOverviewHeaderDownloadAllButton,
-  LessonOverviewHeaderDownloadAllButtonProps,
-} from "../LessonOverviewHeaderDownloadAllButton/LessonOverviewHeaderDownloadAllButton";
+  LessonOverviewDownloadAllButton,
+  LessonOverviewDownloadAllButtonProps,
+} from "../LessonOverviewDownloadAllButton/LessonOverviewDownloadAllButton";
 
 type LessonOverviewSideNavAnchorLinksProps = {
   contentRestricted: boolean;
@@ -20,7 +20,7 @@ type LessonOverviewSideNavAnchorLinksProps = {
     anchorId: string;
     subheading?: string;
   }[];
-  downloadAllButtonProps: LessonOverviewHeaderDownloadAllButtonProps;
+  downloadAllButtonProps: LessonOverviewDownloadAllButtonProps;
 };
 
 const LessonOverviewSideNavAnchorLinks: FC<
@@ -65,7 +65,7 @@ const LessonOverviewSideNavAnchorLinks: FC<
         })}
       </OakUL>
 
-      <LessonOverviewHeaderDownloadAllButton
+      <LessonOverviewDownloadAllButton
         {...downloadAllButtonProps}
         width="fit-content"
         sizeVariant="large"

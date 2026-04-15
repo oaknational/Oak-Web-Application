@@ -3,7 +3,7 @@ import {
   OakUiRoleToken,
 } from "@oaknational/oak-components";
 
-import { LessonOverviewHeaderDownloadAllButton } from "./LessonOverviewHeaderDownloadAllButton";
+import { LessonOverviewDownloadAllButton } from "./LessonOverviewDownloadAllButton";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
@@ -59,7 +59,7 @@ const baseProps = {
 
 const render = renderWithProviders();
 
-describe("LessonOverviewHeaderDownloadAllButton", () => {
+describe("LessonOverviewDownloadAllButton", () => {
   beforeEach(() => {
     mockFeatureFlagEnabled.mockReturnValueOnce(false);
   });
@@ -71,7 +71,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
 
   it("renders the download button with correct text", () => {
     const { getByTestId, getByText } = render(
-      <LessonOverviewHeaderDownloadAllButton {...baseProps} />,
+      <LessonOverviewDownloadAllButton {...baseProps} />,
     );
 
     const downloadButton = getByTestId("download-all-button");
@@ -86,7 +86,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
 
   it("does not render when expired is true", () => {
     const { queryByTestId } = render(
-      <LessonOverviewHeaderDownloadAllButton {...baseProps} expired={true} />,
+      <LessonOverviewDownloadAllButton {...baseProps} expired={true} />,
     );
 
     expect(queryByTestId("download-all-button")).not.toBeInTheDocument();
@@ -94,7 +94,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
 
   it("does not render when showDownloadAll is false", () => {
     const { queryByTestId } = render(
-      <LessonOverviewHeaderDownloadAllButton
+      <LessonOverviewDownloadAllButton
         {...baseProps}
         showDownloadAll={false}
       />,
@@ -106,7 +106,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
   it("renders a sign up button when downloads are restricted", () => {
     mockUseComplexCopyright = signedOutLoginRequired;
     const { getByTestId } = render(
-      <LessonOverviewHeaderDownloadAllButton {...baseProps} />,
+      <LessonOverviewDownloadAllButton {...baseProps} />,
     );
     const downloadButton = getByTestId("download-all-button");
     expect(downloadButton).not.toHaveAttribute("href");
@@ -116,7 +116,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
   it("does not render anything when geoBlocked", () => {
     mockUseComplexCopyright = signedInGeoBlocked;
     const { getByTestId } = render(
-      <LessonOverviewHeaderDownloadAllButton {...baseProps} />,
+      <LessonOverviewDownloadAllButton {...baseProps} />,
     );
     const downloadButton = getByTestId("download-all-button");
     expect(downloadButton).not.toBeVisible();
