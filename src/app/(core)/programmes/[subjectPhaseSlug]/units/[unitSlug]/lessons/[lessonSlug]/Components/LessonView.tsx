@@ -21,6 +21,7 @@ import {
 import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
+import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -129,7 +130,16 @@ export default function LessonView(
           <OakGridArea
             $colSpan={[12, 4, 4]}
             $display={["none", "block", "block"]}
+            $position="relative"
           >
+            <OakBox
+              $position="absolute"
+              $zIndex="in-front"
+              $top="spacing-0"
+              $left="spacing-0"
+            >
+              <SkipLink href="#lesson-content">Skip to lesson content</SkipLink>
+            </OakBox>
             <LessonOverviewSideNav
               links={pageLinks}
               contentRestricted={contentRestricted}
@@ -149,7 +159,7 @@ export default function LessonView(
               }}
             />
           </OakGridArea>
-          <OakGridArea $colSpan={[12, 8, 8]}>
+          <OakGridArea $colSpan={[12, 8, 8]} id="lesson-content">
             <OakBox
               id="slide-deck"
               style={{ height: 500 }}
