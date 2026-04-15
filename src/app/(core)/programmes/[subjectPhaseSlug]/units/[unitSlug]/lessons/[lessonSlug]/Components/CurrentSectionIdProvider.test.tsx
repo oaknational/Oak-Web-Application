@@ -71,16 +71,26 @@ describe("pickSectionClosestToReferenceLine", () => {
       mockSection("lesson-details", -5),
       mockSection("video", 40),
     ];
-    expect(pickSectionClosestToReferenceLine(nodes)).toBe("lesson-details");
+    expect(pickSectionClosestToReferenceLine(nodes, -1)).toBe("lesson-details");
   });
 
   it("can select a section below the top when it is closer", () => {
     const nodes = [mockSection("a", 80), mockSection("b", 400)];
-    expect(pickSectionClosestToReferenceLine(nodes)).toBe("a");
+    expect(pickSectionClosestToReferenceLine(nodes, -1)).toBe("a");
+  });
+
+  it("returns null when sentinel is in viewport", () => {
+    const nodes = [mockSection("a", -50), mockSection("b", 160)];
+    expect(pickSectionClosestToReferenceLine(nodes, 10)).toBeNull();
+  });
+
+  it("can select sections when sentinel is above viewport", () => {
+    const nodes = [mockSection("a", -50), mockSection("b", 160)];
+    expect(pickSectionClosestToReferenceLine(nodes, -10)).toBe("a");
   });
 
   it("returns null when there are no sections", () => {
-    expect(pickSectionClosestToReferenceLine([])).toBeNull();
+    expect(pickSectionClosestToReferenceLine([], -1)).toBeNull();
   });
 });
 

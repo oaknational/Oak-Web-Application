@@ -116,17 +116,17 @@ export default function LessonView(
   const showDownloadAll = hasDownloadableAssets && !contentRestricted;
 
   return (
-    <OakBox $ph="spacing-40">
-      <OakGrid
-        $cg="spacing-16"
-        $rg="spacing-56"
-        $mb={["spacing-0", "spacing-48", "spacing-48"]}
-        $mh="auto"
-        $mt={["spacing-48", "spacing-56"]}
-        $width={"100%"}
-        $maxWidth={"spacing-1280"}
-      >
-        <CurrentSectionIdProvider>
+    <CurrentSectionIdProvider>
+      <OakBox $ph="spacing-40">
+        <OakGrid
+          $cg="spacing-16"
+          $rg="spacing-56"
+          $mb={["spacing-0", "spacing-48", "spacing-48"]}
+          $mh="auto"
+          $mt={["spacing-48", "spacing-56"]}
+          $width={"100%"}
+          $maxWidth={"spacing-1280"}
+        >
           <OakGridArea
             $colSpan={[12, 4, 4]}
             $display={["none", "block", "block"]}
@@ -196,42 +196,42 @@ export default function LessonView(
               <OakHeading tag="h2">Quiz</OakHeading>
             </OakBox>
           </OakGridArea>
-        </CurrentSectionIdProvider>
-        <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
-          <PreviousNextNav
-            backgroundColorLevel={1}
-            navItemType="lesson"
-            previous={
-              previousLesson
-                ? {
-                    href: resolveOakHref({
-                      page: "integrated-lesson-overview",
-                      programmeSlug,
-                      unitSlug,
-                      lessonSlug: previousLesson.lessonSlug,
-                    }),
-                    title: previousLesson.lessonTitle,
-                    index: previousLesson.lessonIndex,
-                  }
-                : undefined
-            }
-            next={
-              nextLesson
-                ? {
-                    href: resolveOakHref({
-                      page: "integrated-lesson-overview",
-                      programmeSlug,
-                      unitSlug,
-                      lessonSlug: nextLesson.lessonSlug,
-                    }),
-                    title: nextLesson.lessonTitle,
-                    index: nextLesson.lessonIndex,
-                  }
-                : undefined
-            }
-          />
-        </OakGridArea>
-      </OakGrid>
-    </OakBox>
+          <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
+            <PreviousNextNav
+              backgroundColorLevel={1}
+              navItemType="lesson"
+              previous={
+                previousLesson
+                  ? {
+                      href: resolveOakHref({
+                        page: "integrated-lesson-overview",
+                        programmeSlug,
+                        unitSlug,
+                        lessonSlug: previousLesson.lessonSlug,
+                      }),
+                      title: previousLesson.lessonTitle,
+                      index: previousLesson.lessonIndex,
+                    }
+                  : undefined
+              }
+              next={
+                nextLesson
+                  ? {
+                      href: resolveOakHref({
+                        page: "integrated-lesson-overview",
+                        programmeSlug,
+                        unitSlug,
+                        lessonSlug: nextLesson.lessonSlug,
+                      }),
+                      title: nextLesson.lessonTitle,
+                      index: nextLesson.lessonIndex,
+                    }
+                  : undefined
+              }
+            />
+          </OakGridArea>
+        </OakGrid>
+      </OakBox>
+    </CurrentSectionIdProvider>
   );
 }
