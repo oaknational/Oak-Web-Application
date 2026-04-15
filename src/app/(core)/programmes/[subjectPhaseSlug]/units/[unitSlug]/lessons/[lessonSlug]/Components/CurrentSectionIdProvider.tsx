@@ -17,12 +17,23 @@ const HASH_SYNC_DEBOUNCE_MS = 250;
 
 /**
  * Picks the section whose top edge is closest to the top of the viewport.
+ * Sections that are too far below the viewport reference line are ignored.
+ * The lower bound is based on the first section's vertical document position.
  */
 export function pickSectionClosestToReferenceLine(
   sections: readonly Element[],
+  sentinelTop: number,
 ): string | null {
   let closestId: string | null = null;
   let closestDistance = Number.POSITIVE_INFINITY;
+
+  /**
+   * If the sentinel is in viewport, don't pick a section since
+   * the content is not at the top of the page.
+   */
+  if (sentinelTop > 0) {
+    return null;
+  }
 
   for (const el of sections) {
     const top = el.getBoundingClientRect().top;
@@ -66,6 +77,7 @@ export type CurrentSectionIdProviderProps = {
 export function CurrentSectionIdProvider({
   children,
 }: Readonly<CurrentSectionIdProviderProps>) {
+  const sentinelRef = useRef<HTMLDivElement>(null);
   const [currentSectionId, setCurrentSectionId] = useState<string | null>(null);
   const rafRef = useRef<number>(0);
   const hashSyncTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -74,6 +86,7 @@ export function CurrentSectionIdProvider({
   const updateSectionId = useCallback(() => {
     const nextSectionId = pickSectionClosestToReferenceLine(
       sectionsRef.current,
+      sentinelRef.current?.getBoundingClientRect().top ?? 0,
     );
 
     // Debounce the URL hash sync
@@ -119,6 +132,7 @@ export function CurrentSectionIdProvider({
 
   return (
     <CurrentSectionIdContext.Provider value={currentSectionId}>
+      <div ref={sentinelRef} />
       {children}
     </CurrentSectionIdContext.Provider>
   );
