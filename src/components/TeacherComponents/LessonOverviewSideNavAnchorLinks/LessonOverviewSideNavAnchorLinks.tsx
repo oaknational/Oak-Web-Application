@@ -1,9 +1,11 @@
 import { FC } from "react";
 import {
+  OakBox,
   OakFlex,
   OakLI,
   OakSideMenuNavLink,
   OakUL,
+  useMediaQuery,
 } from "@oaknational/oak-components";
 
 import { getContainerId } from "../LessonItemContainer/LessonItemContainer";
@@ -31,6 +33,8 @@ const LessonOverviewSideNavAnchorLinks: FC<
   contentRestricted,
   downloadAllButtonProps,
 }) => {
+  const isDesktop = useMediaQuery("desktop");
+
   return (
     <OakFlex $flexDirection="column" $gap="spacing-32">
       <OakUL $reset $display="flex" $gap="spacing-16" $flexDirection="column">
@@ -65,11 +69,13 @@ const LessonOverviewSideNavAnchorLinks: FC<
         })}
       </OakUL>
 
-      <LessonOverviewDownloadAllButton
-        {...downloadAllButtonProps}
-        width="fit-content"
-        sizeVariant="large"
-      />
+      <OakBox $ml="spacing-16">
+        <LessonOverviewDownloadAllButton
+          {...downloadAllButtonProps}
+          width="fit-content"
+          sizeVariant={isDesktop ? "large" : "small"}
+        />
+      </OakBox>
     </OakFlex>
   );
 };
