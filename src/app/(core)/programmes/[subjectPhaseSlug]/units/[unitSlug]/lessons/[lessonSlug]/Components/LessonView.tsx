@@ -1,13 +1,15 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import {
+  OakAnchorTarget,
   OakBox,
   OakFlex,
   OakGrid,
   OakGridArea,
   OakHandDrawnHR,
   OakHeading,
+  OakSecondaryButton,
 } from "@oaknational/oak-components";
 
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
@@ -24,12 +26,86 @@ import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizC
 import {
   createAttributionObject,
   getMediaClipLabel,
+  LessonPageLinkAnchorId,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonOverviewQuizQuestion,
   StemObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
+import {
+  getContainerId,
+  getPreselectedDownloadFromTitle,
+} from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
+import {
+  DownloadableLessonTitles,
+  ResourceType,
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
+import LessonPlayAllButton from "@/components/TeacherComponents/LessonPlayAllButton";
+import { getIsResourceDownloadable } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
+
+/**
+ * Maps each lesson resource key to its associated download types.
+ * Resources with empty arrays are not downloadable.
+ */
+const RESOURCE_DOWNLOAD_MAP: Record<LessonPageLinkAnchorId, ResourceType[]> = {
+  "lesson-guide": ["lesson-guide-pdf"],
+  "slide-deck": ["presentation"],
+  "media-clips": [],
+  "lesson-details": [],
+  video: [],
+  worksheet: ["worksheet-pdf", "worksheet-pptx"],
+  "starter-quiz": ["intro-quiz-answers", "intro-quiz-questions"],
+  "exit-quiz": ["exit-quiz-answers", "exit-quiz-questions"],
+  "additional-material": ["supplementary-docx", "supplementary-pdf"],
+  quiz: [], // Legacy quiz type - not directly downloadable
+};
+
+/**
+ * Maps resource keys to their display titles
+ */
+const RESOURCE_TITLES: Record<
+  Exclude<LessonPageLinkAnchorId, "quiz">,
+  string
+> = {
+  "lesson-guide": "Lesson guide",
+  "slide-deck": "Lesson slides",
+  "media-clips": "Video & audio clips", // Default, may be overridden by subject
+  "lesson-details": "Lesson details",
+  video: "Lesson video",
+  worksheet: "Worksheet",
+  "starter-quiz": "Prior knowledge starter quiz",
+  "exit-quiz": "Assessment exit quiz",
+  "additional-material": "Additional material",
+};
+
+/**
+ * Maps resource keys to their custom download titles (if different from display title)
+ */
+const RESOURCE_DOWNLOAD_TITLES: Partial<
+  Record<LessonPageLinkAnchorId, string>
+> = {
+  "starter-quiz": "quiz pdf",
+  "exit-quiz": "quiz pdf",
+};
+
+/**
+ * Checks if a resource is downloadable based on its key and available downloads.
+ * A resource is downloadable if ANY of its associated download types are available.
+ */
+const checkResourceDownloadable = (
+  resourceKey: LessonPageLinkAnchorId,
+  downloads: TeachersLessonOverviewPageData["downloads"],
+): boolean => {
+  const downloadTypes = RESOURCE_DOWNLOAD_MAP[resourceKey];
+  if (!downloadTypes || downloadTypes.length === 0) {
+    return false;
+  }
+  return downloadTypes.some((type) =>
+    getIsResourceDownloadable(type, downloads),
+  );
+};
 
 const ALLOWED_MATHJAX_SUBJECT_SLUGS = new Set([
   "maths",
@@ -142,15 +218,76 @@ const hasLessonMathJax = (data: TeachersLessonOverviewPageData): boolean => {
   );
 };
 
+type LessonResource = {
+  key: LessonPageLinkAnchorId;
+  component: React.ReactNode;
+  title: string;
+  downloadable: boolean;
+  downloadTitle?: string;
+  isFinalElement?: boolean;
+  skipLinkUrl?: string;
+};
+
+const SKIPPABLE_CONTENT_SECTIONS: Set<LessonPageLinkAnchorId> = new Set([
+  "video",
+  "lesson-guide",
+  "worksheet",
+  "slide-deck",
+  "starter-quiz",
+  "exit-quiz",
+  "media-clips",
+  "additional-material",
+]);
+
+const getSkipLinkUrl = ({
+  anchorId,
+  index,
+  isFinalElement,
+  lessonResources,
+  lessonSlug,
+}: {
+  anchorId: LessonPageLinkAnchorId;
+  index: number;
+  isFinalElement: boolean;
+  lessonResources: LessonResource[];
+  lessonSlug?: string;
+}): string | undefined => {
+  if (!lessonSlug) {
+    return undefined;
+  }
+
+  if (!SKIPPABLE_CONTENT_SECTIONS.has(anchorId)) {
+    return undefined;
+  }
+
+  if (index === -1) {
+    return undefined;
+  }
+
+  // If this is the last resource, skip to the footer
+  if (isFinalElement) {
+    return `${lessonSlug}#site-footer`;
+  }
+
+  const nextResource = lessonResources[index + 1];
+  if (!nextResource) {
+    return undefined;
+  }
+
+  return `${lessonSlug}#${nextResource.key}`;
+};
+
 function getLessonResources({
+  downloads,
   data,
   copyRightState,
   isMathJaxLesson,
 }: {
+  downloads: TeachersLessonOverviewPageData["downloads"];
   data: TeachersLessonOverviewPageData;
   copyRightState: ReturnType<typeof useComplexCopyright>;
   isMathJaxLesson: boolean;
-}) {
+}): LessonResource[] {
   const browsePathwayData = getAnalyticsBrowseData({
     keyStageSlug: data.keyStageSlug,
     keyStageTitle: data.keyStageTitle,
@@ -272,63 +409,174 @@ function getLessonResources({
   ) : undefined;
   const mediaClipLabel = data.subjectSlug
     ? getMediaClipLabel(data.subjectSlug)
-    : "Video & audio clips";
-  return [
-    {
-      key: "lesson-guide",
-      component: lessonGuide,
-      showSkipLink: true,
-      title: "Lesson guide",
-    },
-    {
-      key: "slide-deck",
-      component: presentation,
-      showSkipLink: true,
-      title: "Lesson slides",
-    },
-    {
-      key: "media-clips",
-      component: mediaClips,
-      showSkipLink: false,
-      title: mediaClipLabel,
-    },
-    {
-      key: "lesson-details",
-      component: lessonDetails,
-      showSkipLink: false,
-      title: "Lesson details",
-    },
-    {
-      key: "video",
-      component: lessonVideo,
-      showSkipLink: true,
-      title: "Lesson video",
-    },
-    {
-      key: "worksheet",
-      component: worksheet,
-      showSkipLink: true,
-      title: "Worksheet",
-    },
-    {
-      key: "starter-quiz",
-      component: starterQuiz,
-      showSkipLink: true,
-      title: "Prior knowledge starter quiz",
-    },
-    {
-      key: "exit-quiz",
-      component: exitQuiz,
-      showSkipLink: true,
-      title: "Assessment exit quiz",
-    },
-    {
-      key: "additional-material",
-      component: additionalMaterial,
-      showSkipLink: true,
-      title: "Additional material",
-    },
-  ].filter((item) => item.component);
+    : RESOURCE_TITLES["media-clips"];
+
+  // Map of resource keys to their components
+  const resourceComponents: Record<
+    Exclude<LessonPageLinkAnchorId, "quiz">,
+    React.ReactNode | undefined
+  > = {
+    "lesson-guide": lessonGuide,
+    "slide-deck": presentation,
+    "media-clips": mediaClips,
+    "lesson-details": lessonDetails,
+    video: lessonVideo,
+    worksheet: worksheet,
+    "starter-quiz": starterQuiz,
+    "exit-quiz": exitQuiz,
+    "additional-material": additionalMaterial,
+  };
+
+  // Define the order of resources as displayed on the page
+  const resourceOrder: Exclude<LessonPageLinkAnchorId, "quiz">[] = [
+    "lesson-guide",
+    "slide-deck",
+    "media-clips",
+    "lesson-details",
+    "video",
+    "worksheet",
+    "starter-quiz",
+    "exit-quiz",
+    "additional-material",
+  ];
+
+  return resourceOrder
+    .map((key) => ({
+      key,
+      component: resourceComponents[key],
+      title: key === "media-clips" ? mediaClipLabel : RESOURCE_TITLES[key],
+      downloadable: checkResourceDownloadable(key, downloads),
+      downloadTitle: RESOURCE_DOWNLOAD_TITLES[key],
+    }))
+    .filter((item) => item.component)
+    .map((item, index, array) => {
+      const isFinalElement = index === array.length - 1;
+      const skipLinkUrl = getSkipLinkUrl({
+        anchorId: item.key,
+        index,
+        lessonSlug: data.lessonSlug,
+        isFinalElement,
+        lessonResources: array,
+      });
+      return {
+        ...item,
+        isFinalElement,
+        skipLinkUrl,
+      };
+    });
+}
+
+function LessonItemContainer({
+  resource,
+  slugs,
+}: Readonly<{
+  resource: LessonResource;
+  slugs: {
+    lessonSlug: string;
+    unitSlug: string | null;
+    programmeSlug: string | null;
+  };
+}>) {
+  const [skipResourceButtonFocused, setSkipResourceButtonFocused] =
+    useState(false);
+  const { title } = resource;
+  const preselectedDownload = getPreselectedDownloadFromTitle(
+    title as DownloadableLessonTitles,
+  );
+  // const preselectedShare = getPreselectedQueryFromTitle(
+  //   title as DownloadableLessonTitles,
+  // );
+
+  const downloadTitle = resource.downloadTitle
+    ? resource.downloadTitle
+    : title.toLowerCase();
+  return (
+    <OakFlex
+      $flexDirection="column"
+      $position={"relative"}
+      id={getContainerId(title)}
+      tabIndex={-1}
+    >
+      <OakAnchorTarget id={resource.key} $pt={"spacing-24"} />
+      <OakFlex
+        $mb={
+          resource.skipLinkUrl
+            ? ["spacing-12", "spacing-24", "spacing-24"]
+            : ["spacing-24"]
+        }
+        $position={"relative"}
+        $flexDirection={"column"}
+        $gap={"spacing-12"}
+      >
+        <OakFlex
+          $flexDirection={["column", "row"]}
+          $alignItems={["start", "end"]}
+          $gap={["spacing-12", "spacing-40"]}
+          $height={["auto", "spacing-40"]}
+        >
+          {title && (
+            <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
+              {title}
+            </OakHeading>
+          )}
+          {resource.key === "media-clips" && slugs && (
+            <LessonPlayAllButton {...slugs} />
+          )}
+          {resource.downloadable && slugs && (
+            <LessonItemContainerLink
+              page={"download"}
+              resourceTitle={downloadTitle}
+              onClick={() => {}}
+              preselected={preselectedDownload}
+              isSpecialist={false}
+              {...slugs}
+            />
+          )}
+          {/* {shareable && slugs && (
+            <LessonItemContainerLink
+              page={"share"}
+              resourceTitle={downloadTitle}
+              onClick={onDownloadButtonClick}
+              preselected={preselectedShare}
+              isSpecialist={props.isSpecialist}
+              {...slugs}
+            />
+          )} */}
+
+          {resource.skipLinkUrl && (
+            <OakSecondaryButton
+              element="a"
+              href={resource.skipLinkUrl}
+              onFocus={() => setSkipResourceButtonFocused(true)}
+              onBlur={() => setSkipResourceButtonFocused(false)}
+              style={
+                skipResourceButtonFocused
+                  ? {}
+                  : {
+                      position: "absolute",
+                      left: "-1000px",
+                      opacity: 0,
+                    }
+              }
+            >
+              {`Skip ${downloadTitle}`}
+            </OakSecondaryButton>
+          )}
+        </OakFlex>
+      </OakFlex>
+
+      <OakBox>{resource.component}</OakBox>
+      {!resource.isFinalElement && (
+        <OakHandDrawnHR
+          data-testid="hr"
+          hrColor={"bg-decorative4-main"}
+          $height={"spacing-4"}
+          $mt={["spacing-24", "spacing-56"]}
+          $mb={["spacing-12", "spacing-24"]}
+        />
+      )}
+    </OakFlex>
+  );
 }
 
 export default function LessonView(
@@ -342,10 +590,12 @@ export default function LessonView(
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
 
   const lessonResources = getLessonResources({
+    downloads: data.downloads,
     data,
     copyRightState,
     isMathJaxLesson,
   });
+
   return (
     <MathJaxLessonProvider>
       <OakBox $ph="spacing-40">
@@ -369,20 +619,15 @@ export default function LessonView(
           </OakGridArea>
           <OakGridArea $colSpan={[12, 9]} $mb={"spacing-48"}>
             {lessonResources.map((resource) => (
-              <OakFlex $flexDirection={"column"} key={resource.key}>
-                <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
-                  {resource.title}
-                </OakHeading>
-
-                <OakFlex>{resource.component}</OakFlex>
-                <OakHandDrawnHR
-                  data-testid="hr"
-                  hrColor={"bg-decorative4-main"}
-                  $height={"spacing-4"}
-                  $mt={["spacing-24", "spacing-56"]}
-                  $mb={["spacing-12", "spacing-24"]}
-                />
-              </OakFlex>
+              <LessonItemContainer
+                slugs={{
+                  lessonSlug: data.lessonSlug,
+                  unitSlug: data.unitSlug,
+                  programmeSlug: data.programmeSlug,
+                }}
+                resource={resource}
+                key={resource.key}
+              />
             ))}
             <PreviousNextNav
               backgroundColorLevel={1}

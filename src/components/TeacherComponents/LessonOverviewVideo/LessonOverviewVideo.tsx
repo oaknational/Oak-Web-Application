@@ -1,5 +1,9 @@
 import { FC, useState } from "react";
-import { OakP, OakFlex, OakSecondaryButton } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakFlex,
+  OakSmallPrimaryInvertedButton,
+} from "@oaknational/oak-components";
 
 import { AnalyticsBrowseData } from "../types/lesson.types";
 
@@ -55,7 +59,7 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
         $gap={["spacing-16", "spacing-0"]}
       >
         {hasCaptions && (
-          <OakSecondaryButton
+          <OakSmallPrimaryInvertedButton
             iconName={transcriptOn ? "chevron-up" : "chevron-down"}
             onClick={toggleTranscript}
             isTrailingIcon
@@ -63,17 +67,17 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
             aria-expanded={transcriptOn}
           >
             {transcriptOn ? "Hide transcript" : "Show transcript"}
-          </OakSecondaryButton>
+          </OakSmallPrimaryInvertedButton>
         )}
         <OakFlex $flexGrow={[0, 1]} $justifyContent={["center", "end"]}>
           {signLanguageVideo && (
-            <OakSecondaryButton
+            <OakSmallPrimaryInvertedButton
               iconName="sign-language"
               onClick={toggleSignLanguage}
               isTrailingIcon
             >
               {signLanguageOn ? "Hide sign language" : "Show sign language"}
-            </OakSecondaryButton>
+            </OakSmallPrimaryInvertedButton>
           )}
         </OakFlex>
         {!hasCaptions && !signLanguageVideo && (
