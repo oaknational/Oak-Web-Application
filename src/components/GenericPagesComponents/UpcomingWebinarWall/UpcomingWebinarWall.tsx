@@ -7,9 +7,9 @@ import {
   OakHeadingTag,
 } from "@oaknational/oak-components";
 
+import Cover from "@/components/SharedComponents/Cover";
 import Illustration from "@/components/SharedComponents/Illustration";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type UpcomingWebinarWallProps = {
   headingTag?: OakHeadingTag;
@@ -39,16 +39,15 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
     buttonSuffixA11y,
   } = props;
   return (
-    <Flex
-      $ph={16}
+    <Cover
+      $ph={"spacing-16"}
       $font={["body-3", "body-2"]}
       $textAlign="center"
       $flexDirection="column"
       $justifyContent="center"
       $alignItems="center"
-      $background="white"
+      $background="bg-primary"
       $overflow="hidden"
-      $cover
     >
       <OakBox $maxWidth="spacing-360" $zIndex="in-front">
         <OakHeading tag={headingTag} $font={["heading-6", "heading-5"]}>
@@ -77,14 +76,14 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
           <Illustration
             slug={"magic-carpet"}
             $objectFit="contain"
-            $objectPosition={"bottom right"}
             $opacity={0.2}
+            $objectPosition={"bottom right"}
             cropRect={[0, 0, 401, 289]}
             fill
           />
         </OakGridArea>
       </OakGrid>
-    </Flex>
+    </Cover>
   );
 };
 

@@ -3,8 +3,8 @@ import { OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Unit, UnitOption } from "@/utils/curriculum/types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { transformOwaLinkProps } from "@/components/SharedComponents/OwaLink";
 import { areLessonsAvailable } from "@/utils/curriculum/lessons";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type CurricUnitModalFooterProps = {
   programmeSlug?: string;
@@ -37,16 +37,14 @@ export default function CurricUnitModalFooter({
     }
   }
 
-  const lessonPageProps =
+  const lessonPageHref =
     lessonsAvailable && programmeSlug && resolvedUnitSlug
-      ? transformOwaLinkProps({
+      ? resolveOakHref({
           page: "lesson-index",
           unitSlug: resolvedUnitSlug,
           programmeSlug,
         })
       : null;
-
-  const lessonPageHref = lessonPageProps?.nextLinkProps?.href;
 
   return (
     <>

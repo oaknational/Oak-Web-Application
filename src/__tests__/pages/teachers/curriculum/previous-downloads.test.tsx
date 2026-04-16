@@ -21,6 +21,21 @@ jest.mock("next/router", () => ({
   }),
 }));
 
+jest.mock(
+  "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      schools: [],
+      error: null,
+      schoolPickerInputValue: "",
+      setSchoolPickerInputValue: jest.fn(),
+      selectedSchool: undefined,
+      setSelectedSchool: jest.fn(),
+    }),
+  }),
+);
+
 describe("CurriculumPreviousDownloadsPage", () => {
   const renderComponent = () => {
     return render(<CurriculumPreviousDownloadsPage topNav={topNavFixture} />);
@@ -93,8 +108,13 @@ describe("CurriculumPreviousDownloadsPage", () => {
     await userEvent.click(card.querySelector("label")!);
     const input = card.querySelector("input") as HTMLInputElement;
     expect(input?.checked).toBeTruthy();
-    const link =
-      getAllByTestId("tabularNav")[0]?.querySelector('a[title="KS2"]');
+    const nav = getAllByTestId("tabularNav")[0];
+    if (!nav) {
+      throw new Error("Tabular nav not found");
+    }
+    const link = Array.from(nav.querySelectorAll("a")).find((anchor) =>
+      anchor.textContent?.includes("KS2"),
+    );
     if (!link) {
       throw new Error("Link not found");
     }
