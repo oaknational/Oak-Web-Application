@@ -28,10 +28,6 @@ import {
   getMediaClipLabel,
   LessonPageLinkAnchorId,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import {
-  LessonOverviewQuizQuestion,
-  StemObject,
-} from "@/node-lib/curriculum-api-2023/shared.schema";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import {
   getContainerId,
@@ -44,6 +40,7 @@ import {
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
 import LessonPlayAllButton from "@/components/TeacherComponents/LessonPlayAllButton";
 import { getIsResourceDownloadable } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
+import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
 
 /**
  * Maps each lesson resource key to its associated download types.
@@ -104,117 +101,6 @@ const checkResourceDownloadable = (
   }
   return downloadTypes.some((type) =>
     getIsResourceDownloadable(type, downloads),
-  );
-};
-
-const ALLOWED_MATHJAX_SUBJECT_SLUGS = new Set([
-  "maths",
-  "physics",
-  "chemistry",
-  "biology",
-  "combined-science",
-  "science",
-]);
-
-const containsMathJax = (text: string | undefined | null): boolean => {
-  if (!text) return false;
-  const mathJaxPatterns = /(\$\$|\\\[|\\\(|\\begin\{)/;
-  return mathJaxPatterns.test(text);
-};
-
-const findMathJaxInStemObjects = (answer: StemObject[]): boolean => {
-  if (!answer) return false;
-  return answer.some((a) => a.type === "text" && containsMathJax(a.text));
-};
-
-const hasAnswerMathJax = (question: LessonOverviewQuizQuestion): boolean => {
-  const answers = question.answers;
-  if (!answers) return false;
-
-  if (
-    answers["multiple-choice"]?.some((ans) =>
-      findMathJaxInStemObjects(ans.answer),
-    )
-  ) {
-    return true;
-  }
-
-  if (answers.match?.some((ans) => findMathJaxInStemObjects(ans.matchOption))) {
-    return true;
-  }
-
-  if (answers.order?.some((ans) => findMathJaxInStemObjects(ans.answer))) {
-    return true;
-  }
-
-  if (
-    answers["short-answer"]?.some((ans) => findMathJaxInStemObjects(ans.answer))
-  ) {
-    return true;
-  }
-
-  return false;
-};
-
-const hasQuizMathJax = (
-  quizData: LessonOverviewQuizQuestion[] | undefined,
-): boolean => {
-  return (
-    quizData?.some((question) => {
-      const stemCheck = question.questionStem?.some(
-        (stem) => stem.type === "text" && containsMathJax(stem.text),
-      );
-      const answerCheck = hasAnswerMathJax(question);
-      return stemCheck || answerCheck;
-    }) ?? false
-  );
-};
-
-const hasLessonMathJax = (data: TeachersLessonOverviewPageData): boolean => {
-  const isLegacyLicense = false;
-
-  if (
-    (data.subjectSlug &&
-      !ALLOWED_MATHJAX_SUBJECT_SLUGS.has(data.subjectSlug)) ||
-    isLegacyLicense
-  ) {
-    return false;
-  }
-
-  if (
-    data.contentGuidance?.some((cg) =>
-      containsMathJax(cg.contentGuidanceDescription),
-    )
-  ) {
-    return true;
-  }
-  if (
-    data.misconceptionsAndCommonMistakes?.some(
-      (mcm) =>
-        containsMathJax(mcm.misconception) || containsMathJax(mcm.response),
-    )
-  ) {
-    return true;
-  }
-  if (data.teacherTips?.some((tt) => containsMathJax(tt.teacherTip))) {
-    return true;
-  }
-  if (
-    data.keyLearningPoints?.some((klp) => containsMathJax(klp.keyLearningPoint))
-  ) {
-    return true;
-  }
-  if (
-    data.lessonKeywords?.some(
-      (kw) => containsMathJax(kw.keyword) || containsMathJax(kw.description),
-    )
-  ) {
-    return true;
-  }
-
-  return (
-    hasQuizMathJax(data.exitQuiz || []) ||
-    hasQuizMathJax(data.starterQuiz || [])
   );
 };
 
@@ -586,7 +472,7 @@ export default function LessonView(
     loginRequired: data.loginRequired,
     geoRestricted: data.geoRestricted,
   });
-  const isMathJaxLesson = hasLessonMathJax(data);
+  const isMathJaxLesson = hasLessonMathJax(data, data.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
 
   const lessonResources = getLessonResources({

@@ -1,3 +1,5 @@
+import { TeachersLessonOverviewPageData } from "../../../node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+
 import { LessonOverviewProps } from "./LessonOverview.view";
 
 import {
@@ -5,14 +7,14 @@ import {
   StemObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-export const ALLOWED_MATHJAX_SUBJECT_SLUGS = [
+const ALLOWED_MATHJAX_SUBJECT_SLUGS = new Set([
   "maths",
   "physics",
   "chemistry",
   "biology",
   "combined-science",
   "science",
-];
+]);
 
 export const containsMathJax = (text: string | undefined | null): boolean => {
   if (!text) return false;
@@ -71,19 +73,18 @@ const hasQuizMathJax = (
 };
 
 export const hasLessonMathJax = (
-  lessonPage: LessonOverviewProps["lesson"],
+  lessonPage: LessonOverviewProps["lesson"] | TeachersLessonOverviewPageData,
   subjectSlug: string | null,
   isLegacyLicense: boolean,
 ): boolean => {
   if (
-    (subjectSlug && !ALLOWED_MATHJAX_SUBJECT_SLUGS.includes(subjectSlug)) ||
+    (subjectSlug && !ALLOWED_MATHJAX_SUBJECT_SLUGS.has(subjectSlug)) ||
     isLegacyLicense
   ) {
     return false;
   }
 
   if (
-    lessonPage.contentGuidance &&
     lessonPage.contentGuidance?.some((cg) =>
       containsMathJax(cg.contentGuidanceDescription),
     )
