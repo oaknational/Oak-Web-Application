@@ -17,11 +17,15 @@ import {
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
 import LessonPlayAllButton from "@/components/TeacherComponents/LessonPlayAllButton";
 import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
 
 export function LessonItem({
+  browsePathwayData,
   resource,
   slugs,
 }: Readonly<{
+  browsePathwayData: AnalyticsBrowseData;
   resource: LessonResource;
   slugs: {
     lessonSlug: string;
@@ -29,19 +33,18 @@ export function LessonItem({
     programmeSlug: string | null;
   };
 }>) {
+  const { track } = useAnalytics();
   const [skipResourceButtonFocused, setSkipResourceButtonFocused] =
     useState(false);
   const { title } = resource;
   const preselectedDownload = getPreselectedDownloadFromTitle(
     title as DownloadableLessonTitles,
   );
-  // const preselectedShare = getPreselectedQueryFromTitle(
-  //   title as DownloadableLessonTitles,
-  // );
 
   const downloadTitle = resource.downloadTitle
     ? resource.downloadTitle
     : title.toLowerCase();
+
   return (
     <OakFlex
       $flexDirection="column"
@@ -72,29 +75,44 @@ export function LessonItem({
             </OakHeading>
           )}
           {resource.key === "media-clips" && slugs && (
-            <LessonPlayAllButton {...slugs} />
+            <LessonPlayAllButton
+              {...slugs}
+              onTrackingCallback={() => {
+                track.lessonMediaClipsStarted({
+                  platform: "owa",
+                  product: "media clips",
+                  engagementIntent: "use",
+                  componentType: "go_to_media_clips_page_button",
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  mediaClipsButtonName: "play all",
+                  learningCycle: "n/a",
+                  ...browsePathwayData,
+                });
+              }}
+            />
           )}
           {resource.downloadable && slugs && (
             <LessonItemContainerLink
               page={"download"}
               resourceTitle={downloadTitle}
-              onClick={() => {}}
+              onClick={() => {
+                track.lessonResourceDownloadStarted({
+                  platform: "owa",
+                  product: "teacher lesson resources",
+                  engagementIntent: "use",
+                  componentType: "lesson_download_button",
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  downloadResourceButtonName: resource.trackingTitle!,
+                  ...browsePathwayData,
+                });
+              }}
               preselected={preselectedDownload}
               isSpecialist={false}
               {...slugs}
             />
           )}
-          {/* {shareable && slugs && (
-            <LessonItemContainerLink
-              page={"share"}
-              resourceTitle={downloadTitle}
-              onClick={onDownloadButtonClick}
-              preselected={preselectedShare}
-              isSpecialist={props.isSpecialist}
-              {...slugs}
-            />
-          )} */}
-
           {resource.skipLinkUrl && (
             <OakSecondaryButton
               element="a"

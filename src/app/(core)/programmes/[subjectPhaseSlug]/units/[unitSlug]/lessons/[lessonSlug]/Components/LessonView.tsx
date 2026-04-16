@@ -12,6 +12,7 @@ import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
+import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 
 export default function LessonView(
   data: Readonly<TeachersLessonOverviewPageData>,
@@ -23,11 +24,30 @@ export default function LessonView(
   const isMathJaxLesson = hasLessonMathJax(data, data.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
 
+  const browsePathwayData = getAnalyticsBrowseData({
+    keyStageSlug: data.keyStageSlug,
+    keyStageTitle: data.keyStageTitle,
+    subjectSlug: data.subjectSlug,
+    subjectTitle: data.subjectTitle,
+    unitSlug: data.unitSlug,
+    unitTitle: data.unitTitle,
+    year: data.year,
+    yearTitle: data.yearTitle,
+    examBoardTitle: data.examBoardTitle,
+    tierTitle: data.tierTitle,
+    pathwayTitle: data.pathwayTitle,
+    lessonSlug: data.lessonSlug,
+    lessonName: data.lessonTitle,
+    lessonReleaseDate: data.lessonReleaseDate,
+    isLegacy: false,
+  });
+
   const lessonResources = getLessonResources({
     downloads: data.downloads,
     data,
     copyRightState,
     isMathJaxLesson,
+    browsePathwayData,
   });
 
   return (
@@ -54,6 +74,7 @@ export default function LessonView(
           <OakGridArea $colSpan={[12, 9]} $mb={"spacing-48"}>
             {lessonResources.map((resource) => (
               <LessonItem
+                browsePathwayData={browsePathwayData}
                 slugs={{
                   lessonSlug: data.lessonSlug,
                   unitSlug: data.unitSlug,

@@ -1,5 +1,4 @@
 import { getIsResourceDownloadable } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
-import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import {
   LessonPageLinkAnchorId,
   createAttributionObject,
@@ -14,6 +13,8 @@ import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
+import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
+import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
 
 /**
  * Maps each lesson resource key to its associated download types.
@@ -48,6 +49,17 @@ const RESOURCE_TITLES: Record<
   "starter-quiz": "Prior knowledge starter quiz",
   "exit-quiz": "Assessment exit quiz",
   "additional-material": "Additional material",
+};
+
+const RESOURCE_TRACKING_TITLES: Partial<
+  Record<LessonPageLinkAnchorId, DownloadResourceButtonNameValueType>
+> = {
+  worksheet: "worksheet",
+  "slide-deck": "slide deck",
+  "starter-quiz": "starter quiz",
+  "exit-quiz": "exit quiz",
+  "additional-material": "additional material",
+  "lesson-guide": "lesson guide",
 };
 
 /**
@@ -85,6 +97,7 @@ export type LessonResource = {
   downloadTitle?: string;
   isFinalElement?: boolean;
   skipLinkUrl?: string;
+  trackingTitle?: DownloadResourceButtonNameValueType;
 };
 
 const SKIPPABLE_CONTENT_SECTIONS: Set<LessonPageLinkAnchorId> = new Set([
@@ -137,33 +150,18 @@ const getSkipLinkUrl = ({
 };
 
 export function getLessonResources({
+  browsePathwayData,
   downloads,
   data,
   copyRightState,
   isMathJaxLesson,
 }: {
+  browsePathwayData: AnalyticsBrowseData;
   downloads: TeachersLessonOverviewPageData["downloads"];
   data: TeachersLessonOverviewPageData;
   copyRightState: ReturnType<typeof useComplexCopyright>;
   isMathJaxLesson: boolean;
 }): LessonResource[] {
-  const browsePathwayData = getAnalyticsBrowseData({
-    keyStageSlug: data.keyStageSlug,
-    keyStageTitle: data.keyStageTitle,
-    subjectSlug: data.subjectSlug,
-    subjectTitle: data.subjectTitle,
-    unitSlug: data.unitSlug,
-    unitTitle: data.unitTitle,
-    year: data.year,
-    yearTitle: data.yearTitle,
-    examBoardTitle: data.examBoardTitle,
-    tierTitle: data.tierTitle,
-    pathwayTitle: data.pathwayTitle,
-    lessonSlug: data.lessonSlug,
-    lessonName: data.lessonTitle,
-    lessonReleaseDate: data.lessonReleaseDate,
-    isLegacy: false,
-  });
   const lessonGuide = data.lessonGuideUrl ? (
     <LessonOverviewDocPresentation
       asset={data.lessonGuideUrl}
@@ -306,6 +304,7 @@ export function getLessonResources({
       title: key === "media-clips" ? mediaClipLabel : RESOURCE_TITLES[key],
       downloadable: checkResourceDownloadable(key, downloads),
       downloadTitle: RESOURCE_DOWNLOAD_TITLES[key],
+      trackingTitle: RESOURCE_TRACKING_TITLES[key],
     }))
     .filter((item) => item.component)
     .map((item, index, array) => {
