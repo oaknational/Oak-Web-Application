@@ -160,41 +160,16 @@ export default function LessonView(
             />
           </OakGridArea>
           <OakGridArea $colSpan={[12, 8, 8]} id="lesson-content">
-            <OakBox
-              id="slide-deck"
-              style={{ height: 500 }}
-              className="anchor-section"
-            >
-              <OakHeading tag="h2">Slide deck</OakHeading>
-            </OakBox>
-            <OakBox
-              id="lesson-details"
-              style={{ height: 500 }}
-              className="anchor-section"
-            >
-              <OakHeading tag="h2">Lesson details</OakHeading>
-            </OakBox>
-            <OakBox
-              id="video"
-              style={{ height: 500 }}
-              className="anchor-section"
-            >
-              <OakHeading tag="h2">Video</OakHeading>
-            </OakBox>
-            <OakBox
-              id="worksheet"
-              style={{ height: 500 }}
-              className="anchor-section"
-            >
-              <OakHeading tag="h2">Worksheet</OakHeading>
-            </OakBox>
-            <OakBox
-              id="quiz"
-              style={{ height: 500 }}
-              className="anchor-section"
-            >
-              <OakHeading tag="h2">Quiz</OakHeading>
-            </OakBox>
+            {pageLinks.map((pageLink) => (
+              <OakBox
+                key={pageLink.anchorId}
+                id={pageLink.anchorId}
+                style={{ height: 500 }}
+                className="anchor-section"
+              >
+                <OakHeading tag="h2">{pageLink.label}</OakHeading>
+              </OakBox>
+            ))}
           </OakGridArea>
           <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
             <PreviousNextNav
