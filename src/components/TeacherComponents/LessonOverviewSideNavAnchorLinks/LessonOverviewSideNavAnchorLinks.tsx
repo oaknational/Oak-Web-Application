@@ -5,7 +5,6 @@ import {
   OakLI,
   OakSideMenuNavLink,
   OakUL,
-  useMediaQuery,
 } from "@oaknational/oak-components";
 
 import { getContainerId } from "../LessonItemContainer/LessonItemContainer";
@@ -33,8 +32,6 @@ const LessonOverviewSideNavAnchorLinks: FC<
   contentRestricted,
   downloadAllButtonProps,
 }) => {
-  const isDesktop = useMediaQuery("desktop");
-
   return (
     <OakFlex $flexDirection="column" $gap="spacing-32">
       <OakUL $reset $display="flex" $gap="spacing-16" $flexDirection="column">
@@ -69,11 +66,18 @@ const LessonOverviewSideNavAnchorLinks: FC<
         })}
       </OakUL>
 
-      <OakBox $ml="spacing-16">
+      <OakBox $ml="spacing-16" $display={["block", "block", "none"]}>
         <LessonOverviewDownloadAllButton
           {...downloadAllButtonProps}
           width="fit-content"
-          sizeVariant={isDesktop ? "large" : "small"}
+          sizeVariant="small"
+        />
+      </OakBox>
+      <OakBox $ml="spacing-16" $display={["none", "none", "block"]}>
+        <LessonOverviewDownloadAllButton
+          {...downloadAllButtonProps}
+          width="fit-content"
+          sizeVariant="large"
         />
       </OakBox>
     </OakFlex>
