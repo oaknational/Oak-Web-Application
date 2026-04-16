@@ -6,10 +6,13 @@ import {
   OakUiRoleToken,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { PortableTextBlockComponent } from "@portabletext/react";
 
 import CurricQuote from "@/components/CurriculumComponents/CurricQuote";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import Illustration from "@/components/SharedComponents/Illustration";
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const StyledResponsiveFlex = styled(OakFlex)`
   flex-direction: column;
@@ -19,9 +22,18 @@ const StyledResponsiveFlex = styled(OakFlex)`
   }
 `;
 
+const OakPStyled: PortableTextBlockComponent = (props) => {
+  return (
+    <OakP $mt={"spacing-16"} $mb={"spacing-12"} $font={"body-1"}>
+      {props.children}
+    </OakP>
+  );
+};
+
 export type GuidingPrincipleItem = {
   heading: string;
-  text: string;
+  text?: string;
+  text2Raw?: PortableTextJSON;
 };
 
 const DEFAULT_PRINCIPLES: GuidingPrincipleItem[] = [
@@ -55,7 +67,7 @@ export type GuidingPrinciplesProps = {
   accentColor: OakUiRoleToken;
   $background: OakUiRoleToken;
   title?: string;
-  subtitle?: string;
+  text?: string | PortableTextJSON;
   imageUrl?: string;
   imageAlt?: string;
   principles?: GuidingPrincipleItem[];
@@ -64,7 +76,7 @@ export function GuidingPrinciples({
   accentColor,
   $background,
   title = "Our guiding principles",
-  subtitle = "We have crafted a set of overarching principles that describe the features important to our curricula in all subjects.",
+  text = "We have crafted a set of overarching principles that describe the features important to our curricula in all subjects.",
   imageUrl,
   imageAlt = "",
   principles = DEFAULT_PRINCIPLES,
@@ -93,10 +105,20 @@ export function GuidingPrinciples({
           <OakHeading tag="h2" $font={["heading-4", "heading-3"]}>
             {title}
           </OakHeading>
-
-          <OakP $mt={"spacing-16"} $mb={"spacing-12"} $font={"body-1"}>
-            {subtitle}
-          </OakP>
+          {typeof text === "string" ? (
+            <OakP $mt={"spacing-16"} $mb={"spacing-12"} $font={"body-1"}>
+              {text}
+            </OakP>
+          ) : (
+            <PortableTextWithDefaults
+              value={text}
+              components={{
+                block: {
+                  normal: OakPStyled,
+                },
+              }}
+            />
+          )}
         </OakFlex>
 
         <OakFlex
@@ -138,10 +160,9 @@ export function GuidingPrinciples({
           <CurricQuote
             key={principle.heading}
             title={principle.heading}
+            text={principle.text2Raw ?? principle.text}
             barColor={accentColor}
-          >
-            {principle.text}
-          </CurricQuote>
+          />
         ))}
       </OakFlex>
     </StyledResponsiveFlex>

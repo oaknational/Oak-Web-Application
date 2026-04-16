@@ -11,7 +11,7 @@ const meta: Meta<typeof CurricQuote> = {
     title: {
       control: "text",
     },
-    children: {
+    text: {
       control: "text",
     },
     backgroundColor: {
@@ -69,8 +69,7 @@ type Story = StoryObj<typeof CurricQuote>;
 export const Default: Story = {
   args: {
     title: "Evidence-informed",
-    children:
-      "Our approach enables the rigorous application of research outcomes, science of learning and impactful best practice.",
+    text: "Our approach enables the rigorous application of research outcomes, science of learning and impactful best practice.",
     backgroundColor: "transparent",
     barColor: "bg-decorative1-main",
   },
@@ -79,8 +78,7 @@ export const Default: Story = {
 export const AlternativeColors: Story = {
   args: {
     title: "Accessible & Inclusive",
-    children:
-      "Designed to be adaptable for all learners, ensuring every student can achieve.",
+    text: "Designed to be adaptable for all learners, ensuring every student can achieve.",
     backgroundColor: "bg-decorative5-subdued",
     barColor: "text-success",
   },

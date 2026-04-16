@@ -2306,7 +2306,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   -moz-letter-spacing: -0.005rem;
   -ms-letter-spacing: -0.005rem;
   letter-spacing: -0.005rem;
-  color: #222222;
 }
 
 .c128 {
@@ -4193,19 +4192,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   }
 }
 
-@media (min-width:1280px) {
-  .c141 {
-    font-weight: 300;
-  }
-}
-
 @media (min-width:750px) {
-  .c141 {
-    font-size: 1.125rem;
-  }
-}
-
-@media (min-width:1280px) {
   .c141 {
     font-size: 1.125rem;
   }
@@ -4217,22 +4204,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   }
 }
 
-@media (min-width:1280px) {
-  .c141 {
-    line-height: 1.75rem;
-  }
-}
-
 @media (min-width:750px) {
-  .c141 {
-    -webkit-letter-spacing: -0.005rem;
-    -moz-letter-spacing: -0.005rem;
-    -ms-letter-spacing: -0.005rem;
-    letter-spacing: -0.005rem;
-  }
-}
-
-@media (min-width:1280px) {
   .c141 {
     -webkit-letter-spacing: -0.005rem;
     -moz-letter-spacing: -0.005rem;
@@ -5024,14 +4996,14 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                   class="c80"
                 >
                   <img
-                    alt="test image"
+                    alt=""
                     class="c31"
                     data-nimg="fill"
                     decoding="async"
                     loading="lazy"
                     sizes="100vw"
-                    src="http://localhost/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=3840&q=75"
-                    srcset="/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=3840&q=75 3840w"
+                    src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75 3840w"
                     style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                   />
                 </span>
@@ -5176,7 +5148,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       <p
                         class="c100"
                       >
-                        We have crafted a set of overarching principles that describe the features important to our curricula in all subjects.
+                        Our guiding principles guide our approach.
                       </p>
                     </div>
                     <div
@@ -5186,14 +5158,14 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c102"
                       >
                         <img
-                          alt="test image"
+                          alt=""
                           class="c31"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
                           sizes="100vw"
-                          src="http://localhost/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=3840&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=3840&q=75 3840w"
+                          src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75 3840w"
                           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                         />
                       </span>
@@ -5461,7 +5433,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                   <p
                     class="c141"
                   >
-                    Partners involved in the creation of our new curricula (published after September 2022).
+                    Our current partners
                   </p>
                 </div>
                 <div
@@ -5477,14 +5449,14 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c144"
                       >
                         <img
-                          alt="test image"
+                          alt=""
                           class="c31"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
                           sizes="100vw"
-                          src="http://localhost/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=3840&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=3840&q=75 3840w"
+                          src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75 3840w"
                           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                         />
                       </span>
@@ -5506,7 +5478,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                   <p
                     class="c141"
                   >
-                    Partners involved in the creation of our previous curricula (published before September 2022).
+                    Our legacy partners
                   </p>
                 </div>
                 <div
@@ -5522,14 +5494,14 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                         class="c144"
                       >
                         <img
-                          alt="test image"
+                          alt=""
                           class="c31"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
                           sizes="100vw"
-                          src="http://localhost/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=3840&q=75"
-                          srcset="/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ftest.png&w=3840&q=75 3840w"
+                          src="http://localhost/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2FNEXT_PUBLIC_SANITY_ASSET_CDN_HOST%2Fimages%2Fp%2Fd%2Fabcdef-300x300.png&w=3840&q=75 3840w"
                           style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                         />
                       </span>
