@@ -5,7 +5,7 @@ set -euo pipefail
 
 json=$(npm audit --json 2>/dev/null || true)
 
-if [ -z "$json" ] || [ "$json" = "{}" ]; then
+if [[ -z "$json" ]] || [[ "$json" = "{}" ]]; then
   echo "✅ No vulnerabilities found."
   exit 0
 fi

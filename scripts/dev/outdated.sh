@@ -5,7 +5,7 @@ set -euo pipefail
 
 json=$(npm outdated --json 2>/dev/null || true)
 
-if [ -z "$json" ] || [ "$json" = "{}" ]; then
+if [[ -z "$json" ]] || [[ "$json" = "{}" ]]; then
   echo "✅ All packages are up to date."
   exit 0
 fi
