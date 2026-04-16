@@ -12,12 +12,12 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: set up Node
-        uses: actions/setup-node@v3
+        uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb #v6
         with:
-          node-version: 22.x
-          cache: "npm"
+          version: 10
+          cache: true
 
-      - run: npm ci --verbose
+      - run: pnpm install --frozen-lockfile --verbose
         env:
           NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 

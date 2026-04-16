@@ -48,13 +48,13 @@ Now populate the file with values from the 1Password developers vault, search fo
 Now install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 Then, run the development server:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 If successful two further config files `.env.development.local` and `.env.local` will have been automatically generated. You can access the running web app on `http://localhost:3000`
@@ -65,24 +65,24 @@ For more detail please see the [test documentation](docs/testing.md).
 
 ### Pa11y Tests
 
-We run Pa11yCI in CI to check for deterministic accessibility issues. To run Pa11y locally start the dev server with `npm run dev`, then in another process run Pa11y with `npm run pa11y`.
+We run Pa11yCI in CI to check for deterministic accessibility issues. To run Pa11y locally start the dev server with `pnpm run dev`, then in another process run Pa11y with `pnpm run pa11y`.
 
 ### Unit Tests
 
 Unit tests live next to the code they are testing wherever possible. Next does not allow any files under the `src/pages/` directory other than routes, so those test file are under the `src/__tests_/pages/` directory, mirroring the `src/pages` file structure.
 
-- `npm run test` will run the tests using `--watch`, with coverage statistics disabled.
-- `npm run test:coverage` will run tests using `--watch` with coverage statistics enabled.
-- `npm run test:ci` will run the tests once and create a coverage report.
+- `pnpm run test` will run the tests using `--watch`, with coverage statistics disabled.
+- `pnpm run test:coverage` will run tests using `--watch` with coverage statistics enabled.
+- `pnpm run test:ci` will run the tests once and create a coverage report.
 
 ### Reporting
 
-Once you've run a build with `npm run build` you can see a report in the `./reports/` directory.
+Once you've run a build with `pnpm run build` you can see a report in the `./reports/` directory.
 
 You can also run the following to open the report in your browser.
 
 ```bash
-npm run report:open
+pnpm run report:open
 ```
 
 ### End-to-End Browser Tests
@@ -105,7 +105,7 @@ Currently this hook
 
 #### Commit Message Validation
 
-We use [Commitlint](https://commitlint.js.org/#/) to validate that commit message meet the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0-beta.2/) standard. If you want help with the format you can use the interactive commit message prompt by running the script `npm run cc`, note you will need to have staged Git changes first or it will error (because there will be nothing to commit).
+We use [Commitlint](https://commitlint.js.org/#/) to validate that commit message meet the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0-beta.2/) standard. If you want help with the format you can use the interactive commit message prompt by running the script `pnpm run cc`, note you will need to have staged Git changes first or it will error (because there will be nothing to commit).
 
 ## CI/CD
 

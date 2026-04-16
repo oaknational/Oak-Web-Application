@@ -37,13 +37,13 @@ jobs:
           persist-credentials: false
 
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb #v6
         with:
-          node-version: 22.x
-          cache: "npm"
+          version: 10
+          cache: true
 
       # Install.
-      - run: npm ci --verbose
+      - run: pnpm install --verbose
 
       # Create Github release using semantic-release package.
       # See config here release.config.js
@@ -51,7 +51,7 @@ jobs:
       # and updates the changelog file.
       - name: do release
         id: semantic_release
-        run: npx semantic-release
+        run: pnpx semantic-release
         env:
           GH_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
           # Don't run pre-commit or commit message hooks on this commit

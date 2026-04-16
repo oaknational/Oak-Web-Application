@@ -46,7 +46,7 @@ async function run() {
     });
 
     await exec.exec(
-      "npx percy snapshot --verbose percy.snapshot.list.js -c percy.config.js ",
+      "pnpx percy snapshot --verbose percy.snapshot.list.js -c percy.config.js ",
     );
 
     // The script ran to completion, a success state for this action

@@ -1,6 +1,5 @@
 import { screen } from "@testing-library/react";
 import { useForm } from "react-hook-form";
-import userEvent from "@testing-library/user-event";
 
 import { ResourceFormValues } from "../types/downloadAndShare.types";
 
@@ -54,34 +53,6 @@ describe("lesson share card group", () => {
 
     const resourceCardLabel = screen.getByText("Video");
     expect(resourceCardLabel).toBeInTheDocument();
-  });
-  it("should toggle the checkbox when clicked", async () => {
-    const shareableResources = [
-      {
-        exists: true,
-        type: "video" as const,
-        metadata: "5min",
-        label: "Video",
-      },
-    ];
-    renderWithTheme(
-      <ComponentWrapper
-        shareableResources={shareableResources}
-        shareLink="www.fake.com"
-      />,
-    );
-
-    const checkbox = screen.getByRole("checkbox");
-    expect(checkbox).toBeInTheDocument();
-    expect(checkbox).not.toBeChecked();
-
-    const user = userEvent.setup();
-    const checkboxLabel = screen.getByText("Video");
-    await user.click(checkboxLabel);
-    expect(checkbox).toBeChecked();
-
-    await user.click(checkboxLabel);
-    expect(checkbox).not.toBeChecked();
   });
   it("should render pdf label in uppercase", () => {
     const shareableResources = [

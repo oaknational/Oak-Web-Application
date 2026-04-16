@@ -11,11 +11,11 @@ Make sure the `SANITY_GRAPHQL_URL` env var is set to point to the correct datase
 
 After making changes to the `.gql` files re-run the codegen to update the SDK
 ```
-> npm run gql-codegen:sanity
+> pnpm run gql-codegen:sanity
 ```
 If you're working iteratively you can run it with the `--watch` flag to have it pick up on changes
 ```
-> npm run gql-codegen:sanity -- --watch
+> pnpm run gql-codegen:sanity -- --watch
 ```
 
 ### Mocking & Fixtures

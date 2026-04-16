@@ -22,22 +22,22 @@ jobs:
         with:
           fetch-depth: 0
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb #v6
         with:
-          node-version: 22.x
-          cache: "npm"
+          version: 10
+          cache: true
 
       # Install.
-      - run: npm ci --verbose
+      - run: pnpm install --verbose
 
       # Check formatting adheres to our config.
-      - run: npm run format:check
+      - run: pnpm run format:check
 
       # Lint.
-      - run: npm run lint
+      - run: pnpm run lint
 
       # Check types.
-      - run: npm run check-types
+      - run: pnpm run check-types
 
   test:
     name: test, Sonar
@@ -50,16 +50,16 @@ jobs:
         with:
           fetch-depth: 0
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb #v6
         with:
-          node-version: 22.x
-          cache: "npm"
+          version: 10
+          cache: true
 
       # Install.
-      - run: npm ci --verbose
+      - run: pnpm install --verbose
 
       # Unit tests, no integration tests.
-      - run: npm run test:ci
+      - run: pnpm run test:ci
 
       # Manually run the SonarCloud scan so we can send test coverage information.
       - name: SonarCloud Scan
