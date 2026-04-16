@@ -68,7 +68,12 @@ export const PostFootnoteAnnotation = (props: PostFootnoteAnnotationProps) => {
     <OakSpan>
       {props.children}
 
-      <OakBox as="sup" $position="relative" $color={"text-link-active"}>
+      <OakBox
+        as="sup"
+        $position="relative"
+        $textDecoration={"underline"}
+        $color={"text-link-active"}
+      >
         <AnchorTarget id={footnoteBackLinkAnchor(footnote.markKey)} />
 
         <a
