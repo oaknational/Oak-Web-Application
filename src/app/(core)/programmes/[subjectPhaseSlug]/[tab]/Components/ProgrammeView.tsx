@@ -1,6 +1,6 @@
 "use client";
 
-import { OakBox, OakMaxWidth, OakTabs } from "@oaknational/oak-components";
+import { OakMaxWidth, OakTabs } from "@oaknational/oak-components";
 import { useEffect, useMemo, useState } from "react";
 import { notFound, usePathname, useSearchParams } from "next/navigation";
 
@@ -144,37 +144,34 @@ export const ProgrammeView = ({
         bullets={subjectPhaseSanityData?.bullets}
       />
       {curriculumInfo.nonCurriculum ? null : (
-        <OakBox
+        <OakMaxWidth
           as="nav"
           aria-label="Programme page tabs"
+          $ph={["spacing-20", "spacing-20", "spacing-0"]}
+          $mb={["spacing-0", "spacing-48", "spacing-48"]}
           data-testid="programme-tabs"
         >
-          <OakMaxWidth
-            $ph={["spacing-20", "spacing-20", "spacing-0"]}
-            $mb={["spacing-0", "spacing-48", "spacing-48"]}
-          >
-            <OakTabs<TabName>
-              sizeVariant={["compact", "default"]}
-              colorVariant="black"
-              activeTab={tabSlugToName[activeTab]}
-              onTabClick={(tabName, event) => {
-                const tabSlug = tabNameToSlug[tabName];
-                // Prevents a full page reload using client side nav
-                event.preventDefault();
-                globalThis.history.pushState(null, "", tabSlug);
-              }}
-              tabs={TAB_NAMES.map((tab) => ({
-                label: tab,
-                type: "link",
-                href: resolveOakHref({
-                  page: "teacher-programme",
-                  subjectPhaseSlug,
-                  tab: tabNameToSlug[tab],
-                }),
-              }))}
-            />
-          </OakMaxWidth>
-        </OakBox>
+          <OakTabs<TabName>
+            sizeVariant={["compact", "default"]}
+            colorVariant="black"
+            activeTab={tabSlugToName[activeTab]}
+            onTabClick={(tabName, event) => {
+              const tabSlug = tabNameToSlug[tabName];
+              // Prevents a full page reload using client side nav
+              event.preventDefault();
+              globalThis.history.pushState(null, "", tabSlug);
+            }}
+            tabs={TAB_NAMES.map((tab) => ({
+              label: tab,
+              type: "link",
+              href: resolveOakHref({
+                page: "teacher-programme",
+                subjectPhaseSlug,
+                tab: tabNameToSlug[tab],
+              }),
+            }))}
+          />
+        </OakMaxWidth>
       )}
       <TabContent
         tabSlug={activeTab}
