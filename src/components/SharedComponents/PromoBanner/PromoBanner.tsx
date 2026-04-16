@@ -3,9 +3,11 @@ import {
   OakFlex,
   OakBox,
   OakHandDrawnHR,
-  OakSecondaryLink,
   OakUiRoleToken,
+  OakSmallTertiaryInvertedButton,
+  OakSpan,
 } from "@oaknational/oak-components";
+import Link from "next/link";
 
 import { ResolveOakHrefProps, resolveOakHref } from "@/common-lib/urls";
 
@@ -46,14 +48,15 @@ const PromoBanner: FC<PromoBannerProps> = ({
           >
             {message}
           </OakFlex>
-          <OakSecondaryLink
+          <OakSmallTertiaryInvertedButton
+            element={Link}
             href={href}
             title={ctaText}
             iconName="chevron-right"
             isTrailingIcon={true}
           >
-            {ctaText}
-          </OakSecondaryLink>
+            <OakSpan $font={"heading-7"}>{ctaText}</OakSpan>
+          </OakSmallTertiaryInvertedButton>
         </OakFlex>
       </OakFlex>
       <OakBox $background={background} $height={"spacing-4"}>
