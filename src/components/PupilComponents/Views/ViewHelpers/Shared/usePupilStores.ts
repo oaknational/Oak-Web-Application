@@ -40,6 +40,7 @@ export const usePupilStores = (params?: UsePupilStoresParams) => {
   const initialiseLessonProgress = usePupilLessonProgress(
     (state) => state.initialiseLessonProgress,
   );
+  const currentLessonSlug = usePupilLessonProgress((state) => state.lessonSlug);
   const { initialisePupilLessonAnalytics } = usePupilLessonAnalytics();
   const pathwayData = useMemo(
     () => (browseData ? getPupilPathwayData(browseData) : null),
@@ -49,6 +50,7 @@ export const usePupilStores = (params?: UsePupilStoresParams) => {
 
   useEffect(() => {
     if (!browseData || !lessonContent) return;
+    if (currentLessonSlug === browseData.lessonSlug) return;
     const initialiseKey = `${browseData.lessonSlug}:${availableSectionsKey}`;
     if (initialiseKeyRef.current === initialiseKey) return;
     initialiseKeyRef.current = initialiseKey;
@@ -63,6 +65,7 @@ export const usePupilStores = (params?: UsePupilStoresParams) => {
     availableSections,
     availableSectionsKey,
     browseData,
+    currentLessonSlug,
     lessonContent,
     initialiseLessonProgress,
   ]);
