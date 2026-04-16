@@ -1,7 +1,14 @@
 "use client";
 
 import { Fragment } from "react";
-import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakGrid,
+  OakGridArea,
+  OakHandDrawnHR,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
@@ -14,7 +21,10 @@ import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverv
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
-import { createAttributionObject } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import {
+  createAttributionObject,
+  getMediaClipLabel,
+} from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonOverviewQuizQuestion,
   StemObject,
@@ -85,7 +95,6 @@ const hasQuizMathJax = (
 };
 
 const hasLessonMathJax = (data: TeachersLessonOverviewPageData): boolean => {
-  // Teacher lessons are never legacy license
   const isLegacyLicense = false;
 
   if (
@@ -249,11 +258,11 @@ function getLessonResources({
   const exitQuiz = data.exitQuiz ? (
     <QuizContainerNew
       questions={data.exitQuiz}
-      imageAttribution={createAttributionObject(data.starterQuiz)}
+      imageAttribution={createAttributionObject(data.exitQuiz)}
       isMathJaxLesson={isMathJaxLesson}
     />
   ) : undefined;
-  const additionalMaterials = data.additionalMaterialUrl ? (
+  const additionalMaterial = data.additionalMaterialUrl ? (
     <LessonOverviewDocPresentation
       asset={data.additionalMaterialUrl}
       title={data.lessonTitle}
@@ -261,16 +270,64 @@ function getLessonResources({
       docType="additional material"
     />
   ) : undefined;
+  const mediaClipLabel = data.subjectSlug
+    ? getMediaClipLabel(data.subjectSlug)
+    : "Video & audio clips";
   return [
-    { key: "lesson-guide", component: lessonGuide },
-    { key: "presentation", component: presentation },
-    { key: "media-clips", component: mediaClips },
-    { key: "lesson-details", component: lessonDetails },
-    { key: "lesson-video", component: lessonVideo },
-    { key: "worksheet", component: worksheet },
-    { key: "starter-quiz", component: starterQuiz },
-    { key: "exit-quiz", component: exitQuiz },
-    { key: "addtional-materials", component: additionalMaterials },
+    {
+      key: "lesson-guide",
+      component: lessonGuide,
+      showSkipLink: true,
+      title: "Lesson guide",
+    },
+    {
+      key: "slide-deck",
+      component: presentation,
+      showSkipLink: true,
+      title: "Lesson slides",
+    },
+    {
+      key: "media-clips",
+      component: mediaClips,
+      showSkipLink: false,
+      title: mediaClipLabel,
+    },
+    {
+      key: "lesson-details",
+      component: lessonDetails,
+      showSkipLink: false,
+      title: "Lesson details",
+    },
+    {
+      key: "video",
+      component: lessonVideo,
+      showSkipLink: true,
+      title: "Lesson video",
+    },
+    {
+      key: "worksheet",
+      component: worksheet,
+      showSkipLink: true,
+      title: "Worksheet",
+    },
+    {
+      key: "starter-quiz",
+      component: starterQuiz,
+      showSkipLink: true,
+      title: "Prior knowledge starter quiz",
+    },
+    {
+      key: "exit-quiz",
+      component: exitQuiz,
+      showSkipLink: true,
+      title: "Assessment exit quiz",
+    },
+    {
+      key: "additional-material",
+      component: additionalMaterial,
+      showSkipLink: true,
+      title: "Additional material",
+    },
   ].filter((item) => item.component);
 }
 
@@ -312,9 +369,20 @@ export default function LessonView(
           </OakGridArea>
           <OakGridArea $colSpan={[12, 9]} $mb={"spacing-48"}>
             {lessonResources.map((resource) => (
-              <OakBox key={resource.key} $mb={"spacing-48"}>
-                {resource.component}
-              </OakBox>
+              <OakFlex $flexDirection={"column"} key={resource.key}>
+                <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
+                  {resource.title}
+                </OakHeading>
+
+                <OakFlex>{resource.component}</OakFlex>
+                <OakHandDrawnHR
+                  data-testid="hr"
+                  hrColor={"bg-decorative4-main"}
+                  $height={"spacing-4"}
+                  $mt={["spacing-24", "spacing-56"]}
+                  $mb={["spacing-12", "spacing-24"]}
+                />
+              </OakFlex>
             ))}
             <PreviousNextNav
               backgroundColorLevel={1}
