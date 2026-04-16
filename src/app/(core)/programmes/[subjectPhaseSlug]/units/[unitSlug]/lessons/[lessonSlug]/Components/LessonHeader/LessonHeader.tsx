@@ -1,6 +1,7 @@
 "use client";
-import { OakPrimaryButton, useMediaQuery } from "@oaknational/oak-components";
+import { OakPrimaryButton, OakSpan } from "@oaknational/oak-components";
 import Link from "next/link";
+import styled from "styled-components";
 
 import {
   Header,
@@ -9,6 +10,7 @@ import {
 import HeaderNavFooter from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooter";
 import { resolveOakHref } from "@/common-lib/urls";
 import { TeachersLessonOverviewAdjacentLesson } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
+import { getBreakpoint } from "@/styles/utils/responsive";
 
 export type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
   currentLessonSlug: string;
@@ -21,7 +23,7 @@ export type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
 const LessonHeader = (props: LessonHeaderProps) => {
   const { prevLesson, nextLesson, unitSlug, programmeSlug, currentLessonSlug } =
     props;
-  const isDesktop = useMediaQuery("desktop");
+
   return (
     <>
       <Header
@@ -72,12 +74,19 @@ const LessonHeader = (props: LessonHeaderProps) => {
               query: { preselected: "all" },
             })}
           >
-            {isDesktop ? "Download all resources" : "Download"}
+            Download <DesktopButtonText>all resources</DesktopButtonText>
           </OakPrimaryButton>
         }
       />
     </>
   );
 };
+
+const DesktopButtonText = styled(OakSpan)`
+  display: none;
+  @media (min-width: ${getBreakpoint("large")}px) {
+    display: unset;
+  }
+`;
 
 export default LessonHeader;
