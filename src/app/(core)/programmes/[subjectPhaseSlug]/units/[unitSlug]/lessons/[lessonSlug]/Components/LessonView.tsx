@@ -2,17 +2,13 @@
 
 import {
   OakBox,
-  OakFlex,
   OakGrid,
   OakGridArea,
   OakHeading,
-  OakSmallTertiaryInvertedButton,
-  parseSpacing,
 } from "@oaknational/oak-components";
-import Link from "next/link";
-import styled from "styled-components";
 
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
+import LessonShareBar from "./LessonShareBar/LessonShareBar";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
 
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
@@ -86,13 +82,6 @@ export default function LessonView(
 
   const { track } = useAnalytics();
 
-  /**
-   * Needed to compensate for the padding on buttons in the share link bar
-   */
-  const NegativeMarginFlex = styled(OakFlex)`
-    margin-left: -${parseSpacing("spacing-8")};
-  `;
-
   const browsePathwayData = getAnalyticsBrowseData({
     keyStageSlug,
     keyStageTitle,
@@ -127,6 +116,8 @@ export default function LessonView(
   };
 
   const showDownloadAll = hasDownloadableAssets && !contentRestricted;
+  const showPupilShare =
+    !contentRestricted && !expired && !actions?.disablePupilShare;
 
   return (
     <CurrentSectionIdProvider>
@@ -134,7 +125,7 @@ export default function LessonView(
         <OakGrid
           $cg="spacing-16"
           $rg="spacing-32"
-          $mb={["spacing-0", "spacing-48", "spacing-48"]}
+          $mb={["spacing-0", "spacing-48"]}
           $mh="auto"
           $mt={["spacing-48", "spacing-56"]}
           $width={"100%"}
@@ -143,51 +134,22 @@ export default function LessonView(
           <OakGridArea
             $colSpan={[12, 8, 12]}
             $colStart={[1, 5, 1]}
-            $rowStart={[1, 1, 1]}
+            $rowStart={1}
           >
-            <NegativeMarginFlex
-              $display="flex"
-              $flexDirection={["column", "row"]}
-              $justifyContent={["flex-start", "flex-start", "flex-end"]}
-              $gap={["spacing-24", "spacing-40", "spacing-40"]}
-            >
-              {!contentRestricted &&
-                !expired &&
-                !actions?.disablePupilShare && (
-                  <OakSmallTertiaryInvertedButton
-                    element={Link}
-                    href={resolveOakHref({
-                      page: "lesson-share",
-                      lessonSlug,
-                      unitSlug,
-                      programmeSlug,
-                      query: { preselected: "all" },
-                    })}
-                    iconName="share"
-                    isTrailingIcon
-                  >
-                    Share lesson with pupils
-                  </OakSmallTertiaryInvertedButton>
-                )}
-              <OakSmallTertiaryInvertedButton
-                iconName="external"
-                isTrailingIcon
-                element="a"
-                href="https://labs.thenational.academy/aila"
-                target="_blank"
-                rel="nofollow"
-              >
-                Create more with AI
-              </OakSmallTertiaryInvertedButton>
-            </NegativeMarginFlex>
+            <LessonShareBar
+              showPupilShare={showPupilShare}
+              lessonSlug={lessonSlug}
+              unitSlug={unitSlug}
+              programmeSlug={programmeSlug}
+            />
           </OakGridArea>
           <OakGridArea
-            $colSpan={[12, 4, 4]}
-            $colStart={[1, 1, 1]}
+            $colSpan={[12, 4]}
+            $colStart={1}
             $rowStart={[2, 1, 2]}
             $rowSpan={[1, 2, 1]}
             $position="relative"
-            $display={["none", "block", "block"]}
+            $display={["none", "block"]}
           >
             <OakBox
               $position="absolute"
@@ -217,9 +179,9 @@ export default function LessonView(
             />
           </OakGridArea>
           <OakGridArea
-            $colSpan={[12, 8, 8]}
-            $colStart={[1, 5, 5]}
-            $rowStart={[2, 2, 2]}
+            $colSpan={[12, 8]}
+            $colStart={[1, 5]}
+            $rowStart={2}
             id="lesson-content"
           >
             {pageLinks.map((pageLink) => (
@@ -235,8 +197,8 @@ export default function LessonView(
           </OakGridArea>
           <OakGridArea
             $colSpan={12}
-            $colStart={[1, 1, 1]}
-            $rowStart={[3, 3, 3]}
+            $colStart={1}
+            $rowStart={3}
             $mb={"spacing-48"}
           >
             <PreviousNextNav
