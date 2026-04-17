@@ -8,6 +8,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
+import LessonShareBar from "./LessonShareBar/LessonShareBar";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
 
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
@@ -48,6 +49,7 @@ export default function LessonView(
     examBoardTitle,
     tierTitle,
     pathwayTitle,
+    actions,
   } = props;
 
   const {
@@ -114,23 +116,40 @@ export default function LessonView(
   };
 
   const showDownloadAll = hasDownloadableAssets && !contentRestricted;
+  const showPupilShare =
+    !contentRestricted && !expired && !actions?.disablePupilShare;
 
   return (
     <CurrentSectionIdProvider>
-      <OakBox $ph="spacing-40">
+      <OakBox $ph={["spacing-20", "spacing-40"]}>
         <OakGrid
           $cg="spacing-16"
-          $rg="spacing-56"
-          $mb={["spacing-0", "spacing-48", "spacing-48"]}
+          $rg="spacing-32"
+          $mb={["spacing-0", "spacing-48"]}
           $mh="auto"
           $mt={["spacing-48", "spacing-56"]}
           $width={"100%"}
           $maxWidth={"spacing-1280"}
         >
           <OakGridArea
-            $colSpan={[12, 4, 4]}
-            $display={["none", "block", "block"]}
+            $colSpan={[12, 8, 12]}
+            $colStart={[1, 5, 1]}
+            $rowStart={1}
+          >
+            <LessonShareBar
+              showPupilShare={showPupilShare}
+              lessonSlug={lessonSlug}
+              unitSlug={unitSlug}
+              programmeSlug={programmeSlug}
+            />
+          </OakGridArea>
+          <OakGridArea
+            $colSpan={[12, 4]}
+            $colStart={1}
+            $rowStart={[2, 1, 2]}
+            $rowSpan={[1, 2, 1]}
             $position="relative"
+            $display={["none", "block"]}
           >
             <OakBox
               $position="absolute"
@@ -159,7 +178,12 @@ export default function LessonView(
               }}
             />
           </OakGridArea>
-          <OakGridArea $colSpan={[12, 8, 8]} id="lesson-content">
+          <OakGridArea
+            $colSpan={[12, 8]}
+            $colStart={[1, 5]}
+            $rowStart={2}
+            id="lesson-content"
+          >
             {pageLinks.map((pageLink) => (
               <OakBox
                 key={pageLink.anchorId}
@@ -171,7 +195,12 @@ export default function LessonView(
               </OakBox>
             ))}
           </OakGridArea>
-          <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
+          <OakGridArea
+            $colSpan={12}
+            $colStart={1}
+            $rowStart={3}
+            $mb={"spacing-48"}
+          >
             <PreviousNextNav
               backgroundColorLevel={1}
               navItemType="lesson"
