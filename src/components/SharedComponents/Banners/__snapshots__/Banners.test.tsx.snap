@@ -3,26 +3,26 @@
 exports[`Banners shows mythbusting banner 1`] = `
 <div>
   <div
-    class="sc-aXZVg hkJkIR"
+    class="sc-aXZVg dFOKqz"
     role="banner"
   >
     <div
-      class="sc-aXZVg sc-gEvEer gOchNo jMLdOa"
+      class="sc-aXZVg sc-gEvEer idSkbS jMLdOa"
     >
       <div
-        class="sc-aXZVg sc-gEvEer kqEqNl cACqPs"
+        class="sc-aXZVg sc-gEvEer hDSZNb cACqPs"
       >
         <div
-          class="sc-aXZVg sc-gEvEer iQMMTO jVmVJV"
+          class="sc-aXZVg sc-gEvEer dmdaXs jVmVJV"
         >
           <p
-            class="sc-ikkxIA jTavWX"
+            class="sc-ikkxIA gJwFEJ"
           >
             <span
               style="display: inline-block; transform: rotate(-1.5deg); padding: 4px 8px;"
             >
               <span
-                class="sc-eqUAAy fTRfmp"
+                class="sc-eqUAAy kVreFz"
               >
                 Myths
               </span>
@@ -35,33 +35,33 @@ exports[`Banners shows mythbusting banner 1`] = `
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer sc-jEACwC lqCcG iDBIXi gneBkf"
+          class="sc-aXZVg sc-gEvEer sc-jEACwC srKXU iDBIXi eitCDZ"
         >
           <a
-            class="sc-dcJsrY sc-cwHptR fTjNDM flGUwh"
+            class="sc-dcJsrY sc-cwHptR hLVsma flGUwh"
             href="/campaigns/mythbusting"
             title="Learn why"
           >
             <div
-              class="sc-aXZVg sc-gEvEer cgcitx kejpBe"
+              class="sc-aXZVg sc-gEvEer gICywH kejpBe"
             >
               <span
-                class="sc-eqUAAy dSFliu"
+                class="sc-eqUAAy dECBeo"
               >
                 <span
-                  class="sc-eqUAAy iuxBUE"
+                  class="sc-eqUAAy bngpZa"
                 >
                   Learn why
                 </span>
               </span>
               <div
-                class="sc-aXZVg sc-gEvEer eTKCST jMLdOa icon-container"
+                class="sc-aXZVg sc-gEvEer fLMnRR jMLdOa icon-container"
               >
                 <div
-                  class="sc-aXZVg hdBCgh"
+                  class="sc-aXZVg jscFMT"
                 >
                   <span
-                    class="sc-aXZVg fWaLeD shadow"
+                    class="sc-aXZVg jnAMSh shadow"
                   >
                     <img
                       alt=""
@@ -74,7 +74,7 @@ exports[`Banners shows mythbusting banner 1`] = `
                     />
                   </span>
                   <span
-                    class="sc-aXZVg iDjtVb highlight"
+                    class="sc-aXZVg fYYXmx highlight"
                   >
                     <img
                       alt=""
@@ -87,7 +87,7 @@ exports[`Banners shows mythbusting banner 1`] = `
                     />
                   </span>
                   <span
-                    class="sc-aXZVg bQyjPj"
+                    class="sc-aXZVg iuwrFR"
                     data-icon-for="button"
                   >
                     <img
@@ -108,10 +108,10 @@ exports[`Banners shows mythbusting banner 1`] = `
       </div>
     </div>
     <div
-      class="sc-aXZVg fajpgl"
+      class="sc-aXZVg gehhFD"
     >
       <div
-        class="sc-aXZVg sc-gEvEer sc-bDpDS erYAFI iDBIXi"
+        class="sc-aXZVg sc-gEvEer sc-bDpDS khzVYm iDBIXi"
         focusable="false"
       >
         <svg
