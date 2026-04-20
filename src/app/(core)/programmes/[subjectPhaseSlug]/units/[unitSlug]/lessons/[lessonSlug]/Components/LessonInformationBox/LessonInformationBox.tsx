@@ -7,6 +7,7 @@ import {
 } from "@oaknational/oak-components";
 
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
+import CopyrightLicence from "@/components/TeacherComponents/CopyrightLicence/CopyrightLicence";
 
 type LessonInformationBoxProps = {
   teacherTip?: string[];
@@ -19,12 +20,20 @@ type LessonInformationBoxProps = {
     geoRestricted: boolean;
     loginRequired: boolean;
   };
-  showLicence?: boolean;
+  licence?: {
+    copyrightYear: string;
+  };
 };
 
 const LessonInformationBox = (props: LessonInformationBoxProps) => {
-  const { teacherTip, equipment, contentGuidance, supervision, filesNeeded } =
-    props;
+  const {
+    teacherTip,
+    equipment,
+    contentGuidance,
+    supervision,
+    filesNeeded,
+    licence,
+  } = props;
   const isPlural = filesNeeded && filesNeeded.files.length > 1;
 
   return (
@@ -94,6 +103,12 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
             loginRequired={filesNeeded.loginRequired}
           />
         </OakFlex>
+      )}
+      {licence && (
+        <CopyrightLicence
+          openLinksExternally={true}
+          copyrightYear={licence.copyrightYear}
+        />
       )}
     </OakFlex>
   );

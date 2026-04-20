@@ -165,6 +165,27 @@ describe("LessonInformationBox", () => {
     expect(button).toHaveAttribute("href", "https://example.com/file1");
   });
 
+  it("renders copyright licence section with links opening in a new browser tab", () => {
+    render(<LessonInformationBox licence={{ copyrightYear: "2022" }} />);
+
+    const licenceVersionLink = screen.getByRole("link", {
+      name: "Open Government Licence version 3.0 (opens in a new tab)",
+    });
+    const termsAndConditionsLink = screen.getByRole("link", {
+      name: "Oak's terms & conditions (opens in a new tab)",
+    });
+    expect(termsAndConditionsLink).toHaveAttribute(
+      "href",
+      "/legal/terms-and-conditions",
+    );
+    expect(termsAndConditionsLink).toHaveAttribute("target", "_blank");
+    expect(licenceVersionLink).toHaveAttribute(
+      "href",
+      "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+    );
+    expect(licenceVersionLink).toHaveAttribute("target", "_blank");
+  });
+
   it("does not render anything if no props are provided", () => {
     render(<LessonInformationBox />);
 

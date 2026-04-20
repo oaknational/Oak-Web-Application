@@ -15,6 +15,7 @@ const meta = {
         "contentGuidance",
         "supervision",
         "filesNeeded",
+        "licence",
       ],
     },
   },
@@ -80,6 +81,19 @@ const meta = {
           href: "#",
           geoRestricted: false,
           loginRequired: false,
+        },
+      },
+    },
+    licence: {
+      control: {
+        type: "radio",
+      },
+      options: [undefined, "showLicence"],
+      mapping: {
+        undefined: undefined,
+        showLicence: {
+          openLinksExternally: true,
+          copyrightYear: "2022",
         },
       },
     },
