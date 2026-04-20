@@ -1,5 +1,6 @@
 import { z } from "zod";
 import {
+  actionsSchema,
   ProgrammeFields,
   programmeFieldsSchema,
   syntheticUnitvariantLessonsByKsSchema,
@@ -64,6 +65,7 @@ export const unitSequenceResponseSchema = z.array(
     yearOrder: z.number(),
     year: programmeFieldsSchema.shape.year,
     isSwimming: z.boolean().nullish(),
+    actions: actionsSchema.nullable(),
   }),
 );
 export type UnitSequence = z.infer<typeof unitSequenceResponseSchema>;
