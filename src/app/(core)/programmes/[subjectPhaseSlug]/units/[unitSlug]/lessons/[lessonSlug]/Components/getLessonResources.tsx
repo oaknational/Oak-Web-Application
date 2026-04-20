@@ -177,7 +177,7 @@ export function getLessonResources({
       isWorksheet={false}
     />
   ) : undefined;
-  const mediaClips = data.lessonMediaClips?.length ? (
+  const mediaClips = data.hasMediaClips ? (
     <LessonOverviewMediaClips
       lessonSlug={data.lessonSlug}
       learningCycleVideos={data.lessonMediaClips}
