@@ -4,7 +4,6 @@ import {
   OakHeading,
   OakSecondaryButton,
   OakBox,
-  OakHandDrawnHR,
 } from "@oaknational/oak-components";
 import { useState } from "react";
 
@@ -136,15 +135,6 @@ export function LessonItem({
       </OakFlex>
 
       <OakBox>{resource.component}</OakBox>
-      {!resource.isFinalElement && (
-        <OakHandDrawnHR
-          data-testid="hr"
-          hrColor={"bg-decorative4-main"}
-          $height={"spacing-4"}
-          $mt={["spacing-24", "spacing-56"]}
-          $mb={["spacing-12", "spacing-24"]}
-        />
-      )}
     </OakFlex>
   );
 }

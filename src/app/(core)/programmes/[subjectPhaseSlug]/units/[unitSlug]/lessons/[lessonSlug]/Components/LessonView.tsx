@@ -1,7 +1,12 @@
 "use client";
 
 import { Fragment } from "react";
-import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakGrid,
+  OakGridArea,
+} from "@oaknational/oak-components";
 
 import { getLessonResources } from "./getLessonResources";
 import { LessonItem } from "./LessonItem";
@@ -71,52 +76,59 @@ export default function LessonView(
           >
             {/* anchor links area */}
           </OakGridArea>
-          <OakGridArea $colSpan={[12, 9]} $mb={"spacing-48"}>
-            {lessonResources.map((resource) => (
-              <LessonItem
-                browsePathwayData={browsePathwayData}
-                slugs={{
-                  lessonSlug: data.lessonSlug,
-                  unitSlug: data.unitSlug,
-                  programmeSlug: data.programmeSlug,
-                }}
-                resource={resource}
-                key={resource.key}
+          <OakGridArea $colSpan={[12, 9]}>
+            <OakFlex $flexDirection={"column"} $gap={"spacing-56"}>
+              <OakFlex
+                $flexDirection={"column"}
+                $gap={["spacing-56", "spacing-80"]}
+              >
+                {lessonResources.map((resource) => (
+                  <LessonItem
+                    browsePathwayData={browsePathwayData}
+                    slugs={{
+                      lessonSlug: data.lessonSlug,
+                      unitSlug: data.unitSlug,
+                      programmeSlug: data.programmeSlug,
+                    }}
+                    resource={resource}
+                    key={resource.key}
+                  />
+                ))}
+              </OakFlex>
+              <PreviousNextNav
+                backgroundColorLevel={1}
+                currentIndex={data.orderInUnit ?? undefined}
+                navItemType="lesson"
+                previous={
+                  data.previousLesson
+                    ? {
+                        href: resolveOakHref({
+                          page: "integrated-lesson-index",
+                          programmeSlug: data.programmeSlug,
+                          unitSlug: data.unitSlug,
+                          lessonSlug: data.previousLesson.lessonSlug,
+                        }),
+                        title: data.previousLesson.lessonTitle,
+                        index: data.previousLesson.lessonIndex,
+                      }
+                    : undefined
+                }
+                next={
+                  data.nextLesson
+                    ? {
+                        href: resolveOakHref({
+                          page: "integrated-lesson-index",
+                          programmeSlug: data.programmeSlug,
+                          unitSlug: data.unitSlug,
+                          lessonSlug: data.nextLesson.lessonSlug,
+                        }),
+                        title: data.nextLesson.lessonTitle,
+                        index: data.nextLesson.lessonIndex,
+                      }
+                    : undefined
+                }
               />
-            ))}
-            <PreviousNextNav
-              backgroundColorLevel={1}
-              currentIndex={data.orderInUnit ?? undefined}
-              navItemType="lesson"
-              previous={
-                data.previousLesson
-                  ? {
-                      href: resolveOakHref({
-                        page: "integrated-lesson-index",
-                        programmeSlug: data.programmeSlug,
-                        unitSlug: data.unitSlug,
-                        lessonSlug: data.previousLesson.lessonSlug,
-                      }),
-                      title: data.previousLesson.lessonTitle,
-                      index: data.previousLesson.lessonIndex,
-                    }
-                  : undefined
-              }
-              next={
-                data.nextLesson
-                  ? {
-                      href: resolveOakHref({
-                        page: "integrated-lesson-index",
-                        programmeSlug: data.programmeSlug,
-                        unitSlug: data.unitSlug,
-                        lessonSlug: data.nextLesson.lessonSlug,
-                      }),
-                      title: data.nextLesson.lessonTitle,
-                      index: data.nextLesson.lessonIndex,
-                    }
-                  : undefined
-              }
-            />
+            </OakFlex>
           </OakGridArea>
         </OakGrid>
       </OakBox>
