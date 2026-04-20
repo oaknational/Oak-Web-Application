@@ -76,6 +76,8 @@ describe("ProgrammeHeader", () => {
 });
 
 describe("pickSubjectTitleFromFilters", () => {
+  const defaultSubjectTitle = "Science";
+
   const createDataWithChildSubjects = (): CurriculumUnitsFormattedData => ({
     yearData: {
       "7": createYearData({
@@ -146,16 +148,20 @@ describe("pickSubjectTitleFromFilters", () => {
   });
 
   describe("when subjectCategoriesDisplayed and subjectCategories === 'all'", () => {
-    it("returns null", () => {
+    it("returns the default subjectTitle", () => {
       const data = createDataWithSubjectCategories();
       const filters = createFilter({
         subjectCategories: ["all"],
         years: ["7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
-      expect(result).toBeNull();
+      expect(result).toBe(defaultSubjectTitle);
     });
   });
 
@@ -168,7 +174,11 @@ describe("pickSubjectTitleFromFilters", () => {
         years: ["3", "7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
       expect(result).toBe("Chemistry");
     });
@@ -182,21 +192,29 @@ describe("pickSubjectTitleFromFilters", () => {
         years: ["7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
       expect(result).toBe("Biology");
     });
 
-    it("returns null when subjectCategory is 'all'", () => {
+    it("returns the default subjectTitle when subjectCategory is 'all'", () => {
       const data = createDataWithSubjectCategories();
       const filters = createFilter({
         subjectCategories: ["all"],
         years: ["7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
-      expect(result).toBeNull();
+      expect(result).toBe(defaultSubjectTitle);
     });
   });
 
@@ -208,73 +226,97 @@ describe("pickSubjectTitleFromFilters", () => {
         years: ["7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
       expect(result).toBe("Physics");
     });
   });
 
   describe("edge cases", () => {
-    it("returns null when no filters are applied", () => {
+    it("returns the default subjectTitle when no filters are applied", () => {
       const data = createDataWithNeither();
       const filters = createFilter({
         years: ["7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
-      expect(result).toBeNull();
+      expect(result).toBe(defaultSubjectTitle);
     });
 
-    it("returns null when multiple childSubjects are selected", () => {
+    it("returns the default subjectTitle when multiple childSubjects are selected", () => {
       const data = createDataWithChildSubjects();
       const filters = createFilter({
         childSubjects: ["physics", "chemistry"],
         years: ["7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
-      expect(result).toBeNull();
+      expect(result).toBe(defaultSubjectTitle);
     });
 
-    it("returns null when multiple subjectCategories are selected", () => {
+    it("returns the default subjectTitle when multiple subjectCategories are selected", () => {
       const data = createDataWithSubjectCategories();
       const filters = createFilter({
         subjectCategories: ["biology", "chemistry"],
         years: ["7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
-      expect(result).toBeNull();
+      expect(result).toBe(defaultSubjectTitle);
     });
 
-    it("returns null when childSubjectsDisplayed is true but childSubject is undefined", () => {
+    it("returns the default subjectTitle when childSubjectsDisplayed is true but childSubject is undefined", () => {
       const data = createDataWithChildSubjects();
       const filters = createFilter({
         childSubjects: [],
         years: ["7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
-      expect(result).toBeNull();
+      expect(result).toBe(defaultSubjectTitle);
     });
 
-    it("returns null when subjectCategoriesDisplayed is true but subjectCategory is undefined", () => {
+    it("returns the default subjectTitle when subjectCategoriesDisplayed is true but subjectCategory is undefined", () => {
       const data = createDataWithSubjectCategories();
       const filters = createFilter({
         subjectCategories: [],
         years: ["7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
-      expect(result).toBeNull();
+      expect(result).toBe(defaultSubjectTitle);
     });
 
-    it("returns null when both are displayed but values don't match", () => {
+    it("returns the default subjectTitle when both are displayed but values don't match", () => {
       const data: CurriculumUnitsFormattedData = {
         yearData: {
           // KS2: subjectCategories displayed
@@ -307,33 +349,45 @@ describe("pickSubjectTitleFromFilters", () => {
         years: ["3", "7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
-      expect(result).toBeNull();
+      expect(result).toBe(defaultSubjectTitle);
     });
 
-    it("returns null when childSubject slug is not found in data", () => {
+    it("returns the default subjectTitle when childSubject slug is not found in data", () => {
       const data = createDataWithChildSubjects();
       const filters = createFilter({
         childSubjects: ["nonexistent"],
         years: ["7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
-      expect(result).toBeNull();
+      expect(result).toBe(defaultSubjectTitle);
     });
 
-    it("returns null when subjectCategory slug is not found in data", () => {
+    it("returns the default subjectTitle when subjectCategory slug is not found in data", () => {
       const data = createDataWithSubjectCategories();
       const filters = createFilter({
         subjectCategories: ["nonexistent"],
         years: ["7"],
       });
 
-      const result = pickSubjectTitleFromFilters(data, filters);
+      const result = pickSubjectTitleFromFilters(
+        defaultSubjectTitle,
+        data,
+        filters,
+      );
 
-      expect(result).toBeNull();
+      expect(result).toBe(defaultSubjectTitle);
     });
   });
 });

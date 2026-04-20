@@ -132,10 +132,11 @@ export const ProgrammeView = ({
       <ProgrammeHeader
         layoutVariant="large"
         subject={subjectSlug as SubjectHeroImageName}
-        subjectTitle={
-          pickSubjectTitleFromFilters(curriculumUnitsFormattedData, filters) ??
-          subjectTitle
-        }
+        subjectTitle={pickSubjectTitleFromFilters(
+          subjectTitle,
+          curriculumUnitsFormattedData,
+          filters,
+        )}
         phaseTitle={phaseTitle}
         examboardTitle={examboardTitle}
         keyStage={selectedKeystageSlug}

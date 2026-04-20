@@ -81,12 +81,13 @@ export const ProgrammeHeader = (props: ProgrammeHeaderProps) => {
 
 /**
  * Picks a subject title from filters based on childSubjects and subjectCategories.
- * Returns the selected value if exactly one filter is active, otherwise null.
+ * Returns the selected value if exactly one filter is active, otherwise subjectTitle.
  */
 export function pickSubjectTitleFromFilters(
+  defaultSubjectTitle: string,
   data: CurriculumUnitsFormattedData,
   filters: CurriculumFilters,
-): string | null {
+): string {
   const childSubjectsDisplayed = shouldDisplayFilter(
     data,
     filters,
@@ -122,9 +123,9 @@ export function pickSubjectTitleFromFilters(
   const childSubjectSlug = childSubject?.subject_slug;
   const subjectCategorySlug = subjectCategory?.slug;
 
-  // When subjectCategoriesDisplayed and subjectCategories === "all" return null
+  // When subjectCategoriesDisplayed and subjectCategories === "all" return default subjectTitle
   if (subjectCategoriesDisplayed && subjectCategorySlug === "all") {
-    return null;
+    return defaultSubjectTitle;
   }
 
   // When both filters are displayed and selected, check if they match
@@ -142,8 +143,8 @@ export function pickSubjectTitleFromFilters(
     ) {
       return childSubject.subject;
     }
-    // Both are selected but don't match - return null
-    return null;
+    // Both are selected but don't match - return default subjectTitle
+    return defaultSubjectTitle;
   }
 
   // Return subjectCategory when subjectCategories is the only subject filter displayed
@@ -163,7 +164,7 @@ export function pickSubjectTitleFromFilters(
     return childSubject.subject;
   }
 
-  return null;
+  return defaultSubjectTitle;
 }
 
 /**
