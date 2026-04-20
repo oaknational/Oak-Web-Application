@@ -129,7 +129,7 @@ describe("urls.ts", () => {
     it("Integrated lesson index", () => {
       expect(
         resolveOakHref({
-          page: "integrated-lesson-index",
+          page: "integrated-lesson-overview",
           programmeSlug: "maths-secondary-year-10-aqa",
           unitSlug: "algebra-123",
           lessonSlug: "solving-equations-456",

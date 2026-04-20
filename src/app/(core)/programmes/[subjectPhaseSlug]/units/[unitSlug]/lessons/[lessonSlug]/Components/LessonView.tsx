@@ -143,7 +143,7 @@ export default function LessonView(
                   data.previousLesson
                     ? {
                         href: resolveOakHref({
-                          page: "integrated-lesson-index",
+                          page: "integrated-lesson-overview",
                           programmeSlug: data.programmeSlug,
                           unitSlug: data.unitSlug,
                           lessonSlug: data.previousLesson.lessonSlug,
@@ -157,7 +157,7 @@ export default function LessonView(
                   data.nextLesson
                     ? {
                         href: resolveOakHref({
-                          page: "integrated-lesson-index",
+                          page: "integrated-lesson-overview",
                           programmeSlug: data.programmeSlug,
                           unitSlug: data.unitSlug,
                           lessonSlug: data.nextLesson.lessonSlug,
