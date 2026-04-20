@@ -50,6 +50,24 @@ describe("LessonInformationBox", () => {
     expect(lessonInformationContainer).toHaveStyle("background: #f2f2f2");
   });
 
+  it("renders content guidance section", () => {
+    render(
+      <LessonInformationBox
+        contentGuidance={["Content guidance item 1", "Content guidance item 2"]}
+      />,
+    );
+    const contentGuidanceHeading = screen.getByRole("heading", {
+      name: "Content guidance",
+    });
+    const contentGuidanceText = screen.getByText("Content guidance item 1");
+    const lessonInformationContainer = screen.getByTestId(
+      "lesson-information-container",
+    );
+    expect(contentGuidanceHeading).toBeInTheDocument();
+    expect(contentGuidanceText).toBeInTheDocument();
+    expect(lessonInformationContainer).toHaveStyle("background: #f2f2f2");
+  });
+
   it("does not render anything if no props are provided", () => {
     render(<LessonInformationBox />);
 
