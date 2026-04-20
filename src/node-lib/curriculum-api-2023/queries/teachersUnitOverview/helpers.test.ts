@@ -441,7 +441,7 @@ describe("getUnitCounts", () => {
   });
 });
 
-describe("getNeighbourUnits", () => {
+describe("getAdjacentUnits", () => {
   it("gets the previous unit", () => {
     const transformedLessons = getPackagedUnit({
       packagedUnitData: { ...mockPackagedUnitData, nullUnitvariantId: 3 },
@@ -836,6 +836,98 @@ describe("getNeighbourUnits", () => {
       title: "Swimming 1",
     });
     expect(result.nextUnit).toBeNull();
+  });
+
+  it("gets adjacent units within the same subject category", () => {
+    const result = getAdjacentUnits({
+      unitSequenceData: [
+        {
+          unitSlug: "grammar-1",
+          unitTitle: "Grammar 1",
+          unitDescription: null,
+          nullUnitvariantId: 2,
+          yearOrder: 1,
+          unitOrder: 2,
+          year: "1",
+          subjectCategories: ["Grammar"],
+          actions: {
+            subject_category_actions: {
+              group_by_subjectcategory: true,
+              all_disabled: false,
+              default_category_id: 1,
+            },
+          },
+        },
+        {
+          unitSlug: "writing-2",
+          unitTitle: "Writing 2",
+          unitDescription: null,
+          nullUnitvariantId: 3,
+          yearOrder: 1,
+          unitOrder: 3,
+          year: "1",
+          actions: null,
+          subjectCategories: ["Writing"],
+        },
+        {
+          unitSlug: "grammar-2",
+          unitTitle: "Grammar 2",
+          unitDescription: null,
+          nullUnitvariantId: 4,
+          yearOrder: 2,
+          unitOrder: 1,
+          year: "2",
+          subjectCategories: ["Grammar"],
+          actions: {
+            subject_category_actions: {
+              group_by_subjectcategory: true,
+              all_disabled: false,
+              default_category_id: 1,
+            },
+          },
+        },
+        {
+          unitSlug: "language-3",
+          unitTitle: "Language 3",
+          unitDescription: null,
+          nullUnitvariantId: 5,
+          yearOrder: 2,
+          unitOrder: 2,
+          year: "2",
+          actions: null,
+          subjectCategories: ["Language"],
+        },
+        {
+          unitSlug: "grammar-3",
+          unitTitle: "Grammar 3",
+          unitDescription: null,
+          nullUnitvariantId: 6,
+          yearOrder: 3,
+          unitOrder: 1,
+          year: "3",
+          isSwimming: false,
+          subjectCategories: ["Grammar"],
+          actions: {
+            subject_category_actions: {
+              group_by_subjectcategory: true,
+              all_disabled: false,
+              default_category_id: 1,
+            },
+          },
+        },
+      ],
+      nullUnitvariantId: 4,
+    });
+
+    expect(result.nextUnit).toEqual({
+      slug: "grammar-3",
+      title: "Grammar 3",
+    });
+
+    expect(result.prevUnit).toEqual({
+      slug: "grammar-1",
+      title: "Grammar 1",
+    });
   });
 });
 
