@@ -68,6 +68,24 @@ describe("LessonInformationBox", () => {
     expect(lessonInformationContainer).toHaveStyle("background: #f2f2f2");
   });
 
+  it("renders supervision section", () => {
+    render(
+      <LessonInformationBox
+        supervision={["Supervision item 1", "Supervision item 2"]}
+      />,
+    );
+    const supervisionHeading = screen.getByRole("heading", {
+      name: "Supervision",
+    });
+    const supervisionText = screen.getByText("Supervision item 1");
+    const lessonInformationContainer = screen.getByTestId(
+      "lesson-information-container",
+    );
+    expect(supervisionHeading).toBeInTheDocument();
+    expect(supervisionText).toBeInTheDocument();
+    expect(lessonInformationContainer).toHaveStyle("background: #f2f2f2");
+  });
+
   it("does not render anything if no props are provided", () => {
     render(<LessonInformationBox />);
 
