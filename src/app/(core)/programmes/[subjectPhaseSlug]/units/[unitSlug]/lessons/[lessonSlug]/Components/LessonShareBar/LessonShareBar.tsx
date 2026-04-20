@@ -62,6 +62,7 @@ export default function LessonShareBar({
         element="a"
         href="https://labs.thenational.academy/aila"
         target="_blank"
+        aria-label="Create more with AI (this will open in a new tab)"
       >
         Create more with AI
       </OakSmallTertiaryInvertedButton>

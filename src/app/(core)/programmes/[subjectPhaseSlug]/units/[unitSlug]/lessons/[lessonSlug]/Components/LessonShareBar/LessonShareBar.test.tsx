@@ -51,7 +51,9 @@ describe("LessonShareBar", () => {
     );
 
     expect(
-      screen.getByRole("link", { name: "Create more with AI" }),
+      screen.getByRole("link", {
+        name: "Create more with AI (this will open in a new tab)",
+      }),
     ).toHaveAttribute("href", "https://labs.thenational.academy/aila");
   });
 });
