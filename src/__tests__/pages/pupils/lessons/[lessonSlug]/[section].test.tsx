@@ -79,6 +79,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
           statusCode: 301, // true = 308, false = 307
           basePath: false,
         },
+        revalidate: 300,
       });
     });
     it("should return redirect if lesson not found", async () => {
@@ -98,6 +99,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
           statusCode: 301,
           basePath: false,
         },
+        revalidate: 300,
       });
     });
     it("should return 404 if lesson not found and redirect not found", async () => {
