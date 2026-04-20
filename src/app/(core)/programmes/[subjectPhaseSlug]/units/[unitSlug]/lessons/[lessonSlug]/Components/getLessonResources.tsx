@@ -318,7 +318,7 @@ export function getLessonResources({
         index,
         lessonSlug: data.lessonSlug,
         isFinalElement,
-        lessonResources: array,
+        lessonResources: array as LessonResource[],
       });
       return {
         ...item,

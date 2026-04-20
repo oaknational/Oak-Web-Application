@@ -111,7 +111,6 @@ export default function LessonView(
             $alignSelf={"start"}
             $position={"sticky"}
             $display={["none", "block"]}
-            $top={"spacing-92"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
           >
             {/* anchor links area */}
           </OakGridArea>
