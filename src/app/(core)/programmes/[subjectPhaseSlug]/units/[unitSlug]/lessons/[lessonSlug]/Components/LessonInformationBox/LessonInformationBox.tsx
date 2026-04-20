@@ -2,6 +2,7 @@ import {
   OakFlex,
   OakHeading,
   OakIcon,
+  OakIconName,
   OakP,
 } from "@oaknational/oak-components";
 
@@ -27,62 +28,52 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
       data-testid="lesson-information-container"
     >
       {teacherTip && (
-        <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
-          <OakHeading tag="h3" $font={"heading-7"}>
-            Teacher tip
-          </OakHeading>
-          {teacherTip.map((tip) => (
-            <OakP $font={"body-2"} key={tip}>
-              {tip}
-            </OakP>
-          ))}
-        </OakFlex>
+        <LessonInformationItem title="Teacher tip" items={teacherTip} />
       )}
       {equipment && (
-        <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
-          <OakFlex $alignItems={"center"} $gap={"spacing-8"}>
-            <OakIcon iconName="equipment-required" />
-            <OakHeading tag="h3" $font={"heading-7"}>
-              Equipment
-            </OakHeading>
-          </OakFlex>
-          {equipment.map((item) => (
-            <OakP $font={"body-2"} key={item}>
-              {item}
-            </OakP>
-          ))}
-        </OakFlex>
+        <LessonInformationItem
+          iconName={"equipment-required"}
+          title="Equipment"
+          items={equipment}
+        />
       )}
       {contentGuidance && (
-        <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
-          <OakFlex $alignItems={"center"} $gap={"spacing-8"}>
-            <OakIcon iconName="warning" />
-            <OakHeading tag="h3" $font={"heading-7"}>
-              Content guidance
-            </OakHeading>
-          </OakFlex>
-          {contentGuidance.map((item) => (
-            <OakP $font={"body-2"} key={item}>
-              {item}
-            </OakP>
-          ))}
-        </OakFlex>
+        <LessonInformationItem
+          iconName={"content-guidance"}
+          title="Content guidance"
+          items={contentGuidance}
+        />
       )}
       {supervision && (
-        <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
-          <OakFlex $alignItems={"center"} $gap={"spacing-8"}>
-            <OakIcon iconName="supervision-level" />
-            <OakHeading tag="h3" $font={"heading-7"}>
-              Supervision
-            </OakHeading>
-          </OakFlex>
-          {supervision.map((item) => (
-            <OakP $font={"body-2"} key={item}>
-              {item}
-            </OakP>
-          ))}
-        </OakFlex>
+        <LessonInformationItem
+          iconName={"supervision-level"}
+          title="Supervision"
+          items={supervision}
+        />
       )}
+    </OakFlex>
+  );
+};
+
+const LessonInformationItem = (props: {
+  iconName?: OakIconName;
+  title: string;
+  items: string[];
+}) => {
+  const { iconName, title, items } = props;
+  return (
+    <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
+      <OakFlex $alignItems={"center"} $gap={"spacing-8"}>
+        {iconName && <OakIcon iconName={iconName} />}
+        <OakHeading tag="h3" $font={"heading-7"}>
+          {title}
+        </OakHeading>
+      </OakFlex>
+      {items.map((item) => (
+        <OakP $font={"body-2"} key={item}>
+          {item}
+        </OakP>
+      ))}
     </OakFlex>
   );
 };
