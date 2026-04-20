@@ -1,3 +1,26 @@
+# [1.1043.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1042.0...v1.1043.0) (2026-04-16)
+
+
+### Bug Fixes
+
+* added missing <OakGlobalStyle/> from app ([4cb95db](https://github.com/oaknational/Oak-Web-Application/commit/4cb95db144fdfca3f3e10649d3d7381df427b297))
+* content alignment in header ([cc4b4df](https://github.com/oaknational/Oak-Web-Application/commit/cc4b4df3f6068b6a60d9e55eac5470244e0a2c71))
+* download button text flashing on desktop ([cf5f1a2](https://github.com/oaknational/Oak-Web-Application/commit/cf5f1a2a5383df61d7d34e73729b1b4638acb350))
+* fixture response data ([1c3c2b8](https://github.com/oaknational/Oak-Web-Application/commit/1c3c2b8db5b9b3ce182c730fa8ff38110c4b00a4))
+* remove duplicate url type ([9009ecc](https://github.com/oaknational/Oak-Web-Application/commit/9009ecc51b11501376d1f3d662cdccb84045cec3))
+
+
+### Features
+
+* add breadcrumbs to lesson header ([bffcde3](https://github.com/oaknational/Oak-Web-Application/commit/bffcde312cbbdfe05aa50794a8325805796a3312))
+* add LessonHeader component with nav footer ([d8e1a3e](https://github.com/oaknational/Oak-Web-Application/commit/d8e1a3e3cf7c741e9fe89dd538918d786bd9a8d6))
+* add lessonHeader to new lesson page ([8c3e22a](https://github.com/oaknational/Oak-Web-Application/commit/8c3e22a855781f287ca38ea99e79e95eb5df4eda))
+* add nav around headerNavFooter nav buttons ([19e3220](https://github.com/oaknational/Oak-Web-Application/commit/19e322035f140ad5bec70ed62ac214eb713ba64c))
+* enable subdued background option in Header ([fe6812f](https://github.com/oaknational/Oak-Web-Application/commit/fe6812f25f763bf0f33bd942418eb828c8a73775))
+* extract HeaderNavFooter to component ([be70445](https://github.com/oaknational/Oak-Web-Application/commit/be7044581fed0321be1ede6c7140afa4a41203cf))
+* shorten download button text on mobile and tablet ([bb475e3](https://github.com/oaknational/Oak-Web-Application/commit/bb475e3c9080a8609e270945351dc7dd07f70494))
+* updated oak-components from 2.16.0 -> 2.18.0 ([7412d75](https://github.com/oaknational/Oak-Web-Application/commit/7412d75e18d0b1c92460f43eaf76f619968c39aa))
+
 # [1.1042.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1041.0...v1.1042.0) (2026-04-14)
 
 

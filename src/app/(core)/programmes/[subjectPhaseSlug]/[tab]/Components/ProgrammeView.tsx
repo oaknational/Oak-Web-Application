@@ -145,9 +145,11 @@ export const ProgrammeView = ({
       />
       {curriculumInfo.nonCurriculum ? null : (
         <OakMaxWidth
-          data-testid="programme-tabs"
+          as="nav"
+          aria-label="Programme page tabs"
           $ph={["spacing-20", "spacing-20", "spacing-0"]}
           $mb={["spacing-0", "spacing-48", "spacing-48"]}
+          data-testid="programme-tabs"
         >
           <OakTabs<TabName>
             sizeVariant={["compact", "default"]}
