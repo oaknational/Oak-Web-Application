@@ -15,7 +15,7 @@ type LessonInformationBoxProps = {
 };
 
 const LessonInformationBox = (props: LessonInformationBoxProps) => {
-  const { teacherTip, equipment, contentGuidance } = props;
+  const { teacherTip, equipment, contentGuidance, supervision } = props;
 
   return (
     <OakFlex
@@ -62,6 +62,21 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
             </OakHeading>
           </OakFlex>
           {contentGuidance.map((item) => (
+            <OakP $font={"body-2"} key={item}>
+              {item}
+            </OakP>
+          ))}
+        </OakFlex>
+      )}
+      {supervision && (
+        <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
+          <OakFlex $alignItems={"center"} $gap={"spacing-8"}>
+            <OakIcon iconName="supervision-level" />
+            <OakHeading tag="h3" $font={"heading-7"}>
+              Supervision
+            </OakHeading>
+          </OakFlex>
+          {supervision.map((item) => (
             <OakP $font={"body-2"} key={item}>
               {item}
             </OakP>

@@ -9,7 +9,7 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     controls: {
-      include: ["teacherTip", "equipment", "contentGuidance"],
+      include: ["teacherTip", "equipment", "contentGuidance", "supervision"],
     },
   },
   argTypes: {
@@ -45,6 +45,15 @@ const meta = {
           "Content guidance item 2",
           "Content guidance item 3",
         ],
+      ],
+    },
+    supervision: {
+      control: {
+        type: "radio",
+      },
+      options: [
+        undefined,
+        ["Supervision item 1", "Supervision item 2", "Supervision item 3"],
       ],
     },
   },
