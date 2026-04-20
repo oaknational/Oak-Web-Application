@@ -188,7 +188,7 @@ function selectionForSharedGroupAs(
   };
 }
 
-// Handles explicit "all" category selection by reverting to the base subject title.
+// Handles explicit "all" category selection by reverting to the formatted base subject title.
 function selectionForAllSubjectCategory(
   ctx: SubjectTitleContext,
 ): SubjectTitleSelection | null {
@@ -197,7 +197,7 @@ function selectionForAllSubjectCategory(
   }
 
   return {
-    title: ctx.subjectTitle,
+    title: ctx.formattedSubjectTitle,
     shouldPrefixSubjectCategoryWithSubject:
       ctx.shouldPrefixSubjectCategoryWithSubject,
   };

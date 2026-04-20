@@ -243,6 +243,41 @@ describe("buildProgrammeHeading", () => {
     expect(result).toBe("Science year 7");
   });
 
+  it("formats subject title when all category is selected and data includes the synthetic all slug", () => {
+    const data: CurriculumUnitsFormattedData = {
+      yearData: {
+        "7": createYearData({
+          units: [createUnit({ slug: "test1", year: "7" })],
+          subjectCategories: [
+            createSubjectCategory({ id: -1, slug: "all", title: "All" }),
+            createSubjectCategory({ id: 1, slug: "biology", title: "Biology" }),
+            createSubjectCategory({
+              id: 2,
+              slug: "chemistry",
+              title: "Chemistry",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["7"],
+      keystages: [],
+    };
+    const filters = createFilter({
+      subjectCategories: ["all"],
+      years: ["7"],
+    });
+
+    const result = buildHeading({
+      subjectTitle: "science",
+      data,
+      filters,
+      schoolYear: "7",
+    });
+
+    expect(result).toBe("Science year 7");
+  });
+
   it("returns child subject title when both filters are shown and equal", () => {
     const data = createDataWithBothDisplayed();
     const filters = createFilter({
