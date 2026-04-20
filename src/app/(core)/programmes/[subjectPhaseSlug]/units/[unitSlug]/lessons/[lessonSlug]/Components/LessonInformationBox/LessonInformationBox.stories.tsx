@@ -9,7 +9,13 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     controls: {
-      include: ["teacherTip", "equipment", "contentGuidance", "supervision"],
+      include: [
+        "teacherTip",
+        "equipment",
+        "contentGuidance",
+        "supervision",
+        "filesNeeded",
+      ],
     },
   },
   argTypes: {
@@ -55,6 +61,27 @@ const meta = {
         undefined,
         ["Supervision item 1", "Supervision item 2", "Supervision item 3"],
       ],
+    },
+    filesNeeded: {
+      control: {
+        type: "radio",
+      },
+      options: [undefined, "file", "files"],
+      mapping: {
+        undefined: undefined,
+        files: {
+          files: ["File 1", "File 2", "File 3"],
+          href: "#",
+          geoRestricted: false,
+          loginRequired: false,
+        },
+        file: {
+          files: ["File 1"],
+          href: "#",
+          geoRestricted: false,
+          loginRequired: false,
+        },
+      },
     },
   },
   decorators: [

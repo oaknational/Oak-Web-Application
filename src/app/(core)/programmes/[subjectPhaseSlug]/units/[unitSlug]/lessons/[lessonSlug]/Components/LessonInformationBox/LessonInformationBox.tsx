@@ -6,17 +6,26 @@ import {
   OakP,
 } from "@oaknational/oak-components";
 
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
+
 type LessonInformationBoxProps = {
   teacherTip?: string[];
   equipment?: string[];
   contentGuidance?: string[];
   supervision?: string[];
-  filesNeeded?: string[];
+  filesNeeded?: {
+    href: string;
+    files: string[];
+    geoRestricted: boolean;
+    loginRequired: boolean;
+  };
   showLicence?: boolean;
 };
 
 const LessonInformationBox = (props: LessonInformationBoxProps) => {
-  const { teacherTip, equipment, contentGuidance, supervision } = props;
+  const { teacherTip, equipment, contentGuidance, supervision, filesNeeded } =
+    props;
+  const isPlural = filesNeeded && filesNeeded.files.length > 1;
 
   return (
     <OakFlex
@@ -50,6 +59,41 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
           title="Supervision"
           items={supervision}
         />
+      )}
+      {filesNeeded && (
+        <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
+          <OakFlex $alignItems={"center"} $gap={"spacing-8"}>
+            <OakIcon iconName={"additional-material"} />
+            <OakHeading tag="h3" $font={"heading-7"}>
+              {`${isPlural ? "Files" : "File"} needed for this lesson`}
+            </OakHeading>
+          </OakFlex>
+          {filesNeeded.files.map((file) => (
+            <OakP $font={"body-2"} key={file}>
+              {file}
+            </OakP>
+          ))}
+          <OakP>
+            {`Download ${isPlural ? "these files" : "this file"} to use in the
+            lesson.`}
+          </OakP>
+          <LoginRequiredButton
+            buttonVariant="tertiary"
+            signUpProps={{
+              name: `Download lesson ${isPlural ? "files" : "file"}`,
+            }}
+            element="a"
+            actionProps={{
+              name: `Download lesson ${isPlural ? "files" : "file"}`,
+              isActionGeorestricted: filesNeeded.geoRestricted,
+              iconName: "arrow-right",
+              href: filesNeeded.href,
+              isTrailingIcon: true,
+            }}
+            geoRestricted={filesNeeded.geoRestricted}
+            loginRequired={filesNeeded.loginRequired}
+          />
+        </OakFlex>
       )}
     </OakFlex>
   );
