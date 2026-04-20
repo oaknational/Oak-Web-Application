@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { OakFlex, OakLI, OakLessonNavItem } from "@oaknational/oak-components";
 
 import {
@@ -34,8 +35,9 @@ export const PupilLessonOverviewSectionsNav = ({
       {items.map((item) => (
         <OakLI key={item.section} $listStyle="none">
           <OakLessonNavItem
+            as={Link}
             href={item.href}
-            onClick={item.onClick}
+            onClick={() => item.onClick()}
             lessonSectionName={item.section}
             progress={item.progress}
             numQuestions={item.numQuestions ?? 0}
