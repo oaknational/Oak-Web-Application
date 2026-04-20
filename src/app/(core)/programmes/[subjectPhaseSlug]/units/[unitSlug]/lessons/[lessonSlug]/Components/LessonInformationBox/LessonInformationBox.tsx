@@ -24,6 +24,7 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
       $background={teacherTip ? "bg-decorative2-subdued" : "bg-neutral"}
       $pa={"spacing-24"}
       $borderRadius={"border-radius-l"}
+      data-testid="lesson-information-container"
     >
       {teacherTip && (
         <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
