@@ -1,4 +1,9 @@
-import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakIcon,
+  OakP,
+} from "@oaknational/oak-components";
 
 type LessonInformationBoxProps = {
   teacherTip?: string[];
@@ -10,7 +15,8 @@ type LessonInformationBoxProps = {
 };
 
 const LessonInformationBox = (props: LessonInformationBoxProps) => {
-  const { teacherTip } = props;
+  const { teacherTip, equipment } = props;
+
   return (
     <OakFlex
       $flexDirection={"column"}
@@ -27,6 +33,21 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
           {teacherTip.map((tip) => (
             <OakP $font={"body-2"} key={tip}>
               {tip}
+            </OakP>
+          ))}
+        </OakFlex>
+      )}
+      {equipment && (
+        <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
+          <OakFlex $alignItems={"center"} $gap={"spacing-8"}>
+            <OakIcon iconName="equipment-required" />
+            <OakHeading tag="h3" $font={"heading-7"}>
+              Equipment
+            </OakHeading>
+          </OakFlex>
+          {equipment.map((item) => (
+            <OakP $font={"body-2"} key={item}>
+              {item}
             </OakP>
           ))}
         </OakFlex>

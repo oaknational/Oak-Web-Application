@@ -9,7 +9,7 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     controls: {
-      include: ["teacherTip"],
+      include: ["teacherTip", "equipment"],
     },
   },
   argTypes: {
@@ -23,6 +23,15 @@ const meta = {
           "Allow pupils to sensibly and kindly trigger a reflex response to allow pupils to realise that the response happens before they know about it.",
         ],
         ["teacher tip 1", "teacher tip 2", "teacher tip 3"],
+      ],
+    },
+    equipment: {
+      control: {
+        type: "radio",
+      },
+      options: [
+        undefined,
+        ["Equipment item 1", "Equipment item 2", "Equipment item 3"],
       ],
     },
   },
