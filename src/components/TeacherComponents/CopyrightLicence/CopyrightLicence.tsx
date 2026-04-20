@@ -7,7 +7,7 @@ const CopyrightLicence = (
   props: FontProps & { openLinksExternally: boolean; copyrightYear: string },
 ) => {
   const { copyrightYear } = props;
-  const year = new Date(copyrightYear).getFullYear();
+  const year = new Date(copyrightYear).getUTCFullYear();
   return (
     <OakBox $font="body-3" {...props}>
       This content is © Oak National Academy Limited ({year}), licensed on{" "}
