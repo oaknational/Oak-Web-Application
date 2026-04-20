@@ -1,4 +1,4 @@
-import { allLessonReviewSections } from "@/components/PupilComponents/LessonEngineProvider";
+import { allLessonReviewSections } from "@/components/PupilComponents/lessonSections";
 import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
