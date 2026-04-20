@@ -32,6 +32,7 @@ type LessonListProps = Pick<
   | "unitCount"
 > & {
   lessonCount: number;
+  subjectCategories?: string[] | null;
 };
 
 function LessonSubcopy({
@@ -95,6 +96,7 @@ const LessonList = ({
   unitIndex,
   unitCount,
   lessonCount,
+  subjectCategories,
 }: LessonListProps) => {
   return (
     <OakFlex $flexDirection="column">
@@ -109,13 +111,18 @@ const LessonList = ({
         >
           <OakSpan $font="body-2-bold">Unit {unitIndex}</OakSpan> of {unitCount}
         </OakBox>
-        {subjectTitle ? (
-          <OakTagFunctional
-            label={subjectTitle}
-            $background="bg-neutral"
-            useSpan
-            $borderRadius="border-radius-s"
-          />
+        {subjectCategories ? (
+          <OakFlex $gap={"spacing-8"}>
+            {subjectCategories.map((subjectCategory) => (
+              <OakTagFunctional
+                label={subjectCategory}
+                $background="bg-neutral"
+                useSpan
+                $borderRadius="border-radius-s"
+                key={subjectCategory}
+              />
+            ))}
+          </OakFlex>
         ) : null}
       </OakFlex>
 
