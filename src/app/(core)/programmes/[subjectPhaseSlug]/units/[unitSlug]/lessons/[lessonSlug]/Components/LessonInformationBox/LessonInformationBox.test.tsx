@@ -165,6 +165,24 @@ describe("LessonInformationBox", () => {
     expect(button).toHaveAttribute("href", "https://example.com/file1");
   });
 
+  it("renders sign in message when login is required to download files", () => {
+    render(
+      <LessonInformationBox
+        filesNeeded={{
+          files: ["File 1", "File 2"],
+          href: "#",
+          geoRestricted: false,
+          loginRequired: true,
+        }}
+      />,
+    );
+
+    const button = screen.getByRole("button", {
+      name: "Sign in to download lesson files",
+    });
+    expect(button).toBeInTheDocument();
+  });
+
   it("renders copyright licence section with links opening in a new browser tab", () => {
     render(<LessonInformationBox licence={{ copyrightYear: "2022" }} />);
 

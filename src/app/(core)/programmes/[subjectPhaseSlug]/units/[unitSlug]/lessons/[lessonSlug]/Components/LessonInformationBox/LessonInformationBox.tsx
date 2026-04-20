@@ -89,7 +89,7 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
           <LoginRequiredButton
             buttonVariant="tertiary"
             signUpProps={{
-              name: `Download lesson ${isPlural ? "files" : "file"}`,
+              name: `Sign in to download lesson ${isPlural ? "files" : "file"}`,
             }}
             element="a"
             actionProps={{
