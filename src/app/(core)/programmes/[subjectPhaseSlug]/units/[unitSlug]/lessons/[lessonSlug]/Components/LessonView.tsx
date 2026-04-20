@@ -18,10 +18,14 @@ import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
 import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
+import { TrackingCallbackProps } from "@/components/TeacherComponents/LessonOverviewMediaClips";
 
 export default function LessonView(
   data: Readonly<TeachersLessonOverviewPageData>,
 ) {
+  const { track } = useAnalytics();
   const copyRightState = useComplexCopyright({
     loginRequired: data.loginRequired,
     geoRestricted: data.geoRestricted,
@@ -47,12 +51,47 @@ export default function LessonView(
     isLegacy: false,
   });
 
+  const trackDownloadResourceButtonClicked = ({
+    downloadResourceButtonName,
+  }: {
+    downloadResourceButtonName: DownloadResourceButtonNameValueType;
+  }) => {
+    track.lessonResourceDownloadStarted({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "use",
+      componentType: "lesson_download_button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      downloadResourceButtonName,
+      ...browsePathwayData,
+    });
+  };
+
+  const trackMediaClipsButtonClicked = ({
+    mediaClipsButtonName,
+    learningCycle,
+  }: TrackingCallbackProps) => {
+    track.lessonMediaClipsStarted({
+      platform: "owa",
+      product: "media clips",
+      engagementIntent: "use",
+      componentType: "go_to_media_clips_page_button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      mediaClipsButtonName,
+      learningCycle,
+      ...browsePathwayData,
+    });
+  };
+
   const lessonResources = getLessonResources({
+    browsePathwayData,
     downloads: data.downloads,
     data,
     copyRightState,
     isMathJaxLesson,
-    browsePathwayData,
+    trackMediaClipsButtonClicked,
   });
 
   return (
@@ -84,7 +123,6 @@ export default function LessonView(
               >
                 {lessonResources.map((resource) => (
                   <LessonItem
-                    browsePathwayData={browsePathwayData}
                     slugs={{
                       lessonSlug: data.lessonSlug,
                       unitSlug: data.unitSlug,
@@ -92,6 +130,8 @@ export default function LessonView(
                     }}
                     resource={resource}
                     key={resource.key}
+                    onDownloadButtonClick={trackDownloadResourceButtonClicked}
+                    onMediaClipsButtonClick={trackMediaClipsButtonClicked}
                   />
                 ))}
               </OakFlex>

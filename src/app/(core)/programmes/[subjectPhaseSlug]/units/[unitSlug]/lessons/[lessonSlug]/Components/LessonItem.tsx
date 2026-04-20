@@ -16,23 +16,26 @@ import {
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
 import LessonPlayAllButton from "@/components/TeacherComponents/LessonPlayAllButton";
 import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
+import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
+import { TrackingCallbackProps } from "@/components/TeacherComponents/LessonOverviewMediaClips";
 
 export function LessonItem({
-  browsePathwayData,
   resource,
   slugs,
+  onDownloadButtonClick,
+  onMediaClipsButtonClick,
 }: Readonly<{
-  browsePathwayData: AnalyticsBrowseData;
   resource: LessonResource;
   slugs: {
     lessonSlug: string;
     unitSlug: string | null;
     programmeSlug: string | null;
   };
+  onDownloadButtonClick: (props: {
+    downloadResourceButtonName: DownloadResourceButtonNameValueType;
+  }) => void;
+  onMediaClipsButtonClick: (props: TrackingCallbackProps) => void;
 }>) {
-  const { track } = useAnalytics();
   const [skipResourceButtonFocused, setSkipResourceButtonFocused] =
     useState(false);
   const { title } = resource;
@@ -77,16 +80,9 @@ export function LessonItem({
             <LessonPlayAllButton
               {...slugs}
               onTrackingCallback={() => {
-                track.lessonMediaClipsStarted({
-                  platform: "owa",
-                  product: "media clips",
-                  engagementIntent: "use",
-                  componentType: "go_to_media_clips_page_button",
-                  eventVersion: "2.0.0",
-                  analyticsUseCase: "Teacher",
+                onMediaClipsButtonClick({
                   mediaClipsButtonName: "play all",
                   learningCycle: "n/a",
-                  ...browsePathwayData,
                 });
               }}
             />
@@ -96,15 +92,8 @@ export function LessonItem({
               page={"download"}
               resourceTitle={downloadTitle}
               onClick={() => {
-                track.lessonResourceDownloadStarted({
-                  platform: "owa",
-                  product: "teacher lesson resources",
-                  engagementIntent: "use",
-                  componentType: "lesson_download_button",
-                  eventVersion: "2.0.0",
-                  analyticsUseCase: "Teacher",
+                onDownloadButtonClick({
                   downloadResourceButtonName: resource.trackingTitle!,
-                  ...browsePathwayData,
                 });
               }}
               preselected={preselectedDownload}

@@ -5,7 +5,9 @@ import {
   getMediaClipLabel,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
-import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
+import LessonOverviewMediaClips, {
+  TrackingCallbackProps,
+} from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -13,8 +15,8 @@ import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
-import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
 import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
+import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
 
 /**
  * Maps each lesson resource key to its associated download types.
@@ -155,12 +157,14 @@ export function getLessonResources({
   data,
   copyRightState,
   isMathJaxLesson,
+  trackMediaClipsButtonClicked,
 }: {
   browsePathwayData: AnalyticsBrowseData;
   downloads: TeachersLessonOverviewPageData["downloads"];
   data: TeachersLessonOverviewPageData;
   copyRightState: ReturnType<typeof useComplexCopyright>;
   isMathJaxLesson: boolean;
+  trackMediaClipsButtonClicked: (props: TrackingCallbackProps) => void;
 }): LessonResource[] {
   const lessonGuide = data.lessonGuideUrl ? (
     <LessonOverviewDocPresentation
@@ -187,7 +191,7 @@ export function getLessonResources({
       lessonOutline={data.lessonOutline}
       isPELesson={!!data.actions?.displayPETitle}
       isMFL={!!data.actions?.displayVocabButton}
-      onTrackingCallback={() => {}}
+      onTrackingCallback={trackMediaClipsButtonClicked}
     />
   ) : undefined;
   const lessonDetails = (
