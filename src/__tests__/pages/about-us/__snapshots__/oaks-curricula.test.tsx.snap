@@ -340,7 +340,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 .c101 {
   position: relative;
-  width: 22.5rem;
+  width: 100%;
   height: 22.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }

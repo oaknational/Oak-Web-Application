@@ -123,7 +123,7 @@ export function GuidingPrinciples({
 
         <OakFlex
           $position={"relative"}
-          $width={["spacing-360", "spacing-480", "spacing-480"]}
+          $width={["100%", "spacing-480", "spacing-480"]}
           $height={["spacing-360", "spacing-480", "spacing-480"]}
         >
           {imageUrl ? (
