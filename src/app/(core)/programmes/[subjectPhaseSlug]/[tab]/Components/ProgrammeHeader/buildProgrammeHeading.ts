@@ -116,6 +116,7 @@ function getSubjectTitleSelection(
       ? subjectCategory.title
       : undefined;
 
+  // When "All" is selected, show the subject title
   if (subjectCategoriesDisplayed && subjectCategorySlug === "all") {
     return {
       title: subjectTitle,
@@ -123,12 +124,14 @@ function getSubjectTitleSelection(
     };
   }
 
+  // Special-case the most constrained state so we can avoid redundant headings.
   if (
     hasSingleChildSubject &&
     hasSingleSubjectCategory &&
     childSubjectsDisplayed &&
     subjectCategoriesDisplayed
   ) {
+    // If both filters resolve to the same slug, show the child subject once rather than duplicating labels.
     if (
       childSubject &&
       subjectCategory &&
@@ -141,6 +144,8 @@ function getSubjectTitleSelection(
       };
     }
 
+    // Otherwise show subject + category
+    // Needed for English where we display both subject and subject category
     if (
       shouldPrefixSubjectCategoryWithSubject &&
       selectedSubjectCategoryTitle
@@ -158,7 +163,9 @@ function getSubjectTitleSelection(
     };
   }
 
+  // When child subjects are hidden, the category becomes the most specific visible selection.
   if (!childSubjectsDisplayed && selectedSubjectCategoryTitle) {
+    // For English where we display both subject and subject category
     if (shouldPrefixSubjectCategoryWithSubject) {
       return {
         title: `${formattedSubjectTitle}${subjectCategorySeparator}${selectedSubjectCategoryTitle}`,
@@ -173,6 +180,7 @@ function getSubjectTitleSelection(
     };
   }
 
+  // When categories are hidden but child subjects are shown, use the selected child subject as the heading.
   if (!subjectCategoriesDisplayed && childSubjectsDisplayed && childSubject) {
     return {
       title: childSubject.subject,

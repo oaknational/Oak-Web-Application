@@ -80,10 +80,6 @@ describe("buildProgrammeHeading", () => {
             },
           }),
         ],
-        childSubjects: [
-          createChildSubject({ subject_slug: "english" }),
-          createChildSubject({ subject_slug: "drama" }),
-        ],
         subjectCategories: [
           createSubjectCategory({
             id: 1,
@@ -354,5 +350,166 @@ describe("buildProgrammeHeading", () => {
     });
 
     expect(result).toBe("English Year 11 Language AQA");
+  });
+
+  it("uses colon separator when prefixing subject category in primary years", () => {
+    const data: CurriculumUnitsFormattedData = {
+      yearData: {
+        "3": createYearData({
+          units: [
+            createUnit({
+              slug: "test-3",
+              year: "3",
+              actions: {
+                subject_category_actions: {
+                  group_by_subjectcategory: true,
+                },
+              },
+            }),
+          ],
+          subjectCategories: [
+            createSubjectCategory({
+              id: 1,
+              slug: "grammar",
+              title: "Grammar",
+            }),
+          ],
+        }),
+        "4": createYearData({
+          units: [createUnit({ slug: "test-4", year: "4" })],
+          subjectCategories: [
+            createSubjectCategory({
+              id: 1,
+              slug: "grammar",
+              title: "Grammar",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["3", "4"],
+      keystages: [],
+    };
+    const filters = createFilter({
+      subjectCategories: ["grammar"],
+      years: ["3", "4"],
+    });
+
+    const result = buildHeading({
+      subjectTitle: "English",
+      data,
+      filters,
+      schoolYear: "3",
+    });
+
+    expect(result).toBe("English: Grammar year 3");
+  });
+
+  it("falls back to subject title when child subject and subject category are both applied but do not match", () => {
+    const data: CurriculumUnitsFormattedData = {
+      yearData: {
+        "7": createYearData({
+          units: [createUnit({ slug: "test-ks3", year: "7" })],
+          childSubjects: [
+            createChildSubject({ subject_slug: "chemistry" }),
+            createChildSubject({ subject_slug: "physics" }),
+          ],
+        }),
+        "10": createYearData({
+          units: [createUnit({ slug: "test-ks4", year: "10" })],
+          subjectCategories: [
+            createSubjectCategory({
+              id: 1,
+              slug: "chemistry",
+              title: "Chemistry",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["7", "10"],
+      keystages: [],
+    };
+    const filters = createFilter({
+      childSubjects: ["physics"],
+      subjectCategories: ["chemistry"],
+      years: ["7", "10"],
+    });
+
+    const result = buildHeading({
+      subjectTitle: "Science",
+      data,
+      filters,
+      schoolYear: "7",
+    });
+
+    expect(result).toBe("Science year 7");
+  });
+
+  it("formats KS4 headings as subject, year, then examboard when not grouped by subject category", () => {
+    const data: CurriculumUnitsFormattedData = {
+      yearData: {
+        "10": createYearData({
+          units: [createUnit({ slug: "test-10", year: "10" })],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["10"],
+      keystages: [],
+    };
+    const filters = createFilter({ years: ["10"] });
+
+    const result = buildHeading({
+      subjectTitle: "Science",
+      data,
+      filters,
+      schoolYear: "10",
+      examboardTitle: "AQA",
+    });
+
+    expect(result).toBe("Science year 10 AQA");
+  });
+
+  it("does not append examboard for non-ks4 key stage headings", () => {
+    const data = createDataWithChildSubjects();
+    const filters = createFilter({ years: ["7"] });
+
+    const result = buildHeading({
+      subjectTitle: "Science",
+      data,
+      filters,
+      keyStage: "ks3",
+      examboardTitle: "AQA",
+    });
+
+    expect(result).toBe("Science KS3");
+  });
+
+  it("ignores groupAs title when not every selected year has matching groupAs", () => {
+    const data: CurriculumUnitsFormattedData = {
+      yearData: {
+        "3": createYearData({
+          units: [createUnit({ slug: "test-3", year: "3" })],
+          groupAs: "Swimming and water safety",
+        }),
+        "4": createYearData({
+          units: [createUnit({ slug: "test-4", year: "4" })],
+          groupAs: null,
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["3", "4"],
+      keystages: [],
+    };
+    const filters = createFilter({ years: ["3", "4"] });
+
+    const result = buildHeading({
+      subjectTitle: "PE",
+      data,
+      filters,
+      phaseTitle: "Primary",
+    });
+
+    expect(result).toBe("PE primary");
   });
 });
