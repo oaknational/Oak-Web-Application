@@ -178,6 +178,58 @@ describe("buildProgrammeHeading", () => {
     expect(result).toBe("Science year 9");
   });
 
+  it("uses (all years) when schoolYear is all-years", () => {
+    const data: CurriculumUnitsFormattedData = {
+      yearData: {
+        "all-years": createYearData({
+          units: [createUnit({ slug: "test-all-years", year: "7" })],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["all-years"],
+      keystages: [],
+    };
+    const filters = createFilter({ years: ["all-years"] });
+
+    const result = buildProgrammeHeading({
+      subjectTitle: "Science",
+      data,
+      filters,
+      phaseTitle: "Secondary",
+      schoolYear: "all-years",
+    });
+
+    expect(result).toBe("Science (all years)");
+  });
+
+  it("returns shared groupAs title when selected years match", () => {
+    const data: CurriculumUnitsFormattedData = {
+      yearData: {
+        "3": createYearData({
+          units: [createUnit({ slug: "test-3", year: "3" })],
+          groupAs: "Swimming and water safety",
+        }),
+        "4": createYearData({
+          units: [createUnit({ slug: "test-4", year: "4" })],
+          groupAs: "Swimming and water safety",
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["3", "4"],
+      keystages: [],
+    };
+    const filters = createFilter({ years: ["3", "4"] });
+
+    const result = buildProgrammeHeading({
+      subjectTitle: "PE",
+      data,
+      filters,
+      phaseTitle: "Primary",
+    });
+
+    expect(result).toBe("Swimming and water safety primary");
+  });
+
   it("returns default subject title for subject category all", () => {
     const data = createDataWithSubjectCategories();
     const filters = createFilter({

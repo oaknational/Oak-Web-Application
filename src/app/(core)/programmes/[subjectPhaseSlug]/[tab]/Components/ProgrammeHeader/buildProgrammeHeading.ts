@@ -14,12 +14,36 @@ type SubjectTitleSelection = {
   shouldPrefixSubjectCategoryWithSubject: boolean;
 };
 
-function isAllSeconary(keyStages: string[]): boolean {
+function isAllSecondary(keyStages: string[]): boolean {
   if (keyStages.length === 0) return false;
 
   return keyStages.every(
     (keyStage) => keyStage === "ks3" || keyStage === "ks4",
   );
+}
+
+function getSharedGroupAsTitle(
+  data: CurriculumUnitsFormattedData,
+  selectedYears: string[],
+): string | null {
+  const groupAsValues = selectedYears
+    .map((year) => data.yearData[year]?.groupAs)
+    .filter((groupAs): groupAs is string => Boolean(groupAs));
+
+  if (groupAsValues.length !== selectedYears.length) {
+    return null;
+  }
+
+  const [firstGroupAs] = groupAsValues;
+  if (!firstGroupAs) {
+    return null;
+  }
+
+  const allShareGroupAs = groupAsValues.every(
+    (groupAs) => groupAs === firstGroupAs,
+  );
+
+  return allShareGroupAs ? firstGroupAs : null;
 }
 
 function getSubjectTitleSelection(
@@ -34,7 +58,7 @@ function getSubjectTitleSelection(
     .map((year) => data.yearData[year]?.keystage)
     .filter((keyStage): keyStage is string => Boolean(keyStage));
   // We're not using ":" for secondary English, only primary
-  const subjectCategorySeparator = isAllSeconary(selectedKeyStages)
+  const subjectCategorySeparator = isAllSecondary(selectedKeyStages)
     ? " "
     : ": ";
   const shouldPrefixSubjectCategoryWithSubject = selectedYears.some((year) =>
@@ -43,6 +67,16 @@ function getSubjectTitleSelection(
         unit.actions?.subject_category_actions?.group_by_subjectcategory,
     ),
   );
+  const sharedGroupAsTitle = getSharedGroupAsTitle(data, selectedYears);
+
+  // Return groupAs when every selected year resolves to the same non-empty value.
+  // This is used for swimming units.
+  if (sharedGroupAsTitle) {
+    return {
+      title: sharedGroupAsTitle,
+      shouldPrefixSubjectCategoryWithSubject,
+    };
+  }
 
   const childSubjectsDisplayed = shouldDisplayFilter(
     data,
@@ -197,7 +231,11 @@ export function buildProgrammeHeading({
   const parts: Array<string | undefined> = [selectedSubjectTitle];
 
   if (schoolYear) {
-    parts.push(`year ${schoolYear}`);
+    if (schoolYear === "all-years") {
+      parts.push("(all years)");
+    } else {
+      parts.push(`year ${schoolYear}`);
+    }
 
     if (isKs4SchoolYear) {
       parts.push(examboardTitle);
