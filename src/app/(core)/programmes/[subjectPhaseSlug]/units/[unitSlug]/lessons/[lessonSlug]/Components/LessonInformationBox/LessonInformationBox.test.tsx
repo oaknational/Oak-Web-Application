@@ -86,6 +86,85 @@ describe("LessonInformationBox", () => {
     expect(lessonInformationContainer).toHaveStyle("background: #f2f2f2");
   });
 
+  it("renders files needed section", () => {
+    render(
+      <LessonInformationBox
+        filesNeeded={{
+          files: ["File 1", "File 2"],
+          href: "#",
+          geoRestricted: false,
+          loginRequired: false,
+        }}
+      />,
+    );
+
+    const filesNeededHeading = screen.getByRole("heading", {
+      name: "Files needed for this lesson",
+    });
+    const fileNeededText = screen.getByText("File 1");
+    const lessonInformationContainer = screen.getByTestId(
+      "lesson-information-container",
+    );
+    const downloadInstructionText = screen.getByText(
+      "Download these files to use in the lesson.",
+    );
+    const buttonText = screen.getByRole("link", {
+      name: "Download lesson files",
+    });
+
+    expect(filesNeededHeading).toBeInTheDocument();
+    expect(fileNeededText).toBeInTheDocument();
+    expect(downloadInstructionText).toBeInTheDocument();
+    expect(buttonText).toBeInTheDocument();
+    expect(lessonInformationContainer).toHaveStyle("background: #f2f2f2");
+  });
+
+  it("renders singular file text when only one file is needed", () => {
+    render(
+      <LessonInformationBox
+        filesNeeded={{
+          files: ["File 1"],
+          href: "#",
+          geoRestricted: false,
+          loginRequired: false,
+        }}
+      />,
+    );
+
+    const filesNeededHeading = screen.getByRole("heading", {
+      name: "File needed for this lesson",
+    });
+    const fileNeededText = screen.getByText("File 1");
+    const downloadInstructionText = screen.getByText(
+      "Download this file to use in the lesson.",
+    );
+    const buttonText = screen.getByRole("link", {
+      name: "Download lesson file",
+    });
+    expect(filesNeededHeading).toBeInTheDocument();
+    expect(fileNeededText).toBeInTheDocument();
+    expect(downloadInstructionText).toBeInTheDocument();
+    expect(buttonText).toBeInTheDocument();
+  });
+
+  it("links to the correct href for files needed", () => {
+    render(
+      <LessonInformationBox
+        filesNeeded={{
+          files: ["File 1"],
+          href: "https://example.com/file1",
+          geoRestricted: false,
+          loginRequired: false,
+        }}
+      />,
+    );
+
+    const button = screen.getByRole("link", {
+      name: "Download lesson file",
+    });
+    expect(button).toHaveAttribute("href", "https://example.com/file1");
+  });
+
   it("does not render anything if no props are provided", () => {
     render(<LessonInformationBox />);
 
