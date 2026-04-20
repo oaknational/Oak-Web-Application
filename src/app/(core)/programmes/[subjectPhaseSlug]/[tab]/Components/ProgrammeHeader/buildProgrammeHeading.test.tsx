@@ -267,47 +267,21 @@ describe("buildProgrammeHeading", () => {
     expect(result).toBe("English Year 10 Language AQA");
   });
 
-  it("returns prefixed category title for grouped non-ks4 headings", () => {
-    const data: CurriculumUnitsFormattedData = {
-      yearData: {
-        "8": createYearData({
-          units: [
-            createUnit({
-              slug: "test-8",
-              year: "8",
-              actions: {
-                subject_category_actions: {
-                  group_by_subjectcategory: true,
-                },
-              },
-            }),
-          ],
-          subjectCategories: [
-            createSubjectCategory({
-              id: 1,
-              slug: "language",
-              title: "Language",
-            }),
-          ],
-        }),
-      },
-      threadOptions: [],
-      yearOptions: ["8"],
-      keystages: [],
-    };
+  it("uses space-separated subject and category for grouped year 10", () => {
+    const data = createGroupedData("10");
     const filters = createFilter({
       subjectCategories: ["language"],
-      years: ["8"],
+      years: ["10"],
     });
 
     const result = buildHeading({
       subjectTitle: "English",
       data,
       filters,
-      schoolYear: "8",
+      schoolYear: "10",
     });
 
-    expect(result).toBe("English: Language year 8");
+    expect(result).toBe("English Year 10 Language");
   });
 
   it("uses grouped ks4 order for year 11", () => {

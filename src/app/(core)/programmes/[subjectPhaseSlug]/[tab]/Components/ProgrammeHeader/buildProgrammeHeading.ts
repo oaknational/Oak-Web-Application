@@ -14,6 +14,14 @@ type SubjectTitleSelection = {
   shouldPrefixSubjectCategoryWithSubject: boolean;
 };
 
+function isAllSeconary(keyStages: string[]): boolean {
+  if (keyStages.length === 0) return false;
+
+  return keyStages.every(
+    (keyStage) => keyStage === "ks3" || keyStage === "ks4",
+  );
+}
+
 function getSubjectTitleSelection(
   subjectTitle: string,
   data: CurriculumUnitsFormattedData,
@@ -22,6 +30,13 @@ function getSubjectTitleSelection(
   const formattedSubjectTitle = upperFirst(subjectTitle);
   const selectedYears =
     filters.years.length > 0 ? filters.years : data.yearOptions;
+  const selectedKeyStages = selectedYears
+    .map((year) => data.yearData[year]?.keystage)
+    .filter((keyStage): keyStage is string => Boolean(keyStage));
+  // We're not using ":" for secondary English, only primary
+  const subjectCategorySeparator = isAllSeconary(selectedKeyStages)
+    ? " "
+    : ": ";
   const shouldPrefixSubjectCategoryWithSubject = selectedYears.some((year) =>
     data.yearData[year]?.units.some(
       (unit) =>
@@ -97,7 +112,7 @@ function getSubjectTitleSelection(
       selectedSubjectCategoryTitle
     ) {
       return {
-        title: `${formattedSubjectTitle}: ${selectedSubjectCategoryTitle}`,
+        title: `${formattedSubjectTitle}${subjectCategorySeparator}${selectedSubjectCategoryTitle}`,
         selectedSubjectCategoryTitle,
         shouldPrefixSubjectCategoryWithSubject,
       };
@@ -112,7 +127,7 @@ function getSubjectTitleSelection(
   if (!childSubjectsDisplayed && selectedSubjectCategoryTitle) {
     if (shouldPrefixSubjectCategoryWithSubject) {
       return {
-        title: `${formattedSubjectTitle}: ${selectedSubjectCategoryTitle}`,
+        title: `${formattedSubjectTitle}${subjectCategorySeparator}${selectedSubjectCategoryTitle}`,
         selectedSubjectCategoryTitle,
         shouldPrefixSubjectCategoryWithSubject,
       };
