@@ -132,18 +132,6 @@ export default function LessonView(
           $maxWidth={"spacing-1280"}
         >
           <OakGridArea
-            $colSpan={[12, 8, 12]}
-            $colStart={[1, 5, 1]}
-            $rowStart={1}
-          >
-            <LessonShareBar
-              showPupilShare={showPupilShare}
-              lessonSlug={lessonSlug}
-              unitSlug={unitSlug}
-              programmeSlug={programmeSlug}
-            />
-          </OakGridArea>
-          <OakGridArea
             $colSpan={[12, 4]}
             $colStart={1}
             $rowStart={[2, 1, 2]}
@@ -176,6 +164,18 @@ export default function LessonView(
                 isSpecialist: false,
                 isCanonical: false,
               }}
+            />
+          </OakGridArea>
+          <OakGridArea
+            $colSpan={[12, 8, 12]}
+            $colStart={[1, 5, 1]}
+            $rowStart={1}
+          >
+            <LessonShareBar
+              showPupilShare={showPupilShare}
+              lessonSlug={lessonSlug}
+              unitSlug={unitSlug}
+              programmeSlug={programmeSlug}
             />
           </OakGridArea>
           <OakGridArea
