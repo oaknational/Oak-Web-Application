@@ -12,6 +12,7 @@ import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
 const meta: Meta<typeof LessonHeader> = {
   component: LessonHeader,
+  title: "App/Programmes/Units/Lessons/LessonHeader",
   tags: ["autodocs"],
   parameters: {
     controls: {
