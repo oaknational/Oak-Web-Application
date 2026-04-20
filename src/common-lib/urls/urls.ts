@@ -118,8 +118,8 @@ export type LessonListingLinkProps = {
   programmeSlug: string;
   unitSlug: string;
 };
-export type IntegratedUnitIndexLinkProps = {
-  page: "integrated-unit-index";
+export type IntegratedUnitOverviewLinkProps = {
+  page: "integrated-unit-overview";
   programmeSlug: string;
   unitSlug: string;
   query?: {
@@ -457,8 +457,8 @@ export type OakLinkProps =
   | SpecialistLessonOverviewLinkProps
   | LessonOverviewCanonicalLinkProps
   | LessonListingLinkProps
-  | IntegratedUnitIndexLinkProps
-  | IntegratedLessonIndexLinkProps
+  | IntegratedUnitOverviewLinkProps
+  | IntegratedLessonOverviewLinkProps
   | SpecialistLessonListingLinkProps
   | UnitListingLinkProps
   | SpecialistUnitListingLinkProps
@@ -841,11 +841,11 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "lesson-index",
   }),
-  "integrated-unit-index": createOakPageConfig({
+  "integrated-unit-overview": createOakPageConfig({
     pathPattern: "/programmes/:programmeSlug/units/:unitSlug/lessons",
     analyticsPageName: "Lesson Listing",
     configType: "internal",
-    pageType: "integrated-unit-index",
+    pageType: "integrated-unit-overview",
   }),
   "integrated-lesson-index": createOakPageConfig({
     pathPattern:

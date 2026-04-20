@@ -55,6 +55,10 @@ export type LargeHeaderProps = {
    * A hero image for the header;
    */
   heroImage: string | null;
+  /**
+   * Whether to use the subdued vaiant of the background colour for the main background
+   */
+  useSubduedBackground?: boolean;
 } & HeaderProps;
 
 export type SubjectIcon = `subject-${string}` & OakIconName;
@@ -99,13 +103,19 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
   const isCompactLayout = isCompactHeaderProps(props);
   const heroImage = isCompactLayout ? null : props.heroImage;
 
-  let mainBackground: OakUiRoleToken | undefined;
+  const getMainBackground = (): OakUiRoleToken | undefined => {
+    if (props.backgroundColorLevel) {
+      if (isCompactLayout) {
+        return `bg-decorative${props.backgroundColorLevel}-very-subdued`;
+      } else if (props.useSubduedBackground) {
+        return `bg-decorative${props.backgroundColorLevel}-very-subdued`;
+      } else {
+        return `bg-decorative${props.backgroundColorLevel}-main`;
+      }
+    }
+  };
 
-  if (props.backgroundColorLevel) {
-    mainBackground = isCompactLayout
-      ? `bg-decorative${props.backgroundColorLevel}-very-subdued`
-      : `bg-decorative${props.backgroundColorLevel}-main`;
-  }
+  const mainBackground = getMainBackground();
 
   return (
     <OakBox
@@ -134,7 +144,7 @@ export const Header = (props: LargeHeaderProps | CompactHeaderProps) => {
         )}
         {/* Content area: 7 columns on desktop for large layout, full width on mobile and compact layout*/}
         <OakGridArea $colSpan={[12, isCompactLayout ? 12 : 7]} $order={[3, 2]}>
-          <OakFlex $gap={"spacing-32"}>
+          <OakFlex $gap={"spacing-32"} $height={"100%"}>
             <CompactHeaderSubjectIcon display={["none", "block"]} {...props} />
             <OakFlex
               $textWrap="balance"
