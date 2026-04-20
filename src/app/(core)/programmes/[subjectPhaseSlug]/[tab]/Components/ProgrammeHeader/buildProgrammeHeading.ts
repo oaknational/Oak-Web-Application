@@ -14,6 +14,39 @@ type SubjectTitleSelection = {
   shouldPrefixSubjectCategoryWithSubject: boolean;
 };
 
+type SubjectTitleContext = {
+  // Original and display formatted subject names used by different rules.
+  subjectTitle: string;
+  formattedSubjectTitle: string;
+
+  // Controls English style "Subject Category" heading construction.
+  shouldPrefixSubjectCategoryWithSubject: boolean;
+  subjectCategorySeparator: string;
+
+  // Visibility of filters in the current data/filter state.
+  childSubjectsDisplayed: boolean;
+  subjectCategoriesDisplayed: boolean;
+
+  // Whether each filter is narrowed to a single value.
+  hasSingleChildSubject: boolean;
+  hasSingleSubjectCategory: boolean;
+
+  // Resolved entities/slugs for single value selections.
+  childSubject?: ReturnType<typeof childSubjectForFilter>;
+  subjectCategory?: ReturnType<typeof subjectCategoryForFilter>;
+  childSubjectSlug?: string;
+  subjectCategorySlug?: string;
+
+  // Human readable category title to surface in headings, excluding "all".
+  selectedSubjectCategoryTitle?: string;
+
+  // Common override title (e.g. Swimming and water safety for PE), if available.
+  sharedGroupAsTitle: string | null;
+};
+
+/**
+ * Checks if all the given key stages are secondary.
+ */
 function isAllSecondary(keyStages: string[]): boolean {
   if (keyStages.length === 0) return false;
 
@@ -22,6 +55,10 @@ function isAllSecondary(keyStages: string[]): boolean {
   );
 }
 
+/**
+ * Gets the common groupAs override title for the given units and filters.
+ * This is used for swimming units.
+ */
 function getSharedGroupAsTitle(
   data: CurriculumUnitsFormattedData,
   selectedYears: string[],
@@ -46,11 +83,11 @@ function getSharedGroupAsTitle(
   return allShareGroupAs ? firstGroupAs : null;
 }
 
-function getSubjectTitleSelection(
+function buildSubjectTitleContext(
   subjectTitle: string,
   data: CurriculumUnitsFormattedData,
   filters: CurriculumFilters,
-): SubjectTitleSelection {
+): SubjectTitleContext {
   const formattedSubjectTitle = upperFirst(subjectTitle);
   const selectedYears =
     filters.years.length > 0 ? filters.years : data.yearOptions;
@@ -69,24 +106,11 @@ function getSubjectTitleSelection(
   );
   const sharedGroupAsTitle = getSharedGroupAsTitle(data, selectedYears);
 
-  // Return groupAs when every selected year resolves to the same non-empty value.
-  // This is used for swimming units.
-  if (sharedGroupAsTitle) {
-    return {
-      title: sharedGroupAsTitle,
-      shouldPrefixSubjectCategoryWithSubject,
-    };
-  }
-
-  const childSubjectsDisplayed = shouldDisplayFilter(
-    data,
-    filters,
-    "childSubjects",
+  const childSubjectsDisplayed = Boolean(
+    shouldDisplayFilter(data, filters, "childSubjects"),
   );
-  const subjectCategoriesDisplayed = shouldDisplayFilter(
-    data,
-    filters,
-    "subjectCategories",
+  const subjectCategoriesDisplayed = Boolean(
+    shouldDisplayFilter(data, filters, "subjectCategories"),
   );
 
   const appliedChildSubjects = childSubjectsDisplayed
@@ -96,6 +120,7 @@ function getSubjectTitleSelection(
     ? filters.subjectCategories
     : [];
 
+  // I don't think we ever allow multiple selections in the UI but the data allows for it.
   const hasSingleChildSubject = appliedChildSubjects.length === 1;
   const hasSingleSubjectCategory = appliedSubjectCategories.length === 1;
 
@@ -116,82 +141,187 @@ function getSubjectTitleSelection(
       ? subjectCategory.title
       : undefined;
 
-  // When "All" is selected, show the subject title
-  if (subjectCategoriesDisplayed && subjectCategorySlug === "all") {
-    return {
-      title: subjectTitle,
-      shouldPrefixSubjectCategoryWithSubject,
-    };
+  return {
+    subjectTitle,
+    formattedSubjectTitle,
+    shouldPrefixSubjectCategoryWithSubject,
+    subjectCategorySeparator,
+    childSubjectsDisplayed,
+    subjectCategoriesDisplayed,
+    hasSingleChildSubject,
+    hasSingleSubjectCategory,
+    childSubject,
+    subjectCategory,
+    childSubjectSlug,
+    subjectCategorySlug,
+    selectedSubjectCategoryTitle,
+    sharedGroupAsTitle,
+  };
+}
+
+function createSubjectWithCategoryTitle(ctx: SubjectTitleContext) {
+  return `${ctx.formattedSubjectTitle}${ctx.subjectCategorySeparator}${ctx.selectedSubjectCategoryTitle}`;
+}
+
+function createDefaultSubjectTitleSelection(
+  ctx: SubjectTitleContext,
+): SubjectTitleSelection {
+  return {
+    title: ctx.formattedSubjectTitle,
+    shouldPrefixSubjectCategoryWithSubject:
+      ctx.shouldPrefixSubjectCategoryWithSubject,
+  };
+}
+
+// Highest-priority override: use shared groupAs title when all selected years agree.
+function selectionForSharedGroupAs(
+  ctx: SubjectTitleContext,
+): SubjectTitleSelection | null {
+  if (!ctx.sharedGroupAsTitle) {
+    return null;
   }
 
-  // Special-case the most constrained state so we can avoid redundant headings.
+  return {
+    title: ctx.sharedGroupAsTitle,
+    shouldPrefixSubjectCategoryWithSubject:
+      ctx.shouldPrefixSubjectCategoryWithSubject,
+  };
+}
+
+// Handles explicit "all" category selection by reverting to the base subject title.
+function selectionForAllSubjectCategory(
+  ctx: SubjectTitleContext,
+): SubjectTitleSelection | null {
+  if (!ctx.subjectCategoriesDisplayed || ctx.subjectCategorySlug !== "all") {
+    return null;
+  }
+
+  return {
+    title: ctx.subjectTitle,
+    shouldPrefixSubjectCategoryWithSubject:
+      ctx.shouldPrefixSubjectCategoryWithSubject,
+  };
+}
+
+// Resolves the most constrained state where both filters are visible and have a single selected value.
+function selectionForSingleChildAndCategory(
+  ctx: SubjectTitleContext,
+): SubjectTitleSelection | null {
+  const hasSingleFiltersDisplayed =
+    ctx.hasSingleChildSubject &&
+    ctx.hasSingleSubjectCategory &&
+    ctx.childSubjectsDisplayed &&
+    ctx.subjectCategoriesDisplayed;
+
+  if (!hasSingleFiltersDisplayed) {
+    return null;
+  }
+
   if (
-    hasSingleChildSubject &&
-    hasSingleSubjectCategory &&
-    childSubjectsDisplayed &&
-    subjectCategoriesDisplayed
+    ctx.childSubject &&
+    ctx.subjectCategory &&
+    ctx.childSubjectSlug === ctx.subjectCategorySlug
   ) {
-    // If both filters resolve to the same slug, show the child subject once rather than duplicating labels.
-    if (
-      childSubject &&
-      subjectCategory &&
-      childSubjectSlug === subjectCategorySlug
-    ) {
-      return {
-        title: childSubject.subject,
-        selectedSubjectCategoryTitle,
-        shouldPrefixSubjectCategoryWithSubject,
-      };
-    }
-
-    // Otherwise show subject + category
-    // Needed for English where we display both subject and subject category
-    if (
-      shouldPrefixSubjectCategoryWithSubject &&
-      selectedSubjectCategoryTitle
-    ) {
-      return {
-        title: `${formattedSubjectTitle}${subjectCategorySeparator}${selectedSubjectCategoryTitle}`,
-        selectedSubjectCategoryTitle,
-        shouldPrefixSubjectCategoryWithSubject,
-      };
-    }
-
     return {
-      title: formattedSubjectTitle,
-      shouldPrefixSubjectCategoryWithSubject,
+      title: ctx.childSubject.subject,
+      selectedSubjectCategoryTitle: ctx.selectedSubjectCategoryTitle,
+      shouldPrefixSubjectCategoryWithSubject:
+        ctx.shouldPrefixSubjectCategoryWithSubject,
     };
   }
 
-  // When child subjects are hidden, the category becomes the most specific visible selection.
-  if (!childSubjectsDisplayed && selectedSubjectCategoryTitle) {
-    // For English where we display both subject and subject category
-    if (shouldPrefixSubjectCategoryWithSubject) {
-      return {
-        title: `${formattedSubjectTitle}${subjectCategorySeparator}${selectedSubjectCategoryTitle}`,
-        selectedSubjectCategoryTitle,
-        shouldPrefixSubjectCategoryWithSubject,
-      };
-    }
+  if (
+    ctx.shouldPrefixSubjectCategoryWithSubject &&
+    ctx.selectedSubjectCategoryTitle
+  ) {
     return {
-      title: selectedSubjectCategoryTitle,
-      selectedSubjectCategoryTitle,
-      shouldPrefixSubjectCategoryWithSubject,
+      title: createSubjectWithCategoryTitle(ctx),
+      selectedSubjectCategoryTitle: ctx.selectedSubjectCategoryTitle,
+      shouldPrefixSubjectCategoryWithSubject:
+        ctx.shouldPrefixSubjectCategoryWithSubject,
     };
   }
 
-  // When categories are hidden but child subjects are shown, use the selected child subject as the heading.
-  if (!subjectCategoriesDisplayed && childSubjectsDisplayed && childSubject) {
+  return createDefaultSubjectTitleSelection(ctx);
+}
+
+// Applies when child subjects are hidden, making category the most specific visible label.
+function selectionForHiddenChildSubjects(
+  ctx: SubjectTitleContext,
+): SubjectTitleSelection | null {
+  if (ctx.childSubjectsDisplayed || !ctx.selectedSubjectCategoryTitle) {
+    return null;
+  }
+
+  if (ctx.shouldPrefixSubjectCategoryWithSubject) {
     return {
-      title: childSubject.subject,
-      shouldPrefixSubjectCategoryWithSubject,
+      title: createSubjectWithCategoryTitle(ctx),
+      selectedSubjectCategoryTitle: ctx.selectedSubjectCategoryTitle,
+      shouldPrefixSubjectCategoryWithSubject:
+        ctx.shouldPrefixSubjectCategoryWithSubject,
     };
   }
 
   return {
-    title: formattedSubjectTitle,
-    shouldPrefixSubjectCategoryWithSubject,
+    title: ctx.selectedSubjectCategoryTitle,
+    selectedSubjectCategoryTitle: ctx.selectedSubjectCategoryTitle,
+    shouldPrefixSubjectCategoryWithSubject:
+      ctx.shouldPrefixSubjectCategoryWithSubject,
   };
+}
+
+// Applies when categories are hidden and a child subject is the most specific visible label.
+function selectionForHiddenSubjectCategories(
+  ctx: SubjectTitleContext,
+): SubjectTitleSelection | null {
+  if (
+    ctx.subjectCategoriesDisplayed ||
+    !ctx.childSubjectsDisplayed ||
+    !ctx.childSubject
+  ) {
+    return null;
+  }
+
+  return {
+    title: ctx.childSubject.subject,
+    shouldPrefixSubjectCategoryWithSubject:
+      ctx.shouldPrefixSubjectCategoryWithSubject,
+  };
+}
+
+/**
+ * Resolves the most specific subject title selection for the given context in order of precedence.
+ */
+function resolveSubjectTitleSelection(
+  ctx: SubjectTitleContext,
+): SubjectTitleSelection {
+  const sharedGroupAsSelection = selectionForSharedGroupAs(ctx);
+  if (sharedGroupAsSelection) return sharedGroupAsSelection;
+
+  const allSubjectCategorySelection = selectionForAllSubjectCategory(ctx);
+  if (allSubjectCategorySelection) return allSubjectCategorySelection;
+
+  const singleChildAndCategorySelection =
+    selectionForSingleChildAndCategory(ctx);
+  if (singleChildAndCategorySelection) return singleChildAndCategorySelection;
+
+  const hiddenChildSubjectsSelection = selectionForHiddenChildSubjects(ctx);
+  if (hiddenChildSubjectsSelection) return hiddenChildSubjectsSelection;
+
+  const hiddenSubjectCategoriesSelection =
+    selectionForHiddenSubjectCategories(ctx);
+  if (hiddenSubjectCategoriesSelection) return hiddenSubjectCategoriesSelection;
+
+  return createDefaultSubjectTitleSelection(ctx);
+}
+
+function getSubjectTitleSelection(
+  subjectTitle: string,
+  data: CurriculumUnitsFormattedData,
+  filters: CurriculumFilters,
+): SubjectTitleSelection {
+  const context = buildSubjectTitleContext(subjectTitle, data, filters);
+  return resolveSubjectTitleSelection(context);
 }
 
 type BuildProgrammeHeadingArgs = {
@@ -204,6 +334,9 @@ type BuildProgrammeHeadingArgs = {
   examboardTitle?: string;
 };
 
+/**
+ * Builds a programme heading for the given units and filters.
+ */
 export function buildProgrammeHeading({
   subjectTitle,
   data,
