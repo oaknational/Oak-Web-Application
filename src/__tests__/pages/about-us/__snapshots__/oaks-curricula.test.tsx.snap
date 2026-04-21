@@ -4652,7 +4652,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <button
-                      aria-controls="topnav-teachers-primary"
                       aria-expanded="false"
                       aria-haspopup="true"
                       class="c35 c36 internal-button"
@@ -4684,7 +4683,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <button
-                      aria-controls="topnav-teachers-secondary"
                       aria-expanded="false"
                       aria-haspopup="true"
                       class="c35 c36 internal-button"
@@ -4745,7 +4743,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <button
-                      aria-controls="topnav-teachers-aboutUs"
                       aria-expanded="false"
                       aria-haspopup="true"
                       class="c35 c36 internal-button"
@@ -4777,7 +4774,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <button
-                      aria-controls="topnav-teachers-guidance"
                       aria-expanded="false"
                       aria-haspopup="true"
                       class="c35 c36 internal-button"
@@ -5018,7 +5014,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 class="c8 yellow-shadow"
               />
               <button
-                aria-controls="teachers-top-nav-hamburger"
                 aria-expanded="false"
                 aria-label="Open navigation menu"
                 class="c69 c10 internal-button"
