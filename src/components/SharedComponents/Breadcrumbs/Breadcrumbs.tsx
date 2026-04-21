@@ -1,6 +1,11 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakUL, OakIcon, OakSecondaryLink } from "@oaknational/oak-components";
+import {
+  OakUL,
+  OakIcon,
+  OakSecondaryLink,
+  OakFocusIndicator,
+} from "@oaknational/oak-components";
 
 import { BreadcrumbJsonLd } from "@/browser-lib/seo/getJsonLd";
 import ellipsis from "@/styles/ellipsis";
@@ -67,13 +72,18 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                     $height={"spacing-20"}
                   />
                 )}
-                <BreadcrumbConstrainer>
-                  {disabled ? (
-                    <>{label}</>
-                  ) : (
-                    <StyledLink href={href}>{label}</StyledLink>
-                  )}
-                </BreadcrumbConstrainer>
+                <OakFocusIndicator
+                  $borderRadius={"border-radius-s"}
+                  $pl={"spacing-4"}
+                >
+                  <BreadcrumbConstrainer>
+                    {disabled ? (
+                      <>{label}</>
+                    ) : (
+                      <StyledLink href={href}>{label}</StyledLink>
+                    )}
+                  </BreadcrumbConstrainer>
+                </OakFocusIndicator>
               </BreadcrumbsLi>
             );
           })}
