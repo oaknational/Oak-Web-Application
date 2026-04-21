@@ -1,10 +1,19 @@
 import { screen } from "@testing-library/dom";
+import { oakDefaultTheme } from "@oaknational/oak-components";
 
 import LessonInformationBox from "./LessonInformationBox";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import theme from "@/styles/theme";
+import type { OakColorName } from "@/styles/theme/types";
 
 const render = renderWithTheme;
+const getOakBackgroundColor = (
+  token: "bg-decorative2-subdued" | "bg-neutral",
+): string => {
+  const colorName = oakDefaultTheme.uiColors[token] as OakColorName;
+  return theme.colors[colorName];
+};
 
 describe("LessonInformationBox", () => {
   it("renders teacher tip", () => {
@@ -27,9 +36,9 @@ describe("LessonInformationBox", () => {
     );
     expect(teacherTipHeading).toBeInTheDocument();
     expect(teacherTipText).toBeInTheDocument();
-    expect(lessonInformationContainer).toHaveStyle(
-      "background: rgb(215, 241, 239)",
-    );
+    expect(lessonInformationContainer).toHaveStyle({
+      background: getOakBackgroundColor("bg-decorative2-subdued"),
+    });
   });
 
   it("renders equipment section", () => {
@@ -47,7 +56,9 @@ describe("LessonInformationBox", () => {
     );
     expect(equipmentHeading).toBeInTheDocument();
     expect(equipmentText).toBeInTheDocument();
-    expect(lessonInformationContainer).toHaveStyle("background: #f2f2f2");
+    expect(lessonInformationContainer).toHaveStyle({
+      background: getOakBackgroundColor("bg-neutral"),
+    });
   });
 
   it("renders content guidance section", () => {
@@ -65,7 +76,9 @@ describe("LessonInformationBox", () => {
     );
     expect(contentGuidanceHeading).toBeInTheDocument();
     expect(contentGuidanceText).toBeInTheDocument();
-    expect(lessonInformationContainer).toHaveStyle("background: #f2f2f2");
+    expect(lessonInformationContainer).toHaveStyle({
+      background: getOakBackgroundColor("bg-neutral"),
+    });
   });
 
   it("renders supervision section", () => {
@@ -83,7 +96,9 @@ describe("LessonInformationBox", () => {
     );
     expect(supervisionHeading).toBeInTheDocument();
     expect(supervisionText).toBeInTheDocument();
-    expect(lessonInformationContainer).toHaveStyle("background: #f2f2f2");
+    expect(lessonInformationContainer).toHaveStyle({
+      background: getOakBackgroundColor("bg-neutral"),
+    });
   });
 
   it("renders files needed section", () => {
@@ -116,7 +131,9 @@ describe("LessonInformationBox", () => {
     expect(fileNeededText).toBeInTheDocument();
     expect(downloadInstructionText).toBeInTheDocument();
     expect(buttonText).toBeInTheDocument();
-    expect(lessonInformationContainer).toHaveStyle("background: #f2f2f2");
+    expect(lessonInformationContainer).toHaveStyle({
+      background: getOakBackgroundColor("bg-neutral"),
+    });
   });
 
   it("renders singular file text when only one file is needed", () => {
