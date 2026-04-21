@@ -4,14 +4,14 @@ exports[`Fieldset all options 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer cLkmXy hwFdrX"
+      class="sc-aXZVg sc-gEvEer itWQoU hwFdrX"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-aXZVg dFOKqz"
+        class="sc-aXZVg hkJkIR"
       >
         <span
-          class="sc-aXZVg RPavd"
+          class="sc-aXZVg jcHcan"
           data-testid="inline-banner-icon"
         >
           <img
@@ -26,21 +26,21 @@ exports[`Fieldset all options 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg jozKGM"
+        class="sc-aXZVg kjlEvO"
         data-testid="inline-banner-message"
       >
         Info example
       </div>
     </div>
     <div
-      class="sc-aXZVg sc-gEvEer hveuZP hwFdrX"
+      class="sc-aXZVg sc-gEvEer jziqip hwFdrX"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-aXZVg dFOKqz"
+        class="sc-aXZVg hkJkIR"
       >
         <span
-          class="sc-aXZVg RPavd"
+          class="sc-aXZVg jcHcan"
           data-testid="inline-banner-icon"
         >
           <img
@@ -55,21 +55,21 @@ exports[`Fieldset all options 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg jozKGM"
+        class="sc-aXZVg kjlEvO"
         data-testid="inline-banner-message"
       >
         Neutral example
       </div>
     </div>
     <div
-      class="sc-aXZVg sc-gEvEer iYAAGR hwFdrX"
+      class="sc-aXZVg sc-gEvEer dbACbT hwFdrX"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-aXZVg dFOKqz"
+        class="sc-aXZVg hkJkIR"
       >
         <span
-          class="sc-aXZVg RPavd"
+          class="sc-aXZVg jcHcan"
           data-testid="inline-banner-icon"
         >
           <img
@@ -84,21 +84,21 @@ exports[`Fieldset all options 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg jozKGM"
+        class="sc-aXZVg kjlEvO"
         data-testid="inline-banner-message"
       >
         Success example
       </div>
     </div>
     <div
-      class="sc-aXZVg sc-gEvEer MOlrD hwFdrX"
+      class="sc-aXZVg sc-gEvEer jdxTcZ hwFdrX"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-aXZVg dFOKqz"
+        class="sc-aXZVg hkJkIR"
       >
         <span
-          class="sc-aXZVg RPavd"
+          class="sc-aXZVg jcHcan"
           data-testid="inline-banner-icon"
         >
           <img
@@ -113,21 +113,21 @@ exports[`Fieldset all options 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg jozKGM"
+        class="sc-aXZVg kjlEvO"
         data-testid="inline-banner-message"
       >
         Alert example
       </div>
     </div>
     <div
-      class="sc-aXZVg sc-gEvEer expMzU hwFdrX"
+      class="sc-aXZVg sc-gEvEer cnRABS hwFdrX"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-aXZVg dFOKqz"
+        class="sc-aXZVg hkJkIR"
       >
         <span
-          class="sc-aXZVg RPavd"
+          class="sc-aXZVg jcHcan"
           data-testid="inline-banner-icon"
         >
           <img
@@ -142,7 +142,7 @@ exports[`Fieldset all options 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg jozKGM"
+        class="sc-aXZVg kjlEvO"
         data-testid="inline-banner-message"
       >
         Error example
@@ -156,14 +156,14 @@ exports[`Fieldset default options 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-gEvEer cLkmXy hwFdrX"
+      class="sc-aXZVg sc-gEvEer itWQoU hwFdrX"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-aXZVg dFOKqz"
+        class="sc-aXZVg hkJkIR"
       >
         <span
-          class="sc-aXZVg RPavd"
+          class="sc-aXZVg jcHcan"
           data-testid="inline-banner-icon"
         >
           <img
@@ -178,7 +178,7 @@ exports[`Fieldset default options 1`] = `
         </span>
       </div>
       <div
-        class="sc-aXZVg jozKGM"
+        class="sc-aXZVg kjlEvO"
         data-testid="inline-banner-message"
       >
         Default example

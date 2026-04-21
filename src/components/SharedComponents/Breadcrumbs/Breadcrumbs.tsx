@@ -72,10 +72,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                     $height={"spacing-20"}
                   />
                 )}
-                <OakFocusIndicator
-                  $borderRadius={"border-radius-s"}
-                  $pl={"spacing-4"}
-                >
+                <OakFocusIndicator $borderRadius={"border-radius-s"}>
                   <BreadcrumbConstrainer>
                     {disabled ? (
                       <>{label}</>
