@@ -1,3 +1,20 @@
+# [1.1044.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1043.0...v1.1044.0) (2026-04-20)
+
+
+### Bug Fixes
+
+* add underline to distinguish footnote links ([3849491](https://github.com/oaknational/Oak-Web-Application/commit/3849491b4f2e819ccad95020605e8142b02b9baa))
+* apply nav to OakMaxWidth ([3d83ece](https://github.com/oaknational/Oak-Web-Application/commit/3d83ece06f49fdd64aebf141e8d07ea9a233d9dc))
+* missing deps in merge mishap ([961b880](https://github.com/oaknational/Oak-Web-Application/commit/961b8800ddc73acec703e0e292b06dee505c2155))
+* pa11y issue with aria-controls referencing ids not in the dom ([63e3db6](https://github.com/oaknational/Oak-Web-Application/commit/63e3db6771008daaae99bcfc20b938113e98cc22))
+* updated a bunch of outdated minor/patch deps ([167add7](https://github.com/oaknational/Oak-Web-Application/commit/167add77738ff07ae8eacd2d7cb2557dd3674d1a))
+* wrap unit tabs in OakBox nav for tab screen reader adjustment ([ac45fd5](https://github.com/oaknational/Oak-Web-Application/commit/ac45fd5ca24b4f5bb0559b9e48f0f52b0af0e229))
+
+
+### Features
+
+* add link color to footnote links for contrast ([f30c625](https://github.com/oaknational/Oak-Web-Application/commit/f30c625d93e8fa68f5406b7139a26c6c523ae86c))
+
 # [1.1043.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1042.0...v1.1043.0) (2026-04-16)
 
 
