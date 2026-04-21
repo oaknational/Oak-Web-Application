@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { ComponentProps, FC } from "react";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 
-export type LessonOverviewHeaderDownloadAllButtonProps = Pick<
+export type LessonOverviewDownloadAllButtonProps = Pick<
   LessonOverviewHeaderProps,
   | "expired"
   | "showDownloadAll"
@@ -16,10 +16,11 @@ export type LessonOverviewHeaderDownloadAllButtonProps = Pick<
   | "isCanonical"
   | "geoRestricted"
   | "loginRequired"
->;
+> &
+  Pick<ComponentProps<typeof LoginRequiredButton>, "sizeVariant" | "width">;
 
-export const LessonOverviewHeaderDownloadAllButton: FC<
-  LessonOverviewHeaderDownloadAllButtonProps
+export const LessonOverviewDownloadAllButton: FC<
+  LessonOverviewDownloadAllButtonProps
 > = (props) => {
   const {
     expired,
@@ -32,6 +33,8 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
     isCanonical,
     geoRestricted,
     loginRequired,
+    sizeVariant = "small",
+    width = "spacing-160",
   } = props;
 
   const preselected = "all";
@@ -40,31 +43,34 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
     return null;
   }
 
-  const href =
-    programmeSlug && unitSlug && isSpecialist
-      ? resolveOakHref({
-          page: "specialist-lesson-downloads",
-          lessonSlug,
-          unitSlug,
-          programmeSlug,
-          downloads: "downloads",
-          query: { preselected },
-        })
-      : programmeSlug && unitSlug && !isSpecialist && !isCanonical
-        ? resolveOakHref({
-            page: "lesson-downloads",
-            lessonSlug,
-            unitSlug,
-            programmeSlug,
-            downloads: "downloads",
-            query: { preselected },
-          })
-        : resolveOakHref({
-            page: "lesson-downloads-canonical",
-            lessonSlug,
-            downloads: "downloads",
-            query: { preselected },
-          });
+  let href: string;
+
+  if (programmeSlug && unitSlug && isSpecialist) {
+    href = resolveOakHref({
+      page: "specialist-lesson-downloads",
+      lessonSlug,
+      unitSlug,
+      programmeSlug,
+      downloads: "downloads",
+      query: { preselected },
+    });
+  } else if (programmeSlug && unitSlug && !isSpecialist && !isCanonical) {
+    href = resolveOakHref({
+      page: "lesson-downloads",
+      lessonSlug,
+      unitSlug,
+      programmeSlug,
+      downloads: "downloads",
+      query: { preselected },
+    });
+  } else {
+    href = resolveOakHref({
+      page: "lesson-downloads-canonical",
+      lessonSlug,
+      downloads: "downloads",
+      query: { preselected },
+    });
+  }
 
   return (
     <LoginRequiredButton
@@ -80,13 +86,13 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
         shouldHidewhenGeoRestricted: true,
         href: href,
       }}
-      sizeVariant="small"
+      sizeVariant={sizeVariant}
       element="a"
       data-testid="download-all-button"
       iconName="download"
       isTrailingIcon
       aria-label="Download all"
-      width={"spacing-160"}
+      width={width}
     />
   );
 };
