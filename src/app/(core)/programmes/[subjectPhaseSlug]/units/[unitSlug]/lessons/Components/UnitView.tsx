@@ -270,7 +270,7 @@ const HelpLinkCard = ({ $display }: { $display: OakBoxProps["$display"] }) => {
       $display={$display}
     >
       <OakCard
-        heading="Learn how you can can make the best use of Oak resources"
+        heading="Learn how you can make the best use of Oak resources"
         href={resolveOakHref({ page: "guide-to-oak" })}
         subCopy="A step-by-step guide to getting started"
         linkText="Get more out of Oak"
