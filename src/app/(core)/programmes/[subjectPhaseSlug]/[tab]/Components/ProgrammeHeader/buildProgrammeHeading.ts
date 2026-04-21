@@ -330,7 +330,49 @@ type BuildProgrammeHeadingArgs = {
 };
 
 /**
- * Builds a programme heading for the given units and filters.
+ * Builds a curriculum programme heading that adapts to the current filter context.
+ *
+ * Business Logic:
+ *
+ * 1. Subject Title Selection (in priority order):
+ *    - Uses shared `groupAs` override if all selected years agree
+ *      (e.g. "Swimming and water safety" for PE)
+ *    - Reverts to base subject when "all" category is explicitly selected
+ *    - When both child subject and category filters are visible with single selections:
+ *      * If slugs match -> use child subject name
+ *      * If prefix required (e.g., English) -> combine subject + category
+ *      * Otherwise -> use base subject
+ *    - When child subjects are hidden -> show category
+ *      (with subject prefix and context-specific separator if applicable)
+ *    - When categories are hidden -> show child subject
+ *    - Default -> formatted base subject title
+ *
+ * 2. Heading Assembly:
+ *    - With `schoolYear`: "{subject} year {N} [{examboard}]" or "{subject} (all years)"
+ *      * Exam board is only included for KS4
+ *    - With `keyStage`: "{subject} {KS} [{examboard}]"
+ *      * Exam board is only included for KS4
+ *    - Without year/keyStage: "{subject} {phase} [{examboard}]"
+ *
+ * @example
+ * // Swimming override for PE
+ * "Swimming and water safety (all years)"
+ *
+ * @example
+ * // Primary English with category
+ * "English: Handwriting year 3"
+ *
+ * @example
+ * // Secondary with exam board
+ * "Maths year 10 AQA"
+ *
+ * @example
+ * // Key stage level
+ * "Science KS3"
+ *
+ * @example
+ * // Subject + phase when no year or key stage
+ * "Science secondary"
  */
 export function buildProgrammeHeading({
   subjectTitle,
