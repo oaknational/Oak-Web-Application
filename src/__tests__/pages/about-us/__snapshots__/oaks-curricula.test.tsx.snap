@@ -340,7 +340,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
 
 .c101 {
   position: relative;
-  width: 22.5rem;
+  width: 100%;
   height: 22.5rem;
   font-family: --var(google-font),Lexend,sans-serif;
 }
@@ -2437,6 +2437,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   text-decoration: underline;
   cursor: pointer;
   color: #0d24c4;
+  overflow-wrap: break-word;
 }
 
 .c28:focus-visible {
@@ -2477,6 +2478,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   text-decoration: none;
   cursor: pointer;
   color: #222222;
+  overflow-wrap: break-word;
 }
 
 .c213:focus-visible {
@@ -4561,7 +4563,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <button
-                      aria-controls="topnav-teachers-primary"
                       aria-expanded="false"
                       aria-haspopup="true"
                       class="c35 c36 internal-button"
@@ -4593,7 +4594,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <button
-                      aria-controls="topnav-teachers-secondary"
                       aria-expanded="false"
                       aria-haspopup="true"
                       class="c35 c36 internal-button"
@@ -4654,7 +4654,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <button
-                      aria-controls="topnav-teachers-aboutUs"
                       aria-expanded="false"
                       aria-haspopup="true"
                       class="c35 c36 internal-button"
@@ -4686,7 +4685,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                       class="c8 yellow-shadow"
                     />
                     <button
-                      aria-controls="topnav-teachers-guidance"
                       aria-expanded="false"
                       aria-haspopup="true"
                       class="c35 c36 internal-button"
@@ -4927,7 +4925,6 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
                 class="c8 yellow-shadow"
               />
               <button
-                aria-controls="teachers-top-nav-hamburger"
                 aria-expanded="false"
                 aria-label="Open navigation menu"
                 class="c69 c10 internal-button"
