@@ -234,7 +234,7 @@ describe("Lesson resources", () => {
     );
 
     expect(
-      screen.getByRole("link", { name: /Download lesson slides/i }),
+      screen.getByRole("link", { name: /Download lesson slides \(PPTX\)/i }),
     ).toBeInTheDocument();
   });
 });
@@ -254,7 +254,7 @@ describe("Tracking callbacks", () => {
     );
 
     const downloadButton = screen.getByRole("link", {
-      name: /Download lesson slides/i,
+      name: /Download lesson slides \(PPTX\)/i,
     });
     act(() => {
       downloadButton.click();
@@ -286,7 +286,7 @@ describe("Tracking callbacks", () => {
     );
 
     const downloadButton = screen.getByRole("link", {
-      name: /Download worksheet/i,
+      name: /Download worksheet \(PPTX\/PDF\)/i,
     });
     act(() => {
       downloadButton.click();
@@ -302,11 +302,11 @@ describe("Tracking callbacks", () => {
   it("calls lessonResourceDownloadStarted when starter quiz download is clicked", () => {
     render(<LessonView {...baseProps} />);
 
-    const downloadButtons = screen.getAllByRole("link", {
-      name: /Download quiz pdf/i,
+    const downloadButton = screen.getByRole("link", {
+      name: /Download starter quiz questions \(PDF\)/i,
     });
     act(() => {
-      downloadButtons[0]?.click();
+      downloadButton.click();
     });
 
     expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
@@ -319,11 +319,11 @@ describe("Tracking callbacks", () => {
   it("calls lessonResourceDownloadStarted when exit quiz download is clicked", () => {
     render(<LessonView {...baseProps} />);
 
-    const downloadButtons = screen.getAllByRole("link", {
-      name: /Download quiz pdf/i,
+    const downloadButton = screen.getByRole("link", {
+      name: /Download exit quiz questions \(PDF\)/i,
     });
     act(() => {
-      downloadButtons[1]?.click();
+      downloadButton.click();
     });
 
     expect(lessonResourceDownloadStarted).toHaveBeenCalledWith(
@@ -343,7 +343,7 @@ describe("Tracking callbacks", () => {
     );
 
     const downloadButton = screen.getByRole("link", {
-      name: /Download lesson slides/i,
+      name: /Download lesson slides \(PPTX\)/i,
     });
     act(() => {
       downloadButton.click();

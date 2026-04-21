@@ -70,8 +70,12 @@ const RESOURCE_TRACKING_TITLES: Partial<
 const RESOURCE_DOWNLOAD_TITLES: Partial<
   Record<LessonPageLinkAnchorId, string>
 > = {
-  "starter-quiz": "quiz pdf",
-  "exit-quiz": "quiz pdf",
+  "lesson-guide": "lesson guide (PDF)",
+  "starter-quiz": "starter quiz questions (PDF)",
+  "exit-quiz": "exit quiz questions (PDF)",
+  worksheet: "worksheet (PPTX/PDF)",
+  "slide-deck": "lesson slides (PPTX)",
+  "additional-material": "additional material (PDF)",
 };
 
 /**
@@ -95,12 +99,13 @@ export type LessonResource = {
   key: LessonPageLinkAnchorId;
   component: React.ReactNode;
   title: string;
-  downloadable: boolean;
-  downloadTitle?: string;
   isFinalElement?: boolean;
   skipLinkUrl?: string;
   trackingTitle?: DownloadResourceButtonNameValueType;
-};
+} & (
+  | { downloadable: true; downloadTitle: string }
+  | { downloadable: false; downloadTitle?: never }
+);
 
 const SKIPPABLE_CONTENT_SECTIONS: Set<LessonPageLinkAnchorId> = new Set([
   "video",
@@ -302,14 +307,21 @@ export function getLessonResources({
   ];
 
   return resourceOrder
-    .map((key) => ({
-      key,
-      component: resourceComponents[key],
-      title: key === "media-clips" ? mediaClipLabel : RESOURCE_TITLES[key],
-      downloadable: checkResourceDownloadable(key, downloads),
-      downloadTitle: RESOURCE_DOWNLOAD_TITLES[key],
-      trackingTitle: RESOURCE_TRACKING_TITLES[key],
-    }))
+    .map((key) => {
+      const isDownloadable = checkResourceDownloadable(key, downloads);
+      const downloadTitle = RESOURCE_DOWNLOAD_TITLES[key];
+
+      const baseResource = {
+        key,
+        component: resourceComponents[key],
+        title: key === "media-clips" ? mediaClipLabel : RESOURCE_TITLES[key],
+        trackingTitle: RESOURCE_TRACKING_TITLES[key],
+      };
+
+      return isDownloadable && downloadTitle
+        ? { ...baseResource, downloadable: true as const, downloadTitle }
+        : { ...baseResource, downloadable: false as const };
+    })
     .filter((item) => item.component)
     .map((item, index, array) => {
       const isFinalElement = index === array.length - 1;

@@ -43,9 +43,7 @@ export function LessonItem({
     title as DownloadableLessonTitles,
   );
 
-  const downloadTitle = resource.downloadTitle
-    ? resource.downloadTitle
-    : title.toLowerCase();
+  const downloadTitle = resource.downloadTitle;
 
   return (
     <OakFlex
@@ -90,7 +88,7 @@ export function LessonItem({
           {resource.downloadable && slugs && (
             <LessonItemContainerLink
               page={"download"}
-              resourceTitle={downloadTitle}
+              resourceTitle={downloadTitle!}
               onClick={() => {
                 onDownloadButtonClick({
                   downloadResourceButtonName: resource.trackingTitle!,
