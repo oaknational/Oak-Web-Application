@@ -21,7 +21,7 @@ const TeachersTabResourceSelectorCard: FC<
   const { icon, title, angle, ...positionAndDisplayProps } = props;
   return (
     <Card
-      $width={"spacing-180"}
+      style={{ width: 195 }}
       $height={"spacing-64"}
       $pa={"spacing-0"}
       $transform={`rotate(${angle}deg)`}
