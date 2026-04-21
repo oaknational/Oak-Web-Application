@@ -69,6 +69,7 @@ describe("buildProgrammeHeading", () => {
   ): CurriculumUnitsFormattedData => ({
     yearData: {
       [schoolYear]: createYearData({
+        keystage: "ks4",
         units: [
           createUnit({
             slug: `test-${schoolYear}`,
@@ -347,7 +348,7 @@ describe("buildProgrammeHeading", () => {
       examboardTitle: "AQA",
     });
 
-    expect(result).toBe("English Year 10 Language AQA");
+    expect(result).toBe("English Language year 10 AQA");
   });
 
   it("uses space-separated subject and category for grouped year 10", () => {
@@ -364,7 +365,7 @@ describe("buildProgrammeHeading", () => {
       schoolYear: "10",
     });
 
-    expect(result).toBe("English Year 10 Language");
+    expect(result).toBe("English Language year 10");
   });
 
   it("uses grouped ks4 order for year 11", () => {
@@ -384,7 +385,7 @@ describe("buildProgrammeHeading", () => {
       examboardTitle: "AQA",
     });
 
-    expect(result).toBe("English Year 11 Language AQA");
+    expect(result).toBe("English Language year 11 AQA");
   });
 
   it("uses colon separator when prefixing subject category in primary years", () => {

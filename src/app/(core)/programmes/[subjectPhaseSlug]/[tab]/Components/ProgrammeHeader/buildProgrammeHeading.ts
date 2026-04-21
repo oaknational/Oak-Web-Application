@@ -10,7 +10,6 @@ import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/ta
 
 type SubjectTitleSelection = {
   title: string;
-  selectedSubjectCategoryTitle?: string;
   shouldPrefixSubjectCategoryWithSubject: boolean;
 };
 
@@ -224,7 +223,6 @@ function selectionForSingleChildAndCategory(
   ) {
     return {
       title: ctx.childSubject.subject,
-      selectedSubjectCategoryTitle: ctx.selectedSubjectCategoryTitle,
       shouldPrefixSubjectCategoryWithSubject:
         ctx.shouldPrefixSubjectCategoryWithSubject,
     };
@@ -236,7 +234,6 @@ function selectionForSingleChildAndCategory(
   ) {
     return {
       title: createSubjectWithCategoryTitle(ctx),
-      selectedSubjectCategoryTitle: ctx.selectedSubjectCategoryTitle,
       shouldPrefixSubjectCategoryWithSubject:
         ctx.shouldPrefixSubjectCategoryWithSubject,
     };
@@ -256,7 +253,6 @@ function selectionForHiddenChildSubjects(
   if (ctx.shouldPrefixSubjectCategoryWithSubject) {
     return {
       title: createSubjectWithCategoryTitle(ctx),
-      selectedSubjectCategoryTitle: ctx.selectedSubjectCategoryTitle,
       shouldPrefixSubjectCategoryWithSubject:
         ctx.shouldPrefixSubjectCategoryWithSubject,
     };
@@ -264,7 +260,6 @@ function selectionForHiddenChildSubjects(
 
   return {
     title: ctx.selectedSubjectCategoryTitle,
-    selectedSubjectCategoryTitle: ctx.selectedSubjectCategoryTitle,
     shouldPrefixSubjectCategoryWithSubject:
       ctx.shouldPrefixSubjectCategoryWithSubject,
   };
@@ -346,28 +341,12 @@ export function buildProgrammeHeading({
   keyStage,
   examboardTitle,
 }: BuildProgrammeHeadingArgs): string {
-  const {
-    title: selectedSubjectTitle,
-    selectedSubjectCategoryTitle,
-    shouldPrefixSubjectCategoryWithSubject,
-  } = getSubjectTitleSelection(subjectTitle, data, filters);
-  const formattedSubjectTitle = upperFirst(subjectTitle);
+  const { title: selectedSubjectTitle } = getSubjectTitleSelection(
+    subjectTitle,
+    data,
+    filters,
+  );
   const isKs4SchoolYear = schoolYear === "10" || schoolYear === "11";
-
-  if (
-    isKs4SchoolYear &&
-    shouldPrefixSubjectCategoryWithSubject &&
-    selectedSubjectCategoryTitle
-  ) {
-    return [
-      formattedSubjectTitle,
-      `Year ${schoolYear}`,
-      selectedSubjectCategoryTitle,
-      examboardTitle,
-    ]
-      .filter(Boolean)
-      .join(" ");
-  }
 
   const parts: Array<string | undefined> = [selectedSubjectTitle];
 
