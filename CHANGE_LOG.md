@@ -1,3 +1,52 @@
+# [1.1046.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1045.0...v1.1046.0) (2026-04-21)
+
+
+### Bug Fixes
+
+* **LESQ-1911:** swap social links and side menu in tab order ([5be4f45](https://github.com/oaknational/Oak-Web-Application/commit/5be4f455b59391f76a5c2c21ecc6f2fbed172152))
+
+
+### Features
+
+* **LESQ-1911:** add share and AI links to lesson page ([2a809b5](https://github.com/oaknational/Oak-Web-Application/commit/2a809b5db9a3b7cbb1363b4317a2cf009be0c684))
+* **LESQ-1911:** give AI share link an accessible name ([9d536ab](https://github.com/oaknational/Oak-Web-Application/commit/9d536abd9b694410d87d17d3a0f54f7969a2a406))
+
+# [1.1045.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1044.0...v1.1045.0) (2026-04-21)
+
+
+### Bug Fixes
+
+* download button naked inside UL ([f92196c](https://github.com/oaknational/Oak-Web-Application/commit/f92196c677b95a9f6fff243c1a6780f434e69058))
+* **LESQ-1909:** download button resizing on first render ([890c219](https://github.com/oaknational/Oak-Web-Application/commit/890c2199d4b9555f773ee460947cf1a833199b96))
+
+
+### Features
+
+* **LESQ-1909:** add a provider to maintain currentSectionId ([a33b36d](https://github.com/oaknational/Oak-Web-Application/commit/a33b36d391380a0fcff220467dabe7a92f03ab0d))
+* **LESQ-1909:** add side menu to lesson overview ([1299205](https://github.com/oaknational/Oak-Web-Application/commit/1299205cdcfe9c16d8b2b0bbd57baa65b298aedb))
+* **LESQ-1909:** add skip link ([4f456b1](https://github.com/oaknational/Oak-Web-Application/commit/4f456b109d9e2078d313f35ea0f5e716e10e8775))
+* **LESQ-1909:** dont pick a section when the header is visible ([7ca6704](https://github.com/oaknational/Oak-Web-Application/commit/7ca6704c810ccf13316a088f980b953e4e489fb6))
+* **LESQ-1909:** drive dummy content from side menu links ([59ac2eb](https://github.com/oaknational/Oak-Web-Application/commit/59ac2ebb11e6f11e6f19bf92538f78f27727f6b2))
+* **LESQ-1909:** small download button from tablet ([39773ba](https://github.com/oaknational/Oak-Web-Application/commit/39773ba0737067b1ce9e4c335334e478be246d80))
+* **LESQ-1909:** track the section closest to the top of the viewport ([d43f210](https://github.com/oaknational/Oak-Web-Application/commit/d43f2109749626165d969f742038921046966f95))
+
+# [1.1044.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1043.0...v1.1044.0) (2026-04-20)
+
+
+### Bug Fixes
+
+* add underline to distinguish footnote links ([3849491](https://github.com/oaknational/Oak-Web-Application/commit/3849491b4f2e819ccad95020605e8142b02b9baa))
+* apply nav to OakMaxWidth ([3d83ece](https://github.com/oaknational/Oak-Web-Application/commit/3d83ece06f49fdd64aebf141e8d07ea9a233d9dc))
+* missing deps in merge mishap ([961b880](https://github.com/oaknational/Oak-Web-Application/commit/961b8800ddc73acec703e0e292b06dee505c2155))
+* pa11y issue with aria-controls referencing ids not in the dom ([63e3db6](https://github.com/oaknational/Oak-Web-Application/commit/63e3db6771008daaae99bcfc20b938113e98cc22))
+* updated a bunch of outdated minor/patch deps ([167add7](https://github.com/oaknational/Oak-Web-Application/commit/167add77738ff07ae8eacd2d7cb2557dd3674d1a))
+* wrap unit tabs in OakBox nav for tab screen reader adjustment ([ac45fd5](https://github.com/oaknational/Oak-Web-Application/commit/ac45fd5ca24b4f5bb0559b9e48f0f52b0af0e229))
+
+
+### Features
+
+* add link color to footnote links for contrast ([f30c625](https://github.com/oaknational/Oak-Web-Application/commit/f30c625d93e8fa68f5406b7139a26c6c523ae86c))
+
 # [1.1043.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1042.0...v1.1043.0) (2026-04-16)
 
 
