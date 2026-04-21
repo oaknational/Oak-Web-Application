@@ -2,10 +2,8 @@ import {
   OakFlex,
   OakAnchorTarget,
   OakHeading,
-  OakSecondaryButton,
   OakBox,
 } from "@oaknational/oak-components";
-import { useState } from "react";
 
 import { LessonResource } from "./getLessonResources";
 
@@ -15,9 +13,9 @@ import {
 } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
 import LessonPlayAllButton from "@/components/TeacherComponents/LessonPlayAllButton";
-import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
 import { TrackingCallbackProps } from "@/components/TeacherComponents/LessonOverviewMediaClips";
+import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 
 export function LessonItem({
   resource,
@@ -36,12 +34,10 @@ export function LessonItem({
   }) => void;
   onMediaClipsButtonClick: (props: TrackingCallbackProps) => void;
 }>) {
-  const [skipResourceButtonFocused, setSkipResourceButtonFocused] =
-    useState(false);
   const { title } = resource;
-  const preselectedDownload = getPreselectedDownloadFromTitle(
-    title as DownloadableLessonTitles,
-  );
+  const preselectedDownload = resource.downloadable
+    ? getPreselectedDownloadFromTitle(resource.title)
+    : null;
 
   const downloadTitle = resource.downloadTitle;
 
@@ -100,23 +96,9 @@ export function LessonItem({
             />
           )}
           {resource.skipLinkUrl && (
-            <OakSecondaryButton
-              element="a"
-              href={resource.skipLinkUrl}
-              onFocus={() => setSkipResourceButtonFocused(true)}
-              onBlur={() => setSkipResourceButtonFocused(false)}
-              style={
-                skipResourceButtonFocused
-                  ? {}
-                  : {
-                      position: "absolute",
-                      left: "-1000px",
-                      opacity: 0,
-                    }
-              }
-            >
+            <SkipLink href={resource.skipLinkUrl}>
               {`Skip ${downloadTitle}`}
-            </OakSecondaryButton>
+            </SkipLink>
           )}
         </OakFlex>
       </OakFlex>
