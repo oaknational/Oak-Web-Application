@@ -25,10 +25,8 @@ export function isOakGoogleClassroomException(
 export function createClassroomErrorReporter(operation: string) {
   if (getBrowserConfig("sentryEnabled") === "true") {
     initialiseSentry(null);
-  } else {
-    if (!Bugsnag.isStarted()) {
-      initialiseBugsnag(null);
-    }
+  } else if (!Bugsnag.isStarted()) {
+    initialiseBugsnag(null);
   }
   return errorReporter(`classroom-auth-${operation}`);
 }
