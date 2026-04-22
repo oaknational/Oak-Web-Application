@@ -43,6 +43,16 @@ type SubjectTitleContext = {
   sharedGroupAsTitle: string | null;
 };
 
+type SubjectTitleContextWithCategory = SubjectTitleContext & {
+  selectedSubjectCategoryTitle: string;
+};
+
+function hasSelectedSubjectCategoryTitle(
+  ctx: SubjectTitleContext,
+): ctx is SubjectTitleContextWithCategory {
+  return Boolean(ctx.selectedSubjectCategoryTitle);
+}
+
 /**
  * Checks if all the given key stages are secondary.
  */
@@ -158,8 +168,13 @@ function buildSubjectTitleContext(
   };
 }
 
-function createSubjectWithCategoryTitle(ctx: SubjectTitleContext) {
-  return `${ctx.formattedSubjectTitle}${ctx.subjectCategorySeparator}${ctx.selectedSubjectCategoryTitle}`;
+function createSubjectWithCategoryTitle(ctx: SubjectTitleContextWithCategory) {
+  const categoryTitle =
+    ctx.subjectCategorySeparator === " "
+      ? ctx.selectedSubjectCategoryTitle.toLowerCase()
+      : ctx.selectedSubjectCategoryTitle;
+
+  return `${ctx.formattedSubjectTitle}${ctx.subjectCategorySeparator}${categoryTitle}`;
 }
 
 function createDefaultSubjectTitleSelection(
@@ -230,7 +245,7 @@ function selectionForSingleChildAndCategory(
 
   if (
     ctx.shouldPrefixSubjectCategoryWithSubject &&
-    ctx.selectedSubjectCategoryTitle
+    hasSelectedSubjectCategoryTitle(ctx)
   ) {
     return {
       title: createSubjectWithCategoryTitle(ctx),
@@ -246,7 +261,7 @@ function selectionForSingleChildAndCategory(
 function selectionForHiddenChildSubjects(
   ctx: SubjectTitleContext,
 ): SubjectTitleSelection | null {
-  if (ctx.childSubjectsDisplayed || !ctx.selectedSubjectCategoryTitle) {
+  if (ctx.childSubjectsDisplayed || !hasSelectedSubjectCategoryTitle(ctx)) {
     return null;
   }
 
