@@ -6003,20 +6003,6 @@ exports[`pages/about/meet-the-team.tsx renders 1`] = `
                       >
                         <a
                           class="c183 "
-                          href="/teachers/specialist/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Specialist
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c182"
-                      >
-                        <a
-                          class="c183 "
                           href="/teachers/key-stages/ks1/subjects"
                         >
                           <span
