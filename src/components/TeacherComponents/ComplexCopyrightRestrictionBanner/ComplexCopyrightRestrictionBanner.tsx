@@ -58,14 +58,12 @@ const SignedOutCopyrightBanner = ({
           isTrailingIcon
           iconName={"external"}
         >
-          <OakSpan $font={"heading-light-7"} $color={"text-primary"}>
-            Copyrights help
-          </OakSpan>
+          Copyrights help
         </OakSmallTertiaryInvertedButton>
       }
       message={
-        <OakP $font={"heading-light-7"} $color={"text-primary"}>
-          <OakSpan $font={"heading-7"} $color={"text-primary"}>
+        <OakP $font={"body-3"} $color={"text-primary"}>
+          <OakSpan $font={"body-3-bold"} $color={"text-primary"}>
             Copyrighted materials:{" "}
           </OakSpan>
           to view and download resources from this {isUnit ? "unit" : "lesson"},
