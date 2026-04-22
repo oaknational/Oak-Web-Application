@@ -10,7 +10,11 @@ import LessonOverviewMediaClips, {
 } from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
-import { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import {
+  DownloadableLessonTitles,
+  ResourceType,
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
@@ -32,7 +36,7 @@ const RESOURCE_DOWNLOAD_MAP: Record<LessonPageLinkAnchorId, ResourceType[]> = {
   "starter-quiz": ["intro-quiz-answers", "intro-quiz-questions"],
   "exit-quiz": ["exit-quiz-answers", "exit-quiz-questions"],
   "additional-material": ["supplementary-docx", "supplementary-pdf"],
-  quiz: [], // Legacy quiz type - not directly downloadable
+  quiz: [], // a heading used for linking, not an actual resource
 };
 
 /**
@@ -40,7 +44,7 @@ const RESOURCE_DOWNLOAD_MAP: Record<LessonPageLinkAnchorId, ResourceType[]> = {
  */
 const RESOURCE_TITLES: Record<
   Exclude<LessonPageLinkAnchorId, "quiz">,
-  string
+  LessonItemTitle
 > = {
   "lesson-guide": "Lesson guide",
   "slide-deck": "Lesson slides",
@@ -98,13 +102,20 @@ const checkResourceDownloadable = (
 export type LessonResource = {
   key: LessonPageLinkAnchorId;
   component: React.ReactNode;
-  title: string;
   isFinalElement?: boolean;
   skipLinkUrl?: string;
   trackingTitle?: DownloadResourceButtonNameValueType;
 } & (
-  | { downloadable: true; downloadTitle: string }
-  | { downloadable: false; downloadTitle?: never }
+  | {
+      downloadable: true;
+      downloadTitle: string;
+      title: DownloadableLessonTitles;
+    }
+  | {
+      downloadable: false;
+      downloadTitle?: never;
+      title: LessonItemTitle;
+    }
 );
 
 const SKIPPABLE_CONTENT_SECTIONS: Set<LessonPageLinkAnchorId> = new Set([
@@ -310,17 +321,27 @@ export function getLessonResources({
     .map((key) => {
       const isDownloadable = checkResourceDownloadable(key, downloads);
       const downloadTitle = RESOURCE_DOWNLOAD_TITLES[key];
+      const title =
+        key === "media-clips" ? mediaClipLabel : RESOURCE_TITLES[key];
 
       const baseResource = {
         key,
         component: resourceComponents[key],
-        title: key === "media-clips" ? mediaClipLabel : RESOURCE_TITLES[key],
         trackingTitle: RESOURCE_TRACKING_TITLES[key],
       };
 
       return isDownloadable && downloadTitle
-        ? { ...baseResource, downloadable: true as const, downloadTitle }
-        : { ...baseResource, downloadable: false as const };
+        ? {
+            ...baseResource,
+            downloadable: true as const,
+            downloadTitle,
+            title: title as DownloadableLessonTitles,
+          }
+        : {
+            ...baseResource,
+            downloadable: false as const,
+            title: title as LessonItemTitle,
+          };
     })
     .filter((item) => item.component)
     .map((item, index, array) => {
