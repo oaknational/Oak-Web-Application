@@ -4,34 +4,34 @@ exports[`AboutSharedHeader renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg crJsie"
+      class="sc-aXZVg hKEalY"
     >
       <div
-        class="sc-aXZVg sc-gEvEer ebBTEl hPyKbx"
+        class="sc-aXZVg sc-gEvEer jgafXv hPyKbx"
       >
         <div
-          class="sc-aXZVg sc-gEvEer hkJkIR daEtut"
+          class="sc-aXZVg sc-gEvEer dFOKqz daEtut"
         >
           <h1
-            class="sc-eldPxv flskuf"
+            class="sc-eldPxv kSQYKV"
           >
             <span
-              class="sc-eqUAAy gseRZL"
+              class="sc-eqUAAy buaVGR"
             >
               TESTING_TITLE
             </span>
           </h1>
           <p
-            class="sc-ikkxIA gKHTYG"
+            class="sc-ikkxIA fPezaI"
           >
             TESTING_CONTENT
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-9ed44546-0 hkJkIR eKCzCZ"
+          class="sc-aXZVg sc-9ed44546-0 dFOKqz eKCzCZ"
         >
           <span
-            class="sc-aXZVg hefbZs"
+            class="sc-aXZVg fPzviK"
           >
             <img
               alt="Oak logo"
@@ -54,34 +54,34 @@ exports[`AboutSharedHeader renders correctly with loop illustration 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg crJsie"
+      class="sc-aXZVg hKEalY"
     >
       <div
-        class="sc-aXZVg sc-gEvEer ebBTEl hPyKbx"
+        class="sc-aXZVg sc-gEvEer jgafXv hPyKbx"
       >
         <div
-          class="sc-aXZVg sc-gEvEer hkJkIR daEtut"
+          class="sc-aXZVg sc-gEvEer dFOKqz daEtut"
         >
           <h1
-            class="sc-eldPxv flskuf"
+            class="sc-eldPxv kSQYKV"
           >
             <span
-              class="sc-eqUAAy gseRZL"
+              class="sc-eqUAAy buaVGR"
             >
               TESTING_TITLE
             </span>
           </h1>
           <p
-            class="sc-ikkxIA gKHTYG"
+            class="sc-ikkxIA fPezaI"
           >
             TESTING_CONTENT
           </p>
         </div>
         <div
-          class="sc-aXZVg sc-9ed44546-0 hkJkIR eKCzCZ"
+          class="sc-aXZVg sc-9ed44546-0 dFOKqz eKCzCZ"
         >
           <span
-            class="sc-aXZVg jcHcan sc-9ed44546-1 bPEnOT"
+            class="sc-aXZVg RPavd sc-9ed44546-1 bPEnOT"
             data-testid="about-shared-loop"
           >
             <img
