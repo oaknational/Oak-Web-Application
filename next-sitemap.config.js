@@ -59,6 +59,7 @@ module.exports = {
     policies: [
       {
         userAgent: "*",
+        disallow: ["/api", "/_next/image"],
         // Note, there is a Cloudflare rule redirecting all /beta paths to a 404 page.
       },
     ],
