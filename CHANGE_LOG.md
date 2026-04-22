@@ -1,3 +1,10 @@
+# [1.1048.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1047.0...v1.1048.0) (2026-04-22)
+
+
+### Features
+
+* add disallow rules to robots txt ([6de8597](https://github.com/oaknational/Oak-Web-Application/commit/6de8597722ab2131715af4034276a8c0b202ecf6))
+
 # [1.1047.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1046.0...v1.1047.0) (2026-04-21)
 
 
