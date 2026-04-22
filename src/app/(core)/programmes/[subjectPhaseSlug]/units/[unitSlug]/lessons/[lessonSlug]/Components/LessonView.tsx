@@ -8,7 +8,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
-import LessonShareBar from "./LessonShareBar/LessonShareBar";
+import LessonActionsBar from "./LessonShareBar/LessonActionsBar";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
 
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
@@ -23,6 +23,7 @@ import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
+import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -171,8 +172,19 @@ export default function LessonView(
             $colStart={[1, 5, 1]}
             $rowStart={1}
           >
-            <LessonShareBar
+            <ComplexCopyrightRestrictionBanner
+              isGeorestricted={geoRestricted}
+              isLoginRequired={loginRequired}
+              lessonName={lessonTitle}
+              lessonSlug={lessonSlug}
+              unitName={unitTitle}
+              unitSlug={unitSlug}
+              isLessonLegacy={false}
+              componentType="lesson_overview"
+            />
+            <LessonActionsBar
               showPupilShare={showPupilShare}
+              showCreateWithAi={!contentRestricted}
               lessonSlug={lessonSlug}
               unitSlug={unitSlug}
               programmeSlug={programmeSlug}
