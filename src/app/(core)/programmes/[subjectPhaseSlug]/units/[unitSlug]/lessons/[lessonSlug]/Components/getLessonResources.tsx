@@ -101,8 +101,8 @@ const checkResourceDownloadable = (
 
 export type LessonResource = {
   key: LessonPageLinkAnchorId;
+  anchorId: string;
   component: React.ReactNode;
-  isFinalElement?: boolean;
   skipLinkUrl?: string;
   trackingTitle?: DownloadResourceButtonNameValueType;
 } & (
@@ -117,6 +117,61 @@ export type LessonResource = {
       title: LessonItemTitle;
     }
 );
+
+export type SideNavLink = {
+  label: string;
+  anchorId: string;
+  subheading?: string;
+};
+
+export function getSideNavLinksFromResources(
+  resources: LessonResource[],
+): SideNavLink[] {
+  const hasStarterQuiz = resources.some((r) => r.key === "starter-quiz");
+  const hasExitQuiz = resources.some((r) => r.key === "exit-quiz");
+  const hasBothQuizzes = hasStarterQuiz && hasExitQuiz;
+
+  const links: SideNavLink[] = [];
+  let quizLinkAdded = false;
+
+  for (const resource of resources) {
+    const isQuizResource =
+      resource.key === "starter-quiz" || resource.key === "exit-quiz";
+
+    if (isQuizResource) {
+      // Only add the quiz link once, at the position of the first quiz
+      if (!quizLinkAdded) {
+        if (hasBothQuizzes) {
+          links.push({
+            label: "Quizzes",
+            anchorId: resource.anchorId, // "quiz" for first quiz when both exist
+            subheading: `${RESOURCE_TITLES["starter-quiz"]} \n${RESOURCE_TITLES["exit-quiz"]}`,
+          });
+        } else if (hasStarterQuiz) {
+          links.push({
+            label: "Quizzes",
+            anchorId: resource.anchorId, // "starter-quiz"
+            subheading: RESOURCE_TITLES["starter-quiz"],
+          });
+        } else if (hasExitQuiz) {
+          links.push({
+            label: "Quizzes",
+            anchorId: resource.anchorId, // "exit-quiz"
+            subheading: RESOURCE_TITLES["exit-quiz"],
+          });
+        }
+        quizLinkAdded = true;
+      }
+    } else {
+      links.push({
+        label: resource.title,
+        anchorId: resource.key,
+      });
+    }
+  }
+
+  return links;
+}
 
 const SKIPPABLE_CONTENT_SECTIONS: Set<LessonPageLinkAnchorId> = new Set([
   "video",
@@ -355,8 +410,23 @@ export function getLessonResources({
       });
       return {
         ...item,
-        isFinalElement,
         skipLinkUrl,
+      };
+    })
+    .map((item, _index, array) => {
+      // Add anchorId for quiz grouping - the first quiz gets "quiz" anchor when both exist
+      const hasStarterQuiz = array.some((r) => r.key === "starter-quiz");
+      const hasExitQuiz = array.some((r) => r.key === "exit-quiz");
+      const hasBothQuizzes = hasStarterQuiz && hasExitQuiz;
+      const isFirstQuiz =
+        item.key === "starter-quiz" ||
+        (item.key === "exit-quiz" && !hasStarterQuiz);
+
+      const anchorId = hasBothQuizzes && isFirstQuiz ? "quiz" : item.key;
+
+      return {
+        ...item,
+        anchorId,
       };
     });
 }

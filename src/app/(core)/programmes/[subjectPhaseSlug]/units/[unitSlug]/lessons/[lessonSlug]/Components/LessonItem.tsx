@@ -1,16 +1,8 @@
-import {
-  OakFlex,
-  OakAnchorTarget,
-  OakHeading,
-  OakBox,
-} from "@oaknational/oak-components";
+import { OakFlex, OakHeading, OakBox } from "@oaknational/oak-components";
 
 import { LessonResource } from "./getLessonResources";
 
-import {
-  getPreselectedDownloadFromTitle,
-  getContainerId,
-} from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
+import { getPreselectedDownloadFromTitle } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
 import LessonPlayAllButton from "@/components/TeacherComponents/LessonPlayAllButton";
 import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
@@ -43,12 +35,12 @@ export function LessonItem({
 
   return (
     <OakFlex
+      className="anchor-section"
       $flexDirection="column"
       $position={"relative"}
-      id={getContainerId(title)}
+      id={resource.anchorId}
       tabIndex={-1}
     >
-      <OakAnchorTarget id={resource.key} $pt={"spacing-24"} />
       <OakFlex
         $mb={
           resource.skipLinkUrl

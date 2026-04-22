@@ -11,7 +11,10 @@ import { Fragment } from "react";
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
 import LessonShareBar from "./LessonShareBar/LessonShareBar";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
-import { getLessonResources } from "./getLessonResources";
+import {
+  getLessonResources,
+  getSideNavLinksFromResources,
+} from "./getLessonResources";
 import { LessonItem } from "./LessonItem";
 
 import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
@@ -173,10 +176,7 @@ export default function LessonView(
                 </SkipLink>
               </OakBox>
               <LessonOverviewSideNav
-                links={lessonResources.map((resource) => ({
-                  label: resource.title,
-                  anchorId: resource.key,
-                }))}
+                links={getSideNavLinksFromResources(lessonResources)}
                 contentRestricted={contentRestricted}
                 downloadAllButtonProps={{
                   lessonSlug,
