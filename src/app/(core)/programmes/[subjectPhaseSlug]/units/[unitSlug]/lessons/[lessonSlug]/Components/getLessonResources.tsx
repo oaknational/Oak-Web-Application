@@ -244,7 +244,7 @@ export function getLessonResources({
       hideSeoHelper={copyRightState.showGeoBlocked}
     />
   );
-  const lessonVideo = (
+  const lessonVideo = data.videoMuxPlaybackId ? (
     <LessonOverviewVideo
       video={data.videoMuxPlaybackId}
       signLanguageVideo={data.videoWithSignLanguageMuxPlaybackId}
@@ -253,7 +253,7 @@ export function getLessonResources({
       isLegacy={false}
       browsePathwayData={browsePathwayData}
     />
-  );
+  ) : undefined;
   const worksheet = data.worksheetUrl ? (
     <LessonOverviewPresentation
       asset={data.worksheetUrl}
