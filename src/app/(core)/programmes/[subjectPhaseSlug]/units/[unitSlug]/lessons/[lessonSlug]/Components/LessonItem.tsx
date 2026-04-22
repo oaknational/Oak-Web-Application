@@ -97,7 +97,7 @@ export function LessonItem({
           )}
           {resource.skipLinkUrl && (
             <SkipLink href={resource.skipLinkUrl}>
-              {`Skip ${downloadTitle}`}
+              {`Skip ${downloadTitle || title.toLowerCase()}`}
             </SkipLink>
           )}
         </OakFlex>
