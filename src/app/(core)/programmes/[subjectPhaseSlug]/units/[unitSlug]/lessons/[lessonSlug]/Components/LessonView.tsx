@@ -1,53 +1,97 @@
 "use client";
 
-import { Fragment } from "react";
 import {
   OakBox,
   OakFlex,
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
+import { Fragment } from "react";
 
+import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
+import LessonShareBar from "./LessonShareBar/LessonShareBar";
+import LessonOverviewSideNav from "./LessonOverviewSideNav";
 import { getLessonResources } from "./getLessonResources";
 import { LessonItem } from "./LessonItem";
 
+import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
 import { resolveOakHref } from "@/common-lib/urls";
-import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
-import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
-import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
+import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
+import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { TrackingCallbackProps } from "@/components/TeacherComponents/LessonOverviewMediaClips";
+import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
 
 export default function LessonView(
-  data: Readonly<TeachersLessonOverviewPageData>,
+  props: Readonly<TeachersLessonOverviewPageData>,
 ) {
+  const {
+    programmeSlug,
+    unitSlug,
+    lessonSlug,
+    subjectSlug,
+    previousLesson,
+    nextLesson,
+    loginRequired,
+    geoRestricted,
+    expired,
+    lessonReleaseDate,
+    lessonTitle,
+    keyStageTitle,
+    keyStageSlug,
+    subjectTitle,
+    unitTitle,
+    year,
+    yearTitle,
+    examBoardTitle,
+    tierTitle,
+    pathwayTitle,
+    actions,
+  } = props;
+
+  const {
+    showSignedOutGeoRestricted,
+    showSignedOutLoginRequired,
+    showGeoBlocked,
+    showSignedInNotOnboarded,
+  } = useComplexCopyright({
+    loginRequired,
+    geoRestricted,
+  });
+
+  const contentRestricted =
+    showSignedOutGeoRestricted ||
+    showSignedOutLoginRequired ||
+    showGeoBlocked ||
+    showSignedInNotOnboarded;
+
   const { track } = useAnalytics();
   const copyRightState = useComplexCopyright({
-    loginRequired: data.loginRequired,
-    geoRestricted: data.geoRestricted,
+    loginRequired,
+    geoRestricted,
   });
-  const isMathJaxLesson = hasLessonMathJax(data, data.subjectSlug, false);
+  const isMathJaxLesson = hasLessonMathJax(props, props.subjectSlug, false);
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
 
   const browsePathwayData = getAnalyticsBrowseData({
-    keyStageSlug: data.keyStageSlug,
-    keyStageTitle: data.keyStageTitle,
-    subjectSlug: data.subjectSlug,
-    subjectTitle: data.subjectTitle,
-    unitSlug: data.unitSlug,
-    unitTitle: data.unitTitle,
-    year: data.year,
-    yearTitle: data.yearTitle,
-    examBoardTitle: data.examBoardTitle,
-    tierTitle: data.tierTitle,
-    pathwayTitle: data.pathwayTitle,
-    lessonSlug: data.lessonSlug,
-    lessonName: data.lessonTitle,
-    lessonReleaseDate: data.lessonReleaseDate,
+    keyStageSlug,
+    keyStageTitle,
+    subjectSlug,
+    subjectTitle,
+    unitSlug,
+    unitTitle,
+    year,
+    yearTitle,
+    examBoardTitle,
+    tierTitle,
+    pathwayTitle,
+    lessonSlug,
+    lessonName: lessonTitle,
+    lessonReleaseDate,
     isLegacy: false,
   });
 
@@ -87,35 +131,89 @@ export default function LessonView(
 
   const lessonResources = getLessonResources({
     browsePathwayData,
-    downloads: data.downloads,
-    data,
+    downloads: props.downloads,
+    data: props,
     copyRightState,
     isMathJaxLesson,
     trackMediaClipsButtonClicked,
   });
 
+  const showPupilShare =
+    !contentRestricted && !expired && !actions?.disablePupilShare;
+
   return (
     <MathJaxLessonProvider>
-      <OakBox $ph="spacing-40">
-        <OakGrid
-          $cg="spacing-16"
-          $rg="spacing-56"
-          $mb={["spacing-0", "spacing-48", "spacing-48"]}
-          $mh="auto"
-          $mt={["spacing-48", "spacing-56"]}
-          $width={"100%"}
-          $maxWidth={"spacing-1280"}
-        >
-          <OakGridArea
-            $colSpan={[12, 3]}
-            $alignSelf={"start"}
-            $position={"sticky"}
-            $display={["none", "block"]}
+      <CurrentSectionIdProvider>
+        <OakBox $ph={["spacing-20", "spacing-40"]}>
+          <OakGrid
+            $cg="spacing-16"
+            $rg="spacing-32"
+            $mb={["spacing-0", "spacing-48"]}
+            $mh="auto"
+            $mt={["spacing-48", "spacing-56"]}
+            $width={"100%"}
+            $maxWidth={"spacing-1280"}
           >
-            {/* anchor links area */}
-          </OakGridArea>
-          <OakGridArea $colSpan={[12, 9]}>
-            <OakFlex $flexDirection={"column"} $gap={"spacing-56"}>
+            <OakGridArea
+              $colSpan={[12, 4]}
+              $colStart={1}
+              $rowStart={[2, 1, 2]}
+              $rowSpan={[1, 2, 1]}
+              $position="relative"
+              $display={["none", "block"]}
+            >
+              <OakBox
+                $position="absolute"
+                $zIndex="in-front"
+                $top="spacing-0"
+                $left="spacing-0"
+              >
+                <SkipLink href="#lesson-content">
+                  Skip to lesson content
+                </SkipLink>
+              </OakBox>
+              <LessonOverviewSideNav
+                links={lessonResources.map((resource) => ({
+                  label: resource.title,
+                  anchorId: resource.key,
+                }))}
+                contentRestricted={contentRestricted}
+                downloadAllButtonProps={{
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  showDownloadAll: true,
+                  onClickDownloadAll: () => {
+                    trackDownloadResourceButtonClicked({
+                      downloadResourceButtonName: "all",
+                    });
+                  },
+                  geoRestricted,
+                  loginRequired,
+                  expired,
+                  isSpecialist: false,
+                  isCanonical: false,
+                }}
+              />
+            </OakGridArea>
+            <OakGridArea
+              $colSpan={[12, 8, 12]}
+              $colStart={[1, 5, 1]}
+              $rowStart={1}
+            >
+              <LessonShareBar
+                showPupilShare={showPupilShare}
+                lessonSlug={lessonSlug}
+                unitSlug={unitSlug}
+                programmeSlug={programmeSlug}
+              />
+            </OakGridArea>
+            <OakGridArea
+              $colSpan={[12, 8]}
+              $colStart={[1, 5]}
+              $rowStart={2}
+              id="lesson-content"
+            >
               <OakFlex
                 $flexDirection={"column"}
                 $gap={["spacing-56", "spacing-80"]}
@@ -123,9 +221,9 @@ export default function LessonView(
                 {lessonResources.map((resource) => (
                   <LessonItem
                     slugs={{
-                      lessonSlug: data.lessonSlug,
-                      unitSlug: data.unitSlug,
-                      programmeSlug: data.programmeSlug,
+                      lessonSlug,
+                      unitSlug,
+                      programmeSlug,
                     }}
                     resource={resource}
                     key={resource.key}
@@ -134,43 +232,49 @@ export default function LessonView(
                   />
                 ))}
               </OakFlex>
+            </OakGridArea>
+            <OakGridArea
+              $colSpan={12}
+              $colStart={1}
+              $rowStart={3}
+              $mb={"spacing-48"}
+            >
               <PreviousNextNav
                 backgroundColorLevel={1}
-                currentIndex={data.orderInUnit ?? undefined}
                 navItemType="lesson"
                 previous={
-                  data.previousLesson
+                  previousLesson
                     ? {
                         href: resolveOakHref({
                           page: "integrated-lesson-overview",
-                          programmeSlug: data.programmeSlug,
-                          unitSlug: data.unitSlug,
-                          lessonSlug: data.previousLesson.lessonSlug,
+                          programmeSlug,
+                          unitSlug,
+                          lessonSlug: previousLesson.lessonSlug,
                         }),
-                        title: data.previousLesson.lessonTitle,
-                        index: data.previousLesson.lessonIndex,
+                        title: previousLesson.lessonTitle,
+                        index: previousLesson.lessonIndex,
                       }
                     : undefined
                 }
                 next={
-                  data.nextLesson
+                  nextLesson
                     ? {
                         href: resolveOakHref({
                           page: "integrated-lesson-overview",
-                          programmeSlug: data.programmeSlug,
-                          unitSlug: data.unitSlug,
-                          lessonSlug: data.nextLesson.lessonSlug,
+                          programmeSlug,
+                          unitSlug,
+                          lessonSlug: nextLesson.lessonSlug,
                         }),
-                        title: data.nextLesson.lessonTitle,
-                        index: data.nextLesson.lessonIndex,
+                        title: nextLesson.lessonTitle,
+                        index: nextLesson.lessonIndex,
                       }
                     : undefined
                 }
               />
-            </OakFlex>
-          </OakGridArea>
-        </OakGrid>
-      </OakBox>
+            </OakGridArea>
+          </OakGrid>
+        </OakBox>
+      </CurrentSectionIdProvider>
     </MathJaxLessonProvider>
   );
 }
