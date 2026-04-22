@@ -5,7 +5,13 @@ import type {
   PortableTextBlock,
   PortableTextMarkDefinition,
 } from "@portabletext/types";
-import { OakBox, OakLI, OakOL, OakSpan } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakLI,
+  OakOL,
+  OakSpan,
+  parseColor,
+} from "@oaknational/oak-components";
 
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 
@@ -62,7 +68,12 @@ export const PostFootnoteAnnotation = (props: PostFootnoteAnnotationProps) => {
     <OakSpan>
       {props.children}
 
-      <OakBox as="sup" $position="relative">
+      <OakBox
+        as="sup"
+        $position="relative"
+        $textDecoration={"underline"}
+        $color={"text-link-active"}
+      >
         <AnchorTarget id={footnoteBackLinkAnchor(footnote.markKey)} />
 
         <a
@@ -89,7 +100,7 @@ type PostFootnotesSectionProps = {
 const FootnoteLink = styled.a`
   display: inline;
   text-decoration: underline;
-  color: ${(props) => props.theme.colors.navy};
+  color: ${parseColor("text-link-active")};
 `;
 
 const StyledLabel = styled.span`

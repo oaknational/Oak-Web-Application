@@ -67,6 +67,8 @@ describe("UnitView", () => {
         ]}
         threads={[]}
         phaseSlug="secondary"
+        nextUnit={null}
+        prevUnit={null}
       />,
     );
 
@@ -151,6 +153,8 @@ describe("UnitView", () => {
         whyThisWhyNow={"mock why this why now"}
         tierOptionToggles={[]}
         subjectOptionToggles={[]}
+        nextUnit={null}
+        prevUnit={null}
       />,
     );
 
@@ -175,6 +179,8 @@ describe("UnitView", () => {
         priorKnowledgeRequirements={["Requirement 1", "Requirement 2"]}
         tierOptionToggles={[]}
         subjectOptionToggles={[]}
+        nextUnit={null}
+        prevUnit={null}
       />,
     );
 
@@ -201,6 +207,8 @@ describe("UnitView", () => {
         phaseSlug="secondary"
         tierOptionToggles={[]}
         subjectOptionToggles={[]}
+        nextUnit={null}
+        prevUnit={null}
       />,
     );
 
@@ -209,5 +217,69 @@ describe("UnitView", () => {
 
     const thread2 = screen.getAllByText("Thread 2");
     expect(thread2[0]).toBeInTheDocument();
+  });
+  it("renders previous unit link", () => {
+    render(
+      <UnitView
+        programmeSlug="biology-secondary-ks3"
+        unitSlug="cells"
+        unitTitle="Cells"
+        unitDescription="Learn about cells"
+        subjectTitle="Biology"
+        subjectSlug="biology"
+        keyStageSlug="ks3"
+        keyStageTitle="Key Stage 3"
+        lessons={lessons as UnitViewProps["lessons"]}
+        unitIndex={2}
+        unitCount={12}
+        threads={["Thread 1", "Thread 2"]}
+        phaseSlug="secondary"
+        tierOptionToggles={[]}
+        subjectOptionToggles={[]}
+        nextUnit={null}
+        prevUnit={{ slug: "unit-1", title: "Unit 1" }}
+      />,
+    );
+
+    const previousUnitLink = screen.getByRole("link", {
+      name: /previous unit/i,
+    });
+    expect(previousUnitLink).toBeInTheDocument();
+    expect(previousUnitLink).toHaveProperty(
+      "href",
+      "http://localhost/programmes/biology-secondary-ks3/units/unit-1/lessons",
+    );
+  });
+  it("renders next unit link", () => {
+    render(
+      <UnitView
+        programmeSlug="biology-secondary-ks3"
+        unitSlug="cells"
+        unitTitle="Cells"
+        unitDescription="Learn about cells"
+        subjectTitle="Biology"
+        subjectSlug="biology"
+        keyStageSlug="ks3"
+        keyStageTitle="Key Stage 3"
+        lessons={lessons as UnitViewProps["lessons"]}
+        unitIndex={2}
+        unitCount={12}
+        threads={["Thread 1", "Thread 2"]}
+        phaseSlug="secondary"
+        tierOptionToggles={[]}
+        subjectOptionToggles={[]}
+        prevUnit={null}
+        nextUnit={{ slug: "unit-3", title: "Unit 3" }}
+      />,
+    );
+
+    const nextUnitLink = screen.getByRole("link", {
+      name: /next unit/i,
+    });
+    expect(nextUnitLink).toBeInTheDocument();
+    expect(nextUnitLink).toHaveProperty(
+      "href",
+      "http://localhost/programmes/biology-secondary-ks3/units/unit-3/lessons",
+    );
   });
 });

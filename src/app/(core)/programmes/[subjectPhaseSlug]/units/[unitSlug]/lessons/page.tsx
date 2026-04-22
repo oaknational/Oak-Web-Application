@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 
 import UnitHeader from "./Components/UnitHeader/UnitHeader";
-import { UnitBreadcrumbs } from "./Components/UnitBreadcrumbs/UnitBreadcrumbs";
 import { UnitView } from "./Components/UnitView";
+import { Breadcrumbs } from "./Components/Breadcrumbs/Breadcrumbs";
 
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import withPageErrorHandling, {
@@ -112,7 +112,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
           subjectTitle: data.subjectTitle,
         }}
         headerSlot={
-          <UnitBreadcrumbs data={data} subjectPhaseSlug={subjectPhaseSlug} />
+          <Breadcrumbs data={data} subjectPhaseSlug={subjectPhaseSlug} />
         }
       />
       <UnitView
@@ -133,6 +133,8 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
         phaseSlug={data.phaseSlug}
         tierOptionToggles={data.tierOptionToggles}
         subjectOptionToggles={data.subjectOptionToggles}
+        nextUnit={data.nextUnit}
+        prevUnit={data.prevUnit}
       />
     </>
   );
