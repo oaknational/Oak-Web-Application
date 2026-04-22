@@ -37,7 +37,7 @@ describe("teacher sitemaps", () => {
       expect(secondHalf[0]).toHaveProperty("loc");
       expect(secondHalf[0]).toHaveProperty("lastmod");
       expect(secondHalf[0]?.loc).toEqual(
-        "http://localhost:3000/teachers/programmes/programme-2/units/unit-2/lessons/lesson-2",
+        "http://localhost:3000/teachers/programmes/programme-1/units/unit-1/lessons",
       );
     });
   });

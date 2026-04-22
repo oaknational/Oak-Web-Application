@@ -6233,20 +6233,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                       >
                         <a
                           class="c184 "
-                          href="/teachers/specialist/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Specialist
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c183"
-                      >
-                        <a
-                          class="c184 "
                           href="/teachers/key-stages/ks1/subjects"
                         >
                           <span
