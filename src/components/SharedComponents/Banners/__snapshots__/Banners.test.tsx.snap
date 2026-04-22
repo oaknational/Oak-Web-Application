@@ -3,26 +3,26 @@
 exports[`Banners shows mythbusting banner 1`] = `
 <div>
   <div
-    class="sc-aXZVg hkJkIR"
+    class="sc-aXZVg dFOKqz"
     role="banner"
   >
     <div
-      class="sc-aXZVg sc-gEvEer gOchNo jMLdOa"
+      class="sc-aXZVg sc-gEvEer idSkbS jMLdOa"
     >
       <div
-        class="sc-aXZVg sc-gEvEer kqEqNl jUblXJ"
+        class="sc-aXZVg sc-gEvEer hDSZNb jUblXJ"
       >
         <div
-          class="sc-aXZVg sc-gEvEer iQMMTO jVmVJV"
+          class="sc-aXZVg sc-gEvEer dmdaXs jVmVJV"
         >
           <p
-            class="sc-ikkxIA jTavWX"
+            class="sc-ikkxIA gJwFEJ"
           >
             <span
               style="display: inline-block; transform: rotate(-1.5deg); padding: 4px 8px;"
             >
               <span
-                class="sc-eqUAAy fTRfmp"
+                class="sc-eqUAAy kVreFz"
               >
                 Myths
               </span>
@@ -41,7 +41,7 @@ exports[`Banners shows mythbusting banner 1`] = `
           title="Learn why"
         >
           <div
-            class="sc-aXZVg sc-gEvEer eWWTEV bRncHa"
+            class="sc-aXZVg sc-gEvEer hHeOyD bRncHa"
           >
             <span
               aria-hidden="true"
@@ -79,13 +79,13 @@ exports[`Banners shows mythbusting banner 1`] = `
             </span>
           </div>
           <div
-            class="sc-aXZVg eTmbhz"
+            class="sc-aXZVg jxSWSp"
           >
             <div
-              class="sc-aXZVg hkJkIR"
+              class="sc-aXZVg dFOKqz"
             >
               <span
-                class="sc-eqUAAy sc-ca3376e3-0 iuxBUE eEriKr"
+                class="sc-eqUAAy sc-ca3376e3-0 bngpZa eEriKr"
               >
                 Learn why
               </span>
@@ -119,10 +119,10 @@ exports[`Banners shows mythbusting banner 1`] = `
       </div>
     </div>
     <div
-      class="sc-aXZVg fajpgl"
+      class="sc-aXZVg gehhFD"
     >
       <div
-        class="sc-aXZVg sc-gEvEer sc-bDpDS erYAFI iDBIXi"
+        class="sc-aXZVg sc-gEvEer sc-bDpDS khzVYm iDBIXi"
         focusable="false"
       >
         <svg

@@ -2398,6 +2398,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   text-decoration: underline;
   cursor: pointer;
   color: #0d24c4;
+  overflow-wrap: break-word;
 }
 
 .c28:focus-visible {
@@ -2438,6 +2439,7 @@ exports[`pages/about/oaks-curricula.tsx renders 1`] = `
   text-decoration: none;
   cursor: pointer;
   color: #222222;
+  overflow-wrap: break-word;
 }
 
 .c214:focus-visible {
