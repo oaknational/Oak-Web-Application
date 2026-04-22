@@ -851,7 +851,6 @@ exports[`CurriculumTab renders 1`] = `
   text-decoration: none;
   cursor: pointer;
   color: #222222;
-  overflow-wrap: break-word;
 }
 
 .c21:focus-visible {

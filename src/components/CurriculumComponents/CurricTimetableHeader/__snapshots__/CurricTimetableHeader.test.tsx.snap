@@ -4,19 +4,19 @@ exports[`CurricTimetableHeader basic usage 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg eGYJzq"
+      class="sc-aXZVg gwENAg"
     >
       <div
-        class="sc-aXZVg sc-gEvEer dFOKqz fjNQtm"
+        class="sc-aXZVg sc-gEvEer hkJkIR fjNQtm"
       >
         <div
-          class="sc-aXZVg sc-gEvEer dFOKqz fUxOFh"
+          class="sc-aXZVg sc-gEvEer hkJkIR fUxOFh"
         >
           <div
-            class="sc-aXZVg sc-gEvEer fCyUVb kjWHLN"
+            class="sc-aXZVg sc-gEvEer deqSdR kjWHLN"
           >
             <span
-              class="sc-aXZVg fPzviK"
+              class="sc-aXZVg hefbZs"
               style="height: 52px; width: 114px;"
             >
               <img
@@ -31,19 +31,19 @@ exports[`CurricTimetableHeader basic usage 1`] = `
             </span>
           </div>
           <div
-            class="sc-aXZVg sc-gEvEer dFOKqz iDBIXi"
+            class="sc-aXZVg sc-gEvEer hkJkIR iDBIXi"
           >
             <div
-              class="sc-aXZVg sc-gEvEer dFOKqz gMazQC"
+              class="sc-aXZVg sc-gEvEer hkJkIR gMazQC"
             >
               <h1
-                class="sc-eldPxv iuXWKp"
+                class="sc-eldPxv hBOEef"
                 data-testid="timetable-header-title"
               >
                 TITLE
               </h1>
               <div
-                class="sc-aXZVg dFOKqz"
+                class="sc-aXZVg hkJkIR"
                 data-testid="timetable-header-additional"
               >
                 ADDITIONAL
@@ -52,7 +52,7 @@ exports[`CurricTimetableHeader basic usage 1`] = `
           </div>
         </div>
         <div
-          class="sc-aXZVg sc-gEvEer kzQqEO dnBYlX"
+          class="sc-aXZVg sc-gEvEer eubaRU dnBYlX"
         >
           <img
             alt=""

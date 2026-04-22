@@ -56,11 +56,6 @@ const footerSections: FooterSections = {
         }),
       },
       {
-        text: "Specialist",
-        type: "link",
-        href: "/teachers/specialist/subjects",
-      },
-      {
         text: "Key stage 1",
         type: "link",
         href: resolveOakHref({ page: "subject-index", keyStageSlug: "ks1" }),

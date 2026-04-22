@@ -2129,7 +2129,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   text-decoration: underline;
   cursor: pointer;
   color: #0d24c4;
-  overflow-wrap: break-word;
 }
 
 .c28:focus-visible {
@@ -2170,7 +2169,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
   text-decoration: none;
   cursor: pointer;
   color: #222222;
-  overflow-wrap: break-word;
 }
 
 .c189:focus-visible {
@@ -5980,20 +5978,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                             class="c29"
                           >
                             EYFS
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c188"
-                      >
-                        <a
-                          class="c189 "
-                          href="/teachers/specialist/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Specialist
                           </span>
                         </a>
                       </li>

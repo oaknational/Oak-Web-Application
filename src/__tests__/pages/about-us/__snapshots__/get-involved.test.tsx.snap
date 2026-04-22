@@ -2057,7 +2057,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   text-decoration: underline;
   cursor: pointer;
   color: #0d24c4;
-  overflow-wrap: break-word;
 }
 
 .c28:focus-visible {
@@ -2098,7 +2097,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
   text-decoration: none;
   cursor: pointer;
   color: #222222;
-  overflow-wrap: break-word;
 }
 
 .c182:focus-visible {
@@ -6153,20 +6151,6 @@ exports[`pages/about/get-involved.tsx renders 1`] = `
                             class="c29"
                           >
                             EYFS
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c181"
-                      >
-                        <a
-                          class="c182 "
-                          href="/teachers/specialist/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Specialist
                           </span>
                         </a>
                       </li>

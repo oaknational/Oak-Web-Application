@@ -1,3 +1,60 @@
+# [1.1051.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1050.0...v1.1051.0) (2026-04-22)
+
+
+### Features
+
+* remove specialist links from footer, update snapshots ([4a44a3a](https://github.com/oaknational/Oak-Web-Application/commit/4a44a3aac7ef61749784b09f582f7e3901fe81c3))
+
+# [1.1050.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1049.0...v1.1050.0) (2026-04-22)
+
+
+### Bug Fixes
+
+* **LESQ-1798:** handle corner case in formatting when years include "all" ([6794c62](https://github.com/oaknational/Oak-Web-Application/commit/6794c62d3d709ae0b3d482a1a2ea3a39e35140f2))
+
+
+### Features
+
+* **LESQ-1798:** ensure sentence case for subject+category interpolation in secondary phase ([5394b0b](https://github.com/oaknational/Oak-Web-Application/commit/5394b0b2b6db83f25226d30ef0a094243231c643))
+* **LESQ-1798:** only use colon separator for primary ([b7364b0](https://github.com/oaknational/Oak-Web-Application/commit/b7364b0171edad9509b0b255e5e5b381341ebd76))
+* **LESQ-1798:** remove grouped KS4 path to make year formatting consistent with other paths ([cf1fd5c](https://github.com/oaknational/Oak-Web-Application/commit/cf1fd5c891c9394899c2d62729d8401e2d0ec8be))
+* **LESQ-1798:** support groupAs pragma when constructing programme header ([5cddff5](https://github.com/oaknational/Oak-Web-Application/commit/5cddff560e536079a6ba4bed91525594238a394c))
+* **LESQ-1798:** treat english/grouped subjects as a prefix for the programme title ([d633b08](https://github.com/oaknational/Oak-Web-Application/commit/d633b080fdf6aba0123912a8161d214e1ea4063c))
+
+# [1.1049.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1048.0...v1.1049.0) (2026-04-22)
+
+
+### Features
+
+* refactor curriculum API authentication and update GraphQL query ([bd28389](https://github.com/oaknational/Oak-Web-Application/commit/bd2838976d12391bf8883a7828884515b66df61d))
+
+# [1.1048.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1047.0...v1.1048.0) (2026-04-22)
+
+
+### Features
+
+* add disallow rules to robots txt ([6de8597](https://github.com/oaknational/Oak-Web-Application/commit/6de8597722ab2131715af4034276a8c0b202ecf6))
+
+# [1.1047.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1046.0...v1.1047.0) (2026-04-21)
+
+
+### Bug Fixes
+
+* amend sign in text for lesson information box download button ([12109b5](https://github.com/oaknational/Oak-Web-Application/commit/12109b571052384082214fa28bc0fdd3109f5e0b))
+* update storybook config to work with app router ([13536a8](https://github.com/oaknational/Oak-Web-Application/commit/13536a83d4f3d65e8d8b1f3e0428379fb27f5b4d))
+* use getUTCFullYear to prevent timezone issues on CopyrightLicence ([6480bd7](https://github.com/oaknational/Oak-Web-Application/commit/6480bd7204229c781ce046aa048893e050a91c69))
+
+
+### Features
+
+* add content guidance to lesson information box ([80a2f6e](https://github.com/oaknational/Oak-Web-Application/commit/80a2f6ea796b84802483bc6e2a68738acffd5d71))
+* add files needed section to lesson information box ([183f8c4](https://github.com/oaknational/Oak-Web-Application/commit/183f8c448c54ff08e2ca168ae50786d302dcd12c))
+* add licence to lesson information box ([5dce313](https://github.com/oaknational/Oak-Web-Application/commit/5dce313cd379e9a2157f27ee02180580688b80a2))
+* add supervision to lesson information box ([d335103](https://github.com/oaknational/Oak-Web-Application/commit/d335103618f8167d005f3321b75e9f84e5098362))
+* added equipment to lesson information box ([2376935](https://github.com/oaknational/Oak-Web-Application/commit/2376935b5ae07da3e68c2bb64de43293adfede72))
+* set up lesson information box component and story ([40835c9](https://github.com/oaknational/Oak-Web-Application/commit/40835c93252cc15d1a8d31e84d6abc31a830601b))
+* style teacher tip section ([de0dd6f](https://github.com/oaknational/Oak-Web-Application/commit/de0dd6ff3120e1b834d01726a47e3af415be795f))
+
 # [1.1046.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1045.0...v1.1046.0) (2026-04-21)
 
 
