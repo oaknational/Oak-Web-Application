@@ -3,39 +3,39 @@
 exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
 <div>
   <div
-    class="sc-aXZVg sc-gEvEer jeRRSZ iwFTtF"
+    class="sc-aXZVg sc-gEvEer jeZXij iwFTtF"
   >
     <div
-      class="sc-aXZVg sc-gEvEer hkJkIR dfjiUz"
+      class="sc-aXZVg sc-gEvEer dFOKqz dfjiUz"
     >
       <h3
-        class="sc-eldPxv pqCFq"
+        class="sc-eldPxv cgHAhQ"
       >
         Help us improve
       </h3>
       Teachers are at the heart of everything we build.
     </div>
     <div
-      class="sc-aXZVg sc-gEvEer hkJkIR ehpWeg"
+      class="sc-aXZVg sc-gEvEer dFOKqz ehpWeg"
     >
       <div
-        class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
+        class="sc-aXZVg sc-kpDqfm beToGt cvxBYX"
       >
         <div
-          class="sc-aXZVg hpZeuU grey-shadow"
+          class="sc-aXZVg jLhxzq grey-shadow"
         />
         <div
-          class="sc-aXZVg hpZeuU yellow-shadow"
+          class="sc-aXZVg jLhxzq yellow-shadow"
         />
         <a
-          class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
+          class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
           href="https://example.com/research"
         >
           <div
-            class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
+            class="sc-aXZVg sc-gEvEer dFOKqz krHAKs"
           >
             <span
-              class="sc-eqUAAy dorClf"
+              class="sc-eqUAAy edqVpV"
             >
               Join the research panel
             </span>
@@ -43,23 +43,23 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
         </a>
       </div>
       <div
-        class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
+        class="sc-aXZVg sc-kpDqfm beToGt cvxBYX"
       >
         <div
-          class="sc-aXZVg hpZeuU grey-shadow"
+          class="sc-aXZVg jLhxzq grey-shadow"
         />
         <div
-          class="sc-aXZVg hpZeuU yellow-shadow"
+          class="sc-aXZVg jLhxzq yellow-shadow"
         />
         <a
-          class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
+          class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
           href="https://example.com/explore"
         >
           <div
-            class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
+            class="sc-aXZVg sc-gEvEer dFOKqz krHAKs"
           >
             <span
-              class="sc-eqUAAy dorClf"
+              class="sc-eqUAAy edqVpV"
             >
               Explore our research
             </span>
@@ -74,39 +74,39 @@ exports[`GetInvolvedLinkCard renders with multiple buttons 1`] = `
 exports[`GetInvolvedLinkCard renders with single button 1`] = `
 <div>
   <div
-    class="sc-aXZVg sc-gEvEer jeRRSZ iwFTtF"
+    class="sc-aXZVg sc-gEvEer jeZXij iwFTtF"
   >
     <div
-      class="sc-aXZVg sc-gEvEer hkJkIR dfjiUz"
+      class="sc-aXZVg sc-gEvEer dFOKqz dfjiUz"
     >
       <h2
-        class="sc-eldPxv pqCFq"
+        class="sc-eldPxv cgHAhQ"
       >
         Give your feedback
       </h2>
       Share your story and we'll send you a gift voucher as a thanks for your time. Whether you've planned more efficiently, strengthened your subject knowledge or refreshed your curriculum design, your experience can inspire other teachers.
     </div>
     <div
-      class="sc-aXZVg sc-gEvEer hkJkIR ehpWeg"
+      class="sc-aXZVg sc-gEvEer dFOKqz ehpWeg"
     >
       <div
-        class="sc-aXZVg sc-kpDqfm cXEToX cvxBYX"
+        class="sc-aXZVg sc-kpDqfm beToGt cvxBYX"
       >
         <div
-          class="sc-aXZVg hpZeuU grey-shadow"
+          class="sc-aXZVg jLhxzq grey-shadow"
         />
         <div
-          class="sc-aXZVg hpZeuU yellow-shadow"
+          class="sc-aXZVg jLhxzq yellow-shadow"
         />
         <a
-          class="sc-dcJsrY sc-jXbUNg iYWyWJ khQbhv internal-button"
+          class="sc-dcJsrY sc-jXbUNg bALQkH khQbhv internal-button"
           href="#"
         >
           <div
-            class="sc-aXZVg sc-gEvEer hkJkIR krHAKs"
+            class="sc-aXZVg sc-gEvEer dFOKqz krHAKs"
           >
             <span
-              class="sc-eqUAAy dorClf"
+              class="sc-eqUAAy edqVpV"
             >
               Get in touch
             </span>
@@ -121,13 +121,13 @@ exports[`GetInvolvedLinkCard renders with single button 1`] = `
 exports[`GetInvolvedLinkCard renders without buttons 1`] = `
 <div>
   <div
-    class="sc-aXZVg sc-gEvEer jeRRSZ iwFTtF"
+    class="sc-aXZVg sc-gEvEer jeZXij iwFTtF"
   >
     <div
-      class="sc-aXZVg sc-gEvEer hkJkIR dfjiUz"
+      class="sc-aXZVg sc-gEvEer dFOKqz dfjiUz"
     >
       <h3
-        class="sc-eldPxv pqCFq"
+        class="sc-eldPxv cgHAhQ"
       >
         No Buttons
       </h3>

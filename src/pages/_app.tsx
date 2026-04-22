@@ -6,7 +6,11 @@ import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { ClerkProvider } from "@clerk/nextjs";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+import {
+  oakDefaultTheme,
+  OakGlobalStyle,
+  OakThemeProvider,
+} from "@oaknational/oak-components";
 
 import "@/browser-lib/gleap/gleap.css";
 import "@/browser-lib/oak-globals/oakGlobals";
@@ -51,6 +55,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
         <CookieConsentProvider>
           <ThemeProvider theme={theme}>
             <OakThemeProvider theme={oakDefaultTheme}>
+              <OakGlobalStyle />
               <ErrorBoundary>
                 <PostHogProvider client={posthog}>
                   <AnalyticsProvider {...analyticsOptions}>

@@ -4,34 +4,34 @@ exports[`BulletList render 1`] = `
 <body>
   <div>
     <div
-      class="sc-aXZVg sc-dAbbOL hkJkIR hKQsgx"
+      class="sc-aXZVg sc-dAbbOL dFOKqz fTnMHX"
     >
       one
     </div>
     <div
       aria-hidden="true"
-      class="sc-aXZVg sc-dAbbOL hkJkIR hKQsgx"
+      class="sc-aXZVg sc-dAbbOL dFOKqz fTnMHX"
     >
       •
     </div>
     <div
-      class="sc-aXZVg sc-dAbbOL hkJkIR hKQsgx"
+      class="sc-aXZVg sc-dAbbOL dFOKqz fTnMHX"
     >
       two
     </div>
     <div
       aria-hidden="true"
-      class="sc-aXZVg sc-dAbbOL hkJkIR hKQsgx"
+      class="sc-aXZVg sc-dAbbOL dFOKqz fTnMHX"
     >
       •
     </div>
     <div
-      class="sc-aXZVg sc-dAbbOL hkJkIR hKQsgx"
+      class="sc-aXZVg sc-dAbbOL dFOKqz fTnMHX"
     >
       three
     </div>
     <div
-      class="sc-aXZVg sc-dAbbOL hkJkIR hKQsgx"
+      class="sc-aXZVg sc-dAbbOL dFOKqz fTnMHX"
     >
       single
     </div>
