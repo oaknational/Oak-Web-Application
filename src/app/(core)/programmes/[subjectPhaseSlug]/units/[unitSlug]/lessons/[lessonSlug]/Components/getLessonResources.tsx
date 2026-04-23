@@ -395,10 +395,10 @@ export function getLessonResources({
         : {
             ...baseResource,
             downloadable: false as const,
-            title: title as LessonItemTitle,
+            title: title,
           };
     })
-    .filter((item) => item.component)
+    .filter((item) => item.component !== undefined)
     .map((item, index, array) => {
       const isFinalElement = index === array.length - 1;
       const skipLinkUrl = getSkipLinkUrl({
