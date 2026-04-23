@@ -6062,20 +6062,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       >
                         <a
                           class="c191 "
-                          href="/teachers/specialist/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Specialist
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c190"
-                      >
-                        <a
-                          class="c191 "
                           href="/teachers/key-stages/ks1/subjects"
                         >
                           <span
