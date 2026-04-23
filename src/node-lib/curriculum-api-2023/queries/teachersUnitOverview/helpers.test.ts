@@ -439,6 +439,110 @@ describe("getUnitCounts", () => {
     expect(result.unitCount).toBe(2);
     expect(result.unitIndex).toBe(2);
   });
+
+  it("filters to overlapping subject categories when subject category grouping is enabled", () => {
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "grammar-1",
+        unitTitle: "Grammar 1",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "7",
+        subjectCategories: ["Grammar"],
+        actions: {
+          subject_category_actions: {
+            group_by_subjectcategory: true,
+            all_disabled: false,
+            default_category_id: 1,
+          },
+        },
+      },
+      {
+        unitSlug: "grammar-2",
+        unitTitle: "Grammar 2",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "7",
+        subjectCategories: ["Grammar"],
+        actions: null,
+      },
+      {
+        unitSlug: "writing-1",
+        unitTitle: "Writing 1",
+        unitDescription: null,
+        unitOrder: 3,
+        nullUnitvariantId: 3,
+        yearOrder: 1,
+        year: "7",
+        subjectCategories: ["Writing"],
+        actions: null,
+      },
+    ];
+
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 1,
+    });
+
+    expect(result.unitCount).toBe(2);
+    expect(result.unitIndex).toBe(1);
+  });
+
+  it("does not filter by subject category when grouping is disabled", () => {
+    const sequence: UnitSequence = [
+      {
+        unitSlug: "grammar-1",
+        unitTitle: "Grammar 1",
+        unitDescription: null,
+        unitOrder: 1,
+        nullUnitvariantId: 1,
+        yearOrder: 1,
+        year: "7",
+        subjectCategories: ["Grammar"],
+        actions: {
+          subject_category_actions: {
+            group_by_subjectcategory: false,
+            all_disabled: false,
+            default_category_id: 1,
+          },
+        },
+      },
+      {
+        unitSlug: "grammar-2",
+        unitTitle: "Grammar 2",
+        unitDescription: null,
+        unitOrder: 2,
+        nullUnitvariantId: 2,
+        yearOrder: 1,
+        year: "7",
+        subjectCategories: ["Grammar"],
+        actions: null,
+      },
+      {
+        unitSlug: "writing-1",
+        unitTitle: "Writing 1",
+        unitDescription: null,
+        unitOrder: 3,
+        nullUnitvariantId: 3,
+        yearOrder: 1,
+        year: "7",
+        subjectCategories: ["Writing"],
+        actions: null,
+      },
+    ];
+
+    const result = getUnitCounts({
+      unitSequenceData: sequence,
+      nullUnitvariantId: 1,
+    });
+
+    expect(result.unitCount).toBe(3);
+    expect(result.unitIndex).toBe(1);
+  });
 });
 
 describe("getAdjacentUnits", () => {
