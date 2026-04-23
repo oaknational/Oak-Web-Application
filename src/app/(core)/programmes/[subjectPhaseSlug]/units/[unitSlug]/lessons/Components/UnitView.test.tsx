@@ -69,6 +69,7 @@ describe("UnitView", () => {
         phaseSlug="secondary"
         nextUnit={null}
         prevUnit={null}
+        subjectCategories={null}
       />,
     );
 
@@ -155,6 +156,7 @@ describe("UnitView", () => {
         subjectOptionToggles={[]}
         nextUnit={null}
         prevUnit={null}
+        subjectCategories={null}
       />,
     );
 
@@ -181,6 +183,7 @@ describe("UnitView", () => {
         subjectOptionToggles={[]}
         nextUnit={null}
         prevUnit={null}
+        subjectCategories={null}
       />,
     );
 
@@ -209,6 +212,7 @@ describe("UnitView", () => {
         subjectOptionToggles={[]}
         nextUnit={null}
         prevUnit={null}
+        subjectCategories={null}
       />,
     );
 
@@ -238,6 +242,7 @@ describe("UnitView", () => {
         subjectOptionToggles={[]}
         nextUnit={null}
         prevUnit={{ slug: "unit-1", title: "Unit 1" }}
+        subjectCategories={null}
       />,
     );
 
@@ -270,6 +275,7 @@ describe("UnitView", () => {
         subjectOptionToggles={[]}
         prevUnit={null}
         nextUnit={{ slug: "unit-3", title: "Unit 3" }}
+        subjectCategories={null}
       />,
     );
 

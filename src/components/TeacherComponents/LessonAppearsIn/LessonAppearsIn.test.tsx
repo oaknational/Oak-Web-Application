@@ -6,7 +6,6 @@ describe("LessonAppearsIn", () => {
   it("renderes the correct headings with correct tags", () => {
     const { getByRole } = renderWithTheme(
       <LessonAppearsIn
-        headingTag="h2"
         subjects={[
           {
             subjectTitle: "Maths",

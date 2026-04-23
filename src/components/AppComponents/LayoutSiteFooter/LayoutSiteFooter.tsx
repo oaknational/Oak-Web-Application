@@ -1,6 +1,5 @@
 "use client";
 import { FC } from "react";
-import { usePathname } from "next/navigation";
 import { keystageDescriptions } from "@oaknational/oak-curriculum-schema";
 import {
   OakGrid,
@@ -24,7 +23,6 @@ import Link from "next/link";
 
 import { aboutUsAccessed } from "@/browser-lib/avo/Avo";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
-import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
@@ -56,11 +54,6 @@ const footerSections: FooterSections = {
           page: "eyfs-page",
           subjectSlug: "maths",
         }),
-      },
-      {
-        text: "Specialist",
-        type: "link",
-        href: "/teachers/specialist/subjects",
       },
       {
         text: "Key stage 1",
@@ -307,8 +300,6 @@ export type FooterSections = Record<
 
 const LayoutSiteFooter: FC = () => {
   const sections = footerSections;
-  const pathname = usePathname();
-  const displaySignpost = pathname?.startsWith("/beta");
 
   return (
     <OakBox
@@ -336,15 +327,6 @@ const LayoutSiteFooter: FC = () => {
           $ma={"auto"}
           $width={"100%"}
         >
-          {displaySignpost && (
-            <OakFlex
-              $wordWrap={"initial"}
-              $mb={["spacing-16", "spacing-56"]}
-              $maxWidth={["spacing-480", "spacing-640", "spacing-640"]}
-            >
-              <LayoutSiteFooterSignpost />
-            </OakFlex>
-          )}
           <OakGrid>
             <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />

@@ -1,10 +1,13 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakUL, OakIcon } from "@oaknational/oak-components";
+import {
+  OakUL,
+  OakIcon,
+  OakSecondaryLink,
+  OakFocusIndicator,
+} from "@oaknational/oak-components";
 
 import { BreadcrumbJsonLd } from "@/browser-lib/seo/getJsonLd";
-import OwaLink from "@/components/SharedComponents/OwaLink";
-import { MaybeOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import ellipsis from "@/styles/ellipsis";
 
 const BreadcrumbsNav = styled.nav`
@@ -37,21 +40,17 @@ const BreadcrumbConstrainer = styled.div`
 export type Breadcrumb = {
   label: string;
   disabled?: boolean;
-  oakLinkProps:
-    | {
-        /**
-         * To encourage the use of 'page' prop (which will get resolved to an href)
-         * you must pass page={null} when passing 'href' directly
-         */
-        page: null;
-        href: MaybeOakHref;
-      }
-    | ResolveOakHrefProps;
+  href: string;
 };
 
 export type BreadcrumbsProps = {
   breadcrumbs: Breadcrumb[];
 };
+
+// To fix ellipsis showing in firefox unecessarily
+const StyledLink = styled(OakSecondaryLink)`
+  display: block;
+`;
 
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
   return (
@@ -61,7 +60,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
       <BreadcrumbsNav aria-label="Breadcrumb">
         <BreadcrumbUL $reset $minWidth={0}>
           {breadcrumbs.map((breadcrumb, i) => {
-            const { label, disabled, oakLinkProps } = breadcrumb;
+            const { label, disabled, href } = breadcrumb;
             return (
               <BreadcrumbsLi key={`${i}-${label}`}>
                 {i !== 0 && (
@@ -73,13 +72,15 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                     $height={"spacing-20"}
                   />
                 )}
-                <BreadcrumbConstrainer>
-                  {disabled ? (
-                    <>{label}</>
-                  ) : (
-                    <OwaLink {...oakLinkProps}>{label}</OwaLink>
-                  )}
-                </BreadcrumbConstrainer>
+                <OakFocusIndicator $borderRadius={"border-radius-s"}>
+                  <BreadcrumbConstrainer>
+                    {disabled ? (
+                      <>{label}</>
+                    ) : (
+                      <StyledLink href={href}>{label}</StyledLink>
+                    )}
+                  </BreadcrumbConstrainer>
+                </OakFocusIndicator>
               </BreadcrumbsLi>
             );
           })}

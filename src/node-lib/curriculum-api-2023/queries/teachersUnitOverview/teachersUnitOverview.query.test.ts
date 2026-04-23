@@ -128,6 +128,7 @@ export const unitSequenceFixture: UnitSequence = [
     nullUnitvariantId: 1,
     yearOrder: 1,
     year: "1",
+    actions: null,
   },
   {
     unitSlug: "unit-2",
@@ -137,6 +138,7 @@ export const unitSequenceFixture: UnitSequence = [
     nullUnitvariantId: 2,
     yearOrder: 1,
     year: "1",
+    actions: null,
   },
   {
     unitSlug: "unit-3",
@@ -146,6 +148,7 @@ export const unitSequenceFixture: UnitSequence = [
     nullUnitvariantId: 3,
     yearOrder: 1,
     year: "1",
+    actions: null,
   },
   {
     unitSlug: "unit-4",
@@ -155,6 +158,7 @@ export const unitSequenceFixture: UnitSequence = [
     nullUnitvariantId: 4,
     yearOrder: 1,
     year: "1",
+    actions: null,
   },
 ];
 
@@ -201,6 +205,7 @@ describe("teachersUnitOverview", () => {
       keyStageTitle: "Key Stage 1",
       subjectSlug: "maths",
       subjectTitle: "Maths",
+      subjectCategories: [],
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
       unitDescription: null,

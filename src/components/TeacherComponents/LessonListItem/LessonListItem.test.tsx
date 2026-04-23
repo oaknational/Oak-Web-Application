@@ -83,7 +83,7 @@ describe("Lesson List Item", () => {
     const { getByText } = render(<LessonListItem {...props} />);
 
     const lesson = getByText("Add two surds");
-
+    lesson.addEventListener("click", (event) => event.preventDefault());
     userEvent.setup();
     await userEvent.click(lesson);
 

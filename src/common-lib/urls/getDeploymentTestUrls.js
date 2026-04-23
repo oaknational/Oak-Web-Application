@@ -37,7 +37,6 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/computing-secondary-ks4-gcse-l/units",
     "/teachers/programmes/maths-secondary-ks4-foundation/units/algebraic-manipulation/lessons", // unit with tiers
     "/teachers/programmes/history-secondary-ks4-aqa/units/period-studies-5163/lessons?page=2", // unit with pagination
-    "/teachers/programmes/design-technology-secondary-ks3-l/units/packaging-pop-outs-bc35/lessons/designing-for-others-6mtk2t", // all yellow boxes
     "/teachers/programmes/maths-secondary-ks4-foundation/units/algebraic-manipulation/lessons/further-algebraic-terminology/downloads?preselected=slide+deck",
     "/teachers/search?term=equate&keyStages=ks4", // results with tier and examboard drop downs
     // New content pages
@@ -75,7 +74,6 @@ function getDeploymentTestUrls() {
     "/pupils/programmes/maths-primary-year-5/units",
     "/pupils/programmes/maths-primary-year-5/units/multiplication-by-partitioning-leading-to-short-multiplication-3-by-1-digit/lessons",
     "/pupils/programmes/geography-primary-year-5/units/north-and-south-america-how-diverse-are-their-places-and-landscapes/lessons/physical-geography-of-north-and-south-america/overview",
-    "/pupils/programmes/computing-primary-year-5-l/units/vector-drawing-ea06/lessons/create-a-vector-drawing-cgvpac/intro",
     // Below urls have tickets raised for pa11y errors
     // "/pupils/lessons/sexual-consent-and-the-law-6gt3et/overview",
     // "/pupils/programmes/art-primary-year-1-l/units/drawing-c92d/lessons/exploring-shadows-and-tone-6hjk0t/intro",
