@@ -1,8 +1,9 @@
 import { FC } from "react";
+import { OakLink } from "@oaknational/oak-components";
 
 import LayoutFixedHeader from "@/components/AppComponents/LayoutFixedHeader";
 import Logo from "@/components/AppComponents/Logo";
-import OwaLink from "@/components/SharedComponents/OwaLink";
+import { resolveOakHref } from "@/common-lib/urls";
 
 /**
  * We need a simple client-side error header which doesn't use context so that
@@ -11,9 +12,9 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 const LayoutClientErrorHeader: FC = () => {
   return (
     <LayoutFixedHeader $background={"bg-decorative1-subdued"}>
-      <OwaLink page="home">
+      <OakLink href={resolveOakHref({ page: "home" })}>
         <Logo variant="with text" height={48} width={104} />
-      </OwaLink>
+      </OakLink>
     </LayoutFixedHeader>
   );
 };

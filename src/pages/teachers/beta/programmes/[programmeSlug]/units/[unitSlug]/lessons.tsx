@@ -215,35 +215,35 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       <HeaderListing
         breadcrumbs={[
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "home",
-            },
+            }),
             label: "Home",
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "subject-index",
               keyStageSlug,
-            },
+            }),
             label: keyStageTitle,
           },
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "unit-index",
               programmeSlug:
                 subjectSlug === "maths"
                   ? removeLegacySlugSuffix(programmeSlug)
                   : programmeSlug,
-            },
+            }),
             label: subjectTitle,
           },
 
           {
-            oakLinkProps: {
+            href: resolveOakHref({
               page: "lesson-index",
               unitSlug,
               programmeSlug: programmeSlug,
-            },
+            }),
 
             label: unitTitle,
             disabled: true,

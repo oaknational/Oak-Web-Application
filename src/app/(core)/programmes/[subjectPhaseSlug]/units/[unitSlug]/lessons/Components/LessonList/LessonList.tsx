@@ -157,7 +157,7 @@ const LessonList = ({
         <OakBox>
           <OakFlex $justifyContent="space-between" $alignItems="flex-start">
             <OakBox
-              as="h2"
+              as="h3"
               $background="bg-decorative1-subdued"
               $pa="spacing-20"
               $btlr="border-radius-l"

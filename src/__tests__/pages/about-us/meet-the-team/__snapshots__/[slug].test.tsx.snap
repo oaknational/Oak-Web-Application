@@ -1721,6 +1721,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   text-decoration: underline;
   cursor: pointer;
   color: #0d24c4;
+  overflow-wrap: break-word;
 }
 
 .c28:focus-visible {
@@ -1761,6 +1762,7 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
   text-decoration: none;
   cursor: pointer;
   color: #222222;
+  overflow-wrap: break-word;
 }
 
 .c76:focus-visible {
@@ -3753,20 +3755,6 @@ exports[`pages/about/meet-the-team/[slug].tsx renders 1`] = `
                             class="c29"
                           >
                             EYFS
-                          </span>
-                        </a>
-                      </li>
-                      <li
-                        class="c112"
-                      >
-                        <a
-                          class="c76 "
-                          href="/teachers/specialist/subjects"
-                        >
-                          <span
-                            class="c29"
-                          >
-                            Specialist
                           </span>
                         </a>
                       </li>
