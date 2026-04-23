@@ -84,7 +84,6 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
     phaseSlug: data.phaseSlug,
     subjectParentTitle: data.parentSubject,
     examboardSlug: data.examBoardSlug,
-    pathwaySlug: data.pathwaySlug,
   });
 
   return (
