@@ -43,6 +43,7 @@ query teachersUnitOverview(
     optionalityTitle: programme_fields(path: "optionality")
     isSwimming: features(path: "pe_swimming")
     nullUnitvariantId: null_unitvariant_id
+    actions
   }
   matchingSubjectCategories: published_mv_curriculum_sequence_b_13_0_21(
     where: {

@@ -153,7 +153,7 @@ const LessonListItem: FC<
       subjectSlug={isUnpublishedLesson ? "" : props.subjectSlug}
       index={index}
       isHovered={isHovered}
-      background={disabled ? "grey20" : "white"}
+      background={disabled ? "bg-neutral" : "bg-primary"}
       containerProps={containerProps}
       disabled={disabled}
       key={`LessonList-LessonListItem-${lessonSlug}`}
