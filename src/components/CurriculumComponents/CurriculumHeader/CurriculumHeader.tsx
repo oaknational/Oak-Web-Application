@@ -21,6 +21,7 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { buildPageTitle } from "@/utils/curriculum/formatting";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const StyledOakHeading = styled(OakHeading)`
   margin-left: -0.1rem;
@@ -111,24 +112,20 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           <Breadcrumbs
             breadcrumbs={[
               {
-                oakLinkProps: {
-                  page: "home",
-                },
                 label: "Home",
+                href: resolveOakHref({ page: "home" }),
               },
               {
-                oakLinkProps: {
-                  page: "curriculum-landing-page",
-                },
                 label: "Curriculum resources",
+                href: resolveOakHref({ page: "curriculum-landing-page" }),
               },
               {
-                oakLinkProps: {
-                  page: "curriculum-overview",
-                  subjectPhaseSlug: subjectPhaseSlug,
-                },
                 label: pageTitle,
                 disabled: true,
+                href: resolveOakHref({
+                  page: "curriculum-overview",
+                  subjectPhaseSlug,
+                }),
               },
             ]}
           />

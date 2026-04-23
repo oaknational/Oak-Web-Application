@@ -83,6 +83,10 @@ const teachersUnitOverviewQuery =
         whyThisWhyNow: lesson.unit_data.why_this_why_now,
         priorKnowledgeRequirements:
           lesson.unit_data.prior_knowledge_requirements,
+        subjectCategories:
+          lesson.unit_data.subjectcategories?.filter(
+            (sc) => typeof sc === "string",
+          ) ?? null,
       };
     }, {} as PackagedUnitData);
 

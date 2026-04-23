@@ -4,18 +4,19 @@ import {
   OakHeading,
   OakP,
   OakFlex,
+  OakUiRoleToken,
 } from "@oaknational/oak-components";
 
 import SpecialistSubjectCard from "@/components/TeacherComponents/SpecialistSubjectListingCard/SpecialistSubjectCard";
 import { SpecialistSubject } from "@/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.schema";
 
-const getSpecialistCardBackgroundColour = (heading: string) => {
+const getSpecialistCardBackgroundColour = (heading: string): OakUiRoleToken => {
   switch (heading) {
     case "Therapies":
-      return "mint";
+      return "bg-decorative1-main";
     case "Specialist":
     default:
-      return "aqua";
+      return "bg-decorative2-main";
   }
 };
 

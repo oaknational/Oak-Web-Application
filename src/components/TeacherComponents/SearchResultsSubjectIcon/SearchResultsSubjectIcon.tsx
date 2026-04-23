@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { OakFlex, OakIcon } from "@oaknational/oak-components";
 
-import Circle from "@/components/SharedComponents/Circle";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type SearchResultsSubjectIconProps = {
@@ -15,14 +14,21 @@ export type SearchResultsSubjectIconProps = {
 const SearchResultsSubjectIcon: FC<SearchResultsSubjectIconProps> = (props) => {
   const { type, subjectSlug } = props;
   return type === "lesson" ? (
-    <Circle $background={"pink"} size={56}>
+    <OakFlex
+      $borderRadius={"border-radius-circle"}
+      $width={"spacing-56"}
+      $height={"spacing-56"}
+      $background="bg-decorative4-main"
+      $alignItems={"center"}
+      $justifyContent={"center"}
+    >
       <OakIcon
         iconName={getValidSubjectIconName(subjectSlug)}
         $height="spacing-40"
         $width="spacing-40"
         alt=""
       />
-    </Circle>
+    </OakFlex>
   ) : (
     <OakFlex
       $alignItems={"center"}

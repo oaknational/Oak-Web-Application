@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { TranscriptViewer, TranscriptViewerProps } from "./TranscriptViewer";
 
@@ -23,6 +24,13 @@ const props: TranscriptViewerProps = {
 
 const meta: Meta<typeof TranscriptViewer> = {
   component: TranscriptViewer,
+  decorators: [
+    (Story) => (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Story />
+      </OakThemeProvider>
+    ),
+  ],
 };
 
 export default meta;

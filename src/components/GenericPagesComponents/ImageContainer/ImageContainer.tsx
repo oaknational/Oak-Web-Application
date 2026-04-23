@@ -1,6 +1,7 @@
 import { FC } from "react";
+import styled from "styled-components";
+import { OakFlex } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 import { IllustrationSlug } from "@/image-data";
 
@@ -12,19 +13,24 @@ type ImageContainerProps = {
   height?: number;
 };
 
+const FlexWithMaxWidth = styled(OakFlex)`
+  max-width: 524px;
+`;
+
 const ImageContainer: FC<ImageContainerProps> = (props) => {
   const { imageSlug, children, sizes, width, height } = props;
   return (
-    <Flex
-      $pv={64}
+    <FlexWithMaxWidth
+      $pv={"spacing-64"}
       $flexDirection={"column"}
       $justifyContent={"space-between"}
       $alignItems={"flex-end"}
-      $flex={"0 1 auto"}
+      $flexGrow={0}
+      $flexShrink={1}
+      $flexBasis={"auto"}
       $position={"relative"}
-      $minWidth={[0, 350]}
+      $minWidth={["spacing-0", "spacing-360"]}
       $display={["none", "flex"]}
-      $maxWidth={524}
       $width="100%"
       data-testid="image-container"
     >
@@ -41,7 +47,7 @@ const ImageContainer: FC<ImageContainerProps> = (props) => {
         height={height}
       />
       {children}
-    </Flex>
+    </FlexWithMaxWidth>
   );
 };
 

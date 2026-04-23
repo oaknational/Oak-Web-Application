@@ -7,6 +7,7 @@ import {
   OakFlexProps,
   OakGrid,
   OakGridArea,
+  OakHeading,
   OakLI,
   OakTagFunctional,
   OakTypography,
@@ -43,6 +44,7 @@ export type UnitViewProps = Pick<
   | "subjectOptionToggles"
   | "prevUnit"
   | "nextUnit"
+  | "subjectCategories"
 >;
 
 export const UnitView = ({
@@ -65,6 +67,7 @@ export const UnitView = ({
   subjectOptionToggles,
   nextUnit,
   prevUnit,
+  subjectCategories,
 }: UnitViewProps) => {
   const hasToggles =
     tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
@@ -146,6 +149,7 @@ export const UnitView = ({
             unitIndex={unitIndex}
             unitCount={unitCount}
             lessonCount={lessons.length}
+            subjectCategories={subjectCategories}
           />
           <HelpLinkCard $display={["block", "none"]} />
         </OakGridArea>
@@ -205,7 +209,9 @@ const UnitInfo = ({
         $gap={"spacing-20"}
         $display={whyThisWhyNow ? "flex" : "none"}
       >
-        <OakTypography $font={"heading-7"}>Why this why now</OakTypography>
+        <OakHeading tag="h2" $font={"heading-7"}>
+          Why this why now
+        </OakHeading>
         <OakTypography $font={"body-3"}>{whyThisWhyNow}</OakTypography>
       </OakFlex>
       <OakFlex
@@ -213,9 +219,9 @@ const UnitInfo = ({
         $gap={"spacing-20"}
         $display={priorKnowledgeRequirements?.length ? "flex" : "none"}
       >
-        <OakTypography $font={"heading-7"}>
+        <OakHeading tag="h2" $font={"heading-7"}>
           Prior knowledge requirements
-        </OakTypography>
+        </OakHeading>
         <OakUL>
           {priorKnowledgeRequirements?.map((r) => (
             <OakLI key={r}>
@@ -244,7 +250,9 @@ const UnitThreads = ({
         $display={$display}
         $gap={"spacing-20"}
       >
-        <OakTypography $font={"heading-7"}>Threads</OakTypography>
+        <OakHeading tag={"h2"} $font={"heading-7"}>
+          Threads
+        </OakHeading>
         <OakFlex $gap={"spacing-8"} $flexWrap={"wrap"}>
           {threads.map((thread) => (
             <OakTagFunctional
@@ -270,7 +278,8 @@ const HelpLinkCard = ({ $display }: { $display: OakBoxProps["$display"] }) => {
       $display={$display}
     >
       <OakCard
-        heading="Learn how you can can make the best use of Oak resources"
+        heading="Learn how you can make the best use of Oak resources"
+        headingLevel="h2"
         href={resolveOakHref({ page: "guide-to-oak" })}
         subCopy="A step-by-step guide to getting started"
         linkText="Get more out of Oak"

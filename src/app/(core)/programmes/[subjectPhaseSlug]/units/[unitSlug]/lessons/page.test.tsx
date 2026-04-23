@@ -84,6 +84,7 @@ const unitOverviewFixture: TeachersUnitOverviewData = {
   threads: ["Thread 1", "Thread 2", "Thread 3"],
   whyThisWhyNow: "why this why now",
   priorKnowledgeRequirements: ["Requirement 1"],
+  subjectCategories: null,
 };
 
 const defaultParams = {
