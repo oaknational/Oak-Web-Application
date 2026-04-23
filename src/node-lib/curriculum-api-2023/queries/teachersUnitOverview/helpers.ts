@@ -68,7 +68,7 @@ export const getTransformedLessons = (
     });
 };
 
-export const getNeighbourUnits = ({
+export const getAdjacentUnits = ({
   unitSequenceData,
   nullUnitvariantId,
 }: {
@@ -84,6 +84,8 @@ export const getNeighbourUnits = ({
   }
 
   const isCurrentUnitSwimming = currentUnit.isSwimming === true;
+  const shouldGroupBySubjectCategory =
+    currentUnit.actions?.subject_category_actions?.group_by_subjectcategory;
 
   const sortedUniqueUnits = unitSequenceData
     .toSorted((a, b) => {
@@ -94,6 +96,16 @@ export const getNeighbourUnits = ({
     .filter((unit, i, a) => {
       const uv = a.find((u) => u.nullUnitvariantId === unit.nullUnitvariantId);
       return a.indexOf(uv!) === i;
+    })
+    .filter((unit) => {
+      if (shouldGroupBySubjectCategory) {
+        // Filter to units in the same subject category when we should group them
+        const hasMatchingCategory = currentUnit.subjectCategories?.some(
+          (category) => unit.subjectCategories?.includes(category),
+        );
+        return hasMatchingCategory;
+      }
+      return true;
     })
     .filter((unit) => {
       // Swimming units are grouped across all years.
@@ -215,6 +227,7 @@ export const getPackagedUnit = ({
     nullUnitvariantId,
     whyThisWhyNow,
     priorKnowledgeRequirements,
+    subjectCategories,
   } = packagedUnitData;
 
   const modifiedProgrammeFields = getCorrectYear({
@@ -235,7 +248,7 @@ export const getPackagedUnit = ({
     (actions) => actions?.isPePractical === true,
   );
 
-  const { nextUnit, prevUnit } = getNeighbourUnits({
+  const { nextUnit, prevUnit } = getAdjacentUnits({
     unitSequenceData,
     nullUnitvariantId,
   });
@@ -261,6 +274,7 @@ export const getPackagedUnit = ({
     subjectSlug: modifiedProgrammeFields.subject_slug,
     subjectTitle: modifiedProgrammeFields.subject,
     parentSubject: modifiedProgrammeFields.subject_parent ?? null,
+    subjectCategories,
     unitSlug,
     unitvariantId,
     unitTitle,
