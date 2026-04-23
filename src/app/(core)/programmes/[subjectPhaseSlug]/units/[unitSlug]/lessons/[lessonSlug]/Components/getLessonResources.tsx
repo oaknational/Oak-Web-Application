@@ -1,6 +1,7 @@
 import { getIsResourceDownloadable } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import {
   LessonPageLinkAnchorId,
+  LessonResourceType,
   createAttributionObject,
   getMediaClipLabel,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
@@ -23,10 +24,10 @@ import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
 import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
 
 /**
- * Maps each lesson resource key to its associated download types.
+ * Maps each resource type to its associated download types.
  * Resources with empty arrays are not downloadable.
  */
-const RESOURCE_DOWNLOAD_MAP: Record<LessonPageLinkAnchorId, ResourceType[]> = {
+const DOWNLOAD_TYPES_BY_RESOURCE: Record<LessonResourceType, ResourceType[]> = {
   "lesson-guide": ["lesson-guide-pdf"],
   "slide-deck": ["presentation"],
   "media-clips": [],
@@ -36,29 +37,26 @@ const RESOURCE_DOWNLOAD_MAP: Record<LessonPageLinkAnchorId, ResourceType[]> = {
   "starter-quiz": ["intro-quiz-answers", "intro-quiz-questions"],
   "exit-quiz": ["exit-quiz-answers", "exit-quiz-questions"],
   "additional-material": ["supplementary-docx", "supplementary-pdf"],
-  quiz: [], // a heading used for linking, not an actual resource
 };
 
 /**
- * Maps resource keys to their display titles
+ * Maps resource types to their display titles
  */
-const RESOURCE_TITLES: Record<
-  Exclude<LessonPageLinkAnchorId, "quiz">,
-  LessonItemTitle
-> = {
-  "lesson-guide": "Lesson guide",
-  "slide-deck": "Lesson slides",
-  "media-clips": "Video & audio clips", // Default, may be overridden by subject
-  "lesson-details": "Lesson details",
-  video: "Lesson video",
-  worksheet: "Worksheet",
-  "starter-quiz": "Prior knowledge starter quiz",
-  "exit-quiz": "Assessment exit quiz",
-  "additional-material": "Additional material",
-};
+const DISPLAY_TITLES_BY_RESOURCE: Record<LessonResourceType, LessonItemTitle> =
+  {
+    "lesson-guide": "Lesson guide",
+    "slide-deck": "Lesson slides",
+    "media-clips": "Video & audio clips", // Default, may be overridden by subject
+    "lesson-details": "Lesson details",
+    video: "Lesson video",
+    worksheet: "Worksheet",
+    "starter-quiz": "Prior knowledge starter quiz",
+    "exit-quiz": "Assessment exit quiz",
+    "additional-material": "Additional material",
+  };
 
-const RESOURCE_TRACKING_TITLES: Partial<
-  Record<LessonPageLinkAnchorId, DownloadResourceButtonNameValueType>
+const TRACKING_TITLES_BY_RESOURCE: Partial<
+  Record<LessonResourceType, DownloadResourceButtonNameValueType>
 > = {
   worksheet: "worksheet",
   "slide-deck": "slide deck",
@@ -69,28 +67,27 @@ const RESOURCE_TRACKING_TITLES: Partial<
 };
 
 /**
- * Maps resource keys to their custom download titles (if different from display title)
+ * Maps resource types to their custom download titles (if different from display title)
  */
-const RESOURCE_DOWNLOAD_TITLES: Partial<
-  Record<LessonPageLinkAnchorId, string>
-> = {
-  "lesson-guide": "lesson guide (PDF)",
-  "starter-quiz": "starter quiz questions (PDF)",
-  "exit-quiz": "exit quiz questions (PDF)",
-  worksheet: "worksheet (PPTX/PDF)",
-  "slide-deck": "lesson slides (PPTX)",
-  "additional-material": "additional material (PDF)",
-};
+const DOWNLOAD_TITLES_BY_RESOURCE: Partial<Record<LessonResourceType, string>> =
+  {
+    "lesson-guide": "lesson guide (PDF)",
+    "starter-quiz": "starter quiz questions (PDF)",
+    "exit-quiz": "exit quiz questions (PDF)",
+    worksheet: "worksheet (PPTX/PDF)",
+    "slide-deck": "lesson slides (PPTX)",
+    "additional-material": "additional material (PDF)",
+  };
 
 /**
- * Checks if a resource is downloadable based on its key and available downloads.
+ * Checks if a resource is downloadable based on its type and available downloads.
  * A resource is downloadable if ANY of its associated download types are available.
  */
 const checkResourceDownloadable = (
-  resourceKey: LessonPageLinkAnchorId,
+  resourceType: LessonResourceType,
   downloads: TeachersLessonOverviewPageData["downloads"],
 ): boolean => {
-  const downloadTypes = RESOURCE_DOWNLOAD_MAP[resourceKey];
+  const downloadTypes = DOWNLOAD_TYPES_BY_RESOURCE[resourceType];
   if (!downloadTypes || downloadTypes.length === 0) {
     return false;
   }
@@ -100,8 +97,10 @@ const checkResourceDownloadable = (
 };
 
 export type LessonResource = {
-  key: LessonPageLinkAnchorId;
-  anchorId: string;
+  /** The type of resource - identifies what this resource is */
+  resourceType: LessonResourceType;
+  /** The DOM anchor ID for navigation - may differ from resourceType for quiz grouping */
+  anchorId: LessonPageLinkAnchorId;
   component: React.ReactNode;
   skipLinkUrl?: string;
   trackingTitle?: DownloadResourceButtonNameValueType;
@@ -127,8 +126,10 @@ export type SideNavLink = {
 export function getSideNavLinksFromResources(
   resources: LessonResource[],
 ): SideNavLink[] {
-  const hasStarterQuiz = resources.some((r) => r.key === "starter-quiz");
-  const hasExitQuiz = resources.some((r) => r.key === "exit-quiz");
+  const hasStarterQuiz = resources.some(
+    (r) => r.resourceType === "starter-quiz",
+  );
+  const hasExitQuiz = resources.some((r) => r.resourceType === "exit-quiz");
   const hasBothQuizzes = hasStarterQuiz && hasExitQuiz;
 
   const links: SideNavLink[] = [];
@@ -136,7 +137,8 @@ export function getSideNavLinksFromResources(
 
   for (const resource of resources) {
     const isQuizResource =
-      resource.key === "starter-quiz" || resource.key === "exit-quiz";
+      resource.resourceType === "starter-quiz" ||
+      resource.resourceType === "exit-quiz";
 
     if (isQuizResource) {
       // Only add the quiz link once, at the position of the first quiz
@@ -145,19 +147,19 @@ export function getSideNavLinksFromResources(
           links.push({
             label: "Quizzes",
             anchorId: resource.anchorId, // "quiz" for first quiz when both exist
-            subheading: `${RESOURCE_TITLES["starter-quiz"]} \n${RESOURCE_TITLES["exit-quiz"]}`,
+            subheading: `${DISPLAY_TITLES_BY_RESOURCE["starter-quiz"]} \n${DISPLAY_TITLES_BY_RESOURCE["exit-quiz"]}`,
           });
         } else if (hasStarterQuiz) {
           links.push({
             label: "Quizzes",
             anchorId: resource.anchorId, // "starter-quiz"
-            subheading: RESOURCE_TITLES["starter-quiz"],
+            subheading: DISPLAY_TITLES_BY_RESOURCE["starter-quiz"],
           });
         } else if (hasExitQuiz) {
           links.push({
             label: "Quizzes",
             anchorId: resource.anchorId, // "exit-quiz"
-            subheading: RESOURCE_TITLES["exit-quiz"],
+            subheading: DISPLAY_TITLES_BY_RESOURCE["exit-quiz"],
           });
         }
         quizLinkAdded = true;
@@ -165,7 +167,7 @@ export function getSideNavLinksFromResources(
     } else {
       links.push({
         label: resource.title,
-        anchorId: resource.key,
+        anchorId: resource.resourceType,
       });
     }
   }
@@ -173,25 +175,23 @@ export function getSideNavLinksFromResources(
   return links;
 }
 
-const SKIPPABLE_CONTENT_SECTIONS: Set<LessonPageLinkAnchorId> = new Set([
+const SKIPPABLE_CONTENT_SECTIONS: Set<LessonResourceType> = new Set([
   "video",
   "lesson-guide",
   "worksheet",
   "slide-deck",
-  "starter-quiz",
-  "exit-quiz",
   "media-clips",
   "additional-material",
 ]);
 
 const getSkipLinkUrl = ({
-  anchorId,
+  resource,
   index,
   isFinalElement,
   lessonResources,
   lessonSlug,
 }: {
-  anchorId: LessonPageLinkAnchorId;
+  resource: LessonResource;
   index: number;
   isFinalElement: boolean;
   lessonResources: LessonResource[];
@@ -201,11 +201,7 @@ const getSkipLinkUrl = ({
     return undefined;
   }
 
-  if (!SKIPPABLE_CONTENT_SECTIONS.has(anchorId)) {
-    return undefined;
-  }
-
-  if (index === -1) {
+  if (!SKIPPABLE_CONTENT_SECTIONS.has(resource.resourceType)) {
     return undefined;
   }
 
@@ -219,7 +215,7 @@ const getSkipLinkUrl = ({
     return undefined;
   }
 
-  return `${lessonSlug}#${nextResource.key}`;
+  return `${lessonSlug}#${nextResource.anchorId}`;
 };
 
 export function getLessonResources({
@@ -341,11 +337,11 @@ export function getLessonResources({
   ) : undefined;
   const mediaClipLabel = data.subjectSlug
     ? getMediaClipLabel(data.subjectSlug)
-    : RESOURCE_TITLES["media-clips"];
+    : DISPLAY_TITLES_BY_RESOURCE["media-clips"];
 
-  // Map of resource keys to their components
+  // Map of resource types to their components
   const resourceComponents: Record<
-    Exclude<LessonPageLinkAnchorId, "quiz">,
+    LessonResourceType,
     React.ReactNode | undefined
   > = {
     "lesson-guide": lessonGuide,
@@ -360,7 +356,7 @@ export function getLessonResources({
   };
 
   // Define the order of resources as displayed on the page
-  const resourceOrder: Exclude<LessonPageLinkAnchorId, "quiz">[] = [
+  const resourceOrder: LessonResourceType[] = [
     "lesson-guide",
     "slide-deck",
     "media-clips",
@@ -373,16 +369,18 @@ export function getLessonResources({
   ];
 
   return resourceOrder
-    .map((key) => {
-      const isDownloadable = checkResourceDownloadable(key, downloads);
-      const downloadTitle = RESOURCE_DOWNLOAD_TITLES[key];
+    .map((resourceType) => {
+      const isDownloadable = checkResourceDownloadable(resourceType, downloads);
+      const downloadTitle = DOWNLOAD_TITLES_BY_RESOURCE[resourceType];
       const title =
-        key === "media-clips" ? mediaClipLabel : RESOURCE_TITLES[key];
+        resourceType === "media-clips"
+          ? mediaClipLabel
+          : DISPLAY_TITLES_BY_RESOURCE[resourceType];
 
       const baseResource = {
-        key,
-        component: resourceComponents[key],
-        trackingTitle: RESOURCE_TRACKING_TITLES[key],
+        resourceType,
+        component: resourceComponents[resourceType],
+        trackingTitle: TRACKING_TITLES_BY_RESOURCE[resourceType],
       };
 
       return isDownloadable && downloadTitle
@@ -399,10 +397,30 @@ export function getLessonResources({
           };
     })
     .filter((item) => item.component !== undefined)
+
+    .map((item, _index, array) => {
+      // Add anchorId for quiz grouping - the first quiz gets "quiz" anchor when both exist
+      const hasStarterQuiz = array.some(
+        (r) => r.resourceType === "starter-quiz",
+      );
+      const hasExitQuiz = array.some((r) => r.resourceType === "exit-quiz");
+      const hasBothQuizzes = hasStarterQuiz && hasExitQuiz;
+      const isFirstQuiz =
+        item.resourceType === "starter-quiz" ||
+        (item.resourceType === "exit-quiz" && !hasStarterQuiz);
+
+      const anchorId: LessonPageLinkAnchorId =
+        hasBothQuizzes && isFirstQuiz ? "quiz" : item.resourceType;
+
+      return {
+        ...item,
+        anchorId,
+      };
+    })
     .map((item, index, array) => {
       const isFinalElement = index === array.length - 1;
       const skipLinkUrl = getSkipLinkUrl({
-        anchorId: item.key,
+        resource: item,
         index,
         lessonSlug: data.lessonSlug,
         isFinalElement,
@@ -411,22 +429,6 @@ export function getLessonResources({
       return {
         ...item,
         skipLinkUrl,
-      };
-    })
-    .map((item, _index, array) => {
-      // Add anchorId for quiz grouping - the first quiz gets "quiz" anchor when both exist
-      const hasStarterQuiz = array.some((r) => r.key === "starter-quiz");
-      const hasExitQuiz = array.some((r) => r.key === "exit-quiz");
-      const hasBothQuizzes = hasStarterQuiz && hasExitQuiz;
-      const isFirstQuiz =
-        item.key === "starter-quiz" ||
-        (item.key === "exit-quiz" && !hasStarterQuiz);
-
-      const anchorId = hasBothQuizzes && isFirstQuiz ? "quiz" : item.key;
-
-      return {
-        ...item,
-        anchorId,
       };
     });
 }

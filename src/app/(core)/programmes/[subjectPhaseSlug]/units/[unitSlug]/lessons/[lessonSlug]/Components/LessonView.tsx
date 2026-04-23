@@ -226,7 +226,7 @@ export default function LessonView(
                       programmeSlug,
                     }}
                     resource={resource}
-                    key={resource.key}
+                    key={resource.resourceType}
                     onDownloadButtonClick={trackDownloadResourceButtonClicked}
                     onMediaClipsButtonClick={trackMediaClipsButtonClicked}
                   />

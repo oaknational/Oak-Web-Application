@@ -432,7 +432,11 @@ export type GetPageLinksForLessonProps = Pick<
   | "hasMediaClips"
 >;
 
-export type LessonPageLinkAnchorId =
+/**
+ * Identifies the type of lesson resource.
+ * Used for business logic, downloads, and tracking.
+ */
+export type LessonResourceType =
   | "lesson-guide"
   | "slide-deck"
   | "lesson-details"
@@ -440,9 +444,15 @@ export type LessonPageLinkAnchorId =
   | "worksheet"
   | "starter-quiz"
   | "exit-quiz"
-  | "quiz"
   | "additional-material"
   | "media-clips";
+
+/**
+ * Anchor IDs for navigation within the lesson page.
+ * Includes LessonResourceType plus the special "quiz" anchor
+ * which is used when both quizzes are grouped together.
+ */
+export type LessonPageLinkAnchorId = LessonResourceType | "quiz";
 
 export const getPageLinksWithSubheadingsForLesson = (
   lesson: GetPageLinksForLessonProps,
