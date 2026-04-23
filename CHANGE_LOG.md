@@ -1,3 +1,10 @@
+# [1.1052.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1051.1...v1.1052.0) (2026-04-22)
+
+
+### Features
+
+* added devcontainers setup to repo ([e87cccb](https://github.com/oaknational/Oak-Web-Application/commit/e87cccb5ff1760bc27b37052bcd3a8978705e044))
+
 ## [1.1051.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1051.0...v1.1051.1) (2026-04-22)
 
 
