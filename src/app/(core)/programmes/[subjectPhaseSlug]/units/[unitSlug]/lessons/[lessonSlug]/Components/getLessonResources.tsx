@@ -220,14 +220,12 @@ const getSkipLinkUrl = ({
 
 export function getLessonResources({
   browsePathwayData,
-  downloads,
   data,
   copyRightState,
   isMathJaxLesson,
   trackMediaClipsButtonClicked,
 }: {
   browsePathwayData: AnalyticsBrowseData;
-  downloads: TeachersLessonOverviewPageData["downloads"];
   data: TeachersLessonOverviewPageData;
   copyRightState: ReturnType<typeof useComplexCopyright>;
   isMathJaxLesson: boolean;
@@ -370,7 +368,10 @@ export function getLessonResources({
 
   return resourceOrder
     .map((resourceType) => {
-      const isDownloadable = checkResourceDownloadable(resourceType, downloads);
+      const isDownloadable = checkResourceDownloadable(
+        resourceType,
+        data.downloads,
+      );
       const downloadTitle = DOWNLOAD_TITLES_BY_RESOURCE[resourceType];
       const title =
         resourceType === "media-clips"

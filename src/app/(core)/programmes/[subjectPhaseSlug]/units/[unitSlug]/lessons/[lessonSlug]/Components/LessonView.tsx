@@ -134,7 +134,6 @@ export default function LessonView(
 
   const lessonResources = getLessonResources({
     browsePathwayData,
-    downloads: props.downloads,
     data: props,
     copyRightState,
     isMathJaxLesson,
