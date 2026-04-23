@@ -1,3 +1,10 @@
+## [1.1055.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1055.0...v1.1055.1) (2026-04-23)
+
+
+### Bug Fixes
+
+* added bugsnag init inside classroom error reporter ([7da39ae](https://github.com/oaknational/Oak-Web-Application/commit/7da39ae35decbf1b0fc5e60ab25e9f8a663b8d98))
+
 # [1.1055.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1054.0...v1.1055.0) (2026-04-23)
 
 
