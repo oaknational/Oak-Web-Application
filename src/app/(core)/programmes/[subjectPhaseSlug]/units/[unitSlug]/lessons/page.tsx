@@ -19,15 +19,10 @@ import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 type LessonsPageParams = { subjectPhaseSlug: string; unitSlug: string };
 
 const getCachedUnitData = cache(
-  async (
-    subjectPhaseSlug: string,
-    unitSlug: string,
-    subjectCategorySlug?: string,
-  ) => {
+  async (subjectPhaseSlug: string, unitSlug: string) => {
     return curriculumApi2023.teachersUnitOverview({
       programmeSlug: subjectPhaseSlug,
       unitSlug,
-      subjectCategorySlug,
     });
   },
 );
@@ -36,14 +31,9 @@ export async function generateMetadata(
   props: AppPageProps<LessonsPageParams>,
 ): Promise<Metadata> {
   const { subjectPhaseSlug, unitSlug } = await props.params;
-  const searchParams = await props.searchParams;
 
   try {
-    const data = await getCachedUnitData(
-      subjectPhaseSlug,
-      unitSlug,
-      searchParams?.subject_category?.toString(),
-    );
+    const data = await getCachedUnitData(subjectPhaseSlug, unitSlug);
     const { unitTitle, keyStageSlug, year, subjectTitle } = data;
 
     const title = `${unitTitle} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources`;
@@ -71,12 +61,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
   }
 
   const { subjectPhaseSlug: programmeSlug, unitSlug } = await props.params;
-  const searchParams = await props.searchParams;
-  const data = await getCachedUnitData(
-    programmeSlug,
-    unitSlug,
-    searchParams?.subject_category?.toString(),
-  );
+  const data = await getCachedUnitData(programmeSlug, unitSlug);
   const subjectIconName = `subject-${data.subjectSlug}` as SubjectIcon;
 
   const subjectPhaseSlug = getTeacherSubjectPhaseSlug({

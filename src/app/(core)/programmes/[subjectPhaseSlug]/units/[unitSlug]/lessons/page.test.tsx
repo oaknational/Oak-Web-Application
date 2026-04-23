@@ -120,24 +120,6 @@ describe("UnitPage", () => {
     expect(mockTeachersUnitOverview).toHaveBeenCalledWith({
       programmeSlug: defaultParams.subjectPhaseSlug,
       unitSlug: defaultParams.unitSlug,
-      subjectCategorySlug: undefined,
-    });
-  });
-
-  it("passes subject category from query params to data fetch", async () => {
-    featureFlagMock.mockResolvedValue(true);
-
-    await UnitPage({
-      params: Promise.resolve(defaultParams),
-      searchParams: Promise.resolve({
-        subject_category: "number-and-place-value",
-      }),
-    });
-
-    expect(mockTeachersUnitOverview).toHaveBeenCalledWith({
-      programmeSlug: defaultParams.subjectPhaseSlug,
-      unitSlug: defaultParams.unitSlug,
-      subjectCategorySlug: "number-and-place-value",
     });
   });
 
@@ -186,20 +168,5 @@ describe("generateMetadata", () => {
     expect(result.twitter?.title).toBe(
       "Geometry KS2 | Y4 Maths Lesson Resources",
     );
-  });
-
-  it("passes subject category query param to metadata data fetch", async () => {
-    mockTeachersUnitOverview.mockResolvedValue(unitOverviewFixture);
-
-    await generateMetadata({
-      params: Promise.resolve(defaultParams),
-      searchParams: Promise.resolve({ subject_category: "statistics" }),
-    });
-
-    expect(mockTeachersUnitOverview).toHaveBeenCalledWith({
-      programmeSlug: defaultParams.subjectPhaseSlug,
-      unitSlug: defaultParams.unitSlug,
-      subjectCategorySlug: "statistics",
-    });
   });
 });

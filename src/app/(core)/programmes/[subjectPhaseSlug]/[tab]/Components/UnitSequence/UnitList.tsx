@@ -97,9 +97,6 @@ export function ProgrammeUnitList({
             page: "integrated-unit-overview",
             unitSlug: option.slug ?? unit.slug,
             programmeSlug,
-            query: {
-              subject_category: filters.subjectCategories.at(0),
-            },
           }),
           showBorder: true,
           onClickLink: () => onClick(unit, isHighlighted),
@@ -123,9 +120,6 @@ export function ProgrammeUnitList({
             page: "integrated-unit-overview",
             unitSlug: unit.slug,
             programmeSlug,
-            query: {
-              subject_category: filters.subjectCategories.at(0),
-            },
           })}
           onClickLink={() => onClick(unit, isHighlighted)}
           lessonCount={isOptionalityUnitCard ? undefined : unit.lessons?.length}
