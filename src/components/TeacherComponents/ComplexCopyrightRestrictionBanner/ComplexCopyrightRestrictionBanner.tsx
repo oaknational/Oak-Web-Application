@@ -8,7 +8,7 @@ import {
   OakInlineBanner,
   OakSmallTertiaryInvertedButton,
 } from "@oaknational/oak-components";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -43,6 +43,9 @@ const SignedOutCopyrightBanner = ({
   isUnit: boolean;
 }) => {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const returnTo =
+    pathname && searchParams ? pathname + "?" + searchParams.toString() : "";
 
   return (
     <OakInlineBanner
@@ -73,15 +76,13 @@ const SignedOutCopyrightBanner = ({
               data-testid="copyright-banner-onboarding-link"
               href={resolveOakHref({
                 page: "onboarding",
-                query: { returnTo: pathname ?? "" },
+                query: { returnTo },
               })}
             >
               complete sign up.
             </OakSecondaryLink>
           ) : (
-            <SignUpButton
-              forceRedirectUrl={`/onboarding?returnTo=${pathname ?? ""}`}
-            >
+            <SignUpButton forceRedirectUrl={`/onboarding?returnTo=${returnTo}`}>
               <OakSecondaryLink
                 data-testid="copyright-banner-signin-link"
                 element="button"
