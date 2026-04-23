@@ -27,6 +27,7 @@ import withPageErrorHandling, {
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
+import { TeacherBrowseStoreProvider } from "@/context/TeacherBrowse/TeacherBrowseStoreProvider";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -125,6 +126,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   }
 
   const { subjectPhaseSlug, tab } = await props.params;
+  const searchParams = await props.searchParams;
 
   if (!isTabSlug(tab)) {
     return redirect("units");
@@ -239,7 +241,33 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     mvRefreshTime,
   };
 
-  return <ProgrammeView {...results} />;
+  //todo: properly
+  const yearState = searchParams?.years
+    ? {
+        slug: `year-${searchParams.years}`,
+        title: `Year ${searchParams.years}`,
+      }
+    : null;
+
+  return (
+    <TeacherBrowseStoreProvider
+      initialState={{
+        subjectPhaseState: {
+          subject: {
+            slug: subjectPhaseKeystageSlugs.subjectSlug,
+            title: curriculumSelectionTitles.subjectTitle,
+          },
+          phase: {
+            slug: subjectPhaseKeystageSlugs.phaseSlug,
+            title: curriculumSelectionTitles.phaseTitle,
+          },
+          year: yearState,
+        },
+      }}
+    >
+      <ProgrammeView {...results} />
+    </TeacherBrowseStoreProvider>
+  );
 };
 
 const ProgrammePage = withPageErrorHandling(

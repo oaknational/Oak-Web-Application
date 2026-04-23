@@ -48,6 +48,7 @@ import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import type { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
+import { useTeacherBrowseStore } from "@/context/TeacherBrowse/TeacherBrowseStoreProvider";
 
 type ProgrammePageProps = {
   subjectPhaseSlug: string;
@@ -81,9 +82,10 @@ export const ProgrammeView = ({
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
 
-  const { subjectSlug } = curriculumSelectionSlugs;
-  const { subjectTitle, phaseTitle, examboardTitle } =
-    curriculumSelectionTitles;
+  const { subject, phase, year } = useTeacherBrowseStore(
+    (s) => s.subjectPhaseState,
+  );
+  console.log("diego year", year, subject, phase);
 
   const defaultFilter = useMemo(() => {
     return getDefaultFilter(curriculumUnitsFormattedData);
