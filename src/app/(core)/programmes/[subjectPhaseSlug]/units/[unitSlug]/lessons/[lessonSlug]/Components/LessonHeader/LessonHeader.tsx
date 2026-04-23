@@ -98,7 +98,6 @@ const LessonHeader = (props: LessonHeaderProps) => {
             data-testid="download-all-button"
             iconName="download"
             isTrailingIcon
-            aria-label="Download all"
           />
         }
       />
