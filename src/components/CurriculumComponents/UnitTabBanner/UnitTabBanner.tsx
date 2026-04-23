@@ -5,7 +5,6 @@ import {
   OakIcon,
 } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 const UnitTabBanner = () => {
@@ -20,8 +19,10 @@ const UnitTabBanner = () => {
       <OakFlex
         $flexDirection={["column", "row"]}
         $alignItems={["flex-start", "flex-end"]}
+        $width={"100%"}
+        $maxWidth={"spacing-1280"}
         $ma={"auto"}
-        $justifyContent={["space-evenly"]}
+        $justifyContent={["space-between"]}
         $gap="spacing-24"
       >
         <OakFlex $alignItems={"flex-start"} $flexDirection={["column", "row"]}>
@@ -32,11 +33,9 @@ const UnitTabBanner = () => {
             $mr={"spacing-48"}
             $mb={["spacing-24", "spacing-0"]}
           />
-
-          {/* @todo replace with OakFlex - work out width value */}
-          <Flex
-            $width={["100%", "70%"]}
-            $gap={16}
+          <OakFlex
+            $maxWidth={"spacing-640"}
+            $gap={"spacing-16"}
             $flexDirection={"column"}
             $alignItems={"flex-start"}
           >
@@ -47,7 +46,7 @@ const UnitTabBanner = () => {
               Visit our help centre for technical support as well as tips and
               ideas to help you make the most of Oak.
             </OakP>
-          </Flex>
+          </OakFlex>
         </OakFlex>
         <ButtonAsLink
           label="Go to help centre"
