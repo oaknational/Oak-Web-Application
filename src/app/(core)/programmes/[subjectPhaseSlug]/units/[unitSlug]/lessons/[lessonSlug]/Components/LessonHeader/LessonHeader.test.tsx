@@ -84,7 +84,9 @@ describe("LessonHeader", () => {
   it("renders a sign up button for lessons with complex copyright when signed out", () => {
     render(<LessonHeader {...defaultProps} loginRequired={true} />);
 
-    const downloadLink = screen.getByRole("button", { name: "Download all" });
+    const downloadLink = screen.getByRole("button", {
+      name: "Sign in to download",
+    });
     expect(downloadLink).toBeInTheDocument();
   });
   it("renders a link to downloads page for lessons with complex copyright when signed in", () => {
