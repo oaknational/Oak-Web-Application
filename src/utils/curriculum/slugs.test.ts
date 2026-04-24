@@ -222,7 +222,7 @@ test("core pathway with no examboard returns correct programme slug", () => {
     }),
   ).toEqual("computing-secondary-core");
 });
-test("gcse pathway with no examboard returns correct programme slug", () => {
+test("gcse pathway with examboard and pathway returns correct programme slug", () => {
   expect(
     getTeacherSubjectPhaseSlug({
       subjectSlug: "computing",
