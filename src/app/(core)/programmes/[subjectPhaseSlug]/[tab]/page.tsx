@@ -241,18 +241,21 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     mvRefreshTime,
   };
 
-  //todo: properly
-  const yearState = searchParams?.years
-    ? {
-        slug: `year-${searchParams.years}`,
-        title: `Year ${searchParams.years}`,
-      }
-    : null;
+  //todo: parse properly
+  const yearFromQueryParams = searchParams?.years;
+  const yearState =
+    yearFromQueryParams && typeof yearFromQueryParams === "string"
+      ? {
+          id: yearFromQueryParams,
+          slug: `year-${yearFromQueryParams}`,
+          title: `Year ${yearFromQueryParams}`,
+        }
+      : null;
 
   return (
     <TeacherBrowseStoreProvider
       initialState={{
-        subjectPhaseState: {
+        programmeState: {
           subject: {
             slug: subjectPhaseKeystageSlugs.subjectSlug,
             title: curriculumSelectionTitles.subjectTitle,

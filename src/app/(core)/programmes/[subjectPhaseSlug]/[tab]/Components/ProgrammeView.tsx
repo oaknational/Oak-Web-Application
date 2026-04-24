@@ -82,8 +82,10 @@ export const ProgrammeView = ({
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabSlug>(tabSlug);
 
+  const { examboardTitle } = curriculumSelectionTitles;
+
   const { subject, phase, year } = useTeacherBrowseStore(
-    (s) => s.subjectPhaseState,
+    (s) => s.programmeState,
   );
   console.log("diego year", year, subject, phase);
 
@@ -108,18 +110,16 @@ export const ProgrammeView = ({
     track.unitSequenceRefined(analyticsData);
   };
 
-  const schoolYear = filters.years.find(
-    (year) => searchParams?.get("years") === year,
-  );
+  const schoolYear = year?.id;
 
   const selectedKeystageSlug = filters.keystages.find(
     (ks) => searchParams?.get("keystages") === ks,
   );
   const heading = buildProgrammeHeading({
-    subjectTitle,
+    subjectTitle: subject.title,
     data: curriculumUnitsFormattedData,
     filters,
-    phaseTitle,
+    phaseTitle: phase.title,
     schoolYear,
     keyStage: selectedKeystageSlug,
     examboardTitle,
@@ -140,7 +140,7 @@ export const ProgrammeView = ({
     <>
       <ProgrammeHeader
         layoutVariant="large"
-        subject={subjectSlug as SubjectHeroImageName}
+        subject={subject.slug as SubjectHeroImageName}
         heading={heading}
         summary={subjectPhaseSanityData?.bodyCopy}
         bullets={subjectPhaseSanityData?.bullets}

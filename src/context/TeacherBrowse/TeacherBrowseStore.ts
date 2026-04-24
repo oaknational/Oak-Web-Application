@@ -1,17 +1,13 @@
 import {
-  examboards,
-  examboardSlugs,
   phaseDescriptions,
   phaseSlugs,
   subjects,
   subjectSlugs,
-  yearDescriptions,
-  yearSlugs,
 } from "@oaknational/oak-curriculum-schema";
 import z from "zod";
 import { createStore } from "zustand";
 
-export type SubjectPhaseState = {
+export type ProgrammeState = {
   subject: {
     slug: z.infer<typeof subjectSlugs>;
     title: z.infer<typeof subjects>;
@@ -21,27 +17,56 @@ export type SubjectPhaseState = {
     title: z.infer<typeof phaseDescriptions>;
   };
   year: {
-    slug: z.infer<typeof yearSlugs>;
-    title: z.infer<typeof yearDescriptions>;
-  } | null;
-  // examboard: {
-  //   slug: z.infer<typeof examboardSlugs>;
-  //   title: z.infer<typeof examboards>;
-  // } | null;
-  // tiers: { slug; title }[];
-  // pathways: { slug; title }[];
+    id: string;
+    slug: string;
+    title: string;
+  } | null; /// TODO: use proper types
 };
 
 export type TeacherBrowseStore = {
-  subjectPhaseState: SubjectPhaseState;
+  programmeState: ProgrammeState;
+  actions: {
+    setYear: (
+      year: {
+        id: string;
+        slug: string;
+        title: string;
+      } | null,
+    ) => void;
+  };
 };
 
 export const createTeacherBrowseStore = (initialState: TeacherBrowseStore) => {
   return createStore<TeacherBrowseStore>()((set) => ({
     ...initialState,
     actions: {
-      setSubjectPhaseState: (subjectPhaseState: SubjectPhaseState) =>
-        set(() => ({ subjectPhaseState })),
+      setYear: (
+        yearState: {
+          id: string;
+          slug: string;
+          title: string;
+        } | null,
+      ) => {
+        set((state) => ({
+          programmeState: { ...state.programmeState, year: yearState },
+        }));
+
+        // TODO: add tracking
+
+        const searchParams = new URLSearchParams(
+          globalThis.location.search.slice(1),
+        );
+        if (yearState) {
+          searchParams.set("years", yearState.id);
+        } else {
+          searchParams.delete("years");
+        }
+        globalThis.history.replaceState(
+          null,
+          "",
+          `?${searchParams.toString()}`,
+        );
+      },
     },
   }));
 };
