@@ -13,11 +13,11 @@ type LessonInformationBoxProps = {
   teacherTip?: string[];
   equipment?: string[];
   contentGuidance?: string[];
-  supervision?: string[];
+  supervision?: string;
   filesNeeded?: {
     href: string;
     files: string[];
-    geoRestricted: boolean;
+    georestricted: boolean;
     loginRequired: boolean;
   };
   licence?: {
@@ -66,7 +66,7 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
         <LessonInformationItem
           iconName={"supervision-level"}
           title="Supervision"
-          items={supervision}
+          items={[supervision]}
         />
       )}
       {filesNeeded && (
@@ -94,12 +94,12 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
             element="a"
             actionProps={{
               name: `Download lesson ${isPlural ? "files" : "file"}`,
-              isActionGeorestricted: filesNeeded.geoRestricted,
+              isActionGeorestricted: filesNeeded.georestricted,
               iconName: "arrow-right",
               href: filesNeeded.href,
               isTrailingIcon: true,
             }}
-            geoRestricted={filesNeeded.geoRestricted}
+            geoRestricted={filesNeeded.georestricted}
             loginRequired={filesNeeded.loginRequired}
           />
         </OakFlex>

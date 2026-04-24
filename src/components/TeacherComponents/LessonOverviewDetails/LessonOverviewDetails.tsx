@@ -29,6 +29,8 @@ import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import LessonOverviewVocabButton from "@/components/TeacherComponents/LessonOverviewVocabButton";
 import LessonOverviewFilesNeeded from "@/components/TeacherComponents/LessonOverviewFilesNeeded";
 import { Slugs } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
+import LessonInformationBox from "@/app/(core)/programmes/[subjectPhaseSlug]/units/[unitSlug]/lessons/[lessonSlug]/Components/LessonInformationBox/LessonInformationBox";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type LessonOverviewDetailsProps = {
   keyLearningPoints: LessonOverviewKeyLearningPointProps[] | null | undefined;
@@ -56,8 +58,9 @@ type LessonOverviewDetailsProps = {
   subjectParent: string | null | undefined;
   disablePupilLink?: boolean;
   loginRequired: boolean;
-  geoRestricted: boolean;
+  georestricted: boolean;
   hideSeoHelper?: boolean;
+  useIntegratedJourneyLayout: boolean;
 };
 
 const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
@@ -86,7 +89,8 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   disablePupilLink,
   hideSeoHelper,
   loginRequired,
-  geoRestricted,
+  georestricted,
+  useIntegratedJourneyLayout,
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
   const showLessonHelperAccordion =
@@ -100,10 +104,48 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
     programmeSlug &&
     subjectSlug;
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
+
+  const getTeacherTips = () => {
+    if (teacherTips) {
+      const tips = teacherTips
+        .filter((tip) => tip !== null)
+        .map((tip) => tip.teacherTip) as string[];
+      return tips.length ? tips : undefined;
+    }
+    return undefined;
+  };
+  const teacherTipList = getTeacherTips();
+  const equipment = equipmentAndResources
+    ? equipmentAndResources.map((e) => e.equipment)
+    : undefined;
+  const guidance = contentGuidance
+    ? contentGuidance.map((c) => c.contentGuidanceLabel)
+    : undefined;
+  const filesNeeded = additionalFiles
+    ? {
+        files: additionalFiles,
+        georestricted,
+        loginRequired,
+        href: resolveOakHref({
+          page: "lesson-downloads",
+          lessonSlug: lessonSlug,
+          programmeSlug: programmeSlug ?? "",
+          unitSlug: unitSlug ?? "",
+          downloads: "downloads",
+          query: {
+            preselected: "additional files",
+          },
+        }),
+      }
+    : undefined;
+
   return (
     <MathJaxWrapper>
       <OakGrid>
-        <OakGridArea $colSpan={[12, 8]} $rowStart={1}>
+        <OakGridArea
+          $colSpan={[12, useIntegratedJourneyLayout ? 12 : 8]}
+          $rowStart={1}
+        >
           <OakFlex
             $flexDirection={"column"}
             $flexGrow={1}
@@ -135,10 +177,24 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                 />
               </OakBox>
             )}
+            {useIntegratedJourneyLayout && (
+              <OakFlex $flexDirection={"column"} $gap={"spacing-40"}>
+                {teacherTipList && (
+                  <LessonInformationBox teacherTip={teacherTipList} />
+                )}
+                <LessonInformationBox
+                  licence={{ copyrightYear: updatedAt }}
+                  equipment={equipment}
+                  supervision={supervisionLevel ?? undefined}
+                  filesNeeded={filesNeeded}
+                  contentGuidance={guidance}
+                />
+              </OakFlex>
+            )}
             {showLessonHelperAccordion && (
               <LessonSeoHelper
                 loginRequired={loginRequired}
-                geoRestricted={geoRestricted}
+                geoRestricted={georestricted}
                 lessonSlug={lessonSlug}
                 year={year}
                 programmeSlug={programmeSlug}
@@ -150,47 +206,49 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                 subjectSlug={subjectSlug}
                 parentSubject={subjectParent}
                 disablePupilLink={
-                  disablePupilLink || geoRestricted || loginRequired
+                  disablePupilLink || georestricted || loginRequired
                 }
                 lesson={lesson}
               />
             )}
           </OakFlex>
         </OakGridArea>
-        <OakGridArea $colSpan={[12, 4]} $colStart={[0, 9]} $rowStart={[2, 1]}>
-          <OakFlex
-            $flexDirection={"column"}
-            $mt={["spacing-48", "spacing-0"]}
-            $gap={"spacing-48"}
-            $mb={"spacing-24"}
-          >
-            {additionalFiles && (
-              <LessonOverviewFilesNeeded
-                loginRequired={loginRequired}
-                geoRestricted={geoRestricted}
-                slugs={slugs}
-                additionalFiles={additionalFiles}
-              />
-            )}
-            {teacherTips && teacherTips.length > 0 && (
-              <OakBox>
-                <LessonOverviewTeacherTips teacherTips={teacherTips} />
-              </OakBox>
-            )}
-            {(equipmentAndResources && equipmentAndResources.length > 0) ||
-            (contentGuidance && contentGuidance.length > 0) ||
-            supervisionLevel ||
-            isLegacyLicense !== undefined ? (
-              <LessonOverviewHelper
-                equipment={equipmentAndResources}
-                contentGuidance={contentGuidance}
-                supervisionLevel={supervisionLevel}
-                isLegacyLicense={isLegacyLicense}
-                updatedAt={updatedAt}
-              />
-            ) : null}
-          </OakFlex>
-        </OakGridArea>
+        {!useIntegratedJourneyLayout && (
+          <OakGridArea $colSpan={[12, 4]} $colStart={[0, 9]} $rowStart={[2, 1]}>
+            <OakFlex
+              $flexDirection={"column"}
+              $mt={["spacing-48", "spacing-0"]}
+              $gap={"spacing-48"}
+              $mb={"spacing-24"}
+            >
+              {additionalFiles && (
+                <LessonOverviewFilesNeeded
+                  loginRequired={loginRequired}
+                  geoRestricted={georestricted}
+                  slugs={slugs}
+                  additionalFiles={additionalFiles}
+                />
+              )}
+              {teacherTips && teacherTips.length > 0 && (
+                <OakBox>
+                  <LessonOverviewTeacherTips teacherTips={teacherTips} />
+                </OakBox>
+              )}
+              {(equipmentAndResources && equipmentAndResources.length > 0) ||
+              (contentGuidance && contentGuidance.length > 0) ||
+              supervisionLevel ||
+              isLegacyLicense !== undefined ? (
+                <LessonOverviewHelper
+                  equipment={equipmentAndResources}
+                  contentGuidance={contentGuidance}
+                  supervisionLevel={supervisionLevel}
+                  isLegacyLicense={isLegacyLicense}
+                  updatedAt={updatedAt}
+                />
+              ) : null}
+            </OakFlex>
+          </OakGridArea>
+        )}
       </OakGrid>
     </MathJaxWrapper>
   );

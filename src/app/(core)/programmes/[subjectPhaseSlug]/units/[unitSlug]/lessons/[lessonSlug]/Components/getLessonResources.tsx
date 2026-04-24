@@ -262,7 +262,7 @@ export function getLessonResources({
   const lessonDetails = (
     <LessonDetails
       loginRequired={data.loginRequired}
-      geoRestricted={data.geoRestricted}
+      georestricted={data.geoRestricted}
       keyLearningPoints={data.keyLearningPoints}
       commonMisconceptions={data.misconceptionsAndCommonMistakes}
       keyWords={data.lessonKeywords?.length ? data.lessonKeywords : undefined}
@@ -291,6 +291,7 @@ export function getLessonResources({
       subjectParent={data.subjectParent}
       disablePupilLink={data.actions?.disablePupilShare}
       hideSeoHelper={copyRightState.showGeoBlocked}
+      useIntegratedJourneyLayout
     />
   );
   const lessonVideo = data.videoMuxPlaybackId ? (
