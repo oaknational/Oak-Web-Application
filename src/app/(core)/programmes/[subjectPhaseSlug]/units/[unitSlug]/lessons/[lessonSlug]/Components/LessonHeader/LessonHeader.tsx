@@ -74,8 +74,8 @@ const LessonHeader = (props: LessonHeaderProps) => {
             rel="nofollow"
             loginRequired={loginRequired}
             geoRestricted={georestricted}
-            onboardingProps={{ name: "Download all" }}
-            signUpProps={{ name: "Download all" }}
+            onboardingProps={{ name: "Onboard to download" }}
+            signUpProps={{ name: "Sign in to download" }}
             actionProps={{
               name: (
                 <OakSpan>
