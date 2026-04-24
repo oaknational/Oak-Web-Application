@@ -80,23 +80,6 @@ export const unitsInOtherProgrammesFixture = [
   },
 ];
 
-const matchingSubjectCategoriesFixture = [
-  {
-    subjectCategories: [
-      {
-        id: 1,
-        title: "Theology",
-        slug: "theology",
-      },
-      {
-        id: 2,
-        title: "Philosophy",
-        slug: "philosophy",
-      },
-    ],
-  },
-];
-
 export const threadsFixture: Threads = [
   {
     threads: [
@@ -172,7 +155,6 @@ describe("teachersUnitOverview", () => {
             lessons: [],
             unitSequence: unitSequenceFixture,
             unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
-            matchingSubjectCategories: matchingSubjectCategoriesFixture,
             threads: [],
           }),
         ),
@@ -190,7 +172,6 @@ describe("teachersUnitOverview", () => {
           lessons: [syntheticUnitvariantLessonsByKsFixture()],
           unitSequence: unitSequenceFixture,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
-          matchingSubjectCategories: matchingSubjectCategoriesFixture,
           threads: [],
         }),
       ),
@@ -267,7 +248,6 @@ describe("teachersUnitOverview", () => {
           lessons: [unitPageFixture2, unitPageFixture],
           unitSequence: unitSequenceFixture,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
-          matchingSubjectCategories: matchingSubjectCategoriesFixture,
           threads: [],
         }),
       ),
@@ -300,7 +280,6 @@ describe("teachersUnitOverview", () => {
             ],
             unitSequence: unitSequenceFixture,
             unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
-            matchingSubjectCategories: matchingSubjectCategoriesFixture,
             threads: threadsFixture,
           }),
         ),
@@ -311,7 +290,7 @@ describe("teachersUnitOverview", () => {
     }).rejects.toThrow(`lesson_slug`);
   });
 
-  it("filters unit counts when subjectCategorySlug is provided", async () => {
+  it("filters unit counts when subject category grouping is enabled on current unit", async () => {
     const res = await teachersUnitOverviewQuery({
       ...sdk,
       teachersUnitOverview: jest.fn(() =>
@@ -321,6 +300,13 @@ describe("teachersUnitOverview", () => {
             {
               ...unitSequenceFixture[0]!,
               subjectCategories: ["Theology"],
+              actions: {
+                subject_category_actions: {
+                  group_by_subjectcategory: true,
+                  all_disabled: false,
+                  default_category_id: 1,
+                },
+              },
             },
             {
               ...unitSequenceFixture[1]!,
@@ -332,25 +318,30 @@ describe("teachersUnitOverview", () => {
             },
           ],
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
-          matchingSubjectCategories: matchingSubjectCategoriesFixture,
           threads: [],
         }),
       ),
     })({
       programmeSlug: "programme-slug",
       unitSlug: "unit-slug",
-      subjectCategorySlug: "theology",
     });
 
     expect(res.unitCount).toBe(2);
     expect(res.unitIndex).toBe(1);
   });
 
-  it("does not filter unit counts by subject category when matchingSubjectCategories is empty", async () => {
+  it("does not filter unit counts by subject category when grouping is disabled", async () => {
     const unitSequenceWithCategories = [
       {
         ...unitSequenceFixture[0]!,
         subjectCategories: ["Theology"],
+        actions: {
+          subject_category_actions: {
+            group_by_subjectcategory: false,
+            all_disabled: false,
+            default_category_id: 1,
+          },
+        },
       },
       {
         ...unitSequenceFixture[1]!,
@@ -369,14 +360,12 @@ describe("teachersUnitOverview", () => {
           lessons: [syntheticUnitvariantLessonsByKsFixture()],
           unitSequence: unitSequenceWithCategories,
           unitsInOtherProgrammes: unitsInOtherProgrammesFixture,
-          matchingSubjectCategories: [],
           threads: [],
         }),
       ),
     })({
       programmeSlug: "programme-slug",
       unitSlug: "unit-slug",
-      subjectCategorySlug: "theology",
     });
 
     expect(res.unitCount).toBe(3);
