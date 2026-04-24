@@ -28,6 +28,7 @@ import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { TeacherBrowseStoreProvider } from "@/context/TeacherBrowse/TeacherBrowseStoreProvider";
+import { capitalize } from "lodash";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -252,6 +253,16 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
         }
       : null;
 
+  const tierFromQueryParams = searchParams?.tiers;
+  const tierState =
+    tierFromQueryParams && typeof tierFromQueryParams === "string"
+      ? {
+          id: tierFromQueryParams,
+          slug: tierFromQueryParams,
+          title: capitalize(tierFromQueryParams),
+        }
+      : null;
+
   return (
     <TeacherBrowseStoreProvider
       initialState={{
@@ -265,6 +276,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
             title: curriculumSelectionTitles.phaseTitle,
           },
           year: yearState,
+          tier: tierState,
         },
       }}
     >

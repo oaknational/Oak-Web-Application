@@ -14,6 +14,7 @@ import {
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { useTeacherBrowseStore } from "@/context/TeacherBrowse/TeacherBrowseStoreProvider";
 
 export type CurricFiltersTiersProps = {
   filters: CurriculumFilters;
@@ -34,14 +35,22 @@ export function CurricFiltersTiers({
 }: Readonly<CurricFiltersTiersProps>) {
   const id = useId();
   const { yearData } = data;
-
+  const updateTier = useTeacherBrowseStore((s) => s.actions.updateTier);
   const { tiers } = getFilterData(data.yearData, filters.years);
 
   const keyStageSlugData = byKeyStageSlug(yearData);
   const tiersAt = presentAtKeyStageSlugs(keyStageSlugData, "tiers");
 
   function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
-    onChangeFilters({ ...filters, [key]: [newValue] }, "learning_tier_button");
+    // onChangeFilters({ ...filters, [key]: [newValue] }, "learning_tier_button");
+    const newTier = tiers.find((t) => t.tier_slug === newValue);
+    if (newTier) {
+      updateTier({
+        id: newValue,
+        slug: newTier.tier_slug,
+        title: newTier.tier,
+      });
+    }
   }
 
   return (

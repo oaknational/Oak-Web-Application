@@ -5,6 +5,7 @@ import {
   type TeacherBrowseStore,
 } from "./TeacherBrowseStore";
 import { useStore } from "zustand";
+import useAnalytics from "../Analytics/useAnalytics";
 
 export type TeacherBrowseStoreApi = ReturnType<typeof createTeacherBrowseStore>;
 export const TeacherBrowseStoreContext = createContext<
@@ -20,7 +21,10 @@ export const TeacherBrowseStoreProvider = ({
   initialState,
   children,
 }: TeacherBrowseStoreProviderProps) => {
-  const [store] = useState(() => createTeacherBrowseStore(initialState));
+  const { track } = useAnalytics();
+  const [store] = useState(() =>
+    createTeacherBrowseStore({ ...initialState, track }),
+  );
   return (
     <TeacherBrowseStoreContext.Provider value={store}>
       {children}

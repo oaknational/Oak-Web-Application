@@ -94,7 +94,7 @@ const filterToIndex = (
 
 export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
   const { filters, data, ks4Options, slugs, context } = props;
-  const { setYear } = useTeacherBrowseStore((s) => s.actions);
+  const { updateYear } = useTeacherBrowseStore((s) => s.actions);
   const id = useId();
   const { yearData } = data;
 
@@ -126,21 +126,9 @@ export function CurricFiltersYears(props: Readonly<CurricFiltersYearsProps>) {
 
   function addAllToFilter(target: YearOption) {
     if (target.year === "all") {
-      // onChangeFilters(
-      //   { ...filters, years: data.yearOptions, pathways: [] },
-      //   "year_group_button",
-      // );s
-      setYear(null);
+      updateYear(null);
     } else {
-      // onChangeFilters(
-      //   {
-      //     ...filters,
-      //     years: [target.year],
-      //     pathways: target.queryString ? [target.queryString] : [],
-      //   },
-      //   "year_group_button",
-      // );
-      setYear({
+      updateYear({
         id: target.year,
         slug: `year-${target.year}`,
         title: `Year ${target.year}`,

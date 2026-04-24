@@ -87,7 +87,6 @@ export const ProgrammeView = ({
   const { subject, phase, year } = useTeacherBrowseStore(
     (s) => s.programmeState,
   );
-  console.log("diego year", year, subject, phase);
 
   const defaultFilter = useMemo(() => {
     return getDefaultFilter(curriculumUnitsFormattedData);
