@@ -1,12 +1,13 @@
 import { screen } from "@testing-library/react";
 
-import LessonShareBar from "./LessonShareBar";
+import LessonActionsBar from "./LessonActionsBar";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { resolveOakHref } from "@/common-lib/urls";
 
 const defaultProps = {
   showPupilShare: true,
+  showCreateWithAi: true,
   lessonSlug: "lesson-1",
   unitSlug: "unit-1",
   programmeSlug: "programme-1",
@@ -14,7 +15,7 @@ const defaultProps = {
 
 describe("LessonShareBar", () => {
   it("renders pupil share link when showPupilShare is true", () => {
-    renderWithTheme(<LessonShareBar {...defaultProps} />);
+    renderWithTheme(<LessonActionsBar {...defaultProps} />);
     const pupilShareLink = screen.getByRole("link", {
       name: "Share lesson with pupils",
     });
@@ -37,7 +38,7 @@ describe("LessonShareBar", () => {
 
   it("does not render pupil share link when showPupilShare is false", () => {
     renderWithTheme(
-      <LessonShareBar {...defaultProps} showPupilShare={false} />,
+      <LessonActionsBar {...defaultProps} showPupilShare={false} />,
     );
 
     expect(
@@ -47,7 +48,7 @@ describe("LessonShareBar", () => {
 
   it("always renders create more with AI link", () => {
     renderWithTheme(
-      <LessonShareBar {...defaultProps} showPupilShare={false} />,
+      <LessonActionsBar {...defaultProps} showPupilShare={false} />,
     );
 
     expect(

@@ -1,6 +1,5 @@
 "use client";
-import { OakPrimaryButton, OakSpan } from "@oaknational/oak-components";
-import Link from "next/link";
+import { OakSpan } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import {
@@ -11,6 +10,7 @@ import HeaderNavFooter from "@/components/TeacherComponents/HeaderNavFooter/Head
 import { resolveOakHref } from "@/common-lib/urls";
 import { TeachersLessonOverviewAdjacentLesson } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import { getBreakpoint } from "@/styles/utils/responsive";
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 
 export type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
   currentLessonSlug: string;
@@ -18,11 +18,20 @@ export type LessonHeaderProps = Omit<LargeHeaderProps, "layoutVariant"> & {
   nextLesson: TeachersLessonOverviewAdjacentLesson | null;
   programmeSlug: string;
   unitSlug: string;
+  loginRequired: boolean;
+  georestricted: boolean;
 };
 
 const LessonHeader = (props: LessonHeaderProps) => {
-  const { prevLesson, nextLesson, unitSlug, programmeSlug, currentLessonSlug } =
-    props;
+  const {
+    prevLesson,
+    nextLesson,
+    unitSlug,
+    programmeSlug,
+    currentLessonSlug,
+    loginRequired,
+    georestricted,
+  } = props;
 
   return (
     <>
@@ -61,21 +70,35 @@ const LessonHeader = (props: LessonHeaderProps) => {
             : undefined
         }
         actionButton={
-          <OakPrimaryButton
+          <LoginRequiredButton
+            rel="nofollow"
+            loginRequired={loginRequired}
+            geoRestricted={georestricted}
+            onboardingProps={{ name: "Onboard to download" }}
+            signUpProps={{ name: "Sign in to download" }}
+            actionProps={{
+              name: (
+                <OakSpan>
+                  Download <DesktopButtonText>all resources</DesktopButtonText>
+                </OakSpan>
+              ),
+              isActionGeorestricted: true,
+              shouldHidewhenGeoRestricted: true,
+              href: resolveOakHref({
+                page: "lesson-downloads",
+                lessonSlug: currentLessonSlug,
+                programmeSlug,
+                unitSlug,
+                downloads: "downloads",
+                query: { preselected: "all" },
+              }),
+            }}
+            sizeVariant="large"
+            element={"a"}
+            data-testid="download-all-button"
             iconName="download"
             isTrailingIcon
-            element={Link}
-            href={resolveOakHref({
-              page: "lesson-downloads",
-              lessonSlug: currentLessonSlug,
-              programmeSlug,
-              unitSlug,
-              downloads: "downloads",
-              query: { preselected: "all" },
-            })}
-          >
-            Download <DesktopButtonText>all resources</DesktopButtonText>
-          </OakPrimaryButton>
+          />
         }
       />
     </>

@@ -8,7 +8,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
-import LessonShareBar from "./LessonShareBar/LessonShareBar";
+import LessonActionsBar from "./LessonShareBar/LessonActionsBar";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
 
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
@@ -23,6 +23,8 @@ import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
+import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
+import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -76,6 +78,7 @@ export default function LessonView(
     props,
     null,
     mediaClipLabel,
+    contentRestricted,
   );
 
   const hasDownloadableAssets = downloads.some((d) => d.exists === true);
@@ -131,48 +134,64 @@ export default function LessonView(
           $width={"100%"}
           $maxWidth={"spacing-1280"}
         >
-          <OakGridArea
-            $colSpan={[12, 4]}
-            $colStart={1}
-            $rowStart={[2, 1, 2]}
-            $rowSpan={[1, 2, 1]}
-            $position="relative"
-            $display={["none", "block"]}
-          >
-            <OakBox
-              $position="absolute"
-              $zIndex="in-front"
-              $top="spacing-0"
-              $left="spacing-0"
+          {!contentRestricted && (
+            <OakGridArea
+              $colSpan={[12, 4]}
+              $colStart={1}
+              $rowStart={[2, 1, 2]}
+              $rowSpan={[1, 2, 1]}
+              $position="relative"
+              $display={["none", "block"]}
             >
-              <SkipLink href="#lesson-content">Skip to lesson content</SkipLink>
-            </OakBox>
-            <LessonOverviewSideNav
-              links={pageLinks}
-              contentRestricted={contentRestricted}
-              downloadAllButtonProps={{
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-                showDownloadAll,
-                onClickDownloadAll: () => {
-                  trackDownloadResourceButtonClicked("all");
-                },
-                geoRestricted,
-                loginRequired,
-                expired,
-                isSpecialist: false,
-                isCanonical: false,
-              }}
-            />
-          </OakGridArea>
+              <OakBox
+                $position="absolute"
+                $zIndex="in-front"
+                $top="spacing-0"
+                $left="spacing-0"
+              >
+                <SkipLink href="#lesson-content">
+                  Skip to lesson content
+                </SkipLink>
+              </OakBox>
+
+              <LessonOverviewSideNav
+                links={pageLinks}
+                contentRestricted={contentRestricted}
+                downloadAllButtonProps={{
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  showDownloadAll,
+                  onClickDownloadAll: () => {
+                    trackDownloadResourceButtonClicked("all");
+                  },
+                  geoRestricted,
+                  loginRequired,
+                  expired,
+                  isSpecialist: false,
+                  isCanonical: false,
+                }}
+              />
+            </OakGridArea>
+          )}
           <OakGridArea
             $colSpan={[12, 8, 12]}
             $colStart={[1, 5, 1]}
             $rowStart={1}
           >
-            <LessonShareBar
+            <ComplexCopyrightRestrictionBanner
+              isGeorestricted={geoRestricted}
+              isLoginRequired={loginRequired}
+              lessonName={lessonTitle}
+              lessonSlug={lessonSlug}
+              unitName={unitTitle}
+              unitSlug={unitSlug}
+              isLessonLegacy={false}
+              componentType="lesson_overview"
+            />
+            <LessonActionsBar
               showPupilShare={showPupilShare}
+              showCreateWithAi={!contentRestricted}
               lessonSlug={lessonSlug}
               unitSlug={unitSlug}
               programmeSlug={programmeSlug}
@@ -195,47 +214,50 @@ export default function LessonView(
               </OakBox>
             ))}
           </OakGridArea>
-          <OakGridArea
-            $colSpan={12}
-            $colStart={1}
-            $rowStart={3}
-            $mb={"spacing-48"}
-          >
-            <PreviousNextNav
-              backgroundColorLevel={1}
-              navItemType="lesson"
-              previous={
-                previousLesson
-                  ? {
-                      href: resolveOakHref({
-                        page: "integrated-lesson-overview",
-                        programmeSlug,
-                        unitSlug,
-                        lessonSlug: previousLesson.lessonSlug,
-                      }),
-                      title: previousLesson.lessonTitle,
-                      index: previousLesson.lessonIndex,
-                    }
-                  : undefined
-              }
-              next={
-                nextLesson
-                  ? {
-                      href: resolveOakHref({
-                        page: "integrated-lesson-overview",
-                        programmeSlug,
-                        unitSlug,
-                        lessonSlug: nextLesson.lessonSlug,
-                      }),
-                      title: nextLesson.lessonTitle,
-                      index: nextLesson.lessonIndex,
-                    }
-                  : undefined
-              }
-            />
-          </OakGridArea>
+          {!contentRestricted && (
+            <OakGridArea
+              $colSpan={12}
+              $colStart={1}
+              $rowStart={3}
+              $mb={"spacing-48"}
+            >
+              <PreviousNextNav
+                backgroundColorLevel={1}
+                navItemType="lesson"
+                previous={
+                  previousLesson
+                    ? {
+                        href: resolveOakHref({
+                          page: "integrated-lesson-overview",
+                          programmeSlug,
+                          unitSlug,
+                          lessonSlug: previousLesson.lessonSlug,
+                        }),
+                        title: previousLesson.lessonTitle,
+                        index: previousLesson.lessonIndex,
+                      }
+                    : undefined
+                }
+                next={
+                  nextLesson
+                    ? {
+                        href: resolveOakHref({
+                          page: "integrated-lesson-overview",
+                          programmeSlug,
+                          unitSlug,
+                          lessonSlug: nextLesson.lessonSlug,
+                        }),
+                        title: nextLesson.lessonTitle,
+                        index: nextLesson.lessonIndex,
+                      }
+                    : undefined
+                }
+              />
+            </OakGridArea>
+          )}
         </OakGrid>
       </OakBox>
+      {contentRestricted && !showGeoBlocked && <RestrictedContentPrompt />}
     </CurrentSectionIdProvider>
   );
 }
