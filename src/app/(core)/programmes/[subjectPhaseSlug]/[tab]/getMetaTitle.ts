@@ -2,10 +2,7 @@ import { getProgrammeData } from "./getProgrammeData";
 import { PageSearchParms } from "./page";
 
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import {
-  getKeyStageTitle,
-  getYearGroupTitle,
-} from "@/utils/curriculum/formatting";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 
 export const getMetaTitle = (
   programmePageData: NonNullable<Awaited<ReturnType<typeof getProgrammeData>>>,
@@ -34,7 +31,7 @@ export const getMetaTitle = (
   const phaseSubjectSegment = `${programmeUnitsData.phaseTitle} ${programmeUnitsData.subjectTitle}`;
 
   const keystageSegment =
-    typeof keystages === "string" ? getKeyStageTitle(keystages) : null;
+    typeof keystages === "string" ? keystages.toUpperCase() : null;
   const yearSegment =
     typeof years === "string"
       ? getYearGroupTitle(curriculumUnitsFormattedData.yearData, years)

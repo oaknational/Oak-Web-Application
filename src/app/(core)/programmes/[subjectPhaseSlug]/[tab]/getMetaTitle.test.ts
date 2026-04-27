@@ -132,10 +132,62 @@ describe("getMetaTitle", () => {
   });
 
   describe("By Keystage", () => {
-    it.todo("returns a title with keystage");
-    it.todo("returns a title with keystage and examboard");
-    it.todo("returns a title with keystage, phase and tier");
-    it.todo("returns a title with keystage, phase, examboard and tier");
+    it("returns a title with keystage", () => {
+      const result = getMetaTitle(
+        {
+          programmeUnitsData: mockProgrammeUnitsData,
+          curriculumPhaseOptions: getMockCurriculumPhaseOptions(false),
+          curriculumUnitsData: mockCurriculumUnitsData,
+          subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(false),
+        },
+        { keystages: "ks3" },
+      );
+      expect(result).toEqual(
+        "Free KS3 Maths Lesson & Curriculum Resources | Oak National Academy",
+      );
+    });
+    it("returns a title with keystage and examboard", () => {
+      const result = getMetaTitle(
+        {
+          programmeUnitsData: mockProgrammeUnitsData,
+          curriculumPhaseOptions: getMockCurriculumPhaseOptions(true),
+          curriculumUnitsData: mockCurriculumUnitsData,
+          subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(true),
+        },
+        { keystages: "ks4" },
+      );
+      expect(result).toEqual(
+        "Free KS4 Maths AQA Lesson & Curriculum Resources | Oak National Academy",
+      );
+    });
+    it("returns a title with keystage and tier", () => {
+      const result = getMetaTitle(
+        {
+          programmeUnitsData: mockProgrammeUnitsData,
+          curriculumPhaseOptions: getMockCurriculumPhaseOptions(false),
+          curriculumUnitsData: mockCurriculumUnitsData,
+          subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(false),
+        },
+        { tiers: "foundation", keystages: "ks4" },
+      );
+      expect(result).toEqual(
+        "Free KS4 Maths Foundation Lesson & Curriculum Resources | Oak National Academy",
+      );
+    });
+    it("returns a title with keystage, examboard and tier", () => {
+      const result = getMetaTitle(
+        {
+          programmeUnitsData: mockProgrammeUnitsData,
+          curriculumPhaseOptions: getMockCurriculumPhaseOptions(true),
+          curriculumUnitsData: mockCurriculumUnitsData,
+          subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(true),
+        },
+        { tiers: "foundation", keystages: "ks4" },
+      );
+      expect(result).toEqual(
+        "Free KS4 Maths Foundation AQA Lesson & Curriculum Resources | Oak National Academy",
+      );
+    });
   });
 
   describe("By year", () => {
