@@ -5,6 +5,7 @@ import {
   OakIcon,
   OakSecondaryLink,
   OakFocusIndicator,
+  parseSpacing,
 } from "@oaknational/oak-components";
 
 import { BreadcrumbJsonLd } from "@/browser-lib/seo/getJsonLd";
@@ -33,7 +34,7 @@ const BreadcrumbsLi = styled.li`
 `;
 
 const BreadcrumbConstrainer = styled.div`
-  margin-right: 12px;
+  margin-right: ${parseSpacing("spacing-12")};
   ${ellipsis}
 `;
 
@@ -50,6 +51,8 @@ export type BreadcrumbsProps = {
 // To fix ellipsis showing in firefox unecessarily
 const StyledLink = styled(OakSecondaryLink)`
   display: block;
+  margin-right: ${parseSpacing("spacing-12")};
+  ${ellipsis}
 `;
 
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
@@ -77,13 +80,11 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                   $minWidth={0}
                   $maxWidth="100%"
                 >
-                  <BreadcrumbConstrainer>
-                    {disabled ? (
-                      <>{label}</>
-                    ) : (
-                      <StyledLink href={href}>{label}</StyledLink>
-                    )}
-                  </BreadcrumbConstrainer>
+                  {disabled ? (
+                    <BreadcrumbConstrainer>{label}</BreadcrumbConstrainer>
+                  ) : (
+                    <StyledLink href={href}>{label}</StyledLink>
+                  )}
                 </OakFocusIndicator>
               </BreadcrumbsLi>
             );
