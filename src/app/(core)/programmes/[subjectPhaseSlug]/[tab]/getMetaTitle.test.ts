@@ -191,10 +191,75 @@ describe("getMetaTitle", () => {
   });
 
   describe("By year", () => {
-    it.todo("returns a title with year");
-    it.todo("returns a title with year and examboard");
-    it.todo("returns a title with year, phase and tier");
-    it.todo("returns a title with year, phase, examboard and tier");
-    it.todo("returns a title with year and thread");
+    it("returns a title with year", () => {
+      const result = getMetaTitle(
+        {
+          programmeUnitsData: mockProgrammeUnitsData,
+          curriculumPhaseOptions: getMockCurriculumPhaseOptions(false),
+          curriculumUnitsData: mockCurriculumUnitsData,
+          subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(false),
+        },
+        { years: "7" },
+      );
+      expect(result).toEqual(
+        "Free Y7 Maths Lesson & Curriculum Resources | Oak National Academy",
+      );
+    });
+    it("returns a title with year and examboard", () => {
+      const result = getMetaTitle(
+        {
+          programmeUnitsData: mockProgrammeUnitsData,
+          curriculumPhaseOptions: getMockCurriculumPhaseOptions(true),
+          curriculumUnitsData: mockCurriculumUnitsData,
+          subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(true),
+        },
+        { years: "11" },
+      );
+      expect(result).toEqual(
+        "Free Y11 Maths AQA Lesson & Curriculum Resources | Oak National Academy",
+      );
+    });
+    it("returns a title with year and tier", () => {
+      const result = getMetaTitle(
+        {
+          programmeUnitsData: mockProgrammeUnitsData,
+          curriculumPhaseOptions: getMockCurriculumPhaseOptions(false),
+          curriculumUnitsData: mockCurriculumUnitsData,
+          subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(false),
+        },
+        { years: "7", tiers: "higher" },
+      );
+      expect(result).toEqual(
+        "Free Y7 Maths Higher Lesson & Curriculum Resources | Oak National Academy",
+      );
+    });
+    it("returns a title with year examboard and tier", () => {
+      const result = getMetaTitle(
+        {
+          programmeUnitsData: mockProgrammeUnitsData,
+          curriculumPhaseOptions: getMockCurriculumPhaseOptions(true),
+          curriculumUnitsData: mockCurriculumUnitsData,
+          subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(true),
+        },
+        { years: "7", tiers: "foundation" },
+      );
+      expect(result).toEqual(
+        "Free Y7 Maths Foundation AQA Lesson & Curriculum Resources | Oak National Academy",
+      );
+    });
+    it("returns a title with year and thread", () => {
+      const result = getMetaTitle(
+        {
+          programmeUnitsData: mockProgrammeUnitsData,
+          curriculumPhaseOptions: getMockCurriculumPhaseOptions(true),
+          curriculumUnitsData: mockCurriculumUnitsData,
+          subjectPhaseKeystageSlugs: getMockSubjectPhaseKeystageSlugs(true),
+        },
+        { years: "7", tiers: "foundation", threads: "thread-1" },
+      );
+      expect(result).toEqual(
+        "Free Y7 Maths Foundation AQA - Thread 1 Lesson & Curriculum Resources | Oak National Academy",
+      );
+    });
   });
 });

@@ -2,7 +2,6 @@ import { getProgrammeData } from "./getProgrammeData";
 import { PageSearchParms } from "./page";
 
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 
 export const getMetaTitle = (
   programmePageData: NonNullable<Awaited<ReturnType<typeof getProgrammeData>>>,
@@ -32,10 +31,11 @@ export const getMetaTitle = (
 
   const keystageSegment =
     typeof keystages === "string" ? keystages.toUpperCase() : null;
-  const yearSegment =
-    typeof years === "string"
-      ? getYearGroupTitle(curriculumUnitsFormattedData.yearData, years)
-      : "";
+
+  const getYearTitle = (year: string) =>
+    year === "all-years" ? "All Years" : `Y${year}`;
+  const yearSegment = typeof years === "string" ? getYearTitle(years) : "";
+
   const threadTitle = curriculumUnitsFormattedData.threadOptions.find(
     (t) => t.slug === threads,
   )?.title;
