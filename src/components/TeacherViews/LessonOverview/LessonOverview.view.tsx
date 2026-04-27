@@ -548,7 +548,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 >
                   <LessonDetails
                     loginRequired={loginRequired}
-                    geoRestricted={geoRestricted}
+                    georestricted={geoRestricted}
                     keyLearningPoints={keyLearningPoints}
                     commonMisconceptions={misconceptionsAndCommonMistakes}
                     keyWords={
@@ -568,6 +568,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     year={yearTitle}
                     subject={subjectTitle}
                     keystage={keyStageTitle}
+                    keystageSlug={keyStageSlug}
                     unit={unitTitle}
                     lesson={lessonTitle}
                     examBoardSlug={examBoardSlug}
@@ -575,6 +576,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     subjectParent={subjectParent}
                     disablePupilLink={actions?.disablePupilShare}
                     hideSeoHelper={showGeoBlocked}
+                    useIntegratedJourneyLayout={false}
                   />
                 </LessonItemContainer>
 

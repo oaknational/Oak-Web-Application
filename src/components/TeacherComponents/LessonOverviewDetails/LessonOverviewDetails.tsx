@@ -62,7 +62,7 @@ type LessonOverviewDetailsProps = {
   georestricted: boolean;
   hideSeoHelper?: boolean;
   useIntegratedJourneyLayout: boolean;
-  phaseSlug: string;
+  phaseSlug?: string;
 };
 
 const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
@@ -107,6 +107,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
     keystageSlug &&
     unitSlug &&
     programmeSlug &&
+    phaseSlug &&
     subjectSlug;
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
 
