@@ -1,6 +1,7 @@
 import {
   createTeacherProgrammeSlug,
   getKs4RedirectSlug,
+  getTeacherSubjectPhaseSlug,
   isValidSubjectPhaseSlug,
   KS4_EXAMBOARD_PREFERENCE,
   parseSubjectPhaseSlug,
@@ -211,4 +212,23 @@ test("gcse pathway excludes examboard when examboard equals pathway", () => {
   expect(
     createTeacherProgrammeSlug(unitData, "gcse", undefined, "gcse"),
   ).toEqual("citizenship-secondary-ks4-gcse");
+});
+test("core pathway with no examboard returns correct programme slug", () => {
+  expect(
+    getTeacherSubjectPhaseSlug({
+      subjectSlug: "computing",
+      phaseSlug: "secondary",
+      pathwaySlug: "core",
+    }),
+  ).toEqual("computing-secondary-core");
+});
+test("gcse pathway with examboard and pathway returns correct programme slug", () => {
+  expect(
+    getTeacherSubjectPhaseSlug({
+      subjectSlug: "computing",
+      phaseSlug: "secondary",
+      examboardSlug: "ocr",
+      pathwaySlug: "gcse",
+    }),
+  ).toEqual("computing-secondary-ocr");
 });

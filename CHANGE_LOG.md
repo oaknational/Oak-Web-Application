@@ -1,3 +1,54 @@
+# [1.1056.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1055.2...v1.1056.0) (2026-04-27)
+
+
+### Bug Fixes
+
+* maintain query params in return to sign in redirect urls ([6057664](https://github.com/oaknational/Oak-Web-Application/commit/6057664cc4364ad2db937badfc8b01106515c2f0))
+
+
+### Features
+
+* add copyright restriction banner to lesson view ([8cb9f87](https://github.com/oaknational/Oak-Web-Application/commit/8cb9f870baac22a2c1fe36638f9faab5daf4d6a1))
+* add restricted content sign in banner ([8524b19](https://github.com/oaknational/Oak-Web-Application/commit/8524b194b4e7056e9c6ec428824561a1a891e202))
+* update ComplexCopyrightRestrictionsBanner to use OakInlineBanner ([cfaed48](https://github.com/oaknational/Oak-Web-Application/commit/cfaed4804d198b024f4008f58599f4d014b68afa))
+* update download button text for signed out and not onboarded users ([f462c75](https://github.com/oaknational/Oak-Web-Application/commit/f462c754eff0ea59c002a57d8474d1b98838f45f))
+* update download link on lesson page to loginRequired button ([a866b11](https://github.com/oaknational/Oak-Web-Application/commit/a866b119161c3696bf1f275133632dc8bfa2eede))
+* update LessonActionsBar component to make create with ai button hideable ([1a1b424](https://github.com/oaknational/Oak-Web-Application/commit/1a1b424d68ebefcc1cc1f70f9c14dd3129c217c6))
+
+## [1.1055.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1055.1...v1.1055.2) (2026-04-24)
+
+
+### Bug Fixes
+
+* amend pathway logic to account for gcses and core options ([52c7b92](https://github.com/oaknational/Oak-Web-Application/commit/52c7b925aa4c90ed7e417276bd5b6b4479ab6a45))
+* remove pathway slug from subject phase on units ([0f7f52f](https://github.com/oaknational/Oak-Web-Application/commit/0f7f52fbba08493d2f37bc1b9d4efde6a1fd8070))
+
+## [1.1055.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1055.0...v1.1055.1) (2026-04-23)
+
+
+### Bug Fixes
+
+* added bugsnag init inside classroom error reporter ([7da39ae](https://github.com/oaknational/Oak-Web-Application/commit/7da39ae35decbf1b0fc5e60ab25e9f8a663b8d98))
+
+# [1.1055.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1054.0...v1.1055.0) (2026-04-23)
+
+
+### Features
+
+* **LESQ-1897:** group units by subject category then `group_by_subjectcategory` is set ([a2748b8](https://github.com/oaknational/Oak-Web-Application/commit/a2748b859f9f0cb78bcdd8856878278fab6d059f))
+
+# [1.1054.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1053.0...v1.1054.0) (2026-04-23)
+
+
+### Bug Fixes
+
+* use subject categories for tags on lesson list on unit overview page ([730692c](https://github.com/oaknational/Oak-Web-Application/commit/730692cc0dc591757807097cd80733bb7dbb8574))
+
+
+### Features
+
+* update getAdjacentUnits function to account for subject category grouping ([175da8a](https://github.com/oaknational/Oak-Web-Application/commit/175da8a0f6247704b98468b7ae36807e3a183985))
+
 # [1.1053.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1052.0...v1.1053.0) (2026-04-23)
 
 

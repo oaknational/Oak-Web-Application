@@ -37,6 +37,7 @@ const teachersUnitOverviewFixture = (
     priorKnowledgeRequirements: ["prior", "knowledge", "requirements"],
     containsGeorestrictedLessons: false,
     containsLoginRequiredLessons: false,
+    subjectCategories: null,
     ...partial,
   };
 };
