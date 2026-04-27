@@ -550,6 +550,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     loginRequired={loginRequired}
                     georestricted={geoRestricted}
                     keyLearningPoints={keyLearningPoints}
+                    learningOutcome={pupilLessonOutcome}
                     commonMisconceptions={misconceptionsAndCommonMistakes}
                     keyWords={
                       lessonKeywords?.length ? lessonKeywords : undefined

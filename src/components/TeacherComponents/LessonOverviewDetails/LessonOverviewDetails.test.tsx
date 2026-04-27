@@ -17,6 +17,7 @@ const lessonDetailProps = {
   keyWords: [{ keyword: "keyword", description: "description" }],
   teacherTips: [{ teacherTip: "test teacher tip" }],
   equipmentAndResources: [{ equipment: "equipment" }],
+  learningOutcome: "pupil learning outcome",
   contentGuidance: [
     {
       contentGuidanceLabel: "content guidance",

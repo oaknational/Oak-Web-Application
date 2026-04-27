@@ -146,6 +146,7 @@ export function getLessonResources({
       loginRequired={data.loginRequired}
       georestricted={data.geoRestricted}
       keyLearningPoints={data.keyLearningPoints}
+      learningOutcome={data.pupilLessonOutcome}
       commonMisconceptions={data.misconceptionsAndCommonMistakes}
       keyWords={data.lessonKeywords?.length ? data.lessonKeywords : undefined}
       slugs={{

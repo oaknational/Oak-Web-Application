@@ -4,6 +4,8 @@ import {
   OakFlex,
   OakGrid,
   OakGridArea,
+  OakHeading,
+  OakP,
 } from "@oaknational/oak-components";
 
 import { LessonSeoHelper } from "./LessonSeoHelper";
@@ -40,6 +42,7 @@ type LessonOverviewDetailsProps = {
   equipmentAndResources: Equipment[] | null | undefined;
   contentGuidance: ContentGuidance[] | null | undefined;
   hasVocabAndTranscripts: boolean;
+  learningOutcome: string | null | undefined;
   //temporary to only render on beta pages
   displayVocab: boolean;
   supervisionLevel: string | null | undefined;
@@ -68,6 +71,7 @@ type LessonOverviewDetailsProps = {
 const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   keyLearningPoints,
   commonMisconceptions,
+  learningOutcome,
   keyWords,
   teacherTips,
   equipmentAndResources,
@@ -159,6 +163,14 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
             $gap="spacing-48"
             $mb="spacing-24"
           >
+            {useIntegratedJourneyLayout && learningOutcome && (
+              <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+                <OakHeading $font={["heading-6", "heading-5"]} tag="h3">
+                  Learning outcome
+                </OakHeading>
+                <OakP $font="body-2">{learningOutcome}</OakP>
+              </OakFlex>
+            )}
             {hasVocabAndTranscripts && displayVocab && (
               <OakBox>
                 <LessonOverviewVocabButton />
