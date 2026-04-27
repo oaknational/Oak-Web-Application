@@ -40,8 +40,8 @@ export const PupilLessonVideoTranscript = ({
         ) : null
       }
     >
-      {transcriptSentences.map((sentence, index) => (
-        <OakP key={index} $mb="spacing-16">
+      {transcriptSentences.map((sentence) => (
+        <OakP key={sentence} $mb="spacing-16">
           {sentence}
         </OakP>
       ))}

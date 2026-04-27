@@ -21,5 +21,6 @@ export const formatContentGuidanceText = ({
   }
 
   const hasFullStop = supervisionLevel.endsWith(".");
-  return `${guidanceText}${hasFullStop ? supervisionLevel : `${supervisionLevel}.`}`;
+  const withFullStop = hasFullStop ? supervisionLevel : `${supervisionLevel}.`;
+  return `${guidanceText}${withFullStop}`;
 };
