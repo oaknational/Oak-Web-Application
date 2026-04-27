@@ -69,6 +69,7 @@ import {
   TakedownBanner,
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { getPhaseSlug } from "@/fixtures/curriculum/unit";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -578,6 +579,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     disablePupilLink={actions?.disablePupilShare}
                     hideSeoHelper={showGeoBlocked}
                     useIntegratedJourneyLayout={false}
+                    phaseSlug={year ? getPhaseSlug(year) : undefined}
                   />
                 </LessonItemContainer>
 
