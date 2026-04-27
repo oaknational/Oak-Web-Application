@@ -1,3 +1,11 @@
+## [1.1055.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1055.1...v1.1055.2) (2026-04-24)
+
+
+### Bug Fixes
+
+* amend pathway logic to account for gcses and core options ([52c7b92](https://github.com/oaknational/Oak-Web-Application/commit/52c7b925aa4c90ed7e417276bd5b6b4479ab6a45))
+* remove pathway slug from subject phase on units ([0f7f52f](https://github.com/oaknational/Oak-Web-Application/commit/0f7f52fbba08493d2f37bc1b9d4efde6a1fd8070))
+
 ## [1.1055.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1055.0...v1.1055.1) (2026-04-23)
 
 
