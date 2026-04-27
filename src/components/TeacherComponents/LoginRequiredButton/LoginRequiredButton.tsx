@@ -13,7 +13,7 @@ import {
   OakTagFunctional,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-import { useMemo } from "react";
+import { ReactNode, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -29,7 +29,7 @@ type ButtonState =
 
 type ActionProps = {
   onClick?: () => void | Promise<void>;
-  name: string;
+  name: ReactNode;
   isActionGeorestricted: boolean;
   shouldHidewhenGeoRestricted?: boolean;
   href?: string;
