@@ -8,6 +8,8 @@ import {
 import { PupilLessonQuizTopNav } from "./PupilLessonQuizTopNav";
 
 const meta = {
+  title:
+    "Components/PupilComponents/Views/PupilLessonQuiz/PupilLessonQuizTopNav",
   component: PupilLessonQuizTopNav,
   decorators: [
     (StoryComponent) => (

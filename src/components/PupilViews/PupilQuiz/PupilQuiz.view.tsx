@@ -18,8 +18,8 @@ import {
   QuestionsArray,
   QuizEngineProvider,
   useQuizEngineContext,
-} from "@/components/PupilComponents/QuizEngineProvider";
-import { QuizRenderer } from "@/components/PupilComponents/QuizRenderer";
+} from "@/components/PupilComponents/LegacyQuiz/QuizEngineProvider";
+import { QuizRenderer } from "@/components/PupilComponents/LegacyQuiz/QuizRenderer";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import {
   isMatchAnswer,
@@ -32,11 +32,11 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
-import { QuizCorrectAnswers } from "@/components/PupilComponents/QuizCorrectAnswers";
+import { QuizCorrectAnswers } from "@/components/PupilComponents/LegacyQuiz/QuizCorrectAnswers";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { useGetQuizTrackingData } from "@/hooks/useGetQuizTrackingData";
-import { shortAnswerInputId } from "@/components/PupilComponents/QuizShortAnswer";
-import { multipleChoiceAnswerId } from "@/components/PupilComponents/QuizMCQMultiAnswer";
+import { shortAnswerInputId } from "@/components/PupilComponents/LegacyQuiz/QuizShortAnswer";
+import { multipleChoiceAnswerId } from "@/components/PupilComponents/LegacyQuiz/QuizMCQMultiAnswer";
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 
 type PupilViewsQuizProps = {

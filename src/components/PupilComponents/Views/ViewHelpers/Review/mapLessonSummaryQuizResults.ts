@@ -1,5 +1,5 @@
-import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
 import { LessonSummaryReviewedProperties } from "@/browser-lib/avo/Avo";
+import { QuestionsArray } from "@/context/PupilLessonQuiz";
 
 type SummarySection = "starter-quiz" | "exit-quiz";
 

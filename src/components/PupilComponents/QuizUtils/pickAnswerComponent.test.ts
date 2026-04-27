@@ -1,8 +1,8 @@
 import { pickAnswerComponent } from "./pickAnswerComponent";
 
-import { QuizMCQMultiAnswer } from "@/components/PupilComponents/QuizMCQMultiAnswer";
-import { QuizMCQSingleAnswer } from "@/components/PupilComponents/QuizMCQSingleAnswer";
-import { QuizShortAnswer } from "@/components/PupilComponents/QuizShortAnswer";
+import { QuizMCQMultiAnswer } from "@/components/PupilComponents/LegacyQuiz/QuizMCQMultiAnswer";
+import { QuizMCQSingleAnswer } from "@/components/PupilComponents/LegacyQuiz/QuizMCQSingleAnswer";
+import { QuizShortAnswer } from "@/components/PupilComponents/LegacyQuiz/QuizShortAnswer";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 describe("pickAnswerComponent", () => {
