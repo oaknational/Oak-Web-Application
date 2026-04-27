@@ -143,6 +143,8 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
             })}
           />
         }
+        georestricted={data.geoRestricted}
+        loginRequired={data.loginRequired}
       />
       <LessonView {...data} />
     </>

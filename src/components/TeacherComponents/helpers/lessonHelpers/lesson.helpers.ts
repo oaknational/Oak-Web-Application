@@ -458,6 +458,7 @@ export const getPageLinksWithSubheadingsForLesson = (
   lesson: GetPageLinksForLessonProps,
   copyrightContent: LegacyCopyrightContent,
   mediaClipsLabel?: string,
+  isContentRestricted?: boolean,
 ): {
   label: string;
   anchorId: LessonPageLinkAnchorId;
@@ -546,6 +547,10 @@ export const getPageLinksWithSubheadingsForLesson = (
       condition: (lesson) => Boolean(lesson.additionalMaterialUrl),
     },
   ];
+
+  if (isContentRestricted) {
+    return PAGE_LINKS.filter((p) => p.anchorId === "lesson-details");
+  }
 
   return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson)).map(
     (lesson) => pick(lesson, ["label", "anchorId", "subheading"]),

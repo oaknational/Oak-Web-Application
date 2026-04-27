@@ -12,6 +12,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 
 type LessonShareBarProps = {
   showPupilShare: boolean;
+  showCreateWithAi: boolean;
   lessonSlug: string;
   unitSlug: string;
   programmeSlug: string;
@@ -24,12 +25,16 @@ const NegativeMarginFlex = styled(OakFlex)`
   margin-left: -${parseSpacing("spacing-8")};
 `;
 
-export default function LessonShareBar({
+export default function LessonActionsBar({
   showPupilShare,
+  showCreateWithAi,
   lessonSlug,
   unitSlug,
   programmeSlug,
 }: Readonly<LessonShareBarProps>) {
+  if (!showPupilShare && !showCreateWithAi) {
+    return null;
+  }
   const shareHref = resolveOakHref({
     page: "lesson-share",
     lessonSlug,
@@ -56,16 +61,18 @@ export default function LessonShareBar({
           Share lesson with pupils
         </OakSmallTertiaryInvertedButton>
       )}
-      <OakSmallTertiaryInvertedButton
-        iconName="external"
-        isTrailingIcon
-        element="a"
-        href="https://labs.thenational.academy/aila"
-        target="_blank"
-        aria-label="Create more with AI (this will open in a new tab)"
-      >
-        Create more with AI
-      </OakSmallTertiaryInvertedButton>
+      {showCreateWithAi && (
+        <OakSmallTertiaryInvertedButton
+          iconName="external"
+          isTrailingIcon
+          element="a"
+          href="https://labs.thenational.academy/aila"
+          target="_blank"
+          aria-label="Create more with AI (this will open in a new tab)"
+        >
+          Create more with AI
+        </OakSmallTertiaryInvertedButton>
+      )}
     </NegativeMarginFlex>
   );
 }
