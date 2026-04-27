@@ -53,6 +53,7 @@ type LessonOverviewDetailsProps = {
   unit: string | null | undefined;
   lesson: string;
   keystage: string | null | undefined;
+  keystageSlug: string | null | undefined;
   examBoardSlug: string | null | undefined;
   subjectSlug: string | null | undefined;
   subjectParent: string | null | undefined;
@@ -61,6 +62,7 @@ type LessonOverviewDetailsProps = {
   georestricted: boolean;
   hideSeoHelper?: boolean;
   useIntegratedJourneyLayout: boolean;
+  phaseSlug: string;
 };
 
 const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
@@ -83,6 +85,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   lesson,
   year,
   keystage,
+  keystageSlug,
   examBoardSlug,
   subjectParent,
   subjectSlug,
@@ -91,6 +94,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   loginRequired,
   georestricted,
   useIntegratedJourneyLayout,
+  phaseSlug,
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
   const showLessonHelperAccordion =
@@ -100,6 +104,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
     unit &&
     year &&
     keystage &&
+    keystageSlug &&
     unitSlug &&
     programmeSlug &&
     subjectSlug;
@@ -191,7 +196,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                 />
               </OakFlex>
             )}
-            {showLessonHelperAccordion && (
+            {showLessonHelperAccordion && !useIntegratedJourneyLayout && (
               <LessonSeoHelper
                 loginRequired={loginRequired}
                 geoRestricted={georestricted}
@@ -200,8 +205,10 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                 programmeSlug={programmeSlug}
                 unitSlug={unitSlug}
                 subject={subject}
+                phaseSlug={phaseSlug}
                 unit={unit}
                 keystage={keystage}
+                keystageSlug={keystageSlug}
                 examBoardSlug={examBoardSlug}
                 subjectSlug={subjectSlug}
                 parentSubject={subjectParent}
@@ -209,6 +216,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                   disablePupilLink || georestricted || loginRequired
                 }
                 lesson={lesson}
+                isIntegratedJourney
               />
             )}
           </OakFlex>

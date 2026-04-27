@@ -284,11 +284,13 @@ export function getLessonResources({
       year={data.yearTitle}
       subject={data.subjectTitle}
       keystage={data.keyStageTitle}
+      keystageSlug={data.keyStageSlug}
       unit={data.unitTitle}
       lesson={data.lessonTitle}
       examBoardSlug={data.examBoardSlug}
       subjectSlug={data.subjectSlug}
       subjectParent={data.subjectParent}
+      phaseSlug={data.phaseSlug}
       disablePupilLink={data.actions?.disablePupilShare}
       hideSeoHelper={copyRightState.showGeoBlocked}
       useIntegratedJourneyLayout

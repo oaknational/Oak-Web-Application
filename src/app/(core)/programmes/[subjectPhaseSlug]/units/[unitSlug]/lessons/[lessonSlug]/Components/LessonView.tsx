@@ -28,6 +28,7 @@ import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/Ski
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { TrackingCallbackProps } from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
+import { LessonSeoHelper } from "@/components/TeacherComponents/LessonOverviewDetails/LessonSeoHelper";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -47,12 +48,15 @@ export default function LessonView(
     keyStageTitle,
     keyStageSlug,
     subjectTitle,
+    subjectParent,
     unitTitle,
     year,
     yearTitle,
     examBoardTitle,
+    examBoardSlug,
     tierTitle,
     pathwayTitle,
+    phaseSlug,
     actions,
   } = props;
 
@@ -230,6 +234,25 @@ export default function LessonView(
                     onMediaClipsButtonClick={trackMediaClipsButtonClicked}
                   />
                 ))}
+                <LessonSeoHelper
+                  loginRequired={loginRequired}
+                  geoRestricted={geoRestricted}
+                  lessonSlug={lessonSlug}
+                  year={year}
+                  programmeSlug={programmeSlug}
+                  unitSlug={unitSlug}
+                  subject={subjectTitle}
+                  phaseSlug={phaseSlug}
+                  unit={unitTitle}
+                  keystage={keyStageTitle}
+                  examBoardSlug={examBoardSlug}
+                  subjectSlug={subjectSlug}
+                  parentSubject={subjectParent}
+                  disablePupilLink={geoRestricted || loginRequired}
+                  lesson={lessonTitle}
+                  keystageSlug={keyStageSlug}
+                  isIntegratedJourney
+                />
               </OakFlex>
             </OakGridArea>
             <OakGridArea
