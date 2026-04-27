@@ -20,6 +20,12 @@ export const usePupilLessonAnalytics = () => {
   const trackSectionStarted = usePupilLessonAnalyticsStore(
     (state) => state.trackSectionStarted,
   );
+  const trackQuizQuestionAttempt = usePupilLessonAnalyticsStore(
+    (state) => state.trackQuizQuestionAttempt,
+  );
+  const trackQuizCompleted = usePupilLessonAnalyticsStore(
+    (state) => state.trackQuizCompleted,
+  );
   const trackLessonAbandoned = usePupilLessonAnalyticsStore(
     (state) => state.trackLessonAbandoned,
   );
@@ -34,6 +40,8 @@ export const usePupilLessonAnalytics = () => {
   return {
     initialisePupilLessonAnalytics,
     trackSectionStarted,
+    trackQuizQuestionAttempt,
+    trackQuizCompleted,
     trackLessonAbandoned,
   };
 };
