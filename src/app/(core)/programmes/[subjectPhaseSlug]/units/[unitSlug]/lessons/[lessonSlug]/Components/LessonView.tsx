@@ -11,10 +11,7 @@ import { Fragment } from "react";
 import { CurrentSectionIdProvider } from "./CurrentSectionIdProvider";
 import LessonShareBar from "./LessonShareBar/LessonShareBar";
 import LessonOverviewSideNav from "./LessonOverviewSideNav";
-import {
-  getLessonResources,
-  getSideNavLinksFromResources,
-} from "./getLessonResources";
+import { getLessonResources } from "./getLessonResources";
 import { LessonItem } from "./LessonItem";
 
 import type { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
@@ -28,6 +25,7 @@ import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/Ski
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { TrackingCallbackProps } from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLessonMathJax";
+import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,

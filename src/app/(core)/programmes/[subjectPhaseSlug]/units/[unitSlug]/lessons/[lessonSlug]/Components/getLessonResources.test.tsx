@@ -1,13 +1,10 @@
-import {
-  getLessonResources,
-  getSideNavLinksFromResources,
-  LessonResource,
-} from "./getLessonResources";
+import { getLessonResources, LessonResource } from "./getLessonResources";
 
 import teachersLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersLessonOverview.fixture";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { defaultCopyrightRequirements } from "@/__tests__/__helpers__/mockCopyrightRequirements";
 import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
+import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 
 const mockBrowsePathwayData: AnalyticsBrowseData = {
   unitSlug: "cells",
@@ -34,7 +31,7 @@ const mockTrackMediaClipsButtonClicked = jest.fn();
 const defaultTestProps = () => ({
   browsePathwayData: mockBrowsePathwayData,
   data: teachersLessonOverviewFixture(),
-  copyRightState: defaultCopyrightRequirements,
+  copyrightState: defaultCopyrightRequirements,
   isMathJaxLesson: false,
   trackMediaClipsButtonClicked: mockTrackMediaClipsButtonClicked,
 });
