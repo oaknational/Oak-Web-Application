@@ -5,7 +5,6 @@ import {
 } from "@/node-lib/curriculum-api-2023";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
 // Helper function to sort units consistently
 const sortUnits = (units: CurriculumUnit[]): CurriculumUnit[] => {
@@ -40,11 +39,9 @@ export async function getProgrammeData(
     return null;
   }
 
-  // We exclude core units when an examboard is selected
+  // We exclude core units when the ks4 option is not core
   // TD: after the integrated journey launches we should make this the default in the query
-  const excludeCoreUnits = isExamboardSlug(
-    subjectPhaseKeystageSlugs.ks4OptionSlug,
-  );
+  const excludeCoreUnits = subjectPhaseKeystageSlugs.ks4OptionSlug !== "core";
 
   const [programmeUnitsData, curriculumUnitsData, originalSubjects] =
     await Promise.all([
