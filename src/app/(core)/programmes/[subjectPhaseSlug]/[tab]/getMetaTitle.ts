@@ -8,7 +8,7 @@ import {
 } from "@/utils/curriculum/formatting";
 
 export const getMetaTitle = (
-  cachedData: NonNullable<Awaited<ReturnType<typeof getProgrammeData>>>,
+  programmePageData: NonNullable<Awaited<ReturnType<typeof getProgrammeData>>>,
   searchParams: PageSearchParms,
 ) => {
   const {
@@ -16,7 +16,7 @@ export const getMetaTitle = (
     curriculumUnitsData,
     curriculumPhaseOptions,
     subjectPhaseKeystageSlugs,
-  } = cachedData;
+  } = programmePageData;
 
   const curriculumUnitsFormattedData =
     formatCurriculumUnitsData(curriculumUnitsData);
