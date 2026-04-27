@@ -9,7 +9,7 @@ const getTranscriptSentencesFromMv = (
   }
 
   if (Array.isArray(transcriptSentences)) {
-    return transcriptSentences;
+    return formatSentences(transcriptSentences);
   }
 
   const splitTranscript = transcriptSentences.split(/\r?\n/);
