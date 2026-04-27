@@ -91,7 +91,7 @@ describe("requestLessonResources", () => {
       lessonContent: lessonContentFixture({
         isLegacy: false,
         videoTitle: "video-title-matching-gcs",
-        transcriptSentences: null,
+        transcriptSentences: undefined,
       }),
     });
 
