@@ -1,6 +1,3 @@
-import { QuizOrderAnswer } from "../QuizOrderAnswer";
-import { QuizMatchAnswer } from "../QuizMatchAnswer";
-
 import {
   isMatchAnswer,
   isMultiAnswerMCQ,
@@ -9,11 +6,14 @@ import {
   isSingleAnswerMCQ,
 } from "./answerTypeDiscriminators";
 
-import { QuizMCQMultiAnswer } from "@/components/PupilComponents/QuizMCQMultiAnswer";
-import { QuizMCQSingleAnswer } from "@/components/PupilComponents/QuizMCQSingleAnswer";
-import { QuizShortAnswer } from "@/components/PupilComponents/QuizShortAnswer";
+import { QuizOrderAnswer } from "@/components/PupilComponents/LegacyQuiz/QuizOrderAnswer";
+import { QuizMatchAnswer } from "@/components/PupilComponents/LegacyQuiz/QuizMatchAnswer";
+import { QuizMCQMultiAnswer } from "@/components/PupilComponents/LegacyQuiz/QuizMCQMultiAnswer";
+import { QuizMCQSingleAnswer } from "@/components/PupilComponents/LegacyQuiz/QuizMCQSingleAnswer";
+import { QuizShortAnswer } from "@/components/PupilComponents/LegacyQuiz/QuizShortAnswer";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
+// Remove this when we remove the legacy pupil experience.
 export const pickAnswerComponent = (answers: QuizQuestionAnswers) => {
   switch (true) {
     case isMultiAnswerMCQ(answers):

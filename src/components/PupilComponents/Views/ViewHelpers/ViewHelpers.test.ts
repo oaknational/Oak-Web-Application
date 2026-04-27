@@ -31,8 +31,8 @@ import {
   shouldInitIntroWorksheetResult,
 } from ".";
 
-import { multipleChoiceAnswerId } from "@/components/PupilComponents/QuizMCQMultiAnswer";
-import { shortAnswerInputId } from "@/components/PupilComponents/QuizShortAnswer";
+import { multipleChoiceAnswerId } from "@/components/PupilComponents/LegacyQuiz/QuizMCQMultiAnswer";
+import { shortAnswerInputId } from "@/components/PupilComponents/LegacyQuiz/QuizShortAnswer";
 import {
   matchAnswers,
   mcqTextAnswers,

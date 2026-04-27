@@ -10,6 +10,8 @@ import { PupilLessonQuizCheckButton } from "./PupilLessonQuizCheckButton";
 import { PupilLessonQuizNextButton } from "./PupilLessonQuizNextButton";
 
 const meta = {
+  title:
+    "Components/PupilComponents/Views/PupilLessonQuiz/PupilLessonQuizBottomNav",
   component: PupilLessonQuizBottomNav,
   decorators: [
     (StoryComponent) => (
