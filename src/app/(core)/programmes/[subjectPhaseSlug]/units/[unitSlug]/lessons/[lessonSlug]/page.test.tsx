@@ -157,16 +157,16 @@ describe("generateMetadata", () => {
     });
 
     expect(result.title).toBe(
-      "Introduction to Geometry KS2 | Y4 Maths Lesson Resources",
+      "Introduction to Geometry KS2 | Y4 Maths | Lesson Resources | Oak National Academy",
     );
     expect(result.description).toBe(
       "View lesson content and choose resources to download or share",
     );
     expect(result.openGraph?.title).toBe(
-      "Introduction to Geometry KS2 | Y4 Maths Lesson Resources",
+      "Introduction to Geometry KS2 | Y4 Maths | Lesson Resources | Oak National Academy",
     );
     expect(result.twitter?.title).toBe(
-      "Introduction to Geometry KS2 | Y4 Maths Lesson Resources",
+      "Introduction to Geometry KS2 | Y4 Maths | Lesson Resources | Oak National Academy",
     );
   });
 
@@ -184,13 +184,13 @@ describe("generateMetadata", () => {
     });
 
     expect(result.title).toBe(
-      "Introduction to Geometry Higher Edexcel KS2 | Y4 Maths Lesson Resources",
+      "Introduction to Geometry KS2 | Y4 Maths Higher Edexcel | Lesson Resources | Oak National Academy",
     );
     expect(result.openGraph?.title).toBe(
-      "Introduction to Geometry Higher Edexcel KS2 | Y4 Maths Lesson Resources",
+      "Introduction to Geometry KS2 | Y4 Maths Higher Edexcel | Lesson Resources | Oak National Academy",
     );
     expect(result.twitter?.title).toBe(
-      "Introduction to Geometry Higher Edexcel KS2 | Y4 Maths Lesson Resources",
+      "Introduction to Geometry KS2 | Y4 Maths Higher Edexcel | Lesson Resources | Oak National Academy",
     );
     expect(result.description).toBe(
       "View lesson content and choose resources to download or share",
