@@ -1,7 +1,7 @@
 import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { formatSentences, getCaptionsFromFile } from "@/utils/handleTranscript";
 
-const getTranscriptSentencesFromMv = (
+const getFormattedTranscriptSentences = (
   transcriptSentences: LessonContent["transcriptSentences"],
 ): string[] | null => {
   if (!transcriptSentences) {
@@ -24,7 +24,7 @@ export const requestLessonResources = async ({
   // For new content we need to fetch the captions file from gCloud and parse the result to generate
   // the transcript sentences.
 
-  const mvTranscriptSentences = getTranscriptSentencesFromMv(
+  const mvTranscriptSentences = getFormattedTranscriptSentences(
     lessonContent.transcriptSentences,
   );
   if (mvTranscriptSentences) {
