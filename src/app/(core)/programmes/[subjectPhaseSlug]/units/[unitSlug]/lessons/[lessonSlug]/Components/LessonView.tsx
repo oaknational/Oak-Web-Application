@@ -142,6 +142,7 @@ export default function LessonView(
     copyrightState,
     isMathJaxLesson,
     trackMediaClipsButtonClicked,
+    contentRestricted,
   });
 
   const showPupilShare =
@@ -248,25 +249,27 @@ export default function LessonView(
                   />
                 ))}
 
-                <LessonSeoHelper
-                  loginRequired={loginRequired}
-                  geoRestricted={geoRestricted}
-                  lessonSlug={lessonSlug}
-                  year={year}
-                  programmeSlug={programmeSlug}
-                  unitSlug={unitSlug}
-                  subject={subjectTitle}
-                  phaseSlug={phaseSlug}
-                  unit={unitTitle}
-                  keystage={keyStageTitle}
-                  examBoardSlug={examBoardSlug}
-                  subjectSlug={subjectSlug}
-                  parentSubject={subjectParent}
-                  disablePupilLink={geoRestricted || loginRequired}
-                  lesson={lessonTitle}
-                  keystageSlug={keyStageSlug}
-                  isIntegratedJourney
-                />
+                {!contentRestricted && (
+                  <LessonSeoHelper
+                    loginRequired={loginRequired}
+                    geoRestricted={geoRestricted}
+                    lessonSlug={lessonSlug}
+                    year={year}
+                    programmeSlug={programmeSlug}
+                    unitSlug={unitSlug}
+                    subject={subjectTitle}
+                    phaseSlug={phaseSlug}
+                    unit={unitTitle}
+                    keystage={keyStageTitle}
+                    examBoardSlug={examBoardSlug}
+                    subjectSlug={subjectSlug}
+                    parentSubject={subjectParent}
+                    disablePupilLink={geoRestricted || loginRequired}
+                    lesson={lessonTitle}
+                    keystageSlug={keyStageSlug}
+                    isIntegratedJourney
+                  />
+                )}
               </OakFlex>
             </OakGridArea>
 

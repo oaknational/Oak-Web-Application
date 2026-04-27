@@ -106,12 +106,14 @@ export function getLessonResources({
   copyrightState,
   isMathJaxLesson,
   trackMediaClipsButtonClicked,
+  contentRestricted,
 }: {
   browsePathwayData: AnalyticsBrowseData;
   data: TeachersLessonOverviewPageData;
   copyrightState: ReturnType<typeof useComplexCopyright>;
   isMathJaxLesson: boolean;
   trackMediaClipsButtonClicked: (props: TrackingCallbackProps) => void;
+  contentRestricted: boolean;
 }): LessonResource[] {
   const lessonGuide = data.lessonGuideUrl ? (
     <LessonOverviewDocPresentation
@@ -317,5 +319,12 @@ export function getLessonResources({
         ...item,
         skipLinkUrl,
       };
+    })
+    .filter((item) => {
+      // Only show lesson details when content is restricted
+      if (contentRestricted) {
+        return item.anchorId === "lesson-details";
+      }
+      return true;
     });
 }
