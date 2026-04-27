@@ -284,6 +284,7 @@ describe("generateMetadata", () => {
         subjectPhaseSlug: "maths-primary",
         tab: "units",
       }),
+      searchParams: Promise.resolve({}),
     });
 
     expect(result).toEqual({});
@@ -325,20 +326,31 @@ describe("generateMetadata", () => {
         subjectPhaseSlug: "maths-primary",
         tab: "units",
       }),
+      searchParams: Promise.resolve({}),
     });
 
-    expect(result.title).toBe("KS2 maths curriculum unit sequence");
-    expect(result.description).toContain("Explore our free KS2 maths");
-    expect(result.description).toContain("curriculum unit sequences");
+    expect(result.title).toBe(
+      "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
+    );
+    expect(result.description).toContain(
+      "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
+    );
+
     expect(result.alternates?.canonical).toBe(
-      "https://www.thenational.academy/programmes/maths-primary",
+      "https://www.thenational.academy/programmes/maths-primary/units",
     );
-    expect(result.openGraph?.title).toBe("KS2 maths curriculum unit sequence");
+    expect(result.openGraph?.title).toBe(
+      "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
+    );
     expect(result.openGraph?.description).toContain(
-      "Explore our free KS2 maths",
+      "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
     );
-    expect(result.twitter?.title).toBe("KS2 maths curriculum unit sequence");
-    expect(result.twitter?.description).toContain("Explore our free KS2 maths");
+    expect(result.twitter?.title).toBe(
+      "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
+    );
+    expect(result.twitter?.description).toContain(
+      "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
+    );
   });
 
   it("handles errors gracefully and returns empty object", async () => {
@@ -349,6 +361,7 @@ describe("generateMetadata", () => {
         subjectPhaseSlug: "maths-primary",
         tab: "units",
       }),
+      searchParams: Promise.resolve({}),
     });
 
     expect(result).toEqual({});

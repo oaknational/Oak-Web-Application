@@ -13,7 +13,6 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getOpenGraphMetadata, getTwitterMetadata } from "@/app/metadata";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
@@ -27,6 +26,10 @@ import withPageErrorHandling, {
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
+import {
+  getKeyStageTitle,
+  getYearGroupTitle,
+} from "@/utils/curriculum/formatting";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -40,16 +43,21 @@ type ProgrammePageParams = { subjectPhaseSlug: string; tab: string };
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<ProgrammePageParams>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }): Promise<Metadata> {
   const { subjectPhaseSlug } = await params;
+  const { tiers, years, keystages, threads } = await searchParams;
 
   try {
     const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
     if (!cachedData) {
       return {};
     }
+
+    // Free [phase] [subject] [tier] [exam board] Lesson & Curriculum Resources | Oak National Academy
 
     const {
       programmeUnitsData,
@@ -69,42 +77,61 @@ export async function generateMetadata({
       (ks4opt) => ks4opt.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
     );
 
-    const title = buildCurriculumMetadata({
-      metadataType: "title",
-      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
-      subjectTitle: programmeUnitsData.subjectTitle,
-      ks4OptionSlug: ks4Option?.slug ?? null,
-      ks4OptionTitle: ks4Option?.title ?? null,
-      keyStages: curriculumUnitsFormattedData.keystages,
-      tab: "units",
-    });
-    const description = buildCurriculumMetadata({
-      metadataType: "description",
-      subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
-      subjectTitle: programmeUnitsData.subjectTitle,
-      ks4OptionSlug: ks4Option?.slug ?? null,
-      ks4OptionTitle: ks4Option?.title ?? null,
-      keyStages: curriculumUnitsFormattedData.keystages,
-      tab: "units",
-    });
+    const phaseSubjectSegment = `${programmeUnitsData.phaseTitle} ${programmeUnitsData.subjectTitle}`;
+
+    const keystageSegment =
+      typeof keystages === "string" ? getKeyStageTitle(keystages) : null;
+    const yearSegment =
+      typeof years === "string"
+        ? getYearGroupTitle(curriculumUnitsFormattedData.yearData, years)
+        : "";
+    const threadTitle = curriculumUnitsFormattedData.threadOptions.find(
+      (t) => t.slug === threads,
+    )?.title;
+    const threadSegment =
+      typeof threads === "string" && threadTitle ? ` - ${threadTitle}` : "";
+    const tierSegment =
+      typeof tiers === "string"
+        ? ` ${tiers[0]?.toLocaleUpperCase() + tiers.slice(1)}`
+        : "";
+    const examboardSegment = ks4Option ? ` ${ks4Option.title}` : "";
+
+    const baseMetaTitle = `Free ${phaseSubjectSegment}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources | Oak National Academy`;
+    const keystageMetaTitle = keystageSegment
+      ? `Free ${keystageSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment} Lesson & Curriculum Resources | Oak National Academy`
+      : undefined;
+    const yearsMetaTitle = yearSegment
+      ? `Free ${yearSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment} Lesson & Curriculum Resources | Oak National Academy`
+      : undefined;
+    const yearAndThreadMetaTitle =
+      yearSegment && threadSegment
+        ? `Free ${yearSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources | Oak National Academy`
+        : undefined;
+
+    const title =
+      yearAndThreadMetaTitle ??
+      yearsMetaTitle ??
+      keystageMetaTitle ??
+      baseMetaTitle;
+
     const canonicalURL = new URL(
-      `/programmes/${subjectPhaseSlug}`,
+      `/programmes/${subjectPhaseSlug}/units`,
       getBrowserConfig("seoAppUrl"),
     ).toString();
 
     return {
       title,
-      description,
+      description: title,
       alternates: {
         canonical: canonicalURL,
       },
       openGraph: getOpenGraphMetadata({
         title,
-        description,
+        description: title,
       }),
       twitter: getTwitterMetadata({
         title,
-        description,
+        description: title,
       }),
     };
   } catch (error) {
