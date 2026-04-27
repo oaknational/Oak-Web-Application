@@ -234,6 +234,7 @@ export default function LessonView(
                     onMediaClipsButtonClick={trackMediaClipsButtonClicked}
                   />
                 ))}
+
                 <LessonSeoHelper
                   loginRequired={loginRequired}
                   geoRestricted={geoRestricted}
@@ -259,7 +260,7 @@ export default function LessonView(
               $colSpan={12}
               $colStart={1}
               $rowStart={3}
-              $mb={"spacing-48"}
+              $pv={["spacing-48", "spacing-56"]}
             >
               <PreviousNextNav
                 backgroundColorLevel={1}
