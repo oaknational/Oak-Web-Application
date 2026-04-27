@@ -36,7 +36,7 @@ export async function generateMetadata(
     const data = await getCachedUnitData(subjectPhaseSlug, unitSlug);
     const { unitTitle, keyStageSlug, year, subjectTitle } = data;
 
-    const title = `${unitTitle} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources`;
+    const title = `${unitTitle} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} | Lesson Resources | Oak National Academy`;
     const description = `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`;
 
     return {

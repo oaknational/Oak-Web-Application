@@ -158,15 +158,17 @@ describe("generateMetadata", () => {
       searchParams: Promise.resolve({}),
     });
 
-    expect(result.title).toBe("Geometry KS2 | Y4 Maths Lesson Resources");
+    expect(result.title).toBe(
+      "Geometry KS2 | Y4 Maths | Lesson Resources | Oak National Academy",
+    );
     expect(result.description).toBe(
       "Free lessons and teaching resources about geometry",
     );
     expect(result.openGraph?.title).toBe(
-      "Geometry KS2 | Y4 Maths Lesson Resources",
+      "Geometry KS2 | Y4 Maths | Lesson Resources | Oak National Academy",
     );
     expect(result.twitter?.title).toBe(
-      "Geometry KS2 | Y4 Maths Lesson Resources",
+      "Geometry KS2 | Y4 Maths | Lesson Resources | Oak National Academy",
     );
   });
 });
