@@ -80,6 +80,7 @@ describe("getProgrammeData", () => {
         ks4OptionSlug: null,
         includeNonCurriculum: true,
         excludeUnitsWithNoPublishedLessons: true,
+        excludeCoreUnits: false,
       });
       expect(mockApi.curriculumPhaseOptions).toHaveBeenCalled();
     });
@@ -223,7 +224,31 @@ describe("getProgrammeData", () => {
         ks4OptionSlug: "aqa",
         includeNonCurriculum: true,
         excludeUnitsWithNoPublishedLessons: true,
+        excludeCoreUnits: true,
       });
+    });
+
+    it("should remove core ks4 option when excludeCoreUnits is true", async () => {
+      const mockApi = createMockCurriculumApi({
+        curriculumPhaseOptions: jest.fn().mockResolvedValue([
+          {
+            title: "Maths",
+            slug: "maths",
+            phases: [{ title: "Secondary", slug: "secondary" }],
+            ks4_options: [
+              { title: "AQA", slug: "aqa" },
+              { title: "Core", slug: "core" },
+            ],
+            keystages: [],
+          },
+        ]),
+      });
+
+      const result = await getProgrammeData(mockApi, "maths-secondary-aqa");
+
+      expect(result?.curriculumPhaseOptions.subjects[0]?.ks4_options).toEqual([
+        { title: "AQA", slug: "aqa" },
+      ]);
     });
   });
 
