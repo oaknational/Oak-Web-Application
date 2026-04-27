@@ -202,10 +202,10 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                 )}
                 <LessonInformationBox
                   licence={{ copyrightYear: updatedAt }}
-                  equipment={equipment}
+                  equipment={equipment?.filter(Boolean)}
                   supervision={supervisionLevel ?? undefined}
                   filesNeeded={filesNeeded}
-                  contentGuidance={guidance}
+                  contentGuidance={guidance?.filter(Boolean)}
                 />
               </OakFlex>
             )}

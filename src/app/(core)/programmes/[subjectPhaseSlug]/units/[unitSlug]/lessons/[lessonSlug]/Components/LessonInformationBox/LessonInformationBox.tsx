@@ -48,14 +48,14 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
       {teacherTip && (
         <LessonInformationItem title="Teacher tip" items={teacherTip} />
       )}
-      {equipment && (
+      {equipment && equipment.length > 0 && (
         <LessonInformationItem
           iconName={"equipment-required"}
           title="Equipment"
           items={equipment}
         />
       )}
-      {contentGuidance && (
+      {contentGuidance && contentGuidance.length > 0 && (
         <LessonInformationItem
           iconName={"content-guidance"}
           title="Content guidance"
