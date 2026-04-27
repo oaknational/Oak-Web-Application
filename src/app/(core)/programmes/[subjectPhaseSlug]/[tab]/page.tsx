@@ -5,6 +5,7 @@ import { cache } from "react";
 import { ProgrammeView } from "./Components/ProgrammeView";
 import { isTabSlug } from "./tabSchema";
 import { getProgrammeData } from "./getProgrammeData";
+import { getMetaTitle } from "./getMetaTitle";
 
 import {
   createDownloadsData,
@@ -26,10 +27,6 @@ import withPageErrorHandling, {
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
-import {
-  getKeyStageTitle,
-  getYearGroupTitle,
-} from "@/utils/curriculum/formatting";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -40,16 +37,16 @@ const getCachedProgrammeData = cache(async (subjectPhaseSlug: string) => {
 });
 
 type ProgrammePageParams = { subjectPhaseSlug: string; tab: string };
-
+export type PageSearchParms = { [key: string]: string | string[] | undefined };
 export async function generateMetadata({
   params,
   searchParams,
 }: {
   params: Promise<ProgrammePageParams>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams: Promise<PageSearchParms>;
 }): Promise<Metadata> {
   const { subjectPhaseSlug } = await params;
-  const { tiers, years, keystages, threads } = await searchParams;
+  const pageSearchParams = await searchParams;
 
   try {
     const cachedData = await getCachedProgrammeData(subjectPhaseSlug);
@@ -57,67 +54,12 @@ export async function generateMetadata({
       return {};
     }
 
-    // Free [phase] [subject] [tier] [exam board] Lesson & Curriculum Resources | Oak National Academy
-
-    const {
-      programmeUnitsData,
-      curriculumUnitsData,
-      curriculumPhaseOptions,
-      subjectPhaseKeystageSlugs,
-    } = cachedData;
-
-    const curriculumUnitsFormattedData =
-      formatCurriculumUnitsData(curriculumUnitsData);
-
-    const ks4Options =
-      curriculumPhaseOptions.subjects.find(
-        (s) => s.slug === subjectPhaseKeystageSlugs.subjectSlug,
-      )?.ks4_options ?? [];
-    const ks4Option = ks4Options.find(
-      (ks4opt) => ks4opt.slug === subjectPhaseKeystageSlugs.ks4OptionSlug,
-    );
-
-    const phaseSubjectSegment = `${programmeUnitsData.phaseTitle} ${programmeUnitsData.subjectTitle}`;
-
-    const keystageSegment =
-      typeof keystages === "string" ? getKeyStageTitle(keystages) : null;
-    const yearSegment =
-      typeof years === "string"
-        ? getYearGroupTitle(curriculumUnitsFormattedData.yearData, years)
-        : "";
-    const threadTitle = curriculumUnitsFormattedData.threadOptions.find(
-      (t) => t.slug === threads,
-    )?.title;
-    const threadSegment =
-      typeof threads === "string" && threadTitle ? ` - ${threadTitle}` : "";
-    const tierSegment =
-      typeof tiers === "string"
-        ? ` ${tiers[0]?.toLocaleUpperCase() + tiers.slice(1)}`
-        : "";
-    const examboardSegment = ks4Option ? ` ${ks4Option.title}` : "";
-
-    const baseMetaTitle = `Free ${phaseSubjectSegment}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources | Oak National Academy`;
-    const keystageMetaTitle = keystageSegment
-      ? `Free ${keystageSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment} Lesson & Curriculum Resources | Oak National Academy`
-      : undefined;
-    const yearsMetaTitle = yearSegment
-      ? `Free ${yearSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment} Lesson & Curriculum Resources | Oak National Academy`
-      : undefined;
-    const yearAndThreadMetaTitle =
-      yearSegment && threadSegment
-        ? `Free ${yearSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources | Oak National Academy`
-        : undefined;
-
-    const title =
-      yearAndThreadMetaTitle ??
-      yearsMetaTitle ??
-      keystageMetaTitle ??
-      baseMetaTitle;
-
     const canonicalURL = new URL(
       `/programmes/${subjectPhaseSlug}/units`,
       getBrowserConfig("seoAppUrl"),
     ).toString();
+
+    const title = getMetaTitle(cachedData, pageSearchParams);
 
     return {
       title,
