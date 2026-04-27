@@ -1,3 +1,11 @@
+import {
+  DOWNLOAD_TYPES_BY_RESOURCE,
+  DISPLAY_TITLES_BY_RESOURCE,
+  TRACKING_TITLES_BY_RESOURCE,
+  DOWNLOAD_TITLES_BY_RESOURCE,
+  SKIPPABLE_CONTENT_SECTIONS,
+} from "./lessonResourceConstants";
+
 import { getIsResourceDownloadable } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import {
   LessonPageLinkAnchorId,
@@ -11,10 +19,7 @@ import LessonOverviewMediaClips, {
 } from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
-import {
-  DownloadableLessonTitles,
-  ResourceType,
-} from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
@@ -22,62 +27,6 @@ import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails"
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
 import { DownloadResourceButtonNameValueType } from "@/browser-lib/avo/Avo";
 import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
-
-/**
- * Maps each resource type to its associated download types.
- * Resources with empty arrays are not downloadable.
- */
-const DOWNLOAD_TYPES_BY_RESOURCE: Record<LessonResourceType, ResourceType[]> = {
-  "lesson-guide": ["lesson-guide-pdf"],
-  "slide-deck": ["presentation"],
-  "media-clips": [],
-  "lesson-details": [],
-  video: [],
-  worksheet: ["worksheet-pdf", "worksheet-pptx"],
-  "starter-quiz": ["intro-quiz-answers", "intro-quiz-questions"],
-  "exit-quiz": ["exit-quiz-answers", "exit-quiz-questions"],
-  "additional-material": ["supplementary-docx", "supplementary-pdf"],
-};
-
-/**
- * Maps resource types to their display titles
- */
-const DISPLAY_TITLES_BY_RESOURCE: Record<LessonResourceType, LessonItemTitle> =
-  {
-    "lesson-guide": "Lesson guide",
-    "slide-deck": "Lesson slides",
-    "media-clips": "Video & audio clips", // Default, may be overridden by subject
-    "lesson-details": "Lesson details",
-    video: "Lesson video",
-    worksheet: "Worksheet",
-    "starter-quiz": "Prior knowledge starter quiz",
-    "exit-quiz": "Assessment exit quiz",
-    "additional-material": "Additional material",
-  };
-
-const TRACKING_TITLES_BY_RESOURCE: Partial<
-  Record<LessonResourceType, DownloadResourceButtonNameValueType>
-> = {
-  worksheet: "worksheet",
-  "slide-deck": "slide deck",
-  "starter-quiz": "starter quiz",
-  "exit-quiz": "exit quiz",
-  "additional-material": "additional material",
-  "lesson-guide": "lesson guide",
-};
-
-/**
- * Maps resource types to their custom download titles (if different from display title)
- */
-const DOWNLOAD_TITLES_BY_RESOURCE: Partial<Record<LessonResourceType, string>> =
-  {
-    "lesson-guide": "lesson guide (PDF)",
-    "starter-quiz": "starter quiz questions (PDF)",
-    "exit-quiz": "exit quiz questions (PDF)",
-    worksheet: "worksheet (PPTX/PDF)",
-    "slide-deck": "lesson slides (PPTX)",
-    "additional-material": "additional material (PDF)",
-  };
 
 /**
  * Checks if a resource is downloadable based on its type and available downloads.
@@ -117,73 +66,6 @@ export type LessonResource = {
     }
 );
 
-export type SideNavLink = {
-  label: string;
-  anchorId: string;
-  subheading?: string;
-};
-
-export function getSideNavLinksFromResources(
-  resources: LessonResource[],
-): SideNavLink[] {
-  const hasStarterQuiz = resources.some(
-    (r) => r.resourceType === "starter-quiz",
-  );
-  const hasExitQuiz = resources.some((r) => r.resourceType === "exit-quiz");
-  const hasBothQuizzes = hasStarterQuiz && hasExitQuiz;
-
-  const links: SideNavLink[] = [];
-  let quizLinkAdded = false;
-
-  for (const resource of resources) {
-    const isQuizResource =
-      resource.resourceType === "starter-quiz" ||
-      resource.resourceType === "exit-quiz";
-
-    if (isQuizResource) {
-      // Only add the quiz link once, at the position of the first quiz
-      if (!quizLinkAdded) {
-        if (hasBothQuizzes) {
-          links.push({
-            label: "Quizzes",
-            anchorId: resource.anchorId, // "quiz" for first quiz when both exist
-            subheading: `${DISPLAY_TITLES_BY_RESOURCE["starter-quiz"]} \n${DISPLAY_TITLES_BY_RESOURCE["exit-quiz"]}`,
-          });
-        } else if (hasStarterQuiz) {
-          links.push({
-            label: "Quizzes",
-            anchorId: resource.anchorId, // "starter-quiz"
-            subheading: DISPLAY_TITLES_BY_RESOURCE["starter-quiz"],
-          });
-        } else if (hasExitQuiz) {
-          links.push({
-            label: "Quizzes",
-            anchorId: resource.anchorId, // "exit-quiz"
-            subheading: DISPLAY_TITLES_BY_RESOURCE["exit-quiz"],
-          });
-        }
-        quizLinkAdded = true;
-      }
-    } else {
-      links.push({
-        label: resource.title,
-        anchorId: resource.resourceType,
-      });
-    }
-  }
-
-  return links;
-}
-
-const SKIPPABLE_CONTENT_SECTIONS: Set<LessonResourceType> = new Set([
-  "video",
-  "lesson-guide",
-  "worksheet",
-  "slide-deck",
-  "media-clips",
-  "additional-material",
-]);
-
 const getSkipLinkUrl = ({
   resource,
   index,
@@ -221,13 +103,13 @@ const getSkipLinkUrl = ({
 export function getLessonResources({
   browsePathwayData,
   data,
-  copyRightState,
+  copyrightState,
   isMathJaxLesson,
   trackMediaClipsButtonClicked,
 }: {
   browsePathwayData: AnalyticsBrowseData;
   data: TeachersLessonOverviewPageData;
-  copyRightState: ReturnType<typeof useComplexCopyright>;
+  copyrightState: ReturnType<typeof useComplexCopyright>;
   isMathJaxLesson: boolean;
   trackMediaClipsButtonClicked: (props: TrackingCallbackProps) => void;
 }): LessonResource[] {
@@ -292,7 +174,7 @@ export function getLessonResources({
       subjectParent={data.subjectParent}
       phaseSlug={data.phaseSlug}
       disablePupilLink={data.actions?.disablePupilShare}
-      hideSeoHelper={copyRightState.showGeoBlocked}
+      hideSeoHelper={copyrightState.showGeoBlocked}
       useIntegratedJourneyLayout
     />
   );

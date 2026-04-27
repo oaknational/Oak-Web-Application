@@ -1,7 +1,6 @@
-import { TeachersLessonOverviewPageData } from "../../../node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
-
 import { LessonOverviewProps } from "./LessonOverview.view";
 
+import { TeachersLessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/teachersLessonOverview/teachersLessonOverview.schema";
 import {
   LessonOverviewQuizQuestion,
   StemObject,
