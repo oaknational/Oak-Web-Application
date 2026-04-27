@@ -73,7 +73,7 @@ export default function LessonView(
     showSignedInNotOnboarded;
 
   const { track } = useAnalytics();
-  const copyRightState = useComplexCopyright({
+  const copyrightState = useComplexCopyright({
     loginRequired,
     geoRestricted,
   });
@@ -135,7 +135,7 @@ export default function LessonView(
   const lessonResources = getLessonResources({
     browsePathwayData,
     data: props,
-    copyRightState,
+    copyrightState,
     isMathJaxLesson,
     trackMediaClipsButtonClicked,
   });

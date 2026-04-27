@@ -221,13 +221,13 @@ const getSkipLinkUrl = ({
 export function getLessonResources({
   browsePathwayData,
   data,
-  copyRightState,
+  copyrightState,
   isMathJaxLesson,
   trackMediaClipsButtonClicked,
 }: {
   browsePathwayData: AnalyticsBrowseData;
   data: TeachersLessonOverviewPageData;
-  copyRightState: ReturnType<typeof useComplexCopyright>;
+  copyrightState: ReturnType<typeof useComplexCopyright>;
   isMathJaxLesson: boolean;
   trackMediaClipsButtonClicked: (props: TrackingCallbackProps) => void;
 }): LessonResource[] {
@@ -290,7 +290,7 @@ export function getLessonResources({
       subjectSlug={data.subjectSlug}
       subjectParent={data.subjectParent}
       disablePupilLink={data.actions?.disablePupilShare}
-      hideSeoHelper={copyRightState.showGeoBlocked}
+      hideSeoHelper={copyrightState.showGeoBlocked}
     />
   );
   const lessonVideo = data.videoMuxPlaybackId ? (
