@@ -1,3 +1,20 @@
+# [1.1056.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1055.2...v1.1056.0) (2026-04-27)
+
+
+### Bug Fixes
+
+* maintain query params in return to sign in redirect urls ([6057664](https://github.com/oaknational/Oak-Web-Application/commit/6057664cc4364ad2db937badfc8b01106515c2f0))
+
+
+### Features
+
+* add copyright restriction banner to lesson view ([8cb9f87](https://github.com/oaknational/Oak-Web-Application/commit/8cb9f870baac22a2c1fe36638f9faab5daf4d6a1))
+* add restricted content sign in banner ([8524b19](https://github.com/oaknational/Oak-Web-Application/commit/8524b194b4e7056e9c6ec428824561a1a891e202))
+* update ComplexCopyrightRestrictionsBanner to use OakInlineBanner ([cfaed48](https://github.com/oaknational/Oak-Web-Application/commit/cfaed4804d198b024f4008f58599f4d014b68afa))
+* update download button text for signed out and not onboarded users ([f462c75](https://github.com/oaknational/Oak-Web-Application/commit/f462c754eff0ea59c002a57d8474d1b98838f45f))
+* update download link on lesson page to loginRequired button ([a866b11](https://github.com/oaknational/Oak-Web-Application/commit/a866b119161c3696bf1f275133632dc8bfa2eede))
+* update LessonActionsBar component to make create with ai button hideable ([1a1b424](https://github.com/oaknational/Oak-Web-Application/commit/1a1b424d68ebefcc1cc1f70f9c14dd3129c217c6))
+
 ## [1.1055.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1055.1...v1.1055.2) (2026-04-24)
 
 
