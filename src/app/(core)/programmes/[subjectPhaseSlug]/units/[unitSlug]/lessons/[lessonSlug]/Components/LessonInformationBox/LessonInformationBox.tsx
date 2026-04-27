@@ -105,10 +105,18 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
         </OakFlex>
       )}
       {licence && (
-        <CopyrightLicence
-          openLinksExternally={true}
-          copyrightYear={licence.copyrightYear}
-        />
+        <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
+          <OakFlex $alignItems={"center"} $gap={"spacing-8"}>
+            <OakIcon iconName="copyright" />
+            <OakHeading tag="h3" $font={"heading-7"}>
+              Licence
+            </OakHeading>
+          </OakFlex>
+          <CopyrightLicence
+            openLinksExternally={true}
+            copyrightYear={licence.copyrightYear}
+          />
+        </OakFlex>
       )}
     </OakFlex>
   );
