@@ -1,5 +1,6 @@
 "use client";
 import {
+  OakBasicAccordion,
   OakBox,
   OakBoxProps,
   OakCard,
@@ -9,6 +10,8 @@ import {
   OakGridArea,
   OakHeading,
   OakLI,
+  OakLink,
+  OakP,
   OakTagFunctional,
   OakTypography,
   OakUL,
@@ -22,6 +25,8 @@ import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/Ski
 import { resolveOakHref } from "@/common-lib/urls";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 import PreviousNextNav from "@/components/TeacherComponents/PreviousNextNav/PreviousNextNav";
+import { keystageYearMappings } from "@/utils/curriculum/keystage";
+import { getKeystagesFromPhase } from "@/fixtures/curriculum/unit";
 
 export type UnitViewProps = Pick<
   TeachersUnitOverviewData,
@@ -45,6 +50,8 @@ export type UnitViewProps = Pick<
   | "prevUnit"
   | "nextUnit"
   | "subjectCategories"
+  | "yearTitle"
+  | "examBoardTitle"
 >;
 
 export const UnitView = ({
@@ -68,6 +75,8 @@ export const UnitView = ({
   nextUnit,
   prevUnit,
   subjectCategories,
+  yearTitle,
+  examBoardTitle,
 }: UnitViewProps) => {
   const hasToggles =
     tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
@@ -154,6 +163,15 @@ export const UnitView = ({
           <HelpLinkCard $display={["block", "none"]} />
         </OakGridArea>
         <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
+          <UnitViewSeoAccordion
+            examBoardTitle={examBoardTitle ?? undefined}
+            yearGroup={yearTitle}
+            keyStage={keyStageTitle}
+            unitTitle={unitTitle}
+            subjectTitle={subjectTitle}
+            phaseSlug={phaseSlug}
+            programmeSlug={programmeSlug}
+          />
           <PreviousNextNav
             backgroundColorLevel={getBackgroundColorLevel(phaseSlug)}
             currentIndex={unitIndex}
@@ -186,6 +204,92 @@ export const UnitView = ({
         </OakGridArea>
       </OakGrid>
     </OakBox>
+  );
+};
+
+const UnitViewSeoAccordion = ({
+  examBoardTitle,
+  yearGroup,
+  keyStage,
+  unitTitle,
+  subjectTitle,
+  phaseSlug,
+  programmeSlug,
+}: {
+  examBoardTitle?: string;
+  yearGroup: string;
+  keyStage: string;
+  unitTitle: string;
+  subjectTitle: string;
+  phaseSlug: string;
+  programmeSlug: string;
+}) => {
+  const subjectPhaseSlug = `${programmeSlug}`;
+  const examBoardText = examBoardTitle ? `${examBoardTitle} ` : "";
+
+  // Generate keystages and years based on phase
+  const getPhaseContent = (phase: string) => {
+    const result: string[] = [];
+    const keystages = getKeystagesFromPhase(phase);
+
+    keystages.forEach((ks) => {
+      result.push(ks.toUpperCase());
+      const years =
+        keystageYearMappings[ks as keyof typeof keystageYearMappings];
+      if (years) {
+        years.forEach((year) => {
+          result.push(`Year ${year}`);
+        });
+      }
+    });
+
+    return result;
+  };
+
+  const phaseContent = getPhaseContent(phaseSlug);
+
+  return (
+    <OakBasicAccordion
+      id={"units-seo-accordion"}
+      header={`Explore this ${examBoardText}${yearGroup} ${keyStage} unit to find free lesson teaching resources, including...`}
+    >
+      <OakFlex $flexDirection="column" $gap="spacing-16">
+        <OakP>
+          slide decks, worksheet PDFs, quizzes and lesson overviews. You can
+          select individual lessons from the {unitTitle} unit and download the
+          resources you need, or download the entire unit now.
+        </OakP>
+        <OakP>
+          See every unit listed in our{" "}
+          <OakLink
+            href={resolveOakHref({
+              page: "curriculum-overview",
+              subjectPhaseSlug,
+            })}
+          >
+            {examBoardText}
+            {phaseSlug} {subjectTitle} curriculum
+          </OakLink>{" "}
+          and discover more of our teaching resources for{" "}
+          <OakLink
+            href={resolveOakHref({
+              page: "curriculum-units",
+              subjectPhaseSlug,
+            })}
+          >
+            {examBoardText} {phaseSlug} {subjectTitle} programmes
+          </OakLink>
+          , covering:
+        </OakP>
+        <OakUL>
+          {phaseContent.map((item) => (
+            <OakLI key={item}>
+              {item} {subjectTitle}
+            </OakLI>
+          ))}
+        </OakUL>
+      </OakFlex>
+    </OakBasicAccordion>
   );
 };
 

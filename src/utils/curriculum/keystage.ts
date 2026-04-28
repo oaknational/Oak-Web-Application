@@ -11,7 +11,7 @@ export type YearDataPartialYearDataArray = {
   subjectCategories: SubjectCategory[];
 };
 
-const keystageYearMappings: Record<KeyStageSlug, string[]> = {
+export const keystageYearMappings: Record<KeyStageSlug, string[]> = {
   ks1: ["1", "2"],
   ks2: ["3", "4", "5", "6"],
   ks3: ["7", "8", "9"],

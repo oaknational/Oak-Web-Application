@@ -60,6 +60,10 @@ export function getPhaseSlugFromKeystage(keystage: KeystageSlug) {
   }
 }
 
+export function getKeystagesFromPhase(phase: string): KeystageSlug[] {
+  return phase === "primary" ? ["ks1", "ks2"] : ["ks3", "ks4"];
+}
+
 export function getKeystageSlug(year: string) {
   const yearNum = Number.parseInt(year);
   if (yearNum <= 2) return "ks1";
