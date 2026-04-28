@@ -229,6 +229,31 @@ const CookieConsentStyles = createGlobalStyle`
 }
 `;
 
+const getAgeRestrictionString = (ageRestriction: string | undefined | null) => {
+  switch (ageRestriction) {
+    case "7_and_above":
+      return `To view this lesson, you must be in year 7 and above`;
+    case "10_and_above":
+      return `To view this lesson, you must be in year 10 and above`;
+    default:
+      return `This lesson is age restricted.`;
+  }
+};
+
+const getLessonEngineInitialSection = ({
+  initialSection,
+  isReadOnlyState,
+  courseWorkNotReady,
+}: {
+  initialSection: LessonSection;
+  isReadOnlyState: boolean;
+  courseWorkNotReady: boolean;
+}) => {
+  if (isReadOnlyState) return "review";
+  if (courseWorkNotReady) return "overview";
+  return initialSection;
+};
+
 const PupilExperienceClassroomAnalytics = ({
   isGoogleClassroomAssignment,
 }: {
@@ -555,18 +580,13 @@ const PupilExperienceLayout = ({
 
   const [redirectOverlayCleared, setRedirectOverlayCleared] = useState(false);
 
-  const getAgeRestrictionString = (
-    ageRestriction: string | undefined | null,
-  ) => {
-    switch (ageRestriction) {
-      case "7_and_above":
-        return `To view this lesson, you must be in year 7 and above`;
-      case "10_and_above":
-        return `To view this lesson, you must be in year 10 and above`;
-      default:
-        return `This lesson is age restricted.`;
-    }
-  };
+  const defaultContentGuidance = [
+    {
+      contentguidanceLabel: "Speak to an adult before starting this lesson.",
+      contentguidanceDescription: null,
+      contentguidanceArea: null,
+    },
+  ];
 
   const handleContentGuidanceAccept = () => {
     setIsOpen(false);
@@ -617,12 +637,11 @@ const PupilExperienceLayout = ({
     isGoogleClassroomAssignment || isCourseWorkReady ? handleOnNext : undefined;
   const courseWorkNotReady =
     courseWork.isCourseWorkFlow && courseWork.status !== "ready";
-  let lessonEngineInitialSection = initialSection;
-  if (isReadOnlyState) {
-    lessonEngineInitialSection = "review";
-  } else if (courseWorkNotReady) {
-    lessonEngineInitialSection = "overview";
-  }
+  const lessonEngineInitialSection = getLessonEngineInitialSection({
+    initialSection,
+    isReadOnlyState,
+    courseWorkNotReady,
+  });
   return (
     <GoogleClassroomAnalyticsProvider>
       <PupilExperienceClassroomAnalytics
@@ -663,16 +682,7 @@ const PupilExperienceLayout = ({
               declineIcon={declineIcon}
               declineText={declineText}
               contentGuidance={
-                lessonContent.contentGuidance
-                  ? lessonContent.contentGuidance
-                  : [
-                      {
-                        contentguidanceLabel:
-                          "Speak to an adult before starting this lesson.",
-                        contentguidanceDescription: null,
-                        contentguidanceArea: null,
-                      },
-                    ]
+                lessonContent.contentGuidance ?? defaultContentGuidance
               }
               supervisionLevel={
                 lessonContent.contentGuidance
