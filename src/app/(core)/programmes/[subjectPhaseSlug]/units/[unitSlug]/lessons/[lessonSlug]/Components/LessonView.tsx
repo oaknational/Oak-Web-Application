@@ -264,7 +264,11 @@ export default function LessonView(
                     examBoardSlug={examBoardSlug}
                     subjectSlug={subjectSlug}
                     parentSubject={subjectParent}
-                    disablePupilLink={geoRestricted || loginRequired}
+                    disablePupilLink={
+                      geoRestricted ||
+                      loginRequired ||
+                      actions?.disablePupilShare
+                    }
                     lesson={lessonTitle}
                     keystageSlug={keyStageSlug}
                     isIntegratedJourney
