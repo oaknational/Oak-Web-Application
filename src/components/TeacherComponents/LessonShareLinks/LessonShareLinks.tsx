@@ -126,11 +126,7 @@ const LessonShareLinks: FC<{
             onClick={() => {
               props.onSubmit(link.avoMedium);
             }}
-            ariaLabel={
-              link.name === shareLinkConfig.googleClassroom.name
-                ? "Assign to Google Classroom"
-                : `Share to ${link.name}`
-            }
+            ariaLabel={`Share to ${link.name}`}
             ariaLive={"polite"}
           />
         ))}

@@ -1,9 +1,16 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import LessonShareLinks from "./LessonShareLinks";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const mockUseFeatureFlagEnabled = useFeatureFlagEnabled as jest.Mock;
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn(),
+}));
 
 describe("LessonShareLinks", () => {
   beforeEach(() => {
@@ -87,7 +94,7 @@ describe("LessonShareLinks", () => {
     );
 
     const googleClassroomLink = getByRole("link", {
-      name: "Assign to Google Classroom",
+      name: "Share to Google Classroom",
     });
 
     expect(googleClassroomLink).toBeInTheDocument();
@@ -99,6 +106,7 @@ describe("LessonShareLinks", () => {
   it("should render the Google Classroom button when onGoogleClassroomClick is provided", async () => {
     const onSubmit = jest.fn();
     const onGoogleClassroomClick = jest.fn();
+    mockUseFeatureFlagEnabled.mockReturnValue(true);
 
     renderWithProviders()(
       <LessonShareLinks
