@@ -14,7 +14,7 @@ import { Header } from "@/components/TeacherComponents/Header/Header";
 const DOWNLOAD_SUCCESS_IMG_URL =
   "https://res.cloudinary.com/oak-web-application/image/upload/v1777386544/svg-illustrations/download-confirmation-Illustration_z1sczk.svg";
 
-export function DownloadSuccessHeader({ href }: { href: string }) {
+export function DownloadSuccessHeader({ href }: Readonly<{ href: string }>) {
   return (
     <Header
       layoutVariant="large"
