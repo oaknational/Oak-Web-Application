@@ -24,6 +24,20 @@ export type PupilLessonOverviewSectionsNavProps = {
 export const PupilLessonOverviewSectionsNav = ({
   items,
 }: PupilLessonOverviewSectionsNavProps) => {
+  const getQuizProps = (
+    section: LessonOverviewSectionName,
+    item: SectionNavItem,
+  ) => {
+    return [
+      LessonOverviewSectionName.StarterQuiz,
+      LessonOverviewSectionName.ExitQuiz,
+    ].includes(section)
+      ? {
+          numQuestions: item.numQuestions ?? 0,
+          grade: item.grade ?? 0,
+        }
+      : {};
+  };
   return (
     <OakFlex
       as="ul"
@@ -45,6 +59,7 @@ export const PupilLessonOverviewSectionsNav = ({
             data-testid={item.section}
             disabled={item.disabled}
             isLoading={item.isLoading}
+            {...getQuizProps(item.section, item)}
           />
         </OakLI>
       ))}
