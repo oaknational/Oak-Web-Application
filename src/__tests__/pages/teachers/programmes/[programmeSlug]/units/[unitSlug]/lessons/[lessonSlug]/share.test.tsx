@@ -24,10 +24,25 @@ import curriculumApi2023, {
 } from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import { topNavFixture } from "@/node-lib/curriculum-api-2023/fixtures/topNav.fixture";
+import { LS_KEY_SCHOOL } from "@/config/localStorageKeys";
 
 const props: LessonSharePageProps = {
   curriculumData: lessonShareFixtures(),
   topNav: topNavFixture,
+};
+
+const mockUseFetchResult = { data: [], error: null, isLoading: false };
+
+const getStoredSchoolName = () => {
+  const stored = localStorage.getItem(LS_KEY_SCHOOL);
+  if (!stored) return "";
+
+  try {
+    const parsed = JSON.parse(stored) as { schoolName?: string } | null;
+    return parsed?.schoolName ?? "";
+  } catch {
+    return "";
+  }
 };
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
@@ -56,6 +71,26 @@ jest.mock(
       onHubspotSubmit: () => {
         return Promise.resolve(true);
       },
+    }),
+  }),
+);
+
+jest.mock("@/hooks/useFetch", () => ({
+  __esModule: true,
+  useFetch: () => mockUseFetchResult,
+}));
+
+jest.mock(
+  "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker",
+  () => ({
+    __esModule: true,
+    default: () => ({
+      schools: [],
+      error: null,
+      schoolPickerInputValue: getStoredSchoolName(),
+      setSchoolPickerInputValue: jest.fn(),
+      selectedSchool: undefined,
+      setSelectedSchool: jest.fn(),
     }),
   }),
 );

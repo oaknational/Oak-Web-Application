@@ -17,7 +17,7 @@ const Template: StoryFn<typeof Component> = (args) => (
     icon={"worksheet"}
     title="Worksheets"
     angle={2}
-    $top={96}
+    $top={"spacing-92"}
   />
 );
 

@@ -51,12 +51,13 @@ const googleClassroomAnalyticsMock = {
 };
 
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
+
 jest.mock("next/navigation", () => ({
   ...jest.requireActual("next/navigation"),
   __esModule: true,
-  usePathname: jest.fn(),
+  usePathname: jest.fn(() => "/"),
   useRouter: jest.fn(),
-  useSearchParams: jest.fn(),
+  useSearchParams: jest.fn(() => new URLSearchParams()),
 }));
 
 jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
@@ -100,7 +101,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 jest.mock("@/browser-lib/google-classroom/googleClassroomApi", () => ({
   __esModule: true,
   default: {
-    getAddOnContext: jest.fn(),
+    getAddOnContext: jest.fn().mockResolvedValue(null),
     getPostSubmissionState: jest.fn(),
     getPupilLessonProgress: jest.fn(),
     submitPupilProgress: jest.fn(),

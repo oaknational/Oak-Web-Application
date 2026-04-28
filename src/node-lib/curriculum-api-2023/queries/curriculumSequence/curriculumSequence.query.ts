@@ -17,12 +17,17 @@ const curriculumSequenceQuery =
      * If true, will exclude units that have no published lessons
      */
     excludeUnitsWithNoPublishedLessons?: boolean;
+    /**
+     * If true, units with pathway_slug "core" are excluded.
+     */
+    excludeCoreUnits?: boolean;
   }) => {
     const {
       subjectSlug,
       phaseSlug,
       ks4OptionSlug,
       excludeUnitsWithNoPublishedLessons,
+      excludeCoreUnits = false,
     } = args;
     if (!subjectSlug || !phaseSlug) {
       throw new OakError({ code: "curriculum-api/params-incorrect" });
@@ -45,27 +50,49 @@ const curriculumSequenceQuery =
 
     const examboardSlug = isExamboard ? ks4OptionSlug : null;
     const pathwaySlug = !isExamboard ? ks4OptionSlug : null;
+    const excludeCorePathwayCondition = {
+      _or: [
+        { pathway_slug: { _neq: "core" } },
+        { pathway_slug: { _is_null: true } },
+      ],
+    };
+    const includeCorePathwayCondition = { pathway_slug: { _eq: "core" } };
 
-    const examboardCondition = examboardSlug
-      ? {
-          _or: [
-            { examboard_slug: { _eq: examboardSlug } },
-            {
-              _and: [{ examboard_slug: { _is_null: true } }],
-            },
-          ],
-        }
-      : { examboard_slug: { _is_null: true } };
+    let examboardCondition: Published_Mv_Curriculum_Sequence_B_13_0_21_Bool_Exp =
+      {
+        examboard_slug: { _is_null: true },
+      };
+    if (examboardSlug) {
+      const examboardConditions: Published_Mv_Curriculum_Sequence_B_13_0_21_Bool_Exp[] =
+        [
+          {
+            _or: [
+              { examboard_slug: { _eq: examboardSlug } },
+              { _and: [{ examboard_slug: { _is_null: true } }] },
+            ],
+          },
+        ];
+      if (excludeCoreUnits) {
+        examboardConditions.push(excludeCorePathwayCondition);
+      }
+      examboardCondition = { _and: examboardConditions };
+    }
 
-    const pathwayCondition = pathwaySlug
-      ? {
-          _or: [
-            { pathway_slug: { _eq: pathwaySlug } },
-            { pathway_slug: { _eq: "core" } },
-            { pathway_slug: { _is_null: true } },
-          ],
-        }
-      : { pathway_slug: { _is_null: true } };
+    let pathwayCondition: Published_Mv_Curriculum_Sequence_B_13_0_21_Bool_Exp =
+      {
+        pathway_slug: { _is_null: true },
+      };
+    if (pathwaySlug) {
+      const pathwayConditions: Published_Mv_Curriculum_Sequence_B_13_0_21_Bool_Exp[] =
+        [
+          { pathway_slug: { _eq: pathwaySlug } },
+          { pathway_slug: { _is_null: true } },
+        ];
+      if (!excludeCoreUnits) {
+        pathwayConditions.push(includeCorePathwayCondition);
+      }
+      pathwayCondition = { _or: pathwayConditions };
+    }
 
     const where: Published_Mv_Curriculum_Sequence_B_13_0_21_Bool_Exp = {
       ...baseWhere,

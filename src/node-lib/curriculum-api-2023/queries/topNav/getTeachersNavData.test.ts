@@ -30,7 +30,17 @@ describe("getTeachersNavData", () => {
     const result = getTeachersNavData(mockResponseData, "primary");
     const subjects = result.children[0]?.children;
 
-    expect(subjects).toHaveLength(2);
+    expect(subjects).toHaveLength(3);
+  });
+  it("includes all-subjects button at the end of each keystage", () => {
+    const result = getTeachersNavData(mockResponseData, "primary");
+    const keystage = result.children[0];
+    const allSubjectsButton = keystage?.children[keystage.children.length - 1];
+
+    expect(allSubjectsButton?.slug).toBe("all-subjects");
+    expect(allSubjectsButton?.title).toBe("All KS1 subjects");
+    expect(allSubjectsButton?.nonCurriculum).toBe(false);
+    expect(allSubjectsButton?.programmeCount).toBe(0);
   });
   it("includes pathways for ks4 subjects", () => {
     const result = getTeachersNavData(mockResponseData, "secondary");

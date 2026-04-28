@@ -36,7 +36,7 @@ export const CardListingStyledFlex = styled(OakFlex)`
 
 export const CardListingTitle = ({ title }: CardListingProps) => {
   return (
-    <OakTypography as="h3" $font={"heading-7"} className="card-listing-header">
+    <OakTypography as="h4" $font={"heading-7"} className="card-listing-header">
       {title}
     </OakTypography>
   );

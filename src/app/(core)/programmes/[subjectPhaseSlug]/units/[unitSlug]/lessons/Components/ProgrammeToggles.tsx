@@ -50,8 +50,8 @@ const ProgrammeToggleOption = ({
     : undefined;
 
   const href = resolveOakHref({
-    page: "unit-page",
-    subjectPhaseSlug: programmeSlug,
+    page: "integrated-unit-overview",
+    programmeSlug,
     unitSlug,
   });
 
@@ -93,7 +93,7 @@ export const ProgrammeToggles = ({
       $flexDirection="column"
       $gap="spacing-24"
     >
-      <OakHeading tag="h3" id={headingId} $font="heading-7">
+      <OakHeading tag="h2" id={headingId} $font="heading-7">
         {heading}
       </OakHeading>
       <OakFlex $flexDirection="row" $gap="spacing-12">

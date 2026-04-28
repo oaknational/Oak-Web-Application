@@ -21,7 +21,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import CurriculumDownloads, {
   CurriculumDownload,
   CurriculumDownloadsRef,
@@ -31,6 +30,7 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TopNavProps } from "@/components/AppComponents/TopNav/TopNav";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type Document = ReturnType<
   typeof curriculumPreviousDownloadsFixture
@@ -76,10 +76,21 @@ const CurriculumPreviousDownloadsPage = ({
   };
 
   const downloads: CurriculumDownload[] = [];
-  const links: ButtonAsLinkProps[] = [];
+  const links: React.ComponentProps<typeof TabularNav>["links"] = [];
+  const tabPage = "curriculum-previous-downloads" as const;
   const LEGACY_DOWNLOADS_API_URL = getBrowserConfig("vercelApiUrl");
 
   for (const category of Object.keys(categoryDocuments) as DownloadCategory[]) {
+    links.push({
+      label: category,
+      page: tabPage,
+      isCurrent: activeTab == category,
+      onClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        updateTab(category);
+      },
+    });
+
     if (category == activeTab) {
       categoryDocuments[category]?.forEach((document) => {
         downloads.push({
@@ -89,17 +100,6 @@ const CurriculumPreviousDownloadsPage = ({
         });
       });
     }
-    links.push({
-      label: category,
-      page: "curriculum-previous-downloads",
-      isCurrent: activeTab == category,
-      currentStyles: ["underline"],
-      scroll: false,
-      onClick: (event) => {
-        event.preventDefault();
-        updateTab(category);
-      },
-    });
   }
 
   useEffect(() => {
@@ -134,21 +134,21 @@ const CurriculumPreviousDownloadsPage = ({
           <Breadcrumbs
             breadcrumbs={[
               {
-                oakLinkProps: {
+                href: resolveOakHref({
                   page: "home",
-                },
+                }),
                 label: "Home",
               },
               {
-                oakLinkProps: {
+                href: resolveOakHref({
                   page: "curriculum-landing-page",
-                },
+                }),
                 label: "Curriculum resources",
               },
               {
-                oakLinkProps: {
+                href: resolveOakHref({
                   page: "curriculum-previous-downloads",
-                },
+                }),
                 label: "Previous downloads",
                 disabled: true,
               },
@@ -167,7 +167,7 @@ const CurriculumPreviousDownloadsPage = ({
               $mv={"auto"}
               $position={"relative"}
             >
-              <BrushBorders color="mint30" />
+              <BrushBorders color="bg-decorative1-very-subdued" />
               <OakIcon
                 iconName={"download"}
                 $width={"spacing-120"}

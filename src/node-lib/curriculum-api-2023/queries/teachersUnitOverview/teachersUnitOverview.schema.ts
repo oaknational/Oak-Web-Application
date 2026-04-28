@@ -1,5 +1,6 @@
 import { z } from "zod";
 import {
+  actionsSchema,
   ProgrammeFields,
   programmeFieldsSchema,
   syntheticUnitvariantLessonsByKsSchema,
@@ -11,11 +12,13 @@ import {
   lessonListSchema,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-const neighbourUnitSchema = z
+const teachersUnitOverviewAdjacentUnit = z
   .object({ title: z.string(), slug: z.string() })
   .nullable();
 
-export type NeighbourUnit = z.infer<typeof neighbourUnitSchema>;
+export type TeachersUnitOverviewAdjacentUnit = z.infer<
+  typeof teachersUnitOverviewAdjacentUnit
+>;
 
 const programmeToggleSchema = z.array(
   z.object({
@@ -62,6 +65,7 @@ export const unitSequenceResponseSchema = z.array(
     yearOrder: z.number(),
     year: programmeFieldsSchema.shape.year,
     isSwimming: z.boolean().nullish(),
+    actions: actionsSchema.nullable(),
   }),
 );
 export type UnitSequence = z.infer<typeof unitSequenceResponseSchema>;
@@ -82,7 +86,7 @@ export type PackagedUnitData = {
   unitDescription: string | null;
   programmeSlugByYear: string[];
   nullUnitvariantId: number;
-  subjectCategories: string[] | null | undefined;
+  subjectCategories: string[] | null;
   whyThisWhyNow: string | null | undefined;
   priorKnowledgeRequirements: string[] | null | undefined;
 };
@@ -114,6 +118,7 @@ export const unitOverviewDataSchema = z.object({
   subjectSlug: programmeFieldsSchema.shape.subject_slug,
   subjectTitle: programmeFieldsSchema.shape.subject,
   parentSubject: programmeFieldsSchema.shape.subject_parent,
+  subjectCategories: z.array(z.string()).nullable(),
   yearTitle: programmeFieldsSchema.shape.year_description,
   yearSlug: programmeFieldsSchema.shape.year_slug,
   year: programmeFieldsSchema.shape.year,
@@ -137,8 +142,8 @@ export const unitOverviewDataSchema = z.object({
       .prior_knowledge_requirements,
   whyThisWhyNow:
     modifiedLessonsResponseSchema.shape.unit_data.shape.why_this_why_now,
-  nextUnit: neighbourUnitSchema,
-  prevUnit: neighbourUnitSchema,
+  nextUnit: teachersUnitOverviewAdjacentUnit,
+  prevUnit: teachersUnitOverviewAdjacentUnit,
   tierOptionToggles: programmeToggleSchema,
   subjectOptionToggles: programmeToggleSchema,
   threads: z.array(z.string()),

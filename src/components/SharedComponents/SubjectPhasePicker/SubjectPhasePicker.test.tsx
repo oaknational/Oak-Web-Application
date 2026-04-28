@@ -63,12 +63,13 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user can see subjects when they click the control", async () => {
-    const { getByTitle, findAllByTitle } = render(
+    const { getByTestId, findAllByTitle, findByTestId } = render(
       <SubjectPhasePicker {...curriculumPhaseOptions} />,
     );
-    const control = getByTitle("Subject");
+    const control = getByTestId("subject-picker-button");
     expect(control).toBeTruthy();
     await userEvent.click(control);
+    await findByTestId("subject-picker-heading");
     const buttons = await findAllByTitle("English");
     expect(buttons).toHaveLength(1);
   });

@@ -66,6 +66,10 @@ export const parameters = {
   docs: {
     codePanel: true,
   },
+
+  nextjs: {
+    appDirectory: true,
+  },
 };
 
 const WithThemeProvider = (Story, context) => {

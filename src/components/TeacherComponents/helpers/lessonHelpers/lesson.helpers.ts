@@ -20,6 +20,7 @@ import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMed
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
 import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
+import { resolveOakHref } from "@/common-lib/urls";
 
 /**
  * Returns the intersection different pathways.
@@ -111,21 +112,21 @@ export const getLessonOverviewBreadCrumb = ({
 }): Breadcrumb => {
   if (programmeSlug && unitSlug && !isCanonical) {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-overview",
         programmeSlug,
         unitSlug,
         lessonSlug,
-      },
+      }),
       label: lessonTitle,
       disabled,
     };
   } else {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-overview-canonical",
         lessonSlug,
-      },
+      }),
       label: lessonTitle,
       disabled,
     };
@@ -145,23 +146,23 @@ export const getLessonDownloadsBreadCrumb = ({
 }): Breadcrumb => {
   if (programmeSlug && unitSlug) {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-downloads",
         programmeSlug,
         unitSlug,
         lessonSlug,
         downloads: "downloads",
-      },
+      }),
       label: "Downloads",
       disabled,
     };
   } else {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-downloads-canonical",
         lessonSlug,
         downloads: "downloads",
-      },
+      }),
       label: "Downloads",
       disabled,
     };
@@ -183,21 +184,21 @@ export const getLessonMediaBreadCrumb = ({
   const mediaClipLabel = getMediaClipLabel(subjectSlug);
   if (programmeSlug && unitSlug) {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-media",
         programmeSlug,
         unitSlug,
         lessonSlug,
-      },
+      }),
       label: mediaClipLabel,
       disabled,
     };
   } else {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-media-canonical",
         lessonSlug,
-      },
+      }),
       label: mediaClipLabel,
       disabled,
     };
@@ -216,21 +217,21 @@ export const getLessonShareBreadCrumb = ({
 }): Breadcrumb => {
   if (programmeSlug && unitSlug) {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-share",
         programmeSlug,
         unitSlug,
         lessonSlug,
-      },
+      }),
       label: "Share",
       disabled,
     };
   } else {
     return {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "lesson-share-canonical",
         lessonSlug,
-      },
+      }),
       label: "Share",
       disabled,
     };
@@ -251,13 +252,13 @@ export const getBreadCrumbForSpecialistDownload = ({
   const nullableBreadcrumbs: (Breadcrumb | null)[] = [
     programmeSlug && unitSlug
       ? {
-          oakLinkProps: {
+          href: resolveOakHref({
             page: "specialist-lesson-downloads",
             programmeSlug,
             unitSlug,
             lessonSlug,
             downloads: "downloads",
-          },
+          }),
           label: "Downloads",
           disabled,
         }
@@ -280,12 +281,12 @@ export const getBreadCrumbForSpecialistShare = ({
   const nullableBreadcrumbs: (Breadcrumb | null)[] = [
     programmeSlug && unitSlug
       ? {
-          oakLinkProps: {
+          href: resolveOakHref({
             page: "specialist-lesson-share",
             programmeSlug,
             unitSlug,
             lessonSlug,
-          },
+          }),
           label: "Share",
           disabled,
         }
@@ -311,23 +312,23 @@ export const getBreadcrumbsForSpecialistLessonPathway = (
   } = lesson;
   const nullableBreadcrumbs: (Breadcrumb | null)[] = [
     {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "home",
-      },
+      }),
       label: "Home",
     },
     {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "specialist-subject-index",
-      },
+      }),
       label: "Specialist and therapies",
     },
     subjectSlug && subjectTitle && programmeSlug
       ? {
-          oakLinkProps: {
+          href: resolveOakHref({
             page: "specialist-unit-index",
             programmeSlug: programmeSlug,
-          },
+          }),
           label:
             developmentStageTitle !== ""
               ? `${subjectTitle} - ${developmentStageTitle}`
@@ -336,22 +337,22 @@ export const getBreadcrumbsForSpecialistLessonPathway = (
       : null,
     programmeSlug && unitSlug && unitTitle
       ? {
-          oakLinkProps: {
+          href: resolveOakHref({
             page: "specialist-lesson-index",
             programmeSlug,
             unitSlug,
-          },
+          }),
           label: unitTitle,
         }
       : null,
     programmeSlug && unitSlug && lessonSlug
       ? {
-          oakLinkProps: {
+          href: resolveOakHref({
             page: "specialist-lesson-overview",
             programmeSlug,
             unitSlug,
             lessonSlug,
-          },
+          }),
           label: lessonTitle,
           disabled,
         }
@@ -380,36 +381,36 @@ export const getBreadcrumbsForLessonPathway = (
 
   const nullableBreadcrumbs: (Breadcrumb | null)[] = [
     {
-      oakLinkProps: {
+      href: resolveOakHref({
         page: "home",
-      },
+      }),
       label: "Home",
     },
     keyStageSlug && keyStageTitle
       ? {
-          oakLinkProps: {
+          href: resolveOakHref({
             page: "subject-index",
             keyStageSlug,
-          },
+          }),
           label: keyStageTitle,
         }
       : null,
     subjectTitle && programmeSlug && programmeSlugForMathsUnits
       ? {
-          oakLinkProps: {
+          href: resolveOakHref({
             page: "unit-index",
             programmeSlug: programmeSlugForMathsUnits,
-          },
+          }),
           label: subjectTitle,
         }
       : null,
     unitTitle && programmeSlug && unitSlug
       ? {
-          oakLinkProps: {
+          href: resolveOakHref({
             page: "lesson-index",
             programmeSlug,
             unitSlug,
-          },
+          }),
           label: unitTitle,
         }
       : null,
@@ -431,7 +432,11 @@ export type GetPageLinksForLessonProps = Pick<
   | "hasMediaClips"
 >;
 
-export type LessonPageLinkAnchorId =
+/**
+ * Identifies the type of lesson resource.
+ * Used for business logic, downloads, and tracking.
+ */
+export type LessonResourceType =
   | "lesson-guide"
   | "slide-deck"
   | "lesson-details"
@@ -439,14 +444,21 @@ export type LessonPageLinkAnchorId =
   | "worksheet"
   | "starter-quiz"
   | "exit-quiz"
-  | "quiz"
   | "additional-material"
   | "media-clips";
+
+/**
+ * Anchor IDs for navigation within the lesson page.
+ * Includes LessonResourceType plus the special "quiz" anchor
+ * which is used when both quizzes are grouped together.
+ */
+export type LessonPageLinkAnchorId = LessonResourceType | "quiz";
 
 export const getPageLinksWithSubheadingsForLesson = (
   lesson: GetPageLinksForLessonProps,
   copyrightContent: LegacyCopyrightContent,
   mediaClipsLabel?: string,
+  isContentRestricted?: boolean,
 ): {
   label: string;
   anchorId: LessonPageLinkAnchorId;
@@ -535,6 +547,10 @@ export const getPageLinksWithSubheadingsForLesson = (
       condition: (lesson) => Boolean(lesson.additionalMaterialUrl),
     },
   ];
+
+  if (isContentRestricted) {
+    return PAGE_LINKS.filter((p) => p.anchorId === "lesson-details");
+  }
 
   return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson)).map(
     (lesson) => pick(lesson, ["label", "anchorId", "subheading"]),

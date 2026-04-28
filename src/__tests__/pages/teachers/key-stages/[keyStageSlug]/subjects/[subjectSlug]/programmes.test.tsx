@@ -282,6 +282,9 @@ describe("programmes listing page", () => {
       );
 
       const programmeCard = screen.getByRole("link", { name: "Foundation" });
+      programmeCard.addEventListener("click", (event) =>
+        event.preventDefault(),
+      );
       await userEvent.click(programmeCard);
       expect(programmeSelected).toHaveBeenCalledWith({
         activeFilters: {
@@ -311,6 +314,9 @@ describe("programmes listing page", () => {
       );
 
       const programmeCard = screen.getByRole("link", { name: "AQA" });
+      programmeCard.addEventListener("click", (event) =>
+        event.preventDefault(),
+      );
       await userEvent.click(programmeCard);
       expect(programmeSelected).toHaveBeenCalledWith({
         activeFilters: {
@@ -341,6 +347,9 @@ describe("programmes listing page", () => {
       const programmeCard = screen.getByRole("link", {
         name: "Foundation AQA",
       });
+      programmeCard.addEventListener("click", (event) =>
+        event.preventDefault(),
+      );
       await userEvent.click(programmeCard);
 
       expect(programmeSelected).toHaveBeenCalledWith({

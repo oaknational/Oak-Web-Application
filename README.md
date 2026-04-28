@@ -43,6 +43,11 @@ Create an environment configuration file by running:
 cp .env.example .env
 ```
 
+> [!NOTE]
+> This project has support for [dev containers](https://containers.dev/), if you use vscode and have the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) installed, you should be prompted to "Reopen in container" when opening this repo in vscode.
+>
+> There is various support in other editors (for example [zed](https://zed.dev/docs/dev-containers)) and a [CLI](https://github.com/devcontainers/cli)
+
 Now populate the file with values from the 1Password developers vault, search for "OWA .env for local development".
 
 Now install dependencies

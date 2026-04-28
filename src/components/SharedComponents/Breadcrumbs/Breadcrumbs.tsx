@@ -1,10 +1,14 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakUL, OakIcon } from "@oaknational/oak-components";
+import {
+  OakUL,
+  OakIcon,
+  OakSecondaryLink,
+  OakFocusIndicator,
+  parseSpacing,
+} from "@oaknational/oak-components";
 
 import { BreadcrumbJsonLd } from "@/browser-lib/seo/getJsonLd";
-import OwaLink from "@/components/SharedComponents/OwaLink";
-import { MaybeOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import ellipsis from "@/styles/ellipsis";
 
 const BreadcrumbsNav = styled.nav`
@@ -30,28 +34,26 @@ const BreadcrumbsLi = styled.li`
 `;
 
 const BreadcrumbConstrainer = styled.div`
-  margin-right: 12px;
+  margin-right: ${parseSpacing("spacing-12")};
   ${ellipsis}
 `;
 
 export type Breadcrumb = {
   label: string;
   disabled?: boolean;
-  oakLinkProps:
-    | {
-        /**
-         * To encourage the use of 'page' prop (which will get resolved to an href)
-         * you must pass page={null} when passing 'href' directly
-         */
-        page: null;
-        href: MaybeOakHref;
-      }
-    | ResolveOakHrefProps;
+  href: string;
 };
 
 export type BreadcrumbsProps = {
   breadcrumbs: Breadcrumb[];
 };
+
+// To fix ellipsis showing in firefox unecessarily
+const StyledLink = styled(OakSecondaryLink)`
+  display: block;
+  margin-right: ${parseSpacing("spacing-12")};
+  ${ellipsis}
+`;
 
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
   return (
@@ -61,7 +63,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
       <BreadcrumbsNav aria-label="Breadcrumb">
         <BreadcrumbUL $reset $minWidth={0}>
           {breadcrumbs.map((breadcrumb, i) => {
-            const { label, disabled, oakLinkProps } = breadcrumb;
+            const { label, disabled, href } = breadcrumb;
             return (
               <BreadcrumbsLi key={`${i}-${label}`}>
                 {i !== 0 && (
@@ -73,13 +75,17 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                     $height={"spacing-20"}
                   />
                 )}
-                <BreadcrumbConstrainer>
+                <OakFocusIndicator
+                  $borderRadius={"border-radius-s"}
+                  $minWidth={0}
+                  $maxWidth="100%"
+                >
                   {disabled ? (
-                    <>{label}</>
+                    <BreadcrumbConstrainer>{label}</BreadcrumbConstrainer>
                   ) : (
-                    <OwaLink {...oakLinkProps}>{label}</OwaLink>
+                    <StyledLink href={href}>{label}</StyledLink>
                   )}
-                </BreadcrumbConstrainer>
+                </OakFocusIndicator>
               </BreadcrumbsLi>
             );
           })}
