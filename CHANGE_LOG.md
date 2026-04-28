@@ -1,3 +1,34 @@
+# [1.1057.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1056.0...v1.1057.0) (2026-04-27)
+
+
+### Bug Fixes
+
+* **LESQ-1910:** make next+previous links equal height ([32f2173](https://github.com/oaknational/Oak-Web-Application/commit/32f21732aa9f402d231dab9826fad24754523816))
+* naming error from merge conflict ([b12d47d](https://github.com/oaknational/Oak-Web-Application/commit/b12d47d93ffbd20f1bc8d556d91e8c9a85c1f627))
+* only check hasMediaClips field when adding media clips to lesson resources ([d4b0556](https://github.com/oaknational/Oak-Web-Application/commit/d4b055692eb64a0a6c12b87037e53b0e057fb769))
+* sonarqube errors ([359dfe9](https://github.com/oaknational/Oak-Web-Application/commit/359dfe9b90665f9af5d58263257152a322b106c0))
+* undefined showing for some skip links ([e7059ed](https://github.com/oaknational/Oak-Web-Application/commit/e7059eddc42d609b7826afce307d3cfa5f5d0e06))
+
+
+### Features
+
+* add correct download titles ([49f75ea](https://github.com/oaknational/Oak-Web-Application/commit/49f75ea4429520713fd73365b080510bd91ee04b))
+* add headings ([9f1498a](https://github.com/oaknational/Oak-Web-Application/commit/9f1498a0acd49d570bbaa54d7e655fe036c54d34))
+* add mathjax lesson provider ([1270841](https://github.com/oaknational/Oak-Web-Application/commit/1270841fc5f5eb206fe62d50cf350b8d000e5ae0))
+* add tracking for all media clips buttons, refactor tracking code ([c153574](https://github.com/oaknational/Oak-Web-Application/commit/c1535748b7953ba07dac4639dd5cfd3aa2d2e332))
+* add tracking for media and downloads ([27d4aa9](https://github.com/oaknational/Oak-Web-Application/commit/27d4aa92e9fdbaeb9ce90b2b63edcb16dd5849a2))
+* do not show video LessonItem when video ID not present ([f2f4e67](https://github.com/oaknational/Oak-Web-Application/commit/f2f4e678ce7d3443e60b5d62485af45469ff186e))
+* dodge focus traps on lesson guides and additonal material previews ([84dca78](https://github.com/oaknational/Oak-Web-Application/commit/84dca785d162f15b24f79151af1644977c47dab0))
+* download buttons and skip links ([96106ae](https://github.com/oaknational/Oak-Web-Application/commit/96106ae36345af9258038b26a39dd1755388de10))
+* **LESQ-1910:** add next+previous lesson buttons ([1056325](https://github.com/oaknational/Oak-Web-Application/commit/105632581e2621b154bc183c5c336c5b7126bb9b))
+* **LESQ-1910:** skip unpublished lessons for next+previous ([7f967c7](https://github.com/oaknational/Oak-Web-Application/commit/7f967c7e42a6928c6aa835be97130e5d5f7c7e92))
+* **LESQ-1910:** use index from data ([4088b80](https://github.com/oaknational/Oak-Web-Application/commit/4088b80ff976ca2bfc731bfc3dfd2f9744fcb7a0))
+* **LESQ-1910:** use the main token for level 1 background ([505a058](https://github.com/oaknational/Oak-Web-Application/commit/505a058c49d5772cd549f5e9c48bb130dd45b304))
+* render lesson resources ([ba27d7b](https://github.com/oaknational/Oak-Web-Application/commit/ba27d7bc60621f07e01b1fdb09914ae32f7a15eb))
+* spacing of resources, rm HR component ([725dfed](https://github.com/oaknational/Oak-Web-Application/commit/725dfed988c5571e5bdcdd0c50ca5cf055fd633d))
+* subheading for sidenav anchor links ([6aa9dd5](https://github.com/oaknational/Oak-Web-Application/commit/6aa9dd5ba517c8bd6acbace6bc77905984b812fb))
+* update links on lesson list to point to new lesson page ([9eba846](https://github.com/oaknational/Oak-Web-Application/commit/9eba846abf7c77e9f9b48f289aba7d3f66579153))
+
 # [1.1056.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1055.2...v1.1056.0) (2026-04-27)
 
 
