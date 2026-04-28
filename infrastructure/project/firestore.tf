@@ -7,7 +7,7 @@ locals {
 }
 
 module "firestore" {
-  source = "github.com/oaknational/oak-terraform-modules//modules/gcp_firestore?ref=v2.0.2"
+  source = "github.com/oaknational/oak-terraform-modules//modules/gcp_firestore?ref=v2.0.4"
 
   for_each = {
     for env in local.firestore_envs : env.gcp => env
