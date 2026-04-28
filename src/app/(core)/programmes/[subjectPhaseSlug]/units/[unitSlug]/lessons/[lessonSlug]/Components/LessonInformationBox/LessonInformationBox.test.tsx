@@ -82,11 +82,7 @@ describe("LessonInformationBox", () => {
   });
 
   it("renders supervision section", () => {
-    render(
-      <LessonInformationBox
-        supervision={["Supervision item 1", "Supervision item 2"]}
-      />,
-    );
+    render(<LessonInformationBox supervision={"Supervision item 1"} />);
     const supervisionHeading = screen.getByRole("heading", {
       name: "Supervision",
     });
@@ -107,7 +103,7 @@ describe("LessonInformationBox", () => {
         filesNeeded={{
           files: ["File 1", "File 2"],
           href: "#",
-          geoRestricted: false,
+          georestricted: false,
           loginRequired: false,
         }}
       />,
@@ -142,7 +138,7 @@ describe("LessonInformationBox", () => {
         filesNeeded={{
           files: ["File 1"],
           href: "#",
-          geoRestricted: false,
+          georestricted: false,
           loginRequired: false,
         }}
       />,
@@ -170,7 +166,7 @@ describe("LessonInformationBox", () => {
         filesNeeded={{
           files: ["File 1"],
           href: "https://example.com/file1",
-          geoRestricted: false,
+          georestricted: false,
           loginRequired: false,
         }}
       />,
@@ -188,7 +184,7 @@ describe("LessonInformationBox", () => {
         filesNeeded={{
           files: ["File 1", "File 2"],
           href: "#",
-          geoRestricted: false,
+          georestricted: false,
           loginRequired: true,
         }}
       />,

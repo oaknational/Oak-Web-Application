@@ -106,12 +106,14 @@ export function getLessonResources({
   copyrightState,
   isMathJaxLesson,
   trackMediaClipsButtonClicked,
+  contentRestricted,
 }: {
   browsePathwayData: AnalyticsBrowseData;
   data: TeachersLessonOverviewPageData;
   copyrightState: ReturnType<typeof useComplexCopyright>;
   isMathJaxLesson: boolean;
   trackMediaClipsButtonClicked: (props: TrackingCallbackProps) => void;
+  contentRestricted: boolean;
 }): LessonResource[] {
   const lessonGuide = data.lessonGuideUrl ? (
     <LessonOverviewDocPresentation
@@ -144,8 +146,9 @@ export function getLessonResources({
   const lessonDetails = (
     <LessonDetails
       loginRequired={data.loginRequired}
-      geoRestricted={data.geoRestricted}
+      georestricted={data.geoRestricted}
       keyLearningPoints={data.keyLearningPoints}
+      learningOutcome={data.pupilLessonOutcome}
       commonMisconceptions={data.misconceptionsAndCommonMistakes}
       keyWords={data.lessonKeywords?.length ? data.lessonKeywords : undefined}
       slugs={{
@@ -166,13 +169,16 @@ export function getLessonResources({
       year={data.yearTitle}
       subject={data.subjectTitle}
       keystage={data.keyStageTitle}
+      keystageSlug={data.keyStageSlug}
       unit={data.unitTitle}
       lesson={data.lessonTitle}
       examBoardSlug={data.examBoardSlug}
       subjectSlug={data.subjectSlug}
       subjectParent={data.subjectParent}
+      phaseSlug={data.phaseSlug}
       disablePupilLink={data.actions?.disablePupilShare}
       hideSeoHelper={copyrightState.showGeoBlocked}
+      useIntegratedJourneyLayout
     />
   );
   const lessonVideo = data.videoMuxPlaybackId ? (
@@ -313,5 +319,12 @@ export function getLessonResources({
         ...item,
         skipLinkUrl,
       };
+    })
+    .filter((item) => {
+      // Only show lesson details when content is restricted
+      if (contentRestricted) {
+        return item.anchorId === "lesson-details";
+      }
+      return true;
     });
 }

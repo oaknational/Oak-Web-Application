@@ -28,6 +28,7 @@ import { hasLessonMathJax } from "@/components/TeacherViews/LessonOverview/hasLe
 import { getSideNavLinksFromResources } from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks/LessonOverviewSideNavAnchorLinks";
 import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
+import { LessonSeoHelper } from "@/components/TeacherComponents/LessonOverviewDetails/LessonSeoHelper";
 
 export default function LessonView(
   props: Readonly<TeachersLessonOverviewPageData>,
@@ -47,12 +48,15 @@ export default function LessonView(
     keyStageTitle,
     keyStageSlug,
     subjectTitle,
+    subjectParent,
     unitTitle,
     year,
     yearTitle,
     examBoardTitle,
+    examBoardSlug,
     tierTitle,
     pathwayTitle,
+    phaseSlug,
     actions,
   } = props;
 
@@ -138,6 +142,7 @@ export default function LessonView(
     copyrightState,
     isMathJaxLesson,
     trackMediaClipsButtonClicked,
+    contentRestricted,
   });
 
   const showPupilShare =
@@ -243,6 +248,32 @@ export default function LessonView(
                     onMediaClipsButtonClick={trackMediaClipsButtonClicked}
                   />
                 ))}
+
+                {!contentRestricted && (
+                  <LessonSeoHelper
+                    loginRequired={loginRequired}
+                    geoRestricted={geoRestricted}
+                    lessonSlug={lessonSlug}
+                    year={year}
+                    programmeSlug={programmeSlug}
+                    unitSlug={unitSlug}
+                    subject={subjectTitle}
+                    phaseSlug={phaseSlug}
+                    unit={unitTitle}
+                    keystage={keyStageTitle}
+                    examBoardSlug={examBoardSlug}
+                    subjectSlug={subjectSlug}
+                    parentSubject={subjectParent}
+                    disablePupilLink={
+                      geoRestricted ||
+                      loginRequired ||
+                      actions?.disablePupilShare
+                    }
+                    lesson={lessonTitle}
+                    keystageSlug={keyStageSlug}
+                    isIntegratedJourney
+                  />
+                )}
               </OakFlex>
             </OakGridArea>
 

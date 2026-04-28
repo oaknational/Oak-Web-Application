@@ -395,6 +395,10 @@ type ProgrammePageProps = {
   page: "teacher-programme";
   subjectPhaseSlug: string;
   tab: string;
+  query?: {
+    keystages?: string;
+    years?: string;
+  };
 };
 
 type ClassroomSignInLinkProps = { page: "classroom-sign-in" };
