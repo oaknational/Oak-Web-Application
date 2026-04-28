@@ -1,6 +1,6 @@
 terraform {
   cloud {
-    organization = "your-organizaton-name"
+    organization = "your-organization-name"
     workspaces {
       tags = ["repo:Oak-Web-Application", "config:web"]
     }
