@@ -1,3 +1,15 @@
+## [1.1058.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1058.0...v1.1058.1) (2026-04-28)
+
+
+### Bug Fixes
+
+* add 'all subjects' data to topNav fixture ([5ea5caf](https://github.com/oaknational/Oak-Web-Application/commit/5ea5cafa9f5ebbe754f6a7d0deb04da3a9e208f5))
+* apply missing non-curriculum subjects ([3ba9a50](https://github.com/oaknational/Oak-Web-Application/commit/3ba9a50dd9d546223d41843888aa1bbd01602a64))
+* display all subjects button in top nav dropdown ([3d5cfd8](https://github.com/oaknational/Oak-Web-Application/commit/3d5cfd8ebd54386b61e237d1fcec6856cf899444))
+* remove appended all subjects from dropdown focus manager ([1f30507](https://github.com/oaknational/Oak-Web-Application/commit/1f3050733496c2f9df6d0c15f50bd8ab56ab5749))
+* remove unused properties ([e9ce366](https://github.com/oaknational/Oak-Web-Application/commit/e9ce366c0529d5007e2e0cece4513287456fa31e))
+* return subjects with hardcoded all subjects button appended ([9c6da1f](https://github.com/oaknational/Oak-Web-Application/commit/9c6da1ff56a652250ababfb7c179b3c041dea914))
+
 # [1.1058.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1057.2...v1.1058.0) (2026-04-28)
 
 
