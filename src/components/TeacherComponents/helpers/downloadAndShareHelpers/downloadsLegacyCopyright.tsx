@@ -38,12 +38,14 @@ export const getResourcesWithoutLegacyCopyright = (
 export const getIsResourceDownloadable = (
   resource: ResourceType,
   downloads: LessonOverviewDownloads,
-  copyrightContent: LegacyCopyrightContent,
+  copyrightContent?: LegacyCopyrightContent,
 ) => {
   const inDownloads = downloads.find((d) => d.type === resource);
   if (!inDownloads || !inDownloads.exists) {
     return false;
   }
-
-  return !checkIfResourceHasLegacyCopyright(resource, copyrightContent);
+  if (copyrightContent) {
+    return !checkIfResourceHasLegacyCopyright(resource, copyrightContent);
+  }
+  return true;
 };
