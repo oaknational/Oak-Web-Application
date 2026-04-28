@@ -133,9 +133,6 @@ export function SubmenuContent(
       );
       if (!keystage) return null;
       const subjects = keystage.children.filter((s) => !s.nonCurriculum);
-      const nonCurriculumSubjects = keystage.children.filter(
-        (s) => s.nonCurriculum,
-      );
       return (
         <SubmenuContainer
           description={keystage.description}
@@ -161,9 +158,7 @@ export function SubmenuContent(
             }}
             selectedMenu={phase}
             subjects={subjects}
-            nonCurriculumSubjects={nonCurriculumSubjects}
             keyStageSlug={keystage.slug}
-            keyStageTitle={keystage.title}
           />
         </SubmenuContainer>
       );
