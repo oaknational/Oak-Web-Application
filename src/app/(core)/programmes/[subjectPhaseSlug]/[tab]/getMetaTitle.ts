@@ -47,16 +47,16 @@ export const getMetaTitle = (
       : "";
   const examboardSegment = ks4Option ? ` ${ks4Option.title}` : "";
 
-  const baseMetaTitle = `Free ${phaseSubjectSegment}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources | Oak National Academy`;
+  const baseMetaTitle = `Free ${phaseSubjectSegment}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
   const keystageMetaTitle = keystageSegment
-    ? `Free ${keystageSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment} Lesson & Curriculum Resources | Oak National Academy`
+    ? `Free ${keystageSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment} Lesson & Curriculum Resources`
     : undefined;
   const yearsMetaTitle = yearSegment
-    ? `Free ${yearSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment} Lesson & Curriculum Resources | Oak National Academy`
+    ? `Free ${yearSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment} Lesson & Curriculum Resources`
     : undefined;
   const yearAndThreadMetaTitle =
     yearSegment && threadSegment
-      ? `Free ${yearSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources | Oak National Academy`
+      ? `Free ${yearSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`
       : undefined;
 
   const title =
