@@ -229,7 +229,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                   disablePupilLink || georestricted || loginRequired
                 }
                 lesson={lesson}
-                isIntegratedJourney
+                isIntegratedJourney={false}
               />
             )}
           </OakFlex>
