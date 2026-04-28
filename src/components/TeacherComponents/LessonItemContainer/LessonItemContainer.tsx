@@ -67,11 +67,15 @@ export interface LessonItemContainerProps {
   subheader?: React.ReactNode;
 }
 
-const getPreselectedDownloadFromTitle = (title: DownloadableLessonTitles) => {
+export const getPreselectedDownloadFromTitle = (
+  title: DownloadableLessonTitles,
+) => {
   return containerTitleToPreselectMap[title]?.downloadType;
 };
 
-const getPreselectedQueryFromTitle = (title: DownloadableLessonTitles) => {
+export const getPreselectedQueryFromTitle = (
+  title: DownloadableLessonTitles,
+) => {
   return containerTitleToPreselectMap[title]?.shareType;
 };
 

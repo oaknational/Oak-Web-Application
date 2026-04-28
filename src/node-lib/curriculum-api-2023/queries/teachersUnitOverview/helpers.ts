@@ -68,7 +68,7 @@ export const getTransformedLessons = (
     });
 };
 
-export const getNeighbourUnits = ({
+export const getAdjacentUnits = ({
   unitSequenceData,
   nullUnitvariantId,
 }: {
@@ -84,6 +84,8 @@ export const getNeighbourUnits = ({
   }
 
   const isCurrentUnitSwimming = currentUnit.isSwimming === true;
+  const shouldGroupBySubjectCategory =
+    currentUnit.actions?.subject_category_actions?.group_by_subjectcategory;
 
   const sortedUniqueUnits = unitSequenceData
     .toSorted((a, b) => {
@@ -94,6 +96,16 @@ export const getNeighbourUnits = ({
     .filter((unit, i, a) => {
       const uv = a.find((u) => u.nullUnitvariantId === unit.nullUnitvariantId);
       return a.indexOf(uv!) === i;
+    })
+    .filter((unit) => {
+      if (shouldGroupBySubjectCategory) {
+        // Filter to units in the same subject category when we should group them
+        const hasMatchingCategory = currentUnit.subjectCategories?.some(
+          (category) => unit.subjectCategories?.includes(category),
+        );
+        return hasMatchingCategory;
+      }
+      return true;
     })
     .filter((unit) => {
       // Swimming units are grouped across all years.
@@ -128,11 +140,9 @@ export const getNeighbourUnits = ({
 export const getUnitCounts = ({
   unitSequenceData,
   nullUnitvariantId,
-  currentSubjectCategoryTitle,
 }: {
   unitSequenceData: UnitSequence;
   nullUnitvariantId: number;
-  currentSubjectCategoryTitle?: string;
 }) => {
   const currentUnit = unitSequenceData.find(
     (u) => u.nullUnitvariantId === nullUnitvariantId,
@@ -142,13 +152,8 @@ export const getUnitCounts = ({
   }
 
   const isCurrentUnitSwimming = currentUnit.isSwimming === true;
-
-  // Units can belong to multiple subject categories. We pass that down through
-  // the query so that we can filter accordingly
-  const currentSubjectCategory = currentUnit.subjectCategories?.find(
-    (subjectCategoryTitle) =>
-      subjectCategoryTitle === currentSubjectCategoryTitle,
-  );
+  const shouldGroupBySubjectCategory =
+    currentUnit.actions?.subject_category_actions?.group_by_subjectcategory;
 
   const unitsForYear = unitSequenceData
     .reduce((acc: UnitSequence, unit) => {
@@ -159,17 +164,20 @@ export const getUnitCounts = ({
       return acc;
     }, [])
     .filter((u) => {
+      // Keep only units that intersect with the current unit on at least
+      // one subject category.
+      // !IMPORTANT: This will break if currentUnit belongs to multiple subject categories
+      if (shouldGroupBySubjectCategory) {
+        return u.subjectCategories?.some((category) =>
+          currentUnit.subjectCategories?.includes(category),
+        );
+      }
+      return true;
+    })
+    .filter((u) => {
       // Swimming units are grouped across all years; all other units are grouped by year.
       if (isCurrentUnitSwimming) {
         return u.isSwimming === true;
-      }
-
-      // Exclude units that don't belong to the current subject category.
-      if (
-        currentSubjectCategory &&
-        !u.subjectCategories?.includes(currentSubjectCategory)
-      ) {
-        return false;
       }
 
       // Exclude swimming units from all years.
@@ -193,7 +201,6 @@ export const getPackagedUnit = ({
   unitSequenceData,
   unitsInOtherProgrammes,
   threads,
-  currentSubjectCategoryTitle,
 }: {
   packagedUnitData: PackagedUnitData;
   unitLessons: LessonListSchema;
@@ -202,7 +209,6 @@ export const getPackagedUnit = ({
   unitSequenceData: UnitSequence;
   unitsInOtherProgrammes: UnitsInOtherProgrammes;
   threads: Threads;
-  currentSubjectCategoryTitle?: string;
 }): TeachersUnitOverviewData => {
   const {
     programmeFields,
@@ -215,6 +221,7 @@ export const getPackagedUnit = ({
     nullUnitvariantId,
     whyThisWhyNow,
     priorKnowledgeRequirements,
+    subjectCategories,
   } = packagedUnitData;
 
   const modifiedProgrammeFields = getCorrectYear({
@@ -235,7 +242,7 @@ export const getPackagedUnit = ({
     (actions) => actions?.isPePractical === true,
   );
 
-  const { nextUnit, prevUnit } = getNeighbourUnits({
+  const { nextUnit, prevUnit } = getAdjacentUnits({
     unitSequenceData,
     nullUnitvariantId,
   });
@@ -247,7 +254,6 @@ export const getPackagedUnit = ({
   const { unitCount, unitIndex } = getUnitCounts({
     unitSequenceData,
     nullUnitvariantId,
-    currentSubjectCategoryTitle,
   });
 
   const threadItems = threads
@@ -261,6 +267,7 @@ export const getPackagedUnit = ({
     subjectSlug: modifiedProgrammeFields.subject_slug,
     subjectTitle: modifiedProgrammeFields.subject,
     parentSubject: modifiedProgrammeFields.subject_parent ?? null,
+    subjectCategories,
     unitSlug,
     unitvariantId,
     unitTitle,

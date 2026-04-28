@@ -60,14 +60,9 @@ const TeachersPhaseSection = ({
 
   const keystagesRef = useRef<HTMLUListElement>(null);
 
-  const subjects =
-    menuData.children
-      .find((k) => k.slug === selectedKeystage)
-      ?.children.filter((subject) => !subject.nonCurriculum) ?? undefined;
-  const nonCurriculumSubjects =
-    menuData.children
-      .find((k) => k.slug === selectedKeystage)
-      ?.children.filter((subject) => subject.nonCurriculum) ?? undefined;
+  const allSubjects =
+    menuData.children.find((keystage) => keystage.slug === selectedKeystage)
+      ?.children ?? undefined;
 
   const onKeystageClick = (keystageSlug: string) => {
     track.browseRefined({
@@ -117,6 +112,8 @@ const TeachersPhaseSection = ({
     }
   };
 
+  const isKeystageOpen = (slug: string) => selectedKeystage === slug;
+
   return (
     <OakFlex $gap={"spacing-40"}>
       <OakUL
@@ -142,17 +139,21 @@ const TeachersPhaseSection = ({
                 isTrailingIcon
                 rightAlignIcon
                 width={"spacing-160"}
-                selected={selectedKeystage === keystage.slug}
+                selected={isKeystageOpen(keystage.slug)}
                 onClick={() => onKeystageClick(keystage.slug)}
                 onKeyDown={(e) => focusManager.handleKeyDown(e, buttonId)}
                 aria-current={
-                  selectedKeystage === keystage.slug ? "true" : undefined
+                  isKeystageOpen(keystage.slug) ? "true" : undefined
                 }
                 id={buttonId}
-                aria-expanded={selectedKeystage === keystage.slug}
-                aria-controls={`topnav-teachers-${keystage.slug}-subjects`}
+                aria-expanded={isKeystageOpen(keystage.slug)}
+                aria-controls={
+                  isKeystageOpen(keystage.slug)
+                    ? `topnav-teachers-${keystage.slug}-subjects`
+                    : undefined
+                }
                 role="tab"
-                aria-selected={selectedKeystage === keystage.slug}
+                aria-selected={isKeystageOpen(keystage.slug)}
                 aria-label={
                   keystage.title === "EYFS"
                     ? "Early years foundation stage"
@@ -165,18 +166,13 @@ const TeachersPhaseSection = ({
           );
         })}
       </OakUL>
-      {subjects && (
+      {allSubjects && (
         <TopNavSubjectButtons
           handleClick={onClick}
           focusManager={focusManager}
           selectedMenu={selectedMenu}
-          subjects={subjects}
-          nonCurriculumSubjects={nonCurriculumSubjects}
+          subjects={allSubjects}
           keyStageSlug={selectedKeystage}
-          keyStageTitle={
-            menuData.children.find((k) => k.slug === selectedKeystage)?.title ||
-            ""
-          }
         />
       )}
     </OakFlex>
