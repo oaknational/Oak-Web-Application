@@ -1,3 +1,15 @@
+# [1.1058.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1057.2...v1.1058.0) (2026-04-28)
+
+
+### Bug Fixes
+
+* **LESQ-1957:** core units not being exluded for GCSE citizenship ([2f2ad6e](https://github.com/oaknational/Oak-Web-Application/commit/2f2ad6eb9e783940b07cf64496bc7beb297f1d3b))
+
+
+### Features
+
+* **LESQ-1957:** exclude core from GCSE pathway ([2a98de4](https://github.com/oaknational/Oak-Web-Application/commit/2a98de4a43e2160d3b57b67508373d83dd06e4d8))
+
 ## [1.1057.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1057.1...v1.1057.2) (2026-04-28)
 
 
