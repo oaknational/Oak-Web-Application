@@ -126,7 +126,7 @@ describe("urls.ts", () => {
         "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48",
       );
     });
-    it("Integrated lesson overview", () => {
+    it("Integrated lesson index", () => {
       expect(
         resolveOakHref({
           page: "integrated-lesson-overview",
