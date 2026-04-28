@@ -1,3 +1,23 @@
+# [1.1059.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1058.2...v1.1059.0) (2026-04-28)
+
+
+### Bug Fixes
+
+* exclude empty strings from lesson info ([c836411](https://github.com/oaknational/Oak-Web-Application/commit/c836411191f6e7bd6391f9316715b410037a6ca4))
+* maintain query when redirecting on programme page ([77a2809](https://github.com/oaknational/Oak-Web-Application/commit/77a2809ffbb8953cac054379a57d8fdbe62405a8))
+* only show lesson details when content is restricted ([59a9a78](https://github.com/oaknational/Oak-Web-Application/commit/59a9a782199b59a6418af4f746018624cec1faf6))
+* pass correct value for isIntegratedJourney in live page ([520a63b](https://github.com/oaknational/Oak-Web-Application/commit/520a63b5650ad549f26435cc107ebf3e2f5463be))
+* reinstate seo accordion on live lesson page ([ddad1ce](https://github.com/oaknational/Oak-Web-Application/commit/ddad1ce7d47f6f8360f04bb120893a967acef357))
+* remove share with pupils seo text when disablePupilShare set ([70fbebf](https://github.com/oaknational/Oak-Web-Application/commit/70fbebfebb8886d801bb1464db062a4363bbb842))
+
+
+### Features
+
+* add heading for copyright licence section of lesson information ([c27c381](https://github.com/oaknational/Oak-Web-Application/commit/c27c38142001f9178b74fe488a1e13f85b0763a0))
+* add learning outcome to lesson details section ([4fdad96](https://github.com/oaknational/Oak-Web-Application/commit/4fdad963dc6ed4cbc94a2570509a5d87a3aeb361))
+* add lesson information to lesson overview component ([b92f8e4](https://github.com/oaknational/Oak-Web-Application/commit/b92f8e449cd0fe9c318839c781d827e8433b2007))
+* update lesson seo helper and add to new lesson page ([a79823f](https://github.com/oaknational/Oak-Web-Application/commit/a79823fc0cde5968d47a07824446e1ad6ae2c0c5))
+
 ## [1.1058.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1058.1...v1.1058.2) (2026-04-28)
 
 ## [1.1058.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1058.0...v1.1058.1) (2026-04-28)
