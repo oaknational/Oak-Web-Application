@@ -1,3 +1,11 @@
+## [1.1057.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1057.0...v1.1057.1) (2026-04-28)
+
+
+### Bug Fixes
+
+* **pupil:** format MV transcript arrays into sentences ([a8c4184](https://github.com/oaknational/Oak-Web-Application/commit/a8c4184de021287580fa6a58bfc30f71844dd749))
+* **pupil:** prefer MV transcript over GCS captions ([c7337a4](https://github.com/oaknational/Oak-Web-Application/commit/c7337a40cf07e931c7a9e8da691aee96af69b813))
+
 # [1.1057.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1056.0...v1.1057.0) (2026-04-27)
 
 
