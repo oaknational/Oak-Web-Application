@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { shareLinkConfig } from "./linkConfig";
 import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
@@ -28,6 +29,9 @@ const LessonShareLinks: FC<{
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
   const { setCurrentToastProps } = useOakNotificationsContext();
+  const useGoogleClassroomAddon = useFeatureFlagEnabled(
+    "google-classroom-free-tier",
+  );
 
   useEffect(() => {
     setIsShareSuccessful(false);
@@ -36,7 +40,9 @@ const LessonShareLinks: FC<{
   const linkShareOptions = [
     shareLinkConfig.microsoftTeams,
     shareLinkConfig.email,
-    ...(props.onGoogleClassroomClick ? [] : [shareLinkConfig.googleClassroom]),
+    ...(props.onGoogleClassroomClick && useGoogleClassroomAddon
+      ? []
+      : [shareLinkConfig.googleClassroom]),
   ];
 
   return (
@@ -86,7 +92,7 @@ const LessonShareLinks: FC<{
           disabled={props.disabled}
         />
 
-        {props.onGoogleClassroomClick && (
+        {props.onGoogleClassroomClick && useGoogleClassroomAddon && (
           <LoadingButton
             text={shareLinkConfig.googleClassroom.name}
             icon={shareLinkConfig.googleClassroom.icon}
