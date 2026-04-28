@@ -1,3 +1,31 @@
+# [1.1058.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1057.2...v1.1058.0) (2026-04-28)
+
+
+### Bug Fixes
+
+* **LESQ-1957:** core units not being exluded for GCSE citizenship ([2f2ad6e](https://github.com/oaknational/Oak-Web-Application/commit/2f2ad6eb9e783940b07cf64496bc7beb297f1d3b))
+
+
+### Features
+
+* **LESQ-1957:** exclude core from GCSE pathway ([2a98de4](https://github.com/oaknational/Oak-Web-Application/commit/2a98de4a43e2160d3b57b67508373d83dd06e4d8))
+
+## [1.1057.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1057.1...v1.1057.2) (2026-04-28)
+
+
+### Bug Fixes
+
+* **LESQ-1985:** breadcrumbs overflowing container ([72aa1fc](https://github.com/oaknational/Oak-Web-Application/commit/72aa1fcdc203fe838de2a56661afa36d063229f6))
+* **LESQ-1985:** links inside breadcrumbs not truncating ([9f51763](https://github.com/oaknational/Oak-Web-Application/commit/9f51763175c3b78165bc8e32cbee217bc8c1af03))
+
+## [1.1057.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1057.0...v1.1057.1) (2026-04-28)
+
+
+### Bug Fixes
+
+* **pupil:** format MV transcript arrays into sentences ([a8c4184](https://github.com/oaknational/Oak-Web-Application/commit/a8c4184de021287580fa6a58bfc30f71844dd749))
+* **pupil:** prefer MV transcript over GCS captions ([c7337a4](https://github.com/oaknational/Oak-Web-Application/commit/c7337a40cf07e931c7a9e8da691aee96af69b813))
+
 # [1.1057.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1056.0...v1.1057.0) (2026-04-27)
 
 
