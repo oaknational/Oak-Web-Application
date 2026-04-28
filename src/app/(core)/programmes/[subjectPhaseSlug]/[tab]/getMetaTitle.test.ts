@@ -70,7 +70,7 @@ describe("getMetaTitle", () => {
         {},
       );
       expect(result).toEqual(
-        "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
+        "Free Secondary Maths Lesson & Curriculum Resources",
       );
     });
     it("returns a title with subject phase and thread", () => {
@@ -84,7 +84,7 @@ describe("getMetaTitle", () => {
         { threads: "thread-1" },
       );
       expect(result).toEqual(
-        "Free Secondary Maths - Thread 1 Lesson & Curriculum Resources | Oak National Academy",
+        "Free Secondary Maths - Thread 1 Lesson & Curriculum Resources",
       );
     });
     it("returns a title with subject phase and tier", () => {
@@ -98,7 +98,7 @@ describe("getMetaTitle", () => {
         { tiers: "foundation" },
       );
       expect(result).toEqual(
-        "Free Secondary Maths Foundation Lesson & Curriculum Resources | Oak National Academy",
+        "Free Secondary Maths Foundation Lesson & Curriculum Resources",
       );
     });
     it("returns a title with subject, phase and examboard", () => {
@@ -112,7 +112,7 @@ describe("getMetaTitle", () => {
         {},
       );
       expect(result).toEqual(
-        "Free Secondary Maths AQA Lesson & Curriculum Resources | Oak National Academy",
+        "Free Secondary Maths AQA Lesson & Curriculum Resources",
       );
     });
     it("returns a title with subject, phase, examboard and tier", () => {
@@ -126,7 +126,7 @@ describe("getMetaTitle", () => {
         { tiers: "foundation" },
       );
       expect(result).toEqual(
-        "Free Secondary Maths Foundation AQA Lesson & Curriculum Resources | Oak National Academy",
+        "Free Secondary Maths Foundation AQA Lesson & Curriculum Resources",
       );
     });
   });
@@ -142,9 +142,7 @@ describe("getMetaTitle", () => {
         },
         { keystages: "ks3" },
       );
-      expect(result).toEqual(
-        "Free KS3 Maths Lesson & Curriculum Resources | Oak National Academy",
-      );
+      expect(result).toEqual("Free KS3 Maths Lesson & Curriculum Resources");
     });
     it("returns a title with keystage and examboard", () => {
       const result = getMetaTitle(
@@ -157,7 +155,7 @@ describe("getMetaTitle", () => {
         { keystages: "ks4" },
       );
       expect(result).toEqual(
-        "Free KS4 Maths AQA Lesson & Curriculum Resources | Oak National Academy",
+        "Free KS4 Maths AQA Lesson & Curriculum Resources",
       );
     });
     it("returns a title with keystage and tier", () => {
@@ -171,7 +169,7 @@ describe("getMetaTitle", () => {
         { tiers: "foundation", keystages: "ks4" },
       );
       expect(result).toEqual(
-        "Free KS4 Maths Foundation Lesson & Curriculum Resources | Oak National Academy",
+        "Free KS4 Maths Foundation Lesson & Curriculum Resources",
       );
     });
     it("returns a title with keystage, examboard and tier", () => {
@@ -185,7 +183,7 @@ describe("getMetaTitle", () => {
         { tiers: "foundation", keystages: "ks4" },
       );
       expect(result).toEqual(
-        "Free KS4 Maths Foundation AQA Lesson & Curriculum Resources | Oak National Academy",
+        "Free KS4 Maths Foundation AQA Lesson & Curriculum Resources",
       );
     });
   });
@@ -201,9 +199,7 @@ describe("getMetaTitle", () => {
         },
         { years: "7" },
       );
-      expect(result).toEqual(
-        "Free Y7 Maths Lesson & Curriculum Resources | Oak National Academy",
-      );
+      expect(result).toEqual("Free Y7 Maths Lesson & Curriculum Resources");
     });
     it("returns a title with year and examboard", () => {
       const result = getMetaTitle(
@@ -216,7 +212,7 @@ describe("getMetaTitle", () => {
         { years: "11" },
       );
       expect(result).toEqual(
-        "Free Y11 Maths AQA Lesson & Curriculum Resources | Oak National Academy",
+        "Free Y11 Maths AQA Lesson & Curriculum Resources",
       );
     });
     it("returns a title with year and tier", () => {
@@ -230,7 +226,7 @@ describe("getMetaTitle", () => {
         { years: "7", tiers: "higher" },
       );
       expect(result).toEqual(
-        "Free Y7 Maths Higher Lesson & Curriculum Resources | Oak National Academy",
+        "Free Y7 Maths Higher Lesson & Curriculum Resources",
       );
     });
     it("returns a title with year examboard and tier", () => {
@@ -244,7 +240,7 @@ describe("getMetaTitle", () => {
         { years: "7", tiers: "foundation" },
       );
       expect(result).toEqual(
-        "Free Y7 Maths Foundation AQA Lesson & Curriculum Resources | Oak National Academy",
+        "Free Y7 Maths Foundation AQA Lesson & Curriculum Resources",
       );
     });
     it("returns a title with year and thread", () => {
@@ -258,7 +254,7 @@ describe("getMetaTitle", () => {
         { years: "7", tiers: "foundation", threads: "thread-1" },
       );
       expect(result).toEqual(
-        "Free Y7 Maths Foundation AQA - Thread 1 Lesson & Curriculum Resources | Oak National Academy",
+        "Free Y7 Maths Foundation AQA - Thread 1 Lesson & Curriculum Resources",
       );
     });
   });

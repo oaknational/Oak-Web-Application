@@ -330,26 +330,26 @@ describe("generateMetadata", () => {
     });
 
     expect(result.title).toBe(
-      "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
+      "Free Secondary Maths Lesson & Curriculum Resources",
     );
     expect(result.description).toContain(
-      "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
+      "Free Secondary Maths Lesson & Curriculum Resources",
     );
 
     expect(result.alternates?.canonical).toBe(
       "https://www.thenational.academy/programmes/maths-primary/units",
     );
     expect(result.openGraph?.title).toBe(
-      "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
+      "Free Secondary Maths Lesson & Curriculum Resources",
     );
     expect(result.openGraph?.description).toContain(
-      "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
+      "Free Secondary Maths Lesson & Curriculum Resources",
     );
     expect(result.twitter?.title).toBe(
-      "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
+      "Free Secondary Maths Lesson & Curriculum Resources",
     );
     expect(result.twitter?.description).toContain(
-      "Free Secondary Maths Lesson & Curriculum Resources | Oak National Academy",
+      "Free Secondary Maths Lesson & Curriculum Resources",
     );
   });
 
