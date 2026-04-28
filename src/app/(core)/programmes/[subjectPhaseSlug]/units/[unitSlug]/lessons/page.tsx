@@ -123,6 +123,8 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
         subjectCategories={data.subjectCategories}
         yearTitle={data.yearTitle}
         examBoardTitle={data.examBoardTitle}
+        examBoardSlug={data.examBoardSlug}
+        subjectPhaseSlug={subjectPhaseSlug}
       />
     </>
   );
