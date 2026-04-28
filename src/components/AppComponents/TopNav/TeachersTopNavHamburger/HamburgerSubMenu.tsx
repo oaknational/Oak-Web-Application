@@ -132,7 +132,7 @@ export function SubmenuContent(
         (ks) => ks.title === submenuOpen,
       );
       if (!keystage) return null;
-      const subjects = keystage.children.filter((s) => !s.nonCurriculum);
+      const subjects = keystage.children;
       return (
         <SubmenuContainer
           description={keystage.description}
