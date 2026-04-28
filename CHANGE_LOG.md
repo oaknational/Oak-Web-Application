@@ -1,3 +1,11 @@
+## [1.1057.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.1057.1...v1.1057.2) (2026-04-28)
+
+
+### Bug Fixes
+
+* **LESQ-1985:** breadcrumbs overflowing container ([72aa1fc](https://github.com/oaknational/Oak-Web-Application/commit/72aa1fcdc203fe838de2a56661afa36d063229f6))
+* **LESQ-1985:** links inside breadcrumbs not truncating ([9f51763](https://github.com/oaknational/Oak-Web-Application/commit/9f51763175c3b78165bc8e32cbee217bc8c1af03))
+
 ## [1.1057.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1057.0...v1.1057.1) (2026-04-28)
 
 
