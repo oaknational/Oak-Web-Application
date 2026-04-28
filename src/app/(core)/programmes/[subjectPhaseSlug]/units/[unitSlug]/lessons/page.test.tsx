@@ -59,7 +59,7 @@ const unitOverviewFixture: TeachersUnitOverviewData = {
   subjectSlug: "maths",
   subjectTitle: "Maths",
   parentSubject: null,
-  yearTitle: "Year 4",
+  yearGroupTitle: "Year 4",
   yearSlug: "year-4",
   year: "4",
   keyStageSlug: "ks2",
