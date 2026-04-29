@@ -11,6 +11,16 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { keystageYearMappings } from "@/utils/curriculum/keystage";
 import { getKeystagesFromPhase } from "@/fixtures/curriculum/unit";
 
+export interface UnitViewSeoAccordionProps {
+  examBoardTitle?: string;
+  yearGroup: string;
+  keyStage: string;
+  unitTitle: string;
+  subjectTitle: string;
+  phaseSlug: string;
+  subjectPhaseSlug: string;
+}
+
 export const UnitViewSeoAccordion = ({
   examBoardTitle,
 
@@ -20,15 +30,7 @@ export const UnitViewSeoAccordion = ({
   subjectTitle,
   phaseSlug,
   subjectPhaseSlug,
-}: {
-  examBoardTitle?: string;
-  yearGroup: string;
-  keyStage: string;
-  unitTitle: string;
-  subjectTitle: string;
-  phaseSlug: string;
-  subjectPhaseSlug: string;
-}) => {
+}: UnitViewSeoAccordionProps) => {
   const examBoardText = examBoardTitle ? `${examBoardTitle} ` : "";
 
   // Generate keystages and years based on phase
