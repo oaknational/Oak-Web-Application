@@ -13,7 +13,6 @@ export type LessonOverviewDownloadAllButtonProps = Pick<
   | "unitSlug"
   | "onClickDownloadAll"
   | "isSpecialist"
-  | "isCanonical"
   | "geoRestricted"
   | "loginRequired"
 > &

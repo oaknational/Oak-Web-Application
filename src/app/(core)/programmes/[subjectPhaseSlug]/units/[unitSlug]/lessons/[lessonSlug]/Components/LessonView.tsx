@@ -197,7 +197,6 @@ export default function LessonView(
                     loginRequired,
                     expired,
                     isSpecialist: false,
-                    isCanonical: false,
                   }}
                 />
               </OakGridArea>
