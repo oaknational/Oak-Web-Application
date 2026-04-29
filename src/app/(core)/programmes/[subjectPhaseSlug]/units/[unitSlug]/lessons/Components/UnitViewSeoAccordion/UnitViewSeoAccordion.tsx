@@ -2,14 +2,10 @@ import {
   OakBasicAccordion,
   OakFlex,
   OakLink,
-  OakLI,
   OakP,
-  OakUL,
 } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import { keystageYearMappings } from "@/utils/curriculum/keystage";
-import { getKeystagesFromPhase } from "@/fixtures/curriculum/unit";
 
 export interface UnitViewSeoAccordionProps {
   examBoardTitle?: string;
@@ -23,7 +19,6 @@ export interface UnitViewSeoAccordionProps {
 
 export const UnitViewSeoAccordion = ({
   examBoardTitle,
-
   yearGroup,
   keyStage,
   unitTitle,
@@ -32,37 +27,6 @@ export const UnitViewSeoAccordion = ({
   subjectPhaseSlug,
 }: UnitViewSeoAccordionProps) => {
   const examBoardText = examBoardTitle ? `${examBoardTitle} ` : "";
-
-  // Generate keystages and years based on phase
-  const getPhaseContent = (phase: string) => {
-    const result: { title: string; href: string }[] = [];
-    const keystages = getKeystagesFromPhase(phase);
-    keystages.forEach((ks) => {
-      const years =
-        keystageYearMappings[ks as keyof typeof keystageYearMappings];
-      const baseHref = resolveOakHref({
-        page: "teacher-programme",
-        subjectPhaseSlug,
-        tab: "units",
-      });
-      result.push({
-        title: ks.toUpperCase(),
-        href: `${baseHref}?keystages=${ks}`,
-      });
-      if (years) {
-        years.forEach((year) => {
-          result.push({
-            title: `Year ${year}`,
-            href: `${baseHref}?years=${year}`,
-          });
-        });
-      }
-    });
-
-    return result;
-  };
-
-  const phaseContent = getPhaseContent(phaseSlug);
 
   return (
     <OakBasicAccordion
@@ -95,17 +59,8 @@ export const UnitViewSeoAccordion = ({
           >
             {examBoardText} {phaseSlug} {subjectTitle} programmes
           </OakLink>
-          , covering:
+          .
         </OakP>
-        <OakUL>
-          {phaseContent.map((item) => (
-            <OakLI key={item.title}>
-              <OakLink href={item.href}>
-                {item.title} {subjectTitle}
-              </OakLink>
-            </OakLI>
-          ))}
-        </OakUL>
       </OakFlex>
     </OakBasicAccordion>
   );

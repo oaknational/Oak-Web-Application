@@ -50,29 +50,4 @@ describe("UnitViewSeoAccordion", () => {
     const programmesLink = screen.getByText(/secondary English programmes/i);
     expect(programmesLink).toBeInTheDocument();
   });
-
-  it("renders keystages and years for secondary phase", () => {
-    renderWithTheme(<UnitViewSeoAccordion {...defaultProps} />);
-
-    expect(screen.getByText(/KS3 English/)).toBeInTheDocument();
-    expect(screen.getByText(/KS4 English/)).toBeInTheDocument();
-    expect(screen.getByText(/Year 7 English/)).toBeInTheDocument();
-    expect(screen.getByText(/Year 11 English/)).toBeInTheDocument();
-  });
-
-  it("renders keystages and years for primary phase", () => {
-    const primaryProps = {
-      ...defaultProps,
-      phaseSlug: "primary",
-      yearGroup: "Year 2",
-      keyStage: "KS1",
-      subjectPhaseSlug: "english-primary",
-    };
-    renderWithTheme(<UnitViewSeoAccordion {...primaryProps} />);
-
-    expect(screen.getByText(/KS1 English/)).toBeInTheDocument();
-    expect(screen.getByText(/KS2 English/)).toBeInTheDocument();
-    expect(screen.getByText(/Year 1 English/)).toBeInTheDocument();
-    expect(screen.getByText(/Year 6 English/)).toBeInTheDocument();
-  });
 });
