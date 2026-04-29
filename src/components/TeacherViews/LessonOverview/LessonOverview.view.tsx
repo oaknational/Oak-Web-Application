@@ -69,6 +69,7 @@ import {
   TakedownBanner,
 } from "@/components/SharedComponents/TakedownBanner/TakedownBanner";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { getPhaseSlug } from "@/fixtures/curriculum/unit";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -548,8 +549,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 >
                   <LessonDetails
                     loginRequired={loginRequired}
-                    geoRestricted={geoRestricted}
+                    georestricted={geoRestricted}
                     keyLearningPoints={keyLearningPoints}
+                    learningOutcome={pupilLessonOutcome}
                     commonMisconceptions={misconceptionsAndCommonMistakes}
                     keyWords={
                       lessonKeywords?.length ? lessonKeywords : undefined
@@ -568,6 +570,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     year={yearTitle}
                     subject={subjectTitle}
                     keystage={keyStageTitle}
+                    keystageSlug={keyStageSlug}
                     unit={unitTitle}
                     lesson={lessonTitle}
                     examBoardSlug={examBoardSlug}
@@ -575,6 +578,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     subjectParent={subjectParent}
                     disablePupilLink={actions?.disablePupilShare}
                     hideSeoHelper={showGeoBlocked}
+                    useIntegratedJourneyLayout={false}
+                    phaseSlug={year ? getPhaseSlug(year) : undefined}
                   />
                 </LessonItemContainer>
 

@@ -43,9 +43,7 @@ export const getSubjectLinkHref = ({
 const TopNavSubjectButtons = ({
   selectedMenu,
   subjects,
-  nonCurriculumSubjects,
   keyStageSlug,
-  keyStageTitle,
   handleClick,
   focusManager,
 }: {
@@ -53,11 +51,7 @@ const TopNavSubjectButtons = ({
   subjects: TeachersSubNavData[
     | "primary"
     | "secondary"]["children"][number]["children"];
-  nonCurriculumSubjects?: TeachersSubNavData[
-    | "primary"
-    | "secondary"]["children"][number]["children"];
   keyStageSlug: string;
-  keyStageTitle: string;
   handleClick: (subject: string, keystage: string) => void;
   focusManager?: DropdownFocusManager<TeachersData>;
 }) => {
@@ -70,7 +64,7 @@ const TopNavSubjectButtons = ({
       $reset
       id={`topnav-teachers-${keyStageSlug}-subjects`}
     >
-      {(subjects &&
+      {subjects &&
         subjects.length > 0 &&
         subjects.map((subject) => {
           const { programmeCount, slug, programmeSlug } = subject;
@@ -78,6 +72,26 @@ const TopNavSubjectButtons = ({
             `teachers-${selectedMenu}-${keyStageSlug}`,
             slug,
           );
+
+          if (slug === "all-subjects") {
+            return (
+              <OakLI key={slug}>
+                <OakPrimaryInvertedButton
+                  id={buttonId}
+                  element={Link}
+                  iconName="arrow-right"
+                  isTrailingIcon
+                  onClick={() => handleClick("all", keyStageSlug)}
+                  onKeyDown={(e) =>
+                    buttonId && focusManager?.handleKeyDown(e, buttonId)
+                  }
+                  href={resolveOakHref({ page: "subject-index", keyStageSlug })}
+                >
+                  {subject.title}
+                </OakPrimaryInvertedButton>
+              </OakLI>
+            );
+          }
 
           return (
             <OakLI key={subject.title}>
@@ -95,42 +109,11 @@ const TopNavSubjectButtons = ({
                 onKeyDown={(e) =>
                   buttonId && focusManager?.handleKeyDown(e, buttonId)
                 }
-                phase={selectedMenu as "primary" | "secondary"}
-                id={buttonId}
-              >
-                {subject.title}
-              </OakSubjectIconButton>
-            </OakLI>
-          );
-        })) ??
-        null}
-      {nonCurriculumSubjects &&
-        nonCurriculumSubjects.length > 0 &&
-        nonCurriculumSubjects.map((subject) => {
-          const { programmeCount, slug, programmeSlug } = subject;
-          const buttonId = focusManager?.createId(
-            `teachers-${selectedMenu}-${keyStageSlug}`,
-            slug,
-          );
-
-          return (
-            <OakLI key={subject.slug}>
-              <OakSubjectIconButton
-                variant={"horizontal"}
-                key={subject.slug}
-                element={Link}
-                subjectIconName={getValidSubjectIconName(subject.slug)}
-                href={getSubjectLinkHref({
-                  programmeCount,
-                  subjectSlug: subject.slug,
-                  programmeSlug,
-                  keyStageSlug,
-                })}
-                onClick={() => handleClick(subject.slug, keyStageSlug)}
-                onKeyDown={(e) =>
-                  buttonId && focusManager?.handleKeyDown(e, buttonId)
+                phase={
+                  subject.nonCurriculum
+                    ? "non-curriculum"
+                    : (selectedMenu as "primary" | "secondary")
                 }
-                phase={"non-curriculum"}
                 id={buttonId}
               >
                 {subject.title}
@@ -138,30 +121,6 @@ const TopNavSubjectButtons = ({
             </OakLI>
           );
         })}
-      <OakLI>
-        <OakPrimaryInvertedButton
-          id={focusManager?.createId(
-            `teachers-${selectedMenu}-${keyStageSlug}`,
-            "all-keystages-button",
-          )}
-          element={Link}
-          iconName="arrow-right"
-          isTrailingIcon
-          onClick={() => handleClick("all", keyStageSlug)}
-          onKeyDown={(e) =>
-            focusManager?.handleKeyDown(
-              e,
-              focusManager.createId(
-                `teachers-${selectedMenu}-${keyStageSlug}`,
-                "all-keystages-button",
-              ),
-            )
-          }
-          href={resolveOakHref({ page: "subject-index", keyStageSlug })}
-        >
-          All {keyStageTitle} subjects
-        </OakPrimaryInvertedButton>
-      </OakLI>
     </OakUL>
   );
 };

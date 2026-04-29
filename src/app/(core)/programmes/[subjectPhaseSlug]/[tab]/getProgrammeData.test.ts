@@ -80,6 +80,7 @@ describe("getProgrammeData", () => {
         ks4OptionSlug: null,
         includeNonCurriculum: true,
         excludeUnitsWithNoPublishedLessons: true,
+        excludeCoreUnits: true,
       });
       expect(mockApi.curriculumPhaseOptions).toHaveBeenCalled();
     });
@@ -223,7 +224,63 @@ describe("getProgrammeData", () => {
         ks4OptionSlug: "aqa",
         includeNonCurriculum: true,
         excludeUnitsWithNoPublishedLessons: true,
+        excludeCoreUnits: true,
       });
+    });
+
+    it("should remove core ks4 option when excludeCoreUnits is true", async () => {
+      const mockApi = createMockCurriculumApi({
+        curriculumPhaseOptions: jest.fn().mockResolvedValue([
+          {
+            title: "Maths",
+            slug: "maths",
+            phases: [{ title: "Secondary", slug: "secondary" }],
+            ks4_options: [
+              { title: "AQA", slug: "aqa" },
+              { title: "Core", slug: "core" },
+            ],
+            keystages: [],
+          },
+        ]),
+      });
+
+      const result = await getProgrammeData(mockApi, "maths-secondary-aqa");
+
+      expect(result?.curriculumPhaseOptions.subjects[0]?.ks4_options).toEqual([
+        { title: "AQA", slug: "aqa" },
+      ]);
+    });
+
+    it("should not exclude core units when ks4 option slug is core", async () => {
+      const mockApi = createMockCurriculumApi({
+        curriculumPhaseOptions: jest.fn().mockResolvedValue([
+          {
+            title: "Maths",
+            slug: "maths",
+            phases: [{ title: "Secondary", slug: "secondary" }],
+            ks4_options: [
+              { title: "AQA", slug: "aqa" },
+              { title: "Core", slug: "core" },
+            ],
+            keystages: [],
+          },
+        ]),
+      });
+
+      const result = await getProgrammeData(mockApi, "maths-secondary-core");
+
+      expect(mockApi.curriculumSequence).toHaveBeenCalledWith({
+        subjectSlug: "maths",
+        phaseSlug: "secondary",
+        ks4OptionSlug: "core",
+        includeNonCurriculum: true,
+        excludeUnitsWithNoPublishedLessons: true,
+        excludeCoreUnits: false,
+      });
+      expect(result?.curriculumPhaseOptions.subjects[0]?.ks4_options).toEqual([
+        { title: "AQA", slug: "aqa" },
+        { title: "Core", slug: "core" },
+      ]);
     });
   });
 

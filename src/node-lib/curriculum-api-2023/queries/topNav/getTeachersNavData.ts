@@ -40,63 +40,79 @@ const getKeystages = (
 
   // Expand each keystage with its associated subjects, filtering out duplicates for each programme
   const withSubjects = byKeystage.map((ks) => {
+    const subjects = byPhase
+      .filter((p) => p.programme_fields.keystage_slug === ks.slug)
+      .filter(
+        (p, i, a) =>
+          a.findIndex(
+            (k) =>
+              k.programme_fields.subject_slug ===
+                p.programme_fields.subject_slug &&
+              k.programme_fields.pathway_slug ===
+                p.programme_fields.pathway_slug,
+          ) === i,
+      )
+      // remove legacy programmes where a non-legacy counterpart exists
+      .filter((p, _, a) => {
+        if (isSlugLegacy(p.programme_slug)) {
+          const legacySubject = p.programme_fields.subject_slug;
+          const legacyKeystage = p.programme_fields.keystage_slug;
+          const nonLegacyProgramme = a.find(
+            (p) =>
+              p.programme_fields.subject_slug === legacySubject &&
+              p.programme_fields.keystage_slug === legacyKeystage &&
+              !isSlugLegacy(p.programme_slug),
+          );
+
+          if (nonLegacyProgramme) {
+            return false;
+          }
+        }
+        return true;
+      })
+      .map((p) => {
+        const programmeCount = getProgrammeCount({
+          data,
+          keystageSlug: ks.slug,
+          subjectSlug: p.programme_fields.subject_slug,
+          pathwaySlug: p.programme_fields.pathway_slug,
+        });
+
+        const subjectDisplayName =
+          p.actions?.programme_field_overrides?.subject ??
+          p.programme_fields.subject;
+
+        const pathwayTitle = p.programme_fields.pathway ?? "";
+
+        const title =
+          subjectDisplayName + (pathwayTitle ? ` (${pathwayTitle})` : "");
+
+        return {
+          slug: p.programme_fields.subject_slug,
+          title,
+          nonCurriculum: Boolean(p.features.non_curriculum),
+          programmeSlug: programmeCount > 1 ? null : p.programme_slug,
+          programmeCount,
+        };
+      });
+
+    const curriculumSubjects = subjects.filter((s) => !s.nonCurriculum);
+    const nonCurriculumSubjects = subjects.filter((s) => s.nonCurriculum);
+    const allSubjectsButton = {
+      slug: "all-subjects",
+      title: `All ${ks.title} subjects`,
+      nonCurriculum: false,
+      programmeSlug: null,
+      programmeCount: 0,
+    };
+
     return {
       ...ks,
-      children: byPhase
-        .filter((p) => p.programme_fields.keystage_slug === ks.slug)
-        .filter(
-          (p, i, a) =>
-            a.findIndex(
-              (k) =>
-                k.programme_fields.subject_slug ===
-                  p.programme_fields.subject_slug &&
-                k.programme_fields.pathway_slug ===
-                  p.programme_fields.pathway_slug,
-            ) === i,
-        )
-        // remove legacy programmes where a non-legacy counterpart exists
-        .filter((p, _, a) => {
-          if (isSlugLegacy(p.programme_slug)) {
-            const legacySubject = p.programme_fields.subject_slug;
-            const legacyKeystage = p.programme_fields.keystage_slug;
-            const nonLegacyProgramme = a.find(
-              (p) =>
-                p.programme_fields.subject_slug === legacySubject &&
-                p.programme_fields.keystage_slug === legacyKeystage &&
-                !isSlugLegacy(p.programme_slug),
-            );
-
-            if (nonLegacyProgramme) {
-              return false;
-            }
-          }
-          return true;
-        })
-        .map((p) => {
-          const programmeCount = getProgrammeCount({
-            data,
-            keystageSlug: ks.slug,
-            subjectSlug: p.programme_fields.subject_slug,
-            pathwaySlug: p.programme_fields.pathway_slug,
-          });
-
-          const subjectDisplayName =
-            p.actions?.programme_field_overrides?.subject ??
-            p.programme_fields.subject;
-
-          const pathwayTitle = p.programme_fields.pathway ?? "";
-
-          const title =
-            subjectDisplayName + (pathwayTitle ? ` (${pathwayTitle})` : "");
-
-          return {
-            slug: p.programme_fields.subject_slug,
-            title,
-            nonCurriculum: Boolean(p.features.non_curriculum),
-            programmeSlug: programmeCount > 1 ? null : p.programme_slug,
-            programmeCount,
-          };
-        }),
+      children: [
+        ...curriculumSubjects,
+        ...nonCurriculumSubjects,
+        allSubjectsButton,
+      ],
     };
   });
 

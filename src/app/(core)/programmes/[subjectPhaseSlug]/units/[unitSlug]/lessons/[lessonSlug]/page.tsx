@@ -116,6 +116,7 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
               examboardSlug: data.examBoardSlug,
               pathwaySlug: data.pathwaySlug,
             })}
+            mode="lesson"
           />
         }
         georestricted={data.geoRestricted}
