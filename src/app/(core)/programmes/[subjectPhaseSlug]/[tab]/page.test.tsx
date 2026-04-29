@@ -333,7 +333,7 @@ describe("generateMetadata", () => {
       "Free Secondary Maths Lesson & Curriculum Resources",
     );
     expect(result.description).toContain(
-      "Free Secondary Maths Lesson & Curriculum Resources",
+      "Get fully sequenced teaching resources and lesson plans for Secondary Maths",
     );
 
     expect(result.alternates?.canonical).toBe(
@@ -343,13 +343,13 @@ describe("generateMetadata", () => {
       "Free Secondary Maths Lesson & Curriculum Resources",
     );
     expect(result.openGraph?.description).toContain(
-      "Free Secondary Maths Lesson & Curriculum Resources",
+      "Get fully sequenced teaching resources and lesson plans for Secondary Maths",
     );
     expect(result.twitter?.title).toBe(
       "Free Secondary Maths Lesson & Curriculum Resources",
     );
     expect(result.twitter?.description).toContain(
-      "Free Secondary Maths Lesson & Curriculum Resources",
+      "Get fully sequenced teaching resources and lesson plans for Secondary Maths",
     );
   });
 
