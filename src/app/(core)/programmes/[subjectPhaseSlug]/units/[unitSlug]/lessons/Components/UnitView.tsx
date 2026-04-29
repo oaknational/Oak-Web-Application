@@ -166,7 +166,7 @@ export const UnitView = ({
           <UnitViewSeoAccordion
             examBoardTitle={examBoardTitle ?? undefined}
             yearGroupTitle={yearGroupTitle}
-            keyStage={keyStageTitle}
+            keyStageTitle={keyStageTitle}
             unitTitle={unitTitle}
             subjectTitle={subjectTitle}
             phaseSlug={phaseSlug}

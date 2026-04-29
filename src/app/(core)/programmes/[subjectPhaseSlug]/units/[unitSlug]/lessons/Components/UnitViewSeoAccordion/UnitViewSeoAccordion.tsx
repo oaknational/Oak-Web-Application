@@ -10,7 +10,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 export interface UnitViewSeoAccordionProps {
   examBoardTitle?: string;
   yearGroupTitle: string;
-  keyStage: string;
+  keyStageTitle: string;
   unitTitle: string;
   subjectTitle: string;
   phaseSlug: string;
@@ -20,7 +20,7 @@ export interface UnitViewSeoAccordionProps {
 export const UnitViewSeoAccordion = ({
   examBoardTitle,
   yearGroupTitle,
-  keyStage,
+  keyStageTitle,
   unitTitle,
   subjectTitle,
   phaseSlug,
@@ -34,7 +34,7 @@ export const UnitViewSeoAccordion = ({
       header={
         <OakP $textAlign={"start"}>
           Explore this {examBoardText}
-          {yearGroupTitle} {keyStage} unit to find free lesson teaching
+          {yearGroupTitle} {keyStageTitle} unit to find free lesson teaching
           resources, including...
         </OakP>
       }

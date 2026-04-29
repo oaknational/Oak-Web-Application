@@ -11,7 +11,7 @@ describe("UnitViewSeoAccordion", () => {
   const defaultProps: UnitViewSeoAccordionProps = {
     examBoardTitle: "AQA",
     yearGroupTitle: "Year 7",
-    keyStage: "KS3",
+    keyStageTitle: "KS3",
     unitTitle: "Test Unit",
     subjectTitle: "English",
     phaseSlug: "secondary",
