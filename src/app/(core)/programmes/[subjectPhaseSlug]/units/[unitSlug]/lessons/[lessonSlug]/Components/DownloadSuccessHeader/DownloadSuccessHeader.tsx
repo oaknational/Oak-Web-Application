@@ -10,9 +10,11 @@ import {
 } from "@oaknational/oak-components";
 
 import { Header } from "@/components/TeacherComponents/Header/Header";
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const DOWNLOAD_SUCCESS_IMG_URL =
-  "https://res.cloudinary.com/oak-web-application/image/upload/v1777386544/svg-illustrations/download-confirmation-Illustration_z1sczk.svg";
+  "v1777386544/svg-illustrations/download-confirmation-Illustration_z1sczk.svg";
 
 export function DownloadSuccessHeader({ href }: Readonly<{ href: string }>) {
   return (
@@ -31,7 +33,7 @@ export function DownloadSuccessHeader({ href }: Readonly<{ href: string }>) {
         </OakFlex>
       }
       backgroundColorLevel={1}
-      heroImage={DOWNLOAD_SUCCESS_IMG_URL}
+      heroImage={getCloudinaryImageUrl(DOWNLOAD_SUCCESS_IMG_URL)}
     />
   );
 }
@@ -43,9 +45,7 @@ function InstallFontsInstructions() {
       <OakP $font={"body-3"}>
         <OakSpan>Our resources work best if you </OakSpan>
         <OakLink
-          href={
-            "https://support.thenational.academy/how-to-install-the-google-fonts-lexend-and-kalan"
-          }
+          href={resolveOakHref({ page: "help-font" })}
           target={"_blank"}
           aria-label={
             "install the Google Fonts 'Lexend' and 'Kalam' (opens in a new tab)"
