@@ -15,9 +15,7 @@ import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { LessonAppearsIn } from "@/components/TeacherComponents/LessonAppearsIn";
 import { groupLessonPathways } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
-import OakError from "@/errors/OakError";
-import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
@@ -29,9 +27,10 @@ import {
   isEyfsPathway,
   redirectToEyfsPage,
 } from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
+import { LessonOverviewCanonicalView } from "@/components/TeacherViews/LessonOverview/LessonOverviewCanonical.view";
 
 type PageProps = {
-  lesson: LessonOverviewCanonical;
+  lesson: LessonOverviewPageData;
   isSpecialist: boolean;
   topNav: TopNavProps;
 };
@@ -88,11 +87,9 @@ export default function LessonOverviewCanonicalPage({
         }),
       }}
     >
-      <LessonOverview
+      <LessonOverviewCanonicalView
         lesson={{
           ...lesson,
-          isCanonical: true,
-          isSpecialist,
           teacherShareButton: teacherNotesButton,
           teacherShareButtonProps: TeacherNotesButtonProps,
           teacherNoteHtml: teacherNoteHtml,
@@ -153,28 +150,15 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
        */
 
       let lesson;
-      let isSpecialist = false;
+      const isSpecialist = false;
 
       try {
-        const res = await curriculumApi2023.specialistLessonOverviewCanonical({
+        lesson = await curriculumApi2023.lessonOverview({
           lessonSlug,
         });
-        lesson = { ...res, isWorksheetLandscape: true, pathways: [] };
-        isSpecialist = true;
+        lesson = await populateLessonWithTranscript(lesson);
       } catch (error) {
-        if (
-          error instanceof OakError &&
-          error.code === "curriculum-api/not-found"
-        ) {
-          try {
-            lesson = await curriculumApi2023.lessonOverview({
-              lessonSlug,
-            });
-            lesson = await populateLessonWithTranscript(lesson);
-          } catch (innerError) {
-            allowNotFoundError(innerError);
-          }
-        }
+        allowNotFoundError(error);
       }
 
       if (!lesson) {

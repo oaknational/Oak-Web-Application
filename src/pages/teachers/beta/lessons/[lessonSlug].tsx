@@ -35,14 +35,7 @@ const TeacherPreviewLessonPage: NextPage<TeacherPreviewLessonPageProps> = ({
       }}
       topNavProps={topNav}
     >
-      <LessonOverview
-        lesson={{
-          ...curriculumData,
-          isCanonical: false,
-          isSpecialist: false,
-        }}
-        isBeta={true}
-      />
+      <LessonOverview lesson={curriculumData} isBeta={true} />
     </AppLayout>
   );
 };

@@ -67,7 +67,7 @@ import {
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { getPhaseSlug } from "@/fixtures/curriculum/unit";
 
-export type LessonOverviewProps = {
+export type LessonOverviewCanonicalProps = {
   lesson: LessonOverviewPageData & {
     teacherShareButton?: React.ReactNode;
     teacherShareButtonProps?: TeacherNotesButtonProps;
@@ -86,7 +86,9 @@ export const getDedupedPupilLessonOutcome = (
   }
   return plo;
 };
-export function LessonOverview({ lesson }: LessonOverviewProps) {
+export function LessonOverviewCanonicalView({
+  lesson,
+}: LessonOverviewCanonicalProps) {
   const {
     lessonTitle,
     lessonSlug,
@@ -165,6 +167,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonCohort: lesson.lessonCohort,
     pathwayTitle: lesson.pathwayTitle,
   };
+
   const {
     keyStageSlug,
     keyStageTitle,
@@ -337,7 +340,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       <HeaderLesson
         {...lesson}
         {...commonPathway}
-        isCanonical={false}
+        isCanonical={true}
+        isSpecialist={false}
         breadcrumbs={[
           ...getBreadcrumbsForLessonPathway(commonPathway),
           getLessonOverviewBreadCrumb({
@@ -346,7 +350,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             unitSlug,
             programmeSlug,
             disabled: true,
-            isCanonical: false,
+            isCanonical: true,
           }),
         ]}
         background={"bg-decorative4-very-subdued"}
@@ -371,7 +375,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         trackTeachingMaterialsSelected={trackTeachingMaterialsSelected}
         trackCreateWithAiButtonClicked={trackCreateWithAiButtonClicked}
         contentRestricted={contentRestricted}
-        isSpecialist={false}
       />
       <OakMaxWidth $ph={"spacing-16"} $pb={"spacing-80"}>
         {expired ? (
@@ -412,7 +415,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           downloadResourceButtonName: "all",
                         }),
                       isSpecialist: false,
-                      isCanonical: false,
+                      isCanonical: true,
                       ...lesson,
                       ...commonPathway,
                     }}
@@ -523,12 +526,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           mediaClipsButtonName: "play all",
                         });
                       }}
-                      isCanonical={false}
+                      isCanonical={true}
                     >
                       <LessonOverviewMediaClips
                         lessonSlug={lessonSlug}
                         learningCycleVideos={lessonMediaClips}
-                        isCanonical={false}
+                        isCanonical={true}
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
                         lessonOutline={lessonOutline}
@@ -568,7 +571,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     displayVocab={!!actions?.displayVocabButton}
                     updatedAt={updatedAt}
                     additionalFiles={additionalFiles}
-                    year={yearGroupTitle}
+                    year={yearGroupSlug}
                     subject={subjectTitle}
                     keystage={keyStageTitle}
                     keystageSlug={keyStageSlug}
