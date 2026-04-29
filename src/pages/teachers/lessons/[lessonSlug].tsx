@@ -31,7 +31,6 @@ import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonO
 
 type PageProps = {
   lesson: LessonOverviewPageData;
-  isSpecialist: boolean;
   topNav: TopNavProps;
 };
 
@@ -41,7 +40,6 @@ export type URLParams = {
 
 export default function LessonOverviewCanonicalPage({
   lesson,
-  isSpecialist,
   topNav,
 }: Readonly<PageProps>): JSX.Element {
   const {
@@ -98,13 +96,11 @@ export default function LessonOverviewCanonicalPage({
         }}
         isBeta={false}
       />
-      {!isSpecialist && (
-        <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
-          <OakMaxWidth $pv="spacing-80">
-            <LessonAppearsIn {...pathwayGroups} />
-          </OakMaxWidth>
-        </OakFlex>
-      )}
+      <OakFlex $background={"bg-decorative4-subdued"} $width={"100%"}>
+        <OakMaxWidth $pv="spacing-80">
+          <LessonAppearsIn {...pathwayGroups} />
+        </OakMaxWidth>
+      </OakFlex>
       {teacherNote && isEditable && (
         <TeacherNotesModal
           isOpen={teacherNotesOpen}
@@ -146,13 +142,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
       }
       const { lessonSlug } = context.params;
 
-      /**
-       * If the lesson is not found in the specialist 2023 curriculum, try the non-specialist 2023 curriculum
-       */
-
       let lesson;
-      const isSpecialist = false;
-
       try {
         lesson = await curriculumApi2023.lessonOverview({
           lessonSlug,
@@ -181,7 +171,6 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
       const results: GetStaticPropsResult<PageProps> = {
         props: {
           lesson,
-          isSpecialist,
           topNav,
         },
       };
