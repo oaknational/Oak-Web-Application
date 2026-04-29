@@ -109,7 +109,7 @@ export const LessonOverviewHeaderDesktop: FC<
                 useSpan={true}
               />
             )}
-            {(examBoardTitle || yearTitle || tierTitle) && (
+            {(examBoardTitle || yearTitle || tierTitle) && !isCanonical && (
               <OakSpan $color={"text-subdued"} $font={"heading-light-7"}>
                 <LessonMetadata
                   examBoardTitle={examBoardTitle}
