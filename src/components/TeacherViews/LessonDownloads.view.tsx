@@ -35,14 +35,8 @@ import {
   getLessonDownloadsBreadCrumb,
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
-  getBreadcrumbsForSpecialistLessonPathway,
-  getBreadCrumbForSpecialistDownload,
-  lessonIsSpecialist,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import {
-  LessonPathway,
-  SpecialistLessonPathway,
-} from "@/components/TeacherComponents/types/lesson.types";
+import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import DownloadPageWithAccordion from "@/components/TeacherComponents/DownloadPageWithAccordion";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
 import {
@@ -130,23 +124,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const showRiskAssessmentBanner = actions?.isPePractical;
 
-  const commonPathway = lessonIsSpecialist(lesson)
-    ? {
-        lessonSlug,
-        lessonTitle,
-        unitSlug: props.lesson.unitSlug,
-        programmeSlug: props.lesson.programmeSlug,
-        unitTitle: props.lesson.unitTitle,
-        subjectTitle: props.lesson.subjectTitle,
-        subjectSlug: props.lesson.subjectSlug,
-        developmentStageTitle: props.lesson.developmentStageTitle,
-        disabled: false,
-        lessonCohort: LEGACY_COHORT,
-        keyStageSlug: null,
-        keyStageTitle: null,
-        pathwayTitle: null,
-      }
-    : getCommonPathway([props.lesson]);
+  const commonPathway = getCommonPathway([props.lesson]);
 
   const {
     programmeSlug,
@@ -257,12 +235,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         selectedResources,
       });
 
-      const examboard = examboards.safeParse(
-        (commonPathway as LessonPathway).examBoardTitle,
-      );
-      const tier = tierDescriptions.safeParse(
-        (commonPathway as LessonPathway).tierTitle,
-      );
+      const examboard = examboards.safeParse(commonPathway.examBoardTitle);
+      const tier = tierDescriptions.safeParse(commonPathway.tierTitle);
       track.lessonResourcesDownloaded({
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         keyStageSlug,
@@ -327,36 +301,22 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           $mt={"spacing-24"}
         >
           <Breadcrumbs
-            breadcrumbs={
-              !isSpecialist
-                ? [
-                    ...getBreadcrumbsForLessonPathway(commonPathway),
-                    getLessonOverviewBreadCrumb({
-                      lessonTitle,
-                      lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      isCanonical: false,
-                    }),
-                    getLessonDownloadsBreadCrumb({
-                      lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      disabled: true,
-                    }),
-                  ]
-                : [
-                    ...getBreadcrumbsForSpecialistLessonPathway(
-                      commonPathway as SpecialistLessonPathway,
-                    ),
-                    ...getBreadCrumbForSpecialistDownload({
-                      lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      disabled: true,
-                    }),
-                  ]
-            }
+            breadcrumbs={[
+              ...getBreadcrumbsForLessonPathway(commonPathway),
+              getLessonOverviewBreadCrumb({
+                lessonTitle,
+                lessonSlug,
+                programmeSlug,
+                unitSlug,
+                isCanonical: false,
+              }),
+              getLessonDownloadsBreadCrumb({
+                lessonSlug,
+                programmeSlug,
+                unitSlug,
+                disabled: true,
+              }),
+            ]}
           />
           <OakHandDrawnHR
             hrColor={"text-subdued"}
