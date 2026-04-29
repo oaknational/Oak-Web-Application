@@ -34,9 +34,19 @@ export async function generateMetadata(
 
   try {
     const data = await getCachedUnitData(subjectPhaseSlug, unitSlug);
-    const { unitTitle, keyStageSlug, year, subjectTitle } = data;
+    const {
+      unitTitle,
+      keyStageSlug,
+      year,
+      subjectTitle,
+      examBoardTitle,
+      tierTitle,
+    } = data;
 
-    const title = `${unitTitle} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources`;
+    const tierSegment = tierTitle ? ` ${tierTitle}` : "";
+    const examboardSegment = examBoardTitle ? ` ${examBoardTitle}` : "";
+
+    const title = `${unitTitle} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle}${tierSegment}${examboardSegment} | Lesson Resources`;
     const description = `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`;
 
     return {
