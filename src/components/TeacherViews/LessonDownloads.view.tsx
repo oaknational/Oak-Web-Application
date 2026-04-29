@@ -1,4 +1,6 @@
-import { useMemo, useState } from "react";
+"use client";
+
+import { ReactNode, useMemo, useState } from "react";
 import {
   ActionsCamel,
   examboards,
@@ -79,9 +81,11 @@ type SpecialistLesson = SpecialistLessonDownloads["lesson"];
 type LessonDownloadsProps =
   | {
       lesson: NonCanonicalLesson;
+      breadcrumbsSlot?: ReactNode;
     }
   | {
       lesson: SpecialistLesson;
+      breadcrumbsSlot?: ReactNode;
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
@@ -300,24 +304,29 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           $mb={isDownloadSuccessful ? "spacing-0" : "spacing-32"}
           $mt={"spacing-24"}
         >
-          <Breadcrumbs
-            breadcrumbs={[
-              ...getBreadcrumbsForLessonPathway(commonPathway),
-              getLessonOverviewBreadCrumb({
-                lessonTitle,
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-                isCanonical: false,
-              }),
-              getLessonDownloadsBreadCrumb({
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-                disabled: true,
-              }),
-            ]}
-          />
+          {props.breadcrumbsSlot ? (
+            props.breadcrumbsSlot
+          ) : (
+            // TD: remove legacy breadcrumbs once the integrated journey is fully rolled out.
+            <Breadcrumbs
+              breadcrumbs={[
+                ...getBreadcrumbsForLessonPathway(commonPathway),
+                getLessonOverviewBreadCrumb({
+                  lessonTitle,
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  isCanonical: false,
+                }),
+                getLessonDownloadsBreadCrumb({
+                  lessonSlug,
+                  programmeSlug,
+                  unitSlug,
+                  disabled: true,
+                }),
+              ]}
+            />
+          )}
           <OakHandDrawnHR
             hrColor={"text-subdued"}
             $height={"spacing-4"}
