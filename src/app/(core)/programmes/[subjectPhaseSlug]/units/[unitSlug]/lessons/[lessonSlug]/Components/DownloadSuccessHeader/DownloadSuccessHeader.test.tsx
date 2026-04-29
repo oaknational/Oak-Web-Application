@@ -20,7 +20,7 @@ describe("DownloadSuccessHeader", () => {
     render(<DownloadSuccessHeader href="/programmes" />);
 
     expect(
-      screen.getByRole("heading", { name: "Thank you for downloading!" }),
+      screen.getByRole("heading", { name: "Thanks for downloading!" }),
     ).toBeInTheDocument();
   });
 

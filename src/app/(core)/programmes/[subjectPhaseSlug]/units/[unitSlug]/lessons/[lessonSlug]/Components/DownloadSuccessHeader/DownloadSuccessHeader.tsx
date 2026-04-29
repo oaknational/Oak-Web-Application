@@ -22,7 +22,7 @@ export function DownloadSuccessHeader({ href }: Readonly<{ href: string }>) {
       layoutVariant="large"
       useSubduedBackground
       headerSlot={<BackLink href={href} />}
-      heading="Thank you for downloading!"
+      heading="Thanks for downloading!"
       summary={
         <OakFlex $flexDirection="column" $gap={"spacing-24"}>
           <OakP $font={"body-2"}>
