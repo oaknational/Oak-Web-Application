@@ -1,10 +1,14 @@
 import React, { FC, useEffect, useState } from "react";
 import { FieldErrorsImpl } from "react-hook-form";
-import { OakBox, OakFlex, OakFieldset } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakCheckBox,
+  OakFlex,
+  OakFieldset,
+} from "@oaknational/oak-components";
 
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
-import Checkbox from "@/components/SharedComponents/Checkbox";
 
 export type ResourcePageSchoolDetailsProps = {
   setSchool: (value: string, name?: string) => void;
@@ -97,14 +101,14 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
         aria-describedby={"school-error"}
         withHomeschool={withHomeschool}
       />
-      <OakFlex $mt="spacing-12" $mb="spacing-32">
-        <Checkbox
+      <OakFlex $mt="spacing-12" $mb="spacing-48">
+        <OakCheckBox
           checked={checkboxValue}
           onChange={onCheckboxChange}
           id={`checkbox-not-listed`}
+          value="not-listed"
           name={"checkbox-not-listed"}
-          zIndex={"neutral"}
-          labelText={"My school isn't listed"}
+          displayValue={"My school isn't listed"}
           data-testid={"checkbox-download"}
           aria-invalid={errors?.school?.message ? true : false}
           aria-describedby={

@@ -203,7 +203,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   return (
                     <ResourcePageTermsAndConditionsCheckbox
                       name={name}
-                      checked={value}
+                      checked={Boolean(value)}
                       onChange={onChangeHandler}
                       onBlur={onBlur}
                       id={"terms"}
