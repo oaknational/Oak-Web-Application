@@ -9,7 +9,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 
 export interface UnitViewSeoAccordionProps {
   examBoardTitle?: string;
-  yearGroup: string;
+  yearTitle: string;
   keyStage: string;
   unitTitle: string;
   subjectTitle: string;
@@ -19,7 +19,7 @@ export interface UnitViewSeoAccordionProps {
 
 export const UnitViewSeoAccordion = ({
   examBoardTitle,
-  yearGroup,
+  yearTitle,
   keyStage,
   unitTitle,
   subjectTitle,
@@ -31,7 +31,7 @@ export const UnitViewSeoAccordion = ({
   return (
     <OakBasicAccordion
       id={"units-seo-accordion"}
-      header={`Explore this ${examBoardText}${yearGroup} ${keyStage} unit to find free lesson teaching resources, including...`}
+      header={`Explore this ${examBoardText}${yearTitle} ${keyStage} unit to find free lesson teaching resources, including...`}
     >
       <OakFlex $flexDirection="column" $gap="spacing-16">
         <OakP>

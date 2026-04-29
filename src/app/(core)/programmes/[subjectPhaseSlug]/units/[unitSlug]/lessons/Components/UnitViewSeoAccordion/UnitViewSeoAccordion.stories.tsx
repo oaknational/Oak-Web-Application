@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 export const Secondary: Story = {
   args: {
     examBoardTitle: "AQA",
-    yearGroup: "Year 10",
+    yearTitle: "Year 10",
     keyStage: "KS4",
     unitTitle: "Coordination and control",
     subjectTitle: "Biology",
@@ -25,7 +25,7 @@ export const Secondary: Story = {
 export const SecondaryEdexcel: Story = {
   args: {
     examBoardTitle: "Edexcel",
-    yearGroup: "Year 7",
+    yearTitle: "Year 7",
     keyStage: "KS3",
     unitTitle: "Cells",
     subjectTitle: "Biology",
@@ -36,7 +36,7 @@ export const SecondaryEdexcel: Story = {
 export const Primary: Story = {
   args: {
     examBoardTitle: undefined,
-    yearGroup: "Year 4",
+    yearTitle: "Year 4",
     keyStage: "KS2",
     unitTitle: "Animals including humans",
     subjectTitle: "Science",
@@ -47,7 +47,7 @@ export const Primary: Story = {
 export const PrimaryKS1: Story = {
   args: {
     examBoardTitle: undefined,
-    yearGroup: "Year 2",
+    yearTitle: "Year 2",
     keyStage: "KS1",
     unitTitle: "Understanding animals",
     subjectTitle: "Science",
@@ -58,7 +58,7 @@ export const PrimaryKS1: Story = {
 export const NoExamBoard: Story = {
   args: {
     examBoardTitle: undefined,
-    yearGroup: "Year 11",
+    yearTitle: "Year 11",
     keyStage: "KS4",
     unitTitle: "Energy",
     subjectTitle: "Physics",

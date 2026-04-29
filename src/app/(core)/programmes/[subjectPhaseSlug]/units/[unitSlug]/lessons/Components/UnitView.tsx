@@ -165,7 +165,7 @@ export const UnitView = ({
         <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
           <UnitViewSeoAccordion
             examBoardTitle={examBoardTitle ?? undefined}
-            yearGroup={yearTitle}
+            yearTitle={yearTitle}
             keyStage={keyStageTitle}
             unitTitle={unitTitle}
             subjectTitle={subjectTitle}
