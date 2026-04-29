@@ -27,7 +27,7 @@ import {
   isEyfsPathway,
   redirectToEyfsPage,
 } from "@/pages-helpers/shared/lesson-pages/eyfsRedirect";
-import { LessonOverviewCanonicalView } from "@/components/TeacherViews/LessonOverview/LessonOverviewCanonical.view";
+import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 
 type PageProps = {
   lesson: LessonOverviewPageData;
@@ -87,9 +87,10 @@ export default function LessonOverviewCanonicalPage({
         }),
       }}
     >
-      <LessonOverviewCanonicalView
+      <LessonOverview
         lesson={{
           ...lesson,
+          isCanonical: true,
           teacherShareButton: teacherNotesButton,
           teacherShareButtonProps: TeacherNotesButtonProps,
           teacherNoteHtml: teacherNoteHtml,

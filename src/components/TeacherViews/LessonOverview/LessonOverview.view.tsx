@@ -69,6 +69,7 @@ import { getPhaseSlug } from "@/fixtures/curriculum/unit";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewPageData & {
+    isCanonical: boolean;
     teacherShareButton?: React.ReactNode;
     teacherShareButtonProps?: TeacherNotesButtonProps;
     teacherNoteHtml?: string;
@@ -96,6 +97,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonKeywords,
     teacherTips,
     videoMuxPlaybackId,
+    isCanonical,
     videoWithSignLanguageMuxPlaybackId,
     lessonEquipmentAndResources,
     presentationUrl,
@@ -337,7 +339,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       <HeaderLesson
         {...lesson}
         {...commonPathway}
-        isCanonical={false}
+        isCanonical={isCanonical}
         breadcrumbs={[
           ...getBreadcrumbsForLessonPathway(commonPathway),
           getLessonOverviewBreadCrumb({
@@ -346,7 +348,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             unitSlug,
             programmeSlug,
             disabled: true,
-            isCanonical: false,
+            isCanonical,
           }),
         ]}
         background={"bg-decorative4-very-subdued"}
@@ -412,7 +414,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           downloadResourceButtonName: "all",
                         }),
                       isSpecialist: false,
-                      isCanonical: false,
+
                       ...lesson,
                       ...commonPathway,
                     }}
@@ -523,12 +525,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           mediaClipsButtonName: "play all",
                         });
                       }}
-                      isCanonical={false}
+                      isCanonical={isCanonical}
                     >
                       <LessonOverviewMediaClips
                         lessonSlug={lessonSlug}
                         learningCycleVideos={lessonMediaClips}
-                        isCanonical={false}
+                        isCanonical={isCanonical}
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
                         lessonOutline={lessonOutline}
