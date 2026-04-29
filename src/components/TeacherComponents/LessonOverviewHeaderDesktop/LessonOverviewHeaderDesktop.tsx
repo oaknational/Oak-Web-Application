@@ -62,7 +62,7 @@ export const LessonOverviewHeaderDesktop: FC<
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
   const shouldShowBackButton =
-    !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
+    !!previousBreadcrumb && !!unitTitle && !!programmeSlug && !isCanonical;
 
   return (
     <OakBox $display={["none", "grid"]}>
