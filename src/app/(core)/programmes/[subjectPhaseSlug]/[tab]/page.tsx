@@ -27,6 +27,8 @@ import withPageErrorHandling, {
 import CMSClient from "@/node-lib/cms";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { getFeatureFlagValue } from "@/utils/featureFlags";
+import { resolveOakHref } from "@/common-lib/urls";
+import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -125,6 +127,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   }
 
   const { subjectPhaseSlug, tab } = await props.params;
+  const searchParams = await props.searchParams;
 
   if (!isTabSlug(tab)) {
     return redirect("units");
@@ -154,10 +157,18 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     if (redirectParams) {
       const { subjectSlug, phaseSlug, ks4OptionSlug } = redirectParams;
 
-      return redirect(
-        `/programmes/${subjectSlug}-${phaseSlug}-${ks4OptionSlug}/${tab}`,
-        RedirectType.replace,
-      );
+      const programmePageHref = resolveOakHref({
+        page: "teacher-programme",
+        subjectPhaseSlug: getSubjectPhaseSlug({
+          subject: subjectSlug,
+          phaseSlug,
+          examBoardSlug: ks4OptionSlug,
+        }),
+        tab,
+        query: searchParams,
+      });
+
+      return redirect(programmePageHref, RedirectType.replace);
     } else {
       throw new OakError({
         code: "curriculum-api/not-found",

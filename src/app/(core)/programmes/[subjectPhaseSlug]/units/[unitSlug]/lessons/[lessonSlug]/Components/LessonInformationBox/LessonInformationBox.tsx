@@ -13,11 +13,11 @@ type LessonInformationBoxProps = {
   teacherTip?: string[];
   equipment?: string[];
   contentGuidance?: string[];
-  supervision?: string[];
+  supervision?: string;
   filesNeeded?: {
     href: string;
     files: string[];
-    geoRestricted: boolean;
+    georestricted: boolean;
     loginRequired: boolean;
   };
   licence?: {
@@ -48,14 +48,14 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
       {teacherTip && (
         <LessonInformationItem title="Teacher tip" items={teacherTip} />
       )}
-      {equipment && (
+      {equipment && equipment.length > 0 && (
         <LessonInformationItem
           iconName={"equipment-required"}
           title="Equipment"
           items={equipment}
         />
       )}
-      {contentGuidance && (
+      {contentGuidance && contentGuidance.length > 0 && (
         <LessonInformationItem
           iconName={"content-guidance"}
           title="Content guidance"
@@ -66,7 +66,7 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
         <LessonInformationItem
           iconName={"supervision-level"}
           title="Supervision"
-          items={supervision}
+          items={[supervision]}
         />
       )}
       {filesNeeded && (
@@ -94,21 +94,29 @@ const LessonInformationBox = (props: LessonInformationBoxProps) => {
             element="a"
             actionProps={{
               name: `Download lesson ${isPlural ? "files" : "file"}`,
-              isActionGeorestricted: filesNeeded.geoRestricted,
+              isActionGeorestricted: filesNeeded.georestricted,
               iconName: "arrow-right",
               href: filesNeeded.href,
               isTrailingIcon: true,
             }}
-            geoRestricted={filesNeeded.geoRestricted}
+            geoRestricted={filesNeeded.georestricted}
             loginRequired={filesNeeded.loginRequired}
           />
         </OakFlex>
       )}
       {licence && (
-        <CopyrightLicence
-          openLinksExternally={true}
-          copyrightYear={licence.copyrightYear}
-        />
+        <OakFlex $flexDirection={"column"} $gap={"spacing-8"}>
+          <OakFlex $alignItems={"center"} $gap={"spacing-8"}>
+            <OakIcon iconName="copyright" />
+            <OakHeading tag="h3" $font={"heading-7"}>
+              Licence
+            </OakHeading>
+          </OakFlex>
+          <CopyrightLicence
+            openLinksExternally={true}
+            copyrightYear={licence.copyrightYear}
+          />
+        </OakFlex>
       )}
     </OakFlex>
   );

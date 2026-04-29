@@ -46,6 +46,7 @@ describe("constructLessonDownloads", () => {
       lessonTitle: "lesson-title",
       subjectSlug: "maths",
       subjectTitle: "Maths",
+      phaseTitle: "Primary",
       unitSlug: "unit-slug",
       unitTitle: "unit-title",
       lessonCohort: "2023-2024",
@@ -56,6 +57,7 @@ describe("constructLessonDownloads", () => {
       tierTitle: null,
       examBoardTitle: null,
       pathwayTitle: null,
+      yearGroupTitle: "Year 1",
     };
 
     expect(result).toEqual(expectedResult);
