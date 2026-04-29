@@ -62,20 +62,21 @@ export async function generateMetadata({
     ).toString();
 
     const title = getMetaTitle(cachedData, pageSearchParams);
+    const description = `Get fully sequenced teaching resources and lesson plans for ${cachedData.programmeUnitsData.phaseTitle} ${cachedData.programmeUnitsData.subjectTitle}`;
 
     return {
       title,
-      description: title,
+      description,
       alternates: {
         canonical: canonicalURL,
       },
       openGraph: getOpenGraphMetadata({
         title,
-        description: title,
+        description,
       }),
       twitter: getTwitterMetadata({
         title,
-        description: title,
+        description,
       }),
     };
   } catch (error) {
