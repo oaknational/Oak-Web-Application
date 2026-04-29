@@ -16,6 +16,7 @@ const lessonDownloadsFixtures = (
     keyStageTitle: "Key stage 4",
     subjectSlug: "combined-science",
     subjectTitle: "Combined Science",
+    phaseTitle: "Secondary",
     unitSlug: "measuring-waves",
     unitTitle: "Measuring waves",
     tierSlug: "foundation",

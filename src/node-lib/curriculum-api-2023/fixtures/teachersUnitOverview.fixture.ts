@@ -23,7 +23,7 @@ const teachersUnitOverviewFixture = (
     tierSlug: null,
     tierTitle: null,
     pathwayTitle: null,
-    yearTitle: "Year 7",
+    yearGroupTitle: "Year 7",
     year: "7",
     examBoardTitle: null,
     examBoardSlug: null,

@@ -47,6 +47,7 @@ const constructLessonDownloads = ({
     lessonTitle: parsedCurrentLesson.lesson_data.title,
     subjectSlug: parsedCurrentLesson.programme_fields.subject_slug,
     subjectTitle: parsedCurrentLesson.programme_fields.subject,
+    phaseTitle: parsedCurrentLesson.programme_fields.phase_description,
     unitSlug: parsedCurrentLesson.unit_slug,
     unitTitle,
     lessonCohort: parsedCurrentLesson.lesson_data._cohort,
@@ -56,6 +57,7 @@ const constructLessonDownloads = ({
     examBoardTitle: parsedCurrentLesson.programme_fields.examboard_description,
     tierTitle: parsedCurrentLesson.programme_fields.tier_description,
     actions: keysToCamelCase(parsedCurrentLesson.actions),
+    yearGroupTitle: parsedCurrentLesson.programme_fields.year_description,
   };
 
   const unitLessonsArray = parsedBrowseData.map((lesson) => {

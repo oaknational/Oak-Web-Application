@@ -210,7 +210,7 @@ export const transformedTeachersLessonOverviewData = (
     phaseSlug: browseData.programmeFields.phaseSlug,
     phaseTitle: browseData.programmeFields.phaseDescription,
     pathwaySlug: browseData.programmeFields.pathwaySlug,
-    yearTitle: browseData.programmeFields.yearDescription,
+    yearGroupTitle: browseData.programmeFields.yearDescription,
     year: browseData.programmeFields.year,
     examBoardTitle: browseData.programmeFields.examboard,
     examBoardSlug: browseData.programmeFields.examboardSlug,

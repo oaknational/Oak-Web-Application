@@ -166,7 +166,7 @@ export function getLessonResources({
       displayVocab={!!data.actions?.displayVocabButton}
       updatedAt={data.updatedAt}
       additionalFiles={data.additionalFiles}
-      year={data.yearTitle}
+      year={data.yearGroupTitle}
       subject={data.subjectTitle}
       keystage={data.keyStageTitle}
       keystageSlug={data.keyStageSlug}
