@@ -75,12 +75,6 @@ type BaseLessonDownload = {
   lessonReleaseDate: string | null;
 };
 
-type CanonicalLesson = BaseLessonDownload & {
-  pathways: LessonPathway[];
-  updatedAt: string;
-  nextLessons?: NextLesson[];
-};
-
 type NonCanonicalLesson = BaseLessonDownload & {
   nextLessons: NextLesson[];
   updatedAt: string;
@@ -90,20 +84,14 @@ type SpecialistLesson = SpecialistLessonDownloads["lesson"];
 
 type LessonDownloadsProps =
   | {
-      isCanonical: true;
-      lesson: CanonicalLesson;
-    }
-  | {
-      isCanonical: false;
       lesson: NonCanonicalLesson;
     }
   | {
-      isCanonical: false;
       lesson: SpecialistLesson;
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
-  const { isCanonical, lesson } = props;
+  const { lesson } = props;
   const {
     lessonTitle,
     lessonSlug,
@@ -142,26 +130,23 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const showRiskAssessmentBanner = actions?.isPePractical;
 
-  const commonPathway =
-    lessonIsSpecialist(lesson) && !props.isCanonical
-      ? {
-          lessonSlug,
-          lessonTitle,
-          unitSlug: props.lesson.unitSlug,
-          programmeSlug: props.lesson.programmeSlug,
-          unitTitle: props.lesson.unitTitle,
-          subjectTitle: props.lesson.subjectTitle,
-          subjectSlug: props.lesson.subjectSlug,
-          developmentStageTitle: props.lesson.developmentStageTitle,
-          disabled: false,
-          lessonCohort: LEGACY_COHORT,
-          keyStageSlug: null,
-          keyStageTitle: null,
-          pathwayTitle: null,
-        }
-      : getCommonPathway(
-          props.isCanonical ? props.lesson.pathways : [props.lesson],
-        );
+  const commonPathway = lessonIsSpecialist(lesson)
+    ? {
+        lessonSlug,
+        lessonTitle,
+        unitSlug: props.lesson.unitSlug,
+        programmeSlug: props.lesson.programmeSlug,
+        unitTitle: props.lesson.unitTitle,
+        subjectTitle: props.lesson.subjectTitle,
+        subjectSlug: props.lesson.subjectSlug,
+        developmentStageTitle: props.lesson.developmentStageTitle,
+        disabled: false,
+        lessonCohort: LEGACY_COHORT,
+        keyStageSlug: null,
+        keyStageTitle: null,
+        pathwayTitle: null,
+      }
+    : getCommonPathway([props.lesson]);
 
   const {
     programmeSlug,
@@ -351,7 +336,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                       lessonSlug,
                       programmeSlug,
                       unitSlug,
-                      isCanonical,
+                      isCanonical: false,
                     }),
                     getLessonDownloadsBreadCrumb({
                       lessonSlug,
@@ -401,7 +386,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             unitTitle={unitTitle}
             programmeSlug={programmeSlug}
             data-testid="downloads-confirmation"
-            isCanonical={props.isCanonical}
+            isCanonical={false}
             nextLessons={lesson.nextLessons}
             onwardContentSelected={(props) => {
               onwardContentSelected({

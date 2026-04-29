@@ -30,7 +30,7 @@ describe("Hiding 'Your details", () => {
     setUseUserReturn(mockLoggedOut);
   });
   it("should show details section when not logged in", async () => {
-    render(<LessonDownloads lesson={lesson} isCanonical={false} />);
+    render(<LessonDownloads lesson={lesson} />);
 
     const schoolSelection = screen.getByLabelText("School (required)");
 
@@ -41,9 +41,7 @@ describe("Hiding 'Your details", () => {
       ...mockLoggedIn,
       user: mockTeacherUserWithDownloadAccess,
     });
-    const result = render(
-      <LessonDownloads lesson={lesson} isCanonical={false} />,
-    );
+    const result = render(<LessonDownloads lesson={lesson} />);
 
     expect(
       result.queryByLabelText("School (required)"),
@@ -54,7 +52,7 @@ describe("Hiding 'Your details", () => {
       ...mockLoggedIn,
       user: mockUserWithDownloadAccessNotOnboarded,
     });
-    render(<LessonDownloads lesson={lesson} isCanonical={false} />);
+    render(<LessonDownloads lesson={lesson} />);
 
     const schoolSelection = screen.getByLabelText("School (required)");
 
@@ -66,7 +64,6 @@ describe("Hiding 'Your details", () => {
     const { queryByText, getByRole, queryByRole } = render(
       <LessonDownloads
         lesson={{ ...lesson, geoRestricted: true, loginRequired: false }}
-        isCanonical={false}
       />,
     );
 
@@ -89,7 +86,6 @@ describe("Hiding 'Your details", () => {
     const { queryByText, getByRole, queryByRole } = render(
       <LessonDownloads
         lesson={{ ...lesson, geoRestricted: false, loginRequired: true }}
-        isCanonical={false}
       />,
     );
 
@@ -112,7 +108,6 @@ describe("Hiding 'Your details", () => {
     const { queryByText, getByRole, queryByRole } = render(
       <LessonDownloads
         lesson={{ ...lesson, geoRestricted: true, loginRequired: true }}
-        isCanonical={false}
       />,
     );
     const yourDetailsHeading = queryByText("Your details");
@@ -134,7 +129,7 @@ describe("Hiding 'Your details", () => {
       user: mockTeacherUserWithDownloadAccess,
     });
     const { queryByRole } = render(
-      <LessonDownloads lesson={restrictedLesson} isCanonical={false} />,
+      <LessonDownloads lesson={restrictedLesson} />,
     );
 
     const loginRequiredButton = queryByRole("button", {
@@ -147,7 +142,7 @@ describe("Hiding 'Your details", () => {
   it("should show LessonDownloadRegionBlocked instead of copyright banner when logged in but not region authorised", () => {
     setUseUserReturn({ ...mockLoggedIn, user: mockUserWithoutDownloadAccess });
     const { queryByRole, getByText, queryByTestId } = render(
-      <LessonDownloads lesson={restrictedLesson} isCanonical={false} />,
+      <LessonDownloads lesson={restrictedLesson} />,
     );
 
     const downloadButton = queryByRole("button", {
@@ -169,9 +164,7 @@ describe("Hiding 'Your details", () => {
 
 describe("With downloads page experiment feature flag", () => {
   it("should render the downloads accordion when with-accordion variant is active", () => {
-    const { queryByText } = render(
-      <LessonDownloads lesson={lesson} isCanonical={false} />,
-    );
+    const { queryByText } = render(<LessonDownloads lesson={lesson} />);
 
     const downloadsAccordion = queryByText("All resources selected");
 
