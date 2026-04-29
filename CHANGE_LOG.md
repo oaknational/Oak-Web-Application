@@ -1,3 +1,43 @@
+# [1.1060.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1059.0...v1.1060.0) (2026-04-29)
+
+
+### Bug Fixes
+
+* add banner, padding on modal and hand in button ([ef4b547](https://github.com/oaknational/Oak-Web-Application/commit/ef4b5472f0e3330cbe343c05f8c8326f370b14a2))
+* add radix to parseInt and additional test files ([2304134](https://github.com/oaknational/Oak-Web-Application/commit/23041345a4eccee4073902a811735f690ebc8be7))
+* add test file for google classroom api ([ade7b8b](https://github.com/oaknational/Oak-Web-Application/commit/ade7b8b01e376d1ecfee00a624c7047522883fcf))
+* add tests for coursework flow on pupil experience ([61a18a8](https://github.com/oaknational/Oak-Web-Application/commit/61a18a8e2ddeb0ff228aaf7d7deefbc50a449b70))
+* broken ci:cd tests ([07f5801](https://github.com/oaknational/Oak-Web-Application/commit/07f5801fbcfb8235a2aca2b11950c3bf25ffc451))
+* broken test ([de3b14f](https://github.com/oaknational/Oak-Web-Application/commit/de3b14f6973a07045b0ce27173b6311eb854fb97))
+* broken test files on ci:cd and run prettier command ([ef8a531](https://github.com/oaknational/Oak-Web-Application/commit/ef8a53118adef6a21fa0cafa2212f207e7014804))
+* broken tests ([81413de](https://github.com/oaknational/Oak-Web-Application/commit/81413dec1e9c7df35b28047ff7c47c28fdf1eebd))
+* broken tests ([e051f79](https://github.com/oaknational/Oak-Web-Application/commit/e051f79913488375f8db0ed247fbfd2aec2e4217))
+* broken tests await aasync effects ([6b23a4f](https://github.com/oaknational/Oak-Web-Application/commit/6b23a4f60f530ff458df264101f15183291b6c2f))
+* console.error ([2636015](https://github.com/oaknational/Oak-Web-Application/commit/26360150eba2abf58581a8b9bc5f020a07fe2552))
+* fix sonarcloud cognitive complexity issue ([5bb1ab9](https://github.com/oaknational/Oak-Web-Application/commit/5bb1ab90793c081b1d91526c57ad4e3d2387f800))
+* headers type error ([b97ed99](https://github.com/oaknational/Oak-Web-Application/commit/b97ed999f9ece524e36235cae2a7bd86797cd6b9))
+* make modal scrollable ([26d98cb](https://github.com/oaknational/Oak-Web-Application/commit/26d98cb57fe807064ca01fa1c5ebbe1d4eb658c9))
+* modal bugs and safari pop up ([b7c1f10](https://github.com/oaknational/Oak-Web-Application/commit/b7c1f10da10f7a09fd2de8f0d58c5991eca48b3d))
+* new attempt to fix ci:cd ([be8aa0c](https://github.com/oaknational/Oak-Web-Application/commit/be8aa0cec628509ea75ad2d131db5286565e6709))
+* pass ci:cd ([1deb40a](https://github.com/oaknational/Oak-Web-Application/commit/1deb40a4a7c5d37d6ced86a27e6e4544a2301def))
+* pre-fetch sign in url ([503ed63](https://github.com/oaknational/Oak-Web-Application/commit/503ed630ac8985216c61a30ec64a4ddc0178bdd3))
+* preview mode banner ([76761ed](https://github.com/oaknational/Oak-Web-Application/commit/76761ed1fd302014d8296bb2d1cfc88f615928b6))
+* remove auth for the get course work call ([11aa98f](https://github.com/oaknational/Oak-Web-Application/commit/11aa98f0553de7a3eb3d596ac40fa19d872890ba))
+* remove shareable options from review page ([776ef78](https://github.com/oaknational/Oak-Web-Application/commit/776ef782314c5ddecb7e17f029153084b59e8692))
+* remove stubbed AuthCookieKeys ([0e47080](https://github.com/oaknational/Oak-Web-Application/commit/0e47080e4d87c250efac8fdf06bc17f9db150311))
+* type errors ([a417db3](https://github.com/oaknational/Oak-Web-Application/commit/a417db3d98c80cb75e2f0f0348a7152fd47c5c50))
+* useCourseWork test file ([b2334a4](https://github.com/oaknational/Oak-Web-Application/commit/b2334a4586a2553ffe6948ef93e7de8e5981db60))
+
+
+### Features
+
+* hand in, overflow and updated progress ([557d381](https://github.com/oaknational/Oak-Web-Application/commit/557d38173ddd3758b90118bbe87e9da1712dc69d))
+* implement coursework-api ([2fc50e3](https://github.com/oaknational/Oak-Web-Application/commit/2fc50e398da774c49432fe1eb78b550c934004c9))
+* modal test file ([0a09bfb](https://github.com/oaknational/Oak-Web-Application/commit/0a09bfb870f41e0bc5f70548fc0d40e7028ddd26))
+* put google classroom free tier share behind feature flag ([9f71fa3](https://github.com/oaknational/Oak-Web-Application/commit/9f71fa3adc49c54be77ac17fbb7f8a2dfc3bffcd))
+* trigger ci:cd ([cfebf70](https://github.com/oaknational/Oak-Web-Application/commit/cfebf707e3fe371c37a7a331c12ebd0759c363ba))
+* trigger ci:cd ([ba00cf3](https://github.com/oaknational/Oak-Web-Application/commit/ba00cf3f06c222a5c1bd083282b2da881527a833))
+
 # [1.1059.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1058.2...v1.1059.0) (2026-04-28)
 
 
