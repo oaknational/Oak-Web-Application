@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 import React from "react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
@@ -95,6 +96,12 @@ jest.mock(
   }),
 );
 
+const mockUseFeatureFlagEnabled = useFeatureFlagEnabled as jest.Mock;
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn(),
+}));
+
 beforeEach(() => {
   renderHook(() => useForm());
   localStorage.clear();
@@ -160,6 +167,8 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
 
   describe("Share form", () => {
     it("Renders share form with correct elements", () => {
+      mockUseFeatureFlagEnabled.mockReturnValue(false);
+
       render(<LessonSharePage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
@@ -213,6 +222,10 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
         name: "Copy link to clipboard",
       });
       expect(shareButtonCopy).toBeInTheDocument();
+      // Will become Assign to Google Classroom when feature flag is removed
+      // const shareButtonGoogle = screen.getByRole("button", {
+      //   name: "Assign to Google Classroom",
+      // });
       const shareButtonGoogle = screen.getByRole("link", {
         name: "Share to Google Classroom",
       });

@@ -56,7 +56,7 @@ const lessonOverviewFixture: Partial<TeachersLessonOverviewPageData> = {
   subjectSlug: "maths",
   subjectTitle: "Maths",
   subjectParent: null,
-  yearTitle: "Year 4",
+  yearGroupTitle: "Year 4",
   year: "4",
   keyStageSlug: "ks2",
   keyStageTitle: "Key Stage 2",
