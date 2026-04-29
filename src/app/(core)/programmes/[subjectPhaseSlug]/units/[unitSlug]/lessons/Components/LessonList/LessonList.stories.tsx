@@ -124,6 +124,7 @@ const defaultArgs: LessonListProps = {
   unitCount: 28,
   lessonCount: 4,
   lessons: fixtureData.lessons,
+  showUnitCount: true,
 };
 
 export const Default: Story = {

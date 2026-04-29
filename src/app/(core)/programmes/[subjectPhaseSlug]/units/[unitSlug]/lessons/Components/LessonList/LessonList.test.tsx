@@ -168,4 +168,18 @@ describe("LessonList", () => {
       }),
     );
   });
+  test("it renders unit count", () => {
+    const { getByTestId } = render(<LessonList {...defaultProps} />);
+    const unitCount = getByTestId("unit-count");
+
+    expect(unitCount).toBeInTheDocument();
+  });
+  test("it does not render unit count when showUnitCount is false", () => {
+    const { queryByTestId } = render(
+      <LessonList {...defaultProps} showUnitCount={false} />,
+    );
+    const unitCount = queryByTestId("unit-count");
+
+    expect(unitCount).not.toBeInTheDocument();
+  });
 });
