@@ -58,6 +58,7 @@ describe("constructLessonDownloads", () => {
       legacyCopyrightContent: null,
       nextLessons: [],
       tierTitle: null,
+      examBoardSlug: null,
       examBoardTitle: null,
       pathwayTitle: null,
       yearGroupTitle: "Year 1",

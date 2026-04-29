@@ -57,6 +57,7 @@ const constructLessonDownloads = ({
     expired: expired ? expired : null,
     updatedAt: parsedCurrentLesson.lesson_data.updated_at,
     legacyCopyrightContent: legacyLessonCopyrightInfo,
+    examBoardSlug: parsedCurrentLesson.programme_fields.examboard_slug ?? null,
     examBoardTitle: parsedCurrentLesson.programme_fields.examboard,
     tierTitle: parsedCurrentLesson.programme_fields.tier_description,
     actions: keysToCamelCase(parsedCurrentLesson.actions),
