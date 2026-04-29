@@ -1,3 +1,15 @@
+# [1.1061.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1060.0...v1.1061.0) (2026-04-29)
+
+
+### Bug Fixes
+
+* storybook failing to render locally ([61ca1d9](https://github.com/oaknational/Oak-Web-Application/commit/61ca1d935e070e25fad90e603ed4f2a85ee8d663))
+
+
+### Features
+
+* **LESQ-1944:** add downloads to integrated journey breadcrumbs ([989472d](https://github.com/oaknational/Oak-Web-Application/commit/989472d1fad1293a4edcae4a56f04a004b5f8587))
+
 # [1.1060.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1059.0...v1.1060.0) (2026-04-29)
 
 
