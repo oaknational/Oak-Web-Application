@@ -86,7 +86,7 @@ export const teachersLessonOverviewSchema =
     phaseSlug: programmeFieldsSchema.shape.phase_slug,
     phaseTitle: programmeFieldsSchema.shape.phase_description,
     pathwaySlug: programmeFieldsSchema.shape.pathway_slug,
-    yearTitle: z.string(),
+    yearGroupTitle: z.string(),
     year: z.string(),
     examBoardTitle: z.string().nullable(),
     examBoardSlug: z.string().nullable(),
