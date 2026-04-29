@@ -97,7 +97,11 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
           subjectTitle: data.subjectTitle,
         }}
         headerSlot={
-          <Breadcrumbs data={data} subjectPhaseSlug={subjectPhaseSlug} />
+          <Breadcrumbs
+            data={data}
+            subjectPhaseSlug={subjectPhaseSlug}
+            mode="unit"
+          />
         }
       />
       <UnitView
