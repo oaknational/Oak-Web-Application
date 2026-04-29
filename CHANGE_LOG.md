@@ -1,3 +1,20 @@
+# [1.1063.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1062.0...v1.1063.0) (2026-04-29)
+
+
+### Bug Fixes
+
+* field name in fixture ([1884e72](https://github.com/oaknational/Oak-Web-Application/commit/1884e720784e8c854ee25be23a4b6cdd0b5e5884))
+* remove duplicate app name suffix on titles ([63f30e6](https://github.com/oaknational/Oak-Web-Application/commit/63f30e61ea7e143ad715b6a5e77cc107ca3e8840))
+
+
+### Features
+
+* add ks4 options to unit overview metadata ([2e30752](https://github.com/oaknational/Oak-Web-Application/commit/2e307528bf685a06bfc361976f9bec470c305229))
+* add new meta titles for programme page ([9785aa4](https://github.com/oaknational/Oak-Web-Application/commit/9785aa468eb01f3b97a8c514f236d6f8945160c8))
+* update lesson overview meta title ([f3706c1](https://github.com/oaknational/Oak-Web-Application/commit/f3706c1ba35569b6bb37596b3cc76b34d84d6972))
+* update meta title for unit overview page ([6e60b5f](https://github.com/oaknational/Oak-Web-Application/commit/6e60b5f5f29a0df037665678206bd56e5485479d))
+* update programme page description ([0635e76](https://github.com/oaknational/Oak-Web-Application/commit/0635e76d94cb81e8f95350bf092fe65401f37816))
+
 # [1.1062.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1061.0...v1.1062.0) (2026-04-29)
 
 
