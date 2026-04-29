@@ -10,7 +10,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 describe("UnitViewSeoAccordion", () => {
   const defaultProps: UnitViewSeoAccordionProps = {
     examBoardTitle: "AQA",
-    yearTitle: "Year 7",
+    yearGroupTitle: "Year 7",
     keyStage: "KS3",
     unitTitle: "Test Unit",
     subjectTitle: "English",

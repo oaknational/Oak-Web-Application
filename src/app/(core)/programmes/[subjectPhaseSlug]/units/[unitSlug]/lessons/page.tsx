@@ -125,7 +125,7 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
         nextUnit={data.nextUnit}
         prevUnit={data.prevUnit}
         subjectCategories={data.subjectCategories}
-        yearTitle={data.yearTitle}
+        yearGroupTitle={data.yearGroupTitle}
         examBoardTitle={data.examBoardTitle}
         examBoardSlug={data.examBoardSlug}
         subjectPhaseSlug={subjectPhaseSlug}

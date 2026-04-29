@@ -42,7 +42,7 @@ const defaultProps: UnitViewProps = {
   nextUnit: null,
   prevUnit: null,
   subjectCategories: null,
-  yearTitle: "Year 10",
+  yearGroupTitle: "Year 10",
   examBoardSlug: "aqa",
   examBoardTitle: "AQA",
   subjectPhaseSlug: "biology-secondary",

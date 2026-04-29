@@ -46,7 +46,7 @@ export type UnitViewProps = Pick<
   | "prevUnit"
   | "nextUnit"
   | "subjectCategories"
-  | "yearTitle"
+  | "yearGroupTitle"
   | "examBoardTitle"
   | "examBoardSlug"
 > & {
@@ -74,7 +74,7 @@ export const UnitView = ({
   nextUnit,
   prevUnit,
   subjectCategories,
-  yearTitle,
+  yearGroupTitle,
   examBoardTitle,
   subjectPhaseSlug,
 }: UnitViewProps) => {
@@ -165,7 +165,7 @@ export const UnitView = ({
         <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
           <UnitViewSeoAccordion
             examBoardTitle={examBoardTitle ?? undefined}
-            yearTitle={yearTitle}
+            yearGroupTitle={yearGroupTitle}
             keyStage={keyStageTitle}
             unitTitle={unitTitle}
             subjectTitle={subjectTitle}
