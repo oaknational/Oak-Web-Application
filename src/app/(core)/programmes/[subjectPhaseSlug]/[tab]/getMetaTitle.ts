@@ -47,23 +47,13 @@ export const getMetaTitle = (
       : "";
   const examboardSegment = ks4Option ? ` ${ks4Option.title}` : "";
 
-  const baseMetaTitle = `Free ${phaseSubjectSegment}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
-  const keystageMetaTitle = keystageSegment
-    ? `Free ${keystageSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment} Lesson & Curriculum Resources`
-    : undefined;
-  const yearsMetaTitle = yearSegment
-    ? `Free ${yearSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment} Lesson & Curriculum Resources`
-    : undefined;
-  const yearAndThreadMetaTitle =
-    yearSegment && threadSegment
-      ? `Free ${yearSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`
-      : undefined;
+  if (yearSegment) {
+    return `Free ${yearSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
+  }
 
-  const title =
-    yearAndThreadMetaTitle ??
-    yearsMetaTitle ??
-    keystageMetaTitle ??
-    baseMetaTitle;
+  if (keystageSegment) {
+    return `Free ${keystageSegment} ${programmeUnitsData.subjectTitle}${tierSegment}${examboardSegment} Lesson & Curriculum Resources`;
+  }
 
-  return title;
+  return `Free ${phaseSubjectSegment}${tierSegment}${examboardSegment}${threadSegment} Lesson & Curriculum Resources`;
 };
