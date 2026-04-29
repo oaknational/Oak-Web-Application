@@ -1,9 +1,16 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import LessonShareLinks from "./LessonShareLinks";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const mockUseFeatureFlagEnabled = useFeatureFlagEnabled as jest.Mock;
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn(),
+}));
 
 describe("LessonShareLinks", () => {
   beforeEach(() => {
@@ -86,13 +93,45 @@ describe("LessonShareLinks", () => {
       />,
     );
 
-    const copyLinkButton = getByRole("link", {
+    const googleClassroomLink = getByRole("link", {
       name: "Share to Google Classroom",
     });
 
-    expect(copyLinkButton).toBeInTheDocument();
+    expect(googleClassroomLink).toBeInTheDocument();
     const user = userEvent.setup();
-    await user.click(copyLinkButton);
+    await user.click(googleClassroomLink);
     expect(onSubmit).toHaveBeenCalledWith("google-classroom");
+  });
+
+  it("should render the Google Classroom button when onGoogleClassroomClick is provided", async () => {
+    const onSubmit = jest.fn();
+    const onGoogleClassroomClick = jest.fn();
+    mockUseFeatureFlagEnabled.mockReturnValue(true);
+
+    renderWithProviders()(
+      <LessonShareLinks
+        disabled={false}
+        lessonSlug="test-slug"
+        selectedActivities={["exit-quiz-questions"]}
+        onSubmit={onSubmit}
+        onGoogleClassroomClick={onGoogleClassroomClick}
+      />,
+    );
+
+    expect(
+      screen.queryByRole("link", {
+        name: "Assign to Google Classroom",
+      }),
+    ).not.toBeInTheDocument();
+
+    const googleClassroomButton = screen.getByRole("button", {
+      name: "Assign to Google Classroom",
+    });
+
+    const user = userEvent.setup();
+    await user.click(googleClassroomButton);
+
+    expect(onSubmit).toHaveBeenCalledWith("google-classroom");
+    expect(onGoogleClassroomClick).toHaveBeenCalled();
   });
 });

@@ -34,6 +34,7 @@ const defaultTestProps = () => ({
   copyrightState: defaultCopyrightRequirements,
   isMathJaxLesson: false,
   trackMediaClipsButtonClicked: mockTrackMediaClipsButtonClicked,
+  contentRestricted: false,
 });
 
 describe("getLessonResources", () => {

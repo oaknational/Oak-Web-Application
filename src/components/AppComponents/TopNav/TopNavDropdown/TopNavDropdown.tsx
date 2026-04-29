@@ -60,14 +60,9 @@ const TeachersPhaseSection = ({
 
   const keystagesRef = useRef<HTMLUListElement>(null);
 
-  const subjects =
-    menuData.children
-      .find((k) => k.slug === selectedKeystage)
-      ?.children.filter((subject) => !subject.nonCurriculum) ?? undefined;
-  const nonCurriculumSubjects =
-    menuData.children
-      .find((k) => k.slug === selectedKeystage)
-      ?.children.filter((subject) => subject.nonCurriculum) ?? undefined;
+  const allSubjects =
+    menuData.children.find((keystage) => keystage.slug === selectedKeystage)
+      ?.children ?? undefined;
 
   const onKeystageClick = (keystageSlug: string) => {
     track.browseRefined({
@@ -171,18 +166,13 @@ const TeachersPhaseSection = ({
           );
         })}
       </OakUL>
-      {subjects && (
+      {allSubjects && (
         <TopNavSubjectButtons
           handleClick={onClick}
           focusManager={focusManager}
           selectedMenu={selectedMenu}
-          subjects={subjects}
-          nonCurriculumSubjects={nonCurriculumSubjects}
+          subjects={allSubjects}
           keyStageSlug={selectedKeystage}
-          keyStageTitle={
-            menuData.children.find((k) => k.slug === selectedKeystage)?.title ||
-            ""
-          }
         />
       )}
     </OakFlex>

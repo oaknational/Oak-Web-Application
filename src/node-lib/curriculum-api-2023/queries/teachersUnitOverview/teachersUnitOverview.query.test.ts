@@ -197,7 +197,7 @@ describe("teachersUnitOverview", () => {
       tierTitle: null,
       examBoardSlug: null,
       examBoardTitle: null,
-      yearTitle: "Year 1",
+      yearGroupTitle: "Year 1",
       yearSlug: "year-1",
       year: "1",
       pathwaySlug: null,
