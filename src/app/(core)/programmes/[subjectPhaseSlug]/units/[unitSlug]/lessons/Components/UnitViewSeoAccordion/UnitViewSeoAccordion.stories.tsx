@@ -19,6 +19,7 @@ export const Secondary: Story = {
     unitTitle: "Coordination and control",
     subjectTitle: "Biology",
     phaseSlug: "secondary",
+    subjectPhaseSlug: "biology-secondary-aqa",
   },
 };
 
@@ -30,6 +31,7 @@ export const SecondaryEdexcel: Story = {
     unitTitle: "Cells",
     subjectTitle: "Biology",
     phaseSlug: "secondary",
+    subjectPhaseSlug: "biology-secondary-edexcel",
   },
 };
 
@@ -41,6 +43,7 @@ export const Primary: Story = {
     unitTitle: "Animals including humans",
     subjectTitle: "Science",
     phaseSlug: "primary",
+    subjectPhaseSlug: "science-primary",
   },
 };
 
@@ -52,6 +55,7 @@ export const PrimaryKS1: Story = {
     unitTitle: "Understanding animals",
     subjectTitle: "Science",
     phaseSlug: "primary",
+    subjectPhaseSlug: "science-primary",
   },
 };
 
@@ -63,5 +67,6 @@ export const NoExamBoard: Story = {
     unitTitle: "Energy",
     subjectTitle: "Physics",
     phaseSlug: "secondary",
+    subjectPhaseSlug: "physics-secondary",
   },
 };
