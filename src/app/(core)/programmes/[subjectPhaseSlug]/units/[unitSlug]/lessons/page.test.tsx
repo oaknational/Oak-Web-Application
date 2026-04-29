@@ -95,7 +95,7 @@ const ks4UnitOverviewFixture: TeachersUnitOverviewData = {
   keyStageTitle: "Key Stage 4",
   year: "11",
   yearSlug: "year-11",
-  yearTitle: "Year 11",
+  yearGroupTitle: "Year 11",
   examBoardSlug: "aqa",
   examBoardTitle: "AQA",
   tierSlug: "foundation",
