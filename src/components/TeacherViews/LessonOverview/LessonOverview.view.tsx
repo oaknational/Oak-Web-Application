@@ -24,6 +24,7 @@ import {
   createAttributionObject,
   getMediaClipLabel,
   getPageLinksWithSubheadingsForLesson,
+  getCommonPathway,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { getAnalyticsBrowseData } from "@/components/TeacherComponents/helpers/getAnalyticsBrowseData";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
@@ -338,10 +339,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     <MathJaxLessonProvider>
       <HeaderLesson
         {...lesson}
-        {...commonPathway}
         isCanonical={isCanonical}
         breadcrumbs={[
-          ...getBreadcrumbsForLessonPathway(commonPathway),
+          ...getBreadcrumbsForLessonPathway(
+            isCanonical ? getCommonPathway(lesson.pathways) : commonPathway,
+          ),
           getLessonOverviewBreadCrumb({
             lessonTitle,
             lessonSlug,
