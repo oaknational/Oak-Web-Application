@@ -116,6 +116,7 @@ const defaultProps: LessonListProps = {
 describe("LessonList", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    setUseUserReturn(mockLoggedOut);
   });
 
   it("renders unit and lesson summary content", () => {
