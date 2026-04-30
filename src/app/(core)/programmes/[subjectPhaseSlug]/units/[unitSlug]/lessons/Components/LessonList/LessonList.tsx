@@ -40,6 +40,7 @@ type LessonListProps = Pick<
   showUnitCount?: boolean;
   showUnitDownloadButton?: boolean;
   isGeorestrictedUnit?: boolean;
+  unitDownloadFileId?: string;
 };
 
 function LessonSubcopy({
@@ -119,6 +120,7 @@ const LessonList = ({
   showUnitCount = true,
   showUnitDownloadButton = false,
   isGeorestrictedUnit,
+  unitDownloadFileId,
 }: LessonListProps) => {
   const {
     setShowDownloadMessage,
@@ -128,7 +130,7 @@ const LessonList = ({
     setShowIncompleteMessage,
   } = useUnitDownloadButtonState();
 
-  const unitFileId = `${programmeSlug}-${unitSlug}`;
+  const unitFileId = unitDownloadFileId ?? `${programmeSlug}-${unitSlug}`;
   const onDownloadSuccess = () => {
     setShowDownloadMessage(false);
   };
