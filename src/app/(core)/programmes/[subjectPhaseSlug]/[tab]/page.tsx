@@ -29,6 +29,7 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefr
 import { getFeatureFlagValue } from "@/utils/featureFlags";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
+import { CurriculumFilters } from "@/utils/curriculum/types";
 
 const reportError = errorReporter("programme-page::app");
 
@@ -97,7 +98,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
   }
 
   const { subjectPhaseSlug, tab } = await props.params;
-  const searchParams = await props.searchParams;
+  const searchParams = (await props.searchParams) ?? {};
 
   if (!isTabSlug(tab)) {
     return redirect("units");
@@ -205,6 +206,21 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     ks4OptionTitle: curriculumSelectionTitles.examboardTitle,
   };
 
+  // Normalize searchParams to always be arrays
+  const normalizeParam = (value: string | string[] | undefined): string[] => {
+    if (!value) return [];
+    return Array.isArray(value) ? value : [value];
+  };
+
+  const initialFilters: CurriculumFilters = {
+    childSubjects: normalizeParam(searchParams.child_subjects),
+    subjectCategories: normalizeParam(searchParams.subject_categories),
+    tiers: normalizeParam(searchParams.tiers),
+    years: normalizeParam(searchParams.years),
+    threads: normalizeParam(searchParams.threads),
+    pathways: normalizeParam(searchParams.pathways),
+    keystages: normalizeParam(searchParams.keystages),
+  };
   const results = {
     subjectPhaseSlug,
     curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
@@ -218,6 +234,7 @@ const InnerProgrammePage = async (props: AppPageProps<ProgrammePageParams>) => {
     curriculumInfo: cachedData.programmeUnitsData,
     curriculumDownloadsTabData,
     mvRefreshTime,
+    initialFilters,
   };
 
   return <ProgrammeView {...results} />;
