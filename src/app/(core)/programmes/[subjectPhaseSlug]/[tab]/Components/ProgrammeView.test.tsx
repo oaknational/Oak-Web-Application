@@ -87,6 +87,15 @@ const defaultProps = {
     subjectTitle: "Science",
     ks4OptionTitle: "AQA",
   },
+  initialFilters: {
+    childSubjects: [],
+    subjectCategories: [],
+    threads: [],
+    tiers: [],
+    years: [],
+    pathways: [],
+    keystages: [],
+  },
 };
 
 const render = renderWithProviders();
