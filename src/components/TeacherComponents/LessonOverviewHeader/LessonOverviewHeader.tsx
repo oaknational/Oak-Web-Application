@@ -31,12 +31,12 @@ export type LessonOverviewHeaderProps = {
   yearTitle?: string | null;
   examBoardTitle?: string | null;
   tierTitle?: string | null;
-  unitSlug: string | null;
+  unitSlug: string;
   keyStageSlug?: string | null;
   keyStageTitle?: string | null;
   unitTitle: string | null;
   subjectTitle: string | null;
-  programmeSlug: string | null;
+  programmeSlug: string;
   // lesson base props
   lessonTitle: string;
   expired?: boolean | null;

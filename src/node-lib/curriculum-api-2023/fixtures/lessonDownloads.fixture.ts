@@ -1,5 +1,4 @@
 import { LessonDownloadsPageData } from "../queries/lessonDownloads/lessonDownloads.schema";
-import { LessonDownloadsCanonical } from "../queries/lessonDownloads/lessonDownloadsCanonical.schema";
 
 const lessonDownloadsFixtures = (
   partial?: Partial<LessonDownloadsPageData>,
@@ -53,26 +52,6 @@ const lessonDownloadsFixtures = (
     geoRestricted: false,
     loginRequired: false,
     lessonReleaseDate: "2025-09-29T14:00:00.000Z",
-    ...partial,
-  };
-};
-
-export const lessonDownloadsCanonicalFixture = (
-  partial?: Partial<LessonDownloadsCanonical>,
-): LessonDownloadsCanonical => {
-  return {
-    ...lessonDownloadsFixtures(),
-    pathways: [
-      {
-        programmeSlug: "combined-science-secondary-ks4-foundation-edexcel",
-        unitSlug: "measuring-waves",
-        unitTitle: "Measuring waves",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        subjectSlug: "combined-science",
-        subjectTitle: "Combined Science",
-      },
-    ],
     ...partial,
   };
 };

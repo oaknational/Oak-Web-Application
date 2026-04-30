@@ -207,6 +207,8 @@ describe("lessonDownloadsCanonical()", () => {
         ),
       })({
         lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -222,6 +224,8 @@ describe("lessonDownloadsCanonical()", () => {
         ),
       })({
         lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -253,6 +257,8 @@ describe("lessonDownloadsCanonical()", () => {
         ),
       })({
         lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
       });
     } catch (error: unknown) {
       const typedError = error as ZodError;
