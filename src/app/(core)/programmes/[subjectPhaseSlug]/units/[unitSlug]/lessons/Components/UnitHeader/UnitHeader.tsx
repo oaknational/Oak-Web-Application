@@ -126,7 +126,8 @@ const UnitHeader = (props: UnitHeaderProps) => {
                   setCurrentToastProps({
                     message: "Download started. This may take a few minutes.",
                     variant: "success",
-                    autoDismiss: false,
+                    autoDismiss: true,
+                    autoDismissDuration: 10000,
                     showIcon: true,
                   });
                 }}
