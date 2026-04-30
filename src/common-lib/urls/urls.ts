@@ -315,6 +315,7 @@ type AboutUsOaksCurriculaLinkProps = { page: "about-oaks-curricula" };
 
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
+type FontHelpLinkProps = { page: "help-font" };
 type HelpLinkProps = { page: "help" };
 type PupilHelpLinkProps = { page: "pupil-help" };
 type GuideToOakLinkProps = { page: "guide-to-oak" };
@@ -511,7 +512,8 @@ export type OakLinkProps =
   | ClassroomAuthSuccessLinkProps
   | ClassroomPupilSignInLinkProps
   | EyfsPageLinkProps
-  | GuideToOakLinkProps;
+  | GuideToOakLinkProps
+  | FontHelpLinkProps;
 
 export type ExternalPageName =
   | "[external] Careers"
@@ -757,6 +759,12 @@ export const OAK_PAGES: {
     analyticsPageName: "[external] Help",
     configType: "external",
     pageType: "guide-to-oak",
+  }),
+  "help-font": createOakPageConfig({
+    url: "https://support.thenational.academy/how-to-install-the-google-fonts-lexend-and-kalan",
+    analyticsPageName: "[external] Help",
+    configType: "external",
+    pageType: "help-font",
   }),
   home: createOakPageConfig({
     pathPattern: "/",

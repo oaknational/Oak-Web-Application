@@ -1,5 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useSearchParams } from "next/navigation";
 
 import { PupilViewsLessonOverview } from "./PupilLessonOverview.view";
 
@@ -31,6 +32,17 @@ jest.mock(
     };
   },
 );
+
+jest.mock("zod-to-camel-case", () => ({
+  __esModule: true,
+  default: jest.fn((value) => value),
+  keysToCamelCase: jest.fn((value) => value),
+}));
+
+jest.mock("next/navigation", () => ({
+  ...jest.requireActual("next/navigation"),
+  useSearchParams: jest.fn(),
+}));
 
 jest.mock("@/hooks/useAssignmentSearchParams", () => ({
   useAssignmentSearchParams: jest.fn(),
@@ -80,10 +92,14 @@ const mockedUseAssignmentSearchParams =
   useAssignmentSearchParams as jest.MockedFunction<
     typeof useAssignmentSearchParams
   >;
+const mockedUseSearchParams = useSearchParams as jest.MockedFunction<
+  typeof useSearchParams
+>;
 const mockedUseTrackSectionStarted =
   useTrackSectionStarted as jest.MockedFunction<typeof useTrackSectionStarted>;
 
 const mockBrowseData = lessonBrowseDataFixture({
+  programmeSlug: "english-primary",
   programmeFields: {
     ...lessonBrowseDataFixture({}).programmeFields,
     phase: "primary",
@@ -126,6 +142,9 @@ describe("PupilViewsLessonOverview", () => {
       isClassroomAssignment: false,
       classroomAssignmentChecked: true,
     });
+    mockedUseSearchParams.mockReturnValue({
+      get: jest.fn(() => null),
+    } as unknown as ReturnType<typeof useSearchParams>);
     mockedUseTrackSectionStarted.mockReturnValue({
       trackSectionStarted: mockTrackSectionStarted,
     });
@@ -137,6 +156,15 @@ describe("PupilViewsLessonOverview", () => {
     expect(
       queryByRole("heading", { name: "Introduction to The Canterbury Tales" }),
     ).toBeInTheDocument();
+  });
+
+  it("disables and shows loading on the proceed button while initial progress is hydrating", () => {
+    renderOverview({
+      isHydratingInitialProgress: true,
+    });
+
+    expect(screen.getByTestId("proceed-to-next-section")).toBeDisabled();
+    expect(screen.getAllByText("Loading").length).toBeGreaterThan(0);
   });
 
   [

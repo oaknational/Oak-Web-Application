@@ -137,6 +137,7 @@ export const lessonPathwaySchema = z.object({
   keyStageTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
+  phaseTitle: z.string().nullish(),
   lessonCohort: z.string().nullish(),
   examBoardSlug: z.string().nullish(),
   examBoardTitle: z.string().nullish(),

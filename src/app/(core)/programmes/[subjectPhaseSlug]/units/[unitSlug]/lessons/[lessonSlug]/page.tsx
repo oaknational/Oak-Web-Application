@@ -40,27 +40,6 @@ const getCachedLessonData = cache(
   },
 );
 
-const getTitleForMetadata = ({
-  lessonTitle,
-  tierTitle,
-  examBoardTitle,
-  keyStageSlug,
-  year,
-  subjectTitle,
-}: {
-  lessonTitle: string;
-  tierTitle: string | null | undefined;
-  examBoardTitle: string | null | undefined;
-  keyStageSlug: string;
-  year: string;
-  subjectTitle: string;
-}) => {
-  const optionalTitles = [tierTitle, examBoardTitle].filter(Boolean).join(" ");
-  const optionalTitlesPart = optionalTitles ? ` ${optionalTitles}` : "";
-
-  return `${lessonTitle}${optionalTitlesPart} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources`;
-};
-
 export async function generateMetadata(
   props: AppPageProps<LessonPageParams>,
 ): Promise<Metadata> {
@@ -81,14 +60,10 @@ export async function generateMetadata(
       examBoardTitle,
     } = data;
 
-    const title = getTitleForMetadata({
-      lessonTitle,
-      tierTitle,
-      examBoardTitle,
-      keyStageSlug,
-      year,
-      subjectTitle,
-    });
+    const tierSegment = tierTitle ? ` ${tierTitle}` : "";
+    const examboardSegment = examBoardTitle ? ` ${examBoardTitle}` : "";
+    const title = `${lessonTitle} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle}${tierSegment}${examboardSegment} | Lesson Resources`;
+
     const description =
       "View lesson content and choose resources to download or share";
 
@@ -141,6 +116,7 @@ const InnerLessonPage = async (props: AppPageProps<LessonPageParams>) => {
               examboardSlug: data.examBoardSlug,
               pathwaySlug: data.pathwaySlug,
             })}
+            mode="lesson"
           />
         }
         georestricted={data.geoRestricted}

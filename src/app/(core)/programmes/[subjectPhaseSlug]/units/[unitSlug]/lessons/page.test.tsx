@@ -59,7 +59,7 @@ const unitOverviewFixture: TeachersUnitOverviewData = {
   subjectSlug: "maths",
   subjectTitle: "Maths",
   parentSubject: null,
-  yearTitle: "Year 4",
+  yearGroupTitle: "Year 4",
   yearSlug: "year-4",
   year: "4",
   keyStageSlug: "ks2",
@@ -85,6 +85,21 @@ const unitOverviewFixture: TeachersUnitOverviewData = {
   whyThisWhyNow: "why this why now",
   priorKnowledgeRequirements: ["Requirement 1"],
   subjectCategories: null,
+};
+
+const ks4UnitOverviewFixture: TeachersUnitOverviewData = {
+  ...unitOverviewFixture,
+  phaseSlug: "secondary",
+  phaseTitle: "Secondary",
+  keyStageSlug: "ks4",
+  keyStageTitle: "Key Stage 4",
+  year: "11",
+  yearSlug: "year-11",
+  yearGroupTitle: "Year 11",
+  examBoardSlug: "aqa",
+  examBoardTitle: "AQA",
+  tierSlug: "foundation",
+  tierTitle: "Foundation",
 };
 
 const defaultParams = {
@@ -158,15 +173,30 @@ describe("generateMetadata", () => {
       searchParams: Promise.resolve({}),
     });
 
-    expect(result.title).toBe("Geometry KS2 | Y4 Maths Lesson Resources");
+    expect(result.title).toBe("Geometry KS2 | Y4 Maths | Lesson Resources");
     expect(result.description).toBe(
       "Free lessons and teaching resources about geometry",
     );
     expect(result.openGraph?.title).toBe(
-      "Geometry KS2 | Y4 Maths Lesson Resources",
+      "Geometry KS2 | Y4 Maths | Lesson Resources",
     );
     expect(result.twitter?.title).toBe(
-      "Geometry KS2 | Y4 Maths Lesson Resources",
+      "Geometry KS2 | Y4 Maths | Lesson Resources",
+    );
+  });
+  it("generates metadata with ks4 options", async () => {
+    mockTeachersUnitOverview.mockResolvedValue(ks4UnitOverviewFixture);
+
+    const result = await generateMetadata({
+      params: Promise.resolve({
+        subjectPhaseSlug: "maths-secondary-ks4-aqa",
+        unitSlug: "geometry-abc123",
+      }),
+      searchParams: Promise.resolve({}),
+    });
+
+    expect(result.title).toEqual(
+      "Geometry KS4 | Y11 Maths Foundation AQA | Lesson Resources",
     );
   });
 });
