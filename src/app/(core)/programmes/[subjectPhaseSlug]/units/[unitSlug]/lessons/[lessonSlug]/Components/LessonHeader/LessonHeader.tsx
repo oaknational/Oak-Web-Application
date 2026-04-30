@@ -85,11 +85,10 @@ const LessonHeader = (props: LessonHeaderProps) => {
               isActionGeorestricted: true,
               shouldHidewhenGeoRestricted: true,
               href: resolveOakHref({
-                page: "lesson-downloads",
+                page: "integrated-lesson-downloads",
                 lessonSlug: currentLessonSlug,
                 programmeSlug,
                 unitSlug,
-                downloads: "downloads",
                 query: { preselected: "all" },
               }),
             }}
