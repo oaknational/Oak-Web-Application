@@ -1,9 +1,10 @@
 import { screen } from "@testing-library/dom";
 
-import { UnitView } from "./UnitView";
-import type { UnitViewProps } from "./UnitView";
-import { LessonList } from "./LessonList";
-import { ProgrammeToggles } from "./ProgrammeToggles";
+import { LessonList } from "../LessonList";
+import { ProgrammeToggles } from "../ProgrammeToggles/ProgrammeToggles";
+
+import { UnitOverviewContent } from "./UnitOverviewContent";
+import type { UnitOverviewContentProps } from "./UnitOverviewContent";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -22,14 +23,14 @@ const lessons = [
     lessonTitle: "Lesson 2",
   },
 ];
-describe("UnitView", () => {
+describe("UnitOverviewContent", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it("renders LessonList and passes lesson props with computed lessonCount", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks4-foundation-aqa"
         unitSlug="cells"
         unitTitle="Cells"
@@ -38,7 +39,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks4"
         keyStageTitle="Key Stage 4"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         tierOptionToggles={[
@@ -137,7 +138,7 @@ describe("UnitView", () => {
   });
   it("renders why this why now", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -146,7 +147,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={[]}
@@ -164,7 +165,7 @@ describe("UnitView", () => {
   });
   it("renders prior knowledge requirements in a list", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -173,7 +174,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={[]}
@@ -194,7 +195,7 @@ describe("UnitView", () => {
   });
   it("renders threads", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -203,7 +204,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={["Thread 1", "Thread 2"]}
@@ -224,7 +225,7 @@ describe("UnitView", () => {
   });
   it("renders previous unit link", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -233,7 +234,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={["Thread 1", "Thread 2"]}
@@ -257,7 +258,7 @@ describe("UnitView", () => {
   });
   it("renders next unit link", () => {
     render(
-      <UnitView
+      <UnitOverviewContent
         programmeSlug="biology-secondary-ks3"
         unitSlug="cells"
         unitTitle="Cells"
@@ -266,7 +267,7 @@ describe("UnitView", () => {
         subjectSlug="biology"
         keyStageSlug="ks3"
         keyStageTitle="Key Stage 3"
-        lessons={lessons as UnitViewProps["lessons"]}
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
         unitIndex={2}
         unitCount={12}
         threads={["Thread 1", "Thread 2"]}
