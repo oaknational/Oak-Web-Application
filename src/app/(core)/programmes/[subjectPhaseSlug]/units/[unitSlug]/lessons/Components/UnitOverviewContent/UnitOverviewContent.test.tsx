@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
 
 import { LessonList } from "../LessonList";
 import { ProgrammeToggles } from "../ProgrammeToggles/ProgrammeToggles";
@@ -8,8 +9,8 @@ import type { UnitOverviewContentProps } from "./UnitOverviewContent";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-jest.mock("./LessonList");
-jest.mock("./ProgrammeToggles");
+jest.mock("../LessonList/LessonList");
+jest.mock("../ProgrammeToggles/ProgrammeToggles");
 
 const render = renderWithProviders();
 
@@ -71,6 +72,8 @@ describe("UnitOverviewContent", () => {
         nextUnit={null}
         prevUnit={null}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -158,6 +161,8 @@ describe("UnitOverviewContent", () => {
         nextUnit={null}
         prevUnit={null}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -185,6 +190,8 @@ describe("UnitOverviewContent", () => {
         nextUnit={null}
         prevUnit={null}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -214,6 +221,8 @@ describe("UnitOverviewContent", () => {
         nextUnit={null}
         prevUnit={null}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -244,6 +253,8 @@ describe("UnitOverviewContent", () => {
         nextUnit={null}
         prevUnit={{ slug: "unit-1", title: "Unit 1" }}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -277,6 +288,8 @@ describe("UnitOverviewContent", () => {
         prevUnit={null}
         nextUnit={{ slug: "unit-3", title: "Unit 3" }}
         subjectCategories={null}
+        showDownloadMessage={false}
+        setShowDownloadMessage={jest.fn()}
       />,
     );
 
@@ -288,5 +301,43 @@ describe("UnitOverviewContent", () => {
       "href",
       "http://localhost/programmes/biology-secondary-ks3/units/unit-3/lessons",
     );
+  });
+  it("renders a banner when unit download message is true", async () => {
+    const mockClose = jest.fn();
+    render(
+      <UnitOverviewContent
+        programmeSlug="biology-secondary-ks3"
+        unitSlug="cells"
+        unitTitle="Cells"
+        unitDescription="Learn about cells"
+        subjectTitle="Biology"
+        subjectSlug="biology"
+        keyStageSlug="ks3"
+        keyStageTitle="Key Stage 3"
+        lessons={lessons as UnitOverviewContentProps["lessons"]}
+        unitIndex={2}
+        unitCount={12}
+        threads={["Thread 1", "Thread 2"]}
+        phaseSlug="secondary"
+        tierOptionToggles={[]}
+        subjectOptionToggles={[]}
+        prevUnit={null}
+        nextUnit={{ slug: "unit-3", title: "Unit 3" }}
+        subjectCategories={null}
+        showDownloadMessage={true}
+        setShowDownloadMessage={mockClose}
+      />,
+    );
+
+    const banner = screen.getByText(
+      "Downloads can take a few minutes, especially for larger files or slower connections.",
+    );
+    expect(banner).toBeInTheDocument();
+
+    const bannerCloseBtn = screen.getByTestId("inline-banner-close-button");
+    const user = userEvent.setup();
+    await user.click(bannerCloseBtn);
+
+    expect(mockClose).toHaveBeenCalledWith(false);
   });
 });
