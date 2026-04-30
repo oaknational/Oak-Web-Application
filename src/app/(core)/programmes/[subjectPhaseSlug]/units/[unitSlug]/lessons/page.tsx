@@ -92,6 +92,11 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
         subjectIcon={subjectIconName}
         nextUnit={data.nextUnit}
         prevUnit={data.prevUnit}
+        unitDownloadFileId={
+          unitSlug.endsWith(data.unitvariantId.toString())
+            ? unitSlug
+            : `${unitSlug}-${data.unitvariantId}`
+        }
         isGeorestrictedUnit={data.containsGeorestrictedLessons}
         trackingProps={{
           unitName: data.unitTitle,
