@@ -45,8 +45,8 @@ export type LessonItemTitle =
 
 export type Slugs = {
   lessonSlug: string;
-  unitSlug: string | null;
-  programmeSlug: string | null;
+  unitSlug: string;
+  programmeSlug: string;
 };
 
 export interface LessonItemContainerProps {

@@ -87,7 +87,7 @@ describe("lessonOverview.view", () => {
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture(),
-            isSpecialist: false,
+
             isCanonical: false,
             hasMediaClips: true,
           }}
@@ -110,7 +110,7 @@ describe("lessonOverview.view", () => {
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture(),
-            isSpecialist: false,
+
             isCanonical: false,
             hasMediaClips: true,
           }}
@@ -131,7 +131,7 @@ describe("lessonOverview.view", () => {
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture(),
-            isSpecialist: false,
+
             isCanonical: false,
             hasMediaClips: true,
           }}
@@ -174,7 +174,7 @@ describe("lessonOverview.view", () => {
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture(),
-            isSpecialist: false,
+
             isCanonical: false,
             hasMediaClips: true,
           }}
@@ -221,7 +221,7 @@ describe("lessonOverview.view", () => {
               lessonReleaseDate: undefined,
               isLegacy: false,
             }),
-            isSpecialist: false,
+
             isCanonical: false,
             hasMediaClips: true,
           }}
@@ -268,7 +268,6 @@ describe("lessonOverview.view", () => {
               lessonReleaseDate: undefined,
               isLegacy: false,
             }),
-            isSpecialist: false,
             isCanonical: false,
             hasMediaClips: true,
           }}
@@ -314,7 +313,7 @@ describe("lessonOverview.view", () => {
       <LessonOverview
         lesson={{
           ...lessonOverviewFixture(),
-          isSpecialist: false,
+
           isCanonical: false,
           hasMediaClips: true,
           geoRestricted: true,
@@ -333,7 +332,7 @@ describe("lessonOverview.view", () => {
       <LessonOverview
         lesson={{
           ...lessonOverviewFixture(),
-          isSpecialist: false,
+
           isCanonical: false,
           hasMediaClips: true,
           geoRestricted: true,
@@ -359,7 +358,7 @@ describe("lessonOverview.view", () => {
       <LessonOverview
         lesson={{
           ...lessonOverviewFixture(),
-          isSpecialist: false,
+
           isCanonical: false,
           hasMediaClips: true,
           geoRestricted: true,
@@ -391,7 +390,7 @@ describe("redirected overlay", () => {
             lessonReleaseDate: undefined,
             isLegacy: false,
           }),
-          isSpecialist: false,
+
           isCanonical: false,
           hasMediaClips: true,
         }}
