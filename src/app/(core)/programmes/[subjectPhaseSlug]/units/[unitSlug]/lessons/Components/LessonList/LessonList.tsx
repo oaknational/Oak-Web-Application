@@ -13,6 +13,9 @@ import type { UnitViewProps } from "../UnitView";
 
 import CardListing from "@/components/TeacherComponents/CardListing/CardListing";
 import { SaveUnitButton } from "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton";
+import UnitDownloadButton, {
+  useUnitDownloadButtonState,
+} from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 import { resolveOakHref } from "@/common-lib/urls";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
@@ -34,6 +37,8 @@ type LessonListProps = Pick<
   unitDescription?: UnitViewProps["unitDescription"];
   subjectCategories?: string[] | null;
   showUnitCount?: boolean;
+  showUnitDownloadButton?: boolean;
+  isGeorestrictedUnit?: boolean;
 };
 
 function LessonSubcopy({
@@ -99,7 +104,22 @@ const LessonList = ({
   lessonCount,
   subjectCategories,
   showUnitCount = true,
+  showUnitDownloadButton = false,
+  isGeorestrictedUnit,
 }: LessonListProps) => {
+  const {
+    setShowDownloadMessage,
+    setDownloadError,
+    setDownloadInProgress,
+    downloadInProgress,
+    setShowIncompleteMessage,
+  } = useUnitDownloadButtonState();
+
+  const unitFileId = `${programmeSlug}-${unitSlug}`;
+  const onDownloadSuccess = () => {
+    setShowDownloadMessage(false);
+  };
+
   return (
     <OakFlex $flexDirection="column">
       <OakFlex $justifyContent="space-between" $alignItems="flex-start">
@@ -170,20 +190,34 @@ const LessonList = ({
               <OakSpan $font="body-2-bold">{lessonCount}</OakSpan> lessons in
               unit
             </OakBox>
-            <SaveUnitButton
-              buttonVariant="default"
-              programmeSlug={programmeSlug}
-              unitSlug={unitSlug}
-              unitTitle={unitTitle}
-              trackingProps={{
-                savedFrom: "lesson_listing_save_button",
-                keyStageTitle:
-                  (keyStageTitle as KeyStageTitleValueType) ?? undefined,
-                keyStageSlug,
-                subjectTitle: subjectTitle ?? "",
-                subjectSlug,
-              }}
-            />
+            {showUnitDownloadButton ? (
+              <UnitDownloadButton
+                unitFileId={unitFileId}
+                onDownloadSuccess={onDownloadSuccess}
+                setDownloadError={setDownloadError}
+                setDownloadInProgress={setDownloadInProgress}
+                setShowDownloadMessage={setShowDownloadMessage}
+                setShowIncompleteMessage={setShowIncompleteMessage}
+                downloadInProgress={downloadInProgress}
+                showNewTag={false}
+                geoRestricted={Boolean(isGeorestrictedUnit)}
+              />
+            ) : (
+              <SaveUnitButton
+                buttonVariant="default"
+                programmeSlug={programmeSlug}
+                unitSlug={unitSlug}
+                unitTitle={unitTitle}
+                trackingProps={{
+                  savedFrom: "lesson_listing_save_button",
+                  keyStageTitle:
+                    (keyStageTitle as KeyStageTitleValueType) ?? undefined,
+                  keyStageSlug,
+                  subjectTitle: subjectTitle ?? "",
+                  subjectSlug,
+                }}
+              />
+            )}
           </OakFlex>
 
           <OakFlex
