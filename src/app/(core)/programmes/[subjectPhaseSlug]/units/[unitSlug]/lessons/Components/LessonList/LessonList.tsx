@@ -44,8 +44,10 @@ type LessonListProps = Pick<
 
 function LessonSubcopy({
   lesson,
+  currentLesson,
 }: {
   readonly lesson: UnitViewProps["lessons"][number];
+  readonly currentLesson: boolean;
 }) {
   const loginRequired =
     "loginRequired" in lesson ? lesson.loginRequired : false;
@@ -87,6 +89,15 @@ function LessonSubcopy({
       </OakFlex>
     );
   }
+  if (currentLesson) {
+    return (
+      <OakFlex $flexDirection={["column"]}>
+        <OakBox>{lesson.pupilLessonOutcome}</OakBox>
+        <OakBox $textAlign={"right"}>Current lesson</OakBox>
+      </OakFlex>
+    );
+  }
+
   return lesson.pupilLessonOutcome;
 }
 
@@ -246,7 +257,12 @@ const LessonList = ({
                       : "primary"
                   }
                   title={lesson.lessonTitle}
-                  subcopy={<LessonSubcopy lesson={lesson} />}
+                  subcopy={
+                    <LessonSubcopy
+                      lesson={lesson}
+                      currentLesson={selectedLessonIndex === lesson.orderInUnit}
+                    />
+                  }
                   href={resolveOakHref({
                     page: "integrated-lesson-overview",
                     programmeSlug,

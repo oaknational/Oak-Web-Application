@@ -217,6 +217,11 @@ describe("LessonList", () => {
 
     expect(screen.queryByText("Learn about cells")).not.toBeInTheDocument();
   });
+  it("renders 'current lesson' text on current lesson item", () => {
+    render(<LessonList {...defaultProps} selectedLessonIndex={1} />);
+
+    expect(screen.queryByText("Current lesson")).toBeInTheDocument();
+  });
   it("renders download button when showUnitDownloadButton is true", () => {
     setUseUserReturn(mockLoggedIn);
     render(
