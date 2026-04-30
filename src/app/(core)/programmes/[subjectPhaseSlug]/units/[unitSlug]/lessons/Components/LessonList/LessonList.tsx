@@ -36,6 +36,7 @@ type LessonListProps = Pick<
   lessonCount: number;
   unitDescription?: UnitViewProps["unitDescription"];
   subjectCategories?: string[] | null;
+  selectedLessonIndex?: number;
   showUnitCount?: boolean;
   showUnitDownloadButton?: boolean;
   isGeorestrictedUnit?: boolean;
@@ -103,6 +104,7 @@ const LessonList = ({
   unitCount,
   lessonCount,
   subjectCategories,
+  selectedLessonIndex,
   showUnitCount = true,
   showUnitDownloadButton = false,
   isGeorestrictedUnit,
@@ -238,7 +240,11 @@ const LessonList = ({
               >
                 <CardListing
                   layoutVariant="horizontal"
-                  isHighlighted={false}
+                  highlightType={
+                    selectedLessonIndex === lesson.orderInUnit
+                      ? "tertiary"
+                      : "primary"
+                  }
                   title={lesson.lessonTitle}
                   subcopy={<LessonSubcopy lesson={lesson} />}
                   href={resolveOakHref({

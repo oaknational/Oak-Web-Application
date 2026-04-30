@@ -140,6 +140,7 @@ const defaultArgs: LessonListProps = {
   lessons: fixtureData.lessons,
   showUnitCount: true,
   showUnitDownloadButton: true,
+  selectedLessonIndex: 1,
 };
 
 export const Default: Story = {
