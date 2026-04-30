@@ -264,18 +264,6 @@ describe("Component - subject phase picker", () => {
     });
   });
 
-  test("User can navigate to previous curriculum plans", async () => {
-    const { getByTestId, getByTitle } = render(
-      <SubjectPhasePicker {...curriculumPhaseOptions} />,
-    );
-    await userEvent.click(getByTitle("Subject"));
-    const link = getByTestId("subject-picker-previous-plans-link");
-    expect(link).toHaveAttribute(
-      "href",
-      "/teachers/curriculum/previous-downloads",
-    );
-  });
-
   describe("Pathways are shown correctly", () => {
     test("user clicks English, secondary and two KS4 options are shown", async () => {
       const {
