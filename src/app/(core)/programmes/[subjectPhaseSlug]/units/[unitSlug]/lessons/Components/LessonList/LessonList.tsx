@@ -13,6 +13,9 @@ import type { UnitViewProps } from "../UnitView";
 
 import CardListing from "@/components/TeacherComponents/CardListing/CardListing";
 import { SaveUnitButton } from "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton";
+import UnitDownloadButton, {
+  useUnitDownloadButtonState,
+} from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 import { resolveOakHref } from "@/common-lib/urls";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
@@ -22,7 +25,6 @@ type LessonListProps = Pick<
   | "programmeSlug"
   | "unitSlug"
   | "unitTitle"
-  | "unitDescription"
   | "subjectTitle"
   | "subjectSlug"
   | "keyStageSlug"
@@ -32,13 +34,21 @@ type LessonListProps = Pick<
   | "unitCount"
 > & {
   lessonCount: number;
+  unitDescription?: UnitViewProps["unitDescription"];
   subjectCategories?: string[] | null;
+  selectedLessonIndex?: number;
+  showUnitCount?: boolean;
+  showUnitDownloadButton?: boolean;
+  isGeorestrictedUnit?: boolean;
+  unitDownloadFileId?: string;
 };
 
 function LessonSubcopy({
   lesson,
+  currentLesson,
 }: {
   readonly lesson: UnitViewProps["lessons"][number];
+  readonly currentLesson: boolean;
 }) {
   const loginRequired =
     "loginRequired" in lesson ? lesson.loginRequired : false;
@@ -80,6 +90,15 @@ function LessonSubcopy({
       </OakFlex>
     );
   }
+  if (currentLesson) {
+    return (
+      <OakFlex $flexDirection={["column"]}>
+        <OakBox>{lesson.pupilLessonOutcome}</OakBox>
+        <OakBox $textAlign={"right"}>Current lesson</OakBox>
+      </OakFlex>
+    );
+  }
+
   return lesson.pupilLessonOutcome;
 }
 
@@ -97,20 +116,41 @@ const LessonList = ({
   unitCount,
   lessonCount,
   subjectCategories,
+  selectedLessonIndex,
+  showUnitCount = true,
+  showUnitDownloadButton = false,
+  isGeorestrictedUnit,
+  unitDownloadFileId,
 }: LessonListProps) => {
+  const {
+    setShowDownloadMessage,
+    setDownloadError,
+    setDownloadInProgress,
+    downloadInProgress,
+    setShowIncompleteMessage,
+  } = useUnitDownloadButtonState();
+
+  const onDownloadSuccess = () => {
+    setShowDownloadMessage(false);
+  };
+
   return (
     <OakFlex $flexDirection="column">
       <OakFlex $justifyContent="space-between" $alignItems="flex-start">
-        <OakBox
-          $background="bg-decorative3-very-subdued"
-          $pa="spacing-20"
-          $btlr="border-radius-l"
-          $btrr="border-radius-l"
-          $font="body-2"
-          aria-hidden={true}
-        >
-          <OakSpan $font="body-2-bold">Unit {unitIndex}</OakSpan> of {unitCount}
-        </OakBox>
+        {showUnitCount && (
+          <OakBox
+            $background="bg-decorative3-very-subdued"
+            $pa="spacing-20"
+            $btlr="border-radius-l"
+            $btrr="border-radius-l"
+            $font="body-2"
+            aria-hidden={true}
+            data-testid="unit-count"
+          >
+            <OakSpan $font="body-2-bold">Unit {unitIndex}</OakSpan> of{" "}
+            {unitCount}
+          </OakBox>
+        )}
         {subjectCategories ? (
           <OakFlex $gap={"spacing-8"}>
             {subjectCategories.map((subjectCategory) => (
@@ -149,11 +189,8 @@ const LessonList = ({
           >
             {unitTitle}
           </OakBox>
-          {unitDescription ? (
-            <OakP $font="body-2">{unitDescription}</OakP>
-          ) : null}
+          {unitDescription && <OakP $font="body-2">{unitDescription}</OakP>}
         </OakFlex>
-
         <OakBox>
           <OakFlex $justifyContent="space-between" $alignItems="flex-start">
             <OakBox
@@ -167,20 +204,34 @@ const LessonList = ({
               <OakSpan $font="body-2-bold">{lessonCount}</OakSpan> lessons in
               unit
             </OakBox>
-            <SaveUnitButton
-              buttonVariant="default"
-              programmeSlug={programmeSlug}
-              unitSlug={unitSlug}
-              unitTitle={unitTitle}
-              trackingProps={{
-                savedFrom: "lesson_listing_save_button",
-                keyStageTitle:
-                  (keyStageTitle as KeyStageTitleValueType) ?? undefined,
-                keyStageSlug,
-                subjectTitle: subjectTitle ?? "",
-                subjectSlug,
-              }}
-            />
+            {showUnitDownloadButton && unitDownloadFileId ? (
+              <UnitDownloadButton
+                unitFileId={unitDownloadFileId}
+                onDownloadSuccess={onDownloadSuccess}
+                setDownloadError={setDownloadError}
+                setDownloadInProgress={setDownloadInProgress}
+                setShowDownloadMessage={setShowDownloadMessage}
+                setShowIncompleteMessage={setShowIncompleteMessage}
+                downloadInProgress={downloadInProgress}
+                showNewTag={false}
+                geoRestricted={Boolean(isGeorestrictedUnit)}
+              />
+            ) : (
+              <SaveUnitButton
+                buttonVariant="default"
+                programmeSlug={programmeSlug}
+                unitSlug={unitSlug}
+                unitTitle={unitTitle}
+                trackingProps={{
+                  savedFrom: "lesson_listing_save_button",
+                  keyStageTitle:
+                    (keyStageTitle as KeyStageTitleValueType) ?? undefined,
+                  keyStageSlug,
+                  subjectTitle: subjectTitle ?? "",
+                  subjectSlug,
+                }}
+              />
+            )}
           </OakFlex>
 
           <OakFlex
@@ -201,9 +252,18 @@ const LessonList = ({
               >
                 <CardListing
                   layoutVariant="horizontal"
-                  isHighlighted={false}
+                  highlightType={
+                    selectedLessonIndex === lesson.orderInUnit
+                      ? "tertiary"
+                      : "primary"
+                  }
                   title={lesson.lessonTitle}
-                  subcopy={<LessonSubcopy lesson={lesson} />}
+                  subcopy={
+                    <LessonSubcopy
+                      lesson={lesson}
+                      currentLesson={selectedLessonIndex === lesson.orderInUnit}
+                    />
+                  }
                   href={resolveOakHref({
                     page: "integrated-lesson-overview",
                     programmeSlug,

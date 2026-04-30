@@ -10,7 +10,7 @@ const defaultProps = {
   index: 158,
   title: "Card title",
   layoutVariant: "horizontal" as const,
-  isHighlighted: false,
+  highlightType: "primary" as const,
   href: "testUrl",
 };
 
@@ -28,7 +28,7 @@ const saveProps = {
 };
 
 const childCardProps = {
-  isHighlighted: false,
+  highlightType: "primary" as const,
   href: "testUrl",
   lessonCount: 10,
   saveProps,
@@ -110,7 +110,11 @@ describe("CardListing", () => {
   });
   it("renders correctly in a highlighted state", () => {
     const { rerender } = render(
-      <CardListing {...defaultProps} isHighlighted saveProps={saveProps} />,
+      <CardListing
+        {...defaultProps}
+        highlightType="secondary"
+        saveProps={saveProps}
+      />,
     );
 
     const card = screen.getByTestId("card-listing-container");

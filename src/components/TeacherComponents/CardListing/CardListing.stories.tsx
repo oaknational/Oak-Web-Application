@@ -35,7 +35,6 @@ const meta: Meta<typeof CardListing> = {
 export default meta;
 
 const defaultArgs = {
-  isHighlighted: false,
   index: 10,
   subcopy: "Ullamcorper auctor volutpat",
   tags: [
@@ -93,7 +92,7 @@ export const Customisable: Story = {
         "title",
         "subcopy",
         "lessonCount",
-        "isHighlighted",
+        "highlightType",
         "tags",
         "disabled",
         "saveProps",
@@ -150,7 +149,11 @@ export const Vertical: Story = {
         <OakTypography $font={"heading-5"} $height={"spacing-64"}>
           Highlighted
         </OakTypography>
-        <CardListing {...args} layoutVariant="vertical" isHighlighted={true} />
+        <CardListing
+          {...args}
+          layoutVariant="vertical"
+          highlightType="secondary"
+        />
       </OakFlex>
       <OakFlex
         $flexDirection={"column"}
@@ -234,7 +237,7 @@ export const Horizontal: Story = {
         <CardListing
           {...args}
           layoutVariant="horizontal"
-          isHighlighted={true}
+          highlightType="secondary"
         />
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
@@ -272,7 +275,6 @@ export const Horizontal: Story = {
   args: defaultArgs,
 };
 const cardProps = {
-  isHighlighted: false,
   lessonCount: 10,
   title:
     "Ullamcorper auctor volutpat turpis dictumst aliquam et et dui mattis ullamcorper.",
@@ -323,7 +325,11 @@ export const Optionality: Story = {
           {...args}
           childCards={[
             { ...cardProps, title: "Optionality 1" },
-            { ...cardProps, title: "Optionality 2", isHighlighted: true },
+            {
+              ...cardProps,
+              title: "Optionality 2",
+              highlightType: "secondary",
+            },
             { ...cardProps, title: "Optionality 3" },
           ]}
         />

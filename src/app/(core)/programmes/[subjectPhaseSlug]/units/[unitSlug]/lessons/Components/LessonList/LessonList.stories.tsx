@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/nextjs";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ComponentProps } from "react";
+import { mocked } from "storybook/test";
 
 import { __setMockAuthState } from "../../../../../../../../../../.storybook/mocks/clerk";
 
@@ -12,11 +13,24 @@ import SaveCountDecorator from "@/storybook-decorators/SaveCountDecorator";
 import lessonListingFixture, {
   lessonsWithUnpublishedContent,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
+import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
 const meta: Meta<typeof LessonList> = {
   component: LessonList,
   tags: ["autodocs"],
   title: "App/Programmes/Units/LessonList",
+  parameters: {
+    viewport: {
+      defaultViewport: "desktop",
+    },
+  },
+  beforeEach: () => {
+    mocked(useUnitDownloadExistenceCheck).mockReturnValue({
+      exists: true,
+      fileSize: "100MB",
+      hasCheckedFiles: true,
+    });
+  },
   decorators: [
     SaveCountDecorator,
     NotificationsDecorator,
@@ -124,6 +138,9 @@ const defaultArgs: LessonListProps = {
   unitCount: 28,
   lessonCount: 4,
   lessons: fixtureData.lessons,
+  showUnitCount: true,
+  showUnitDownloadButton: true,
+  selectedLessonIndex: 1,
 };
 
 export const Default: Story = {
@@ -219,4 +236,17 @@ export const ComingSoonLesson: Story = {
     ],
     lessonCount: 2,
   },
+};
+
+export const SignedOut: Story = {
+  decorators: [
+    (Story) => {
+      __setMockAuthState({
+        isSignedIn: false,
+        isOnboarded: false,
+      });
+      return <Story />;
+    },
+  ],
+  args: defaultArgs,
 };

@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import type { ComponentProps } from "react";
+import clerk from "@clerk/nextjs";
 
 import LessonList from "./LessonList";
 
@@ -8,6 +9,8 @@ import { resolveOakHref } from "@/common-lib/urls";
 import lessonListingFixture, {
   lessonsWithUnpublishedContent,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
+import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 const render = renderWithProviders();
 
@@ -20,6 +23,33 @@ jest.mock(
       return <button type="button">Save unit</button>;
     },
   }),
+);
+
+const unitDownloadButtonMock = jest.fn();
+jest.mock(
+  "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton",
+  () => {
+    return {
+      __esModule: true,
+      default: function Default(props: unknown) {
+        unitDownloadButtonMock(props);
+        const { isSignedIn } = clerk.useUser();
+
+        const buttonText = isSignedIn
+          ? "Download (.zip 5MB)"
+          : "Download complete unit";
+
+        return <button type="button">{buttonText}</button>;
+      },
+      useUnitDownloadButtonState: () => ({
+        setShowDownloadMessage: jest.fn(),
+        setDownloadError: jest.fn(),
+        setDownloadInProgress: jest.fn(),
+        downloadInProgress: false,
+        setShowIncompleteMessage: jest.fn(),
+      }),
+    };
+  },
 );
 
 type LessonListProps = ComponentProps<typeof LessonList>;
@@ -86,6 +116,7 @@ const defaultProps: LessonListProps = {
 describe("LessonList", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    setUseUserReturn(mockLoggedOut);
   });
 
   it("renders unit and lesson summary content", () => {
@@ -167,5 +198,87 @@ describe("LessonList", () => {
         }),
       }),
     );
+  });
+  it("it renders unit count", () => {
+    const { getByTestId } = render(<LessonList {...defaultProps} />);
+    const unitCount = getByTestId("unit-count");
+
+    expect(unitCount).toBeInTheDocument();
+  });
+  it("it does not render unit count when showUnitCount is false", () => {
+    const { queryByTestId } = render(
+      <LessonList {...defaultProps} showUnitCount={false} />,
+    );
+    const unitCount = queryByTestId("unit-count");
+
+    expect(unitCount).not.toBeInTheDocument();
+  });
+  it("it does not render unit description", () => {
+    render(<LessonList {...defaultProps} unitDescription={null} />);
+
+    expect(screen.queryByText("Learn about cells")).not.toBeInTheDocument();
+  });
+  it("renders 'current lesson' text on current lesson item", () => {
+    render(<LessonList {...defaultProps} selectedLessonIndex={1} />);
+
+    expect(screen.queryByText("Current lesson")).toBeInTheDocument();
+  });
+  it("renders download button when showUnitDownloadButton is true", () => {
+    setUseUserReturn(mockLoggedIn);
+    render(
+      <LessonList
+        {...defaultProps}
+        showUnitDownloadButton={true}
+        unitDownloadFileId="123"
+        isGeorestrictedUnit={true}
+      />,
+    );
+
+    expect(
+      screen.queryByRole("button", { name: "Download (.zip 5MB)" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Save unit" }),
+    ).not.toBeInTheDocument();
+  });
+  it("passes download button correct props", () => {
+    render(
+      <LessonList
+        {...defaultProps}
+        showUnitDownloadButton={true}
+        unitDownloadFileId="biology-secondary-ks3-cells"
+      />,
+    );
+
+    expect(unitDownloadButtonMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        unitFileId: "biology-secondary-ks3-cells",
+        showNewTag: false,
+        geoRestricted: false,
+      }),
+    );
+  });
+  it("renders save button when showUnitDownloadButton is false", () => {
+    render(<LessonList {...defaultProps} showUnitDownloadButton={false} />);
+
+    expect(
+      screen.getByRole("button", { name: "Save unit" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Download (.zip 5MB)" }),
+    ).not.toBeInTheDocument();
+  });
+  it("renders logged out unit download button text", () => {
+    render(
+      <LessonList
+        {...defaultProps}
+        showUnitDownloadButton={true}
+        unitDownloadFileId="cells-42"
+      />,
+    );
+
+    expect(
+      screen.queryByRole("button", { name: "Download complete unit" }),
+    ).toBeInTheDocument();
   });
 });
