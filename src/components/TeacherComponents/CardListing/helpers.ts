@@ -1,20 +1,37 @@
-export const getCardListingDefaultTextColour = ({
+export type HighlightType = "primary" | "secondary" | "tertiary";
+
+export const getCardListingTextColour = ({
   disabled,
-  isHighlighted,
+  highlightType = "primary",
   hasChildCards,
 }: {
   disabled?: boolean;
-  isHighlighted?: boolean;
+  highlightType?: HighlightType;
   hasChildCards: boolean;
 }) => {
   if (disabled) {
     return "text-disabled";
-  } else if (isHighlighted && !hasChildCards) {
+  } else if (hasChildCards) {
+    return undefined;
+  } else if (highlightType === "secondary") {
     return "text-inverted";
   }
 
-  // use the default colour value for the component
-  return undefined;
+  return "text-primary";
+};
+
+export const getCardListingBackgroundColour = (
+  highlightType: HighlightType = "primary",
+) => {
+  switch (highlightType) {
+    case "secondary":
+      return "bg-inverted";
+    case "tertiary":
+      return "bg-decorative1-very-subdued";
+    case "primary":
+    default:
+      return "bg-primary";
+  }
 };
 
 export const getCardListingLinkProps = ({
