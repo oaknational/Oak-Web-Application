@@ -22,6 +22,16 @@ const defaultProps: UnitHeaderProps = {
     subjectSlug: "computer-science",
     subjectTitle: "Computer science",
   },
+  downloadButtonState: {
+    downloadError: false,
+    setDownloadError: jest.fn(),
+    showDownloadMessage: false,
+    setShowDownloadMessage: jest.fn(),
+    downloadInProgress: false,
+    setDownloadInProgress: jest.fn(),
+    showIncompleteMessage: false,
+    setShowIncompleteMessage: jest.fn(),
+  },
 };
 
 describe("UnitHeader", () => {

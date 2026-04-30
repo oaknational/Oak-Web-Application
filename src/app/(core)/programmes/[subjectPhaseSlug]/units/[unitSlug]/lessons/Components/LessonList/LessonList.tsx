@@ -9,7 +9,7 @@ import {
   OakTagFunctional,
 } from "@oaknational/oak-components";
 
-import type { UnitViewProps } from "../UnitView";
+import type { UnitOverviewContentProps } from "../UnitOverviewContent/UnitOverviewContent";
 
 import CardListing from "@/components/TeacherComponents/CardListing/CardListing";
 import { SaveUnitButton } from "@/components/TeacherComponents/SaveUnitButton/SaveUnitButton";
@@ -18,7 +18,7 @@ import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 type LessonListProps = Pick<
-  UnitViewProps,
+  UnitOverviewContentProps,
   | "programmeSlug"
   | "unitSlug"
   | "unitTitle"
@@ -38,7 +38,7 @@ type LessonListProps = Pick<
 function LessonSubcopy({
   lesson,
 }: {
-  readonly lesson: UnitViewProps["lessons"][number];
+  readonly lesson: UnitOverviewContentProps["lessons"][number];
 }) {
   const loginRequired =
     "loginRequired" in lesson ? lesson.loginRequired : false;
