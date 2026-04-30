@@ -22,7 +22,6 @@ type LessonListProps = Pick<
   | "programmeSlug"
   | "unitSlug"
   | "unitTitle"
-  | "unitDescription"
   | "subjectTitle"
   | "subjectSlug"
   | "keyStageSlug"
@@ -32,6 +31,7 @@ type LessonListProps = Pick<
   | "unitCount"
 > & {
   lessonCount: number;
+  unitDescription?: UnitViewProps["unitDescription"];
   subjectCategories?: string[] | null;
   showUnitCount?: boolean;
 };
@@ -155,11 +155,8 @@ const LessonList = ({
           >
             {unitTitle}
           </OakBox>
-          {unitDescription ? (
-            <OakP $font="body-2">{unitDescription}</OakP>
-          ) : null}
+          {unitDescription && <OakP $font="body-2">{unitDescription}</OakP>}
         </OakFlex>
-
         <OakBox>
           <OakFlex $justifyContent="space-between" $alignItems="flex-start">
             <OakBox
