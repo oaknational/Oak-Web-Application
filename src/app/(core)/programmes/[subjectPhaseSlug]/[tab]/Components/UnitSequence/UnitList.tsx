@@ -4,8 +4,6 @@ import {
   OakP,
   useMediaQuery,
 } from "@oaknational/oak-components";
-import { keystageSlugs } from "@oaknational/oak-curriculum-schema";
-import z from "zod";
 
 import { getTagsForUnitCard } from "./getTagsForUnitCard";
 import { getSavePropsForUnitCard } from "./getSavePropsForUnitCard";
@@ -26,9 +24,6 @@ import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics
 import CardListing, {
   CardProps,
 } from "@/components/TeacherComponents/CardListing/CardListing";
-import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-
-type KeystageSlug = z.infer<typeof keystageSlugs>;
 
 type ProgrammeUnitListProps = {
   units: Unit[];
@@ -158,25 +153,4 @@ export function ProgrammeUnitList({
       {units.map((unit, index) => getItems(unit, index, isMobile))}
     </OakGrid>
   );
-}
-
-// Types are loose coming out of the API so we cast to `KeystageSlug` to
-// do our best to map it to the correct title. Fallback to undefined if we can't map it.
-export function getKeyStageTitle(
-  ksSlug: string,
-): KeyStageTitleValueType | undefined {
-  switch (ksSlug as KeystageSlug) {
-    case "ks1":
-      return "Key stage 1";
-    case "ks2":
-      return "Key stage 2";
-    case "ks3":
-      return "Key stage 3";
-    case "ks4":
-      return "Key stage 4";
-    case "early-years-foundation-stage":
-      return "Early Years Foundation stage";
-    default:
-      return undefined;
-  }
 }

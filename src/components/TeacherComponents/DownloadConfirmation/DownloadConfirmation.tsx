@@ -219,9 +219,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           <OakBox $font={["heading-light-6", "heading-light-5"]}>
             <OakSpan>Our resources work best if you </OakSpan>
             <OakLink
-              href={
-                "https://support.thenational.academy/how-to-install-the-google-fonts-lexend-and-kalan"
-              }
+              href={resolveOakHref({ page: "help-font" })}
               target={"_blank"}
               aria-label={
                 "install the Google Fonts 'Lexend' and 'Kalam' (opens in a new tab)"
