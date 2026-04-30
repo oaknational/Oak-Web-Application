@@ -73,9 +73,6 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
   const { subjectPhaseSlug: programmeSlug, unitSlug } = await props.params;
   const data = await getCachedUnitData(programmeSlug, unitSlug);
   const subjectIconName = `subject-${data.subjectSlug}` as SubjectIcon;
-  const unitDownloadFileId = unitSlug.endsWith(data.unitvariantId.toString())
-    ? unitSlug
-    : `${unitSlug}-${data.unitvariantId}`;
 
   const subjectPhaseSlug = getTeacherSubjectPhaseSlug({
     subjectSlug: data.subjectSlug,
@@ -95,7 +92,6 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
         subjectIcon={subjectIconName}
         nextUnit={data.nextUnit}
         prevUnit={data.prevUnit}
-        unitDownloadFileId={unitDownloadFileId}
         isGeorestrictedUnit={data.containsGeorestrictedLessons}
         trackingProps={{
           unitName: data.unitTitle,
@@ -134,7 +130,6 @@ const InnerUnitPage = async (props: AppPageProps<LessonsPageParams>) => {
         nextUnit={data.nextUnit}
         prevUnit={data.prevUnit}
         subjectCategories={data.subjectCategories}
-        unitDownloadFileId={unitDownloadFileId}
       />
     </>
   );

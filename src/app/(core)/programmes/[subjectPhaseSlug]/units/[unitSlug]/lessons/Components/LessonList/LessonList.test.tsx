@@ -258,21 +258,6 @@ describe("LessonList", () => {
       }),
     );
   });
-  it("uses unitDownloadFileId prop when provided", () => {
-    render(
-      <LessonList
-        {...defaultProps}
-        showUnitDownloadButton={true}
-        unitDownloadFileId="cells-42"
-      />,
-    );
-
-    expect(unitDownloadButtonMock).toHaveBeenCalledWith(
-      expect.objectContaining({
-        unitFileId: "cells-42",
-      }),
-    );
-  });
   it("renders save button when showUnitDownloadButton is false", () => {
     render(<LessonList {...defaultProps} showUnitDownloadButton={false} />);
 

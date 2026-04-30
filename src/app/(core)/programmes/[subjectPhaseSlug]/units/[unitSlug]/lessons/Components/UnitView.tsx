@@ -45,9 +45,7 @@ export type UnitViewProps = Pick<
   | "prevUnit"
   | "nextUnit"
   | "subjectCategories"
-> & {
-  unitDownloadFileId?: string;
-};
+>;
 
 export const UnitView = ({
   programmeSlug,
@@ -70,7 +68,6 @@ export const UnitView = ({
   nextUnit,
   prevUnit,
   subjectCategories,
-  unitDownloadFileId,
 }: UnitViewProps) => {
   const hasToggles =
     tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
@@ -153,7 +150,6 @@ export const UnitView = ({
             unitCount={unitCount}
             lessonCount={lessons.length}
             subjectCategories={subjectCategories}
-            unitDownloadFileId={unitDownloadFileId}
           />
           <HelpLinkCard $display={["block", "none"]} />
         </OakGridArea>
