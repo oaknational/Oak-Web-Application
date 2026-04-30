@@ -1,3 +1,30 @@
+# [1.1064.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1063.1...v1.1064.0) (2026-04-30)
+
+
+### Bug Fixes
+
+* dont show back to unit or lesson count for canonical pages ([196c291](https://github.com/oaknational/Oak-Web-Application/commit/196c291096c4e8d9e9f49a07db17afeb488341c9))
+* make slugs required for additional files link on canonical lesson page ([8e667e3](https://github.com/oaknational/Oak-Web-Application/commit/8e667e34d4061569d7d6a23ed6c8e6584d02b83d))
+* remove programme metadata on canonical page ([d053382](https://github.com/oaknational/Oak-Web-Application/commit/d05338216bb5373a642ae317b3f500390b2cf12c))
+* use minimal breadcrumbs for canonical lesson ([02bfa30](https://github.com/oaknational/Oak-Web-Application/commit/02bfa304ec6d4eef1491eacac1d54525e029d47e))
+
+
+### Features
+
+* delete canonical download page and test file ([ec791ee](https://github.com/oaknational/Oak-Web-Application/commit/ec791ee5842e9c8ac2a8de9c8ba2ee2056d178ed))
+* make download all button link to full programme download page ([26e368b](https://github.com/oaknational/Oak-Web-Application/commit/26e368b433016fb1bd9f6d86aed04562691a4ba8))
+* remove canonical beta downloads page ([9c64442](https://github.com/oaknational/Oak-Web-Application/commit/9c644429b596ab4cee07b642cad1302a1e3d8ae7))
+* remove canonical lesson type from lesson downloads view ([aa23231](https://github.com/oaknational/Oak-Web-Application/commit/aa23231acd4d057c8bc91a59846b1a7c65a2c30b))
+* remove specialist lesson handling on download page ([915dae2](https://github.com/oaknational/Oak-Web-Application/commit/915dae26cadb27c78d5f29472b0bc9e65c7a3959))
+* remove specialist lesson pages ([9b3ebc9](https://github.com/oaknational/Oak-Web-Application/commit/9b3ebc97078f886333a856d23a3cd8a53cb472dd))
+
+## [1.1063.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.1063.0...v1.1063.1) (2026-04-30)
+
+
+### Bug Fixes
+
+* test tf-check versions ([30e501d](https://github.com/oaknational/Oak-Web-Application/commit/30e501d92bd15904343580d96622931badce0fcc))
+
 # [1.1063.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.1062.0...v1.1063.0) (2026-04-29)
 
 

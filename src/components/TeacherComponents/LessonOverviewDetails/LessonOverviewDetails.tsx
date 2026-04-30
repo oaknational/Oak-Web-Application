@@ -131,23 +131,24 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   const guidance = contentGuidance
     ? contentGuidance.map((c) => c.contentGuidanceLabel)
     : undefined;
-  const filesNeeded = additionalFiles
-    ? {
-        files: additionalFiles,
-        georestricted,
-        loginRequired,
-        href: resolveOakHref({
-          page: "lesson-downloads",
-          lessonSlug: lessonSlug,
-          programmeSlug: programmeSlug ?? "",
-          unitSlug: unitSlug ?? "",
-          downloads: "downloads",
-          query: {
-            preselected: "additional files",
-          },
-        }),
-      }
-    : undefined;
+  const filesNeeded =
+    additionalFiles && programmeSlug && unitSlug
+      ? {
+          files: additionalFiles,
+          georestricted,
+          loginRequired,
+          href: resolveOakHref({
+            page: "lesson-downloads",
+            lessonSlug,
+            programmeSlug,
+            unitSlug,
+            downloads: "downloads",
+            query: {
+              preselected: "additional files",
+            },
+          }),
+        }
+      : undefined;
 
   return (
     <MathJaxWrapper>

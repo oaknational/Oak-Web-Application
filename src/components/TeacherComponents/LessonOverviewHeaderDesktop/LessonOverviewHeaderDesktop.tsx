@@ -62,7 +62,7 @@ export const LessonOverviewHeaderDesktop: FC<
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
   const shouldShowBackButton =
-    !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
+    !!previousBreadcrumb && !!unitTitle && !!programmeSlug && !isCanonical;
 
   return (
     <OakBox $display={["none", "grid"]}>
@@ -109,7 +109,7 @@ export const LessonOverviewHeaderDesktop: FC<
                 useSpan={true}
               />
             )}
-            {(examBoardTitle || yearTitle || tierTitle) && (
+            {(examBoardTitle || yearTitle || tierTitle) && !isCanonical && (
               <OakSpan $color={"text-subdued"} $font={"heading-light-7"}>
                 <LessonMetadata
                   examBoardTitle={examBoardTitle}

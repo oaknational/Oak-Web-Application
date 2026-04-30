@@ -13,7 +13,6 @@ export type LessonOverviewDownloadAllButtonProps = Pick<
   | "unitSlug"
   | "onClickDownloadAll"
   | "isSpecialist"
-  | "isCanonical"
   | "geoRestricted"
   | "loginRequired"
 > &
@@ -30,7 +29,6 @@ export const LessonOverviewDownloadAllButton: FC<
     unitSlug,
     onClickDownloadAll,
     isSpecialist,
-    isCanonical,
     geoRestricted,
     loginRequired,
     sizeVariant = "small",
@@ -54,19 +52,12 @@ export const LessonOverviewDownloadAllButton: FC<
       downloads: "downloads",
       query: { preselected },
     });
-  } else if (programmeSlug && unitSlug && !isSpecialist && !isCanonical) {
+  } else {
     href = resolveOakHref({
       page: "lesson-downloads",
       lessonSlug,
       unitSlug,
       programmeSlug,
-      downloads: "downloads",
-      query: { preselected },
-    });
-  } else {
-    href = resolveOakHref({
-      page: "lesson-downloads-canonical",
-      lessonSlug,
       downloads: "downloads",
       query: { preselected },
     });
