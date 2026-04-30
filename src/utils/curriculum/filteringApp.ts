@@ -86,15 +86,37 @@ export function getDefaultTiersForYearGroup(data: CurriculumUnitsYearData) {
   return [];
 }
 
-export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
+export function getDefaultFilter(
+  data: CurriculumUnitsFormattedData,
+  initialFilters?: CurriculumFilters,
+): CurriculumFilters {
+  const resolveFilterValue = (
+    key: keyof CurriculumFilters,
+    defaultValue: string[],
+  ) => {
+    // use the filter value from the URL if present, otherwise fall back to the default value based on the data
+    return !initialFilters || initialFilters[key].length === 0
+      ? defaultValue
+      : initialFilters[key];
+  };
+
   return {
-    childSubjects: getDefaultChildSubjectForYearGroup(data.yearData),
-    subjectCategories: getDefaultSubjectCategoriesForYearGroup(data.yearData),
-    tiers: getDefaultTiersForYearGroup(data.yearData),
-    years: data.yearOptions,
-    threads: [],
-    pathways: [],
-    keystages: [],
+    childSubjects: resolveFilterValue(
+      "childSubjects",
+      getDefaultChildSubjectForYearGroup(data.yearData),
+    ),
+    subjectCategories: resolveFilterValue(
+      "subjectCategories",
+      getDefaultSubjectCategoriesForYearGroup(data.yearData),
+    ),
+    tiers: resolveFilterValue(
+      "tiers",
+      getDefaultTiersForYearGroup(data.yearData),
+    ),
+    years: resolveFilterValue("years", data.yearOptions),
+    threads: resolveFilterValue("threads", []),
+    pathways: resolveFilterValue("pathways", []),
+    keystages: resolveFilterValue("keystages", []),
   };
 }
 
