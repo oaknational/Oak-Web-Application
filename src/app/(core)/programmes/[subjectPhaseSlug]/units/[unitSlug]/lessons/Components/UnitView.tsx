@@ -87,7 +87,7 @@ export const UnitView = ({
         $rg="spacing-56"
         $mb={["spacing-0", "spacing-48", "spacing-48"]}
         $mh="auto"
-        $mt={["spacing-48", "spacing-56"]}
+        $mt={["spacing-48", "spacing-56", "spacing-80"]}
         $width={"100%"}
         $maxWidth={"spacing-1280"}
         $position="relative"
@@ -162,7 +162,12 @@ export const UnitView = ({
           />
           <HelpLinkCard $display={["block", "none"]} />
         </OakGridArea>
-        <OakGridArea $colSpan={12} $rowStart={[3, 2]} $mb={"spacing-48"}>
+        <OakGridArea
+          $gap={["spacing-48", "spacing-56", "spacing-80"]}
+          $colSpan={12}
+          $rowStart={[3, 2]}
+          $mb={"spacing-48"}
+        >
           <UnitViewSeoAccordion
             examBoardTitle={examBoardTitle ?? undefined}
             yearGroupTitle={yearGroupTitle}

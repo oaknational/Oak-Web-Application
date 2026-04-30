@@ -22,7 +22,7 @@ describe("UnitViewSeoAccordion", () => {
     renderWithTheme(<UnitViewSeoAccordion {...defaultProps} />);
 
     const header = screen.getByText(
-      /Explore this AQA Year 7 KS3 unit to find free lesson teaching resources/,
+      /Explore this AQA Year 7 English KS3 unit to find free lesson teaching resources/,
     );
     expect(header).toBeInTheDocument();
   });
@@ -32,7 +32,7 @@ describe("UnitViewSeoAccordion", () => {
     renderWithTheme(<UnitViewSeoAccordion {...props} />);
 
     const header = screen.getByText(
-      /Explore this Year 7 KS3 unit to find free lesson teaching resources/,
+      /Explore this Year 7 English KS3 unit to find free lesson teaching resources/,
     );
     expect(header).toBeInTheDocument();
   });

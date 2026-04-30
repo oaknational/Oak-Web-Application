@@ -30,12 +30,15 @@ export const UnitViewSeoAccordion = ({
 
   return (
     <OakBasicAccordion
+      $bt="border-solid-s"
+      $bb="border-solid-s"
+      $borderColor="border-neutral-lighter"
       id={"units-seo-accordion"}
       header={
         <OakP $textAlign={"start"}>
           Explore this {examBoardText}
-          {yearGroupTitle} {keyStageTitle} unit to find free lesson teaching
-          resources, including...
+          {yearGroupTitle} {subjectTitle} {keyStageTitle} unit to find free
+          lesson teaching resources, including...
         </OakP>
       }
     >
@@ -49,8 +52,9 @@ export const UnitViewSeoAccordion = ({
           See every unit listed in our{" "}
           <OakLink
             href={resolveOakHref({
-              page: "curriculum-overview",
+              page: "teacher-programme",
               subjectPhaseSlug,
+              tab: "overview",
             })}
           >
             {examBoardText}
@@ -59,8 +63,9 @@ export const UnitViewSeoAccordion = ({
           and discover more of our teaching resources for{" "}
           <OakLink
             href={resolveOakHref({
-              page: "curriculum-units",
+              page: "teacher-programme",
               subjectPhaseSlug,
+              tab: "units",
             })}
           >
             {examBoardText} {phaseSlug} {subjectTitle} programmes
