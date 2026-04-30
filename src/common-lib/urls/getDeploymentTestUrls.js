@@ -84,7 +84,6 @@ function getDeploymentTestUrls() {
     "/teachers/curriculum/english-secondary-aqa/downloads",
     "/teachers/curriculum/science-secondary-ocr/units",
     "/teachers/curriculum/science-secondary-ocr/downloads",
-    "/teachers/curriculum/previous-downloads",
     "/teachers/curriculum",
     "/teachers/curriculum/english-primary/units/speaking-and-listening",
     "/teachers/curriculum/english-primary/units/king-tut-or-healthy-lifestyle-non-chronological-report",
