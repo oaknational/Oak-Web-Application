@@ -150,7 +150,11 @@ export const Vertical: Story = {
         <OakTypography $font={"heading-5"} $height={"spacing-64"}>
           Highlighted
         </OakTypography>
-        <CardListing {...args} layoutVariant="vertical" isHighlighted={true} />
+        <CardListing
+          {...args}
+          layoutVariant="vertical"
+          highlightType="secondary"
+        />
       </OakFlex>
       <OakFlex
         $flexDirection={"column"}
@@ -234,7 +238,7 @@ export const Horizontal: Story = {
         <CardListing
           {...args}
           layoutVariant="horizontal"
-          isHighlighted={true}
+          highlightType="secondary"
         />
       </OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
