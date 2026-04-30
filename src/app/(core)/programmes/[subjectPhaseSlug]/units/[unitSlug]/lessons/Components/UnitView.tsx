@@ -1,3 +1,4 @@
+"use client";
 import UnitHeader from "./UnitHeader/UnitHeader";
 import { Breadcrumbs } from "./Breadcrumbs/Breadcrumbs";
 import { UnitOverviewContent } from "./UnitOverviewContent/UnitOverviewContent";
@@ -6,6 +7,7 @@ import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { TeachersUnitOverviewData } from "@/node-lib/curriculum-api-2023/queries/teachersUnitOverview/teachersUnitOverview.schema";
 import { getTeacherSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { SubjectIcon } from "@/components/TeacherComponents/Header/Header";
+import { useUnitDownloadButtonState } from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 
 export type UnitPageProps = TeachersUnitOverviewData;
 
@@ -19,6 +21,8 @@ export const UnitView = (props: UnitPageProps) => {
     examboardSlug: props.examBoardSlug,
     pathwaySlug: props.pathwaySlug,
   });
+
+  const downloadButtonState = useUnitDownloadButtonState();
 
   return (
     <>
@@ -51,6 +55,7 @@ export const UnitView = (props: UnitPageProps) => {
             mode="unit"
           />
         }
+        downloadButtonState={downloadButtonState}
       />
       <UnitOverviewContent
         programmeSlug={props.programmeSlug}
@@ -73,6 +78,8 @@ export const UnitView = (props: UnitPageProps) => {
         nextUnit={props.nextUnit}
         prevUnit={props.prevUnit}
         subjectCategories={props.subjectCategories}
+        showDownloadMessage={downloadButtonState.showDownloadMessage}
+        setShowDownloadMessage={downloadButtonState.setShowDownloadMessage}
       />
     </>
   );

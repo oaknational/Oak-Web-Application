@@ -14,6 +14,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import HeaderNavFooter from "@/components/TeacherComponents/HeaderNavFooter/HeaderNavFooter";
+import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 export type UnitHeaderProps = Omit<
   CompactHeaderProps,
@@ -34,6 +35,7 @@ export type UnitHeaderProps = Omit<
     subjectSlug: string;
     subjectTitle: string;
   };
+  downloadButtonState: ReturnType<typeof useUnitDownloadButtonState>;
 };
 
 /**
@@ -53,8 +55,10 @@ const UnitHeader = (props: UnitHeaderProps) => {
     prevUnit,
     nextUnit,
     programmeSlug,
+    downloadButtonState,
   } = props;
   const { track } = useAnalytics();
+  const { setCurrentToastProps } = useOakNotificationsContext();
 
   const backgroundColorLevel = phase === "primary" ? 4 : 3;
 
@@ -64,7 +68,7 @@ const UnitHeader = (props: UnitHeaderProps) => {
     setDownloadInProgress,
     downloadInProgress,
     setShowIncompleteMessage,
-  } = useUnitDownloadButtonState();
+  } = downloadButtonState;
 
   return (
     <>
@@ -118,6 +122,12 @@ const UnitHeader = (props: UnitHeaderProps) => {
                     eventVersion: "2.0.0",
                     analyticsUseCase: "Teacher",
                     ...trackingProps,
+                  });
+                  setCurrentToastProps({
+                    message: "Download started. This may take a few minutes.",
+                    variant: "success",
+                    autoDismiss: false,
+                    showIcon: true,
                   });
                 }}
                 showNewTag={false}

@@ -8,11 +8,13 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
+  OakInlineBanner,
   OakLI,
   OakTagFunctional,
   OakTypography,
   OakUL,
 } from "@oaknational/oak-components";
+import { Dispatch, SetStateAction } from "react";
 
 import { LessonList } from "../LessonList";
 import { ProgrammeToggles } from "../ProgrammeToggles/ProgrammeToggles";
@@ -45,7 +47,10 @@ export type UnitOverviewContentProps = Pick<
   | "prevUnit"
   | "nextUnit"
   | "subjectCategories"
->;
+> & {
+  showDownloadMessage: boolean;
+  setShowDownloadMessage: Dispatch<SetStateAction<boolean>>;
+};
 
 export const UnitOverviewContent = ({
   programmeSlug,
@@ -68,6 +73,8 @@ export const UnitOverviewContent = ({
   nextUnit,
   prevUnit,
   subjectCategories,
+  showDownloadMessage,
+  setShowDownloadMessage,
 }: UnitOverviewContentProps) => {
   const hasToggles =
     tierOptionToggles.length > 1 || subjectOptionToggles.length > 1;
@@ -84,6 +91,20 @@ export const UnitOverviewContent = ({
         $maxWidth={"spacing-1280"}
         $position="relative"
       >
+        <OakGridArea
+          $colSpan={12}
+          $display={showDownloadMessage ? "flex" : "none"}
+        >
+          <OakInlineBanner
+            message="Downloads can take a few minutes, especially for larger files or slower connections."
+            isOpen={showDownloadMessage}
+            canDismiss
+            onDismiss={() => setShowDownloadMessage(false)}
+            type="neutral"
+            icon="info"
+            $width={["100%", "max-content"]}
+          />
+        </OakGridArea>
         <OakBox
           $position="absolute"
           $zIndex="in-front"

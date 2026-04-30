@@ -14,7 +14,6 @@ import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUni
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useOakNotificationsContext } from "@/context/OakNotifications/useOakNotificationsContext";
 
 // Used when a user is signed in but not onboarded
 const UnitDownloadOnboardButton = ({
@@ -159,8 +158,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const pathname = usePathname();
   const isDesktop = useMediaQuery("desktop");
 
-  const { setCurrentToastProps } = useOakNotificationsContext();
-
   const {
     onDownloadSuccess,
     setDownloadError,
@@ -187,12 +184,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       if (downloadLink) {
         createAndClickHiddenDownloadLink(downloadLink);
         onDownloadSuccess();
-        setCurrentToastProps({
-          message: "Download started. This may take a few minutes.",
-          variant: "success",
-          autoDismiss: false,
-          showIcon: true,
-        });
       }
     } catch (_error) {
       setShowDownloadMessage(false);
